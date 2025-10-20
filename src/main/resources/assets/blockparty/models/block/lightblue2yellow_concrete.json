@@ -1,5 +1,5 @@
 {
-  "parent": "minecraft:block/cube_all",
+  "parent": "blockparty:block/template_gradient_blocks",
   "textures": {
     "all": "blockparty:block/lightblue2yellow_concrete"
   }
