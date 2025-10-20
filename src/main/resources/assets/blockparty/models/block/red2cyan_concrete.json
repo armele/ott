@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/cube_all",
+  "textures": {
+    "all": "blockparty:block/red2cyan_concrete"
+  }
+}
