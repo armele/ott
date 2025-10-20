@@ -3,6 +3,7 @@ package com.otterly76.blockparty;
 import com.otterly76.blockparty.block.ModBlocks;
 import com.otterly76.blockparty.item.ModItems;
 import net.minecraft.world.item.CreativeModeTabs;
+import net.neoforged.fml.common.Mod;
 import org.slf4j.Logger;
 import com.mojang.logging.LogUtils;
 import net.neoforged.bus.api.IEventBus;
@@ -17,12 +18,11 @@ import net.neoforged.neoforge.event.server.ServerStartingEvent;
 @Mod(Blockparty.MOD_ID)
 public class Blockparty {
     public static final String MOD_ID = "blockparty";
-
     private static final Logger LOGGER = LogUtils.getLogger();
 
     public Blockparty(IEventBus modEventBus, ModContainer modContainer) {
-        ModBlocks.BLOCKS.register(modEventBus);
-        ModItems.ITEMS.register(modEventBus);
+        ModBlocks.register(modEventBus);
+        ModItems.register(modEventBus);
 
         modEventBus.addListener(this::commonSetup);
 
