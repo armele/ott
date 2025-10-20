@@ -1,12 +1,12 @@
 modLoader="javafml"
-loaderVersion="${fml_range}"
+loaderVersion="[2,)"
 license="GPL 3.0"
 issueTrackerURL="https://github.com/rainweaver76/blockparty/issues/new/choose"
 
 [[mods]]
 
 modId="blockparty"
-version="${version}"
+version="1.0.0"
 displayName="Otterly's Blockparty"
 logoFile="blockparty.png"
 credits="A great deal of help from Thodor as well as unhealty amounts of caffiene."
@@ -17,20 +17,20 @@ All the pretty blocks!'''
 [[dependencies.blockparty]]
 modId="neoforge"
 type="required"
-versionRange="[${neo_version},)"
+versionRange="[21.1.220,)"
 ordering="NONE"
 side="BOTH"
 
 [[dependencies.blockparty]]
 modId="minecraft"
 type="required"
-versionRange="[${minecraft_version_range}, 1.21)"
+versionRange="[1.21.1,)"
 ordering="NONE"
 side="BOTH"
 
 [[dependencies.blockparty]]
 modId="jei"
-type="recommended"
-versionRange="[${jei_version},)"
+type="optional"
+versionRange="[19.25.0.322,)"
 ordering="NONE"
 side="BOTH"
