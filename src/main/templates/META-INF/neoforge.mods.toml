@@ -17,7 +17,7 @@ All the pretty blocks!'''
 [[dependencies.blockparty]]
 modId="neoforge"
 type="required"
-versionRange="[21.1.220,)"
+versionRange="[21.1.200,)"
 ordering="NONE"
 side="BOTH"
 
