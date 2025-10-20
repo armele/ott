@@ -18,6 +18,8 @@ import net.neoforged.neoforge.event.server.ServerStartingEvent;
 @Mod(Blockparty.MOD_ID)
 public class Blockparty {
     public static final String MOD_ID = "blockparty";
+
+    @SuppressWarnings("unused")
     private static final Logger LOGGER = LogUtils.getLogger();
 
     public Blockparty(IEventBus modEventBus, ModContainer modContainer) {
