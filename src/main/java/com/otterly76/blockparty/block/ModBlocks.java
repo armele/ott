@@ -1,6 +1,6 @@
 package com.otterly76.blockparty.block;
 
-import com.otterly76.blockparty.Constants;
+import com.otterly76.blockparty.Blockparty;
 import com.otterly76.blockparty.item.ModItems;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
@@ -14,13 +14,13 @@ import net.neoforged.neoforge.registries.DeferredRegister;
 import java.util.function.Supplier;
 
 public class ModBlocks {
-    public static final DeferredRegister.Blocks BLOCKS = DeferredRegister.createBlocks(Constants.MOD_ID);
+    public static final DeferredRegister.Blocks BLOCKS = DeferredRegister.createBlocks(Blockparty.MOD_ID);
 
-    public static final DeferredBlock<Block> BLACK2BLUE_CONCRETE = BLOCKS.register("black2blue_concrete",
+    public static final DeferredBlock<Block> BLACK2BLUE_CONCRETE = registerBlock("black2blue_concrete",
             () -> new Block(BlockBehaviour.Properties.of()
                     .strength(4f).requiresCorrectToolForDrops().sound(SoundType.STONE)));
 
-    public static final DeferredBlock<Block> BLACK2BROWN_CONCRETE = BLOCKS.register("black2brown_concrete",
+    public static final DeferredBlock<Block> BLACK2BROWN_CONCRETE = registerBlock("black2brown_concrete",
             () -> new Block(BlockBehaviour.Properties.of()
                     .strength(4f).requiresCorrectToolForDrops().sound(SoundType.STONE)));
 
