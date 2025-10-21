@@ -1,19 +1,7 @@
 {
   "variants": {
-    "facing=east": {
-      "model": "blockparty:block/pink2gray_concrete",
-      "y": 270
-    },
-    "facing=north": {
-      "model": "blockparty:block/pink2gray_concrete",
-      "y": 180
-    },
-    "facing=south": {
+    "": {
       "model": "blockparty:block/pink2gray_concrete"
-    },
-    "facing=west": {
-      "model": "blockparty:block/pink2gray_concrete",
-      "y": 90
     }
   }
 }
