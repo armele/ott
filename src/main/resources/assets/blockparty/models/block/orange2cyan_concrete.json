@@ -1,5 +1,5 @@
 {
-  "parent": "blockparty:block/template_gradient_blocks",
+  "parent": "minecraft:block/template_glazed_terracotta",
   "textures": {
     "all": "blockparty:block/orange2cyan_concrete"
   }
