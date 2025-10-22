@@ -1,7 +1,7 @@
 {
   "variants": {
     "": {
-      "model": "blockparty:block/orange2gray_concrete"
+      "model": "blockparty:block/concrete/orange2gray_concrete"
     }
   }
 }
