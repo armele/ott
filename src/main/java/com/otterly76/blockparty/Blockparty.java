@@ -1,7 +1,7 @@
 package com.otterly76.blockparty;
 
 import com.otterly76.blockparty.block.ModBlocks;
-import com.otterly76.blockparty.generation.DefaultBlockStateProvider;
+import com.otterly76.blockparty.generation.GradientBlockProvider;
 import com.otterly76.blockparty.item.ModItems;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.world.item.CreativeModeTabs;
@@ -23,7 +23,7 @@ public class Blockparty {
 
     private void dataGeneratorSetup(final GatherDataEvent event) {
         final DataGenerator generator = event.getGenerator();
-        generator.addProvider(event.includeClient(), new DefaultBlockStateProvider(generator.getPackOutput(), event.getExistingFileHelper()));
+        generator.addProvider(event.includeClient(), new GradientBlockProvider(generator.getPackOutput(), event.getExistingFileHelper()));
     }
 
     private void addCreative(BuildCreativeModeTabContentsEvent event) {
@@ -32,7 +32,7 @@ public class Blockparty {
         }
 
         if (event.getTabKey() == CreativeModeTabs.BUILDING_BLOCKS) {
-            ModBlocks.getAllConcreteBlocks().forEach(event::accept);
+            ModBlocks.getAllGradientBlocks().forEach(event::accept);
         }
     }
 }
