@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:block/cube",
-  "render_type": "minecraft:translucent",
+  "render_type": "minecraft:solid",
   "textures": {
     "down": "minecraft:block/pink_concrete_powder",
     "east": "blockparty:block/yellow_pink_concrete_powder",
