@@ -2,7 +2,6 @@ package com.otterly76.blockparty;
 
 import com.otterly76.blockparty.block.ModBlocks;
 import com.otterly76.blockparty.generation.GradientBlockProvider;
-import com.otterly76.blockparty.item.ModCreativeModeTab;
 import com.otterly76.blockparty.item.ModItems;
 import net.minecraft.data.DataGenerator;
 import net.neoforged.bus.api.IEventBus;

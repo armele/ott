@@ -15,7 +15,7 @@ loaderVersion="${loader_version_range}" #mandatory
 license="${mod_license}"
 
 # A URL to refer people to when problems occur with this mod
-issueTrackerURL="https://github.com/rainweaver76/blockparty/issues" #optional
+issueTrackerURL="${mod_issue_tracker_url}" #optional
 
 # A list of mods - how many allowed here is determined by the individual mod loader
 [[mods]] #mandatory
@@ -39,10 +39,10 @@ displayURL="https://github.com/rainweaver76/blockparty" #optional
 logoFile="blockparty.png" #optional
 
 # A text field displayed in the mod UI
-credits="Great gobs of thanks to Thodor12 from the LDT Team for helping me with the java! Give that man a medal for dealing with me and my 25 year java lapse." #optional
+credits="Great gobs of thanks to Thodor12 from the LDT Team for helping me with the java!" #optional
 
 # A text field displayed in the mod UI
 authors="${mod_authors}" #optional
 
 # The description text for the mod (multi line!) (#mandatory)
-description='''A collection of pretty blocks, all tagged and ready for use with MineColonies, Domum Ornamentum, and Structurize!'''
+description="${mod_description}" #optional

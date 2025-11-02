@@ -1,6 +1,6 @@
-package com.otterly76.blockparty.item;
+package com.otterly76.blockparty;
 
-import com.otterly76.blockparty.Constants;
+import com.otterly76.blockparty.item.ModItems;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
