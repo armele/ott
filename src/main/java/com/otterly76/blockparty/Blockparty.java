@@ -4,6 +4,7 @@ import com.otterly76.blockparty.block.ModBlocks;
 import com.otterly76.blockparty.generation.GradientBlockProvider;
 import com.otterly76.blockparty.item.ModItems;
 import net.minecraft.data.DataGenerator;
+import net.minecraft.world.item.CreativeModeTabs;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.fml.common.Mod;
 import net.neoforged.neoforge.data.event.GatherDataEvent;
@@ -28,11 +29,11 @@ public class Blockparty {
     }
 
     private void addCreative(BuildCreativeModeTabContentsEvent event) {
-        if (event.getTabKey() == ModCreativeModeTab.NON_BLOCKS_TAB) {
+        if (event.getTabKey() == CreativeModeTabs.INGREDIENTS) {
             event.accept(ModItems.OTTER);
         }
 
-        if (event.getTabKey() == ModCreativeModeTab.GRADIENT_BLOCKS_TAB) {
+        if (event.getTabKey() == CreativeModeTabs.COLORED_BLOCKS) {
             ModBlocks.getAllGradientBlocks().forEach(event::accept);
         }
     }
