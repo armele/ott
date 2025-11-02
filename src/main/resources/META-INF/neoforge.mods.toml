@@ -12,7 +12,7 @@ loaderVersion="${loader_version_range}" #mandatory
 
 # The license for you mod. This is mandatory metadata and allows for easier comprehension of your redistributive properties.
 # Review your options at https://choosealicense.com/. All rights reserved is the default copyright stance, and is thus the default here.
-license="GPL 3.0"
+license="${mod_license}"
 
 # A URL to refer people to when problems occur with this mod
 issueTrackerURL="https://github.com/rainweaver76/blockparty/issues" #optional
@@ -21,13 +21,13 @@ issueTrackerURL="https://github.com/rainweaver76/blockparty/issues" #optional
 [[mods]] #mandatory
 
 # The modid of the mod
-modId="blockparty" #mandatory
+modId="${mod_id}" #mandatory
 
 # The version number of the mod
-version="1.0.0" #mandatory
+version="${mod_version}" #mandatory
 
 # A display name for the mod
-displayName="Otterly's Blockparty" #mandatory
+displayName="${mod_name}" #mandatory
 
 # A URL to query for updates for this mod. See the JSON update specification https://docs.neoforged.net/docs/misc/updatechecker/
 #updateJSONURL="https://change.me.example.invalid/updates.json" #optional
@@ -39,30 +39,10 @@ displayURL="https://github.com/rainweaver76/blockparty" #optional
 logoFile="blockparty.png" #optional
 
 # A text field displayed in the mod UI
-credits="Great gobs of thanks to Thodor12 from the LDT Team for helping me with the java! Give that man a medal for dealing with me and my 25 year old java lapse." #optional
+credits="Great gobs of thanks to Thodor12 from the LDT Team for helping me with the java! Give that man a medal for dealing with me and my 25 year java lapse." #optional
 
 # A text field displayed in the mod UI
-authors="Otterly76" #optional
+authors="${mod_authors}" #optional
 
 # The description text for the mod (multi line!) (#mandatory)
 description='''A collection of pretty blocks, all tagged and ready for use with MineColonies, Domum Ornamentum, and Structurize!'''
-
-# A dependency - use the . to indicate dependency for a specific modid. Dependencies are optional.
-[[dependencies.blockparty]] #optional
-# the modid of the dependency
-modId="minecraft" #mandatory
-# Does this dependency have to exist - if not, ordering below must be specified
-mandatory=true #mandatory
-# The version range of the dependency
-versionRange="[${minecraftVersion}, 1.21)" #mandatory
-# An ordering relationship for the dependency - BEFORE or AFTER required if the relationship is not mandatory
-ordering="NONE"
-# Side this dependency is applied on - BOTH, CLIENT or SERVER
-side="BOTH"
-# Here's another dependency
-[[dependencies.blockparty]]
-modId="domum_ornamentum"
-mandatory=true
-versionRange="[${domumOrnamentumVersion}, )"
-ordering="AFTER"
-side="BOTH"
