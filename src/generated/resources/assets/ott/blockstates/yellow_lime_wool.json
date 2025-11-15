@@ -1,0 +1,30 @@
+{
+  "variants": {
+    "facing=down": {
+      "model": "ott:block/yellow_lime_wool",
+      "x": 180
+    },
+    "facing=east": {
+      "model": "ott:block/yellow_lime_wool",
+      "x": 90,
+      "y": 90
+    },
+    "facing=north": {
+      "model": "ott:block/yellow_lime_wool",
+      "x": 90
+    },
+    "facing=south": {
+      "model": "ott:block/yellow_lime_wool",
+      "x": 90,
+      "y": 180
+    },
+    "facing=up": {
+      "model": "ott:block/yellow_lime_wool"
+    },
+    "facing=west": {
+      "model": "ott:block/yellow_lime_wool",
+      "x": 90,
+      "y": 270
+    }
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "parent": "minecraft:block/cube",
+  "render_type": "minecraft:translucent",
+  "textures": {
+    "down": "minecraft:block/black_stained_glass",
+    "east": "ott:block/lime_black_stained_glass",
+    "north": "ott:block/lime_black_stained_glass",
+    "particle": "minecraft:block/lime_stained_glass",
+    "south": "ott:block/lime_black_stained_glass",
+    "up": "minecraft:block/lime_stained_glass",
+    "west": "ott:block/lime_black_stained_glass"
+  }
+}

@@ -1,9 +1,0 @@
-{
-  "variants": {
-    "": [
-      {
-        "model": "blockparty:block/testblock_00", "weight": 1000
-      }
-    ]
-  }
-}

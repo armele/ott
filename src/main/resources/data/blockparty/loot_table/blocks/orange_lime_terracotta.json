@@ -11,11 +11,11 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "blockparty:orange_lime_terracotta"
+          "name": "ott:orange_lime_terracotta"
         }
       ],
       "rolls": 1.0
     }
   ],
-  "random_sequence": "blockparty:blocks/orange_lime_terracotta"
+  "random_sequence": "ott:blocks/orange_lime_terracotta"
 }

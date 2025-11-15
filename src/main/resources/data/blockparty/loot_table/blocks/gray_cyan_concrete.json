@@ -11,11 +11,11 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "blockparty:gray_cyan_concrete"
+          "name": "ott:gray_cyan_concrete"
         }
       ],
       "rolls": 1.0
     }
   ],
-  "random_sequence": "blockparty:blocks/gray_cyan_concrete"
+  "random_sequence": "ott:blocks/gray_cyan_concrete"
 }

@@ -11,11 +11,11 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "blockparty:lime_purple_stained_glass"
+          "name": "ott:lime_purple_stained_glass"
         }
       ],
       "rolls": 1.0
     }
   ],
-  "random_sequence": "blockparty:blocks/lime_purple_stained_glass"
+  "random_sequence": "ott:blocks/lime_purple_stained_glass"
 }

@@ -11,11 +11,11 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "blockparty:pink_red_concrete_powder"
+          "name": "ott:pink_red_concrete_powder"
         }
       ],
       "rolls": 1.0
     }
   ],
-  "random_sequence": "blockparty:blocks/pink_red_concrete_powder"
+  "random_sequence": "ott:blocks/pink_red_concrete_powder"
 }

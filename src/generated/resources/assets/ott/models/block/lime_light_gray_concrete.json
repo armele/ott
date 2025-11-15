@@ -1,0 +1,13 @@
+{
+  "parent": "minecraft:block/cube",
+  "render_type": "minecraft:solid",
+  "textures": {
+    "down": "minecraft:block/light_gray_concrete",
+    "east": "ott:block/lime_light_gray_concrete",
+    "north": "ott:block/lime_light_gray_concrete",
+    "particle": "minecraft:block/lime_concrete",
+    "south": "ott:block/lime_light_gray_concrete",
+    "up": "minecraft:block/lime_concrete",
+    "west": "ott:block/lime_light_gray_concrete"
+  }
+}

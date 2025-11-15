@@ -1,9 +1,9 @@
 {
     "replace": false,
     "values": [
-  	"#blockparty:concrete",
-  	"#blockparty:concrete_powder",
-  	"#blockparty:stained_glass",
-  	"#blockparty:wool"
+  	"#ott:concrete",
+  	"#ott:concrete_powder",
+  	"#ott:stained_glass",
+  	"#ott:wool"
   	]
 }

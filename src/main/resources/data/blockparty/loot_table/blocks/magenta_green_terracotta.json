@@ -11,11 +11,11 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "blockparty:magenta_green_terracotta"
+          "name": "ott:magenta_green_terracotta"
         }
       ],
       "rolls": 1.0
     }
   ],
-  "random_sequence": "blockparty:blocks/magenta_green_terracotta"
+  "random_sequence": "ott:blocks/magenta_green_terracotta"
 }

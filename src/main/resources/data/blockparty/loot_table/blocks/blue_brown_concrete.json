@@ -11,11 +11,11 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "blockparty:blue_brown_concrete"
+          "name": "ott:blue_brown_concrete"
         }
       ],
       "rolls": 1.0
     }
   ],
-  "random_sequence": "blockparty:blocks/blue_brown_concrete"
+  "random_sequence": "ott:blocks/blue_brown_concrete"
 }

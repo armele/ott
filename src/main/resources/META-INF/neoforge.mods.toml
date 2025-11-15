@@ -33,13 +33,13 @@ displayName="${mod_name}" #mandatory
 #updateJSONURL="https://change.me.example.invalid/updates.json" #optional
 
 # A URL for the "homepage" for this mod, displayed in the mod UI
-displayURL="https://github.com/rainweaver76/blockparty" #optional
+displayURL="https://github.com/rainweaver76/ott" #optional
 
 # A file name (in the root of the mod JAR) containing a logo for display
-logoFile="blockparty.png" #optional
+logoFile="ott.png" #optional
 
 # A text field displayed in the mod UI
-credits="Great gobs of thanks to Thodor12 from the LDT Team for helping me with the java!" #optional
+credits="Great gobs of thanks to Thodor12 from the LDT Team for helping me with relearning java after a 25 year hiatus! Give that poor man a raise!" #optional
 
 # A text field displayed in the mod UI
 authors="${mod_authors}" #optional

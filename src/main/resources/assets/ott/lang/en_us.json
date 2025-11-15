@@ -1,0 +1,27 @@
+{
+  "itemGroup.ott": "Otterly's Ott",
+
+  "itemGroup.ott.gradients": "Otterly's Gradient Blocks",
+  "itemGroup.ott.misc": "Otterly's Miscellaneous Stuff",
+
+  "item.ott.otter": "Otter",
+
+  "com.otterly76.ott.block.gradient.name": "%s and %s Gradient Block",
+
+  "block.ott.testblock_00": "TestBlock 00",
+  "block.ott.testblock_01": "TestBlock 01",
+  "block.ott.testblock_02": "TestBlock 02",
+  "block.ott.testblock_03": "TestBlock 03",
+  "block.ott.testblock_10": "TestBlock 10",
+  "block.ott.testblock_11": "TestBlock 11",
+  "block.ott.testblock_12": "TestBlock 12",
+  "block.ott.testblock_13": "TestBlock 13",
+  "block.ott.testblock_20": "TestBlock 20",
+  "block.ott.testblock_21": "TestBlock 21",
+  "block.ott.testblock_22": "TestBlock 22",
+  "block.ott.testblock_23": "TestBlock 23",
+  "block.ott.testblock_30": "TestBlock 30",
+  "block.ott.testblock_31": "TestBlock 31",
+  "block.ott.testblock_32": "TestBlock 32",
+  "block.ott.testblock_33": "TestBlock 33"
+}

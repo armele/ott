@@ -11,11 +11,11 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "blockparty:brown_black_terracotta"
+          "name": "ott:brown_black_terracotta"
         }
       ],
       "rolls": 1.0
     }
   ],
-  "random_sequence": "blockparty:blocks/brown_black_terracotta"
+  "random_sequence": "ott:blocks/brown_black_terracotta"
 }

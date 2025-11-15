@@ -1,0 +1,30 @@
+{
+  "variants": {
+    "facing=down": {
+      "model": "ott:block/gray_red_stained_glass",
+      "x": 180
+    },
+    "facing=east": {
+      "model": "ott:block/gray_red_stained_glass",
+      "x": 90,
+      "y": 90
+    },
+    "facing=north": {
+      "model": "ott:block/gray_red_stained_glass",
+      "x": 90
+    },
+    "facing=south": {
+      "model": "ott:block/gray_red_stained_glass",
+      "x": 90,
+      "y": 180
+    },
+    "facing=up": {
+      "model": "ott:block/gray_red_stained_glass"
+    },
+    "facing=west": {
+      "model": "ott:block/gray_red_stained_glass",
+      "x": 90,
+      "y": 270
+    }
+  }
+}

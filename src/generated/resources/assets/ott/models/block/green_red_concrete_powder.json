@@ -1,0 +1,13 @@
+{
+  "parent": "minecraft:block/cube",
+  "render_type": "minecraft:solid",
+  "textures": {
+    "down": "minecraft:block/red_concrete_powder",
+    "east": "ott:block/green_red_concrete_powder",
+    "north": "ott:block/green_red_concrete_powder",
+    "particle": "minecraft:block/green_concrete_powder",
+    "south": "ott:block/green_red_concrete_powder",
+    "up": "minecraft:block/green_concrete_powder",
+    "west": "ott:block/green_red_concrete_powder"
+  }
+}

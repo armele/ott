@@ -11,11 +11,11 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "blockparty:yellow_blue_terracotta"
+          "name": "ott:yellow_blue_terracotta"
         }
       ],
       "rolls": 1.0
     }
   ],
-  "random_sequence": "blockparty:blocks/yellow_blue_terracotta"
+  "random_sequence": "ott:blocks/yellow_blue_terracotta"
 }

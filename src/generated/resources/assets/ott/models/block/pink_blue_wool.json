@@ -1,0 +1,13 @@
+{
+  "parent": "minecraft:block/cube",
+  "render_type": "minecraft:solid",
+  "textures": {
+    "down": "minecraft:block/blue_wool",
+    "east": "ott:block/pink_blue_wool",
+    "north": "ott:block/pink_blue_wool",
+    "particle": "minecraft:block/pink_wool",
+    "south": "ott:block/pink_blue_wool",
+    "up": "minecraft:block/pink_wool",
+    "west": "ott:block/pink_blue_wool"
+  }
+}

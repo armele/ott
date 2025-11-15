@@ -1,0 +1,13 @@
+{
+  "parent": "minecraft:block/cube",
+  "render_type": "minecraft:solid",
+  "textures": {
+    "down": "minecraft:block/brown_terracotta",
+    "east": "ott:block/pink_brown_terracotta",
+    "north": "ott:block/pink_brown_terracotta",
+    "particle": "minecraft:block/pink_terracotta",
+    "south": "ott:block/pink_brown_terracotta",
+    "up": "minecraft:block/pink_terracotta",
+    "west": "ott:block/pink_brown_terracotta"
+  }
+}

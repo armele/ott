@@ -11,11 +11,11 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "blockparty:brown_green_concrete_powder"
+          "name": "ott:brown_green_concrete_powder"
         }
       ],
       "rolls": 1.0
     }
   ],
-  "random_sequence": "blockparty:blocks/brown_green_concrete_powder"
+  "random_sequence": "ott:blocks/brown_green_concrete_powder"
 }

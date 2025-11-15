@@ -1,8 +1,8 @@
 {
   "replace": false,
   "values": [
-    "#blockparty:concrete",
-    "#blockparty:terracotta",
-    "#blockparty:stained_glass"
+    "#ott:concrete",
+    "#ott:terracotta",
+    "#ott:stained_glass"
   ]
 }

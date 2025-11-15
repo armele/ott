@@ -1,0 +1,6 @@
+{
+  "parent": "ott:block/testblock_31",
+  "textures": {
+    "layer0": "ott:item/otter"
+  }
+}

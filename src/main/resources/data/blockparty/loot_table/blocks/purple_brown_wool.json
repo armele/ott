@@ -11,11 +11,11 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "blockparty:purple_brown_wool"
+          "name": "ott:purple_brown_wool"
         }
       ],
       "rolls": 1.0
     }
   ],
-  "random_sequence": "blockparty:blocks/purple_brown_wool"
+  "random_sequence": "ott:blocks/purple_brown_wool"
 }

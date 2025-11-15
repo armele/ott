@@ -11,11 +11,11 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "blockparty:white_lime_wool"
+          "name": "ott:white_lime_wool"
         }
       ],
       "rolls": 1.0
     }
   ],
-  "random_sequence": "blockparty:blocks/white_lime_wool"
+  "random_sequence": "ott:blocks/white_lime_wool"
 }

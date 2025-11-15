@@ -1,0 +1,13 @@
+{
+  "parent": "minecraft:block/cube",
+  "render_type": "minecraft:solid",
+  "textures": {
+    "down": "minecraft:block/brown_wool",
+    "east": "ott:block/purple_brown_wool",
+    "north": "ott:block/purple_brown_wool",
+    "particle": "minecraft:block/purple_wool",
+    "south": "ott:block/purple_brown_wool",
+    "up": "minecraft:block/purple_wool",
+    "west": "ott:block/purple_brown_wool"
+  }
+}

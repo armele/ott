@@ -1,0 +1,13 @@
+{
+  "parent": "minecraft:block/cube",
+  "render_type": "minecraft:solid",
+  "textures": {
+    "down": "minecraft:block/red_concrete_powder",
+    "east": "ott:block/lime_red_concrete_powder",
+    "north": "ott:block/lime_red_concrete_powder",
+    "particle": "minecraft:block/lime_concrete_powder",
+    "south": "ott:block/lime_red_concrete_powder",
+    "up": "minecraft:block/lime_concrete_powder",
+    "west": "ott:block/lime_red_concrete_powder"
+  }
+}

@@ -1,7 +1,7 @@
 {
   "replace": false,
   "values": [
-    "#blockparty:terracotta",
-    "#blockparty:wool"
+    "#ott:terracotta",
+    "#ott:wool"
   ]
 }

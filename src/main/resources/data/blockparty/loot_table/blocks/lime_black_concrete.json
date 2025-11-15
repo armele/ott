@@ -11,11 +11,11 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "blockparty:lime_black_concrete"
+          "name": "ott:lime_black_concrete"
         }
       ],
       "rolls": 1.0
     }
   ],
-  "random_sequence": "blockparty:blocks/lime_black_concrete"
+  "random_sequence": "ott:blocks/lime_black_concrete"
 }

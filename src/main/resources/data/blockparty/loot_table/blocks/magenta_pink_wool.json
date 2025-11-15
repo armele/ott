@@ -11,11 +11,11 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "blockparty:magenta_pink_wool"
+          "name": "ott:magenta_pink_wool"
         }
       ],
       "rolls": 1.0
     }
   ],
-  "random_sequence": "blockparty:blocks/magenta_pink_wool"
+  "random_sequence": "ott:blocks/magenta_pink_wool"
 }
