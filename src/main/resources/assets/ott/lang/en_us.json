@@ -1,8 +1,8 @@
 {
-  "itemGroup.ott": "Otterly's Ott",
+  "itemGroup.ott": "New Otterhome",
 
-  "itemGroup.ott.gradients": "Otterly's Gradient Blocks",
-  "itemGroup.ott.misc": "Otterly's Miscellaneous Stuff",
+  "itemGroup.ott.gradients": "Gradient Blocks",
+  "itemGroup.ott.misc": "Miscellaneous Stuff",
 
   "item.ott.otter": "Otter",
 
@@ -23,5 +23,22 @@
   "block.ott.testblock_30": "TestBlock 30",
   "block.ott.testblock_31": "TestBlock 31",
   "block.ott.testblock_32": "TestBlock 32",
-  "block.ott.testblock_33": "TestBlock 33"
+  "block.ott.testblock_33": "TestBlock 33",
+
+  "block.ott.limestone_00": "Limestone 00",
+  "block.ott.limestone_01": "Limestone 01",
+  "block.ott.limestone_02": "Limestone 02",
+  "block.ott.limestone_03": "Limestone 03",
+  "block.ott.limestone_10": "Limestone 10",
+  "block.ott.limestone_11": "Limestone 11",
+  "block.ott.limestone_12": "Limestone 12",
+  "block.ott.limestone_13": "Limestone 13",
+  "block.ott.limestone_20": "Limestone 20",
+  "block.ott.limestone_21": "Limestone 21",
+  "block.ott.limestone_22": "Limestone 22",
+  "block.ott.limestone_23": "Limestone 23",
+  "block.ott.limestone_30": "Limestone 30",
+  "block.ott.limestone_31": "Limestone 31",
+  "block.ott.limestone_32": "Limestone 32",
+  "block.ott.limestone_33": "Limestone 33"
 }
