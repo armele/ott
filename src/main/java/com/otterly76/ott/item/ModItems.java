@@ -134,6 +134,8 @@ public class ModItems {
     public static final DeferredHolder<Item, BlockItem> YELLOW_SMOOTH_SEAGLASS = registerBlockItem("yellow_smooth_seaglass", ModBlocks.YELLOW_SMOOTH_SEAGLASS);
     public static final DeferredHolder<Item, BlockItem> YELLOW_WAVES_SEAGLASS = registerBlockItem("yellow_waves_seaglass", ModBlocks.YELLOW_WAVES_SEAGLASS);
 
+    public static final DeferredHolder<Item, BlockItem> GAPPER_PANEL_OAK = registerBlockItem("gapper_panel_oak", ModBlocks.GAPPER_PANEL_OAK);
+
     private static DeferredHolder<Item, BlockItem> registerBlockItem(String name, DeferredBlock<Block> block) {
         return ITEMS.register(name, () -> new BlockItem(block.get(), new Item.Properties()));
     }

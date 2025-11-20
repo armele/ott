@@ -72,6 +72,7 @@ public final class ModCreativeTabs {
             addTestBlocks(output);
             addLimestoneBlocks(output);
             addSeaGlassBlocks(output);
+            output.accept(ModBlocks.GAPPER_PANEL_OAK);
         }).build();
     }
 
