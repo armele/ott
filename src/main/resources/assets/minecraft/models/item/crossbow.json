@@ -1,12 +1,11 @@
 {
-	"credit": "<3 by keyschain (with blockbench)",
-	"textures": {
+		"textures": {
 		"0": "block/oak_log",
 		"1": "block/birch_log_top",
 		"2": "block/moss_block",
 		"3": "block/stone",
 		"4": "block/spruce_log",
-		"particle": "block/oak_log"
+		"particle": "item/crossbow_standby"
 	},
 	"elements": [
 		{
@@ -431,46 +430,5 @@
 			"translation": [-1.25, -0.75, 0],
 			"scale": [0.75, 0.75, 0.75]
 		}
-	},
-	"groups": [
-		{
-			"name": "crossbow",
-			"origin": [8, 8, 8],
-			"color": 0,
-			"children": [
-				{
-					"name": "stock",
-					"origin": [12.675, 6.5, 7.5],
-					"color": 0,
-					"children": [0, 1, 2, 3, 4, 5, 6]
-				},
-				{
-					"name": "metal_thingy_left",
-					"origin": [1.5, 9.5, 10.5],
-					"color": 0,
-					"children": [7, 8, 9]
-				},
-				{
-					"name": "metal_thingy_right",
-					"origin": [1.5, 9.5, 10.5],
-					"color": 0,
-					"children": [10, 11, 12]
-				},
-				{
-					"name": "limb_left",
-					"origin": [3.01165, 10.25, 17.92349],
-					"color": 0,
-					"children": [13, 14, 15, 16, 17, 18, 19]
-				},
-				{
-					"name": "limb_right",
-					"origin": [3.01165, 10.25, -1.92349],
-					"color": 0,
-					"children": [20, 21, 22, 23, 24, 25, 26]
-				},
-				27,
-				28
-			]
-		}
-	]
+	}
 }

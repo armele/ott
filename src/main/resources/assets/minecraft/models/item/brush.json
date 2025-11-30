@@ -112,9 +112,9 @@
 	],
 	"gui_light": "front",
 	"overrides": [
-		{"predicate": {"brushing": 0.25}, "model": "item_brushing_0"},
-		{"predicate": {"brushing": 0.5}, "model": "item_brushing_1"},
-		{"predicate": {"brushing": 0.75}, "model": "item_brushing_2"}
+		{"predicate": {"brushing": 0.25}, "model": "brush_brushing_0"},
+		{"predicate": {"brushing": 0.5}, "model": "brush_brushing_1"},
+		{"predicate": {"brushing": 0.75}, "model": "brush_brushing_2"}
 	],
 	"display": {
 		"thirdperson_righthand": {
