@@ -27,5 +27,8 @@ Running List:
 - Added more missing vanilla recipes
 - Added farmland protection for MineColonies crops (NO STOMPING DAMMIT!)
 - Added custom schematic dimensions, first pass
+  - flat
+  - flat w/ water
+  - MCol schematic dimension by Thaylor & the LDT Team
 - Added native support for custom music
 - Added copper blocks etc as pathblocks for MineColonies citizens
