@@ -21,13 +21,12 @@ public class GradientBlockRecipeProvider extends RecipeProvider {
     @Override
     protected void buildRecipes(@NotNull RecipeOutput recipeOutput) {
         ModBlocks.ALL_GRADIENT_BLOCKS.forEach(deferredBlock -> {
-            Block block = (Block) deferredBlock.get();
-            IGradientBlock gradientBlock = (IGradientBlock) block;
-            createGradientRecipe(recipeOutput, block, gradientBlock);
+            createGradientRecipe(recipeOutput, deferredBlock.get());
         });
     }
 
-    private void createGradientRecipe(RecipeOutput recipeOutput, Block block, IGradientBlock gradientBlock) {
+    private void createGradientRecipe(RecipeOutput recipeOutput, IGradientBlock gradientBlock) {
+        Block block = (Block) gradientBlock;
         Block ingredient1 = gradientBlock.getBlockFromColor(gradientBlock.getFirstColor());
         Block ingredient2 = gradientBlock.getBlockFromColor(gradientBlock.getSecondColor());
 
