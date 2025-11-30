@@ -1,7 +1,5 @@
 {
-	"format_version": "1.21.6",
-	"credit": "Throttled by Otterly76",
-	"texture_size": [64, 64],
+    "texture_size": [64, 64],
 	"textures": {
 		"3": "item/crossbow",
 		"particle": "item/arrow"
@@ -263,48 +261,5 @@
 			"translation": [-1, -0.5, 0],
 			"scale": [0.8, 0.8, 0.8]
 		}
-	},
-	"groups": [
-		{
-			"name": "string",
-			"origin": [6.5, 1.5, 3],
-			"color": 0,
-			"children": [
-				0,
-				1,
-				{
-					"name": "arrow",
-					"origin": [8, 8, 8],
-					"color": 0,
-					"children": [2, 3, 4]
-				}
-			]
-		},
-		{
-			"name": "handle",
-			"origin": [0, 1, 0],
-			"color": 0,
-			"children": [5, 6, 7]
-		},
-		{
-			"name": "bow",
-			"origin": [3, 1.5, 9.25],
-			"color": 0,
-			"children": [
-				8,
-				{
-					"name": "right",
-					"origin": [3, 1.5, 9.25],
-					"color": 0,
-					"children": [9, 10, 11, 12]
-				},
-				{
-					"name": "right",
-					"origin": [3, 1.5, 9.25],
-					"color": 0,
-					"children": [13, 14, 15, 16]
-				}
-			]
-		}
-	]
+	}
 }
