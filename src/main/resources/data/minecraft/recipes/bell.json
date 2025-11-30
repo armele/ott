@@ -15,7 +15,7 @@
     }
   },
   "result": {
-    "item": "minecraft:bell",
+    "id": "minecraft:bell",
     "count": 1
   }
 }
