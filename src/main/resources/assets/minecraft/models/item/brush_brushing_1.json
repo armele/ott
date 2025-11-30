@@ -143,21 +143,5 @@
 			"translation": [-3.25, 2.5, 0],
 			"scale": [1.8, 1.8, 1.8]
 		}
-	},
-	"groups": [
-		{
-			"name": "handle",
-			"origin": [8.5, 8, 8.125],
-			"color": 0,
-			"nbt": "{}",
-			"children": [0, 1]
-		},
-		{
-			"name": "brush",
-			"origin": [8, 7.25, 7.75],
-			"color": 0,
-			"nbt": "{}",
-			"children": [2, 3, 4, 5, 6, 7]
-		}
-	]
+	}
 }

@@ -1,7 +1,6 @@
 {
   "type": "minecraft:blasting",
   "category": "blocks",
-  "group": "ott_gradient_blocks",
   "cookingtime": 100,
   "experience": 0.5,
   "ingredient": {

@@ -1,7 +1,6 @@
 {
   "variants": {
-    "half=lower": 
-    [
+    "half=lower": [
       {
         "model": "minecraft:block/large_fern_bottom0"
       },
@@ -93,8 +92,7 @@
         "y": 270
       }
     ],
-    "half=upper": 
-    [
+    "half=upper": [
       {
         "model": "minecraft:block/large_fern_top0"
       },
