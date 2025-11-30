@@ -69,6 +69,7 @@ public final class ModCreativeTabs {
     private static CreativeModeTab createMiscTab() {
         return new CreativeModeTab.Builder(DEFAULT_ROW, DEFAULT_COLUMN).title(Component.translatable(createTranslationKey("misc"))).icon(() -> new ItemStack(ModItems.OTTER.get())).displayItems((config, output) -> {
             output.accept(ModItems.OTTER);
+            output.accept(ModItems.HEDGE_SPROUTS);
             addTestBlocks(output);
             addLimestoneBlocks(output);
             addSeaGlassBlocks(output);
