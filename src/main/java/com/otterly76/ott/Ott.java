@@ -2,6 +2,7 @@ package com.otterly76.ott;
 
 import com.otterly76.ott.block.ModBlocks;
 import com.otterly76.ott.generation.GradientBlockProvider;
+import com.otterly76.ott.generation.GradientBlockRecipeProvider;
 import com.otterly76.ott.generation.OttLootTableProvider;
 import com.otterly76.ott.item.ModItems;
 import net.minecraft.data.DataGenerator;
@@ -29,6 +30,8 @@ public class Ott {
     private void dataGeneratorSetup(final GatherDataEvent event) {
         final DataGenerator generator = event.getGenerator();
         generator.addProvider(event.includeClient(), new GradientBlockProvider(generator.getPackOutput(), event.getExistingFileHelper()));
+
+        generator.addProvider(event.includeServer(), new GradientBlockRecipeProvider(generator.getPackOutput(), event.getLookupProvider()));
 
         generator.addProvider(event.includeServer(), new LootTableProvider(
                 generator.getPackOutput(),

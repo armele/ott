@@ -1,0 +1,43 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_cyan_terracotta": {
+      "conditions": {
+        "items": [
+          {
+            "items": "minecraft:cyan_terracotta"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_light_gray_terracotta": {
+      "conditions": {
+        "items": [
+          {
+            "items": "minecraft:light_gray_terracotta"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "ott:light_gray_cyan_terracotta"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_light_gray_terracotta",
+      "has_cyan_terracotta"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "ott:light_gray_cyan_terracotta"
+    ]
+  }
+}
