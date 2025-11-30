@@ -1,4 +1,4 @@
-// 1.21.1	2025-11-30T09:38:24.4886831	Loot Tables
+// 1.21.1	2025-11-30T16:25:43.8730733	Loot Tables
 ba34b7633e8b9bcdd9640a0c4fac40241527851c data/ott/loot_table/blocks/black_bubbles_seaglass.json
 937c36d4b998a57832e971a14b593bf27efa5059 data/ott/loot_table/blocks/black_seaglass.json
 f3910577eb9b53a4e96e892be357b63da4980b93 data/ott/loot_table/blocks/black_smooth_seaglass.json
@@ -156,6 +156,7 @@ a87746fcefab825154cfa1637f7cfad5bde2576e data/ott/loot_table/blocks/green_red_te
 f95c6ad5868201d04e9941a4226b639e850db8e3 data/ott/loot_table/blocks/green_smooth_seaglass.json
 8431881f7936660bdd5b72c88580156cc40813b8 data/ott/loot_table/blocks/green_waves_seaglass.json
 5ac71ec8e1fe40726b9dfdb3fc9704f02b2fa9d5 data/ott/loot_table/blocks/hedge.json
+7d98b5cfe65f62eb6fa9c5967f49725158ec97cd data/ott/loot_table/blocks/hedge_sprouts.json
 5414d042a9e09e1a222e9239f1a1e56d0fb72f22 data/ott/loot_table/blocks/light_blue_black_concrete.json
 dece7cc07d32e977c8eed7f5e7668d97be5547bc data/ott/loot_table/blocks/light_blue_black_concrete_powder.json
 24e3901dfa0c88faefbc396fd6881c26d8420193 data/ott/loot_table/blocks/light_blue_black_stained_glass.json

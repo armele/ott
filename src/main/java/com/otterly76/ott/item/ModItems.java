@@ -4,6 +4,7 @@ import com.otterly76.ott.Constants;
 import com.otterly76.ott.block.ModBlocks;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemNameBlockItem;
 import net.minecraft.world.level.block.Block;
 import net.neoforged.neoforge.registries.DeferredBlock;
 import net.neoforged.neoforge.registries.DeferredHolder;
@@ -18,7 +19,7 @@ public class ModItems {
     }
 
     public static final DeferredItem<Item> OTTER = ITEMS.register("otter", () -> new Item(new Item.Properties()));
-    public static final DeferredItem<Item> HEDGE_SPROUTS = ITEMS.register("hedge_sprouts", () -> new Item(new Item.Properties()));
+    public static final DeferredItem<Item> HEDGE_SPROUTS = ITEMS.register("hedge_sprouts", () -> new ItemNameBlockItem(ModBlocks.HEDGE_SPROUTS.get(), new Item.Properties()));
 
     public static final DeferredHolder<Item, BlockItem> TESTBLOCK_00 = registerBlockItem("testblock_00", ModBlocks.TESTBLOCK_00);
     public static final DeferredHolder<Item, BlockItem> TESTBLOCK_01 = registerBlockItem("testblock_01", ModBlocks.TESTBLOCK_01);

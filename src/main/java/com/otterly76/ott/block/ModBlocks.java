@@ -1,6 +1,6 @@
 package com.otterly76.ott.block;
 
-import com.otterly76.ott.crop.HedgeCropBlock;
+import com.otterly76.ott.crop.HedgeSprouts;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.world.item.DyeColor;
 import net.minecraft.world.level.block.Block;
@@ -150,7 +150,7 @@ public class ModBlocks {
 
     public static final DeferredBlock<HedgeBlock> HEDGE = BLOCKS.register("hedge", () -> new HedgeBlock(Properties.of().strength(4.0f).requiresCorrectToolForDrops().sound(SoundType.WOOD).noOcclusion()));
 
-    public static final DeferredBlock<Block> HEDGE_CROP = BLOCKS.register("tomato_crop", () -> new HedgeCropBlock(Properties.ofFullCopy(Blocks.WHEAT)));
+    public static final DeferredBlock<Block> HEDGE_SPROUTS = BLOCKS.register("hedge_sprouts", () -> new HedgeSprouts(Properties.ofFullCopy(Blocks.WHEAT)));
 
 
     static {
