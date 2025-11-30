@@ -3,11 +3,11 @@
   "category": "blocks",
   "group": "ott_gradient_blocks",
   "cookingtime": 200,
-  "experience": 0.1,
+  "experience": 1,
   "ingredient": {
-    "item": "minecraft:dead_tube_coral_block"
+    "item": "minecraft:dead_fire_coral_block"
   },
   "result": {
-    "id": "ott:light_gray_waves_seaglass"
+    "id": "ott:light_gray_seaglass"
   }
 }

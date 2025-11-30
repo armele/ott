@@ -30,7 +30,7 @@ public class GradientBlockRecipeProvider extends RecipeProvider {
         Block ingredient1 = gradientBlock.getBlockFromColor(gradientBlock.getFirstColor());
         Block ingredient2 = gradientBlock.getBlockFromColor(gradientBlock.getSecondColor());
 
-        // Create a shapeless recipe: Color 1 + Color 2 -> 2 Gradient Blocks
+        // Create a shapeless recipes: Color 1 + Color 2 -> 2 Gradient Blocks
         ShapelessRecipeBuilder.shapeless(RecipeCategory.BUILDING_BLOCKS, block, 2)
                 .requires(ingredient1)
                 .requires(ingredient2)
