@@ -19,9 +19,8 @@ Running List:
 - Added the evil Hedge
     - Evil Cackling Ensues
     - Added custom damage for the murder plants: flora
-    - Now I just need to add the seeds, crop rules, all that good stuff
-    - Will be able to be grown like melon/pumpkin
-    - Will need either blessing for protection or appropriate tool to bypass damage
+    - Can be grown as a crop from Hedge Sprouts
+    - Can be harvested with a hoe to bypass damage
 - Added Create support, first pass (3D models and textures for ores)
 - Added Chipped support, first pass (fluffy leaves, fixed some lantern models, fixed ladders(3D))
 - Added more missing vanilla recipes
