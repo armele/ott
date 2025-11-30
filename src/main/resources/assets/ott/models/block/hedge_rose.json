@@ -1,7 +1,4 @@
 {
-	"format_version": "1.21.6",
-	"credit": "Throttled by Otterly",
-	"parent": "minecraft:block/block",
 	"render_type": "minecraft:cutout_mipped",
 	"textures": {
 		"top": "ott:block/hedge",
