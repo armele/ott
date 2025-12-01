@@ -31,3 +31,4 @@ Running List:
   - MCol schematic dimension by Thaylar & the LDT Team
 - Added native support for custom music
 - Added copper blocks etc as pathblocks for MineColonies citizens
+- Updated the item models for dyes
