@@ -6,29 +6,30 @@ Running List:
 - Added Limestone blocks
 - Added set of 16 Test Blocks for various Ray request testing
 - Added healing bed function for players
-- Added Sea Glass
-- 32x textures for all blocks
+- Added Seaglass
+- 32x textures
   - yes, Ray, I know
   - 32x is a nice happy medium that gives a little more detail, a little more variation, without straying too far from the "Minecraft" feel
 - Improved 3D textures for many blocks
 - FLOOFY LEAVES!
-- Lowered the shield when equipped so you can actually, ya know, see what you're doing
-- Lowered the totem of undying, see above
+- Lowered the Shield when equipped so you can actually, ya know, see what you're doing
+- Lowered the Totem of Undying, see above
 - Found and imported a slew of missing sound files
 - Identified and added missing recipes (ongoing)
 - Added the evil Hedge
     - Evil Cackling Ensues
-    - Added custom damage for the murder plants: flora
+    - Added custom damage for the murder plants: Flora
     - Can be grown as a crop from Hedge Sprouts
     - Can be harvested with a hoe to bypass damage
 - Added Create support, first pass (3D models and textures for ores)
 - Added Chipped support, first pass (fluffy leaves, fixed some lantern models, fixed ladders(3D))
 - Added more missing vanilla recipes
-- Added farmland protection for MineColonies crops (NO STOMPING DAMMIT!)
+- Added farmland protection for MineColonies crops
 - Added custom schematic dimensions, first pass
   - flat
   - flat w/ water
   - MCol schematic dimension by Thaylar & the LDT Team
+    - need to add bits
 - Added native support for custom music
 - Added copper blocks etc as pathblocks for MineColonies citizens
 - Updated the item models for dyes
