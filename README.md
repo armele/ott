@@ -7,14 +7,14 @@ Running List:
 - Added set of 16 Test Blocks for various Ray request testing
 - Added healing bed function for players
 - Added Seaglass
-- 32x textures
+- 32x textures (ongoing)
   - yes, Ray, I know
   - 32x is a nice happy medium that gives a little more detail, a little more variation, without straying too far from the "Minecraft" feel
-- Improved 3D textures for many blocks
+- 3D models for most blocks (ongoing)
 - FLOOFY LEAVES!
 - Lowered the Shield when equipped so you can actually, ya know, see what you're doing
 - Lowered the Totem of Undying, see above
-- Found and imported a slew of missing sound files
+- Found and imported a slew of missing sound files (ongoing)
 - Identified and added missing recipes (ongoing)
 - Added the evil Hedge
     - Evil Cackling Ensues
