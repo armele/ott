@@ -28,6 +28,6 @@ Running List:
 - Added custom schematic dimensions, first pass
   - flat
   - flat w/ water
-  - MCol schematic dimension by Thaylor & the LDT Team
+  - MCol schematic dimension by Thaylar & the LDT Team
 - Added native support for custom music
 - Added copper blocks etc as pathblocks for MineColonies citizens
