@@ -28,7 +28,7 @@ public class OttLootTableProvider extends BlockLootSubProvider {
     @Override
     protected void generate() {
         // Iterate over blocks to handle them specifically
-        ModBlocks.BLOCKS.getEntries().stream().map(Supplier::get).map(block -> (Block) block).forEach(block -> {
+        ModBlocks.BLOCKS.getEntries().stream().map(Supplier::get).forEach(block -> {
             // Example logic to handle different block types
             switch (block) {
                 case GradientStainedGlassBlock gradientStainedGlassBlock ->
@@ -38,8 +38,8 @@ public class OttLootTableProvider extends BlockLootSubProvider {
                     // Drop the sprout item always + Drop the Hedge block only if AGE is 3
                         this.add(block, createCropDrops(
                                 ModBlocks.HEDGE_SPROUTS.get(), // The crop block itself
-                                ModItems.HEDGE_SPROUTS.get(),  // The seed item (always drops)
                                 ModItems.HEDGE.get().asItem(), // The produce item (drops when fully grown)
+                                ModItems.HEDGE_SPROUTS.get(),  // The seed item (always drops)
                                 LootItemBlockStatePropertyCondition.hasBlockStateProperties(block)
                                         .setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(HedgeSprouts.AGE, HedgeSprouts.MAX_AGE))
                         ));
