@@ -1,6 +1,0 @@
-{
-  "parent": "ott:block/leaves_notint",
-  "textures": {
-    "all": "ott:block/leaves/frost_wisteria_leaves"
-  }
-}

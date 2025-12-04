@@ -124,5 +124,76 @@
   "block.ott.yellow_waves_seaglass": "Yellow Waves Seaglass",
 
   "block.ott.hedge": "Hedge",
-  "death.attack.flora_damage": "%1$s was obliterated by flowers"
+  "death.attack.flora_damage": "%1$s was obliterated by flowers",
+
+  "ott.configuration.maxParticleAmount": "Maximum number of particles allowed",
+  "ott.configuration.particleDensity": "Particle density",
+  "ott.configuration.particleStormDensity": "Particle density during storms",
+  "ott.configuration.particleRadius": "Particle spawn radius",
+
+  "ott.configuration.doRainParticles": "Enable rain particles",
+  "ott.configuration.doSplashParticles": "Enable splash particles",
+  "ott.configuration.doSmokeParticles": "Enable smoke particles",
+  "ott.configuration.doRippleParticles": "Enable ripple particles",
+  "ott.configuration.doStreakParticles": "Enable streak particles",
+  "ott.configuration.doSnowParticles": "Enable snow particles",
+  "ott.configuration.doSandParticles": "Enable sand particles",
+  "ott.configuration.doShrubParticles": "Enable shrub particles",
+  "ott.configuration.doFogParticles": "Enable fog particles",
+  "ott.configuration.doGroundFogParticles": "Enable ground fog particles",
+
+  "ott.configuration.rain.density": "Rain particle density",
+  "ott.configuration.rain.gravity": "Rain gravity",
+  "ott.configuration.rain.windStrength": "Rain wind strength",
+  "ott.configuration.rain.stormWindStrength": "Rain storm wind strength",
+  "ott.configuration.rain.opacity": "Rain opacity",
+  "ott.configuration.rain.splashDensity": "Rain splash density",
+  "ott.configuration.rain.size": "Rain particle size",
+
+  "ott.configuration.snow.density": "Snow particle density",
+  "ott.configuration.snow.gravity": "Snow gravity",
+  "ott.configuration.snow.rotationAmount": "Snow rotation amount",
+  "ott.configuration.snow.stormRotationAmount": "Snow storm rotation amount",
+  "ott.configuration.snow.windStrength": "Snow wind strength",
+  "ott.configuration.snow.stormWindStrength": "Snow storm wind strength",
+  "ott.configuration.snow.size": "Snow particle size",
+
+  "ott.configuration.ripple.resolution": "Ripple resolution",
+  "ott.configuration.ripple.useResourcepackResolution": "Use resourcepack resolution for ripples",
+
+  "ott.configuration.sand.density": "Sand particle density",
+  "ott.configuration.sand.gravity": "Sand gravity",
+  "ott.configuration.sand.windStrength": "Sand wind strength",
+  "ott.configuration.sand.moteSize": "Sand mote size",
+  "ott.configuration.sand.size": "Sand particle size",
+  "ott.configuration.sand.spawnOnGround": "Spawn sand particles on ground",
+  "ott.configuration.sand.matchTags": "Blocks matching these tags will spawn sand particles",
+
+  "ott.configuration.shrub.density": "Shrub particle density",
+  "ott.configuration.shrub.gravity": "Shrub gravity",
+  "ott.configuration.shrub.rotationAmount": "Shrub rotation amount",
+  "ott.configuration.shrub.bounciness": "Shrub bounciness",
+
+  "ott.configuration.fog.density": "Fog particle density",
+  "ott.configuration.fog.gravity": "Fog gravity",
+  "ott.configuration.fog.size": "Fog particle size",
+
+  "ott.configuration.groundFog.density": "Ground fog density",
+  "ott.configuration.groundFog.spawnHeight": "Ground fog spawn height",
+  "ott.configuration.groundFog.size": "Ground fog size",
+
+  "ott.configuration.doRainSounds": "Enable rain sounds",
+  "ott.configuration.doSnowSounds": "Enable snow sounds",
+  "ott.configuration.doSandSounds": "Enable sand sounds",
+
+  "ott.configuration.renderVanillaWeather": "Render vanilla weather",
+  "ott.configuration.tickVanillaWeather": "Tick vanilla weather",
+  "ott.configuration.biomeTint": "Apply biome tint to particles",
+  "ott.configuration.tintMix": "Biome tint mix percentage",
+  "ott.configuration.spawnAboveClouds": "Spawn particles above clouds",
+  "ott.configuration.cloudHeight": "Cloud height",
+  "ott.configuration.alwaysRaining": "Always raining",
+  "ott.configuration.yLevelWindAdjustment": "Adjust wind by Y level",
+  "ott.configuration.syncRegistry": "Sync registry with server"
+
 }

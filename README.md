@@ -6,6 +6,12 @@ But First... The Thank Yous!
 - THANK YOU to Ayar for helping me test this insanity!
 - THANK YOU to Raycoms and all of the LDT team for creating and maintaining the MineColonies mod!
 
+Mixins Used:
+=======
+
+- Yes this is mainly for Ray's benefit
+  - Used to overwrite the vanilla weather particles since that's apparently the only way to do that
+
 Running List:
 =======
 

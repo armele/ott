@@ -1,0 +1,42 @@
+{
+  "weather.snow": {
+    "sounds": [
+      "ott:weather/snow-01",
+	  "ott:weather/snow-02",
+	  "ott:weather/snow-03",
+	  "ott:weather/snow-04",
+	  "ott:weather/snow-05",
+	  "ott:weather/snow-06"
+    ]
+  },
+  "weather.snow.above": {
+    "sounds": [
+      "ott:weather/snow-01",
+	  "ott:weather/snow-02",
+	  "ott:weather/snow-03",
+	  "ott:weather/snow-04",
+	  "ott:weather/snow-05",
+	  "ott:weather/snow-06"
+    ]
+  },
+  "weather.sandstorm": {
+    "sounds": [
+      "ott:weather/sandstorm-01",
+	  "ott:weather/sandstorm-02",
+	  "ott:weather/sandstorm-03",
+	  "ott:weather/sandstorm-04",
+	  "ott:weather/sandstorm-05",
+	  "ott:weather/sandstorm-06"
+    ]
+  },
+  "weather.sandstorm.above": {
+    "sounds": [
+      "ott:weather/sandstormabove-01",
+	  "ott:weather/sandstormabove-02",
+	  "ott:weather/sandstormabove-03",
+	  "ott:weather/sandstormabove-04",
+	  "ott:weather/sandstormabove-05",
+	  "ott:weather/sandstormabove-06"
+    ]
+  }
+}

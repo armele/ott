@@ -1,0 +1,19 @@
+{
+  "required": true,
+  "minVersion": "0.8",
+  "package": "com.otterly76.ott.mixin",
+  "compatibilityLevel": "JAVA_21",
+  "refmap": "ott.refmap.json",
+  "mixins": [
+  ],
+  "client": [
+    "DripParticleMixin",
+    "LevelRendererMixin",
+    "SpriteLoaderMixin",
+    "TextureSheetParticleMixin",
+    "WaterDropParticleMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}

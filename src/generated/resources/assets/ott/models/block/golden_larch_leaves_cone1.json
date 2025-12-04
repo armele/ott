@@ -1,6 +1,0 @@
-{
-  "parent": "ott:block/leaves_notint1",
-  "textures": {
-    "all": "ott:block/leaves/golden_larch_leaves_cone"
-  }
-}

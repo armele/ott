@@ -1,6 +1,0 @@
-{
-  "parent": "ott:block/leaves2",
-  "textures": {
-    "all": "ott:block/leaves/willow5_leaves"
-  }
-}

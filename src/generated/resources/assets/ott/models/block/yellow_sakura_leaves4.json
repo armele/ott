@@ -1,6 +1,0 @@
-{
-  "parent": "ott:block/leaves_notint4",
-  "textures": {
-    "all": "ott:block/leaves/yellow_sakura_leaves"
-  }
-}

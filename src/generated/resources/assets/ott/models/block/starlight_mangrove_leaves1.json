@@ -1,6 +1,0 @@
-{
-  "parent": "ott:block/leaves1",
-  "textures": {
-    "all": "ott:block/leaves/starlight_mangrove_leaves"
-  }
-}
