@@ -1,0 +1,21 @@
+{
+  "variants": {
+    "": [
+      {
+        "model": "ott:block/redwood3_leaves"
+      },
+      {
+        "model": "ott:block/redwood3_leaves1"
+      },
+      {
+        "model": "ott:block/redwood3_leaves2"
+      },
+      {
+        "model": "ott:block/redwood3_leaves3"
+      },
+      {
+        "model": "ott:block/redwood3_leaves4"
+      }
+    ]
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "variants": {
+    "": [
+      {
+        "model": "ott:block/hydrangea_leaves_variant3"
+      },
+      {
+        "model": "ott:block/hydrangea_leaves_variant31"
+      },
+      {
+        "model": "ott:block/hydrangea_leaves_variant32"
+      },
+      {
+        "model": "ott:block/hydrangea_leaves_variant33"
+      },
+      {
+        "model": "ott:block/hydrangea_leaves_variant34"
+      }
+    ]
+  }
+}

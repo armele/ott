@@ -1,0 +1,21 @@
+{
+  "variants": {
+    "": [
+      {
+        "model": "ott:block/jaboca_leaves"
+      },
+      {
+        "model": "ott:block/jaboca_leaves1"
+      },
+      {
+        "model": "ott:block/jaboca_leaves2"
+      },
+      {
+        "model": "ott:block/jaboca_leaves3"
+      },
+      {
+        "model": "ott:block/jaboca_leaves4"
+      }
+    ]
+  }
+}

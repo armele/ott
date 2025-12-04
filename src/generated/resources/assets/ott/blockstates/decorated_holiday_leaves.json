@@ -1,0 +1,21 @@
+{
+  "variants": {
+    "": [
+      {
+        "model": "ott:block/decorated_holiday_leaves"
+      },
+      {
+        "model": "ott:block/decorated_holiday_leaves1"
+      },
+      {
+        "model": "ott:block/decorated_holiday_leaves2"
+      },
+      {
+        "model": "ott:block/decorated_holiday_leaves3"
+      },
+      {
+        "model": "ott:block/decorated_holiday_leaves4"
+      }
+    ]
+  }
+}

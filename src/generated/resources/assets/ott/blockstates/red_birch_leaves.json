@@ -1,0 +1,21 @@
+{
+  "variants": {
+    "": [
+      {
+        "model": "ott:block/red_birch_leaves"
+      },
+      {
+        "model": "ott:block/red_birch_leaves1"
+      },
+      {
+        "model": "ott:block/red_birch_leaves2"
+      },
+      {
+        "model": "ott:block/red_birch_leaves3"
+      },
+      {
+        "model": "ott:block/red_birch_leaves4"
+      }
+    ]
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "variants": {
+    "": [
+      {
+        "model": "ott:block/pale_leaves"
+      },
+      {
+        "model": "ott:block/pale_leaves1"
+      },
+      {
+        "model": "ott:block/pale_leaves2"
+      },
+      {
+        "model": "ott:block/pale_leaves3"
+      },
+      {
+        "model": "ott:block/pale_leaves4"
+      }
+    ]
+  }
+}

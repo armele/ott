@@ -1,0 +1,21 @@
+{
+  "variants": {
+    "": [
+      {
+        "model": "ott:block/aspear_leaves"
+      },
+      {
+        "model": "ott:block/aspear_leaves1"
+      },
+      {
+        "model": "ott:block/aspear_leaves2"
+      },
+      {
+        "model": "ott:block/aspear_leaves3"
+      },
+      {
+        "model": "ott:block/aspear_leaves4"
+      }
+    ]
+  }
+}

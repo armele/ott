@@ -3,6 +3,7 @@ package com.otterly76.ott;
 import com.otterly76.ott.block.ModBlocks;
 import com.otterly76.ott.generation.GradientBlockProvider;
 import com.otterly76.ott.generation.GradientBlockRecipeProvider;
+import com.otterly76.ott.generation.OttBlockStateProvider;
 import com.otterly76.ott.generation.OttLootTableProvider;
 import com.otterly76.ott.item.ModItems;
 
@@ -56,11 +57,14 @@ public class Ott {
                 Collections.emptySet(),
                 List.of(new LootTableProvider.SubProviderEntry(OttLootTableProvider::new, LootContextParamSets.BLOCK)),
                 event.getLookupProvider()));
+
+        // Turning this off as to not overwrite the edited files while I color test
+        // generator.addProvider(event.includeClient(), new OttBlockStateProvider(generator.getPackOutput(), event.getExistingFileHelper()));
     }
 
     private void addPackFinders(AddPackFindersEvent event) {
         if (event.getPackType() == PackType.CLIENT_RESOURCES) {
-            var resourcePath = ModList.get().getModFileById(MOD_ID).getFile().findResource("resourcepacks/compat_overrides");
+            var resourcePath = ModList.get().getModFileById(MOD_ID).getFile().findResource("resourcepacks/ott_core");
 
             // Verify the path exists before trying to create a pack
             if (!Files.isDirectory(resourcePath)) {
@@ -68,13 +72,13 @@ public class Ott {
             }
 
             var packLocationInfo = new PackLocationInfo(
-                    MOD_ID + ":compat_overrides", // Use namespaced ID to avoid collisions
-                    Component.translatable("pack." + MOD_ID + ".compat_overrides"),
+                    MOD_ID + ":ott_core", // Use namespaced ID to avoid collisions
+                    Component.translatable("pack." + MOD_ID + ".ott_core"),
                     PackSource.BUILT_IN, // Use imported class
                     Optional.empty()
             );
             var packSelectionConfig = new PackSelectionConfig(
-                    false, // fixedPosition: Set to false so users can disable it if needed
+                    true, // fixedPosition: Set to false so users can disable it if needed
                     Pack.Position.TOP,
                     true
             );

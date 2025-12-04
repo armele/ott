@@ -1,0 +1,6 @@
+{
+  "parent": "ott:block/leaves2",
+  "textures": {
+    "all": "ott:block/leaves/mahogany_leaves"
+  }
+}

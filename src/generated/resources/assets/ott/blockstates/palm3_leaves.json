@@ -1,0 +1,21 @@
+{
+  "variants": {
+    "": [
+      {
+        "model": "ott:block/palm3_leaves"
+      },
+      {
+        "model": "ott:block/palm3_leaves1"
+      },
+      {
+        "model": "ott:block/palm3_leaves2"
+      },
+      {
+        "model": "ott:block/palm3_leaves3"
+      },
+      {
+        "model": "ott:block/palm3_leaves4"
+      }
+    ]
+  }
+}

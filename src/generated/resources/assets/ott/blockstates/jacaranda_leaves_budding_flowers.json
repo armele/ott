@@ -1,0 +1,21 @@
+{
+  "variants": {
+    "": [
+      {
+        "model": "ott:block/jacaranda_leaves_budding_flowers"
+      },
+      {
+        "model": "ott:block/jacaranda_leaves_budding_flowers1"
+      },
+      {
+        "model": "ott:block/jacaranda_leaves_budding_flowers2"
+      },
+      {
+        "model": "ott:block/jacaranda_leaves_budding_flowers3"
+      },
+      {
+        "model": "ott:block/jacaranda_leaves_budding_flowers4"
+      }
+    ]
+  }
+}

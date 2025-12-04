@@ -1,0 +1,6 @@
+{
+  "parent": "ott:block/leaves_notint3",
+  "textures": {
+    "all": "ott:block/leaves/pream_leaves"
+  }
+}

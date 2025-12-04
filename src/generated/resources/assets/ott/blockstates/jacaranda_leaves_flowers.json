@@ -1,0 +1,21 @@
+{
+  "variants": {
+    "": [
+      {
+        "model": "ott:block/jacaranda_leaves_flowers"
+      },
+      {
+        "model": "ott:block/jacaranda_leaves_flowers1"
+      },
+      {
+        "model": "ott:block/jacaranda_leaves_flowers2"
+      },
+      {
+        "model": "ott:block/jacaranda_leaves_flowers3"
+      },
+      {
+        "model": "ott:block/jacaranda_leaves_flowers4"
+      }
+    ]
+  }
+}

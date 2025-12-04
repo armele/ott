@@ -1,0 +1,21 @@
+{
+  "variants": {
+    "": [
+      {
+        "model": "ott:block/peony_leaves"
+      },
+      {
+        "model": "ott:block/peony_leaves1"
+      },
+      {
+        "model": "ott:block/peony_leaves2"
+      },
+      {
+        "model": "ott:block/peony_leaves3"
+      },
+      {
+        "model": "ott:block/peony_leaves4"
+      }
+    ]
+  }
+}

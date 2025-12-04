@@ -1,0 +1,21 @@
+{
+  "variants": {
+    "": [
+      {
+        "model": "ott:block/aurum_leaves"
+      },
+      {
+        "model": "ott:block/aurum_leaves1"
+      },
+      {
+        "model": "ott:block/aurum_leaves2"
+      },
+      {
+        "model": "ott:block/aurum_leaves3"
+      },
+      {
+        "model": "ott:block/aurum_leaves4"
+      }
+    ]
+  }
+}

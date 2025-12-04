@@ -1,0 +1,21 @@
+{
+  "variants": {
+    "": [
+      {
+        "model": "ott:block/persim_leaves"
+      },
+      {
+        "model": "ott:block/persim_leaves1"
+      },
+      {
+        "model": "ott:block/persim_leaves2"
+      },
+      {
+        "model": "ott:block/persim_leaves3"
+      },
+      {
+        "model": "ott:block/persim_leaves4"
+      }
+    ]
+  }
+}

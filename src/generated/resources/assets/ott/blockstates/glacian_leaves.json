@@ -1,0 +1,21 @@
+{
+  "variants": {
+    "": [
+      {
+        "model": "ott:block/glacian_leaves"
+      },
+      {
+        "model": "ott:block/glacian_leaves1"
+      },
+      {
+        "model": "ott:block/glacian_leaves2"
+      },
+      {
+        "model": "ott:block/glacian_leaves3"
+      },
+      {
+        "model": "ott:block/glacian_leaves4"
+      }
+    ]
+  }
+}

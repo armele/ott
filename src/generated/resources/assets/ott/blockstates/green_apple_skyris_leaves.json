@@ -1,0 +1,21 @@
+{
+  "variants": {
+    "": [
+      {
+        "model": "ott:block/green_apple_skyris_leaves"
+      },
+      {
+        "model": "ott:block/green_apple_skyris_leaves1"
+      },
+      {
+        "model": "ott:block/green_apple_skyris_leaves2"
+      },
+      {
+        "model": "ott:block/green_apple_skyris_leaves3"
+      },
+      {
+        "model": "ott:block/green_apple_skyris_leaves4"
+      }
+    ]
+  }
+}

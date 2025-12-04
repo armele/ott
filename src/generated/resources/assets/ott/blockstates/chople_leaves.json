@@ -1,0 +1,21 @@
+{
+  "variants": {
+    "": [
+      {
+        "model": "ott:block/chople_leaves"
+      },
+      {
+        "model": "ott:block/chople_leaves1"
+      },
+      {
+        "model": "ott:block/chople_leaves2"
+      },
+      {
+        "model": "ott:block/chople_leaves3"
+      },
+      {
+        "model": "ott:block/chople_leaves4"
+      }
+    ]
+  }
+}

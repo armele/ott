@@ -1,0 +1,21 @@
+{
+  "variants": {
+    "": [
+      {
+        "model": "ott:block/flowering_blue_roseroot_leaves"
+      },
+      {
+        "model": "ott:block/flowering_blue_roseroot_leaves1"
+      },
+      {
+        "model": "ott:block/flowering_blue_roseroot_leaves2"
+      },
+      {
+        "model": "ott:block/flowering_blue_roseroot_leaves3"
+      },
+      {
+        "model": "ott:block/flowering_blue_roseroot_leaves4"
+      }
+    ]
+  }
+}

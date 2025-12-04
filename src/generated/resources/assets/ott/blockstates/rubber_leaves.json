@@ -1,0 +1,21 @@
+{
+  "variants": {
+    "": [
+      {
+        "model": "ott:block/rubber_leaves"
+      },
+      {
+        "model": "ott:block/rubber_leaves1"
+      },
+      {
+        "model": "ott:block/rubber_leaves2"
+      },
+      {
+        "model": "ott:block/rubber_leaves3"
+      },
+      {
+        "model": "ott:block/rubber_leaves4"
+      }
+    ]
+  }
+}

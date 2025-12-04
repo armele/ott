@@ -1,0 +1,21 @@
+{
+  "variants": {
+    "": [
+      {
+        "model": "ott:block/origin_leaves"
+      },
+      {
+        "model": "ott:block/origin_leaves1"
+      },
+      {
+        "model": "ott:block/origin_leaves2"
+      },
+      {
+        "model": "ott:block/origin_leaves3"
+      },
+      {
+        "model": "ott:block/origin_leaves4"
+      }
+    ]
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "variants": {
+    "": [
+      {
+        "model": "ott:block/orchard_leaves"
+      },
+      {
+        "model": "ott:block/orchard_leaves1"
+      },
+      {
+        "model": "ott:block/orchard_leaves2"
+      },
+      {
+        "model": "ott:block/orchard_leaves3"
+      },
+      {
+        "model": "ott:block/orchard_leaves4"
+      }
+    ]
+  }
+}

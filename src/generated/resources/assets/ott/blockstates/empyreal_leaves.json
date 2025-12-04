@@ -1,0 +1,21 @@
+{
+  "variants": {
+    "": [
+      {
+        "model": "ott:block/empyreal_leaves"
+      },
+      {
+        "model": "ott:block/empyreal_leaves1"
+      },
+      {
+        "model": "ott:block/empyreal_leaves2"
+      },
+      {
+        "model": "ott:block/empyreal_leaves3"
+      },
+      {
+        "model": "ott:block/empyreal_leaves4"
+      }
+    ]
+  }
+}

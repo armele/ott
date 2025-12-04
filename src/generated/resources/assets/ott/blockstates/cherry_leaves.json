@@ -1,0 +1,21 @@
+{
+  "variants": {
+    "": [
+      {
+        "model": "ott:block/cherry_leaves"
+      },
+      {
+        "model": "ott:block/cherry_leaves1"
+      },
+      {
+        "model": "ott:block/cherry_leaves2"
+      },
+      {
+        "model": "ott:block/cherry_leaves3"
+      },
+      {
+        "model": "ott:block/cherry_leaves4"
+      }
+    ]
+  }
+}

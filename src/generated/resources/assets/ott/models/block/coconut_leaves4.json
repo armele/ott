@@ -1,0 +1,6 @@
+{
+  "parent": "ott:block/leaves4",
+  "textures": {
+    "all": "ott:block/leaves/coconut_leaves"
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "variants": {
+    "": [
+      {
+        "model": "ott:block/roseroot_leaves"
+      },
+      {
+        "model": "ott:block/roseroot_leaves1"
+      },
+      {
+        "model": "ott:block/roseroot_leaves2"
+      },
+      {
+        "model": "ott:block/roseroot_leaves3"
+      },
+      {
+        "model": "ott:block/roseroot_leaves4"
+      }
+    ]
+  }
+}

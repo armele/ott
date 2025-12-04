@@ -1,0 +1,21 @@
+{
+  "variants": {
+    "": [
+      {
+        "model": "ott:block/ashen_leaves"
+      },
+      {
+        "model": "ott:block/ashen_leaves1"
+      },
+      {
+        "model": "ott:block/ashen_leaves2"
+      },
+      {
+        "model": "ott:block/ashen_leaves3"
+      },
+      {
+        "model": "ott:block/ashen_leaves4"
+      }
+    ]
+  }
+}

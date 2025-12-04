@@ -1,0 +1,21 @@
+{
+  "variants": {
+    "": [
+      {
+        "model": "ott:block/micle_leaves"
+      },
+      {
+        "model": "ott:block/micle_leaves1"
+      },
+      {
+        "model": "ott:block/micle_leaves2"
+      },
+      {
+        "model": "ott:block/micle_leaves3"
+      },
+      {
+        "model": "ott:block/micle_leaves4"
+      }
+    ]
+  }
+}

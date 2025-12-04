@@ -1,0 +1,21 @@
+{
+  "variants": {
+    "": [
+      {
+        "model": "ott:block/durian_leaves"
+      },
+      {
+        "model": "ott:block/durian_leaves1"
+      },
+      {
+        "model": "ott:block/durian_leaves2"
+      },
+      {
+        "model": "ott:block/durian_leaves3"
+      },
+      {
+        "model": "ott:block/durian_leaves4"
+      }
+    ]
+  }
+}

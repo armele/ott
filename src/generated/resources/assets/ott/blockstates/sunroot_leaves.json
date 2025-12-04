@@ -1,0 +1,21 @@
+{
+  "variants": {
+    "": [
+      {
+        "model": "ott:block/sunroot_leaves"
+      },
+      {
+        "model": "ott:block/sunroot_leaves1"
+      },
+      {
+        "model": "ott:block/sunroot_leaves2"
+      },
+      {
+        "model": "ott:block/sunroot_leaves3"
+      },
+      {
+        "model": "ott:block/sunroot_leaves4"
+      }
+    ]
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "variants": {
+    "": [
+      {
+        "model": "ott:block/firecracker_leaves"
+      },
+      {
+        "model": "ott:block/firecracker_leaves1"
+      },
+      {
+        "model": "ott:block/firecracker_leaves2"
+      },
+      {
+        "model": "ott:block/firecracker_leaves3"
+      },
+      {
+        "model": "ott:block/firecracker_leaves4"
+      }
+    ]
+  }
+}

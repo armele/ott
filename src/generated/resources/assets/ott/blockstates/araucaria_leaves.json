@@ -1,0 +1,21 @@
+{
+  "variants": {
+    "": [
+      {
+        "model": "ott:block/araucaria_leaves"
+      },
+      {
+        "model": "ott:block/araucaria_leaves1"
+      },
+      {
+        "model": "ott:block/araucaria_leaves2"
+      },
+      {
+        "model": "ott:block/araucaria_leaves3"
+      },
+      {
+        "model": "ott:block/araucaria_leaves4"
+      }
+    ]
+  }
+}

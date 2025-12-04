@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:block",
+  "pools": [
+    {
+      "bonus_rolls": 0.0,
+      "conditions": [
+        {
+          "condition": "minecraft:survives_explosion"
+        }
+      ],
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "ott:apple_leaves"
+        }
+      ],
+      "rolls": 1.0
+    }
+  ],
+  "random_sequence": "ott:blocks/apple_leaves"
+}

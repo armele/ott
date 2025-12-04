@@ -1,0 +1,21 @@
+{
+  "variants": {
+    "": [
+      {
+        "model": "ott:block/baobab_leaves"
+      },
+      {
+        "model": "ott:block/baobab_leaves1"
+      },
+      {
+        "model": "ott:block/baobab_leaves2"
+      },
+      {
+        "model": "ott:block/baobab_leaves3"
+      },
+      {
+        "model": "ott:block/baobab_leaves4"
+      }
+    ]
+  }
+}

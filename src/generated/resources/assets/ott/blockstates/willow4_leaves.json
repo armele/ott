@@ -1,0 +1,21 @@
+{
+  "variants": {
+    "": [
+      {
+        "model": "ott:block/willow4_leaves"
+      },
+      {
+        "model": "ott:block/willow4_leaves1"
+      },
+      {
+        "model": "ott:block/willow4_leaves2"
+      },
+      {
+        "model": "ott:block/willow4_leaves3"
+      },
+      {
+        "model": "ott:block/willow4_leaves4"
+      }
+    ]
+  }
+}

@@ -11,7 +11,7 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "ott:green_waves_seaglass"
+          "name": "minecraft:air"
         }
       ],
       "rolls": 1.0

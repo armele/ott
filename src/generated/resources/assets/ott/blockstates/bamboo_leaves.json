@@ -1,0 +1,21 @@
+{
+  "variants": {
+    "": [
+      {
+        "model": "ott:block/bamboo_leaves"
+      },
+      {
+        "model": "ott:block/bamboo_leaves1"
+      },
+      {
+        "model": "ott:block/bamboo_leaves2"
+      },
+      {
+        "model": "ott:block/bamboo_leaves3"
+      },
+      {
+        "model": "ott:block/bamboo_leaves4"
+      }
+    ]
+  }
+}

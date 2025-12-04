@@ -1,0 +1,21 @@
+{
+  "variants": {
+    "": [
+      {
+        "model": "ott:block/kee_leaves"
+      },
+      {
+        "model": "ott:block/kee_leaves1"
+      },
+      {
+        "model": "ott:block/kee_leaves2"
+      },
+      {
+        "model": "ott:block/kee_leaves3"
+      },
+      {
+        "model": "ott:block/kee_leaves4"
+      }
+    ]
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "variants": {
+    "": [
+      {
+        "model": "ott:block/lacugrove_leaves"
+      },
+      {
+        "model": "ott:block/lacugrove_leaves1"
+      },
+      {
+        "model": "ott:block/lacugrove_leaves2"
+      },
+      {
+        "model": "ott:block/lacugrove_leaves3"
+      },
+      {
+        "model": "ott:block/lacugrove_leaves4"
+      }
+    ]
+  }
+}

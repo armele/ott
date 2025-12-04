@@ -1,0 +1,21 @@
+{
+  "variants": {
+    "": [
+      {
+        "model": "ott:block/cruderoot_leaves"
+      },
+      {
+        "model": "ott:block/cruderoot_leaves1"
+      },
+      {
+        "model": "ott:block/cruderoot_leaves2"
+      },
+      {
+        "model": "ott:block/cruderoot_leaves3"
+      },
+      {
+        "model": "ott:block/cruderoot_leaves4"
+      }
+    ]
+  }
+}

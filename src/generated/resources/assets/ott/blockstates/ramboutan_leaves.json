@@ -1,0 +1,21 @@
+{
+  "variants": {
+    "": [
+      {
+        "model": "ott:block/ramboutan_leaves"
+      },
+      {
+        "model": "ott:block/ramboutan_leaves1"
+      },
+      {
+        "model": "ott:block/ramboutan_leaves2"
+      },
+      {
+        "model": "ott:block/ramboutan_leaves3"
+      },
+      {
+        "model": "ott:block/ramboutan_leaves4"
+      }
+    ]
+  }
+}

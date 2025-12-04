@@ -1,0 +1,21 @@
+{
+  "variants": {
+    "": [
+      {
+        "model": "ott:block/mago_leaves"
+      },
+      {
+        "model": "ott:block/mago_leaves1"
+      },
+      {
+        "model": "ott:block/mago_leaves2"
+      },
+      {
+        "model": "ott:block/mago_leaves3"
+      },
+      {
+        "model": "ott:block/mago_leaves4"
+      }
+    ]
+  }
+}

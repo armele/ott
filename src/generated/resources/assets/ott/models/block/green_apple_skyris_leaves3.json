@@ -1,0 +1,6 @@
+{
+  "parent": "ott:block/leaves_notint3",
+  "textures": {
+    "all": "ott:block/leaves/green_apple_skyris_leaves"
+  }
+}

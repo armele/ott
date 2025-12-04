@@ -1,0 +1,21 @@
+{
+  "variants": {
+    "": [
+      {
+        "model": "ott:block/zelkova_leaves"
+      },
+      {
+        "model": "ott:block/zelkova_leaves1"
+      },
+      {
+        "model": "ott:block/zelkova_leaves2"
+      },
+      {
+        "model": "ott:block/zelkova_leaves3"
+      },
+      {
+        "model": "ott:block/zelkova_leaves4"
+      }
+    ]
+  }
+}

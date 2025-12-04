@@ -1,0 +1,21 @@
+{
+  "variants": {
+    "": [
+      {
+        "model": "ott:block/red_archwood_leaves_2"
+      },
+      {
+        "model": "ott:block/red_archwood_leaves_21"
+      },
+      {
+        "model": "ott:block/red_archwood_leaves_22"
+      },
+      {
+        "model": "ott:block/red_archwood_leaves_23"
+      },
+      {
+        "model": "ott:block/red_archwood_leaves_24"
+      }
+    ]
+  }
+}

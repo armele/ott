@@ -1,0 +1,21 @@
+{
+  "variants": {
+    "": [
+      {
+        "model": "ott:block/aurel_leaves"
+      },
+      {
+        "model": "ott:block/aurel_leaves1"
+      },
+      {
+        "model": "ott:block/aurel_leaves2"
+      },
+      {
+        "model": "ott:block/aurel_leaves3"
+      },
+      {
+        "model": "ott:block/aurel_leaves4"
+      }
+    ]
+  }
+}

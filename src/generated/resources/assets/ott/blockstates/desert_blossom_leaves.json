@@ -1,0 +1,21 @@
+{
+  "variants": {
+    "": [
+      {
+        "model": "ott:block/desert_blossom_leaves"
+      },
+      {
+        "model": "ott:block/desert_blossom_leaves1"
+      },
+      {
+        "model": "ott:block/desert_blossom_leaves2"
+      },
+      {
+        "model": "ott:block/desert_blossom_leaves3"
+      },
+      {
+        "model": "ott:block/desert_blossom_leaves4"
+      }
+    ]
+  }
+}

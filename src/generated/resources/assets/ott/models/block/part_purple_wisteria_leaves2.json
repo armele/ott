@@ -1,0 +1,6 @@
+{
+  "parent": "ott:block/leaves_notint2",
+  "textures": {
+    "all": "ott:block/leaves/part_purple_wisteria_leaves"
+  }
+}

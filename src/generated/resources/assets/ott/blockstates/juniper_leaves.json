@@ -1,0 +1,21 @@
+{
+  "variants": {
+    "": [
+      {
+        "model": "ott:block/juniper_leaves"
+      },
+      {
+        "model": "ott:block/juniper_leaves1"
+      },
+      {
+        "model": "ott:block/juniper_leaves2"
+      },
+      {
+        "model": "ott:block/juniper_leaves3"
+      },
+      {
+        "model": "ott:block/juniper_leaves4"
+      }
+    ]
+  }
+}

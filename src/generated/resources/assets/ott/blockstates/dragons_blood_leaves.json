@@ -1,0 +1,21 @@
+{
+  "variants": {
+    "": [
+      {
+        "model": "ott:block/dragons_blood_leaves"
+      },
+      {
+        "model": "ott:block/dragons_blood_leaves1"
+      },
+      {
+        "model": "ott:block/dragons_blood_leaves2"
+      },
+      {
+        "model": "ott:block/dragons_blood_leaves3"
+      },
+      {
+        "model": "ott:block/dragons_blood_leaves4"
+      }
+    ]
+  }
+}

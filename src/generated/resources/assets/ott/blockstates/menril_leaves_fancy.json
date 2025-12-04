@@ -1,0 +1,21 @@
+{
+  "variants": {
+    "": [
+      {
+        "model": "ott:block/menril_leaves_fancy"
+      },
+      {
+        "model": "ott:block/menril_leaves_fancy1"
+      },
+      {
+        "model": "ott:block/menril_leaves_fancy2"
+      },
+      {
+        "model": "ott:block/menril_leaves_fancy3"
+      },
+      {
+        "model": "ott:block/menril_leaves_fancy4"
+      }
+    ]
+  }
+}

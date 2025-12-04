@@ -1,0 +1,21 @@
+{
+  "variants": {
+    "": [
+      {
+        "model": "ott:block/snowblossom_leaves"
+      },
+      {
+        "model": "ott:block/snowblossom_leaves1"
+      },
+      {
+        "model": "ott:block/snowblossom_leaves2"
+      },
+      {
+        "model": "ott:block/snowblossom_leaves3"
+      },
+      {
+        "model": "ott:block/snowblossom_leaves4"
+      }
+    ]
+  }
+}

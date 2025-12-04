@@ -1,0 +1,21 @@
+{
+  "variants": {
+    "": [
+      {
+        "model": "ott:block/cedar_leaves"
+      },
+      {
+        "model": "ott:block/cedar_leaves1"
+      },
+      {
+        "model": "ott:block/cedar_leaves2"
+      },
+      {
+        "model": "ott:block/cedar_leaves3"
+      },
+      {
+        "model": "ott:block/cedar_leaves4"
+      }
+    ]
+  }
+}

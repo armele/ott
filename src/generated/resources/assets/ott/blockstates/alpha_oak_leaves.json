@@ -1,0 +1,21 @@
+{
+  "variants": {
+    "": [
+      {
+        "model": "ott:block/alpha_oak_leaves"
+      },
+      {
+        "model": "ott:block/alpha_oak_leaves1"
+      },
+      {
+        "model": "ott:block/alpha_oak_leaves2"
+      },
+      {
+        "model": "ott:block/alpha_oak_leaves3"
+      },
+      {
+        "model": "ott:block/alpha_oak_leaves4"
+      }
+    ]
+  }
+}

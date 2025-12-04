@@ -1,0 +1,21 @@
+{
+  "variants": {
+    "": [
+      {
+        "model": "ott:block/cave_bush_leaves_1"
+      },
+      {
+        "model": "ott:block/cave_bush_leaves_11"
+      },
+      {
+        "model": "ott:block/cave_bush_leaves_12"
+      },
+      {
+        "model": "ott:block/cave_bush_leaves_13"
+      },
+      {
+        "model": "ott:block/cave_bush_leaves_14"
+      }
+    ]
+  }
+}

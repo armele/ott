@@ -1,0 +1,21 @@
+{
+  "variants": {
+    "": [
+      {
+        "model": "ott:block/haban_leaves"
+      },
+      {
+        "model": "ott:block/haban_leaves1"
+      },
+      {
+        "model": "ott:block/haban_leaves2"
+      },
+      {
+        "model": "ott:block/haban_leaves3"
+      },
+      {
+        "model": "ott:block/haban_leaves4"
+      }
+    ]
+  }
+}

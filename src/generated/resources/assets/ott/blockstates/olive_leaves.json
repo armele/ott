@@ -1,0 +1,21 @@
+{
+  "variants": {
+    "": [
+      {
+        "model": "ott:block/olive_leaves"
+      },
+      {
+        "model": "ott:block/olive_leaves1"
+      },
+      {
+        "model": "ott:block/olive_leaves2"
+      },
+      {
+        "model": "ott:block/olive_leaves3"
+      },
+      {
+        "model": "ott:block/olive_leaves4"
+      }
+    ]
+  }
+}

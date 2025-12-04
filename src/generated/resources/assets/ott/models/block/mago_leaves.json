@@ -1,0 +1,6 @@
+{
+  "parent": "ott:block/leaves_notint",
+  "textures": {
+    "all": "ott:block/leaves/mago_leaves"
+  }
+}

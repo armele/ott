@@ -1,0 +1,21 @@
+{
+  "variants": {
+    "": [
+      {
+        "model": "ott:block/red_maple4_leaves"
+      },
+      {
+        "model": "ott:block/red_maple4_leaves1"
+      },
+      {
+        "model": "ott:block/red_maple4_leaves2"
+      },
+      {
+        "model": "ott:block/red_maple4_leaves3"
+      },
+      {
+        "model": "ott:block/red_maple4_leaves4"
+      }
+    ]
+  }
+}

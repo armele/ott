@@ -1,0 +1,21 @@
+{
+  "variants": {
+    "": [
+      {
+        "model": "ott:block/cypress5_leaves"
+      },
+      {
+        "model": "ott:block/cypress5_leaves1"
+      },
+      {
+        "model": "ott:block/cypress5_leaves2"
+      },
+      {
+        "model": "ott:block/cypress5_leaves3"
+      },
+      {
+        "model": "ott:block/cypress5_leaves4"
+      }
+    ]
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "variants": {
+    "": [
+      {
+        "model": "ott:block/blighted_balsa_leaves"
+      },
+      {
+        "model": "ott:block/blighted_balsa_leaves1"
+      },
+      {
+        "model": "ott:block/blighted_balsa_leaves2"
+      },
+      {
+        "model": "ott:block/blighted_balsa_leaves3"
+      },
+      {
+        "model": "ott:block/blighted_balsa_leaves4"
+      }
+    ]
+  }
+}

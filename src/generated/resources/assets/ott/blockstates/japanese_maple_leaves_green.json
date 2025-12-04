@@ -1,0 +1,21 @@
+{
+  "variants": {
+    "": [
+      {
+        "model": "ott:block/japanese_maple_leaves_green"
+      },
+      {
+        "model": "ott:block/japanese_maple_leaves_green1"
+      },
+      {
+        "model": "ott:block/japanese_maple_leaves_green2"
+      },
+      {
+        "model": "ott:block/japanese_maple_leaves_green3"
+      },
+      {
+        "model": "ott:block/japanese_maple_leaves_green4"
+      }
+    ]
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "variants": {
+    "": [
+      {
+        "model": "ott:block/azalea_leaves"
+      },
+      {
+        "model": "ott:block/azalea_leaves1"
+      },
+      {
+        "model": "ott:block/azalea_leaves2"
+      },
+      {
+        "model": "ott:block/azalea_leaves3"
+      },
+      {
+        "model": "ott:block/azalea_leaves4"
+      }
+    ]
+  }
+}

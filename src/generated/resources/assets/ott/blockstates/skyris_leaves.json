@@ -1,0 +1,21 @@
+{
+  "variants": {
+    "": [
+      {
+        "model": "ott:block/skyris_leaves"
+      },
+      {
+        "model": "ott:block/skyris_leaves1"
+      },
+      {
+        "model": "ott:block/skyris_leaves2"
+      },
+      {
+        "model": "ott:block/skyris_leaves3"
+      },
+      {
+        "model": "ott:block/skyris_leaves4"
+      }
+    ]
+  }
+}

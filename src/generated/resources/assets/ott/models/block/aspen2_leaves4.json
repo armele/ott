@@ -1,0 +1,6 @@
+{
+  "parent": "ott:block/leaves_notint4",
+  "textures": {
+    "all": "ott:block/leaves/aspen2_leaves"
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "variants": {
+    "": [
+      {
+        "model": "ott:block/twisted_leaves"
+      },
+      {
+        "model": "ott:block/twisted_leaves1"
+      },
+      {
+        "model": "ott:block/twisted_leaves2"
+      },
+      {
+        "model": "ott:block/twisted_leaves3"
+      },
+      {
+        "model": "ott:block/twisted_leaves4"
+      }
+    ]
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "variants": {
+    "": [
+      {
+        "model": "ott:block/white_mangrove_leaves"
+      },
+      {
+        "model": "ott:block/white_mangrove_leaves1"
+      },
+      {
+        "model": "ott:block/white_mangrove_leaves2"
+      },
+      {
+        "model": "ott:block/white_mangrove_leaves3"
+      },
+      {
+        "model": "ott:block/white_mangrove_leaves4"
+      }
+    ]
+  }
+}

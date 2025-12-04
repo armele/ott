@@ -1,0 +1,21 @@
+{
+  "variants": {
+    "": [
+      {
+        "model": "ott:block/socotra_leaves"
+      },
+      {
+        "model": "ott:block/socotra_leaves1"
+      },
+      {
+        "model": "ott:block/socotra_leaves2"
+      },
+      {
+        "model": "ott:block/socotra_leaves3"
+      },
+      {
+        "model": "ott:block/socotra_leaves4"
+      }
+    ]
+  }
+}

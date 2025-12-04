@@ -1,0 +1,21 @@
+{
+  "variants": {
+    "": [
+      {
+        "model": "ott:block/mangosteen_leaves"
+      },
+      {
+        "model": "ott:block/mangosteen_leaves1"
+      },
+      {
+        "model": "ott:block/mangosteen_leaves2"
+      },
+      {
+        "model": "ott:block/mangosteen_leaves3"
+      },
+      {
+        "model": "ott:block/mangosteen_leaves4"
+      }
+    ]
+  }
+}

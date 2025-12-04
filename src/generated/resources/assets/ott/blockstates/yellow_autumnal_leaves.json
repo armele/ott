@@ -1,0 +1,21 @@
+{
+  "variants": {
+    "": [
+      {
+        "model": "ott:block/yellow_autumnal_leaves"
+      },
+      {
+        "model": "ott:block/yellow_autumnal_leaves1"
+      },
+      {
+        "model": "ott:block/yellow_autumnal_leaves2"
+      },
+      {
+        "model": "ott:block/yellow_autumnal_leaves3"
+      },
+      {
+        "model": "ott:block/yellow_autumnal_leaves4"
+      }
+    ]
+  }
+}

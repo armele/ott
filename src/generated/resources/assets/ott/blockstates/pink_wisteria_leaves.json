@@ -1,0 +1,21 @@
+{
+  "variants": {
+    "": [
+      {
+        "model": "ott:block/pink_wisteria_leaves"
+      },
+      {
+        "model": "ott:block/pink_wisteria_leaves1"
+      },
+      {
+        "model": "ott:block/pink_wisteria_leaves2"
+      },
+      {
+        "model": "ott:block/pink_wisteria_leaves3"
+      },
+      {
+        "model": "ott:block/pink_wisteria_leaves4"
+      }
+    ]
+  }
+}

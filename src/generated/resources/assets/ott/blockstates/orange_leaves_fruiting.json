@@ -1,0 +1,21 @@
+{
+  "variants": {
+    "": [
+      {
+        "model": "ott:block/orange_leaves_fruiting"
+      },
+      {
+        "model": "ott:block/orange_leaves_fruiting1"
+      },
+      {
+        "model": "ott:block/orange_leaves_fruiting2"
+      },
+      {
+        "model": "ott:block/orange_leaves_fruiting3"
+      },
+      {
+        "model": "ott:block/orange_leaves_fruiting4"
+      }
+    ]
+  }
+}

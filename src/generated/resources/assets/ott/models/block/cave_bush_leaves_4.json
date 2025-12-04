@@ -1,0 +1,6 @@
+{
+  "parent": "ott:block/leaves_notint1",
+  "textures": {
+    "all": "ott:block/leaves/cave_bush_leaves_4"
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "variants": {
+    "": [
+      {
+        "model": "ott:block/mauve_leaves_flowering_3"
+      },
+      {
+        "model": "ott:block/mauve_leaves_flowering_31"
+      },
+      {
+        "model": "ott:block/mauve_leaves_flowering_32"
+      },
+      {
+        "model": "ott:block/mauve_leaves_flowering_33"
+      },
+      {
+        "model": "ott:block/mauve_leaves_flowering_34"
+      }
+    ]
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "variants": {
+    "": [
+      {
+        "model": "ott:block/budding_peony_leaves"
+      },
+      {
+        "model": "ott:block/budding_peony_leaves1"
+      },
+      {
+        "model": "ott:block/budding_peony_leaves2"
+      },
+      {
+        "model": "ott:block/budding_peony_leaves3"
+      },
+      {
+        "model": "ott:block/budding_peony_leaves4"
+      }
+    ]
+  }
+}

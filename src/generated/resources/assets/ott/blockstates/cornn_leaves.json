@@ -1,0 +1,21 @@
+{
+  "variants": {
+    "": [
+      {
+        "model": "ott:block/cornn_leaves"
+      },
+      {
+        "model": "ott:block/cornn_leaves1"
+      },
+      {
+        "model": "ott:block/cornn_leaves2"
+      },
+      {
+        "model": "ott:block/cornn_leaves3"
+      },
+      {
+        "model": "ott:block/cornn_leaves4"
+      }
+    ]
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "variants": {
+    "": [
+      {
+        "model": "ott:block/peach2_leaves"
+      },
+      {
+        "model": "ott:block/peach2_leaves1"
+      },
+      {
+        "model": "ott:block/peach2_leaves2"
+      },
+      {
+        "model": "ott:block/peach2_leaves3"
+      },
+      {
+        "model": "ott:block/peach2_leaves4"
+      }
+    ]
+  }
+}
