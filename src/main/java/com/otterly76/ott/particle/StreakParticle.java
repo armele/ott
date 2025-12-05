@@ -56,7 +56,7 @@ public class StreakParticle extends WeatherParticle {
             }
 
             this.gravity = 0.0F;
-            this.yd = (double)0.0F;
+            this.yd = 0.0F;
             this.shouldFadeOut = true;
         }
 

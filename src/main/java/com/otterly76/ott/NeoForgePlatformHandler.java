@@ -2,6 +2,7 @@ package com.otterly76.ott;
 
 import com.otterly76.ott.block.ModBlocks;
 import com.otterly76.ott.item.ModItems;
+import com.otterly76.ott.particle.ModParticle;
 import net.minecraft.commands.CommandSourceStack;
 import net.minecraft.core.Registry;
 import net.minecraft.core.particles.SimpleParticleType;
@@ -40,13 +41,11 @@ public class NeoForgePlatformHandler implements PlatformHandler {
     @SuppressWarnings("unchecked")
     public <T> Supplier<T> register(Registry<? super T> registry, String name, Supplier<T> entry) {
         if (BuiltInRegistries.BLOCK.equals(registry)) {
-            // Cast to raw Supplier to bypass generic bounds check for the specific register call
-            return (Supplier<T>) ModBlocks.BLOCKS.register(name, (Supplier) entry);
+            return (Supplier<T>) ModBlocks.BLOCKS.register(name, (Supplier<net.minecraft.world.level.block.Block>) entry);
         } else if (BuiltInRegistries.ITEM.equals(registry)) {
-            return (Supplier<T>) ModItems.ITEMS.register(name, (Supplier) entry);
+            return (Supplier<T>) ModItems.ITEMS.register(name, (Supplier<net.minecraft.world.item.Item>) entry);
         } else if (BuiltInRegistries.PARTICLE_TYPE.equals(registry)) {
-            // Example: Add support for particles if you have a ModParticles DeferredRegister
-            // return (Supplier<T>) ModParticles.PARTICLES.register(name, (Supplier) entry);
+            return (Supplier<T>) ModParticle.PARTICLE_TYPES.register(name, (Supplier<net.minecraft.core.particles.ParticleType<?>>) entry);
         }
 
         throw new UnsupportedOperationException("NeoForgePlatformHandler#register is not implemented for registry: " + registry.key());

@@ -3,7 +3,7 @@ package com.otterly76.ott;
 import com.otterly76.ott.block.ModBlocks;
 import com.otterly76.ott.generation.GradientBlockProvider;
 import com.otterly76.ott.generation.GradientBlockRecipeProvider;
-import com.otterly76.ott.generation.OttBlockStateProvider;
+import com.otterly76.ott.generation.OttLeafBlockStateProvider;
 import com.otterly76.ott.generation.OttLootTableProvider;
 import com.otterly76.ott.item.ModItems;
 
@@ -59,7 +59,7 @@ public class Ott {
                 event.getLookupProvider()));
 
         // Turning this off as to not overwrite the edited files while I color test
-        // generator.addProvider(event.includeClient(), new OttBlockStateProvider(generator.getPackOutput(), event.getExistingFileHelper()));
+        // generator.addProvider(event.includeClient(), new OttLeafBlockStateProvider(generator.getPackOutput(), event.getExistingFileHelper()));
     }
 
     private void addPackFinders(AddPackFindersEvent event) {
