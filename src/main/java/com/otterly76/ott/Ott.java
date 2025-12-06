@@ -30,6 +30,9 @@ import java.util.List;
 import java.util.Optional;
 import java.nio.file.Files;
 
+import com.otterly76.ott.network.SyncHandler;
+import net.neoforged.neoforge.network.event.RegisterPayloadHandlersEvent;
+
 import static com.otterly76.ott.Constants.MOD_ID;
 
 @Mod(MOD_ID)
@@ -41,8 +44,8 @@ public class Ott {
         ModItems.ITEMS.register(modEventBus);
         ModCreativeTabs.OTTER_TABS.register(modEventBus);
 
+        modEventBus.addListener(this::registerPayloadHandlers);
         modEventBus.addListener(this::dataGeneratorSetup);
-
         modEventBus.addListener(this::addPackFinders);
     }
 
@@ -62,23 +65,26 @@ public class Ott {
         // generator.addProvider(event.includeClient(), new OttLeafBlockStateProvider(generator.getPackOutput(), event.getExistingFileHelper()));
     }
 
+    private void registerPayloadHandlers(final RegisterPayloadHandlersEvent event) {
+        SyncHandler.register(event);
+    }
+
     private void addPackFinders(AddPackFindersEvent event) {
         if (event.getPackType() == PackType.CLIENT_RESOURCES) {
             var resourcePath = ModList.get().getModFileById(MOD_ID).getFile().findResource("resourcepacks/ott_core");
 
-            // Verify the path exists before trying to create a pack
             if (!Files.isDirectory(resourcePath)) {
                 return;
             }
 
             var packLocationInfo = new PackLocationInfo(
-                    MOD_ID + ":ott_core", // Use namespaced ID to avoid collisions
+                    MOD_ID + ":ott_core",
                     Component.translatable("pack." + MOD_ID + ".ott_core"),
-                    PackSource.BUILT_IN, // Use imported class
+                    PackSource.BUILT_IN,
                     Optional.empty()
             );
             var packSelectionConfig = new PackSelectionConfig(
-                    true, // fixedPosition: Set to false so users can disable it if needed
+                    true,
                     Pack.Position.TOP,
                     true
             );

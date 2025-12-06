@@ -9,17 +9,17 @@ import java.nio.file.Path;
 import java.util.function.Supplier;
 
 public interface PlatformHandler {
-        Platform getPlatform();
+    Platform getPlatform();
 
-        Path configPath();
+    Path configPath();
 
-        boolean hasPermission(@NotNull CommandSourceStack sourceStack, @NotNull String permission);
+    boolean hasPermission(@NotNull CommandSourceStack sourceStack, @NotNull String permission);
 
-        Supplier<SimpleParticleType> registerCreateParticle(String name);
+    Supplier<SimpleParticleType> registerCreateParticle(String name);
 
-        <T> Supplier<T> register(Registry<? super T> registry, String name, Supplier<T> entry);
+    <T> Supplier<T> register(Registry<? super T> registry, String name, Supplier<T> entry);
 
-        enum Platform {
-            NEOFORGE
-        }
+    enum Platform {
+        NEOFORGE
     }
+}

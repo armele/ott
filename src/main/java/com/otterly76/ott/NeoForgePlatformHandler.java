@@ -16,12 +16,15 @@ import java.util.function.Supplier;
 public class NeoForgePlatformHandler implements PlatformHandler {
     public static final NeoForgePlatformHandler PLATFORM_HANDLER = new NeoForgePlatformHandler();
     private static final int DEFAULT_PERMISSION_LEVEL = 4;
+
     private NeoForgePlatformHandler() {
     }
+
     @Override
     public PlatformHandler.Platform getPlatform() {
         return PlatformHandler.Platform.NEOFORGE;
     }
+
     @Override
     public Path configPath() {
         return FMLPaths.CONFIGDIR.get();

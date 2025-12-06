@@ -15,13 +15,11 @@ import net.neoforged.fml.common.EventBusSubscriber; // Or standard Forge/NeoForg
 public class ClientModEvents {
     @SubscribeEvent
     public static void registerBlockColors(RegisterColorHandlersEvent.Block event) {
-        // Defines the function: If a tint is requested, use the Biome's Foliage Color
         event.register((state, world, pos, tintIndex) ->
                         world != null && pos != null
                                 ? BiomeColors.getAverageFoliageColor(world, pos)
                                 : FoliageColor.getDefaultColor(),
 
-                // Convert your list of DeferredBlocks to an array of Blocks
                 ModBlocks.LEAVES.stream()
                         .map(DeferredBlock::get)
                         .toArray(Block[]::new)
@@ -30,7 +28,6 @@ public class ClientModEvents {
 
     @SubscribeEvent
     public static void registerItemColors(RegisterColorHandlersEvent.Item event) {
-        // Items don't have a world position, so they use the default static color
         event.register((stack, tintIndex) -> FoliageColor.getDefaultColor(),
                 ModBlocks.LEAVES.stream()
                         .map(DeferredBlock::get)

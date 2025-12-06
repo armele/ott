@@ -47,3 +47,6 @@ Running List:
 - Added copper blocks/slabs/stairs as pathblocks for MineColonies citizens
 - Updated the item models for dyes
 - Moved 3D texture models for external mods to a built in resource pack to override mod load order issues
+- Added new MCol specific splash texts for the main menu
+- Added new skybox textures
+- Added new weather textures and expanded particle effects
