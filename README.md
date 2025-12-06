@@ -12,6 +12,14 @@ Mixins Used:
 - Yes this is mainly for Ray's benefit
   - Used to overwrite the vanilla weather particles since that's apparently the only way to do that
 
+FAQ:
+=======
+1. Can you backport this to 1.yadda?
+   - Nope. Move forward, not backwards.
+   
+2. Such and such (insert Mekanism, etc here) is way more powerful, why don't you blarg?
+    - Because the point of this mod is to be a companion to MineColonies and to avoid OP mod functions.
+
 Running List:
 =======
 
@@ -27,7 +35,7 @@ Running List:
 - FLOOFY LEAVES!
 - Lowered the Shield when equipped so you can actually, ya know, see what you're doing
 - Lowered the Totem of Undying, see above
-- Found and imported a slew of missing sound files (ongoing)
+- Identified and added missing sound files (ongoing)
 - Identified and added missing recipes (ongoing)
 - Added the evil Hedge
     - Evil Cackling Ensues
@@ -36,7 +44,6 @@ Running List:
     - Can be harvested with a hoe to bypass damage
 - Added Create support, first pass (3D models and textures for ores)
 - Added Chipped support, first pass (fluffy leaves, fixed some lantern models, fixed ladders(3D))
-- Added more missing vanilla recipes
 - Added farmland protection for MineColonies crops
 - Added custom schematic dimensions, first pass
   - flat
@@ -50,3 +57,6 @@ Running List:
 - Added new MCol specific splash texts for the main menu
 - Added new skybox textures
 - Added new weather textures and expanded particle effects
+- Added new custom hunger/saturation/exhaustion system!
+  - Similar to AppleSkin but written from scratch with clean, nondeprecated code and new icons
+  - Used apples for the food icons in homage to AppleSkin ♥

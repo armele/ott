@@ -3,10 +3,11 @@ package com.otterly76.ott;
 import com.otterly76.ott.block.ModBlocks;
 import com.otterly76.ott.generation.GradientBlockProvider;
 import com.otterly76.ott.generation.GradientBlockRecipeProvider;
-import com.otterly76.ott.generation.OttLeafBlockStateProvider;
 import com.otterly76.ott.generation.OttLootTableProvider;
 import com.otterly76.ott.item.ModItems;
 
+import com.otterly76.ott.network.NetworkHandler;
+import com.otterly76.ott.particle.ModParticle;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.loot.LootTableProvider;
 import net.minecraft.network.chat.Component;
@@ -18,10 +19,12 @@ import net.minecraft.server.packs.repository.Pack;
 import net.minecraft.server.packs.repository.PackSource;
 import net.minecraft.world.level.storage.loot.parameters.LootContextParamSets;
 
+import net.neoforged.api.distmarker.Dist;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.fml.ModContainer;
 import net.neoforged.fml.ModList;
 import net.neoforged.fml.common.Mod;
+import net.neoforged.fml.loading.FMLEnvironment;
 import net.neoforged.neoforge.data.event.GatherDataEvent;
 import net.neoforged.neoforge.event.AddPackFindersEvent;
 
@@ -29,9 +32,6 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 import java.nio.file.Files;
-
-import com.otterly76.ott.network.SyncHandler;
-import net.neoforged.neoforge.network.event.RegisterPayloadHandlersEvent;
 
 import static com.otterly76.ott.Constants.MOD_ID;
 
@@ -42,9 +42,15 @@ public class Ott {
 
         ModBlocks.BLOCKS.register(modEventBus);
         ModItems.ITEMS.register(modEventBus);
+        ModParticle.PARTICLE_TYPES.register(modEventBus);
         ModCreativeTabs.OTTER_TABS.register(modEventBus);
 
-        modEventBus.addListener(this::registerPayloadHandlers);
+        modEventBus.addListener(NetworkHandler::register);
+
+        if (FMLEnvironment.dist == Dist.CLIENT) {
+            ClientModEvents.register(modEventBus);
+        }
+
         modEventBus.addListener(this::dataGeneratorSetup);
         modEventBus.addListener(this::addPackFinders);
     }
@@ -63,10 +69,6 @@ public class Ott {
 
         // Turning this off as to not overwrite the edited files while I color test
         // generator.addProvider(event.includeClient(), new OttLeafBlockStateProvider(generator.getPackOutput(), event.getExistingFileHelper()));
-    }
-
-    private void registerPayloadHandlers(final RegisterPayloadHandlersEvent event) {
-        SyncHandler.register(event);
     }
 
     private void addPackFinders(AddPackFindersEvent event) {

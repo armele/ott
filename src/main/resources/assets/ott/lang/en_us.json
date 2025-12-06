@@ -125,6 +125,9 @@
   "block.ott.yellow_waves_seaglass": "Yellow Waves Seaglass",
 
   "block.ott.hedge": "Hedge",
-  "death.attack.flora_damage": "%1$s was obliterated by flowers"
+  "death.attack.flora_damage": "%1$s was obliterated by flowers",
+
+  "tooltip.ott.hunger": "Hunger: %s",
+  "tooltip.ott.saturation": "Saturation: %s"
 
 }
