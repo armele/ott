@@ -45,11 +45,10 @@ Running List:
 - Added Create support, first pass (3D models and textures for ores)
 - Added Chipped support, first pass (fluffy leaves, fixed some lantern models, fixed ladders(3D))
 - Added farmland protection for MineColonies crops
-- Added custom schematic dimensions, first pass
+- Added custom schematic dimensions!
   - flat
   - flat w/ water
   - MCol schematic dimension by Thaylar & the LDT Team
-    - need to add bits
 - Added native support for custom music
 - Added copper blocks/slabs/stairs as pathblocks for MineColonies citizens
 - Updated the item models for dyes
