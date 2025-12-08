@@ -10,7 +10,7 @@ Mixins Used:
 =======
 
 - Yes this is mainly for Ray's benefit
-  - Used to overwrite the vanilla weather particles since that's apparently the only way to do that
+  - Used to overwrite the vanilla weather particles since it's apparently the only way
     - Because I want pretty rain, dammit
   - Used to overwrite the vanilla health/hearts sprite to mimic Colorful hearts
     - Cleaner, more current for 1.21.1 environment
