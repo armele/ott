@@ -2,7 +2,7 @@ But First... The Thank Yous!
 =======
 
 - THANK YOU to Imri, my 3D modeling soul sister and midwest clone!
-- THANK YOU to Thodor who tolerated my 25 year lapse in Jave to help me start on this project!
+- THANK YOU to Thodor who tolerated my 25 year lapse in Java to help me start on this project!
 - THANK YOU to Ayar for helping me test this insanity!
 - THANK YOU to Raycoms and all of the LDT team for creating and maintaining the MineColonies mod!
 
