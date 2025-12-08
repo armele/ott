@@ -51,7 +51,7 @@ Running List:
 - Added custom schematic dimensions!
   - flat
   - flat w/ water
-  - MCol schematic dimension by Thaylar & the LDT Team
+  - MCol schematic dimension by Thaylar & the LDT Team with fully pregenerated templates
 - Added native support for custom music
 - Added copper blocks/slabs/stairs as pathblocks for MineColonies citizens
 - Updated the item models for dyes
