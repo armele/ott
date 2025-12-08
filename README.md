@@ -11,6 +11,9 @@ Mixins Used:
 
 - Yes this is mainly for Ray's benefit
   - Used to overwrite the vanilla weather particles since that's apparently the only way to do that
+    - Because I want pretty rain, dammit
+  - Used to overwrite the vanilla health/hearts sprite to mimic Colorful hearts
+    - Cleaner, more current for 1.21.1 environment
 
 FAQ:
 =======
@@ -59,3 +62,6 @@ Running List:
 - Added new custom hunger/saturation/exhaustion system!
   - Similar to AppleSkin but written from scratch with clean, nondeprecated code and new icons
   - Used apples for the food icons in homage to AppleSkin ♥
+- Added new custom health/hearts display to mimic Colorful Hearts
+  - This displays all health hearts on one hud line to clean up the display
+  - Each set of 20 health is a new color (red, orange, yellow, etc)
