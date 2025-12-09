@@ -19,14 +19,17 @@ public abstract class ColorfulHeartsMixin {
     // Define colors for decks 1 through 7 (Deck 0 is vanilla red)
     @Unique
     private static final int[] DECK_COLORS = new int[]{
-            0xb02e26, // Deck 0: Red
-            0xf9801d, // Deck 1: Orange
-            0xfed83d, // Deck 2: Yellow
-            0x5e7c16, // Deck 3: Green
-            0x3c44aa, // Deck 4: Blue
-            0x8932b8, // Deck 5: Purple
-            0xFF9999, // Deck 6: Pink
-            0xFFD700  // Deck 7: Gold
+            0xff0000, // Deck 0: Red
+            0xffa500, // Deck 1: Orange
+            0xffff00, // Deck 2: Yellow
+            0x00ff00, // Deck 3: Lime
+            0x008000, // Deck 4: Green
+            0x00ffff, // Deck 5: Cyan
+            0x0000ff, // Deck 6: Blue
+            0x800080, // Deck 7: Purple
+            0xff00ff, // Deck 8: Magenta
+            0xffc0cb, // Deck 9: Pink
+            0xFFD700  // Deck 10: Gold
     };
 
     @Unique
