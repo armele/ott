@@ -29,7 +29,6 @@ public abstract class ColorfulHeartsMixin {
             0xFFD700  // Deck 7: Gold
     };
 
-    // We only need the white texture now, as we will tint it
     @Unique
     private static final ResourceLocation WHITE_HEART_FULL = ResourceLocation.fromNamespaceAndPath("ott", "hud/heart/white_full");
     @Unique
@@ -42,8 +41,6 @@ public abstract class ColorfulHeartsMixin {
         Gui.HeartType heartType = Gui.HeartType.NORMAL;
         boolean isHardcore = player.level().getLevelData().isHardcore();
 
-        // FIX: Updated Enum names for 1.21
-        // If 'POISONED' fails to resolve, try 'POISIONED' (mapping typo exists in some versions)
         if (player.isFullyFrozen()) {
             heartType = Gui.HeartType.FROZEN;
         } else if (player.hasEffect(MobEffects.WITHER)) {
@@ -57,9 +54,7 @@ public abstract class ColorfulHeartsMixin {
         int healthDeck = Math.max(0, (totalHealth - 1) / 20);
         int absorbDeck = Math.max(0, (totalAbsorb - 1) / 20);
 
-        int heartCount = Mth.ceil((double)maxHealth / 2.0F) + Mth.ceil((double)absorption / 2.0F);
-
-        // FIX: Clamp rendered hearts to 10
+        int heartCount = Mth.ceil((double) maxHealth / 2.0F) + Mth.ceil((double) absorption / 2.0F);
         heartCount = Math.min(heartCount, 10);
 
         for (int j = heartCount - 1; j >= 0; --j) {
@@ -79,14 +74,14 @@ public abstract class ColorfulHeartsMixin {
 
             // FIX 1: Force White Color for background
             guiGraphics.setColor(1.0F, 1.0F, 1.0F, 1.0F);
-            this.ott$renderHeart(guiGraphics, Gui.HeartType.CONTAINER, xPos, y, yOffset, false, false, isHardcore);
+            ColorfulHeartsMixin.ott$renderHeart(guiGraphics, Gui.HeartType.CONTAINER, xPos, y, yOffset, false, false, isHardcore);
 
             // 2. Draw "Under" Health Layer
             if (healthDeck > 0) {
                 int deckHealth = (healthDeck - 1) * 20;
                 if (totalHealth > deckHealth) {
                     int color = ott$getDeckColor(healthDeck - 1);
-                    this.ott$renderTintedHeart(guiGraphics, xPos, y, yOffset, color, false);
+                    ColorfulHeartsMixin.ott$renderTintedHeart(guiGraphics, xPos, y, yOffset, color, false);
                 }
             }
 
@@ -97,73 +92,76 @@ public abstract class ColorfulHeartsMixin {
 
             if (isFull || isHalf) {
                 if (renderHighlight) {
-                    // FIX 2: Force White flash on regen using OUR texture
-                    this.ott$renderTintedHeart(guiGraphics, xPos, y, yOffset, 0xFFFFFF, isHalf);
+                    ColorfulHeartsMixin.ott$renderTintedHeart(guiGraphics, xPos, y, yOffset, 0xFFFFFF, isHalf);
                 } else {
-                    // MODIFIED LOGIC: Use custom tinted hearts for Deck 0 (Normal) too!
-                    // Only fallback to vanilla if the heart type is SPECIAL (Poison, Wither, Frozen)
                     if (heartType != Gui.HeartType.NORMAL) {
                         guiGraphics.setColor(1.0F, 1.0F, 1.0F, 1.0F);
-                        this.ott$renderHeart(guiGraphics, heartType, xPos, y, yOffset, false, isHalf, isHardcore);
+                        ColorfulHeartsMixin.ott$renderHeart(guiGraphics, heartType, xPos, y, yOffset, false, isHalf, isHardcore);
                     } else {
-                        // Draw current deck color (Works for Deck 0 too now!)
                         int color = ott$getDeckColor(healthDeck);
-                        this.ott$renderTintedHeart(guiGraphics, xPos, y, yOffset, color, isHalf);
+                        ColorfulHeartsMixin.ott$renderTintedHeart(guiGraphics, xPos, y, yOffset, color, isHalf);
                     }
                 }
             }
 
             // 4. Absorption Logic
             if (totalAbsorb > 0) {
-                // Ensure absorption isn't tinted by accident
                 guiGraphics.setColor(1.0F, 1.0F, 1.0F, 1.0F);
                 if (absorbDeck > 0) {
-                    this.ott$renderHeart(guiGraphics, Gui.HeartType.ABSORBING, xPos, y, yOffset, false, false, isHardcore);
+                    ColorfulHeartsMixin.ott$renderHeart(guiGraphics, Gui.HeartType.ABSORBING, xPos, y, yOffset, false, false, isHardcore);
                 }
                 int currentAbsorb = totalAbsorb - (absorbDeck * 20);
                 if (currentAbsorb > 0) {
                     boolean absorbHalf = (currentAbsorb == heartValue - 1);
                     boolean absorbFull = (currentAbsorb >= heartValue);
                     if (absorbFull || absorbHalf) {
-                        this.ott$renderHeart(guiGraphics, Gui.HeartType.ABSORBING, xPos, y, yOffset, false, absorbHalf, isHardcore);
+                        ColorfulHeartsMixin.ott$renderHeart(guiGraphics, Gui.HeartType.ABSORBING, xPos, y, yOffset, false, absorbHalf, isHardcore);
                     }
                 }
             }
         }
+
+        // Update height (Instance context)
+        // Accessor is now in its own file
+        GuiAccessor accessor = (GuiAccessor) this;
+        accessor.setLeftHeight(accessor.getLeftHeight() + 10);
     }
 
     @Unique
-    private void ott$renderHeart(GuiGraphics guiGraphics, Gui.HeartType heartType, int x, int y, int yOffset, boolean blinking, boolean halfHeart, boolean hardcore) {
+    private static void ott$renderHeart(GuiGraphics guiGraphics, Gui.HeartType heartType, int x, int y, int yOffset, boolean blinking, boolean halfHeart, boolean hardcore) {
         RenderSystem.enableBlend();
         ResourceLocation sprite = heartType.getSprite(hardcore, halfHeart, blinking);
         guiGraphics.blitSprite(sprite, x, y + yOffset, 9, 9);
         RenderSystem.disableBlend();
     }
 
-    // FIX 2: Use setColor instead of colored blitSprite for reliability
     @Unique
-    private void ott$renderTintedHeart(GuiGraphics guiGraphics, int x, int y, int yOffset, int color, boolean halfHeart) {
+    private static void ott$renderTintedSprite(GuiGraphics guiGraphics, ResourceLocation sprite, int x, int y, int color) {
         RenderSystem.enableBlend();
-        ResourceLocation sprite = halfHeart ? WHITE_HEART_HALF : WHITE_HEART_FULL;
-
-        // Extract ARGB components
         float r = ((color >> 16) & 0xFF) / 255.0F;
         float g = ((color >> 8) & 0xFF) / 255.0F;
         float b = (color & 0xFF) / 255.0F;
-
         guiGraphics.setColor(r, g, b, 1.0F);
-
-        // Draw sprite (without the extra color arg)
-        guiGraphics.blitSprite(sprite, x, y + yOffset, 9, 9);
-
-        // Reset color immediately after to avoid leaking tint to other elements
+        guiGraphics.blitSprite(sprite, x, y, 9, 9);
         guiGraphics.setColor(1.0F, 1.0F, 1.0F, 1.0F);
         RenderSystem.disableBlend();
     }
 
     @Unique
-    private int ott$getDeckColor(int deck) {
-        // FIX: Return custom RED for Deck 0
+    private static void ott$renderTintedHeart(GuiGraphics guiGraphics, int x, int y, int yOffset, int color, boolean halfHeart) {
+        RenderSystem.enableBlend();
+        ResourceLocation sprite = halfHeart ? WHITE_HEART_HALF : WHITE_HEART_FULL;
+        float r = ((color >> 16) & 0xFF) / 255.0F;
+        float g = ((color >> 8) & 0xFF) / 255.0F;
+        float b = (color & 0xFF) / 255.0F;
+        guiGraphics.setColor(r, g, b, 1.0F);
+        guiGraphics.blitSprite(sprite, x, y + yOffset, 9, 9);
+        guiGraphics.setColor(1.0F, 1.0F, 1.0F, 1.0F);
+        RenderSystem.disableBlend();
+    }
+
+    @Unique
+    private static int ott$getDeckColor(int deck) {
         if (deck <= 0) return 0xb02e26;
         int index = (deck - 1) % (DECK_COLORS.length - 1) + 1;
         return DECK_COLORS[index];

@@ -9,6 +9,7 @@
   "client": [
     "ColorfulHeartsMixin",
     "DripParticleMixin",
+    "GuiAccessor",
     "LevelRendererMixin",
     "SpriteLoaderMixin",
     "TextureSheetParticleMixin",
