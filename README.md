@@ -65,6 +65,6 @@ Running List:
 - Added new custom health/hearts display to mimic Colorful Hearts
   - This displays all health hearts on one hud line to clean up the display
   - Each set of 20 health is a new color (red, orange, yellow, etc)
-- Added new custom armor values display to minic OverloadedArmorBar
+- Added new custom armor values display to mimic OverloadedArmorBar
   - This displays all armor values on one hud line to clean up the display
   - Each set of 20 armor is a new color (brown, iron, gold, etc)
