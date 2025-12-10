@@ -19,16 +19,27 @@ public abstract class ColorfulHeartsMixin {
     @Unique
     private static final int[] DECK_COLORS = new int[]{
             0xff0000, // Deck 0: Red
-            0xffa500, // Deck 1: Orange
-            0xffff00, // Deck 2: Yellow
-            0x00ff00, // Deck 3: Lime
-            0x008000, // Deck 4: Green
-            0x00ffff, // Deck 5: Cyan
-            0x0000ff, // Deck 6: Blue
-            0x800080, // Deck 7: Purple
-            0xff00ff, // Deck 8: Magenta
-            0xffc0cb, // Deck 9: Pink
-            0xFFD700  // Deck 10: Gold
+            0xff5300, // Deck 1: mid Red-Orange
+            0xffa500, // Deck 2: Orange
+            0xffd200, // Deck 3: mid Orange-Yellow
+            0xffff00, // Deck 4: Yellow
+            0x80ff00, // Deck 5: mid Yellow-Lime
+            0x00ff00, // Deck 6: Lime
+            0x00c000, // Deck 7: mid Lime-Green
+            0x008000, // Deck 8: Green
+            0x00c080, // Deck 9: mid Green-Cyan
+            0x00ffff, // Deck 10: Cyan
+            0x00c0c0, // Deck 11: mid Cyan-Light Blue
+            0x00ffff, // Deck 12: Light Blue
+            0x0080ff, // Deck 13: mid Light Blue-Blue
+            0x0000ff, // Deck 14: Blue
+            0x4000c0, // Deck 15: mid Blue-Purple
+            0x800080, // Deck 16: Purple
+            0xc000c0, // Deck 17: mid Purple-Magenta
+            0xff00ff, // Deck 18: Magenta
+            0xff60e5, // Deck 19: mid Magenta-Pink
+            0xffc0cb, // Deck 20: Pink
+            0xff6066 // Deck 21: mid Pink-Red
     };
 
     @Unique
