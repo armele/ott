@@ -18,28 +18,29 @@ public abstract class ColorfulHeartsMixin {
 
     @Unique
     private static final int[] DECK_COLORS = new int[]{
-            0xff0000, // Deck 0: Red
-            0xff5300, // Deck 1: mid Red-Orange
-            0xffa500, // Deck 2: Orange
-            0xffd200, // Deck 3: mid Orange-Yellow
-            0xffff00, // Deck 4: Yellow
-            0x80ff00, // Deck 5: mid Yellow-Lime
-            0x00ff00, // Deck 6: Lime
-            0x00c000, // Deck 7: mid Lime-Green
-            0x008000, // Deck 8: Green
-            0x00c080, // Deck 9: mid Green-Cyan
-            0x00ffff, // Deck 10: Cyan
-            0x00c0c0, // Deck 11: mid Cyan-Light Blue
-            0x00ffff, // Deck 12: Light Blue
-            0x0080ff, // Deck 13: mid Light Blue-Blue
-            0x0000ff, // Deck 14: Blue
-            0x4000c0, // Deck 15: mid Blue-Purple
-            0x800080, // Deck 16: Purple
-            0xc000c0, // Deck 17: mid Purple-Magenta
-            0xff00ff, // Deck 18: Magenta
-            0xff60e5, // Deck 19: mid Magenta-Pink
-            0xffc0cb, // Deck 20: Pink
-            0xff6066 // Deck 21: mid Pink-Red
+            0xff0000, // Deck 0: Red 0-20
+            0xff5300, // Deck 1: mid Red-Orange 21-30
+            0xffa500, // Deck 2: Orange 31-40
+            0xffd200, // Deck 3: mid Orange-Yellow 41-50
+            0xffff00, // Deck 4: Yellow 51-60
+            0x80ff00, // Deck 5: mid Yellow-Lime 61-70
+            0x00ff00, // Deck 6: Lime 71-80
+            0x00c000, // Deck 7: mid Lime-Green 81-90
+            0x008000, // Deck 8: Green 91-100
+            0x00c080, // Deck 9: mid Green-Cyan 101-110
+            0x00ffff, // Deck 10: Cyan 111-120
+            0x00c0c0, // Deck 11: mid Cyan-Light Blue 121-130
+            0x00ffff, // Deck 12: Light Blue 131-140
+            0x0080ff, // Deck 13: mid Light Blue-Blue 141-150
+            0x0000ff, // Deck 14: Blue 151-160
+            0x4000c0, // Deck 15: mid Blue-Purple 161-170
+            0x800080, // Deck 16: Purple 171-180
+            0xc000c0, // Deck 17: mid Purple-Magenta 181-190
+            0xff00ff, // Deck 18: Magenta 191-200
+            0xff60e5, // Deck 19: mid Magenta-Pink 201-210
+            0xffc0cb, // Deck 20: Pink 211-220
+            0xff6066 // Deck 21: mid Pink-Red 221-230
+            // TODO might need more, will check
     };
 
     @Unique

@@ -22,16 +22,14 @@ public class ClientGameEvents {
     private static final ResourceLocation ARMOR_HALF_SPRITE = ResourceLocation.withDefaultNamespace("hud/armor_half");
     private static final ResourceLocation ARMOR_FULL_SPRITE = ResourceLocation.withDefaultNamespace("hud/armor_full");
 
-    // TODO: define better colors and additional decks
-
     private static final int[] ARMOR_COLORS = new int[]{
-            0xFFFFFF, // Deck 0: Standard (Iron/White - No Tint)
-            0x33EBCB, // Deck 1: Diamond Blue
-            0x2196F3, // Deck 2: Lapis Blue
-            0x4CAF50, // Deck 3: Emerald Green
-            0xFFC107, // Deck 4: Gold
-            0x9C27B0, // Deck 5: Purple
-            0xF44336  // Deck 6: Red
+            0xe9f5fe, // Deck 0: Standard Iron/White 0-20
+            0x33EBCB, // Deck 1: Diamond Blue 21-30
+            0x37a114, // Deck 2: Lapis Blue 31-40
+            0x5eb762, // Deck 3: Emerald Green 41-50
+            0xffc720, // Deck 4: Gold 51-60
+            0xa63db8, // Deck 5: Purple 61-70
+            0xf5564a  // Deck 6: Red 71-80
     };
 
     @SubscribeEvent
