@@ -5,6 +5,8 @@
   "compatibilityLevel": "JAVA_21",
   "refmap": "ott.refmap.json",
   "mixins": [
+    "BushBlockMixin",
+    "TreeDecoratorTypeInvoker"
   ],
   "client": [
     "ColorfulHeartsMixin",

@@ -1,6 +1,7 @@
 {
   "replace": false,
   "values": [
-    "ott:hedge"
+    "ott:hedge",
+    "minecraft:creaking_heart"
   ]
 }

@@ -3,6 +3,12 @@
   "values": [
     "#ott:concrete",
     "#ott:terracotta",
-    "#ott:stained_glass"
+    "#ott:stained_glass",
+    "minecraft:resin_bricks",
+    "minecraft:chiseled_resin_bricks",
+    "minecraft:resin_brick_slab",
+    "minecraft:resin_block",
+    "minecraft:resin_brick_stairs",
+    "minecraft:resin_brick_wall"
   ]
 }

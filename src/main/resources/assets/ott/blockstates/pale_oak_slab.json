@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "ott:block/pale_oak_slab"
+    },
+    "type=double": {
+      "model": "ott:block/pale_oak_planks"
+    },
+    "type=top": {
+      "model": "ott:block/pale_oak_slab_top"
+    }
+  }
+}
