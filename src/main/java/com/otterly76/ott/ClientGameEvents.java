@@ -5,6 +5,9 @@ import com.otterly76.ott.mixin.GuiAccessor;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.entity.ai.attributes.AttributeInstance;
+import net.minecraft.world.entity.ai.attributes.AttributeModifier;
+import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.player.Player;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.bus.api.SubscribeEvent;
@@ -19,7 +22,7 @@ public class ClientGameEvents {
     private static final ResourceLocation ARMOR_HALF_SPRITE = ResourceLocation.withDefaultNamespace("hud/armor_half");
     private static final ResourceLocation ARMOR_FULL_SPRITE = ResourceLocation.withDefaultNamespace("hud/armor_full");
 
-    // TODO: define better colors
+    // TODO: define better colors and additional decks
 
     private static final int[] ARMOR_COLORS = new int[]{
             0xFFFFFF, // Deck 0: Standard (Iron/White - No Tint)
@@ -59,6 +62,26 @@ public class ClientGameEvents {
         if (player == null) return;
 
         int armor = player.getArmorValue();
+        AttributeInstance armorAttribute = player.getAttribute(Attributes.ARMOR);
+        if (armorAttribute != null) {
+            double base = armorAttribute.getBaseValue();
+            double add = 0;
+            double mulBase = 0;
+            double mulTotal = 1;
+
+            for (AttributeModifier modifier : armorAttribute.getModifiers()) {
+                if (modifier.operation() == AttributeModifier.Operation.ADD_VALUE) {
+                    add += modifier.amount();
+                } else if (modifier.operation() == AttributeModifier.Operation.ADD_MULTIPLIED_BASE) {
+                    mulBase += modifier.amount();
+                } else if (modifier.operation() == AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL) {
+                    mulTotal *= (1.0 + modifier.amount());
+                }
+            }
+
+            armor = (int) ((base + add) * (1.0 + mulBase) * mulTotal);
+        }
+
         if (armor <= 0) return;
 
         GuiAccessor accessor = (GuiAccessor) mc.gui;
@@ -68,9 +91,7 @@ public class ClientGameEvents {
 
         int x = width / 2 - 91;
 
-        // OFFSET FIX: Pushing the bar DOWN by 10 pixels to close the "empty row" gap.
-        // y = height - leftHeight + 10
-        int y = height - leftHeight + 9;
+        int y = height - 49;
 
         int armorDeck = Math.max(0, (armor - 1) / 20);
 
@@ -78,23 +99,18 @@ public class ClientGameEvents {
             int armorValue = (i + 1) * 2;
             int xPos = x + i * 8;
 
-            // Draw Empty Background (Always standard white tint)
             renderTintedSprite(guiGraphics, ARMOR_EMPTY_SPRITE, xPos, y, 0xFFFFFF);
 
-            // Draw "Under" layer (full bar of previous tier color)
             if (armorDeck > 0) {
-                // Deck - 1 so the background is always the "completed" previous tier
                 int underColor = getArmorColor(armorDeck - 1);
                 renderTintedSprite(guiGraphics, ARMOR_FULL_SPRITE, xPos, y, underColor);
             }
 
-            // Draw "Current" layer
             int currentDeckArmor = armor - (armorDeck * 20);
 
             if (currentDeckArmor > (i * 2)) {
                 boolean isHalf = (currentDeckArmor == armorValue - 1);
 
-                // Use the standard deck color logic (ignoring materials)
                 int currentColor = getArmorColor(armorDeck);
 
                 ResourceLocation sprite = isHalf ? ARMOR_HALF_SPRITE : ARMOR_FULL_SPRITE;
@@ -104,7 +120,6 @@ public class ClientGameEvents {
 
         guiGraphics.setColor(1.0F, 1.0F, 1.0F, 1.0F);
 
-        // Important: We still reserve the space for the next element
         accessor.setLeftHeight(leftHeight + 10);
     }
 
@@ -120,11 +135,8 @@ public class ClientGameEvents {
     }
 
     private static int getArmorColor(int deck) {
-        // Deck 0 = White (Index 0)
         if (deck <= 0) return ARMOR_COLORS[0];
 
-        // Decks 1+ = Cycle through indices 1 to (Length-1)
-        // This keeps Index 0 (White) exclusive to the first layer
         int index = (deck - 1) % (ARMOR_COLORS.length - 1) + 1;
         return ARMOR_COLORS[index];
     }

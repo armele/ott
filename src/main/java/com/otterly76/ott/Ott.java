@@ -4,10 +4,11 @@ import com.otterly76.ott.block.ModBlocks;
 import com.otterly76.ott.generation.GradientBlockProvider;
 import com.otterly76.ott.generation.GradientBlockRecipeProvider;
 import com.otterly76.ott.generation.OttLootTableProvider;
+import com.otterly76.ott.generation.OttWorldGenProvider;
 import com.otterly76.ott.item.ModItems;
-
 import com.otterly76.ott.network.NetworkHandler;
 import com.otterly76.ott.particle.ModParticle;
+
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.loot.LootTableProvider;
 import net.minecraft.network.chat.Component;
@@ -60,6 +61,8 @@ public class Ott {
         generator.addProvider(event.includeClient(), new GradientBlockProvider(generator.getPackOutput(), event.getExistingFileHelper()));
 
         generator.addProvider(event.includeServer(), new GradientBlockRecipeProvider(generator.getPackOutput(), event.getLookupProvider()));
+
+        generator.addProvider(event.includeServer(), new OttWorldGenProvider(generator.getPackOutput(), event.getLookupProvider()));
 
         generator.addProvider(event.includeServer(), new LootTableProvider(
                 generator.getPackOutput(),

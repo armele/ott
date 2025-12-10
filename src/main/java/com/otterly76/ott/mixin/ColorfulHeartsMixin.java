@@ -16,7 +16,6 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 @Mixin(Gui.class)
 public abstract class ColorfulHeartsMixin {
 
-    // Define colors for decks 1 through 7 (Deck 0 is vanilla red)
     @Unique
     private static final int[] DECK_COLORS = new int[]{
             0xff0000, // Deck 0: Red
@@ -75,11 +74,9 @@ public abstract class ColorfulHeartsMixin {
                 yOffset -= 2;
             }
 
-            // FIX 1: Force White Color for background
             guiGraphics.setColor(1.0F, 1.0F, 1.0F, 1.0F);
             ColorfulHeartsMixin.ott$renderHeart(guiGraphics, Gui.HeartType.CONTAINER, xPos, y, yOffset, false, false, isHardcore);
 
-            // 2. Draw "Under" Health Layer
             if (healthDeck > 0) {
                 int deckHealth = (healthDeck - 1) * 20;
                 if (totalHealth > deckHealth) {
@@ -88,7 +85,6 @@ public abstract class ColorfulHeartsMixin {
                 }
             }
 
-            // 3. Draw "Current" Health Layer
             int currentDeckHealth = totalHealth - (healthDeck * 20);
             boolean isHalf = (currentDeckHealth == heartValue - 1);
             boolean isFull = (currentDeckHealth >= heartValue);
@@ -107,7 +103,6 @@ public abstract class ColorfulHeartsMixin {
                 }
             }
 
-            // 4. Absorption Logic
             if (totalAbsorb > 0) {
                 guiGraphics.setColor(1.0F, 1.0F, 1.0F, 1.0F);
                 if (absorbDeck > 0) {
@@ -124,8 +119,6 @@ public abstract class ColorfulHeartsMixin {
             }
         }
 
-        // Update height (Instance context)
-        // Accessor is now in its own file
         GuiAccessor accessor = (GuiAccessor) this;
         accessor.setLeftHeight(accessor.getLeftHeight() + 10);
     }
