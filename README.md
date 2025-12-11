@@ -14,6 +14,7 @@ Mixins Used:
     - Because I want pretty rain, dammit
   - Used to overwrite the vanilla health/hearts sprite to mimic Colorful hearts
     - Cleaner, more current for 1.21.1 environment
+  - Used in the Pale Garden backport to allow for placement of foliage on the pale moss blocks
 
 FAQ:
 =======
@@ -68,3 +69,5 @@ Running List:
 - Added new custom armor values display to mimic OverloadedArmorBar
   - This displays all armor values on one hud line to clean up the display
   - Each set of 20 armor is a new color (brown, iron, gold, etc)
+- Pale Garden 1:1 backport
+  - Because it's awesome and I want it
