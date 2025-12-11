@@ -1,32 +1,23 @@
 {
-  "parent": "minecraft:recipes/root",
-  "criteria": {
-    "has_closed_eyeblossom": {
-      "conditions": {
-        "items": [
-          {
-            "items": "minecraft:closed_eyeblossom"
-          }
-        ]
-      },
-      "trigger": "minecraft:inventory_changed"
-    },
-    "has_the_recipe": {
-      "conditions": {
-        "recipe": "minecraft:suspicious_stew_from_closed_eyeblossom"
-      },
-      "trigger": "minecraft:recipe_unlocked"
-    }
-  },
-  "requirements": [
-    [
-      "has_the_recipe",
-      "has_closed_eyeblossom"
-    ]
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "group": "suspicious_stew",
+
+  "ingredients": [
+    { "item": "minecraft:bowl" },
+    { "item": "minecraft:brown_mushroom" },
+    { "item": "minecraft:red_mushroom" },
+    { "item": "minecraft:closed_eyeblossom" }
   ],
-  "rewards": {
-    "recipes": [
-      "minecraft:suspicious_stew_from_closed_eyeblossom"
-    ]
+
+  "result": {
+    "id": "minecraft:suspicious_stew",
+    "count": 1,
+
+    "components": {
+      "minecraft:suspicious_stew_effects": [
+        { "id": "minecraft:nausea", "duration": 140 }
+      ]
+    }
   }
 }

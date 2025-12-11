@@ -1,7 +1,0 @@
-{
-  "parent": "minecraft:block/cross",
-  "textures": {
-    "cross": "ott:block/open_eyeblossom"
-  },
-  "render_type": "cutout"
-}

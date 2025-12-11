@@ -1,7 +1,6 @@
 package com.otterly76.ott.generation;
 
 import com.otterly76.ott.block.IGradientBlock;
-import com.otterly76.ott.block.ModBlocks;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.recipes.RecipeCategory;

@@ -1,12 +1,22 @@
 package com.otterly76.ott.block;
 
+import com.otterly76.ott.block.custom.CreakingHeartBlock;
+import com.otterly76.ott.block.custom.EyeblossomBlock;
+import com.otterly76.ott.block.custom.HangingMossBlock;
+import com.otterly76.ott.block.custom.ResinClumpBlock;
 import com.otterly76.ott.crop.HedgeSprouts;
+import com.otterly76.ott.util.BlockSetTypeVariant;
+import com.otterly76.ott.util.WoodTypeVariant;
+import com.otterly76.ott.worldgen.ModTreeGrowers;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.world.item.DyeColor;
-import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.Blocks;
-import net.minecraft.world.level.block.SoundType;
+import net.minecraft.world.level.block.*;
+import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockBehaviour.Properties;
+import net.minecraft.world.level.block.state.properties.NoteBlockInstrument;
+import net.minecraft.world.level.material.MapColor;
+import net.minecraft.world.level.material.PushReaction;
+import net.neoforged.bus.api.IEventBus;
 import net.neoforged.neoforge.registries.DeferredBlock;
 import net.neoforged.neoforge.registries.DeferredRegister;
 
@@ -19,9 +29,9 @@ import java.util.function.Function;
 import static com.otterly76.ott.Constants.MOD_ID;
 
 @SuppressWarnings("MismatchedQueryAndUpdateOfCollection")
-
 public class ModBlocks {
     public static final DeferredRegister.Blocks BLOCKS = DeferredRegister.createBlocks(MOD_ID);
+    public static final DeferredRegister.Blocks MINECRAFT_BLOCKS = DeferredRegister.createBlocks("minecraft");
 
     public static final List<DeferredBlock<? extends IGradientBlock>> ALL_GRADIENT_BLOCKS = new ArrayList<>();
 
@@ -31,7 +41,6 @@ public class ModBlocks {
     private static final List<DeferredBlock<? extends IGradientBlock>> ALL_STAINED_GLASS_BLOCKS = new ArrayList<>();
     private static final List<DeferredBlock<? extends IGradientBlock>> ALL_CONCRETE_POWDER_BLOCKS = new ArrayList<>();
 
-    public static final List<DeferredBlock<? extends Block>> LEAVES = new ArrayList<>();
     public static final List<DeferredBlock<? extends Block>> SEAGLASS = new ArrayList<>();
     public static final List<DeferredBlock<? extends Block>> LIMESTONE = new ArrayList<>();
     public static final List<DeferredBlock<? extends Block>> TESTBLOCK = new ArrayList<>();
@@ -43,22 +52,22 @@ public class ModBlocks {
     }
 
     // Some testblocks for testing purposes
-    public static final DeferredBlock<Block> TESTBLOCK_00 = BLOCKS.register("testblock_00", () -> new Block(Properties.of().strength(4.0f).requiresCorrectToolForDrops().sound(SoundType.STONE)));
-    public static final DeferredBlock<Block> TESTBLOCK_01 = BLOCKS.register("testblock_01", () -> new Block(Properties.of().strength(4.0f).requiresCorrectToolForDrops().sound(SoundType.STONE)));
-    public static final DeferredBlock<Block> TESTBLOCK_02 = BLOCKS.register("testblock_02", () -> new Block(Properties.of().strength(4.0f).requiresCorrectToolForDrops().sound(SoundType.STONE)));
-    public static final DeferredBlock<Block> TESTBLOCK_03 = BLOCKS.register("testblock_03", () -> new Block(Properties.of().strength(4.0f).requiresCorrectToolForDrops().sound(SoundType.STONE)));
-    public static final DeferredBlock<Block> TESTBLOCK_10 = BLOCKS.register("testblock_10", () -> new Block(Properties.of().strength(4.0f).requiresCorrectToolForDrops().sound(SoundType.STONE)));
-    public static final DeferredBlock<Block> TESTBLOCK_11 = BLOCKS.register("testblock_11", () -> new Block(Properties.of().strength(4.0f).requiresCorrectToolForDrops().sound(SoundType.STONE)));
-    public static final DeferredBlock<Block> TESTBLOCK_12 = BLOCKS.register("testblock_12", () -> new Block(Properties.of().strength(4.0f).requiresCorrectToolForDrops().sound(SoundType.STONE)));
-    public static final DeferredBlock<Block> TESTBLOCK_13 = BLOCKS.register("testblock_13", () -> new Block(Properties.of().strength(4.0f).requiresCorrectToolForDrops().sound(SoundType.STONE)));
-    public static final DeferredBlock<Block> TESTBLOCK_20 = BLOCKS.register("testblock_20", () -> new Block(Properties.of().strength(4.0f).requiresCorrectToolForDrops().sound(SoundType.STONE)));
-    public static final DeferredBlock<Block> TESTBLOCK_21 = BLOCKS.register("testblock_21", () -> new Block(Properties.of().strength(4.0f).requiresCorrectToolForDrops().sound(SoundType.STONE)));
-    public static final DeferredBlock<Block> TESTBLOCK_22 = BLOCKS.register("testblock_22", () -> new Block(Properties.of().strength(4.0f).requiresCorrectToolForDrops().sound(SoundType.STONE)));
-    public static final DeferredBlock<Block> TESTBLOCK_23 = BLOCKS.register("testblock_23", () -> new Block(Properties.of().strength(4.0f).requiresCorrectToolForDrops().sound(SoundType.STONE)));
-    public static final DeferredBlock<Block> TESTBLOCK_30 = BLOCKS.register("testblock_30", () -> new Block(Properties.of().strength(4.0f).requiresCorrectToolForDrops().sound(SoundType.STONE)));
-    public static final DeferredBlock<Block> TESTBLOCK_31 = BLOCKS.register("testblock_31", () -> new Block(Properties.of().strength(4.0f).requiresCorrectToolForDrops().sound(SoundType.STONE)));
-    public static final DeferredBlock<Block> TESTBLOCK_32 = BLOCKS.register("testblock_32", () -> new Block(Properties.of().strength(4.0f).requiresCorrectToolForDrops().sound(SoundType.STONE)));
-    public static final DeferredBlock<Block> TESTBLOCK_33 = BLOCKS.register("testblock_33", () -> new Block(Properties.of().strength(4.0f).requiresCorrectToolForDrops().sound(SoundType.STONE)));
+    public static final DeferredBlock<Block> TESTBLOCK_00 = registerTestblock("testblock_00", () -> new Block(Properties.of().strength(4.0f).requiresCorrectToolForDrops().sound(SoundType.STONE)));
+    public static final DeferredBlock<Block> TESTBLOCK_01 = registerTestblock("testblock_01", () -> new Block(Properties.of().strength(4.0f).requiresCorrectToolForDrops().sound(SoundType.STONE)));
+    public static final DeferredBlock<Block> TESTBLOCK_02 = registerTestblock("testblock_02", () -> new Block(Properties.of().strength(4.0f).requiresCorrectToolForDrops().sound(SoundType.STONE)));
+    public static final DeferredBlock<Block> TESTBLOCK_03 = registerTestblock("testblock_03", () -> new Block(Properties.of().strength(4.0f).requiresCorrectToolForDrops().sound(SoundType.STONE)));
+    public static final DeferredBlock<Block> TESTBLOCK_10 = registerTestblock("testblock_10", () -> new Block(Properties.of().strength(4.0f).requiresCorrectToolForDrops().sound(SoundType.STONE)));
+    public static final DeferredBlock<Block> TESTBLOCK_11 = registerTestblock("testblock_11", () -> new Block(Properties.of().strength(4.0f).requiresCorrectToolForDrops().sound(SoundType.STONE)));
+    public static final DeferredBlock<Block> TESTBLOCK_12 = registerTestblock("testblock_12", () -> new Block(Properties.of().strength(4.0f).requiresCorrectToolForDrops().sound(SoundType.STONE)));
+    public static final DeferredBlock<Block> TESTBLOCK_13 = registerTestblock("testblock_13", () -> new Block(Properties.of().strength(4.0f).requiresCorrectToolForDrops().sound(SoundType.STONE)));
+    public static final DeferredBlock<Block> TESTBLOCK_20 = registerTestblock("testblock_20", () -> new Block(Properties.of().strength(4.0f).requiresCorrectToolForDrops().sound(SoundType.STONE)));
+    public static final DeferredBlock<Block> TESTBLOCK_21 = registerTestblock("testblock_21", () -> new Block(Properties.of().strength(4.0f).requiresCorrectToolForDrops().sound(SoundType.STONE)));
+    public static final DeferredBlock<Block> TESTBLOCK_22 = registerTestblock("testblock_22", () -> new Block(Properties.of().strength(4.0f).requiresCorrectToolForDrops().sound(SoundType.STONE)));
+    public static final DeferredBlock<Block> TESTBLOCK_23 = registerTestblock("testblock_23", () -> new Block(Properties.of().strength(4.0f).requiresCorrectToolForDrops().sound(SoundType.STONE)));
+    public static final DeferredBlock<Block> TESTBLOCK_30 = registerTestblock("testblock_30", () -> new Block(Properties.of().strength(4.0f).requiresCorrectToolForDrops().sound(SoundType.STONE)));
+    public static final DeferredBlock<Block> TESTBLOCK_31 = registerTestblock("testblock_31", () -> new Block(Properties.of().strength(4.0f).requiresCorrectToolForDrops().sound(SoundType.STONE)));
+    public static final DeferredBlock<Block> TESTBLOCK_32 = registerTestblock("testblock_32", () -> new Block(Properties.of().strength(4.0f).requiresCorrectToolForDrops().sound(SoundType.STONE)));
+    public static final DeferredBlock<Block> TESTBLOCK_33 = registerTestblock("testblock_33", () -> new Block(Properties.of().strength(4.0f).requiresCorrectToolForDrops().sound(SoundType.STONE)));
 
     private static <T extends Block> DeferredBlock<T> registerLimestone(String name, java.util.function.Supplier<T> block) {
         DeferredBlock<T> ret = BLOCKS.register(name, block);
@@ -67,22 +76,22 @@ public class ModBlocks {
     }
 
     // Static limestone blocks since I have no idea what Ray is planning
-    public static final DeferredBlock<Block> LIMESTONE_00 = BLOCKS.register("limestone_00", () -> new Block(Properties.of().strength(4.0f).requiresCorrectToolForDrops().sound(SoundType.STONE)));
-    public static final DeferredBlock<Block> LIMESTONE_01 = BLOCKS.register("limestone_01", () -> new Block(Properties.of().strength(4.0f).requiresCorrectToolForDrops().sound(SoundType.STONE)));
-    public static final DeferredBlock<Block> LIMESTONE_02 = BLOCKS.register("limestone_02", () -> new Block(Properties.of().strength(4.0f).requiresCorrectToolForDrops().sound(SoundType.STONE)));
-    public static final DeferredBlock<Block> LIMESTONE_03 = BLOCKS.register("limestone_03", () -> new Block(Properties.of().strength(4.0f).requiresCorrectToolForDrops().sound(SoundType.STONE)));
-    public static final DeferredBlock<Block> LIMESTONE_10 = BLOCKS.register("limestone_10", () -> new Block(Properties.of().strength(4.0f).requiresCorrectToolForDrops().sound(SoundType.STONE)));
-    public static final DeferredBlock<Block> LIMESTONE_11 = BLOCKS.register("limestone_11", () -> new Block(Properties.of().strength(4.0f).requiresCorrectToolForDrops().sound(SoundType.STONE)));
-    public static final DeferredBlock<Block> LIMESTONE_12 = BLOCKS.register("limestone_12", () -> new Block(Properties.of().strength(4.0f).requiresCorrectToolForDrops().sound(SoundType.STONE)));
-    public static final DeferredBlock<Block> LIMESTONE_13 = BLOCKS.register("limestone_13", () -> new Block(Properties.of().strength(4.0f).requiresCorrectToolForDrops().sound(SoundType.STONE)));
-    public static final DeferredBlock<Block> LIMESTONE_20 = BLOCKS.register("limestone_20", () -> new Block(Properties.of().strength(4.0f).requiresCorrectToolForDrops().sound(SoundType.STONE)));
-    public static final DeferredBlock<Block> LIMESTONE_21 = BLOCKS.register("limestone_21", () -> new Block(Properties.of().strength(4.0f).requiresCorrectToolForDrops().sound(SoundType.STONE)));
-    public static final DeferredBlock<Block> LIMESTONE_22 = BLOCKS.register("limestone_22", () -> new Block(Properties.of().strength(4.0f).requiresCorrectToolForDrops().sound(SoundType.STONE)));
-    public static final DeferredBlock<Block> LIMESTONE_23 = BLOCKS.register("limestone_23", () -> new Block(Properties.of().strength(4.0f).requiresCorrectToolForDrops().sound(SoundType.STONE)));
-    public static final DeferredBlock<Block> LIMESTONE_30 = BLOCKS.register("limestone_30", () -> new Block(Properties.of().strength(4.0f).requiresCorrectToolForDrops().sound(SoundType.STONE)));
-    public static final DeferredBlock<Block> LIMESTONE_31 = BLOCKS.register("limestone_31", () -> new Block(Properties.of().strength(4.0f).requiresCorrectToolForDrops().sound(SoundType.STONE)));
-    public static final DeferredBlock<Block> LIMESTONE_32 = BLOCKS.register("limestone_32", () -> new Block(Properties.of().strength(4.0f).requiresCorrectToolForDrops().sound(SoundType.STONE)));
-    public static final DeferredBlock<Block> LIMESTONE_33 = BLOCKS.register("limestone_33", () -> new Block(Properties.of().strength(4.0f).requiresCorrectToolForDrops().sound(SoundType.STONE)));
+    public static final DeferredBlock<Block> LIMESTONE_00 = registerLimestone("limestone_00", () -> new Block(Properties.of().strength(4.0f).requiresCorrectToolForDrops().sound(SoundType.STONE)));
+    public static final DeferredBlock<Block> LIMESTONE_01 = registerLimestone("limestone_01", () -> new Block(Properties.of().strength(4.0f).requiresCorrectToolForDrops().sound(SoundType.STONE)));
+    public static final DeferredBlock<Block> LIMESTONE_02 = registerLimestone("limestone_02", () -> new Block(Properties.of().strength(4.0f).requiresCorrectToolForDrops().sound(SoundType.STONE)));
+    public static final DeferredBlock<Block> LIMESTONE_03 = registerLimestone("limestone_03", () -> new Block(Properties.of().strength(4.0f).requiresCorrectToolForDrops().sound(SoundType.STONE)));
+    public static final DeferredBlock<Block> LIMESTONE_10 = registerLimestone("limestone_10", () -> new Block(Properties.of().strength(4.0f).requiresCorrectToolForDrops().sound(SoundType.STONE)));
+    public static final DeferredBlock<Block> LIMESTONE_11 = registerLimestone("limestone_11", () -> new Block(Properties.of().strength(4.0f).requiresCorrectToolForDrops().sound(SoundType.STONE)));
+    public static final DeferredBlock<Block> LIMESTONE_12 = registerLimestone("limestone_12", () -> new Block(Properties.of().strength(4.0f).requiresCorrectToolForDrops().sound(SoundType.STONE)));
+    public static final DeferredBlock<Block> LIMESTONE_13 = registerLimestone("limestone_13", () -> new Block(Properties.of().strength(4.0f).requiresCorrectToolForDrops().sound(SoundType.STONE)));
+    public static final DeferredBlock<Block> LIMESTONE_20 = registerLimestone("limestone_20", () -> new Block(Properties.of().strength(4.0f).requiresCorrectToolForDrops().sound(SoundType.STONE)));
+    public static final DeferredBlock<Block> LIMESTONE_21 = registerLimestone("limestone_21", () -> new Block(Properties.of().strength(4.0f).requiresCorrectToolForDrops().sound(SoundType.STONE)));
+    public static final DeferredBlock<Block> LIMESTONE_22 = registerLimestone("limestone_22", () -> new Block(Properties.of().strength(4.0f).requiresCorrectToolForDrops().sound(SoundType.STONE)));
+    public static final DeferredBlock<Block> LIMESTONE_23 = registerLimestone("limestone_23", () -> new Block(Properties.of().strength(4.0f).requiresCorrectToolForDrops().sound(SoundType.STONE)));
+    public static final DeferredBlock<Block> LIMESTONE_30 = registerLimestone("limestone_30", () -> new Block(Properties.of().strength(4.0f).requiresCorrectToolForDrops().sound(SoundType.STONE)));
+    public static final DeferredBlock<Block> LIMESTONE_31 = registerLimestone("limestone_31", () -> new Block(Properties.of().strength(4.0f).requiresCorrectToolForDrops().sound(SoundType.STONE)));
+    public static final DeferredBlock<Block> LIMESTONE_32 = registerLimestone("limestone_32", () -> new Block(Properties.of().strength(4.0f).requiresCorrectToolForDrops().sound(SoundType.STONE)));
+    public static final DeferredBlock<Block> LIMESTONE_33 = registerLimestone("limestone_33", () -> new Block(Properties.of().strength(4.0f).requiresCorrectToolForDrops().sound(SoundType.STONE)));
 
     private static <T extends Block> DeferredBlock<T> registerSeaglass(String name, java.util.function.Supplier<T> block) {
         DeferredBlock<T> ret = BLOCKS.register(name, block);
@@ -90,7 +99,7 @@ public class ModBlocks {
         return ret;
     }
 
-    // Wheee Seaglass
+    // Seaglass
     public static final DeferredBlock<Block> BLACK_BUBBLES_SEAGLASS = BLOCKS.register("black_bubbles_seaglass", () -> new Block(Properties.of().strength(4.0f).requiresCorrectToolForDrops().sound(SoundType.GLASS).noOcclusion()));
     public static final DeferredBlock<Block> BLACK_SEAGLASS = BLOCKS.register("black_seaglass", () -> new Block(Properties.of().strength(4.0f).requiresCorrectToolForDrops().sound(SoundType.GLASS).noOcclusion()));
     public static final DeferredBlock<Block> BLACK_SMOOTH_SEAGLASS = BLOCKS.register("black_smooth_seaglass", () -> new Block(Properties.of().strength(4.0f).requiresCorrectToolForDrops().sound(SoundType.GLASS).noOcclusion()));
@@ -177,7 +186,54 @@ public class ModBlocks {
     public static final DeferredBlock<HedgeBlock> HEDGE = BLOCKS.register("hedge", () -> new HedgeBlock(Properties.of().strength(4.0f).requiresCorrectToolForDrops().sound(SoundType.WOOD).noOcclusion()));
 
     public static final DeferredBlock<Block> HEDGE_SPROUTS = BLOCKS.register("hedge_sprouts", () -> new HedgeSprouts(Block.Properties.ofFullCopy(Blocks.WHEAT)));
+    
+    // ==========================================
+    // BACKPORTED BLOCKS (Minecraft Namespace)
+    // ==========================================
 
+    public static final DeferredBlock<Block> PALE_MOSS_BLOCK = MINECRAFT_BLOCKS.register("pale_moss_block", () -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.MOSS_BLOCK).mapColor(MapColor.COLOR_LIGHT_GRAY)));
+    public static final DeferredBlock<Block> PALE_MOSS_CARPET = MINECRAFT_BLOCKS.register("pale_moss_carpet", () -> new CarpetBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.MOSS_CARPET).mapColor(MapColor.COLOR_LIGHT_GRAY)));
+    public static final DeferredBlock<HangingMossBlock> PALE_HANGING_MOSS = MINECRAFT_BLOCKS.register("pale_hanging_moss", () -> new HangingMossBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.HANGING_ROOTS).mapColor(MapColor.COLOR_LIGHT_GRAY).sound(SoundType.MOSS_CARPET).pushReaction(PushReaction.DESTROY)));
+
+    public static final DeferredBlock<RotatedPillarBlock> PALE_OAK_LOG = MINECRAFT_BLOCKS.register("pale_oak_log", () -> new RotatedPillarBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_LOG).mapColor(MapColor.COLOR_LIGHT_GRAY)));
+    public static final DeferredBlock<RotatedPillarBlock> PALE_OAK_WOOD = MINECRAFT_BLOCKS.register("pale_oak_wood", () -> new RotatedPillarBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_WOOD).mapColor(MapColor.COLOR_LIGHT_GRAY)));
+    public static final DeferredBlock<RotatedPillarBlock> STRIPPED_PALE_OAK_LOG = MINECRAFT_BLOCKS.register("stripped_pale_oak_log", () -> new RotatedPillarBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.STRIPPED_OAK_LOG).mapColor(MapColor.COLOR_LIGHT_GRAY)));
+    public static final DeferredBlock<RotatedPillarBlock> STRIPPED_PALE_OAK_WOOD = MINECRAFT_BLOCKS.register("stripped_pale_oak_wood", () -> new RotatedPillarBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.STRIPPED_OAK_WOOD).mapColor(MapColor.COLOR_LIGHT_GRAY)));
+
+    public static final DeferredBlock<Block> PALE_OAK_PLANKS = MINECRAFT_BLOCKS.register("pale_oak_planks", () -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_PLANKS).mapColor(MapColor.COLOR_LIGHT_GRAY)));
+    public static final DeferredBlock<StairBlock> PALE_OAK_STAIRS = MINECRAFT_BLOCKS.register("pale_oak_stairs", () -> new StairBlock(PALE_OAK_PLANKS.get().defaultBlockState(), BlockBehaviour.Properties.ofFullCopy(PALE_OAK_PLANKS.get())));
+    public static final DeferredBlock<SlabBlock> PALE_OAK_SLAB = MINECRAFT_BLOCKS.register("pale_oak_slab", () -> new SlabBlock(BlockBehaviour.Properties.ofFullCopy(PALE_OAK_PLANKS.get())));
+    public static final DeferredBlock<FenceBlock> PALE_OAK_FENCE = MINECRAFT_BLOCKS.register("pale_oak_fence", () -> new FenceBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_FENCE).mapColor(MapColor.COLOR_LIGHT_GRAY)));
+    public static final DeferredBlock<FenceGateBlock> PALE_OAK_FENCE_GATE = MINECRAFT_BLOCKS.register("pale_oak_fence_gate", () -> new FenceGateBlock(WoodTypeVariant.PALE_OAK.getWoodType(), BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_FENCE_GATE).mapColor(MapColor.COLOR_LIGHT_GRAY)));
+    public static final DeferredBlock<DoorBlock> PALE_OAK_DOOR = MINECRAFT_BLOCKS.register("pale_oak_door", () -> new DoorBlock(BlockSetTypeVariant.PALE_OAK.getBlockSetType(), BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_DOOR).mapColor(MapColor.COLOR_LIGHT_GRAY)));
+    public static final DeferredBlock<TrapDoorBlock> PALE_OAK_TRAPDOOR = MINECRAFT_BLOCKS.register("pale_oak_trapdoor", () -> new TrapDoorBlock(BlockSetTypeVariant.PALE_OAK.getBlockSetType(), BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_TRAPDOOR).mapColor(MapColor.COLOR_LIGHT_GRAY)));
+    public static final DeferredBlock<PressurePlateBlock> PALE_OAK_PRESSURE_PLATE = MINECRAFT_BLOCKS.register("pale_oak_pressure_plate", () -> new PressurePlateBlock(BlockSetTypeVariant.PALE_OAK.getBlockSetType(), BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_PRESSURE_PLATE).mapColor(MapColor.COLOR_LIGHT_GRAY)));
+    public static final DeferredBlock<ButtonBlock> PALE_OAK_BUTTON = MINECRAFT_BLOCKS.register("pale_oak_button", () -> new ButtonBlock(BlockSetTypeVariant.PALE_OAK.getBlockSetType(), 30, BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_BUTTON)));
+
+    public static final DeferredBlock<StandingSignBlock> PALE_OAK_SIGN = MINECRAFT_BLOCKS.register("pale_oak_sign", () -> new StandingSignBlock(WoodTypeVariant.PALE_OAK.getWoodType(), BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_SIGN).mapColor(MapColor.COLOR_LIGHT_GRAY)));
+    public static final DeferredBlock<WallSignBlock> PALE_OAK_WALL_SIGN = MINECRAFT_BLOCKS.register("pale_oak_wall_sign", () -> new WallSignBlock(WoodTypeVariant.PALE_OAK.getWoodType(), BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_WALL_SIGN).mapColor(MapColor.COLOR_LIGHT_GRAY)));
+    public static final DeferredBlock<CeilingHangingSignBlock> PALE_OAK_HANGING_SIGN = MINECRAFT_BLOCKS.register("pale_oak_hanging_sign", () -> new CeilingHangingSignBlock(WoodTypeVariant.PALE_OAK.getWoodType(), BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_HANGING_SIGN).mapColor(MapColor.COLOR_LIGHT_GRAY)));
+    public static final DeferredBlock<WallHangingSignBlock> PALE_OAK_WALL_HANGING_SIGN = MINECRAFT_BLOCKS.register("pale_oak_wall_hanging_sign", () -> new WallHangingSignBlock(WoodTypeVariant.PALE_OAK.getWoodType(), BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_WALL_HANGING_SIGN).mapColor(MapColor.COLOR_LIGHT_GRAY)));
+
+    public static final DeferredBlock<LeavesBlock> PALE_OAK_LEAVES = MINECRAFT_BLOCKS.register("pale_oak_leaves", () -> new LeavesBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_LEAVES).mapColor(MapColor.PLANT)));
+    public static final DeferredBlock<SaplingBlock> PALE_OAK_SAPLING = MINECRAFT_BLOCKS.register("pale_oak_sapling", () -> new SaplingBlock(ModTreeGrowers.PALE_OAK, BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_SAPLING).mapColor(MapColor.PLANT)));
+    public static final DeferredBlock<FlowerPotBlock> POTTED_PALE_OAK_SAPLING = MINECRAFT_BLOCKS.register("potted_pale_oak_sapling", () -> new FlowerPotBlock(() -> (FlowerPotBlock) Blocks.FLOWER_POT, PALE_OAK_SAPLING, BlockBehaviour.Properties.ofFullCopy(Blocks.POTTED_OAK_SAPLING)));
+
+    public static final DeferredBlock<EyeblossomBlock> CLOSED_EYEBLOSSOM = MINECRAFT_BLOCKS.register("closed_eyeblossom", () -> new EyeblossomBlock(false, BlockBehaviour.Properties.ofFullCopy(Blocks.POPPY).mapColor(MapColor.PLANT).noCollission().instabreak().sound(SoundType.GRASS).offsetType(BlockBehaviour.OffsetType.XZ).pushReaction(PushReaction.DESTROY)));
+    public static final DeferredBlock<EyeblossomBlock> OPEN_EYEBLOSSOM = MINECRAFT_BLOCKS.register("open_eyeblossom", () -> new EyeblossomBlock(true, BlockBehaviour.Properties.ofFullCopy(Blocks.POPPY).mapColor(MapColor.PLANT).noCollission().instabreak().sound(SoundType.GRASS).offsetType(BlockBehaviour.OffsetType.XZ).pushReaction(PushReaction.DESTROY).lightLevel((state) -> 11)));
+    public static final DeferredBlock<FlowerPotBlock> POTTED_CLOSED_EYEBLOSSOM = MINECRAFT_BLOCKS.register("potted_closed_eyeblossom", () -> new FlowerPotBlock(() -> (FlowerPotBlock) Blocks.FLOWER_POT, CLOSED_EYEBLOSSOM, BlockBehaviour.Properties.ofFullCopy(Blocks.POTTED_POPPY)));
+    public static final DeferredBlock<FlowerPotBlock> POTTED_OPEN_EYEBLOSSOM = MINECRAFT_BLOCKS.register("potted_open_eyeblossom", () -> new FlowerPotBlock(() -> (FlowerPotBlock) Blocks.FLOWER_POT, OPEN_EYEBLOSSOM, BlockBehaviour.Properties.ofFullCopy(Blocks.POTTED_POPPY).lightLevel((state) -> 11)));
+
+    public static final DeferredBlock<CreakingHeartBlock> CREAKING_HEART = MINECRAFT_BLOCKS.register("creaking_heart", () -> new CreakingHeartBlock(BlockBehaviour.Properties.of().mapColor(MapColor.COLOR_ORANGE).instrument(NoteBlockInstrument.BASEDRUM).strength(5.0F).sound(SoundType.WOOD).randomTicks()));
+    public static final DeferredBlock<ResinClumpBlock> RESIN_CLUMP = MINECRAFT_BLOCKS.register("resin_clump", () -> new ResinClumpBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.SCULK_VEIN).mapColor(MapColor.COLOR_ORANGE).sound(SoundType.HONEY_BLOCK)));
+    public static final DeferredBlock<Block> RESIN_BLOCK = MINECRAFT_BLOCKS.register("resin_block", () -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.CLAY).mapColor(MapColor.COLOR_ORANGE).sound(SoundType.HONEY_BLOCK)));
+    public static final DeferredBlock<Block> RESIN_BRICKS = MINECRAFT_BLOCKS.register("resin_bricks", () -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.BRICKS).mapColor(MapColor.COLOR_ORANGE).sound(SoundType.HONEY_BLOCK)));
+    public static final DeferredBlock<StairBlock> RESIN_BRICK_STAIRS = MINECRAFT_BLOCKS.register("resin_brick_stairs", () -> new StairBlock(RESIN_BRICKS.get().defaultBlockState(), BlockBehaviour.Properties.ofFullCopy(Blocks.BRICK_STAIRS).mapColor(MapColor.COLOR_ORANGE).sound(SoundType.HONEY_BLOCK)));
+    public static final DeferredBlock<SlabBlock> RESIN_BRICK_SLAB = MINECRAFT_BLOCKS.register("resin_brick_slab", () -> new SlabBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.BRICK_SLAB).mapColor(MapColor.COLOR_ORANGE).sound(SoundType.HONEY_BLOCK)));
+    public static final DeferredBlock<WallBlock> RESIN_BRICK_WALL = MINECRAFT_BLOCKS.register("resin_brick_wall", () -> new WallBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.BRICK_WALL).mapColor(MapColor.COLOR_ORANGE).sound(SoundType.HONEY_BLOCK)));
+    public static final DeferredBlock<Block> CHISELED_RESIN_BRICKS = MINECRAFT_BLOCKS.register("chiseled_resin_bricks", () -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.BRICKS).mapColor(MapColor.COLOR_ORANGE).sound(SoundType.HONEY_BLOCK)));
+
+    
     static {
         registerGradientBlocks(Blocks.WHITE_CONCRETE, GradientConcreteBlock::new, ALL_CONCRETE_BLOCKS::add);
         registerGradientBlocks(Blocks.WHITE_TERRACOTTA, GradientTerracottaBlock::new, ALL_TERRACOTTA_BLOCKS::add);
@@ -209,16 +265,12 @@ public class ModBlocks {
     public static Collection<DeferredBlock<? extends IGradientBlock>> getAllGradientConcreteBlocks() {
         return ALL_CONCRETE_BLOCKS;
     }
-
-    private static <T extends Block> DeferredBlock<T> registerLeaf(String name, java.util.function.Supplier<T> block) {
-        DeferredBlock<T> ret = BLOCKS.register(name, block);
-        LEAVES.add(ret);
-        return ret;
+    
+    public static void register(IEventBus eventBus) {
+        BLOCKS.register(eventBus);
+        MINECRAFT_BLOCKS.register(eventBus);
     }
-
-    // Insane List of Leaves Goes Here
-    // public static final DeferredBlock<Block> ACACIA_LEAVES = registerLeaf("acacia_leaves", () -> new Block(Properties.of().strength(0.2f).sound(SoundType.GRASS).noOcclusion()));
-
+    
     @FunctionalInterface
     private interface GradientBlockBuilder<T extends Block & IGradientBlock> {
         T create(Properties properties, DyeColor firstColor, DyeColor secondColor, Function<DyeColor, String> textureNameMapper);

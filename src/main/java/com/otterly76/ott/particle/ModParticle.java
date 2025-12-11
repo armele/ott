@@ -1,53 +1,57 @@
 package com.otterly76.ott.particle;
 
-import com.otterly76.ott.NeoForgePlatformHandler;
-import net.minecraft.core.particles.SimpleParticleType;
+import com.mojang.serialization.MapCodec;
 import net.minecraft.core.particles.ParticleType;
+import net.minecraft.core.particles.SimpleParticleType;
 import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.network.RegistryFriendlyByteBuf;
+import net.minecraft.network.codec.StreamCodec;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.sounds.SoundEvent;
+import net.neoforged.bus.api.IEventBus;
 import net.neoforged.neoforge.registries.DeferredHolder;
 import net.neoforged.neoforge.registries.DeferredRegister;
-import java.util.function.Supplier;
+import org.jetbrains.annotations.NotNull;
 
 public class ModParticle {
-    public static final DeferredRegister<ParticleType<?>> PARTICLE_TYPES;
-    public static final DeferredRegister<SoundEvent> SOUND_EVENTS;
-    public static final DeferredHolder<ParticleType<?>, SimpleParticleType> RAIN;
-    public static final DeferredHolder<ParticleType<?>, SimpleParticleType> SNOW;
-    public static final DeferredHolder<ParticleType<?>, SimpleParticleType> DUST_MOTE;
-    public static final DeferredHolder<ParticleType<?>, SimpleParticleType> DUST;
-    public static final DeferredHolder<ParticleType<?>, SimpleParticleType> FOG;
-    public static final DeferredHolder<ParticleType<?>, SimpleParticleType> GROUND_FOG;
-    public static final DeferredHolder<ParticleType<?>, SimpleParticleType> SHRUB;
-    public static final DeferredHolder<ParticleType<?>, SimpleParticleType> RIPPLE;
-    public static final DeferredHolder<ParticleType<?>, SimpleParticleType> STREAK;
-    public static final DeferredHolder<SoundEvent, SoundEvent> WEATHER_SNOW;
-    public static final DeferredHolder<SoundEvent, SoundEvent> WEATHER_SNOW_ABOVE;
-    public static final DeferredHolder<SoundEvent, SoundEvent> WEATHER_SANDSTORM;
-    public static final DeferredHolder<SoundEvent, SoundEvent> WEATHER_SANDSTORM_ABOVE;
-    public static final Supplier<SimpleParticleType> WEEPING_LEAF = register("weeping_leaf");
-    public static final Supplier<SimpleParticleType> FIREFLY = register("firefly");
+    public static final DeferredRegister<ParticleType<?>> PARTICLE_TYPES = DeferredRegister.create(BuiltInRegistries.PARTICLE_TYPE, "ott");
 
-    static {
-        PARTICLE_TYPES = DeferredRegister.create(BuiltInRegistries.PARTICLE_TYPE, "ott");
-        SOUND_EVENTS = DeferredRegister.create(BuiltInRegistries.SOUND_EVENT, "ott");
-        RAIN = PARTICLE_TYPES.register("rain", () -> new SimpleParticleType(true));
-        SNOW = PARTICLE_TYPES.register("snow", () -> new SimpleParticleType(true));
-        DUST_MOTE = PARTICLE_TYPES.register("dust_mote", () -> new SimpleParticleType(true));
-        DUST = PARTICLE_TYPES.register("dust", () -> new SimpleParticleType(true));
-        FOG = PARTICLE_TYPES.register("fog", () -> new SimpleParticleType(true));
-        GROUND_FOG = PARTICLE_TYPES.register("ground_fog", () -> new SimpleParticleType(true));
-        SHRUB = PARTICLE_TYPES.register("shrub", () -> new SimpleParticleType(true));
-        RIPPLE = PARTICLE_TYPES.register("ripple", () -> new SimpleParticleType(true));
-        STREAK = PARTICLE_TYPES.register("streak", () -> new SimpleParticleType(true));
-        WEATHER_SNOW = SOUND_EVENTS.register("weather.snow", () -> SoundEvent.createVariableRangeEvent(ResourceLocation.fromNamespaceAndPath("ott", "weather.snow")));
-        WEATHER_SNOW_ABOVE = SOUND_EVENTS.register("weather.snow.above", () -> SoundEvent.createVariableRangeEvent(ResourceLocation.fromNamespaceAndPath("ott", "weather.snow.above")));
-        WEATHER_SANDSTORM = SOUND_EVENTS.register("weather.sandstorm", () -> SoundEvent.createVariableRangeEvent(ResourceLocation.fromNamespaceAndPath("ott", "weather.sandstorm")));
-        WEATHER_SANDSTORM_ABOVE = SOUND_EVENTS.register("weather.sandstorm.above", () -> SoundEvent.createVariableRangeEvent(ResourceLocation.fromNamespaceAndPath("ott", "weather.sandstorm.above")));
+    public static final DeferredRegister<ParticleType<?>> MINECRAFT_PARTICLE_TYPES = DeferredRegister.create(BuiltInRegistries.PARTICLE_TYPE, "minecraft");
+
+    public static final DeferredRegister<SoundEvent> SOUND_EVENTS = DeferredRegister.create(BuiltInRegistries.SOUND_EVENT, "ott");
+
+    public static final DeferredHolder<ParticleType<?>, SimpleParticleType> RAIN = PARTICLE_TYPES.register("rain", () -> new SimpleParticleType(true));
+    public static final DeferredHolder<ParticleType<?>, SimpleParticleType> SNOW = PARTICLE_TYPES.register("snow", () -> new SimpleParticleType(true));
+    public static final DeferredHolder<ParticleType<?>, SimpleParticleType> DUST_MOTE = PARTICLE_TYPES.register("dust_mote", () -> new SimpleParticleType(true));
+    public static final DeferredHolder<ParticleType<?>, SimpleParticleType> DUST = PARTICLE_TYPES.register("dust", () -> new SimpleParticleType(true));
+    public static final DeferredHolder<ParticleType<?>, SimpleParticleType> FOG = PARTICLE_TYPES.register("fog", () -> new SimpleParticleType(true));
+    public static final DeferredHolder<ParticleType<?>, SimpleParticleType> GROUND_FOG = PARTICLE_TYPES.register("ground_fog", () -> new SimpleParticleType(true));
+    public static final DeferredHolder<ParticleType<?>, SimpleParticleType> SHRUB = PARTICLE_TYPES.register("shrub", () -> new SimpleParticleType(true));
+    public static final DeferredHolder<ParticleType<?>, SimpleParticleType> RIPPLE = PARTICLE_TYPES.register("ripple", () -> new SimpleParticleType(true));
+    public static final DeferredHolder<ParticleType<?>, SimpleParticleType> STREAK = PARTICLE_TYPES.register("streak", () -> new SimpleParticleType(true));
+
+    public static void register(IEventBus eventBus) {
+        PARTICLE_TYPES.register(eventBus);
+        MINECRAFT_PARTICLE_TYPES.register(eventBus);
+        SOUND_EVENTS.register(eventBus);
     }
 
-    private static Supplier<SimpleParticleType> register(String id) {
-        return NeoForgePlatformHandler.PLATFORM_HANDLER.registerCreateParticle(id);
-    }
+    // Sounds
+    public static final DeferredHolder<SoundEvent, SoundEvent> WEATHER_SNOW = SOUND_EVENTS.register("weather.snow", () -> SoundEvent.createVariableRangeEvent(ResourceLocation.fromNamespaceAndPath("ott", "weather.snow")));
+    public static final DeferredHolder<SoundEvent, SoundEvent> WEATHER_SNOW_ABOVE = SOUND_EVENTS.register("weather.snow.above", () -> SoundEvent.createVariableRangeEvent(ResourceLocation.fromNamespaceAndPath("ott", "weather.snow.above")));
+    public static final DeferredHolder<SoundEvent, SoundEvent> WEATHER_SANDSTORM = SOUND_EVENTS.register("weather.sandstorm", () -> SoundEvent.createVariableRangeEvent(ResourceLocation.fromNamespaceAndPath("ott", "weather.sandstorm")));
+    public static final DeferredHolder<SoundEvent, SoundEvent> WEATHER_SANDSTORM_ABOVE = SOUND_EVENTS.register("weather.sandstorm.above", () -> SoundEvent.createVariableRangeEvent(ResourceLocation.fromNamespaceAndPath("ott", "weather.sandstorm.above")));
+
+    public static final DeferredHolder<ParticleType<?>, SimpleParticleType> PALE_OAK_LEAVES = MINECRAFT_PARTICLE_TYPES.register("pale_oak_leaves", () -> new SimpleParticleType(true));
+
+    public static final DeferredHolder<ParticleType<?>, ParticleType<TrailParticleOption>> TRAIL = MINECRAFT_PARTICLE_TYPES.register("trail", () -> new ParticleType<TrailParticleOption>(false) {
+                public @NotNull MapCodec<TrailParticleOption> codec() {
+                    return TrailParticleOption.CODEC;
+                }
+
+                public @NotNull StreamCodec<? super RegistryFriendlyByteBuf, TrailParticleOption> streamCodec() {
+                    return TrailParticleOption.STREAM_CODEC;
+                }
+            }
+    );
 }

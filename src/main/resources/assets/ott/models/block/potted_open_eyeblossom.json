@@ -1,8 +1,0 @@
-{
-  "parent": "minecraft:block/flower_pot_cross_emissive",
-  "textures": {
-    "cross_emissive": "ott:block/open_eyeblossom_emissive",
-    "plant": "ott:block/open_eyeblossom"
-  },
-  "render_type": "cutout"
-}

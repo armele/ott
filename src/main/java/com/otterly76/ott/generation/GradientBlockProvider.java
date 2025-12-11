@@ -4,7 +4,6 @@ import com.google.common.hash.Hashing;
 import com.google.common.hash.HashingOutputStream;
 import com.otterly76.ott.Constants;
 import com.otterly76.ott.block.IGradientBlock;
-import com.otterly76.ott.block.ModBlocks;
 import net.minecraft.data.CachedOutput;
 import net.minecraft.data.DataProvider;
 import net.minecraft.data.PackOutput;

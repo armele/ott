@@ -1,7 +1,5 @@
 package com.otterly76.ott;
 
-import com.otterly76.ott.block.ModBlocks;
-import com.otterly76.ott.item.ModItems;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.CreativeModeTab;
@@ -35,7 +33,6 @@ public final class ModCreativeTabs {
             ModBlocks.TESTBLOCK.forEach(output::accept);
             ModBlocks.LIMESTONE.forEach(output::accept);
             ModBlocks.SEAGLASS.forEach(output::accept);
-            ModBlocks.LEAVES.forEach(output::accept);
         }).build();
     }
 
