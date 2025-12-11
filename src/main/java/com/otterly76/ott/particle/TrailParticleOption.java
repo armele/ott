@@ -18,7 +18,7 @@ public record TrailParticleOption(Vec3 target, int color, int duration) implemen
     public static final StreamCodec<RegistryFriendlyByteBuf, TrailParticleOption> STREAM_CODEC;
 
     public @NotNull ParticleType<TrailParticleOption> getType() {
-        return (ParticleType) ModParticles.TRAIL.get();
+        return ModParticle.TRAIL.get();
     }
 
     static {

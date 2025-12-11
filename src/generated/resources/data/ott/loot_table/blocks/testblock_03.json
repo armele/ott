@@ -11,7 +11,7 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "minecraft:air"
+          "name": "ott:testblock_03"
         }
       ],
       "rolls": 1.0

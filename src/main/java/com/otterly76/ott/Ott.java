@@ -39,7 +39,6 @@ import net.minecraft.world.item.CreativeModeTabs;
 import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.FireBlock;
-import net.minecraft.world.level.block.FlowerPotBlock;
 import net.minecraft.world.level.storage.loot.parameters.LootContextParamSets;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.bus.api.SubscribeEvent;
@@ -86,16 +85,15 @@ public class Ott {
         modEventBus.addListener(ModBlockEntities::registerTileExtensions);
         modEventBus.addListener(ClientModEvents::registerLayerDefinitions);
         modEventBus.addListener(ClientModEvents::registerParticleFactories);
+        modEventBus.addListener(ClientModEvents::registerRenderers);
+        modEventBus.addListener(ClientModEvents::onClientSetup);
         modEventBus.addListener(ModEventBusEvents::registerLayers);
         modEventBus.addListener(ModEventBusEvents::registerAttributes);
     }
-
     private void dataGeneratorSetup(final GatherDataEvent event) {
         final DataGenerator generator = event.getGenerator();
 
         generator.addProvider(event.includeClient(), new GradientBlockProvider(generator.getPackOutput(), event.getExistingFileHelper()));
-        generator.addProvider(event.includeServer(), new GradientBlockRecipeProvider(generator.getPackOutput(), event.getLookupProvider()));
-        generator.addProvider(event.includeServer(), new OttWorldGenProvider(generator.getPackOutput(), event.getLookupProvider()));
         generator.addProvider(event.includeServer(), new LootTableProvider(generator.getPackOutput(), Collections.emptySet(), List.of(new LootTableProvider.SubProviderEntry(OttLootTableProvider::new, LootContextParamSets.BLOCK)), event.getLookupProvider()));
         ModBlockTagProvider blockTagProvider = new ModBlockTagProvider(generator.getPackOutput(), event.getLookupProvider(), event.getExistingFileHelper());
         generator.addProvider(event.includeServer(), blockTagProvider);
@@ -146,13 +144,10 @@ public class Ott {
             registerFlammables();
             Regions.register(new ModOverworldRegion(ResourceLocation.fromNamespaceAndPath("minecraft", "palegarden"), 2));
             ModBlockFamilies.createBlockFamilies();
-            ((FlowerPotBlock)Blocks.FLOWER_POT).addPlant(ModBlocks.OPEN_EYEBLOSSOM.getId(), ModBlocks.POTTED_OPEN_EYEBLOSSOM);
-            ((FlowerPotBlock)Blocks.FLOWER_POT).addPlant(ModBlocks.PALE_OAK_SAPLING.getId(), ModBlocks.POTTED_PALE_OAK_SAPLING);
-            ((FlowerPotBlock)Blocks.FLOWER_POT).addPlant(ModBlocks.CLOSED_EYEBLOSSOM.getId(), ModBlocks.POTTED_CLOSED_EYEBLOSSOM);
         });
     }
 
-// TODO add wood types to compostable list (data)
+    // TODO add wood types to compostable list (data)
 
     public void registerFlammables() {
         FireBlock fire = (FireBlock)Blocks.FIRE;
@@ -232,9 +227,7 @@ public class Ott {
 
     public static class ClientModEvents {
         public static void onClientSetup(FMLClientSetupEvent event) {
-            event.enqueueWork(() -> {
-                Sheets.addWoodType(WoodTypeVariant.PALE_OAK.getWoodType());
-            });
+            event.enqueueWork(() -> Sheets.addWoodType(WoodTypeVariant.PALE_OAK.getWoodType()));
         }
 
         public static void registerRenderers(EntityRenderersEvent.RegisterRenderers event) {

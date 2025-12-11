@@ -1,9 +1,9 @@
 package com.otterly76.ott.generation;
 
 import com.google.common.hash.Hashing;
-import com.google.common.hash.HashingOutputStream;
 import com.otterly76.ott.Constants;
 import com.otterly76.ott.block.IGradientBlock;
+import com.otterly76.ott.block.ModBlocks;
 import net.minecraft.data.CachedOutput;
 import net.minecraft.data.DataProvider;
 import net.minecraft.data.PackOutput;
@@ -87,11 +87,11 @@ public class GradientBlockProvider implements DataProvider {
             finalGraphics.dispose();
 
             final ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
-            final HashingOutputStream hashStream = new HashingOutputStream(Hashing.sha1(), outputStream);
-            ImageIO.write(newImage, "PNG", hashStream);
+            ImageIO.write(newImage, "PNG", outputStream);
+            byte[] bytes = outputStream.toByteArray();
 
             ResourceLocation key = gradientBlock.getRegistryID();
-            cache.writeIfNeeded(outputProvider.file(key, "png"), outputStream.toByteArray(), hashStream.hash());
+            cache.writeIfNeeded(outputProvider.file(key, "png"), bytes, Hashing.sha256().hashBytes(bytes));
             existingFileHelper.trackGenerated(key, PackType.CLIENT_RESOURCES, ".png", "textures/block");
         } catch (IOException e) {
             throw new RuntimeException(e);

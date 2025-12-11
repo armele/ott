@@ -1,5 +1,7 @@
 package com.otterly76.ott;
 
+import com.otterly76.ott.block.ModBlocks;
+import com.otterly76.ott.item.ModItems;
 import com.otterly76.ott.particle.ModParticle;
 import net.minecraft.commands.CommandSourceStack;
 import net.minecraft.core.Registry;

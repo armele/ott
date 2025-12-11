@@ -1,5 +1,7 @@
 package com.otterly76.ott;
 
+import com.otterly76.ott.block.ModBlocks;
+import com.otterly76.ott.item.ModItems;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.CreativeModeTab;

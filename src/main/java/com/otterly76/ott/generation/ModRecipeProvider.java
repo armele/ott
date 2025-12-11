@@ -1,5 +1,6 @@
 package com.otterly76.ott.generation;
 
+import com.otterly76.ott.block.IGradientBlock;
 import com.otterly76.ott.block.ModBlocks;
 import com.otterly76.ott.block.wood.ModBlockFamilies;
 import com.otterly76.ott.item.ModItems;
@@ -9,6 +10,7 @@ import net.minecraft.data.recipes.*;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.flag.FeatureFlagSet;
 import net.minecraft.world.item.Items;
+import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.neoforged.neoforge.common.conditions.IConditionBuilder;
 import org.jetbrains.annotations.NotNull;
@@ -20,8 +22,11 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
         super(output, lookuprovider);
     }
 
+    @Override
     protected void buildRecipes(@NotNull RecipeOutput exporter) {
         this.woodRecipes(exporter);
+
+        // Standard recipes
         ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, Items.GRAY_DYE).requires(ModBlocks.CLOSED_EYEBLOSSOM.get()).unlockedBy(getHasName(ModBlocks.CLOSED_EYEBLOSSOM.get()), has(ModBlocks.CLOSED_EYEBLOSSOM.get())).save(exporter, ResourceLocation.fromNamespaceAndPath("minecraft", "gray_dye_from_closed_eyeblossom"));
         ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, Items.ORANGE_DYE).requires(ModBlocks.OPEN_EYEBLOSSOM.get()).unlockedBy(getHasName(ModBlocks.OPEN_EYEBLOSSOM.get()), has(ModBlocks.OPEN_EYEBLOSSOM.get())).save(exporter, ResourceLocation.fromNamespaceAndPath("minecraft", "orange_dye_from_closed_eyeblossom"));
         ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModBlocks.CREAKING_HEART.get()).define('#', ModBlocks.PALE_OAK_LOG.get()).define('O', ModBlocks.RESIN_BLOCK.get()).pattern("#").pattern("O").pattern("#").unlockedBy(getHasName(ModBlocks.RESIN_BLOCK.get()), has(ModBlocks.RESIN_BLOCK.get())).save(exporter, ResourceLocation.fromNamespaceAndPath("minecraft", "creaking_heart"));
@@ -36,6 +41,9 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
         stonecutterResultFromBase(exporter, RecipeCategory.BUILDING_BLOCKS, ModBlocks.RESIN_BRICK_WALL.get(), ModBlocks.RESIN_BRICKS.get());
         stonecutterResultFromBase(exporter, RecipeCategory.BUILDING_BLOCKS, ModBlocks.RESIN_BRICK_STAIRS.get(), ModBlocks.RESIN_BRICKS.get());
         stonecutterResultFromBase(exporter, RecipeCategory.BUILDING_BLOCKS, ModBlocks.CHISELED_RESIN_BRICKS.get(), ModBlocks.RESIN_BRICKS.get());
+
+        // Merged Gradient Recipe Logic
+        ModBlocks.ALL_GRADIENT_BLOCKS.forEach(deferredBlock -> createGradientRecipe(exporter, deferredBlock.get()));
     }
 
     private void woodRecipes(RecipeOutput exporter) {
@@ -56,5 +64,20 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
         ShapedRecipeBuilder.shaped(RecipeCategory.REDSTONE, ModBlocks.PALE_OAK_PRESSURE_PLATE.get()).define('#', ModBlocks.PALE_OAK_PLANKS.get()).pattern("##").unlockedBy("has_planks", has(ModBlocks.PALE_OAK_PLANKS.get())).save(exporter, ResourceLocation.fromNamespaceAndPath("minecraft", "pale_oak_pressure_plate"));
 
         generateRecipes(exporter, ModBlockFamilies.PALE_OAK, FeatureFlagSet.of());
+    }
+
+    private void createGradientRecipe(RecipeOutput recipeOutput, IGradientBlock gradientBlock) {
+        Block block = (Block) gradientBlock;
+        Block ingredient1 = gradientBlock.getBlockFromColor(gradientBlock.getFirstColor());
+        Block ingredient2 = gradientBlock.getBlockFromColor(gradientBlock.getSecondColor());
+
+        // Create a shapeless recipes: Color 1 + Color 2 -> 2 Gradient Blocks
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.BUILDING_BLOCKS, block, 2)
+                .requires(ingredient1)
+                .requires(ingredient2)
+                .group("ott_gradient_blocks")
+                .unlockedBy("has_" + getItemName(ingredient1), has(ingredient1))
+                .unlockedBy("has_" + getItemName(ingredient2), has(ingredient2))
+                .save(recipeOutput);
     }
 }

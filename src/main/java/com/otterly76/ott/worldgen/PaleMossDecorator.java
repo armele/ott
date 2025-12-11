@@ -3,20 +3,20 @@ package com.otterly76.ott.worldgen;
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.MapCodec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
-import java.util.List;
+import com.otterly76.ott.block.ModBlocks;
+import com.otterly76.ott.block.custom.HangingMossBlock;
 import net.minecraft.Util;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.WorldGenLevel;
-import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.level.levelgen.feature.ConfiguredFeature;
 import net.minecraft.world.level.levelgen.feature.treedecorators.TreeDecorator;
 import net.minecraft.world.level.levelgen.feature.treedecorators.TreeDecoratorType;
 import org.apache.commons.lang3.mutable.Mutable;
 import org.apache.commons.lang3.mutable.MutableObject;
-import com.otterly76.ott.block.custom.HangingMossBlock;
+import org.jetbrains.annotations.NotNull;
+
+import java.util.List;
 
 public class PaleMossDecorator extends TreeDecorator {
     public static final MapCodec<PaleMossDecorator> CODEC = RecordCodecBuilder.mapCodec((instance) -> instance.group(Codec.floatRange(0.0F, 1.0F).fieldOf("leaves_probability").forGetter((paleMossDecorator) -> paleMossDecorator.leavesProbability), Codec.floatRange(0.0F, 1.0F).fieldOf("trunk_probability").forGetter((paleMossDecorator) -> paleMossDecorator.trunkProbability), Codec.floatRange(0.0F, 1.0F).fieldOf("ground_probability").forGetter((paleMossDecorator) -> paleMossDecorator.groundProbability)).apply(instance, PaleMossDecorator::new));
@@ -32,15 +32,15 @@ public class PaleMossDecorator extends TreeDecorator {
 
     private static void addMossHanger(BlockPos blockPos, TreeDecorator.Context context) {
         while(context.isAir(blockPos.below()) && !((double)context.random().nextFloat() < (double)0.5F)) {
-            context.setBlock(blockPos, (BlockState)((Block)ModBlocks.PALE_HANGING_MOSS.get()).defaultBlockState().setValue(HangingMossBlock.TIP, false));
+            context.setBlock(blockPos, ModBlocks.PALE_HANGING_MOSS.get().defaultBlockState().setValue(HangingMossBlock.TIP, false));
             blockPos = blockPos.below();
         }
 
-        context.setBlock(blockPos, (BlockState)((Block)ModBlocks.PALE_HANGING_MOSS.get()).defaultBlockState().setValue(HangingMossBlock.TIP, true));
+        context.setBlock(blockPos, ModBlocks.PALE_HANGING_MOSS.get().defaultBlockState().setValue(HangingMossBlock.TIP, true));
     }
 
-    protected TreeDecoratorType<?> type() {
-        return (TreeDecoratorType)ModTreeDecoratorTypes.PALE_MOSS.get();
+    protected @NotNull TreeDecoratorType<?> type() {
+        return ModTreeDecoratorTypes.PALE_MOSS.get();
     }
 
     public void place(TreeDecorator.Context context) {
@@ -48,16 +48,16 @@ public class PaleMossDecorator extends TreeDecorator {
         WorldGenLevel worldGenLevel = (WorldGenLevel)context.level();
         List<BlockPos> list = Util.shuffledCopy(context.logs(), randomSource);
         if (!list.isEmpty()) {
-            Mutable<BlockPos> mutable = new MutableObject((BlockPos)list.getFirst());
+            Mutable<BlockPos> mutable = new MutableObject<>(list.getFirst());
             list.forEach((blockPosx) -> {
-                if (blockPosx.getY() < ((BlockPos)mutable.getValue()).getY()) {
+                if (blockPosx.getY() < mutable.getValue().getY()) {
                     mutable.setValue(blockPosx);
                 }
 
             });
-            BlockPos blockPos = (BlockPos)mutable.getValue();
+            BlockPos blockPos = mutable.getValue();
             if (randomSource.nextFloat() < this.groundProbability) {
-                worldGenLevel.registryAccess().lookup(Registries.CONFIGURED_FEATURE).flatMap((registry) -> registry.get(ModConfiguredFeatures.PALE_MOSS_PATCH)).ifPresent((reference) -> ((ConfiguredFeature)reference.value()).place(worldGenLevel, worldGenLevel.getLevel().getChunkSource().getGenerator(), randomSource, blockPos.above()));
+                worldGenLevel.registryAccess().lookup(Registries.CONFIGURED_FEATURE).flatMap((registry) -> registry.get(ModConfiguredFeatures.PALE_MOSS_PATCH)).ifPresent((reference) -> (reference.value()).place(worldGenLevel, worldGenLevel.getLevel().getChunkSource().getGenerator(), randomSource, blockPos.above()));
             }
 
             context.logs().forEach((blockPosx) -> {

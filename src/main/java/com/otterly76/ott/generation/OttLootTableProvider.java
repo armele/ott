@@ -28,18 +28,14 @@ public class OttLootTableProvider extends BlockLootSubProvider {
 
     @Override
     protected void generate() {
-        // --- 1. EXISTING MOD LOGIC ---
-        // Iterate over blocks to handle them specifically
         ModBlocks.BLOCKS.getEntries().stream().map(Supplier::get).forEach(block -> {
-            // Example logic to handle different block types
             if (block instanceof GradientStainedGlassBlock) {
                 this.add(block, this::createSilkTouchOnlyTable);
             } else if (block instanceof HedgeSprouts) {
-                // Drop the sprout item always + Drop the Hedge block only if AGE is 3
                 this.add(block, createCropDrops(
-                        block, // The crop block itself
-                        ModItems.HEDGE_SPROUTS.get(),  // The seed item (always drops)
-                        ModItems.HEDGE.get().asItem(), // The produce item (drops when fully grown)
+                        block,
+                        ModItems.HEDGE_SPROUTS.get(),
+                        ModItems.HEDGE.get().asItem(),
                         LootItemBlockStatePropertyCondition.hasBlockStateProperties(block)
                                 .setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(HedgeSprouts.AGE, HedgeSprouts.MAX_AGE))
                 ));
@@ -48,7 +44,6 @@ public class OttLootTableProvider extends BlockLootSubProvider {
             }
         });
 
-        // --- 2. BACKPORTED PALE GARDEN LOGIC ---
         this.dropSelf(ModBlocks.RESIN_CLUMP.get());
         this.dropSelf(ModBlocks.RESIN_BLOCK.get());
         this.dropSelf(ModBlocks.RESIN_BRICKS.get());
@@ -66,11 +61,12 @@ public class OttLootTableProvider extends BlockLootSubProvider {
         this.add(ModBlocks.PALE_HANGING_MOSS.get(), (block) -> this.createDoublePlantShearsDrop(ModBlocks.PALE_HANGING_MOSS.get()));
         this.add(ModBlocks.OPEN_EYEBLOSSOM.get(), (block) -> this.createPotFlowerItemTable(ModBlocks.OPEN_EYEBLOSSOM.get()));
         this.add(ModBlocks.CLOSED_EYEBLOSSOM.get(), (block) -> this.createPotFlowerItemTable(ModBlocks.CLOSED_EYEBLOSSOM.get()));
-        // Potted plants logic
+
         this.add(ModBlocks.POTTED_PALE_OAK_SAPLING.get(), (block) -> this.createPotFlowerItemTable(ModBlocks.PALE_OAK_SAPLING.get()));
         this.add(ModBlocks.POTTED_CLOSED_EYEBLOSSOM.get(), (block) -> this.createPotFlowerItemTable(ModBlocks.CLOSED_EYEBLOSSOM.get()));
         this.add(ModBlocks.POTTED_OPEN_EYEBLOSSOM.get(), (block) -> this.createPotFlowerItemTable(ModBlocks.OPEN_EYEBLOSSOM.get()));
 
+        this.dropSelf(ModBlocks.CREAKING_HEART.get());
         this.dropSelf(ModBlocks.OPEN_EYEBLOSSOM.get());
         this.dropSelf(ModBlocks.CLOSED_EYEBLOSSOM.get());
         this.dropSelf(ModBlocks.PALE_MOSS_BLOCK.get());
@@ -79,7 +75,7 @@ public class OttLootTableProvider extends BlockLootSubProvider {
         this.dropSelf(ModBlocks.PALE_OAK_STAIRS.get());
         this.dropSelf(ModBlocks.PALE_OAK_FENCE.get());
         this.dropSelf(ModBlocks.PALE_OAK_FENCE_GATE.get());
-        this.createDoorTable(ModBlocks.PALE_OAK_DOOR.get());
+        this.add(ModBlocks.PALE_OAK_DOOR.get(), this::createDoorTable);
         this.dropSelf(ModBlocks.PALE_OAK_TRAPDOOR.get());
         this.dropSelf(ModBlocks.PALE_OAK_BUTTON.get());
         this.dropSelf(ModBlocks.PALE_OAK_PRESSURE_PLATE.get());
@@ -89,24 +85,21 @@ public class OttLootTableProvider extends BlockLootSubProvider {
         this.dropOther(ModBlocks.PALE_OAK_WALL_HANGING_SIGN.get(), ModItems.PALE_OAK_HANGING_SIGN.get());
     }
 
-    // Helper method to create a crop table that drops seeds + extra item when fully grown
     protected LootTable.Builder createCropDrops(Block cropBlock, net.minecraft.world.item.Item seedItem, net.minecraft.world.item.Item grownItem, LootItemBlockStatePropertyCondition.Builder condition) {
         return LootTable.lootTable()
                 .withPool(LootPool.lootPool()
                         .setRolls(ConstantValue.exactly(1.0F))
-                        .add(LootItem.lootTableItem(seedItem))) // Always drop the seed
+                        .add(LootItem.lootTableItem(seedItem)))
                 .withPool(LootPool.lootPool()
                         .setRolls(ConstantValue.exactly(1.0F))
-                        .add(LootItem.lootTableItem(grownItem) // Drop the produce
+                        .add(LootItem.lootTableItem(grownItem)
                                 .when(condition)));
     }
 
     @Override
     protected @NotNull Iterable<Block> getKnownBlocks() {
         List<Block> knownBlocks = new ArrayList<>();
-        // Add existing blocks
         knownBlocks.addAll(ModBlocks.BLOCKS.getEntries().stream().map(block -> (Block) block.get()).toList());
-        // Add new backported blocks
         knownBlocks.addAll(ModBlocks.MINECRAFT_BLOCKS.getEntries().stream().map(block -> (Block) block.get()).toList());
         return knownBlocks;
     }

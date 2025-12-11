@@ -3,7 +3,6 @@ package com.otterly76.ott.item;
 import com.otterly76.ott.Constants;
 import com.otterly76.ott.block.ModBlocks;
 import com.otterly76.ott.entity.ModEntities;
-import com.otterly76.ott.util.PaleOakBoatType;
 import net.minecraft.world.item.*;
 import net.minecraft.world.level.block.Block;
 import net.neoforged.bus.api.IEventBus;
@@ -35,22 +34,22 @@ public class ModItems {
     public static final DeferredItem<Item> CREAKING_SPAWN_EGG;
     public static final DeferredItem<SignItem> PALE_OAK_SIGN;
     public static final DeferredItem<HangingSignItem> PALE_OAK_HANGING_SIGN;
-    public static final DeferredItem<PaleOakBoatType> PALE_OAK_BOAT;
-    public static final DeferredItem<PaleOakBoatType> PALE_OAK_CHEST_BOAT;
+    public static final DeferredItem<ModBoatItem> PALE_OAK_BOAT;
+    public static final DeferredItem<ModBoatItem> PALE_OAK_CHEST_BOAT;
 
     static {
         RESIN_BRICK = MINECRAFT_ITEMS.register("resin_brick", () -> new Item(new Item.Properties()));
         CREAKING_SPAWN_EGG = MINECRAFT_ITEMS.register("creaking_spawn_egg", () -> new DeferredSpawnEggItem(ModEntities.CREAKING, 6250335, 16545810, new Item.Properties()));
 
-        PALE_OAK_SIGN = MINECRAFT_ITEMS.register("pale_oak_sign", () -> new SignItem((new Item.Properties()).stacksTo(16), (Block)ModBlocks.PALE_OAK_SIGN.get(), (Block)ModBlocks.PALE_OAK_WALL_SIGN.get()));
-        PALE_OAK_HANGING_SIGN = MINECRAFT_ITEMS.register("pale_oak_hanging_sign", () -> new HangingSignItem((Block)ModBlocks.PALE_OAK_HANGING_SIGN.get(), (Block)ModBlocks.PALE_OAK_WALL_HANGING_SIGN.get(), (new Item.Properties()).stacksTo(16)));
+        PALE_OAK_SIGN = MINECRAFT_ITEMS.register("pale_oak_sign", () -> new SignItem((new Item.Properties()).stacksTo(16), ModBlocks.PALE_OAK_SIGN.get(), ModBlocks.PALE_OAK_WALL_SIGN.get()));
+        PALE_OAK_HANGING_SIGN = MINECRAFT_ITEMS.register("pale_oak_hanging_sign", () -> new HangingSignItem(ModBlocks.PALE_OAK_HANGING_SIGN.get(), ModBlocks.PALE_OAK_WALL_HANGING_SIGN.get(), (new Item.Properties()).stacksTo(16)));
 
         // Register both boats using a custom helper class
         PALE_OAK_BOAT = MINECRAFT_ITEMS.register("pale_oak_boat",
-                () -> new ModBoatItem(false, ModEntities.PALE_OAK_BOAT, new Item.Properties().stacksTo(1)));
+                () -> new ModBoatItem(ModEntities.PALE_OAK_BOAT, new Item.Properties().stacksTo(1)));
 
         PALE_OAK_CHEST_BOAT = MINECRAFT_ITEMS.register("pale_oak_chest_boat",
-                () -> new ModBoatItem(true, ModEntities.PALE_OAK_CHEST_BOAT, new Item.Properties().stacksTo(1)));
+                () -> new ModBoatItem(ModEntities.PALE_OAK_CHEST_BOAT, new Item.Properties().stacksTo(1)));
     }
 
     // ==========================================
