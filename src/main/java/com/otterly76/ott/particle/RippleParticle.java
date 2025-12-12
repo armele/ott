@@ -6,12 +6,10 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.client.particle.Particle;
 import net.minecraft.client.particle.ParticleProvider;
-import net.minecraft.client.particle.ParticleRenderType;
 import net.minecraft.client.particle.SpriteSet;
 import net.minecraft.core.particles.SimpleParticleType;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.Mth;
-import net.minecraft.world.phys.Vec3;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
 import org.jetbrains.annotations.NotNull;
@@ -43,18 +41,16 @@ public class RippleParticle extends WeatherParticle {
     public void fadeIn() {
     }
 
-    public void render(@NotNull VertexConsumer vertexConsumer, Camera camera, float f) {
-        Vec3 camPos = camera.getPosition();
-        float x = (float)(Mth.lerp(f, this.xo, this.x) - camPos.x());
-        float y = (float)(Mth.lerp(f, this.yo, this.y) - camPos.y());
-        float z = (float)(Mth.lerp(f, this.zo, this.z) - camPos.z());
-        Quaternionf quaternion = new Quaternionf(new AxisAngle4d((float)java.lang.Math.PI / 2F, -1.0F, 0.0F, 0.0F));
-        this.flipItTurnwaysIfBackfaced(quaternion, new Vector3f(x, y, z));
-        this.renderRotatedQuad(vertexConsumer, quaternion, x, y, z, f);
-    }
+    @SuppressWarnings("DuplicatedCode")
+    public void render(@NotNull VertexConsumer vertexConsumer, @NotNull Camera camera, float f) {
+        Vector3f localPos = this.getInterpolatedRelPos(camera, f);
+        float x = localPos.x();
+        float y = localPos.y();
+        float z = localPos.z();
 
-    public @NotNull ParticleRenderType getRenderType() {
-        return ParticleRenderType.PARTICLE_SHEET_TRANSLUCENT;
+        Quaternionf quaternion = new Quaternionf(new AxisAngle4d(this.roll, 0.0F, 1.0F, 0.0F));
+        this.flipItTurnwaysIfBackfaced(quaternion, new Vector3f(x, y, z));
+        this.renderRotatedQuad(vertexConsumer, quaternion, x, y + 0.25F, z, f);
     }
 
     @OnlyIn(Dist.CLIENT)

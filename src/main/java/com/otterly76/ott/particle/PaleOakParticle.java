@@ -7,6 +7,7 @@ import net.minecraft.client.particle.ParticleRenderType;
 import net.minecraft.client.particle.SpriteSet;
 import net.minecraft.client.particle.TextureSheetParticle;
 import net.minecraft.core.particles.SimpleParticleType;
+import org.jetbrains.annotations.NotNull;
 
 public class PaleOakParticle extends TextureSheetParticle {
     private static final float ACCELERATION_SCALE = 0.0025F;
@@ -32,7 +33,7 @@ public class PaleOakParticle extends TextureSheetParticle {
         this.friction = 1.0F;
     }
 
-    public ParticleRenderType getRenderType() {
+    public @NotNull ParticleRenderType getRenderType() {
         return ParticleRenderType.PARTICLE_SHEET_OPAQUE;
     }
 
@@ -47,11 +48,11 @@ public class PaleOakParticle extends TextureSheetParticle {
         if (!this.removed) {
             float f = (float)(300 - this.lifetime);
             float g = Math.min(f / 300.0F, 1.0F);
-            double d = Math.cos(Math.toRadians((double)(this.particleRandom * 60.0F))) * (double)2.0F * Math.pow((double)g, (double)1.25F);
-            double e = Math.sin(Math.toRadians((double)(this.particleRandom * 60.0F))) * (double)2.0F * Math.pow((double)g, (double)1.25F);
+            double d = Math.cos(Math.toRadians(this.particleRandom * 60.0F)) * (double)2.0F * Math.pow(g, 1.25F);
+            double e = Math.sin(Math.toRadians(this.particleRandom * 60.0F)) * (double)2.0F * Math.pow(g, 1.25F);
             this.xd += d * (double)0.0025F;
             this.zd += e * (double)0.0025F;
-            this.yd -= (double)this.gravity;
+            this.yd -= this.gravity;
             this.rotSpeed += this.spinAcceleration / 20.0F;
             this.oRoll = this.roll;
             this.roll += this.rotSpeed / 20.0F;
@@ -61,9 +62,9 @@ public class PaleOakParticle extends TextureSheetParticle {
             }
 
             if (!this.removed) {
-                this.xd *= (double)this.friction;
-                this.yd *= (double)this.friction;
-                this.zd *= (double)this.friction;
+                this.xd *= this.friction;
+                this.yd *= this.friction;
+                this.zd *= this.friction;
             }
         }
 
@@ -76,7 +77,7 @@ public class PaleOakParticle extends TextureSheetParticle {
             this.sprites = sprites;
         }
 
-        public Particle createParticle(SimpleParticleType type, ClientLevel level, double x, double y, double z, double xd, double yd, double zd) {
+        public Particle createParticle(@NotNull SimpleParticleType type, @NotNull ClientLevel level, double x, double y, double z, double xd, double yd, double zd) {
             return new PaleOakParticle(level, x, y, z, this.sprites);
         }
     }

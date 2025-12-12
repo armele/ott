@@ -14,8 +14,8 @@ public class CreakingRenderer<T extends Creaking> extends MobRenderer<Creaking, 
     private static final ResourceLocation TEXTURE_LOCATION = ResourceLocation.fromNamespaceAndPath("minecraft", "textures/entity/creaking/creaking.png");
 
     public CreakingRenderer(EntityRendererProvider.Context context) {
-        super(context, new CreakingModel(context.bakeLayer(CreakingModel.LAYER_LOCATION)), 0.6F);
-        this.addLayer(new CreakingEyesLayer(this));
+        super(context, new CreakingModel<>(context.bakeLayer(CreakingModel.LAYER_LOCATION)), 0.6F);
+        this.addLayer(new CreakingEyesLayer<>(this));
     }
 
     public @NotNull ResourceLocation getTextureLocation(@NotNull Creaking creaking) {

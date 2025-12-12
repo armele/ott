@@ -1,7 +1,6 @@
 package com.otterly76.ott.events;
 
 import com.mojang.datafixers.util.Either;
-import com.otterly76.ott.config.CreakingFleeConfig;
 import com.otterly76.ott.entity.Creaking;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceLocation;
@@ -18,10 +17,12 @@ import net.neoforged.neoforge.event.entity.EntityJoinLevelEvent;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.Arrays;
 
 @EventBusSubscriber(
         modid = "ott"
 )
+
 public class CreakingFleeGoalHandler {
     private static final float FLEE_DISTANCE = 12.0F;
     private static final double WALK_SPEED = 1.2;
@@ -33,17 +34,26 @@ public class CreakingFleeGoalHandler {
         Entity var2 = event.getEntity();
         if (var2 instanceof Mob mob) {
             if (!event.getLevel().isClientSide()) {
-                if (shouldFleeFromCreaking(mob)) {
-                    mob.goalSelector.addGoal(0, new AvoidEntityGoal<>((PathfinderMob)mob, Creaking.class, 12.0F, 1.2, 1.5F));
+                if (shouldFleeFromCreaking(mob) && mob instanceof PathfinderMob pathfinder) {
+                    pathfinder.goalSelector.addGoal(
+                            0,
+                            new AvoidEntityGoal<>(pathfinder, Creaking.class, FLEE_DISTANCE, WALK_SPEED, SPRINT_SPEED)
+                    );
                 }
-
             }
         }
     }
 
+    private static final List<String> FLEE_ENTITIES = Arrays.asList(
+            "minecraft:vindicator",
+            "minecraft:evoker",
+            "minecraft:pillager",
+            "#minecraft:raiders"
+    );
+
     private static boolean shouldFleeFromCreaking(Mob mob) {
         if (cachedFleeTypes == null) {
-            cachedFleeTypes = parseConfig(CreakingFleeConfig.FLEE_ENTITIES.get());
+            cachedFleeTypes = parseConfig(FLEE_ENTITIES); // Now uses the constant
         }
 
         EntityType<?> type = mob.getType();
@@ -61,16 +71,31 @@ public class CreakingFleeGoalHandler {
         return false;
     }
 
+    @SuppressWarnings("SameParameterValue")
     private static Set<Either<EntityType<?>, TagKey<EntityType<?>>>> parseConfig(List<? extends String> entries) {
         Set<Either<EntityType<?>, TagKey<EntityType<?>>>> set = new HashSet<>();
 
-        for(String s : entries) {
+        for (String s : entries) {
+            if (s == null || s.isBlank()) continue;
+
             if (s.startsWith("#")) {
-                String tag = s.substring(1);
-                set.add(Either.right(TagKey.create(Registries.ENTITY_TYPE, ResourceLocation.fromNamespaceAndPath(tag.split(":")[0], tag.split(":")[1]))));
+                ResourceLocation tagId = ResourceLocation.tryParse(s.substring(1));
+                if (tagId == null) {
+                    continue; // invalid tag string, skip
+                }
+                set.add(Either.right(TagKey.create(Registries.ENTITY_TYPE, tagId)));
             } else {
-                String[] parts = s.split(":");
-                set.add(Either.left(EntityType.byString(ResourceLocation.fromNamespaceAndPath(parts[0], parts[1]).toString()).orElse(null)));
+                ResourceLocation entityId = ResourceLocation.tryParse(s);
+                if (entityId == null) {
+                    continue; // invalid entity string, skip
+                }
+
+                EntityType<?> type = EntityType.byString(entityId.toString()).orElse(null);
+                if (type == null) {
+                    continue; // unknown entity id (e.g., mod not present or wrong id), skip
+                }
+
+                set.add(Either.left(type));
             }
         }
 

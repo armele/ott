@@ -4,7 +4,10 @@
   "package": "com.otterly76.ott.mixin",
   "compatibilityLevel": "JAVA_21",
   "refmap": "ott.refmap.json",
-  "mixins": [],
+  "mixins": [
+    "BushBlockMixin",
+    "TreeDecoratorTypeInvoker"
+  ],
   "client": [
     "ColorfulHeartsMixin",
     "DripParticleMixin",

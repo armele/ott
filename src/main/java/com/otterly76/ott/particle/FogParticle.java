@@ -7,7 +7,6 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.client.particle.Particle;
 import net.minecraft.client.particle.ParticleProvider;
-import net.minecraft.client.particle.ParticleRenderType;
 import net.minecraft.client.particle.SpriteSet;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.SimpleParticleType;
@@ -82,12 +81,13 @@ public class FogParticle extends WeatherParticle {
         }
     }
 
-    public void render(@NotNull VertexConsumer vertexConsumer, Camera camera, float f) {
-        Vec3 camPos = camera.getPosition();
-        float x = (float)(Mth.lerp(f, this.xo, this.x) - camPos.x());
-        float y = (float)(Mth.lerp(f, this.yo, this.y) - camPos.y());
-        float z = (float)(Mth.lerp(f, this.zo, this.z) - camPos.z());
-        Vector3f localPos = new Vector3f(x, y, z);
+    @SuppressWarnings("DuplicatedCode")
+    public void render(@NotNull VertexConsumer vertexConsumer, @NotNull Camera camera, float f) {
+        Vector3f localPos = this.getInterpolatedRelPos(camera, f);
+        float x = localPos.x();
+        float y = localPos.y();
+        float z = localPos.z();
+
         Quaternionf quaternion = Axis.YP.rotation((float)Math.atan2(x, z) + (float)Math.PI);
         float yAngle = (float)Math.asin(y / localPos.length());
         quaternion.rotateX(yAngle);
@@ -98,10 +98,6 @@ public class FogParticle extends WeatherParticle {
 
         quaternion.rotateZ(Mth.lerp(f, this.oRoll, this.roll));
         this.renderRotatedQuad(vertexConsumer, quaternion, x, y, z, f);
-    }
-
-    public @NotNull ParticleRenderType getRenderType() {
-        return ParticleRenderType.PARTICLE_SHEET_TRANSLUCENT;
     }
 
     @OnlyIn(Dist.CLIENT)

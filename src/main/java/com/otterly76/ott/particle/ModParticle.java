@@ -44,7 +44,7 @@ public class ModParticle {
 
     public static final DeferredHolder<ParticleType<?>, SimpleParticleType> PALE_OAK_LEAVES = MINECRAFT_PARTICLE_TYPES.register("pale_oak_leaves", () -> new SimpleParticleType(true));
 
-    public static final DeferredHolder<ParticleType<?>, ParticleType<TrailParticleOption>> TRAIL = MINECRAFT_PARTICLE_TYPES.register("trail", () -> new ParticleType<TrailParticleOption>(false) {
+    public static final DeferredHolder<ParticleType<?>, ParticleType<TrailParticleOption>> TRAIL = MINECRAFT_PARTICLE_TYPES.register("trail", () -> new ParticleType<>(false) {
                 public @NotNull MapCodec<TrailParticleOption> codec() {
                     return TrailParticleOption.CODEC;
                 }

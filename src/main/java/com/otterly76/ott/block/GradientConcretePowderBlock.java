@@ -20,6 +20,7 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import org.jetbrains.annotations.NotNull;
 
+import java.util.Objects;
 import java.util.function.Function;
 
 public class GradientConcretePowderBlock extends ConcretePowderBlock implements IGradientBlock {
@@ -82,12 +83,11 @@ public class GradientConcretePowderBlock extends ConcretePowderBlock implements 
     }
 
     @Override
-    @NotNull
-    public BlockState getStateForPlacement(final @NotNull BlockPlaceContext context) {
+    public @NotNull BlockState getStateForPlacement(final @NotNull BlockPlaceContext context) {
         BlockGetter blockgetter = context.getLevel();
         BlockPos blockpos = context.getClickedPos();
         BlockState blockstate = blockgetter.getBlockState(blockpos);
-        return shouldSolidify(blockgetter, blockpos, blockstate) ? this.concrete.getStateForPlacement(context) : super.getStateForPlacement(context).setValue(DirectionalBlock.FACING, context.getClickedFace());
+        return shouldSolidify(blockgetter, blockpos, blockstate) ? Objects.requireNonNull(this.concrete.getStateForPlacement(context)) : super.getStateForPlacement(context).setValue(DirectionalBlock.FACING, context.getClickedFace());
     }
 
     @Override

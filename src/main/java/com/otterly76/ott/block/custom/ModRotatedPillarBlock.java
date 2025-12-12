@@ -6,11 +6,11 @@ import net.minecraft.core.Direction;
 import net.minecraft.world.item.AxeItem;
 import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.world.level.BlockGetter;
-import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.RotatedPillarBlock;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
 import net.neoforged.neoforge.common.ItemAbility;
+import org.jetbrains.annotations.NotNull;
 
 import javax.annotation.Nullable;
 
@@ -19,27 +19,27 @@ public class ModRotatedPillarBlock extends RotatedPillarBlock {
         super(properties);
     }
 
-    public boolean isFlammable(BlockState state, BlockGetter level, BlockPos pos, Direction direction) {
+    public boolean isFlammable(@NotNull BlockState state, @NotNull BlockGetter level, @NotNull BlockPos pos, @NotNull Direction direction) {
         return true;
     }
 
-    public int getFlammability(BlockState state, BlockGetter level, BlockPos pos, Direction direction) {
+    public int getFlammability(@NotNull BlockState state, @NotNull BlockGetter level, @NotNull BlockPos pos, @NotNull Direction direction) {
         return 5;
     }
 
-    public int getFireSpreadSpeed(BlockState state, BlockGetter level, BlockPos pos, Direction direction) {
+    public int getFireSpreadSpeed(@NotNull BlockState state, @NotNull BlockGetter level, @NotNull BlockPos pos, @NotNull Direction direction) {
         return 5;
     }
 
     @Nullable
-    public BlockState getToolModifiedState(BlockState state, UseOnContext context, ItemAbility itemAbility, boolean simulate) {
+    public BlockState getToolModifiedState(@NotNull BlockState state, UseOnContext context, @NotNull ItemAbility itemAbility, boolean simulate) {
         if (context.getItemInHand().getItem() instanceof AxeItem) {
             if (state.is(ModBlocks.PALE_OAK_LOG)) {
-                return (BlockState)((Block)ModBlocks.STRIPPED_PALE_OAK_LOG.get()).defaultBlockState().setValue(AXIS, (Direction.Axis)state.getValue(AXIS));
+                return ModBlocks.STRIPPED_PALE_OAK_LOG.get().defaultBlockState().setValue(AXIS, state.getValue(AXIS));
             }
 
             if (state.is(ModBlocks.PALE_OAK_WOOD)) {
-                return (BlockState)((Block)ModBlocks.STRIPPED_PALE_OAK_WOOD.get()).defaultBlockState().setValue(AXIS, (Direction.Axis)state.getValue(AXIS));
+                return ModBlocks.STRIPPED_PALE_OAK_WOOD.get().defaultBlockState().setValue(AXIS, state.getValue(AXIS));
             }
         }
 

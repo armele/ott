@@ -136,6 +136,7 @@ public abstract class ColorfulHeartsMixin {
     }
 
     @Unique
+    @SuppressWarnings("SameParameterValue")
     private static void ott$renderHeart(GuiGraphics guiGraphics, Gui.HeartType heartType, int x, int y, int yOffset, boolean blinking, boolean halfHeart, boolean hardcore) {
         RenderSystem.enableBlend();
         ResourceLocation sprite = heartType.getSprite(hardcore, halfHeart, blinking);
@@ -144,6 +145,7 @@ public abstract class ColorfulHeartsMixin {
     }
 
     @Unique
+    @SuppressWarnings("DuplicatedCode")
     private static void ott$renderTintedSprite(GuiGraphics guiGraphics, ResourceLocation sprite, int x, int y, int color) {
         RenderSystem.enableBlend();
         float r = ((color >> 16) & 0xFF) / 255.0F;

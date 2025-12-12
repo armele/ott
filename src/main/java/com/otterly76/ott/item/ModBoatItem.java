@@ -31,6 +31,7 @@ public class ModBoatItem extends Item {
     }
 
     @Override
+    @SuppressWarnings("DuplicatedCode")
     public @NotNull InteractionResultHolder<ItemStack> use(@NotNull Level level, Player player, @NotNull InteractionHand hand) {
         ItemStack itemstack = player.getItemInHand(hand);
         HitResult hitresult = getPlayerPOVHitResult(level, player, ClipContext.Fluid.ANY);
@@ -48,7 +49,6 @@ public class ModBoatItem extends Item {
                 }
             }
 
-            //noinspection DuplicatedCode
             if (hitresult.getType() == HitResult.Type.BLOCK) {
                 Boat boat = this.type.get().create(level);
                 if (boat != null) {

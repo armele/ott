@@ -6,14 +6,12 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.client.particle.Particle;
 import net.minecraft.client.particle.ParticleProvider;
-import net.minecraft.client.particle.ParticleRenderType;
 import net.minecraft.client.particle.SpriteSet;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction.Axis;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.core.particles.SimpleParticleType;
 import net.minecraft.tags.BlockTags;
-import net.minecraft.util.Mth;
 import net.minecraft.world.level.ClipContext;
 import net.minecraft.world.level.ClipContext.Block;
 import net.minecraft.world.level.ClipContext.Fluid;
@@ -29,7 +27,7 @@ import net.minecraft.world.phys.shapes.VoxelShape;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
 import org.jetbrains.annotations.NotNull;
-import org.joml.AxisAngle4f;
+import org.joml.AxisAngle4d;
 import org.joml.Math;
 import org.joml.Quaternionf;
 import org.joml.Vector3f;
@@ -129,22 +127,16 @@ public class RainParticle extends WeatherParticle {
         }
     }
 
-    public void render(@NotNull VertexConsumer vertexConsumer, Camera camera, float tickPercentage) {
-        Vector3f camPos = camera.getPosition().toVector3f();
-        float x = (float)(Mth.lerp(tickPercentage, this.xo, this.x) - (double)camPos.x);
-        float y = (float)(Mth.lerp(tickPercentage, this.yo, this.y) - (double)camPos.y);
-        float z = (float)(Mth.lerp(tickPercentage, this.zo, this.z) - (double)camPos.z);
-        Vector3f delta = new Vector3f((float)this.xd, (float)this.yd, (float)this.zd);
-        float angle = Math.acos(delta.normalize().y);
-        Vector3f axis = (new Vector3f(-delta.z(), 0.0F, delta.x())).normalize();
-        Quaternionf quaternion = new Quaternionf(new AxisAngle4f(-angle, axis));
-        quaternion.mul(com.mojang.math.Axis.YN.rotation(this.roll));
-        quaternion = this.flipItTurnwaysIfBackfaced(quaternion, new Vector3f(x, y, z));
-        this.renderRotatedQuad(vertexConsumer, quaternion, x, y, z, tickPercentage);
-    }
+    @SuppressWarnings("DuplicatedCode")
+    public void render(@NotNull VertexConsumer vertexConsumer, @NotNull Camera camera, float f) {
+        Vector3f localPos = this.getInterpolatedRelPos(camera, f);
+        float x = localPos.x();
+        float y = localPos.y();
+        float z = localPos.z();
 
-    public @NotNull ParticleRenderType getRenderType() {
-        return ParticleRenderType.PARTICLE_SHEET_TRANSLUCENT;
+        Quaternionf quaternion = new Quaternionf(new AxisAngle4d(this.roll, 0.0F, 1.0F, 0.0F));
+        this.flipItTurnwaysIfBackfaced(quaternion, new Vector3f(x, y, z));
+        this.renderRotatedQuad(vertexConsumer, quaternion, x, y + 0.25F, z, f);
     }
 
     @OnlyIn(Dist.CLIENT)

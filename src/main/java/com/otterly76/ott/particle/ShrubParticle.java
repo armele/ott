@@ -14,7 +14,6 @@ import net.minecraft.core.particles.SimpleParticleType;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.packs.resources.Resource;
 import net.minecraft.tags.BlockTags;
-import net.minecraft.util.Mth;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.block.state.BlockState;
@@ -22,8 +21,7 @@ import net.minecraft.world.level.levelgen.Heightmap.Types;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
 import org.jetbrains.annotations.NotNull;
-import org.joml.AxisAngle4f;
-import org.joml.Math;
+import org.joml.AxisAngle4d;
 import org.joml.Quaternionf;
 import org.joml.Vector3f;
 
@@ -101,22 +99,16 @@ public class ShrubParticle extends WeatherParticle {
         return ParticleRenderType.TERRAIN_SHEET;
     }
 
-    public void render(@NotNull VertexConsumer vertexConsumer, Camera camera, float tickPercentage) {
-        Vector3f camPos = camera.getPosition().toVector3f();
-        float x = (float)(Mth.lerp(tickPercentage, this.xo, this.x) - (double)camPos.x);
-        float y = (float)(Mth.lerp(tickPercentage, this.yo, this.y) - (double)camPos.y);
-        float z = (float)(Mth.lerp(tickPercentage, this.zo, this.z) - (double)camPos.z);
-        float angle = (float)Math.atan2(this.xd, this.zd);
-        Quaternionf quaternion = new Quaternionf();
-        quaternion.rotateY(angle);
-        Quaternionf quat1 = new Quaternionf(new AxisAngle4f(0.0F, 0.0F, 1.0F, 0.0F));
-        Quaternionf quat2 = new Quaternionf(new AxisAngle4f(((float)java.lang.Math.PI / 2F), 0.0F, 1.0F, 0.0F));
-        quat1.mul(quaternion).rotateX(Mth.lerp(tickPercentage, this.oRoll, this.roll));
-        quat2.mul(quaternion).rotateZ(Mth.lerp(tickPercentage, this.oRoll, this.roll));
-        quat1 = this.flipItTurnwaysIfBackfaced(quat1, new Vector3f(x, y, z));
-        quat2 = this.flipItTurnwaysIfBackfaced(quat2, new Vector3f(x, y, z));
-        this.renderRotatedQuad(vertexConsumer, quat1, x, y, z, tickPercentage);
-        this.renderRotatedQuad(vertexConsumer, quat2, x, y, z, tickPercentage);
+    @SuppressWarnings("DuplicatedCode")
+    public void render(@NotNull VertexConsumer vertexConsumer, @NotNull Camera camera, float f) {
+        Vector3f localPos = this.getInterpolatedRelPos(camera, f);
+        float x = localPos.x();
+        float y = localPos.y();
+        float z = localPos.z();
+
+        Quaternionf quaternion = new Quaternionf(new AxisAngle4d(this.roll, 0.0F, 1.0F, 0.0F));
+        this.flipItTurnwaysIfBackfaced(quaternion, new Vector3f(x, y, z));
+        this.renderRotatedQuad(vertexConsumer, quaternion, x, y + 0.25F, z, f);
     }
 
     @OnlyIn(Dist.CLIENT)

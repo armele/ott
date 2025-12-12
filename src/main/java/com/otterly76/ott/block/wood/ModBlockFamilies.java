@@ -20,7 +20,7 @@ public class ModBlockFamilies {
     private static BlockFamily registerFamily(BlockFamily family) {
         Block baseBlock = family.getBaseBlock();
         if (MAP.containsKey(baseBlock)) {
-            throw new IllegalStateException("Duplicate family definition for " + String.valueOf(BuiltInRegistries.BLOCK.getKey(baseBlock)));
+            throw new IllegalStateException("Duplicate family definition for " + BuiltInRegistries.BLOCK.getKey(baseBlock));
         } else {
             MAP.put(baseBlock, family);
             return family;
@@ -31,7 +31,25 @@ public class ModBlockFamilies {
     }
 
     static {
-        RESIN_BRICKS = registerFamily(familyBuilder((Block) ModBlocks.RESIN_BRICKS.get()).wall((Block)ModBlocks.RESIN_BRICK_WALL.get()).stairs((Block)ModBlocks.RESIN_BRICK_STAIRS.get()).slab((Block)ModBlocks.RESIN_BRICK_SLAB.get()).chiseled((Block)ModBlocks.CHISELED_RESIN_BRICKS.get()).getFamily());
-        PALE_OAK = registerFamily(familyBuilder((Block)ModBlocks.PALE_OAK_PLANKS.get()).button((Block)ModBlocks.PALE_OAK_BUTTON.get()).fence((Block)ModBlocks.PALE_OAK_FENCE.get()).fenceGate((Block)ModBlocks.PALE_OAK_FENCE_GATE.get()).pressurePlate((Block)ModBlocks.PALE_OAK_PRESSURE_PLATE.get()).sign((Block)ModBlocks.PALE_OAK_SIGN.get(), (Block)ModBlocks.PALE_OAK_WALL_SIGN.get()).slab((Block)ModBlocks.PALE_OAK_SLAB.get()).stairs((Block)ModBlocks.PALE_OAK_STAIRS.get()).door((Block)ModBlocks.PALE_OAK_DOOR.get()).trapdoor((Block)ModBlocks.PALE_OAK_TRAPDOOR.get()).recipeGroupPrefix("wooden").recipeUnlockedBy("has_planks").getFamily());
+        RESIN_BRICKS = registerFamily(familyBuilder(ModBlocks.RESIN_BRICKS
+                .get()).wall(ModBlocks.RESIN_BRICK_WALL
+                .get()).stairs(ModBlocks.RESIN_BRICK_STAIRS
+                .get()).slab(ModBlocks.RESIN_BRICK_SLAB
+                .get()).chiseled(ModBlocks.CHISELED_RESIN_BRICKS
+                .get())
+                .getFamily());
+        PALE_OAK = registerFamily(familyBuilder(ModBlocks.PALE_OAK_PLANKS
+                .get()).button(ModBlocks.PALE_OAK_BUTTON
+                .get()).fence(ModBlocks.PALE_OAK_FENCE
+                .get()).fenceGate(ModBlocks.PALE_OAK_FENCE_GATE
+                .get()).pressurePlate(ModBlocks.PALE_OAK_PRESSURE_PLATE
+                .get()).sign(ModBlocks.PALE_OAK_SIGN.get(), ModBlocks.PALE_OAK_WALL_SIGN
+                .get()).slab(ModBlocks.PALE_OAK_SLAB
+                .get()).stairs(ModBlocks.PALE_OAK_STAIRS
+                .get()).door(ModBlocks.PALE_OAK_DOOR
+                .get()).trapdoor(ModBlocks.PALE_OAK_TRAPDOOR
+                .get()).recipeGroupPrefix("wooden")
+                .recipeUnlockedBy("has_planks")
+                .getFamily());
     }
 }

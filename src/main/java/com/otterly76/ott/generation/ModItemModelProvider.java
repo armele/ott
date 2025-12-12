@@ -12,8 +12,6 @@ public class ModItemModelProvider extends ItemModelProvider {
 
     protected void registerModels() {
         // Placeholder implementation used in ModItems
-        if (ModItems.CREAKING_SPAWN_EGG != null) {
-            this.withExistingParent(ModItems.CREAKING_SPAWN_EGG.getId().getPath(), this.mcLoc("item/template_spawn_egg"));
-        }
+        this.withExistingParent(ModItems.CREAKING_SPAWN_EGG.getId().getPath(), this.mcLoc("item/template_spawn_egg"));
     }
 }

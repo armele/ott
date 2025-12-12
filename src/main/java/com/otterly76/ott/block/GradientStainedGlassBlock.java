@@ -16,6 +16,7 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import org.jetbrains.annotations.NotNull;
 
+import java.util.Objects;
 import java.util.function.Function;
 
 public class GradientStainedGlassBlock extends StainedGlassBlock implements IGradientBlock {
@@ -80,7 +81,7 @@ public class GradientStainedGlassBlock extends StainedGlassBlock implements IGra
 
     @Override
     public BlockState getStateForPlacement(final @NotNull BlockPlaceContext context) {
-        return super.getStateForPlacement(context).setValue(DirectionalBlock.FACING, context.getClickedFace());
+        return Objects.requireNonNull(super.getStateForPlacement(context)).setValue(DirectionalBlock.FACING, context.getClickedFace());
     }
 
     @Override

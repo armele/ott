@@ -18,6 +18,7 @@ import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.HitResult;
 import net.minecraft.world.phys.HitResult.Type;
 import net.minecraft.world.phys.Vec3;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
 import java.util.function.Predicate;
@@ -31,19 +32,19 @@ public class PaleOakBoatType extends Item {
         this.hasChest = hasChest;
     }
 
-    public InteractionResultHolder<ItemStack> use(Level level, Player player, InteractionHand hand) {
+    public @NotNull InteractionResultHolder<ItemStack> use(@NotNull Level level, Player player, @NotNull InteractionHand hand) {
         ItemStack itemstack = player.getItemInHand(hand);
         HitResult hitresult = getPlayerPOVHitResult(level, player, Fluid.ANY);
         if (hitresult.getType() == Type.MISS) {
             return InteractionResultHolder.pass(itemstack);
         } else {
             Vec3 vec3 = player.getViewVector(1.0F);
-            List<Entity> list = level.getEntities(player, player.getBoundingBox().expandTowards(vec3.scale((double)5.0F)).inflate((double)1.0F), ENTITY_PREDICATE);
+            List<Entity> list = level.getEntities(player, player.getBoundingBox().expandTowards(vec3.scale(5.0F)).inflate(1.0F), ENTITY_PREDICATE);
             if (!list.isEmpty()) {
                 Vec3 vec31 = player.getEyePosition();
 
                 for(Entity entity : list) {
-                    AABB aabb = entity.getBoundingBox().inflate((double)entity.getPickRadius());
+                    AABB aabb = entity.getBoundingBox().inflate(entity.getPickRadius());
                     if (aabb.contains(vec31)) {
                         return InteractionResultHolder.pass(itemstack);
                     }
@@ -51,7 +52,7 @@ public class PaleOakBoatType extends Item {
             }
 
             if (hitresult.getType() == Type.BLOCK) {
-                Boat boat = (Boat)(this.hasChest ? new PaleOakChestBoatEntity(level, hitresult.getLocation().x, hitresult.getLocation().y, hitresult.getLocation().z) : new PaleOakBoatEntity(level, hitresult.getLocation().x, hitresult.getLocation().y, hitresult.getLocation().z));
+                Boat boat = this.hasChest ? new PaleOakChestBoatEntity(level, hitresult.getLocation().x, hitresult.getLocation().y, hitresult.getLocation().z) : new PaleOakBoatEntity(level, hitresult.getLocation().x, hitresult.getLocation().y, hitresult.getLocation().z);
                 boat.setYRot(player.getYRot());
                 if (!level.noCollision(boat, boat.getBoundingBox())) {
                     return InteractionResultHolder.fail(itemstack);

@@ -1,12 +1,16 @@
 package com.otterly76.ott.particle;
 
 import com.mojang.math.Axis;
+import net.minecraft.client.Camera;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.multiplayer.ClientLevel;
+import net.minecraft.client.particle.ParticleRenderType;
 import net.minecraft.client.particle.TextureSheetParticle;
 import net.minecraft.core.BlockPos;
 import net.minecraft.util.Mth;
 import net.minecraft.world.entity.Entity;
+import net.minecraft.world.phys.Vec3;
+import org.jetbrains.annotations.NotNull;
 import org.joml.Quaternionf;
 import org.joml.Vector3f;
 
@@ -78,5 +82,24 @@ public abstract class WeatherParticle extends TextureSheetParticle {
         normal.rotate(quaternion).normalize();
         float dot = normal.dot(toCamera);
         return dot > 0.0F ? quaternion.mul(Axis.YP.rotation((float)Math.PI)) : quaternion;
+    }
+
+    @Override
+    public @NotNull ParticleRenderType getRenderType() {
+        return ParticleRenderType.PARTICLE_SHEET_TRANSLUCENT;
+    }
+
+    /**
+     * Helper to get the interpolated position of the particle relative to the camera.
+     * This removes duplicated lerping logic in subclasses.
+     */
+
+    protected Vector3f getInterpolatedRelPos(Camera camera, float tickPercent) {
+        Vec3 camPos = camera.getPosition();
+        return new Vector3f(
+                (float)(Mth.lerp(tickPercent, this.xo, this.x) - camPos.x()),
+                (float)(Mth.lerp(tickPercent, this.yo, this.y) - camPos.y()),
+                (float)(Mth.lerp(tickPercent, this.zo, this.z) - camPos.z())
+        );
     }
 }

@@ -9,6 +9,7 @@ import net.minecraft.client.particle.TextureSheetParticle;
 import net.minecraft.util.Mth;
 import net.minecraft.util.FastColor.ABGR32;
 import net.minecraft.world.phys.Vec3;
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 public class TrailParticle extends TextureSheetParticle {
@@ -25,10 +26,10 @@ public class TrailParticle extends TextureSheetParticle {
     }
 
     public static int scaleRGB(int i, float f, float g, float h) {
-        return ABGR32.color(ABGR32.alpha(i), Math.clamp((long)((int)((float)ABGR32.red(i) * f)), 0, 255), Math.clamp((long)((int)((float)ABGR32.green(i) * g)), 0, 255), Math.clamp((long)((int)((float)ABGR32.blue(i) * h)), 0, 255));
+        return ABGR32.color(ABGR32.alpha(i), Math.clamp((int)((float)ABGR32.red(i) * f), 0, 255), Math.clamp((int)((float)ABGR32.green(i) * g), 0, 255), Math.clamp((int)((float)ABGR32.blue(i) * h), 0, 255));
     }
 
-    public ParticleRenderType getRenderType() {
+    public @NotNull ParticleRenderType getRenderType() {
         return ParticleRenderType.PARTICLE_SHEET_OPAQUE;
     }
 
@@ -59,7 +60,7 @@ public class TrailParticle extends TextureSheetParticle {
             this.sprite = spriteSet;
         }
 
-        public @Nullable Particle createParticle(TrailParticleOption trailParticleOption, ClientLevel clientLevel, double d, double e, double f, double g, double h, double i) {
+        public @Nullable Particle createParticle(TrailParticleOption trailParticleOption, @NotNull ClientLevel clientLevel, double d, double e, double f, double g, double h, double i) {
             TrailParticle trailParticle = new TrailParticle(clientLevel, d, e, f, g, h, i, trailParticleOption.target(), trailParticleOption.color());
             trailParticle.pickSprite(this.sprite);
             trailParticle.setLifetime(trailParticleOption.duration());

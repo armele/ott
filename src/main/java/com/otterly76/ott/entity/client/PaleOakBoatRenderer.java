@@ -32,10 +32,10 @@ public class PaleOakBoatRenderer extends EntityRenderer<Boat> {
         super(context);
         this.hasChest = hasChest;
         ModelPart part = context.bakeLayer(hasChest ? CHEST_BOAT_LAYER : BOAT_LAYER);
-        this.model = (ListModel<Boat>)(hasChest ? new ChestBoatModel(part) : new BoatModel(part));
+        this.model = hasChest ? new ChestBoatModel(part) : new BoatModel(part);
     }
 
-    public void render(Boat boat, float yaw, float tickDelta, PoseStack matrices, MultiBufferSource vertexConsumers, int light) {
+    public void render(Boat boat, float yaw, float tickDelta, PoseStack matrices, @NotNull MultiBufferSource vertexConsumers, int light) {
         matrices.pushPose();
         matrices.translate(0.0F, 0.375F, 0.0F);
         matrices.mulPose(Axis.YP.rotationDegrees(180.0F - yaw));
@@ -61,9 +61,7 @@ public class PaleOakBoatRenderer extends EntityRenderer<Boat> {
         this.model.renderToBuffer(matrices, vertexConsumer, light, OverlayTexture.NO_OVERLAY);
         if (!boat.isUnderWater()) {
             VertexConsumer waterConsumer = vertexConsumers.getBuffer(RenderType.waterMask());
-            ListModel var13 = this.model;
-            if (var13 instanceof WaterPatchModel) {
-                WaterPatchModel waterPatchModel = (WaterPatchModel)var13;
+            if (this.model instanceof WaterPatchModel waterPatchModel) {
                 waterPatchModel.waterPatch().render(matrices, waterConsumer, light, OverlayTexture.NO_OVERLAY);
             }
         }

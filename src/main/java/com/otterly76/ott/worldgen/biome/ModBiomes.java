@@ -25,13 +25,21 @@ public class ModBiomes {
     public static Biome paleGarden(BootstrapContext<Biome> context) {
         MobSpawnSettings.Builder builder = new MobSpawnSettings.Builder();
         BiomeDefaultFeatures.commonSpawns(builder);
-        BiomeGenerationSettings.Builder builder2 = new BiomeGenerationSettings.Builder(context.lookup(Registries.PLACED_FEATURE), context.lookup(Registries.CONFIGURED_CARVER));
+
+        BiomeGenerationSettings.Builder builder2 =
+                new BiomeGenerationSettings.Builder(
+                        context.lookup(Registries.PLACED_FEATURE),
+                        context.lookup(Registries.CONFIGURED_CARVER)
+                );
+
+        builder2.addFeature(Decoration.VEGETAL_DECORATION, ModPlacedFeatures.PALE_OAK);
         builder2.addFeature(Decoration.VEGETAL_DECORATION, ModPlacedFeatures.PALE_GARDEN_VEGETATION);
         builder2.addFeature(Decoration.VEGETAL_DECORATION, ModPlacedFeatures.PALE_MOSS_PATCH);
         builder2.addFeature(Decoration.VEGETAL_DECORATION, ModPlacedFeatures.PALE_GARDEN_FLOWERS);
+        builder2.addFeature(Decoration.VEGETAL_DECORATION, ModPlacedFeatures.FLOWER_PALE_GARDEN);
+
         BiomeDefaultFeatures.addDefaultOres(builder2);
         BiomeDefaultFeatures.addDefaultSoftDisks(builder2);
-        builder2.addFeature(Decoration.VEGETAL_DECORATION, ModPlacedFeatures.FLOWER_PALE_GARDEN);
         BiomeDefaultFeatures.addForestGrass(builder2);
         BiomeDefaultFeatures.addDefaultExtraVegetation(builder2);
 

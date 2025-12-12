@@ -17,10 +17,10 @@ public class ModDatapackProvider extends DatapackBuiltinEntriesProvider {
     public static final RegistrySetBuilder BUILDER = new RegistrySetBuilder()
             .add(Registries.TRIM_MATERIAL, ModTrimMaterials::bootstrap)
             .add(Registries.CONFIGURED_FEATURE, ModConfiguredFeatures::bootstrap)
-            .add(Registries.PLACED_FEATURE, ModPlacedFeatures::bootstrap)
-            .add(Registries.BIOME, ModBiomes::bootstrap);
+            .add(Registries.PLACED_FEATURE, ModPlacedFeatures::bootstrap)  // Ensure this is included
+            .add(Registries.BIOME, ModBiomes::bootstrap);  // For base feature backport
 
     public ModDatapackProvider(PackOutput output, CompletableFuture<HolderLookup.Provider> registries) {
-        super(output, registries, BUILDER, Set.of("minecraft", "ott"));
+        super(output, registries, BUILDER, Set.of("minecraft"));  // Use "minecraft" for backport patch
     }
 }
