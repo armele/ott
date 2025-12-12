@@ -23,12 +23,12 @@ public class ModPlacedFeatures {
 
         context.register(FLOWER_PALE_GARDEN, new PlacedFeature(
                 configuredFeatures.getOrThrow(ModConfiguredFeatures.FLOWER_PALE_GARDEN),
-                commonSurfacePlacement(12)
+                commonSurfacePlacement(2)
         ));
 
         context.register(PALE_GARDEN_FLOWERS, new PlacedFeature(
                 configuredFeatures.getOrThrow(ModConfiguredFeatures.PALE_GARDEN_FLOWERS),
-                commonSurfacePlacement(8)
+                commonSurfacePlacement(1)
         ));
 
         context.register(PALE_MOSS_PATCH, new PlacedFeature(

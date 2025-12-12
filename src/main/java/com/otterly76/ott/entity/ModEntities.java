@@ -1,27 +1,23 @@
 package com.otterly76.ott.entity;
 
-import java.util.function.Supplier;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.world.entity.EntityType;
-import net.minecraft.world.entity.MobCategory;
 import net.minecraft.world.entity.EntityType.Builder;
+import net.minecraft.world.entity.MobCategory;
 import net.minecraft.world.entity.vehicle.Boat;
 import net.minecraft.world.entity.vehicle.ChestBoat;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.neoforge.registries.DeferredRegister;
 
-import static com.otterly76.ott.Constants.MOD_ID;
+import java.util.function.Supplier;
 
 public class ModEntities {
-    // Note: Using "minecraft" namespace for backport parity where possible
+
     public static final DeferredRegister<EntityType<?>> ENTITY_TYPES = DeferredRegister.create(BuiltInRegistries.ENTITY_TYPE, "minecraft");
 
     public static final Supplier<EntityType<Creaking>> CREAKING = ENTITY_TYPES.register("creaking",
             () -> Builder.of(Creaking::new, MobCategory.CREATURE).sized(0.9F, 2.7F).build("creaking"));
 
-    // For boats, we might need them to be "ott" if they use custom items,
-    // but the backport code uses "minecraft" probably to override or mimic vanilla behavior?
-    // I will stick to the backport's logic ("minecraft") for now.
     public static final Supplier<EntityType<Boat>> PALE_OAK_BOAT = ENTITY_TYPES.register("pale_oak_boat",
             () -> Builder.<Boat>of(PaleOakBoatEntity::new, MobCategory.MISC).sized(1.375F, 0.5625F).clientTrackingRange(10).build("pale_oak_boat"));
 

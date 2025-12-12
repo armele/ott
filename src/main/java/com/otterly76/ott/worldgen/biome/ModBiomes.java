@@ -35,13 +35,13 @@ public class ModBiomes {
         builder2.addFeature(Decoration.VEGETAL_DECORATION, ModPlacedFeatures.PALE_OAK);
         builder2.addFeature(Decoration.VEGETAL_DECORATION, ModPlacedFeatures.PALE_GARDEN_VEGETATION);
         builder2.addFeature(Decoration.VEGETAL_DECORATION, ModPlacedFeatures.PALE_MOSS_PATCH);
-        builder2.addFeature(Decoration.VEGETAL_DECORATION, ModPlacedFeatures.PALE_GARDEN_FLOWERS);
+        // builder2.addFeature(Decoration.VEGETAL_DECORATION, ModPlacedFeatures.PALE_GARDEN_FLOWERS);
         builder2.addFeature(Decoration.VEGETAL_DECORATION, ModPlacedFeatures.FLOWER_PALE_GARDEN);
 
         BiomeDefaultFeatures.addDefaultOres(builder2);
-        BiomeDefaultFeatures.addDefaultSoftDisks(builder2);
+        // BiomeDefaultFeatures.addDefaultSoftDisks(builder2);
         BiomeDefaultFeatures.addForestGrass(builder2);
-        BiomeDefaultFeatures.addDefaultExtraVegetation(builder2);
+        // BiomeDefaultFeatures.addDefaultExtraVegetation(builder2);
 
         return (new Biome.BiomeBuilder())
                 .hasPrecipitation(true)

@@ -1,8 +1,14 @@
 package com.otterly76.ott;
 
+import com.otterly76.ott.block.ModBlocks;
 import com.otterly76.ott.client.NutritionHudOverlay;
+import com.otterly76.ott.util.WoodTypeVariant;
+import net.minecraft.client.renderer.ItemBlockRenderTypes;
+import net.minecraft.client.renderer.RenderType;
+import net.minecraft.client.renderer.Sheets;
 import net.minecraft.resources.ResourceLocation;
 import net.neoforged.bus.api.IEventBus;
+import net.neoforged.fml.event.lifecycle.FMLClientSetupEvent;
 import net.neoforged.neoforge.client.event.RegisterGuiLayersEvent;
 import net.neoforged.neoforge.client.gui.VanillaGuiLayers;
 
@@ -10,6 +16,7 @@ public class ClientModEvents {
 
     public static void register(IEventBus modBus) {
         modBus.addListener(ClientModEvents::registerGuiLayers);
+        modBus.addListener(ClientModEvents::onClientSetup);
     }
 
     public static void registerGuiLayers(RegisterGuiLayersEvent event) {
@@ -17,4 +24,18 @@ public class ClientModEvents {
                 ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, "nutrition_overlay"),
                 new NutritionHudOverlay());
     }
+
+        @SuppressWarnings("deprecation")
+        public static void onClientSetup(FMLClientSetupEvent event) {
+            event.enqueueWork(() -> {
+                Sheets.addWoodType(WoodTypeVariant.PALE_OAK.getWoodType());
+
+                ItemBlockRenderTypes.setRenderLayer(ModBlocks.CLOSED_EYEBLOSSOM.get(), RenderType.cutout());
+                ItemBlockRenderTypes.setRenderLayer(ModBlocks.OPEN_EYEBLOSSOM.get(), RenderType.cutout());
+                ItemBlockRenderTypes.setRenderLayer(ModBlocks.PALE_HANGING_MOSS.get(), RenderType.cutout());
+                ItemBlockRenderTypes.setRenderLayer(ModBlocks.PALE_MOSS_CARPET.get(), RenderType.cutout());
+
+                ItemBlockRenderTypes.setRenderLayer(ModBlocks.PALE_OAK_LEAVES.get(), RenderType.cutoutMipped());
+            });
+        }
 }

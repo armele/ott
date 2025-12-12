@@ -2,12 +2,14 @@ package com.otterly76.ott.worldgen;
 
 import com.google.common.collect.ImmutableList;
 import com.otterly76.ott.block.ModBlocks;
+import net.minecraft.core.BlockPos;
 import net.minecraft.core.Holder;
 import net.minecraft.core.HolderGetter;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.data.worldgen.BootstrapContext;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.tags.BlockTags;
 import net.minecraft.util.valueproviders.ConstantInt;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.levelgen.blockpredicates.BlockPredicate;
@@ -60,7 +62,7 @@ public class ModConfiguredFeatures {
                 new RandomPatchConfiguration(
                         8,
                         8,
-                        5,
+                        1,
                         Holder.direct(new PlacedFeature(
                                 Holder.direct(new ConfiguredFeature<>(
                                         Feature.SIMPLE_BLOCK,
@@ -70,10 +72,18 @@ public class ModConfiguredFeatures {
                                 )),
                                 List.of(
                                         BlockPredicateFilter.forPredicate(
-                                                BlockPredicate.ONLY_IN_AIR_PREDICATE
+                                                BlockPredicate.anyOf(
+                                                        BlockPredicate.matchesBlocks(BlockPos.ZERO, Blocks.GRASS_BLOCK),
+                                                        BlockPredicate.matchesBlocks(BlockPos.ZERO, Blocks.DIRT)
+                                                )
                                         ),
                                         BlockPredicateFilter.forPredicate(
-                                                BlockPredicate.solid(net.minecraft.core.BlockPos.ZERO.below())
+                                                BlockPredicate.matchesBlocks(BlockPos.ZERO.above(), Blocks.AIR)
+                                        ),
+                                        BlockPredicateFilter.forPredicate(
+                                                BlockPredicate.not(
+                                                        BlockPredicate.matchesTag(BlockPos.ZERO.above(), BlockTags.LEAVES)
+                                                )
                                         )
                                 )
                         ))
@@ -83,17 +93,27 @@ public class ModConfiguredFeatures {
         context.register(FLOWER_PALE_GARDEN, new ConfiguredFeature<>(
                 Feature.FLOWER,
                 new RandomPatchConfiguration(
-                        96,
+                        24,
                         6,
                         2,
                         Holder.direct(new PlacedFeature(
                                 Holder.direct(new ConfiguredFeature<>(
                                         Feature.SIMPLE_BLOCK,
-                                        new SimpleBlockConfiguration(BlockStateProvider.simple(Blocks.ALLIUM.defaultBlockState()))
+                                        new SimpleBlockConfiguration(
+                                                BlockStateProvider.simple(ModBlocks.CLOSED_EYEBLOSSOM.get().defaultBlockState())
+                                        )
                                 )),
-                                List.of()
+                                List.of(
+                                        BlockPredicateFilter.forPredicate(BlockPredicate.ONLY_IN_AIR_PREDICATE),
+                                        BlockPredicateFilter.forPredicate(
+                                                BlockPredicate.anyOf(
+                                                        BlockPredicate.matchesBlocks(net.minecraft.core.BlockPos.ZERO.below(), Blocks.GRASS_BLOCK),
+                                                        BlockPredicate.matchesBlocks(net.minecraft.core.BlockPos.ZERO.below(), ModBlocks.PALE_MOSS_BLOCK.get())
+                                                )
+                                        )
+                                )
                         ))
-                ) // Example flowers; customize
+                )
         ));
 
         context.register(PALE_FOREST_FLOWERS, new ConfiguredFeature<>(

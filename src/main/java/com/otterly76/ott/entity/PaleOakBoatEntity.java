@@ -20,7 +20,7 @@ public class PaleOakBoatEntity extends Boat {
     }
 
     public PaleOakBoatEntity(Level level, double x, double y, double z) {
-        this((EntityType)ModEntities.PALE_OAK_BOAT.get(), level);
+        this(ModEntities.PALE_OAK_BOAT.get(), level);
         this.setPos(x, y, z);
         this.xo = x;
         this.yo = y;
@@ -33,7 +33,7 @@ public class PaleOakBoatEntity extends Boat {
     }
 
     public @NotNull Item getDropItem() {
-        return (Item) ModItems.PALE_OAK_BOAT.get();
+        return ModItems.PALE_OAK_BOAT.get();
     }
 
     protected void addAdditionalSaveData(@NotNull CompoundTag tag) {
