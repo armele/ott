@@ -76,6 +76,11 @@ public class CreakingHeartBlockEntity extends BlockEntity {
     }
 
     public static void serverTick(@NotNull Level level, @NotNull BlockPos blockPos, @NotNull BlockState blockState, @NotNull CreakingHeartBlockEntity creakingHeartBlockEntity) {
+        // Prevent ticking a BE that has been removed/unloaded (can happen around chunk unloads)
+        if (creakingHeartBlockEntity.isRemoved()) {
+            return;
+        }
+
         ++creakingHeartBlockEntity.ticksExisted;
         if (level instanceof ServerLevel serverLevel) {
             if (level.isDay()) {
@@ -108,7 +113,9 @@ public class CreakingHeartBlockEntity extends BlockEntity {
             }
 
             if (creakingHeartBlockEntity.ticker-- < 0) {
-                creakingHeartBlockEntity.ticker = creakingHeartBlockEntity.level == null ? 20 : creakingHeartBlockEntity.level.random.nextInt(5) + 20;
+                // Use the guaranteed non-null tick 'level', not the BE field which can be null in lifecycle edge cases.
+                creakingHeartBlockEntity.ticker = level.random.nextInt(5) + 20;
+
                 if (creakingHeartBlockEntity.creakingInfo == null) {
                     if (CreakingHeartBlock.hasRequiredLogs(blockState, level, blockPos) && !level.isDay()) {
                         if (blockState.getValue(CreakingHeartBlock.ENABLED) && CreakingHeartBlock.isNaturalNight(level)) {
@@ -148,7 +155,6 @@ public class CreakingHeartBlockEntity extends BlockEntity {
                 }
             }
         }
-
     }
 
     private static @Nullable Creaking spawnProtector(@NotNull ServerLevel serverLevel, @NotNull CreakingHeartBlockEntity creakingHeartBlockEntity) {

@@ -123,18 +123,18 @@
   "music.nether.warped_forest": {
     "sounds": [
       {
-        "name": "music/nether/warped_forest",
+        "name": "music/game/nether/warped_forest/warped_forest",
         "stream": true
       }
     ]
   },
   "block.resin.break": {
     "sounds": [
-      "ott:block/resin/resin_break1",
-      "ott:block/resin/resin_break2",
-      "ott:block/resin/resin_break3",
-      "ott:block/resin/resin_break4",
-      "ott:block/resin/resin_break5"
+      "block/resin/resin_break1",
+      "block/resin/resin_break2",
+      "block/resin/resin_break3",
+      "block/resin/resin_break4",
+      "block/resin/resin_break5"
     ],
     "subtitle": "subtitles.block.generic.break"
   },
@@ -146,69 +146,69 @@
   },
   "block.resin.place": {
     "sounds": [
-      "ott:block/resin/resin_place1",
-      "ott:block/resin/resin_place2",
-      "ott:block/resin/resin_place3",
-      "ott:block/resin/resin_place4"
+      "block/resin/resin_place1",
+      "block/resin/resin_place2",
+      "block/resin/resin_place3",
+      "block/resin/resin_place4"
     ],
     "subtitle": "subtitles.block.generic.place"
   },
   "block.resin.step": {
     "sounds": [
-      "ott:block/resin/resin_step1",
-      "ott:block/resin/resin_step2",
-      "ott:block/resin/resin_step3",
-      "ott:block/resin/resin_step4",
-      "ott:block/resin/resin_step5"
+      "block/resin/resin_step1",
+      "block/resin/resin_step2",
+      "block/resin/resin_step3",
+      "block/resin/resin_step4",
+      "block/resin/resin_step5"
     ],
     "subtitle": "subtitles.block.generic.footsteps"
   },
   "block.resin_bricks.break": {
     "sounds": [
-      "ott:block/resin_bricks/resin_brick_break"
+      "block/resin_bricks/resin_brick_break"
     ],
     "subtitle": "subtitles.block.generic.break"
   },
   "block.resin_bricks.fall": {
     "sounds": [
-      "ott:block/resin_bricks/resin_brick_fall"
+      "block/resin_bricks/resin_brick_fall"
     ],
     "subtitle": "subtitles.block.generic.fall"
   },
   "block.resin_bricks.hit": {
     "sounds": [
-      "ott:block/resin_bricks/resin_brick_hit1",
-      "ott:block/resin_bricks/resin_brick_hit2",
-      "ott:block/resin_bricks/resin_brick_hit3",
-      "ott:block/resin_bricks/resin_brick_hit4",
-      "ott:block/resin_bricks/resin_brick_hit5"
+      "block/resin_bricks/resin_brick_hit1",
+      "block/resin_bricks/resin_brick_hit2",
+      "block/resin_bricks/resin_brick_hit3",
+      "block/resin_bricks/resin_brick_hit4",
+      "block/resin_bricks/resin_brick_hit5"
     ],
     "subtitle": "subtitles.block.generic.hit"
   },
   "block.resin_bricks.place": {
     "sounds": [
-      "ott:block/resin_bricks/resin_brick_place1",
-      "ott:block/resin_bricks/resin_brick_place2",
-      "ott:block/resin_bricks/resin_brick_place3",
-      "ott:block/resin_bricks/resin_brick_place4",
-      "ott:block/resin_bricks/resin_brick_place5"
+      "block/resin_bricks/resin_brick_place1",
+      "block/resin_bricks/resin_brick_place2",
+      "block/resin_bricks/resin_brick_place3",
+      "block/resin_bricks/resin_brick_place4",
+      "block/resin_bricks/resin_brick_place5"
     ],
     "subtitle": "subtitles.block.generic.place"
   },
   "block.resin_bricks.step": {
     "sounds": [
-      "ott:block/resin_bricks/resin_brick_step1",
-      "ott:block/resin_bricks/resin_brick_step2",
-      "ott:block/resin_bricks/resin_brick_step3",
-      "ott:block/resin_bricks/resin_brick_step4",
-      "ott:block/resin_bricks/resin_brick_step5"
+      "block/resin_bricks/resin_brick_step1",
+      "block/resin_bricks/resin_brick_step2",
+      "block/resin_bricks/resin_brick_step3",
+      "block/resin_bricks/resin_brick_step4",
+      "block/resin_bricks/resin_brick_step5"
     ],
     "subtitle": "subtitles.block.generic.footsteps"
   },
   "block.creaking_heart.break": {
     "sounds": [
       {
-        "name": "ott:block/creaking_heart/break/creaking_heart_break",
+        "name": "block/creaking_heart/break/creaking_heart_break",
         "volume": 0.5
       }
     ],
@@ -216,210 +216,210 @@
   },
   "block.creaking_heart.fall": {
     "sounds": [
-      "ott:block/creaking_heart/fall/creaking_heart_fall"
+      "block/creaking_heart/fall/creaking_heart_fall"
     ],
     "subtitle": "subtitles.block.generic.fall"
   },
   "block.creaking_heart.hit": {
     "sounds": [
-      "ott:block/creaking_heart/hit/creaking_heart_hit1",
-      "ott:block/creaking_heart/hit/creaking_heart_hit2",
-      "ott:block/creaking_heart/hit/creaking_heart_hit3",
-      "ott:block/creaking_heart/hit/creaking_heart_hit4",
-      "ott:block/creaking_heart/hit/creaking_heart_hit5"
+      "block/creaking_heart/hit/creaking_heart_hit1",
+      "block/creaking_heart/hit/creaking_heart_hit2",
+      "block/creaking_heart/hit/creaking_heart_hit3",
+      "block/creaking_heart/hit/creaking_heart_hit4",
+      "block/creaking_heart/hit/creaking_heart_hit5"
     ],
     "subtitle": "subtitles.block.generic.hit"
   },
   "block.creaking_heart.hurt": {
     "sounds": [
-      "ott:block/creaking_heart/hurt/trail1",
-      "ott:block/creaking_heart/hurt/trail2",
-      "ott:block/creaking_heart/hurt/trail3",
-      "ott:block/creaking_heart/hurt/trail4",
-      "ott:block/creaking_heart/hurt/trail5",
-      "ott:block/creaking_heart/hurt/trail6",
-      "ott:block/creaking_heart/hurt/trail7"
+      "block/creaking_heart/hurt/trail1",
+      "block/creaking_heart/hurt/trail2",
+      "block/creaking_heart/hurt/trail3",
+      "block/creaking_heart/hurt/trail4",
+      "block/creaking_heart/hurt/trail5",
+      "block/creaking_heart/hurt/trail6",
+      "block/creaking_heart/hurt/trail7"
     ],
     "subtitle": "subtitles.block.creaking_heart.hurt"
   },
   "block.creaking_heart.idle": {
     "sounds": [
-      "ott:block/creaking_heart/idle/creaking_heart_idle1",
-      "ott:block/creaking_heart/idle/creaking_heart_idle2",
-      "ott:block/creaking_heart/idle/creaking_heart_idle3",
-      "ott:block/creaking_heart/idle/creaking_heart_idle4"
+      "block/creaking_heart/idle/creaking_heart_idle1",
+      "block/creaking_heart/idle/creaking_heart_idle2",
+      "block/creaking_heart/idle/creaking_heart_idle3",
+      "block/creaking_heart/idle/creaking_heart_idle4"
     ],
     "subtitle": "subtitles.ambient.sound"
   },
   "block.creaking_heart.place": {
     "sounds": [
-      "ott:block/creaking_heart/place/creaking_heart_place1",
-      "ott:block/creaking_heart/place/creaking_heart_place2",
-      "ott:block/creaking_heart/place/creaking_heart_place3",
-      "ott:block/creaking_heart/place/creaking_heart_place4"
+      "block/creaking_heart/place/creaking_heart_place1",
+      "block/creaking_heart/place/creaking_heart_place2",
+      "block/creaking_heart/place/creaking_heart_place3",
+      "block/creaking_heart/place/creaking_heart_place4"
     ],
     "subtitle": "subtitles.block.generic.place"
   },
   "block.creaking_heart.spawn": {
     "sounds": [
-      "ott:block/creaking_heart/spawnmob/creaking_heart_spawnmob"
+      "block/creaking_heart/spawnmob/creaking_heart_spawnmob"
     ],
     "subtitle": "subtitles.block.creaking_heart.spawn"
   },
   "block.creaking_heart.step": {
     "sounds": [
-      "ott:block/creaking_heart/step/creaking_heart_step1",
-      "ott:block/creaking_heart/step/creaking_heart_step2",
-      "ott:block/creaking_heart/step/creaking_heart_step3",
-      "ott:block/creaking_heart/step/creaking_heart_step4",
-      "ott:block/creaking_heart/step/creaking_heart_step5",
-      "ott:block/creaking_heart/step/creaking_heart_step6"
+      "block/creaking_heart/step/creaking_heart_step1",
+      "block/creaking_heart/step/creaking_heart_step2",
+      "block/creaking_heart/step/creaking_heart_step3",
+      "block/creaking_heart/step/creaking_heart_step4",
+      "block/creaking_heart/step/creaking_heart_step5",
+      "block/creaking_heart/step/creaking_heart_step6"
     ],
     "subtitle": "subtitles.block.generic.footsteps"
   },
   "entity.creaking.activate": {
     "sounds": [
-      "ott:mob/creaking/creaking_activate"
+      "mob/creaking/creaking_activate"
     ],
     "subtitle": "subtitles.entity.creaking.activate"
   },
   "entity.creaking.ambient": {
     "sounds": [
-      "ott:mob/creaking/creaking_idle1",
-      "ott:mob/creaking/creaking_idle2",
-      "ott:mob/creaking/creaking_idle3",
-      "ott:mob/creaking/creaking_idle4",
-      "ott:mob/creaking/creaking_idle5",
-      "ott:mob/creaking/creaking_idle6"
+      "mob/creaking/creaking_idle1",
+      "mob/creaking/creaking_idle2",
+      "mob/creaking/creaking_idle3",
+      "mob/creaking/creaking_idle4",
+      "mob/creaking/creaking_idle5",
+      "mob/creaking/creaking_idle6"
     ],
     "subtitle": "subtitles.entity.creaking.ambient"
   },
   "entity.creaking.attack": {
     "sounds": [
-      "ott:mob/creaking/creaking_attack1",
-      "ott:mob/creaking/creaking_attack2",
-      "ott:mob/creaking/creaking_attack3",
-      "ott:mob/creaking/creaking_attack4"
+      "mob/creaking/creaking_attack1",
+      "mob/creaking/creaking_attack2",
+      "mob/creaking/creaking_attack3",
+      "mob/creaking/creaking_attack4"
     ],
     "subtitle": "subtitles.entity.creaking.attack"
   },
   "entity.creaking.deactivate": {
     "sounds": [
-      "ott:mob/creaking/creaking_deactivate"
+      "mob/creaking/creaking_deactivate"
     ],
     "subtitle": "subtitles.entity.creaking.deactivate"
   },
   "entity.creaking.death": {
     "sounds": [
-      "ott:mob/creaking/creaking_death"
+      "mob/creaking/creaking_death"
     ],
     "subtitle": "subtitles.entity.creaking.death"
   },
   "entity.creaking.freeze": {
     "sounds": [
-      "ott:mob/creaking/creaking_freeze1",
-      "ott:mob/creaking/creaking_freeze2",
-      "ott:mob/creaking/creaking_freeze3",
-      "ott:mob/creaking/creaking_freeze4"
+      "mob/creaking/creaking_freeze1",
+      "mob/creaking/creaking_freeze2",
+      "mob/creaking/creaking_freeze3",
+      "mob/creaking/creaking_freeze4"
     ],
     "subtitle": "subtitles.entity.creaking.freeze"
   },
   "entity.creaking.spawn": {
     "sounds": [
-      "ott:mob/creaking/creaking_spawn"
+      "mob/creaking/creaking_spawn"
     ],
     "subtitle": "subtitles.entity.creaking.spawn"
   },
   "entity.creaking.step": {
     "sounds": [
-      "ott:mob/creaking/creaking_step1",
-      "ott:mob/creaking/creaking_step2",
-      "ott:mob/creaking/creaking_step3",
-      "ott:mob/creaking/creaking_step4",
-      "ott:mob/creaking/creaking_step5"
+      "mob/creaking/creaking_step1",
+      "mob/creaking/creaking_step2",
+      "mob/creaking/creaking_step3",
+      "mob/creaking/creaking_step4",
+      "mob/creaking/creaking_step5"
     ],
     "subtitle": "subtitles.block.generic.footsteps"
   },
   "entity.creaking.sway": {
     "sounds": [
-      "ott:mob/creaking/creaking_sway1",
-      "ott:mob/creaking/creaking_sway2",
-      "ott:mob/creaking/creaking_sway3",
-      "ott:mob/creaking/creaking_sway4"
+      "mob/creaking/creaking_sway1",
+      "mob/creaking/creaking_sway2",
+      "mob/creaking/creaking_sway3",
+      "mob/creaking/creaking_sway4"
     ],
     "subtitle": "subtitles.entity.creaking.sway"
   },
   "entity.creaking.twitch": {
     "sounds": [
-      "ott:mob/creaking/creaking_twitch"
+      "mob/creaking/creaking_twitch"
     ],
     "subtitle": "subtitles.entity.creaking.twitch"
   },
   "entity.creaking.unfreeze": {
     "sounds": [
-      "ott:mob/creaking/creaking_unfreeze1",
-      "ott:mob/creaking/creaking_unfreeze2",
-      "ott:mob/creaking/creaking_unfreeze3"
+      "mob/creaking/creaking_unfreeze1",
+      "mob/creaking/creaking_unfreeze2",
+      "mob/creaking/creaking_unfreeze3"
     ],
     "subtitle": "subtitles.entity.creaking.unfreeze"
   },
   "block.pale_hanging_moss.idle": {
     "sounds": [
-      "ott:block/pale_hanging_moss/pale_hanging_moss1",
-      "ott:block/pale_hanging_moss/pale_hanging_moss2",
-      "ott:block/pale_hanging_moss/pale_hanging_moss3",
-      "ott:block/pale_hanging_moss/pale_hanging_moss4",
-      "ott:block/pale_hanging_moss/pale_hanging_moss5",
-      "ott:block/pale_hanging_moss/pale_hanging_moss6",
-      "ott:block/pale_hanging_moss/pale_hanging_moss7",
-      "ott:block/pale_hanging_moss/pale_hanging_moss8",
-      "ott:block/pale_hanging_moss/pale_hanging_moss9",
-      "ott:block/pale_hanging_moss/pale_hanging_moss10",
-      "ott:block/pale_hanging_moss/pale_hanging_moss11",
-      "ott:block/pale_hanging_moss/pale_hanging_moss12",
-      "ott:block/pale_hanging_moss/pale_hanging_moss13",
-      "ott:block/pale_hanging_moss/pale_hanging_moss14",
-      "ott:block/pale_hanging_moss/pale_hanging_moss15"
+      "block/pale_hanging_moss/pale_hanging_moss1",
+      "block/pale_hanging_moss/pale_hanging_moss2",
+      "block/pale_hanging_moss/pale_hanging_moss3",
+      "block/pale_hanging_moss/pale_hanging_moss4",
+      "block/pale_hanging_moss/pale_hanging_moss5",
+      "block/pale_hanging_moss/pale_hanging_moss6",
+      "block/pale_hanging_moss/pale_hanging_moss7",
+      "block/pale_hanging_moss/pale_hanging_moss8",
+      "block/pale_hanging_moss/pale_hanging_moss9",
+      "block/pale_hanging_moss/pale_hanging_moss10",
+      "block/pale_hanging_moss/pale_hanging_moss11",
+      "block/pale_hanging_moss/pale_hanging_moss12",
+      "block/pale_hanging_moss/pale_hanging_moss13",
+      "block/pale_hanging_moss/pale_hanging_moss14",
+      "block/pale_hanging_moss/pale_hanging_moss15"
     ],
     "subtitle": "subtitles.ambient.sound"
   },
   "block.eyeblossom.close": {
     "sounds": [
-      "ott:block/eyeblossom/eyeblossom_close1",
-      "ott:block/eyeblossom/eyeblossom_close2",
-      "ott:block/eyeblossom/eyeblossom_close3"
+      "block/eyeblossom/eyeblossom_close1",
+      "block/eyeblossom/eyeblossom_close2",
+      "block/eyeblossom/eyeblossom_close3"
     ],
     "subtitle": "subtitles.block.eyeblossom.close"
   },
   "block.eyeblossom.close_long": {
     "sounds": [
-      "ott:block/eyeblossom/eyeblossom_close_long"
+      "block/eyeblossom/eyeblossom_close_long"
     ],
     "subtitle": "subtitles.block.eyeblossom.close"
   },
   "block.eyeblossom.idle": {
     "sounds": [
-      "ott:block/eyeblossom/eyeblossom_idle1",
-      "ott:block/eyeblossom/eyeblossom_idle2",
-      "ott:block/eyeblossom/eyeblossom_idle3",
-      "ott:block/eyeblossom/eyeblossom_idle4",
-      "ott:block/eyeblossom/eyeblossom_idle5",
-      "ott:block/eyeblossom/eyeblossom_idle6"
+      "block/eyeblossom/eyeblossom_idle1",
+      "block/eyeblossom/eyeblossom_idle2",
+      "block/eyeblossom/eyeblossom_idle3",
+      "block/eyeblossom/eyeblossom_idle4",
+      "block/eyeblossom/eyeblossom_idle5",
+      "block/eyeblossom/eyeblossom_idle6"
     ],
     "subtitle": "subtitles.ambient.sound"
   },
   "block.eyeblossom.open": {
     "sounds": [
-      "ott:block/eyeblossom/eyeblossom_open1",
-      "ott:block/eyeblossom/eyeblossom_open2",
-      "ott:block/eyeblossom/eyeblossom_open3",
-      "ott:block/eyeblossom/eyeblossom_open4"
+      "block/eyeblossom/eyeblossom_open1",
+      "block/eyeblossom/eyeblossom_open2",
+      "block/eyeblossom/eyeblossom_open3",
+      "block/eyeblossom/eyeblossom_open4"
     ],
     "subtitle": "subtitles.block.eyeblossom.open"
   },
   "block.eyeblossom.open_long": {
     "sounds": [
-      "ott:block/eyeblossom/eyeblossom_open_long"
+      "block/eyeblossom/eyeblossom_open_long"
     ],
     "subtitle": "subtitles.block.eyeblossom.open"
   },

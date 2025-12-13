@@ -11,7 +11,7 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "minecraft:air"
+          "name": "ott:ethereal1_seaglass"
         }
       ],
       "rolls": 1.0

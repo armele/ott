@@ -11,7 +11,7 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "minecraft:air"
+          "name": "ott:lime_seaglass"
         }
       ],
       "rolls": 1.0

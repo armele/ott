@@ -44,7 +44,11 @@
     [],
     [],
     [
+      "minecraft:pale_oak_old_growth",
+      "minecraft:pale_oak_tall",
+      "minecraft:pale_oak_gnarly",
       "minecraft:pale_oak",
+      "minecraft:pale_oak_mega",
       "minecraft:pale_garden_vegetation",
       "minecraft:pale_moss_patch",
       "minecraft:flower_pale_garden",

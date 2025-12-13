@@ -1,6 +1,5 @@
 But First... The Thank Yous!
 =======
-
 - THANK YOU to Imri, my 3D modeling soul sister and midwest clone!
 - THANK YOU to Thodor who tolerated my 25 year lapse in Java to help me start on this project!
 - THANK YOU to Ayar for helping me test this insanity!
@@ -8,13 +7,13 @@ But First... The Thank Yous!
 
 Mixins Used:
 =======
-
 - Yes this is mainly for Ray's benefit
   - Used to overwrite the vanilla weather particles since it's apparently the only way
     - Because I want pretty rain, dammit
   - Used to overwrite the vanilla health/hearts sprite to mimic Colorful hearts
     - Cleaner, more current for 1.21.1 environment
   - Used in the Pale Garden backport to allow for placement of foliage on the pale moss blocks
+    - Because the Pale Garden is freakin awesome
 
 FAQ:
 =======
@@ -26,7 +25,6 @@ FAQ:
 
 Running List:
 =======
-
 - Added Gradient Concrete, Concrete Powder, Terracotta, Wool, and Stained Glass blocks
 - Added Limestone blocks
 - Added set of 16 Test Blocks for various Ray request testing

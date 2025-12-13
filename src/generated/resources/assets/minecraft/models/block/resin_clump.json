@@ -28,6 +28,7 @@
       ]
     }
   ],
+  "render_type": "minecraft:cutout",
   "textures": {
     "particle": "minecraft:block/resin_clump",
     "texture": "minecraft:block/resin_clump"

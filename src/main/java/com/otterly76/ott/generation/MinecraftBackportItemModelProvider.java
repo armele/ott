@@ -20,6 +20,7 @@ public class MinecraftBackportItemModelProvider extends ItemModelProvider {
     }
 
     @Override
+    @SuppressWarnings("IfCanBeSwitch")
     protected void registerModels() {
         // BlockItems for ALL backported blocks
         ModBlocks.MINECRAFT_BLOCKS.getEntries().forEach(deferredBlock -> {
@@ -33,7 +34,7 @@ public class MinecraftBackportItemModelProvider extends ItemModelProvider {
                 return;
             }
 
-            // Resin clump item should be a flat sprite (not a block model)
+            // Resin clump item should be a flat sprite (item/generated), not a block-model parent
             if (deferredBlock == ModBlocks.RESIN_CLUMP) {
                 generatedItem(path);
                 return;

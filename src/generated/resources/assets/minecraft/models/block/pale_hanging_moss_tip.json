@@ -34,6 +34,7 @@
       ]
     }
   ],
+  "render_type": "minecraft:cutout",
   "textures": {
     "particle": "minecraft:block/pale_hanging_moss_tip",
     "texture": "minecraft:block/pale_hanging_moss_tip"

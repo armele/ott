@@ -15,7 +15,7 @@ public class ModSurfaceRules {
                         SurfaceRules.ON_FLOOR,
                         SurfaceRules.sequence(
                                 SurfaceRules.ifTrue(
-                                        SurfaceRules.noiseCondition(Noises.SURFACE, -0.20D),
+                                        SurfaceRules.noiseCondition(Noises.SURFACE, -0.35D),
                                         paleMoss
                                 ),
                                 grass

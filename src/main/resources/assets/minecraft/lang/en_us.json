@@ -60,5 +60,9 @@
   "block.minecraft.pale_moss_block": "Pale Moss Block",
   "block.minecraft.pale_moss_carpet": "Pale Moss Carpet",
   "block.minecraft.pale_hanging_moss": "Pale Hanging Moss",
-  "biome.minecraft.pale_garden": "Pale Garden"
+  "biome.minecraft.pale_garden": "Pale Garden",
+
+  "subtitles.ambient.sound": "Ambient sound",
+  "subtitles.block.generic.fall": "Block falls"
+
 }

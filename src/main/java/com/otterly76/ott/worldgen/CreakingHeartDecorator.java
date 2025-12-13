@@ -20,7 +20,11 @@ import java.util.Optional;
 import java.util.function.Predicate;
 
 public class CreakingHeartDecorator extends TreeDecorator {
-    public static final MapCodec<CreakingHeartDecorator> CODEC = Codec.floatRange(0.0F, 1.0F).fieldOf("probability").xmap(CreakingHeartDecorator::new, (creakingHeartDecorator) -> creakingHeartDecorator.probability);
+    public static final MapCodec<CreakingHeartDecorator> CODEC =
+            Codec.floatRange(0.0F, 1.0F)
+                    .fieldOf("probability")
+                    .xmap(CreakingHeartDecorator::new, (creakingHeartDecorator) -> creakingHeartDecorator.probability);
+
     private final float probability;
 
     public CreakingHeartDecorator(float f) {
@@ -33,22 +37,36 @@ public class CreakingHeartDecorator extends TreeDecorator {
 
     public void place(TreeDecorator.Context context) {
         RandomSource randomSource = context.random();
-        List<BlockPos> list = context.logs();
-        if (!list.isEmpty() && !(randomSource.nextFloat() >= this.probability)) {
-            List<BlockPos> list2 = new ArrayList<>(list);
-            Util.shuffle(list2, randomSource);
-            Optional<BlockPos> optional = list2.stream().filter((blockPos) -> {
-                for(Direction direction : Direction.values()) {
-                    if (!this.checkBlock(context, blockPos.relative(direction), (blockState) -> blockState.is(BlockTags.LOGS))) {
-                        return false;
-                    }
-                }
-
-                return true;
-            }).findFirst();
-            optional.ifPresent((blockPos) -> context.setBlock(blockPos, ModBlocks.CREAKING_HEART.get().defaultBlockState().setValue(CreakingHeartBlock.ACTIVE, true).setValue(CreakingHeartBlock.NATURAL, true)));
+        List<BlockPos> logs = context.logs();
+        if (logs.isEmpty() || randomSource.nextFloat() >= this.probability) {
+            return;
         }
 
+        List<BlockPos> shuffled = new ArrayList<>(logs);
+        Util.shuffle(shuffled, randomSource);
+
+        Optional<BlockPos> candidate = shuffled.stream()
+                .filter((pos) -> isEmbeddedInTrunk(context, pos))
+                .findFirst();
+
+        candidate.ifPresent((pos) -> context.setBlock(
+                pos,
+                ModBlocks.CREAKING_HEART.get().defaultBlockState()
+                        .setValue(CreakingHeartBlock.AXIS, Direction.Axis.Y)
+                        .setValue(CreakingHeartBlock.NATURAL, true)
+                        .setValue(CreakingHeartBlock.ENABLED, true)
+                        .setValue(CreakingHeartBlock.ACTIVE, true)
+        ));
+    }
+
+    private boolean isEmbeddedInTrunk(TreeDecorator.Context context, BlockPos pos) {
+        // Require horizontal “inside trunk” feel, but don’t demand all 6 sides.
+        // This makes it rare, but not practically impossible.
+        return checkBlock(context, pos.north(), s -> s.is(BlockTags.LOGS))
+                && checkBlock(context, pos.south(), s -> s.is(BlockTags.LOGS))
+                && checkBlock(context, pos.east(), s -> s.is(BlockTags.LOGS))
+                && checkBlock(context, pos.west(), s -> s.is(BlockTags.LOGS))
+                && checkBlock(context, pos.below(), s -> s.is(BlockTags.LOGS));
     }
 
     public boolean checkBlock(TreeDecorator.Context context, BlockPos blockPos, Predicate<BlockState> predicate) {

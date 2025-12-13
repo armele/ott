@@ -98,86 +98,86 @@ public class ModBlocks {
     }
 
     // Seaglass
-    public static final DeferredBlock<Block> BLACK_BUBBLES_SEAGLASS = BLOCKS.register("black_bubbles_seaglass", () -> new Block(Properties.of().strength(4.0f).requiresCorrectToolForDrops().sound(SoundType.GLASS).noOcclusion()));
-    public static final DeferredBlock<Block> BLACK_SEAGLASS = BLOCKS.register("black_seaglass", () -> new Block(Properties.of().strength(4.0f).requiresCorrectToolForDrops().sound(SoundType.GLASS).noOcclusion()));
-    public static final DeferredBlock<Block> BLACK_SMOOTH_SEAGLASS = BLOCKS.register("black_smooth_seaglass", () -> new Block(Properties.of().strength(4.0f).requiresCorrectToolForDrops().sound(SoundType.GLASS).noOcclusion()));
-    public static final DeferredBlock<Block> BLACK_WAVES_SEAGLASS = BLOCKS.register("black_waves_seaglass", () -> new Block(Properties.of().strength(4.0f).requiresCorrectToolForDrops().sound(SoundType.GLASS).noOcclusion()));
-    public static final DeferredBlock<Block> BLUE_BUBBLES_SEAGLASS = BLOCKS.register("blue_bubbles_seaglass", () -> new Block(Properties.of().strength(4.0f).requiresCorrectToolForDrops().sound(SoundType.GLASS).noOcclusion()));
-    public static final DeferredBlock<Block> BLUE_SEAGLASS = BLOCKS.register("blue_seaglass", () -> new Block(Properties.of().strength(4.0f).requiresCorrectToolForDrops().sound(SoundType.GLASS).noOcclusion()));
-    public static final DeferredBlock<Block> BLUE_SMOOTH_SEAGLASS = BLOCKS.register("blue_smooth_seaglass", () -> new Block(Properties.of().strength(4.0f).requiresCorrectToolForDrops().sound(SoundType.GLASS).noOcclusion()));
-    public static final DeferredBlock<Block> BLUE_WAVES_SEAGLASS = BLOCKS.register("blue_waves_seaglass", () -> new Block(Properties.of().strength(4.0f).requiresCorrectToolForDrops().sound(SoundType.GLASS).noOcclusion()));
-    public static final DeferredBlock<Block> BROWN_BUBBLES_SEAGLASS = BLOCKS.register("brown_bubbles_seaglass", () -> new Block(Properties.of().strength(4.0f).requiresCorrectToolForDrops().sound(SoundType.GLASS).noOcclusion()));
-    public static final DeferredBlock<Block> BROWN_SEAGLASS = BLOCKS.register("brown_seaglass", () -> new Block(Properties.of().strength(4.0f).requiresCorrectToolForDrops().sound(SoundType.GLASS).noOcclusion()));
-    public static final DeferredBlock<Block> BROWN_SMOOTH_SEAGLASS = BLOCKS.register("brown_smooth_seaglass", () -> new Block(Properties.of().strength(4.0f).requiresCorrectToolForDrops().sound(SoundType.GLASS).noOcclusion()));
-    public static final DeferredBlock<Block> BROWN_WAVES_SEAGLASS = BLOCKS.register("brown_waves_seaglass", () -> new Block(Properties.of().strength(4.0f).requiresCorrectToolForDrops().sound(SoundType.GLASS).noOcclusion()));
-    public static final DeferredBlock<Block> CYAN_BUBBLES_SEAGLASS = BLOCKS.register("cyan_bubbles_seaglass", () -> new Block(Properties.of().strength(4.0f).requiresCorrectToolForDrops().sound(SoundType.GLASS).noOcclusion()));
-    public static final DeferredBlock<Block> CYAN_SEAGLASS = BLOCKS.register("cyan_seaglass", () -> new Block(Properties.of().strength(4.0f).requiresCorrectToolForDrops().sound(SoundType.GLASS).noOcclusion()));
-    public static final DeferredBlock<Block> CYAN_SMOOTH_SEAGLASS = BLOCKS.register("cyan_smooth_seaglass", () -> new Block(Properties.of().strength(4.0f).requiresCorrectToolForDrops().sound(SoundType.GLASS).noOcclusion()));
-    public static final DeferredBlock<Block> CYAN_WAVES_SEAGLASS = BLOCKS.register("cyan_waves_seaglass", () -> new Block(Properties.of().strength(4.0f).requiresCorrectToolForDrops().sound(SoundType.GLASS).noOcclusion()));
-    public static final DeferredBlock<Block> ETHEREAL1_BUBBLES_SEAGLASS = BLOCKS.register("ethereal1_bubbles_seaglass", () -> new Block(Properties.of().strength(4.0f).requiresCorrectToolForDrops().sound(SoundType.GLASS).noOcclusion()));
-    public static final DeferredBlock<Block> ETHEREAL1_SEAGLASS = BLOCKS.register("ethereal1_seaglass", () -> new Block(Properties.of().strength(4.0f).requiresCorrectToolForDrops().sound(SoundType.GLASS).noOcclusion()));
-    public static final DeferredBlock<Block> ETHEREAL1_SMOOTH_SEAGLASS = BLOCKS.register("ethereal1_smooth_seaglass", () -> new Block(Properties.of().strength(4.0f).requiresCorrectToolForDrops().sound(SoundType.GLASS).noOcclusion()));
-    public static final DeferredBlock<Block> ETHEREAL1_WAVES_SEAGLASS = BLOCKS.register("ethereal1_waves_seaglass", () -> new Block(Properties.of().strength(4.0f).requiresCorrectToolForDrops().sound(SoundType.GLASS).noOcclusion()));
-    public static final DeferredBlock<Block> ETHEREAL2_BUBBLES_SEAGLASS = BLOCKS.register("ethereal2_bubbles_seaglass", () -> new Block(Properties.of().strength(4.0f).requiresCorrectToolForDrops().sound(SoundType.GLASS).noOcclusion()));
-    public static final DeferredBlock<Block> ETHEREAL2_SEAGLASS = BLOCKS.register("ethereal2_seaglass", () -> new Block(Properties.of().strength(4.0f).requiresCorrectToolForDrops().sound(SoundType.GLASS).noOcclusion()));
-    public static final DeferredBlock<Block> ETHEREAL2_SMOOTH_SEAGLASS = BLOCKS.register("ethereal2_smooth_seaglass", () -> new Block(Properties.of().strength(4.0f).requiresCorrectToolForDrops().sound(SoundType.GLASS).noOcclusion()));
-    public static final DeferredBlock<Block> ETHEREAL2_WAVES_SEAGLASS = BLOCKS.register("ethereal2_waves_seaglass", () -> new Block(Properties.of().strength(4.0f).requiresCorrectToolForDrops().sound(SoundType.GLASS).noOcclusion()));
-    public static final DeferredBlock<Block> ETHEREAL3_BUBBLES_SEAGLASS = BLOCKS.register("ethereal3_bubbles_seaglass", () -> new Block(Properties.of().strength(4.0f).requiresCorrectToolForDrops().sound(SoundType.GLASS).noOcclusion()));
-    public static final DeferredBlock<Block> ETHEREAL3_SEAGLASS = BLOCKS.register("ethereal3_seaglass", () -> new Block(Properties.of().strength(4.0f).requiresCorrectToolForDrops().sound(SoundType.GLASS).noOcclusion()));
-    public static final DeferredBlock<Block> ETHEREAL3_SMOOTH_SEAGLASS = BLOCKS.register("ethereal3_smooth_seaglass", () -> new Block(Properties.of().strength(4.0f).requiresCorrectToolForDrops().sound(SoundType.GLASS).noOcclusion()));
-    public static final DeferredBlock<Block> ETHEREAL3_WAVES_SEAGLASS = BLOCKS.register("ethereal3_waves_seaglass", () -> new Block(Properties.of().strength(4.0f).requiresCorrectToolForDrops().sound(SoundType.GLASS).noOcclusion()));
-    public static final DeferredBlock<Block> ETHEREAL4_BUBBLES_SEAGLASS = BLOCKS.register("ethereal4_bubbles_seaglass", () -> new Block(Properties.of().strength(4.0f).requiresCorrectToolForDrops().sound(SoundType.GLASS).noOcclusion()));
-    public static final DeferredBlock<Block> ETHEREAL4_SEAGLASS = BLOCKS.register("ethereal4_seaglass", () -> new Block(Properties.of().strength(4.0f).requiresCorrectToolForDrops().sound(SoundType.GLASS).noOcclusion()));
-    public static final DeferredBlock<Block> ETHEREAL4_SMOOTH_SEAGLASS = BLOCKS.register("ethereal4_smooth_seaglass", () -> new Block(Properties.of().strength(4.0f).requiresCorrectToolForDrops().sound(SoundType.GLASS).noOcclusion()));
-    public static final DeferredBlock<Block> ETHEREAL4_WAVES_SEAGLASS = BLOCKS.register("ethereal4_waves_seaglass", () -> new Block(Properties.of().strength(4.0f).requiresCorrectToolForDrops().sound(SoundType.GLASS).noOcclusion()));
-    public static final DeferredBlock<Block> GRAY_BUBBLES_SEAGLASS = BLOCKS.register("gray_bubbles_seaglass", () -> new Block(Properties.of().strength(4.0f).requiresCorrectToolForDrops().sound(SoundType.GLASS).noOcclusion()));
-    public static final DeferredBlock<Block> GRAY_SEAGLASS = BLOCKS.register("gray_seaglass", () -> new Block(Properties.of().strength(4.0f).requiresCorrectToolForDrops().sound(SoundType.GLASS).noOcclusion()));
-    public static final DeferredBlock<Block> GRAY_SMOOTH_SEAGLASS = BLOCKS.register("gray_smooth_seaglass", () -> new Block(Properties.of().strength(4.0f).requiresCorrectToolForDrops().sound(SoundType.GLASS).noOcclusion()));
-    public static final DeferredBlock<Block> GRAY_WAVES_SEAGLASS = BLOCKS.register("gray_waves_seaglass", () -> new Block(Properties.of().strength(4.0f).requiresCorrectToolForDrops().sound(SoundType.GLASS).noOcclusion()));
-    public static final DeferredBlock<Block> GREEN_BUBBLES_SEAGLASS = BLOCKS.register("green_bubbles_seaglass", () -> new Block(Properties.of().strength(4.0f).requiresCorrectToolForDrops().sound(SoundType.GLASS).noOcclusion()));
-    public static final DeferredBlock<Block> GREEN_SEAGLASS = BLOCKS.register("green_seaglass", () -> new Block(Properties.of().strength(4.0f).requiresCorrectToolForDrops().sound(SoundType.GLASS).noOcclusion()));
-    public static final DeferredBlock<Block> GREEN_SMOOTH_SEAGLASS = BLOCKS.register("green_smooth_seaglass", () -> new Block(Properties.of().strength(4.0f).requiresCorrectToolForDrops().sound(SoundType.GLASS).noOcclusion()));
-    public static final DeferredBlock<Block> GREEN_WAVES_SEAGLASS = BLOCKS.register("green_waves_seaglass", () -> new Block(Properties.of().strength(4.0f).requiresCorrectToolForDrops().sound(SoundType.GLASS).noOcclusion()));
-    public static final DeferredBlock<Block> LIGHT_BLUE_BUBBLES_SEAGLASS = BLOCKS.register("light_blue_bubbles_seaglass", () -> new Block(Properties.of().strength(4.0f).requiresCorrectToolForDrops().sound(SoundType.GLASS).noOcclusion()));
-    public static final DeferredBlock<Block> LIGHT_BLUE_SEAGLASS = BLOCKS.register("light_blue_seaglass", () -> new Block(Properties.of().strength(4.0f).requiresCorrectToolForDrops().sound(SoundType.GLASS).noOcclusion()));
-    public static final DeferredBlock<Block> LIGHT_BLUE_SMOOTH_SEAGLASS = BLOCKS.register("light_blue_smooth_seaglass", () -> new Block(Properties.of().strength(4.0f).requiresCorrectToolForDrops().sound(SoundType.GLASS).noOcclusion()));
-    public static final DeferredBlock<Block> LIGHT_BLUE_WAVES_SEAGLASS = BLOCKS.register("light_blue_waves_seaglass", () -> new Block(Properties.of().strength(4.0f).requiresCorrectToolForDrops().sound(SoundType.GLASS).noOcclusion()));
-    public static final DeferredBlock<Block> LIGHT_GRAY_BUBBLES_SEAGLASS = BLOCKS.register("light_gray_bubbles_seaglass", () -> new Block(Properties.of().strength(4.0f).requiresCorrectToolForDrops().sound(SoundType.GLASS).noOcclusion()));
-    public static final DeferredBlock<Block> LIGHT_GRAY_SEAGLASS = BLOCKS.register("light_gray_seaglass", () -> new Block(Properties.of().strength(4.0f).requiresCorrectToolForDrops().sound(SoundType.GLASS).noOcclusion()));
-    public static final DeferredBlock<Block> LIGHT_GRAY_SMOOTH_SEAGLASS = BLOCKS.register("light_gray_smooth_seaglass", () -> new Block(Properties.of().strength(4.0f).requiresCorrectToolForDrops().sound(SoundType.GLASS).noOcclusion()));
-    public static final DeferredBlock<Block> LIGHT_GRAY_WAVES_SEAGLASS = BLOCKS.register("light_gray_waves_seaglass", () -> new Block(Properties.of().strength(4.0f).requiresCorrectToolForDrops().sound(SoundType.GLASS).noOcclusion()));
-    public static final DeferredBlock<Block> LIME_BUBBLES_SEAGLASS = BLOCKS.register("lime_bubbles_seaglass", () -> new Block(Properties.of().strength(4.0f).requiresCorrectToolForDrops().sound(SoundType.GLASS).noOcclusion()));
-    public static final DeferredBlock<Block> LIME_SEAGLASS = BLOCKS.register("lime_seaglass", () -> new Block(Properties.of().strength(4.0f).requiresCorrectToolForDrops().sound(SoundType.GLASS).noOcclusion()));
-    public static final DeferredBlock<Block> LIME_SMOOTH_SEAGLASS = BLOCKS.register("lime_smooth_seaglass", () -> new Block(Properties.of().strength(4.0f).requiresCorrectToolForDrops().sound(SoundType.GLASS).noOcclusion()));
-    public static final DeferredBlock<Block> LIME_WAVES_SEAGLASS = BLOCKS.register("lime_waves_seaglass", () -> new Block(Properties.of().strength(4.0f).requiresCorrectToolForDrops().sound(SoundType.GLASS).noOcclusion()));
-    public static final DeferredBlock<Block> MAGENTA_BUBBLES_SEAGLASS = BLOCKS.register("magenta_bubbles_seaglass", () -> new Block(Properties.of().strength(4.0f).requiresCorrectToolForDrops().sound(SoundType.GLASS).noOcclusion()));
-    public static final DeferredBlock<Block> MAGENTA_SEAGLASS = BLOCKS.register("magenta_seaglass", () -> new Block(Properties.of().strength(4.0f).requiresCorrectToolForDrops().sound(SoundType.GLASS).noOcclusion()));
-    public static final DeferredBlock<Block> MAGENTA_SMOOTH_SEAGLASS = BLOCKS.register("magenta_smooth_seaglass", () -> new Block(Properties.of().strength(4.0f).requiresCorrectToolForDrops().sound(SoundType.GLASS).noOcclusion()));
-    public static final DeferredBlock<Block> MAGENTA_WAVES_SEAGLASS = BLOCKS.register("magenta_waves_seaglass", () -> new Block(Properties.of().strength(4.0f).requiresCorrectToolForDrops().sound(SoundType.GLASS).noOcclusion()));
-    public static final DeferredBlock<Block> ORANGE_BUBBLES_SEAGLASS = BLOCKS.register("orange_bubbles_seaglass", () -> new Block(Properties.of().strength(4.0f).requiresCorrectToolForDrops().sound(SoundType.GLASS).noOcclusion()));
-    public static final DeferredBlock<Block> ORANGE_SEAGLASS = BLOCKS.register("orange_seaglass", () -> new Block(Properties.of().strength(4.0f).requiresCorrectToolForDrops().sound(SoundType.GLASS).noOcclusion()));
-    public static final DeferredBlock<Block> ORANGE_SMOOTH_SEAGLASS = BLOCKS.register("orange_smooth_seaglass", () -> new Block(Properties.of().strength(4.0f).requiresCorrectToolForDrops().sound(SoundType.GLASS).noOcclusion()));
-    public static final DeferredBlock<Block> ORANGE_WAVES_SEAGLASS = BLOCKS.register("orange_waves_seaglass", () -> new Block(Properties.of().strength(4.0f).requiresCorrectToolForDrops().sound(SoundType.GLASS).noOcclusion()));
-    public static final DeferredBlock<Block> PINK_BUBBLES_SEAGLASS = BLOCKS.register("pink_bubbles_seaglass", () -> new Block(Properties.of().strength(4.0f).requiresCorrectToolForDrops().sound(SoundType.GLASS).noOcclusion()));
-    public static final DeferredBlock<Block> PINK_SEAGLASS = BLOCKS.register("pink_seaglass", () -> new Block(Properties.of().strength(4.0f).requiresCorrectToolForDrops().sound(SoundType.GLASS).noOcclusion()));
-    public static final DeferredBlock<Block> PINK_SMOOTH_SEAGLASS = BLOCKS.register("pink_smooth_seaglass", () -> new Block(Properties.of().strength(4.0f).requiresCorrectToolForDrops().sound(SoundType.GLASS).noOcclusion()));
-    public static final DeferredBlock<Block> PINK_WAVES_SEAGLASS = BLOCKS.register("pink_waves_seaglass", () -> new Block(Properties.of().strength(4.0f).requiresCorrectToolForDrops().sound(SoundType.GLASS).noOcclusion()));
-    public static final DeferredBlock<Block> PURPLE_BUBBLES_SEAGLASS = BLOCKS.register("purple_bubbles_seaglass", () -> new Block(Properties.of().strength(4.0f).requiresCorrectToolForDrops().sound(SoundType.GLASS).noOcclusion()));
-    public static final DeferredBlock<Block> PURPLE_SEAGLASS = BLOCKS.register("purple_seaglass", () -> new Block(Properties.of().strength(4.0f).requiresCorrectToolForDrops().sound(SoundType.GLASS).noOcclusion()));
-    public static final DeferredBlock<Block> PURPLE_SMOOTH_SEAGLASS = BLOCKS.register("purple_smooth_seaglass", () -> new Block(Properties.of().strength(4.0f).requiresCorrectToolForDrops().sound(SoundType.GLASS).noOcclusion()));
-    public static final DeferredBlock<Block> PURPLE_WAVES_SEAGLASS = BLOCKS.register("purple_waves_seaglass", () -> new Block(Properties.of().strength(4.0f).requiresCorrectToolForDrops().sound(SoundType.GLASS).noOcclusion()));
-    public static final DeferredBlock<Block> RED_BUBBLES_SEAGLASS = BLOCKS.register("red_bubbles_seaglass", () -> new Block(Properties.of().strength(4.0f).requiresCorrectToolForDrops().sound(SoundType.GLASS).noOcclusion()));
-    public static final DeferredBlock<Block> RED_SEAGLASS = BLOCKS.register("red_seaglass", () -> new Block(Properties.of().strength(4.0f).requiresCorrectToolForDrops().sound(SoundType.GLASS).noOcclusion()));
-    public static final DeferredBlock<Block> RED_SMOOTH_SEAGLASS = BLOCKS.register("red_smooth_seaglass", () -> new Block(Properties.of().strength(4.0f).requiresCorrectToolForDrops().sound(SoundType.GLASS).noOcclusion()));
-    public static final DeferredBlock<Block> RED_WAVES_SEAGLASS = BLOCKS.register("red_waves_seaglass", () -> new Block(Properties.of().strength(4.0f).requiresCorrectToolForDrops().sound(SoundType.GLASS).noOcclusion()));
-    public static final DeferredBlock<Block> WHITE_BUBBLES_SEAGLASS = BLOCKS.register("white_bubbles_seaglass", () -> new Block(Properties.of().strength(4.0f).requiresCorrectToolForDrops().sound(SoundType.GLASS).noOcclusion()));
-    public static final DeferredBlock<Block> WHITE_SEAGLASS = BLOCKS.register("white_seaglass", () -> new Block(Properties.of().strength(4.0f).requiresCorrectToolForDrops().sound(SoundType.GLASS).noOcclusion()));
-    public static final DeferredBlock<Block> WHITE_SMOOTH_SEAGLASS = BLOCKS.register("white_smooth_seaglass", () -> new Block(Properties.of().strength(4.0f).requiresCorrectToolForDrops().sound(SoundType.GLASS).noOcclusion()));
-    public static final DeferredBlock<Block> WHITE_WAVES_SEAGLASS = BLOCKS.register("white_waves_seaglass", () -> new Block(Properties.of().strength(4.0f).requiresCorrectToolForDrops().sound(SoundType.GLASS).noOcclusion()));
-    public static final DeferredBlock<Block> YELLOW_BUBBLES_SEAGLASS = BLOCKS.register("yellow_bubbles_seaglass", () -> new Block(Properties.of().strength(4.0f).requiresCorrectToolForDrops().sound(SoundType.GLASS).noOcclusion()));
-    public static final DeferredBlock<Block> YELLOW_SEAGLASS = BLOCKS.register("yellow_seaglass", () -> new Block(Properties.of().strength(4.0f).requiresCorrectToolForDrops().sound(SoundType.GLASS).noOcclusion()));
-    public static final DeferredBlock<Block> YELLOW_SMOOTH_SEAGLASS = BLOCKS.register("yellow_smooth_seaglass", () -> new Block(Properties.of().strength(4.0f).requiresCorrectToolForDrops().sound(SoundType.GLASS).noOcclusion()));
-    public static final DeferredBlock<Block> YELLOW_WAVES_SEAGLASS = BLOCKS.register("yellow_waves_seaglass", () -> new Block(Properties.of().strength(4.0f).requiresCorrectToolForDrops().sound(SoundType.GLASS).noOcclusion()));
+    public static final DeferredBlock<Block> BLACK_BUBBLES_SEAGLASS = registerSeaglass("black_bubbles_seaglass", () -> new Block(Properties.of().strength(4.0f).requiresCorrectToolForDrops().sound(SoundType.GLASS).noOcclusion()));
+    public static final DeferredBlock<Block> BLACK_SEAGLASS = registerSeaglass("black_seaglass", () -> new Block(Properties.of().strength(4.0f).requiresCorrectToolForDrops().sound(SoundType.GLASS).noOcclusion()));
+    public static final DeferredBlock<Block> BLACK_SMOOTH_SEAGLASS = registerSeaglass("black_smooth_seaglass", () -> new Block(Properties.of().strength(4.0f).requiresCorrectToolForDrops().sound(SoundType.GLASS).noOcclusion()));
+    public static final DeferredBlock<Block> BLACK_WAVES_SEAGLASS = registerSeaglass("black_waves_seaglass", () -> new Block(Properties.of().strength(4.0f).requiresCorrectToolForDrops().sound(SoundType.GLASS).noOcclusion()));
+    public static final DeferredBlock<Block> BLUE_BUBBLES_SEAGLASS = registerSeaglass("blue_bubbles_seaglass", () -> new Block(Properties.of().strength(4.0f).requiresCorrectToolForDrops().sound(SoundType.GLASS).noOcclusion()));
+    public static final DeferredBlock<Block> BLUE_SEAGLASS = registerSeaglass("blue_seaglass", () -> new Block(Properties.of().strength(4.0f).requiresCorrectToolForDrops().sound(SoundType.GLASS).noOcclusion()));
+    public static final DeferredBlock<Block> BLUE_SMOOTH_SEAGLASS = registerSeaglass("blue_smooth_seaglass", () -> new Block(Properties.of().strength(4.0f).requiresCorrectToolForDrops().sound(SoundType.GLASS).noOcclusion()));
+    public static final DeferredBlock<Block> BLUE_WAVES_SEAGLASS = registerSeaglass("blue_waves_seaglass", () -> new Block(Properties.of().strength(4.0f).requiresCorrectToolForDrops().sound(SoundType.GLASS).noOcclusion()));
+    public static final DeferredBlock<Block> BROWN_BUBBLES_SEAGLASS = registerSeaglass("brown_bubbles_seaglass", () -> new Block(Properties.of().strength(4.0f).requiresCorrectToolForDrops().sound(SoundType.GLASS).noOcclusion()));
+    public static final DeferredBlock<Block> BROWN_SEAGLASS = registerSeaglass("brown_seaglass", () -> new Block(Properties.of().strength(4.0f).requiresCorrectToolForDrops().sound(SoundType.GLASS).noOcclusion()));
+    public static final DeferredBlock<Block> BROWN_SMOOTH_SEAGLASS = registerSeaglass("brown_smooth_seaglass", () -> new Block(Properties.of().strength(4.0f).requiresCorrectToolForDrops().sound(SoundType.GLASS).noOcclusion()));
+    public static final DeferredBlock<Block> BROWN_WAVES_SEAGLASS = registerSeaglass("brown_waves_seaglass", () -> new Block(Properties.of().strength(4.0f).requiresCorrectToolForDrops().sound(SoundType.GLASS).noOcclusion()));
+    public static final DeferredBlock<Block> CYAN_BUBBLES_SEAGLASS = registerSeaglass("cyan_bubbles_seaglass", () -> new Block(Properties.of().strength(4.0f).requiresCorrectToolForDrops().sound(SoundType.GLASS).noOcclusion()));
+    public static final DeferredBlock<Block> CYAN_SEAGLASS = registerSeaglass("cyan_seaglass", () -> new Block(Properties.of().strength(4.0f).requiresCorrectToolForDrops().sound(SoundType.GLASS).noOcclusion()));
+    public static final DeferredBlock<Block> CYAN_SMOOTH_SEAGLASS = registerSeaglass("cyan_smooth_seaglass", () -> new Block(Properties.of().strength(4.0f).requiresCorrectToolForDrops().sound(SoundType.GLASS).noOcclusion()));
+    public static final DeferredBlock<Block> CYAN_WAVES_SEAGLASS = registerSeaglass("cyan_waves_seaglass", () -> new Block(Properties.of().strength(4.0f).requiresCorrectToolForDrops().sound(SoundType.GLASS).noOcclusion()));
+    public static final DeferredBlock<Block> ETHEREAL1_BUBBLES_SEAGLASS = registerSeaglass("ethereal1_bubbles_seaglass", () -> new Block(Properties.of().strength(4.0f).requiresCorrectToolForDrops().sound(SoundType.GLASS).noOcclusion()));
+    public static final DeferredBlock<Block> ETHEREAL1_SEAGLASS = registerSeaglass("ethereal1_seaglass", () -> new Block(Properties.of().strength(4.0f).requiresCorrectToolForDrops().sound(SoundType.GLASS).noOcclusion()));
+    public static final DeferredBlock<Block> ETHEREAL1_SMOOTH_SEAGLASS = registerSeaglass("ethereal1_smooth_seaglass", () -> new Block(Properties.of().strength(4.0f).requiresCorrectToolForDrops().sound(SoundType.GLASS).noOcclusion()));
+    public static final DeferredBlock<Block> ETHEREAL1_WAVES_SEAGLASS = registerSeaglass("ethereal1_waves_seaglass", () -> new Block(Properties.of().strength(4.0f).requiresCorrectToolForDrops().sound(SoundType.GLASS).noOcclusion()));
+    public static final DeferredBlock<Block> ETHEREAL2_BUBBLES_SEAGLASS = registerSeaglass("ethereal2_bubbles_seaglass", () -> new Block(Properties.of().strength(4.0f).requiresCorrectToolForDrops().sound(SoundType.GLASS).noOcclusion()));
+    public static final DeferredBlock<Block> ETHEREAL2_SEAGLASS = registerSeaglass("ethereal2_seaglass", () -> new Block(Properties.of().strength(4.0f).requiresCorrectToolForDrops().sound(SoundType.GLASS).noOcclusion()));
+    public static final DeferredBlock<Block> ETHEREAL2_SMOOTH_SEAGLASS = registerSeaglass("ethereal2_smooth_seaglass", () -> new Block(Properties.of().strength(4.0f).requiresCorrectToolForDrops().sound(SoundType.GLASS).noOcclusion()));
+    public static final DeferredBlock<Block> ETHEREAL2_WAVES_SEAGLASS = registerSeaglass("ethereal2_waves_seaglass", () -> new Block(Properties.of().strength(4.0f).requiresCorrectToolForDrops().sound(SoundType.GLASS).noOcclusion()));
+    public static final DeferredBlock<Block> ETHEREAL3_BUBBLES_SEAGLASS = registerSeaglass("ethereal3_bubbles_seaglass", () -> new Block(Properties.of().strength(4.0f).requiresCorrectToolForDrops().sound(SoundType.GLASS).noOcclusion()));
+    public static final DeferredBlock<Block> ETHEREAL3_SEAGLASS = registerSeaglass("ethereal3_seaglass", () -> new Block(Properties.of().strength(4.0f).requiresCorrectToolForDrops().sound(SoundType.GLASS).noOcclusion()));
+    public static final DeferredBlock<Block> ETHEREAL3_SMOOTH_SEAGLASS = registerSeaglass("ethereal3_smooth_seaglass", () -> new Block(Properties.of().strength(4.0f).requiresCorrectToolForDrops().sound(SoundType.GLASS).noOcclusion()));
+    public static final DeferredBlock<Block> ETHEREAL3_WAVES_SEAGLASS = registerSeaglass("ethereal3_waves_seaglass", () -> new Block(Properties.of().strength(4.0f).requiresCorrectToolForDrops().sound(SoundType.GLASS).noOcclusion()));
+    public static final DeferredBlock<Block> ETHEREAL4_BUBBLES_SEAGLASS = registerSeaglass("ethereal4_bubbles_seaglass", () -> new Block(Properties.of().strength(4.0f).requiresCorrectToolForDrops().sound(SoundType.GLASS).noOcclusion()));
+    public static final DeferredBlock<Block> ETHEREAL4_SEAGLASS = registerSeaglass("ethereal4_seaglass", () -> new Block(Properties.of().strength(4.0f).requiresCorrectToolForDrops().sound(SoundType.GLASS).noOcclusion()));
+    public static final DeferredBlock<Block> ETHEREAL4_SMOOTH_SEAGLASS = registerSeaglass("ethereal4_smooth_seaglass", () -> new Block(Properties.of().strength(4.0f).requiresCorrectToolForDrops().sound(SoundType.GLASS).noOcclusion()));
+    public static final DeferredBlock<Block> ETHEREAL4_WAVES_SEAGLASS = registerSeaglass("ethereal4_waves_seaglass", () -> new Block(Properties.of().strength(4.0f).requiresCorrectToolForDrops().sound(SoundType.GLASS).noOcclusion()));
+    public static final DeferredBlock<Block> GRAY_BUBBLES_SEAGLASS = registerSeaglass("gray_bubbles_seaglass", () -> new Block(Properties.of().strength(4.0f).requiresCorrectToolForDrops().sound(SoundType.GLASS).noOcclusion()));
+    public static final DeferredBlock<Block> GRAY_SEAGLASS = registerSeaglass("gray_seaglass", () -> new Block(Properties.of().strength(4.0f).requiresCorrectToolForDrops().sound(SoundType.GLASS).noOcclusion()));
+    public static final DeferredBlock<Block> GRAY_SMOOTH_SEAGLASS = registerSeaglass("gray_smooth_seaglass", () -> new Block(Properties.of().strength(4.0f).requiresCorrectToolForDrops().sound(SoundType.GLASS).noOcclusion()));
+    public static final DeferredBlock<Block> GRAY_WAVES_SEAGLASS = registerSeaglass("gray_waves_seaglass", () -> new Block(Properties.of().strength(4.0f).requiresCorrectToolForDrops().sound(SoundType.GLASS).noOcclusion()));
+    public static final DeferredBlock<Block> GREEN_BUBBLES_SEAGLASS = registerSeaglass("green_bubbles_seaglass", () -> new Block(Properties.of().strength(4.0f).requiresCorrectToolForDrops().sound(SoundType.GLASS).noOcclusion()));
+    public static final DeferredBlock<Block> GREEN_SEAGLASS = registerSeaglass("green_seaglass", () -> new Block(Properties.of().strength(4.0f).requiresCorrectToolForDrops().sound(SoundType.GLASS).noOcclusion()));
+    public static final DeferredBlock<Block> GREEN_SMOOTH_SEAGLASS = registerSeaglass("green_smooth_seaglass", () -> new Block(Properties.of().strength(4.0f).requiresCorrectToolForDrops().sound(SoundType.GLASS).noOcclusion()));
+    public static final DeferredBlock<Block> GREEN_WAVES_SEAGLASS = registerSeaglass("green_waves_seaglass", () -> new Block(Properties.of().strength(4.0f).requiresCorrectToolForDrops().sound(SoundType.GLASS).noOcclusion()));
+    public static final DeferredBlock<Block> LIGHT_BLUE_BUBBLES_SEAGLASS = registerSeaglass("light_blue_bubbles_seaglass", () -> new Block(Properties.of().strength(4.0f).requiresCorrectToolForDrops().sound(SoundType.GLASS).noOcclusion()));
+    public static final DeferredBlock<Block> LIGHT_BLUE_SEAGLASS = registerSeaglass("light_blue_seaglass", () -> new Block(Properties.of().strength(4.0f).requiresCorrectToolForDrops().sound(SoundType.GLASS).noOcclusion()));
+    public static final DeferredBlock<Block> LIGHT_BLUE_SMOOTH_SEAGLASS = registerSeaglass("light_blue_smooth_seaglass", () -> new Block(Properties.of().strength(4.0f).requiresCorrectToolForDrops().sound(SoundType.GLASS).noOcclusion()));
+    public static final DeferredBlock<Block> LIGHT_BLUE_WAVES_SEAGLASS = registerSeaglass("light_blue_waves_seaglass", () -> new Block(Properties.of().strength(4.0f).requiresCorrectToolForDrops().sound(SoundType.GLASS).noOcclusion()));
+    public static final DeferredBlock<Block> LIGHT_GRAY_BUBBLES_SEAGLASS = registerSeaglass("light_gray_bubbles_seaglass", () -> new Block(Properties.of().strength(4.0f).requiresCorrectToolForDrops().sound(SoundType.GLASS).noOcclusion()));
+    public static final DeferredBlock<Block> LIGHT_GRAY_SEAGLASS = registerSeaglass("light_gray_seaglass", () -> new Block(Properties.of().strength(4.0f).requiresCorrectToolForDrops().sound(SoundType.GLASS).noOcclusion()));
+    public static final DeferredBlock<Block> LIGHT_GRAY_SMOOTH_SEAGLASS = registerSeaglass("light_gray_smooth_seaglass", () -> new Block(Properties.of().strength(4.0f).requiresCorrectToolForDrops().sound(SoundType.GLASS).noOcclusion()));
+    public static final DeferredBlock<Block> LIGHT_GRAY_WAVES_SEAGLASS = registerSeaglass("light_gray_waves_seaglass", () -> new Block(Properties.of().strength(4.0f).requiresCorrectToolForDrops().sound(SoundType.GLASS).noOcclusion()));
+    public static final DeferredBlock<Block> LIME_BUBBLES_SEAGLASS = registerSeaglass("lime_bubbles_seaglass", () -> new Block(Properties.of().strength(4.0f).requiresCorrectToolForDrops().sound(SoundType.GLASS).noOcclusion()));
+    public static final DeferredBlock<Block> LIME_SEAGLASS = registerSeaglass("lime_seaglass", () -> new Block(Properties.of().strength(4.0f).requiresCorrectToolForDrops().sound(SoundType.GLASS).noOcclusion()));
+    public static final DeferredBlock<Block> LIME_SMOOTH_SEAGLASS = registerSeaglass("lime_smooth_seaglass", () -> new Block(Properties.of().strength(4.0f).requiresCorrectToolForDrops().sound(SoundType.GLASS).noOcclusion()));
+    public static final DeferredBlock<Block> LIME_WAVES_SEAGLASS = registerSeaglass("lime_waves_seaglass", () -> new Block(Properties.of().strength(4.0f).requiresCorrectToolForDrops().sound(SoundType.GLASS).noOcclusion()));
+    public static final DeferredBlock<Block> MAGENTA_BUBBLES_SEAGLASS = registerSeaglass("magenta_bubbles_seaglass", () -> new Block(Properties.of().strength(4.0f).requiresCorrectToolForDrops().sound(SoundType.GLASS).noOcclusion()));
+    public static final DeferredBlock<Block> MAGENTA_SEAGLASS = registerSeaglass("magenta_seaglass", () -> new Block(Properties.of().strength(4.0f).requiresCorrectToolForDrops().sound(SoundType.GLASS).noOcclusion()));
+    public static final DeferredBlock<Block> MAGENTA_SMOOTH_SEAGLASS = registerSeaglass("magenta_smooth_seaglass", () -> new Block(Properties.of().strength(4.0f).requiresCorrectToolForDrops().sound(SoundType.GLASS).noOcclusion()));
+    public static final DeferredBlock<Block> MAGENTA_WAVES_SEAGLASS = registerSeaglass("magenta_waves_seaglass", () -> new Block(Properties.of().strength(4.0f).requiresCorrectToolForDrops().sound(SoundType.GLASS).noOcclusion()));
+    public static final DeferredBlock<Block> ORANGE_BUBBLES_SEAGLASS = registerSeaglass("orange_bubbles_seaglass", () -> new Block(Properties.of().strength(4.0f).requiresCorrectToolForDrops().sound(SoundType.GLASS).noOcclusion()));
+    public static final DeferredBlock<Block> ORANGE_SEAGLASS = registerSeaglass("orange_seaglass", () -> new Block(Properties.of().strength(4.0f).requiresCorrectToolForDrops().sound(SoundType.GLASS).noOcclusion()));
+    public static final DeferredBlock<Block> ORANGE_SMOOTH_SEAGLASS = registerSeaglass("orange_smooth_seaglass", () -> new Block(Properties.of().strength(4.0f).requiresCorrectToolForDrops().sound(SoundType.GLASS).noOcclusion()));
+    public static final DeferredBlock<Block> ORANGE_WAVES_SEAGLASS = registerSeaglass("orange_waves_seaglass", () -> new Block(Properties.of().strength(4.0f).requiresCorrectToolForDrops().sound(SoundType.GLASS).noOcclusion()));
+    public static final DeferredBlock<Block> PINK_BUBBLES_SEAGLASS = registerSeaglass("pink_bubbles_seaglass", () -> new Block(Properties.of().strength(4.0f).requiresCorrectToolForDrops().sound(SoundType.GLASS).noOcclusion()));
+    public static final DeferredBlock<Block> PINK_SEAGLASS = registerSeaglass("pink_seaglass", () -> new Block(Properties.of().strength(4.0f).requiresCorrectToolForDrops().sound(SoundType.GLASS).noOcclusion()));
+    public static final DeferredBlock<Block> PINK_SMOOTH_SEAGLASS = registerSeaglass("pink_smooth_seaglass", () -> new Block(Properties.of().strength(4.0f).requiresCorrectToolForDrops().sound(SoundType.GLASS).noOcclusion()));
+    public static final DeferredBlock<Block> PINK_WAVES_SEAGLASS = registerSeaglass("pink_waves_seaglass", () -> new Block(Properties.of().strength(4.0f).requiresCorrectToolForDrops().sound(SoundType.GLASS).noOcclusion()));
+    public static final DeferredBlock<Block> PURPLE_BUBBLES_SEAGLASS = registerSeaglass("purple_bubbles_seaglass", () -> new Block(Properties.of().strength(4.0f).requiresCorrectToolForDrops().sound(SoundType.GLASS).noOcclusion()));
+    public static final DeferredBlock<Block> PURPLE_SEAGLASS = registerSeaglass("purple_seaglass", () -> new Block(Properties.of().strength(4.0f).requiresCorrectToolForDrops().sound(SoundType.GLASS).noOcclusion()));
+    public static final DeferredBlock<Block> PURPLE_SMOOTH_SEAGLASS = registerSeaglass("purple_smooth_seaglass", () -> new Block(Properties.of().strength(4.0f).requiresCorrectToolForDrops().sound(SoundType.GLASS).noOcclusion()));
+    public static final DeferredBlock<Block> PURPLE_WAVES_SEAGLASS = registerSeaglass("purple_waves_seaglass", () -> new Block(Properties.of().strength(4.0f).requiresCorrectToolForDrops().sound(SoundType.GLASS).noOcclusion()));
+    public static final DeferredBlock<Block> RED_BUBBLES_SEAGLASS = registerSeaglass("red_bubbles_seaglass", () -> new Block(Properties.of().strength(4.0f).requiresCorrectToolForDrops().sound(SoundType.GLASS).noOcclusion()));
+    public static final DeferredBlock<Block> RED_SEAGLASS = registerSeaglass("red_seaglass", () -> new Block(Properties.of().strength(4.0f).requiresCorrectToolForDrops().sound(SoundType.GLASS).noOcclusion()));
+    public static final DeferredBlock<Block> RED_SMOOTH_SEAGLASS = registerSeaglass("red_smooth_seaglass", () -> new Block(Properties.of().strength(4.0f).requiresCorrectToolForDrops().sound(SoundType.GLASS).noOcclusion()));
+    public static final DeferredBlock<Block> RED_WAVES_SEAGLASS = registerSeaglass("red_waves_seaglass", () -> new Block(Properties.of().strength(4.0f).requiresCorrectToolForDrops().sound(SoundType.GLASS).noOcclusion()));
+    public static final DeferredBlock<Block> WHITE_BUBBLES_SEAGLASS = registerSeaglass("white_bubbles_seaglass", () -> new Block(Properties.of().strength(4.0f).requiresCorrectToolForDrops().sound(SoundType.GLASS).noOcclusion()));
+    public static final DeferredBlock<Block> WHITE_SEAGLASS = registerSeaglass("white_seaglass", () -> new Block(Properties.of().strength(4.0f).requiresCorrectToolForDrops().sound(SoundType.GLASS).noOcclusion()));
+    public static final DeferredBlock<Block> WHITE_SMOOTH_SEAGLASS = registerSeaglass("white_smooth_seaglass", () -> new Block(Properties.of().strength(4.0f).requiresCorrectToolForDrops().sound(SoundType.GLASS).noOcclusion()));
+    public static final DeferredBlock<Block> WHITE_WAVES_SEAGLASS = registerSeaglass("white_waves_seaglass", () -> new Block(Properties.of().strength(4.0f).requiresCorrectToolForDrops().sound(SoundType.GLASS).noOcclusion()));
+    public static final DeferredBlock<Block> YELLOW_BUBBLES_SEAGLASS = registerSeaglass("yellow_bubbles_seaglass", () -> new Block(Properties.of().strength(4.0f).requiresCorrectToolForDrops().sound(SoundType.GLASS).noOcclusion()));
+    public static final DeferredBlock<Block> YELLOW_SEAGLASS = registerSeaglass("yellow_seaglass", () -> new Block(Properties.of().strength(4.0f).requiresCorrectToolForDrops().sound(SoundType.GLASS).noOcclusion()));
+    public static final DeferredBlock<Block> YELLOW_SMOOTH_SEAGLASS = registerSeaglass("yellow_smooth_seaglass", () -> new Block(Properties.of().strength(4.0f).requiresCorrectToolForDrops().sound(SoundType.GLASS).noOcclusion()));
+    public static final DeferredBlock<Block> YELLOW_WAVES_SEAGLASS = registerSeaglass("yellow_waves_seaglass", () -> new Block(Properties.of().strength(4.0f).requiresCorrectToolForDrops().sound(SoundType.GLASS).noOcclusion()));
 
     public static final DeferredBlock<Block> GAPPER_PANEL_OAK = BLOCKS.register("gapper_panel_oak", () -> new Block(Properties.of().strength(4.0f).requiresCorrectToolForDrops().sound(SoundType.STONE).noOcclusion()));
 
@@ -190,8 +190,14 @@ public class ModBlocks {
     // ==========================================
 
     private static <T extends Block> DeferredBlock<T> registerBackportedBlock(String name, java.util.function.Supplier<T> block) {
+        return registerBackportedBlock(name, block, true);
+    }
+
+    private static <T extends Block> DeferredBlock<T> registerBackportedBlock(String name, java.util.function.Supplier<T> block, boolean createItem) {
         DeferredBlock<T> ret = MINECRAFT_BLOCKS.register(name, block);
-        MINECRAFT_ITEMS.register(name, () -> new net.minecraft.world.item.BlockItem(ret.get(), new net.minecraft.world.item.Item.Properties()));
+        if (createItem) {
+            MINECRAFT_ITEMS.register(name, () -> new net.minecraft.world.item.BlockItem(ret.get(), new net.minecraft.world.item.Item.Properties()));
+        }
         return ret;
     }
     
@@ -214,10 +220,27 @@ public class ModBlocks {
     public static final DeferredBlock<PressurePlateBlock> PALE_OAK_PRESSURE_PLATE = registerBackportedBlock("pale_oak_pressure_plate", () -> new PressurePlateBlock(BlockSetTypeVariant.PALE_OAK.getBlockSetType(), BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_PRESSURE_PLATE).mapColor(MapColor.COLOR_LIGHT_GRAY)));
     public static final DeferredBlock<ButtonBlock> PALE_OAK_BUTTON = registerBackportedBlock("pale_oak_button", () -> new ButtonBlock(BlockSetTypeVariant.PALE_OAK.getBlockSetType(), 30, BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_BUTTON)));
 
-    public static final DeferredBlock<StandingSignBlock> PALE_OAK_SIGN = registerBackportedBlock("pale_oak_sign", () -> new StandingSignBlock(WoodTypeVariant.PALE_OAK.getWoodType(), BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_SIGN).mapColor(MapColor.COLOR_LIGHT_GRAY)));
-    public static final DeferredBlock<WallSignBlock> PALE_OAK_WALL_SIGN = registerBackportedBlock("pale_oak_wall_sign", () -> new WallSignBlock(WoodTypeVariant.PALE_OAK.getWoodType(), BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_WALL_SIGN).mapColor(MapColor.COLOR_LIGHT_GRAY)));
-    public static final DeferredBlock<CeilingHangingSignBlock> PALE_OAK_HANGING_SIGN = registerBackportedBlock("pale_oak_hanging_sign", () -> new CeilingHangingSignBlock(WoodTypeVariant.PALE_OAK.getWoodType(), BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_HANGING_SIGN).mapColor(MapColor.COLOR_LIGHT_GRAY)));
-    public static final DeferredBlock<WallHangingSignBlock> PALE_OAK_WALL_HANGING_SIGN = registerBackportedBlock("pale_oak_wall_hanging_sign", () -> new WallHangingSignBlock(WoodTypeVariant.PALE_OAK.getWoodType(), BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_WALL_HANGING_SIGN).mapColor(MapColor.COLOR_LIGHT_GRAY)));
+    public static final DeferredBlock<StandingSignBlock> PALE_OAK_SIGN =
+            registerBackportedBlock("pale_oak_sign",
+                    () -> new StandingSignBlock(WoodTypeVariant.PALE_OAK.getWoodType(),
+                            BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_SIGN).mapColor(MapColor.COLOR_LIGHT_GRAY)));
+
+    public static final DeferredBlock<WallSignBlock> PALE_OAK_WALL_SIGN =
+            registerBackportedBlock("pale_oak_wall_sign",
+                    () -> new WallSignBlock(WoodTypeVariant.PALE_OAK.getWoodType(),
+                            BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_WALL_SIGN).mapColor(MapColor.COLOR_LIGHT_GRAY)),
+                    false);
+
+    public static final DeferredBlock<CeilingHangingSignBlock> PALE_OAK_HANGING_SIGN =
+            registerBackportedBlock("pale_oak_hanging_sign",
+                    () -> new CeilingHangingSignBlock(WoodTypeVariant.PALE_OAK.getWoodType(),
+                            BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_HANGING_SIGN).mapColor(MapColor.COLOR_LIGHT_GRAY)));
+
+    public static final DeferredBlock<WallHangingSignBlock> PALE_OAK_WALL_HANGING_SIGN =
+            registerBackportedBlock("pale_oak_wall_hanging_sign",
+                    () -> new WallHangingSignBlock(WoodTypeVariant.PALE_OAK.getWoodType(),
+                            BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_WALL_HANGING_SIGN).mapColor(MapColor.COLOR_LIGHT_GRAY)),
+                    false);
 
     public static final DeferredBlock<LeavesBlock> PALE_OAK_LEAVES = registerBackportedBlock("pale_oak_leaves", () -> new PaleOakLeavesBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_LEAVES).mapColor(MapColor.PLANT)));
     public static final DeferredBlock<SaplingBlock> PALE_OAK_SAPLING = registerBackportedBlock("pale_oak_sapling", () -> new SaplingBlock(ModTreeGrowers.PALE_OAK, BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_SAPLING).mapColor(MapColor.PLANT)));
