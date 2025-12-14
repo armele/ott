@@ -334,6 +334,7 @@ public class Creaking extends Monster {
         return new CreakingPathNavigation(this, level);
     }
 
+    @SuppressWarnings("IfStatementWithIdenticalBranches")
     public boolean playerIsStuckInYou() {
         List<Player> list = this.getBrain().getMemory(MemoryModuleType.NEAREST_PLAYERS).orElse(List.of());
         if (list.isEmpty()) {
@@ -431,6 +432,7 @@ public class Creaking extends Monster {
         }
     }
 
+    @SuppressWarnings("IfStatementWithIdenticalBranches")
     public boolean checkCanMove() {
         if (this.isTearingDown()) {
             return false;

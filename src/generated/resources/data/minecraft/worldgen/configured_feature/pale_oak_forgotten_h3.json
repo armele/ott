@@ -4,12 +4,12 @@
     "decorators": [
       {
         "type": "minecraft:creaking_heart",
-        "probability": 0.12
+        "probability": 0.04
       },
       {
         "type": "minecraft:branching_logs",
-        "branches": 5,
-        "max_length": 6,
+        "branches": 8,
+        "max_length": 7,
         "min_length": 3,
         "probability": 1.0
       },
@@ -32,7 +32,7 @@
     },
     "foliage_placer": {
       "type": "minecraft:fancy_foliage_placer",
-      "height": 3,
+      "height": 5,
       "offset": {
         "type": "minecraft:uniform",
         "max_inclusive": 2,
@@ -64,7 +64,7 @@
       "upper_size": 3
     },
     "trunk_placer": {
-      "type": "minecraft:dark_oak_trunk_placer",
+      "type": "minecraft:forking_trunk_placer",
       "base_height": 7,
       "height_rand_a": 3,
       "height_rand_b": 2

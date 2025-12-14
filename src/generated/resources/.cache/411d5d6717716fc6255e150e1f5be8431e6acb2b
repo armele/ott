@@ -1,4 +1,4 @@
-// 1.21.1	2025-12-12T19:21:46.9544578	Block States: minecraft
+// 1.21.1	2025-12-13T18:05:51.0030554	Block States: minecraft
 eaae3fa075cfacae2fc9c07d189ba75648e0d42d assets/minecraft/blockstates/chiseled_resin_bricks.json
 c7560bcc0473e7de0aa900228bfcb8eee516fb1a assets/minecraft/blockstates/closed_eyeblossom.json
 a1acae0ed9d9e2598d3fc5eb279e83ac8d42c768 assets/minecraft/blockstates/creaking_heart.json
@@ -11,7 +11,6 @@ a47b76abba765f2049db67864b33af68bdf844ac assets/minecraft/blockstates/pale_moss_
 64595f8d25d9297d1d3f3e7c9f5b65152e8e53b6 assets/minecraft/blockstates/pale_oak_fence.json
 716fbabf1839fe982a4f255e16399ed640c673b8 assets/minecraft/blockstates/pale_oak_fence_gate.json
 d67a5509e327873e9941abbf4a4b8a22bc824562 assets/minecraft/blockstates/pale_oak_hanging_sign.json
-a653d3be879b872a06ec94c1deb51e4f5ba2d02a assets/minecraft/blockstates/pale_oak_leaves.json
 fd3adab18d965f31bf507768c992da32a36e71cb assets/minecraft/blockstates/pale_oak_log.json
 afbf2049704396bc2f2533d68872b549447a6fe5 assets/minecraft/blockstates/pale_oak_planks.json
 db2bb42ae02ca01ec93baf69843aa50ecf52733a assets/minecraft/blockstates/pale_oak_pressure_plate.json
@@ -41,8 +40,8 @@ a876eb42182ca7735ce1eccefc0e211046ea9f36 assets/minecraft/models/block/chiseled_
 0302cf7624c0b359197ae8300f8469268e6f5253 assets/minecraft/models/block/creaking_heart_active_horizontal.json
 fb0ba1445f0fb137b36514d04dbcf18c71078915 assets/minecraft/models/block/creaking_heart_horizontal.json
 9cc84ebd9d88b4a81275458774e0710433c8e7d8 assets/minecraft/models/block/open_eyeblossom.json
-d450982ff62c1a687523e50d92de5fbf4bca0e36 assets/minecraft/models/block/pale_hanging_moss.json
-ccdd3a916d4b496028dcc0cc801121996fd5cc64 assets/minecraft/models/block/pale_hanging_moss_tip.json
+53543b71ace9a9e63e58c63dd9e9bc066468d9eb assets/minecraft/models/block/pale_hanging_moss.json
+e75d0093d53c9fe11a0d44be29332f2d7d55696e assets/minecraft/models/block/pale_hanging_moss_tip.json
 cdbebab6aea7dc5baf8220482ba7df83753e339d assets/minecraft/models/block/pale_moss_block.json
 8caa35fa9d8336e7750e0be9d0c91595175c615a assets/minecraft/models/block/pale_moss_carpet.json
 8e1c8926f7819669fb1121966848fab7e94e6d80 assets/minecraft/models/block/pale_oak_button.json
@@ -63,7 +62,6 @@ eb4bd4bde732a86b2478ce5b4548da3479de741e assets/minecraft/models/block/pale_oak_
 8ba01f0a71d917e8a7a622e517b8e37758291be0 assets/minecraft/models/block/pale_oak_fence_post.json
 517739606aaa984fc2ecb5f1288b6367d0acceb7 assets/minecraft/models/block/pale_oak_fence_side.json
 20f0c69efc3c89d011ee6d8b0ad461cc49cfad27 assets/minecraft/models/block/pale_oak_hanging_sign.json
-6eadf5bc2adb489fa3d5ee15e281a6395195a652 assets/minecraft/models/block/pale_oak_leaves.json
 75986724f8144834c28bcf525e800db855dcc141 assets/minecraft/models/block/pale_oak_log.json
 eac36006b5a020b24341d4991632be30e8074cdb assets/minecraft/models/block/pale_oak_log_horizontal.json
 3bfd11878f399f71362b8afbb6623e7f024a79e2 assets/minecraft/models/block/pale_oak_planks.json

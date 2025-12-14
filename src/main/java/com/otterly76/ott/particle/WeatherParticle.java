@@ -77,11 +77,13 @@ public abstract class WeatherParticle extends TextureSheetParticle {
         }
     }
 
-    public Quaternionf flipItTurnwaysIfBackfaced(Quaternionf quaternion, Vector3f toCamera) {
+    public void flipItTurnwaysIfBackfaced(Quaternionf quaternion, Vector3f toCamera) {
         Vector3f normal = new Vector3f(0.0F, 0.0F, 1.0F);
         normal.rotate(quaternion).normalize();
         float dot = normal.dot(toCamera);
-        return dot > 0.0F ? quaternion.mul(Axis.YP.rotation((float)Math.PI)) : quaternion;
+        if (dot > 0.0F) {
+            quaternion.mul(Axis.YP.rotation((float) Math.PI));
+        }
     }
 
     @Override
@@ -93,7 +95,6 @@ public abstract class WeatherParticle extends TextureSheetParticle {
      * Helper to get the interpolated position of the particle relative to the camera.
      * This removes duplicated lerping logic in subclasses.
      */
-
     protected Vector3f getInterpolatedRelPos(Camera camera, float tickPercent) {
         Vec3 camPos = camera.getPosition();
         return new Vector3f(

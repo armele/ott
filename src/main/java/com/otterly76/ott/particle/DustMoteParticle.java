@@ -1,16 +1,16 @@
 package com.otterly76.ott.particle;
 
-import java.awt.Color;
 import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.client.particle.Particle;
 import net.minecraft.client.particle.ParticleProvider;
-import net.minecraft.client.particle.ParticleRenderType;
 import net.minecraft.client.particle.SpriteSet;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.SimpleParticleType;
 import net.minecraft.world.level.levelgen.Heightmap.Types;
 import net.minecraft.world.level.material.MapColor.Brightness;
 import org.jetbrains.annotations.NotNull;
+
+import java.awt.*;
 
 public class DustMoteParticle extends WeatherParticle {
     protected DustMoteParticle(ClientLevel level, double x, double y, double z, SpriteSet provider) {
@@ -40,11 +40,6 @@ public class DustMoteParticle extends WeatherParticle {
             this.xd = 0.2;
             this.zd = 0.2;
         }
-
-    }
-
-    public @NotNull ParticleRenderType getRenderType() {
-        return ParticleRenderType.PARTICLE_SHEET_TRANSLUCENT;
     }
 
     public static class DefaultFactory implements ParticleProvider<SimpleParticleType> {

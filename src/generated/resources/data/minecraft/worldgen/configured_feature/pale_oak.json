@@ -7,6 +7,10 @@
         "probability": 0.1
       },
       {
+        "type": "minecraft:trunk_top_leaves",
+        "probability": 1.0
+      },
+      {
         "type": "minecraft:pale_moss",
         "ground_probability": 0.2,
         "leaves_probability": 0.5,
@@ -22,7 +26,7 @@
     "foliage_placer": {
       "type": "minecraft:blob_foliage_placer",
       "height": 3,
-      "offset": 0,
+      "offset": 1,
       "radius": 2
     },
     "foliage_provider": {
@@ -45,7 +49,7 @@
       "upper_size": 1
     },
     "trunk_placer": {
-      "type": "minecraft:straight_trunk_placer",
+      "type": "minecraft:dark_oak_trunk_placer",
       "base_height": 5,
       "height_rand_a": 2,
       "height_rand_b": 1

@@ -32,6 +32,7 @@ public class PaleOakBoatType extends Item {
         this.hasChest = hasChest;
     }
 
+    @SuppressWarnings("DuplicatedCode")
     public @NotNull InteractionResultHolder<ItemStack> use(@NotNull Level level, Player player, @NotNull InteractionHand hand) {
         ItemStack itemstack = player.getItemInHand(hand);
         HitResult hitresult = getPlayerPOVHitResult(level, player, Fluid.ANY);

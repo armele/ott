@@ -121,6 +121,7 @@ public class ClientGameEvents {
         accessor.setLeftHeight(leftHeight + 10);
     }
 
+    @SuppressWarnings("DuplicatedCode")
     private static void renderTintedSprite(GuiGraphics guiGraphics, ResourceLocation sprite, int x, int y, int color) {
         RenderSystem.enableBlend();
         float r = ((color >> 16) & 0xFF) / 255.0F;

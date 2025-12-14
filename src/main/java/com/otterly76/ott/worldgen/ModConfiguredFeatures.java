@@ -4,15 +4,14 @@ import com.google.common.collect.ImmutableList;
 import com.otterly76.ott.block.ModBlocks;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Holder;
-import net.minecraft.core.HolderGetter;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.data.worldgen.BootstrapContext;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.random.SimpleWeightedRandomList;
 import net.minecraft.util.valueproviders.ConstantInt;
+import net.minecraft.util.valueproviders.UniformInt;
 import net.minecraft.world.level.block.Blocks;
-import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.levelgen.blockpredicates.BlockPredicate;
 import net.minecraft.world.level.levelgen.feature.ConfiguredFeature;
 import net.minecraft.world.level.levelgen.feature.Feature;
@@ -26,7 +25,6 @@ import net.minecraft.world.level.levelgen.feature.stateproviders.BlockStateProvi
 import net.minecraft.world.level.levelgen.feature.stateproviders.WeightedStateProvider;
 import net.minecraft.world.level.levelgen.feature.trunkplacers.DarkOakTrunkPlacer;
 import net.minecraft.world.level.levelgen.feature.trunkplacers.ForkingTrunkPlacer;
-import net.minecraft.world.level.levelgen.feature.trunkplacers.StraightTrunkPlacer;
 import net.minecraft.world.level.levelgen.placement.BlockPredicateFilter;
 import net.minecraft.world.level.levelgen.placement.PlacedFeature;
 
@@ -36,110 +34,270 @@ public class ModConfiguredFeatures {
     public static final ResourceKey<ConfiguredFeature<?, ?>> PALE_OAK = registerKey("pale_oak");
 
     public static final ResourceKey<ConfiguredFeature<?, ?>> PALE_OAK_OLD_GROWTH = registerKey("pale_oak_old_growth");
-    public static final ResourceKey<ConfiguredFeature<?, ?>> PALE_OAK_TALL = registerKey("pale_oak_tall");
     public static final ResourceKey<ConfiguredFeature<?, ?>> PALE_OAK_GNARLY = registerKey("pale_oak_gnarly");
-    public static final ResourceKey<ConfiguredFeature<?, ?>> PALE_OAK_MEGA = registerKey("pale_oak_mega");
+
+    public static final ResourceKey<ConfiguredFeature<?, ?>> PALE_OAK_ANCIENT_H4 = registerKey("pale_oak_ancient_h4");
+    public static final ResourceKey<ConfiguredFeature<?, ?>> PALE_OAK_ANCIENT_H5 = registerKey("pale_oak_ancient_h5");
+
+    public static final ResourceKey<ConfiguredFeature<?, ?>> PALE_OAK_FORGOTTEN_H3 = registerKey("pale_oak_forgotten_h3");
+    public static final ResourceKey<ConfiguredFeature<?, ?>> PALE_OAK_FORGOTTEN_H4 = registerKey("pale_oak_forgotten_h4");
+
+    public static final ResourceKey<ConfiguredFeature<?, ?>> PALE_OAK_MEGA_H6 = registerKey("pale_oak_mega_h6");
+    public static final ResourceKey<ConfiguredFeature<?, ?>> PALE_OAK_MEGA_H7 = registerKey("pale_oak_mega_h7");
+    public static final ResourceKey<ConfiguredFeature<?, ?>> PALE_OAK_MEGA_H8 = registerKey("pale_oak_mega_h8");
 
     public static final ResourceKey<ConfiguredFeature<?, ?>> PALE_MOSS_PATCH_BONEMEAL = registerKey("pale_moss_patch_bonemeal");
     public static final ResourceKey<ConfiguredFeature<?, ?>> PALE_MOSS_PATCH = registerKey("pale_moss_patch");
-    public static final ResourceKey<ConfiguredFeature<?, ?>> FLOWER_PALE_GARDEN = registerKey("flower_pale_garden");
-    public static final ResourceKey<ConfiguredFeature<?, ?>> PALE_FOREST_FLOWERS = registerKey("pale_forest_flowers");
     public static final ResourceKey<ConfiguredFeature<?, ?>> PALE_GARDEN_VEGETATION = registerKey("pale_garden_vegetation");
     public static final ResourceKey<ConfiguredFeature<?, ?>> PALE_MOSS_VEGETATION = registerKey("pale_moss_vegetation");
     public static final ResourceKey<ConfiguredFeature<?, ?>> PALE_GARDEN_FLOWERS = registerKey("pale_garden_flowers");
 
-    public static final ResourceKey<ConfiguredFeature<?, ?>> PALE_GARDEN_BERRY_BUSHES = registerKey("pale_garden_berry_bushes");
-    public static final ResourceKey<ConfiguredFeature<?, ?>> PALE_GARDEN_AZALEA = registerKey("pale_garden_azalea");
-
     public static void bootstrap(BootstrapContext<ConfiguredFeature<?, ?>> context) {
-        HolderGetter<Feature<?>> featureLookup = context.lookup(Registries.FEATURE);
 
         context.register(PALE_OAK, new ConfiguredFeature<>(
                 Feature.TREE,
                 new TreeConfiguration.TreeConfigurationBuilder(
                         BlockStateProvider.simple(ModBlocks.PALE_OAK_LOG.get().defaultBlockState()),
-                        new StraightTrunkPlacer(5, 2, 1),
+                        new DarkOakTrunkPlacer(5, 2, 1),
                         BlockStateProvider.simple(ModBlocks.PALE_OAK_LEAVES.get().defaultBlockState()),
-                        new BlobFoliagePlacer(ConstantInt.of(2), ConstantInt.of(0), 3),
+                        new BlobFoliagePlacer(ConstantInt.of(2), ConstantInt.of(1), 3),
                         new TwoLayersFeatureSize(1, 0, 1)
                 )
                         .decorators(ImmutableList.of(
                                 new CreakingHeartDecorator(0.1F),
+
+                                new TrunkTopLeavesDecorator(1.0F),
                                 new PaleMossDecorator(0.5F, 0.3F, 0.2F)
                         ))
                         .ignoreVines()
                         .build()
         ));
 
-        // Old-growth: wider canopy + chunkier silhouette
-        context.register(PALE_OAK_OLD_GROWTH, new ConfiguredFeature<>(
+        context.register(PALE_OAK_ANCIENT_H4, new ConfiguredFeature<>(
                 Feature.TREE,
                 new TreeConfiguration.TreeConfigurationBuilder(
                         BlockStateProvider.simple(ModBlocks.PALE_OAK_LOG.get().defaultBlockState()),
-                        new StraightTrunkPlacer(7, 3, 2),
+                        new DarkOakTrunkPlacer(9, 5, 3),
                         BlockStateProvider.simple(ModBlocks.PALE_OAK_LEAVES.get().defaultBlockState()),
-                        new FancyFoliagePlacer(ConstantInt.of(4), ConstantInt.of(1), 5),
-                        new TwoLayersFeatureSize(2, 0, 2)
+                        new FancyFoliagePlacer(
+                                UniformInt.of(7, 10),
+                                ConstantInt.of(1),
+                                5
+                        ),
+                        new TwoLayersFeatureSize(4, 0, 4)
                 )
                         .decorators(ImmutableList.of(
-                                new CreakingHeartDecorator(0.12F),
+                                new CreakingHeartDecorator(0.08F),
+
+                                new BranchingLogsDecorator(1.0F, 4, 5, 10),
+
+                                new BranchingLogsDecorator(1.0F, 8, 3, 7),
+
+                                new TrunkTopLeavesDecorator(1.0F),
+                                new PaleMossDecorator(0.70F, 0.55F, 0.30F)
+                        ))
+                        .ignoreVines()
+                        .build()
+        ));
+
+        context.register(PALE_OAK_ANCIENT_H5, new ConfiguredFeature<>(
+                Feature.TREE,
+                new TreeConfiguration.TreeConfigurationBuilder(
+                        BlockStateProvider.simple(ModBlocks.PALE_OAK_LOG.get().defaultBlockState()),
+                        new DarkOakTrunkPlacer(9, 5, 3),
+                        BlockStateProvider.simple(ModBlocks.PALE_OAK_LEAVES.get().defaultBlockState()),
+                        new FancyFoliagePlacer(
+                                UniformInt.of(7, 10),
+                                ConstantInt.of(1),
+                                6
+                        ),
+                        new TwoLayersFeatureSize(4, 0, 4)
+                )
+                        .decorators(ImmutableList.of(
+                                new CreakingHeartDecorator(0.08F),
+
+                                new BranchingLogsDecorator(1.0F, 4, 5, 10),
+                                new BranchingLogsDecorator(1.0F, 8, 3, 7),
+
+                                new TrunkTopLeavesDecorator(1.0F),
+                                new PaleMossDecorator(0.70F, 0.55F, 0.30F)
+                        ))
+                        .ignoreVines()
+                        .build()
+        ));
+
+        context.register(PALE_OAK_FORGOTTEN_H3, new ConfiguredFeature<>(
+                Feature.TREE,
+                new TreeConfiguration.TreeConfigurationBuilder(
+                        BlockStateProvider.simple(ModBlocks.PALE_OAK_LOG.get().defaultBlockState()),
+                        new ForkingTrunkPlacer(7, 3, 2),
+                        BlockStateProvider.simple(ModBlocks.PALE_OAK_LEAVES.get().defaultBlockState()),
+                        new FancyFoliagePlacer(
+                                UniformInt.of(5, 8),
+                                UniformInt.of(0, 2),
+                                5
+                        ),
+                        new TwoLayersFeatureSize(3, 0, 3)
+                )
+                        .decorators(ImmutableList.of(
+                                new CreakingHeartDecorator(0.04F),
+
+                                new BranchingLogsDecorator(1.0F, 8, 3, 7),
+
+                                new TrunkTopLeavesDecorator(1.0F),
                                 new PaleMossDecorator(0.65F, 0.45F, 0.25F)
                         ))
                         .ignoreVines()
                         .build()
         ));
 
-        // Tall: higher trunk, medium canopy
-        context.register(PALE_OAK_TALL, new ConfiguredFeature<>(
+        context.register(PALE_OAK_FORGOTTEN_H4, new ConfiguredFeature<>(
                 Feature.TREE,
                 new TreeConfiguration.TreeConfigurationBuilder(
                         BlockStateProvider.simple(ModBlocks.PALE_OAK_LOG.get().defaultBlockState()),
-                        new StraightTrunkPlacer(9, 4, 2),
+                        new ForkingTrunkPlacer(7, 3, 2),
                         BlockStateProvider.simple(ModBlocks.PALE_OAK_LEAVES.get().defaultBlockState()),
-                        new FancyFoliagePlacer(ConstantInt.of(3), ConstantInt.of(1), 4),
-                        new TwoLayersFeatureSize(2, 0, 2)
+                        new FancyFoliagePlacer(
+                                UniformInt.of(5, 8),
+                                UniformInt.of(0, 2),
+                                6
+                        ),
+                        new TwoLayersFeatureSize(3, 0, 3)
                 )
                         .decorators(ImmutableList.of(
-                                new CreakingHeartDecorator(0.08F),
-                                new PaleMossDecorator(0.55F, 0.35F, 0.20F)
+                                new CreakingHeartDecorator(0.04F),
+
+                                new BranchingLogsDecorator(1.0F, 8, 3, 7),
+
+                                new TrunkTopLeavesDecorator(1.0F),
+                                new PaleMossDecorator(0.65F, 0.45F, 0.25F)
                         ))
                         .ignoreVines()
                         .build()
         ));
 
-        // Gnarly: forking trunk for variety
+        context.register(PALE_OAK_OLD_GROWTH, new ConfiguredFeature<>(
+                Feature.TREE,
+                new TreeConfiguration.TreeConfigurationBuilder(
+                        BlockStateProvider.simple(ModBlocks.PALE_OAK_LOG.get().defaultBlockState()),
+                        new DarkOakTrunkPlacer(7, 3, 2),
+                        BlockStateProvider.simple(ModBlocks.PALE_OAK_LEAVES.get().defaultBlockState()),
+                        new FancyFoliagePlacer(
+                                UniformInt.of(5, 8),
+                                UniformInt.of(0, 2),
+                                3
+                        ),
+                        new TwoLayersFeatureSize(3, 0, 3)
+                )
+                        .decorators(ImmutableList.of(
+                                new CreakingHeartDecorator(0.12F),
+
+                                new BranchingLogsDecorator(1.0F, 5, 3, 6),
+
+                                new TrunkTopLeavesDecorator(1.0F),
+                                new PaleMossDecorator(0.65F, 0.45F, 0.25F)
+                        ))
+                        .ignoreVines()
+                        .build()
+        ));
+
         context.register(PALE_OAK_GNARLY, new ConfiguredFeature<>(
                 Feature.TREE,
                 new TreeConfiguration.TreeConfigurationBuilder(
                         BlockStateProvider.simple(ModBlocks.PALE_OAK_LOG.get().defaultBlockState()),
                         new ForkingTrunkPlacer(6, 2, 2),
                         BlockStateProvider.simple(ModBlocks.PALE_OAK_LEAVES.get().defaultBlockState()),
-                        new FancyFoliagePlacer(ConstantInt.of(3), ConstantInt.of(1), 4),
-                        new TwoLayersFeatureSize(2, 0, 2)
+                        new FancyFoliagePlacer(
+                                UniformInt.of(5, 8),
+                                UniformInt.of(0, 2),
+                                3
+                        ),
+                        new TwoLayersFeatureSize(3, 0, 3)
                 )
                         .decorators(ImmutableList.of(
                                 new CreakingHeartDecorator(0.15F),
+
+                                new BranchingLogsDecorator(1.0F, 10, 5, 9),
+
+                                new TrunkTopLeavesDecorator(1.0F),
                                 new PaleMossDecorator(0.70F, 0.50F, 0.25F)
                         ))
                         .ignoreVines()
                         .build()
         ));
 
-        context.register(PALE_OAK_MEGA, new ConfiguredFeature<>(
+        context.register(PALE_OAK_MEGA_H6, new ConfiguredFeature<>(
                 Feature.TREE,
                 new TreeConfiguration.TreeConfigurationBuilder(
                         BlockStateProvider.simple(ModBlocks.PALE_OAK_LOG.get().defaultBlockState()),
-                        // Dark oak style trunk => 2x2-ish “chunk mass”
                         new DarkOakTrunkPlacer(8, 4, 3),
                         BlockStateProvider.simple(ModBlocks.PALE_OAK_LEAVES.get().defaultBlockState()),
-                        // Bigger canopy to sell the “wall”
-                        new FancyFoliagePlacer(ConstantInt.of(4), ConstantInt.of(2), 6),
-                        new TwoLayersFeatureSize(2, 0, 2)
+                        new FancyFoliagePlacer(
+                                UniformInt.of(5, 8),
+                                ConstantInt.of(1),
+                                4
+                        ),
+                        new TwoLayersFeatureSize(4, 0, 4)
                 )
                         .decorators(ImmutableList.of(
-                                // With mega trunks, hearts become more likely to have “embedded” candidates,
-                                // so keep probability lower than your 1x1 trees.
                                 new CreakingHeartDecorator(0.05F),
+
+                                new BranchingLogsDecorator(1.0F, 3, 5, 9),
+                                new BranchingLogsDecorator(1.0F, 7, 3, 7),
+
+                                new TrunkTopLeavesDecorator(1.0F),
+                                new PaleMossDecorator(0.70F, 0.55F, 0.30F)
+                        ))
+                        .ignoreVines()
+                        .build()
+        ));
+
+        context.register(PALE_OAK_MEGA_H7, new ConfiguredFeature<>(
+                Feature.TREE,
+                new TreeConfiguration.TreeConfigurationBuilder(
+                        BlockStateProvider.simple(ModBlocks.PALE_OAK_LOG.get().defaultBlockState()),
+                        new DarkOakTrunkPlacer(8, 4, 3),
+                        BlockStateProvider.simple(ModBlocks.PALE_OAK_LEAVES.get().defaultBlockState()),
+                        new FancyFoliagePlacer(
+                                UniformInt.of(6, 9),
+                                ConstantInt.of(1),
+                                5
+                        ),
+                        new TwoLayersFeatureSize(4, 0, 4)
+                )
+                        .decorators(ImmutableList.of(
+                                new CreakingHeartDecorator(0.05F),
+
+                                new BranchingLogsDecorator(1.0F, 3, 5, 9),
+                                new BranchingLogsDecorator(1.0F, 7, 3, 7),
+
+                                new TrunkTopLeavesDecorator(1.0F),
+                                new PaleMossDecorator(0.70F, 0.55F, 0.30F)
+                        ))
+                        .ignoreVines()
+                        .build()
+        ));
+
+        context.register(PALE_OAK_MEGA_H8, new ConfiguredFeature<>(
+                Feature.TREE,
+                new TreeConfiguration.TreeConfigurationBuilder(
+                        BlockStateProvider.simple(ModBlocks.PALE_OAK_LOG.get().defaultBlockState()),
+                        new DarkOakTrunkPlacer(8, 4, 3),
+                        BlockStateProvider.simple(ModBlocks.PALE_OAK_LEAVES.get().defaultBlockState()),
+                        new FancyFoliagePlacer(
+                                UniformInt.of(7, 10),
+                                ConstantInt.of(1),
+                                6
+                        ),
+                        new TwoLayersFeatureSize(4, 0, 4)
+                )
+                        .decorators(ImmutableList.of(
+                                new CreakingHeartDecorator(0.05F),
+
+                                new BranchingLogsDecorator(1.0F, 3, 6, 10),
+                                new BranchingLogsDecorator(1.0F, 7, 3, 7),
+
+                                new TrunkTopLeavesDecorator(1.0F),
                                 new PaleMossDecorator(0.70F, 0.55F, 0.30F)
                         ))
                         .ignoreVines()
@@ -150,8 +308,8 @@ public class ModConfiguredFeatures {
         context.register(PALE_MOSS_PATCH, new ConfiguredFeature<>(
                 Feature.RANDOM_PATCH,
                 new RandomPatchConfiguration(
-                        32,  // was 8: more tries = more successful placements
-                        6,   // was 8: slightly tighter spread can make patches denser
+                        64,
+                        6,
                         1,
                         Holder.direct(new PlacedFeature(
                                 Holder.direct(new ConfiguredFeature<>(
@@ -172,10 +330,70 @@ public class ModConfiguredFeatures {
                 )
         ));
 
-        context.register(FLOWER_PALE_GARDEN, new ConfiguredFeature<>(
-                Feature.FLOWER,
+        context.register(PALE_MOSS_PATCH_BONEMEAL, new ConfiguredFeature<>(
+                Feature.RANDOM_PATCH,
                 new RandomPatchConfiguration(
                         24,
+                        4,
+                        1,
+                        Holder.direct(new PlacedFeature(
+                                Holder.direct(new ConfiguredFeature<>(
+                                        Feature.SIMPLE_BLOCK,
+                                        new SimpleBlockConfiguration(
+                                                BlockStateProvider.simple(ModBlocks.PALE_MOSS_BLOCK.get().defaultBlockState())
+                                        )
+                                )),
+                                List.of(
+                                        BlockPredicateFilter.forPredicate(
+                                                BlockPredicate.anyOf(
+                                                        BlockPredicate.matchesBlocks(BlockPos.ZERO, Blocks.GRASS_BLOCK),
+                                                        BlockPredicate.matchesBlocks(BlockPos.ZERO, Blocks.DIRT)
+                                                )
+                                        )
+                                )
+                        ))
+                )
+        ));
+
+        context.register(PALE_GARDEN_VEGETATION, new ConfiguredFeature<>(
+                Feature.RANDOM_PATCH,
+                new RandomPatchConfiguration(
+                        24,
+                        7,
+                        2,
+                        Holder.direct(new PlacedFeature(
+                                Holder.direct(new ConfiguredFeature<>(
+                                        Feature.SIMPLE_BLOCK,
+                                        new SimpleBlockConfiguration(
+                                                new WeightedStateProvider(
+                                                        SimpleWeightedRandomList.<net.minecraft.world.level.block.state.BlockState>builder()
+                                                                .add(Blocks.SHORT_GRASS.defaultBlockState(), 4)
+                                                                .add(Blocks.FERN.defaultBlockState(), 1)
+                                                                .add(Blocks.TALL_GRASS.defaultBlockState(), 1)
+                                                                .add(Blocks.LARGE_FERN.defaultBlockState(), 1)
+                                                                .build()
+                                                )
+                                        )
+                                )),
+                                List.of(
+                                        BlockPredicateFilter.forPredicate(
+                                                BlockPredicate.allOf(
+                                                        BlockPredicate.ONLY_IN_AIR_PREDICATE,
+                                                        BlockPredicate.anyOf(
+                                                                BlockPredicate.matchesBlocks(new BlockPos(0, -1, 0), ModBlocks.PALE_MOSS_BLOCK.get()),
+                                                                BlockPredicate.matchesBlocks(new BlockPos(0, -1, 0), Blocks.GRASS_BLOCK)
+                                                        )
+                                                )
+                                        )
+                                )
+                        ))
+                )
+        ));
+
+        context.register(PALE_GARDEN_FLOWERS, new ConfiguredFeature<>(
+                Feature.RANDOM_PATCH,
+                new RandomPatchConfiguration(
+                        32,
                         6,
                         2,
                         Holder.direct(new PlacedFeature(
@@ -186,122 +404,14 @@ public class ModConfiguredFeatures {
                                         )
                                 )),
                                 List.of(
-                                        BlockPredicateFilter.forPredicate(BlockPredicate.ONLY_IN_AIR_PREDICATE),
                                         BlockPredicateFilter.forPredicate(
-                                                BlockPredicate.anyOf(
-                                                        BlockPredicate.matchesBlocks(net.minecraft.core.BlockPos.ZERO.below(), Blocks.GRASS_BLOCK),
-                                                        BlockPredicate.matchesBlocks(net.minecraft.core.BlockPos.ZERO.below(), ModBlocks.PALE_MOSS_BLOCK.get())
+                                                BlockPredicate.allOf(
+                                                        BlockPredicate.ONLY_IN_AIR_PREDICATE,
+                                                        BlockPredicate.anyOf(
+                                                                BlockPredicate.matchesBlocks(new BlockPos(0, -1, 0), ModBlocks.PALE_MOSS_BLOCK.get()),
+                                                                BlockPredicate.matchesBlocks(new BlockPos(0, -1, 0), Blocks.GRASS_BLOCK)
+                                                        )
                                                 )
-                                        )
-                                )
-                        ))
-                )
-        ));
-
-        context.register(PALE_FOREST_FLOWERS, new ConfiguredFeature<>(
-                Feature.FLOWER,
-                new RandomPatchConfiguration(
-                        64,
-                        6,
-                        2,
-                        Holder.direct(new PlacedFeature(
-                                Holder.direct(new ConfiguredFeature<>(
-                                        Feature.SIMPLE_BLOCK,
-                                        new SimpleBlockConfiguration(BlockStateProvider.simple(Blocks.BLUE_ORCHID.defaultBlockState()))
-                                )),
-                                List.of()
-                        ))
-                ) // Forest variant
-        ));
-
-        context.register(PALE_GARDEN_FLOWERS, new ConfiguredFeature<>(
-                Feature.FLOWER,
-                new RandomPatchConfiguration(
-                        80,
-                        6,
-                        2,
-                        Holder.direct(new PlacedFeature(
-                                Holder.direct(new ConfiguredFeature<>(
-                                        Feature.SIMPLE_BLOCK,
-                                        new SimpleBlockConfiguration(BlockStateProvider.simple(Blocks.POPPY.defaultBlockState()))
-                                )),
-                                List.of()
-                        ))
-                ) // Garden flowers
-        ));
-
-        context.register(PALE_GARDEN_VEGETATION, new ConfiguredFeature<>(
-                Feature.RANDOM_PATCH,
-                new RandomPatchConfiguration(
-                        28, // more tries => denser ground cover
-                        7,
-                        2,
-                        Holder.direct(new PlacedFeature(
-                                Holder.direct(new ConfiguredFeature<>(
-                                        Feature.SIMPLE_BLOCK,
-                                        new SimpleBlockConfiguration(
-                                                new WeightedStateProvider(
-                                                        SimpleWeightedRandomList.<BlockState>builder()
-                                                                // Heavily bias toward moss carpet
-                                                                .add(Blocks.MOSS_CARPET.defaultBlockState(), 12)
-                                                                // Lots of ferns
-                                                                .add(Blocks.FERN.defaultBlockState(), 6)
-                                                                // Some short grass (not too much)
-                                                                .add(Blocks.SHORT_GRASS.defaultBlockState(), 3)
-                                                                .build()
-                                                )
-                                        )
-                                )),
-                                List.of(
-                                        BlockPredicateFilter.forPredicate(BlockPredicate.ONLY_IN_AIR_PREDICATE),
-                                        BlockPredicateFilter.forPredicate(
-                                                BlockPredicate.matchesBlocks(BlockPos.ZERO.below(), ModBlocks.PALE_MOSS_BLOCK.get())
-                                        )
-                                )
-                        ))
-                )
-        ));
-
-                context.register(PALE_GARDEN_BERRY_BUSHES, new ConfiguredFeature<>(
-                Feature.RANDOM_PATCH,
-                new RandomPatchConfiguration(
-                        10, // tries: tweak up/down
-                        6,
-                        2,
-                        Holder.direct(new PlacedFeature(
-                                Holder.direct(new ConfiguredFeature<>(
-                                        Feature.SIMPLE_BLOCK,
-                                        new SimpleBlockConfiguration(
-                                                BlockStateProvider.simple(Blocks.SWEET_BERRY_BUSH.defaultBlockState())
-                                        )
-                                )),
-                                List.of(
-                                        BlockPredicateFilter.forPredicate(BlockPredicate.ONLY_IN_AIR_PREDICATE),
-                                        BlockPredicateFilter.forPredicate(
-                                                BlockPredicate.matchesBlocks(BlockPos.ZERO.below(), ModBlocks.PALE_MOSS_BLOCK.get())
-                                        )
-                                )
-                        ))
-                )
-        ));
-
-        context.register(PALE_GARDEN_AZALEA, new ConfiguredFeature<>(
-                Feature.RANDOM_PATCH,
-                new RandomPatchConfiguration(
-                        3, // azalea should be relatively rare compared to grass/ferns
-                        6,
-                        2,
-                        Holder.direct(new PlacedFeature(
-                                Holder.direct(new ConfiguredFeature<>(
-                                        Feature.SIMPLE_BLOCK,
-                                        new SimpleBlockConfiguration(
-                                                BlockStateProvider.simple(Blocks.AZALEA.defaultBlockState())
-                                        )
-                                )),
-                                List.of(
-                                        BlockPredicateFilter.forPredicate(BlockPredicate.ONLY_IN_AIR_PREDICATE),
-                                        BlockPredicateFilter.forPredicate(
-                                                BlockPredicate.matchesBlocks(BlockPos.ZERO.below(), ModBlocks.PALE_MOSS_BLOCK.get())
                                         )
                                 )
                         ))
@@ -311,44 +421,33 @@ public class ModConfiguredFeatures {
         context.register(PALE_MOSS_VEGETATION, new ConfiguredFeature<>(
                 Feature.RANDOM_PATCH,
                 new RandomPatchConfiguration(
-                        14, // was 5: moss carpet is a big part of the “pale garden” look
+                        48,
                         6,
                         2,
                         Holder.direct(new PlacedFeature(
                                 Holder.direct(new ConfiguredFeature<>(
                                         Feature.SIMPLE_BLOCK,
-                                        new SimpleBlockConfiguration(BlockStateProvider.simple(Blocks.MOSS_CARPET.defaultBlockState()))
+                                        new SimpleBlockConfiguration(
+                                                BlockStateProvider.simple(Blocks.FERN.defaultBlockState())
+                                        )
                                 )),
                                 List.of(
-                                        BlockPredicateFilter.forPredicate(BlockPredicate.ONLY_IN_AIR_PREDICATE),
                                         BlockPredicateFilter.forPredicate(
-                                                BlockPredicate.matchesBlocks(BlockPos.ZERO.below(), ModBlocks.PALE_MOSS_BLOCK.get())
+                                                BlockPredicate.allOf(
+                                                        BlockPredicate.ONLY_IN_AIR_PREDICATE,
+                                                        BlockPredicate.anyOf(
+                                                                BlockPredicate.matchesBlocks(new BlockPos(0, -1, 0), ModBlocks.PALE_MOSS_BLOCK.get()),
+                                                                BlockPredicate.matchesBlocks(new BlockPos(0, -1, 0), Blocks.GRASS_BLOCK)
+                                                        )
+                                                )
                                         )
                                 )
                         ))
                 )
         ));
-
-        context.register(PALE_MOSS_PATCH_BONEMEAL, new ConfiguredFeature<>(
-                ModFeatures.PALE_MOSS_PATCH.get(),  // Direct reference: type-safe, no cast needed
-                new RandomPatchConfiguration(
-                        4,  // Tries
-                        4,  // XZ spread
-                        3,  // Y spread
-                        Holder.direct(new PlacedFeature(
-                                Holder.direct(new ConfiguredFeature<>(
-                                        Feature.SIMPLE_BLOCK,
-                                        new SimpleBlockConfiguration(
-                                                BlockStateProvider.simple(ModBlocks.PALE_MOSS_BLOCK.get().defaultBlockState())  // Place moss blocks
-                                        )
-                                )),
-                                List.of()
-                        ))
-                ) // Integrated: Custom feature adds hanging moss logic
-        ));
     }
 
     private static ResourceKey<ConfiguredFeature<?, ?>> registerKey(String name) {
-        return ResourceKey.create(Registries.CONFIGURED_FEATURE, ResourceLocation.fromNamespaceAndPath("minecraft", name));  // Retain for backport
+        return ResourceKey.create(Registries.CONFIGURED_FEATURE, ResourceLocation.fromNamespaceAndPath("minecraft", name));
     }
 }

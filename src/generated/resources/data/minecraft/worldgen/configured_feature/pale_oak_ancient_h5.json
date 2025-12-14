@@ -4,12 +4,19 @@
     "decorators": [
       {
         "type": "minecraft:creaking_heart",
-        "probability": 0.12
+        "probability": 0.08
       },
       {
         "type": "minecraft:branching_logs",
-        "branches": 5,
-        "max_length": 6,
+        "branches": 4,
+        "max_length": 10,
+        "min_length": 5,
+        "probability": 1.0
+      },
+      {
+        "type": "minecraft:branching_logs",
+        "branches": 8,
+        "max_length": 7,
         "min_length": 3,
         "probability": 1.0
       },
@@ -19,9 +26,9 @@
       },
       {
         "type": "minecraft:pale_moss",
-        "ground_probability": 0.25,
-        "leaves_probability": 0.65,
-        "trunk_probability": 0.45
+        "ground_probability": 0.3,
+        "leaves_probability": 0.7,
+        "trunk_probability": 0.55
       }
     ],
     "dirt_provider": {
@@ -32,16 +39,12 @@
     },
     "foliage_placer": {
       "type": "minecraft:fancy_foliage_placer",
-      "height": 3,
-      "offset": {
-        "type": "minecraft:uniform",
-        "max_inclusive": 2,
-        "min_inclusive": 0
-      },
+      "height": 6,
+      "offset": 1,
       "radius": {
         "type": "minecraft:uniform",
-        "max_inclusive": 8,
-        "min_inclusive": 5
+        "max_inclusive": 10,
+        "min_inclusive": 7
       }
     },
     "foliage_provider": {
@@ -59,15 +62,15 @@
     "ignore_vines": true,
     "minimum_size": {
       "type": "minecraft:two_layers_feature_size",
-      "limit": 3,
+      "limit": 4,
       "lower_size": 0,
-      "upper_size": 3
+      "upper_size": 4
     },
     "trunk_placer": {
       "type": "minecraft:dark_oak_trunk_placer",
-      "base_height": 7,
-      "height_rand_a": 3,
-      "height_rand_b": 2
+      "base_height": 9,
+      "height_rand_a": 5,
+      "height_rand_b": 3
     },
     "trunk_provider": {
       "type": "minecraft:simple_state_provider",

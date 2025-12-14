@@ -13,6 +13,8 @@ import net.neoforged.neoforge.event.village.WandererTradesEvent;
 @EventBusSubscriber(
         modid = "ott"
 )
+
+// TODO Add MCol item trades
 public class ModWanderingTraderTrades {
     @SubscribeEvent
     public static void onWandererTrades(WandererTradesEvent event) {

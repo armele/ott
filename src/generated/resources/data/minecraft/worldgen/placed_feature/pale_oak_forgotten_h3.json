@@ -1,9 +1,13 @@
 {
-  "feature": "minecraft:pale_oak",
+  "feature": "minecraft:pale_oak_forgotten_h3",
   "placement": [
     {
       "type": "minecraft:count",
       "count": 2
+    },
+    {
+      "type": "minecraft:rarity_filter",
+      "chance": 2
     },
     {
       "type": "minecraft:in_square"

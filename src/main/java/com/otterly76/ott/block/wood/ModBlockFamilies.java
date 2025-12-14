@@ -38,6 +38,7 @@ public class ModBlockFamilies {
                 .get()).chiseled(ModBlocks.CHISELED_RESIN_BRICKS
                 .get())
                 .getFamily());
+
         PALE_OAK = registerFamily(familyBuilder(ModBlocks.PALE_OAK_PLANKS
                 .get()).button(ModBlocks.PALE_OAK_BUTTON
                 .get()).fence(ModBlocks.PALE_OAK_FENCE

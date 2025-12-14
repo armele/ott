@@ -1,42 +1,7 @@
 {
-  "parent": "minecraft:block/block",
-  "elements": [
-    {
-      "faces": {
-        "down": {
-          "texture": "#texture"
-        },
-        "east": {
-          "texture": "#texture"
-        },
-        "north": {
-          "texture": "#texture"
-        },
-        "south": {
-          "texture": "#texture"
-        },
-        "up": {
-          "texture": "#texture"
-        },
-        "west": {
-          "texture": "#texture"
-        }
-      },
-      "from": [
-        1,
-        2,
-        1
-      ],
-      "to": [
-        15,
-        16,
-        15
-      ]
-    }
-  ],
+  "parent": "minecraft:block/cross",
   "render_type": "minecraft:cutout",
   "textures": {
-    "particle": "minecraft:block/pale_hanging_moss_tip",
-    "texture": "minecraft:block/pale_hanging_moss_tip"
+    "cross": "minecraft:block/pale_hanging_moss_tip"
   }
 }

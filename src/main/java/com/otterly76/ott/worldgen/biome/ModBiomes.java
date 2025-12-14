@@ -32,21 +32,23 @@ public class ModBiomes {
                         context.lookup(Registries.CONFIGURED_CARVER)
                 );
 
+        builder2.addFeature(Decoration.VEGETAL_DECORATION, ModPlacedFeatures.PALE_OAK_ANCIENT_H4);
+        builder2.addFeature(Decoration.VEGETAL_DECORATION, ModPlacedFeatures.PALE_OAK_ANCIENT_H5);
+
+        builder2.addFeature(Decoration.VEGETAL_DECORATION, ModPlacedFeatures.PALE_OAK_MEGA_H6);
+        builder2.addFeature(Decoration.VEGETAL_DECORATION, ModPlacedFeatures.PALE_OAK_MEGA_H7);
+        builder2.addFeature(Decoration.VEGETAL_DECORATION, ModPlacedFeatures.PALE_OAK_MEGA_H8);
+
+        builder2.addFeature(Decoration.VEGETAL_DECORATION, ModPlacedFeatures.PALE_OAK_FORGOTTEN_H3);
+        builder2.addFeature(Decoration.VEGETAL_DECORATION, ModPlacedFeatures.PALE_OAK_FORGOTTEN_H4);
+
         builder2.addFeature(Decoration.VEGETAL_DECORATION, ModPlacedFeatures.PALE_OAK_OLD_GROWTH);
-        builder2.addFeature(Decoration.VEGETAL_DECORATION, ModPlacedFeatures.PALE_OAK_TALL);
         builder2.addFeature(Decoration.VEGETAL_DECORATION, ModPlacedFeatures.PALE_OAK_GNARLY);
         builder2.addFeature(Decoration.VEGETAL_DECORATION, ModPlacedFeatures.PALE_OAK);
-        builder2.addFeature(Decoration.VEGETAL_DECORATION, ModPlacedFeatures.PALE_OAK_MEGA);
 
-
-        builder2.addFeature(Decoration.VEGETAL_DECORATION, ModPlacedFeatures.PALE_GARDEN_VEGETATION);
         builder2.addFeature(Decoration.VEGETAL_DECORATION, ModPlacedFeatures.PALE_MOSS_PATCH);
-        builder2.addFeature(Decoration.VEGETAL_DECORATION, ModPlacedFeatures.FLOWER_PALE_GARDEN);
-
-        builder2.addFeature(Decoration.VEGETAL_DECORATION, ModPlacedFeatures.PALE_GARDEN_BERRY_BUSHES);
-        builder2.addFeature(Decoration.VEGETAL_DECORATION, ModPlacedFeatures.PALE_GARDEN_AZALEA);
-
-        // builder2.addFeature(Decoration.VEGETAL_DECORATION, ModPlacedFeatures.PALE_GARDEN_FLOWERS);
+        builder2.addFeature(Decoration.VEGETAL_DECORATION, ModPlacedFeatures.PALE_GARDEN_VEGETATION);
+        builder2.addFeature(Decoration.VEGETAL_DECORATION, ModPlacedFeatures.PALE_GARDEN_FLOWERS);
 
         BiomeDefaultFeatures.addDefaultOres(builder2);
         // BiomeDefaultFeatures.addDefaultSoftDisks(builder2);

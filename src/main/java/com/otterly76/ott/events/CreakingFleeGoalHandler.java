@@ -44,6 +44,7 @@ public class CreakingFleeGoalHandler {
         }
     }
 
+    //TODO Add minecolonies:citizen, raiders
     private static final List<String> FLEE_ENTITIES = Arrays.asList(
             "minecraft:vindicator",
             "minecraft:evoker",

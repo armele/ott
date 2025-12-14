@@ -60,13 +60,21 @@ public class CreakingHeartDecorator extends TreeDecorator {
     }
 
     private boolean isEmbeddedInTrunk(TreeDecorator.Context context, BlockPos pos) {
-        // Require horizontal “inside trunk” feel, but don’t demand all 6 sides.
-        // This makes it rare, but not practically impossible.
-        return checkBlock(context, pos.north(), s -> s.is(BlockTags.LOGS))
-                && checkBlock(context, pos.south(), s -> s.is(BlockTags.LOGS))
-                && checkBlock(context, pos.east(), s -> s.is(BlockTags.LOGS))
-                && checkBlock(context, pos.west(), s -> s.is(BlockTags.LOGS))
-                && checkBlock(context, pos.below(), s -> s.is(BlockTags.LOGS));
+        Predicate<BlockState> isLog = s -> s.is(BlockTags.LOGS);
+
+        // Require vertical embedding: log above AND log below
+        if (!checkBlock(context, pos.above(), isLog) || !checkBlock(context, pos.below(), isLog)) {
+            return false;
+        }
+
+        int horizontalLogSides = 0;
+        if (checkBlock(context, pos.north(), isLog)) horizontalLogSides++;
+        if (checkBlock(context, pos.south(), isLog)) horizontalLogSides++;
+        if (checkBlock(context, pos.east(), isLog)) horizontalLogSides++;
+        if (checkBlock(context, pos.west(), isLog)) horizontalLogSides++;
+
+        // Allow 2x2 trunks easily: require at least 2 horizontal sides covered
+        return horizontalLogSides >= 2;
     }
 
     public boolean checkBlock(TreeDecorator.Context context, BlockPos blockPos, Predicate<BlockState> predicate) {

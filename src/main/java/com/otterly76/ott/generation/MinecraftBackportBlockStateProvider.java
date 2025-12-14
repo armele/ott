@@ -36,7 +36,10 @@ public class MinecraftBackportBlockStateProvider extends BlockStateProvider {
         // -------------------------
 
         // Leaves
-        simpleBlock(ModBlocks.PALE_OAK_LEAVES.get());
+        // NOTE: pale_oak_leaves blockstate/model are supplied manually in:
+        // src/main/resources/assets/minecraft/(blockstates|models)
+        // so we must NOT generate them here, otherwise datagen creates duplicates.
+        // simpleBlock(ModBlocks.PALE_OAK_LEAVES.get());
 
         // Pale moss block
         simpleBlock(ModBlocks.PALE_MOSS_BLOCK.get());
@@ -299,33 +302,15 @@ public class MinecraftBackportBlockStateProvider extends BlockStateProvider {
 
     @SuppressWarnings("SameParameterValue")
     private ModelFile paleHangingMossModel(String modelName, String texturePath) {
-        BlockModelBuilder b = models().getBuilder(modelName)
-                .parent(models().getExistingFile(mcLoc("block/block")))
-                .renderType("cutout")
-                .texture("texture", mcLoc(texturePath))
-                .texture("particle", mcLoc(texturePath));
-
-        b.element()
-                .from(1, 0, 1).to(15, 16, 15)
-                .allFaces((dir, face) -> face.texture("#texture"))
-                .end();
-
-        return b;
+        return models()
+                .cross(modelName, mcLoc(texturePath))
+                .renderType("cutout");
     }
 
     @SuppressWarnings("SameParameterValue")
     private ModelFile paleHangingMossTipModel(String modelName, String texturePath) {
-        BlockModelBuilder b = models().getBuilder(modelName)
-                .parent(models().getExistingFile(mcLoc("block/block")))
-                .renderType("cutout")
-                .texture("texture", mcLoc(texturePath))
-                .texture("particle", mcLoc(texturePath));
-
-        b.element()
-                .from(1, 2, 1).to(15, 16, 15)
-                .allFaces((dir, face) -> face.texture("#texture"))
-                .end();
-
-        return b;
+        return models()
+                .cross(modelName, mcLoc(texturePath))
+                .renderType("cutout");
     }
 }

@@ -1,5 +1,5 @@
 {
-  "type": "minecraft:pale_moss_patch",
+  "type": "minecraft:random_patch",
   "config": {
     "feature": {
       "feature": {
@@ -13,10 +13,27 @@
           }
         }
       },
-      "placement": []
+      "placement": [
+        {
+          "type": "minecraft:block_predicate_filter",
+          "predicate": {
+            "type": "minecraft:any_of",
+            "predicates": [
+              {
+                "type": "minecraft:matching_blocks",
+                "blocks": "minecraft:grass_block"
+              },
+              {
+                "type": "minecraft:matching_blocks",
+                "blocks": "minecraft:dirt"
+              }
+            ]
+          }
+        }
+      ]
     },
-    "tries": 4,
+    "tries": 24,
     "xz_spread": 4,
-    "y_spread": 3
+    "y_spread": 1
   }
 }
