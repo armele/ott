@@ -14,6 +14,8 @@ Mixins Used:
     - Cleaner, more current for 1.21.1 environment
   - Used in the Pale Garden backport to allow for placement of foliage on the pale moss blocks
     - Because the Pale Garden is freakin awesome
+  - Suppressing the experimental features warning for new instances
+    - Yes, we know, we're actively modding the game, please shut up
 
 FAQ:
 =======
@@ -69,3 +71,4 @@ Running List:
   - Each set of 20 armor is a new color (brown, iron, gold, etc)
 - Pale Garden 1:1 backport
   - Because it's awesome and I want it
+- Suppressed the "Experimental Features" warning for new instances
