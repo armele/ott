@@ -1,4 +1,4 @@
-// 1.21.1	2025-12-14T13:36:21.6809827	Registries
+// 1.21.1	2025-12-14T14:30:18.8820476	Registries
 f0e47e8662519701cba8aef9a867c4104d5d9fd9 data/minecraft/trim_material/resin.json
 17967e0230563c21410f38529ca9a6d4db8814d3 data/minecraft/worldgen/biome/pale_garden.json
 eb2edafd16d8ba9c588f673534a68fdf3b3e7b60 data/minecraft/worldgen/configured_feature/pale_garden_flowers.json
@@ -15,4 +15,4 @@ ac37f82437c33205f0aaab1495fd6a1532634cf7 data/minecraft/worldgen/placed_feature/
 8d5cac015befc03f01c9f7cc36d8bc05afbd9858 data/minecraft/worldgen/placed_feature/pale_moss_patch.json
 7546bf9870fa29a42d296cfbfe566b3e41073a91 data/minecraft/worldgen/placed_feature/pale_oak.json
 a8314b254e6bf070e27f1c85dca795ee2ff8c1fd data/minecraft/worldgen/placed_feature/pale_oak_extra.json
-343b3e63c342a9ccbc9cf2c73533f0ba41b471f4 data/minecraft/worldgen/placed_feature/pale_oak_mega.json
+b773e4f59cc3edf13fdb097ec31a1ad5c9ce210b data/minecraft/worldgen/placed_feature/pale_oak_mega.json

@@ -2,6 +2,7 @@ package com.otterly76.ott.events;
 
 import com.mojang.datafixers.util.Either;
 import com.otterly76.ott.entity.Creaking;
+import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.TagKey;
@@ -14,10 +15,10 @@ import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.event.entity.EntityJoinLevelEvent;
 
+import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
-import java.util.Arrays;
 
 @EventBusSubscriber(
         modid = "ott"
@@ -44,12 +45,14 @@ public class CreakingFleeGoalHandler {
         }
     }
 
-    //TODO Add minecolonies:citizen, raiders
     private static final List<String> FLEE_ENTITIES = Arrays.asList(
             "minecraft:vindicator",
             "minecraft:evoker",
             "minecraft:pillager",
-            "#minecraft:raiders"
+            "#minecraft:raiders",
+            "minecolonies:citizen",
+            "minecolonies:visitor",
+            "#minecolonies:raiders"
     );
 
     private static boolean shouldFleeFromCreaking(Mob mob) {
@@ -59,7 +62,7 @@ public class CreakingFleeGoalHandler {
 
         EntityType<?> type = mob.getType();
 
-        for(Either<EntityType<?>, TagKey<EntityType<?>>> entry : cachedFleeTypes) {
+        for (Either<EntityType<?>, TagKey<EntityType<?>>> entry : cachedFleeTypes) {
             if (entry.left().isPresent() && entry.left().get() == type) {
                 return true;
             }
@@ -81,22 +84,15 @@ public class CreakingFleeGoalHandler {
 
             if (s.startsWith("#")) {
                 ResourceLocation tagId = ResourceLocation.tryParse(s.substring(1));
-                if (tagId == null) {
-                    continue;
-                }
+                if (tagId == null) continue;
+
                 set.add(Either.right(TagKey.create(Registries.ENTITY_TYPE, tagId)));
             } else {
                 ResourceLocation entityId = ResourceLocation.tryParse(s);
-                if (entityId == null) {
-                    continue;
-                }
+                if (entityId == null) continue;
 
-                EntityType<?> type = EntityType.byString(entityId.toString()).orElse(null);
-                if (type == null) {
-                    continue;
-                }
-
-                set.add(Either.left(type));
+                BuiltInRegistries.ENTITY_TYPE.getOptional(entityId)
+                        .ifPresent(type -> set.add(Either.left(type)));
             }
         }
 
