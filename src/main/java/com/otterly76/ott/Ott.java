@@ -96,6 +96,8 @@ public class Ott {
         generator.addProvider(event.includeClient(), new MinecraftBackportBlockStateProvider(generator.getPackOutput(), event.getExistingFileHelper()));
         generator.addProvider(event.includeClient(), new MinecraftBackportItemModelProvider(generator.getPackOutput(), event.getExistingFileHelper()));
 
+        generator.addProvider(event.includeClient(), new OttWoodSetBlockStateProvider(generator.getPackOutput(), event.getExistingFileHelper()));
+
         generator.addProvider(event.includeServer(), new LootTableProvider(generator.getPackOutput(), Collections.emptySet(), List.of(new LootTableProvider.SubProviderEntry(OttLootTableProvider::new, LootContextParamSets.BLOCK)), event.getLookupProvider()));
 
         ModBlockTagProvider blockTagProvider = new ModBlockTagProvider(generator.getPackOutput(), event.getLookupProvider(), event.getExistingFileHelper());
@@ -198,6 +200,25 @@ public class Ott {
             event.accept(ModBlocks.PALE_OAK_TRAPDOOR);
             event.accept(ModBlocks.PALE_OAK_BUTTON);
             event.accept(ModBlocks.PALE_MOSS_BLOCK);
+
+            // ott wood sets (e.g. starlight)
+            ModBlocks.WOOD_SETS.values().forEach(set -> {
+                event.accept(set.planks());
+                event.accept(set.log());
+                event.accept(set.wood());
+                event.accept(set.strippedLog());
+                event.accept(set.strippedWood());
+
+                event.accept(set.stairs());
+                event.accept(set.slab());
+                event.accept(set.fence());
+                event.accept(set.fenceGate());
+
+                event.accept(set.door());
+                event.accept(set.trapdoor());
+                event.accept(set.button());
+                event.accept(set.pressurePlate());
+            });
         }
 
         if (event.getTabKey() == CreativeModeTabs.NATURAL_BLOCKS) {
@@ -207,6 +228,12 @@ public class Ott {
             event.accept(ModBlocks.PALE_HANGING_MOSS);
             event.accept(ModBlocks.OPEN_EYEBLOSSOM);
             event.accept(ModBlocks.CLOSED_EYEBLOSSOM);
+
+            // ott wood sets (e.g. starlight)
+            ModBlocks.WOOD_SETS.values().forEach(set -> {
+                event.accept(set.leaves());
+                event.accept(set.sapling());
+            });
         }
 
         if (event.getTabKey() == CreativeModeTabs.FUNCTIONAL_BLOCKS) {

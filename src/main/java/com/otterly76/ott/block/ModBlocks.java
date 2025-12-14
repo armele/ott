@@ -5,6 +5,7 @@ import com.otterly76.ott.crop.HedgeSprouts;
 import com.otterly76.ott.util.BlockSetTypeVariant;
 import com.otterly76.ott.util.WoodTypeVariant;
 import com.otterly76.ott.worldgen.ModTreeGrowers;
+import com.otterly76.ott.wood.ModWoodSets;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.world.item.DyeColor;
 import net.minecraft.world.level.block.*;
@@ -22,6 +23,8 @@ import java.util.Collection;
 import java.util.List;
 import java.util.function.Consumer;
 import java.util.function.Function;
+import java.util.LinkedHashMap;
+import java.util.Map;
 
 import static com.otterly76.ott.Constants.MOD_ID;
 
@@ -267,6 +270,118 @@ public class ModBlocks {
 
     public static Collection<DeferredBlock<? extends IGradientBlock>> getAllGradientConcreteBlocks() {
         return ALL_CONCRETE_BLOCKS;
+    }
+
+    /**
+     * ott wood sets (ott namespace). Key = set name (e.g. "starlight").
+     */
+    public static final Map<String, WoodSetBlocks> WOOD_SETS = new LinkedHashMap<>();
+
+    public record WoodSetBlocks(
+            DeferredBlock<RotatedPillarBlock> log,
+            DeferredBlock<RotatedPillarBlock> wood,
+            DeferredBlock<RotatedPillarBlock> strippedLog,
+            DeferredBlock<RotatedPillarBlock> strippedWood,
+            DeferredBlock<Block> planks,
+            DeferredBlock<StairBlock> stairs,
+            DeferredBlock<SlabBlock> slab,
+            DeferredBlock<FenceBlock> fence,
+            DeferredBlock<FenceGateBlock> fenceGate,
+            DeferredBlock<DoorBlock> door,
+            DeferredBlock<TrapDoorBlock> trapdoor,
+            DeferredBlock<ButtonBlock> button,
+            DeferredBlock<PressurePlateBlock> pressurePlate,
+            DeferredBlock<LeavesBlock> leaves,
+            DeferredBlock<SaplingBlock> sapling,
+            DeferredBlock<FlowerPotBlock> pottedSapling
+    ) {}
+
+    static {
+        // Register all ott wood sets
+        ModWoodSets.ALL.forEach(set -> WOOD_SETS.put(set.name(), registerOttWoodSet(set.name())));
+    }
+
+    private static WoodSetBlocks registerOttWoodSet(String set) {
+        // Naming
+        String logName = set + "_log";
+        String woodName = set + "_wood";
+        String strippedLogName = "stripped_" + set + "_log";
+        String strippedWoodName = "stripped_" + set + "_wood";
+        String planksName = set + "_planks";
+        String stairsName = set + "_stairs";
+        String slabName = set + "_slab";
+        String fenceName = set + "_fence";
+        String fenceGateName = set + "_fence_gate";
+        String doorName = set + "_door";
+        String trapdoorName = set + "_trapdoor";
+        String buttonName = set + "_button";
+        String pressurePlateName = set + "_pressure_plate";
+        String leavesName = set + "_leaves";
+        String saplingName = set + "_sapling";
+        String pottedSaplingName = "potted_" + set + "_sapling";
+
+        // Blocks
+        DeferredBlock<RotatedPillarBlock> log = BLOCKS.register(logName,
+                () -> new RotatedPillarBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_LOG)));
+
+        DeferredBlock<RotatedPillarBlock> wood = BLOCKS.register(woodName,
+                () -> new RotatedPillarBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_WOOD)));
+
+        DeferredBlock<RotatedPillarBlock> strippedLog = BLOCKS.register(strippedLogName,
+                () -> new RotatedPillarBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.STRIPPED_OAK_LOG)));
+
+        DeferredBlock<RotatedPillarBlock> strippedWood = BLOCKS.register(strippedWoodName,
+                () -> new RotatedPillarBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.STRIPPED_OAK_WOOD)));
+
+        DeferredBlock<Block> planks = BLOCKS.register(planksName,
+                () -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_PLANKS)));
+
+        DeferredBlock<StairBlock> stairs = BLOCKS.register(stairsName,
+                () -> new StairBlock(planks.get().defaultBlockState(), BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_STAIRS)));
+
+        DeferredBlock<SlabBlock> slab = BLOCKS.register(slabName,
+                () -> new SlabBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_SLAB)));
+
+        DeferredBlock<FenceBlock> fence = BLOCKS.register(fenceName,
+                () -> new FenceBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_FENCE)));
+
+        DeferredBlock<FenceGateBlock> fenceGate = BLOCKS.register(fenceGateName,
+                () -> new FenceGateBlock(
+                        net.minecraft.world.level.block.state.properties.WoodType.OAK,
+                        BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_FENCE_GATE)));
+
+        // NOTE: Door/Trapdoor/Button/PressurePlate require BlockSetType.
+        // For now, we copy oak behavior using BlockSetType.OAK. In the next step
+        // we will introduce per-set BlockSetType/WoodType for correct sound groups if desired.
+        DeferredBlock<DoorBlock> door = BLOCKS.register(doorName,
+                () -> new DoorBlock(net.minecraft.world.level.block.state.properties.BlockSetType.OAK, BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_DOOR)));
+
+        DeferredBlock<TrapDoorBlock> trapdoor = BLOCKS.register(trapdoorName,
+                () -> new TrapDoorBlock(net.minecraft.world.level.block.state.properties.BlockSetType.OAK, BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_TRAPDOOR)));
+
+        DeferredBlock<ButtonBlock> button = BLOCKS.register(buttonName,
+                () -> new ButtonBlock(net.minecraft.world.level.block.state.properties.BlockSetType.OAK, 30, BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_BUTTON)));
+
+        DeferredBlock<PressurePlateBlock> pressurePlate = BLOCKS.register(pressurePlateName,
+                () -> new PressurePlateBlock(net.minecraft.world.level.block.state.properties.BlockSetType.OAK, BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_PRESSURE_PLATE)));
+
+        DeferredBlock<LeavesBlock> leaves = BLOCKS.register(leavesName,
+                () -> new LeavesBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_LEAVES)));
+
+        DeferredBlock<SaplingBlock> sapling = BLOCKS.register(saplingName,
+                () -> new SaplingBlock(ModTreeGrowers.OAK, BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_SAPLING)));
+
+        DeferredBlock<FlowerPotBlock> pottedSapling = BLOCKS.register(pottedSaplingName,
+                () -> new FlowerPotBlock(() -> (FlowerPotBlock) Blocks.FLOWER_POT, sapling, BlockBehaviour.Properties.ofFullCopy(Blocks.POTTED_OAK_SAPLING)));
+
+        return new WoodSetBlocks(
+                log, wood, strippedLog, strippedWood,
+                planks, stairs, slab,
+                fence, fenceGate,
+                door, trapdoor,
+                button, pressurePlate,
+                leaves, sapling, pottedSapling
+        );
     }
 
     public static void register(IEventBus eventBus) {

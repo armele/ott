@@ -1,0 +1,16 @@
+{
+  "variants": {
+    "axis=x": {
+      "model": "ott:block/stripped_starlight_log_horizontal",
+      "x": 90,
+      "y": 90
+    },
+    "axis=y": {
+      "model": "ott:block/stripped_starlight_log"
+    },
+    "axis=z": {
+      "model": "ott:block/stripped_starlight_log_horizontal",
+      "x": 90
+    }
+  }
+}

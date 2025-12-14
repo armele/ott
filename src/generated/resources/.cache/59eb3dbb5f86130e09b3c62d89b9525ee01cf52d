@@ -1,4 +1,4 @@
-// 1.21.1	2025-12-14T13:23:47.1093911	Loot Tables
+// 1.21.1	2025-12-14T18:58:21.8587788	Loot Tables
 6cf9078610a3f3ca7173d8fe2ca6dd0282e8d21b data/minecraft/loot_table/blocks/chiseled_resin_bricks.json
 be553de3b042176d2f4055d2db03f6ff322ddcaa data/minecraft/loot_table/blocks/closed_eyeblossom.json
 385c0ec1c2a23a3bd2c67d2f56759159f70e6750 data/minecraft/loot_table/blocks/creaking_heart.json
@@ -557,6 +557,7 @@ fcf1f599e0001ee43a94b9eaaaf73558537e62fa data/ott/loot_table/blocks/pink_red_con
 ba175f8c458015efbbb72252dbbeacb1ed92e6d5 data/ott/loot_table/blocks/pink_seaglass.json
 3f020224d573942acfe00136a0a6f0bb1f34cd1e data/ott/loot_table/blocks/pink_smooth_seaglass.json
 19e6031a249200eda70936350c0bcc32fc3d468d data/ott/loot_table/blocks/pink_waves_seaglass.json
+3bd97f632cbbc554d5629c25e2f98bc6c8ca5949 data/ott/loot_table/blocks/potted_starlight_sapling.json
 0b70c8b41a78f51fd8ba040c469f1df4ee645101 data/ott/loot_table/blocks/purple_black_concrete.json
 cf34e00634e673d6f8069d66731645b2c0e3366c data/ott/loot_table/blocks/purple_black_concrete_powder.json
 954cc1a1bc9b6abe56943b96a539865c5970e44e data/ott/loot_table/blocks/purple_black_stained_glass.json
@@ -595,6 +596,21 @@ b74d0c2c63a000c97591f5016c00051b59603d28 data/ott/loot_table/blocks/red_black_wo
 2025840adbd2be73d64fd315775ee97430ce189e data/ott/loot_table/blocks/red_seaglass.json
 4291237d90eca5414d8c7e3daddb0b80fdcf7fed data/ott/loot_table/blocks/red_smooth_seaglass.json
 7c5ea66c47bde0ae0ad4effda5db11232a487608 data/ott/loot_table/blocks/red_waves_seaglass.json
+7616ff01b009e4f62577b0882a95a9c98c20bd06 data/ott/loot_table/blocks/starlight_button.json
+77714aed1a87acda6e6bc64d91daa1fe8167e224 data/ott/loot_table/blocks/starlight_door.json
+d04379229394c949bf937e206fc9e4e730d28844 data/ott/loot_table/blocks/starlight_fence.json
+fe2314a7e3fe57c1922c3d8e3713220aaf6f283a data/ott/loot_table/blocks/starlight_fence_gate.json
+cee599d6f18d200c020c72a50cf6d9dee6702b6c data/ott/loot_table/blocks/starlight_leaves.json
+a3ae5152c945e92a08165ed8d526831d03f87f7c data/ott/loot_table/blocks/starlight_log.json
+77ffa804293f0fdfc7f393fa01e9f5cd64bf22f5 data/ott/loot_table/blocks/starlight_planks.json
+6218dd03c9bf96fd7cee339421373323e039a00b data/ott/loot_table/blocks/starlight_pressure_plate.json
+e9e6085d55395fd4c9066462de91c45a72f2ce50 data/ott/loot_table/blocks/starlight_sapling.json
+bef1eee4aa233b9af8bf640f72c80c10d230aa9f data/ott/loot_table/blocks/starlight_slab.json
+b9172dabfb204bcdaf234dae3047c420cf477b12 data/ott/loot_table/blocks/starlight_stairs.json
+3cc94860ab643f810342f403ca8ef03cfd6416d0 data/ott/loot_table/blocks/starlight_trapdoor.json
+870061f9d2dd2e0d46e08e3c8fe539a2e4e1b6d0 data/ott/loot_table/blocks/starlight_wood.json
+06f5ceb8ff014a7111c7d12d30ee0abc3265e6ea data/ott/loot_table/blocks/stripped_starlight_log.json
+479b3d81e69d3500c5a2ca6378d8c5c9943170bf data/ott/loot_table/blocks/stripped_starlight_wood.json
 864e84032e4c9284c45ef9f2106819517691bb7b data/ott/loot_table/blocks/testblock_00.json
 60c54e9b089ad94c4e07cf6a381804672a11e827 data/ott/loot_table/blocks/testblock_01.json
 78aa7a9710910adf0eda2a4eb22bfecedebfc97a data/ott/loot_table/blocks/testblock_02.json
