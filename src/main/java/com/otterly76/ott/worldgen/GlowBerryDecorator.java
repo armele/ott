@@ -46,7 +46,6 @@ public class GlowBerryDecorator extends TreeDecorator {
         RandomSource random = context.random();
         WorldGenLevel level = (WorldGenLevel) context.level();
 
-        // Prefer leaf undersides (typical for glow berries). Shuffling helps distribution.
         List<BlockPos> leaves = Util.shuffledCopy(context.leaves(), random);
         for (BlockPos leafPos : leaves) {
             if (random.nextFloat() >= this.probability) {
@@ -65,7 +64,6 @@ public class GlowBerryDecorator extends TreeDecorator {
     private static void placeGlowBerryVines(WorldGenLevel level, RandomSource random, BlockPos start, int maxLength) {
         int length = 1 + random.nextInt(Math.max(1, maxLength));
 
-        // Place a hanging column: plant blocks in the middle, tip block at the end.
         for (int i = 0; i < length; i++) {
             BlockPos pos = start.below(i);
             if (!level.isEmptyBlock(pos)) {

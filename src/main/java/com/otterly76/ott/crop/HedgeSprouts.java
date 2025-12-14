@@ -11,7 +11,6 @@ import net.minecraft.world.level.block.state.properties.IntegerProperty;
 import org.jetbrains.annotations.NotNull;
 
 public class HedgeSprouts extends CropBlock {
-    // Define the AGE property with a maximum value of 3
     public static final int MAX_AGE = 3;
     public static final IntegerProperty AGE = BlockStateProperties.AGE_3;
 
@@ -21,7 +20,6 @@ public class HedgeSprouts extends CropBlock {
 
     @Override
     protected @NotNull ItemLike getBaseSeedId() {
-        // This links the block back to the seed item for the "pick block" action
         return ModItems.HEDGE_SPROUTS.get();
     }
 

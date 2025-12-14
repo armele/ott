@@ -135,7 +135,6 @@ public class BranchingLogsDecorator extends TreeDecorator {
                 placedAny = true;
                 lastPlaced = cursor.immutable();
 
-                // Heal the canopy a bit around each placed segment to reduce exposed side faces
                 puffLeaves(level, lastPlaced, random, 0.25F);
             } else if (target.is(BlockTags.LOGS)) {
                 break;
@@ -145,19 +144,15 @@ public class BranchingLogsDecorator extends TreeDecorator {
         }
 
         if (placedAny) {
-            // Stronger tufting around the branch end
             puffLeaves(level, lastPlaced, random, 0.85F);
 
             BlockPos tipCap = lastPlaced.relative(dir);
 
-            // Previously: only if air. This often leaves bare tips when the cap spot isn't air.
-            // We keep it conservative: place leaf if air OR leaves (i.e., harmless overwrite).
             BlockState capTarget = level.getBlockState(tipCap);
             if (capTarget.isAir() || capTarget.is(BlockTags.LEAVES)) {
                 level.setBlock(tipCap, ModBlocks.PALE_OAK_LEAVES.get().defaultBlockState(), 3);
             }
 
-            // And a little halo above/around the tip to hide the log end better
             puffLeaves(level, tipCap, random, 0.70F);
         }
 

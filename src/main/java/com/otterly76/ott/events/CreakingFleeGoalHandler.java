@@ -54,7 +54,7 @@ public class CreakingFleeGoalHandler {
 
     private static boolean shouldFleeFromCreaking(Mob mob) {
         if (cachedFleeTypes == null) {
-            cachedFleeTypes = parseConfig(FLEE_ENTITIES); // Now uses the constant
+            cachedFleeTypes = parseConfig(FLEE_ENTITIES);
         }
 
         EntityType<?> type = mob.getType();
@@ -82,18 +82,18 @@ public class CreakingFleeGoalHandler {
             if (s.startsWith("#")) {
                 ResourceLocation tagId = ResourceLocation.tryParse(s.substring(1));
                 if (tagId == null) {
-                    continue; // invalid tag string, skip
+                    continue;
                 }
                 set.add(Either.right(TagKey.create(Registries.ENTITY_TYPE, tagId)));
             } else {
                 ResourceLocation entityId = ResourceLocation.tryParse(s);
                 if (entityId == null) {
-                    continue; // invalid entity string, skip
+                    continue;
                 }
 
                 EntityType<?> type = EntityType.byString(entityId.toString()).orElse(null);
                 if (type == null) {
-                    continue; // unknown entity id (e.g., mod not present or wrong id), skip
+                    continue;
                 }
 
                 set.add(Either.left(type));

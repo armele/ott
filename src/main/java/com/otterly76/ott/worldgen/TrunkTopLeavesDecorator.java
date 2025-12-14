@@ -51,7 +51,6 @@ public class TrunkTopLeavesDecorator extends TreeDecorator {
 
         for (BlockPos logPos : logs) {
             BlockPos above = logPos.above();
-
             if (logSet.contains(above)) continue;
 
             placeLeafIfAir(level, above);
@@ -63,7 +62,7 @@ public class TrunkTopLeavesDecorator extends TreeDecorator {
                     BlockPos aroundTop = logPos.offset(dx, 0, dz);
                     placeLeafIfAir(level, aroundTop);
 
-                    if (random.nextFloat() < 0.55F) {
+                    if (random.nextFloat() < 1.0F) {
                         placeLeafIfAir(level, aroundTop.above());
                     }
                 }

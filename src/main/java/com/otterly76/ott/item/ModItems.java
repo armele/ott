@@ -44,17 +44,12 @@ public class ModItems {
         PALE_OAK_SIGN = MINECRAFT_ITEMS.register("pale_oak_sign", () -> new SignItem((new Item.Properties()).stacksTo(16), ModBlocks.PALE_OAK_SIGN.get(), ModBlocks.PALE_OAK_WALL_SIGN.get()));
         PALE_OAK_HANGING_SIGN = MINECRAFT_ITEMS.register("pale_oak_hanging_sign", () -> new HangingSignItem(ModBlocks.PALE_OAK_HANGING_SIGN.get(), ModBlocks.PALE_OAK_WALL_HANGING_SIGN.get(), (new Item.Properties()).stacksTo(16)));
 
-        // Register both boats using a custom helper class
         PALE_OAK_BOAT = MINECRAFT_ITEMS.register("pale_oak_boat",
                 () -> new ModBoatItem(ModEntities.PALE_OAK_BOAT, new Item.Properties().stacksTo(1)));
 
         PALE_OAK_CHEST_BOAT = MINECRAFT_ITEMS.register("pale_oak_chest_boat",
                 () -> new ModBoatItem(ModEntities.PALE_OAK_CHEST_BOAT, new Item.Properties().stacksTo(1)));
     }
-
-    // ==========================================
-    // HELPERS
-    // ==========================================
 
     private static DeferredHolder<Item, BlockItem> registerBlockItem(String name, DeferredBlock<? extends Block> block) {
         return ITEMS.register(name, () -> new BlockItem(block.get(), new Item.Properties()));

@@ -9,8 +9,11 @@ import net.neoforged.neoforge.registries.DeferredRegister;
 public class ModTreeDecoratorTypes {
     public static final DeferredRegister<TreeDecoratorType<?>> TREE_DECORATOR_TYPES = DeferredRegister.create(Registries.TREE_DECORATOR_TYPE, "minecraft");
 
-    public static final DeferredHolder<TreeDecoratorType<?>, TreeDecoratorType<PaleMossDecorator>> PALE_MOSS =
-            TREE_DECORATOR_TYPES.register("pale_moss", () -> new TreeDecoratorType<>(PaleMossDecorator.CODEC));
+    public static final DeferredHolder<TreeDecoratorType<?>, TreeDecoratorType<PaleHangingMossFromLeavesDecorator>> PALE_HANGING_MOSS_FROM_LEAVES =
+            TREE_DECORATOR_TYPES.register("pale_hanging_moss_from_leaves", () -> new TreeDecoratorType<>(PaleHangingMossFromLeavesDecorator.CODEC));
+
+    public static final DeferredHolder<TreeDecoratorType<?>, TreeDecoratorType<PaleMossOnStuffDecorator>> PALE_MOSS_ON_STUFF =
+            TREE_DECORATOR_TYPES.register("pale_moss_on_stuff", () -> new TreeDecoratorType<>(PaleMossOnStuffDecorator.CODEC));
 
     public static final DeferredHolder<TreeDecoratorType<?>, TreeDecoratorType<CreakingHeartDecorator>> CREAKING_HEART =
             TREE_DECORATOR_TYPES.register("creaking_heart", () -> new TreeDecoratorType<>(CreakingHeartDecorator.CODEC));
@@ -23,6 +26,9 @@ public class ModTreeDecoratorTypes {
 
     public static final DeferredHolder<TreeDecoratorType<?>, TreeDecoratorType<TrunkTopLeavesDecorator>> TRUNK_TOP_LEAVES =
             TREE_DECORATOR_TYPES.register("trunk_top_leaves", () -> new TreeDecoratorType<>(TrunkTopLeavesDecorator.CODEC));
+
+    public static final DeferredHolder<TreeDecoratorType<?>, TreeDecoratorType<ResinTrunkDecorator>> RESIN_TRUNK =
+            TREE_DECORATOR_TYPES.register("resin_trunk", () -> new TreeDecoratorType<>(ResinTrunkDecorator.CODEC));
 
     public static void register(IEventBus eventBus) {
         TREE_DECORATOR_TYPES.register(eventBus);

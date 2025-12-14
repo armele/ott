@@ -27,8 +27,6 @@ public class GroundFogRenderType implements ParticleRenderType {
         RenderSystem.blendFunc(SourceFactor.SRC_ALPHA, DestFactor.ONE_MINUS_SRC_ALPHA);
         RenderSystem.setShader(GameRenderer::getParticleShader);
 
-        // Fixed: Bind the particle texture manually.
-        // The previous GROUND_FOG RenderType definition was unused and caused overhead.
         RenderSystem.setShaderTexture(0, ResourceLocation.withDefaultNamespace("textures/atlas/particles.png"));
 
         RenderSystem.setShaderTexture(2, Minecraft.getInstance().gameRenderer.lightTexture().lightTextureLocation);

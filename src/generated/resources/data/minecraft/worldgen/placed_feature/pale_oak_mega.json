@@ -1,13 +1,13 @@
 {
-  "feature": "minecraft:pale_oak_forgotten_h4",
+  "feature": "minecraft:pale_oak_mega",
   "placement": [
     {
       "type": "minecraft:count",
-      "count": 2
+      "count": 1
     },
     {
       "type": "minecraft:rarity_filter",
-      "chance": 3
+      "chance": 10
     },
     {
       "type": "minecraft:in_square"
@@ -23,7 +23,27 @@
         "predicates": [
           {
             "type": "minecraft:matching_blocks",
-            "blocks": "minecraft:air"
+            "blocks": [
+              "minecraft:grass_block",
+              "minecraft:pale_moss_block"
+            ],
+            "offset": [
+              0,
+              -1,
+              0
+            ]
+          },
+          {
+            "type": "minecraft:matching_blocks",
+            "blocks": [
+              "minecraft:grass_block",
+              "minecraft:pale_moss_block"
+            ],
+            "offset": [
+              1,
+              -1,
+              0
+            ]
           },
           {
             "type": "minecraft:matching_blocks",
@@ -34,7 +54,19 @@
             "offset": [
               0,
               -1,
-              0
+              1
+            ]
+          },
+          {
+            "type": "minecraft:matching_blocks",
+            "blocks": [
+              "minecraft:grass_block",
+              "minecraft:pale_moss_block"
+            ],
+            "offset": [
+              1,
+              -1,
+              1
             ]
           }
         ]

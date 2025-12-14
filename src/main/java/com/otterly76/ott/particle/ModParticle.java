@@ -36,7 +36,6 @@ public class ModParticle {
         SOUND_EVENTS.register(eventBus);
     }
 
-    // Sounds
     public static final DeferredHolder<SoundEvent, SoundEvent> WEATHER_SNOW = SOUND_EVENTS.register("weather.snow", () -> SoundEvent.createVariableRangeEvent(ResourceLocation.fromNamespaceAndPath("ott", "weather.snow")));
     public static final DeferredHolder<SoundEvent, SoundEvent> WEATHER_SNOW_ABOVE = SOUND_EVENTS.register("weather.snow.above", () -> SoundEvent.createVariableRangeEvent(ResourceLocation.fromNamespaceAndPath("ott", "weather.snow.above")));
     public static final DeferredHolder<SoundEvent, SoundEvent> WEATHER_SANDSTORM = SOUND_EVENTS.register("weather.sandstorm", () -> SoundEvent.createVariableRangeEvent(ResourceLocation.fromNamespaceAndPath("ott", "weather.sandstorm")));

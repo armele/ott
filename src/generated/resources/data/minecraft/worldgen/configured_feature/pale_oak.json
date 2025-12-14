@@ -7,14 +7,20 @@
         "probability": 0.1
       },
       {
+        "type": "minecraft:resin_trunk",
+        "probability": 0.05
+      },
+      {
         "type": "minecraft:trunk_top_leaves",
         "probability": 1.0
       },
       {
-        "type": "minecraft:pale_moss",
-        "ground_probability": 0.2,
-        "leaves_probability": 0.5,
-        "trunk_probability": 0.3
+        "type": "minecraft:pale_hanging_moss_from_leaves",
+        "probability": 0.5
+      },
+      {
+        "type": "minecraft:pale_moss_on_stuff",
+        "probability": 0.2
       }
     ],
     "dirt_provider": {
@@ -24,10 +30,9 @@
       }
     },
     "foliage_placer": {
-      "type": "minecraft:blob_foliage_placer",
-      "height": 3,
-      "offset": 1,
-      "radius": 2
+      "type": "minecraft:dark_oak_foliage_placer",
+      "offset": 0,
+      "radius": 0
     },
     "foliage_provider": {
       "type": "minecraft:simple_state_provider",
@@ -46,11 +51,11 @@
       "type": "minecraft:two_layers_feature_size",
       "limit": 1,
       "lower_size": 0,
-      "upper_size": 1
+      "upper_size": 2
     },
     "trunk_placer": {
       "type": "minecraft:dark_oak_trunk_placer",
-      "base_height": 5,
+      "base_height": 6,
       "height_rand_a": 2,
       "height_rand_b": 1
     },

@@ -11,7 +11,6 @@ public class ModItemModelProvider extends ItemModelProvider {
     }
 
     protected void registerModels() {
-        // Placeholder implementation used in ModItems
         this.withExistingParent(ModItems.CREAKING_SPAWN_EGG.getId().getPath(), this.mcLoc("item/template_spawn_egg"));
     }
 }

@@ -55,7 +55,6 @@ public class EyeblossomBlock extends FlowerBlock {
                 level.playLocalSound(blockPos.getX(), blockPos.getY(), blockPos.getZ(), ModSounds.EYEBLOSSOM_IDLE.get(), SoundSource.BLOCKS, 1.0F, 1.0F, false);
             }
         }
-
     }
 
     protected void randomTick(@NotNull BlockState blockState, @NotNull ServerLevel serverLevel, @NotNull BlockPos blockPos, @NotNull RandomSource randomSource) {

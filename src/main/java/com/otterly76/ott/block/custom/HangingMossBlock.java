@@ -47,7 +47,6 @@ public class HangingMossBlock extends Block implements BonemealableBlock {
     public void animateTick(@NotNull BlockState blockState, @NotNull Level level, @NotNull BlockPos blockPos, RandomSource randomSource) {
         if (randomSource.nextInt(500) == 0) {
             BlockState blockState2 = level.getBlockState(blockPos.above());
-            // FIX: Use .get() for DeferredBlock
             if (blockState2.is(ModBlockTagProvider.PALE_OAK_LOGS) || blockState2.is(ModBlocks.PALE_OAK_LEAVES.get())) {
                 level.playLocalSound(blockPos.getX(), blockPos.getY(), blockPos.getZ(), ModSounds.PALE_HANGING_MOSS_IDLE.get(), SoundSource.BLOCKS, 1.0F, 1.0F, false);
             }
@@ -66,7 +65,6 @@ public class HangingMossBlock extends Block implements BonemealableBlock {
     private boolean canStayAtPosition(BlockGetter blockGetter, BlockPos blockPos) {
         BlockPos blockPos2 = blockPos.relative(Direction.UP);
         BlockState blockState = blockGetter.getBlockState(blockPos2);
-        // FIX: Use .get() for DeferredBlock
         return MultifaceBlock.canAttachTo(blockGetter, Direction.UP, blockPos2, blockState) || blockState.is(ModBlocks.PALE_HANGING_MOSS.get());
     }
 

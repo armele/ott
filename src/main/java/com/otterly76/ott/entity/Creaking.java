@@ -559,14 +559,12 @@ public class Creaking extends Monster {
         return null;
     }
 
-    // Added method to handle sound playback consistently
     public void makeSound(SoundEvent sound) {
         if (sound != null) {
             this.playSound(sound, this.getSoundVolume(), this.getVoicePitch());
         }
     }
 
-    // Inferred method to stop movement when freezing
     public void stopInPlace() {
         this.getNavigation().stop();
         this.setDeltaMovement(Vec3.ZERO);

@@ -44,19 +44,13 @@
     [],
     [],
     [
-      "minecraft:pale_oak_ancient_h4",
-      "minecraft:pale_oak_ancient_h5",
-      "minecraft:pale_oak_mega_h6",
-      "minecraft:pale_oak_mega_h7",
-      "minecraft:pale_oak_mega_h8",
-      "minecraft:pale_oak_forgotten_h3",
-      "minecraft:pale_oak_forgotten_h4",
-      "minecraft:pale_oak_old_growth",
-      "minecraft:pale_oak_gnarly",
       "minecraft:pale_oak",
+      "minecraft:pale_oak_extra",
+      "minecraft:pale_oak_mega",
       "minecraft:pale_moss_patch",
       "minecraft:pale_garden_vegetation",
       "minecraft:pale_garden_flowers",
+      "minecraft:pale_moss_carpet_patch",
       "minecraft:patch_grass_forest"
     ]
   ],

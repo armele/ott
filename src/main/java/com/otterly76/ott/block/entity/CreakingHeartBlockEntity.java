@@ -60,7 +60,7 @@ public class CreakingHeartBlockEntity extends BlockEntity {
     private static final int MAX_COUNT = 64;
     private static final int TICKS_GRACE_PERIOD = 30;
 
-    @SuppressWarnings("OptionalUsedAsFieldOrParameterType")  // Suppresses the Optional-as-field warning
+    @SuppressWarnings("OptionalUsedAsFieldOrParameterType")
     private static final Optional<Creaking> NO_CREAKING = Optional.empty();
 
     static SpawnUtil.Strategy ON_TOP_OF_COLLIDER_NO_LEAVES = (serverLevel, blockPos, blockState, blockPos2, blockState2) -> blockState2.getCollisionShape(serverLevel, blockPos2).isEmpty() && !blockState.is(BlockTags.LEAVES) && Block.isFaceFull(blockState.getCollisionShape(serverLevel, blockPos), Direction.UP);
@@ -76,7 +76,6 @@ public class CreakingHeartBlockEntity extends BlockEntity {
     }
 
     public static void serverTick(@NotNull Level level, @NotNull BlockPos blockPos, @NotNull BlockState blockState, @NotNull CreakingHeartBlockEntity creakingHeartBlockEntity) {
-        // Prevent ticking a BE that has been removed/unloaded (can happen around chunk unloads)
         if (creakingHeartBlockEntity.isRemoved()) {
             return;
         }
@@ -113,7 +112,6 @@ public class CreakingHeartBlockEntity extends BlockEntity {
             }
 
             if (creakingHeartBlockEntity.ticker-- < 0) {
-                // Use the guaranteed non-null tick 'level', not the BE field which can be null in lifecycle edge cases.
                 creakingHeartBlockEntity.ticker = level.random.nextInt(5) + 20;
 
                 if (creakingHeartBlockEntity.creakingInfo == null) {
@@ -195,7 +193,6 @@ public class CreakingHeartBlockEntity extends BlockEntity {
             return NO_CREAKING;
         }
 
-        // Extract common logic for left/right handling
         if (this.creakingInfo.left().isPresent()) {
             Creaking creaking = this.creakingInfo.left().get();
             if (!creaking.isRemoved()) {

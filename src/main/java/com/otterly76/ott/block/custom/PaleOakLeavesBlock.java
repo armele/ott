@@ -29,8 +29,6 @@ public class PaleOakLeavesBlock extends LeavesBlock {
             BlockPos blockPos2 = blockPos.below();
             BlockState blockState2 = level.getBlockState(blockPos2);
             if (!isFaceFull(blockState2.getCollisionShape(level, blockPos2), Direction.UP)) {
-                // Assuming ModParticle.PALE_OAK_LEAVES exists. If the class is named ModParticles, update accordingly.
-                // Using ModParticle based on your Ott.java class using ModParticle.PARTICLE_TYPES
                 ParticleUtils.spawnParticleBelow(level, blockPos, randomSource, ModParticle.PALE_OAK_LEAVES.get());
             }
         }

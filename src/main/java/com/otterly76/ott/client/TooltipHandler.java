@@ -16,7 +16,7 @@ public class TooltipHandler {
     public static void onItemTooltip(ItemTooltipEvent event) {
         FoodUtil.FoodValues values = FoodUtil.getFoodValues(event.getItemStack(), event.getEntity());
         if (values != null) {
-            event.getToolTip().add(Component.literal(" ")); // Spacer
+            event.getToolTip().add(Component.literal(" "));
             event.getToolTip().add(Component.translatable("tooltip.ott.hunger", values.hunger()).withStyle(ChatFormatting.GRAY));
             event.getToolTip().add(Component.translatable("tooltip.ott.saturation", String.format(Locale.ROOT, "%.1f", values.saturation())).withStyle(ChatFormatting.GOLD));
         }

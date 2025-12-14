@@ -76,7 +76,6 @@ public class HedgeBlock extends Block implements BonemealableBlock {
         if (level.isClientSide() || (entity instanceof Player player && player.isCreative())) {
             return;
         }
-        // This will damage players in Survival/Adventure and all other mobs
         entity.hurt(OttDamageTypes.of(level, OttDamageTypes.FLORA_DAMAGE), DAMAGE);
     }
 
@@ -91,8 +90,6 @@ public class HedgeBlock extends Block implements BonemealableBlock {
     }
 
     private boolean shouldDamage(Entity entity) {
-        // Returns true for ALL living entities (Players, Mobs, Ravagers, etc.)
-        // This implicitly ignores the 'isIgnoringBlockTriggers' flag by not checking it.
         return entity instanceof LivingEntity;
     }
 
@@ -108,7 +105,6 @@ public class HedgeBlock extends Block implements BonemealableBlock {
 
     @Override
     public void performBonemeal(ServerLevel level, @NotNull RandomSource random, BlockPos pos, @NotNull BlockState state) {
-        // Grow upwards by placing another hedge block above
         level.setBlockAndUpdate(pos.above(), this.defaultBlockState());
     }
 }

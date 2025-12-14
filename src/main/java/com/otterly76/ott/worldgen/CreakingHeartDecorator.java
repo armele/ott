@@ -73,7 +73,6 @@ public class CreakingHeartDecorator extends TreeDecorator {
         if (checkBlock(context, pos.east(), isLog)) horizontalLogSides++;
         if (checkBlock(context, pos.west(), isLog)) horizontalLogSides++;
 
-        // Allow 2x2 trunks easily: require at least 2 horizontal sides covered
         return horizontalLogSides >= 2;
     }
 

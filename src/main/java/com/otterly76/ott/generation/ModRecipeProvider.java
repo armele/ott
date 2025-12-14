@@ -33,7 +33,6 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
         return new Criterion<>(CriteriaTriggers.IMPOSSIBLE, new ImpossibleTrigger.TriggerInstance());
     }
 
-    // Compatible wrapper for NeoForge 21.1+ (skips advancements entirely)
     private static class NoAdvancementOutput implements RecipeOutput {
         private final RecipeOutput delegate;
         public NoAdvancementOutput(RecipeOutput delegate) {
@@ -42,29 +41,23 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
 
         @Override
         public void accept(@NotNull ResourceLocation id, @NotNull Recipe<?> recipe, @Nullable AdvancementHolder advancement, ICondition @NotNull ... conditions) {
-            // Skip advancement
             delegate.accept(id, recipe, null, conditions);
         }
 
         @Override
         public Advancement.@NotNull Builder advancement() {
-            // Return an empty recipe advancement builder.
-            // Individual recipe builders will add their own criteria via .unlockedBy(...).
             return Advancement.Builder.recipeAdvancement();
         }
     }
 
-    // Private helper to build correct recipe ID (provider adds "recipe/" and ".json")
     private ResourceLocation getRecipePath(String namespace, String recipeName) {
         return ResourceLocation.fromNamespaceAndPath(namespace, recipeName);
     }
 
     @Override
     protected void buildRecipes(@NotNull RecipeOutput exporter) {
-        // Wrap to skip advancements
         RecipeOutput noAdv = new NoAdvancementOutput(exporter);
         this.woodRecipes(noAdv);
-        // Standard backported recipe (use "minecraft" namespace)
         ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, Items.GRAY_DYE).requires(ModBlocks.CLOSED_EYEBLOSSOM.get())
                 .unlockedBy("impossible", impossible())
                 .save(noAdv, getRecipePath("minecraft", "gray_dye_from_closed_eyeblossom"));
@@ -96,7 +89,6 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
                 .unlockedBy("impossible", impossible())
                 .save(noAdv, getRecipePath("minecraft", "resin_clump_from_resin_block"));
 
-        // Stonecutter recipe (backported, "minecraft" namespace)
         SingleItemRecipeBuilder.stonecutting(Ingredient.of(ModBlocks.RESIN_BRICKS.get()), RecipeCategory.BUILDING_BLOCKS, ModBlocks.RESIN_BRICK_SLAB.get(), 2)
                 .unlockedBy("impossible", impossible())
                 .save(noAdv, getRecipePath("minecraft", "resin_brick_slab_from_stonecutting"));
@@ -110,12 +102,10 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
                 .unlockedBy("impossible", impossible())
                 .save(noAdv, getRecipePath("minecraft", "chiseled_resin_bricks_from_stonecutting"));
 
-        // Custom gradient recipe (use "ott" namespace)
         ModBlocks.ALL_GRADIENT_BLOCKS.forEach(deferredBlock -> createGradientRecipe(noAdv, deferredBlock.get()));
     }
 
     private void woodRecipes(RecipeOutput noAdv) {
-        // Backported pale oak wood recipe (use "minecraft" namespace)
         ShapelessRecipeBuilder.shapeless(RecipeCategory.BUILDING_BLOCKS, ModBlocks.PALE_OAK_PLANKS.get(), 4).requires(ModTags.Items.PALE_OAK_LOGS)
                 .unlockedBy("impossible", impossible())
                 .save(noAdv, getRecipePath("minecraft", "pale_oak_planks"));

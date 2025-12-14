@@ -8,7 +8,6 @@ import net.neoforged.neoforge.registries.DeferredHolder;
 import net.neoforged.neoforge.registries.DeferredRegister;
 
 public class ModFeatures {
-    // Use "minecraft" for backport injection into vanilla registry
     public static final DeferredRegister<Feature<?>> FEATURES = DeferredRegister.create(Registries.FEATURE, "minecraft");
 
     public static final DeferredHolder<Feature<?>, Feature<RandomPatchConfiguration>> PALE_MOSS_PATCH = FEATURES.register(
@@ -16,7 +15,6 @@ public class ModFeatures {
             () -> new PaleMossPatchFeature(RandomPatchConfiguration.CODEC)
     );
 
-    // No bootstrap needed here since we're using DeferredRegister for direct injection
     public static void register(IEventBus eventBus) {
         FEATURES.register(eventBus);
     }

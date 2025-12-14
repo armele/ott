@@ -91,10 +91,6 @@ public abstract class WeatherParticle extends TextureSheetParticle {
         return ParticleRenderType.PARTICLE_SHEET_TRANSLUCENT;
     }
 
-    /**
-     * Helper to get the interpolated position of the particle relative to the camera.
-     * This removes duplicated lerping logic in subclasses.
-     */
     protected Vector3f getInterpolatedRelPos(Camera camera, float tickPercent) {
         Vec3 camPos = camera.getPosition();
         return new Vector3f(

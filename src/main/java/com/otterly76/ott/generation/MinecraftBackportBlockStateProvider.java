@@ -31,29 +31,14 @@ public class MinecraftBackportBlockStateProvider extends BlockStateProvider {
     @Override
     protected void registerStatesAndModels() {
 
-        // -------------------------
-        // Natural blocks
-        // -------------------------
-
-        // Leaves
-        // NOTE: pale_oak_leaves blockstate/model are supplied manually in:
-        // src/main/resources/assets/minecraft/(blockstates|models)
-        // so we must NOT generate them here, otherwise datagen creates duplicates.
-        // simpleBlock(ModBlocks.PALE_OAK_LEAVES.get());
-
-        // Pale moss block
         simpleBlock(ModBlocks.PALE_MOSS_BLOCK.get());
 
-        // Pale moss carpet
         ModelFile paleMossCarpetModel = models()
                 .withExistingParent("pale_moss_carpet", mcLoc("block/carpet"))
                 .texture("wool", mcLoc("block/pale_moss_carpet"));
         simpleBlock(ModBlocks.PALE_MOSS_CARPET.get(), paleMossCarpetModel);
         itemModels().withExistingParent("pale_moss_carpet", mcLoc("block/pale_moss_carpet"));
 
-        // -------------------------
-        // Pale Oak logs / wood
-        // -------------------------
         RotatedPillarBlock paleLog = ModBlocks.PALE_OAK_LOG.get();
         RotatedPillarBlock paleWood = ModBlocks.PALE_OAK_WOOD.get();
         RotatedPillarBlock strippedLog = ModBlocks.STRIPPED_PALE_OAK_LOG.get();
@@ -83,9 +68,6 @@ public class MinecraftBackportBlockStateProvider extends BlockStateProvider {
                 mcLoc("block/stripped_pale_oak_log")
         );
 
-        // -------------------------
-        // Pale Oak planks set
-        // -------------------------
         ResourceLocation palePlanks = mcLoc("block/pale_oak_planks");
 
         simpleBlockWithItem(ModBlocks.PALE_OAK_PLANKS.get(), models().cubeAll("pale_oak_planks", palePlanks));
@@ -113,7 +95,6 @@ public class MinecraftBackportBlockStateProvider extends BlockStateProvider {
                 true
         );
 
-        // Signs (block-entity rendered). Use planks for particles.
         signBlock(
                 ModBlocks.PALE_OAK_SIGN.get(),
                 ModBlocks.PALE_OAK_WALL_SIGN.get(),
@@ -126,9 +107,6 @@ public class MinecraftBackportBlockStateProvider extends BlockStateProvider {
                 palePlanks
         );
 
-        // -------------------------
-        // Sapling + potted sapling
-        // -------------------------
         ModelFile paleOakSapling = models()
                 .cross("pale_oak_sapling", mcLoc("block/pale_oak_sapling"))
                 .renderType("cutout");
@@ -140,9 +118,6 @@ public class MinecraftBackportBlockStateProvider extends BlockStateProvider {
                 .renderType("cutout");
         simpleBlock(ModBlocks.POTTED_PALE_OAK_SAPLING.get(), pottedPaleOakSapling);
 
-        // -------------------------
-        // Pale Hanging Moss (base + tip)
-        // -------------------------
         ModelFile baseModel = paleHangingMossModel("pale_hanging_moss", "block/pale_hanging_moss");
         ModelFile tipModel = paleHangingMossTipModel("pale_hanging_moss_tip", "block/pale_hanging_moss_tip");
 
@@ -150,9 +125,6 @@ public class MinecraftBackportBlockStateProvider extends BlockStateProvider {
                 .partialState().with(HangingMossBlock.TIP, false).modelForState().modelFile(baseModel).addModel()
                 .partialState().with(HangingMossBlock.TIP, true).modelForState().modelFile(tipModel).addModel();
 
-        // -------------------------
-        // Eyeblossoms + potted eyeblossoms
-        // -------------------------
         ModelFile closedEyeblossom = models()
                 .cross("closed_eyeblossom", mcLoc("block/closed_eyeblossom"))
                 .renderType("cutout");
@@ -175,9 +147,6 @@ public class MinecraftBackportBlockStateProvider extends BlockStateProvider {
                 .renderType("cutout");
         simpleBlock(ModBlocks.POTTED_OPEN_EYEBLOSSOM.get(), pottedOpenEyeblossom);
 
-        // -------------------------
-        // Resin set
-        // -------------------------
         simpleBlock(ModBlocks.RESIN_BLOCK.get());
         simpleBlock(ModBlocks.RESIN_BRICKS.get());
         simpleBlock(ModBlocks.CHISELED_RESIN_BRICKS.get());
@@ -187,16 +156,11 @@ public class MinecraftBackportBlockStateProvider extends BlockStateProvider {
         slabBlock(ModBlocks.RESIN_BRICK_SLAB.get(), resinBricksTex, resinBricksTex);
         wallBlock(ModBlocks.RESIN_BRICK_WALL.get(), resinBricksTex);
 
-        // Needed because the item model provider points wall items at block/<name>_inventory
         models().wallInventory("resin_brick_wall_inventory", resinBricksTex);
 
-        // -------------------------
-        // Resin clump (Glow Lichen style: multipart faces)
-        // -------------------------
         ModelFile resinClump = resinClumpModel();
         MultiPartBlockStateBuilder clump = getMultipartBuilder(ModBlocks.RESIN_CLUMP.get());
 
-        // Single-face placements
         clump.part().modelFile(resinClump).addModel().condition(NORTH, true).end();
         clump.part().modelFile(resinClump).rotationY(90).uvLock(true).addModel().condition(EAST, true).end();
         clump.part().modelFile(resinClump).rotationY(180).uvLock(true).addModel().condition(SOUTH, true).end();
@@ -204,7 +168,6 @@ public class MinecraftBackportBlockStateProvider extends BlockStateProvider {
         clump.part().modelFile(resinClump).rotationX(270).uvLock(true).addModel().condition(UP, true).end();
         clump.part().modelFile(resinClump).rotationX(90).uvLock(true).addModel().condition(DOWN, true).end();
 
-        // “All faces false”: apply multiple planes so it still looks like a clump
         clump.part().modelFile(resinClump).addModel()
                 .condition(DOWN, false).condition(EAST, false).condition(NORTH, false)
                 .condition(SOUTH, false).condition(UP, false).condition(WEST, false)
@@ -235,9 +198,6 @@ public class MinecraftBackportBlockStateProvider extends BlockStateProvider {
                 .condition(SOUTH, false).condition(UP, false).condition(WEST, false)
                 .end();
 
-        // -------------------------
-        // Creaking heart (axis + active variants)
-        // -------------------------
         ModelFile heartY = models()
                 .withExistingParent("creaking_heart", mcLoc("block/cube_column"))
                 .texture("end", mcLoc("block/creaking_heart_top"))

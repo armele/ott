@@ -13,9 +13,9 @@ import net.neoforged.neoforge.registries.DeferredRegister;
 import java.util.function.Supplier;
 
 public class ModBlockEntities {
-    public static final DeferredRegister<BlockEntityType<?>> BLOCK_ENTITIES = DeferredRegister.create(BuiltInRegistries.BLOCK_ENTITY_TYPE, "minecraft"); // Using minecraft namespace for backport
+    public static final DeferredRegister<BlockEntityType<?>> BLOCK_ENTITIES = DeferredRegister.create(BuiltInRegistries.BLOCK_ENTITY_TYPE, "minecraft");
 
-    @SuppressWarnings("ConstantConditions")  // Suppresses any null-related IDE warnings
+    @SuppressWarnings("ConstantConditions")
     public static final Supplier<BlockEntityType<SignBlockEntity>> PALE_OAK_SIGN = BLOCK_ENTITIES.register("pale_oak_sign", () -> Builder.of(SignBlockEntity::new, ModBlocks.PALE_OAK_SIGN.get(), ModBlocks.PALE_OAK_WALL_SIGN.get()).build(null));
 
     @SuppressWarnings("ConstantConditions")
@@ -28,8 +28,6 @@ public class ModBlockEntities {
         BLOCK_ENTITIES.register(eventBus);
     }
 
-    // This method might not be needed if we register the blocks directly in the builder above,
-    // but keeping it for compatibility if standard SignBlockEntity logic requires it.
     public static void registerTileExtensions(BlockEntityTypeAddBlocksEvent event) {
         event.modify(BlockEntityType.SIGN, ModBlocks.PALE_OAK_SIGN.get(), ModBlocks.PALE_OAK_WALL_SIGN.get());
         event.modify(BlockEntityType.HANGING_SIGN, ModBlocks.PALE_OAK_HANGING_SIGN.get(), ModBlocks.PALE_OAK_WALL_HANGING_SIGN.get());
