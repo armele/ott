@@ -1,0 +1,13 @@
+{
+  "parent": "minecraft:block/cube",
+  "render_type": "minecraft:translucent",
+  "textures": {
+    "down": "minecraft:block/purple_stained_glass",
+    "east": "ott:block/cyan_purple_stained_glass",
+    "north": "ott:block/cyan_purple_stained_glass",
+    "particle": "minecraft:block/cyan_stained_glass",
+    "south": "ott:block/cyan_purple_stained_glass",
+    "up": "minecraft:block/cyan_stained_glass",
+    "west": "ott:block/cyan_purple_stained_glass"
+  }
+}

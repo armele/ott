@@ -3,6 +3,7 @@ package com.otterly76.ott.generation;
 import com.otterly76.ott.block.ModBlocks;
 import com.otterly76.ott.item.ModItems;
 import net.minecraft.data.PackOutput;
+import net.minecraft.resources.ResourceLocation;
 import net.neoforged.neoforge.client.model.generators.ItemModelProvider;
 import net.neoforged.neoforge.client.model.generators.ModelFile;
 import net.neoforged.neoforge.common.data.ExistingFileHelper;
@@ -34,11 +35,12 @@ public class ModItemModelProvider extends ItemModelProvider {
             parentItemToBlockModel(set.fence().getId().getPath(), "block/" + set.fence().getId().getPath() + "_inventory");
             parentItemToBlockModel(set.fenceGate().getId().getPath(), "block/" + set.fenceGate().getId().getPath());
 
-            parentItemToBlockModel(set.button().getId().getPath(), "block/" + set.button().getId().getPath());
+            // Buttons: item should use the *_inventory block model (vanilla behavior)
+            parentItemToBlockModel(set.button().getId().getPath(), "block/" + set.button().getId().getPath() + "_inventory");
             parentItemToBlockModel(set.pressurePlate().getId().getPath(), "block/" + set.pressurePlate().getId().getPath());
 
-            // door item expects a model; your generated door models are per-part (bottom_left, etc)
-            parentItemToBlockModel(set.door().getId().getPath(), "block/" + set.door().getId().getPath() + "_bottom_left");
+            // Doors: item uses item/door_base (3D held item)
+            doorItemFromTextures(setName, set.door().getId());
 
             // trapdoor uses the usual *_bottom model which you have
             parentItemToBlockModel(set.trapdoor().getId().getPath(), "block/" + set.trapdoor().getId().getPath() + "_bottom");
@@ -64,12 +66,30 @@ public class ModItemModelProvider extends ItemModelProvider {
         });
     }
 
-    private void generatedItemFromTexture(String itemName, net.minecraft.resources.ResourceLocation texture) {
+    private void generatedItemFromTexture(String itemName, ResourceLocation texture) {
         withExistingParent(itemName, mcLoc("item/generated"))
                 .texture("layer0", texture);
     }
 
     private void parentItemToBlockModel(String itemName, String blockModelPath) {
         getBuilder(itemName).parent(new ModelFile.UncheckedModelFile(modLoc(blockModelPath)));
+    }
+
+    /**
+     * Door item model matching your texture layout:
+     * textures/block/<setName>/door_bottom.png
+     * textures/block/<setName>/door_top.png
+     */
+
+    private void doorItemFromTextures(String setName, ResourceLocation doorId) {
+        String itemName = doorId.getPath();
+
+        ResourceLocation top = modLoc("block/" + setName + "/door_top");
+        ResourceLocation bottom = modLoc("block/" + setName + "/door_bottom");
+
+        withExistingParent(itemName, mcLoc("item/door_base"))
+                .texture("particle", top)
+                .texture("bottom", bottom)
+                .texture("top", top);
     }
 }

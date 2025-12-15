@@ -1,0 +1,30 @@
+{
+  "variants": {
+    "facing=down": {
+      "model": "ott:block/brown_black_terracotta",
+      "x": 180
+    },
+    "facing=east": {
+      "model": "ott:block/brown_black_terracotta",
+      "x": 90,
+      "y": 90
+    },
+    "facing=north": {
+      "model": "ott:block/brown_black_terracotta",
+      "x": 90
+    },
+    "facing=south": {
+      "model": "ott:block/brown_black_terracotta",
+      "x": 90,
+      "y": 180
+    },
+    "facing=up": {
+      "model": "ott:block/brown_black_terracotta"
+    },
+    "facing=west": {
+      "model": "ott:block/brown_black_terracotta",
+      "x": 90,
+      "y": 270
+    }
+  }
+}

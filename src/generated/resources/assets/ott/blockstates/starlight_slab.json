@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "ott:block/starlight_slab"
+    },
+    "type=double": {
+      "model": "ott:block/starlight_planks"
+    },
+    "type=top": {
+      "model": "ott:block/starlight_slab_top"
+    }
+  }
+}

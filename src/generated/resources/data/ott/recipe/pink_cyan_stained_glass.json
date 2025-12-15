@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "building",
+  "group": "ott_gradient_blocks",
+  "ingredients": [
+    {
+      "item": "minecraft:pink_stained_glass"
+    },
+    {
+      "item": "minecraft:cyan_stained_glass"
+    }
+  ],
+  "result": {
+    "count": 2,
+    "id": "ott:pink_cyan_stained_glass"
+  }
+}

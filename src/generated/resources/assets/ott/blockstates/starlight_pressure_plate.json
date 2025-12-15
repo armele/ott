@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "powered=false": {
+      "model": "ott:block/starlight_pressure_plate"
+    },
+    "powered=true": {
+      "model": "ott:block/starlight_pressure_plate_down"
+    }
+  }
+}

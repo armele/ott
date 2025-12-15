@@ -1,0 +1,13 @@
+{
+  "parent": "minecraft:block/cube",
+  "render_type": "minecraft:solid",
+  "textures": {
+    "down": "minecraft:block/magenta_concrete",
+    "east": "ott:block/white_magenta_concrete",
+    "north": "ott:block/white_magenta_concrete",
+    "particle": "minecraft:block/white_concrete",
+    "south": "ott:block/white_magenta_concrete",
+    "up": "minecraft:block/white_concrete",
+    "west": "ott:block/white_magenta_concrete"
+  }
+}

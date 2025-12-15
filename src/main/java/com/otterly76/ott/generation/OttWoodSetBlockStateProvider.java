@@ -52,7 +52,13 @@ public class OttWoodSetBlockStateProvider extends BlockStateProvider {
         fenceGateBlock(set.fenceGate().get(), planksTex);
 
         pressurePlateBlock(set.pressurePlate().get(), planksTex);
+
         buttonBlock(set.button().get(), planksTex);
+
+        // Generate the button inventory model for the item to reference:
+        // assets/ott/models/block/<button>_inventory.json
+        models().withExistingParent(set.button().getId().getPath() + "_inventory", mcLoc("block/button_inventory"))
+                .texture("texture", planksTex);
 
         doorBlock(
                 set.door().get(),
