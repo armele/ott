@@ -14,6 +14,7 @@ import com.otterly76.ott.item.ModItems;
 import com.otterly76.ott.network.NetworkHandler;
 import com.otterly76.ott.particle.ModParticle;
 import com.otterly76.ott.particle.PaleOakParticle;
+import com.otterly76.ott.particle.StarlightLeafParticle;
 import com.otterly76.ott.particle.TrailParticle;
 import com.otterly76.ott.sound.ModSounds;
 import com.otterly76.ott.util.WoodTypeVariant;
@@ -192,6 +193,8 @@ public class Ott {
             event.accept(ModBlocks.OPEN_EYEBLOSSOM, CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
             event.accept(ModBlocks.CLOSED_EYEBLOSSOM, CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
 
+            event.accept(ModBlocks.STARLIGHT_HEDGE, CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
+
             ModBlocks.WOOD_SETS.values().forEach(set -> {
                 event.accept(set.leaves(), CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
                 event.accept(set.sapling(), CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
@@ -289,8 +292,10 @@ public class Ott {
         public static void registerParticleFactories(RegisterParticleProvidersEvent event) {
             event.registerSpriteSet(ModParticle.PALE_OAK_LEAVES.get(), PaleOakParticle.Provider::new);
             event.registerSpriteSet(ModParticle.TRAIL.get(), TrailParticle.Provider::new);
+            event.registerSpriteSet(ModParticle.STARLIGHT_LEAF.get(), StarlightLeafParticle.Provider::new);
         }
     }
+
     private void addPackFinders(AddPackFindersEvent event) {
         if (event.getPackType() == PackType.CLIENT_RESOURCES) {
             var resourcePath = ModList.get().getModFileById(MOD_ID).getFile().findResource("resourcepacks/ott_core");

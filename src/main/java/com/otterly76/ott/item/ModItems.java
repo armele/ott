@@ -91,6 +91,7 @@ public class ModItems {
 
     public static final DeferredHolder<Item, BlockItem> GAPPER_PANEL_OAK = registerBlockItem("gapper_panel_oak", ModBlocks.GAPPER_PANEL_OAK);
     public static final DeferredHolder<Item, BlockItem> HEDGE = registerBlockItem("hedge", ModBlocks.HEDGE);
+    public static final DeferredHolder<Item, BlockItem> STARLIGHT_HEDGE = registerBlockItem("starlight_hedge", ModBlocks.STARLIGHT_HEDGE);
 
     public static final DeferredItem<Item> RESIN_BRICK;
     public static final DeferredItem<Item> CREAKING_SPAWN_EGG;

@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:item/oak_chest_boat",
   "textures": {
-    "texture": "minecraft:entity/chest_boat/pale_oak"
+    "texture": "minecraft:item/entity/chest_boat/pale_oak"
   }
 }
