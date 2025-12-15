@@ -46,8 +46,14 @@ public class ModItemModelProvider extends ItemModelProvider {
             parentItemToBlockModel(set.leaves().getId().getPath(), "block/" + set.leaves().getId().getPath());
             parentItemToBlockModel(set.sapling().getId().getPath(), "block/" + set.sapling().getId().getPath());
 
-            parentItemToBlockModel(setName + "_sign", "block/" + set.sign().getId().getPath());
-            parentItemToBlockModel(setName + "_hanging_sign", "block/" + set.hangingSign().getId().getPath());
+            // Signs: use vanilla 3D sign item models, swap textures
+            withExistingParent(setName + "_sign", mcLoc("item/sign_base"))
+                    .texture("sign", modLoc("item/entity/signs/" + setName))
+                    .texture("particle", modLoc("item/entity/signs/" + setName));
+
+            withExistingParent(setName + "_hanging_sign", mcLoc("item/hanging_sign_base"))
+                    .texture("sign", modLoc("item/entity/signs/hanging/" + setName))
+                    .texture("particle", modLoc("item/entity/signs/hanging/" + setName));
 
             // Boats: inherit vanilla item model geometry, only swap the texture
             withExistingParent(setName + "_boat", mcLoc("item/oak_boat"))

@@ -187,12 +187,15 @@ public class Ott {
             event.accept(ModBlocks.RESIN_BRICK_SLAB);
             event.accept(ModBlocks.RESIN_BRICK_WALL);
             event.accept(ModBlocks.CHISELED_RESIN_BRICKS);
+
             event.accept(ModBlocks.PALE_OAK_PLANKS);
             event.accept(ModBlocks.PALE_OAK_LOG);
             event.accept(ModBlocks.PALE_OAK_WOOD);
             event.accept(ModBlocks.STRIPPED_PALE_OAK_LOG);
             event.accept(ModBlocks.STRIPPED_PALE_OAK_WOOD);
+
             event.accept(ModBlocks.CREAKING_HEART);
+
             event.accept(ModBlocks.PALE_OAK_STAIRS);
             event.accept(ModBlocks.PALE_OAK_SLAB);
             event.accept(ModBlocks.PALE_OAK_FENCE);
@@ -201,37 +204,38 @@ public class Ott {
             event.accept(ModBlocks.PALE_OAK_PRESSURE_PLATE);
             event.accept(ModBlocks.PALE_OAK_TRAPDOOR);
             event.accept(ModBlocks.PALE_OAK_BUTTON);
+
             event.accept(ModBlocks.PALE_MOSS_BLOCK);
 
-            if (event.getTabKey() == CreativeModeTabs.NATURAL_BLOCKS) {
-                event.accept(ModBlocks.PALE_OAK_SAPLING);
-                event.accept(ModBlocks.PALE_OAK_LEAVES);
-                event.accept(ModBlocks.PALE_MOSS_CARPET);
-                event.accept(ModBlocks.PALE_HANGING_MOSS);
-                event.accept(ModBlocks.OPEN_EYEBLOSSOM);
-                event.accept(ModBlocks.CLOSED_EYEBLOSSOM);
+            // ott wood sets (e.g. starlight) - building-ish blocks
+            ModBlocks.WOOD_SETS.values().forEach(set -> {
+                event.accept(set.planks());
+                event.accept(set.log());
+                event.accept(set.wood());
+                event.accept(set.strippedLog());
+                event.accept(set.strippedWood());
 
-                // ott wood sets (e.g. starlight)
-                ModBlocks.WOOD_SETS.values().forEach(set -> {
-                    event.accept(set.planks());
-                    event.accept(set.log());
-                    event.accept(set.wood());
-                    event.accept(set.strippedLog());
-                    event.accept(set.strippedWood());
+                event.accept(set.stairs());
+                event.accept(set.slab());
+                event.accept(set.fence());
+                event.accept(set.fenceGate());
 
-                    event.accept(set.stairs());
-                    event.accept(set.slab());
-                    event.accept(set.fence());
-                    event.accept(set.fenceGate());
+                event.accept(set.door());
+                event.accept(set.trapdoor());
+                event.accept(set.button());
+                event.accept(set.pressurePlate());
+            });
+        }
 
-                    event.accept(set.door());
-                    event.accept(set.trapdoor());
-                    event.accept(set.button());
-                    event.accept(set.pressurePlate());
-                });
-            }
+        if (event.getTabKey() == CreativeModeTabs.NATURAL_BLOCKS) {
+            event.accept(ModBlocks.PALE_OAK_SAPLING);
+            event.accept(ModBlocks.PALE_OAK_LEAVES);
+            event.accept(ModBlocks.PALE_MOSS_CARPET);
+            event.accept(ModBlocks.PALE_HANGING_MOSS);
+            event.accept(ModBlocks.OPEN_EYEBLOSSOM);
+            event.accept(ModBlocks.CLOSED_EYEBLOSSOM);
 
-            // ott wood sets (e.g. starlight)
+            // ott wood sets (e.g. starlight) - natural blocks
             ModBlocks.WOOD_SETS.values().forEach(set -> {
                 event.accept(set.leaves());
                 event.accept(set.sapling());
@@ -242,7 +246,6 @@ public class Ott {
             event.accept(ModItems.PALE_OAK_SIGN);
             event.accept(ModItems.PALE_OAK_HANGING_SIGN);
 
-            // ott wood sets: sign items
             ModBlocks.WOOD_SETS.keySet().forEach(setName -> {
                 event.accept(ModItems.WOOD_SET_SIGNS.get(setName));
                 event.accept(ModItems.WOOD_SET_HANGING_SIGNS.get(setName));
@@ -253,7 +256,6 @@ public class Ott {
             event.accept(ModItems.PALE_OAK_BOAT);
             event.accept(ModItems.PALE_OAK_CHEST_BOAT);
 
-            // ott wood sets: boat items (once registered)
             ModBlocks.WOOD_SETS.keySet().forEach(setName -> {
                 event.accept(ModItems.WOOD_SET_BOATS.get(setName));
                 event.accept(ModItems.WOOD_SET_CHEST_BOATS.get(setName));
@@ -261,7 +263,11 @@ public class Ott {
         }
 
         if (event.getTabKey() == CreativeModeTabs.SEARCH) {
-            event.insertAfter(new net.minecraft.world.item.ItemStack(ModBlocks.RESIN_CLUMP), new net.minecraft.world.item.ItemStack((ItemLike) ModItems.RESIN_BRICK), CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
+            event.insertAfter(
+                    new net.minecraft.world.item.ItemStack(ModBlocks.RESIN_CLUMP),
+                    new net.minecraft.world.item.ItemStack((ItemLike) ModItems.RESIN_BRICK),
+                    CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS
+            );
         }
     }
 
