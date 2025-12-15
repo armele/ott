@@ -97,14 +97,13 @@ public class Ott {
         generator.addProvider(event.includeClient(), new GradientBlockProvider(generator.getPackOutput(), event.getExistingFileHelper()));
         generator.addProvider(event.includeClient(), new MinecraftBackportBlockStateProvider(generator.getPackOutput(), event.getExistingFileHelper()));
         generator.addProvider(event.includeClient(), new MinecraftBackportItemModelProvider(generator.getPackOutput(), event.getExistingFileHelper()));
-
         generator.addProvider(event.includeClient(), new OttWoodSetBlockStateProvider(generator.getPackOutput(), event.getExistingFileHelper()));
-
         generator.addProvider(event.includeServer(), new LootTableProvider(generator.getPackOutput(), Collections.emptySet(), List.of(new LootTableProvider.SubProviderEntry(OttLootTableProvider::new, LootContextParamSets.BLOCK)), event.getLookupProvider()));
-
         ModBlockTagProvider blockTagProvider = new ModBlockTagProvider(generator.getPackOutput(), event.getLookupProvider(), event.getExistingFileHelper());
         generator.addProvider(event.includeServer(), blockTagProvider);
-
+        generator.addProvider(event.includeClient(), new OttLangMergeProvider(generator.getPackOutput()));
+        generator.addProvider(event.includeClient(), new MinecraftLangMergeProvider(generator.getPackOutput()));
+        generator.addProvider(event.includeClient(), new MinecraftBackportSpecialItemModels(generator.getPackOutput()));
         generator.addProvider(event.includeServer(), new ModItemTagProvider(generator.getPackOutput(), event.getLookupProvider(), blockTagProvider.contentsGetter(), event.getExistingFileHelper()));
         generator.addProvider(event.includeServer(), new ModRecipeProvider(generator.getPackOutput(), event.getLookupProvider()));
         generator.addProvider(event.includeServer(), new ModBiomeTagProvider(generator.getPackOutput(), event.getLookupProvider(), MOD_ID, event.getExistingFileHelper()));
@@ -175,93 +174,105 @@ public class Ott {
     }
 
     private void addCreative(BuildCreativeModeTabContentsEvent event) {
+        // Spawn eggs
         if (event.getTabKey() == CreativeModeTabs.SPAWN_EGGS) {
-            event.accept(ModItems.CREAKING_SPAWN_EGG);
+            event.accept(ModItems.CREAKING_SPAWN_EGG, CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
         }
 
+        // Building blocks
         if (event.getTabKey() == CreativeModeTabs.BUILDING_BLOCKS) {
-            event.accept(ModBlocks.RESIN_CLUMP);
-            event.accept(ModBlocks.RESIN_BLOCK);
-            event.accept(ModBlocks.RESIN_BRICKS);
-            event.accept(ModBlocks.RESIN_BRICK_STAIRS);
-            event.accept(ModBlocks.RESIN_BRICK_SLAB);
-            event.accept(ModBlocks.RESIN_BRICK_WALL);
-            event.accept(ModBlocks.CHISELED_RESIN_BRICKS);
+            event.accept(ModBlocks.RESIN_CLUMP, CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
+            event.accept(ModBlocks.RESIN_BLOCK, CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
+            event.accept(ModBlocks.RESIN_BRICKS, CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
+            event.accept(ModBlocks.RESIN_BRICK_STAIRS, CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
+            event.accept(ModBlocks.RESIN_BRICK_SLAB, CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
+            event.accept(ModBlocks.RESIN_BRICK_WALL, CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
+            event.accept(ModBlocks.CHISELED_RESIN_BRICKS, CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
 
-            event.accept(ModBlocks.PALE_OAK_PLANKS);
-            event.accept(ModBlocks.PALE_OAK_LOG);
-            event.accept(ModBlocks.PALE_OAK_WOOD);
-            event.accept(ModBlocks.STRIPPED_PALE_OAK_LOG);
-            event.accept(ModBlocks.STRIPPED_PALE_OAK_WOOD);
+            event.accept(ModBlocks.PALE_OAK_PLANKS, CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
+            event.accept(ModBlocks.PALE_OAK_LOG, CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
+            event.accept(ModBlocks.PALE_OAK_WOOD, CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
+            event.accept(ModBlocks.STRIPPED_PALE_OAK_LOG, CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
+            event.accept(ModBlocks.STRIPPED_PALE_OAK_WOOD, CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
 
-            event.accept(ModBlocks.CREAKING_HEART);
+            event.accept(ModBlocks.CREAKING_HEART, CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
 
-            event.accept(ModBlocks.PALE_OAK_STAIRS);
-            event.accept(ModBlocks.PALE_OAK_SLAB);
-            event.accept(ModBlocks.PALE_OAK_FENCE);
-            event.accept(ModBlocks.PALE_OAK_FENCE_GATE);
-            event.accept(ModBlocks.PALE_OAK_DOOR);
-            event.accept(ModBlocks.PALE_OAK_PRESSURE_PLATE);
-            event.accept(ModBlocks.PALE_OAK_TRAPDOOR);
-            event.accept(ModBlocks.PALE_OAK_BUTTON);
-
-            event.accept(ModBlocks.PALE_MOSS_BLOCK);
+            event.accept(ModBlocks.PALE_OAK_STAIRS, CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
+            event.accept(ModBlocks.PALE_OAK_SLAB, CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
+            event.accept(ModBlocks.PALE_OAK_FENCE, CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
 
             // ott wood sets (e.g. starlight) - building-ish blocks
             ModBlocks.WOOD_SETS.values().forEach(set -> {
-                event.accept(set.planks());
-                event.accept(set.log());
-                event.accept(set.wood());
-                event.accept(set.strippedLog());
-                event.accept(set.strippedWood());
+                event.accept(set.planks(), CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
+                event.accept(set.log(), CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
+                event.accept(set.wood(), CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
+                event.accept(set.strippedLog(), CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
+                event.accept(set.strippedWood(), CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
 
-                event.accept(set.stairs());
-                event.accept(set.slab());
-                event.accept(set.fence());
-                event.accept(set.fenceGate());
-
-                event.accept(set.door());
-                event.accept(set.trapdoor());
-                event.accept(set.button());
-                event.accept(set.pressurePlate());
+                event.accept(set.stairs(), CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
+                event.accept(set.slab(), CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
+                event.accept(set.fence(), CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
             });
         }
 
+        // Natural blocks
         if (event.getTabKey() == CreativeModeTabs.NATURAL_BLOCKS) {
-            event.accept(ModBlocks.PALE_OAK_SAPLING);
-            event.accept(ModBlocks.PALE_OAK_LEAVES);
-            event.accept(ModBlocks.PALE_MOSS_CARPET);
-            event.accept(ModBlocks.PALE_HANGING_MOSS);
-            event.accept(ModBlocks.OPEN_EYEBLOSSOM);
-            event.accept(ModBlocks.CLOSED_EYEBLOSSOM);
+            event.accept(ModBlocks.PALE_OAK_SAPLING, CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
+            event.accept(ModBlocks.PALE_OAK_LEAVES, CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
+            event.accept(ModBlocks.PALE_MOSS_CARPET, CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
+            event.accept(ModBlocks.PALE_HANGING_MOSS, CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
+            event.accept(ModBlocks.OPEN_EYEBLOSSOM, CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
+            event.accept(ModBlocks.CLOSED_EYEBLOSSOM, CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
 
-            // ott wood sets (e.g. starlight) - natural blocks
             ModBlocks.WOOD_SETS.values().forEach(set -> {
-                event.accept(set.leaves());
-                event.accept(set.sapling());
+                event.accept(set.leaves(), CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
+                event.accept(set.sapling(), CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
             });
         }
 
+        // Functional blocks: signs
         if (event.getTabKey() == CreativeModeTabs.FUNCTIONAL_BLOCKS) {
-            event.accept(ModItems.PALE_OAK_SIGN);
-            event.accept(ModItems.PALE_OAK_HANGING_SIGN);
+            event.accept(ModItems.PALE_OAK_SIGN, CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
+            event.accept(ModItems.PALE_OAK_HANGING_SIGN, CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
 
             ModBlocks.WOOD_SETS.keySet().forEach(setName -> {
-                event.accept(ModItems.WOOD_SET_SIGNS.get(setName));
-                event.accept(ModItems.WOOD_SET_HANGING_SIGNS.get(setName));
+                event.accept(ModItems.WOOD_SET_SIGNS.get(setName), CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
+                event.accept(ModItems.WOOD_SET_HANGING_SIGNS.get(setName), CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
             });
         }
 
+        // Tools & Utilities: boats
         if (event.getTabKey() == CreativeModeTabs.TOOLS_AND_UTILITIES) {
-            event.accept(ModItems.PALE_OAK_BOAT);
-            event.accept(ModItems.PALE_OAK_CHEST_BOAT);
+            event.accept(ModItems.PALE_OAK_BOAT, CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
+            event.accept(ModItems.PALE_OAK_CHEST_BOAT, CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
 
             ModBlocks.WOOD_SETS.keySet().forEach(setName -> {
-                event.accept(ModItems.WOOD_SET_BOATS.get(setName));
-                event.accept(ModItems.WOOD_SET_CHEST_BOATS.get(setName));
+                event.accept(ModItems.WOOD_SET_BOATS.get(setName), CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
+                event.accept(ModItems.WOOD_SET_CHEST_BOATS.get(setName), CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
             });
         }
 
+        // Redstone Blocks: “redstone-ish wood stuff”
+        if (event.getTabKey() == CreativeModeTabs.REDSTONE_BLOCKS) {
+            // Pale oak
+            event.accept(ModBlocks.PALE_OAK_PRESSURE_PLATE, CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
+            event.accept(ModBlocks.PALE_OAK_BUTTON, CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
+            event.accept(ModBlocks.PALE_OAK_DOOR, CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
+            event.accept(ModBlocks.PALE_OAK_TRAPDOOR, CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
+            event.accept(ModBlocks.PALE_OAK_FENCE_GATE, CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
+
+            // ott wood sets
+            ModBlocks.WOOD_SETS.values().forEach(set -> {
+                event.accept(set.pressurePlate(), CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
+                event.accept(set.button(), CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
+                event.accept(set.door(), CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
+                event.accept(set.trapdoor(), CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
+                event.accept(set.fenceGate(), CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
+            });
+        }
+
+        // Search: you generally do NOT need to manually add items here if you use PARENT_AND_SEARCH_TABS above.
+        // Keep your custom insertAfter if you still want it, but it’s optional:
         if (event.getTabKey() == CreativeModeTabs.SEARCH) {
             event.insertAfter(
                     new net.minecraft.world.item.ItemStack(ModBlocks.RESIN_CLUMP),

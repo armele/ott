@@ -1,7 +1,0 @@
-{
-  "parent": "minecraft:block/cube_column_horizontal",
-  "textures": {
-    "end": "ott:block/starlight/stripped_log_top",
-    "side": "ott:block/starlight/stripped_log"
-  }
-}

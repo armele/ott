@@ -30,8 +30,9 @@ public class MinecraftBackportItemModelProvider extends ItemModelProvider {
                 return;
             }
 
+            // Doors: 3D door item model (vanilla-style)
             if (block instanceof DoorBlock) {
-                generatedItem(path);
+                doorItemFromTextures(path);
                 return;
             }
 
@@ -50,6 +51,12 @@ public class MinecraftBackportItemModelProvider extends ItemModelProvider {
                 return;
             }
 
+            // Buttons: item should use *_inventory
+            if (block instanceof ButtonBlock) {
+                parentItemToBlockModel(path, "block/" + path + "_inventory");
+                return;
+            }
+
             if (block instanceof TrapDoorBlock) {
                 parentItemToBlockModel(path, "block/" + path + "_bottom");
                 return;
@@ -59,12 +66,19 @@ public class MinecraftBackportItemModelProvider extends ItemModelProvider {
         });
 
         generatedItem(ModItems.RESIN_BRICK.getId().getPath());
+    }
 
-        generatedItem(ModItems.PALE_OAK_SIGN.getId().getPath());
-        generatedItem(ModItems.PALE_OAK_HANGING_SIGN.getId().getPath());
+    private void doorItemFromTextures(String doorItemName) {
+        // Expects minecraft textures:
+        // - textures/block/<doorItemName>_bottom.png
+        // - textures/block/<doorItemName>_top.png
+        ResourceLocation top = mcLoc("block/" + doorItemName + "_top");
+        ResourceLocation bottom = mcLoc("block/" + doorItemName + "_bottom");
 
-        generatedItem(ModItems.PALE_OAK_BOAT.getId().getPath());
-        generatedItem(ModItems.PALE_OAK_CHEST_BOAT.getId().getPath());
+        withExistingParent(doorItemName, mcLoc("item/door_base"))
+                .texture("particle", top)
+                .texture("bottom", bottom)
+                .texture("top", top);
     }
 
     private void generatedItem(String name) {

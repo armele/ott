@@ -83,6 +83,11 @@ public class MinecraftBackportBlockStateProvider extends BlockStateProvider {
         pressurePlateBlock(ModBlocks.PALE_OAK_PRESSURE_PLATE.get(), palePlanks);
         buttonBlock(ModBlocks.PALE_OAK_BUTTON.get(), palePlanks);
 
+        // Generate the button inventory model for the item to reference:
+        // assets/minecraft/models/block/pale_oak_button_inventory.json
+        models().withExistingParent("pale_oak_button_inventory", mcLoc("block/button_inventory"))
+                .texture("texture", palePlanks);
+
         doorBlock(
                 ModBlocks.PALE_OAK_DOOR.get(),
                 mcLoc("block/pale_oak_door_bottom"),

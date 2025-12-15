@@ -1,7 +1,0 @@
-{
-  "parent": "minecraft:item/hanging_sign_base",
-  "textures": {
-    "particle": "ott:item/entity/signs/hanging/starlight",
-    "sign": "ott:item/entity/signs/hanging/starlight"
-  }
-}
