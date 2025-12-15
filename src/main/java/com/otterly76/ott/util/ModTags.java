@@ -1,5 +1,6 @@
 package com.otterly76.ott.util;
 
+import com.otterly76.ott.Constants;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.tags.ItemTags;
@@ -13,16 +14,21 @@ public class ModTags {
 
         @SuppressWarnings("SameParameterValue")
         private static TagKey<Block> createTag(String name) {
-            return BlockTags.create(ResourceLocation.fromNamespaceAndPath("minecraft", name));
+            return BlockTags.create(ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, name));
         }
     }
 
-     public static class Items {
-         public static final TagKey<Item> PALE_OAK_LOGS = createTag("pale_oak_logs");
+    public static class Items {
+        public static final TagKey<Item> PALE_OAK_LOGS = createTag("pale_oak_logs");
 
-         @SuppressWarnings("SameParameterValue")
-         private static TagKey<Item> createTag(String name) {
-             return ItemTags.create(ResourceLocation.fromNamespaceAndPath("minecraft", name));
-         }
-     }
+        @SuppressWarnings("SameParameterValue")
+        private static TagKey<Item> createTag(String name) {
+            return ItemTags.create(ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, name));
+        }
+
+        public static TagKey<Item> woodSetLogs(String setName) {
+            return createTag(setName + "_logs");
+        }
+    }
 }
+// TODO go through and replace all instances of ott with MOD_ID

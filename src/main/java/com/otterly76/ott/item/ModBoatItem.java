@@ -18,16 +18,23 @@ import net.minecraft.world.phys.Vec3;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
+import java.util.function.Consumer;
 import java.util.function.Predicate;
 import java.util.function.Supplier;
 
 public class ModBoatItem extends Item {
     private static final Predicate<Entity> ENTITY_PREDICATE = EntitySelector.NO_SPECTATORS.and(Entity::isPickable);
     private final Supplier<? extends EntityType<? extends Boat>> type;
+    private final Consumer<Boat> initializer;
 
     public ModBoatItem(Supplier<? extends EntityType<? extends Boat>> type, Properties properties) {
+        this(type, properties, boat -> {});
+    }
+
+    public ModBoatItem(Supplier<? extends EntityType<? extends Boat>> type, Properties properties, Consumer<Boat> initializer) {
         super(properties);
         this.type = type;
+        this.initializer = initializer;
     }
 
     @Override
@@ -52,6 +59,8 @@ public class ModBoatItem extends Item {
             if (hitresult.getType() == HitResult.Type.BLOCK) {
                 Boat boat = this.type.get().create(level);
                 if (boat != null) {
+                    this.initializer.accept(boat);
+
                     boat.setPos(hitresult.getLocation().x, hitresult.getLocation().y, hitresult.getLocation().z);
                     boat.setYRot(player.getYRot());
                     if (!level.noCollision(boat, boat.getBoundingBox())) {

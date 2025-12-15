@@ -36,8 +36,8 @@ public class OttWoodSetBlockStateProvider extends BlockStateProvider {
         axisBlock(set.strippedLog().get(), strippedLogSide, strippedLogTop);
         axisBlock(set.strippedWood().get(), strippedLogSide, strippedLogSide);
 
-        // Planks model
-        String planksModelName = setName + "/planks";
+        // Planks model (use flat model name to match the rest of the wood set output)
+        String planksModelName = setName + "_planks";
         ModelFile planksModel = models().cubeAll(planksModelName, planksTex);
         simpleBlock(set.planks().get(), planksModel);
 
@@ -80,6 +80,11 @@ public class OttWoodSetBlockStateProvider extends BlockStateProvider {
             simpleBlock(potted, pottedModel);
         }
 
+        // Signs (blockstates/models)
+        signBlock(set.sign().get(), set.wallSign().get(), planksTex);
+        hangingSignBlock(set.hangingSign().get(), set.wallHangingSign().get(), planksTex);
+
+        // Leaves: fluffy/random variants (correct to keep here if you want that effect)
         registerFluffyLeaves(setName, set.leaves().get());
     }
 

@@ -293,7 +293,11 @@ public class ModBlocks {
             DeferredBlock<PressurePlateBlock> pressurePlate,
             DeferredBlock<LeavesBlock> leaves,
             DeferredBlock<SaplingBlock> sapling,
-            DeferredBlock<FlowerPotBlock> pottedSapling
+            DeferredBlock<FlowerPotBlock> pottedSapling,
+            DeferredBlock<StandingSignBlock> sign,
+            DeferredBlock<WallSignBlock> wallSign,
+            DeferredBlock<CeilingHangingSignBlock> hangingSign,
+            DeferredBlock<WallHangingSignBlock> wallHangingSign
     ) {}
 
     static {
@@ -319,6 +323,11 @@ public class ModBlocks {
         String leavesName = set + "_leaves";
         String saplingName = set + "_sapling";
         String pottedSaplingName = "potted_" + set + "_sapling";
+
+        String signName = set + "_sign";
+        String wallSignName = set + "_wall_sign";
+        String hangingSignName = set + "_hanging_sign";
+        String wallHangingSignName = set + "_wall_hanging_sign";
 
         // Blocks
         DeferredBlock<RotatedPillarBlock> log = BLOCKS.register(logName,
@@ -350,9 +359,6 @@ public class ModBlocks {
                         net.minecraft.world.level.block.state.properties.WoodType.OAK,
                         BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_FENCE_GATE)));
 
-        // NOTE: Door/Trapdoor/Button/PressurePlate require BlockSetType.
-        // For now, we copy oak behavior using BlockSetType.OAK. In the next step
-        // we will introduce per-set BlockSetType/WoodType for correct sound groups if desired.
         DeferredBlock<DoorBlock> door = BLOCKS.register(doorName,
                 () -> new DoorBlock(net.minecraft.world.level.block.state.properties.BlockSetType.OAK, BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_DOOR)));
 
@@ -374,13 +380,27 @@ public class ModBlocks {
         DeferredBlock<FlowerPotBlock> pottedSapling = BLOCKS.register(pottedSaplingName,
                 () -> new FlowerPotBlock(() -> (FlowerPotBlock) Blocks.FLOWER_POT, sapling, BlockBehaviour.Properties.ofFullCopy(Blocks.POTTED_OAK_SAPLING)));
 
+        // Signs (blocks only; the item is registered in ModItems)
+        DeferredBlock<StandingSignBlock> sign = BLOCKS.register(signName,
+                () -> new StandingSignBlock(net.minecraft.world.level.block.state.properties.WoodType.OAK, BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_SIGN)));
+
+        DeferredBlock<WallSignBlock> wallSign = BLOCKS.register(wallSignName,
+                () -> new WallSignBlock(net.minecraft.world.level.block.state.properties.WoodType.OAK, BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_WALL_SIGN)));
+
+        DeferredBlock<CeilingHangingSignBlock> hangingSign = BLOCKS.register(hangingSignName,
+                () -> new CeilingHangingSignBlock(net.minecraft.world.level.block.state.properties.WoodType.OAK, BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_HANGING_SIGN)));
+
+        DeferredBlock<WallHangingSignBlock> wallHangingSign = BLOCKS.register(wallHangingSignName,
+                () -> new WallHangingSignBlock(net.minecraft.world.level.block.state.properties.WoodType.OAK, BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_WALL_HANGING_SIGN)));
+
         return new WoodSetBlocks(
                 log, wood, strippedLog, strippedWood,
                 planks, stairs, slab,
                 fence, fenceGate,
                 door, trapdoor,
                 button, pressurePlate,
-                leaves, sapling, pottedSapling
+                leaves, sapling, pottedSapling,
+                sign, wallSign, hangingSign, wallHangingSign
         );
     }
 

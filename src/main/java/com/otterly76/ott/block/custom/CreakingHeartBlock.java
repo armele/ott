@@ -3,8 +3,8 @@ package com.otterly76.ott.block.custom;
 import com.mojang.serialization.MapCodec;
 import com.otterly76.ott.block.entity.CreakingHeartBlockEntity;
 import com.otterly76.ott.block.entity.ModBlockEntities;
-import com.otterly76.ott.generation.ModBlockTagProvider;
 import com.otterly76.ott.sound.ModSounds;
+import com.otterly76.ott.util.ModTags;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.Direction.Axis;
@@ -20,11 +20,7 @@ import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.Explosion;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelAccessor;
-import net.minecraft.world.level.block.BaseEntityBlock;
-import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.Rotation;
-import net.minecraft.world.level.block.RenderShape;
-import net.minecraft.world.level.block.RotatedPillarBlock;
+import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityTicker;
 import net.minecraft.world.level.block.entity.BlockEntityType;
@@ -73,7 +69,7 @@ public class CreakingHeartBlock extends BaseEntityBlock {
 
         for (Direction direction : directions) {
             BlockState blockState2 = levelAccessor.getBlockState(blockPos.relative(direction));
-            if (!blockState2.is(ModBlockTagProvider.PALE_OAK_LOGS) || blockState2.getValue(AXIS) != axis) {
+            if (!blockState2.is(ModTags.Blocks.PALE_OAK_LOGS) || blockState2.getValue(AXIS) != axis) {
                 return false;
             }
         }
@@ -85,7 +81,7 @@ public class CreakingHeartBlock extends BaseEntityBlock {
         for (Direction direction : Direction.values()) {
             BlockPos blockPos2 = blockPos.relative(direction);
             BlockState blockState = levelAccessor.getBlockState(blockPos2);
-            if (!blockState.is(ModBlockTagProvider.PALE_OAK_LOGS)) {
+            if (!blockState.is(ModTags.Blocks.PALE_OAK_LOGS)) {
                 return false;
             }
         }

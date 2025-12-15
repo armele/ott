@@ -6,6 +6,7 @@ import com.otterly76.ott.block.wood.ModBlockFamilies;
 import com.otterly76.ott.entity.ModEntities;
 import com.otterly76.ott.entity.client.CreakingRenderer;
 import com.otterly76.ott.entity.client.ModModelLayers;
+import com.otterly76.ott.entity.client.OttWoodSetBoatRenderer;
 import com.otterly76.ott.entity.client.PaleOakBoatRenderer;
 import com.otterly76.ott.events.ModEventBusEvents;
 import com.otterly76.ott.generation.*;
@@ -89,6 +90,7 @@ public class Ott {
         modEventBus.addListener(ModEventBusEvents::registerLayers);
         modEventBus.addListener(ModEventBusEvents::registerAttributes);
     }
+
     private void dataGeneratorSetup(final GatherDataEvent event) {
         final DataGenerator generator = event.getGenerator();
 
@@ -156,7 +158,7 @@ public class Ott {
     // TODO add wood types to compostable list (data)
 
     public void registerFlammables() {
-        FireBlock fire = (FireBlock)Blocks.FIRE;
+        FireBlock fire = (FireBlock) Blocks.FIRE;
         fire.setFlammable(ModBlocks.PALE_OAK_LOG.get(), 5, 5);
         fire.setFlammable(ModBlocks.STRIPPED_PALE_OAK_LOG.get(), 5, 5);
         fire.setFlammable(ModBlocks.PALE_OAK_WOOD.get(), 5, 5);
@@ -201,33 +203,33 @@ public class Ott {
             event.accept(ModBlocks.PALE_OAK_BUTTON);
             event.accept(ModBlocks.PALE_MOSS_BLOCK);
 
-            // ott wood sets (e.g. starlight)
-            ModBlocks.WOOD_SETS.values().forEach(set -> {
-                event.accept(set.planks());
-                event.accept(set.log());
-                event.accept(set.wood());
-                event.accept(set.strippedLog());
-                event.accept(set.strippedWood());
+            if (event.getTabKey() == CreativeModeTabs.NATURAL_BLOCKS) {
+                event.accept(ModBlocks.PALE_OAK_SAPLING);
+                event.accept(ModBlocks.PALE_OAK_LEAVES);
+                event.accept(ModBlocks.PALE_MOSS_CARPET);
+                event.accept(ModBlocks.PALE_HANGING_MOSS);
+                event.accept(ModBlocks.OPEN_EYEBLOSSOM);
+                event.accept(ModBlocks.CLOSED_EYEBLOSSOM);
 
-                event.accept(set.stairs());
-                event.accept(set.slab());
-                event.accept(set.fence());
-                event.accept(set.fenceGate());
+                // ott wood sets (e.g. starlight)
+                ModBlocks.WOOD_SETS.values().forEach(set -> {
+                    event.accept(set.planks());
+                    event.accept(set.log());
+                    event.accept(set.wood());
+                    event.accept(set.strippedLog());
+                    event.accept(set.strippedWood());
 
-                event.accept(set.door());
-                event.accept(set.trapdoor());
-                event.accept(set.button());
-                event.accept(set.pressurePlate());
-            });
-        }
+                    event.accept(set.stairs());
+                    event.accept(set.slab());
+                    event.accept(set.fence());
+                    event.accept(set.fenceGate());
 
-        if (event.getTabKey() == CreativeModeTabs.NATURAL_BLOCKS) {
-            event.accept(ModBlocks.PALE_OAK_SAPLING);
-            event.accept(ModBlocks.PALE_OAK_LEAVES);
-            event.accept(ModBlocks.PALE_MOSS_CARPET);
-            event.accept(ModBlocks.PALE_HANGING_MOSS);
-            event.accept(ModBlocks.OPEN_EYEBLOSSOM);
-            event.accept(ModBlocks.CLOSED_EYEBLOSSOM);
+                    event.accept(set.door());
+                    event.accept(set.trapdoor());
+                    event.accept(set.button());
+                    event.accept(set.pressurePlate());
+                });
+            }
 
             // ott wood sets (e.g. starlight)
             ModBlocks.WOOD_SETS.values().forEach(set -> {
@@ -239,17 +241,28 @@ public class Ott {
         if (event.getTabKey() == CreativeModeTabs.FUNCTIONAL_BLOCKS) {
             event.accept(ModItems.PALE_OAK_SIGN);
             event.accept(ModItems.PALE_OAK_HANGING_SIGN);
+
+            // ott wood sets: sign items
+            ModBlocks.WOOD_SETS.keySet().forEach(setName -> {
+                event.accept(ModItems.WOOD_SET_SIGNS.get(setName));
+                event.accept(ModItems.WOOD_SET_HANGING_SIGNS.get(setName));
+            });
         }
 
         if (event.getTabKey() == CreativeModeTabs.TOOLS_AND_UTILITIES) {
             event.accept(ModItems.PALE_OAK_BOAT);
             event.accept(ModItems.PALE_OAK_CHEST_BOAT);
+
+            // ott wood sets: boat items (once registered)
+            ModBlocks.WOOD_SETS.keySet().forEach(setName -> {
+                event.accept(ModItems.WOOD_SET_BOATS.get(setName));
+                event.accept(ModItems.WOOD_SET_CHEST_BOATS.get(setName));
+            });
         }
 
         if (event.getTabKey() == CreativeModeTabs.SEARCH) {
             event.insertAfter(new net.minecraft.world.item.ItemStack(ModBlocks.RESIN_CLUMP), new net.minecraft.world.item.ItemStack((ItemLike) ModItems.RESIN_BRICK), CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
         }
-
     }
 
     @SubscribeEvent
@@ -263,8 +276,18 @@ public class Ott {
 
         public static void registerRenderers(EntityRenderersEvent.RegisterRenderers event) {
             event.registerEntityRenderer(ModEntities.CREAKING.get(), CreakingRenderer::new);
+
             event.registerEntityRenderer(ModEntities.PALE_OAK_BOAT.get(), (context) -> new PaleOakBoatRenderer(context, false));
             event.registerEntityRenderer(ModEntities.PALE_OAK_CHEST_BOAT.get(), (context) -> new PaleOakBoatRenderer(context, true));
+
+            // ott wood sets: dynamic renderer (texture chosen by setName stored on the entity)
+            ModEntities.WOOD_SET_BOATS.forEach((setName, type) ->
+                    event.registerEntityRenderer(type.get(), (context) -> new OttWoodSetBoatRenderer(context, false))
+            );
+            ModEntities.WOOD_SET_CHEST_BOATS.forEach((setName, type) ->
+                    event.registerEntityRenderer(type.get(), (context) -> new OttWoodSetBoatRenderer(context, true))
+            );
+
             event.registerBlockEntityRenderer(ModBlockEntities.PALE_OAK_SIGN.get(), SignRenderer::new);
             event.registerBlockEntityRenderer(ModBlockEntities.PALE_OAK_WALL_HANGING_SIGN.get(), HangingSignRenderer::new);
         }
@@ -272,6 +295,10 @@ public class Ott {
         public static void registerLayerDefinitions(EntityRenderersEvent.RegisterLayerDefinitions event) {
             event.registerLayerDefinition(ModModelLayers.PALE_OAK_BOAT, BoatModel::createBodyModel);
             event.registerLayerDefinition(ModModelLayers.PALE_OAK_CHEST_BOAT, ChestBoatModel::createBodyModel);
+
+            // ott wood sets: shared layers
+            event.registerLayerDefinition(ModModelLayers.OTT_WOOD_SET_BOAT, BoatModel::createBodyModel);
+            event.registerLayerDefinition(ModModelLayers.OTT_WOOD_SET_CHEST_BOAT, ChestBoatModel::createBodyModel);
         }
 
         public static void registerParticleFactories(RegisterParticleProvidersEvent event) {
