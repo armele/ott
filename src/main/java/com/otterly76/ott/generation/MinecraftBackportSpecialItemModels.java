@@ -57,7 +57,7 @@ public class MinecraftBackportSpecialItemModels implements DataProvider {
         JsonObject root = new JsonObject();
         root.addProperty("parent", "minecraft:item/oak_boat");
         JsonObject textures = new JsonObject();
-        textures.addProperty("texture", "minecraft:entity/boat/pale_oak");
+        textures.addProperty("texture", "minecraft:item/entity/boat/pale_oak");
         root.add("textures", textures);
         return root;
     }
@@ -66,7 +66,7 @@ public class MinecraftBackportSpecialItemModels implements DataProvider {
         JsonObject root = new JsonObject();
         root.addProperty("parent", "minecraft:item/oak_chest_boat");
         JsonObject textures = new JsonObject();
-        textures.addProperty("texture", "minecraft:entity/chest_boat/pale_oak");
+        textures.addProperty("texture", "minecraft:item/entity/chest_boat/pale_oak");
         root.add("textures", textures);
         return root;
     }

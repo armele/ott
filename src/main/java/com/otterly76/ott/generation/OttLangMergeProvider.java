@@ -50,6 +50,7 @@ public class OttLangMergeProvider implements DataProvider {
         return "OTT Lang (merge base + wood sets)";
     }
 
+    @SuppressWarnings("DuplicatedCode")
     private JsonObject readBaseLang() {
         String basePath = "assets/ott/lang/en_us_base.json";
 
@@ -85,7 +86,13 @@ public class OttLangMergeProvider implements DataProvider {
                 Map.entry("block.ott." + setName + "_pressure_plate", prettySet + " Pressure Plate"),
                 Map.entry("block.ott." + setName + "_leaves", prettySet + " Leaves"),
                 Map.entry("block.ott." + setName + "_sapling", prettySet + " Sapling"),
-                Map.entry("block.ott.potted_" + setName + "_sapling", "Potted " + prettySet + " Sapling")
+                Map.entry("block.ott.potted_" + setName + "_sapling", "Potted " + prettySet + " Sapling"),
+
+                // Add sign blocks too (SignItem often uses block translation keys)
+                Map.entry("block.ott." + setName + "_sign", prettySet + " Sign"),
+                Map.entry("block.ott." + setName + "_wall_sign", prettySet + " Wall Sign"),
+                Map.entry("block.ott." + setName + "_hanging_sign", prettySet + " Hanging Sign"),
+                Map.entry("block.ott." + setName + "_wall_hanging_sign", prettySet + " Wall Hanging Sign")
         );
 
         Map<String, String> itemKeys = Map.ofEntries(

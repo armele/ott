@@ -114,38 +114,6 @@ public class Ott {
         }
     }
 
-    private void addPackFinders(AddPackFindersEvent event) {
-        if (event.getPackType() == PackType.CLIENT_RESOURCES) {
-            var resourcePath = ModList.get().getModFileById(MOD_ID).getFile().findResource("resourcepacks/ott_core");
-
-            if (!Files.isDirectory(resourcePath)) {
-                return;
-            }
-
-            var packLocationInfo = new PackLocationInfo(
-                    MOD_ID + ":ott_core",
-                    Component.translatable("pack." + MOD_ID + ".ott_core"),
-                    PackSource.BUILT_IN,
-                    Optional.empty()
-            );
-            var packSelectionConfig = new PackSelectionConfig(
-                    true,
-                    Pack.Position.TOP,
-                    true
-            );
-            var pack = Pack.readMetaAndCreate(
-                    packLocationInfo,
-                    new PathPackResources.PathResourcesSupplier(resourcePath),
-                    PackType.CLIENT_RESOURCES,
-                    packSelectionConfig
-            );
-
-            if (pack != null) {
-                event.addRepositorySource((packConsumer) -> packConsumer.accept(pack));
-            }
-        }
-    }
-
     private void commonSetup(FMLCommonSetupEvent event) {
         event.enqueueWork(() -> {
             registerFlammables();
@@ -323,5 +291,37 @@ public class Ott {
             event.registerSpriteSet(ModParticle.TRAIL.get(), TrailParticle.Provider::new);
         }
     }
+    private void addPackFinders(AddPackFindersEvent event) {
+        if (event.getPackType() == PackType.CLIENT_RESOURCES) {
+            var resourcePath = ModList.get().getModFileById(MOD_ID).getFile().findResource("resourcepacks/ott_core");
+
+            if (!Files.isDirectory(resourcePath)) {
+                return;
+            }
+
+            var packLocationInfo = new PackLocationInfo(
+                    MOD_ID + ":ott_core",
+                    Component.translatable("pack." + MOD_ID + ".ott_core"),
+                    PackSource.BUILT_IN,
+                    Optional.empty()
+            );
+            var packSelectionConfig = new PackSelectionConfig(
+                    true,
+                    Pack.Position.TOP,
+                    true
+            );
+            var pack = Pack.readMetaAndCreate(
+                    packLocationInfo,
+                    new PathPackResources.PathResourcesSupplier(resourcePath),
+                    PackType.CLIENT_RESOURCES,
+                    packSelectionConfig
+            );
+
+            if (pack != null) {
+                event.addRepositorySource((packConsumer) -> packConsumer.accept(pack));
+            }
+        }
+    }
+
 }
 //TODO Refactor targets: rename bl/bl2, early-return in onExplosionHit, extract shouldPlayIdleSound.
