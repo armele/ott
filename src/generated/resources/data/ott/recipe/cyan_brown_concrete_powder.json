@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "building",
+  "group": "ott_gradient_blocks",
+  "ingredients": [
+    {
+      "item": "minecraft:cyan_concrete_powder"
+    },
+    {
+      "item": "minecraft:brown_concrete_powder"
+    }
+  ],
+  "result": {
+    "count": 2,
+    "id": "ott:cyan_brown_concrete_powder"
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "parent": "minecraft:block/cube",
+  "render_type": "minecraft:solid",
+  "textures": {
+    "down": "minecraft:block/light_blue_terracotta",
+    "east": "ott:block/white_light_blue_terracotta",
+    "north": "ott:block/white_light_blue_terracotta",
+    "particle": "minecraft:block/white_terracotta",
+    "south": "ott:block/white_light_blue_terracotta",
+    "up": "minecraft:block/white_terracotta",
+    "west": "ott:block/white_light_blue_terracotta"
+  }
+}

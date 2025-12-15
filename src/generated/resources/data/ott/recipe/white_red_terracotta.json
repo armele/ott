@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "building",
+  "group": "ott_gradient_blocks",
+  "ingredients": [
+    {
+      "item": "minecraft:white_terracotta"
+    },
+    {
+      "item": "minecraft:red_terracotta"
+    }
+  ],
+  "result": {
+    "count": 2,
+    "id": "ott:white_red_terracotta"
+  }
+}

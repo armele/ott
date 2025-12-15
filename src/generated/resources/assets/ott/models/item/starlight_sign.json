@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:item/sign_base",
+  "textures": {
+    "particle": "ott:item/entity/signs/starlight",
+    "sign": "ott:item/entity/signs/starlight"
+  }
+}

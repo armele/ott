@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:item/sign_base",
+  "textures": {
+    "particle": "minecraft:item/entity/signs/pale_oak",
+    "sign": "minecraft:item/entity/signs/pale_oak"
+  }
+}
