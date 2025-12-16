@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:item/oak_chest_boat",
+  "textures": {
+    "texture": "ott:item/entity/chest_boat/midnight"
+  }
+}

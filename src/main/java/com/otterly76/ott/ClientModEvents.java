@@ -47,6 +47,15 @@ public class ClientModEvents {
 
             ItemBlockRenderTypes.setRenderLayer(ModBlocks.STARLIGHT_HEDGE.get(), RenderType.cutout());
             ItemBlockRenderTypes.setRenderLayer(ModBlocks.STARLIGHT_CREEPING_HEDGE.get(), RenderType.cutout());
+
+            // Doors / Trapdoors (cutout so window holes are actually transparent)
+            ItemBlockRenderTypes.setRenderLayer(ModBlocks.PALE_OAK_DOOR.get(), RenderType.cutout());
+            ItemBlockRenderTypes.setRenderLayer(ModBlocks.PALE_OAK_TRAPDOOR.get(), RenderType.cutout());
+
+            ModBlocks.WOOD_SETS.values().forEach(set -> {
+                ItemBlockRenderTypes.setRenderLayer(set.door().get(), RenderType.cutout());
+                ItemBlockRenderTypes.setRenderLayer(set.trapdoor().get(), RenderType.cutout());
+            });
         });
     }
 }

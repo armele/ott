@@ -14,7 +14,8 @@ public final class ModWoodSets {
     private ModWoodSets() {}
 
     public static final List<WoodSet> ALL = List.of(
-            new WoodSet("starlight")
+            new WoodSet("starlight"),
+            new WoodSet("midnight")
     );
 
     public record WoodSet(String name) {

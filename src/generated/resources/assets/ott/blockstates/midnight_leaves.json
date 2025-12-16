@@ -1,0 +1,21 @@
+{
+  "variants": {
+    "": [
+      {
+        "model": "ott:block/midnight_leaves"
+      },
+      {
+        "model": "ott:block/midnight_leaves1"
+      },
+      {
+        "model": "ott:block/midnight_leaves2"
+      },
+      {
+        "model": "ott:block/midnight_leaves3"
+      },
+      {
+        "model": "ott:block/midnight_leaves4"
+      }
+    ]
+  }
+}

@@ -2,16 +2,17 @@ package com.otterly76.ott.generation;
 
 import com.otterly76.ott.Constants;
 import com.otterly76.ott.block.ModBlocks;
+import net.minecraft.core.Direction;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.block.*;
-import net.minecraft.world.level.block.state.properties.BlockStateProperties;
-import net.minecraft.world.level.block.state.properties.SlabType;
+import net.minecraft.world.level.block.state.properties.*;
 import net.neoforged.neoforge.client.model.generators.BlockStateProvider;
 import net.neoforged.neoforge.client.model.generators.ConfiguredModel;
 import net.neoforged.neoforge.client.model.generators.ModelFile;
 import net.neoforged.neoforge.common.data.ExistingFileHelper;
+import org.jetbrains.annotations.NotNull;
 
 public class OttWoodSetBlockStateProvider extends BlockStateProvider {
 
@@ -43,7 +44,7 @@ public class OttWoodSetBlockStateProvider extends BlockStateProvider {
 
         stairsBlock(set.stairs().get(), planksTex);
 
-        // FIX: custom slab (avoids ExistingFileHelper existence check)
+        // Custom slab (avoids ExistingFileHelper existence check)
         registerPlanksSlab(setName, set.slab().get(), planksTex, modLoc("block/" + planksModelName));
 
         fenceBlock(set.fence().get(), planksTex);
@@ -60,17 +61,9 @@ public class OttWoodSetBlockStateProvider extends BlockStateProvider {
         models().withExistingParent(set.button().getId().getPath() + "_inventory", mcLoc("block/button_inventory"))
                 .texture("texture", planksTex);
 
-        doorBlock(
-                set.door().get(),
-                modLoc("block/" + setName + "/door_bottom"),
-                modLoc("block/" + setName + "/door_top")
-        );
-
-        trapdoorBlock(
-                set.trapdoor().get(),
-                modLoc("block/" + setName + "/trapdoor"),
-                true
-        );
+        // Doors/Trapdoors: ensure cutout render type on generated models
+        registerCutoutDoor(setName, set.door().get());
+        registerCutoutTrapdoor(setName, set.trapdoor().get());
 
         ModelFile saplingModel = models()
                 .cross(set.sapling().getId().getPath(), modLoc("block/" + setName + "/sapling"))
@@ -90,7 +83,7 @@ public class OttWoodSetBlockStateProvider extends BlockStateProvider {
         signBlock(set.sign().get(), set.wallSign().get(), planksTex);
         hangingSignBlock(set.hangingSign().get(), set.wallHangingSign().get(), planksTex);
 
-        // Leaves: fluffy/random variants (correct to keep here if you want that effect)
+        // Leaves: fluffy/random variants
         registerFluffyLeaves(setName, set.leaves().get());
     }
 
@@ -120,10 +113,93 @@ public class OttWoodSetBlockStateProvider extends BlockStateProvider {
                 .addModels(new ConfiguredModel(doubleModel));
     }
 
-    // ... keep your registerFluffyLeaves(...) and blockPath(...) as you have them ...
+    private void registerCutoutDoor(String setName, DoorBlock door) {
+        String doorName = blockPath(door);
+
+        ResourceLocation bottomTex = modLoc("block/" + setName + "/door_bottom");
+        ResourceLocation topTex = modLoc("block/" + setName + "/door_top");
+
+        ModelFile bottomLeft = models()
+                .withExistingParent(doorName + "_bottom_left", mcLoc("block/door_bottom_left"))
+                .texture("bottom", bottomTex)
+                .texture("top", topTex)
+                .renderType("cutout");
+
+        ModelFile bottomRight = models()
+                .withExistingParent(doorName + "_bottom_right", mcLoc("block/door_bottom_right"))
+                .texture("bottom", bottomTex)
+                .texture("top", topTex)
+                .renderType("cutout");
+
+        ModelFile topLeft = models()
+                .withExistingParent(doorName + "_top_left", mcLoc("block/door_top_left"))
+                .texture("bottom", bottomTex)
+                .texture("top", topTex)
+                .renderType("cutout");
+
+        ModelFile topRight = models()
+                .withExistingParent(doorName + "_top_right", mcLoc("block/door_top_right"))
+                .texture("bottom", bottomTex)
+                .texture("top", topTex)
+                .renderType("cutout");
+
+        getVariantBuilder(door)
+                .forAllStates(state -> {
+                    boolean open = state.getValue(BlockStateProperties.OPEN);
+                    boolean right = state.getValue(BlockStateProperties.DOOR_HINGE) == DoorHingeSide.RIGHT;
+                    boolean upper = state.getValue(BlockStateProperties.DOUBLE_BLOCK_HALF) == DoubleBlockHalf.UPPER;
+                    Direction facing = state.getValue(BlockStateProperties.HORIZONTAL_FACING);
+
+                    // FIX: model parents for doors are 90° offset vs facing.toYRot()
+                    int yRot = (((int) facing.toYRot()) + 90) % 360;
+
+                    ModelFile model;
+                    if (upper) {
+                        model = (open ^ right) ? topRight : topLeft;
+                    } else {
+                        model = (open ^ right) ? bottomRight : bottomLeft;
+                    }
+
+                    if (open) {
+                        yRot = (yRot + (right ? 90 : -90)) % 360;
+                        if (yRot < 0) yRot += 360;
+                    }
+
+                    return ConfiguredModel.builder()
+                            .modelFile(model)
+                            .rotationY(yRot)
+                            .build();
+                });
+    }
+
+    private void registerCutoutTrapdoor(String setName, TrapDoorBlock trapdoor) {
+        String trapdoorName = blockPath(trapdoor);
+        ResourceLocation tex = modLoc("block/" + setName + "/trapdoor");
+
+        ModelFile bottom = models().trapdoorBottom(trapdoorName + "_bottom", tex).renderType("cutout");
+        ModelFile top = models().trapdoorTop(trapdoorName + "_top", tex).renderType("cutout");
+        ModelFile open = models().trapdoorOpen(trapdoorName + "_open", tex).renderType("cutout");
+
+        getVariantBuilder(trapdoor)
+                .forAllStates(state -> {
+                    Direction facing = state.getValue(BlockStateProperties.HORIZONTAL_FACING);
+                    boolean isOpen = state.getValue(BlockStateProperties.OPEN);
+                    Half half = state.getValue(BlockStateProperties.HALF);
+
+                    ModelFile model = isOpen ? open : (half == Half.TOP ? top : bottom);
+
+                    // FIX: model parents for trapdoors are 180° offset vs facing.toYRot()
+                    int yRot = (((int) facing.toYRot()) + 180) % 360;
+
+                    return ConfiguredModel.builder()
+                            .modelFile(model)
+                            .rotationY(yRot)
+                            .build();
+                });
+    }
+
     private void registerFluffyLeaves(String setName, Block leavesBlock) {
         String leavesId = blockPath(leavesBlock);
-
         ResourceLocation leavesTexture = modLoc("block/" + setName + "/leaves");
 
         ModelFile l0 = models().withExistingParent(leavesId, modLoc("block/leaves"))
@@ -148,7 +224,7 @@ public class OttWoodSetBlockStateProvider extends BlockStateProvider {
                 );
     }
 
-    private static String blockPath(Block block) {
+    private static @NotNull String blockPath(Block block) {
         ResourceLocation key = BuiltInRegistries.BLOCK.getKey(block);
         return key.getPath();
     }

@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/outer_stairs",
+  "textures": {
+    "bottom": "ott:block/midnight/planks",
+    "side": "ott:block/midnight/planks",
+    "top": "ott:block/midnight/planks"
+  }
+}

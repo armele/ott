@@ -1,4 +1,4 @@
-// 1.21.1	2025-12-16T15:54:25.4143995	Recipes
+// 1.21.1	2025-12-16T17:26:37.7574797	Recipes
 c272617732072ce6eaa6ab5515a400f31f386fac data/minecraft/recipe/chiseled_resin_bricks.json
 437fd6ced8f2802e2374c958db2ddef7f4585bc2 data/minecraft/recipe/chiseled_resin_bricks_from_stonecutting.json
 496af5c9484370e81371b4fd4b63803e459c998a data/minecraft/recipe/creaking_heart.json
@@ -353,6 +353,20 @@ c5c52510dae64e04bf0d8f201da1c7f21d6d15f0 data/ott/recipe/magenta_yellow_concrete
 79d892ec6f15aa7d29e1b86f906366cad8bc37cf data/ott/recipe/magenta_yellow_stained_glass.json
 ebede45f76451646150100e41507655b56b2b674 data/ott/recipe/magenta_yellow_terracotta.json
 0fa85b9f6a8096b04f793b47c06fa3524eb3a1ac data/ott/recipe/magenta_yellow_wool.json
+4d9357adea171c421343ab4995558f3015c114e4 data/ott/recipe/midnight_boat.json
+4b7dbd9fefc6d925287d1f9a4a88dfcd8118133e data/ott/recipe/midnight_button.json
+3ef2bc85ea2c1123f55ccdf8f1edc54992f2d05d data/ott/recipe/midnight_chest_boat.json
+eed8742cc8eb820d7c58f20fd69d9e194ad326cd data/ott/recipe/midnight_door.json
+0bec8ffb822914df7aed464582ae37319c221909 data/ott/recipe/midnight_fence.json
+742fb85da9f24448352ea51ea3476943a99b0dc9 data/ott/recipe/midnight_fence_gate.json
+b3a67e76dd1b1aa1975f443165f1bc30e64874ff data/ott/recipe/midnight_hanging_sign.json
+cc7ff27cb858c04b2f72add4234c36352dd9b07e data/ott/recipe/midnight_planks.json
+b138859619f80d9a68b810188a259e71cf63cfc7 data/ott/recipe/midnight_pressure_plate.json
+a556ec0ed21f7965acfc017e6d11a6084fae2b9d data/ott/recipe/midnight_sign.json
+0040483fd6bea3aa78c71f63d77b5255f490e063 data/ott/recipe/midnight_slab.json
+31881a010a28f9d422b32ceafb0d70cda2c45e98 data/ott/recipe/midnight_stairs.json
+3c2be331e53470f7070273711b034e903729ce5a data/ott/recipe/midnight_trapdoor.json
+2f7b0685b36648b0fd547ae5c0f8003c6991082f data/ott/recipe/midnight_wood.json
 6134deec2387782af94c24dc5ca4649099cdcc78 data/ott/recipe/orange_black_concrete.json
 e7859df596adb05113d4af478f985469328dfadf data/ott/recipe/orange_black_concrete_powder.json
 190ef64ca075e52f55edb0404375e9b6c8173d5f data/ott/recipe/orange_black_stained_glass.json
@@ -512,6 +526,7 @@ aacfa76d46d71e369a763258e8d85228b1b77401 data/ott/recipe/starlight_pressure_plat
 816b997123d0e094e3cf7470caeeae8d40e2c3ce data/ott/recipe/starlight_stairs.json
 bac5268956a93a69bffa5bf994689117b5fa4f90 data/ott/recipe/starlight_trapdoor.json
 ac4f075b5df8fb2a9c258c01b8ea344d3d93e9d9 data/ott/recipe/starlight_wood.json
+4fbeb5b808a970b2f0f1ff0da54c22c16e9277c0 data/ott/recipe/stripped_midnight_wood.json
 bc72383cbb891045b52fe50ea583650fc618ff06 data/ott/recipe/stripped_starlight_wood.json
 96d00c200a57fb5997c2f4ac01c3115e578e9f9d data/ott/recipe/white_black_concrete.json
 35ecaaa7380d6df72631af15ebfd1a8d38dd2a1e data/ott/recipe/white_black_concrete_powder.json
