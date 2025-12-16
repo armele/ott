@@ -4,8 +4,8 @@ import com.otterly76.ott.block.custom.*;
 import com.otterly76.ott.crop.HedgeSprouts;
 import com.otterly76.ott.util.BlockSetTypeVariant;
 import com.otterly76.ott.util.WoodTypeVariant;
-import com.otterly76.ott.worldgen.ModTreeGrowers;
 import com.otterly76.ott.wood.ModWoodSets;
+import com.otterly76.ott.worldgen.ModTreeGrowers;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.world.item.DyeColor;
 import net.minecraft.world.level.block.*;
@@ -18,13 +18,9 @@ import net.neoforged.bus.api.IEventBus;
 import net.neoforged.neoforge.registries.DeferredBlock;
 import net.neoforged.neoforge.registries.DeferredRegister;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
+import java.util.*;
 import java.util.function.Consumer;
 import java.util.function.Function;
-import java.util.LinkedHashMap;
-import java.util.Map;
 
 import static com.otterly76.ott.Constants.MOD_ID;
 
@@ -300,7 +296,8 @@ public class ModBlocks {
             DeferredBlock<WallSignBlock> wallSign,
             DeferredBlock<CeilingHangingSignBlock> hangingSign,
             DeferredBlock<WallHangingSignBlock> wallHangingSign
-    ) {
+    )
+    {
     }
 
     static {
@@ -385,16 +382,16 @@ public class ModBlocks {
 
         // Signs (blocks only; the item is registered in ModItems)
         DeferredBlock<StandingSignBlock> sign = BLOCKS.register(signName,
-                () -> new StandingSignBlock(net.minecraft.world.level.block.state.properties.WoodType.OAK, BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_SIGN)));
+                () -> new StandingSignBlock(WoodTypeVariant.ott(set), BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_SIGN)));
 
         DeferredBlock<WallSignBlock> wallSign = BLOCKS.register(wallSignName,
-                () -> new WallSignBlock(net.minecraft.world.level.block.state.properties.WoodType.OAK, BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_WALL_SIGN)));
+                () -> new WallSignBlock(WoodTypeVariant.ott(set), BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_WALL_SIGN)));
 
         DeferredBlock<CeilingHangingSignBlock> hangingSign = BLOCKS.register(hangingSignName,
-                () -> new CeilingHangingSignBlock(net.minecraft.world.level.block.state.properties.WoodType.OAK, BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_HANGING_SIGN)));
+                () -> new CeilingHangingSignBlock(WoodTypeVariant.ott(set), BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_HANGING_SIGN)));
 
         DeferredBlock<WallHangingSignBlock> wallHangingSign = BLOCKS.register(wallHangingSignName,
-                () -> new WallHangingSignBlock(net.minecraft.world.level.block.state.properties.WoodType.OAK, BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_WALL_HANGING_SIGN)));
+                () -> new WallHangingSignBlock(WoodTypeVariant.ott(set), BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_WALL_HANGING_SIGN)));
 
         return new WoodSetBlocks(
                 log, wood, strippedLog, strippedWood,

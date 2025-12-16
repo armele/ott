@@ -28,7 +28,13 @@ public class ClientModEvents {
     @SuppressWarnings("deprecation")
     public static void onClientSetup(FMLClientSetupEvent event) {
         event.enqueueWork(() -> {
+            // Pale oak (minecraft namespace backport)
             Sheets.addWoodType(WoodTypeVariant.PALE_OAK.getWoodType());
+
+            // ott wood set types (ott namespace)
+            ModBlocks.WOOD_SETS.keySet().forEach(setName ->
+                    Sheets.addWoodType(WoodTypeVariant.ott(setName))
+            );
 
             ItemBlockRenderTypes.setRenderLayer(ModBlocks.CLOSED_EYEBLOSSOM.get(), RenderType.cutout());
             ItemBlockRenderTypes.setRenderLayer(ModBlocks.OPEN_EYEBLOSSOM.get(), RenderType.cutout());

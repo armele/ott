@@ -6,14 +6,16 @@
   "refmap": "ott.refmap.json",
   "mixins": [
     "BushBlockMixin",
-    "TreeDecoratorTypeInvoker"
+    "FenceGateBlockMixin",
+    "TreeDecoratorTypeInvoker",
+    "WalkNodeEvaluatorMixin"
   ],
   "client": [
     "ColorfulHeartsMixin",
-    "MinecraftSkipExperimentalWarningMixin",
     "DripParticleMixin",
     "GuiAccessor",
     "LevelRendererMixin",
+    "MinecraftSkipExperimentalWarningMixin",
     "SpriteLoaderMixin",
     "TextureSheetParticleMixin",
     "WaterDropParticleMixin"

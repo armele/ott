@@ -16,6 +16,7 @@ Mixins Used:
     - Because the Pale Garden is awesome
   - Suppressing the experimental features warning for new instances
     - Yes, we know, we're actively modding the game, please shut up
+  - Blocking the gates for animals so we don't have to chase livestock around
 
 FAQ:
 =======
@@ -72,3 +73,6 @@ Running List:
 - Pale Garden 1:1 backport
   - Because it's awesome and I want it
 - Suppressed the "Experimental Features" warning for new instances
+- Blocking the gates for animals so we don't have to chase livestock around
+  - Animals don't even acknowledge the gates so they won't all cluster in front of it, either
+  - Still need to put a roof on it for goats and frogs since those buggers jump

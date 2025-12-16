@@ -24,8 +24,6 @@ import com.otterly76.ott.worldgen.biome.ModOverworldRegion;
 import net.minecraft.client.model.BoatModel;
 import net.minecraft.client.model.ChestBoatModel;
 import net.minecraft.client.renderer.Sheets;
-import net.minecraft.client.renderer.blockentity.HangingSignRenderer;
-import net.minecraft.client.renderer.blockentity.SignRenderer;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.loot.LootTableProvider;
 import net.minecraft.network.chat.Component;
@@ -90,6 +88,7 @@ public class Ott {
         modEventBus.addListener(ClientModEvents::onClientSetup);
         modEventBus.addListener(ModEventBusEvents::registerLayers);
         modEventBus.addListener(ModEventBusEvents::registerAttributes);
+        modEventBus.addListener(ModBlockEntities::registerTileExtensions);
     }
 
     private void dataGeneratorSetup(final GatherDataEvent event) {
@@ -276,9 +275,6 @@ public class Ott {
             ModEntities.WOOD_SET_CHEST_BOATS.forEach((setName, type) ->
                     event.registerEntityRenderer(type.get(), (context) -> new OttWoodSetBoatRenderer(context, true))
             );
-
-            event.registerBlockEntityRenderer(ModBlockEntities.PALE_OAK_SIGN.get(), SignRenderer::new);
-            event.registerBlockEntityRenderer(ModBlockEntities.PALE_OAK_WALL_HANGING_SIGN.get(), HangingSignRenderer::new);
         }
 
         public static void registerLayerDefinitions(EntityRenderersEvent.RegisterLayerDefinitions event) {
