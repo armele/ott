@@ -83,6 +83,7 @@ public class OttLootTableProvider extends BlockLootSubProvider {
         this.dropOther(ModBlocks.PALE_OAK_WALL_SIGN.get(), ModItems.PALE_OAK_SIGN.get());
         this.dropOther(ModBlocks.PALE_OAK_HANGING_SIGN.get(), ModItems.PALE_OAK_HANGING_SIGN.get());
         this.dropOther(ModBlocks.PALE_OAK_WALL_HANGING_SIGN.get(), ModItems.PALE_OAK_HANGING_SIGN.get());
+
     }
 
     protected LootTable.Builder createCropDrops(Block cropBlock, net.minecraft.world.item.Item seedItem, net.minecraft.world.item.Item grownItem, LootItemBlockStatePropertyCondition.Builder condition) {

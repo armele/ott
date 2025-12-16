@@ -40,6 +40,7 @@ public class ClientModEvents {
             ItemBlockRenderTypes.setRenderLayer(ModBlocks.PALE_OAK_LEAVES.get(), RenderType.cutoutMipped());
 
             ItemBlockRenderTypes.setRenderLayer(ModBlocks.STARLIGHT_HEDGE.get(), RenderType.cutout());
+            ItemBlockRenderTypes.setRenderLayer(ModBlocks.STARLIGHT_CREEPING_HEDGE.get(), RenderType.cutout());
         });
     }
 }

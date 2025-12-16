@@ -194,6 +194,7 @@ public class Ott {
             event.accept(ModBlocks.CLOSED_EYEBLOSSOM, CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
 
             event.accept(ModBlocks.STARLIGHT_HEDGE, CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
+            event.accept(ModBlocks.STARLIGHT_CREEPING_HEDGE, CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
 
             ModBlocks.WOOD_SETS.values().forEach(set -> {
                 event.accept(set.leaves(), CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);

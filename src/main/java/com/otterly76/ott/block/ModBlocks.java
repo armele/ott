@@ -182,15 +182,10 @@ public class ModBlocks {
     public static final DeferredBlock<Block> GAPPER_PANEL_OAK = BLOCKS.register("gapper_panel_oak", () -> new Block(Properties.of().strength(4.0f).requiresCorrectToolForDrops().sound(SoundType.STONE).noOcclusion()));
 
     public static final DeferredBlock<HedgeBlock> HEDGE = BLOCKS.register("hedge", () -> new HedgeBlock(Properties.of().strength(4.0f).requiresCorrectToolForDrops().sound(SoundType.WOOD).noOcclusion()));
-
-    public static final DeferredBlock<Block> STARLIGHT_HEDGE = BLOCKS.register(
-            "starlight_hedge",
-            () -> new StarlightHedgeBlock(Properties.of()
-                    .strength(1.0f)
-                    .sound(SoundType.GRASS)
-                    .noOcclusion()));
-
     public static final DeferredBlock<Block> HEDGE_SPROUTS = BLOCKS.register("hedge_sprouts", () -> new HedgeSprouts(Block.Properties.ofFullCopy(Blocks.WHEAT)));
+
+    public static final DeferredBlock<Block> STARLIGHT_HEDGE = BLOCKS.register("starlight_hedge", () -> new StarlightHedgeBlock(Properties.of().strength(1.0f).sound(SoundType.GRASS).noOcclusion()));
+    public static final DeferredBlock<Block> STARLIGHT_CREEPING_HEDGE = BLOCKS.register("starlight_creeping_hedge", () -> new StarlightHedgeCreepingBlock(Properties.of().strength(1.0f).sound(SoundType.GRASS).noOcclusion()));
 
     private static <T extends Block> DeferredBlock<T> registerBackportedBlock(String name, java.util.function.Supplier<T> block) {
         return registerBackportedBlock(name, block, true);

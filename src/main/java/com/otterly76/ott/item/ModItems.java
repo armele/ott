@@ -87,11 +87,14 @@ public class ModItems {
     }
 
     public static final DeferredItem<Item> OTTER = ITEMS.register("otter", () -> new Item(new Item.Properties()));
-    public static final DeferredItem<Item> HEDGE_SPROUTS = ITEMS.register("hedge_sprouts", () -> new ItemNameBlockItem(ModBlocks.HEDGE_SPROUTS.get(), new Item.Properties()));
 
     public static final DeferredHolder<Item, BlockItem> GAPPER_PANEL_OAK = registerBlockItem("gapper_panel_oak", ModBlocks.GAPPER_PANEL_OAK);
+
     public static final DeferredHolder<Item, BlockItem> HEDGE = registerBlockItem("hedge", ModBlocks.HEDGE);
+    public static final DeferredItem<Item> HEDGE_SPROUTS = ITEMS.register("hedge_sprouts", () -> new ItemNameBlockItem(ModBlocks.HEDGE_SPROUTS.get(), new Item.Properties()));
+
     public static final DeferredHolder<Item, BlockItem> STARLIGHT_HEDGE = registerBlockItem("starlight_hedge", ModBlocks.STARLIGHT_HEDGE);
+    public static final DeferredHolder<Item, BlockItem> STARLIGHT_CREEPING_HEDGE = registerBlockItem("starlight_creeping_hedge", ModBlocks.STARLIGHT_CREEPING_HEDGE);
 
     public static final DeferredItem<Item> RESIN_BRICK;
     public static final DeferredItem<Item> CREAKING_SPAWN_EGG;

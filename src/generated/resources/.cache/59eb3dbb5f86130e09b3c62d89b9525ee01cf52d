@@ -1,4 +1,4 @@
-// 1.21.1	2025-12-15T12:35:59.9409427	Loot Tables
+// 1.21.1	2025-12-15T20:52:54.3475579	Loot Tables
 6cf9078610a3f3ca7173d8fe2ca6dd0282e8d21b data/minecraft/loot_table/blocks/chiseled_resin_bricks.json
 be553de3b042176d2f4055d2db03f6ff322ddcaa data/minecraft/loot_table/blocks/closed_eyeblossom.json
 385c0ec1c2a23a3bd2c67d2f56759159f70e6750 data/minecraft/loot_table/blocks/creaking_heart.json
@@ -597,6 +597,7 @@ b74d0c2c63a000c97591f5016c00051b59603d28 data/ott/loot_table/blocks/red_black_wo
 4291237d90eca5414d8c7e3daddb0b80fdcf7fed data/ott/loot_table/blocks/red_smooth_seaglass.json
 7c5ea66c47bde0ae0ad4effda5db11232a487608 data/ott/loot_table/blocks/red_waves_seaglass.json
 7616ff01b009e4f62577b0882a95a9c98c20bd06 data/ott/loot_table/blocks/starlight_button.json
+b1365f94c24710182c5d8e2af3497ed6f724f394 data/ott/loot_table/blocks/starlight_creeping_hedge.json
 77714aed1a87acda6e6bc64d91daa1fe8167e224 data/ott/loot_table/blocks/starlight_door.json
 d04379229394c949bf937e206fc9e4e730d28844 data/ott/loot_table/blocks/starlight_fence.json
 fe2314a7e3fe57c1922c3d8e3713220aaf6f283a data/ott/loot_table/blocks/starlight_fence_gate.json

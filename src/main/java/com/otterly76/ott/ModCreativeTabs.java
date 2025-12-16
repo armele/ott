@@ -29,12 +29,19 @@ public final class ModCreativeTabs {
     private static CreativeModeTab createMiscTab() {
         return new CreativeModeTab.Builder(DEFAULT_ROW, DEFAULT_COLUMN).title(Component.translatable(createTranslationKey("misc"))).icon(() -> new ItemStack(ModItems.OTTER.get())).displayItems((config, output) -> {
             output.accept(ModItems.OTTER);
+
             output.accept(ModBlocks.GAPPER_PANEL_OAK);
+
             output.accept(ModBlocks.HEDGE);
             output.accept(ModItems.HEDGE_SPROUTS);
+
+            output.accept(ModBlocks.STARLIGHT_HEDGE);
+            output.accept(ModBlocks.STARLIGHT_CREEPING_HEDGE);
+
             ModBlocks.TESTBLOCK.forEach(output::accept);
             ModBlocks.LIMESTONE.forEach(output::accept);
             ModBlocks.SEAGLASS.forEach(output::accept);
+
         }).build();
     }
 
