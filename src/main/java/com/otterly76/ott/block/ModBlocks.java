@@ -2,6 +2,7 @@ package com.otterly76.ott.block;
 
 import com.otterly76.ott.block.custom.*;
 import com.otterly76.ott.crop.HedgeSprouts;
+import com.otterly76.ott.hedge.ModHedgeVariants;
 import com.otterly76.ott.util.BlockSetTypeVariant;
 import com.otterly76.ott.util.WoodTypeVariant;
 import com.otterly76.ott.wood.ModWoodSets;
@@ -177,11 +178,41 @@ public class ModBlocks {
 
     public static final DeferredBlock<Block> GAPPER_PANEL_OAK = BLOCKS.register("gapper_panel_oak", () -> new Block(Properties.of().strength(4.0f).requiresCorrectToolForDrops().sound(SoundType.STONE).noOcclusion()));
 
-    public static final DeferredBlock<HedgeBlock> HEDGE = BLOCKS.register("hedge", () -> new HedgeBlock(Properties.of().strength(4.0f).requiresCorrectToolForDrops().sound(SoundType.WOOD).noOcclusion()));
-    public static final DeferredBlock<Block> HEDGE_SPROUTS = BLOCKS.register("hedge_sprouts", () -> new HedgeSprouts(Block.Properties.ofFullCopy(Blocks.WHEAT)));
+    /**
+     * Your original "real hedge" block (damage/bonemeal/etc). Keep separate.
+     */
+    public static final DeferredBlock<HedgeBlock> HEDGE =
+            BLOCKS.register("hedge", () -> new HedgeBlock(Properties.of().strength(4.0f).requiresCorrectToolForDrops().sound(SoundType.WOOD).noOcclusion()));
 
-    public static final DeferredBlock<Block> STARLIGHT_HEDGE = BLOCKS.register("starlight_hedge", () -> new StarlightHedgeBlock(Properties.of().strength(1.0f).sound(SoundType.GRASS).noOcclusion()));
-    public static final DeferredBlock<Block> STARLIGHT_CREEPING_HEDGE = BLOCKS.register("starlight_creeping_hedge", () -> new StarlightHedgeCreepingBlock(Properties.of().strength(1.0f).sound(SoundType.GRASS).noOcclusion()));
+    public static final DeferredBlock<Block> HEDGE_SPROUTS =
+            BLOCKS.register("hedge_sprouts", () -> new HedgeSprouts(Block.Properties.ofFullCopy(Blocks.WHEAT)));
+
+    public static final Map<String, DeferredBlock<Block>> PARTICLE_HEDGES = new LinkedHashMap<>();
+    public static final Map<String, DeferredBlock<Block>> CREEPING_HEDGES = new LinkedHashMap<>();
+
+    static {
+        // Shared props for all particle hedges
+        Properties hedgeProps = Properties.of().strength(1.0f).sound(SoundType.GRASS).noOcclusion();
+
+        ModHedgeVariants.ALL.forEach(variant -> {
+            PARTICLE_HEDGES.put(variant.name(), BLOCKS.register(
+                    variant.name() + "_hedge",
+                    () -> new ParticleHedgeBlock(
+                            hedgeProps,
+                            variant.leafParticle()
+                    )
+            ));
+
+            CREEPING_HEDGES.put(variant.name(), BLOCKS.register(
+                    variant.name() + "_creeping_hedge",
+                    () -> new ParticleCreepingHedgeBlock(
+                            hedgeProps,
+                            variant.leafParticle(),
+                            variant.creepOverlayTexture()
+                    )
+            ));
+        });
+    }
 
     private static <T extends Block> DeferredBlock<T> registerBackportedBlock(String name, java.util.function.Supplier<T> block) {
         return registerBackportedBlock(name, block, true);

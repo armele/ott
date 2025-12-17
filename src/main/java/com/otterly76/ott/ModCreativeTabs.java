@@ -35,8 +35,8 @@ public final class ModCreativeTabs {
             output.accept(ModBlocks.HEDGE);
             output.accept(ModItems.HEDGE_SPROUTS);
 
-            output.accept(ModBlocks.STARLIGHT_HEDGE);
-            output.accept(ModBlocks.STARLIGHT_CREEPING_HEDGE);
+            ModBlocks.PARTICLE_HEDGES.values().forEach(output::accept);
+            ModBlocks.CREEPING_HEDGES.values().forEach(output::accept);
 
             ModBlocks.TESTBLOCK.forEach(output::accept);
             ModBlocks.LIMESTONE.forEach(output::accept);

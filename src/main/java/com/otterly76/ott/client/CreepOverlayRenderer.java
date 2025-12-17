@@ -3,7 +3,7 @@ package com.otterly76.ott.client;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import com.otterly76.ott.Constants;
-import com.otterly76.ott.block.ModBlocks;
+import com.otterly76.ott.block.custom.ParticleCreepingHedgeBlock;
 import it.unimi.dsi.fastutil.longs.Long2ObjectOpenHashMap;
 import it.unimi.dsi.fastutil.longs.LongOpenHashSet;
 import it.unimi.dsi.fastutil.longs.LongSet;
@@ -15,7 +15,6 @@ import net.minecraft.client.renderer.texture.TextureAtlas;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.RenderShape;
 import net.minecraft.world.level.block.state.BlockState;
@@ -29,12 +28,9 @@ import net.neoforged.neoforge.event.level.ChunkEvent;
 import net.neoforged.neoforge.event.level.LevelEvent;
 
 @EventBusSubscriber(modid = Constants.MOD_ID, value = Dist.CLIENT)
-public final class StarlightCreepOverlayRenderer {
-    private StarlightCreepOverlayRenderer() {
+public final class CreepOverlayRenderer {
+    private CreepOverlayRenderer() {
     }
-
-    private static final ResourceLocation CREEP_SPRITE_ID =
-            ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, "block/starlight_creep");
 
     /**
      * chunkKey -> set of hedge BlockPos as long (BlockPos#asLong).
@@ -74,24 +70,17 @@ public final class StarlightCreepOverlayRenderer {
         double camY = camVec.y;
         double camZ = camVec.z;
 
-        BlockPos camPos = BlockPos.containing(camVec);
-
-        @SuppressWarnings("deprecation")
-        TextureAtlasSprite creep = mc.getTextureAtlas(TextureAtlas.LOCATION_BLOCKS).apply(CREEP_SPRITE_ID);
-
         PoseStack poseStack = event.getPoseStack();
         MultiBufferSource.BufferSource bufferSource = mc.renderBuffers().bufferSource();
 
         // IMPORTANT: Use translucent so fractional alpha actually blends.
         VertexConsumer vc = bufferSource.getBuffer(Sheets.translucentCullBlockSheet());
 
-        // Iterate cached hedges
         for (LongSet set : HEDGES_BY_CHUNK.values()) {
             for (var it = set.iterator(); it.hasNext(); ) {
                 long hedgeLong = it.nextLong();
                 BlockPos hedgePos = BlockPos.of(hedgeLong);
 
-                // ... existing code ...
                 double ddx = (hedgePos.getX() + 0.5) - camX;
                 double ddy = (hedgePos.getY() + 0.5) - camY;
                 double ddz = (hedgePos.getZ() + 0.5) - camZ;
@@ -107,17 +96,19 @@ public final class StarlightCreepOverlayRenderer {
                     alpha = (float) (1.0 - Math.max(0.0, Math.min(1.0, t)));
                 }
 
-                // If it's extremely faint, skip to save a bit of fill-rate
                 if (alpha <= 0.01f) continue;
 
-                if (!level.getBlockState(hedgePos).is(ModBlocks.STARLIGHT_CREEPING_HEDGE.get())) continue;
+                BlockState hedgeState = level.getBlockState(hedgePos);
+                if (!(hedgeState.getBlock() instanceof ParticleCreepingHedgeBlock creeping)) continue;
 
-                renderOverlayOnCandidate(level, poseStack, vc, creep, hedgePos.below(), camX, camY, camZ, alpha);
-                renderOverlayOnCandidate(level, poseStack, vc, creep, hedgePos.above(), camX, camY, camZ, alpha);
+                @SuppressWarnings("deprecation")
+                TextureAtlasSprite creepSprite = mc.getTextureAtlas(TextureAtlas.LOCATION_BLOCKS)
+                        .apply(creeping.getOverlayTexture());
+
+                renderOverlayOnCandidate(level, poseStack, vc, creepSprite, hedgePos.below(), camX, camY, camZ, alpha);
+                renderOverlayOnCandidate(level, poseStack, vc, creepSprite, hedgePos.above(), camX, camY, camZ, alpha);
             }
         }
-
-        // Don’t endBatch here; vanilla manages flushing for level rendering.
     }
 
     // ---------------------------
@@ -156,7 +147,7 @@ public final class StarlightCreepOverlayRenderer {
 
                 for (int y = minY; y < maxY; y++) {
                     mp.set(wx, y, wz);
-                    if (chunk.getBlockState(mp).is(ModBlocks.STARLIGHT_CREEPING_HEDGE.get())) {
+                    if (chunk.getBlockState(mp).getBlock() instanceof ParticleCreepingHedgeBlock) {
                         set.add(mp.asLong());
                     }
                 }
@@ -186,7 +177,7 @@ public final class StarlightCreepOverlayRenderer {
         if (!level.isClientSide()) return;
 
         BlockPos pos = event.getPos();
-        if (!event.getPlacedBlock().is(ModBlocks.STARLIGHT_CREEPING_HEDGE.get())) return;
+        if (!(event.getPlacedBlock().getBlock() instanceof ParticleCreepingHedgeBlock)) return;
 
         LongSet set = HEDGES_BY_CHUNK.computeIfAbsent(chunkKey(pos.getX() >> 4, pos.getZ() >> 4), k -> new LongOpenHashSet());
         set.add(pos.asLong());
@@ -198,9 +189,7 @@ public final class StarlightCreepOverlayRenderer {
         if (!level.isClientSide()) return;
 
         BlockPos pos = event.getPos();
-
-        // If it wasn't a hedge, ignore
-        if (!event.getState().is(ModBlocks.STARLIGHT_CREEPING_HEDGE.get())) return;
+        if (!(event.getState().getBlock() instanceof ParticleCreepingHedgeBlock)) return;
 
         long key = chunkKey(pos.getX() >> 4, pos.getZ() >> 4);
         LongSet set = HEDGES_BY_CHUNK.get(key);
@@ -227,10 +216,10 @@ public final class StarlightCreepOverlayRenderer {
 
         if (state.getRenderShape() != RenderShape.MODEL) return;
         if (!state.isCollisionShapeFullBlock(level, pos)) return;
-        if (state.is(ModBlocks.STARLIGHT_CREEPING_HEDGE.get())) return;
+        if (state.getBlock() instanceof ParticleCreepingHedgeBlock) return;
 
-        boolean hedgeAbove = level.getBlockState(pos.above()).is(ModBlocks.STARLIGHT_CREEPING_HEDGE.get());
-        boolean hedgeBelow = level.getBlockState(pos.below()).is(ModBlocks.STARLIGHT_CREEPING_HEDGE.get());
+        boolean hedgeAbove = level.getBlockState(pos.above()).getBlock() instanceof ParticleCreepingHedgeBlock;
+        boolean hedgeBelow = level.getBlockState(pos.below()).getBlock() instanceof ParticleCreepingHedgeBlock;
         if (!hedgeAbove && !hedgeBelow) return;
 
         int light = 0x00F000F0;

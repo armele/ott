@@ -1,21 +1,35 @@
 package com.otterly76.ott.block.custom;
 
-import com.otterly76.ott.particle.ModParticle;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.core.particles.SimpleParticleType;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
 import org.jetbrains.annotations.NotNull;
 
-public class StarlightHedgeBlock extends Block {
+import java.util.function.Supplier;
+
+public class ParticleCreepingHedgeBlock extends Block {
     private static final float SPAWN_CHANCE_PER_TICK = 0.20f;
     private static final int PARTICLES_PER_SPAWN = 1;
     private static final double FACE_NUDGE = 0.02;
 
-    public StarlightHedgeBlock(Properties props) {
+    private final Supplier<SimpleParticleType> particleType;
+    private final ResourceLocation overlayTexture;
+
+    public ParticleCreepingHedgeBlock(Properties props,
+                                      Supplier<SimpleParticleType> particleType,
+                                      ResourceLocation overlayTexture) {
         super(props);
+        this.particleType = particleType;
+        this.overlayTexture = overlayTexture;
+    }
+
+    public ResourceLocation getOverlayTexture() {
+        return overlayTexture;
     }
 
     @SuppressWarnings("DuplicatedCode")
@@ -43,7 +57,9 @@ public class StarlightHedgeBlock extends Block {
                 face = random.nextBoolean() ? Direction.UP : Direction.DOWN;
             }
 
-            double x = cx, y = cy, z = cz;
+            double x = cx;
+            double y = cy;
+            double z = cz;
 
             switch (face) {
                 case UP, DOWN -> {
@@ -73,8 +89,7 @@ public class StarlightHedgeBlock extends Block {
                 zd = (random.nextDouble() - 0.5) * 0.001;
             }
 
-            // NOTE: this is your leaf particle; no creep overlay involved.
-            level.addParticle(ModParticle.STARLIGHT_LEAF.get(), x, y, z, xd, yd, zd);
+            level.addParticle(particleType.get(), x, y, z, xd, yd, zd);
         }
     }
 }

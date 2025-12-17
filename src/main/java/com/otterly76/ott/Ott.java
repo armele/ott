@@ -12,10 +12,7 @@ import com.otterly76.ott.events.ModEventBusEvents;
 import com.otterly76.ott.generation.*;
 import com.otterly76.ott.item.ModItems;
 import com.otterly76.ott.network.NetworkHandler;
-import com.otterly76.ott.particle.ModParticle;
-import com.otterly76.ott.particle.PaleOakParticle;
-import com.otterly76.ott.particle.StarlightLeafParticle;
-import com.otterly76.ott.particle.TrailParticle;
+import com.otterly76.ott.particle.*;
 import com.otterly76.ott.sound.ModSounds;
 import com.otterly76.ott.util.WoodTypeVariant;
 import com.otterly76.ott.worldgen.ModFeatures;
@@ -192,8 +189,12 @@ public class Ott {
             event.accept(ModBlocks.OPEN_EYEBLOSSOM, CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
             event.accept(ModBlocks.CLOSED_EYEBLOSSOM, CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
 
-            event.accept(ModBlocks.STARLIGHT_HEDGE, CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
-            event.accept(ModBlocks.STARLIGHT_CREEPING_HEDGE, CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
+            ModBlocks.PARTICLE_HEDGES.values().forEach(b ->
+                    event.accept(b, CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS)
+            );
+            ModBlocks.CREEPING_HEDGES.values().forEach(b ->
+                    event.accept(b, CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS)
+            );
 
             ModBlocks.WOOD_SETS.values().forEach(set -> {
                 event.accept(set.leaves(), CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
@@ -290,6 +291,8 @@ public class Ott {
             event.registerSpriteSet(ModParticle.PALE_OAK_LEAVES.get(), PaleOakParticle.Provider::new);
             event.registerSpriteSet(ModParticle.TRAIL.get(), TrailParticle.Provider::new);
             event.registerSpriteSet(ModParticle.STARLIGHT_LEAF.get(), StarlightLeafParticle.Provider::new);
+            event.registerSpriteSet(ModParticle.MIDNIGHT_LEAF.get(), MidnightLeafParticle.Provider::new);
+            event.registerSpriteSet(ModParticle.BLOOMING_STARLIGHT_LEAF.get(), BloomingStarlightLeafParticle.Provider::new);
         }
     }
 

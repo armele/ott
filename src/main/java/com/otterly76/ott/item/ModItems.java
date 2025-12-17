@@ -32,6 +32,9 @@ public class ModItems {
         ModBlocks.LIMESTONE.forEach(block -> ITEMS.register(block.getId().getPath(), () -> new BlockItem(block.get(), new Item.Properties())));
         ModBlocks.SEAGLASS.forEach(block -> ITEMS.register(block.getId().getPath(), () -> new BlockItem(block.get(), new Item.Properties())));
 
+        ModBlocks.PARTICLE_HEDGES.values().forEach(ModItems::registerBlockItem);
+        ModBlocks.CREEPING_HEDGES.values().forEach(ModItems::registerBlockItem);
+
         ModBlocks.WOOD_SETS.forEach((setName, setBlocks) -> {
             registerBlockItem(setBlocks.log());
             registerBlockItem(setBlocks.wood());
@@ -92,9 +95,6 @@ public class ModItems {
 
     public static final DeferredHolder<Item, BlockItem> HEDGE = registerBlockItem("hedge", ModBlocks.HEDGE);
     public static final DeferredItem<Item> HEDGE_SPROUTS = ITEMS.register("hedge_sprouts", () -> new ItemNameBlockItem(ModBlocks.HEDGE_SPROUTS.get(), new Item.Properties()));
-
-    public static final DeferredHolder<Item, BlockItem> STARLIGHT_HEDGE = registerBlockItem("starlight_hedge", ModBlocks.STARLIGHT_HEDGE);
-    public static final DeferredHolder<Item, BlockItem> STARLIGHT_CREEPING_HEDGE = registerBlockItem("starlight_creeping_hedge", ModBlocks.STARLIGHT_CREEPING_HEDGE);
 
     public static final DeferredItem<Item> RESIN_BRICK;
     public static final DeferredItem<Item> CREAKING_SPAWN_EGG;

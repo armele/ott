@@ -1,21 +1,26 @@
 package com.otterly76.ott.block.custom;
 
-import com.otterly76.ott.particle.ModParticle;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.core.particles.SimpleParticleType;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
 import org.jetbrains.annotations.NotNull;
 
-public class StarlightHedgeCreepingBlock extends Block {
+import java.util.function.Supplier;
+
+public class ParticleHedgeBlock extends Block {
     private static final float SPAWN_CHANCE_PER_TICK = 0.20f;
     private static final int PARTICLES_PER_SPAWN = 1;
     private static final double FACE_NUDGE = 0.02;
 
-    public StarlightHedgeCreepingBlock(Properties props) {
+    private final Supplier<SimpleParticleType> particleType;
+
+    public ParticleHedgeBlock(Properties props, Supplier<SimpleParticleType> particleType) {
         super(props);
+        this.particleType = particleType;
     }
 
     @SuppressWarnings("DuplicatedCode")
@@ -33,7 +38,6 @@ public class StarlightHedgeCreepingBlock extends Block {
             float r = random.nextFloat();
 
             if (r < 0.90f) {
-                // 90%: pick one of the 4 sides
                 face = switch (random.nextInt(4)) {
                     case 0 -> Direction.NORTH;
                     case 1 -> Direction.SOUTH;
@@ -41,13 +45,10 @@ public class StarlightHedgeCreepingBlock extends Block {
                     default -> Direction.EAST;
                 };
             } else {
-                // 10%: top/bottom
                 face = random.nextBoolean() ? Direction.UP : Direction.DOWN;
             }
 
-            double x = cx;
-            double y = cy;
-            double z = cz;
+            double x = cx, y = cy, z = cz;
 
             switch (face) {
                 case UP, DOWN -> {
@@ -67,19 +68,17 @@ public class StarlightHedgeCreepingBlock extends Block {
                 }
             }
 
-            // Gentle “peel off” push away from the chosen face
             double peel = 0.006;
             double xd = face.getStepX() * peel + (random.nextDouble() - 0.5) * 0.001;
             double yd = -(0.001 + random.nextDouble() * 0.0015);
             double zd = face.getStepZ() * peel + (random.nextDouble() - 0.5) * 0.001;
 
-            // Don’t push up/down faces outward (keeps “drip” feel)
             if (face == Direction.UP || face == Direction.DOWN) {
                 xd = (random.nextDouble() - 0.5) * 0.001;
                 zd = (random.nextDouble() - 0.5) * 0.001;
             }
 
-            level.addParticle(ModParticle.STARLIGHT_LEAF.get(), x, y, z, xd, yd, zd);
+            level.addParticle(particleType.get(), x, y, z, xd, yd, zd);
         }
     }
 }

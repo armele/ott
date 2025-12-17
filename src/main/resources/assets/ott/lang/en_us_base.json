@@ -131,5 +131,11 @@
   "tooltip.ott.saturation": "Saturation: %s",
 
   "block.ott.starlight_hedge": "Starlight Hedge",
-  "block.ott.starlight_creeping_hedge": "Starlight Creeping Hedge"
+  "block.ott.starlight_creeping_hedge": "Starlight Creeping Hedge",
+  "block.ott.midnight_hedge": "Midnight Hedge",
+  "block.ott.midnight_creeping_hedge": "Midlight Creeping Hedge",
+  "block.ott.blooming_starlight_hedge": "Blooming Starlight Hedge",
+  "block.ott.blooming_starlight_creeping_hedge": "Blooming Starlight Creeping Hedge"
+
+
 }

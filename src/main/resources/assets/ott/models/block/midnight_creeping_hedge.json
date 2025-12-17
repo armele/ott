@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/cube_all",
+  "textures": {
+    "all": "ott:block/midnight_hedge",
+    "particle": "ott:block/midnight_creep"
+  }
+}
