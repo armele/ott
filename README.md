@@ -74,4 +74,6 @@ Running List:
 - Blocking the gates for animals so we don't have to chase livestock around
   - Animals don't even acknowledge the gates, so they won't all cluster in front of it, either
   - Still need to put a roof on it for goats and frogs since those buggers jump
-- Adding floral hedges, blooming hedges, and creeping hedges
+- Adding floral hedges, blooming hedges, and creeping hedge
+- Added snow under trees
+- 

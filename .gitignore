@@ -17,6 +17,9 @@ out
 build
 .gradle
 
+# generated resources
+src/generated/
+
 # other
 eclipse
 run

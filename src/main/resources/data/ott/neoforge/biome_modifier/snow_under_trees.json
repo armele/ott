@@ -1,0 +1,6 @@
+{
+  "type": "neoforge:add_features",
+  "biomes": "#minecraft:is_taiga",
+  "features": "ott:snow_under_trees",
+  "step": "top_layer_modification"
+}

@@ -1,23 +1,17 @@
 {
-  "type": "minecraft:min",
-  "argument1": "ott:master/initial_density",
-  "argument2": {
-    "type": "minecraft:range_choice",
-    "input": "minecraft:overworld/ridges",
-    "min_inclusive": -0.1,
-    "max_exclusive": 0.1,
-    "when_in_range": {
+  "type": "minecraft:add",
+  "argument1": {
+    "type": "minecraft:add",
+    "argument1": "ott:master/initial_density",
+    "argument2": {
       "type": "minecraft:mul",
-      "argument1": -1.0,
+      "argument1": 0.15,
       "argument2": {
-        "type": "minecraft:abs",
+        "type": "minecraft:interpolated",
         "argument": "minecraft:overworld/ridges"
       }
-    },
-    "when_out_of_range": "ott:master/initial_density"
+    }
   },
-  "type": "minecraft:add",
-  "argument1": "ott:master/initial_density",
   "argument2": {
     "type": "minecraft:mul",
     "argument1": -1.0,

@@ -1,7 +1,0 @@
-{
-  "parent": "minecraft:block/cube_column",
-  "textures": {
-    "end": "ott:block/midnight/log_top",
-    "side": "ott:block/midnight/log"
-  }
-}

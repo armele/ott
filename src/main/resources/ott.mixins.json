@@ -8,6 +8,8 @@
     "BushBlockMixin",
     "FenceGateBlockMixin",
     "FenceJumpMixin",
+    "JigsawStructureMixin",
+    "SinglePoolElementMixin",
     "TreeDecoratorTypeInvoker",
     "WalkNodeEvaluatorMixin"
   ],

@@ -1,8 +1,0 @@
-{
-  "parent": "minecraft:item/door_base",
-  "textures": {
-    "bottom": "ott:block/midnight/door_bottom",
-    "particle": "ott:block/midnight/door_top",
-    "top": "ott:block/midnight/door_top"
-  }
-}

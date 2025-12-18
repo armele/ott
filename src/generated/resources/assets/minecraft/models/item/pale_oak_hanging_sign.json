@@ -1,7 +1,0 @@
-{
-  "parent": "minecraft:item/hanging_sign_base",
-  "textures": {
-    "particle": "minecraft:item/entity/signs/hanging/pale_oak",
-    "sign": "minecraft:item/entity/signs/hanging/pale_oak"
-  }
-}

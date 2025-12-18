@@ -1,8 +1,0 @@
-{
-  "parent": "minecraft:block/door_top_right",
-  "render_type": "minecraft:cutout",
-  "textures": {
-    "bottom": "ott:block/starlight/door_bottom",
-    "top": "ott:block/starlight/door_top"
-  }
-}

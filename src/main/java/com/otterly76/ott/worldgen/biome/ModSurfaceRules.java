@@ -10,15 +10,17 @@ public class ModSurfaceRules {
     public static SurfaceRules.RuleSource makeRules() {
         SurfaceRules.ConditionSource isPaleGarden = SurfaceRules.isBiome(ModBiomes.PALE_GARDEN);
 
+        SurfaceRules.RuleSource sand = SurfaceRules.state(Blocks.SAND.defaultBlockState());
         SurfaceRules.RuleSource paleMoss = SurfaceRules.state(ModBlocks.PALE_MOSS_BLOCK.get().defaultBlockState());
         SurfaceRules.RuleSource grass = SurfaceRules.state(Blocks.GRASS_BLOCK.defaultBlockState());
         SurfaceRules.RuleSource dirt = SurfaceRules.state(Blocks.DIRT.defaultBlockState());
         SurfaceRules.RuleSource stone = SurfaceRules.state(Blocks.STONE.defaultBlockState());
         SurfaceRules.RuleSource deepslate = SurfaceRules.state(Blocks.DEEPSLATE.defaultBlockState());
 
-        // The "Steep" fix: Instead of just SurfaceRules.steep(), we can check if it's generally not a floor
+        // Cliff Rule: Stone on steep slopes
         SurfaceRules.RuleSource cliffRule = SurfaceRules.ifTrue(SurfaceRules.not(SurfaceRules.ON_FLOOR), stone);
 
+        // Pale Garden Rules
         SurfaceRules.RuleSource paleGardenRules = SurfaceRules.ifTrue(
                 isPaleGarden,
                 SurfaceRules.sequence(
@@ -28,28 +30,34 @@ public class ModSurfaceRules {
                                         paleMoss
                                 )
                         ),
-                        // Underground/Cave walls in Pale Garden
                         SurfaceRules.ifTrue(SurfaceRules.not(SurfaceRules.ON_FLOOR), stone)
                 )
         );
 
-        // Global Overworld Rules (to replace what we removed from overworld.json)
+        // Global Overworld Rules
         SurfaceRules.RuleSource globalRules = SurfaceRules.sequence(
-                // Handle Bedrock and Deepslate layer transition
+                // Bedrock layer
                 SurfaceRules.ifTrue(SurfaceRules.verticalGradient("deepslate", VerticalAnchor.absolute(0), VerticalAnchor.absolute(8)), deepslate),
 
-                // General surface (Grass/Dirt)
+                // Surface layer
                 SurfaceRules.ifTrue(SurfaceRules.ON_FLOOR,
                         SurfaceRules.sequence(
+                                // BEACH RULE: Sand near water
+                                SurfaceRules.ifTrue(SurfaceRules.waterBlockCheck(-1, 0),
+                                        SurfaceRules.ifTrue(SurfaceRules.not(SurfaceRules.waterBlockCheck(-6, 0)),
+                                                sand
+                                        )
+                                ),
                                 SurfaceRules.ifTrue(SurfaceRules.waterBlockCheck(-1, 0), grass),
                                 dirt
                         )
                 )
         );
 
+        // Final sequence combining everything
         return SurfaceRules.sequence(
                 paleGardenRules,
-                cliffRule, // Apply stone to cliffs globally
+                cliffRule,
                 globalRules
         );
     }

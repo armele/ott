@@ -1,6 +1,0 @@
-{
-  "parent": "minecraft:item/oak_boat",
-  "textures": {
-    "texture": "minecraft:item/entity/boat/pale_oak"
-  }
-}
