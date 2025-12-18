@@ -7,13 +7,16 @@
   "mixins": [
     "BushBlockMixin",
     "FenceGateBlockMixin",
+    "FenceJumpMixin",
     "TreeDecoratorTypeInvoker",
     "WalkNodeEvaluatorMixin"
   ],
   "client": [
     "ColorfulHeartsMixin",
+    "ConnectScreenMixin",
     "DripParticleMixin",
     "GuiAccessor",
+    "LevelLoadingScreenMixin",
     "LevelRendererMixin",
     "MinecraftSkipExperimentalWarningMixin",
     "SpriteLoaderMixin",

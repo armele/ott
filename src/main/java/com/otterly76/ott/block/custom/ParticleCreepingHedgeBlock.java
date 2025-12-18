@@ -85,11 +85,14 @@ public class ParticleCreepingHedgeBlock extends Block {
             double zd = face.getStepZ() * peel + (random.nextDouble() - 0.5) * 0.001;
 
             if (face == Direction.UP || face == Direction.DOWN) {
-                xd = (random.nextDouble() - 0.5) * 0.001;
-                zd = (random.nextDouble() - 0.5) * 0.001;
+                xd = (random.nextDouble() - 0.5) * 0.01;
+                zd = (random.nextDouble() - 0.5) * 0.01;
             }
 
-            level.addParticle(particleType.get(), x, y, z, xd, yd, zd);
+            SimpleParticleType type = particleType.get();
+            if (type != null) {
+                level.addParticle(type, x, y, z, xd, yd, zd);
+            }
         }
     }
 }

@@ -1,0 +1,60 @@
+{
+  "aquifers_enabled": true,
+  "default_block": {
+    "Name": "minecraft:stone"
+  },
+  "default_fluid": {
+    "Name": "minecraft:water",
+    "Properties": {
+      "level": "0"
+    }
+  },
+  "noise": {
+    "min_y": -64,
+    "height": 576,
+    "size_horizontal": 1,
+    "size_vertical": 2
+  },
+  "noise_router": {
+    "barrier": "minecraft:overworld/noise_router/barrier",
+    "fluid_level_floodedness": "minecraft:overworld/noise_router/fluid_level_floodedness",
+    "fluid_level_spread": "minecraft:overworld/noise_router/fluid_level_spread",
+    "lava": "minecraft:overworld/noise_router/lava",
+    "temperature": "minecraft:overworld/noise_router/temperature",
+    "vegetation": "minecraft:overworld/noise_router/vegetation",
+    "continents": "minecraft:overworld/noise_router/continents",
+    "erosion": "minecraft:overworld/noise_router/erosion",
+    "ridges": "minecraft:overworld/noise_router/ridges",
+    "depth": "ott:master/depth",
+    "final_density": "ott:master/final_density",
+    "initial_density_without_jaggedness": "ott:master/initial_density",
+    "vein_gap": "minecraft:overworld/noise_router/vein_gap",
+    "vein_ridged": "minecraft:overworld/noise_router/vein_ridged",
+    "vein_toggle": "minecraft:overworld/noise_router/vein_toggle"
+  },
+  "surface_rule": {
+    "type": "minecraft:sequence",
+    "sequence": [
+      {
+        "type": "minecraft:block",
+        "result_state": {
+          "Name": "minecraft:bedrock"
+        },
+        "if_true": {
+          "type": "minecraft:vertical_gradient",
+          "random_name": "minecraft:bedrock_floor",
+          "true_at_and_below": {
+            "above_bottom": 0
+          },
+          "false_at_and_above": {
+            "above_bottom": 5
+          }
+        }
+      }
+    ]
+  },
+  "sea_level": 63,
+  "disable_mob_generation": false,
+  "ore_veins_enabled": true,
+  "legacy_random_source": false
+}

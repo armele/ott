@@ -11,6 +11,7 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.levelgen.feature.treedecorators.TreeDecorator;
 import net.minecraft.world.level.levelgen.feature.treedecorators.TreeDecoratorType;
 import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 
@@ -38,6 +39,7 @@ public class PaleMossOnStuffDecorator extends TreeDecorator {
         List<BlockPos> logs = context.logs();
         if (logs.isEmpty()) return;
 
+        // 1. Place moss on the logs themselves
         for (BlockPos logPos : logs) {
             if (random.nextFloat() >= probability) continue;
 
@@ -50,32 +52,34 @@ public class PaleMossOnStuffDecorator extends TreeDecorator {
             context.setBlock(target, ModBlocks.PALE_MOSS_CARPET.get().defaultBlockState());
         }
 
+        // 2. Place moss on the ground around the base of the tree
         BlockPos base = findLowest(logs);
+        if (base == null) return;
 
         int radius = 3;
-
         for (int dx = -radius; dx <= radius; dx++) {
             for (int dz = -radius; dz <= radius; dz++) {
                 if (random.nextFloat() >= probability) continue;
 
                 BlockPos start = base.offset(dx, 0, dz);
-
                 BlockPos surface = findSurface(level, start, 8);
-                if (surface == null) continue;
 
-                @SuppressWarnings("DuplicatedCode")
-                BlockPos target = surface.above();
-                if (!level.isEmptyBlock(target)) continue;
-
-                BlockState below = level.getBlockState(surface);
-                if (!below.isFaceSturdy(level, surface, Direction.UP)) continue;
-
-                context.setBlock(target, ModBlocks.PALE_MOSS_CARPET.get().defaultBlockState());
+                if (surface != null) {
+                    BlockPos target = surface.above();
+                    if (level.isEmptyBlock(target)) {
+                        BlockState below = level.getBlockState(surface);
+                        if (below.isFaceSturdy(level, surface, Direction.UP)) {
+                            context.setBlock(target, ModBlocks.PALE_MOSS_CARPET.get().defaultBlockState());
+                        }
+                    }
+                }
             }
         }
     }
 
+    @Nullable
     private static BlockPos findLowest(List<BlockPos> positions) {
+        if (positions.isEmpty()) return null;
         BlockPos lowest = positions.getFirst();
         for (BlockPos p : positions) {
             if (p.getY() < lowest.getY()) lowest = p;
@@ -84,6 +88,7 @@ public class PaleMossOnStuffDecorator extends TreeDecorator {
     }
 
     @SuppressWarnings("SameParameterValue")
+    @Nullable
     private static BlockPos findSurface(WorldGenLevel level, BlockPos start, int maxDrop) {
         BlockPos p = start;
 

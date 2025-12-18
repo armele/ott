@@ -35,6 +35,7 @@ public class PaleOakBoatRenderer extends EntityRenderer<Boat> {
         this.model = hasChest ? new ChestBoatModel(part) : new BoatModel(part);
     }
 
+    @SuppressWarnings("DuplicatedCode")
     public void render(Boat boat, float yaw, float tickDelta, PoseStack matrices, @NotNull MultiBufferSource vertexConsumers, int light) {
         matrices.pushPose();
         matrices.translate(0.0F, 0.375F, 0.0F);

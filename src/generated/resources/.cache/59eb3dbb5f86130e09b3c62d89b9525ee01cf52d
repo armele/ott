@@ -1,4 +1,4 @@
-// 1.21.1	2025-12-16T17:26:37.750947	Loot Tables
+// 1.21.1	2025-12-17T20:48:17.4836199	Loot Tables
 6cf9078610a3f3ca7173d8fe2ca6dd0282e8d21b data/minecraft/loot_table/blocks/chiseled_resin_bricks.json
 be553de3b042176d2f4055d2db03f6ff322ddcaa data/minecraft/loot_table/blocks/closed_eyeblossom.json
 385c0ec1c2a23a3bd2c67d2f56759159f70e6750 data/minecraft/loot_table/blocks/creaking_heart.json
@@ -38,6 +38,10 @@ ba34b7633e8b9bcdd9640a0c4fac40241527851c data/ott/loot_table/blocks/black_bubble
 937c36d4b998a57832e971a14b593bf27efa5059 data/ott/loot_table/blocks/black_seaglass.json
 f3910577eb9b53a4e96e892be357b63da4980b93 data/ott/loot_table/blocks/black_smooth_seaglass.json
 e219b0feba033224d8b1bff5a68f3e0fbcc4adaa data/ott/loot_table/blocks/black_waves_seaglass.json
+2d1636bfa10e6f5250e75bc41fe766025c052fac data/ott/loot_table/blocks/blooming_midnight_creeping_hedge.json
+6c155a4812355076dfef5243a99ecfab8a1abc0c data/ott/loot_table/blocks/blooming_midnight_hedge.json
+a18685ec28a8a74ed0f19315e74d1fe2c95a2c40 data/ott/loot_table/blocks/blooming_starlight_creeping_hedge.json
+5923388bbe97f2af5a781ae00707046c7d6eadb8 data/ott/loot_table/blocks/blooming_starlight_hedge.json
 6a1b764db938fdfb74389b62d009d13446adeb39 data/ott/loot_table/blocks/blue_black_concrete.json
 2b14ad45d7bcf6310d7a7c31669e206f4f8688ef data/ott/loot_table/blocks/blue_black_concrete_powder.json
 5e50d92d032aa27b9dd155916444b0f243f1dd1f data/ott/loot_table/blocks/blue_black_stained_glass.json
@@ -435,10 +439,12 @@ c3b4d0d20dab5af5579a73f9455e099cf652a48c data/ott/loot_table/blocks/magenta_yell
 c4e56d8566c5d0cc591d905783c2dba91fd14e5b data/ott/loot_table/blocks/magenta_yellow_terracotta.json
 091636d2d5b58c8c4dfa5bf7ca11caac212c23bc data/ott/loot_table/blocks/magenta_yellow_wool.json
 3aeeb19913f72dc9617de52845a50a01d8b4b4ed data/ott/loot_table/blocks/midnight_button.json
+6ee0ca054f99d7b008a87c939a9f3805a2302c77 data/ott/loot_table/blocks/midnight_creeping_hedge.json
 a54f337951cc3b0acd08c10fb9c33cd79679bb72 data/ott/loot_table/blocks/midnight_door.json
 0d0f9013f8d2b518a6aec3286831256482b363a9 data/ott/loot_table/blocks/midnight_fence.json
 c62fbaea816747e3bc5f5f97afee6c244163ce20 data/ott/loot_table/blocks/midnight_fence_gate.json
 71e7b1cde6494c837d623c3b268480980f138db2 data/ott/loot_table/blocks/midnight_hanging_sign.json
+1f5941cf617a1143e407a91664e359cc99b59594 data/ott/loot_table/blocks/midnight_hedge.json
 eead5fac8b2b1788fe9890638ad61025d7507f72 data/ott/loot_table/blocks/midnight_leaves.json
 d791969f73f00e2f69866d4bba0503393b0e37e2 data/ott/loot_table/blocks/midnight_log.json
 6387df296b5c9d958300f6302c13ab1388e59759 data/ott/loot_table/blocks/midnight_planks.json

@@ -5,6 +5,7 @@ import com.mojang.blaze3d.vertex.VertexConsumer;
 import com.otterly76.ott.Constants;
 import com.otterly76.ott.block.custom.ParticleCreepingHedgeBlock;
 import it.unimi.dsi.fastutil.longs.Long2ObjectOpenHashMap;
+import it.unimi.dsi.fastutil.longs.LongIterator;
 import it.unimi.dsi.fastutil.longs.LongOpenHashSet;
 import it.unimi.dsi.fastutil.longs.LongSet;
 import net.minecraft.client.Minecraft;
@@ -15,6 +16,7 @@ import net.minecraft.client.renderer.texture.TextureAtlas;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.RenderShape;
 import net.minecraft.world.level.block.state.BlockState;
@@ -27,35 +29,26 @@ import net.neoforged.neoforge.event.level.BlockEvent;
 import net.neoforged.neoforge.event.level.ChunkEvent;
 import net.neoforged.neoforge.event.level.LevelEvent;
 
+import java.util.Iterator;
+
 @EventBusSubscriber(modid = Constants.MOD_ID, value = Dist.CLIENT)
 public final class CreepOverlayRenderer {
     private CreepOverlayRenderer() {
     }
 
-    /**
-     * chunkKey -> set of hedge BlockPos as long (BlockPos#asLong).
-     */
+    private static final int FULLBRIGHT = 0x00F000F0;
+
     private static final Long2ObjectOpenHashMap<LongSet> HEDGES_BY_CHUNK = new Long2ObjectOpenHashMap<>();
 
-    /**
-     * Render only hedges within this distance of the camera (in blocks).
-     */
     private static final int RENDER_RADIUS_BLOCKS = 96;
-    private static final int RENDER_RADIUS_SQ = RENDER_RADIUS_BLOCKS * RENDER_RADIUS_BLOCKS;
 
-    // 8-block buffer to reduce popping at the edge
     private static final int RENDER_RADIUS_BUFFER_BLOCKS = 8;
-    private static final int RENDER_RADIUS_SQ_BUFFERED =
-            (RENDER_RADIUS_BLOCKS + RENDER_RADIUS_BUFFER_BLOCKS) * (RENDER_RADIUS_BLOCKS + RENDER_RADIUS_BUFFER_BLOCKS);
+    private static final int FADE_BAND_BLOCKS = 16;
 
-    private static final int FADE_BAND_BLOCKS = 16; // fade over last 16 blocks
     private static final double FADE_START = RENDER_RADIUS_BLOCKS - FADE_BAND_BLOCKS;
     private static final double FADE_START_SQ = FADE_START * FADE_START;
-    private static final double FADE_END_SQ = RENDER_RADIUS_SQ_BUFFERED;
-
-    // ---------------------------
-    // Render
-    // ---------------------------
+    private static final double FADE_END_SQ =
+            (RENDER_RADIUS_BLOCKS + RENDER_RADIUS_BUFFER_BLOCKS) * (RENDER_RADIUS_BLOCKS + RENDER_RADIUS_BUFFER_BLOCKS);
 
     @SubscribeEvent
     public static void onRenderLevelStage(RenderLevelStageEvent event) {
@@ -73,13 +66,21 @@ public final class CreepOverlayRenderer {
         PoseStack poseStack = event.getPoseStack();
         MultiBufferSource.BufferSource bufferSource = mc.renderBuffers().bufferSource();
 
-        // IMPORTANT: Use translucent so fractional alpha actually blends.
         VertexConsumer vc = bufferSource.getBuffer(Sheets.translucentCullBlockSheet());
 
-        for (LongSet set : HEDGES_BY_CHUNK.values()) {
-            for (var it = set.iterator(); it.hasNext(); ) {
+        for (Iterator<Long2ObjectOpenHashMap.Entry<LongSet>> mapIt = HEDGES_BY_CHUNK.long2ObjectEntrySet().fastIterator(); mapIt.hasNext(); ) {
+            Long2ObjectOpenHashMap.Entry<LongSet> entry = mapIt.next();
+            LongSet set = entry.getValue();
+
+            for (LongIterator it = set.iterator(); it.hasNext(); ) {
                 long hedgeLong = it.nextLong();
                 BlockPos hedgePos = BlockPos.of(hedgeLong);
+
+                BlockState hedgeState = level.getBlockState(hedgePos);
+                if (!(hedgeState.getBlock() instanceof ParticleCreepingHedgeBlock creeping)) {
+                    it.remove();
+                    continue;
+                }
 
                 double ddx = (hedgePos.getX() + 0.5) - camX;
                 double ddy = (hedgePos.getY() + 0.5) - camY;
@@ -98,28 +99,30 @@ public final class CreepOverlayRenderer {
 
                 if (alpha <= 0.01f) continue;
 
-                BlockState hedgeState = level.getBlockState(hedgePos);
-                if (!(hedgeState.getBlock() instanceof ParticleCreepingHedgeBlock creeping)) continue;
-
                 @SuppressWarnings("deprecation")
                 TextureAtlasSprite creepSprite = mc.getTextureAtlas(TextureAtlas.LOCATION_BLOCKS)
                         .apply(creeping.getOverlayTexture());
 
                 renderOverlayOnCandidate(level, poseStack, vc, creepSprite, hedgePos.below(), camX, camY, camZ, alpha);
                 renderOverlayOnCandidate(level, poseStack, vc, creepSprite, hedgePos.above(), camX, camY, camZ, alpha);
+
+                @SuppressWarnings("deprecation")
+                TextureAtlasSprite hedgeSprite = mc.getTextureAtlas(TextureAtlas.LOCATION_BLOCKS)
+                        .apply(hedgeSpriteIdFromCreepId(creeping.getOverlayTexture()));
+
+                renderGlowOnBlock(level, poseStack, vc, hedgeSprite, hedgePos, camX, camY, camZ, alpha * 0.35f);
+            }
+
+            if (set.isEmpty()) {
+                mapIt.remove();
             }
         }
     }
-
-    // ---------------------------
-    // Cache maintenance
-    // ---------------------------
 
     @SubscribeEvent
     public static void onLevelUnload(LevelEvent.Unload event) {
         if (!(event.getLevel() instanceof Level level)) return;
         if (!level.isClientSide()) return;
-
         HEDGES_BY_CHUNK.clear();
     }
 
@@ -130,7 +133,6 @@ public final class CreepOverlayRenderer {
         if (!(event.getChunk() instanceof LevelChunk chunk)) return;
 
         long key = chunkKey(chunk.getPos().x, chunk.getPos().z);
-
         LongOpenHashSet set = new LongOpenHashSet();
 
         int minY = level.getMinBuildHeight();
@@ -205,10 +207,6 @@ public final class CreepOverlayRenderer {
         return (((long) chunkX) << 32) ^ (chunkZ & 0xffffffffL);
     }
 
-    // ---------------------------
-    // Overlay render (same logic you already have)
-    // ---------------------------
-
     private static void renderOverlayOnCandidate(Level level, PoseStack poseStack, VertexConsumer vc, TextureAtlasSprite sprite,
                                                  BlockPos pos, double camX, double camY, double camZ,
                                                  float alpha) {
@@ -222,15 +220,37 @@ public final class CreepOverlayRenderer {
         boolean hedgeBelow = level.getBlockState(pos.below()).getBlock() instanceof ParticleCreepingHedgeBlock;
         if (!hedgeAbove && !hedgeBelow) return;
 
-        int light = 0x00F000F0;
         boolean flipV = hedgeAbove && !hedgeBelow;
 
-        renderFaceIfExposed(level, poseStack, vc, sprite, pos, Direction.NORTH, light, camX, camY, camZ, flipV, alpha);
-        renderFaceIfExposed(level, poseStack, vc, sprite, pos, Direction.SOUTH, light, camX, camY, camZ, flipV, alpha);
-        renderFaceIfExposed(level, poseStack, vc, sprite, pos, Direction.WEST, light, camX, camY, camZ, flipV, alpha);
-        renderFaceIfExposed(level, poseStack, vc, sprite, pos, Direction.EAST, light, camX, camY, camZ, flipV, alpha);
+        renderFaceIfExposed(level, poseStack, vc, sprite, pos, Direction.NORTH, FULLBRIGHT, camX, camY, camZ, flipV, alpha);
+        renderFaceIfExposed(level, poseStack, vc, sprite, pos, Direction.SOUTH, FULLBRIGHT, camX, camY, camZ, flipV, alpha);
+        renderFaceIfExposed(level, poseStack, vc, sprite, pos, Direction.WEST, FULLBRIGHT, camX, camY, camZ, flipV, alpha);
+        renderFaceIfExposed(level, poseStack, vc, sprite, pos, Direction.EAST, FULLBRIGHT, camX, camY, camZ, flipV, alpha);
     }
 
+    private static void renderGlowOnBlock(Level level, PoseStack poseStack, VertexConsumer vc, TextureAtlasSprite sprite,
+                                          BlockPos pos, double camX, double camY, double camZ,
+                                          float alpha) {
+        renderFaceIfExposed(level, poseStack, vc, sprite, pos, Direction.NORTH, FULLBRIGHT, camX, camY, camZ, false, alpha);
+        renderFaceIfExposed(level, poseStack, vc, sprite, pos, Direction.SOUTH, FULLBRIGHT, camX, camY, camZ, false, alpha);
+        renderFaceIfExposed(level, poseStack, vc, sprite, pos, Direction.WEST, FULLBRIGHT, camX, camY, camZ, false, alpha);
+        renderFaceIfExposed(level, poseStack, vc, sprite, pos, Direction.EAST, FULLBRIGHT, camX, camY, camZ, false, alpha);
+    }
+
+    private static ResourceLocation hedgeSpriteIdFromCreepId(ResourceLocation creepId) {
+        String path = creepId.getPath();
+        String hedgePath;
+
+        if (path.endsWith("_creep")) {
+            hedgePath = path.substring(0, path.length() - "_creep".length()) + "_hedge";
+        } else {
+            hedgePath = path;
+        }
+
+        return ResourceLocation.fromNamespaceAndPath(creepId.getNamespace(), hedgePath);
+    }
+
+    @SuppressWarnings("SameParameterValue")
     private static void renderFaceIfExposed(Level level, PoseStack poseStack, VertexConsumer vc, TextureAtlasSprite s,
                                             BlockPos pos, Direction face, int light,
                                             double camX, double camY, double camZ,
@@ -282,6 +302,8 @@ public final class CreepOverlayRenderer {
                     1.0f + eps, 1.0f, 0.0f, u1, v0,
                     1.0f + eps, 1.0f, 1.0f, u0, v0
             );
+            default -> {
+            }
         }
 
         poseStack.popPose();
@@ -296,8 +318,6 @@ public final class CreepOverlayRenderer {
                              float x3, float y3, float z3, float u3, float v3) {
 
         int overlay = OverlayTexture.NO_OVERLAY;
-
-        // Clamp + convert 0..1 -> 0..255 once
         int a = (int) (255.0f * Math.max(0.0f, Math.min(1.0f, alpha)));
 
         vc.addVertex(pose, x0, y0, z0).setColor(255, 255, 255, a).setUv(u0, v0).setOverlay(overlay).setLight(light).setNormal(pose, nx, ny, nz);

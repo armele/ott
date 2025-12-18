@@ -15,8 +15,8 @@ tasks.named('wrapper', Wrapper).configure {
     distributionType = Wrapper.DistributionType.BIN
 }
 
-version = mod_version
-group = mod_group_id
+project.version = mod_version
+project.group = mod_group_id
 
 repositories {
     // Add here additional repositories if required by some of the dependencies below.

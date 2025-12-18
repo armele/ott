@@ -2,6 +2,10 @@ package com.otterly76.ott;
 
 import com.otterly76.ott.block.ModBlocks;
 import com.otterly76.ott.client.NutritionHudOverlay;
+import com.otterly76.ott.particle.HedgeLeafParticle;
+import com.otterly76.ott.particle.ModParticle;
+import com.otterly76.ott.particle.PaleOakParticle;
+import com.otterly76.ott.particle.TrailParticle;
 import com.otterly76.ott.util.WoodTypeVariant;
 import net.minecraft.client.renderer.ItemBlockRenderTypes;
 import net.minecraft.client.renderer.RenderType;
@@ -10,8 +14,10 @@ import net.minecraft.resources.ResourceLocation;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.fml.event.lifecycle.FMLClientSetupEvent;
 import net.neoforged.neoforge.client.event.RegisterGuiLayersEvent;
+import net.neoforged.neoforge.client.event.RegisterParticleProvidersEvent;
 import net.neoforged.neoforge.client.gui.VanillaGuiLayers;
 
+@SuppressWarnings("MethodRefCanBeReplacedWithLambda")
 public class ClientModEvents {
 
     public static void register(IEventBus modBus) {
@@ -25,13 +31,22 @@ public class ClientModEvents {
                 new NutritionHudOverlay());
     }
 
+    @SuppressWarnings("DuplicatedCode")
+    public static void registerParticleFactories(RegisterParticleProvidersEvent event) {
+        event.registerSpriteSet(ModParticle.PALE_OAK_LEAVES.get(), PaleOakParticle.Provider::new);
+        event.registerSpriteSet(ModParticle.TRAIL.get(), TrailParticle.Provider::new);
+
+        event.registerSpriteSet(ModParticle.STARLIGHT_LEAF.get(), HedgeLeafParticle.Provider::new);
+        event.registerSpriteSet(ModParticle.MIDNIGHT_LEAF.get(), HedgeLeafParticle.Provider::new);
+        event.registerSpriteSet(ModParticle.BLOOMING_STARLIGHT_LEAF.get(), HedgeLeafParticle.Provider::new);
+        event.registerSpriteSet(ModParticle.BLOOMING_MIDNIGHT_LEAF.get(), HedgeLeafParticle.Provider::new);
+    }
+
     @SuppressWarnings("deprecation")
     public static void onClientSetup(FMLClientSetupEvent event) {
         event.enqueueWork(() -> {
-            // Pale oak (minecraft namespace backport)
             Sheets.addWoodType(WoodTypeVariant.PALE_OAK.getWoodType());
 
-            // ott wood set types (ott namespace)
             ModBlocks.WOOD_SETS.keySet().forEach(setName ->
                     Sheets.addWoodType(WoodTypeVariant.ott(setName))
             );
@@ -45,10 +60,13 @@ public class ClientModEvents {
 
             ItemBlockRenderTypes.setRenderLayer(ModBlocks.PALE_OAK_LEAVES.get(), RenderType.cutoutMipped());
 
-            ItemBlockRenderTypes.setRenderLayer(ModBlocks.STARLIGHT_HEDGE.get(), RenderType.cutout());
-            ItemBlockRenderTypes.setRenderLayer(ModBlocks.STARLIGHT_CREEPING_HEDGE.get(), RenderType.cutout());
+            ModBlocks.PARTICLE_HEDGES.values().forEach(b ->
+                    ItemBlockRenderTypes.setRenderLayer(b.get(), RenderType.cutout())
+            );
+            ModBlocks.CREEPING_HEDGES.values().forEach(b ->
+                    ItemBlockRenderTypes.setRenderLayer(b.get(), RenderType.cutout())
+            );
 
-            // Doors / Trapdoors (cutout so window holes are actually transparent)
             ItemBlockRenderTypes.setRenderLayer(ModBlocks.PALE_OAK_DOOR.get(), RenderType.cutout());
             ItemBlockRenderTypes.setRenderLayer(ModBlocks.PALE_OAK_TRAPDOOR.get(), RenderType.cutout());
 

@@ -1,6 +1,5 @@
 {
-	"credit": "Made by NinthWorld with Blockbench",
-	"textures": {
+		"textures": {
 		"0": "block/red_mushroom_4",
 		"particle": "block/red_mushroom_4"
 	},

@@ -75,12 +75,6 @@ public class ModItemModelProvider extends ItemModelProvider {
         getBuilder(itemName).parent(new ModelFile.UncheckedModelFile(modLoc(blockModelPath)));
     }
 
-    /**
-     * Door item model matching your texture layout:
-     * textures/block/<setName>/door_bottom.png
-     * textures/block/<setName>/door_top.png
-     */
-
     private void doorItemFromTextures(String setName, ResourceLocation doorId) {
         String itemName = doorId.getPath();
 

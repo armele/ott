@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:clamp",
+  "input": {
+    "type": "minecraft:add",
+    "argument1": {
+      "type": "minecraft:y_clamped_gradient",
+      "from_y": -64,
+      "to_y": 480,
+      "from_value": 1.5,
+      "to_value": -1.5
+    },
+    "argument2": {
+      "type": "minecraft:mul",
+      "argument1": "ott:master/depth",
+      "argument2": {
+        "type": "minecraft:cache_2d",
+        "argument": "minecraft:overworld/factor"
+      }
+    }
+  },
+  "min": -64,
+  "max": 64
+}

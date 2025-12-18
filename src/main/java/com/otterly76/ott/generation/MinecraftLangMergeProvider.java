@@ -42,6 +42,7 @@ public class MinecraftLangMergeProvider implements DataProvider {
         return "Minecraft Lang (merge base into en_us.json)";
     }
 
+    @SuppressWarnings("DuplicatedCode")
     private JsonObject readBaseLang() {
         String basePath = "assets/minecraft/lang/en_us_base.json";
 

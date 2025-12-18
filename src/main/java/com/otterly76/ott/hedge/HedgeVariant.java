@@ -6,7 +6,7 @@ import net.minecraft.core.particles.SimpleParticleType;
 import java.util.function.Supplier;
 
 public record HedgeVariant(
-        String name, // "starlight", "midnight", ...
+        String name,
         Supplier<SimpleParticleType> leafParticle,
-        ResourceLocation creepOverlayTexture // or whatever your renderer uses
+        ResourceLocation creepOverlayTexture
 ) {}

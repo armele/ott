@@ -16,11 +16,9 @@ import java.util.function.Supplier;
 
 public class ModEntities {
 
-    // Backport (minecraft namespace)
     public static final DeferredRegister<EntityType<?>> ENTITY_TYPES =
             DeferredRegister.create(BuiltInRegistries.ENTITY_TYPE, "minecraft");
 
-    // Mod content (ott namespace)
     public static final DeferredRegister<EntityType<?>> OTT_ENTITY_TYPES =
             DeferredRegister.create(BuiltInRegistries.ENTITY_TYPE, "ott");
 
@@ -33,7 +31,6 @@ public class ModEntities {
     public static final Supplier<EntityType<ChestBoat>> PALE_OAK_CHEST_BOAT = ENTITY_TYPES.register("pale_oak_chest_boat",
             () -> Builder.<ChestBoat>of(PaleOakChestBoatEntity::new, MobCategory.MISC).sized(1.375F, 0.5625F).clientTrackingRange(10).build("pale_oak_chest_boat"));
 
-    // ott wood sets: entity types
     public static final Map<String, Supplier<EntityType<Boat>>> WOOD_SET_BOATS = new LinkedHashMap<>();
     public static final Map<String, Supplier<EntityType<ChestBoat>>> WOOD_SET_CHEST_BOATS = new LinkedHashMap<>();
 

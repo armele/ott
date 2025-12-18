@@ -1,6 +1,6 @@
 package com.otterly76.ott.entity.client;
 
-import java.util.List;
+import com.otterly76.ott.entity.Creaking;
 import net.minecraft.client.model.HierarchicalModel;
 import net.minecraft.client.model.geom.ModelLayerLocation;
 import net.minecraft.client.model.geom.ModelPart;
@@ -13,8 +13,9 @@ import net.minecraft.client.renderer.RenderType;
 import net.minecraft.resources.ResourceLocation;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
-import com.otterly76.ott.entity.Creaking;
 import org.jetbrains.annotations.NotNull;
+
+import java.util.List;
 
 @OnlyIn(Dist.CLIENT)
 public class CreakingModel<T extends Creaking> extends HierarchicalModel<T> {

@@ -38,23 +38,18 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
         return new Criterion<>(CriteriaTriggers.IMPOSSIBLE, new ImpossibleTrigger.TriggerInstance());
     }
 
-    private static class NoAdvancementOutput implements RecipeOutput {
-        private final RecipeOutput delegate;
-
-        public NoAdvancementOutput(RecipeOutput delegate) {
-            this.delegate = delegate;
-        }
+    private record NoAdvancementOutput(RecipeOutput delegate) implements RecipeOutput {
 
         @Override
-        public void accept(@NotNull ResourceLocation id, @NotNull Recipe<?> recipe, @Nullable AdvancementHolder advancement, ICondition @NotNull ... conditions) {
-            delegate.accept(id, recipe, null, conditions);
-        }
+            public void accept(@NotNull ResourceLocation id, @NotNull Recipe<?> recipe, @Nullable AdvancementHolder advancement, ICondition @NotNull ... conditions) {
+                delegate.accept(id, recipe, null, conditions);
+            }
 
-        @Override
-        public Advancement.@NotNull Builder advancement() {
-            return Advancement.Builder.recipeAdvancement();
+            @Override
+            public Advancement.@NotNull Builder advancement() {
+                return Advancement.Builder.recipeAdvancement();
+            }
         }
-    }
 
     private ResourceLocation getRecipePath(String namespace, String recipeName) {
         return ResourceLocation.fromNamespaceAndPath(namespace, recipeName);

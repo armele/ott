@@ -9,6 +9,7 @@ import java.nio.file.Path;
 import java.util.function.Supplier;
 
 public interface PlatformHandler {
+    @SuppressWarnings("SameReturnValue")
     Platform getPlatform();
 
     Path configPath();

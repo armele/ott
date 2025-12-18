@@ -7,7 +7,6 @@ import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
 public enum WoodTypeVariant {
-    // Explicit namespace to avoid ambiguity and to make sign sheet lookup deterministic
     PALE_OAK(WoodType.register(new WoodType("minecraft:pale_oak", BlockSetTypeVariant.PALE_OAK.getBlockSetType())));
 
     private final WoodType woodType;
@@ -20,11 +19,9 @@ public enum WoodTypeVariant {
         return woodType;
     }
 
-    // --- ott wood-set support (dynamic) ---
     private static final Map<String, WoodType> OTT_WOOD_TYPES = new ConcurrentHashMap<>();
 
     public static WoodType ott(String setName) {
-        // You can swap BlockSetType.OAK for a custom BlockSetType later if you need different sound/interaction behavior.
         return OTT_WOOD_TYPES.computeIfAbsent(setName, name ->
                 WoodType.register(new WoodType("ott:" + name, BlockSetType.OAK))
         );

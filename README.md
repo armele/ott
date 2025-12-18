@@ -1,36 +1,34 @@
 But First... The Thank Yous!
 =======
 - THANK YOU to Imri, my 3D modeling soul sister and midwest clone!
-- THANK YOU to Thodor who tolerated my 25 year lapse in Java to help me start on this project!
+- THANK YOU to Thodor, who tolerated my 25-year lapse in Java to help me start on this project!
 - THANK YOU to Ayar for helping me test this insanity!
 - THANK YOU to the LDT team for creating and maintaining the MineColonies mod!
 
 Mixins Used:
 =======
-- Yes this is mainly for Ray's benefit
-  - Used to overwrite the vanilla weather particles since it's apparently the only way
-    - Because I want pretty rain, dammit
-  - Used to overwrite the vanilla health/hearts sprite to mimic Colorful hearts
-    - Cleaner, more current for 1.21.1 environment
-  - Used in the Pale Garden backport to allow for placement of foliage on the pale moss blocks
-    - Because the Pale Garden is awesome
+- Yes, this is mainly for Ray's benefit
+  - Overriding vanilla weather particles to add custom particle textures
+  - Overriding the vanilla health/hearts sprite to add custom icons
+  - Foliage placement in the Pale Garden backport
   - Suppressing the experimental features warning for new instances
-    - Yes, we know, we're actively modding the game, please shut up
-  - Blocking the gates for animals so we don't have to chase livestock around
+  - Blocking animal pathfinding for fence gates
+  - Allowing players to jump over fences, fence gates, and walls
+  - Adding game tips to the bottom of the loading screen
 
 FAQ:
 =======
 1. Can you backport this to 1.yadda?
    - Nope. Move forward, not backwards.
    
-2. Such and such (insert Mekanism, etc here) is way more powerful, why don't you blarg?
+2. Such and such (insert Mekanism, etc. here) are way more powerful; why don't you blarg?
     - Because the point of this mod is to be a companion to MineColonies and to avoid OP mod functions.
 
 Running List:
 =======
 - Added Gradient Concrete, Concrete Powder, Terracotta, Wool, and Stained Glass blocks
 - Added Limestone blocks
-- Added set of 16 Test Blocks for various Ray request testing
+- Added a set of 16 Test Blocks for various Ray request testings
 - Added healing bed function for players
 - Added Seaglass
 - 32x textures (ongoing)
@@ -57,22 +55,23 @@ Running List:
 - Added native support for custom music
 - Added copper blocks/slabs/stairs as pathblocks for MineColonies citizens
 - Updated the item models for dyes
-- Moved 3D texture models for external mods to a built in resource pack to override mod load order issues
+- Moved 3D texture models for external mods to a built-in resource pack to override mod load order issues
 - Added new MCol specific splash texts for the main menu
 - Added new skybox textures
 - Added new weather textures and expanded particle effects
-- Added new custom hunger/saturation/exhaustion system!
+- Added a new custom hunger/saturation/exhaustion system!
   - Similar to AppleSkin but written from scratch with clean, nondeprecated code and new icons
   - Used apples for the food icons in homage to AppleSkin ♥
-- Added new custom health/hearts display to mimic Colorful Hearts
+- Added a new custom health / hearts display to mimic Colorful Hearts
   - This displays all health hearts on one hud line to clean up the display
-  - Each set of 20 health is a new color (red, orange, yellow, etc)
+  - Each set of 20 health is a new color (red, orange, yellow, etc.)
 - Added new custom armor values display to mimic OverloadedArmorBar
   - This displays all armor values on one hud line to clean up the display
-  - Each set of 20 armor is a new color (brown, iron, gold, etc)
+  - Each set of 20 armor is a new color (brown, iron, gold, etc.)
 - Pale Garden 1:1 backport
   - Because it's awesome and I want it
 - Suppressed the "Experimental Features" warning for new instances
 - Blocking the gates for animals so we don't have to chase livestock around
-  - Animals don't even acknowledge the gates so they won't all cluster in front of it, either
+  - Animals don't even acknowledge the gates, so they won't all cluster in front of it, either
   - Still need to put a roof on it for goats and frogs since those buggers jump
+- Adding floral hedges, blooming hedges, and creeping hedges

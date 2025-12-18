@@ -39,7 +39,6 @@ import net.minecraft.world.level.block.FireBlock;
 import net.minecraft.world.level.storage.loot.parameters.LootContextParamSets;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.bus.api.SubscribeEvent;
-import net.neoforged.fml.ModContainer;
 import net.neoforged.fml.ModList;
 import net.neoforged.fml.common.Mod;
 import net.neoforged.fml.event.lifecycle.FMLClientSetupEvent;
@@ -62,7 +61,7 @@ import static com.otterly76.ott.Constants.MOD_ID;
 
 @Mod(MOD_ID)
 public class Ott {
-    public Ott(IEventBus modEventBus, ModContainer modContainer) {
+    public Ott(IEventBus modEventBus) {
         ModCreativeTabs.OTTER_TABS.register(modEventBus);
         modEventBus.addListener(NetworkHandler::register);
         modEventBus.addListener(this::dataGeneratorSetup);
@@ -166,7 +165,6 @@ public class Ott {
             event.accept(ModBlocks.PALE_OAK_SLAB, CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
             event.accept(ModBlocks.PALE_OAK_FENCE, CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
 
-            // ott wood sets (e.g. starlight) - building-ish blocks
             ModBlocks.WOOD_SETS.values().forEach(set -> {
                 event.accept(set.planks(), CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
                 event.accept(set.log(), CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
@@ -287,12 +285,14 @@ public class Ott {
             event.registerLayerDefinition(ModModelLayers.OTT_WOOD_SET_CHEST_BOAT, ChestBoatModel::createBodyModel);
         }
 
+        @SuppressWarnings({"DuplicatedCode", "JavaExistingMethodCanBeUsed"})
         public static void registerParticleFactories(RegisterParticleProvidersEvent event) {
             event.registerSpriteSet(ModParticle.PALE_OAK_LEAVES.get(), PaleOakParticle.Provider::new);
             event.registerSpriteSet(ModParticle.TRAIL.get(), TrailParticle.Provider::new);
-            event.registerSpriteSet(ModParticle.STARLIGHT_LEAF.get(), StarlightLeafParticle.Provider::new);
-            event.registerSpriteSet(ModParticle.MIDNIGHT_LEAF.get(), MidnightLeafParticle.Provider::new);
-            event.registerSpriteSet(ModParticle.BLOOMING_STARLIGHT_LEAF.get(), BloomingStarlightLeafParticle.Provider::new);
+            event.registerSpriteSet(ModParticle.STARLIGHT_LEAF.get(), HedgeLeafParticle.Provider::new);
+            event.registerSpriteSet(ModParticle.MIDNIGHT_LEAF.get(), HedgeLeafParticle.Provider::new);
+            event.registerSpriteSet(ModParticle.BLOOMING_STARLIGHT_LEAF.get(), HedgeLeafParticle.Provider::new);
+            event.registerSpriteSet(ModParticle.BLOOMING_MIDNIGHT_LEAF.get(), HedgeLeafParticle.Provider::new);
         }
     }
 
