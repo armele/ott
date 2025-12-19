@@ -1,0 +1,92 @@
+{
+  "type": "flat_cache",
+  "argument": {
+    "type": "cache_2d",
+    "argument": {
+      "type": "mul",
+      "argument1": {
+        "type": "minecraft:spline",
+        "spline": {
+          "coordinate": {
+            "type": "add",
+            "argument1": {
+              "type": "mul",
+              "argument1": {
+                "type": "abs",
+                "argument": {
+                  "type": "noise",
+                  "noise": "minecraft:erosion",
+                  "xz_scale": 2.5,
+                  "y_scale": 0
+                }
+              },
+              "argument2": -0.1
+            },
+            "argument2": "ott:volcanic_islands"
+          },
+          "points": [
+            {
+              "location": 0.6,
+              "value": 0,
+              "derivative": 0
+            },
+            {
+              "location": 0.75,
+              "value": 0.15163141469685884,
+              "derivative": 0.32629796373549297
+            },
+            {
+              "location": 0.9851171512607291,
+              "value": 0.9443211533398697,
+              "derivative": 4.551856594110115
+            },
+            {
+              "location": 0.9984760406417272,
+              "value": 0.9952003584978202,
+              "derivative": 1.4036059106481638
+            }
+          ]
+        }
+      },
+      "argument2": {
+        "type": "mul",
+        "argument1": 0.5,
+        "argument2": {
+          "type": "minecraft:spline",
+          "spline": {
+            "coordinate": {
+              "type": "mul",
+              "argument1": 1.2,
+              "argument2": {
+                "type": "abs",
+                "argument": {
+                  "type": "noise",
+                  "noise": "ott:mountains_shape",
+                  "xz_scale": 79.09999999999997,
+                  "y_scale": 0
+                }
+              }
+            },
+            "points": [
+              {
+                "location": 0.0022965455811022606,
+                "value": 1.0013258014742137,
+                "derivative": -0.6318579006228999
+              },
+              {
+                "location": 0.7368348150264282,
+                "value": 0.17988579803906854,
+                "derivative": -0.17711721525263788
+              },
+              {
+                "location": 1.500845810182251,
+                "value": -0.002047815788355556,
+                "derivative": 0
+              }
+            ]
+          }
+        }
+      }
+    }
+  }
+}

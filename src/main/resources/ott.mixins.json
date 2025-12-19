@@ -9,10 +9,10 @@
     "FenceGateBlockMixin",
     "FenceJumpMixin",
     "JigsawStructureMixin",
+    "SinglePoolElementAccessor",
     "SinglePoolElementMixin",
     "TreeDecoratorTypeInvoker",
-    "WalkNodeEvaluatorMixin",
-    "SinglePoolElementAccessor"
+    "WalkNodeEvaluatorMixin"
   ],
   "client": [
     "ColorfulHeartsMixin",

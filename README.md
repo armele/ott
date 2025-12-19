@@ -76,4 +76,6 @@ Running List:
   - Still need to put a roof on it for goats and frogs since those buggers jump
 - Adding floral hedges, blooming hedges, and creeping hedge
 - Added snow under trees
-- 
+- Improved village placement
+  - Village placement now checks for rivers, oceans, and various ravines before plopping a building down
+  - Farms follow their own rules so, gods speed, farmers!
