@@ -11,7 +11,7 @@
           "spline": {
             "coordinate": {
               "type": "noise",
-              "noise": "ott:df_mesa_height",
+              "noise": "ott:noise_mesa_height",
               "xz_scale": 0.7,
               "y_scale": 0
             },
@@ -47,7 +47,7 @@
                 "type": "add",
                 "argument1": {
                   "type": "noise",
-                  "noise": "ott:df_mesa_variation",
+                  "noise": "ott:noise_mesa_variation",
                   "xz_scale": 0.3,
                   "y_scale": 0
                 },
@@ -56,7 +56,7 @@
                   "argument1": "ott:df_mesa_placement",
                   "argument2": {
                     "type": "noise",
-                    "noise": "ott:df_mesa_additions",
+                    "noise": "ott:noise_mesa_additions",
                     "xz_scale": 1.5,
                     "y_scale": 0
                   }
@@ -96,7 +96,7 @@
                   "argument1": "ott:df_mesa_placement",
                   "argument2": {
                     "type": "noise",
-                    "noise": "ott:df_mesa_base",
+                    "noise": "ott:noise_mesa_base",
                     "xz_scale": 1,
                     "y_scale": 0
                   }
@@ -140,7 +140,7 @@
                   "type": "add",
                   "argument1": {
                     "type": "noise",
-                    "noise": "ott:df_mesa_base",
+                    "noise": "ott:noise_mesa_base",
                     "xz_scale": 1.7000000000000004,
                     "y_scale": 0
                   },

@@ -24,7 +24,7 @@
                         "type": "add",
                         "argument1": {
                           "type": "noise",
-                          "noise": "ott:df_lakes_placement",
+                          "noise": "ott:noise_lakes_placement",
                           "xz_scale": 0.4,
                           "y_scale": 0
                         },
@@ -38,7 +38,7 @@
                                 "type": "abs",
                                 "argument": {
                                   "type": "noise",
-                                  "noise": "ott:df_continentalness",
+                                  "noise": "ott:noise_continentalness",
                                   "xz_scale": 0.3,
                                   "y_scale": 0
                                 }
@@ -78,7 +78,7 @@
                       "type": "abs",
                       "argument": {
                         "type": "noise",
-                        "noise": "ott:df_rivers_detail",
+                        "noise": "ott:noise_rivers_detail",
                         "xz_scale": 3,
                         "y_scale": 0
                       }

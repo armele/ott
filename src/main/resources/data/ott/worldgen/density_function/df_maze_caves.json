@@ -54,7 +54,7 @@
         "type": "add",
         "argument1": {
           "type": "noise",
-          "noise": "ott:df_mountains_valleys",
+          "noise": "ott:noise_mountains_valleys",
           "xz_scale": 2.400000000000002,
           "y_scale": 4.999999999999998
         },
@@ -64,7 +64,7 @@
             "type": "abs",
             "argument": {
               "type": "noise",
-              "noise": "ott:df_rivers_detail",
+              "noise": "ott:noise_rivers_detail",
               "xz_scale": 0.9999999999999977,
               "y_scale": 5.999999999999995
             }

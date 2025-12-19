@@ -14,7 +14,7 @@
               "spline": {
                 "coordinate": {
                   "type": "noise",
-                  "noise": "ott:df_mesa_placement",
+                  "noise": "ott:noise_mesa_placement",
                   "xz_scale": 0.2,
                   "y_scale": 0
                 },
@@ -40,7 +40,7 @@
                   "type": "abs",
                   "argument": {
                     "type": "noise",
-                    "noise": "ott:df_humidity",
+                    "noise": "ott:noise_humidity",
                     "xz_scale": 0.3,
                     "y_scale": 0
                   }

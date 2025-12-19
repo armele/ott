@@ -12,7 +12,7 @@
             "argument1": "ott:df_roughness",
             "argument2": {
               "type": "noise",
-              "noise": "ott:df_mountains_base",
+              "noise": "ott:noise_mountains_base",
               "xz_scale": 2.0,
               "y_scale": 0
             }

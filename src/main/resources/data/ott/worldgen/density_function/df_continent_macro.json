@@ -50,7 +50,7 @@
                         "argument": {
                           
                           "type": "noise",
-                          "noise": "ott:df_continent_trenches_b",
+                          "noise": "ott:noise_continent_trenches_b",
                           "xz_scale": 0.19999999999999998,
                           "y_scale": 0
                         }
@@ -61,7 +61,7 @@
                         "argument": {
                           
                           "type": "noise",
-                          "noise": "ott:df_continent_trenches_a",
+                          "noise": "ott:noise_continent_trenches_a",
                           "xz_scale": 0.19999999999999998,
                           "y_scale": 0
                         }
@@ -124,7 +124,7 @@
                       "argument": {
                         
                         "type": "noise",
-                        "noise": "ott:df_continentalness",
+                        "noise": "ott:noise_continentalness",
                         "xz_scale": 0.05,
                         "y_scale": 0
                       }
@@ -148,7 +148,7 @@
                     "argument2": {
                       
                       "type": "noise",
-                      "noise": "ott:df_continent_regions",
+                      "noise": "ott:noise_continent_regions",
                       "xz_scale": 30,
                       "y_scale": 0
                     }
@@ -161,7 +161,7 @@
                     "coordinate": {
                       
                       "type": "noise",
-                      "noise": "ott:df_orogeny",
+                      "noise": "ott:noise_orogeny",
                       "xz_scale": 0.05,
                       "y_scale": 0
                     },

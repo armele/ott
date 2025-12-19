@@ -23,7 +23,7 @@
                         "type": "abs",
                         "argument": {
                           "type": "shifted_noise",
-                          "noise": "ott:df_mountains_shape",
+                          "noise": "ott:noise_mountains_shape",
                           "xz_scale": 105.90000000000047,
                           "y_scale": 0,
                           "shift_x": -100000,
@@ -35,7 +35,7 @@
                         "type": "abs",
                         "argument": {
                           "type": "shifted_noise",
-                          "noise": "ott:df_mountains_shape",
+                          "noise": "ott:noise_mountains_shape",
                           "xz_scale": 60.0000000000006,
                           "y_scale": 0,
                           "shift_x": 100000,
@@ -60,7 +60,7 @@
                           "argument1": 2.1,
                           "argument2": {
                             "type": "noise",
-                            "noise": "ott:df_mountains_valleys",
+                            "noise": "ott:noise_mountains_valleys",
                             "xz_scale": 0.175,
                             "y_scale": 0
                           }

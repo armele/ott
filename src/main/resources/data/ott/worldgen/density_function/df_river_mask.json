@@ -9,7 +9,7 @@
           "type": "abs",
           "argument": {
             "type": "noise",
-            "noise": "ott:df_rivers",
+            "noise": "ott:noise_rivers",
             "xz_scale": 0.7,
             "y_scale": 0
           }

@@ -10,7 +10,7 @@
         "argument1": 4.5,
         "argument2": {
           "type": "minecraft:noise",
-          "noise": "ott:df_y_offset",
+          "noise": "ott:noise_y_offset",
           "xz_scale": 0.6,
           "y_scale": 0
         }

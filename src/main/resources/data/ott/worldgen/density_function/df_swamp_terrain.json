@@ -36,7 +36,7 @@
               "type": "abs",
               "argument": {
                 "type": "noise",
-                "noise": "ott:df_swamp_terrain",
+                "noise": "ott:noise_swamp_terrain",
                 "xz_scale": 5.000000000000003,
                 "y_scale": 0
               }

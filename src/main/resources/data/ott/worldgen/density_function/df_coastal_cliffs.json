@@ -44,7 +44,7 @@
               "argument2": {
                 
                 "type": "noise",
-                "noise": "ott:df_cliffs_height",
+                "noise": "ott:noise_cliffs_height",
                 "xz_scale": 150,
                 "y_scale": 0
               }
@@ -161,7 +161,7 @@
               "argument1": {
                 
                 "type": "noise",
-                "noise": "ott:df_cliffs",
+                "noise": "ott:noise_cliffs",
                 "xz_scale": 0.4,
                 "y_scale": 0
               },

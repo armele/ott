@@ -9,7 +9,7 @@
         "spline": {
           "coordinate": {
             "type": "noise",
-            "noise": "ott:df_mesa_placement",
+            "noise": "ott:noise_mesa_placement",
             "xz_scale": 0.35,
             "y_scale": 0
           },

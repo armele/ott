@@ -42,7 +42,7 @@
                     "spline": {
                       "coordinate": {
                         "type": "noise",
-                        "noise": "ott:df_continent_regions",
+                        "noise": "ott:noise_continent_regions",
                         "xz_scale": 20,
                         "y_scale": 0
                       },
@@ -67,7 +67,7 @@
                         "type": "abs",
                         "argument": {
                           "type": "noise",
-                          "noise": "ott:df_continentalness",
+                          "noise": "ott:noise_continentalness",
                           "xz_scale": 0.15,
                           "y_scale": 0
                         }
@@ -116,7 +116,7 @@
             "type": "abs",
             "argument": {
               "type": "noise",
-              "noise": "ott:df_continent_regions",
+              "noise": "ott:noise_continent_regions",
               "xz_scale": 40,
               "y_scale": 0
             }

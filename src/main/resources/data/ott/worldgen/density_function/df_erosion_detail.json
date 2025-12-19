@@ -8,7 +8,7 @@
         "type": "mul",
         "argument1": {
           "type": "noise",
-          "noise": "ott:df_rivers_detail",
+          "noise": "ott:noise_rivers_detail",
           "xz_scale": 3,
           "y_scale": 0
         },

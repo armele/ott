@@ -8,7 +8,7 @@
       "argument1": 0.03,
       "argument2": {
         "type": "minecraft:noise",
-        "noise": "ott:df_height",
+        "noise": "ott:noise_height",
         "xz_scale": 0.5,
         "y_scale": 1.6
       }
