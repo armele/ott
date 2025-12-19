@@ -11,7 +11,8 @@
     "JigsawStructureMixin",
     "SinglePoolElementMixin",
     "TreeDecoratorTypeInvoker",
-    "WalkNodeEvaluatorMixin"
+    "WalkNodeEvaluatorMixin",
+    "SinglePoolElementAccessor"
   ],
   "client": [
     "ColorfulHeartsMixin",

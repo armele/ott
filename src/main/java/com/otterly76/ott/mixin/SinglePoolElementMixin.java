@@ -2,6 +2,8 @@ package com.otterly76.ott.mixin;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Holder;
+import net.minecraft.core.Vec3i;
+import net.minecraft.server.level.ServerChunkCache;
 import net.minecraft.tags.BiomeTags;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.StructureManager;
@@ -10,9 +12,11 @@ import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.level.block.Rotation;
 import net.minecraft.world.level.chunk.ChunkGenerator;
 import net.minecraft.world.level.levelgen.Heightmap;
+import net.minecraft.world.level.levelgen.RandomState;
 import net.minecraft.world.level.levelgen.structure.BoundingBox;
 import net.minecraft.world.level.levelgen.structure.pools.SinglePoolElement;
 import net.minecraft.world.level.levelgen.structure.templatesystem.LiquidSettings;
+import net.minecraft.world.level.levelgen.structure.templatesystem.StructureTemplate;
 import net.minecraft.world.level.levelgen.structure.templatesystem.StructureTemplateManager;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Unique;
@@ -24,13 +28,14 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 public abstract class SinglePoolElementMixin {
 
     @Unique
-    private static final int MAX_HEIGHT_DIFFERENCE = 5;
+    private static final int MAX_H_DIFF = 4;
 
     /**
-     * Patch concrete jigsaw pieces (houses/roads) to check for flatness and water.
+     * Deterministic validation using the building's ACTUAL NBT size.
+     * Uses the Invoker from SinglePoolElementAccessor to avoid @Shadow issues.
      */
     @Inject(method = "place", at = @At("HEAD"), cancellable = true)
-    private void ott$validatePiecePlacement(
+    private void ott$validateTrueFootprint(
             StructureTemplateManager templateManager,
             WorldGenLevel level,
             StructureManager structureManager,
@@ -44,34 +49,44 @@ public abstract class SinglePoolElementMixin {
             boolean flag,
             CallbackInfoReturnable<Boolean> cir
     ) {
-        // 1. BIOME CHECK (Corners of the building)
-        int[] xCoords = {box.minX(), box.maxX()};
-        int[] zCoords = {box.minZ(), box.maxZ()};
+        if (!(level.getChunkSource() instanceof ServerChunkCache scc)) return;
+        RandomState rs = scc.randomState();
 
-        for (int x : xCoords) {
-            for (int z : zCoords) {
-                // Safe noise biome check
-                Holder<Biome> biome = level.getUncachedNoiseBiome(x >> 2, pos.getY() >> 2, z >> 2);
-                if (biome.is(BiomeTags.IS_RIVER) || biome.is(BiomeTags.IS_OCEAN)) {
-                    cir.setReturnValue(false);
-                    return;
-                }
+        // 1. Use the Invoker to get the template directly
+        // This avoids the @Shadow field crash!
+        StructureTemplate strucTemplate = ((SinglePoolElementAccessor) this).invokeGetTemplate(templateManager);
+
+        // 2. Calculate the true footprint size
+        Vec3i size = strucTemplate.getSize(rotation);
+
+        int xStart = pos.getX();
+        int zStart = pos.getZ();
+        int xEnd = xStart + size.getX() - 1;
+        int zEnd = zStart + size.getZ() - 1;
+        int midX = (xStart + xEnd) / 2;
+        int midZ = (zStart + zEnd) / 2;
+
+        // 3. Anchor height
+        int anchorH = generator.getFirstFreeHeight(xStart, zStart, Heightmap.Types.WORLD_SURFACE_WG, level, rs);
+
+        // 4. Grid check (Corners and Mid-edges)
+        int[][] footprint = {
+                {xStart, zStart}, {xEnd, zStart}, {xStart, zEnd}, {xEnd, zEnd},
+                {midX, zStart}, {midX, zEnd}, {xStart, midZ}, {xEnd, midZ}
+        };
+
+        for (int[] pt : footprint) {
+            Holder<Biome> biome = level.getUncachedNoiseBiome(pt[0] >> 2, pos.getY() >> 2, pt[1] >> 2);
+            if (biome.is(BiomeTags.IS_RIVER) || biome.is(BiomeTags.IS_OCEAN)) {
+                cir.setReturnValue(false);
+                return;
             }
-        }
 
-        // 2. FLATNESS CHECK (Corners of the building)
-        // We use level.getHeight which is safe during the PLACEMENT phase.
-        int h1 = level.getHeight(Heightmap.Types.WORLD_SURFACE_WG, box.minX(), box.minZ());
-        int h2 = level.getHeight(Heightmap.Types.WORLD_SURFACE_WG, box.maxX(), box.minZ());
-        int h3 = level.getHeight(Heightmap.Types.WORLD_SURFACE_WG, box.minX(), box.maxZ());
-        int h4 = level.getHeight(Heightmap.Types.WORLD_SURFACE_WG, box.maxX(), box.maxZ());
-
-        int minH = Math.min(Math.min(h1, h2), Math.min(h3, h4));
-        int maxH = Math.max(Math.max(h1, h2), Math.max(h3, h4));
-
-        if ((maxH - minH) > MAX_HEIGHT_DIFFERENCE) {
-            // Building is on a cliff! Cancel it.
-            cir.setReturnValue(false);
+            int ptH = generator.getFirstFreeHeight(pt[0], pt[1], Heightmap.Types.WORLD_SURFACE_WG, level, rs);
+            if (Math.abs(ptH - anchorH) > MAX_H_DIFF) {
+                cir.setReturnValue(false);
+                return;
+            }
         }
     }
 }
