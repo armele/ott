@@ -1,6 +1,7 @@
 package com.otterly76.ott.worldgen;
 
 import com.otterly76.ott.block.ModBlocks;
+import com.otterly76.ott.worldgen.placement.RiverLichenFilter;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.HolderGetter;
 import net.minecraft.core.registries.Registries;
@@ -12,8 +13,10 @@ import net.minecraft.world.level.levelgen.Heightmap;
 import net.minecraft.world.level.levelgen.blockpredicates.BlockPredicate;
 import net.minecraft.world.level.levelgen.feature.ConfiguredFeature;
 import net.minecraft.world.level.levelgen.placement.*;
+import net.neoforged.neoforge.registries.DeferredRegister;
 
 import java.util.List;
+import java.util.function.Supplier;
 
 public class ModPlacedFeatures {
     public static final ResourceKey<PlacedFeature> PALE_GARDEN_FLOWERS = registerKey("pale_garden_flowers");
@@ -109,6 +112,12 @@ public class ModPlacedFeatures {
 
         return BlockPredicateFilter.forPredicate(soilBelow);
     }
+
+    public static final DeferredRegister<PlacementModifierType<?>> PLACEMENT_MODIFIERS =
+            DeferredRegister.create(Registries.PLACEMENT_MODIFIER_TYPE, "ott");
+
+    public static final Supplier<PlacementModifierType<RiverLichenFilter>> RIVER_LICHEN_FILTER =
+            PLACEMENT_MODIFIERS.register("river_lichen_filter", () -> RiverLichenFilter.TYPE);
 
     private static PlacementModifier paleOakMega2x2GroundOnly() {
         BlockPredicate soil00 = BlockPredicate.matchesBlocks(

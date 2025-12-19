@@ -12,10 +12,14 @@ import com.otterly76.ott.events.ModEventBusEvents;
 import com.otterly76.ott.generation.*;
 import com.otterly76.ott.item.ModItems;
 import com.otterly76.ott.network.NetworkHandler;
-import com.otterly76.ott.particle.*;
+import com.otterly76.ott.particle.HedgeLeafParticle;
+import com.otterly76.ott.particle.ModParticle;
+import com.otterly76.ott.particle.PaleOakParticle;
+import com.otterly76.ott.particle.TrailParticle;
 import com.otterly76.ott.sound.ModSounds;
 import com.otterly76.ott.util.WoodTypeVariant;
 import com.otterly76.ott.worldgen.ModFeatures;
+import com.otterly76.ott.worldgen.ModPlacedFeatures;
 import com.otterly76.ott.worldgen.ModTreeDecoratorTypes;
 import com.otterly76.ott.worldgen.biome.ModOverworldRegion;
 import net.minecraft.client.model.BoatModel;
@@ -75,6 +79,7 @@ public class Ott {
         ModEntities.register(modEventBus);
         ModTreeDecoratorTypes.register(modEventBus);
         ModFeatures.register(modEventBus);
+        ModPlacedFeatures.PLACEMENT_MODIFIERS.register(modEventBus);
         NeoForge.EVENT_BUS.register(this);
         modEventBus.addListener(this::addCreative);
         modEventBus.addListener(ModBlockEntities::registerTileExtensions);
@@ -327,6 +332,5 @@ public class Ott {
             }
         }
     }
-
 }
 //TODO Refactor targets: rename bl/bl2, early-return in onExplosionHit, extract shouldPlayIdleSound.

@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:range_choice",
+  "input": "minecraft:y",
+  "min_inclusive": 80,
+  "max_exclusive": 250,
+  "when_in_range": {
+    "type": "minecraft:range_choice",
+    "input": "ott:topography_mountains",
+    "min_inclusive": 0.45,
+    "max_exclusive": 10.0,
+    "when_in_range": "ott:cavern_master",
+    "when_out_of_range": 10.0
+  },
+  "when_out_of_range": 10.0
+}

@@ -1,0 +1,35 @@
+{
+  "type": "minecraft:interpolated",
+  "argument": {
+    "type": "minecraft:max",
+    "argument1": {
+      "type": "minecraft:range_choice",
+      "input": "ott:pillars",
+      "max_exclusive": 0.03,
+      "min_inclusive": -64,
+      "when_in_range": -64,
+      "when_out_of_range": "ott:pillars"
+    },
+    "argument2": {
+      "type": "minecraft:add",
+      "argument1": "ott:density_additive",
+      "argument2": {
+        "type": "minecraft:mul",
+        "argument1": -1,
+        "argument2": {
+          "type": "minecraft:mul",
+          "argument1": {
+            "type": "minecraft:mul",
+            "argument1": "ott:continent_spline",
+            "argument2": "ott:erosion"
+          },
+          "argument2": {
+            "type": "minecraft:mul",
+            "argument1": "ott:elevation",
+            "argument2": "ott:ridge"
+          }
+        }
+      }
+    }
+  }
+}

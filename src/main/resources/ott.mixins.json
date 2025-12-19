@@ -17,14 +17,12 @@
   "client": [
     "ColorfulHeartsMixin",
     "ConnectScreenMixin",
-    "DripParticleMixin",
     "GuiAccessor",
     "LevelLoadingScreenMixin",
     "LevelRendererMixin",
     "MinecraftSkipExperimentalWarningMixin",
     "SpriteLoaderMixin",
-    "TextureSheetParticleMixin",
-    "WaterDropParticleMixin"
+    "TextureSheetParticleMixin"
   ],
   "injectors": {
     "defaultRequire": 1
