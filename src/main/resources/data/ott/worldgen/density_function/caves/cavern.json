@@ -9,8 +9,8 @@
         "argument1": {
           "type": "noise",
           "noise": "minecraft:cave_cheese",
-          "xz_scale": 0.9,
-          "y_scale": 3.5
+          "xz_scale": 0.44999999999998,
+          "y_scale": 1.74999999999998
         },
         "argument2": {
           "type": "mul",
@@ -40,7 +40,7 @@
     "argument2": {
       "type": "minecraft:spline",
       "spline": {
-        "coordinate": "minecraft:overworld",
+        "coordinate": "minecraft:overworld/caves/pillars",
         "points": [
           {
             "location": 0.0012496312184001046,

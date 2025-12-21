@@ -29,13 +29,13 @@ Running List:
 - Added Gradient Concrete, Concrete Powder, Terracotta, Wool, and Stained Glass blocks
 - Added Limestone blocks
 - Added a set of 16 Test Blocks for various Ray request testings
-- Added healing bed function for players
+- Added healing bed function for players 🛏️
 - Added Seaglass
 - 32x textures (ongoing)
   - yes, Ray, I know
   - 32x is a nice happy medium that gives a little more detail, a little more variation, without straying too far from the "Minecraft" feel
 - 3D models for most blocks (ongoing)
-- FLOOFY LEAVES!
+- FLOOFY LEAVES! 🍃
 - Lowered the Shield when equipped so you can actually, ya know, see what you're doing
 - Lowered the Totem of Undying, see above
 - Identified and added missing sound files (ongoing)
@@ -52,17 +52,17 @@ Running List:
   - flat
   - flat w/ water
   - MCol schematic dimension by Thaylar & the LDT Team with fully pregenerated templates
-- Added native support for custom music
+- Added native support for custom music 🎵
 - Added copper blocks/slabs/stairs as pathblocks for MineColonies citizens
 - Updated the item models for dyes
 - Moved 3D texture models for external mods to a built-in resource pack to override mod load order issues
 - Added new MCol specific splash texts for the main menu
-- Added new skybox textures
-- Added new weather textures and expanded particle effects
-- Added a new custom hunger/saturation/exhaustion system!
+- Added new skybox textures ☀️🌙
+- Added new weather textures and expanded particle effects ⛅
+- Added a new custom hunger/saturation/exhaustion system! 🍪
   - Similar to AppleSkin but written from scratch with clean, nondeprecated code and new icons
-  - Used apples for the food icons in homage to AppleSkin ♥
-- Added a new custom health / hearts display to mimic Colorful Hearts
+  - Used apples for the food icons in homage to AppleSkin
+- Added a new custom health / hearts display to mimic Colorful Hearts ❤️
   - This displays all health hearts on one hud line to clean up the display
   - Each set of 20 health is a new color (red, orange, yellow, etc.)
 - Added new custom armor values display to mimic OverloadedArmorBar
@@ -79,3 +79,13 @@ Running List:
 - Improved village placement
   - Village placement now checks for rivers, oceans, and various ravines before plopping a building down
   - Farms follow their own rules so, gods speed, farmers!
+- Added improved world and terrain Generation! ⛰️🌳
+  - Smoothed terrain overall
+  - Larger biomes
+  - Better biome placement based on temperature and humidity
+    - No frozen slopes next to deserts 🙄
+  - Better rivers and lakes
+    - Some rivers will cut through mountains!
+  - Larger cave features
+  - Underground rivers and lakes!
+- Doubled the length of day and halved the length of night ⏳

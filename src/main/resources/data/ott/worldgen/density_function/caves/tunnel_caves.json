@@ -9,8 +9,8 @@
         "argument": {
           "type": "noise",
           "noise": "minecraft:noodle",
-          "xz_scale": 2.4999999999999996,
-          "y_scale": 10.999999999999979
+          "xz_scale": 1.24999999999998,
+          "y_scale": 5.49999999999998
         }
       },
       "argument2": {

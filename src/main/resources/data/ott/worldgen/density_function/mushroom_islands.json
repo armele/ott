@@ -47,7 +47,7 @@
           "coordinate": {
             "type": "add",
             "argument1": "ott:roughness",
-            "argument2": "minecraft:overworld"
+            "argument2": "minecraft:overworld/continents"
           },
           "points": [
             {
