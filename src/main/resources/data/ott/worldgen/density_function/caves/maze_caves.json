@@ -1,35 +1,26 @@
-
 {
-  
   "type": "cache_once",
   "argument": {
-    
     "type": "add",
     "argument1": {
-      
       "type": "add",
       "argument1": {
-        
         "type": "mul",
         "argument1": {
-          
           "type": "minecraft:spline",
           "spline": {
             "coordinate": {
-              
               "type": "add",
               "argument1": {
-                
                 "type": "abs",
                 "argument": {
-                  
                   "type": "noise",
                   "noise": "minecraft:pillar",
                   "xz_scale": 7.999999999999996,
                   "y_scale": 0.30000000000000004
                 }
               },
-              "argument2": -0.4 
+              "argument2": -0.4
             },
             "points": [
               {
@@ -45,13 +36,11 @@
             ]
           }
         },
-        "argument2": 10.1 
+        "argument2": 10.1
       },
       "argument2": {
-        
         "type": "abs",
         "argument": {
-          
           "type": "noise",
           "noise": "minecraft:pillar",
           "xz_scale": 8.999999999999986,
@@ -60,36 +49,30 @@
       }
     },
     "argument2": {
-      
       "type": "mul",
       "argument1": {
-        
         "type": "add",
         "argument1": {
-          
           "type": "noise",
           "noise": "ott:mountains_valleys",
           "xz_scale": 2.400000000000002,
           "y_scale": 4.999999999999998
         },
         "argument2": {
-          
           "type": "mul",
           "argument1": {
-            
             "type": "abs",
             "argument": {
-              
               "type": "noise",
               "noise": "ott:rivers_detail",
               "xz_scale": 0.9999999999999977,
               "y_scale": 5.999999999999995
             }
           },
-          "argument2": 2.1999999999999993 
+          "argument2": 2.1999999999999993
         }
       },
-      "argument2": 2.4 
+      "argument2": 2.4
     }
   }
 }

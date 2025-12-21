@@ -1,202 +1,179 @@
-
 {
-  
   "type": "flat_cache",
   "argument": {
-  
-  "type": "cache_2d",
-  "argument": {
-    
-    "type": "mul",
-    "argument1": {
-      
+    "type": "cache_2d",
+    "argument": {
       "type": "mul",
       "argument1": {
-        
-        "type": "minecraft:spline",
-        "spline": {
-          "coordinate": {
-            
-            "type": "noise",
-            "noise": "ott:mesa_height",
-            "xz_scale": 0.7,
-            "y_scale": 0
-          },
-          "points": [
-            {
-              "location": -1.5,
-              "value": 0.0,
-              "derivative": 0
-            },
-            {
-              "location": 1,
-              "value": 0.7,
-              "derivative": 0
-            },
-            {
-              "location": 2.2,
-              "value": 1.2,
-              "derivative": 0
-            }
-          ]
-        }
-      },
-      "argument2": 0.30000000000000004 
-    },
-    "argument2": {
-      
-      "type": "add",
-      "argument1": {
-        
-        "type": "add",
+        "type": "mul",
         "argument1": {
-          
           "type": "minecraft:spline",
           "spline": {
             "coordinate": {
-              
-              "type": "add",
-              "argument1": {
-                
-                "type": "noise",
-                "noise": "ott:mesa_variation",
-                "xz_scale": 0.3,
-                "y_scale": 0
-              },
-              "argument2": {
-                
-                "type": "add",
-                "argument1": "ott:mesa_placement", 
-                "argument2": {
-                  
-                  "type": "noise",
-                  "noise": "ott:mesa_additions",
-                  "xz_scale": 1.5,
-                  "y_scale": 0
-                }
-              }
+              "type": "noise",
+              "noise": "ott:mesa_height",
+              "xz_scale": 0.7,
+              "y_scale": 0
             },
             "points": [
               {
-                "location": -0.15,
-                "value": 0,
+                "location": -1.5,
+                "value": 0.0,
                 "derivative": 0
               },
               {
-                "location": 0.0471304347826087,
-                "value": 0.1993478260869566,
+                "location": 1,
+                "value": 0.7,
                 "derivative": 0
               },
               {
-                "location": 0.12,
-                "value": 1,
-                "derivative": 0.25
-              },
-              {
-                "location": 0.32,
-                "value": 1.15,
-                "derivative": 0.15
+                "location": 2.2,
+                "value": 1.2,
+                "derivative": 0
               }
             ]
+          }
+        },
+        "argument2": 0.30000000000000004
+      },
+      "argument2": {
+        "type": "add",
+        "argument1": {
+          "type": "add",
+          "argument1": {
+            "type": "minecraft:spline",
+            "spline": {
+              "coordinate": {
+                "type": "add",
+                "argument1": {
+                  "type": "noise",
+                  "noise": "ott:mesa_variation",
+                  "xz_scale": 0.3,
+                  "y_scale": 0
+                },
+                "argument2": {
+                  "type": "add",
+                  "argument1": "ott:mesa_placement",
+                  "argument2": {
+                    "type": "noise",
+                    "noise": "ott:mesa_additions",
+                    "xz_scale": 1.5,
+                    "y_scale": 0
+                  }
+                }
+              },
+              "points": [
+                {
+                  "location": -0.15,
+                  "value": 0,
+                  "derivative": 0
+                },
+                {
+                  "location": 0.0471304347826087,
+                  "value": 0.1993478260869566,
+                  "derivative": 0
+                },
+                {
+                  "location": 0.12,
+                  "value": 1,
+                  "derivative": 0.25
+                },
+                {
+                  "location": 0.32,
+                  "value": 1.15,
+                  "derivative": 0.15
+                }
+              ]
+            }
+          },
+          "argument2": {
+            "type": "minecraft:spline",
+            "spline": {
+              "coordinate": {
+                "type": "mul",
+                "argument1": {
+                  "type": "add",
+                  "argument1": "ott:mesa_placement",
+                  "argument2": {
+                    "type": "noise",
+                    "noise": "ott:mesa_base",
+                    "xz_scale": 1,
+                    "y_scale": 0
+                  }
+                },
+                "argument2": 0.6666666666666666
+              },
+              "points": [
+                {
+                  "location": -0.16,
+                  "value": 0,
+                  "derivative": 0
+                },
+                {
+                  "location": 0.049913043478260866,
+                  "value": 0.1993478260869566,
+                  "derivative": 0
+                },
+                {
+                  "location": 0.1,
+                  "value": 1,
+                  "derivative": 0.25
+                },
+                {
+                  "location": 0.3,
+                  "value": 1.15,
+                  "derivative": 0.15
+                }
+              ]
+            }
           }
         },
         "argument2": {
-          
-          "type": "minecraft:spline",
-          "spline": {
-            "coordinate": {
-              
-              "type": "mul",
-              "argument1": {
-                
+          "type": "mul",
+          "argument1": {
+            "type": "minecraft:spline",
+            "spline": {
+              "coordinate": {
                 "type": "add",
-                "argument1": "ott:mesa_placement", 
+                "argument1": -0.10000000000000003,
                 "argument2": {
-                  
-                  "type": "noise",
-                  "noise": "ott:mesa_base",
-                  "xz_scale": 1,
-                  "y_scale": 0
+                  "type": "add",
+                  "argument1": {
+                    "type": "noise",
+                    "noise": "ott:mesa_base",
+                    "xz_scale": 1.7000000000000004,
+                    "y_scale": 0
+                  },
+                  "argument2": "ott:mesa_placement"
                 }
               },
-              "argument2": 0.6666666666666666 
-            },
-            "points": [
-              {
-                "location": -0.16,
-                "value": 0,
-                "derivative": 0
-              },
-              {
-                "location": 0.049913043478260866,
-                "value": 0.1993478260869566,
-                "derivative": 0
-              },
-              {
-                "location": 0.1,
-                "value": 1,
-                "derivative": 0.25
-              },
-              {
-                "location": 0.3,
-                "value": 1.15,
-                "derivative": 0.15
-              }
-            ]
-          }
-        }
-      },
-      "argument2": {
-        
-        "type": "mul",
-        "argument1": {
-          
-          "type": "minecraft:spline",
-          "spline": {
-            "coordinate": {
-              
-              "type": "add",
-              "argument1": -0.10000000000000003, 
-              "argument2": {
-                
-                "type": "add",
-                "argument1": {
-                  
-                  "type": "noise",
-                  "noise": "ott:mesa_base",
-                  "xz_scale": 1.7000000000000004,
-                  "y_scale": 0
+              "points": [
+                {
+                  "location": -0.16330434782608683,
+                  "value": -0.0013043478260863495,
+                  "derivative": 0
                 },
-                "argument2": "ott:mesa_placement" 
-              }
-            },
-            "points": [
-              {
-                "location": -0.16330434782608683,
-                "value": -0.0013043478260863495,
-                "derivative": 0
-              },
-              {
-                "location": 0.05026086956521736,
-                "value": 0.20452173913043542,
-                "derivative": 0
-              },
-              {
-                "location": 0.10434782608695659,
-                "value": 0.9965217391304348,
-                "derivative": 0.1768421052631575
-              },
-              {
-                "location": 0.30086956521739117,
-                "value": 1.1521739130434785,
-                "derivative": 0.1424999999999989
-              }
-            ]
-          }
-        },
-        "argument2": 0.7 
+                {
+                  "location": 0.05026086956521736,
+                  "value": 0.20452173913043542,
+                  "derivative": 0
+                },
+                {
+                  "location": 0.10434782608695659,
+                  "value": 0.9965217391304348,
+                  "derivative": 0.1768421052631575
+                },
+                {
+                  "location": 0.30086956521739117,
+                  "value": 1.1521739130434785,
+                  "derivative": 0.1424999999999989
+                }
+              ]
+            }
+          },
+          "argument2": 0.7
+        }
       }
     }
-  }
   }
 }

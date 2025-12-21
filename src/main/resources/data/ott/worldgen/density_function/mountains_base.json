@@ -1,84 +1,64 @@
-
 {
-  
   "type": "flat_cache",
   "argument": {
-    
     "type": "cache_2d",
     "argument": {
-      
       "type": "minecraft:spline",
       "spline": {
         "coordinate": {
-          
           "type": "mul",
           "argument1": {
-            
             "type": "add",
             "argument1": {
-              
               "type": "add",
               "argument1": {
-                
                 "type": "mul",
                 "argument1": {
-                  
                   "type": "add",
                   "argument1": {
-                    
                     "type": "mul",
                     "argument1": {
-                      
                       "type": "add",
                       "argument1": {
-                        
                         "type": "abs",
                         "argument": {
-                          
                           "type": "shifted_noise",
                           "noise": "ott:mountains_shape",
                           "xz_scale": 105.90000000000047,
                           "y_scale": 0,
-                          "shift_x": -100000, 
-                          "shift_y": 0, 
-                          "shift_z": 100000 
+                          "shift_x": -100000,
+                          "shift_y": 0,
+                          "shift_z": 100000
                         }
                       },
                       "argument2": {
-                        
                         "type": "abs",
                         "argument": {
-                          
                           "type": "shifted_noise",
                           "noise": "ott:mountains_shape",
                           "xz_scale": 60.0000000000006,
                           "y_scale": 0,
-                          "shift_x": 100000, 
-                          "shift_y": 0, 
-                          "shift_z": -100000 
+                          "shift_x": 100000,
+                          "shift_y": 0,
+                          "shift_z": -100000
                         }
                       }
                     },
-                    "argument2": 0.5999999999999993 
+                    "argument2": 0.5999999999999993
                   },
-                  "argument2": 1.5 
+                  "argument2": 1.5
                 },
                 "argument2": {
-                  
                   "type": "minecraft:spline",
                   "spline": {
                     "coordinate": {
-                      
                       "type": "add",
                       "argument1": {
-                        
                         "type": "abs",
                         "argument": {
-                          
                           "type": "mul",
-                          "argument1": 2.1, 
+                          "argument1": 2.1,
                           "argument2": {
-                            
                             "type": "noise",
                             "noise": "ott:mountains_valleys",
                             "xz_scale": 0.175,
@@ -87,25 +67,21 @@
                         }
                       },
                       "argument2": {
-                        
                         "type": "mul",
                         "argument1": {
-                          
                           "type": "add",
                           "argument1": {
-                            
                             "type": "abs",
                             "argument": {
-                              
                               "type": "noise",
                               "noise": "minecraft:jagged",
                               "xz_scale": 1.0999999999999999,
                               "y_scale": 0
                             }
                           },
-                          "argument2": -0.01 
+                          "argument2": -0.01
                         },
-                        "argument2": 0.2 
+                        "argument2": 0.2
                       }
                     },
                     "points": [
@@ -139,30 +115,26 @@
                 }
               },
               "argument2": {
-                
                 "type": "mul",
-                "argument1": "ott:mountains_weathering", 
-                "argument2": 0.15 
+                "argument1": "ott:mountains_weathering",
+                "argument2": 0.15
               }
             },
             "argument2": {
-              
               "type": "mul",
               "argument1": {
-                
                 "type": "abs",
                 "argument": {
-                  
                   "type": "noise",
                   "noise": "minecraft:erosion",
                   "xz_scale": 0.975,
                   "y_scale": 0
                 }
               },
-              "argument2": 0.05 
+              "argument2": 0.05
             }
           },
-          "argument2": 0.7999999999999999 
+          "argument2": 0.7999999999999999
         },
         "points": [
           {

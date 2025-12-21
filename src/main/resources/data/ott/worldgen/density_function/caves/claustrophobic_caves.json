@@ -1,23 +1,16 @@
-
 {
-  
   "type": "cache_once",
   "argument": {
-    
     "type": "add",
     "argument1": {
-      
       "type": "add",
       "argument1": {
-        
         "type": "mul",
-        "argument1": 0.6, 
+        "argument1": 0.6,
         "argument2": {
-          
           "type": "add",
-          "argument1": 0.15, 
+          "argument1": 0.15,
           "argument2": {
-            
             "type": "noise",
             "noise": "minecraft:erosion",
             "xz_scale": 8.3,
@@ -26,10 +19,8 @@
         }
       },
       "argument2": {
-        
         "type": "abs",
         "argument": {
-          
           "type": "noise",
           "noise": "minecraft:erosion",
           "xz_scale": 3.100000000000007,
@@ -38,20 +29,17 @@
       }
     },
     "argument2": {
-      
       "type": "mul",
       "argument1": {
-        
         "type": "abs",
         "argument": {
-          
           "type": "noise",
           "noise": "minecraft:pillar",
           "xz_scale": 7.699999999999981,
           "y_scale": 0
         }
       },
-      "argument2": 0.4 
+      "argument2": 0.4
     }
   }
 }
