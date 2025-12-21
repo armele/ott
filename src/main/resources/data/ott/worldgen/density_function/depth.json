@@ -1,0 +1,45 @@
+
+{
+  "type": "minecraft:cache_once",
+  "argument": {
+  
+    "type": "add",
+    "argument1": {
+	  
+	  "type": "add",
+	  "argument1": {
+		
+		"type": "minecraft:spline",
+		"spline": {
+		  "coordinate": {
+			
+			"type": "y_clamped_gradient",
+			"from_y": -64,
+			"to_y": 512,
+			"from_value": 1.5,
+			"to_value": -2.5
+		  },
+		  "points": [
+			{
+			  "location": -0.001,
+			  "value": -0.001,
+			  "derivative": 1
+			},
+			{
+			  "location": 0.001,
+			  "value": -0.001,
+			  "derivative": 0.4
+			},
+			{
+			  "location": 1.0,
+			  "value": 1.0,
+			  "derivative": 1
+			}
+		  ]
+		}
+	  },
+	  "argument2": "ott:topography_final" 
+	},
+	"argument2": -0.1
+  }
+}

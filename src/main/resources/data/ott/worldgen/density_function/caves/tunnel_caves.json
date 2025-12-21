@@ -1,0 +1,52 @@
+
+{
+  
+  "type": "cache_once",
+  "argument": {
+    
+    "type": "add",
+    "argument1": {
+      
+      "type": "add",
+      "argument1": {
+        
+        "type": "abs",
+        "argument": {
+          
+          "type": "noise",
+          "noise": "minecraft:noodle",
+          "xz_scale": 2.4999999999999996,
+          "y_scale": 10.999999999999979
+        }
+      },
+      "argument2": {
+        
+        "type": "mul",
+        "argument1": {
+          
+          "type": "add",
+          "argument1": {
+            
+            "type": "clamp",
+            "min": 0,
+            "max": 0.5,
+            "input": {
+              
+              "type": "abs",
+              "argument": {
+                
+                "type": "noise",
+                "noise": "minecraft:calcite",
+                "xz_scale": 35,
+                "y_scale": 5.600000000000017
+              }
+            }
+          },
+          "argument2": -0.7 
+        },
+        "argument2": 0.19999999999999998 
+      }
+    },
+    "argument2": 0.05 
+  }
+}
