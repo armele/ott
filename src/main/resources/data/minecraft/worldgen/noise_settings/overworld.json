@@ -12,7 +12,7 @@
   "disable_mob_generation": false,
   "legacy_random_source": false,
   "noise": {
-    "height": 576,
+    "height": 384,
     "min_y": -64,
     "size_horizontal": 1,
     "size_vertical": 2
@@ -21,39 +21,23 @@
     "barrier": {
       "type": "minecraft:noise",
       "noise": "minecraft:aquifer_barrier",
-      "xz_scale": 0.8,
-      "y_scale": 0.7
+      "xz_scale": 1.0,
+      "y_scale": 0.5
     },
-    "continents": {
-      "type": "minecraft:shifted_noise",
-      "noise": "minecraft:overworld/continents",
-      "shift_x": "minecraft:shift_x",
-      "shift_y": 0.0,
-      "shift_z": "minecraft:shift_z",
-      "xz_scale": 0.125,
-      "y_scale": 0.0
-    },
+    "continents": "ott:continents_base",
     "depth": "ott:depth",
-    "erosion": {
-      "type": "minecraft:shifted_noise",
-      "noise": "minecraft:overworld/erosion",
-      "shift_x": "minecraft:shift_x",
-      "shift_y": 0.0,
-      "shift_z": "minecraft:shift_z",
-      "xz_scale": 0.125,
-      "y_scale": 0.0
-    },
-    "final_density": "ott:density/final_density",
+    "erosion": "ott:erosion",
+    "final_density": "ott:final_density",
     "fluid_level_floodedness": {
       "type": "minecraft:noise",
       "noise": "minecraft:aquifer_fluid_level_floodedness",
-      "xz_scale": 0.8,
+      "xz_scale": 1.0,
       "y_scale": 0.67
     },
     "fluid_level_spread": {
       "type": "minecraft:noise",
       "noise": "minecraft:aquifer_fluid_level_spread",
-      "xz_scale": 0.4,
+      "xz_scale": 1.0,
       "y_scale": 0.7142857142857143
     },
     "initial_density_without_jaggedness": {
@@ -79,9 +63,9 @@
               "argument1": {
                 "type": "minecraft:y_clamped_gradient",
                 "from_value": 1.0,
-                "from_y": 496,
+                "from_y": 240,
                 "to_value": 0.0,
-                "to_y": 512
+                "to_y": 256
               },
               "argument2": {
                 "type": "minecraft:add",
@@ -119,36 +103,18 @@
     "lava": {
       "type": "minecraft:noise",
       "noise": "minecraft:aquifer_lava",
-      "xz_scale": 0.1,
-      "y_scale": 0.2
+      "xz_scale": 1.0,
+      "y_scale": 1.0
     },
-    "ridges": {
+    "ridges": "ott:ridges",
+    "temperature": {
       "type": "minecraft:shifted_noise",
-      "noise": "minecraft:overworld/ridges",
+      "noise": "minecraft:temperature",
       "shift_x": "minecraft:shift_x",
       "shift_y": 0.0,
       "shift_z": "minecraft:shift_z",
-      "xz_scale": 0.125,
+      "xz_scale": 0.25,
       "y_scale": 0.0
-    },
-    "temperature": {
-      "type": "minecraft:add",
-      "argument1": {
-        "type": "minecraft:shifted_noise",
-        "noise": "minecraft:temperature",
-        "shift_x": "minecraft:shift_x",
-        "shift_y": 0.0,
-        "shift_z": "minecraft:shift_z",
-        "xz_scale": 0.125,
-        "y_scale": 0.0
-      },
-      "argument2": {
-        "type": "minecraft:y_clamped_gradient",
-        "from_value": 0.0,
-        "from_y": 192,
-        "to_value": -1.0,
-        "to_y": 320
-      }
     },
     "vegetation": {
       "type": "minecraft:shifted_noise",
@@ -156,7 +122,7 @@
       "shift_x": "minecraft:shift_x",
       "shift_y": 0.0,
       "shift_z": "minecraft:shift_z",
-      "xz_scale": 0.125,
+      "xz_scale": 0.25,
       "y_scale": 0.0
     },
     "vein_gap": {
@@ -232,7 +198,7 @@
   "spawn_target": [
     {
       "continentalness": [
-        0.1,
+        -0.11,
         1.0
       ],
       "depth": 0.0,
@@ -256,7 +222,7 @@
     },
     {
       "continentalness": [
-        0.1,
+        -0.11,
         1.0
       ],
       "depth": 0.0,
@@ -1166,37 +1132,6 @@
                               "then_run": {
                                 "type": "minecraft:sequence",
                                 "sequence": [
-								  {
-									  "type": "minecraft:condition",
-									  "if_true": {
-										"type": "minecraft:y_above",
-										"add_stone_depth": false,
-										"anchor": {
-										  "absolute": 10
-										},
-										"surface_depth_multiplier": 0
-									  },
-									  "then_run": {
-										"type": "minecraft:condition",
-										"if_true": {
-										  "type": "minecraft:not",
-										  "invert": {
-											"type": "minecraft:y_above",
-											"add_stone_depth": false,
-											"anchor": {
-											  "absolute": 63
-											},
-											"surface_depth_multiplier": 1
-										  }
-										},
-										"then_run": {
-											"type": "minecraft:block",
-											"result_state": {
-											  "Name": "minecraft:sand"
-											}
-										}
-									  }
-								  },
                                   {
                                     "type": "minecraft:condition",
                                     "if_true": {
@@ -1973,37 +1908,6 @@
                               "then_run": {
                                 "type": "minecraft:sequence",
                                 "sequence": [
-								  {
-									  "type": "minecraft:condition",
-									  "if_true": {
-										"type": "minecraft:y_above",
-										"add_stone_depth": false,
-										"anchor": {
-										  "absolute": 10
-										},
-										"surface_depth_multiplier": 0
-									  },
-									  "then_run": {
-										"type": "minecraft:condition",
-										"if_true": {
-										  "type": "minecraft:not",
-										  "invert": {
-											"type": "minecraft:y_above",
-											"add_stone_depth": false,
-											"anchor": {
-											  "absolute": 63
-											},
-											"surface_depth_multiplier": 1
-										  }
-										},
-										"then_run": {
-											"type": "minecraft:block",
-											"result_state": {
-											  "Name": "minecraft:sandstone"
-											}
-										}
-									  }
-								  },
                                   {
                                     "type": "minecraft:condition",
                                     "if_true": {
