@@ -13,8 +13,8 @@
           "argument2": {
             "type": "noise",
             "noise": "minecraft:erosion",
-            "xz_scale": 4.14999999999998,
-            "y_scale": 6.89999999999998
+            "xz_scale": 4.15,
+            "y_scale": 6.9
           }
         }
       },
@@ -23,8 +23,8 @@
         "argument": {
           "type": "noise",
           "noise": "minecraft:erosion",
-          "xz_scale": 3.100000000000007,
-          "y_scale": 5.900000000000011
+          "xz_scale": 1.55,
+          "y_scale": 5.9
         }
       }
     },
@@ -35,7 +35,7 @@
         "argument": {
           "type": "noise",
           "noise": "minecraft:pillar",
-          "xz_scale": 7.699999999999981,
+          "xz_scale": 3.85,
           "y_scale": 0
         }
       },

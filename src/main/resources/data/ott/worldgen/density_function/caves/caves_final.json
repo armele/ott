@@ -11,7 +11,7 @@
           "argument1": "ott:caves/claustrophobic_caves",
           "argument2": 0
         },
-        "argument2": 7.200000000000002
+        "argument2": 7.2
       },
       "argument2": {
         "type": "mul",
@@ -20,7 +20,7 @@
           "argument1": "ott:caves/connecting_caves",
           "argument2": 0
         },
-        "argument2": 7.200000000000002
+        "argument2": 7.2
       }
     },
     "argument2": {
@@ -30,7 +30,7 @@
         "argument1": "ott:caves/cavern",
         "argument2": 0
       },
-      "argument2": 7.200000000000002
+      "argument2": 7.2
     }
   }
 }
