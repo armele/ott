@@ -24,25 +24,9 @@
       "xz_scale": 0.8,
       "y_scale": 0.7
     },
-    "continents": {
-      "type": "minecraft:shifted_noise",
-      "noise": "minecraft:overworld/continents",
-      "shift_x": "minecraft:shift_x",
-      "shift_y": 0.0,
-      "shift_z": "minecraft:shift_z",
-      "xz_scale": 0.0625,
-      "y_scale": 0.0
-    },
+    "continents": "minecraft:overworld/continents",
     "depth": "ott:depth",
-    "erosion": {
-      "type": "minecraft:shifted_noise",
-      "noise": "minecraft:overworld/erosion",
-      "shift_x": "minecraft:shift_x",
-      "shift_y": 0.0,
-      "shift_z": "minecraft:shift_z",
-      "xz_scale": 0.0625,
-      "y_scale": 0.0
-    },
+    "erosion": "minecraft:overworld/erosion",
     "final_density": "ott:density/final_density",
     "fluid_level_floodedness": {
       "type": "minecraft:noise",
@@ -122,43 +106,9 @@
       "xz_scale": 0.1,
       "y_scale": 0.2
     },
-    "ridges": {
-      "type": "minecraft:shifted_noise",
-      "noise": "minecraft:overworld/ridges",
-      "shift_x": "minecraft:shift_x",
-      "shift_y": 0.0,
-      "shift_z": "minecraft:shift_z",
-      "xz_scale": 0.0625,
-      "y_scale": 0.0
-    },
-    "temperature": {
-      "type": "minecraft:add",
-      "argument1": {
-        "type": "minecraft:shifted_noise",
-        "noise": "minecraft:temperature",
-        "shift_x": "minecraft:shift_x",
-        "shift_y": 0.0,
-        "shift_z": "minecraft:shift_z",
-        "xz_scale": 0.0625,
-        "y_scale": 0.0
-      },
-      "argument2": {
-        "type": "minecraft:y_clamped_gradient",
-        "from_value": 0.0,
-        "from_y": 192,
-        "to_value": -1.0,
-        "to_y": 320
-      }
-    },
-    "vegetation": {
-      "type": "minecraft:shifted_noise",
-      "noise": "minecraft:vegetation",
-      "shift_x": "minecraft:shift_x",
-      "shift_y": 0.0,
-      "shift_z": "minecraft:shift_z",
-      "xz_scale": 0.0625,
-      "y_scale": 0.0
-    },
+    "ridges": "minecraft:overworld/ridges",
+    "temperature": "minecraft:overworld/temperature",
+    "vegetation": "minecraft:overworld/vegetation",
     "vein_gap": {
       "type": "minecraft:noise",
       "noise": "minecraft:ore_gap",
