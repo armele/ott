@@ -40,6 +40,7 @@ import net.minecraft.world.item.CreativeModeTabs;
 import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.FireBlock;
+import net.minecraft.world.level.block.FlowerPotBlock;
 import net.minecraft.world.level.storage.loot.parameters.LootContextParamSets;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.bus.api.SubscribeEvent;
@@ -120,6 +121,11 @@ public class Ott {
             registerFlammables();
             Regions.register(new ModOverworldRegion(ResourceLocation.fromNamespaceAndPath("minecraft", "palegarden"), 2));
             ModBlockFamilies.createBlockFamilies();
+
+            FlowerPotBlock pot = (FlowerPotBlock) Blocks.FLOWER_POT;
+            pot.addPlant(ModBlocks.PALE_OAK_SAPLING.getId(), ModBlocks.POTTED_PALE_OAK_SAPLING);
+            pot.addPlant(ModBlocks.STARLIGHT_SAPLING.getId(), ModBlocks.POTTED_STARLIGHT_SAPLING);
+            pot.addPlant(ModBlocks.MIDNIGHT_SAPLING.getId(), ModBlocks.POTTED_MIDNIGHT_SAPLING);
         });
     }
 

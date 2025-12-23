@@ -184,7 +184,7 @@ public class ModBlocks {
     public static final DeferredBlock<FlowerPotBlock> POTTED_MIDNIGHT_SAPLING = BLOCKS.register("potted_midnight_sapling", () -> new FlowerPotBlock(() -> (FlowerPotBlock) Blocks.FLOWER_POT, MIDNIGHT_SAPLING, Properties.of().strength(4.0f).sound(SoundType.WOOD).noOcclusion()));
 
     public static final DeferredBlock<SaplingBlock> PALE_OAK_SAPLING = registerBackportedBlock("pale_oak_sapling", () -> new SaplingBlock(ModTreeGrowers.PALE_OAK, Properties.of().strength(4.0f).sound(SoundType.GRASS).noOcclusion()));
-    public static final DeferredBlock<FlowerPotBlock> POTTED_PALE_OAK_SAPLING = registerBackportedBlock("potted_pale_oak_sapling", () -> new FlowerPotBlock(() -> (FlowerPotBlock) Blocks.FLOWER_POT, PALE_OAK_SAPLING, Properties.of().strength(4.0f).sound(SoundType.GRASS).noOcclusion()), false);
+    public static final DeferredBlock<FlowerPotBlock> POTTED_PALE_OAK_SAPLING = registerBackportedBlock("potted_pale_oak_sapling", () -> new FlowerPotBlock(() -> (FlowerPotBlock) Blocks.FLOWER_POT, PALE_OAK_SAPLING, Properties.of().strength(4.0f).sound(SoundType.GRASS).noOcclusion()));
 
     /**
      * Your original "real hedge" block (damage/bonemeal/etc). Keep separate.
