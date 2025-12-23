@@ -1,0 +1,35 @@
+{
+  "feature": "ott:river_lanterns",
+  "placement": [
+    {
+      "type": "minecraft:rarity_filter",
+      "chance": 4
+    },
+    {
+      "type": "minecraft:in_square"
+    },
+    {
+      "type": "ott:river_lichen_filter",
+      "min_y": 58,
+      "max_y": 72,
+      "river_parameters": "ott:underground_river/parameters"
+    },
+    {
+      "type": "minecraft:environment_scan",
+      "direction_of_search": "up",
+      "max_steps": 30,
+      "target_condition": {
+        "type": "minecraft:has_sturdy_face",
+        "offset": [0, 1, 0],
+        "direction": "down"
+      },
+      "allowed_search_condition": {
+        "type": "minecraft:matching_blocks",
+        "blocks": "minecraft:air"
+      }
+    },
+    {
+      "type": "minecraft:biome"
+    }
+  ]
+}

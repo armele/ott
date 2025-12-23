@@ -1,0 +1,9 @@
+{
+  "type": "neoforge:add_features",
+  "biomes": "#minecraft:is_overworld",
+  "features": [
+    "ott:river_lichen",
+    "ott:river_lanterns"
+  ],
+  "step": "vegetal_decoration"
+}
