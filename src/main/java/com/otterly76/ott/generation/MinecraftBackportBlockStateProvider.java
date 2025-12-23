@@ -112,17 +112,6 @@ public class MinecraftBackportBlockStateProvider extends BlockStateProvider {
                 palePlanks
         );
 
-        ModelFile paleOakSapling = models()
-                .cross("pale_oak_sapling", mcLoc("block/pale_oak_sapling"))
-                .renderType("cutout");
-        simpleBlockWithItem(ModBlocks.PALE_OAK_SAPLING.get(), paleOakSapling);
-
-        ModelFile pottedPaleOakSapling = models()
-                .withExistingParent("potted_pale_oak_sapling", mcLoc("block/flower_pot_cross"))
-                .texture("plant", mcLoc("block/pale_oak_sapling"))
-                .renderType("cutout");
-        simpleBlock(ModBlocks.POTTED_PALE_OAK_SAPLING.get(), pottedPaleOakSapling);
-
         ModelFile baseModel = paleHangingMossModel("pale_hanging_moss", "block/pale_hanging_moss");
         ModelFile tipModel = paleHangingMossTipModel("pale_hanging_moss_tip", "block/pale_hanging_moss_tip");
 

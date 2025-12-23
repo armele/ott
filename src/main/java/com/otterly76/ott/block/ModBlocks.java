@@ -6,7 +6,6 @@ import com.otterly76.ott.hedge.ModHedgeVariants;
 import com.otterly76.ott.util.BlockSetTypeVariant;
 import com.otterly76.ott.util.WoodTypeVariant;
 import com.otterly76.ott.wood.ModWoodSets;
-import com.otterly76.ott.worldgen.ModTreeGrowers;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.world.item.DyeColor;
 import net.minecraft.world.level.block.*;
@@ -178,6 +177,14 @@ public class ModBlocks {
 
     public static final DeferredBlock<Block> GAPPER_PANEL_OAK = BLOCKS.register("gapper_panel_oak", () -> new Block(Properties.of().strength(4.0f).requiresCorrectToolForDrops().sound(SoundType.STONE).noOcclusion()));
 
+    public static final DeferredBlock<Block> STARLIGHT_SAPLING = BLOCKS.register("starlight_sapling", () -> new Block(Properties.of().strength(4.0f).requiresCorrectToolForDrops().sound(SoundType.WOOD).noOcclusion()));
+    public static final DeferredBlock<Block> MIDNIGHT_SAPLING = BLOCKS.register("midnight_sapling", () -> new Block(Properties.of().strength(4.0f).requiresCorrectToolForDrops().sound(SoundType.WOOD).noOcclusion()));
+    public static final DeferredBlock<Block> POTTED_STARLIGHT_SAPLING = BLOCKS.register("potted_starlight_sapling", () -> new Block(Properties.of().strength(4.0f).requiresCorrectToolForDrops().sound(SoundType.WOOD).noOcclusion()));
+    public static final DeferredBlock<Block> POTTED_MIDNIGHT_SAPLING = BLOCKS.register("potted_midnight_sapling", () -> new Block(Properties.of().strength(4.0f).requiresCorrectToolForDrops().sound(SoundType.WOOD).noOcclusion()));
+
+    public static final DeferredBlock<Block> PALE_OAK_SAPLING = BLOCKS.register("pale_oak_sapling", () -> new Block(Properties.of().strength(4.0f).requiresCorrectToolForDrops().sound(SoundType.GRASS).noOcclusion()));
+    public static final DeferredBlock<Block> POTTED_PALE_OAK_SAPLING = BLOCKS.register("potted_pale_oak_sapling", () -> new Block(Properties.of().strength(4.0f).requiresCorrectToolForDrops().sound(SoundType.GRASS).noOcclusion()));
+
     /**
      * Your original "real hedge" block (damage/bonemeal/etc). Keep separate.
      */
@@ -251,8 +258,6 @@ public class ModBlocks {
     public static final DeferredBlock<WallHangingSignBlock> PALE_OAK_WALL_HANGING_SIGN = registerBackportedBlock("pale_oak_wall_hanging_sign", () -> new WallHangingSignBlock(WoodTypeVariant.PALE_OAK.getWoodType(), BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_WALL_HANGING_SIGN).mapColor(MapColor.COLOR_LIGHT_GRAY)), false);
 
     public static final DeferredBlock<LeavesBlock> PALE_OAK_LEAVES = registerBackportedBlock("pale_oak_leaves", () -> new PaleOakLeavesBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_LEAVES).mapColor(MapColor.PLANT)));
-    public static final DeferredBlock<SaplingBlock> PALE_OAK_SAPLING = registerBackportedBlock("pale_oak_sapling", () -> new SaplingBlock(ModTreeGrowers.PALE_OAK, BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_SAPLING).mapColor(MapColor.PLANT)));
-    public static final DeferredBlock<FlowerPotBlock> POTTED_PALE_OAK_SAPLING = registerBackportedBlock("potted_pale_oak_sapling", () -> new FlowerPotBlock(() -> (FlowerPotBlock) Blocks.FLOWER_POT, PALE_OAK_SAPLING, BlockBehaviour.Properties.ofFullCopy(Blocks.POTTED_OAK_SAPLING)), false);
 
     public static final DeferredBlock<EyeblossomBlock> CLOSED_EYEBLOSSOM = registerBackportedBlock("closed_eyeblossom", () -> new EyeblossomBlock(false, BlockBehaviour.Properties.ofFullCopy(Blocks.POPPY).mapColor(MapColor.PLANT).noCollission().instabreak().sound(SoundType.GRASS).offsetType(BlockBehaviour.OffsetType.XZ).pushReaction(PushReaction.DESTROY)));
     public static final DeferredBlock<EyeblossomBlock> OPEN_EYEBLOSSOM = registerBackportedBlock("open_eyeblossom", () -> new EyeblossomBlock(true, BlockBehaviour.Properties.ofFullCopy(Blocks.POPPY).mapColor(MapColor.PLANT).noCollission().instabreak().sound(SoundType.GRASS).offsetType(BlockBehaviour.OffsetType.XZ).pushReaction(PushReaction.DESTROY).lightLevel((state) -> 11)));
@@ -320,8 +325,6 @@ public class ModBlocks {
             DeferredBlock<ButtonBlock> button,
             DeferredBlock<PressurePlateBlock> pressurePlate,
             DeferredBlock<LeavesBlock> leaves,
-            DeferredBlock<SaplingBlock> sapling,
-            DeferredBlock<FlowerPotBlock> pottedSapling,
             DeferredBlock<StandingSignBlock> sign,
             DeferredBlock<WallSignBlock> wallSign,
             DeferredBlock<CeilingHangingSignBlock> hangingSign,
@@ -351,8 +354,6 @@ public class ModBlocks {
         String buttonName = set + "_button";
         String pressurePlateName = set + "_pressure_plate";
         String leavesName = set + "_leaves";
-        String saplingName = set + "_sapling";
-        String pottedSaplingName = "potted_" + set + "_sapling";
 
         String signName = set + "_sign";
         String wallSignName = set + "_wall_sign";
@@ -404,12 +405,6 @@ public class ModBlocks {
         DeferredBlock<LeavesBlock> leaves = BLOCKS.register(leavesName,
                 () -> new LeavesBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_LEAVES)));
 
-        DeferredBlock<SaplingBlock> sapling = BLOCKS.register(saplingName,
-                () -> new SaplingBlock(ModTreeGrowers.OAK, BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_SAPLING)));
-
-        DeferredBlock<FlowerPotBlock> pottedSapling = BLOCKS.register(pottedSaplingName,
-                () -> new FlowerPotBlock(() -> (FlowerPotBlock) Blocks.FLOWER_POT, sapling, BlockBehaviour.Properties.ofFullCopy(Blocks.POTTED_OAK_SAPLING)));
-
         // Signs (blocks only; the item is registered in ModItems)
         DeferredBlock<StandingSignBlock> sign = BLOCKS.register(signName,
                 () -> new StandingSignBlock(WoodTypeVariant.ott(set), BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_SIGN)));
@@ -429,7 +424,7 @@ public class ModBlocks {
                 fence, fenceGate,
                 door, trapdoor,
                 button, pressurePlate,
-                leaves, sapling, pottedSapling,
+                leaves,
                 sign, wallSign, hangingSign, wallHangingSign
         );
     }

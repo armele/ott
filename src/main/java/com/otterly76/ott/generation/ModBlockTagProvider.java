@@ -55,7 +55,6 @@ public class ModBlockTagProvider extends BlockTagsProvider {
 
             this.tag(BlockTags.PLANKS).add(set.planks().get());
             this.tag(BlockTags.LEAVES).add(set.leaves().get());
-            this.tag(BlockTags.SAPLINGS).add(set.sapling().get());
 
             this.tag(BlockTags.WOODEN_SLABS).add(set.slab().get());
             this.tag(BlockTags.WOODEN_STAIRS).add(set.stairs().get());

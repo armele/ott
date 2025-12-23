@@ -65,20 +65,6 @@ public class OttWoodSetBlockStateProvider extends BlockStateProvider {
         registerCutoutDoor(setName, set.door().get());
         registerCutoutTrapdoor(setName, set.trapdoor().get());
 
-        ModelFile saplingModel = models()
-                .cross(set.sapling().getId().getPath(), modLoc("block/" + setName + "/sapling"))
-                .renderType("cutout");
-        simpleBlock(set.sapling().get(), saplingModel);
-
-        Block potted = set.pottedSapling().get();
-        if (potted instanceof FlowerPotBlock) {
-            ModelFile pottedModel = models()
-                    .withExistingParent(set.pottedSapling().getId().getPath(), mcLoc("block/flower_pot_cross"))
-                    .texture("plant", modLoc("block/" + setName + "/sapling"))
-                    .renderType("cutout");
-            simpleBlock(potted, pottedModel);
-        }
-
         // Signs (blockstates/models)
         signBlock(set.sign().get(), set.wallSign().get(), planksTex);
         hangingSignBlock(set.hangingSign().get(), set.wallHangingSign().get(), planksTex);

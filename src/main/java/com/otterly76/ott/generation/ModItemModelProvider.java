@@ -46,7 +46,6 @@ public class ModItemModelProvider extends ItemModelProvider {
             parentItemToBlockModel(set.trapdoor().getId().getPath(), "block/" + set.trapdoor().getId().getPath() + "_bottom");
 
             parentItemToBlockModel(set.leaves().getId().getPath(), "block/" + set.leaves().getId().getPath());
-            parentItemToBlockModel(set.sapling().getId().getPath(), "block/" + set.sapling().getId().getPath());
 
             // Signs: use vanilla 3D sign item models, swap textures
             withExistingParent(setName + "_sign", mcLoc("item/sign_base"))

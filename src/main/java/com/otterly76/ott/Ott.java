@@ -192,6 +192,12 @@ public class Ott {
             event.accept(ModBlocks.OPEN_EYEBLOSSOM, CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
             event.accept(ModBlocks.CLOSED_EYEBLOSSOM, CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
 
+            event.accept(ModBlocks.STARLIGHT_SAPLING, CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
+            event.accept(ModBlocks.MIDNIGHT_SAPLING, CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
+
+            event.accept(ModBlocks.POTTED_STARLIGHT_SAPLING, CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
+            event.accept(ModBlocks.POTTED_MIDNIGHT_SAPLING, CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
+
             ModBlocks.PARTICLE_HEDGES.values().forEach(b ->
                     event.accept(b, CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS)
             );
@@ -200,9 +206,9 @@ public class Ott {
             );
 
             ModBlocks.WOOD_SETS.values().forEach(set -> {
-                event.accept(set.leaves(), CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
-                event.accept(set.sapling(), CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
-            });
+                        event.accept(set.leaves(), CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
+                    }
+            );
         }
 
         // Functional blocks: signs

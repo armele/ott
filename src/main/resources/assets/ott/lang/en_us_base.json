@@ -161,6 +161,10 @@
   "block.ott.blooming_starlight_hedge": "Blooming Starlight Hedge",
   "block.ott.blooming_starlight_creeping_hedge": "Blooming Starlight Creeping Hedge",
   "block.ott.blooming_midnight_hedge": "Blooming Midnight Hedge",
-  "block.ott.blooming_midnight_creeping_hedge": "Blooming Midnight Creeping Hedge"
+  "block.ott.blooming_midnight_creeping_hedge": "Blooming Midnight Creeping Hedge",
 
+  "block.ott.starlight.starlight_sapling": "Starlight Sapling",
+  "block.ott.midnight.midnight_sapling": "Midnight Sapling",
+  "block.ott.potted_starlight_sapling": "Potted Starlight Sapling",
+  "block.ott.potted_midnight_sapling": "Potted Midnight Sapling"
 }
