@@ -35,8 +35,8 @@ public class ModItems {
     public static final DeferredItem<Item> POTTED_STARLIGHT_SAPLING = ITEMS.register("potted_starlight_sapling", () -> new ItemNameBlockItem(ModBlocks.POTTED_STARLIGHT_SAPLING.get(), new Item.Properties()));
     public static final DeferredItem<Item> POTTED_MIDNIGHT_SAPLING = ITEMS.register("potted_midnight_sapling", () -> new ItemNameBlockItem(ModBlocks.POTTED_MIDNIGHT_SAPLING.get(), new Item.Properties()));
 
-    public static final DeferredItem<Item> PALE_OAK_SAPLING = ITEMS.register("pale_oak_sapling", () -> new ItemNameBlockItem(ModBlocks.PALE_OAK_SAPLING.get(), new Item.Properties()));
-    public static final DeferredItem<Item> POTTED_PALE_OAK_SAPLING = ITEMS.register("potted_pale_oak_sapling", () -> new ItemNameBlockItem(ModBlocks.POTTED_PALE_OAK_SAPLING.get(), new Item.Properties()));
+    public static final DeferredItem<Item> PALE_OAK_SAPLING = ITEMS.register("pale_oak_sapling.json", () -> new ItemNameBlockItem(ModBlocks.PALE_OAK_SAPLING.get(), new Item.Properties()));
+    public static final DeferredItem<Item> POTTED_PALE_OAK_SAPLING = ITEMS.register("potted_pale_oak_sapling.json", () -> new ItemNameBlockItem(ModBlocks.POTTED_PALE_OAK_SAPLING.get(), new Item.Properties()));
 
     // Backport / Minecraft Namespace Items
     public static DeferredItem<Item> RESIN_BRICK;
