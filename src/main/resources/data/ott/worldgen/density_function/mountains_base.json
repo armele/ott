@@ -37,7 +37,7 @@
                           
                           "type": "shifted_noise",
                           "noise": "ott:mountains_shape",
-                          "xz_scale": 105.90000000000047,
+                          "xz_scale": 105.9,
                           "y_scale": 0,
                           "shift_x": -100000, 
                           "shift_y": 0, 
@@ -51,7 +51,7 @@
                           
                           "type": "shifted_noise",
                           "noise": "ott:mountains_shape",
-                          "xz_scale": 60.0000000000006,
+                          "xz_scale": 60.0,
                           "y_scale": 0,
                           "shift_x": 100000, 
                           "shift_y": 0, 
@@ -81,7 +81,7 @@
                             
                             "type": "noise",
                             "noise": "ott:mountains_valleys",
-                            "xz_scale": 0.175,
+                            "xz_scale": 0.0875,
                             "y_scale": 0
                           }
                         }
@@ -99,7 +99,7 @@
                               
                               "type": "noise",
                               "noise": "minecraft:jagged",
-                              "xz_scale": 1.0999999999999999,
+                              "xz_scale": 1.1,
                               "y_scale": 0
                             }
                           },
@@ -155,7 +155,7 @@
                   
                   "type": "noise",
                   "noise": "minecraft:erosion",
-                  "xz_scale": 0.975,
+                  "xz_scale": 0.4875,
                   "y_scale": 0
                 }
               },

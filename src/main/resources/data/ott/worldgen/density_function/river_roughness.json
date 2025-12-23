@@ -20,7 +20,7 @@
 				  
 				  "type": "noise",
 				  "noise": "ott:rivers",
-				  "xz_scale": 0.7000000000000001,
+				  "xz_scale": 0.35,
 				  "y_scale": 0
 				}
 			  },

@@ -23,7 +23,7 @@
                 
                 "type": "noise",
                 "noise": "ott:mesa_placement",
-                "xz_scale": 0.2,
+                "xz_scale": 0.1,
                 "y_scale": 0
               },
               "points": [
@@ -53,7 +53,7 @@
                   
                   "type": "noise",
                   "noise": "ott:humidity",
-                  "xz_scale": 0.3,
+                  "xz_scale": 0.15,
                   "y_scale": 0
                 }
               },

@@ -135,7 +135,7 @@
                 
                 "type": "noise",
                 "noise": "ott:rivers",
-                "xz_scale": 0.7,
+                "xz_scale": 0.35,
                 "y_scale": 0
               }
             },
@@ -176,7 +176,7 @@
               
               "type": "noise",
               "noise": "ott:biome_variation",
-              "xz_scale": 1,
+              "xz_scale": 0.5,
               "y_scale": 0
             },
             "points": [

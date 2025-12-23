@@ -82,7 +82,7 @@
                           
                           "type": "noise",
                           "noise": "ott:continentalness",
-                          "xz_scale": 0.15,
+                          "xz_scale": 0.075,
                           "y_scale": 0
                         }
                       },

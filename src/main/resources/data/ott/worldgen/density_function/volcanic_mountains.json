@@ -25,7 +25,7 @@
                   
                   "type": "noise",
                   "noise": "minecraft:erosion",
-                  "xz_scale": 2.5,
+                  "xz_scale": 1.25,
                   "y_scale": 0
                 }
               },
@@ -76,7 +76,7 @@
                   
                   "type": "noise",
                   "noise": "ott:mountains_shape",
-                  "xz_scale": 79.09999999999997,
+                  "xz_scale": 79.1,
                   "y_scale": 0
                 }
               }

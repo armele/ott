@@ -70,7 +70,7 @@
                                   
                                   "type": "shifted_noise",
                                   "noise": "ott:mountains_base",
-                                  "xz_scale": 1.6999999999999995,
+                                  "xz_scale": 1.7,
                                   "y_scale": 0,
                                   "shift_x": -5000, 
                                   "shift_y": 0, 
@@ -117,7 +117,7 @@
                                 
                                 "type": "noise",
                                 "noise": "ott:mountains_base",
-                                "xz_scale": 1.7000000000000006,
+                                "xz_scale": 1.7,
                                 "y_scale": 0
                               }
                             },
@@ -238,7 +238,7 @@
                 
                 "type": "noise",
                 "noise": "ott:rivers",
-                "xz_scale": 0.7,
+                "xz_scale": 0.35,
                 "y_scale": 0
               }
             },

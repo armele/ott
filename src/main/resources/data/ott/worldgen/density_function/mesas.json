@@ -19,7 +19,7 @@
             
             "type": "noise",
             "noise": "ott:mesa_height",
-            "xz_scale": 0.7,
+            "xz_scale": 0.35,
             "y_scale": 0
           },
           "points": [
@@ -60,7 +60,7 @@
                 
                 "type": "noise",
                 "noise": "ott:mesa_variation",
-                "xz_scale": 0.3,
+                "xz_scale": 0.15,
                 "y_scale": 0
               },
               "argument2": {
@@ -164,7 +164,7 @@
                   
                   "type": "noise",
                   "noise": "ott:mesa_base",
-                  "xz_scale": 1.7000000000000004,
+                  "xz_scale": 1.7,
                   "y_scale": 0
                 },
                 "argument2": "ott:mesa_placement"

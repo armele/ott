@@ -16,7 +16,7 @@
           
           "type": "noise",
           "noise": "ott:mesa_placement",
-          "xz_scale": 0.35,
+          "xz_scale": 0.175,
           "y_scale": 0
         },
         "points": [
