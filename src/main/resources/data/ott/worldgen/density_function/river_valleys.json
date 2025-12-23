@@ -1,17 +1,25 @@
+
 {
+  
   "type": "flat_cache",
   "argument": {
+    
     "type": "cache_2d",
     "argument": {
+      
       "type": "add",
       "argument1": {
+        
         "type": "add",
         "argument1": {
+          
           "type": "mul",
           "argument1": {
+            
             "type": "minecraft:spline",
             "spline": {
               "coordinate": {
+                
                 "type": "noise",
                 "noise": "minecraft:erosion_large",
                 "xz_scale": 0.1,
@@ -34,12 +42,15 @@
           "argument2": "ott:river_valley_c"
         },
         "argument2": {
+          
           "type": "mul",
           "argument1": "ott:river_valley_u",
           "argument2": {
+            
             "type": "minecraft:spline",
             "spline": {
               "coordinate": {
+                
                 "type": "noise",
                 "noise": "minecraft:erosion_large",
                 "xz_scale": 0.1,
@@ -72,12 +83,15 @@
         }
       },
       "argument2": {
+        
         "type": "mul",
         "argument1": "ott:river_valley_g",
         "argument2": {
+          
           "type": "minecraft:spline",
           "spline": {
             "coordinate": {
+              
               "type": "noise",
               "noise": "minecraft:erosion_large",
               "xz_scale": 0.1,

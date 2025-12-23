@@ -14,7 +14,7 @@
   "noise": {
     "height": 576,
     "min_y": -64,
-    "size_horizontal": 2,
+    "size_horizontal": 1,
     "size_vertical": 2
   },
   "noise_router": {
@@ -108,17 +108,23 @@
     },
     "ridges": "minecraft:overworld/ridges",
     "temperature": {
-      "type": "minecraft:add",
-      "argument1": "minecraft:overworld/temperature",
-      "argument2": {
-        "type": "minecraft:y_clamped_gradient",
-        "from_value": 0.0,
-        "from_y": 192,
-        "to_value": -1.0,
-        "to_y": 320
-      }
+      "type": "minecraft:shifted_noise",
+      "noise": "minecraft:temperature",
+      "shift_x": "minecraft:shift_x",
+      "shift_y": 0.0,
+      "shift_z": "minecraft:shift_z",
+      "xz_scale": 0.1,
+      "y_scale": 0.0
     },
-    "vegetation": "minecraft:overworld/vegetation",
+    "vegetation": {
+      "type": "minecraft:shifted_noise",
+      "noise": "minecraft:vegetation",
+      "shift_x": "minecraft:shift_x",
+      "shift_y": 0.0,
+      "shift_z": "minecraft:shift_z",
+      "xz_scale": 0.1,
+      "y_scale": 0.0
+    },
     "vein_gap": {
       "type": "minecraft:noise",
       "noise": "minecraft:ore_gap",
@@ -192,7 +198,7 @@
   "spawn_target": [
     {
       "continentalness": [
-        0.1,
+        0.0,
         1.0
       ],
       "depth": 0.0,
@@ -216,7 +222,7 @@
     },
     {
       "continentalness": [
-        0.1,
+        0.0,
         1.0
       ],
       "depth": 0.0,
@@ -1129,37 +1135,6 @@
                                   {
                                     "type": "minecraft:condition",
                                     "if_true": {
-                                      "type": "minecraft:y_above",
-                                      "add_stone_depth": false,
-                                      "anchor": {
-                                        "absolute": 10
-                                      },
-                                      "surface_depth_multiplier": 0
-                                    },
-                                    "then_run": {
-                                      "type": "minecraft:condition",
-                                      "if_true": {
-                                        "type": "minecraft:not",
-                                        "invert": {
-                                          "type": "minecraft:y_above",
-                                          "add_stone_depth": false,
-                                          "anchor": {
-                                            "absolute": 63
-                                          },
-                                          "surface_depth_multiplier": 1
-                                        }
-                                      },
-                                      "then_run": {
-                                        "type": "minecraft:block",
-                                        "result_state": {
-                                          "Name": "minecraft:sand"
-                                        }
-                                      }
-                                    }
-                                  },
-                                  {
-                                    "type": "minecraft:condition",
-                                    "if_true": {
                                       "type": "minecraft:noise_threshold",
                                       "max_threshold": 0.05,
                                       "min_threshold": -0.05,
@@ -1933,37 +1908,6 @@
                               "then_run": {
                                 "type": "minecraft:sequence",
                                 "sequence": [
-                                  {
-                                    "type": "minecraft:condition",
-                                    "if_true": {
-                                      "type": "minecraft:y_above",
-                                      "add_stone_depth": false,
-                                      "anchor": {
-                                        "absolute": 10
-                                      },
-                                      "surface_depth_multiplier": 0
-                                    },
-                                    "then_run": {
-                                      "type": "minecraft:condition",
-                                      "if_true": {
-                                        "type": "minecraft:not",
-                                        "invert": {
-                                          "type": "minecraft:y_above",
-                                          "add_stone_depth": false,
-                                          "anchor": {
-                                            "absolute": 63
-                                          },
-                                          "surface_depth_multiplier": 1
-                                        }
-                                      },
-                                      "then_run": {
-                                        "type": "minecraft:block",
-                                        "result_state": {
-                                          "Name": "minecraft:sandstone"
-                                        }
-                                      }
-                                    }
-                                  },
                                   {
                                     "type": "minecraft:condition",
                                     "if_true": {

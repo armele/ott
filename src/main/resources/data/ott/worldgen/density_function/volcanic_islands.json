@@ -1,18 +1,26 @@
+
 {
+  
   "type": "flat_cache",
   "argument": {
+    
     "type": "cache_2d",
     "argument": {
+      
       "type": "minecraft:spline",
       "spline": {
         "coordinate": {
+          
           "type": "mul",
           "argument1": {
+            
             "type": "minecraft:spline",
             "spline": {
               "coordinate": {
+                
                 "type": "mul",
                 "argument1": {
+                  
                   "type": "minecraft:spline",
                   "spline": {
                     "coordinate": "ott:continents",
@@ -36,11 +44,14 @@
                   }
                 },
                 "argument2": {
+                  
                   "type": "mul",
                   "argument1": {
+                    
                     "type": "minecraft:spline",
                     "spline": {
                       "coordinate": {
+                        
                         "type": "noise",
                         "noise": "ott:continent_regions",
                         "xz_scale": 20,
@@ -61,11 +72,14 @@
                     }
                   },
                   "argument2": {
+                    
                     "type": "minecraft:spline",
                     "spline": {
                       "coordinate": {
+                        
                         "type": "abs",
                         "argument": {
+                          
                           "type": "noise",
                           "noise": "ott:continentalness",
                           "xz_scale": 0.15,
@@ -113,8 +127,10 @@
             }
           },
           "argument2": {
+            
             "type": "abs",
             "argument": {
+              
               "type": "noise",
               "noise": "ott:continent_regions",
               "xz_scale": 40,

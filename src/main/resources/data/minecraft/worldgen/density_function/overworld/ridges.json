@@ -1,44 +1,57 @@
+
 {
+  
   "type": "flat_cache",
   "argument": {
+    
     "type": "cache_2d",
     "argument": {
+      
       "type": "mul",
       "argument1": {
+        
         "type": "minecraft:spline",
         "spline": {
           "coordinate": {
+            
             "type": "mul",
             "argument1": {
+              
               "type": "mul",
               "argument1": {
+                
                 "type": "add",
                 "argument1": {
+                  
                   "type": "add",
                   "argument1": {
                     "type": "cache_once",
                     "argument": {
-                      "type": "flat_cache",
-                      "argument": {
-                        "type": "cache_2d",
-                        "argument": "ott:topography_final"
-                      }
-                    }
+						"type": "flat_cache",
+						"argument": {
+						  "type": "cache_2d",
+						  "argument": "ott:topography_final"
+						}
+					}
                   },
                   "argument2": {
+                    
                     "type": "mul",
                     "argument1": {
+                      
                       "type": "minecraft:spline",
                       "spline": {
                         "coordinate": {
-                          "type": "cache_once",
-                          "argument": {
-                            "type": "flat_cache",
-                            "argument": {
-                              "type": "cache_2d",
-                              "argument": "ott:topography_final"
-                            }
-                          }
+							"type": "cache_once",
+							"argument": {
+							  
+							  "type": "flat_cache",
+							  "argument": {
+								
+								"type": "cache_2d",
+								"argument": "ott:topography_final"
+							  }
+							}
                         },
                         "points": [
                           {
@@ -60,6 +73,7 @@
                       }
                     },
                     "argument2": {
+                      
                       "type": "noise",
                       "noise": "ott:biome_variation",
                       "xz_scale": 11.000000000000004,
@@ -67,11 +81,11 @@
                     }
                   }
                 },
-                "argument2": 0.6
+                "argument2": 0.6 
               },
-              "argument2": 0.9
+              "argument2": 0.9 
             },
-            "argument2": 0.75
+            "argument2": 0.75 
           },
           "points": [
             {
@@ -108,13 +122,17 @@
         }
       },
       "argument2": {
+        
         "type": "mul",
         "argument1": {
+          
           "type": "minecraft:spline",
           "spline": {
             "coordinate": {
+              
               "type": "abs",
               "argument": {
+                
                 "type": "noise",
                 "noise": "ott:rivers",
                 "xz_scale": 0.7,
@@ -151,9 +169,11 @@
           }
         },
         "argument2": {
+          
           "type": "minecraft:spline",
           "spline": {
             "coordinate": {
+              
               "type": "noise",
               "noise": "ott:biome_variation",
               "xz_scale": 1,
