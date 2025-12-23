@@ -6,6 +6,7 @@ import com.otterly76.ott.hedge.ModHedgeVariants;
 import com.otterly76.ott.util.BlockSetTypeVariant;
 import com.otterly76.ott.util.WoodTypeVariant;
 import com.otterly76.ott.wood.ModWoodSets;
+import com.otterly76.ott.worldgen.ModTreeGrowers;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.world.item.DyeColor;
 import net.minecraft.world.level.block.*;
@@ -177,13 +178,13 @@ public class ModBlocks {
 
     public static final DeferredBlock<Block> GAPPER_PANEL_OAK = BLOCKS.register("gapper_panel_oak", () -> new Block(Properties.of().strength(4.0f).requiresCorrectToolForDrops().sound(SoundType.STONE).noOcclusion()));
 
-    public static final DeferredBlock<Block> STARLIGHT_SAPLING = BLOCKS.register("starlight_sapling", () -> new Block(Properties.of().strength(4.0f).requiresCorrectToolForDrops().sound(SoundType.WOOD).noOcclusion()));
-    public static final DeferredBlock<Block> MIDNIGHT_SAPLING = BLOCKS.register("midnight_sapling", () -> new Block(Properties.of().strength(4.0f).requiresCorrectToolForDrops().sound(SoundType.WOOD).noOcclusion()));
-    public static final DeferredBlock<Block> POTTED_STARLIGHT_SAPLING = BLOCKS.register("potted_starlight_sapling", () -> new Block(Properties.of().strength(4.0f).requiresCorrectToolForDrops().sound(SoundType.WOOD).noOcclusion()));
-    public static final DeferredBlock<Block> POTTED_MIDNIGHT_SAPLING = BLOCKS.register("potted_midnight_sapling", () -> new Block(Properties.of().strength(4.0f).requiresCorrectToolForDrops().sound(SoundType.WOOD).noOcclusion()));
+    public static final DeferredBlock<SaplingBlock> STARLIGHT_SAPLING = BLOCKS.register("starlight_sapling", () -> new SaplingBlock(ModTreeGrowers.OAK, Properties.of().strength(4.0f).sound(SoundType.WOOD).noOcclusion()));
+    public static final DeferredBlock<SaplingBlock> MIDNIGHT_SAPLING = BLOCKS.register("midnight_sapling", () -> new SaplingBlock(ModTreeGrowers.OAK, Properties.of().strength(4.0f).sound(SoundType.WOOD).noOcclusion()));
+    public static final DeferredBlock<FlowerPotBlock> POTTED_STARLIGHT_SAPLING = BLOCKS.register("potted_starlight_sapling", () -> new FlowerPotBlock(() -> (FlowerPotBlock) Blocks.FLOWER_POT, STARLIGHT_SAPLING, Properties.of().strength(4.0f).sound(SoundType.WOOD).noOcclusion()));
+    public static final DeferredBlock<FlowerPotBlock> POTTED_MIDNIGHT_SAPLING = BLOCKS.register("potted_midnight_sapling", () -> new FlowerPotBlock(() -> (FlowerPotBlock) Blocks.FLOWER_POT, MIDNIGHT_SAPLING, Properties.of().strength(4.0f).sound(SoundType.WOOD).noOcclusion()));
 
-    public static final DeferredBlock<Block> PALE_OAK_SAPLING = BLOCKS.register("pale_oak_sapling", () -> new Block(Properties.of().strength(4.0f).requiresCorrectToolForDrops().sound(SoundType.GRASS).noOcclusion()));
-    public static final DeferredBlock<Block> POTTED_PALE_OAK_SAPLING = BLOCKS.register("potted_pale_oak_sapling", () -> new Block(Properties.of().strength(4.0f).requiresCorrectToolForDrops().sound(SoundType.GRASS).noOcclusion()));
+    public static final DeferredBlock<SaplingBlock> PALE_OAK_SAPLING = registerBackportedBlock("pale_oak_sapling", () -> new SaplingBlock(ModTreeGrowers.PALE_OAK, Properties.of().strength(4.0f).sound(SoundType.GRASS).noOcclusion()));
+    public static final DeferredBlock<FlowerPotBlock> POTTED_PALE_OAK_SAPLING = registerBackportedBlock("potted_pale_oak_sapling", () -> new FlowerPotBlock(() -> (FlowerPotBlock) Blocks.FLOWER_POT, PALE_OAK_SAPLING, Properties.of().strength(4.0f).sound(SoundType.GRASS).noOcclusion()), false);
 
     /**
      * Your original "real hedge" block (damage/bonemeal/etc). Keep separate.

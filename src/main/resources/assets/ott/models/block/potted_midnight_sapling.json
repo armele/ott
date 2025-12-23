@@ -1,15 +1,14 @@
 {
-	"format_version": "1.21.11",
 	"credit": "Throttled by Otterly",
-	"parent": "block/flower_pot_cross",
+	"render_type": "minecraft:cutout",
 	"texture_size": [32, 32],
 	"textures": {
-		"pot": "block/flower_pot",
-		"soil": "block/dirt",
+		"pot": "minecraft:block/flower_pot",
+		"soil": "minecraft:block/dirt",
 		"4_1": "ott:block/midnight/log",
 		"4_2": "ott:block/midnight/log_top",
 		"leaves": "ott:block/midnight_leaves_sapling",
-		"particle": "block/terracotta"
+		"particle": "minecraft:block/terracotta"
 	},
 	"elements": [
 		{

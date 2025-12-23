@@ -1,13 +1,13 @@
 {
-	"credit": "Throttled by Otterly",
 	"texture_size": [32, 32],
+	"render_type": "minecraft:cutout",
 	"textures": {
-		"2": "block/pale_oak_log",
-		"3": "block/pale_oak_log_top",
-		"leaves": "block/pale_oak_leaves_sapling",
-		"pot": "block/flower_pot",
-		"soil": "block/dirt",
-		"particle": "block/terracotta"
+		"2": "minecraft:block/pale_oak_log",
+		"3": "minecraft:block/pale_oak_log_top",
+		"leaves": "minecraft:block/pale_oak_leaves_sapling",
+		"pot": "minecraft:block/flower_pot",
+		"soil": "minecraft:block/dirt",
+		"particle": "minecraft:block/terracotta"
 	},
 	"elements": [
 		{

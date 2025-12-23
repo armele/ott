@@ -195,8 +195,8 @@ public class Ott {
             event.accept(ModBlocks.STARLIGHT_SAPLING, CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
             event.accept(ModBlocks.MIDNIGHT_SAPLING, CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
 
-            event.accept(ModBlocks.POTTED_STARLIGHT_SAPLING, CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
-            event.accept(ModBlocks.POTTED_MIDNIGHT_SAPLING, CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
+
+
 
             ModBlocks.PARTICLE_HEDGES.values().forEach(b ->
                     event.accept(b, CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS)
@@ -269,7 +269,9 @@ public class Ott {
 
     public static class ClientModEvents {
         public static void onClientSetup(FMLClientSetupEvent event) {
-            event.enqueueWork(() -> Sheets.addWoodType(WoodTypeVariant.PALE_OAK.getWoodType()));
+            event.enqueueWork(() -> {
+                Sheets.addWoodType(WoodTypeVariant.PALE_OAK.getWoodType());
+            });
         }
 
         public static void registerRenderers(EntityRenderersEvent.RegisterRenderers event) {

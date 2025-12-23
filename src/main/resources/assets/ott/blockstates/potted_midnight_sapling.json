@@ -1,7 +1,7 @@
 {
   "variants": {
     "": {
-      "model": "block/potted_midnight_sapling"
+      "model": "ott:block/potted_midnight_sapling"
     }
   }
 }

@@ -1,7 +1,7 @@
 {
   "variants": {
     "": {
-      "model": "block/potted_starlight_sapling"
+      "model": "ott:block/potted_starlight_sapling"
     }
   }
 }

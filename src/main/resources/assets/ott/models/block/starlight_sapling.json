@@ -1,6 +1,6 @@
 {
-	"format_version": "1.21.11",
 	"credit": "Throttled by Otterly",
+	"render_type": "minecraft:cutout",
 	"textures": {
 		"1": "ott:block/starlight/log",
 		"2": "ott:block/starlight/log_top",

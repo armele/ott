@@ -39,10 +39,6 @@ public final class ModCreativeTabs {
             output.accept(ModBlocks.MIDNIGHT_SAPLING);
             output.accept(ModBlocks.PALE_OAK_SAPLING);
 
-            output.accept(ModItems.POTTED_STARLIGHT_SAPLING);
-            output.accept(ModItems.POTTED_MIDNIGHT_SAPLING);
-            output.accept(ModBlocks.POTTED_PALE_OAK_SAPLING);
-
             ModBlocks.PARTICLE_HEDGES.values().forEach(output::accept);
             ModBlocks.CREEPING_HEDGES.values().forEach(output::accept);
 

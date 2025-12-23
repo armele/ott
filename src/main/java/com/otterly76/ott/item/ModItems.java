@@ -30,13 +30,10 @@ public class ModItems {
     public static final DeferredHolder<Item, BlockItem> HEDGE = registerBlockItem("hedge", ModBlocks.HEDGE);
     public static final DeferredItem<Item> HEDGE_SPROUTS = ITEMS.register("hedge_sprouts", () -> new ItemNameBlockItem(ModBlocks.HEDGE_SPROUTS.get(), new Item.Properties()));
 
-    public static final DeferredItem<Item> STARLIGHT_SAPLING = ITEMS.register("starlight_sapling", () -> new ItemNameBlockItem(ModBlocks.STARLIGHT_SAPLING.get(), new Item.Properties()));
-    public static final DeferredItem<Item> MIDNIGHT_SAPLING = ITEMS.register("midnight_sapling", () -> new ItemNameBlockItem(ModBlocks.MIDNIGHT_SAPLING.get(), new Item.Properties()));
-    public static final DeferredItem<Item> POTTED_STARLIGHT_SAPLING = ITEMS.register("potted_starlight_sapling", () -> new ItemNameBlockItem(ModBlocks.POTTED_STARLIGHT_SAPLING.get(), new Item.Properties()));
-    public static final DeferredItem<Item> POTTED_MIDNIGHT_SAPLING = ITEMS.register("potted_midnight_sapling", () -> new ItemNameBlockItem(ModBlocks.POTTED_MIDNIGHT_SAPLING.get(), new Item.Properties()));
+    public static final DeferredHolder<Item, BlockItem> STARLIGHT_SAPLING = registerBlockItem("starlight_sapling", ModBlocks.STARLIGHT_SAPLING);
+    public static final DeferredHolder<Item, BlockItem> MIDNIGHT_SAPLING = registerBlockItem("midnight_sapling", ModBlocks.MIDNIGHT_SAPLING);
 
-    public static final DeferredItem<Item> PALE_OAK_SAPLING = ITEMS.register("pale_oak_sapling.json", () -> new ItemNameBlockItem(ModBlocks.PALE_OAK_SAPLING.get(), new Item.Properties()));
-    public static final DeferredItem<Item> POTTED_PALE_OAK_SAPLING = ITEMS.register("potted_pale_oak_sapling.json", () -> new ItemNameBlockItem(ModBlocks.POTTED_PALE_OAK_SAPLING.get(), new Item.Properties()));
+    public static DeferredItem<Item> PALE_OAK_SAPLING;
 
     // Backport / Minecraft Namespace Items
     public static DeferredItem<Item> RESIN_BRICK;
@@ -108,6 +105,8 @@ public class ModItems {
         PALE_OAK_HANGING_SIGN = MINECRAFT_ITEMS.register("pale_oak_hanging_sign", () -> new HangingSignItem(ModBlocks.PALE_OAK_HANGING_SIGN.get(), ModBlocks.PALE_OAK_WALL_HANGING_SIGN.get(), (new Item.Properties()).stacksTo(16)));
         PALE_OAK_BOAT = MINECRAFT_ITEMS.register("pale_oak_boat", () -> new ModBoatItem(ModEntities.PALE_OAK_BOAT, new Item.Properties().stacksTo(1)));
         PALE_OAK_CHEST_BOAT = MINECRAFT_ITEMS.register("pale_oak_chest_boat", () -> new ModBoatItem(ModEntities.PALE_OAK_CHEST_BOAT, new Item.Properties().stacksTo(1)));
+        PALE_OAK_SAPLING = MINECRAFT_ITEMS.register("pale_oak_sapling", () -> new BlockItem(ModBlocks.PALE_OAK_SAPLING.get(), new Item.Properties()));
+
     }
 
     private static DeferredHolder<Item, BlockItem> registerBlockItem(String name, DeferredBlock<? extends Block> block) {

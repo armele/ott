@@ -23,7 +23,8 @@ public class MinecraftBackportItemModelProvider extends ItemModelProvider {
             String path = id.getPath();
             Block block = deferredBlock.get();
 
-            if (path.startsWith("potted_") || block instanceof FlowerPotBlock) {
+            // EXCLUSIONS
+            if (path.equals("pale_oak_sapling") || path.equals("potted_pale_oak_sapling")) {
                 return;
             }
             if (path.endsWith("_wall_sign") || path.endsWith("_wall_hanging_sign")) {
