@@ -17,7 +17,9 @@ public abstract class WaterDropParticleMixin extends TextureSheetParticle {
 
     @Inject(method = "tick", at = @At("HEAD"))
     private void onTick(CallbackInfo ci) {
-        // Force splash particles to ignore biome tint
-        this.setColor(1.0F, 1.0F, 1.0F);
+        // This catches the standard rain splashes and the drip landing splash
+        this.rCol = 1.0F;
+        this.gCol = 1.0F;
+        this.bCol = 1.0F;
     }
 }
