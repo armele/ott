@@ -7,7 +7,7 @@
   "has_raids": true,
   "has_skylight": true,
   "has_ceiling": false,
-  "cloud_height": 192,
+  "cloud_height": 176,
   "coordinate_scale": 1,
   "ambient_light": 0,
   "logical_height": 512,

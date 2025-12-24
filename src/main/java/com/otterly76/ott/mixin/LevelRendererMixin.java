@@ -19,7 +19,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 import java.util.Random;
 
-@Mixin({LevelRenderer.class})
+@Mixin(LevelRenderer.class)
 public class LevelRendererMixin {
     @Shadow
     @Final
@@ -30,8 +30,8 @@ public class LevelRendererMixin {
     private int rainSoundTime;
 
     @Inject(
-            method = {"tickRain"},
-            at = {@At("HEAD")}
+            method = "tickRain",
+            at = @At("HEAD")
     )
     public void tickRain(Camera camera, CallbackInfo ci) {
         if (this.minecraft.level == null) return;

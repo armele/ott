@@ -35,6 +35,11 @@ public class GroundFogParticle extends TextureSheetParticle {
     public void tick() {
         super.tick();
 
+        // Force age out if it's not raining anymore
+        if (this.level.getRainLevel(1.0f) <= 0.0f) {
+            this.age += 10; // Rapidly age out when rain stops
+        }
+
         // We'll increase the fade duration to 150 ticks (7.5 seconds) for a very slow transition
         float fadeDuration = 150.0F;
         float maxAlpha = 0.4F; // Slightly lower for better layering

@@ -220,21 +220,21 @@ public final class CreepOverlayRenderer {
         boolean hedgeBelow = level.getBlockState(pos.below()).getBlock() instanceof ParticleCreepingHedgeBlock;
         if (!hedgeAbove && !hedgeBelow) return;
 
-        boolean flipV = hedgeAbove && !hedgeBelow;
+        boolean flip = hedgeAbove && !hedgeBelow;
 
-        renderFaceIfExposed(level, poseStack, vc, sprite, pos, Direction.NORTH, FULLBRIGHT, camX, camY, camZ, flipV, alpha);
-        renderFaceIfExposed(level, poseStack, vc, sprite, pos, Direction.SOUTH, FULLBRIGHT, camX, camY, camZ, flipV, alpha);
-        renderFaceIfExposed(level, poseStack, vc, sprite, pos, Direction.WEST, FULLBRIGHT, camX, camY, camZ, flipV, alpha);
-        renderFaceIfExposed(level, poseStack, vc, sprite, pos, Direction.EAST, FULLBRIGHT, camX, camY, camZ, flipV, alpha);
+        renderFaceIfExposed(level, poseStack, vc, sprite, pos, Direction.NORTH, FULLBRIGHT, camX, camY, camZ, flip, flip, alpha);
+        renderFaceIfExposed(level, poseStack, vc, sprite, pos, Direction.SOUTH, FULLBRIGHT, camX, camY, camZ, flip, flip, alpha);
+        renderFaceIfExposed(level, poseStack, vc, sprite, pos, Direction.WEST, FULLBRIGHT, camX, camY, camZ, flip, flip, alpha);
+        renderFaceIfExposed(level, poseStack, vc, sprite, pos, Direction.EAST, FULLBRIGHT, camX, camY, camZ, flip, flip, alpha);
     }
 
     private static void renderGlowOnBlock(Level level, PoseStack poseStack, VertexConsumer vc, TextureAtlasSprite sprite,
                                           BlockPos pos, double camX, double camY, double camZ,
                                           float alpha) {
-        renderFaceIfExposed(level, poseStack, vc, sprite, pos, Direction.NORTH, FULLBRIGHT, camX, camY, camZ, false, alpha);
-        renderFaceIfExposed(level, poseStack, vc, sprite, pos, Direction.SOUTH, FULLBRIGHT, camX, camY, camZ, false, alpha);
-        renderFaceIfExposed(level, poseStack, vc, sprite, pos, Direction.WEST, FULLBRIGHT, camX, camY, camZ, false, alpha);
-        renderFaceIfExposed(level, poseStack, vc, sprite, pos, Direction.EAST, FULLBRIGHT, camX, camY, camZ, false, alpha);
+        renderFaceIfExposed(level, poseStack, vc, sprite, pos, Direction.NORTH, FULLBRIGHT, camX, camY, camZ, false, false, alpha);
+        renderFaceIfExposed(level, poseStack, vc, sprite, pos, Direction.SOUTH, FULLBRIGHT, camX, camY, camZ, false, false, alpha);
+        renderFaceIfExposed(level, poseStack, vc, sprite, pos, Direction.WEST, FULLBRIGHT, camX, camY, camZ, false, false, alpha);
+        renderFaceIfExposed(level, poseStack, vc, sprite, pos, Direction.EAST, FULLBRIGHT, camX, camY, camZ, false, false, alpha);
     }
 
     private static ResourceLocation hedgeSpriteIdFromCreepId(ResourceLocation creepId) {
@@ -254,7 +254,7 @@ public final class CreepOverlayRenderer {
     private static void renderFaceIfExposed(Level level, PoseStack poseStack, VertexConsumer vc, TextureAtlasSprite s,
                                             BlockPos pos, Direction face, int light,
                                             double camX, double camY, double camZ,
-                                            boolean flipV, float alpha) {
+                                            boolean flipV, boolean flipH, float alpha) {
         BlockPos neighborPos = pos.relative(face);
         BlockState neighbor = level.getBlockState(neighborPos);
 
@@ -269,6 +269,12 @@ public final class CreepOverlayRenderer {
             float tmp = v0;
             v0 = v1;
             v1 = tmp;
+        }
+
+        if (flipH) {
+            float tmp = u0;
+            u0 = u1;
+            u1 = tmp;
         }
 
         float eps = 0.001f;
