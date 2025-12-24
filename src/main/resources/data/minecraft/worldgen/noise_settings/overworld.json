@@ -19,28 +19,26 @@
   },
   "noise_router": {
     "barrier": {
-      "type": "minecraft:range_choice",
-      "input": "ott:underground_river/parameters",
-      "min_inclusive": 0.9,
-      "max_exclusive": 1.1,
-      "when_in_range": {
-        "type": "minecraft:range_choice",
-        "input": "minecraft:y",
-        "min_inclusive": 64,
-        "max_exclusive": 72,
-        "when_in_range": {
-          "type": "minecraft:noise",
-          "noise": "minecraft:aquifer_barrier",
-          "xz_scale": 1.0,
-          "y_scale": 0.5
-        },
-        "when_out_of_range": -1
-      },
-      "when_out_of_range": {
+      "type": "minecraft:add",
+      "argument1": {
         "type": "minecraft:noise",
         "noise": "minecraft:aquifer_barrier",
         "xz_scale": 0.8,
         "y_scale": 0.7
+      },
+      "argument2": {
+        "type": "minecraft:mul",
+        "argument1": "ott:underground_river/parameters",
+        "argument2": {
+          "type": "minecraft:add",
+          "argument1": -0.5,
+          "argument2": {
+            "type": "minecraft:noise",
+            "noise": "minecraft:aquifer_barrier",
+            "xz_scale": 0.2,
+            "y_scale": -0.2
+          }
+        }
       }
     },
     "continents": "minecraft:overworld/continents",
@@ -48,16 +46,17 @@
     "erosion": "minecraft:overworld/erosion",
     "final_density": "ott:density/final_density",
     "fluid_level_floodedness": {
-      "type": "minecraft:range_choice",
-      "input": "ott:underground_river/parameters",
-      "min_inclusive": 0.9,
-      "max_exclusive": 1.1,
-      "when_in_range": 1,
-      "when_out_of_range": {
+      "type": "minecraft:add",
+      "argument1": {
         "type": "minecraft:noise",
         "noise": "minecraft:aquifer_fluid_level_floodedness",
         "xz_scale": 0.8,
         "y_scale": 0.67
+      },
+      "argument2": {
+        "type": "minecraft:mul",
+        "argument1": "ott:underground_river/parameters",
+        "argument2": 1.0
       }
     },
     "fluid_level_spread": {
@@ -323,6 +322,18 @@
               "then_run": {
                 "type": "minecraft:sequence",
                 "sequence": [
+                  {
+                    "type": "minecraft:condition",
+                    "if_true": {
+                      "type": "minecraft:temperature"
+                    },
+                    "then_run": {
+                      "type": "minecraft:block",
+                      "result_state": {
+                        "Name": "minecraft:snow"
+                      }
+                    }
+                  },
                   {
                     "type": "minecraft:condition",
                     "if_true": {

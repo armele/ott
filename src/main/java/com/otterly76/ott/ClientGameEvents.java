@@ -2,6 +2,7 @@ package com.otterly76.ott;
 
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.otterly76.ott.mixin.GuiAccessor;
+import com.otterly76.ott.particle.WeatherParticleSpawner;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.resources.ResourceLocation;
@@ -13,6 +14,7 @@ import net.neoforged.api.distmarker.Dist;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.client.event.RenderGuiLayerEvent;
+import net.neoforged.neoforge.client.event.RenderLevelStageEvent;
 import net.neoforged.neoforge.client.gui.VanillaGuiLayers;
 
 @EventBusSubscriber(modid = Constants.MOD_ID, value = Dist.CLIENT)
@@ -54,6 +56,17 @@ public class ClientGameEvents {
         }
     }
 
+    @SubscribeEvent
+    public static void onRenderLevelStage(RenderLevelStageEvent event) {
+        if (event.getStage() == RenderLevelStageEvent.Stage.AFTER_WEATHER) {
+            Minecraft mc = Minecraft.getInstance();
+            if (mc.level != null && mc.cameraEntity != null) {
+                float partialTicks = event.getPartialTick().getGameTimeDeltaPartialTick(true);
+                WeatherParticleSpawner.update(mc.level, mc.cameraEntity, partialTicks);
+            }
+        }
+    }
+
     private static void renderOverloadedArmor(GuiGraphics guiGraphics) {
         Minecraft mc = Minecraft.getInstance();
         Player player = mc.player;
@@ -88,7 +101,6 @@ public class ClientGameEvents {
         int height = mc.getWindow().getGuiScaledHeight();
 
         int x = width / 2 - 91;
-
         int y = height - 49;
 
         int armorDeck = Math.max(0, (armor - 1) / 20);
@@ -108,16 +120,13 @@ public class ClientGameEvents {
 
             if (currentDeckArmor > (i * 2)) {
                 boolean isHalf = (currentDeckArmor == armorValue - 1);
-
                 int currentColor = getArmorColor(armorDeck);
-
                 ResourceLocation sprite = isHalf ? ARMOR_HALF_SPRITE : ARMOR_FULL_SPRITE;
                 renderTintedSprite(guiGraphics, sprite, xPos, y, currentColor);
             }
         }
 
         guiGraphics.setColor(1.0F, 1.0F, 1.0F, 1.0F);
-
         accessor.setLeftHeight(leftHeight + 10);
     }
 
@@ -135,7 +144,6 @@ public class ClientGameEvents {
 
     private static int getArmorColor(int deck) {
         if (deck <= 0) return ARMOR_COLORS[0];
-
         int index = (deck - 1) % (ARMOR_COLORS.length - 1) + 1;
         return ARMOR_COLORS[index];
     }

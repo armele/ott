@@ -22,7 +22,8 @@
     "LevelRendererMixin",
     "MinecraftSkipExperimentalWarningMixin",
     "SpriteLoaderMixin",
-    "TextureSheetParticleMixin"
+    "TextureSheetParticleMixin",
+    "WaterDropParticleMixin"
   ],
   "injectors": {
     "defaultRequire": 1
