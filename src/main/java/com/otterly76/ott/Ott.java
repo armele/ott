@@ -84,6 +84,7 @@ public class Ott {
         modEventBus.addListener(ClientModEvents::registerLayerDefinitions);
         modEventBus.addListener(ClientModEvents::registerParticleFactories);
         modEventBus.addListener(ClientModEvents::registerRenderers);
+        modEventBus.addListener(ClientModEvents::registerGuiLayers);
         modEventBus.addListener(ClientModEvents::onClientSetup);
         modEventBus.addListener(ModEventBusEvents::registerLayers);
         modEventBus.addListener(ModEventBusEvents::registerAttributes);
@@ -199,8 +200,6 @@ public class Ott {
             event.accept(ModBlocks.MIDNIGHT_SAPLING, CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
 
 
-
-
             ModBlocks.PARTICLE_HEDGES.values().forEach(b ->
                     event.accept(b, CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS)
             );
@@ -275,6 +274,13 @@ public class Ott {
             event.enqueueWork(() -> {
                 Sheets.addWoodType(WoodTypeVariant.PALE_OAK.getWoodType());
             });
+        }
+
+        public static void registerGuiLayers(net.neoforged.neoforge.client.event.RegisterGuiLayersEvent event) {
+            // Register our overlay above the food level layer
+            event.registerAbove(net.neoforged.neoforge.client.gui.VanillaGuiLayers.FOOD_LEVEL,
+                    ResourceLocation.fromNamespaceAndPath(MOD_ID, "nutrition_overlay"),
+                    new com.otterly76.ott.client.NutritionHudOverlay());
         }
 
         public static void registerRenderers(EntityRenderersEvent.RegisterRenderers event) {

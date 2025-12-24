@@ -11,4 +11,10 @@ public interface GuiAccessor {
 
     @Accessor("leftHeight")
     void setLeftHeight(int value);
+
+    @Accessor("rightHeight")
+    int getRightHeight();
+
+    @Accessor("rightHeight")
+    void setRightHeight(int value);
 }
