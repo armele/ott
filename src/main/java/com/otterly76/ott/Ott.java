@@ -12,10 +12,7 @@ import com.otterly76.ott.events.ModEventBusEvents;
 import com.otterly76.ott.generation.*;
 import com.otterly76.ott.item.ModItems;
 import com.otterly76.ott.network.NetworkHandler;
-import com.otterly76.ott.particle.HedgeLeafParticle;
-import com.otterly76.ott.particle.ModParticle;
-import com.otterly76.ott.particle.PaleOakParticle;
-import com.otterly76.ott.particle.TrailParticle;
+import com.otterly76.ott.particle.*;
 import com.otterly76.ott.sound.ModSounds;
 import com.otterly76.ott.util.WoodTypeVariant;
 import com.otterly76.ott.worldgen.ModFeatures;
@@ -304,7 +301,7 @@ public class Ott {
             event.registerLayerDefinition(ModModelLayers.OTT_WOOD_SET_CHEST_BOAT, ChestBoatModel::createBodyModel);
         }
 
-        @SuppressWarnings({"DuplicatedCode", "JavaExistingMethodCanBeUsed"})
+        @SuppressWarnings({"DuplicatedCode"})
         public static void registerParticleFactories(RegisterParticleProvidersEvent event) {
             event.registerSpriteSet(ModParticle.PALE_OAK_LEAVES.get(), PaleOakParticle.Provider::new);
             event.registerSpriteSet(ModParticle.TRAIL.get(), TrailParticle.Provider::new);
@@ -312,6 +309,7 @@ public class Ott {
             event.registerSpriteSet(ModParticle.MIDNIGHT_LEAF.get(), HedgeLeafParticle.Provider::new);
             event.registerSpriteSet(ModParticle.BLOOMING_STARLIGHT_LEAF.get(), HedgeLeafParticle.Provider::new);
             event.registerSpriteSet(ModParticle.BLOOMING_MIDNIGHT_LEAF.get(), HedgeLeafParticle.Provider::new);
+            event.registerSpriteSet(ModParticle.GROUND_FOG.get(), GroundFogParticle.DefaultFactory::new);
         }
     }
 

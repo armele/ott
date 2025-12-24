@@ -2,10 +2,7 @@ package com.otterly76.ott;
 
 import com.otterly76.ott.block.ModBlocks;
 import com.otterly76.ott.client.NutritionHudOverlay;
-import com.otterly76.ott.particle.HedgeLeafParticle;
-import com.otterly76.ott.particle.ModParticle;
-import com.otterly76.ott.particle.PaleOakParticle;
-import com.otterly76.ott.particle.TrailParticle;
+import com.otterly76.ott.particle.*;
 import com.otterly76.ott.util.WoodTypeVariant;
 import net.minecraft.client.renderer.ItemBlockRenderTypes;
 import net.minecraft.client.renderer.RenderType;
@@ -35,6 +32,8 @@ public class ClientModEvents {
     public static void registerParticleFactories(RegisterParticleProvidersEvent event) {
         event.registerSpriteSet(ModParticle.PALE_OAK_LEAVES.get(), PaleOakParticle.Provider::new);
         event.registerSpriteSet(ModParticle.TRAIL.get(), TrailParticle.Provider::new);
+
+        event.registerSpriteSet(ModParticle.GROUND_FOG.get(), GroundFogParticle.DefaultFactory::new);
 
         event.registerSpriteSet(ModParticle.STARLIGHT_LEAF.get(), HedgeLeafParticle.Provider::new);
         event.registerSpriteSet(ModParticle.MIDNIGHT_LEAF.get(), HedgeLeafParticle.Provider::new);

@@ -17,6 +17,7 @@
   "client": [
     "ColorfulHeartsMixin",
     "ConnectScreenMixin",
+    "DripParticleMixin",
     "GuiAccessor",
     "LevelLoadingScreenMixin",
     "LevelRendererMixin",

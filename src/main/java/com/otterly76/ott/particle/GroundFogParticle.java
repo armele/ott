@@ -1,69 +1,72 @@
 package com.otterly76.ott.particle;
 
-import com.mojang.blaze3d.vertex.VertexConsumer;
-import net.minecraft.client.Camera;
 import net.minecraft.client.multiplayer.ClientLevel;
-import net.minecraft.client.particle.Particle;
-import net.minecraft.client.particle.ParticleProvider;
-import net.minecraft.client.particle.SpriteSet;
+import net.minecraft.client.particle.*;
+import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.SimpleParticleType;
-import net.minecraft.world.phys.AABB;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
 import org.jetbrains.annotations.NotNull;
-import org.joml.AxisAngle4d;
-import org.joml.Quaternionf;
-import org.joml.Vector3f;
 
-import java.awt.*;
+public class GroundFogParticle extends TextureSheetParticle {
+    private final float xdxd;
+    private final float zdzd;
 
-public class GroundFogParticle extends WeatherParticle {
-    float xdxd;
-    float zdzd;
-
-    private GroundFogParticle(ClientLevel level, double x, double y, double z, SpriteSet provider) {
+    protected GroundFogParticle(ClientLevel level, double x, double y, double z, SpriteSet provider) {
         super(level, x, y, z);
-        this.setSprite(provider.get(level.getRandom()));
-        this.quadSize = 10.0F;
-        this.lifetime = 30000;
-        Color color = new Color(this.level.getBiome(this.pos).value().getFogColor());
-        this.rCol = (float)color.getRed() / 255.0F;
-        this.gCol = (float)color.getGreen() / 255.0F;
-        this.bCol = (float)color.getBlue() / 255.0F;
-        this.roll = ((float)Math.PI / 2F) * (float)level.random.nextInt(4);
+        this.setSpriteFromAge(provider);
+        this.quadSize = 3.0F;
+        this.lifetime = 500 + level.random.nextInt(200);
+
+        // Use BlockPos.containing with the x, y, z fields inherited from Particle
+        int fogColor = level.getBiome(BlockPos.containing(x, y, z)).value().getFogColor();
+        this.rCol = (float)((fogColor >> 16) & 255) / 255.0F;
+        this.gCol = (float)((fogColor >> 8) & 255) / 255.0F;
+        this.bCol = (float)(fogColor & 255) / 255.0F;
+
+        this.alpha = 0.0F;
+        this.roll = (float)level.random.nextInt(4) * ((float)Math.PI / 2F);
         this.oRoll = this.roll;
-        this.xdxd = (this.random.nextFloat() - 0.5F) / 100.0F;
-        this.zdzd = (this.random.nextFloat() - 0.5F) / 100.0F;
+        this.xdxd = (this.random.nextFloat() - 0.5F) * 0.02F;
+        this.zdzd = (this.random.nextFloat() - 0.5F) * 0.02F;
     }
 
+    @Override
     public void tick() {
         super.tick();
-        if (this.onGround) {
-            this.remove();
+
+        // We'll increase the fade duration to 150 ticks (7.5 seconds) for a very slow transition
+        float fadeDuration = 150.0F;
+        float maxAlpha = 0.4F; // Slightly lower for better layering
+
+        float progress = (float)this.age / (float)this.lifetime;
+
+        if (this.age < fadeDuration) {
+            // Smoothly ramp up using a sine curve for a soft entry
+            float fadeInScale = (float)this.age / fadeDuration;
+            this.alpha = (float)Math.sin(fadeInScale * (Math.PI / 2)) * maxAlpha;
+        } else if (this.age > (this.lifetime - fadeDuration)) {
+            // Smoothly ramp down
+            float fadeOutScale = (this.lifetime - this.age) / fadeDuration;
+            this.alpha = (float)Math.sin(fadeOutScale * (Math.PI / 2)) * maxAlpha;
+        } else {
+            this.alpha = maxAlpha;
         }
 
         this.xd = this.xdxd;
         this.zd = this.zdzd;
+
+        // Make the fog "heavy" so it stays at the surface
+        this.yd *= 0.85;
+
+        if (this.onGround || this.age >= this.lifetime) {
+            this.remove();
+        }
     }
 
-    public void remove() {
-        super.remove();
-    }
-
-    public @NotNull AABB getRenderBoundingBox(float partialTicks) {
-        return this.getBoundingBox().inflate(4.0F);
-    }
-
-    @SuppressWarnings("DuplicatedCode")
-    public void render(@NotNull VertexConsumer vertexConsumer, @NotNull Camera camera, float f) {
-        Vector3f localPos = this.getInterpolatedRelPos(camera, f);
-        float x = localPos.x();
-        float y = localPos.y();
-        float z = localPos.z();
-
-        Quaternionf quaternion = new Quaternionf(new AxisAngle4d(this.roll, 0.0F, 1.0F, 0.0F));
-        this.flipItTurnwaysIfBackfaced(quaternion, new Vector3f(x, y, z));
-        this.renderRotatedQuad(vertexConsumer, quaternion, x, y + 0.25F, z, f);
+    @Override
+    public @NotNull ParticleRenderType getRenderType() {
+        return ParticleRenderType.PARTICLE_SHEET_TRANSLUCENT;
     }
 
     @OnlyIn(Dist.CLIENT)
