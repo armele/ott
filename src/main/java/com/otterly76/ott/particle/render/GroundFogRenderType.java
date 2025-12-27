@@ -20,6 +20,7 @@ import org.jetbrains.annotations.NotNull;
 public class GroundFogRenderType implements ParticleRenderType {
     public static final ParticleRenderType INSTANCE = new GroundFogRenderType();
 
+    @Override
     public BufferBuilder begin(Tesselator tesselator, @NotNull TextureManager textureManager) {
         RenderSystem.enableDepthTest();
         RenderSystem.depthMask(false);
@@ -28,11 +29,12 @@ public class GroundFogRenderType implements ParticleRenderType {
         RenderSystem.setShader(GameRenderer::getParticleShader);
 
         RenderSystem.setShaderTexture(0, ResourceLocation.withDefaultNamespace("textures/atlas/particles.png"));
-
         RenderSystem.setShaderTexture(2, Minecraft.getInstance().gameRenderer.lightTexture().lightTextureLocation);
+
         return tesselator.begin(Mode.QUADS, DefaultVertexFormat.PARTICLE);
     }
 
+    @Override
     public String toString() {
         return "ott:ground_fog";
     }

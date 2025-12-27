@@ -18,7 +18,6 @@ public class GroundFogParticle extends TextureSheetParticle {
         this.quadSize = 3.0F;
         this.lifetime = 500 + level.random.nextInt(200);
 
-        // Use BlockPos.containing with the x, y, z fields inherited from Particle
         int fogColor = level.getBiome(BlockPos.containing(x, y, z)).value().getFogColor();
         this.rCol = (float)((fogColor >> 16) & 255) / 255.0F;
         this.gCol = (float)((fogColor >> 8) & 255) / 255.0F;
@@ -35,24 +34,18 @@ public class GroundFogParticle extends TextureSheetParticle {
     public void tick() {
         super.tick();
 
-        // Force age out if it's not raining anymore
         if (this.level.getRainLevel(1.0f) <= 0.0f) {
-            this.age += 10; // Rapidly age out when rain stops
+            this.age += 10;
         }
 
-        // We'll increase the fade duration to 150 ticks (7.5 seconds) for a very slow transition
         float fadeDuration = 150.0F;
-        float maxAlpha = 0.4F; // Slightly lower for better layering
-
-        float progress = (float)this.age / (float)this.lifetime;
+        float maxAlpha = 0.4F;
 
         if (this.age < fadeDuration) {
-            // Smoothly ramp up using a sine curve for a soft entry
             float fadeInScale = (float)this.age / fadeDuration;
             this.alpha = (float)Math.sin(fadeInScale * (Math.PI / 2)) * maxAlpha;
         } else if (this.age > (this.lifetime - fadeDuration)) {
-            // Smoothly ramp down
-            float fadeOutScale = (this.lifetime - this.age) / fadeDuration;
+            float fadeOutScale = (float)(this.lifetime - this.age) / fadeDuration;
             this.alpha = (float)Math.sin(fadeOutScale * (Math.PI / 2)) * maxAlpha;
         } else {
             this.alpha = maxAlpha;
@@ -60,8 +53,6 @@ public class GroundFogParticle extends TextureSheetParticle {
 
         this.xd = this.xdxd;
         this.zd = this.zdzd;
-
-        // Make the fog "heavy" so it stays at the surface
         this.yd *= 0.85;
 
         if (this.onGround || this.age >= this.lifetime) {
