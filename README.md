@@ -92,3 +92,7 @@ Running List:
 - Removed the unnecessary Recipe Book button from the Inventory screen 📖
   - Redundant and subpar as we use JEI as a dependency
 - Vanilla recipes that require buckets but should not eat said buckets no longer eat the buckets
+- Jukeboxes loop the disc they are playing instead if stopping at the end of the song
+  - Now you can set up cool ambient music in your worlds!
+  - No more missing discs when jukeboxes stop playing!
+- 
