@@ -5,10 +5,12 @@
   "compatibilityLevel": "JAVA_21",
   "refmap": "ott.refmap.json",
   "mixins": [
+    "AccessorItem",
     "BushBlockMixin",
     "FenceGateBlockMixin",
     "FenceJumpMixin",
     "JigsawStructureMixin",
+    "MixinItems",
     "SinglePoolElementAccessor",
     "SinglePoolElementMixin",
     "TreeDecoratorTypeInvoker",

@@ -13,6 +13,7 @@ import com.otterly76.ott.events.ModEventBusEvents;
 import com.otterly76.ott.generation.*;
 import com.otterly76.ott.inventory.ModMenuTypes;
 import com.otterly76.ott.item.ModItems;
+import com.otterly76.ott.mixin.AccessorItem;
 import com.otterly76.ott.network.NetworkHandler;
 import com.otterly76.ott.particle.*;
 import com.otterly76.ott.sound.ModSounds;
@@ -36,6 +37,8 @@ import net.minecraft.server.packs.repository.Pack;
 import net.minecraft.server.packs.repository.PackSource;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.CreativeModeTabs;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.Items;
 import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.FireBlock;
@@ -357,6 +360,23 @@ public class Ott {
             if (pack != null) {
                 event.addRepositorySource((packConsumer) -> packConsumer.accept(pack));
             }
+        }
+    }
+    public static void fixMC151457() {
+        setCraftingRemainderIfNull(Items.PUFFERFISH_BUCKET);
+        setCraftingRemainderIfNull(Items.SALMON_BUCKET);
+        setCraftingRemainderIfNull(Items.COD_BUCKET);
+        setCraftingRemainderIfNull(Items.TROPICAL_FISH_BUCKET);
+        setCraftingRemainderIfNull(Items.AXOLOTL_BUCKET);
+        setCraftingRemainderIfNull(Items.POWDER_SNOW_BUCKET);
+        setCraftingRemainderIfNull(Items.TADPOLE_BUCKET);
+    }
+
+    private static void setCraftingRemainderIfNull(Item target) {
+        AccessorItem accessor = (AccessorItem) target;
+        // Use our own accessor getter to avoid the deprecated Item#getCraftingRemainingItem()
+        if (accessor.ott$getCraftingRemainder() == null) {
+            accessor.ott$setCraftingRemainder(Items.BUCKET);
         }
     }
 }

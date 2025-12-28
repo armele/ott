@@ -5,17 +5,6 @@ But First... The Thank Yous!
 - THANK YOU to Ayar for helping me test this insanity!
 - THANK YOU to the LDT team for creating and maintaining the MineColonies mod!
 
-Mixins Used:
-=======
-- Yes, this is mainly for Ray's benefit
-  - Overriding vanilla weather particles to add custom particle textures
-  - Overriding the vanilla health/hearts sprite to add custom icons
-  - Foliage placement in the Pale Garden backport
-  - Suppressing the experimental features warning for new instances
-  - Blocking animal pathfinding for fence gates
-  - Allowing players to jump over fences, fence gates, and walls
-  - Adding game tips to the bottom of the loading screen
-
 FAQ:
 =======
 1. Can you backport this to 1.yadda?
@@ -102,3 +91,4 @@ Running List:
   - Hitting Esc returns you and the items back into your inventory (the emergency oopsie escape)
 - Removed the unnecessary Recipe Book button from the Inventory screen 📖
   - Redundant and subpar as we use JEI as a dependency
+- Vanilla recipes that require buckets but should not eat said buckets no longer eat the buckets
