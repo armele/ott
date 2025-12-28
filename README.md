@@ -93,3 +93,5 @@ Running List:
   - A new Trash Can icon on the Inventory screen
   - Clicking the Trash It button deletes the inventory of the trash
   - Hitting Esc returns you and the items back into your inventory (the emergency oopsie escape)
+- Removed the unnecessary Recipe Book button from the Inventory screen
+  - Redundant and subpar as we use JEI as a dependency
