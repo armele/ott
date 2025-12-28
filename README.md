@@ -42,7 +42,7 @@ Running List:
 - Identified and added missing recipes (ongoing)
 - Added the evil Hedge
     - Evil Cackling Ensues
-    - Added custom damage for the murder plants: Flora
+    - Added custom damage for the murder plants: Flora 🌼
     - Can be grown as a crop from Hedge Sprouts
     - Can be harvested with a hoe to bypass damage
 - Added Create support, first pass (3D models and textures for ores)
@@ -64,14 +64,21 @@ Running List:
   - Used apples for the food icons in homage to AppleSkin
 - Added a new custom health / hearts display to mimic Colorful Hearts ❤️
   - This displays all health hearts on one hud line to clean up the display
-  - Each set of 20 health is a new color (red, orange, yellow, etc.)
+  - Each set of 20 health is a new color
+    - Colors follow from Red through Pink with a step between each color
+    - If you somehow have more than 230 health it will wrap back to red
+    - Also, how in nine hells do you have more than 230 health?
 - Added new custom armor values display to mimic OverloadedArmorBar
   - This displays all armor values on one hud line to clean up the display
-  - Each set of 20 armor is a new color (brown, iron, gold, etc.)
+  - Each set of 20 armor is a new color
+    - Iron → Diamond Blue → Lapis Blue → Emerald Green → Gold → Purple → Red
+    - This covers 80 points of armor
+    - If you have more than 80 armor it will wrap back to Iron
+    - Also, if you somehow have more than 80 armor I'd love to know HOW
 - Pale Garden 1:1 backport
   - Because it's awesome and I want it
 - Suppressed the "Experimental Features" warning for new instances
-- Blocking the gates for animals so we don't have to chase livestock around
+- Blocking the gates for animals so we don't have to chase livestock around 🐮
   - Animals don't even acknowledge the gates, so they won't all cluster in front of it, either
   - Still need to put a roof on it for goats and frogs since those buggers jump
 - Adding floral hedges, blooming hedges, and creeping hedge
@@ -89,9 +96,9 @@ Running List:
   - Larger cave features
   - Underground rivers and lakes!
 - Doubled the length of day and halved the length of night ⏳
-- Added Trash Can functionality
+- Added Trash Can functionality 🗑️
   - A new Trash Can icon on the Inventory screen
   - Clicking the Trash It button deletes the inventory of the trash
   - Hitting Esc returns you and the items back into your inventory (the emergency oopsie escape)
-- Removed the unnecessary Recipe Book button from the Inventory screen
+- Removed the unnecessary Recipe Book button from the Inventory screen 📖
   - Redundant and subpar as we use JEI as a dependency
