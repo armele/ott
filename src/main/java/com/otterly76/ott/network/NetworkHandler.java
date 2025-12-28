@@ -13,5 +13,17 @@ public class NetworkHandler {
                 ClientboundSyncNutritionPacket.STREAM_CODEC,
                 ClientboundSyncNutritionPacket::handle
         );
+
+        registrar.playToServer(
+                ServerboundOpenTrashPacket.TYPE,
+                net.minecraft.network.codec.StreamCodec.unit(new ServerboundOpenTrashPacket()),
+                ServerboundOpenTrashPacket::handle
+        );
+
+        registrar.playToServer(
+                ServerboundConfirmTrashPacket.TYPE,
+                net.minecraft.network.codec.StreamCodec.unit(new ServerboundConfirmTrashPacket()),
+                ServerboundConfirmTrashPacket::handle
+        );
     }
 }

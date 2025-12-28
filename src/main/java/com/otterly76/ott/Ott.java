@@ -3,6 +3,7 @@ package com.otterly76.ott;
 import com.otterly76.ott.block.ModBlocks;
 import com.otterly76.ott.block.entity.ModBlockEntities;
 import com.otterly76.ott.block.wood.ModBlockFamilies;
+import com.otterly76.ott.client.gui.TrashScreen;
 import com.otterly76.ott.entity.ModEntities;
 import com.otterly76.ott.entity.client.CreakingRenderer;
 import com.otterly76.ott.entity.client.ModModelLayers;
@@ -10,6 +11,7 @@ import com.otterly76.ott.entity.client.OttWoodSetBoatRenderer;
 import com.otterly76.ott.entity.client.PaleOakBoatRenderer;
 import com.otterly76.ott.events.ModEventBusEvents;
 import com.otterly76.ott.generation.*;
+import com.otterly76.ott.inventory.ModMenuTypes;
 import com.otterly76.ott.item.ModItems;
 import com.otterly76.ott.network.NetworkHandler;
 import com.otterly76.ott.particle.*;
@@ -78,6 +80,7 @@ public class Ott {
         ModTreeDecoratorTypes.register(modEventBus);
         ModFeatures.register(modEventBus);
         ModPlacedFeatures.PLACEMENT_MODIFIERS.register(modEventBus);
+        ModMenuTypes.register(modEventBus);
         NeoForge.EVENT_BUS.register(this);
         modEventBus.addListener(this::addCreative);
         modEventBus.addListener(ModBlockEntities::registerTileExtensions);
@@ -85,6 +88,7 @@ public class Ott {
         modEventBus.addListener(ClientModEvents::registerParticleFactories);
         modEventBus.addListener(ClientModEvents::registerRenderers);
         modEventBus.addListener(ClientModEvents::registerGuiLayers);
+        modEventBus.addListener(ClientModEvents::registerMenuScreens);
         modEventBus.addListener(ClientModEvents::onClientSetup);
         modEventBus.addListener(ModEventBusEvents::registerLayers);
         modEventBus.addListener(ModEventBusEvents::registerAttributes);
@@ -274,6 +278,11 @@ public class Ott {
             event.enqueueWork(() -> {
                 Sheets.addWoodType(WoodTypeVariant.PALE_OAK.getWoodType());
             });
+        }
+
+
+        public static void registerMenuScreens(net.neoforged.neoforge.client.event.RegisterMenuScreensEvent event) {
+            event.register(ModMenuTypes.TRASH_MENU.get(), TrashScreen::new);
         }
 
         public static void registerGuiLayers(net.neoforged.neoforge.client.event.RegisterGuiLayersEvent event) {

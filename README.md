@@ -89,3 +89,7 @@ Running List:
   - Larger cave features
   - Underground rivers and lakes!
 - Doubled the length of day and halved the length of night ⏳
+- Added Trash Can functionality
+  - A new Trash Can icon on the Inventory screen
+  - Clicking the Trash It button deletes the inventory of the trash
+  - Hitting Esc returns you and the items back into your inventory (the emergency oopsie escape)

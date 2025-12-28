@@ -19,6 +19,7 @@
     "ConnectScreenMixin",
     "DripParticleMixin",
     "GuiAccessor",
+    "InventoryScreenMixin",
     "LevelLoadingScreenMixin",
     "LevelRendererMixin",
     "MinecraftSkipExperimentalWarningMixin",
