@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/template_lantern_hanging",
+  "textures": {
+    "lantern": "ott:block/flimsy_protective_lantern",
+    "particle": "ott:block/flimsy_protective_lantern"
+  }
+}

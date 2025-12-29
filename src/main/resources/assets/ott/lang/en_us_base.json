@@ -168,5 +168,9 @@
   "block.ott.starlight_sapling": "Starlight Sapling",
   "block.ott.midnight_sapling": "Midnight Sapling",
   "block.ott.potted_starlight_sapling": "Potted Starlight Sapling",
-  "block.ott.potted_midnight_sapling": "Potted Midnight Sapling"
+  "block.ott.potted_midnight_sapling": "Potted Midnight Sapling",
+
+  "block.ott.flimsy_protective_lantern": "Flimsy Protective Lantern",
+  "block.ott.protective_lantern": "Protective Lantern",
+  "block.ott.sturdy_protective_lantern": "Sturdy Protective Lantern"
 }

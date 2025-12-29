@@ -1,9 +1,11 @@
 package com.otterly76.ott.worldgen.dimension;
 
 import com.otterly76.ott.Constants;
+import com.otterly76.ott.util.LanternManager;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.entity.MobCategory;
 import net.minecraft.world.entity.MobSpawnType;
 import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.dimension.DimensionType;
@@ -35,8 +37,17 @@ public class DimensionEvents {
 
     @SubscribeEvent
     public static void onCheckSpawn(MobSpawnEvent.SpawnPlacementCheck event) {
+        // First check your dimension logic
         if (isSchematicDimension(event.getLevel())) {
             event.setResult(MobSpawnEvent.SpawnPlacementCheck.Result.FAIL);
+            return;
+        }
+
+        // Then check lantern protection for hostile mobs
+        if (event.getEntityType().getCategory() == MobCategory.MONSTER) {
+            if (LanternManager.isPosProtected(event.getPos())) {
+                event.setResult(MobSpawnEvent.SpawnPlacementCheck.Result.FAIL);
+            }
         }
     }
 

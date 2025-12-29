@@ -17,6 +17,7 @@ import com.otterly76.ott.mixin.AccessorItem;
 import com.otterly76.ott.network.NetworkHandler;
 import com.otterly76.ott.particle.*;
 import com.otterly76.ott.sound.ModSounds;
+import com.otterly76.ott.util.LanternSavedData;
 import com.otterly76.ott.util.WoodTypeVariant;
 import com.otterly76.ott.worldgen.ModFeatures;
 import com.otterly76.ott.worldgen.ModPlacedFeatures;
@@ -206,7 +207,6 @@ public class Ott {
             event.accept(ModBlocks.STARLIGHT_SAPLING, CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
             event.accept(ModBlocks.MIDNIGHT_SAPLING, CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
 
-
             ModBlocks.PARTICLE_HEDGES.values().forEach(b ->
                     event.accept(b, CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS)
             );
@@ -228,6 +228,10 @@ public class Ott {
             ModBlocks.WOOD_SETS.keySet().forEach(setName -> {
                 event.accept(ModItems.WOOD_SET_SIGNS.get(setName), CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
                 event.accept(ModItems.WOOD_SET_HANGING_SIGNS.get(setName), CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
+
+                event.accept(ModBlocks.FLIMSY_PROTECTIVE_LANTERN, CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
+                event.accept(ModBlocks.PROTECTIVE_LANTERN, CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
+                event.accept(ModBlocks.STURDY_PROTECTIVE_LANTERN, CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
             });
         }
 
@@ -274,6 +278,7 @@ public class Ott {
 
     @SubscribeEvent
     public void onServerStarting(ServerStartingEvent event) {
+        LanternSavedData.init(event.getServer().overworld());
     }
 
     public static class ClientModEvents {

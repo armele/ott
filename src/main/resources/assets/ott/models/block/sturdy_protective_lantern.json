@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/template_lantern",
+  "textures": {
+    "lantern": "ott:block/sturdy_protective_lantern",
+    "particle": "ott:block/sturdy_protective_lantern"
+  }
+}

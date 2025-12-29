@@ -1,0 +1,27 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "#": {
+      "item": "minecraft:glass_pane"
+    },
+    "G": {
+      "item": "minecraft:netherite_ingot"
+    },
+    "L": {
+      "tag": "minecraft:logs"
+    },
+    "T": {
+      "item": "minecraft:fire_charge"
+    }
+  },
+  "pattern": [
+    "GTG",
+    "#L#",
+    "#L#"
+  ],
+  "result": {
+    "count": 1,
+    "id": "ott:sturdy_protective_lantern"
+  }
+}

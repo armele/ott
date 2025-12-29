@@ -81,8 +81,32 @@ public class ModBlockTagProvider extends BlockTagsProvider {
                 ModBlocks.RESIN_BRICK_STAIRS.get(),
                 ModBlocks.RESIN_BRICK_WALL.get()
         );
-        this.tag(BlockTags.MINEABLE_WITH_AXE).add(ModBlocks.CREAKING_HEART.get());
-        this.tag(BlockTags.MINEABLE_WITH_HOE).add(ModBlocks.PALE_MOSS_BLOCK.get(), ModBlocks.PALE_MOSS_CARPET.get());
+        this.tag(BlockTags.MINEABLE_WITH_AXE).add(
+                ModBlocks.CREAKING_HEART.get(),
+                ModBlocks.FLIMSY_PROTECTIVE_LANTERN.get(),
+                ModBlocks.PROTECTIVE_LANTERN.get(),
+                ModBlocks.STURDY_PROTECTIVE_LANTERN.get());
+
+        this.tag(BlockTags.MINEABLE_WITH_HOE).add(
+                ModBlocks.PALE_MOSS_BLOCK.get(),
+                ModBlocks.PALE_MOSS_CARPET.get(),
+                ModBlocks.HEDGE.get());
+
+        var shovelTag = this.tag(BlockTags.MINEABLE_WITH_SHOVEL);
+        ModBlocks.getAllGradientConcretePowderBlocks().forEach(block -> shovelTag.add(block.get()));
+
+        var pickaxeTag = this.tag(BlockTags.MINEABLE_WITH_PICKAXE);
+        ModBlocks.getAllGradientConcreteBlocks().forEach(block -> pickaxeTag.add(block.get()));
+        ModBlocks.getAllGradientTerracottaBlocks().forEach(block -> pickaxeTag.add(block.get()));
+
+        var woolTag = this.tag(BlockTags.WOOL);
+        ModBlocks.getAllGradientWoolBlocks().forEach(block -> woolTag.add(block.get()));
+
+        var terracottaTag = this.tag(BlockTags.TERRACOTTA);
+        ModBlocks.getAllGradientTerracottaBlocks().forEach(block -> terracottaTag.add(block.get()));
+
+        var stainedGlassTag = this.tag(BlockTags.IMPERMEABLE);
+        ModBlocks.getAllGradientStainedGlassBlocks().forEach(block -> stainedGlassTag.add(block.get()));
 
         this.tag(BlockTags.DIRT).add(ModBlocks.PALE_MOSS_BLOCK.get());
         this.tag(BlockTags.REPLACEABLE_BY_TREES).add(ModBlocks.PALE_MOSS_BLOCK.get());

@@ -33,6 +33,10 @@ public class ModItems {
     public static final DeferredHolder<Item, BlockItem> STARLIGHT_SAPLING = registerBlockItem("starlight_sapling", ModBlocks.STARLIGHT_SAPLING);
     public static final DeferredHolder<Item, BlockItem> MIDNIGHT_SAPLING = registerBlockItem("midnight_sapling", ModBlocks.MIDNIGHT_SAPLING);
 
+    public static final DeferredHolder<Item, BlockItem> FLIMSY_PROTECTIVE_LANTERN = registerBlockItem("flimsy_protective_lantern", ModBlocks.FLIMSY_PROTECTIVE_LANTERN);
+    public static final DeferredHolder<Item, BlockItem> PROTECTIVE_LANTERN = registerBlockItem("protective_lantern", ModBlocks.PROTECTIVE_LANTERN);
+    public static final DeferredHolder<Item, BlockItem> STURDY_PROTECTIVE_LANTERN = registerBlockItem("sturdy_protective_lantern", ModBlocks.STURDY_PROTECTIVE_LANTERN);
+
     public static DeferredItem<Item> PALE_OAK_SAPLING;
 
     // Backport / Minecraft Namespace Items

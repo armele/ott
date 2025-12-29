@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "hanging=false": {
+      "model": "ott:block/protective_lantern"
+    },
+    "hanging=true": {
+      "model": "ott:block/protective_lantern_hanging"
+    }
+  }
+}
