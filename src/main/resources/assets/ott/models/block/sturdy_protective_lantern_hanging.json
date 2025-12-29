@@ -1,5 +1,5 @@
 {
-  "parent": "minecraft:block/template_lantern_hanging",
+  "parent": "minecraft:block/template_hanging_lantern",
   "textures": {
     "lantern": "ott:block/sturdy_protective_lantern",
     "particle": "ott:block/sturdy_protective_lantern"

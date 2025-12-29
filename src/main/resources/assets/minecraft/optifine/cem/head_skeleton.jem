@@ -1,6 +1,5 @@
 {
-	"credit": "Created by UnduGT for the Undopia Patch",
-	"texture": "skeleton_head.png",
+	"texture": "minecraft:entity/skeleton/skeleton_head.png",
 	"textureSize": [64, 32],
 	"models": [
 		{

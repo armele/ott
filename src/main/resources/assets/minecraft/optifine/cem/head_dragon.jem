@@ -1,7 +1,6 @@
 {
-	"credit": "Made with Blockbench",
 	"textureSize": [256, 256],
-	"texture": "textures/entity/dragon/dragon_head.png",
+	"texture": "minecraft:entity/dragon/dragon.png",
 	"models": [
 		{
 			"part": "head",

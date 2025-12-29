@@ -1,5 +1,5 @@
 {
-	"texture": "head_zombie.png",
+	"texture": "minecraft:entity/zombie/zombie_head.png",
 	"textureSize": [128, 128],
 	"models": [
 		{
