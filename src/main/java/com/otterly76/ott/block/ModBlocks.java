@@ -187,13 +187,13 @@ public class ModBlocks {
     public static final DeferredBlock<FlowerPotBlock> POTTED_PALE_OAK_SAPLING = registerBackportedBlock("potted_pale_oak_sapling", () -> new FlowerPotBlock(() -> (FlowerPotBlock) Blocks.FLOWER_POT, PALE_OAK_SAPLING, Properties.of().strength(4.0f).sound(SoundType.GRASS).noOcclusion()));
 
     public static final DeferredBlock<Block> FLIMSY_PROTECTIVE_LANTERN = BLOCKS.register("flimsy_protective_lantern",
-            () -> new ProtectiveLanternBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.LANTERN), 64));
+            () -> new ProtectiveLanternBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.LANTERN), 32));
 
     public static final DeferredBlock<Block> PROTECTIVE_LANTERN = BLOCKS.register("protective_lantern",
-            () -> new ProtectiveLanternBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.LANTERN), 128));
+            () -> new ProtectiveLanternBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.LANTERN), 64));
 
     public static final DeferredBlock<Block> STURDY_PROTECTIVE_LANTERN = BLOCKS.register("sturdy_protective_lantern",
-            () -> new ProtectiveLanternBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.LANTERN), 256));
+            () -> new ProtectiveLanternBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.LANTERN), 128));
 
     /**
      * Your original "real hedge" block (damage/bonemeal/etc). Keep separate.

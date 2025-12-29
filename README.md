@@ -96,5 +96,5 @@ Running List:
   - Now you can set up cool ambient music in your worlds!
   - No more missing discs when jukeboxes stop playing!
 - Added a set of three protective lanterns
-  - Ranges from 4 chunk, 8 chunk, and 16 chunk radius
+  - Ranges from 2 chunk, 4 chunk, and 8 chunk radius
   - Blocks all hostile monster spawns in the area
