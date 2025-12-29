@@ -233,7 +233,6 @@ public class Ott {
             event.accept(ModBlocks.FLIMSY_PROTECTIVE_LANTERN, CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
             event.accept(ModBlocks.PROTECTIVE_LANTERN, CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
             event.accept(ModBlocks.STURDY_PROTECTIVE_LANTERN, CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
-
         }
 
         // Tools & Utilities: boats
