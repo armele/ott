@@ -3,8 +3,12 @@ package com.otterly76.ott.generation;
 import com.otterly76.ott.block.ModBlocks;
 import com.otterly76.ott.util.ModTags;
 import net.minecraft.core.HolderLookup;
+import net.minecraft.core.registries.Registries;
 import net.minecraft.data.PackOutput;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.BlockTags;
+import net.minecraft.tags.TagKey;
+import net.minecraft.world.level.block.Block;
 import net.neoforged.neoforge.common.data.BlockTagsProvider;
 import net.neoforged.neoforge.common.data.ExistingFileHelper;
 import org.jetbrains.annotations.NotNull;
@@ -23,6 +27,44 @@ public class ModBlockTagProvider extends BlockTagsProvider {
     @Override
     protected void addTags(HolderLookup.@NotNull Provider provider) {
         this.addVanillaTags();
+
+        TagKey<Block> DO_DEFAULT = TagKey.create(Registries.BLOCK, ResourceLocation.fromNamespaceAndPath("domum_ornamentum", "default"));
+        var doTag = this.tag(DO_DEFAULT);
+
+        // 1. Add static lists and individual blocks
+        ModBlocks.ALL_GRADIENT_BLOCKS.forEach(block -> doTag.add(block.get()));
+        ModBlocks.LIMESTONE.forEach(block -> doTag.add(block.get()));
+        ModBlocks.SEAGLASS.forEach(block -> doTag.add(block.get()));
+
+        doTag.add(
+                ModBlocks.HEDGE.get(),
+                ModBlocks.PALE_MOSS_BLOCK.get(),
+                ModBlocks.PALE_OAK_LOG.get(),
+                ModBlocks.PALE_OAK_WOOD.get(),
+                ModBlocks.PALE_OAK_PLANKS.get(),
+                ModBlocks.STRIPPED_PALE_OAK_LOG.get(),
+                ModBlocks.STRIPPED_PALE_OAK_WOOD.get(),
+                ModBlocks.PALE_OAK_LEAVES.get(),
+                ModBlocks.RESIN_BLOCK.get(),
+                ModBlocks.RESIN_BRICKS.get(),
+                ModBlocks.CHISELED_RESIN_BRICKS.get()
+        );
+
+        // 2. Add Map-based collections (Hedges)
+        ModBlocks.PARTICLE_HEDGES.values().forEach(block -> doTag.add(block.get()));
+        ModBlocks.CREEPING_HEDGES.values().forEach(block -> doTag.add(block.get()));
+
+        // 3. Add everything relevant from the Wood Sets
+        ModBlocks.WOOD_SETS.values().forEach(set -> {
+            doTag.add(
+                    set.log().get(),
+                    set.wood().get(),
+                    set.strippedLog().get(),
+                    set.strippedWood().get(),
+                    set.planks().get(),
+                    set.leaves().get()
+            );
+        });
 
         this.tag(BlockTags.COMBINATION_STEP_SOUND_BLOCKS).add(ModBlocks.RESIN_CLUMP.get());
         this.tag(BlockTags.WALLS).add(ModBlocks.RESIN_BRICK_WALL.get());
