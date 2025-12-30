@@ -101,4 +101,7 @@ Running List:
 - Vaults and Ominous Vaults adjusted to be reusable after an hour
   - no more single use vaults
   - no more stacks of unused keys in storage
+- Added the second round of gradient blocks, flipped
+  - DO bakes the textures in as it sees them
+  - When using DO to make stairs, etc, you only got one direction and not the reverse as an option
 - 
