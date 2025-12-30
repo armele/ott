@@ -98,3 +98,7 @@ Running List:
 - Added a set of three protective lanterns
   - Ranges from 2 chunk, 4 chunk, and 8 chunk radius
   - Blocks all hostile monster spawns in the area
+- Vaults and Ominous Vaults adjusted to be reusable after an hour
+  - no more single use vaults
+  - no more stacks of unused keys in storage
+- 

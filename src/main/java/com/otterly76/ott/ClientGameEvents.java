@@ -37,26 +37,25 @@ public class ClientGameEvents {
     @SubscribeEvent
     public static void onRenderGuiLayer(RenderGuiLayerEvent.Pre event) {
         if (VanillaGuiLayers.PLAYER_HEALTH.equals(event.getName())) {
-            // Force health to baseline row (39)
             ((GuiAccessor) Minecraft.getInstance().gui).setLeftHeight(39);
         }
         else if (VanillaGuiLayers.FOOD_LEVEL.equals(event.getName())) {
-            // Force hunger to baseline row (39)
             ((GuiAccessor) Minecraft.getInstance().gui).setRightHeight(39);
-            // If you see double hunger bars, uncomment the line below:
-            // event.setCanceled(true);
-            // Note: In some NeoForge versions, canceling here kills the "Above" layer.
-            // If the nutrition bar disappears when you cancel, keep it un-canceled.
+
         }
         else if (VanillaGuiLayers.ARMOR_LEVEL.equals(event.getName())) {
-            event.setCanceled(true);
-            // Lock armor row to 49
-            ((GuiAccessor) Minecraft.getInstance().gui).setLeftHeight(49);
-            renderOverloadedArmor(event.getGuiGraphics());
+            Minecraft mc = Minecraft.getInstance();
+            if (mc.player != null && !mc.options.hideGui && !mc.player.isSpectator()) {
+                assert mc.gameMode != null;
+                if (mc.gameMode.canHurtPlayer()) {
+                    event.setCanceled(true);
+                    ((GuiAccessor) Minecraft.getInstance().gui).setLeftHeight(49);
+                    renderOverloadedArmor(event.getGuiGraphics());
+                }
+            }
         }
         else if (VanillaGuiLayers.AIR_LEVEL.equals(event.getName())) {
             event.getGuiGraphics().pose().pushPose();
-            // Move air up to the third row (59)
             event.getGuiGraphics().pose().translate(0, -10, 0);
         }
     }
@@ -66,7 +65,6 @@ public class ClientGameEvents {
         if (VanillaGuiLayers.AIR_LEVEL.equals(event.getName())) {
             event.getGuiGraphics().pose().popPose();
         }
-        // Increment height for elements above food (like Air/Oxygen)
         if (VanillaGuiLayers.FOOD_LEVEL.equals(event.getName())) {
             ((GuiAccessor) Minecraft.getInstance().gui).setRightHeight(49);
         }
@@ -87,6 +85,9 @@ public class ClientGameEvents {
         Minecraft mc = Minecraft.getInstance();
         Player player = mc.player;
         if (player == null) return;
+        if (mc.options.hideGui || player.isSpectator()) return;
+        assert mc.gameMode != null;
+        if (!mc.gameMode.canHurtPlayer()) return;
 
         int armor = player.getArmorValue();
 
@@ -142,7 +143,6 @@ public class ClientGameEvents {
         }
 
         guiGraphics.setColor(1.0F, 1.0F, 1.0F, 1.0F);
-        // Ensure the game knows the armor row is occupied
         ((GuiAccessor) Minecraft.getInstance().gui).setLeftHeight(59);
     }
 
