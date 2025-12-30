@@ -2,16 +2,24 @@ package com.otterly76.ott;
 
 import com.otterly76.ott.block.ModBlocks;
 import com.otterly76.ott.client.NutritionHudOverlay;
+import com.otterly76.ott.client.gui.TrashScreen;
+import com.otterly76.ott.entity.ModEntities;
+import com.otterly76.ott.entity.client.CreakingRenderer;
+import com.otterly76.ott.entity.client.ModModelLayers;
+import com.otterly76.ott.entity.client.OttWoodSetBoatRenderer;
+import com.otterly76.ott.entity.client.PaleOakBoatRenderer;
+import com.otterly76.ott.inventory.ModMenuTypes;
 import com.otterly76.ott.particle.*;
 import com.otterly76.ott.util.WoodTypeVariant;
+import net.minecraft.client.model.BoatModel;
+import net.minecraft.client.model.ChestBoatModel;
 import net.minecraft.client.renderer.ItemBlockRenderTypes;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.Sheets;
 import net.minecraft.resources.ResourceLocation;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.fml.event.lifecycle.FMLClientSetupEvent;
-import net.neoforged.neoforge.client.event.RegisterGuiLayersEvent;
-import net.neoforged.neoforge.client.event.RegisterParticleProvidersEvent;
+import net.neoforged.neoforge.client.event.*;
 import net.neoforged.neoforge.client.gui.VanillaGuiLayers;
 
 @SuppressWarnings("MethodRefCanBeReplacedWithLambda")
@@ -20,6 +28,11 @@ public class ClientModEvents {
     public static void register(IEventBus modBus) {
         modBus.addListener(ClientModEvents::registerGuiLayers);
         modBus.addListener(ClientModEvents::onClientSetup);
+        modBus.addListener(ClientModEvents::registerParticleFactories);
+        modBus.addListener(ClientModEvents::registerItemColors);
+        modBus.addListener(ClientModEvents::registerMenuScreens);
+        modBus.addListener(ClientModEvents::registerRenderers);
+        modBus.addListener(ClientModEvents::registerLayerDefinitions);
     }
 
     public static void registerGuiLayers(RegisterGuiLayersEvent event) {
@@ -39,6 +52,44 @@ public class ClientModEvents {
         event.registerSpriteSet(ModParticle.MIDNIGHT_LEAF.get(), HedgeLeafParticle.Provider::new);
         event.registerSpriteSet(ModParticle.BLOOMING_STARLIGHT_LEAF.get(), HedgeLeafParticle.Provider::new);
         event.registerSpriteSet(ModParticle.BLOOMING_MIDNIGHT_LEAF.get(), HedgeLeafParticle.Provider::new);
+    }
+
+    public static void registerMenuScreens(RegisterMenuScreensEvent event) {
+        event.register(ModMenuTypes.TRASH_MENU.get(), TrashScreen::new);
+    }
+
+    public static void registerRenderers(EntityRenderersEvent.RegisterRenderers event) {
+        event.registerEntityRenderer(ModEntities.CREAKING.get(), CreakingRenderer::new);
+        event.registerEntityRenderer(ModEntities.PALE_OAK_BOAT.get(), (context) -> new PaleOakBoatRenderer(context, false));
+        event.registerEntityRenderer(ModEntities.PALE_OAK_CHEST_BOAT.get(), (context) -> new PaleOakBoatRenderer(context, true));
+
+        ModEntities.WOOD_SET_BOATS.forEach((setName, type) ->
+                event.registerEntityRenderer(type.get(), (context) -> new OttWoodSetBoatRenderer(context, false))
+        );
+        ModEntities.WOOD_SET_CHEST_BOATS.forEach((setName, type) ->
+                event.registerEntityRenderer(type.get(), (context) -> new OttWoodSetBoatRenderer(context, true))
+        );
+    }
+
+    public static void registerLayerDefinitions(EntityRenderersEvent.RegisterLayerDefinitions event) {
+        event.registerLayerDefinition(ModModelLayers.PALE_OAK_BOAT, BoatModel::createBodyModel);
+        event.registerLayerDefinition(ModModelLayers.PALE_OAK_CHEST_BOAT, ChestBoatModel::createBodyModel);
+        event.registerLayerDefinition(ModModelLayers.OTT_WOOD_SET_BOAT, BoatModel::createBodyModel);
+        event.registerLayerDefinition(ModModelLayers.OTT_WOOD_SET_CHEST_BOAT, ChestBoatModel::createBodyModel);
+    }
+
+    public static void registerItemColors(RegisterColorHandlersEvent.Item event) {
+        ModBlocks.getAllGradientBlocks().forEach(deferredBlock -> {
+            event.register((stack, tintIndex) -> {
+                if (stack.getItem() instanceof net.minecraft.world.item.BlockItem blockItem &&
+                        blockItem.getBlock() instanceof com.otterly76.ott.block.IGradientBlock gradientBlock) {
+
+                    if (tintIndex == 0) return gradientBlock.getFirstColor().getTextureDiffuseColor();
+                    if (tintIndex == 1) return gradientBlock.getSecondColor().getTextureDiffuseColor();
+                }
+                return -1;
+            }, deferredBlock.get());
+        });
     }
 
     @SuppressWarnings("deprecation")
@@ -80,6 +131,12 @@ public class ClientModEvents {
                 ItemBlockRenderTypes.setRenderLayer(set.door().get(), RenderType.cutout());
                 ItemBlockRenderTypes.setRenderLayer(set.trapdoor().get(), RenderType.cutout());
             });
+
+            ModBlocks.SEAGLASS.forEach(block ->
+                    ItemBlockRenderTypes.setRenderLayer(block.get(), RenderType.translucent()));
+
+            ModBlocks.getAllGradientStainedGlassBlocks().forEach(block ->
+                    ItemBlockRenderTypes.setRenderLayer(block.get(), RenderType.translucent()));
         });
     }
 }

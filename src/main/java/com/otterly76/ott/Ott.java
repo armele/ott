@@ -3,29 +3,20 @@ package com.otterly76.ott;
 import com.otterly76.ott.block.ModBlocks;
 import com.otterly76.ott.block.entity.ModBlockEntities;
 import com.otterly76.ott.block.wood.ModBlockFamilies;
-import com.otterly76.ott.client.gui.TrashScreen;
 import com.otterly76.ott.entity.ModEntities;
-import com.otterly76.ott.entity.client.CreakingRenderer;
-import com.otterly76.ott.entity.client.ModModelLayers;
-import com.otterly76.ott.entity.client.OttWoodSetBoatRenderer;
-import com.otterly76.ott.entity.client.PaleOakBoatRenderer;
 import com.otterly76.ott.events.ModEventBusEvents;
 import com.otterly76.ott.generation.*;
 import com.otterly76.ott.inventory.ModMenuTypes;
 import com.otterly76.ott.item.ModItems;
 import com.otterly76.ott.mixin.AccessorItem;
 import com.otterly76.ott.network.NetworkHandler;
-import com.otterly76.ott.particle.*;
+import com.otterly76.ott.particle.ModParticle;
 import com.otterly76.ott.sound.ModSounds;
 import com.otterly76.ott.util.LanternSavedData;
-import com.otterly76.ott.util.WoodTypeVariant;
 import com.otterly76.ott.worldgen.ModFeatures;
 import com.otterly76.ott.worldgen.ModPlacedFeatures;
 import com.otterly76.ott.worldgen.ModTreeDecoratorTypes;
 import com.otterly76.ott.worldgen.biome.ModOverworldRegion;
-import net.minecraft.client.model.BoatModel;
-import net.minecraft.client.model.ChestBoatModel;
-import net.minecraft.client.renderer.Sheets;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.loot.LootTableProvider;
 import net.minecraft.network.chat.Component;
@@ -49,10 +40,7 @@ import net.neoforged.bus.api.IEventBus;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.ModList;
 import net.neoforged.fml.common.Mod;
-import net.neoforged.fml.event.lifecycle.FMLClientSetupEvent;
 import net.neoforged.fml.event.lifecycle.FMLCommonSetupEvent;
-import net.neoforged.neoforge.client.event.EntityRenderersEvent;
-import net.neoforged.neoforge.client.event.RegisterParticleProvidersEvent;
 import net.neoforged.neoforge.common.NeoForge;
 import net.neoforged.neoforge.data.event.GatherDataEvent;
 import net.neoforged.neoforge.event.AddPackFindersEvent;
@@ -87,13 +75,7 @@ public class Ott {
         ModMenuTypes.register(modEventBus);
         NeoForge.EVENT_BUS.register(this);
         modEventBus.addListener(this::addCreative);
-        modEventBus.addListener(ModBlockEntities::registerTileExtensions);
-        modEventBus.addListener(ClientModEvents::registerLayerDefinitions);
-        modEventBus.addListener(ClientModEvents::registerParticleFactories);
-        modEventBus.addListener(ClientModEvents::registerRenderers);
-        modEventBus.addListener(ClientModEvents::registerGuiLayers);
-        modEventBus.addListener(ClientModEvents::registerMenuScreens);
-        modEventBus.addListener(ClientModEvents::onClientSetup);
+        com.otterly76.ott.ClientModEvents.register(modEventBus);
         modEventBus.addListener(ModEventBusEvents::registerLayers);
         modEventBus.addListener(ModEventBusEvents::registerAttributes);
         modEventBus.addListener(ModBlockEntities::registerTileExtensions);
@@ -155,12 +137,11 @@ public class Ott {
     }
 
     private void addCreative(BuildCreativeModeTabContentsEvent event) {
-        // Spawn eggs
+
         if (event.getTabKey() == CreativeModeTabs.SPAWN_EGGS) {
             event.accept(ModItems.CREAKING_SPAWN_EGG, CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
         }
 
-        // Building blocks
         if (event.getTabKey() == CreativeModeTabs.BUILDING_BLOCKS) {
             event.accept(ModBlocks.RESIN_CLUMP, CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
             event.accept(ModBlocks.RESIN_BLOCK, CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
@@ -195,7 +176,6 @@ public class Ott {
             });
         }
 
-        // Natural blocks
         if (event.getTabKey() == CreativeModeTabs.NATURAL_BLOCKS) {
             event.accept(ModBlocks.PALE_OAK_SAPLING, CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
             event.accept(ModBlocks.PALE_OAK_LEAVES, CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
@@ -220,7 +200,6 @@ public class Ott {
             );
         }
 
-        // Functional blocks: signs
         if (event.getTabKey() == CreativeModeTabs.FUNCTIONAL_BLOCKS) {
             event.accept(ModItems.PALE_OAK_SIGN, CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
             event.accept(ModItems.PALE_OAK_HANGING_SIGN, CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
@@ -235,7 +214,6 @@ public class Ott {
             event.accept(ModBlocks.STURDY_PROTECTIVE_LANTERN, CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
         }
 
-        // Tools & Utilities: boats
         if (event.getTabKey() == CreativeModeTabs.TOOLS_AND_UTILITIES) {
             event.accept(ModItems.PALE_OAK_BOAT, CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
             event.accept(ModItems.PALE_OAK_CHEST_BOAT, CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
@@ -246,16 +224,13 @@ public class Ott {
             });
         }
 
-        // Redstone Blocks: “redstone-ish wood stuff”
         if (event.getTabKey() == CreativeModeTabs.REDSTONE_BLOCKS) {
-            // Pale oak
             event.accept(ModBlocks.PALE_OAK_PRESSURE_PLATE, CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
             event.accept(ModBlocks.PALE_OAK_BUTTON, CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
             event.accept(ModBlocks.PALE_OAK_DOOR, CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
             event.accept(ModBlocks.PALE_OAK_TRAPDOOR, CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
             event.accept(ModBlocks.PALE_OAK_FENCE_GATE, CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
 
-            // ott wood sets
             ModBlocks.WOOD_SETS.values().forEach(set -> {
                 event.accept(set.pressurePlate(), CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
                 event.accept(set.button(), CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
@@ -265,8 +240,6 @@ public class Ott {
             });
         }
 
-        // Search: you generally do NOT need to manually add items here if you use PARENT_AND_SEARCH_TABS above.
-        // Keep your custom insertAfter if you still want it, but it’s optional:
         if (event.getTabKey() == CreativeModeTabs.SEARCH) {
             event.insertAfter(
                     new net.minecraft.world.item.ItemStack(ModBlocks.RESIN_CLUMP),
@@ -279,61 +252,6 @@ public class Ott {
     @SubscribeEvent
     public void onServerStarting(ServerStartingEvent event) {
         LanternSavedData.init(event.getServer().overworld());
-    }
-
-    public static class ClientModEvents {
-        public static void onClientSetup(FMLClientSetupEvent event) {
-            event.enqueueWork(() -> {
-                Sheets.addWoodType(WoodTypeVariant.PALE_OAK.getWoodType());
-            });
-        }
-
-
-        public static void registerMenuScreens(net.neoforged.neoforge.client.event.RegisterMenuScreensEvent event) {
-            event.register(ModMenuTypes.TRASH_MENU.get(), TrashScreen::new);
-        }
-
-        public static void registerGuiLayers(net.neoforged.neoforge.client.event.RegisterGuiLayersEvent event) {
-            // Register our overlay above the food level layer
-            event.registerAbove(net.neoforged.neoforge.client.gui.VanillaGuiLayers.FOOD_LEVEL,
-                    ResourceLocation.fromNamespaceAndPath(MOD_ID, "nutrition_overlay"),
-                    new com.otterly76.ott.client.NutritionHudOverlay());
-        }
-
-        public static void registerRenderers(EntityRenderersEvent.RegisterRenderers event) {
-            event.registerEntityRenderer(ModEntities.CREAKING.get(), CreakingRenderer::new);
-
-            event.registerEntityRenderer(ModEntities.PALE_OAK_BOAT.get(), (context) -> new PaleOakBoatRenderer(context, false));
-            event.registerEntityRenderer(ModEntities.PALE_OAK_CHEST_BOAT.get(), (context) -> new PaleOakBoatRenderer(context, true));
-
-            // ott wood sets: dynamic renderer (texture chosen by setName stored on the entity)
-            ModEntities.WOOD_SET_BOATS.forEach((setName, type) ->
-                    event.registerEntityRenderer(type.get(), (context) -> new OttWoodSetBoatRenderer(context, false))
-            );
-            ModEntities.WOOD_SET_CHEST_BOATS.forEach((setName, type) ->
-                    event.registerEntityRenderer(type.get(), (context) -> new OttWoodSetBoatRenderer(context, true))
-            );
-        }
-
-        public static void registerLayerDefinitions(EntityRenderersEvent.RegisterLayerDefinitions event) {
-            event.registerLayerDefinition(ModModelLayers.PALE_OAK_BOAT, BoatModel::createBodyModel);
-            event.registerLayerDefinition(ModModelLayers.PALE_OAK_CHEST_BOAT, ChestBoatModel::createBodyModel);
-
-            // ott wood sets: shared layers
-            event.registerLayerDefinition(ModModelLayers.OTT_WOOD_SET_BOAT, BoatModel::createBodyModel);
-            event.registerLayerDefinition(ModModelLayers.OTT_WOOD_SET_CHEST_BOAT, ChestBoatModel::createBodyModel);
-        }
-
-        @SuppressWarnings({"DuplicatedCode"})
-        public static void registerParticleFactories(RegisterParticleProvidersEvent event) {
-            event.registerSpriteSet(ModParticle.PALE_OAK_LEAVES.get(), PaleOakParticle.Provider::new);
-            event.registerSpriteSet(ModParticle.TRAIL.get(), TrailParticle.Provider::new);
-            event.registerSpriteSet(ModParticle.STARLIGHT_LEAF.get(), HedgeLeafParticle.Provider::new);
-            event.registerSpriteSet(ModParticle.MIDNIGHT_LEAF.get(), HedgeLeafParticle.Provider::new);
-            event.registerSpriteSet(ModParticle.BLOOMING_STARLIGHT_LEAF.get(), HedgeLeafParticle.Provider::new);
-            event.registerSpriteSet(ModParticle.BLOOMING_MIDNIGHT_LEAF.get(), HedgeLeafParticle.Provider::new);
-            event.registerSpriteSet(ModParticle.GROUND_FOG.get(), GroundFogParticle.DefaultFactory::new);
-        }
     }
 
     private void addPackFinders(AddPackFindersEvent event) {
@@ -367,6 +285,7 @@ public class Ott {
             }
         }
     }
+
     public static void fixMC151457() {
         setCraftingRemainderIfNull(Items.PUFFERFISH_BUCKET);
         setCraftingRemainderIfNull(Items.SALMON_BUCKET);
@@ -379,7 +298,6 @@ public class Ott {
 
     private static void setCraftingRemainderIfNull(Item target) {
         AccessorItem accessor = (AccessorItem) target;
-        // Use our own accessor getter to avoid the deprecated Item#getCraftingRemainingItem()
         if (accessor.ott$getCraftingRemainder() == null) {
             accessor.ott$setCraftingRemainder(Items.BUCKET);
         }
