@@ -292,18 +292,24 @@ public class ModBlocks {
     }
 
     private static <T extends Block & IGradientBlock> void registerGradientBlocks(Block block, GradientBlockBuilder<T> builder, Consumer<DeferredBlock<? extends IGradientBlock>> adder) {
-        List<DyeColor> secondaryColors = new ArrayList<>(List.of(DyeColor.values()));
+        // We loop through ALL colors for both slots
         for (final DyeColor color1 : DyeColor.values()) {
-            for (final DyeColor color2 : secondaryColors) {
+            for (final DyeColor color2 : DyeColor.values()) {
+                // Only skip if the colors are identical
                 if (color1 != color2) {
-                    final String blockName = BuiltInRegistries.BLOCK.getKey(block).getPath().replace("white_", "");
-                    final String fullName = String.format("%s_%s_%s", color1.getName(), color2.getName(), blockName);
-                    DeferredBlock<? extends IGradientBlock> gradientBlock = BLOCKS.register(fullName, () -> builder.create(block.properties(), color1, color2, color -> "%s_%s".formatted(color.getName(), blockName)));
+                    final String blockBaseName = BuiltInRegistries.BLOCK.getKey(block).getPath().replace("white_", "");
+
+                    // This will naturally create both "red_blue_..." and "blue_red_..."
+                    final String fullName = String.format("%s_%s_%s", color1.getName(), color2.getName(), blockBaseName);
+
+                    DeferredBlock<? extends IGradientBlock> gradientBlock = BLOCKS.register(fullName, () ->
+                            builder.create(block.properties(), color1, color2, color -> "%s_%s".formatted(color.getName(), blockBaseName))
+                    );
+
                     adder.accept(gradientBlock);
                     ALL_GRADIENT_BLOCKS.add(gradientBlock);
                 }
             }
-            secondaryColors.remove(color1);
         }
     }
 
