@@ -22,8 +22,8 @@
   "client": [
     "ColorfulHeartsMixin",
     "ConnectScreenMixin",
-    "DragonHeadItemMixin",
-    "DragonHeadMixin",
+    "HeadItemMixin",
+    "HeadMixin",
     "DripParticleMixin",
     "GuiAccessor",
     "InventoryScreenMixin",

@@ -2,8 +2,8 @@ package com.otterly76.ott.client.render;
 
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
-import com.otterly76.ott.client.model.DragonHeadAnimatable;
-import com.otterly76.ott.client.model.DragonHeadModel;
+import com.otterly76.ott.client.model.HeadAnimatable;
+import com.otterly76.ott.client.model.HeadModel;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.resources.ResourceLocation;
@@ -14,32 +14,32 @@ import software.bernie.geckolib.renderer.layer.GeoRenderLayer;
 
 import java.util.List;
 
-public class DragonHeadGeoRenderer implements GeoRenderer<DragonHeadAnimatable> {
-    private final DragonHeadModel model = new DragonHeadModel();
-    private final DragonHeadAnimatable animatable = new DragonHeadAnimatable();
+public class DragonHeadGeoRenderer implements GeoRenderer<HeadAnimatable> {
+    private final HeadModel model = new HeadModel();
+    private final HeadAnimatable animatable = new HeadAnimatable();
 
     @Override
-    public DragonHeadModel getGeoModel() { return this.model; }
+    public HeadModel getGeoModel() { return this.model; }
 
     @Override
-    public DragonHeadAnimatable getAnimatable() { return this.animatable; }
+    public HeadAnimatable getAnimatable() { return this.animatable; }
 
     @Override
-    public ResourceLocation getTextureLocation(DragonHeadAnimatable animatable) {
+    public ResourceLocation getTextureLocation(HeadAnimatable animatable) {
         return this.model.getTextureResource(animatable);
     }
 
     @Override
-    public RenderType getRenderType(DragonHeadAnimatable animatable, ResourceLocation texture, @Nullable MultiBufferSource bufferSource, float partialTick) {
+    public RenderType getRenderType(HeadAnimatable animatable, ResourceLocation texture, @Nullable MultiBufferSource bufferSource, float partialTick) {
         return RenderType.entityCutoutNoCull(texture);
     }
 
     @Override
-    public void actuallyRender(PoseStack poseStack, DragonHeadAnimatable animatable, BakedGeoModel model, RenderType renderType, MultiBufferSource bufferSource, VertexConsumer buffer, boolean isReRender, float partialTick, int packedLight, int packedOverlay, int color) {
+    public void actuallyRender(PoseStack poseStack, HeadAnimatable animatable, BakedGeoModel model, RenderType renderType, MultiBufferSource bufferSource, VertexConsumer buffer, boolean isReRender, float partialTick, int packedLight, int packedOverlay, int color) {
         GeoRenderer.super.actuallyRender(poseStack, animatable, model, renderType, bufferSource, buffer, isReRender, partialTick, packedLight, packedOverlay, color);
     }
 
-    @Override public List<GeoRenderLayer<DragonHeadAnimatable>> getRenderLayers() { return List.of(); }
+    @Override public List<GeoRenderLayer<HeadAnimatable>> getRenderLayers() { return List.of(); }
 
     @Override public void fireCompileRenderLayersEvent() {}
 
@@ -47,5 +47,5 @@ public class DragonHeadGeoRenderer implements GeoRenderer<DragonHeadAnimatable> 
 
     @Override public void firePostRenderEvent(PoseStack poseStack, BakedGeoModel model, MultiBufferSource bufferSource, float partialTick, int packedLight) {}
 
-    @Override public void updateAnimatedTextureFrame(DragonHeadAnimatable animatable) {}
+    @Override public void updateAnimatedTextureFrame(HeadAnimatable animatable) {}
 }

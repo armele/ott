@@ -6,7 +6,7 @@ import software.bernie.geckolib.animation.AnimatableManager;
 import software.bernie.geckolib.util.GeckoLibUtil;
 import net.minecraft.world.level.block.SkullBlock;
 
-public class DragonHeadAnimatable implements GeoAnimatable {
+public class HeadAnimatable implements GeoAnimatable {
     private final AnimatableInstanceCache cache = GeckoLibUtil.createInstanceCache(this);
     private SkullBlock.Type headType = SkullBlock.Types.DRAGON; // Default
 

@@ -5,9 +5,9 @@ import org.jetbrains.annotations.Nullable;
 import software.bernie.geckolib.model.GeoModel;
 import net.minecraft.world.level.block.SkullBlock;
 
-public class DragonHeadModel extends GeoModel<DragonHeadAnimatable> {
+public class HeadModel extends GeoModel<HeadAnimatable> {
     @Override
-    public ResourceLocation getModelResource(DragonHeadAnimatable animatable) {
+    public ResourceLocation getModelResource(HeadAnimatable animatable) {
         String path = switch ((SkullBlock.Types)animatable.getHeadType()) {
             case SKELETON -> "skeleton/head_skeleton";
             case WITHER_SKELETON -> "wither_skeleton/head_wither_skeleton";
@@ -18,7 +18,7 @@ public class DragonHeadModel extends GeoModel<DragonHeadAnimatable> {
     }
 
     @Override
-    public ResourceLocation getTextureResource(DragonHeadAnimatable animatable) {
+    public ResourceLocation getTextureResource(HeadAnimatable animatable) {
         String path = switch ((SkullBlock.Types)animatable.getHeadType()) {
             case SKELETON -> "skeleton/skeleton";
             case WITHER_SKELETON -> "wither_skeleton/wither_skeleton";
@@ -29,7 +29,7 @@ public class DragonHeadModel extends GeoModel<DragonHeadAnimatable> {
     }
 
     @Override
-    public @Nullable ResourceLocation getAnimationResource(DragonHeadAnimatable animatable) {
+    public @Nullable ResourceLocation getAnimationResource(HeadAnimatable animatable) {
         return null;
     }
 }

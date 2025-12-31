@@ -1,7 +1,6 @@
 package com.otterly76.ott.mixin;
 
 import com.mojang.blaze3d.vertex.PoseStack;
-import com.mojang.math.Axis;
 import com.otterly76.ott.client.render.DragonHeadGeoRenderer;
 import net.minecraft.client.renderer.BlockEntityWithoutLevelRenderer;
 import net.minecraft.client.renderer.MultiBufferSource;
@@ -17,9 +16,10 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import software.bernie.geckolib.cache.object.BakedGeoModel;
+import com.mojang.math.Axis;
 
 @Mixin(BlockEntityWithoutLevelRenderer.class)
-public class DragonHeadItemMixin {
+public class HeadItemMixin {
     @Unique
     private static final DragonHeadGeoRenderer ott$RENDERER = new DragonHeadGeoRenderer();
 
@@ -37,23 +37,13 @@ public class DragonHeadItemMixin {
 
             poseStack.pushPose();
 
-            // 1. Context-specific positioning and scaling
-            if (displayContext == ItemDisplayContext.GUI) {
-                // translate(X, Y, Z) - Lowered Y to 0.25 to sink it more into the slot
-                poseStack.translate(0.5f, -0.1f, 1.0f);
-                poseStack.scale(0.55f, 0.55f, 0.55f);
+            // 1. POSITIONING: Maintained at your perfect 0.0f height
+            poseStack.translate(0.5f, 0.0f, 0.5f);
 
-                // Adjusting rotation: If 180+45 was hard right,
-                // then 180-45 (135) or just 180 should center it better.
-                poseStack.mulPose(Axis.YP.rotationDegrees(180f));
-            } else {
-                // In hand or dropped on ground
-                poseStack.translate(0.5f, 0.35f, 0.5f);
-                poseStack.scale(0.7f, 0.7f, 0.7f);
-                poseStack.mulPose(Axis.YP.rotationDegrees(180f));
-            }
+            // 2. ROTATION: Turning them 180 degrees to face the player
+            poseStack.mulPose(Axis.YP.rotationDegrees(180f));
 
-            // 2. Render Call
+            // 3. Render Call
             ResourceLocation texture = ott$RENDERER.getTextureLocation(ott$RENDERER.getAnimatable());
             BakedGeoModel bakedModel = ott$RENDERER.getGeoModel().getBakedModel(ott$RENDERER.getGeoModel().getModelResource(ott$RENDERER.getAnimatable()));
             RenderType renderType = ott$RENDERER.getRenderType(ott$RENDERER.getAnimatable(), texture, bufferSource, 0);
