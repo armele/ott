@@ -39,6 +39,13 @@ repositories {
         name = 'TerraBlender'
         url = 'https://maven.minecraftforge.net/releases/'
     }
+    maven {
+        name = 'GeckoLib'
+        url = 'https://dl.cloudsmith.io/public/geckolib3/geckolib/maven/'
+        content {
+            includeGroup 'software.bernie.geckolib'
+        }
+    }
 }
 
 base {
@@ -116,6 +123,8 @@ dependencies {
     // And its provides the option to then use net.minecraft as the group, and one of; client, server or joined as the module name, plus the game version as version.
     // For all intents and purposes: You can treat this dependency as if it is a normal library you would use.
     implementation "net.neoforged:neoforge:${neo_version}"
+
+    implementation "software.bernie.geckolib:geckolib-neoforge-1.21.1:4.6.6"
 
     implementation("com.ldtteam:minecolonies:${project.minecoloniesVersion}") {
         transitive = false
