@@ -101,7 +101,7 @@ public class ClientModEvents {
         event.register(PrismaticColorHandler.create(PrismaticColorHandler.Type.HORIZONTAL, 16f, 0.5f, 0.5f, 0.7f, 0.0f), ModBlocks.TESTBLOCK_03.get());
 
         // TESTBLOCK_10: Static Vertical (timeScale = 0.0f)
-        event.register(PrismaticColorHandler.create(PrismaticColorHandler.Type.VERTICAL, 8f, 0.25f, 0.2f, 0.4f, 0.0f), ModBlocks.TESTBLOCK_10.get());
+        event.register(PrismaticColorHandler.create(PrismaticColorHandler.Type.VERTICAL, 8f, 0.25f, 0.3f, 0.5f, 0.0f), ModBlocks.TESTBLOCK_10.get());
 
         // TESTBLOCK_11: Uses the ebbing texture (timeScale = 0.0f)
         event.register(PrismaticColorHandler.create(PrismaticColorHandler.Type.FULL_3D, 16f, 0.9f, 0.0f, 1.0f, 0.0f), ModBlocks.TESTBLOCK_11.get());
