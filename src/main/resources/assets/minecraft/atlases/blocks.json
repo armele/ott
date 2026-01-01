@@ -1,0 +1,36 @@
+{
+  "sources": [
+    {
+      "type": "ott:ott_cloud",
+      "id": "ott:block/ethereal",
+      "width": 64,
+      "height": 64,
+      "alpha": 255,
+      "min_intensity": 0.0065
+    },
+    {
+      "type": "ott:ott_cloud",
+      "id": "ott:block/ethereal_translucent",
+      "width": 64,
+      "height": 64,
+      "alpha": 128,
+      "min_intensity": 0.0065
+    },
+    {
+      "type": "ott:ott_cloud",
+      "id": "ott:block/ethereal_intense",
+      "width": 64,
+      "height": 64,
+      "alpha": 255,
+      "min_intensity": 0.009
+    },
+    {
+      "type": "ott:ott_cloud",
+      "id": "ott:block/nebula_purple_cyan",
+      "width": 64,
+      "height": 64,
+      "color1": 16711935,
+      "color2": 65535
+    }
+  ]
+}
