@@ -22,7 +22,7 @@ public class HeadModel extends GeoModel<HeadAnimatable> {
         String path = switch ((SkullBlock.Types)animatable.getHeadType()) {
             case SKELETON -> "skeleton/skeleton";
             case WITHER_SKELETON -> "wither_skeleton/wither_skeleton";
-            case ZOMBIE -> "zombie/zombie";
+            case ZOMBIE -> "zombie/zombie_head";
             default -> "dragon/dragon_head";
         };
         return ResourceLocation.fromNamespaceAndPath("ott", "textures/entity/" + path + ".png");

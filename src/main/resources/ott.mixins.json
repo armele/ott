@@ -22,15 +22,16 @@
   "client": [
     "ColorfulHeartsMixin",
     "ConnectScreenMixin",
-    "HeadItemMixin",
-    "HeadMixin",
     "DripParticleMixin",
     "GuiAccessor",
+    "HeadItemMixin",
+    "HeadMixin",
     "InventoryScreenMixin",
     "LevelEventHandlerMixin",
     "LevelLoadingScreenMixin",
     "LevelRendererMixin",
     "MinecraftSkipExperimentalWarningMixin",
+    "NarratorToastMixin",
     "SpriteLoaderMixin",
     "TextureSheetParticleMixin",
     "WaterDropParticleMixin"
