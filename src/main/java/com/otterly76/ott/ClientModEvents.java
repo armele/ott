@@ -3,6 +3,7 @@ package com.otterly76.ott;
 import com.otterly76.ott.block.ModBlocks;
 import com.otterly76.ott.client.NutritionHudOverlay;
 import com.otterly76.ott.client.gui.TrashScreen;
+import com.otterly76.ott.client.render.PrismaticColorHandler;
 import com.otterly76.ott.entity.ModEntities;
 import com.otterly76.ott.entity.client.CreakingRenderer;
 import com.otterly76.ott.entity.client.ModModelLayers;
@@ -21,6 +22,8 @@ import net.neoforged.bus.api.IEventBus;
 import net.neoforged.fml.event.lifecycle.FMLClientSetupEvent;
 import net.neoforged.neoforge.client.event.*;
 import net.neoforged.neoforge.client.gui.VanillaGuiLayers;
+
+import java.awt.*;
 
 @SuppressWarnings("MethodRefCanBeReplacedWithLambda")
 public class ClientModEvents {
@@ -81,11 +84,24 @@ public class ClientModEvents {
 
     public static void registerBlockColors(RegisterColorHandlersEvent.Block event) {
         event.register((state, level, pos, tintIndex) -> {
-           if (tintIndex == 0) {
-                return 0x1164FF; // Blue
-            }
-            return -1;
-        }, ModBlocks.TESTBLOCK_00.get());
+                    if (tintIndex == 0) {
+                        return 0x1164FF; // Blue
+                    }
+                    if (tintIndex == 1) {
+                        return 0xFF0000; // Red
+                    }
+                    return -1;
+                },
+                ModBlocks.TESTBLOCK_00.get());
+
+        // TESTBLOCK_02: Full 3D Rainbow (Entire Spectrum, 20-block cycle)
+        event.register(PrismaticColorHandler.create(PrismaticColorHandler.Type.FULL_3D, 20f, 0.6f, 0.0f, 1.0f), ModBlocks.TESTBLOCK_02.get());
+
+        // TESTBLOCK_03: Horizontal Aurora (Spread over 30 blocks, 80% saturation)
+        event.register(PrismaticColorHandler.create(PrismaticColorHandler.Type.HORIZONTAL, 30f, 0.8f, 0.0f, 1.0f), ModBlocks.TESTBLOCK_03.get());
+
+        // TESTBLOCK_10: Vertical Dusk (Spread over 15 blocks, 70% saturation)
+        event.register(PrismaticColorHandler.create(PrismaticColorHandler.Type.VERTICAL, 15f, 0.7f, 0.0f, 1.0f), ModBlocks.TESTBLOCK_10.get());
     }
 
     public static void registerItemColors(RegisterColorHandlersEvent.Item event) {
@@ -101,10 +117,20 @@ public class ClientModEvents {
             }, deferredBlock.get());
         });
 
+        // RAINBOW SPIN: TESTBLOCK_02, 03, and 10
         event.register((stack, tintIndex) -> {
             if (tintIndex == 0) {
-                return 0x1164FF; // Blue
+                // High precision time: System.nanoTime() is perfect for this.
+                // Divide by 2.0 to make it loop every 2 seconds.
+                float hue = (float) ((System.nanoTime() / 1_000_000_000.0) / 2.0) % 1.0f;
+                return Color.HSBtoRGB(hue, 0.7f, 1.0f);
             }
+            return -1;
+        }, ModBlocks.TESTBLOCK_02.get(), ModBlocks.TESTBLOCK_03.get(), ModBlocks.TESTBLOCK_10.get());
+
+        // Keep your original Blue registration for Testblock 00 if you want
+        event.register((stack, tintIndex) -> {
+            if (tintIndex == 0) return 0x1164FF;
             return -1;
         }, ModBlocks.TESTBLOCK_00.get());
     }

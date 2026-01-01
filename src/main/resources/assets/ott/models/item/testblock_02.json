@@ -1,6 +1,3 @@
 {
-  "parent": "ott:block/testblock_02",
-  "textures": {
-    "layer0": "ott:block/limestone_02"
-  }
+  "parent": "ott:block/testblock_02"
 }

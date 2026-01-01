@@ -1,6 +1,6 @@
 {
   "parent": "ott:block/testblock_21",
   "textures": {
-    "layer0": "ott:block/limestone_21"
+    "layer0": "ott:block/testtexture_21"
   }
 }
