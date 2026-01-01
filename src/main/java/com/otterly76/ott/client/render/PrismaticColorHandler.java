@@ -23,23 +23,17 @@ public class PrismaticColorHandler {
         return (state, level, pos, tintIndex) -> {
             if (pos == null) return -1;
 
-            // 1. Calculate Raw Spatial Value
             float val = switch (type) {
                 case FULL_3D -> (float)pos.getX() + (float)pos.getY() + (float)pos.getZ();
                 case HORIZONTAL -> (float)pos.getX() + (float)pos.getZ();
                 case VERTICAL -> (float)pos.getY();
             };
 
-            // 2. THE CORRECT PING-PONG:
-            // We multiply by PI (3.14159) so that one 'scale' unit equals half a sine wave.
-            // This makes it go 0 -> 1 -> 0 across exactly one 'scale' of blocks.
             float wave = (float) Math.sin((val / scale) * Math.PI);
             float progress = wave * 0.5f + 0.5f;
 
-            // 3. Hue Range (Constrained by your parameters)
             float hue = Mth.lerp(progress, hueMin, hueMax);
 
-            // 4. Animation logic (unchanged)
             float brightness = 1.0f;
             if (timeScale > 0.0f) {
                 float time = (System.currentTimeMillis() / 1000.0f) / timeScale;
