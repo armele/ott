@@ -1,3 +1,4 @@
+
 package com.otterly76.ott.client.render.texture;
 
 import com.mojang.blaze3d.platform.NativeImage;

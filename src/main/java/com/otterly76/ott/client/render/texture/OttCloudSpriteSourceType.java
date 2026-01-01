@@ -13,10 +13,7 @@ public class OttCloudSpriteSourceType {
     }
 
     private static void onRegisterTypes(RegisterSpriteSourceTypesEvent event) {
-        // Create the type instance using the constructor that takes our MapCodec
         OTT_CLOUD_TYPE = new SpriteSourceType(OttCloudSpriteSource.CODEC);
-
-        // Register the type with its ID
         event.register(Constants.loc("ott_cloud"), OTT_CLOUD_TYPE);
     }
 }
