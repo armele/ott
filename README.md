@@ -104,6 +104,6 @@ Running List:
 - Added the second round of gradient blocks, flipped
   - DO bakes the textures in as it sees them
   - When using DO to make stairs, etc, you only got one direction and not the reverse as an option
-- Hey, you know that Narrator that legit yells at you when you start a new game?
+- Hey, you know that Narrator that legit bellows at you when you start a new game?
   - Yeah, I shut him the hell up
 - 
