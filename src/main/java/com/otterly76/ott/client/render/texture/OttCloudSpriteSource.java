@@ -12,14 +12,25 @@ import net.minecraft.server.packs.resources.ResourceManager;
 import net.minecraft.server.packs.resources.ResourceMetadata;
 import net.minecraft.util.ExtraCodecs;
 import org.jetbrains.annotations.NotNull;
+import java.util.Optional;
 
-public record OttCloudSpriteSource(ResourceLocation id, int width, int height, int alpha, float minIntensity) implements SpriteSource {
+public record OttCloudSpriteSource(
+        ResourceLocation id,
+        int width,
+        int height,
+        int alpha,
+        float minIntensity,
+        Optional<Integer> color1,
+        Optional<Integer> color2
+) implements SpriteSource {
     public static final MapCodec<OttCloudSpriteSource> CODEC = RecordCodecBuilder.mapCodec(inst -> inst.group(
             ResourceLocation.CODEC.fieldOf("id").forGetter(OttCloudSpriteSource::id),
             ExtraCodecs.POSITIVE_INT.fieldOf("width").forGetter(OttCloudSpriteSource::width),
             ExtraCodecs.POSITIVE_INT.fieldOf("height").forGetter(OttCloudSpriteSource::height),
             Codec.INT.optionalFieldOf("alpha", 255).forGetter(OttCloudSpriteSource::alpha),
-            Codec.FLOAT.optionalFieldOf("min_intensity", 0.0065F).forGetter(OttCloudSpriteSource::minIntensity)
+            Codec.FLOAT.optionalFieldOf("min_intensity", 0.0065F).forGetter(OttCloudSpriteSource::minIntensity),
+            Codec.INT.optionalFieldOf("color1").forGetter(OttCloudSpriteSource::color1),
+            Codec.INT.optionalFieldOf("color2").forGetter(OttCloudSpriteSource::color2)
     ).apply(inst, OttCloudSpriteSource::new));
 
     @Override
@@ -30,7 +41,9 @@ public record OttCloudSpriteSource(ResourceLocation id, int width, int height, i
                 new NativeImage(NativeImage.Format.RGBA, this.width, this.height, false),
                 ResourceMetadata.EMPTY,
                 this.alpha,
-                this.minIntensity
+                this.minIntensity,
+                this.color1.orElse(null),
+                this.color2.orElse(null)
         ));
     }
 

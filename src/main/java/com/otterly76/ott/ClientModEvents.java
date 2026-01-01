@@ -80,9 +80,8 @@ public class ClientModEvents {
     }
 
     public static void registerBlockColors(RegisterColorHandlersEvent.Block event) {
-        // Register color for our cloud test block
         event.register((state, level, pos, tintIndex) -> {
-            if (tintIndex == 0) {
+           if (tintIndex == 0) {
                 return 0x1164FF; // Blue
             }
             return -1;
@@ -102,10 +101,9 @@ public class ClientModEvents {
             }, deferredBlock.get());
         });
 
-        // NEW: Register color for the cloud test item
         event.register((stack, tintIndex) -> {
             if (tintIndex == 0) {
-                return 0x1164FF;
+                return 0x1164FF; // Blue
             }
             return -1;
         }, ModBlocks.TESTBLOCK_00.get());
