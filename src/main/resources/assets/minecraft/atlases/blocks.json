@@ -31,6 +31,13 @@
       "height": 64,
       "color1": 16711935,
       "color2": 65535
+    },
+    {
+      "type": "ott:heartbeat",
+      "id": "ott:block/ebbing",
+      "width": 32, "height": 32,
+      "time_scale": 6.0,
+      "min_brightness": 0.6
     }
   ]
 }

@@ -50,6 +50,6 @@ public record OttCloudSpriteSource(
 
     @Override
     public @NotNull SpriteSourceType type() {
-        return OttCloudSpriteSourceType.OTT_CLOUD_TYPE;
+        return OttTextureSpriteSourceType.OTT_CLOUD_TYPE;
     }
 }

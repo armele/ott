@@ -3,7 +3,7 @@ package com.otterly76.ott;
 import com.otterly76.ott.block.ModBlocks;
 import com.otterly76.ott.block.entity.ModBlockEntities;
 import com.otterly76.ott.block.wood.ModBlockFamilies;
-import com.otterly76.ott.client.render.texture.OttCloudSpriteSourceType;
+import com.otterly76.ott.client.render.texture.OttTextureSpriteSourceType;
 import com.otterly76.ott.entity.ModEntities;
 import com.otterly76.ott.events.ModEventBusEvents;
 import com.otterly76.ott.generation.*;
@@ -80,7 +80,7 @@ public class Ott {
         modEventBus.addListener(ModEventBusEvents::registerLayers);
         modEventBus.addListener(ModEventBusEvents::registerAttributes);
         modEventBus.addListener(ModBlockEntities::registerTileExtensions);
-        OttCloudSpriteSourceType.register(modEventBus);
+        OttTextureSpriteSourceType.register(modEventBus);
     }
 
     private void dataGeneratorSetup(final GatherDataEvent event) {

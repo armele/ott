@@ -6,7 +6,6 @@ import java.awt.Color;
 
 public class PrismaticColorHandler {
 
-    // Enum to choose which coordinates to use
     public enum Type { FULL_3D, HORIZONTAL, VERTICAL }
 
     /**
@@ -17,26 +16,32 @@ public class PrismaticColorHandler {
      * @param saturation 0.0 (grayscale) to 1.0 (neon vibrant)
      * @param hueMin The start of your color range (0.0 to 1.0)
      * @param hueMax The end of your color range (0.0 to 1.0)
+     * @param timeScale Use 0.0f for a static block, or a number (like 5.0f) for pulsing.
      */
-    public static BlockColor create(Type type, float scale, float saturation, float hueMin, float hueMax) {
+
+    public static BlockColor create(Type type, float scale, float saturation, float hueMin, float hueMax, float timeScale) {
         return (state, level, pos, tintIndex) -> {
             if (pos == null) return -1;
 
-            // 1. Calculate the raw spatial value
+            // 1. Calculate Spatial Hue
             float val = switch (type) {
                 case FULL_3D -> (float)pos.getX() + (float)pos.getY() + (float)pos.getZ();
                 case HORIZONTAL -> (float)pos.getX() + (float)pos.getZ();
                 case VERTICAL -> (float)pos.getY();
             };
 
-            // 2. Map the coordinate to a 0.0-1.0 progress value
             float progress = Mth.frac(val / scale);
-
-            // 3. Constrain that progress to your custom Hue Range
-            // (e.g. if hueMin=0.5 and hueMax=0.7, it only stays in the Blues/Purples)
             float hue = Mth.lerp(progress, hueMin, hueMax);
 
-            return Color.HSBtoRGB(hue, saturation, 1.0f);
+            // 2. Animation logic (Only used for items/GUI, as blocks cache this color)
+            float brightness = 1.0f;
+            if (timeScale > 0.0f) {
+                float time = (System.currentTimeMillis() / 1000.0f) / timeScale;
+                float seed = (pos.getX() * 7 + pos.getY() * 13 + pos.getZ() * 19) / 100.0f;
+                brightness = (float) (Math.sin(time + seed) * 0.1 + 0.9);
+            }
+
+            return Color.HSBtoRGB(hue, saturation, brightness);
         };
     }
 }

@@ -5,15 +5,20 @@ import net.minecraft.client.renderer.texture.atlas.SpriteSourceType;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.neoforge.client.event.RegisterSpriteSourceTypesEvent;
 
-public class OttCloudSpriteSourceType {
+public class OttTextureSpriteSourceType {
     public static SpriteSourceType OTT_CLOUD_TYPE;
+    public static SpriteSourceType HEARTBEAT_TYPE;
 
     public static void register(IEventBus modBus) {
-        modBus.addListener(OttCloudSpriteSourceType::onRegisterTypes);
+        modBus.addListener(OttTextureSpriteSourceType::onRegisterTypes);
     }
 
     private static void onRegisterTypes(RegisterSpriteSourceTypesEvent event) {
         OTT_CLOUD_TYPE = new SpriteSourceType(OttCloudSpriteSource.CODEC);
         event.register(Constants.loc("ott_cloud"), OTT_CLOUD_TYPE);
+
+        // Register the heartbeat type!
+        HEARTBEAT_TYPE = new SpriteSourceType(OttHeartbeatSpriteSource.CODEC);
+        event.register(Constants.loc("heartbeat"), HEARTBEAT_TYPE);
     }
 }
