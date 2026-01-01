@@ -29,6 +29,7 @@ public class ClientModEvents {
         modBus.addListener(ClientModEvents::registerGuiLayers);
         modBus.addListener(ClientModEvents::onClientSetup);
         modBus.addListener(ClientModEvents::registerParticleFactories);
+        modBus.addListener(ClientModEvents::registerBlockColors);
         modBus.addListener(ClientModEvents::registerItemColors);
         modBus.addListener(ClientModEvents::registerMenuScreens);
         modBus.addListener(ClientModEvents::registerRenderers);
@@ -78,6 +79,16 @@ public class ClientModEvents {
         event.registerLayerDefinition(ModModelLayers.OTT_WOOD_SET_CHEST_BOAT, ChestBoatModel::createBodyModel);
     }
 
+    public static void registerBlockColors(RegisterColorHandlersEvent.Block event) {
+        // Register color for our cloud test block
+        event.register((state, level, pos, tintIndex) -> {
+            if (tintIndex == 0) {
+                return 0x1164FF; // Blue
+            }
+            return -1;
+        }, ModBlocks.TESTBLOCK_00.get());
+    }
+
     public static void registerItemColors(RegisterColorHandlersEvent.Item event) {
         ModBlocks.getAllGradientBlocks().forEach(deferredBlock -> {
             event.register((stack, tintIndex) -> {
@@ -90,6 +101,14 @@ public class ClientModEvents {
                 return -1;
             }, deferredBlock.get());
         });
+
+        // NEW: Register color for the cloud test item
+        event.register((stack, tintIndex) -> {
+            if (tintIndex == 0) {
+                return 0x1164FF;
+            }
+            return -1;
+        }, ModBlocks.TESTBLOCK_00.get());
     }
 
     @SuppressWarnings("deprecation")
