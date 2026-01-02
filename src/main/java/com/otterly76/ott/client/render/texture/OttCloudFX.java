@@ -30,7 +30,6 @@ public class OttCloudFX extends SpriteContents {
         private final int alphaValue;
         private final float minIntensity;
 
-        // Two independent buffers for two "cloud" layers
         private float[] layerA;
         private float[] layerB;
         private float[] tempA;
@@ -87,7 +86,6 @@ public class OttCloudFX extends SpriteContents {
         }
 
         private void renderNebula(NativeImage image, int width, int height) {
-            // Explicit null check to silence the "unboxing" warning
             if (color1 == null || color2 == null) return;
 
             int c1 = color1;
@@ -105,7 +103,6 @@ public class OttCloudFX extends SpriteContents {
                     int g = (int) Mth.lerp(v2, g1, g2);
                     int b = (int) Mth.lerp(v1, b1, b2);
 
-                    // ABGR format: (Alpha << 24) | (Blue << 16) | (Green << 8) | Red
                     int rgba = (b << 16) | (g << 8) | r | this.alphaValue;
                     image.setPixelRGBA(x, y, rgba);
                 }
@@ -125,7 +122,6 @@ public class OttCloudFX extends SpriteContents {
                     for (int dx = -1; dx <= 1; dx++) {
                         for (int dy = -1; dy <= 1; dy++) {
                             neighborsA += this.layerA[((x + dx) & maskX) + ((y + dy) & maskY) * w];
-                            // Slightly different sampling for layer B to make it move differently
                             neighborsB += this.layerB[((x + dy) & maskX) + ((y + dx) & maskY) * w];
                         }
                     }
@@ -134,7 +130,7 @@ public class OttCloudFX extends SpriteContents {
                     float avgHeat = (this.heat[idx] + this.heat[(x + 1 & maskX) + y * w] + this.heat[x + (y + 1 & maskY) * w]) * 0.33F;
 
                     this.tempA[idx] = (neighborsA - 0.02F) * 0.1F + avgHeat;
-                    this.tempB[idx] = (neighborsB - 0.02F) * 0.101F + (avgHeat * 0.9F); // Slightly slower
+                    this.tempB[idx] = (neighborsB - 0.02F) * 0.101F + (avgHeat * 0.9F);
 
                     this.heat[idx] += this.spark[idx] * 0.01F;
                     this.spark[idx] -= 0.04F;
@@ -144,7 +140,6 @@ public class OttCloudFX extends SpriteContents {
                 }
             }
 
-            // Swap buffers
             float[] tA = this.layerA; this.layerA = this.tempA; this.tempA = tA;
             float[] tB = this.layerB; this.layerB = this.tempB; this.tempB = tB;
         }

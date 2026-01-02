@@ -106,4 +106,22 @@ Running List:
   - When using DO to make stairs, etc, you only got one direction and not the reverse as an option
 - Hey, you know that Narrator that legit bellows at you when you start a new game?
   - Yeah, I shut him the hell up
-- 
+- Added six new types of block textures:
+  - Cloud effect
+    - similar to the CloudFX from XyCraft
+      - A single color shifting cloud texture block
+  - Nebular effect
+    - similar to the CloudFX from XyCraft
+      - A two color shifting nebula texture block
+  - World Coordinate determined color blocks 🌈 
+    - similar to the Aurora effect from Twilight Forest, Prismatic from Regions Unexplored, or Dusk from Eternal Starlight
+      - The color range transitions between two defined colors based on world position
+    - THREE versions for this block:
+      - Horizontal
+        - The colors only shift horizontally (sideways)
+      - Vertical
+        - The colors only shift vertically (up and down)
+      - Full 3D
+        - The colors shift in both directions (up and down and sideways)
+    - THREE EBBING versions for the above blocks
+      - All three types but the texture ebbs across a wave

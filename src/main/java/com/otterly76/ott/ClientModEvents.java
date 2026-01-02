@@ -94,17 +94,11 @@ public class ClientModEvents {
                 },
                 ModBlocks.TESTBLOCK_00.get());
 
-        // TESTBLOCK_02: Static Full 3D (timeScale = 0.0f)
         event.register(PrismaticColorHandler.create(PrismaticColorHandler.Type.FULL_3D, 32f, 1.0f, 0.0f, 1.0f, 0.0f), ModBlocks.TESTBLOCK_02.get());
-
-        // TESTBLOCK_03: Static Horizontal (timeScale = 0.0f)
         event.register(PrismaticColorHandler.create(PrismaticColorHandler.Type.HORIZONTAL, 16f, 0.5f, 0.5f, 0.7f, 0.0f), ModBlocks.TESTBLOCK_03.get());
-
-        // TESTBLOCK_10: Static Vertical (timeScale = 0.0f)
         event.register(PrismaticColorHandler.create(PrismaticColorHandler.Type.VERTICAL, 8f, 0.25f, 0.3f, 0.5f, 0.0f), ModBlocks.TESTBLOCK_10.get());
-
-        // TESTBLOCK_11: Uses the ebbing texture (timeScale = 0.0f)
         event.register(PrismaticColorHandler.create(PrismaticColorHandler.Type.FULL_3D, 16f, 0.9f, 0.0f, 1.0f, 0.0f), ModBlocks.TESTBLOCK_11.get());
+        event.register(PrismaticColorHandler.create(PrismaticColorHandler.Type.FULL_3D, 32f, 1.0f, 0.0f, 1.0f, 0.0f), ModBlocks.TESTBLOCK_12.get());
     }
 
     public static void registerItemColors(RegisterColorHandlersEvent.Item event) {
@@ -120,7 +114,6 @@ public class ClientModEvents {
             }, deferredBlock.get());
         });
 
-        // RAINBOW SPIN: TESTBLOCK_02, 03, 10, AND 11
         event.register((stack, tintIndex) -> {
             if (tintIndex == 0) {
                 // Spinning through the rainbow every 2 seconds
@@ -128,9 +121,8 @@ public class ClientModEvents {
                 return Color.HSBtoRGB(hue, 0.7f, 1.0f);
             }
             return -1;
-        }, ModBlocks.TESTBLOCK_02.get(), ModBlocks.TESTBLOCK_03.get(), ModBlocks.TESTBLOCK_10.get(), ModBlocks.TESTBLOCK_11.get());
+        }, ModBlocks.TESTBLOCK_02.get(), ModBlocks.TESTBLOCK_03.get(), ModBlocks.TESTBLOCK_10.get(), ModBlocks.TESTBLOCK_11.get(), ModBlocks.TESTBLOCK_12.get());
 
-        // Keep your original Blue registration for Testblock 00 if you want
         event.register((stack, tintIndex) -> {
             if (tintIndex == 0) return 0x1164FF;
             return -1;
@@ -182,6 +174,7 @@ public class ClientModEvents {
 
             ModBlocks.getAllGradientStainedGlassBlocks().forEach(block ->
                     ItemBlockRenderTypes.setRenderLayer(block.get(), RenderType.translucent()));
+
         });
     }
 }

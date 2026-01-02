@@ -37,13 +37,11 @@ public class OttHeartbeatFX extends SpriteContents {
             int width = this.contents.width();
             int height = this.contents.height();
 
-            // Slower, high-precision time
             float time = (System.nanoTime() / 1_000_000_000.0f) / timeScale;
             float spatialScale = 32.0f; // Scale of 1.0 per block
 
             for (int x = 0; x < width; x++) {
                 for (int y = 0; y < height; y++) {
-                    // This "Wave" math ensures blocks at different coordinates pulse at different times
                     float wave = (float) Math.sin((time * 6.28f) + (x / spatialScale) + (y / spatialScale));
                     float pulse = wave * 0.5f + 0.5f;
 

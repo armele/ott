@@ -1,7 +1,7 @@
 {
   "parent": "minecraft:block/cube_all",
   "textures": {
-    "all": "ott:block/ebbing"
+    "all": "ott:block/wave"
   },
   "elements": [
     {

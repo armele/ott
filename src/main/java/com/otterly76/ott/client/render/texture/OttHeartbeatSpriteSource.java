@@ -36,6 +36,6 @@ public record OttHeartbeatSpriteSource(ResourceLocation id, int width, int heigh
 
     @Override
     public @NotNull SpriteSourceType type() {
-        return OttTextureSpriteSourceType.HEARTBEAT_TYPE;
+        return OttTextureSpriteSourceType.WAVE_TYPE;
     }
 }
