@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:block/cube_all",
   "textures": {
-    "all": "ott:block/nebula_purple_cyan"
+    "all": "minecraft:block/white_concrete"
   }
 }

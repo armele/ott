@@ -110,7 +110,7 @@ Running List:
   - Cloud effect
     - similar to the CloudFX from XyCraft
       - A single color shifting cloud texture block
-  - Nebular effect
+  - Nebula effect
     - similar to the CloudFX from XyCraft
       - A two color shifting nebula texture block
   - World Coordinate determined color blocks 🌈 

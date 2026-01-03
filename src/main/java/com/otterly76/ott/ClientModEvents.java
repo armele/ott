@@ -83,20 +83,10 @@ public class ClientModEvents {
     }
 
     public static void registerBlockColors(RegisterColorHandlersEvent.Block event) {
-        event.register((state, level, pos, tintIndex) -> {
-                    if (tintIndex == 0) {
-                        return 0x1164FF; // Blue
-                    }
-                    if (tintIndex == 1) {
-                        return 0xFF0000; // Red
-                    }
-                    return -1;
-                },
-                ModBlocks.TESTBLOCK_00.get());
-
         event.register(PrismaticColorHandler.create(PrismaticColorHandler.Type.FULL_3D, 32f, 1.0f, 0.0f, 1.0f, 0.0f), ModBlocks.TESTBLOCK_02.get());
         event.register(PrismaticColorHandler.create(PrismaticColorHandler.Type.HORIZONTAL, 16f, 0.5f, 0.5f, 0.7f, 0.0f), ModBlocks.TESTBLOCK_03.get());
         event.register(PrismaticColorHandler.create(PrismaticColorHandler.Type.VERTICAL, 8f, 0.25f, 0.3f, 0.5f, 0.0f), ModBlocks.TESTBLOCK_10.get());
+
         event.register(PrismaticColorHandler.create(PrismaticColorHandler.Type.FULL_3D, 16f, 0.9f, 0.0f, 1.0f, 0.0f), ModBlocks.TESTBLOCK_11.get());
         event.register(PrismaticColorHandler.create(PrismaticColorHandler.Type.FULL_3D, 32f, 1.0f, 0.0f, 1.0f, 0.0f), ModBlocks.TESTBLOCK_12.get());
     }
@@ -115,18 +105,15 @@ public class ClientModEvents {
         });
 
         event.register((stack, tintIndex) -> {
-            if (tintIndex == 0) {
-                // Spinning through the rainbow every 2 seconds
-                float hue = (float) ((System.nanoTime() / 1_000_000_000.0) / 2.0) % 1.0f;
-                return Color.HSBtoRGB(hue, 0.7f, 1.0f);
-            }
-            return -1;
-        }, ModBlocks.TESTBLOCK_02.get(), ModBlocks.TESTBLOCK_03.get(), ModBlocks.TESTBLOCK_10.get(), ModBlocks.TESTBLOCK_11.get(), ModBlocks.TESTBLOCK_12.get());
+                    if (tintIndex == 0) {
+                        // Spinning through the rainbow every 2 seconds
+                        float hue = (float) ((System.nanoTime() / 1_000_000_000.0) / 2.0) % 1.0f;
+                        return Color.HSBtoRGB(hue, 0.7f, 1.0f);
+                    }
+                    return -1;
+                },
+                ModBlocks.TESTBLOCK_02.get(), ModBlocks.TESTBLOCK_03.get(), ModBlocks.TESTBLOCK_10.get(), ModBlocks.TESTBLOCK_11.get(), ModBlocks.TESTBLOCK_12.get());
 
-        event.register((stack, tintIndex) -> {
-            if (tintIndex == 0) return 0x1164FF;
-            return -1;
-        }, ModBlocks.TESTBLOCK_00.get());
     }
 
     @SuppressWarnings("deprecation")
