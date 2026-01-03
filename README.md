@@ -111,3 +111,4 @@ Running List:
       - Horizontal: The colors only shift horizontally (sideways)
       - Vertical: The colors only shift vertically (up and down)
       - Full 3D: The colors shift in both directions (up and down and sideways)
+- Added a new texture type called CloudFX that mimics the Cloud texture in XyCraft with fewer moving parts
