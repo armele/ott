@@ -1,7 +1,7 @@
 {
   "parent": "minecraft:block/cube_all",
   "textures": {
-    "all": "minecraft:block/white_concrete"
+    "all": "ott:block/testtexture_21"
   },
   "elements": [
     {
