@@ -316,6 +316,7 @@ public class ModBlocks {
     public static Collection<DeferredBlock<? extends IGradientBlock>> getAllGradientBlocks() {
         return ALL_GRADIENT_BLOCKS;
     }
+
     public static Collection<DeferredBlock<? extends IGradientBlock>> getAllGradientConcreteBlocks() {
         return ALL_CONCRETE_BLOCKS;
     }

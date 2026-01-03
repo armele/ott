@@ -86,9 +86,6 @@ public class ClientModEvents {
         event.register(PrismaticColorHandler.create(PrismaticColorHandler.Type.FULL_3D, 32f, 1.0f, 0.0f, 1.0f, 0.0f), ModBlocks.TESTBLOCK_02.get());
         event.register(PrismaticColorHandler.create(PrismaticColorHandler.Type.HORIZONTAL, 16f, 0.5f, 0.5f, 0.7f, 0.0f), ModBlocks.TESTBLOCK_03.get());
         event.register(PrismaticColorHandler.create(PrismaticColorHandler.Type.VERTICAL, 8f, 0.25f, 0.3f, 0.5f, 0.0f), ModBlocks.TESTBLOCK_10.get());
-
-        event.register(PrismaticColorHandler.create(PrismaticColorHandler.Type.FULL_3D, 16f, 0.9f, 0.0f, 1.0f, 0.0f), ModBlocks.TESTBLOCK_11.get());
-        event.register(PrismaticColorHandler.create(PrismaticColorHandler.Type.FULL_3D, 32f, 1.0f, 0.0f, 1.0f, 0.0f), ModBlocks.TESTBLOCK_12.get());
     }
 
     public static void registerItemColors(RegisterColorHandlersEvent.Item event) {
@@ -112,8 +109,7 @@ public class ClientModEvents {
                     }
                     return -1;
                 },
-                ModBlocks.TESTBLOCK_02.get(), ModBlocks.TESTBLOCK_03.get(), ModBlocks.TESTBLOCK_10.get(), ModBlocks.TESTBLOCK_11.get(), ModBlocks.TESTBLOCK_12.get());
-
+                ModBlocks.TESTBLOCK_02.get(), ModBlocks.TESTBLOCK_03.get(), ModBlocks.TESTBLOCK_10.get());
     }
 
     @SuppressWarnings("deprecation")
