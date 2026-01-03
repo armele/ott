@@ -18,7 +18,7 @@ public class OttTextureSpriteSourceType {
         OTT_CLOUD_TYPE = new SpriteSourceType(OttCloudSpriteSource.CODEC);
         event.register(Constants.loc("ott_cloud"), OTT_CLOUD_TYPE);
 
-        WAVE_TYPE = new SpriteSourceType(OttHeartbeatSpriteSource.CODEC);
+        WAVE_TYPE = new SpriteSourceType(OttWaveSpriteSource.CODEC);
         event.register(Constants.loc("wave"), WAVE_TYPE);
 
         PULSE_TYPE = new SpriteSourceType(OttPulseSpriteSource.CODEC);

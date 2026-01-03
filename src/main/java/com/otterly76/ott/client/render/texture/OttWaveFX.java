@@ -9,10 +9,10 @@ import net.minecraft.server.packs.resources.ResourceMetadata;
 import net.minecraft.util.Mth;
 import org.jetbrains.annotations.Nullable;
 
-public class OttHeartbeatFX extends SpriteContents {
+public class OttWaveFX extends SpriteContents {
     private final Ticker ticker;
 
-    public OttHeartbeatFX(ResourceLocation loc, FrameSize frameSize, NativeImage image, ResourceMetadata metadata, float timeScale, float minBrightness) {
+    public OttWaveFX(ResourceLocation loc, FrameSize frameSize, NativeImage image, ResourceMetadata metadata, float timeScale, float minBrightness) {
         super(loc, frameSize, image, metadata);
         this.ticker = new Ticker(this, timeScale, minBrightness);
     }

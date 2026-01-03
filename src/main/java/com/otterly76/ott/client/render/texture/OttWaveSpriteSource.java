@@ -13,18 +13,18 @@ import net.minecraft.server.packs.resources.ResourceMetadata;
 import net.minecraft.util.ExtraCodecs;
 import org.jetbrains.annotations.NotNull;
 
-public record OttHeartbeatSpriteSource(ResourceLocation id, int width, int height, float timeScale, float minBrightness) implements SpriteSource {
-    public static final MapCodec<OttHeartbeatSpriteSource> CODEC = RecordCodecBuilder.mapCodec(inst -> inst.group(
-            ResourceLocation.CODEC.fieldOf("id").forGetter(OttHeartbeatSpriteSource::id),
-            ExtraCodecs.POSITIVE_INT.fieldOf("width").forGetter(OttHeartbeatSpriteSource::width),
-            ExtraCodecs.POSITIVE_INT.fieldOf("height").forGetter(OttHeartbeatSpriteSource::height),
-            Codec.FLOAT.optionalFieldOf("time_scale", 2.0f).forGetter(OttHeartbeatSpriteSource::timeScale),
-            Codec.FLOAT.optionalFieldOf("min_brightness", 0.7f).forGetter(OttHeartbeatSpriteSource::minBrightness)
-    ).apply(inst, OttHeartbeatSpriteSource::new));
+public record OttWaveSpriteSource(ResourceLocation id, int width, int height, float timeScale, float minBrightness) implements SpriteSource {
+    public static final MapCodec<OttWaveSpriteSource> CODEC = RecordCodecBuilder.mapCodec(inst -> inst.group(
+            ResourceLocation.CODEC.fieldOf("id").forGetter(OttWaveSpriteSource::id),
+            ExtraCodecs.POSITIVE_INT.fieldOf("width").forGetter(OttWaveSpriteSource::width),
+            ExtraCodecs.POSITIVE_INT.fieldOf("height").forGetter(OttWaveSpriteSource::height),
+            Codec.FLOAT.optionalFieldOf("time_scale", 2.0f).forGetter(OttWaveSpriteSource::timeScale),
+            Codec.FLOAT.optionalFieldOf("min_brightness", 0.7f).forGetter(OttWaveSpriteSource::minBrightness)
+    ).apply(inst, OttWaveSpriteSource::new));
 
     @Override
     public void run(@NotNull ResourceManager manager, Output output) {
-        output.add(this.id, spriteResourceLoader -> new OttHeartbeatFX(
+        output.add(this.id, spriteResourceLoader -> new OttWaveFX(
                 this.id,
                 new FrameSize(this.width, this.height),
                 new NativeImage(NativeImage.Format.RGBA, this.width, this.height, false),
