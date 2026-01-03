@@ -4,6 +4,7 @@ import com.otterly76.ott.block.ModBlocks;
 import com.otterly76.ott.client.NutritionHudOverlay;
 import com.otterly76.ott.client.gui.TrashScreen;
 import com.otterly76.ott.client.render.PrismaticColorHandler;
+import com.otterly76.ott.client.render.texture.FXAtlasSpriteSource;
 import com.otterly76.ott.entity.ModEntities;
 import com.otterly76.ott.entity.client.CreakingRenderer;
 import com.otterly76.ott.entity.client.ModModelLayers;
@@ -31,6 +32,7 @@ public class ClientModEvents {
     public static void register(IEventBus modBus) {
         modBus.addListener(ClientModEvents::registerGuiLayers);
         modBus.addListener(ClientModEvents::onClientSetup);
+        modBus.addListener(ClientModEvents::onRegisterSpriteLoader);
         modBus.addListener(ClientModEvents::registerParticleFactories);
         modBus.addListener(ClientModEvents::registerBlockColors);
         modBus.addListener(ClientModEvents::registerItemColors);
@@ -80,6 +82,10 @@ public class ClientModEvents {
         event.registerLayerDefinition(ModModelLayers.PALE_OAK_CHEST_BOAT, ChestBoatModel::createBodyModel);
         event.registerLayerDefinition(ModModelLayers.OTT_WOOD_SET_BOAT, BoatModel::createBodyModel);
         event.registerLayerDefinition(ModModelLayers.OTT_WOOD_SET_CHEST_BOAT, ChestBoatModel::createBodyModel);
+    }
+
+    public static void onRegisterSpriteLoader(RegisterSpriteSourceTypesEvent event) {
+        event.register(Ott.resource("fxsprite"), FXAtlasSpriteSource.TYPE);
     }
 
     public static void registerBlockColors(RegisterColorHandlersEvent.Block event) {
@@ -157,7 +163,6 @@ public class ClientModEvents {
 
             ModBlocks.getAllGradientStainedGlassBlocks().forEach(block ->
                     ItemBlockRenderTypes.setRenderLayer(block.get(), RenderType.translucent()));
-
         });
     }
 }

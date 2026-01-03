@@ -81,6 +81,10 @@ public class Ott {
         modEventBus.addListener(ModBlockEntities::registerTileExtensions);
     }
 
+    public static ResourceLocation resource(String name) {
+        return ResourceLocation.fromNamespaceAndPath(MOD_ID, name);
+    }
+
     private void dataGeneratorSetup(final GatherDataEvent event) {
         final DataGenerator generator = event.getGenerator();
 
