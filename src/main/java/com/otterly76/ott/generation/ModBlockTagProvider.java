@@ -2,6 +2,7 @@ package com.otterly76.ott.generation;
 
 import com.otterly76.ott.Constants;
 import com.otterly76.ott.block.*;
+import com.otterly76.ott.util.ModTags;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.data.PackOutput;
@@ -46,7 +47,9 @@ public class ModBlockTagProvider extends BlockTagsProvider {
         TagKey<Block> cGlassKey = TagKey.create(Registries.BLOCK, ResourceLocation.fromNamespaceAndPath("c", "glass"));
         TagKey<Block> cGlassBlocksKey = TagKey.create(Registries.BLOCK, ResourceLocation.fromNamespaceAndPath("c", "glass_blocks"));
         TagKey<Block> cGlassBlocksCheapKey = TagKey.create(Registries.BLOCK, ResourceLocation.fromNamespaceAndPath("c", "glass_blocks_cheap"));
-        TagKey<Block> paleOakLogsKey = TagKey.create(Registries.BLOCK, ResourceLocation.fromNamespaceAndPath("c", "pale_oak_logs"));
+
+        TagKey<Block> paleOakLogsKey = ModTags.Blocks.PALE_OAK_LOGS;
+
         TagKey<Block> ottHedgesKey = TagKey.create(Registries.BLOCK, ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, "hedge"));
 
         TagKey<Block> doDefaultKey = TagKey.create(Registries.BLOCK, ResourceLocation.fromNamespaceAndPath("domum_ornamentum", "default"));

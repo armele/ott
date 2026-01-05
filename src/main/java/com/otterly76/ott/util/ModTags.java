@@ -10,7 +10,7 @@ import net.minecraft.world.level.block.Block;
 
 public class ModTags {
     public static class Blocks {
-        public static final TagKey<Block> PALE_OAK_LOGS = createTag("pale_oak_logs");
+        public static final TagKey<Block> PALE_OAK_LOGS = BlockTags.create(ResourceLocation.withDefaultNamespace("pale_oak_logs"));
 
         @SuppressWarnings("SameParameterValue")
         private static TagKey<Block> createTag(String name) {
