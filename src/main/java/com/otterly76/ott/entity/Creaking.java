@@ -3,7 +3,7 @@ package com.otterly76.ott.entity;
 import com.mojang.serialization.Dynamic;
 import com.otterly76.ott.block.ModBlocks;
 import com.otterly76.ott.block.custom.CreakingHeartBlock;
-import com.otterly76.ott.block.entity.CreakingHeartBlockEntity;
+import com.otterly76.ott.block.custom.entity.CreakingHeartBlockEntity;
 import com.otterly76.ott.sound.ModSounds;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Vec3i;

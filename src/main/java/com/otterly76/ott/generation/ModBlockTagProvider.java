@@ -46,9 +46,12 @@ public class ModBlockTagProvider extends BlockTagsProvider {
         TagKey<Block> cGlassKey = TagKey.create(Registries.BLOCK, ResourceLocation.fromNamespaceAndPath("c", "glass"));
         TagKey<Block> cGlassBlocksKey = TagKey.create(Registries.BLOCK, ResourceLocation.fromNamespaceAndPath("c", "glass_blocks"));
         TagKey<Block> cGlassBlocksCheapKey = TagKey.create(Registries.BLOCK, ResourceLocation.fromNamespaceAndPath("c", "glass_blocks_cheap"));
+        TagKey<Block> paleOakLogsKey = TagKey.create(Registries.BLOCK, ResourceLocation.fromNamespaceAndPath("c", "pale_oak_logs"));
+        TagKey<Block> ottHedgesKey = TagKey.create(Registries.BLOCK, ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, "hedge"));
 
         TagKey<Block> doDefaultKey = TagKey.create(Registries.BLOCK, ResourceLocation.fromNamespaceAndPath("domum_ornamentum", "default"));
         TagKey<Block> doConcreteKey = TagKey.create(Registries.BLOCK, ResourceLocation.fromNamespaceAndPath("domum_ornamentum", "concrete"));
+
 
         // --- 2. INITIALIZE BUILDERS (The "Appenders") ---
         var ottConcrete = this.tag(ottConcreteKey);
@@ -65,6 +68,7 @@ public class ModBlockTagProvider extends BlockTagsProvider {
         var shovelTag = this.tag(BlockTags.MINEABLE_WITH_SHOVEL);
         var axeTag = this.tag(BlockTags.MINEABLE_WITH_AXE);
         var hoeTag = this.tag(BlockTags.MINEABLE_WITH_HOE);
+        var shearsTag = this.tag(BlockTags.create(ResourceLocation.withDefaultNamespace("mineable/shears")));
 
         // --- 3. REGISTRY LOOP (Populate ott: and behavior tags) ---
         ModBlocks.BLOCKS.getEntries().forEach(deferredBlock -> {
@@ -129,15 +133,45 @@ public class ModBlockTagProvider extends BlockTagsProvider {
         ModBlocks.LIMESTONE.forEach(d -> pickaxeTag.add(d.value()));
         ModBlocks.SEAGLASS.forEach(d -> this.tag(BlockTags.IMPERMEABLE).add(d.value()));
 
+        var ottHedges = this.tag(ottHedgesKey);
+        ottHedges.add(ModBlocks.HEDGE.value());
+        ModBlocks.PARTICLE_HEDGES.values().forEach(h -> ottHedges.add(h.value()));
+        ModBlocks.CREEPING_HEDGES.values().forEach(h -> ottHedges.add(h.value()));
+
         axeTag.add(ModBlocks.CREAKING_HEART.value(), ModBlocks.FLIMSY_PROTECTIVE_LANTERN.value(), ModBlocks.PROTECTIVE_LANTERN.value(), ModBlocks.STURDY_PROTECTIVE_LANTERN.value());
         hoeTag.add(ModBlocks.PALE_MOSS_BLOCK.value(), ModBlocks.PALE_MOSS_CARPET.value(), ModBlocks.HEDGE.value());
+        hoeTag.add(ModBlocks.PALE_OAK_LEAVES.value());
         pickaxeTag.add(ModBlocks.RESIN_BRICKS.value(), ModBlocks.CHISELED_RESIN_BRICKS.value(), ModBlocks.RESIN_BRICK_SLAB.value(), ModBlocks.RESIN_BLOCK.value(), ModBlocks.RESIN_BRICK_STAIRS.value(), ModBlocks.RESIN_BRICK_WALL.value());
+
+        shearsTag.add(ModBlocks.PALE_OAK_LEAVES.value(), ModBlocks.PALE_HANGING_MOSS.value(), ModBlocks.PALE_MOSS_BLOCK.value(), ModBlocks.PALE_MOSS_CARPET.value(), ModBlocks.CLOSED_EYEBLOSSOM.value(), ModBlocks.OPEN_EYEBLOSSOM.value());
+
+        this.tag(BlockTags.create(ResourceLocation.withDefaultNamespace("combination_step_sound_blocks"))).add(ModBlocks.RESIN_CLUMP.value());
+        this.tag(BlockTags.FENCE_GATES).add(ModBlocks.PALE_OAK_FENCE_GATE.value());
+        this.tag(BlockTags.LOGS_THAT_BURN).addTag(paleOakLogsKey);
+        this.tag(BlockTags.SLABS).add(ModBlocks.RESIN_BRICK_SLAB.value());
+        this.tag(BlockTags.STAIRS).add(ModBlocks.RESIN_BRICK_STAIRS.value());
+        this.tag(BlockTags.WALLS).add(ModBlocks.RESIN_BRICK_WALL.value());
+
+        this.tag(BlockTags.STANDING_SIGNS).add(ModBlocks.PALE_OAK_SIGN.value());
+        this.tag(BlockTags.WALL_SIGNS).add(ModBlocks.PALE_OAK_WALL_SIGN.value());
+        this.tag(BlockTags.CEILING_HANGING_SIGNS).add(ModBlocks.PALE_OAK_HANGING_SIGN.value());
+        this.tag(BlockTags.WALL_HANGING_SIGNS).add(ModBlocks.PALE_OAK_WALL_HANGING_SIGN.value());
+
+        this.tag(BlockTags.WOODEN_BUTTONS).add(ModBlocks.PALE_OAK_BUTTON.value());
+        this.tag(BlockTags.WOODEN_DOORS).add(ModBlocks.PALE_OAK_DOOR.value());
+        this.tag(BlockTags.WOODEN_FENCES).add(ModBlocks.PALE_OAK_FENCE.value());
+        this.tag(BlockTags.WOODEN_PRESSURE_PLATES).add(ModBlocks.PALE_OAK_PRESSURE_PLATE.value());
+        this.tag(BlockTags.WOODEN_SLABS).add(ModBlocks.PALE_OAK_SLAB.value());
+        this.tag(BlockTags.WOODEN_STAIRS).add(ModBlocks.PALE_OAK_STAIRS.value());
+        this.tag(BlockTags.WOODEN_TRAPDOORS).add(ModBlocks.PALE_OAK_TRAPDOOR.value());
 
         ModBlocks.WOOD_SETS.values().forEach(set -> {
             this.tag(doDefaultKey).add(set.log().value(), set.wood().value(), set.strippedLog().value(), set.strippedWood().value(), set.planks().value(), set.leaves().value());
             this.tag(BlockTags.LOGS_THAT_BURN).add(set.log().value(), set.wood().value(), set.strippedLog().value(), set.strippedWood().value());
             this.tag(BlockTags.PLANKS).add(set.planks().value());
             this.tag(BlockTags.LEAVES).add(set.leaves().value());
+            this.tag(BlockTags.MINEABLE_WITH_HOE).add(set.leaves().value());
+            shearsTag.add(set.leaves().value());
             this.tag(BlockTags.WOODEN_SLABS).add(set.slab().value());
             this.tag(BlockTags.WOODEN_STAIRS).add(set.stairs().value());
             this.tag(BlockTags.WOODEN_FENCES).add(set.fence().value());
@@ -154,14 +188,13 @@ public class ModBlockTagProvider extends BlockTagsProvider {
 
         // --- 6. VANILLA OVERRIDES ---
         this.tag(BlockTags.LEAVES).add(ModBlocks.PALE_OAK_LEAVES.value());
-        this.tag(BlockTags.SAPLINGS).add(ModBlocks.PALE_OAK_SAPLING.value());
         this.tag(BlockTags.PLANKS).add(ModBlocks.PALE_OAK_PLANKS.value());
         this.tag(BlockTags.DIRT).add(ModBlocks.PALE_MOSS_BLOCK.value());
         this.tag(BlockTags.REPLACEABLE_BY_TREES).add(ModBlocks.PALE_MOSS_BLOCK.value());
         this.tag(BlockTags.FLOWERS).add(ModBlocks.CLOSED_EYEBLOSSOM.value(), ModBlocks.OPEN_EYEBLOSSOM.value());
         this.tag(BlockTags.SMALL_FLOWERS).add(ModBlocks.CLOSED_EYEBLOSSOM.value(), ModBlocks.OPEN_EYEBLOSSOM.value());
 
-        this.tag(TagKey.create(Registries.BLOCK, ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, "pale_oak_logs")))
+        this.tag(paleOakLogsKey)
                 .add(ModBlocks.PALE_OAK_LOG.value(), ModBlocks.STRIPPED_PALE_OAK_LOG.value(), ModBlocks.PALE_OAK_WOOD.value(), ModBlocks.STRIPPED_PALE_OAK_WOOD.value());
     }
 }

@@ -26,8 +26,8 @@ public class ModOverworldRegion extends Region {
                 .humidity(Humidity.HUMID)
                 .continentalness(Continentalness.INLAND)
                 .erosion(Erosion.EROSION_2, Erosion.EROSION_3)
-                .depth(Depth.FULL_RANGE)
-                .weirdness(new ParameterUtils.Weirdness[]{Weirdness.MID_SLICE_NORMAL_ASCENDING, Weirdness.MID_SLICE_NORMAL_DESCENDING})
+                .depth(Depth.SURFACE)
+                .weirdness(Weirdness.MID_SLICE_NORMAL_ASCENDING, Weirdness.MID_SLICE_NORMAL_DESCENDING)
                 .build().forEach((point) -> builder.add(point, ModBiomes.PALE_GARDEN));
         builder.build().forEach(mapper);
     }

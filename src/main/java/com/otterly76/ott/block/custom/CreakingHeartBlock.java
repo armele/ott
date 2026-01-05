@@ -1,8 +1,8 @@
 package com.otterly76.ott.block.custom;
 
 import com.mojang.serialization.MapCodec;
-import com.otterly76.ott.block.entity.CreakingHeartBlockEntity;
-import com.otterly76.ott.block.entity.ModBlockEntities;
+import com.otterly76.ott.block.custom.entity.CreakingHeartBlockEntity;
+import com.otterly76.ott.block.custom.entity.ModBlockEntities;
 import com.otterly76.ott.sound.ModSounds;
 import com.otterly76.ott.util.ModTags;
 import net.minecraft.core.BlockPos;
@@ -53,7 +53,7 @@ public class CreakingHeartBlock extends BaseEntityBlock {
 
     private static BlockState updateState(BlockState blockState, LevelAccessor levelAccessor, BlockPos blockPos) {
         boolean bl = hasRequiredLogs(blockState, levelAccessor, blockPos);
-        boolean bl2 = !(Boolean) blockState.getValue(ENABLED);
+        boolean bl2 = !(Boolean)blockState.getValue(ENABLED);
         return bl && bl2 ? blockState.setValue(ENABLED, true) : blockState;
     }
 
@@ -67,9 +67,11 @@ public class CreakingHeartBlock extends BaseEntityBlock {
             default -> throw new IllegalStateException("Invalid axis: " + axis);
         }
 
-        for (Direction direction : directions) {
+        for(Direction direction : directions) {
             BlockState blockState2 = levelAccessor.getBlockState(blockPos.relative(direction));
             if (!blockState2.is(ModTags.Blocks.PALE_OAK_LOGS) || blockState2.getValue(AXIS) != axis) {
+                blockState2.is(ModTags.Blocks.PALE_OAK_LOGS);
+
                 return false;
             }
         }
@@ -78,7 +80,7 @@ public class CreakingHeartBlock extends BaseEntityBlock {
     }
 
     private static boolean isSurroundedByLogs(LevelAccessor levelAccessor, BlockPos blockPos) {
-        for (Direction direction : Direction.values()) {
+        for(Direction direction : Direction.values()) {
             BlockPos blockPos2 = blockPos.relative(direction);
             BlockState blockState = levelAccessor.getBlockState(blockPos2);
             if (!blockState.is(ModTags.Blocks.PALE_OAK_LOGS)) {
@@ -89,51 +91,41 @@ public class CreakingHeartBlock extends BaseEntityBlock {
         return true;
     }
 
-    @Override
     protected @NotNull MapCodec<? extends BaseEntityBlock> codec() {
         return CODEC;
     }
 
-    @Override
     public BlockEntity newBlockEntity(@NotNull BlockPos blockPos, @NotNull BlockState blockState) {
         return new CreakingHeartBlockEntity(blockPos, blockState);
     }
 
-    @Override
     public @NotNull RenderShape getRenderShape(@NotNull BlockState blockState) {
         return RenderShape.MODEL;
     }
 
-    @Override
     public <T extends BlockEntity> @Nullable BlockEntityTicker<T> getTicker(Level level, @NotNull BlockState blockState, @NotNull BlockEntityType<T> blockEntityType) {
         if (level.isClientSide) {
             return null;
         } else {
-            return blockState.getValue(ENABLED)
-                    ? createTickerHelper(blockEntityType, ModBlockEntities.CREAKING_HEART.get(), CreakingHeartBlockEntity::serverTick)
-                    : null;
+            return blockState.getValue(ENABLED) ? createTickerHelper(blockEntityType, ModBlockEntities.CREAKING_HEART.get(), CreakingHeartBlockEntity::serverTick) : null;
         }
     }
 
-    @Override
     public void animateTick(@NotNull BlockState blockState, @NotNull Level level, @NotNull BlockPos blockPos, @NotNull RandomSource randomSource) {
         if (isNaturalNight(level) && blockState.getValue(ENABLED) && randomSource.nextInt(16) == 0 && isSurroundedByLogs(level, blockPos)) {
             level.playLocalSound(blockPos.getX(), blockPos.getY(), blockPos.getZ(), ModSounds.CREAKING_HEART_IDLE.get(), SoundSource.BLOCKS, 1.0F, 1.0F, false);
         }
     }
 
-    @Override
     protected @NotNull BlockState updateShape(@NotNull BlockState blockState, @NotNull Direction direction, @NotNull BlockState blockState2, @NotNull LevelAccessor levelAccessor, @NotNull BlockPos blockPos, @NotNull BlockPos blockPos2) {
         BlockState blockState3 = super.updateShape(blockState, direction, blockState2, levelAccessor, blockPos, blockPos2);
         return updateState(blockState3, levelAccessor, blockPos);
     }
 
-    @Override
     public void onPlace(@NotNull BlockState state, Level lvl, @NotNull BlockPos pos, @NotNull BlockState old, boolean moving) {
         lvl.scheduleTick(pos, this, 1);
     }
 
-    @Override
     public void tick(@NotNull BlockState state, @NotNull ServerLevel lvl, @NotNull BlockPos pos, @NotNull RandomSource r) {
         BlockState updated = updateState(state, lvl, pos);
         if (updated != state) {
@@ -141,17 +133,14 @@ public class CreakingHeartBlock extends BaseEntityBlock {
         }
     }
 
-    @Override
     public @Nullable BlockState getStateForPlacement(BlockPlaceContext blockPlaceContext) {
         return updateState(this.defaultBlockState().setValue(AXIS, blockPlaceContext.getClickedFace().getAxis()), blockPlaceContext.getLevel(), blockPlaceContext.getClickedPos());
     }
 
-    @Override
     protected @NotNull BlockState rotate(@NotNull BlockState blockState, @NotNull Rotation rotation) {
         return RotatedPillarBlock.rotatePillar(blockState, rotation);
     }
 
-    @Override
     protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
         builder.add(AXIS, ACTIVE, NATURAL, ENABLED);
     }
@@ -159,12 +148,10 @@ public class CreakingHeartBlock extends BaseEntityBlock {
     @Override
     protected void onRemove(BlockState blockState, @NotNull Level level, @NotNull BlockPos blockPos, BlockState blockState2, boolean bl) {
         if (blockState.getBlock() != blockState2.getBlock()) {
-            BlockEntity be = level.getBlockEntity(blockPos);
-            if (be instanceof CreakingHeartBlockEntity heart) {
+            if (level.getBlockEntity(blockPos) instanceof CreakingHeartBlockEntity heart) {
                 heart.removeProtector(null);
             }
         }
-
         super.onRemove(blockState, level, blockPos, blockState2, bl);
     }
 
@@ -174,45 +161,28 @@ public class CreakingHeartBlock extends BaseEntityBlock {
 
     @Override
     protected void onExplosionHit(@NotNull BlockState blockState, Level serverLevel, @NotNull BlockPos blockPos, @NotNull Explosion explosion, @NotNull BiConsumer<ItemStack, BlockPos> biConsumer) {
-        BlockEntity be = serverLevel.getBlockEntity(blockPos);
-        if (be instanceof CreakingHeartBlockEntity creakingHeartBlockEntity) {
+        if (serverLevel.getBlockEntity(blockPos) instanceof CreakingHeartBlockEntity heart) {
             if (explosion.interactsWithBlocks()) {
                 Entity indirectSource = explosion.getIndirectSourceEntity();
                 DamageSource lastDamage = lastDamageSourceOf(indirectSource);
 
-                creakingHeartBlockEntity.removeProtector(lastDamage);
+                heart.removeProtector(lastDamage);
 
-                if (indirectSource instanceof Player player2) {
-                    this.tryAwardExperience(player2, blockState, serverLevel, blockPos);
+                if (indirectSource instanceof Player player) {
+                    this.tryAwardExperience(player, blockState, serverLevel, blockPos);
                 }
             }
         }
-
         super.onExplosionHit(blockState, serverLevel, blockPos, explosion, biConsumer);
     }
 
     @Override
     public @NotNull BlockState playerWillDestroy(Level level, @NotNull BlockPos blockPos, @NotNull BlockState blockState, @NotNull Player player) {
-        BlockEntity be = level.getBlockEntity(blockPos);
-        if (be instanceof CreakingHeartBlockEntity creakingHeartBlockEntity) {
-            creakingHeartBlockEntity.removeProtector(player.damageSources().playerAttack(player));
+        if (level.getBlockEntity(blockPos) instanceof CreakingHeartBlockEntity heart) {
+            heart.removeProtector(player.damageSources().playerAttack(player));
             this.tryAwardExperience(player, blockState, level, blockPos);
         }
-
         return super.playerWillDestroy(level, blockPos, blockState, player);
-    }
-
-    @Override
-    protected int getAnalogOutputSignal(BlockState blockState, @NotNull Level level, @NotNull BlockPos blockPos) {
-        if (!blockState.getValue(ACTIVE)) {
-            return 0;
-        }
-
-        BlockEntity be = level.getBlockEntity(blockPos);
-        if (be instanceof CreakingHeartBlockEntity creakingHeartBlockEntity) {
-            return creakingHeartBlockEntity.getAnalogOutputSignal();
-        }
-        return 0;
     }
 
     private void tryAwardExperience(Player player, BlockState blockState, Level level, BlockPos blockPos) {
@@ -221,9 +191,20 @@ public class CreakingHeartBlock extends BaseEntityBlock {
         }
     }
 
-    @Override
     protected boolean hasAnalogOutputSignal(@NotNull BlockState p_60457_) {
         return true;
+    }
+
+    @Override
+    protected int getAnalogOutputSignal(BlockState blockState, @NotNull Level level, @NotNull BlockPos blockPos) {
+        if (!blockState.getValue(ACTIVE)) {
+            return 0;
+        }
+
+        if (level.getBlockEntity(blockPos) instanceof CreakingHeartBlockEntity heart) {
+            return heart.getAnalogOutputSignal();
+        }
+        return 0;
     }
 
     static {

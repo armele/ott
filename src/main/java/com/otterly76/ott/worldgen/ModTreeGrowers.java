@@ -1,33 +1,24 @@
 package com.otterly76.ott.worldgen;
 
+import net.minecraft.core.registries.Registries;
+import net.minecraft.resources.ResourceKey;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.block.grower.TreeGrower;
 
 import java.util.Optional;
 
 public class ModTreeGrowers {
     public static final TreeGrower OAK = new TreeGrower(
-            "minecraft:oak",
-            Optional.of(net.minecraft.resources.ResourceKey.create(
-                    net.minecraft.core.registries.Registries.CONFIGURED_FEATURE,
-                    net.minecraft.resources.ResourceLocation.fromNamespaceAndPath("minecraft", "oak")
-            )),
-            Optional.of(net.minecraft.resources.ResourceKey.create(
-                    net.minecraft.core.registries.Registries.CONFIGURED_FEATURE,
-                    net.minecraft.resources.ResourceLocation.fromNamespaceAndPath("minecraft", "fancy_oak")
-            )),
+            "oak",
+            Optional.of(ResourceKey.create(Registries.CONFIGURED_FEATURE, ResourceLocation.withDefaultNamespace("oak"))),
+            Optional.of(ResourceKey.create(Registries.CONFIGURED_FEATURE, ResourceLocation.withDefaultNamespace("fancy_oak"))),
             Optional.empty()
     );
 
     public static final TreeGrower PALE_OAK = new TreeGrower(
-            "minecraft:pale_oak",
-            Optional.of(net.minecraft.resources.ResourceKey.create(
-                    net.minecraft.core.registries.Registries.CONFIGURED_FEATURE,
-                    net.minecraft.resources.ResourceLocation.fromNamespaceAndPath("minecraft", "pale_oak")
-            )),
-            Optional.of(net.minecraft.resources.ResourceKey.create(
-                    net.minecraft.core.registries.Registries.CONFIGURED_FEATURE,
-                    net.minecraft.resources.ResourceLocation.fromNamespaceAndPath("minecraft", "pale_oak_mega")
-            )),
+            "pale_oak",
+            Optional.of(ResourceKey.create(Registries.CONFIGURED_FEATURE, ResourceLocation.withDefaultNamespace("pale_oak"))),
+            Optional.empty(),
             Optional.empty()
     );
 }

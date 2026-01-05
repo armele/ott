@@ -96,12 +96,27 @@ public class ModItemTagProvider extends ItemTagsProvider {
         );
         this.tag(ItemTags.LOGS_THAT_BURN).addTag(ModTags.Items.PALE_OAK_LOGS);
         this.tag(ItemTags.PLANKS).add(ModBlocks.PALE_OAK_PLANKS.asItem());
+        this.tag(ItemTags.LEAVES).add(ModBlocks.PALE_OAK_LEAVES.asItem());
+
+        this.tag(ItemTags.FENCE_GATES).add(ModBlocks.PALE_OAK_FENCE_GATE.asItem());
+        this.tag(ItemTags.SLABS).add(ModBlocks.RESIN_BRICK_SLAB.asItem());
+        this.tag(ItemTags.STAIRS).add(ModBlocks.RESIN_BRICK_STAIRS.asItem());
+        this.tag(ItemTags.WALLS).add(ModBlocks.RESIN_BRICK_WALL.asItem());
+
+        this.tag(ItemTags.WOODEN_BUTTONS).add(ModBlocks.PALE_OAK_BUTTON.asItem());
+        this.tag(ItemTags.WOODEN_DOORS).add(ModBlocks.PALE_OAK_DOOR.asItem());
+        this.tag(ItemTags.WOODEN_FENCES).add(ModBlocks.PALE_OAK_FENCE.asItem());
+        this.tag(ItemTags.WOODEN_PRESSURE_PLATES).add(ModBlocks.PALE_OAK_PRESSURE_PLATE.asItem());
+        this.tag(ItemTags.WOODEN_SLABS).add(ModBlocks.PALE_OAK_SLAB.asItem());
+        this.tag(ItemTags.WOODEN_STAIRS).add(ModBlocks.PALE_OAK_STAIRS.asItem());
+        this.tag(ItemTags.WOODEN_TRAPDOORS).add(ModBlocks.PALE_OAK_TRAPDOOR.asItem());
 
         // --- 5. WOOD SETS ---
         ModBlocks.WOOD_SETS.forEach((setName, set) -> {
             this.tag(ModTags.Items.woodSetLogs(setName)).add(set.log().asItem(), set.wood().asItem(), set.strippedLog().asItem(), set.strippedWood().asItem());
             this.tag(ItemTags.LOGS_THAT_BURN).addTag(ModTags.Items.woodSetLogs(setName));
             this.tag(ItemTags.PLANKS).add(set.planks().asItem());
+            this.tag(ItemTags.LEAVES).add(set.leaves().asItem());
             this.tag(ItemTags.WOODEN_SLABS).add(set.slab().asItem());
             this.tag(ItemTags.WOODEN_STAIRS).add(set.stairs().asItem());
             this.tag(ItemTags.WOODEN_FENCES).add(set.fence().asItem());

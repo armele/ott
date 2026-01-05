@@ -180,6 +180,7 @@ public class ModBlocks {
 
     public static final DeferredBlock<SaplingBlock> STARLIGHT_SAPLING = BLOCKS.register("starlight_sapling", () -> new SaplingBlock(ModTreeGrowers.OAK, Properties.of().strength(4.0f).sound(SoundType.WOOD).noOcclusion()));
     public static final DeferredBlock<SaplingBlock> MIDNIGHT_SAPLING = BLOCKS.register("midnight_sapling", () -> new SaplingBlock(ModTreeGrowers.OAK, Properties.of().strength(4.0f).sound(SoundType.WOOD).noOcclusion()));
+
     public static final DeferredBlock<FlowerPotBlock> POTTED_STARLIGHT_SAPLING = BLOCKS.register("potted_starlight_sapling", () -> new FlowerPotBlock(() -> (FlowerPotBlock) Blocks.FLOWER_POT, STARLIGHT_SAPLING, Properties.of().strength(4.0f).sound(SoundType.WOOD).noOcclusion()));
     public static final DeferredBlock<FlowerPotBlock> POTTED_MIDNIGHT_SAPLING = BLOCKS.register("potted_midnight_sapling", () -> new FlowerPotBlock(() -> (FlowerPotBlock) Blocks.FLOWER_POT, MIDNIGHT_SAPLING, Properties.of().strength(4.0f).sound(SoundType.WOOD).noOcclusion()));
 

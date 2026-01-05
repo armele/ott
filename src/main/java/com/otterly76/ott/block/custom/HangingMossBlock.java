@@ -24,6 +24,7 @@ import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import org.jetbrains.annotations.NotNull;
 
+
 public class HangingMossBlock extends Block implements BonemealableBlock {
     public static final BooleanProperty TIP = BooleanProperty.create("tip");
     public static final MapCodec<HangingMossBlock> CODEC = simpleCodec(HangingMossBlock::new);
@@ -51,7 +52,6 @@ public class HangingMossBlock extends Block implements BonemealableBlock {
                 level.playLocalSound(blockPos.getX(), blockPos.getY(), blockPos.getZ(), ModSounds.PALE_HANGING_MOSS_IDLE.get(), SoundSource.BLOCKS, 1.0F, 1.0F, false);
             }
         }
-
     }
 
     protected boolean propagatesSkylightDown(@NotNull BlockState p_320652_, @NotNull BlockGetter p_320953_, @NotNull BlockPos p_320082_) {
@@ -65,7 +65,7 @@ public class HangingMossBlock extends Block implements BonemealableBlock {
     private boolean canStayAtPosition(BlockGetter blockGetter, BlockPos blockPos) {
         BlockPos blockPos2 = blockPos.relative(Direction.UP);
         BlockState blockState = blockGetter.getBlockState(blockPos2);
-        return MultifaceBlock.canAttachTo(blockGetter, Direction.UP, blockPos2, blockState) || blockState.is(ModBlocks.PALE_HANGING_MOSS.get());
+        return MultifaceBlock.canAttachTo(blockGetter, Direction.UP, blockPos2, blockState) || blockState.is(ModBlocks.PALE_HANGING_MOSS);
     }
 
     protected @NotNull BlockState updateShape(@NotNull BlockState blockState, @NotNull Direction direction, @NotNull BlockState blockState2, @NotNull LevelAccessor levelAccessor, @NotNull BlockPos blockPos, @NotNull BlockPos blockPos2) {

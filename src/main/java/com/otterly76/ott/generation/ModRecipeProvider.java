@@ -6,17 +6,12 @@ import com.otterly76.ott.item.ModItems;
 import com.otterly76.ott.util.ModTags;
 import net.minecraft.advancements.Advancement;
 import net.minecraft.advancements.AdvancementHolder;
-import net.minecraft.advancements.Criterion;
 import net.minecraft.advancements.CriteriaTriggers;
+import net.minecraft.advancements.Criterion;
 import net.minecraft.advancements.critereon.ImpossibleTrigger;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
-import net.minecraft.data.recipes.RecipeCategory;
-import net.minecraft.data.recipes.RecipeOutput;
-import net.minecraft.data.recipes.RecipeProvider;
-import net.minecraft.data.recipes.ShapedRecipeBuilder;
-import net.minecraft.data.recipes.ShapelessRecipeBuilder;
-import net.minecraft.data.recipes.SingleItemRecipeBuilder;
+import net.minecraft.data.recipes.*;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.Ingredient;
@@ -80,6 +75,16 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
                 .pattern("#")
                 .unlockedBy("impossible", impossible())
                 .save(noAdv, getRecipePath("minecraft", "creaking_heart"));
+
+        SimpleCookingRecipeBuilder.smelting(
+                        Ingredient.of(ModBlocks.RESIN_CLUMP.get()),
+                        RecipeCategory.MISC,
+                        ModItems.RESIN_BRICK.get(),
+                        0.1F,
+                        200
+                )
+                .unlockedBy("impossible", impossible())
+                .save(noAdv, getRecipePath("minecraft", "resin_brick"));
 
         ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, ModBlocks.RESIN_BLOCK.get())
                 .define('#', ModBlocks.RESIN_CLUMP.get())

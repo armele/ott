@@ -1,7 +1,7 @@
 package com.otterly76.ott;
 
 import com.otterly76.ott.block.ModBlocks;
-import com.otterly76.ott.block.entity.ModBlockEntities;
+import com.otterly76.ott.block.custom.entity.ModBlockEntities;
 import com.otterly76.ott.block.wood.ModBlockFamilies;
 import com.otterly76.ott.entity.ModEntities;
 import com.otterly76.ott.events.ModEventBusEvents;
@@ -32,9 +32,7 @@ import net.minecraft.world.item.CreativeModeTabs;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.ItemLike;
-import net.minecraft.world.level.block.Blocks;
-import net.minecraft.world.level.block.FireBlock;
-import net.minecraft.world.level.block.FlowerPotBlock;
+import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.storage.loot.parameters.LootContextParamSets;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.bus.api.SubscribeEvent;
@@ -101,7 +99,6 @@ public class Ott {
         generator.addProvider(event.includeServer(), new ModItemTagProvider(generator.getPackOutput(), event.getLookupProvider(), blockTagProvider.contentsGetter(), event.getExistingFileHelper()));
         generator.addProvider(event.includeServer(), new ModRecipeProvider(generator.getPackOutput(), event.getLookupProvider()));
         generator.addProvider(event.includeServer(), new ModBiomeTagProvider(generator.getPackOutput(), event.getLookupProvider(), MOD_ID, event.getExistingFileHelper()));
-        generator.addProvider(event.includeServer(), new ModDatapackProvider(generator.getPackOutput(), event.getLookupProvider()));
 
         if (event.includeClient()) {
             generator.addProvider(true, new ModItemModelProvider(generator.getPackOutput(), event.getExistingFileHelper()));
@@ -110,6 +107,7 @@ public class Ott {
 
     private void commonSetup(FMLCommonSetupEvent event) {
         event.enqueueWork(() -> {
+            registerCompostables();
             registerFlammables();
             Regions.register(new ModOverworldRegion(ResourceLocation.fromNamespaceAndPath("minecraft", "palegarden"), 2));
             ModBlockFamilies.createBlockFamilies();
@@ -121,7 +119,28 @@ public class Ott {
         });
     }
 
-    // TODO add wood types to compostable list (data)
+    @SuppressWarnings("deprecation")
+    public void registerCompostables() {
+        ComposterBlock.COMPOSTABLES.put(ModBlocks.CLOSED_EYEBLOSSOM.get().asItem(), 0.65F);
+        ComposterBlock.COMPOSTABLES.put(ModBlocks.OPEN_EYEBLOSSOM.get().asItem(), 0.3F);
+        ComposterBlock.COMPOSTABLES.put(ModBlocks.PALE_MOSS_BLOCK.get().asItem(), 0.65F);
+        ComposterBlock.COMPOSTABLES.put(ModBlocks.PALE_HANGING_MOSS.get().asItem(), 0.3F);
+        ComposterBlock.COMPOSTABLES.put(ModBlocks.PALE_MOSS_CARPET.get().asItem(), 0.3F);
+        ComposterBlock.COMPOSTABLES.put(ModBlocks.PALE_OAK_LEAVES.get().asItem(), 0.3F);
+
+        ModBlocks.WOOD_SETS.values().forEach(set -> {
+            ComposterBlock.COMPOSTABLES.put(set.leaves().get().asItem(), 0.3F);
+            ComposterBlock.COMPOSTABLES.put(set.log().get().asItem(), 0.3F);
+            ComposterBlock.COMPOSTABLES.put(set.wood().get().asItem(), 0.3F);
+            ComposterBlock.COMPOSTABLES.put(set.strippedLog().get().asItem(), 0.3F);
+            ComposterBlock.COMPOSTABLES.put(set.strippedWood().get().asItem(), 0.3F);
+            ComposterBlock.COMPOSTABLES.put(set.planks().get().asItem(), 0.3F);
+            ComposterBlock.COMPOSTABLES.put(set.slab().get().asItem(), 0.3F);
+            ComposterBlock.COMPOSTABLES.put(set.stairs().get().asItem(), 0.3F);
+            ComposterBlock.COMPOSTABLES.put(set.fence().get().asItem(), 0.3F);
+            ComposterBlock.COMPOSTABLES.put(set.fenceGate().get().asItem(), 0.3F);
+        });
+    }
 
     public void registerFlammables() {
         FireBlock fire = (FireBlock) Blocks.FIRE;
