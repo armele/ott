@@ -42,7 +42,7 @@ displayURL="https://github.com/rainweaver76/ott" #optional
 logoFile="ott.png" #optional
 
 # A text field displayed in the mod UI
-credits="Great gobs of thanks to Thodor12 from the LDT Team for helping me with relearning java after a 25 year hiatus! Give that poor man a raise! Thank you to Ayar for being my personal crash test dummy!" #optional
+credits="Caffiene... it may not solve all of my problems, but it keeps me from becoming someone else's problem..." #optional
 
 # A text field displayed in the mod UI
 authors="${mod_authors}" #optional
