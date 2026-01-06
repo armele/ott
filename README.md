@@ -13,102 +13,63 @@ FAQ:
 2. Such and such (insert Mekanism, etc. here) are way more powerful; why don't you blarg?
     - Because the point of this mod is to be a companion to MineColonies and to avoid OP mod functions.
 
-Running List:
+Ongoing:
+======= 
+- Updating all textures to 32x textures
+- Updating to 3D models for most blocks
+- Identifying and adding missing sound files
+- Identifying and adding missing recipes
+
+Mods, Resourcepacks, and Datapacks You Will Not Need:
 =======
-- Added Gradient Concrete, Concrete Powder, Terracotta, Wool, and Stained Glass blocks
-- Added Limestone blocks
-- Added a set of 16 Test Blocks for various Ray request testings
-- Added healing bed function for players 🛏️
-- Added Seaglass
-- 32x textures (ongoing)
-  - yes, Ray, I know
-  - 32x is a nice happy medium that gives a little more detail, a little more variation, without straying too far from the "Minecraft" feel
-- 3D models for most blocks (ongoing)
-- FLOOFY LEAVES! 🍃
-- Lowered the Shield when equipped so you can actually, ya know, see what you're doing
-- Lowered the Totem of Undying, see above
-- Identified and added missing sound files (ongoing)
-- Identified and added missing recipes (ongoing)
-- Added the evil Hedge
-    - Evil Cackling Ensues
-    - Added custom damage for the murder plants: Flora 🌼
-    - Can be grown as a crop from Hedge Sprouts
-    - Can be harvested with a hoe to bypass damage
+- ANY 3D Model Mods or Resourcepacks
+- ANY 32x Texture Resourcepacks
+- Better Leaves, Bushy Leaves, JS Leaves+, etc 🍃
+- Healing Bed 🛏️
+- Low Shield, Lower Shield, Small Shield & Totem, Smaller Shield & Totem, etc
+- Low On Fire, etc 🔥
+- Minecolonies Schematics World Template
+- Minecolonies Oxidized Copper via Alchemist (1.21+)
+- Copper Paths / Roads for Minecolonies
+- Pretty Rain ⛅
+- Appleskin 🍎
+- Overloaded Armor Bar
+- Colorful Hearts ❤️
+- Trash Slot
+- Simple Grass Flowers, Better Grounds, Better Grass, etc 🍀
+- Perfect Parity Neo: Pale Garden Awakens
+- Yeetus Experimentus
+- Yeetus Narratus 📢
+- The Fence Unleashed 🐮
+- Jump Over Fences, JumpOverFences, etc 🏃
+- Snow Under Trees, Simple Snowy Fix, etc ❄️
+- Lithosphere, Lithostitched, Tectonic, Underground Rivers, Improved Village Placement, Worldgen Patches 🌎
+- Better Days 🌛🌝🌜
+- Trash Slot, Trash Cans, etc 🗑️
+- Torchmaster, Magnum Torch
+- Not Enough Recipe Book
+- What The Bucket
+- Looping Jukebox 🎶
+- Infinite Trial Vaults, Resettable Vaults, Renewable Vaults, etc
+
+Features
+=======
+- New Blocks:
+  - Gradient Concrete, Concrete Powder, Terracotta, Wool, and Stained Glass blocks
+  - 16 new Limestone blocks, 4 styles in 4 shades
+  - Seaglass, Ethereal, and Prismatic blocks
+  - Floral, Blooming, and Creeping Hedges 🌺
+- Added the Hedge
+  - Custom damage for dangerous plants: Flora 🌼
 - Added Create support, first pass (3D models and textures for ores)
 - Added Chipped support, first pass (fluffy leaves, fixed some lantern models, fixed ladders(3D))
+- Added Aquaculture2 compatibility for Minecolonies 🐟
 - Added farmland protection for MineColonies crops
 - Added custom schematic dimensions!
   - flat
   - flat w/ water
   - MCol schematic dimension by Thaylar & the LDT Team with fully pregenerated templates
 - Added native support for custom music 🎵
-- Added copper blocks/slabs/stairs as pathblocks for MineColonies citizens
-- Updated the item models for dyes
-- Moved 3D texture models for external mods to a built-in resource pack to override mod load order issues
 - Added new MCol specific splash texts for the main menu
 - Added new skybox textures ☀️🌙
 - Added new weather textures and expanded particle effects ⛅
-- Added a new custom hunger/saturation/exhaustion system! 🍪
-  - Similar to AppleSkin but written from scratch with clean, nondeprecated code and new icons
-  - Used apples for the food icons in homage to AppleSkin
-- Added a new custom health / hearts display to mimic Colorful Hearts ❤️
-  - This displays all health hearts on one hud line to clean up the display
-  - Each set of 20 health is a new color
-    - Colors follow from Red through Pink with a step between each color
-    - If you somehow have more than 230 health it will wrap back to red
-    - Also, how in nine hells do you have more than 230 health?
-- Added new custom armor values display to mimic OverloadedArmorBar
-  - This displays all armor values on one hud line to clean up the display
-  - Each set of 20 armor is a new color
-    - Iron → Diamond Blue → Lapis Blue → Emerald Green → Gold → Purple → Red
-    - This covers 80 points of armor
-    - If you have more than 80 armor it will wrap back to Iron
-    - Also, if you somehow have more than 80 armor I'd love to know HOW
-- Pale Garden 1:1 backport
-  - Because it's awesome and I want it
-- Suppressed the "Experimental Features" warning for new instances
-- Blocking the gates for animals so we don't have to chase livestock around 🐮
-  - Animals don't even acknowledge the gates, so they won't all cluster in front of it, either
-  - Still need to put a roof on it for goats and frogs since those buggers jump
-- Adding floral hedges, blooming hedges, and creeping hedge
-- Added snow under trees
-- Improved village placement
-  - Village placement now checks for rivers, oceans, and various ravines before plopping a building down
-  - Farms follow their own rules so, gods speed, farmers!
-- Added improved world and terrain Generation! ⛰️🌳
-  - Smoothed terrain overall
-  - Larger biomes
-  - Better biome placement based on temperature and humidity
-    - No frozen slopes next to deserts 🙄
-  - Better rivers and lakes
-    - Some rivers will cut through mountains!
-  - Larger cave features
-  - Underground rivers and lakes!
-- Doubled the length of day and halved the length of night ⏳
-- Added Trash Can functionality 🗑️
-  - A new Trash Can icon on the Inventory screen
-  - Clicking the Trash It button deletes the inventory of the trash
-  - Hitting Esc returns you and the items back into your inventory (the emergency oopsie escape)
-- Removed the unnecessary Recipe Book button from the Inventory screen 📖
-  - Redundant and subpar as we use JEI as a dependency
-- Vanilla recipes that require buckets but should not eat said buckets no longer eat the buckets
-- Jukeboxes loop the disc they are playing instead if stopping at the end of the song
-  - Now you can set up cool ambient music in your worlds!
-  - No more missing discs when jukeboxes stop playing!
-- Added a set of three protective lanterns
-  - Ranges from 2 chunk, 4 chunk, and 8 chunk radius
-  - Blocks all hostile monster spawns in the area
-- Vaults and Ominous Vaults adjusted to be reusable after an hour
-  - no more single use vaults
-  - no more stacks of unused keys in storage
-- Added the second round of gradient blocks, flipped
-  - DO bakes the textures in as it sees them
-  - When using DO to make stairs, etc, you only got one direction and not the reverse as an option
-- Hey, you know that Narrator that legit bellows at you when you start a new game?
-  - Yeah, I shut him the hell up
-- Added Three World Coordinate determined color blocks 🌈 
-    - The color range transitions between two defined colors based on world position
-      - Horizontal: The colors only shift horizontally (sideways)
-      - Vertical: The colors only shift vertically (up and down)
-      - Full 3D: The colors shift in both directions (up and down and sideways)
-- Added a new texture type called CloudFX that mimics the Cloud texture in XyCraft with fewer moving parts

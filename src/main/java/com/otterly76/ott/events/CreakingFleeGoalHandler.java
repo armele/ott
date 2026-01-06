@@ -2,7 +2,7 @@ package com.otterly76.ott.events;
 
 import com.mojang.datafixers.util.Either;
 import com.otterly76.ott.Constants;
-import com.otterly76.ott.config.CreakingFleeConfig;
+import com.otterly76.ott.config.OttConfig;
 import com.otterly76.ott.entity.Creaking;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.core.registries.Registries;
@@ -40,11 +40,11 @@ public class CreakingFleeGoalHandler {
 
     private static boolean shouldFleeFromCreaking(Mob mob) {
         // Safety check: Don't try to access the config if it isn't loaded yet
-        if (!CreakingFleeConfig.CONFIG.isLoaded()) {
+        if (!OttConfig.SPEC.isLoaded()) {
             return false;
         }
 
-        List<String> currentConfig = CreakingFleeConfig.FLEE_ENTITIES.get();
+        List<String> currentConfig = OttConfig.CREAKING.FLEE_ENTITIES.get();
 
         // Refresh cache if config has changed or isn't initialized yet
         if (cachedFleeTypes == null || !currentConfig.equals(lastKnownConfig)) {

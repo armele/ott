@@ -1,0 +1,707 @@
+{
+  "type": "minecraft:fishing",
+  "pools": [
+    {
+      "bonus_rolls": 0.0,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:cod",
+          "weight": 60
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:salmon",
+          "weight": 25
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:tropical_fish",
+          "weight": 2
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:pufferfish",
+          "weight": 13
+        },
+        {
+          "type": "minecraft:item",
+          "conditions": [
+            {
+              "condition": "neoforge:mod_loaded",
+              "modid": "aquaculture"
+            },
+            {
+              "condition": "minecraft:location_check",
+              "predicate": {
+                "biomes": [
+                  "#minecraft:is_ocean",
+                  "#minecraft:is_beach"
+                ]
+              }
+            }
+          ],
+          "weight": 6,
+          "name": "aquaculture:atlantic_cod"
+        },
+        {
+          "type": "minecraft:item",
+          "conditions": [
+            {
+              "condition": "neoforge:mod_loaded",
+              "modid": "aquaculture"
+            },
+            {
+              "condition": "minecraft:location_check",
+              "predicate": {
+                "biomes": [
+                  "#minecraft:is_ocean",
+                  "#minecraft:is_beach"
+                ]
+              }
+            }
+          ],
+          "weight": 16,
+          "name": "aquaculture:blackfish"
+        },
+        {
+          "type": "minecraft:item",
+          "conditions": [
+            {
+              "condition": "neoforge:mod_loaded",
+              "modid": "aquaculture"
+            },
+            {
+              "condition": "minecraft:location_check",
+              "predicate": {
+                "biomes": [
+                  "#minecraft:is_ocean",
+                  "#minecraft:is_beach"
+                ]
+              }
+            }
+          ],
+          "weight": 4,
+          "name": "aquaculture:pacific_halibut"
+        },
+        {
+          "type": "minecraft:item",
+          "conditions": [
+            {
+              "condition": "neoforge:mod_loaded",
+              "modid": "aquaculture"
+            },
+            {
+              "condition": "minecraft:location_check",
+              "predicate": {
+                "biomes": [
+                  "#minecraft:is_ocean",
+                  "#minecraft:is_beach"
+                ]
+              }
+            }
+          ],
+          "weight": 8,
+          "name": "aquaculture:atlantic_halibut"
+        },
+        {
+          "type": "minecraft:item",
+          "conditions": [
+            {
+              "condition": "neoforge:mod_loaded",
+              "modid": "aquaculture"
+            },
+            {
+              "condition": "minecraft:location_check",
+              "predicate": {
+                "biomes": [
+                  "#minecraft:is_ocean",
+                  "#minecraft:is_beach"
+                ]
+              }
+            }
+          ],
+          "weight": 24,
+          "name": "aquaculture:atlantic_herring"
+        },
+        {
+          "type": "minecraft:item",
+          "conditions": [
+            {
+              "condition": "neoforge:mod_loaded",
+              "modid": "aquaculture"
+            },
+            {
+              "condition": "minecraft:location_check",
+              "predicate": {
+                "biomes": [
+                  "#minecraft:is_ocean",
+                  "#minecraft:is_beach"
+                ]
+              }
+            }
+          ],
+          "weight": 8,
+          "name": "aquaculture:pink_salmon"
+        },
+        {
+          "type": "minecraft:item",
+          "conditions": [
+            {
+              "condition": "neoforge:mod_loaded",
+              "modid": "aquaculture"
+            },
+            {
+              "condition": "minecraft:location_check",
+              "predicate": {
+                "biomes": [
+                  "#minecraft:is_ocean",
+                  "#minecraft:is_beach"
+                ]
+              }
+            }
+          ],
+          "weight": 10,
+          "name": "aquaculture:pollock"
+        },
+        {
+          "type": "minecraft:item",
+          "conditions": [
+            {
+              "condition": "neoforge:mod_loaded",
+              "modid": "aquaculture"
+            },
+            {
+              "condition": "minecraft:location_check",
+              "predicate": {
+                "biomes": [
+                  "#minecraft:is_ocean",
+                  "#minecraft:is_beach"
+                ]
+              }
+            }
+          ],
+          "weight": 8,
+          "name": "aquaculture:rainbow_trout"
+        },
+        {
+          "type": "minecraft:item",
+          "conditions": [
+            {
+              "condition": "neoforge:mod_loaded",
+              "modid": "aquaculture"
+            },
+            {
+              "condition": "minecraft:location_check",
+              "predicate": {
+                "biomes": [
+                  "#minecraft:is_ocean",
+                  "#minecraft:is_beach"
+                ]
+              }
+            }
+          ],
+          "weight": 12,
+          "name": "aquaculture:jellyfish"
+        },
+        {
+          "type": "minecraft:item",
+          "conditions": [
+            {
+              "condition": "neoforge:mod_loaded",
+              "modid": "aquaculture"
+            },
+            {
+              "condition": "minecraft:location_check",
+              "predicate": {
+                "biomes": [
+                  "#minecraft:is_ocean",
+                  "#minecraft:is_beach"
+                ]
+              }
+            }
+          ],
+          "weight": 8,
+          "name": "aquaculture:red_grouper"
+        },
+        {
+          "type": "minecraft:item",
+          "conditions": [
+            {
+              "condition": "neoforge:mod_loaded",
+              "modid": "aquaculture"
+            },
+            {
+              "condition": "minecraft:location_check",
+              "predicate": {
+                "biomes": [
+                  "#minecraft:is_ocean",
+                  "#minecraft:is_beach"
+                ]
+              }
+            }
+          ],
+          "weight": 2,
+          "name": "aquaculture:tuna"
+        },
+        {
+          "type": "minecraft:item",
+          "conditions": [
+            {
+              "condition": "neoforge:mod_loaded",
+              "modid": "aquaculture"
+            },
+            {
+              "condition": "minecraft:location_check",
+              "predicate": {
+                "biomes": [
+                  "minecraft:desert",
+                  "#minecraft:is_savanna"
+                ]
+              }
+            }
+          ],
+          "weight": 8,
+          "name": "aquaculture:bayad"
+        },
+        {
+          "type": "minecraft:item",
+          "conditions": [
+            {
+              "condition": "neoforge:mod_loaded",
+              "modid": "aquaculture"
+            },
+            {
+              "condition": "minecraft:location_check",
+              "predicate": {
+                "biomes": [
+                  "minecraft:desert",
+                  "#minecraft:is_savanna"
+                ]
+              }
+            }
+          ],
+          "weight": 12,
+          "name": "aquaculture:boulti"
+        },
+        {
+          "type": "minecraft:item",
+          "conditions": [
+            {
+              "condition": "neoforge:mod_loaded",
+              "modid": "aquaculture"
+            },
+            {
+              "condition": "minecraft:location_check",
+              "predicate": {
+                "biomes": [
+                  "minecraft:desert",
+                  "#minecraft:is_savanna"
+                ]
+              }
+            }
+          ],
+          "weight": 2,
+          "name": "aquaculture:capitaine"
+        },
+        {
+          "type": "minecraft:item",
+          "conditions": [
+            {
+              "condition": "neoforge:mod_loaded",
+              "modid": "aquaculture"
+            },
+            {
+              "condition": "minecraft:location_check",
+              "predicate": {
+                "biomes": [
+                  "minecraft:desert",
+                  "#minecraft:is_savanna"
+                ]
+              }
+            }
+          ],
+          "weight": 24,
+          "name": "aquaculture:synodontis"
+        },
+        {
+          "type": "minecraft:item",
+          "conditions": [
+            {
+              "condition": "neoforge:mod_loaded",
+              "modid": "aquaculture"
+            },
+            {
+              "condition": "minecraft:location_check",
+              "predicate": {
+                "biomes": [
+                  "minecraft:desert",
+                  "#minecraft:is_savanna"
+                ]
+              }
+            }
+          ],
+          "weight": 16,
+          "name": "aquaculture:bullhead_catfish"
+        },
+        {
+          "type": "minecraft:item",
+          "conditions": [
+            {
+              "condition": "neoforge:mod_loaded",
+              "modid": "aquaculture"
+            },
+            {
+              "condition": "minecraft:location_check",
+              "predicate": {
+                "biomes": [
+                  "minecraft:desert",
+                  "#minecraft:is_savanna"
+                ]
+              }
+            }
+          ],
+          "weight": 12,
+          "name": "aquaculture:smallmouth_bass"
+        },
+        {
+          "type": "minecraft:item",
+          "conditions": [
+            {
+              "condition": "neoforge:mod_loaded",
+              "modid": "aquaculture"
+            },
+            {
+              "condition": "minecraft:location_check",
+              "predicate": {
+                "biomes": [
+                  "minecraft:desert",
+                  "#minecraft:is_savanna"
+                ]
+              }
+            }
+          ],
+          "weight": 24,
+          "name": "aquaculture:bluegill"
+        },
+        {
+          "type": "minecraft:item",
+          "conditions": [
+            {
+              "condition": "neoforge:mod_loaded",
+              "modid": "aquaculture"
+            },
+            {
+              "condition": "minecraft:location_check",
+              "predicate": {
+                "biomes": [
+                  "minecraft:desert",
+                  "#minecraft:is_savanna"
+                ]
+              }
+            }
+          ],
+          "weight": 12,
+          "name": "aquaculture:brown_trout"
+        },
+        {
+          "type": "minecraft:item",
+          "conditions": [
+            {
+              "condition": "neoforge:mod_loaded",
+              "modid": "aquaculture"
+            },
+            {
+              "condition": "minecraft:location_check",
+              "predicate": {
+                "biomes": [
+                  "minecraft:desert",
+                  "#minecraft:is_savanna"
+                ]
+              }
+            }
+          ],
+          "weight": 12,
+          "name": "aquaculture:carp"
+        },
+        {
+          "type": "minecraft:item",
+          "conditions": [
+            {
+              "condition": "neoforge:mod_loaded",
+              "modid": "aquaculture"
+            },
+            {
+              "condition": "minecraft:location_check",
+              "predicate": {
+                "biomes": [
+                  "minecraft:desert",
+                  "#minecraft:is_savanna"
+                ]
+              }
+            }
+          ],
+          "weight": 2,
+          "name": "aquaculture:catfish"
+        },
+        {
+          "type": "minecraft:item",
+          "conditions": [
+            {
+              "condition": "neoforge:mod_loaded",
+              "modid": "aquaculture"
+            },
+            {
+              "condition": "minecraft:location_check",
+              "predicate": {
+                "biomes": [
+                  "minecraft:desert",
+                  "#minecraft:is_savanna"
+                ]
+              }
+            }
+          ],
+          "weight": 8,
+          "name": "aquaculture:gar"
+        },
+        {
+          "type": "minecraft:item",
+          "conditions": [
+            {
+              "condition": "neoforge:mod_loaded",
+              "modid": "aquaculture"
+            },
+            {
+              "condition": "minecraft:location_check",
+              "predicate": {
+                "biomes": [
+                  "minecraft:desert",
+                  "#minecraft:is_savanna"
+                ]
+              }
+            }
+          ],
+          "weight": 22,
+          "name": "aquaculture:minnow"
+        },
+        {
+          "type": "minecraft:item",
+          "conditions": [
+            {
+              "condition": "neoforge:mod_loaded",
+              "modid": "aquaculture"
+            },
+            {
+              "condition": "minecraft:location_check",
+              "predicate": {
+                "biomes": [
+                  "minecraft:desert",
+                  "#minecraft:is_savanna"
+                ]
+              }
+            }
+          ],
+          "weight": 4,
+          "name": "aquaculture:muskellunge"
+        },
+        {
+          "type": "minecraft:item",
+          "conditions": [
+            {
+              "condition": "neoforge:mod_loaded",
+              "modid": "aquaculture"
+            },
+            {
+              "condition": "minecraft:location_check",
+              "predicate": {
+                "biomes": [
+                  "minecraft:desert",
+                  "#minecraft:is_savanna"
+                ]
+              }
+            }
+          ],
+          "weight": 24,
+          "name": "aquaculture:perch"
+        },
+        {
+          "type": "minecraft:item",
+          "conditions": [
+            {
+              "condition": "neoforge:mod_loaded",
+              "modid": "aquaculture"
+            },
+            {
+              "condition": "minecraft:location_check",
+              "predicate": {
+                "biomes": [
+                  "#minecraft:is_jungle"
+                ]
+              }
+            }
+          ],
+          "weight": 2,
+          "name": "aquaculture:arapaima"
+        },
+        {
+          "type": "minecraft:item",
+          "conditions": [
+            {
+              "condition": "neoforge:mod_loaded",
+              "modid": "aquaculture"
+            },
+            {
+              "condition": "minecraft:location_check",
+              "predicate": {
+                "biomes": [
+                  "#minecraft:is_jungle"
+                ]
+              }
+            }
+          ],
+          "weight": 2,
+          "name": "aquaculture:arrau_turtle"
+        },
+        {
+          "type": "minecraft:item",
+          "conditions": [
+            {
+              "condition": "neoforge:mod_loaded",
+              "modid": "aquaculture"
+            },
+            {
+              "condition": "minecraft:location_check",
+              "predicate": {
+                "biomes": [
+                  "#minecraft:is_jungle"
+                ]
+              }
+            }
+          ],
+          "weight": 24,
+          "name": "aquaculture:piranha"
+        },
+        {
+          "type": "minecraft:item",
+          "conditions": [
+            {
+              "condition": "neoforge:mod_loaded",
+              "modid": "aquaculture"
+            },
+            {
+              "condition": "minecraft:location_check",
+              "predicate": {
+                "biomes": [
+                  "#minecraft:is_jungle"
+                ]
+              }
+            }
+          ],
+          "weight": 8,
+          "name": "aquaculture:tambaqui"
+        },
+        {
+          "type": "minecraft:item",
+          "conditions": [
+            {
+              "condition": "neoforge:mod_loaded",
+              "modid": "aquaculture"
+            },
+            {
+              "condition": "minecraft:location_check",
+              "predicate": {
+                "biomes": [
+                  "minecraft:mushroom_fields"
+                ]
+              }
+            }
+          ],
+          "weight": 32,
+          "name": "aquaculture:brown_shrooma"
+        },
+        {
+          "type": "minecraft:item",
+          "conditions": [
+            {
+              "condition": "neoforge:mod_loaded",
+              "modid": "aquaculture"
+            },
+            {
+              "condition": "minecraft:location_check",
+              "predicate": {
+                "biomes": [
+                  "minecraft:mushroom_fields"
+                ]
+              }
+            }
+          ],
+          "weight": 32,
+          "name": "aquaculture:red_shrooma"
+        },
+        {
+          "type": "minecraft:item",
+          "conditions": [
+            {
+              "condition": "neoforge:mod_loaded",
+              "modid": "aquaculture"
+            },
+            {
+              "condition": "minecraft:location_check",
+              "predicate": {
+                "biomes": [
+                  "minecraft:swamp"
+                ]
+              }
+            }
+          ],
+          "weight": 12,
+          "name": "aquaculture:leech"
+        },
+        {
+          "type": "minecraft:item",
+          "conditions": [
+            {
+              "condition": "neoforge:mod_loaded",
+              "modid": "aquaculture"
+            },
+            {
+              "condition": "minecraft:location_check",
+              "predicate": {
+                "biomes": [
+                  "minecraft:swamp"
+                ]
+              }
+            }
+          ],
+          "weight": 2,
+          "name": "aquaculture:box_turtle"
+        },
+        {
+          "type": "minecraft:item",
+          "conditions": [
+            {
+              "condition": "neoforge:mod_loaded",
+              "modid": "aquaculture"
+            },
+            {
+              "condition": "neoforge:mod_loaded",
+              "modid": "twilightforest"
+            },
+            {
+              "condition": "minecraft:location_check",
+              "predicate": {
+                "biomes": [
+                  "minecraft:swamp"
+                ]
+              }
+            }
+          ],
+          "weight": 2,
+          "name": "aquaculture:starshell_turtle"
+        }
+      ],
+      "rolls": 1.0
+    }
+  ],
+  "random_sequence": "minecraft:gameplay/fishing/fish"
+}
