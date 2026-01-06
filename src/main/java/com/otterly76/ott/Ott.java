@@ -280,7 +280,7 @@ public class Ott {
     }
 
     @SubscribeEvent
-    public void onServerStarting(ServerStartingEvent event) {
+    public void onServerStarting(ServerStartingEvent event){
         LanternSavedData.init(event.getServer().overworld());
     }
 
