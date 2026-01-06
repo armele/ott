@@ -16,7 +16,7 @@ FAQ:
 Ongoing:
 ======= 
 - Updating all textures to 32x textures
-- Updating to 3D models for most blocks
+- Upgrading to 3D models for most blocks and items
 - Identifying and adding missing sound files
 - Identifying and adding missing recipes
 
@@ -24,18 +24,18 @@ Mods, Resourcepacks, and Datapacks You Will Not Need:
 =======
 - ANY 3D Model Mods or Resourcepacks
 - ANY 32x Texture Resourcepacks
+- ANY World Generation Mods 🌎
 - Better Leaves, Bushy Leaves, JS Leaves+, etc 🍃
 - Healing Bed 🛏️
 - Low Shield, Lower Shield, Small Shield & Totem, Smaller Shield & Totem, etc
 - Low On Fire, etc 🔥
 - Minecolonies Schematics World Template
-- Minecolonies Oxidized Copper via Alchemist (1.21+)
+- Minecolonies Oxidized Copper via Alchemist
 - Copper Paths / Roads for Minecolonies
 - Pretty Rain ⛅
 - Appleskin 🍎
 - Overloaded Armor Bar
 - Colorful Hearts ❤️
-- Trash Slot
 - Simple Grass Flowers, Better Grounds, Better Grass, etc 🍀
 - Perfect Parity Neo: Pale Garden Awakens
 - Yeetus Experimentus
@@ -43,7 +43,6 @@ Mods, Resourcepacks, and Datapacks You Will Not Need:
 - The Fence Unleashed 🐮
 - Jump Over Fences, JumpOverFences, etc 🏃
 - Snow Under Trees, Simple Snowy Fix, etc ❄️
-- Lithosphere, Lithostitched, Tectonic, Underground Rivers, Improved Village Placement, Worldgen Patches 🌎
 - Better Days 🌛🌝🌜
 - Trash Slot, Trash Cans, etc 🗑️
 - Torchmaster, Magnum Torch
