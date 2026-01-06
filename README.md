@@ -42,7 +42,7 @@ Mods, Resourcepacks, and Datapacks You Will Not Need:
 - Yeetus Narratus 📢
 - The Fence Unleashed 🐮
 - Jump Over Fences, JumpOverFences, etc 🏃
-- Snow Under Trees, Simple Snowy Fix, etc ❄️
+- Snow Under Trees, Simple Snowy Fix, Falling Snow, etc ❄️
 - Better Days 🌛🌝🌜
 - Trash Slot, Trash Cans, etc 🗑️
 - Torchmaster, Magnum Torch
