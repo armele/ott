@@ -2,11 +2,13 @@ package com.otterly76.ott.particle;
 
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import com.mojang.math.Axis;
+import com.otterly76.ott.config.OttConfig;
 import net.minecraft.client.Camera;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.client.particle.Particle;
 import net.minecraft.client.particle.ParticleProvider;
+import net.minecraft.client.particle.ParticleRenderType;
 import net.minecraft.client.particle.SpriteSet;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.SimpleParticleType;
@@ -30,11 +32,11 @@ public class FogParticle extends WeatherParticle {
     private FogParticle(ClientLevel level, double x, double y, double z, SpriteSet provider) {
         super(level, x, y, z);
         this.setSprite(provider.get(level.getRandom()));
-        this.lifetime = 32 * 5;
+        this.lifetime = OttConfig.WEATHER.PARTICLE_RADIUS.get() * 5;
         assert Minecraft.getInstance().cameraEntity != null;
         double distance = Minecraft.getInstance().cameraEntity.position().distanceTo(new Vec3(x, y, z));
-        this.quadSize = (float)((double)10.0F / distance);
-        this.baseQuadSize = (float)((double)10.0F / distance);
+        this.quadSize = (float)(OttConfig.WEATHER.FOG.SIZE.get() / distance);
+        this.baseQuadSize = (float)(OttConfig.WEATHER.FOG.SIZE.get() / distance);
         Color color = (new Color(this.level.getBiome(this.pos).value().getFogColor())).darker();
         this.rCol = (float)color.getRed() / 255.0F;
         this.gCol = (float)color.getGreen() / 255.0F;
@@ -43,7 +45,7 @@ public class FogParticle extends WeatherParticle {
         this.oRoll = this.roll;
         this.xd = this.gravity / 3.0F;
         this.zd = this.gravity / 3.0F;
-        this.gravity = 0.01F;
+        this.gravity = OttConfig.WEATHER.FOG.GRAVITY.get().floatValue();
     }
 
     public void tick() {
@@ -81,13 +83,12 @@ public class FogParticle extends WeatherParticle {
         }
     }
 
-    @SuppressWarnings("DuplicatedCode")
-    public void render(@NotNull VertexConsumer vertexConsumer, @NotNull Camera camera, float f) {
-        Vector3f localPos = this.getInterpolatedRelPos(camera, f);
-        float x = localPos.x();
-        float y = localPos.y();
-        float z = localPos.z();
-
+    public void render(@NotNull VertexConsumer vertexConsumer, Camera camera, float f) {
+        Vec3 camPos = camera.getPosition();
+        float x = (float)(Mth.lerp(f, this.xo, this.x) - camPos.x());
+        float y = (float)(Mth.lerp(f, this.yo, this.y) - camPos.y());
+        float z = (float)(Mth.lerp(f, this.zo, this.z) - camPos.z());
+        Vector3f localPos = new Vector3f(x, y, z);
         Quaternionf quaternion = Axis.YP.rotation((float)Math.atan2(x, z) + (float)Math.PI);
         float yAngle = (float)Math.asin(y / localPos.length());
         quaternion.rotateX(yAngle);
@@ -98,6 +99,10 @@ public class FogParticle extends WeatherParticle {
 
         quaternion.rotateZ(Mth.lerp(f, this.oRoll, this.roll));
         this.renderRotatedQuad(vertexConsumer, quaternion, x, y, z, f);
+    }
+
+    public @NotNull ParticleRenderType getRenderType() {
+        return ParticleRenderType.PARTICLE_SHEET_TRANSLUCENT;
     }
 
     @OnlyIn(Dist.CLIENT)

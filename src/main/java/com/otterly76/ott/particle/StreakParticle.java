@@ -1,12 +1,14 @@
 package com.otterly76.ott.particle;
 
 import com.mojang.blaze3d.vertex.VertexConsumer;
-import com.mojang.math.Axis;
+import com.otterly76.ott.ClientModEvents;
+import com.otterly76.ott.config.OttConfig;
 import net.minecraft.client.Camera;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.client.particle.Particle;
 import net.minecraft.client.particle.ParticleProvider;
+import net.minecraft.client.particle.ParticleRenderType;
 import net.minecraft.client.particle.SpriteSet;
 import net.minecraft.core.Direction;
 import net.minecraft.core.particles.ParticleTypes;
@@ -15,9 +17,11 @@ import net.minecraft.tags.BlockTags;
 import net.minecraft.util.Mth;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.material.FluidState;
+import net.minecraft.world.phys.Vec3;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
 import org.jetbrains.annotations.NotNull;
+import org.joml.AxisAngle4d;
 import org.joml.Quaternionf;
 import org.joml.Vector3f;
 
@@ -26,7 +30,11 @@ public class StreakParticle extends WeatherParticle {
 
     private StreakParticle(ClientLevel level, double x, double y, double z, int direction2D, SpriteSet provider) {
         super(level, x, y, z);
-        this.setColor(0.2F, 0.3F, 1.0F);
+        if (OttConfig.WEATHER.BIOME_TINT.get()) {
+            ClientModEvents.applyWaterTint(this, level, this.pos);
+        } else {
+            this.setColor(0.2F, 0.3F, 1.0F);
+        }
 
         this.setSprite(provider.get(level.getRandom()));
         this.quadSize = 0.5F;
@@ -57,25 +65,21 @@ public class StreakParticle extends WeatherParticle {
             this.yd = 0.0F;
             this.shouldFadeOut = true;
         }
+
     }
 
-    @SuppressWarnings("DuplicatedCode")
-    public void render(@NotNull VertexConsumer vertexConsumer, @NotNull Camera camera, float f) {
-        Vector3f localPos = this.getInterpolatedRelPos(camera, f);
-        float x = localPos.x();
-        float y = localPos.y();
-        float z = localPos.z();
+    public void render(@NotNull VertexConsumer vertexConsumer, Camera camera, float f) {
+        Vec3 camPos = camera.getPosition();
+        float x = (float)(Mth.lerp(f, this.xo, this.x) - camPos.x());
+        float y = (float)(Mth.lerp(f, this.yo, this.y) - camPos.y());
+        float z = (float)(Mth.lerp(f, this.zo, this.z) - camPos.z());
+        Quaternionf quaternion = new Quaternionf(new AxisAngle4d(this.roll, 0.0F, 1.0F, 0.0F));
+        this.flipItTurnwaysIfBackfaced(quaternion, new Vector3f(x, y, z));
+        this.renderRotatedQuad(vertexConsumer, quaternion, x, y + 0.25F, z, f);
+    }
 
-        Quaternionf quaternion = Axis.YP.rotation((float)Math.atan2(x, z) + (float)Math.PI);
-        float yAngle = (float)Math.asin(y / localPos.length());
-        quaternion.rotateX(yAngle);
-        quaternion.rotateZ((float)Math.atan2(x, z));
-        if (yAngle < -1.0F) {
-            this.shouldFadeOut = true;
-        }
-
-        quaternion.rotateZ(Mth.lerp(f, this.oRoll, this.roll));
-        this.renderRotatedQuad(vertexConsumer, quaternion, x, y, z, f);
+    public @NotNull ParticleRenderType getRenderType() {
+        return ParticleRenderType.PARTICLE_SHEET_TRANSLUCENT;
     }
 
     @OnlyIn(Dist.CLIENT)

@@ -1,90 +1,81 @@
 package com.otterly76.ott.particle;
 
+import com.mojang.blaze3d.vertex.VertexConsumer;
+import com.otterly76.ott.ClientModEvents;
+import com.otterly76.ott.config.OttConfig;
+import com.otterly76.ott.particle.render.GroundFogRenderType;
+import net.minecraft.client.Camera;
 import net.minecraft.client.multiplayer.ClientLevel;
-import net.minecraft.client.particle.*;
-import net.minecraft.core.BlockPos;
+import net.minecraft.client.particle.Particle;
+import net.minecraft.client.particle.ParticleProvider;
+import net.minecraft.client.particle.ParticleRenderType;
+import net.minecraft.client.particle.SpriteSet;
 import net.minecraft.core.particles.SimpleParticleType;
+import net.minecraft.util.Mth;
+import net.minecraft.world.phys.AABB;
+import net.minecraft.world.phys.Vec3;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
 import org.jetbrains.annotations.NotNull;
+import org.joml.AxisAngle4d;
+import org.joml.Quaternionf;
 
-public class GroundFogParticle extends TextureSheetParticle {
-    private final float xdxd;
-    private final float zdzd;
-    private final float rotSpeed; // Add rotation speed
+import java.awt.*;
 
-    protected GroundFogParticle(ClientLevel level, double x, double y, double z, SpriteSet provider) {
+public class GroundFogParticle extends WeatherParticle {
+    float xdxd;
+    float zdzd;
+
+    private GroundFogParticle(ClientLevel level, double x, double y, double z, SpriteSet provider) {
         super(level, x, y, z);
-        this.setSpriteFromAge(provider);
-        this.quadSize = 3.0F;
-        // Increase lifetime: from ~600 to ~1200 ticks (approx 1 min)
-        this.lifetime = 1000 + level.random.nextInt(400);
-
-        int fogColor = level.getBiome(BlockPos.containing(x, y, z)).value().getFogColor();
-        this.rCol = (float)((fogColor >> 16) & 255) / 255.0F;
-        this.gCol = (float)((fogColor >> 8) & 255) / 255.0F;
-        this.bCol = (float)(fogColor & 255) / 255.0F;
-
-        this.alpha = 0.0F;
-        this.roll = level.random.nextFloat() * ((float)Math.PI * 2F);
+        ++ClientModEvents.fogCount;
+        this.setSprite(provider.get(level.getRandom()));
+        this.quadSize = OttConfig.WEATHER.GROUND_FOG.SIZE.get().floatValue();
+        this.lifetime = 30000;
+        Color color = new Color(this.level.getBiome(this.pos).value().getFogColor());
+        this.rCol = (float)color.getRed() / 255.0F;
+        this.gCol = (float)color.getGreen() / 255.0F;
+        this.bCol = (float)color.getBlue() / 255.0F;
+        this.roll = ((float)Math.PI / 2F) * (float)level.random.nextInt(4);
         this.oRoll = this.roll;
-        // Slower swirl: 0.05F -> 0.02F
-        this.rotSpeed = (level.random.nextFloat() - 0.5F) * 0.02F;
-        // Slower horizontal drift: 0.01F -> 0.005F
-        this.xdxd = (this.random.nextFloat() - 0.5F) * 0.005F;
-        this.zdzd = (this.random.nextFloat() - 0.5F) * 0.005F;
-        // Slower initial upward lift: 0.005F -> 0.002F
-        this.yd = 0.002F + (this.random.nextFloat() * 0.002F);
+        this.xdxd = (this.random.nextFloat() - 0.5F) / 100.0F;
+        this.zdzd = (this.random.nextFloat() - 0.5F) / 100.0F;
     }
 
-    @Override
     public void tick() {
-        this.xo = this.x;
-        this.yo = this.y;
-        this.zo = this.z;
-        this.oRoll = this.roll;
-
-        if (this.age >= this.lifetime) {
+        super.tick();
+        if (this.onGround) {
             this.remove();
-            return;
-        }
-
-        // Keep the "burn off" logic but make it gentler.
-        // If it's not raining, age it slightly faster, but not 10x faster.
-        if (this.level.getRainLevel(1.0f) <= 0.0f) {
-            this.age += 1;
-        }
-
-        this.roll += this.rotSpeed;
-
-        // Shorter fade-in so we see it sooner, but long enough to be smooth
-        float fadeInTicks = 60.0F;
-        float fadeOutTicks = 200.0F;
-        float maxAlpha = 0.4F;
-
-        if (this.age < fadeInTicks) {
-            this.alpha = (float)this.age / fadeInTicks * maxAlpha;
-        } else if (this.age > (this.lifetime - fadeOutTicks)) {
-            float fadeOutLeft = (float)(this.lifetime - this.age);
-            this.alpha = (fadeOutLeft / fadeOutTicks) * maxAlpha;
-        } else {
-            this.alpha = maxAlpha;
         }
 
         this.xd = this.xdxd;
         this.zd = this.zdzd;
-
-        // This subtle lift is key to the "rising" look without hitting the clouds
-        this.yd += 0.00002F;
-
-        this.move(this.xd, this.yd, this.zd);
-
-        this.age++;
     }
 
-    @Override
+    public void remove() {
+        if (this.isAlive()) {
+            --ClientModEvents.fogCount;
+        }
+
+        super.remove();
+    }
+
+    public @NotNull AABB getRenderBoundingBox(float partialTicks) {
+        return this.getBoundingBox().inflate(4.0F);
+    }
+
+    public void render(@NotNull VertexConsumer vertexConsumer, Camera camera, float f) {
+        Vec3 camPos = camera.getPosition();
+        float x = (float)(Mth.lerp(f, this.xo, this.x) - camPos.x());
+        float y = (float)(Mth.lerp(f, this.yo, this.y) - camPos.y());
+        float z = (float)(Mth.lerp(f, this.zo, this.z) - camPos.z());
+        Quaternionf quaternion = new Quaternionf(new AxisAngle4d((float)Math.PI / 2F, -1.0F, 0.0F, 0.0F));
+        quaternion.rotateZ(Mth.lerp(f, this.oRoll, this.roll));
+        this.renderRotatedQuad(vertexConsumer, quaternion, x, y, z, f);
+    }
+
     public @NotNull ParticleRenderType getRenderType() {
-        return ParticleRenderType.PARTICLE_SHEET_TRANSLUCENT;
+        return GroundFogRenderType.INSTANCE;
     }
 
     @OnlyIn(Dist.CLIENT)

@@ -1,6 +1,7 @@
 package com.otterly76.ott.particle;
 
 import com.mojang.blaze3d.vertex.VertexConsumer;
+import com.otterly76.ott.config.OttConfig;
 import net.minecraft.client.Camera;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.multiplayer.ClientLevel;
@@ -10,18 +11,21 @@ import net.minecraft.client.particle.ParticleRenderType;
 import net.minecraft.client.particle.SpriteSet;
 import net.minecraft.client.renderer.BiomeColors;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
+import net.minecraft.client.resources.model.BakedModel;
 import net.minecraft.core.particles.SimpleParticleType;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.packs.resources.Resource;
 import net.minecraft.tags.BlockTags;
+import net.minecraft.util.Mth;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.levelgen.Heightmap.Types;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
+import net.neoforged.neoforge.client.model.data.ModelData;
 import org.jetbrains.annotations.NotNull;
-import org.joml.AxisAngle4d;
+import org.joml.AxisAngle4f;
 import org.joml.Quaternionf;
 import org.joml.Vector3f;
 
@@ -33,21 +37,24 @@ public class ShrubParticle extends WeatherParticle {
     protected ShrubParticle(ClientLevel level, double x, double y, double z) {
         super(level, x, y, z);
         this.quadSize = 0.5F;
-        this.gravity = 0.1F;
-        this.xd = 0.3D;
-        this.zd = 0.3D;
-        this.yd = 0.1D;
+        this.gravity = OttConfig.WEATHER.SHRUB.GRAVITY.get().floatValue();
+        this.xd = OttConfig.WEATHER.SAND.WIND_STRENGTH.get();
+        this.zd = OttConfig.WEATHER.SAND.WIND_STRENGTH.get();
+        if (OttConfig.WEATHER.SAND.SPAWN_ON_GROUND.get()) {
+            this.yd = 0.1;
+        }
 
         ItemStack itemStack = new ItemStack(Items.DEAD_BUSH);
         BlockState blockState = level.getBlockState(level.getHeightmapPos(Types.MOTION_BLOCKING, this.pos));
         if (blockState.is(BlockTags.SWORD_EFFICIENT)) {
             if (!blockState.is(BlockTags.CROPS)) {
                 itemStack = blockState.getBlock().asItem().getDefaultInstance();
-                TextureAtlasSprite particleIcon = Minecraft.getInstance().getItemRenderer().getModel(itemStack, level, null, 0).getParticleIcon(net.neoforged.neoforge.client.model.data.ModelData.EMPTY);
+                BakedModel model = Minecraft.getInstance().getItemRenderer().getModel(itemStack, level, null, 0);
+                TextureAtlasSprite particleIcon = model.getParticleIcon(ModelData.EMPTY);
 
                 try {
-                    String var10000 = particleIcon.contents().name().getNamespace();
-                    ResourceLocation resourceLocation = ResourceLocation.parse(var10000 + ":models/" + particleIcon.contents().name().toString().substring(particleIcon.contents().name().getNamespace().length() + 1) + ".json");
+                    String namespace = particleIcon.contents().name().getNamespace();
+                    ResourceLocation resourceLocation = ResourceLocation.parse(namespace + ":models/" + particleIcon.contents().name().getPath() + ".json");
                     Resource resource = Minecraft.getInstance().getResourceManager().getResourceOrThrow(resourceLocation);
 
                     String string;
@@ -68,7 +75,8 @@ public class ShrubParticle extends WeatherParticle {
             this.remove();
         }
 
-        this.setSprite(Minecraft.getInstance().getItemRenderer().getModel(itemStack, level, null, 0).getParticleIcon(net.neoforged.neoforge.client.model.data.ModelData.EMPTY));
+        BakedModel finalModel = Minecraft.getInstance().getItemRenderer().getModel(itemStack, level, null, 0);
+        this.setSprite(finalModel.getParticleIcon(ModelData.EMPTY));
     }
 
     public void tick() {
@@ -83,15 +91,15 @@ public class ShrubParticle extends WeatherParticle {
         }
 
         this.oRoll = this.roll;
-        this.roll += 0.1F;
+        this.roll += OttConfig.WEATHER.SHRUB.ROTATION_AMOUNT.get().floatValue();
         if (this.onGround) {
-            this.yd = 0.3F;
+            this.yd = OttConfig.WEATHER.SHRUB.BOUNCINESS.get();
         }
     }
 
     public void fadeIn() {
         if (this.age < 10) {
-            this.alpha = (float) this.age / 10.0F;
+            this.alpha = (float)this.age / 10.0F;
         }
     }
 
@@ -99,16 +107,22 @@ public class ShrubParticle extends WeatherParticle {
         return ParticleRenderType.TERRAIN_SHEET;
     }
 
-    @SuppressWarnings("DuplicatedCode")
-    public void render(@NotNull VertexConsumer vertexConsumer, @NotNull Camera camera, float f) {
-        Vector3f localPos = this.getInterpolatedRelPos(camera, f);
-        float x = localPos.x();
-        float y = localPos.y();
-        float z = localPos.z();
-
-        Quaternionf quaternion = new Quaternionf(new AxisAngle4d(this.roll, 0.0F, 1.0F, 0.0F));
-        this.flipItTurnwaysIfBackfaced(quaternion, new Vector3f(x, y, z));
-        this.renderRotatedQuad(vertexConsumer, quaternion, x, y + 0.25F, z, f);
+    public void render(@NotNull VertexConsumer vertexConsumer, Camera camera, float tickPercentage) {
+        Vector3f camPos = camera.getPosition().toVector3f();
+        float x = (float)(Mth.lerp(tickPercentage, this.xo, this.x) - (double)camPos.x);
+        float y = (float)(Mth.lerp(tickPercentage, this.yo, this.y) - (double)camPos.y);
+        float z = (float)(Mth.lerp(tickPercentage, this.zo, this.z) - (double)camPos.z);
+        float angle = (float)Math.atan2(this.xd, this.zd);
+        Quaternionf quaternion = new Quaternionf();
+        quaternion.rotateY(angle);
+        Quaternionf quat1 = new Quaternionf(new AxisAngle4f(0.0F, 0.0F, 1.0F, 0.0F));
+        Quaternionf quat2 = new Quaternionf(new AxisAngle4f(((float)java.lang.Math.PI / 2F), 0.0F, 1.0F, 0.0F));
+        quat1.mul(quaternion).rotateX(Mth.lerp(tickPercentage, this.oRoll, this.roll));
+        quat2.mul(quaternion).rotateZ(Mth.lerp(tickPercentage, this.oRoll, this.roll));
+        quat1 = this.flipItTurnwaysIfBackfaced(quat1, new Vector3f(x, y, z));
+        quat2 = this.flipItTurnwaysIfBackfaced(quat2, new Vector3f(x, y, z));
+        this.renderRotatedQuad(vertexConsumer, quat1, x, y, z, tickPercentage);
+        this.renderRotatedQuad(vertexConsumer, quat2, x, y, z, tickPercentage);
     }
 
     @OnlyIn(Dist.CLIENT)

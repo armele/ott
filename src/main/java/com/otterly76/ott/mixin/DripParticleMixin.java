@@ -1,35 +1,36 @@
 package com.otterly76.ott.mixin;
 
+import com.otterly76.ott.ClientModEvents;
+import com.otterly76.ott.config.OttConfig;
 import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.client.particle.DripParticle;
 import net.minecraft.client.particle.TextureSheetParticle;
-import net.minecraft.world.level.material.Fluid;
-import net.minecraft.world.level.material.Fluids;
-import org.spongepowered.asm.mixin.Final;
+import net.minecraft.core.BlockPos;
+import net.minecraft.core.particles.SimpleParticleType;
 import org.spongepowered.asm.mixin.Mixin;
-import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
-import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
+import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 @Mixin(DripParticle.class)
-public abstract class DripParticleMixin extends TextureSheetParticle {
-
-    @Shadow @Final
-    private Fluid type;
-
-    protected DripParticleMixin(ClientLevel level, double x, double y, double z) {
-        super(level, x, y, z);
+public abstract class DripParticleMixin {
+    @Inject(
+            method = {"createWaterHangParticle"},
+            at = {@At("TAIL")}
+    )
+    private static void createWaterHangParticle(SimpleParticleType simpleParticleType, ClientLevel clientLevel, double d, double e, double f, double g, double h, double i, CallbackInfoReturnable<TextureSheetParticle> cir) {
+        if (OttConfig.WEATHER.BIOME_TINT.get()) {
+            ClientModEvents.applyWaterTint(cir.getReturnValue(), clientLevel, BlockPos.containing(d, e, f));
+        }
     }
 
-    // Injecting into tick ensures that even if something else tries to re-tint it,
-    // we force it back to white every frame.
-    @Inject(method = "tick", at = @At("HEAD"))
-    private void ott$forceNoTint(CallbackInfo ci) {
-        if (this.type == Fluids.WATER || this.type == Fluids.FLOWING_WATER) {
-            this.rCol = 1.0F;
-            this.gCol = 1.0F;
-            this.bCol = 1.0F;
+    @Inject(
+            method = {"createWaterFallParticle"},
+            at = {@At("TAIL")}
+    )
+    private static void createWaterFallParticle(SimpleParticleType simpleParticleType, ClientLevel clientLevel, double d, double e, double f, double g, double h, double i, CallbackInfoReturnable<TextureSheetParticle> cir) {
+        if (OttConfig.WEATHER.BIOME_TINT.get()) {
+            ClientModEvents.applyWaterTint(cir.getReturnValue(), clientLevel, BlockPos.containing(d, e, f));
         }
     }
 }

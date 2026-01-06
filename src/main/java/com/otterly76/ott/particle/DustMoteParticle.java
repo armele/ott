@@ -1,8 +1,10 @@
 package com.otterly76.ott.particle;
 
+import com.otterly76.ott.config.OttConfig;
 import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.client.particle.Particle;
 import net.minecraft.client.particle.ParticleProvider;
+import net.minecraft.client.particle.ParticleRenderType;
 import net.minecraft.client.particle.SpriteSet;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.SimpleParticleType;
@@ -16,10 +18,10 @@ public class DustMoteParticle extends WeatherParticle {
     protected DustMoteParticle(ClientLevel level, double x, double y, double z, SpriteSet provider) {
         super(level, x, y, z);
         this.setSprite(provider.get(level.getRandom()));
-        this.quadSize = 0.1F;
-        this.xd = 0.3D;
-        this.zd = 0.3D;
-        this.gravity = 0.1F;
+        this.quadSize = OttConfig.WEATHER.SAND.MOTE_SIZE.get().floatValue();
+        this.xd = OttConfig.WEATHER.SAND.WIND_STRENGTH.get();
+        this.zd = OttConfig.WEATHER.SAND.WIND_STRENGTH.get();
+        this.gravity = OttConfig.WEATHER.SAND.GRAVITY.get().floatValue();
         Color color = new Color(level.getBlockState(level.getHeightmapPos(Types.MOTION_BLOCKING, BlockPos.containing(x, y, z)).below()).getBlock().defaultMapColor().calculateRGBColor(Brightness.NORMAL));
         this.bCol = (float)color.getRed() / 255.0F;
         this.rCol = (float)color.getBlue() / 255.0F;
@@ -40,6 +42,11 @@ public class DustMoteParticle extends WeatherParticle {
             this.xd = 0.2;
             this.zd = 0.2;
         }
+
+    }
+
+    public @NotNull ParticleRenderType getRenderType() {
+        return ParticleRenderType.PARTICLE_SHEET_TRANSLUCENT;
     }
 
     public static class DefaultFactory implements ParticleProvider<SimpleParticleType> {

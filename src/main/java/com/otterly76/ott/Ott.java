@@ -45,6 +45,8 @@ import net.neoforged.fml.ModLoadingContext;
 import net.neoforged.fml.common.Mod;
 import net.neoforged.fml.config.ModConfig;
 import net.neoforged.fml.event.lifecycle.FMLCommonSetupEvent;
+import net.neoforged.neoforge.client.gui.ConfigurationScreen;
+import net.neoforged.neoforge.client.gui.IConfigScreenFactory;
 import net.neoforged.neoforge.common.NeoForge;
 import net.neoforged.neoforge.data.event.GatherDataEvent;
 import net.neoforged.neoforge.event.AddPackFindersEvent;
@@ -62,6 +64,8 @@ import static com.otterly76.ott.Constants.MOD_ID;
 @Mod(MOD_ID)
 public class Ott {
     public Ott(IEventBus modEventBus) {
+        ModLoadingContext.get().getActiveContainer().registerConfig(ModConfig.Type.COMMON, OttConfig.SPEC, "ott-config.toml");
+        ModLoadingContext.get().getActiveContainer().registerExtensionPoint(IConfigScreenFactory.class, ConfigurationScreen::new);
         ModCreativeTabs.OTTER_TABS.register(modEventBus);
         modEventBus.addListener(NetworkHandler::register);
         modEventBus.addListener(this::dataGeneratorSetup);
@@ -81,9 +85,9 @@ public class Ott {
         modEventBus.addListener(this::addCreative);
         com.otterly76.ott.ClientModEvents.register(modEventBus);
         modEventBus.addListener(ModEventBusEvents::registerLayers);
+        modEventBus.addListener(ModEventBusEvents::registerLayers);
         modEventBus.addListener(ModEventBusEvents::registerAttributes);
         modEventBus.addListener(ModBlockEntities::registerTileExtensions);
-        ModLoadingContext.get().getActiveContainer().registerConfig(ModConfig.Type.COMMON, OttConfig.SPEC);
     }
 
     public static ResourceLocation resource(String name) {

@@ -1,25 +1,29 @@
 package com.otterly76.ott.mixin;
 
+import com.otterly76.ott.ClientModEvents;
+import com.otterly76.ott.config.OttConfig;
+import net.minecraft.client.Minecraft;
 import net.minecraft.client.multiplayer.ClientLevel;
+import net.minecraft.client.particle.SpriteSet;
 import net.minecraft.client.particle.TextureSheetParticle;
 import net.minecraft.client.particle.WaterDropParticle;
+import net.minecraft.core.BlockPos;
+import net.minecraft.resources.ResourceLocation;
 import org.spongepowered.asm.mixin.Mixin;
-import org.spongepowered.asm.mixin.injection.At;
-import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
-@Mixin(WaterDropParticle.class)
-public abstract class WaterDropParticleMixin extends TextureSheetParticle {
+import static com.otterly76.ott.Constants.MOD_ID;
 
-    protected WaterDropParticleMixin(ClientLevel level, double x, double y, double z) {
-        super(level, x, y, z);
+@Mixin({WaterDropParticle.class})
+public abstract class WaterDropParticleMixin extends TextureSheetParticleMixin {
+    protected WaterDropParticleMixin(ClientLevel clientLevel, double d, double e, double f) {
+        super(clientLevel, d, e, f);
     }
 
-    @Inject(method = "tick", at = @At("HEAD"))
-    private void onTick(CallbackInfo ci) {
-        // This catches the standard rain splashes and the drip landing splash
-        this.rCol = 1.0F;
-        this.gCol = 1.0F;
-        this.bCol = 1.0F;
+    public void pickSprite(SpriteSet spriteSet, CallbackInfo ci) {
+        if (OttConfig.WEATHER.BIOME_TINT.get()) {
+            this.setSprite(Minecraft.getInstance().particleEngine.textureAtlas.getSprite(ResourceLocation.fromNamespaceAndPath(MOD_ID, "splash" + this.random.nextInt(4))));
+            ClientModEvents.applyWaterTint((TextureSheetParticle) (Object) this, this.level, BlockPos.containing(this.x, this.y, this.z));
+        }
     }
 }

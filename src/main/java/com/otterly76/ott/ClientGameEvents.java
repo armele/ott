@@ -1,10 +1,13 @@
 package com.otterly76.ott;
 
 import com.mojang.blaze3d.systems.RenderSystem;
+import com.otterly76.ott.config.OttConfig;
 import com.otterly76.ott.mixin.GuiAccessor;
 import com.otterly76.ott.particle.WeatherParticleSpawner;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiGraphics;
+import net.minecraft.commands.Commands;
+import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.ai.attributes.AttributeInstance;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
@@ -13,9 +16,11 @@ import net.minecraft.world.entity.player.Player;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
-import net.neoforged.neoforge.client.event.RenderGuiLayerEvent;
-import net.neoforged.neoforge.client.event.RenderLevelStageEvent;
+import net.neoforged.neoforge.client.event.*;
 import net.neoforged.neoforge.client.gui.VanillaGuiLayers;
+
+import static com.otterly76.ott.ClientModEvents.fogCount;
+import static com.otterly76.ott.ClientModEvents.particleCount;
 
 @EventBusSubscriber(modid = Constants.MOD_ID, value = Dist.CLIENT)
 public class ClientGameEvents {
@@ -68,6 +73,32 @@ public class ClientGameEvents {
         if (VanillaGuiLayers.FOOD_LEVEL.equals(event.getName())) {
             ((GuiAccessor) Minecraft.getInstance().gui).setRightHeight(49);
         }
+    }
+
+    @SubscribeEvent
+    public static void onClientTick(ClientTickEvent.Post event) {
+        Minecraft mc = Minecraft.getInstance();
+        if (!mc.isPaused() && mc.level != null && mc.cameraEntity != null) {
+            float partialTicks = mc.getTimer().getGameTimeDeltaPartialTick(true);
+            WeatherParticleSpawner.update(mc.level, mc.cameraEntity, partialTicks);
+        }
+    }
+
+    @SubscribeEvent
+    public static void onPlayerJoin(ClientPlayerNetworkEvent.LoggingIn event) {
+        particleCount = 0;
+        fogCount = 0;
+    }
+
+    @SubscribeEvent
+    public static void onRegisterClientCommands(RegisterClientCommandsEvent event) {
+        event.getDispatcher().register(Commands.literal(Constants.MOD_ID).executes((ctx) -> {
+            ctx.getSource().sendSystemMessage(Component.literal(String.format("Particle count: %d/%d",
+                    particleCount, OttConfig.WEATHER.MAX_PARTICLE_AMOUNT.get())));
+            ctx.getSource().sendSystemMessage(Component.literal(String.format("Fog density: %d/%d",
+                    fogCount, OttConfig.WEATHER.GROUND_FOG.DENSITY.get())));
+            return 0;
+        }));
     }
 
     @SubscribeEvent

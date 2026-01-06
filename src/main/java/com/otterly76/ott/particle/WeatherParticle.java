@@ -1,16 +1,14 @@
 package com.otterly76.ott.particle;
 
 import com.mojang.math.Axis;
-import net.minecraft.client.Camera;
+import com.otterly76.ott.ClientModEvents;
+import com.otterly76.ott.config.OttConfig;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.multiplayer.ClientLevel;
-import net.minecraft.client.particle.ParticleRenderType;
 import net.minecraft.client.particle.TextureSheetParticle;
 import net.minecraft.core.BlockPos;
 import net.minecraft.util.Mth;
 import net.minecraft.world.entity.Entity;
-import net.minecraft.world.phys.Vec3;
-import org.jetbrains.annotations.NotNull;
 import org.joml.Quaternionf;
 import org.joml.Vector3f;
 
@@ -22,10 +20,11 @@ public abstract class WeatherParticle extends TextureSheetParticle {
     protected WeatherParticle(ClientLevel level, double x, double y, double z) {
         super(level, x, y, z);
         this.setSize(0.01F, 0.01F);
-        this.lifetime = 32 * 10;
+        this.lifetime = OttConfig.WEATHER.PARTICLE_RADIUS.get() * 10;
         this.alpha = 0.0F;
         this.pos = new BlockPos.MutableBlockPos(x, y, z);
         this.temperature = level.getBiome(this.pos).value().getBaseTemperature();
+        ++ClientModEvents.particleCount;
     }
 
     public void tick() {
@@ -58,12 +57,16 @@ public abstract class WeatherParticle extends TextureSheetParticle {
     }
 
     public void remove() {
+        if (this.isAlive()) {
+            --ClientModEvents.particleCount;
+        }
+
         super.remove();
     }
 
     void removeIfOOB() {
         Entity cameraEntity = Minecraft.getInstance().getCameraEntity();
-        if (cameraEntity == null || cameraEntity.distanceToSqr(this.x, this.y, this.z) > Mth.square(32.0)) {
+        if (cameraEntity == null || cameraEntity.distanceToSqr(this.x, this.y, this.z) > (double)Mth.square(OttConfig.WEATHER.PARTICLE_RADIUS.get())) {
             this.shouldFadeOut = true;
         }
     }
@@ -77,26 +80,10 @@ public abstract class WeatherParticle extends TextureSheetParticle {
         }
     }
 
-    public void flipItTurnwaysIfBackfaced(Quaternionf quaternion, Vector3f toCamera) {
+    public Quaternionf flipItTurnwaysIfBackfaced(Quaternionf quaternion, Vector3f toCamera) {
         Vector3f normal = new Vector3f(0.0F, 0.0F, 1.0F);
         normal.rotate(quaternion).normalize();
         float dot = normal.dot(toCamera);
-        if (dot > 0.0F) {
-            quaternion.mul(Axis.YP.rotation((float) Math.PI));
-        }
-    }
-
-    @Override
-    public @NotNull ParticleRenderType getRenderType() {
-        return ParticleRenderType.PARTICLE_SHEET_TRANSLUCENT;
-    }
-
-    protected Vector3f getInterpolatedRelPos(Camera camera, float tickPercent) {
-        Vec3 camPos = camera.getPosition();
-        return new Vector3f(
-                (float)(Mth.lerp(tickPercent, this.xo, this.x) - camPos.x()),
-                (float)(Mth.lerp(tickPercent, this.yo, this.y) - camPos.y()),
-                (float)(Mth.lerp(tickPercent, this.zo, this.z) - camPos.z())
-        );
+        return dot > 0.0F ? quaternion.mul(Axis.YP.rotation((float)Math.PI)) : quaternion;
     }
 }

@@ -1,9 +1,11 @@
 package com.otterly76.ott.mixin;
 
+import com.otterly76.ott.config.OttConfig;
 import com.otterly76.ott.particle.WeatherParticleSpawner;
 import net.minecraft.client.Camera;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.LevelRenderer;
+import net.minecraft.client.renderer.LightTexture;
 import net.minecraft.core.BlockPos;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundSource;
@@ -17,8 +19,6 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
-import java.util.Random;
-
 @Mixin(LevelRenderer.class)
 public class LevelRendererMixin {
     @Shadow
@@ -30,42 +30,57 @@ public class LevelRendererMixin {
     private int rainSoundTime;
 
     @Inject(
-            method = "tickRain",
-            at = @At("HEAD")
+            method = {"tickRain"},
+            at = {@At("HEAD")},
+            cancellable = true
     )
     public void tickRain(Camera camera, CallbackInfo ci) {
-        if (this.minecraft.level == null) return;
+        if (!OttConfig.WEATHER.TICK_VANILLA_WEATHER.get()) {
+            assert this.minecraft.level != null;
+            float f = this.minecraft.level.getRainLevel(1.0F);
+            if (f > 0.0F) {
+                java.util.Random random = new java.util.Random((long)this.ticks * 312987231L);
+                LevelReader level = this.minecraft.level;
+                BlockPos blockPos = BlockPos.containing(camera.getPosition());
+                BlockPos blockPos2 = null;
 
-        float f = this.minecraft.level.getRainLevel(1.0F);
-        if (f > 0.0F) {
-            Random random = new Random((long) this.ticks * 312987231L);
-            LevelReader level = this.minecraft.level;
-            BlockPos blockPos = BlockPos.containing(camera.getPosition());
-            BlockPos blockPos2 = null;
+                for(int j = 0; (float)j < 100.0F * f * f; ++j) {
+                    int k = random.nextInt(21) - 10;
+                    int l = random.nextInt(21) - 10;
+                    BlockPos blockPos3 = level.getHeightmapPos(Types.MOTION_BLOCKING, blockPos.offset(k, 0, l));
+                    if (blockPos3.getY() > level.getMinBuildHeight() && blockPos3.getY() <= blockPos.getY() + 10 && blockPos3.getY() >= blockPos.getY() - 10) {
+                        blockPos2 = blockPos3.below();
+                    }
+                }
 
-            for (int j = 0; (float) j < 100.0F * f * f; ++j) {
-                int k = random.nextInt(21) - 10;
-                int l = random.nextInt(21) - 10;
-                BlockPos blockPos3 = level.getHeightmapPos(Types.MOTION_BLOCKING, blockPos.offset(k, 0, l));
-                if (blockPos3.getY() > level.getMinBuildHeight() && blockPos3.getY() <= blockPos.getY() + 10 && blockPos3.getY() >= blockPos.getY() - 10) {
-                    blockPos2 = blockPos3.below();
+                if (blockPos2 != null && random.nextInt(3) < this.rainSoundTime++) {
+                    this.rainSoundTime = 0;
+                    if (blockPos2.getY() > blockPos.getY() + 1 && level.getHeightmapPos(Types.MOTION_BLOCKING, blockPos).getY() > Mth.floor((float)blockPos.getY())) {
+                        SoundEvent sound = WeatherParticleSpawner.getBiomeSound(blockPos2, true);
+                        if (sound != null) {
+                            this.minecraft.level.playLocalSound(blockPos2, sound, SoundSource.WEATHER, 0.1F, 0.5F, false);
+                        }
+                    } else {
+                        SoundEvent sound = WeatherParticleSpawner.getBiomeSound(blockPos2, false);
+                        if (sound != null) {
+                            this.minecraft.level.playLocalSound(blockPos2, sound, SoundSource.WEATHER, 0.2F, 1.0F, false);
+                        }
+                    }
                 }
             }
 
-            if (blockPos2 != null && random.nextInt(3) < this.rainSoundTime++) {
-                this.rainSoundTime = 0;
-                if (blockPos2.getY() > blockPos.getY() + 1 && level.getHeightmapPos(Types.MOTION_BLOCKING, blockPos).getY() > Mth.floor((float) blockPos.getY())) {
-                    SoundEvent sound = WeatherParticleSpawner.getBiomeSound(blockPos2, true);
-                    if (sound != null) {
-                        this.minecraft.level.playLocalSound(blockPos2, sound, SoundSource.WEATHER, 0.1F, 0.5F, false);
-                    }
-                } else {
-                    SoundEvent sound = WeatherParticleSpawner.getBiomeSound(blockPos2, false);
-                    if (sound != null) {
-                        this.minecraft.level.playLocalSound(blockPos2, sound, SoundSource.WEATHER, 0.2F, 1.0F, false);
-                    }
-                }
-            }
+            ci.cancel();
+        }
+    }
+
+    @Inject(
+            method = {"renderSnowAndRain"},
+            at = {@At("HEAD")},
+            cancellable = true
+    )
+    public void renderWeather(LightTexture lightTexture, float partialTicks, double x, double y, double z, CallbackInfo ci) {
+        if (!OttConfig.WEATHER.RENDER_VANILLA_WEATHER.get()) {
+            ci.cancel();
         }
     }
 }
