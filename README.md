@@ -50,6 +50,9 @@ Mods, Resourcepacks, and Datapacks You Will Not Need:
 - What The Bucket
 - Looping Jukebox 🎶
 - Infinite Trial Vaults, Resettable Vaults, Renewable Vaults, etc
+- No Farmland Trample, Trample No More, etc
+- Fortune Works On Ancient Debris
+- Disable Minecolonies Abandoned Structures (toggle on/off in config)
 
 Features
 =======
@@ -63,7 +66,7 @@ Features
 - Added Create support, first pass (3D models and textures for ores)
 - Added Chipped support, first pass (fluffy leaves, fixed some lantern models, fixed ladders(3D))
 - Added Aquaculture2 compatibility for Minecolonies 🐟
-- Added farmland protection for MineColonies crops
+- Added farmland protection for all crops
 - Added custom schematic dimensions!
   - flat
   - flat w/ water

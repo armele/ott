@@ -46,16 +46,18 @@ public class OttConfig {
         }
     }
 
-    @SuppressWarnings("ClassCanBeRecord")
     public static class WorldGen {
         public final ModConfigSpec.IntValue PALE_GARDEN_RARITY;
+        public final ModConfigSpec.BooleanValue ENABLE_ABANDONED_COLONIES;
 
         public WorldGen(ModConfigSpec.Builder builder) {
             builder.push("worldgen");
             PALE_GARDEN_RARITY = builder.comment("Rarity of the Pale Garden biome").defineInRange("rarity", 10, 1, 100);
+            ENABLE_ABANDONED_COLONIES = builder.comment("Should abandoned colonies (MineColonies) generate in the world?").define("enableAbandonedColonies", true);
             builder.pop();
         }
     }
+
     public static class Snow {
         public final ModConfigSpec.BooleanValue SNOW_STACKING;
         public final ModConfigSpec.BooleanValue PARTICLES;

@@ -18,6 +18,7 @@ import com.otterly76.ott.worldgen.ModFeatures;
 import com.otterly76.ott.worldgen.ModPlacedFeatures;
 import com.otterly76.ott.worldgen.ModTreeDecoratorTypes;
 import com.otterly76.ott.worldgen.biome.ModOverworldRegion;
+import net.minecraft.core.registries.Registries;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.loot.LootTableProvider;
 import net.minecraft.network.chat.Component;
@@ -28,15 +29,14 @@ import net.minecraft.server.packs.PackType;
 import net.minecraft.server.packs.PathPackResources;
 import net.minecraft.server.packs.repository.Pack;
 import net.minecraft.server.packs.repository.PackSource;
+import net.minecraft.tags.TagKey;
+import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.CreativeModeTabs;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.ItemLike;
-import net.minecraft.world.level.block.Blocks;
-import net.minecraft.world.level.block.ComposterBlock;
-import net.minecraft.world.level.block.FireBlock;
-import net.minecraft.world.level.block.FlowerPotBlock;
+import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.storage.loot.parameters.LootContextParamSets;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.bus.api.SubscribeEvent;
@@ -331,6 +331,14 @@ public class Ott {
         if (accessor.ott$getCraftingRemainder() == null) {
             accessor.ott$setCraftingRemainder(Items.BUCKET);
         }
+    }
+
+    public static TagKey<EntityType<?>> TRAMPLING_ENTITIES;
+    public static TagKey<Block> FARMLAND_CANSURVIVE;
+
+    static {
+        TRAMPLING_ENTITIES = TagKey.create(Registries.ENTITY_TYPE, ResourceLocation.fromNamespaceAndPath(MOD_ID, "trampling_entities"));
+        FARMLAND_CANSURVIVE = TagKey.create(Registries.BLOCK, ResourceLocation.fromNamespaceAndPath(MOD_ID, "farmland_cansurvive"));
     }
 }
 //TODO Refactor targets: rename bl/bl2, early-return in onExplosionHit, extract shouldPlayIdleSound.
