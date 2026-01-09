@@ -33,17 +33,20 @@ Mods, Resourcepacks, and Datapacks You Will Not Need:
 - Minecolonies Oxidized Copper via Alchemist
 - Copper Paths / Roads for Minecolonies
 - Pretty Rain ⛅
+  - Configuration Available
 - Appleskin 🍎
 - Overloaded Armor Bar
 - Colorful Hearts ❤️
 - Simple Grass Flowers, Better Grounds, Better Grass, etc 🍀
 - Perfect Parity Neo: Pale Garden Awakens
+- - Configuration Available
 - Yeetus Experimentus
 - Yeetus Narratus 📢
 - The Fence Unleashed 🐮
 - Jump Over Fences, JumpOverFences, etc 🏃
 - Snow Under Trees, Simple Snowy Fix, Falling Snow, etc ❄️
 - Better Days 🌛🌝🌜
+- - Configuration Available
 - Trash Slot, Trash Cans, etc 🗑️
 - Torchmaster, Magnum Torch
 - Not Enough Recipe Book

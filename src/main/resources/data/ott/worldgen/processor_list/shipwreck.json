@@ -1,0 +1,9 @@
+{
+  "processors": [
+    {
+      "processor_type": "ott:apply_random",
+      "mode": "per_piece",
+      "processor_lists": "#ott:shipwreck_palettes"
+    }
+  ]
+}

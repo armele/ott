@@ -12,6 +12,7 @@ public class OttConfig {
     public static final WorldGen WORLDGEN;
     public static final Snow SNOW;
     public static final Weather WEATHER;
+    public static final Time TIME;
 
     static {
         ModConfigSpec.Builder builder = new ModConfigSpec.Builder();
@@ -22,9 +23,24 @@ public class OttConfig {
         WORLDGEN = new WorldGen(builder);
         SNOW = new Snow(builder);
         WEATHER = new Weather(builder);
+        TIME = new Time(builder);
 
         builder.pop();
         SPEC = builder.build();
+    }
+
+    public static class Time {
+        public final ModConfigSpec.DoubleValue DAY_LENGTH_MULTIPLIER;
+        public final ModConfigSpec.DoubleValue NIGHT_LENGTH_MULTIPLIER;
+
+        public Time(ModConfigSpec.Builder builder) {
+            builder.push("time");
+            DAY_LENGTH_MULTIPLIER = builder.comment("How much to multiply the length of the day. 2.0 = Double length, 0.5 = Half length, 1.0 = Vanilla.")
+                    .defineInRange("dayLengthMultiplier", 2.0, 0.1, 10.0);
+            NIGHT_LENGTH_MULTIPLIER = builder.comment("How much to multiply the length of the night. 0.5 = Half length (Faster nights), 2.0 = Double length, 1.0 = Vanilla.")
+                    .defineInRange("nightLengthMultiplier", 0.5, 0.1, 10.0);
+            builder.pop();
+        }
     }
 
     public static class Creaking {
@@ -49,6 +65,7 @@ public class OttConfig {
         }
     }
 
+    @SuppressWarnings("ClassCanBeRecord")
     public static class WorldGen {
         public final ModConfigSpec.IntValue PALE_GARDEN_RARITY;
 

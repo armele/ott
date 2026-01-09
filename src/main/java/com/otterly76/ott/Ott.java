@@ -1,5 +1,6 @@
 package com.otterly76.ott;
 
+import com.mojang.serialization.MapCodec;
 import com.otterly76.ott.block.ModBlocks;
 import com.otterly76.ott.block.custom.entity.ModBlockEntities;
 import com.otterly76.ott.block.wood.ModBlockFamilies;
@@ -9,7 +10,7 @@ import com.otterly76.ott.events.ModEventBusEvents;
 import com.otterly76.ott.generation.*;
 import com.otterly76.ott.inventory.ModMenuTypes;
 import com.otterly76.ott.item.ModItems;
-import com.otterly76.ott.mixin.AccessorItem;
+import com.otterly76.ott.mixin.common.AccessorItem;
 import com.otterly76.ott.network.NetworkHandler;
 import com.otterly76.ott.particle.ModParticle;
 import com.otterly76.ott.sound.ModSounds;
@@ -17,11 +18,54 @@ import com.otterly76.ott.util.LanternSavedData;
 import com.otterly76.ott.worldgen.ModFeatures;
 import com.otterly76.ott.worldgen.ModPlacedFeatures;
 import com.otterly76.ott.worldgen.ModTreeDecoratorTypes;
+import com.otterly76.ott.worldgen.bandlands.band.Band;
+import com.otterly76.ott.worldgen.bandlands.band.BaseBand;
+import com.otterly76.ott.worldgen.bandlands.band.RepeatingBand;
+import com.otterly76.ott.worldgen.bandlands.band.WrappedBand;
 import com.otterly76.ott.worldgen.biome.ModOverworldRegion;
+import com.otterly76.ott.worldgen.blockentitymodifier.ApplyAll;
+import com.otterly76.ott.worldgen.blockentitymodifier.ApplyRandom;
+import com.otterly76.ott.worldgen.blockpredicate.BlockStatePredicate;
+import com.otterly76.ott.worldgen.blockpredicate.InStructurePredicate;
+import com.otterly76.ott.worldgen.blockpredicate.MultipleOfPredicate;
+import com.otterly76.ott.worldgen.blockpredicate.RandomChancePredicate;
+import com.otterly76.ott.worldgen.densityfunction.MergedDensityFunction;
+import com.otterly76.ott.worldgen.densityfunction.OriginalMarkerDensityFunction;
+import com.otterly76.ott.worldgen.densityfunction.WrappedMarkerDensityFunction;
+import com.otterly76.ott.worldgen.feature.*;
+import com.otterly76.ott.worldgen.modifier.*;
+import com.otterly76.ott.worldgen.modifier.internal.CompileRawTemplatesModifier;
+import com.otterly76.ott.worldgen.placementcondition.*;
+import com.otterly76.ott.worldgen.placementmodifier.ConditionPlacement;
+import com.otterly76.ott.worldgen.placementmodifier.NoiseSlopePlacement;
+import com.otterly76.ott.worldgen.placementmodifier.OffsetPlacement;
+import com.otterly76.ott.worldgen.poolalias.RandomEntries;
+import com.otterly76.ott.worldgen.poolelement.DelegatingPoolElement;
+import com.otterly76.ott.worldgen.poolelement.legacy.GuaranteedPoolElement;
+import com.otterly76.ott.worldgen.poolelement.legacy.LimitedPoolElement;
+import com.otterly76.ott.worldgen.processor.*;
+import com.otterly76.ott.worldgen.processor.condition.*;
+import com.otterly76.ott.worldgen.stateprovider.RandomBlockProvider;
+import com.otterly76.ott.worldgen.stateprovider.WeightedProvider;
+import com.otterly76.ott.worldgen.structure.AlternateJigsawStructure;
+import com.otterly76.ott.worldgen.structure.DelegatingStructure;
+import com.otterly76.ott.worldgen.surface.condition.AllOfCondition;
+import com.otterly76.ott.worldgen.surface.condition.AnyOfCondition;
+import com.otterly76.ott.worldgen.surface.condition.BiomeCondition;
+import com.otterly76.ott.worldgen.surface.condition.SlopeCondition;
+import com.otterly76.ott.worldgen.surface.condition.internal.TagFilledCondition;
+import com.otterly76.ott.worldgen.surface.rule.BandlandsRule;
+import com.otterly76.ott.worldgen.surface.rule.ReferenceRule;
+import com.otterly76.ott.worldgen.surface.rule.TransientMergedRule;
+import net.minecraft.core.BlockPos;
+import net.minecraft.core.Registry;
+import net.minecraft.core.RegistryAccess;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.loot.LootTableProvider;
+import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
+import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.packs.PackLocationInfo;
 import net.minecraft.server.packs.PackSelectionConfig;
@@ -36,7 +80,21 @@ import net.minecraft.world.item.CreativeModeTabs;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.ItemLike;
+import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.*;
+import net.minecraft.world.level.levelgen.DensityFunction;
+import net.minecraft.world.level.levelgen.NoiseRouter;
+import net.minecraft.world.level.levelgen.SurfaceRules;
+import net.minecraft.world.level.levelgen.blockpredicates.BlockPredicateType;
+import net.minecraft.world.level.levelgen.feature.Feature;
+import net.minecraft.world.level.levelgen.feature.stateproviders.BlockStateProviderType;
+import net.minecraft.world.level.levelgen.placement.PlacementModifierType;
+import net.minecraft.world.level.levelgen.structure.StructureType;
+import net.minecraft.world.level.levelgen.structure.pools.StructurePoolElementType;
+import net.minecraft.world.level.levelgen.structure.pools.alias.PoolAliasBinding;
+import net.minecraft.world.level.levelgen.structure.templatesystem.StructureProcessorType;
+import net.minecraft.world.level.levelgen.structure.templatesystem.rule.blockentity.RuleBlockEntityModifierType;
+import net.minecraft.world.level.material.Fluid;
 import net.minecraft.world.level.storage.loot.parameters.LootContextParamSets;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.bus.api.SubscribeEvent;
@@ -58,6 +116,7 @@ import java.nio.file.Files;
 import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
+import java.util.function.BiConsumer;
 
 import static com.otterly76.ott.Constants.MOD_ID;
 
@@ -90,8 +149,166 @@ public class Ott {
         modEventBus.addListener(ModBlockEntities::registerTileExtensions);
     }
 
+    public static <T> ResourceKey<T> key(ResourceKey<? extends Registry<T>> resourceKey, String name) {
+        return ResourceKey.create(resourceKey, resource(name));
+    }
+
     public static ResourceLocation resource(String name) {
         return ResourceLocation.fromNamespaceAndPath(MOD_ID, name);
+    }
+
+    public static <T> Registry<T> registry(RegistryAccess registries, ResourceKey<? extends Registry<T>> key) {
+        return registries.registryOrThrow(key);
+    }
+
+    public static void scheduleTick(Level level, BlockPos pos, Block block, int flags) {
+        level.scheduleTick(pos, block, flags);
+    }
+
+    public static void scheduleTick(Level level, BlockPos pos, Fluid fluid, int flags) {
+        level.scheduleTick(pos, fluid, flags);
+    }
+
+    public static String getString(CompoundTag tag, String name) {
+        return tag.getString(name);
+    }
+
+    public static DensityFunction getInitialDensity(NoiseRouter router) {
+        return router.initialDensityWithoutJaggedness();
+    }
+
+    public static String getInitialDensityName() {
+        return "initial_density_without_jaggedness";
+    }
+
+    public static void registerCommonModifiers(BiConsumer<String, MapCodec<? extends Modifier>> consumer) {
+        @SuppressWarnings("unchecked")
+        BiConsumer<String, MapCodec<?>> registry = (id, codec) -> consumer.accept(id, (MapCodec<? extends Modifier>) codec);
+        registry.accept("internal/compile_raw_templates", CompileRawTemplatesModifier.CODEC);
+        registry.accept("add_processor_list_processors", AddProcessorListProcessorsModifier.CODEC);
+        registry.accept("add_structure_set_entries", AddStructureSetEntriesModifier.CODEC);
+        registry.accept("add_structure_templates", AddStructureTemplatesModifier.CODEC);
+        registry.accept("add_surface_rule", AddSurfaceRuleModifier.CODEC);
+        registry.accept("add_template_pool_elements", AddTemplatePoolElementsModifier.CODEC);
+        registry.accept("no_op", NoOpModifier.CODEC);
+        registry.accept("remove_structure_set_entries", RemoveStructureSetEntriesModifier.CODEC);
+        registry.accept("set_pool_aliases", SetPoolAliasesModifier.CODEC);
+        registry.accept("set_pool_element_processors", SetPoolElementProcessorsModifier.CODEC);
+        registry.accept("set_structure_spawn_condition", SetStructureSpawnConditionModifier.CODEC);
+        registry.accept("stack_feature", StackFeatureModifier.CODEC);
+        registry.accept("wrap_density_function", WrapDensityFunctionModifier.CODEC);
+        registry.accept("wrap_noise_router", WrapNoiseRouterModifier.CODEC);
+    }
+
+    public static void registerCommonBlockPredicateTypes(BiConsumer<String, BlockPredicateType<?>> consumer) {
+        consumer.accept("block_state", BlockStatePredicate.TYPE);
+        consumer.accept("in_structure", InStructurePredicate.TYPE);
+        consumer.accept("multiple_of", MultipleOfPredicate.TYPE);
+        consumer.accept("random_chance", RandomChancePredicate.TYPE);
+    }
+
+    public static void registerCommonStateProviders(BiConsumer<String, BlockStateProviderType<?>> consumer) {
+        consumer.accept("weighted", WeightedProvider.TYPE);
+        consumer.accept("random_block", RandomBlockProvider.TYPE);
+    }
+
+    public static void registerCommonPlacementModifiers(BiConsumer<String, PlacementModifierType<?>> consumer) {
+        consumer.accept("condition", ConditionPlacement.TYPE);
+        consumer.accept("noise_slope", NoiseSlopePlacement.TYPE);
+        consumer.accept("offset", OffsetPlacement.TYPE);
+    }
+
+    public static void registerCommonFeatureTypes(BiConsumer<String, Feature<?>> consumer) {
+        consumer.accept("composite", CompositeFeature.FEATURE);
+        consumer.accept("dungeon", DungeonFeature.FEATURE);
+        consumer.accept("large_dripstone", LargeDripstoneFeature.FEATURE);
+        consumer.accept("ore", OreFeature.FEATURE);
+        consumer.accept("select", SelectFeature.FEATURE);
+        consumer.accept("structure_template", StructureTemplateFeature.FEATURE);
+        consumer.accept("weighted_selector", WeightedSelectorFeature.FEATURE);
+        consumer.accept("well", WellFeature.FEATURE);
+        consumer.accept("vines", VinesFeature.FEATURE);
+    }
+
+    public static void registerCommonPoolElementTypes(BiConsumer<String, StructurePoolElementType<?>> consumer) {
+        consumer.accept("delegating", DelegatingPoolElement.TYPE);
+        consumer.accept("guaranteed", GuaranteedPoolElement.TYPE);
+        consumer.accept("limited", LimitedPoolElement.TYPE);
+    }
+
+    public static void registerCommonDensityFunctions(BiConsumer<String, MapCodec<? extends DensityFunction>> consumer) {
+        consumer.accept("internal/merged", MergedDensityFunction.CODEC.codec());
+        consumer.accept("wrapped_marker", WrappedMarkerDensityFunction.CODEC.codec());
+        consumer.accept("original_marker", OriginalMarkerDensityFunction.CODEC.codec());
+    }
+
+    public static void registerCommonPoolAliasBindings(BiConsumer<String, MapCodec<? extends PoolAliasBinding>> consumer) {
+        consumer.accept("internal/random_entries", RandomEntries.CODEC);
+    }
+
+    public static void registerCommonStructureTypes(BiConsumer<String, StructureType<?>> consumer) {
+        consumer.accept("delegating", DelegatingStructure.TYPE);
+        consumer.accept("jigsaw", AlternateJigsawStructure.TYPE);
+    }
+
+    public static void registerCommonPlacementConditions(BiConsumer<String, MapCodec<? extends PlacementCondition>> consumer) {
+        consumer.accept("any_of", AnyOfPlacementCondition.CODEC);
+        consumer.accept("all_of", AllOfPlacementCondition.CODEC);
+        consumer.accept("grid", GridPlacementCondition.CODEC);
+        consumer.accept("height_filter", HeightFilterPlacementCondition.CODEC);
+        consumer.accept("in_biome", InBiomePlacementCondition.CODEC);
+        consumer.accept("multiple_of", MultipleOfPlacementCondition.CODEC);
+        consumer.accept("not", NotPlacementCondition.CODEC);
+        consumer.accept("offset", OffsetPlacementCondition.CODEC);
+        consumer.accept("sample_density", SampleDensityPlacementCondition.CODEC);
+        consumer.accept("sample_noise_router", SampleNoiseRouterPlacementCondition.CODEC);
+        consumer.accept("true", TruePlacementCondition.CODEC);
+    }
+
+    public static void registerCommonStructureProcessors(BiConsumer<String, StructureProcessorType<?>> consumer) {
+        consumer.accept("internal/unbound_reference", UnboundReferenceProcessor.TYPE);
+        consumer.accept("apply_random", ApplyRandomStructureProcessor.TYPE);
+        consumer.accept("block_swap", BlockSwapStructureProcessor.TYPE);
+        consumer.accept("reference", ReferenceStructureProcessor.TYPE);
+        consumer.accept("condition", ConditionProcessor.TYPE);
+        consumer.accept("discard_input", DiscardInputProcessor.TYPE);
+        consumer.accept("schedule_tick", ScheduleTickProcessor.TYPE);
+        consumer.accept("set_block", SetBlockProcessor.TYPE);
+    }
+
+    public static void registerCommonProcessorConditions(BiConsumer<String, MapCodec<? extends ProcessorCondition>> consumer) {
+        consumer.accept("all_of", AllOf.CODEC);
+        consumer.accept("any_of", AnyOf.CODEC);
+        consumer.accept("matching_blocks", MatchingBlocks.CODEC);
+        consumer.accept("not", Not.CODEC);
+        consumer.accept("position", Position.CODEC);
+        consumer.accept("random_chance", RandomChance.CODEC);
+        consumer.accept("true", True.CODEC);
+    }
+
+    public static void registerCommonBlockEntityModifiers(BiConsumer<String, RuleBlockEntityModifierType<?>> consumer) {
+        consumer.accept("apply_all", ApplyAll.TYPE);
+        consumer.accept("apply_random", ApplyRandom.TYPE);
+    }
+
+    public static void registerCommonRuleSources(BiConsumer<String, MapCodec<? extends SurfaceRules.RuleSource>> consumer) {
+        consumer.accept("transient_merged", TransientMergedRule.CODEC.codec());
+        consumer.accept("bandlands", BandlandsRule.CODEC.codec());
+        consumer.accept("reference", ReferenceRule.CODEC.codec());
+    }
+
+    public static void registerCommonSurfaceConditions(BiConsumer<String, MapCodec<? extends SurfaceRules.ConditionSource>> consumer) {
+        consumer.accept("internal/tag_filled", TagFilledCondition.CODEC.codec());
+        consumer.accept("all_of", AllOfCondition.CODEC.codec());
+        consumer.accept("any_of", AnyOfCondition.CODEC.codec());
+        consumer.accept("biome", BiomeCondition.CODEC.codec());
+        consumer.accept("slope", SlopeCondition.CODEC.codec());
+    }
+
+    public static void registerCommonBandlandsBandTypes(BiConsumer<String, MapCodec<? extends Band>> consumer) {
+        consumer.accept("base", BaseBand.CODEC);
+        consumer.accept("repeating", RepeatingBand.CODEC);
+        consumer.accept("wrapped", WrappedBand.CODEC);
     }
 
     private void dataGeneratorSetup(final GatherDataEvent event) {

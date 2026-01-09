@@ -2,10 +2,10 @@
 	"credit": "Throttled by Otterly",
 	"render_type": "minecraft:cutout",
 	"textures": {
-		"1": "ott:block/midnight/log",
-		"2": "ott:block/midnight/log_top",
+		"1": "ott:block/wood/midnight/log",
+		"2": "ott:block/wood/midnight/log_top",
 		"3": "ott:block/midnight_leaves_sapling",
-		"particle": "ott:block/midnight/log"
+		"particle": "ott:block/wood/midnight/log"
 	},
 	"elements": [
 		{

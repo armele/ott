@@ -1,0 +1,36 @@
+{
+  "type": "ott:set_pool_aliases",
+  "structures": "minecraft:trial_chambers",
+  "pool_aliases": [
+    {
+      "type": "ott:internal/random_entries",
+      "aliases": [
+        "minecraft:trial_chambers/spawner/contents/ranged",
+        "minecraft:trial_chambers/spawner/contents/slow_ranged"
+      ],
+      "pools": [
+        "#ott:trial_spawner/ranged",
+        "#ott:trial_spawner/slow_ranged"
+      ]
+    },
+    {
+      "type": "ott:internal/random_entries",
+      "aliases": [
+        "minecraft:trial_chambers/spawner/contents/melee"
+      ],
+      "pools": [
+        "#ott:trial_spawner/melee"
+      ]
+    },
+    {
+      "type": "ott:internal/random_entries",
+      "aliases": [
+        "minecraft:trial_chambers/spawner/contents/small_melee"
+      ],
+      "pools": [
+        "#ott:trial_spawner/small_melee"
+      ]
+    }
+  ],
+  "append": false
+}

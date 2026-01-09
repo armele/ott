@@ -2,7 +2,7 @@ package com.otterly76.ott;
 
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.otterly76.ott.config.OttConfig;
-import com.otterly76.ott.mixin.GuiAccessor;
+import com.otterly76.ott.mixin.client.GuiAccessor;
 import com.otterly76.ott.particle.WeatherParticleSpawner;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiGraphics;

@@ -26,11 +26,11 @@ public class OttWoodSetBlockStateProvider extends BlockStateProvider {
     }
 
     private void registerWoodSet(String setName, ModBlocks.WoodSetBlocks set) {
-        ResourceLocation planksTex = modLoc("block/" + setName + "/planks");
-        ResourceLocation logSide = modLoc("block/" + setName + "/log");
-        ResourceLocation logTop = modLoc("block/" + setName + "/log_top");
-        ResourceLocation strippedLogSide = modLoc("block/" + setName + "/stripped_log");
-        ResourceLocation strippedLogTop = modLoc("block/" + setName + "/stripped_log_top");
+        ResourceLocation planksTex = modLoc("block/wood/" + setName + "/planks");
+        ResourceLocation logSide = modLoc("block/wood/" + setName + "/log");
+        ResourceLocation logTop = modLoc("block/wood/" + setName + "/log_top");
+        ResourceLocation strippedLogSide = modLoc("block/wood/" + setName + "/stripped_log");
+        ResourceLocation strippedLogTop = modLoc("block/wood/" + setName + "/stripped_log_top");
 
         axisBlock(set.log().get(), logSide, logTop);
         axisBlock(set.wood().get(), logSide, logSide);
@@ -102,8 +102,8 @@ public class OttWoodSetBlockStateProvider extends BlockStateProvider {
     private void registerCutoutDoor(String setName, DoorBlock door) {
         String doorName = blockPath(door);
 
-        ResourceLocation bottomTex = modLoc("block/" + setName + "/door_bottom");
-        ResourceLocation topTex = modLoc("block/" + setName + "/door_top");
+        ResourceLocation bottomTex = modLoc("block/wood/" + setName + "/door_bottom");
+        ResourceLocation topTex = modLoc("block/wood/" + setName + "/door_top");
 
         ModelFile bottomLeft = models()
                 .withExistingParent(doorName + "_bottom_left", mcLoc("block/door_bottom_left"))
@@ -160,7 +160,7 @@ public class OttWoodSetBlockStateProvider extends BlockStateProvider {
 
     private void registerCutoutTrapdoor(String setName, TrapDoorBlock trapdoor) {
         String trapdoorName = blockPath(trapdoor);
-        ResourceLocation tex = modLoc("block/" + setName + "/trapdoor");
+        ResourceLocation tex = modLoc("block/wood/" + setName + "/trapdoor");
 
         ModelFile bottom = models().trapdoorBottom(trapdoorName + "_bottom", tex).renderType("cutout");
         ModelFile top = models().trapdoorTop(trapdoorName + "_top", tex).renderType("cutout");
@@ -186,7 +186,7 @@ public class OttWoodSetBlockStateProvider extends BlockStateProvider {
 
     private void registerFluffyLeaves(String setName, Block leavesBlock) {
         String leavesId = blockPath(leavesBlock);
-        ResourceLocation leavesTexture = modLoc("block/" + setName + "/leaves");
+        ResourceLocation leavesTexture = modLoc("block/wood/" + setName + "/leaves");
 
         ModelFile l0 = models().withExistingParent(leavesId, modLoc("block/leaves"))
                 .texture("all", leavesTexture);

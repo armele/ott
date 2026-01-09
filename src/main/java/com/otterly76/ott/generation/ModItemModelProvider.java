@@ -77,8 +77,8 @@ public class ModItemModelProvider extends ItemModelProvider {
     private void doorItemFromTextures(String setName, ResourceLocation doorId) {
         String itemName = doorId.getPath();
 
-        ResourceLocation top = modLoc("block/" + setName + "/door_top");
-        ResourceLocation bottom = modLoc("block/" + setName + "/door_bottom");
+        ResourceLocation top = modLoc("block/wood/" + setName + "/door_top");
+        ResourceLocation bottom = modLoc("block/wood/" + setName + "/door_bottom");
 
         withExistingParent(itemName, mcLoc("item/door_base"))
                 .texture("particle", top)

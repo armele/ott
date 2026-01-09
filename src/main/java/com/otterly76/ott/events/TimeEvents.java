@@ -1,6 +1,7 @@
 package com.otterly76.ott.events;
 
 import com.otterly76.ott.Constants;
+import com.otterly76.ott.config.OttConfig;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.level.Level;
 import net.neoforged.bus.api.SubscribeEvent;
@@ -21,22 +22,42 @@ public class TimeEvents {
             long time = level.getDayTime();
             long dayTime = time % 24000;
 
-            // Day: 0 to 12000 (roughly)
-            // Night: 13000 to 23000 (roughly)
-
+            // Day: 0 to 12500
+            // Night: 13000 to 23000
             boolean isDay = dayTime < 12500;
             boolean isNight = dayTime > 13000 && dayTime < 23000;
 
             if (isDay) {
-                // Double the length of day (advance every 2nd tick)
-                // We "undo" the advance by setting time back by 1 every other tick
-                if (level.getGameTime() % 2 == 0) {
-                    level.setDayTime(time - 1);
-                }
+                handleTimeScaling(level, time, OttConfig.TIME.DAY_LENGTH_MULTIPLIER.get());
             } else if (isNight) {
-                // Halve the length of night
-                // We add an extra tick every tick to go twice as fast
-                level.setDayTime(time + 1);
+                handleTimeScaling(level, time, OttConfig.TIME.NIGHT_LENGTH_MULTIPLIER.get());
+            }
+        }
+    }
+
+    private static void handleTimeScaling(ServerLevel level, long currentTime, double multiplier) {
+        if (multiplier == 1.0) return;
+
+        if (multiplier > 1.0) {
+            // Slow down time: We need to "undo" the tick advance periodically.
+            double interval = multiplier / (multiplier - 1.0);
+            if (level.getGameTime() % interval < 1.0) {
+                level.setDayTime(currentTime - 1);
+            }
+        } else {
+            // Speed up time: We need to add extra ticks.
+            double extraTicksPending = (1.0 / multiplier) - 1.0;
+            int ticksToAdd = (int) extraTicksPending;
+            double fractionalTick = extraTicksPending - ticksToAdd;
+
+            long newTime = currentTime + ticksToAdd;
+
+            if (fractionalTick > 0 && (level.getGameTime() % (1.0 / fractionalTick) < 1.0)) {
+                newTime++;
+            }
+
+            if (newTime != currentTime) {
+                level.setDayTime(newTime);
             }
         }
     }
