@@ -25,6 +25,7 @@ Mods, Resourcepacks, and Datapacks You Will Not Need:
 - ANY 3D Model Mods or Resourcepacks
 - ANY 32x Texture Resourcepacks
 - ANY World Generation Mods 🌎
+  - This includes the Lithostitched suite (Tectonic, Underground Rivers, Improved Village Placement, etc)
 - Better Leaves, Bushy Leaves, JS Leaves+, etc 🍃
 - Healing Bed 🛏️
 - Low Shield, Lower Shield, Small Shield & Totem, Smaller Shield & Totem, etc
