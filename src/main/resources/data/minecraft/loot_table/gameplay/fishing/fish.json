@@ -28,17 +28,17 @@
           "type": "minecraft:item",
           "conditions": [
             {
-              "condition": "neoforge:mod_loaded",
-              "modid": "aquaculture"
+              "condition": "neoforge:all_mods_loaded",
+              "mods": [
+                "aquaculture"
+              ]
             },
             {
-              "condition": "minecraft:location_check",
-              "predicate": {
-                "biomes": [
-                  "#minecraft:is_ocean",
-                  "#minecraft:is_beach"
-                ]
-              }
+              "condition": "minecraft:matching_biome",
+              "predicate": [
+                "#minecraft:is_ocean",
+                "#minecraft:is_beach"
+              ]
             }
           ],
           "weight": 6,
@@ -48,17 +48,17 @@
           "type": "minecraft:item",
           "conditions": [
             {
-              "condition": "neoforge:mod_loaded",
-              "modid": "aquaculture"
+              "condition": "neoforge:all_mods_loaded",
+              "mods": [
+                "aquaculture"
+              ]
             },
             {
-              "condition": "minecraft:location_check",
-              "predicate": {
-                "biomes": [
-                  "#minecraft:is_ocean",
-                  "#minecraft:is_beach"
-                ]
-              }
+              "condition": "minecraft:matching_biome",
+              "predicate": [
+                "#minecraft:is_ocean",
+                "#minecraft:is_beach"
+              ]
             }
           ],
           "weight": 16,
@@ -68,17 +68,17 @@
           "type": "minecraft:item",
           "conditions": [
             {
-              "condition": "neoforge:mod_loaded",
-              "modid": "aquaculture"
+              "condition": "neoforge:all_mods_loaded",
+              "mods": [
+                "aquaculture"
+              ]
             },
             {
-              "condition": "minecraft:location_check",
-              "predicate": {
-                "biomes": [
-                  "#minecraft:is_ocean",
-                  "#minecraft:is_beach"
-                ]
-              }
+              "condition": "minecraft:matching_biome",
+              "predicate": [
+                "#minecraft:is_ocean",
+                "#minecraft:is_beach"
+              ]
             }
           ],
           "weight": 4,
@@ -88,17 +88,17 @@
           "type": "minecraft:item",
           "conditions": [
             {
-              "condition": "neoforge:mod_loaded",
-              "modid": "aquaculture"
+              "condition": "neoforge:all_mods_loaded",
+              "mods": [
+                "aquaculture"
+              ]
             },
             {
-              "condition": "minecraft:location_check",
-              "predicate": {
-                "biomes": [
-                  "#minecraft:is_ocean",
-                  "#minecraft:is_beach"
-                ]
-              }
+              "condition": "minecraft:matching_biome",
+              "predicate": [
+                "#minecraft:is_ocean",
+                "#minecraft:is_beach"
+              ]
             }
           ],
           "weight": 8,
@@ -108,17 +108,17 @@
           "type": "minecraft:item",
           "conditions": [
             {
-              "condition": "neoforge:mod_loaded",
-              "modid": "aquaculture"
+              "condition": "neoforge:all_mods_loaded",
+              "mods": [
+                "aquaculture"
+              ]
             },
             {
-              "condition": "minecraft:location_check",
-              "predicate": {
-                "biomes": [
-                  "#minecraft:is_ocean",
-                  "#minecraft:is_beach"
-                ]
-              }
+              "condition": "minecraft:matching_biome",
+              "predicate": [
+                "#minecraft:is_ocean",
+                "#minecraft:is_beach"
+              ]
             }
           ],
           "weight": 24,
@@ -128,17 +128,17 @@
           "type": "minecraft:item",
           "conditions": [
             {
-              "condition": "neoforge:mod_loaded",
-              "modid": "aquaculture"
+              "condition": "neoforge:all_mods_loaded",
+              "mods": [
+                "aquaculture"
+              ]
             },
             {
-              "condition": "minecraft:location_check",
-              "predicate": {
-                "biomes": [
-                  "#minecraft:is_ocean",
-                  "#minecraft:is_beach"
-                ]
-              }
+              "condition": "minecraft:matching_biome",
+              "predicate": [
+                "#minecraft:is_ocean",
+                "#minecraft:is_beach"
+              ]
             }
           ],
           "weight": 8,
@@ -148,17 +148,17 @@
           "type": "minecraft:item",
           "conditions": [
             {
-              "condition": "neoforge:mod_loaded",
-              "modid": "aquaculture"
+              "condition": "neoforge:all_mods_loaded",
+              "mods": [
+                "aquaculture"
+              ]
             },
             {
-              "condition": "minecraft:location_check",
-              "predicate": {
-                "biomes": [
-                  "#minecraft:is_ocean",
-                  "#minecraft:is_beach"
-                ]
-              }
+              "condition": "minecraft:matching_biome",
+              "predicate": [
+                "#minecraft:is_ocean",
+                "#minecraft:is_beach"
+              ]
             }
           ],
           "weight": 10,
@@ -168,17 +168,17 @@
           "type": "minecraft:item",
           "conditions": [
             {
-              "condition": "neoforge:mod_loaded",
-              "modid": "aquaculture"
+              "condition": "neoforge:all_mods_loaded",
+              "mods": [
+                "aquaculture"
+              ]
             },
             {
-              "condition": "minecraft:location_check",
-              "predicate": {
-                "biomes": [
-                  "#minecraft:is_ocean",
-                  "#minecraft:is_beach"
-                ]
-              }
+              "condition": "minecraft:matching_biome",
+              "predicate": [
+                "#minecraft:is_ocean",
+                "#minecraft:is_beach"
+              ]
             }
           ],
           "weight": 8,
@@ -188,17 +188,17 @@
           "type": "minecraft:item",
           "conditions": [
             {
-              "condition": "neoforge:mod_loaded",
-              "modid": "aquaculture"
+              "condition": "neoforge:all_mods_loaded",
+              "mods": [
+                "aquaculture"
+              ]
             },
             {
-              "condition": "minecraft:location_check",
-              "predicate": {
-                "biomes": [
-                  "#minecraft:is_ocean",
-                  "#minecraft:is_beach"
-                ]
-              }
+              "condition": "minecraft:matching_biome",
+              "predicate": [
+                "#minecraft:is_ocean",
+                "#minecraft:is_beach"
+              ]
             }
           ],
           "weight": 12,
@@ -208,17 +208,17 @@
           "type": "minecraft:item",
           "conditions": [
             {
-              "condition": "neoforge:mod_loaded",
-              "modid": "aquaculture"
+              "condition": "neoforge:all_mods_loaded",
+              "mods": [
+                "aquaculture"
+              ]
             },
             {
-              "condition": "minecraft:location_check",
-              "predicate": {
-                "biomes": [
-                  "#minecraft:is_ocean",
-                  "#minecraft:is_beach"
-                ]
-              }
+              "condition": "minecraft:matching_biome",
+              "predicate": [
+                "#minecraft:is_ocean",
+                "#minecraft:is_beach"
+              ]
             }
           ],
           "weight": 8,
@@ -228,17 +228,17 @@
           "type": "minecraft:item",
           "conditions": [
             {
-              "condition": "neoforge:mod_loaded",
-              "modid": "aquaculture"
+              "condition": "neoforge:all_mods_loaded",
+              "mods": [
+                "aquaculture"
+              ]
             },
             {
-              "condition": "minecraft:location_check",
-              "predicate": {
-                "biomes": [
-                  "#minecraft:is_ocean",
-                  "#minecraft:is_beach"
-                ]
-              }
+              "condition": "minecraft:matching_biome",
+              "predicate": [
+                "#minecraft:is_ocean",
+                "#minecraft:is_beach"
+              ]
             }
           ],
           "weight": 2,
@@ -248,17 +248,17 @@
           "type": "minecraft:item",
           "conditions": [
             {
-              "condition": "neoforge:mod_loaded",
-              "modid": "aquaculture"
+              "condition": "neoforge:all_mods_loaded",
+              "mods": [
+                "aquaculture"
+              ]
             },
             {
-              "condition": "minecraft:location_check",
-              "predicate": {
-                "biomes": [
-                  "minecraft:desert",
-                  "#minecraft:is_savanna"
-                ]
-              }
+              "condition": "minecraft:matching_biome",
+              "predicate": [
+                "minecraft:desert",
+                "#minecraft:is_savanna"
+              ]
             }
           ],
           "weight": 8,
@@ -268,17 +268,17 @@
           "type": "minecraft:item",
           "conditions": [
             {
-              "condition": "neoforge:mod_loaded",
-              "modid": "aquaculture"
+              "condition": "neoforge:all_mods_loaded",
+              "mods": [
+                "aquaculture"
+              ]
             },
             {
-              "condition": "minecraft:location_check",
-              "predicate": {
-                "biomes": [
-                  "minecraft:desert",
-                  "#minecraft:is_savanna"
-                ]
-              }
+              "condition": "minecraft:matching_biome",
+              "predicate": [
+                "minecraft:desert",
+                "#minecraft:is_savanna"
+              ]
             }
           ],
           "weight": 12,
@@ -288,17 +288,17 @@
           "type": "minecraft:item",
           "conditions": [
             {
-              "condition": "neoforge:mod_loaded",
-              "modid": "aquaculture"
+              "condition": "neoforge:all_mods_loaded",
+              "mods": [
+                "aquaculture"
+              ]
             },
             {
-              "condition": "minecraft:location_check",
-              "predicate": {
-                "biomes": [
-                  "minecraft:desert",
-                  "#minecraft:is_savanna"
-                ]
-              }
+              "condition": "minecraft:matching_biome",
+              "predicate": [
+                "minecraft:desert",
+                "#minecraft:is_savanna"
+              ]
             }
           ],
           "weight": 2,
@@ -308,17 +308,17 @@
           "type": "minecraft:item",
           "conditions": [
             {
-              "condition": "neoforge:mod_loaded",
-              "modid": "aquaculture"
+              "condition": "neoforge:all_mods_loaded",
+              "mods": [
+                "aquaculture"
+              ]
             },
             {
-              "condition": "minecraft:location_check",
-              "predicate": {
-                "biomes": [
-                  "minecraft:desert",
-                  "#minecraft:is_savanna"
-                ]
-              }
+              "condition": "minecraft:matching_biome",
+              "predicate": [
+                "minecraft:desert",
+                "#minecraft:is_savanna"
+              ]
             }
           ],
           "weight": 24,
@@ -328,17 +328,17 @@
           "type": "minecraft:item",
           "conditions": [
             {
-              "condition": "neoforge:mod_loaded",
-              "modid": "aquaculture"
+              "condition": "neoforge:all_mods_loaded",
+              "mods": [
+                "aquaculture"
+              ]
             },
             {
-              "condition": "minecraft:location_check",
-              "predicate": {
-                "biomes": [
-                  "minecraft:desert",
-                  "#minecraft:is_savanna"
-                ]
-              }
+              "condition": "minecraft:matching_biome",
+              "predicate": [
+                "minecraft:desert",
+                "#minecraft:is_savanna"
+              ]
             }
           ],
           "weight": 16,
@@ -348,17 +348,17 @@
           "type": "minecraft:item",
           "conditions": [
             {
-              "condition": "neoforge:mod_loaded",
-              "modid": "aquaculture"
+              "condition": "neoforge:all_mods_loaded",
+              "mods": [
+                "aquaculture"
+              ]
             },
             {
-              "condition": "minecraft:location_check",
-              "predicate": {
-                "biomes": [
-                  "minecraft:desert",
-                  "#minecraft:is_savanna"
-                ]
-              }
+              "condition": "minecraft:matching_biome",
+              "predicate": [
+                "minecraft:desert",
+                "#minecraft:is_savanna"
+              ]
             }
           ],
           "weight": 12,
@@ -368,17 +368,17 @@
           "type": "minecraft:item",
           "conditions": [
             {
-              "condition": "neoforge:mod_loaded",
-              "modid": "aquaculture"
+              "condition": "neoforge:all_mods_loaded",
+              "mods": [
+                "aquaculture"
+              ]
             },
             {
-              "condition": "minecraft:location_check",
-              "predicate": {
-                "biomes": [
-                  "minecraft:desert",
-                  "#minecraft:is_savanna"
-                ]
-              }
+              "condition": "minecraft:matching_biome",
+              "predicate": [
+                "minecraft:desert",
+                "#minecraft:is_savanna"
+              ]
             }
           ],
           "weight": 24,
@@ -388,17 +388,17 @@
           "type": "minecraft:item",
           "conditions": [
             {
-              "condition": "neoforge:mod_loaded",
-              "modid": "aquaculture"
+              "condition": "neoforge:all_mods_loaded",
+              "mods": [
+                "aquaculture"
+              ]
             },
             {
-              "condition": "minecraft:location_check",
-              "predicate": {
-                "biomes": [
-                  "minecraft:desert",
-                  "#minecraft:is_savanna"
-                ]
-              }
+              "condition": "minecraft:matching_biome",
+              "predicate": [
+                "minecraft:desert",
+                "#minecraft:is_savanna"
+              ]
             }
           ],
           "weight": 12,
@@ -408,17 +408,17 @@
           "type": "minecraft:item",
           "conditions": [
             {
-              "condition": "neoforge:mod_loaded",
-              "modid": "aquaculture"
+              "condition": "neoforge:all_mods_loaded",
+              "mods": [
+                "aquaculture"
+              ]
             },
             {
-              "condition": "minecraft:location_check",
-              "predicate": {
-                "biomes": [
-                  "minecraft:desert",
-                  "#minecraft:is_savanna"
-                ]
-              }
+              "condition": "minecraft:matching_biome",
+              "predicate": [
+                "minecraft:desert",
+                "#minecraft:is_savanna"
+              ]
             }
           ],
           "weight": 12,
@@ -428,17 +428,17 @@
           "type": "minecraft:item",
           "conditions": [
             {
-              "condition": "neoforge:mod_loaded",
-              "modid": "aquaculture"
+              "condition": "neoforge:all_mods_loaded",
+              "mods": [
+                "aquaculture"
+              ]
             },
             {
-              "condition": "minecraft:location_check",
-              "predicate": {
-                "biomes": [
-                  "minecraft:desert",
-                  "#minecraft:is_savanna"
-                ]
-              }
+              "condition": "minecraft:matching_biome",
+              "predicate": [
+                "minecraft:desert",
+                "#minecraft:is_savanna"
+              ]
             }
           ],
           "weight": 2,
@@ -448,17 +448,17 @@
           "type": "minecraft:item",
           "conditions": [
             {
-              "condition": "neoforge:mod_loaded",
-              "modid": "aquaculture"
+              "condition": "neoforge:all_mods_loaded",
+              "mods": [
+                "aquaculture"
+              ]
             },
             {
-              "condition": "minecraft:location_check",
-              "predicate": {
-                "biomes": [
-                  "minecraft:desert",
-                  "#minecraft:is_savanna"
-                ]
-              }
+              "condition": "minecraft:matching_biome",
+              "predicate": [
+                "minecraft:desert",
+                "#minecraft:is_savanna"
+              ]
             }
           ],
           "weight": 8,
@@ -468,17 +468,17 @@
           "type": "minecraft:item",
           "conditions": [
             {
-              "condition": "neoforge:mod_loaded",
-              "modid": "aquaculture"
+              "condition": "neoforge:all_mods_loaded",
+              "mods": [
+                "aquaculture"
+              ]
             },
             {
-              "condition": "minecraft:location_check",
-              "predicate": {
-                "biomes": [
-                  "minecraft:desert",
-                  "#minecraft:is_savanna"
-                ]
-              }
+              "condition": "minecraft:matching_biome",
+              "predicate": [
+                "minecraft:desert",
+                "#minecraft:is_savanna"
+              ]
             }
           ],
           "weight": 22,
@@ -488,17 +488,17 @@
           "type": "minecraft:item",
           "conditions": [
             {
-              "condition": "neoforge:mod_loaded",
-              "modid": "aquaculture"
+              "condition": "neoforge:all_mods_loaded",
+              "mods": [
+                "aquaculture"
+              ]
             },
             {
-              "condition": "minecraft:location_check",
-              "predicate": {
-                "biomes": [
-                  "minecraft:desert",
-                  "#minecraft:is_savanna"
-                ]
-              }
+              "condition": "minecraft:matching_biome",
+              "predicate": [
+                "minecraft:desert",
+                "#minecraft:is_savanna"
+              ]
             }
           ],
           "weight": 4,
@@ -508,17 +508,17 @@
           "type": "minecraft:item",
           "conditions": [
             {
-              "condition": "neoforge:mod_loaded",
-              "modid": "aquaculture"
+              "condition": "neoforge:all_mods_loaded",
+              "mods": [
+                "aquaculture"
+              ]
             },
             {
-              "condition": "minecraft:location_check",
-              "predicate": {
-                "biomes": [
-                  "minecraft:desert",
-                  "#minecraft:is_savanna"
-                ]
-              }
+              "condition": "minecraft:matching_biome",
+              "predicate": [
+                "minecraft:desert",
+                "#minecraft:is_savanna"
+              ]
             }
           ],
           "weight": 24,
@@ -528,16 +528,16 @@
           "type": "minecraft:item",
           "conditions": [
             {
-              "condition": "neoforge:mod_loaded",
-              "modid": "aquaculture"
+              "condition": "neoforge:all_mods_loaded",
+              "mods": [
+                "aquaculture"
+              ]
             },
             {
-              "condition": "minecraft:location_check",
-              "predicate": {
-                "biomes": [
-                  "#minecraft:is_jungle"
-                ]
-              }
+              "condition": "minecraft:matching_biome",
+              "predicate": [
+                "#minecraft:is_jungle"
+              ]
             }
           ],
           "weight": 2,
@@ -547,16 +547,16 @@
           "type": "minecraft:item",
           "conditions": [
             {
-              "condition": "neoforge:mod_loaded",
-              "modid": "aquaculture"
+              "condition": "neoforge:all_mods_loaded",
+              "mods": [
+                "aquaculture"
+              ]
             },
             {
-              "condition": "minecraft:location_check",
-              "predicate": {
-                "biomes": [
-                  "#minecraft:is_jungle"
-                ]
-              }
+              "condition": "minecraft:matching_biome",
+              "predicate": [
+                "#minecraft:is_jungle"
+              ]
             }
           ],
           "weight": 2,
@@ -566,16 +566,16 @@
           "type": "minecraft:item",
           "conditions": [
             {
-              "condition": "neoforge:mod_loaded",
-              "modid": "aquaculture"
+              "condition": "neoforge:all_mods_loaded",
+              "mods": [
+                "aquaculture"
+              ]
             },
             {
-              "condition": "minecraft:location_check",
-              "predicate": {
-                "biomes": [
-                  "#minecraft:is_jungle"
-                ]
-              }
+              "condition": "minecraft:matching_biome",
+              "predicate": [
+                "#minecraft:is_jungle"
+              ]
             }
           ],
           "weight": 24,
@@ -585,16 +585,16 @@
           "type": "minecraft:item",
           "conditions": [
             {
-              "condition": "neoforge:mod_loaded",
-              "modid": "aquaculture"
+              "condition": "neoforge:all_mods_loaded",
+              "mods": [
+                "aquaculture"
+              ]
             },
             {
-              "condition": "minecraft:location_check",
-              "predicate": {
-                "biomes": [
-                  "#minecraft:is_jungle"
-                ]
-              }
+              "condition": "minecraft:matching_biome",
+              "predicate": [
+                "#minecraft:is_jungle"
+              ]
             }
           ],
           "weight": 8,
@@ -604,16 +604,16 @@
           "type": "minecraft:item",
           "conditions": [
             {
-              "condition": "neoforge:mod_loaded",
-              "modid": "aquaculture"
+              "condition": "neoforge:all_mods_loaded",
+              "mods": [
+                "aquaculture"
+              ]
             },
             {
-              "condition": "minecraft:location_check",
-              "predicate": {
-                "biomes": [
-                  "minecraft:mushroom_fields"
-                ]
-              }
+              "condition": "minecraft:matching_biome",
+              "predicate": [
+                "minecraft:mushroom_fields"
+              ]
             }
           ],
           "weight": 32,
@@ -623,16 +623,16 @@
           "type": "minecraft:item",
           "conditions": [
             {
-              "condition": "neoforge:mod_loaded",
-              "modid": "aquaculture"
+              "condition": "neoforge:all_mods_loaded",
+              "mods": [
+                "aquaculture"
+              ]
             },
             {
-              "condition": "minecraft:location_check",
-              "predicate": {
-                "biomes": [
-                  "minecraft:mushroom_fields"
-                ]
-              }
+              "condition": "minecraft:matching_biome",
+              "predicate": [
+                "minecraft:mushroom_fields"
+              ]
             }
           ],
           "weight": 32,
@@ -642,16 +642,16 @@
           "type": "minecraft:item",
           "conditions": [
             {
-              "condition": "neoforge:mod_loaded",
-              "modid": "aquaculture"
+              "condition": "neoforge:all_mods_loaded",
+              "mods": [
+                "aquaculture"
+              ]
             },
             {
-              "condition": "minecraft:location_check",
-              "predicate": {
-                "biomes": [
-                  "minecraft:swamp"
-                ]
-              }
+              "condition": "minecraft:matching_biome",
+              "predicate": [
+                "minecraft:swamp"
+              ]
             }
           ],
           "weight": 12,
@@ -661,16 +661,16 @@
           "type": "minecraft:item",
           "conditions": [
             {
-              "condition": "neoforge:mod_loaded",
-              "modid": "aquaculture"
+              "condition": "neoforge:all_mods_loaded",
+              "mods": [
+                "aquaculture"
+              ]
             },
             {
-              "condition": "minecraft:location_check",
-              "predicate": {
-                "biomes": [
-                  "minecraft:swamp"
-                ]
-              }
+              "condition": "minecraft:matching_biome",
+              "predicate": [
+                "minecraft:swamp"
+              ]
             }
           ],
           "weight": 2,
@@ -680,20 +680,20 @@
           "type": "minecraft:item",
           "conditions": [
             {
-              "condition": "neoforge:mod_loaded",
-              "modid": "aquaculture"
+              "condition": "neoforge:all_mods_loaded",
+              "mods": [
+                "aquaculture"
+              ]
             },
             {
               "condition": "neoforge:mod_loaded",
               "modid": "twilightforest"
             },
             {
-              "condition": "minecraft:location_check",
-              "predicate": {
-                "biomes": [
-                  "minecraft:swamp"
-                ]
-              }
+              "condition": "minecraft:matching_biome",
+              "predicate": [
+                "minecraft:swamp"
+              ]
             }
           ],
           "weight": 2,

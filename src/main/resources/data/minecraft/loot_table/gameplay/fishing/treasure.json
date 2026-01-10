@@ -69,34 +69,33 @@
           "weight": 10
         },
         {
+          "conditions": [
+            {
+              "condition": "neoforge:all_mods_loaded",
+              "mods": [
+                "aquaculture"
+              ]
+            }
+          ],
+          "name": "aquaculture:neptunium_nugget",
           "type": "minecraft:item",
-          "name": "minecraft:nautilus_shell",
           "weight": 10
         },
         {
-          "type": "minecraft:item",
-          "name": "aquaculture:neptunium_nugget",
-          "weight": 10,
           "conditions": [
             {
-              "condition": "neoforge:mod_loaded",
-              "modid": "aquaculture"
+              "condition": "neoforge:all_mods_loaded",
+              "mods": [
+                "aquaculture"
+              ]
             }
-          ]
-        },
-        {
-          "type": "minecraft:item",
+          ],
           "name": "aquaculture:neptunes_bounty",
-          "weight": 5,
-          "conditions": [
-            {
-              "condition": "neoforge:mod_loaded",
-              "modid": "aquaculture"
-            }
-          ]
+          "type": "minecraft:item",
+          "weight": 5
         }
       ],
-      "rolls": 1.0
+      "rolls": 1
     }
   ],
   "random_sequence": "minecraft:gameplay/fishing/treasure"
