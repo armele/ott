@@ -1,0 +1,73 @@
+package com.otterly76.ott.worldgen.modifier;
+
+import com.mojang.serialization.Codec;
+import com.mojang.serialization.DataResult;
+import com.mojang.serialization.MapCodec;
+import com.mojang.serialization.codecs.RecordCodecBuilder;
+import com.otterly76.ott.mixin.common.JigsawStructureAccessor;
+import com.otterly76.ott.worldgen.OttCodecs;
+import com.otterly76.ott.worldgen.structure.AlternateJigsawStructure;
+import com.otterly76.ott.worldgen.structure.DelegatingStructure;
+import net.minecraft.core.Holder;
+import net.minecraft.core.HolderSet;
+import net.minecraft.core.registries.Registries;
+import net.minecraft.world.level.levelgen.structure.Structure;
+import net.minecraft.world.level.levelgen.structure.pools.alias.PoolAliasBinding;
+import net.minecraft.world.level.levelgen.structure.structures.JigsawStructure;
+
+import java.util.ArrayList;
+import java.util.List;
+
+public record SetPoolAliasesModifier(int priority, HolderSet<Structure> structures, List<PoolAliasBinding> poolAliases, boolean append) implements Modifier {
+    public static final MapCodec<SetPoolAliasesModifier> CODEC = RecordCodecBuilder.mapCodec((instance) -> instance.group(
+            PRIORITY_DEFAULT.forGetter(SetPoolAliasesModifier::priority),
+            OttCodecs.registrySet(Registries.STRUCTURE, "structures").forGetter(SetPoolAliasesModifier::structures),
+            PoolAliasBinding.CODEC.listOf().fieldOf("pool_aliases").forGetter(SetPoolAliasesModifier::poolAliases),
+            Codec.BOOL.fieldOf("append").orElse(true).forGetter(SetPoolAliasesModifier::append)
+    ).apply(instance, SetPoolAliasesModifier::new));
+
+    private static DataResult<SetPoolAliasesModifier> validate(SetPoolAliasesModifier modifier) {
+        for(Holder<Structure> holder : modifier.structures) {
+            Structure structure = holder.value();
+            if (structure instanceof DelegatingStructure delegating) {
+                structure = delegating.delegate();
+            }
+
+            if (!(structure instanceof JigsawStructure) && !(structure instanceof AlternateJigsawStructure)) {
+                return DataResult.error(() -> "Target structure for pool alias additions should be a jigsaw structure");
+            }
+        }
+
+        return DataResult.success(modifier);
+    }
+
+    @Override
+    public void applyModifier() {
+        this.structures.stream().map(Holder::value).forEach(this::applyModifier);
+    }
+
+    private void applyModifier(Structure structure) {
+        if (structure instanceof DelegatingStructure delegating) {
+            structure = delegating.delegate();
+        }
+
+        if (structure instanceof AlternateJigsawStructure alternateJigsaw) {
+            alternateJigsaw.setPoolAliases(this.poolAliases, this.append);
+        } else if (structure instanceof JigsawStructure) {
+            // Use (Object) bridge to bypass visibility check on JigsawStructureAccessor interface
+            JigsawStructureAccessor accessor = (JigsawStructureAccessor) structure;
+            List<PoolAliasBinding> mergedAliases = new ArrayList<>();
+            if (this.append) {
+                mergedAliases.addAll(accessor.getPoolAliases());
+            }
+
+            mergedAliases.addAll(this.poolAliases);
+            accessor.setPoolAliases(mergedAliases);
+        }
+    }
+
+    @Override
+    public MapCodec<? extends Modifier> codec() {
+        return CODEC;
+    }
+}

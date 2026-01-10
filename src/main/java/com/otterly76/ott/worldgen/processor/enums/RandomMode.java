@@ -4,6 +4,7 @@ import com.mojang.serialization.Codec;
 import net.minecraft.core.BlockPos;
 import net.minecraft.util.StringRepresentable;
 import net.minecraft.world.level.levelgen.structure.templatesystem.StructureTemplate;
+import org.jetbrains.annotations.NotNull;
 
 public enum RandomMode implements StringRepresentable {
     PER_BLOCK("per_block"),
@@ -12,7 +13,7 @@ public enum RandomMode implements StringRepresentable {
     public static final Codec<RandomMode> CODEC = StringRepresentable.fromEnum(RandomMode::values);
     private final String name;
 
-    private RandomMode(String name) {
+    RandomMode(String name) {
         this.name = name;
     }
 
@@ -20,7 +21,7 @@ public enum RandomMode implements StringRepresentable {
         return this == PER_PIECE ? piecePos : blockPos.pos();
     }
 
-    public String getSerializedName() {
+    public @NotNull String getSerializedName() {
         return this.name;
     }
 }

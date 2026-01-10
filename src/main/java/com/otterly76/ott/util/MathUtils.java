@@ -3,7 +3,7 @@ package com.otterly76.ott.util;
 import net.minecraft.Util;
 
 public class MathUtils {
-    private static final float[] SIN = (float[])Util.make(new float[65536], ($$0x) -> {
+    private static final float[] SIN = Util.make(new float[65536], ($$0x) -> {
         for(int $$1 = 0; $$1 < $$0x.length; ++$$1) {
             $$0x[$$1] = (float)Math.sin((double)$$1 * Math.PI * (double)2.0F / (double)65536.0F);
         }

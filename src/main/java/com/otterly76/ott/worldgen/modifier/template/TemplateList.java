@@ -13,11 +13,11 @@ public record TemplateList(List<ResourceLocation> templates) {
     public static final Codec<TemplateList> CODEC;
 
     public TemplateList(List<ResourceLocation> templates) {
-        this.templates = new ArrayList(templates);
+        this.templates = new ArrayList<>(templates);
     }
 
     public ResourceLocation getRandom(RandomSource randomSource) {
-        return (ResourceLocation)Util.getRandom(this.templates, randomSource);
+        return Util.getRandom(this.templates, randomSource);
     }
 
     public void addAll(List<ResourceLocation> templates) {

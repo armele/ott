@@ -13,7 +13,7 @@ import java.util.function.Predicate;
 public record CompositeConfig(HolderSet<PlacedFeature> features, Type placementType) implements FeatureConfiguration {
     public static final Codec<CompositeConfig> CODEC = RecordCodecBuilder.create((instance) -> instance.group(PlacedFeature.LIST_CODEC.fieldOf("features").forGetter(CompositeConfig::features), CompositeConfig.Type.CODEC.fieldOf("placement_type").orElse(CompositeConfig.Type.NEVER_CANCEL).forGetter(CompositeConfig::placementType)).apply(instance, CompositeConfig::new));
 
-    public static enum Type implements StringRepresentable {
+    public enum Type implements StringRepresentable {
         NEVER_CANCEL("never_cancel", (success) -> true),
         CANCEL_ON_FAILURE("cancel_on_failure", (success) -> success),
         CANCEL_ON_SUCCESS("cancel_on_success", (success) -> !success);
@@ -22,7 +22,7 @@ public record CompositeConfig(HolderSet<PlacedFeature> features, Type placementT
         private final String name;
         private final Predicate<Boolean> continueCondition;
 
-        private Type(String name, Predicate<Boolean> continueCondition) {
+        Type(String name, Predicate<Boolean> continueCondition) {
             this.name = name;
             this.continueCondition = continueCondition;
         }

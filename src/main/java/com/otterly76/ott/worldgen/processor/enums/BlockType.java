@@ -4,6 +4,7 @@ import com.mojang.serialization.Codec;
 import com.otterly76.ott.worldgen.processor.condition.ProcessorCondition;
 import net.minecraft.util.StringRepresentable;
 import net.minecraft.world.level.block.state.BlockState;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.function.Function;
 
@@ -15,16 +16,16 @@ public enum BlockType implements StringRepresentable {
     private final String name;
     private final Function<ProcessorCondition.Data, BlockState> state;
 
-    private BlockType(String name, Function<ProcessorCondition.Data, BlockState> state) {
+    BlockType(String name, Function<ProcessorCondition.Data, BlockState> state) {
         this.name = name;
         this.state = state;
     }
 
     public BlockState state(ProcessorCondition.Data data) {
-        return (BlockState)this.state.apply(data);
+        return this.state.apply(data);
     }
 
-    public String getSerializedName() {
+    public @NotNull String getSerializedName() {
         return this.name;
     }
 }

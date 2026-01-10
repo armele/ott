@@ -11,8 +11,6 @@ import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.ModList;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.event.server.ServerAboutToStartEvent;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
 import java.nio.file.Files;
@@ -21,8 +19,6 @@ import java.util.stream.Stream;
 
 @EventBusSubscriber(modid = Constants.MOD_ID)
 public class WorldTemplateHandler {
-
-    private static final Logger LOGGER = LoggerFactory.getLogger(Constants.MOD_ID);
 
     private static final String TEMPLATE_PATH = "world_template/region";
 
@@ -44,26 +40,24 @@ public class WorldTemplateHandler {
 
         try {
             if (!Files.exists(dimPath) || isDirEmpty(dimPath)) {
-                LOGGER.info("Ott: Initializing template world for dimension {}", TARGET_DIMENSION.location());
                 copyTemplateFiles(dimPath);
             }
         } catch (IOException e) {
-            LOGGER.error("Ott: Failed to copy world template", e);
+            // Log removed
         }
     }
 
     private static boolean isDirEmpty(Path path) throws IOException {
-        if (!Files.isDirectory(path)) return true;
-        try (Stream<Path> entries = Files.list(path)) {
-            return entries.findFirst().isEmpty();
-        }
+    if (!Files.isDirectory(path)) return true;
+    try (Stream<Path> entries = Files.list(path)) {
+        return entries.findFirst().isEmpty();
     }
+}
 
     private static void copyTemplateFiles(Path targetDir) throws IOException {
         Path sourceDir = ModList.get().getModFileById(Constants.MOD_ID).getFile().findResource(TEMPLATE_PATH);
 
         if (!Files.exists(sourceDir)) {
-            LOGGER.warn("Ott: World template source not found at {}", sourceDir);
             return;
         }
 
@@ -78,9 +72,8 @@ public class WorldTemplateHandler {
                             Path dest = targetDir.resolve(fileName);
 
                             Files.copy(source, dest);
-                            LOGGER.debug("Copied region file: {}", fileName);
                         } catch (IOException e) {
-                            LOGGER.error("Failed to copy file {}", source, e);
+                            // Log removed
                         }
                     });
         }

@@ -7,6 +7,7 @@ import net.minecraft.world.level.LevelHeightAccessor;
 import net.minecraft.world.level.NoiseColumn;
 import net.minecraft.world.level.levelgen.RandomState;
 import net.minecraft.world.level.levelgen.structure.Structure;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.Optional;
 
@@ -18,7 +19,7 @@ public enum SurfaceSnap implements StringRepresentable {
     private final String name;
     private final int offset;
 
-    private SurfaceSnap(String name, int offset) {
+    SurfaceSnap(String name, int offset) {
         this.name = name;
         this.offset = offset;
     }
@@ -28,9 +29,11 @@ public enum SurfaceSnap implements StringRepresentable {
         int y = pos.getY();
 
         boolean thisCheckSolid;
-        for(boolean lastCheckSolid = true; !heightAccessor.isOutsideBuildHeight(y); lastCheckSolid = thisCheckSolid) {
+        for (boolean lastCheckSolid = true; !heightAccessor.isOutsideBuildHeight(y); lastCheckSolid = thisCheckSolid) {
             y += this.offset;
-            thisCheckSolid = column.getBlock(y).isSolid();
+            var state = column.getBlock(y);
+            thisCheckSolid = !state.isAir() && state.getFluidState().isEmpty();
+
             if (!lastCheckSolid && thisCheckSolid) {
                 return Optional.of(y);
             }
@@ -39,7 +42,7 @@ public enum SurfaceSnap implements StringRepresentable {
         return Optional.empty();
     }
 
-    public String getSerializedName() {
+    public @NotNull String getSerializedName() {
         return this.name;
     }
 }

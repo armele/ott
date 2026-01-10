@@ -19,7 +19,7 @@ public class CompositeFeature extends Feature<CompositeConfig> {
     }
 
     public boolean place(FeaturePlaceContext<CompositeConfig> context) {
-        CompositeConfig config = (CompositeConfig)context.config();
+        CompositeConfig config = context.config();
         WorldGenLevel level = context.level();
         ChunkGenerator generator = context.chunkGenerator();
         RandomSource random = context.random();
@@ -27,7 +27,7 @@ public class CompositeFeature extends Feature<CompositeConfig> {
         boolean anyPlaced = false;
 
         for(Holder<PlacedFeature> feature : config.features()) {
-            boolean placed = ((PlacedFeature)feature.value()).place(level, generator, random, origin);
+            boolean placed = feature.value().place(level, generator, random, origin);
             if (placed) {
                 anyPlaced = true;
             }

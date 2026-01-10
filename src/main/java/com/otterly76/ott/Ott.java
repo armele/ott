@@ -13,6 +13,7 @@ import com.otterly76.ott.item.ModItems;
 import com.otterly76.ott.mixin.common.AccessorItem;
 import com.otterly76.ott.network.NetworkHandler;
 import com.otterly76.ott.particle.ModParticle;
+import com.otterly76.ott.registry.OttBuiltInRegistries;
 import com.otterly76.ott.sound.ModSounds;
 import com.otterly76.ott.util.LanternSavedData;
 import com.otterly76.ott.worldgen.ModFeatures;
@@ -123,6 +124,7 @@ import static com.otterly76.ott.Constants.MOD_ID;
 @Mod(MOD_ID)
 public class Ott {
     public Ott(IEventBus modEventBus) {
+        OttBuiltInRegistries.init(modEventBus);
         ModLoadingContext.get().getActiveContainer().registerConfig(ModConfig.Type.COMMON, OttConfig.SPEC, "ott-config.toml");
         ModLoadingContext.get().getActiveContainer().registerExtensionPoint(IConfigScreenFactory.class, ConfigurationScreen::new);
         ModCreativeTabs.OTTER_TABS.register(modEventBus);

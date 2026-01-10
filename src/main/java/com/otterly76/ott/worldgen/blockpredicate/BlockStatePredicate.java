@@ -7,6 +7,7 @@ import net.minecraft.core.Vec3i;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.levelgen.blockpredicates.BlockPredicateType;
 import net.minecraft.world.level.levelgen.blockpredicates.StateTestingPredicate;
+import org.jetbrains.annotations.NotNull;
 
 public final class BlockStatePredicate extends StateTestingPredicate {
     public static final MapCodec<BlockStatePredicate> CODEC = RecordCodecBuilder.mapCodec((instance) -> stateTestingCodec(instance).and(StatePropertiesPredicate.CODEC.fieldOf("properties").forGetter(BlockStatePredicate::properties)).apply(instance, BlockStatePredicate::new));
@@ -22,11 +23,11 @@ public final class BlockStatePredicate extends StateTestingPredicate {
         return this.properties;
     }
 
-    public boolean test(BlockState state) {
+    public boolean test(@NotNull BlockState state) {
         return this.properties.matches(state);
     }
 
-    public BlockPredicateType<?> type() {
+    public @NotNull BlockPredicateType<?> type() {
         return TYPE;
     }
 }

@@ -10,7 +10,7 @@ public record AllOfPlacementCondition(List<PlacementCondition> conditions) imple
     public static final MapCodec<AllOfPlacementCondition> CODEC;
 
     public AllOfPlacementCondition(List<PlacementCondition> conditions) {
-        this.conditions = new ArrayList(conditions);
+        this.conditions = new ArrayList<>(conditions);
     }
 
     public void appendCondition(PlacementCondition condition) {

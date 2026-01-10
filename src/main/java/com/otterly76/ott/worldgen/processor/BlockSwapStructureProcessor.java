@@ -6,15 +6,14 @@ import com.mojang.serialization.codecs.RecordCodecBuilder;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Holder;
 import net.minecraft.core.HolderLookup;
+import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.levelgen.structure.templatesystem.StructurePlaceSettings;
-import net.minecraft.world.level.levelgen.structure.templatesystem.StructureProcessor;
-import net.minecraft.world.level.levelgen.structure.templatesystem.StructureProcessorType;
-import net.minecraft.world.level.levelgen.structure.templatesystem.StructureTemplate;
+import net.minecraft.world.level.levelgen.structure.templatesystem.*;
 import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 import java.util.Map;
 import java.util.Optional;
@@ -32,19 +31,28 @@ public class BlockSwapStructureProcessor extends StructureProcessor {
         return this.blockSwapMap;
     }
 
-    public StructureTemplate.StructureBlockInfo processBlock(LevelReader levelReader, BlockPos blockPos, BlockPos blockPos2, StructureTemplate.StructureBlockInfo structureBlockInfo, StructureTemplate.StructureBlockInfo currentBlockInfo, StructurePlaceSettings structurePlaceSettings) {
+    @Nullable
+    @Override
+    public StructureTemplate.StructureBlockInfo process(LevelReader levelReader, @NotNull BlockPos pos, @NotNull BlockPos pivot, StructureTemplate.@NotNull StructureBlockInfo relative, StructureTemplate.StructureBlockInfo absolute, @NotNull StructurePlaceSettings settings, @Nullable StructureTemplate template) {
         HolderLookup.RegistryLookup<Block> registry = levelReader.registryAccess().lookupOrThrow(Registries.BLOCK);
-        ResourceKey<Block> key = currentBlockInfo.state().getBlock().builtInRegistryHolder().key();
-        if (this.blockSwapMap.containsKey(key)) {
-            Optional<Holder.Reference<Block>> newBlock = registry.get((ResourceKey)this.blockSwapMap.get(key));
-            if (newBlock.isPresent()) {
-                return new StructureTemplate.StructureBlockInfo(currentBlockInfo.pos(), ((Block)((Holder.Reference)newBlock.get()).value()).withPropertiesOf(currentBlockInfo.state()), currentBlockInfo.nbt());
+
+        // Fixed: Use BuiltInRegistries to get the key instead of deprecated builtInRegistryHolder()
+        Optional<ResourceKey<Block>> optionalKey = BuiltInRegistries.BLOCK.getResourceKey(absolute.state().getBlock());
+
+        if (optionalKey.isPresent()) {
+            ResourceKey<Block> key = optionalKey.get();
+            if (this.blockSwapMap.containsKey(key)) {
+                Optional<Holder.Reference<Block>> newBlock = registry.get(this.blockSwapMap.get(key));
+                if (newBlock.isPresent()) {
+                    return new StructureTemplate.StructureBlockInfo(absolute.pos(), newBlock.get().value().withPropertiesOf(absolute.state()), absolute.nbt());
+                }
             }
         }
 
-        return currentBlockInfo;
+        return absolute;
     }
 
+    @Override
     protected @NotNull StructureProcessorType<?> getType() {
         return TYPE;
     }

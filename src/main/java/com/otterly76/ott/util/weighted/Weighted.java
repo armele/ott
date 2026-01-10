@@ -33,6 +33,6 @@ public record Weighted<T>(T value, int weight) {
     }
 
     public <U> Weighted<U> map(Function<T, U> function) {
-        return new Weighted<U>(function.apply(this.value()), this.weight);
+        return new Weighted<>(function.apply(this.value()), this.weight);
     }
 }

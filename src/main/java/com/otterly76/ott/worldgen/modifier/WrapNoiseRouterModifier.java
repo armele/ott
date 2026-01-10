@@ -25,7 +25,7 @@ public record WrapNoiseRouterModifier(int priority, ResourceKey<Level> dimension
     }
 
     public static DensityFunction modifyDensityFunction(NoiseRouterTarget target, DensityFunction wrapped, List<WrapNoiseRouterModifier> modifiers) {
-        List<DensityFunction> orderedFunctions = modifiers.stream().filter((modifier) -> modifier.target == target).sorted(Comparator.comparingInt(WrapNoiseRouterModifier::priority)).map((modifier) -> (DensityFunction)modifier.wrapperFunction().value()).toList();
+        List<DensityFunction> orderedFunctions = modifiers.stream().filter((modifier) -> modifier.target == target).sorted(Comparator.comparingInt(WrapNoiseRouterModifier::priority)).map((modifier) -> modifier.wrapperFunction().value()).toList();
         if (orderedFunctions.isEmpty()) {
             return wrapped;
         } else {

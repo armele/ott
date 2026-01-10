@@ -1,0 +1,15 @@
+package com.otterly76.ott.worldgen.feature.config;
+
+import com.mojang.serialization.Codec;
+import com.otterly76.ott.util.weighted.WeightedList;
+import net.minecraft.core.Holder;
+import net.minecraft.world.level.levelgen.feature.configurations.FeatureConfiguration;
+import net.minecraft.world.level.levelgen.placement.PlacedFeature;
+
+public record WeightedSelectorConfig(WeightedList<Holder<PlacedFeature>> features) implements FeatureConfiguration {
+    public static final Codec<WeightedSelectorConfig> CODEC;
+
+    static {
+        CODEC = WeightedList.codec(PlacedFeature.CODEC).fieldOf("features").codec().xmap(WeightedSelectorConfig::new, WeightedSelectorConfig::features);
+    }
+}

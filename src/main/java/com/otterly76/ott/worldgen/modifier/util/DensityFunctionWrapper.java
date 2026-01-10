@@ -24,14 +24,10 @@ public class DensityFunctionWrapper {
 
     private static boolean isMarker(DensityFunction df) {
         boolean var10000;
-        if (df instanceof DensityFunctions.HolderHolder hh) {
-            if (hh.function().value() instanceof MarkerFunction) {
-                var10000 = true;
-                return var10000;
-            }
+        if (df instanceof DensityFunctions.HolderHolder(net.minecraft.core.Holder<DensityFunction> function)) {
+            return function.value() instanceof MarkerFunction;
         }
 
-        var10000 = false;
-        return var10000;
+        return false;
     }
 }

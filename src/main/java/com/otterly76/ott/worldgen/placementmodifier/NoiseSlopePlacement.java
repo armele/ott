@@ -12,6 +12,7 @@ import net.minecraft.world.level.levelgen.placement.PlacementContext;
 import net.minecraft.world.level.levelgen.placement.PlacementModifier;
 import net.minecraft.world.level.levelgen.placement.PlacementModifierType;
 import net.minecraft.world.level.levelgen.synth.NormalNoise;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.stream.IntStream;
 import java.util.stream.Stream;
@@ -53,7 +54,7 @@ public class NoiseSlopePlacement extends PlacementModifier {
         return this.yScale;
     }
 
-    public Stream<BlockPos> getPositions(PlacementContext context, RandomSource random, BlockPos pos) {
+    public @NotNull Stream<BlockPos> getPositions(@NotNull PlacementContext context, @NotNull RandomSource random, @NotNull BlockPos pos) {
         return IntStream.range(0, this.count(context, pos)).mapToObj((__) -> pos);
     }
 
@@ -63,7 +64,7 @@ public class NoiseSlopePlacement extends PlacementModifier {
         return (int)Math.ceil(value * (double)this.slope) + this.offset;
     }
 
-    public PlacementModifierType<?> type() {
+    public @NotNull PlacementModifierType<?> type() {
         return TYPE;
     }
 }

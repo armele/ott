@@ -10,12 +10,11 @@ import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.WorldGenLevel;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.levelgen.feature.stateproviders.BlockStateProvider;
-import net.minecraft.world.level.levelgen.structure.templatesystem.StructurePlaceSettings;
-import net.minecraft.world.level.levelgen.structure.templatesystem.StructureProcessor;
-import net.minecraft.world.level.levelgen.structure.templatesystem.StructureProcessorType;
-import net.minecraft.world.level.levelgen.structure.templatesystem.StructureTemplate;
+import net.minecraft.world.level.levelgen.structure.templatesystem.*;
 import net.minecraft.world.level.levelgen.structure.templatesystem.rule.blockentity.Passthrough;
 import net.minecraft.world.level.levelgen.structure.templatesystem.rule.blockentity.RuleBlockEntityModifier;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 public class SetBlockProcessor extends StructureProcessor {
     public static final MapCodec<SetBlockProcessor> CODEC = RecordCodecBuilder.mapCodec((instance) -> instance.group(BlockStateProvider.CODEC.fieldOf("state_provider").forGetter(SetBlockProcessor::blockState), Codec.BOOL.fieldOf("preserve_state").orElse(true).forGetter(SetBlockProcessor::preserveState), RandomMode.CODEC.fieldOf("random_mode").orElse(RandomMode.PER_BLOCK).forGetter(SetBlockProcessor::randomMode), RuleBlockEntityModifier.CODEC.fieldOf("block_entity_modifier").orElse(Passthrough.INSTANCE).forGetter(SetBlockProcessor::modifier)).apply(instance, SetBlockProcessor::new));
@@ -48,7 +47,9 @@ public class SetBlockProcessor extends StructureProcessor {
         return this.modifier;
     }
 
-    public StructureTemplate.StructureBlockInfo processBlock(LevelReader levelReader, BlockPos pos, BlockPos pivot, StructureTemplate.StructureBlockInfo relative, StructureTemplate.StructureBlockInfo absolute, StructurePlaceSettings settings) {
+    @Nullable
+    @Override
+    public StructureTemplate.StructureBlockInfo process(@NotNull LevelReader levelReader, @NotNull BlockPos pos, @NotNull BlockPos pivot, StructureTemplate.@NotNull StructureBlockInfo relative, StructureTemplate.@NotNull StructureBlockInfo absolute, @NotNull StructurePlaceSettings settings, @Nullable StructureTemplate template) {
         if (levelReader instanceof WorldGenLevel level) {
             BlockPos samplePos = this.randomMode.select(pos, absolute);
             RandomSource random = RandomSource.create(level.getSeed()).forkPositional().at(samplePos);
@@ -63,7 +64,8 @@ public class SetBlockProcessor extends StructureProcessor {
         return new StructureTemplate.StructureBlockInfo(info.pos(), state, this.modifier.apply(random, info.nbt()));
     }
 
-    protected StructureProcessorType<?> getType() {
+    @Override
+    protected @NotNull StructureProcessorType<?> getType() {
         return TYPE;
     }
 }

@@ -9,6 +9,7 @@ import net.minecraft.util.valueproviders.IntProvider;
 import net.minecraft.world.level.levelgen.placement.PlacementContext;
 import net.minecraft.world.level.levelgen.placement.PlacementModifier;
 import net.minecraft.world.level.levelgen.placement.PlacementModifierType;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.stream.Stream;
 
@@ -37,14 +38,14 @@ public class OffsetPlacement extends PlacementModifier {
         return this.zOffset;
     }
 
-    public Stream<BlockPos> getPositions(PlacementContext context, RandomSource random, BlockPos pos) {
+    public @NotNull Stream<BlockPos> getPositions(@NotNull PlacementContext context, @NotNull RandomSource random, BlockPos pos) {
         int x = pos.getX() + this.xOffset.sample(random);
         int y = pos.getY() + this.yOffset.sample(random);
         int z = pos.getZ() + this.zOffset.sample(random);
         return Stream.of(new BlockPos(x, y, z));
     }
 
-    public PlacementModifierType<?> type() {
+    public @NotNull PlacementModifierType<?> type() {
         return TYPE;
     }
 }

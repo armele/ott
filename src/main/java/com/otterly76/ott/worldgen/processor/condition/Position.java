@@ -9,6 +9,7 @@ import net.minecraft.util.StringRepresentable;
 import net.minecraft.world.level.WorldGenLevel;
 import net.minecraft.world.level.levelgen.structure.templatesystem.PosRuleTest;
 import net.minecraft.world.level.levelgen.structure.templatesystem.StructurePlaceSettings;
+import org.jetbrains.annotations.NotNull;
 
 public record Position(PosRuleTest predicate, PosAnchor anchor) implements ProcessorCondition {
     public static final MapCodec<Position> CODEC = RecordCodecBuilder.mapCodec((instance) -> instance.group(PosRuleTest.CODEC.fieldOf("predicate").forGetter(Position::predicate), Position.PosAnchor.CODEC.fieldOf("anchor").orElse(Position.PosAnchor.STRUCTURE_START).forGetter(Position::anchor)).apply(instance, Position::new));
@@ -21,14 +22,14 @@ public record Position(PosRuleTest predicate, PosAnchor anchor) implements Proce
         return CODEC;
     }
 
-    public static enum PosAnchor implements StringRepresentable {
+    public enum PosAnchor implements StringRepresentable {
         STRUCTURE_START("structure_start"),
         PIECE("piece");
 
         public static final Codec<PosAnchor> CODEC = StringRepresentable.fromEnum(PosAnchor::values);
         private final String name;
 
-        private PosAnchor(String name) {
+        PosAnchor(String name) {
             this.name = name;
         }
 
@@ -36,7 +37,7 @@ public record Position(PosRuleTest predicate, PosAnchor anchor) implements Proce
             return this == STRUCTURE_START ? data.pivot() : data.absolute().pos().subtract(data.relative().pos());
         }
 
-        public String getSerializedName() {
+        public @NotNull String getSerializedName() {
             return this.name;
         }
     }

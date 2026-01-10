@@ -20,15 +20,15 @@ public class SelectFeature extends Feature<SelectConfig> {
     }
 
     public boolean place(FeaturePlaceContext<SelectConfig> context) {
-        SelectConfig config = (SelectConfig)context.config();
+        SelectConfig config = context.config();
         WorldGenLevel level = context.level();
         ChunkGenerator generator = context.chunkGenerator();
         RandomSource random = context.random();
         BlockPos origin = context.origin();
 
         for(Pair<BlockPredicate, Holder<PlacedFeature>> pair : config.features()) {
-            if (((BlockPredicate)pair.getFirst()).test(level, origin)) {
-                ((PlacedFeature)((Holder)pair.getSecond()).value()).place(level, generator, random, origin);
+            if (pair.getFirst().test(level, origin)) {
+                ((PlacedFeature)((Holder<?>)pair.getSecond()).value()).place(level, generator, random, origin);
                 return true;
             }
         }

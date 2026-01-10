@@ -1,4 +1,4 @@
-package com.otterly76.ott.mixin;
+package com.otterly76.ott.mixin.common;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Holder;
@@ -23,6 +23,8 @@ import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
+
+import java.util.function.Function;
 
 @Mixin(SinglePoolElement.class)
 public abstract class SinglePoolElementMixin {
@@ -52,11 +54,14 @@ public abstract class SinglePoolElementMixin {
         if (!(level.getChunkSource() instanceof ServerChunkCache scc)) return;
         RandomState rs = scc.randomState();
 
-        // 1. Use the Invoker to get the template directly
-        // This avoids the @Shadow field crash!
-        StructureTemplate strucTemplate = ((SinglePoolElementAccessor) this).invokeGetTemplate(templateManager);
+        var templateEither = ((SinglePoolElementAccessor) this).getTemplate();
 
-        // 2. Calculate the true footprint size
+        // Use getOrCreate() to resolve the template from the manager
+        StructureTemplate strucTemplate = templateEither.map(
+                templateManager::getOrCreate,
+                Function.identity()
+        );
+
         Vec3i size = strucTemplate.getSize(rotation);
 
         int xStart = pos.getX();
@@ -66,10 +71,8 @@ public abstract class SinglePoolElementMixin {
         int midX = (xStart + xEnd) / 2;
         int midZ = (zStart + zEnd) / 2;
 
-        // 3. Anchor height
         int anchorH = generator.getFirstFreeHeight(xStart, zStart, Heightmap.Types.WORLD_SURFACE_WG, level, rs);
 
-        // 4. Grid check (Corners and Mid-edges)
         int[][] footprint = {
                 {xStart, zStart}, {xEnd, zStart}, {xStart, zEnd}, {xEnd, zEnd},
                 {midX, zStart}, {midX, zEnd}, {xStart, midZ}, {xEnd, midZ}

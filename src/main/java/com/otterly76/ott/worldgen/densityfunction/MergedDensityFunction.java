@@ -3,6 +3,7 @@ package com.otterly76.ott.worldgen.densityfunction;
 import net.minecraft.util.KeyDispatchDataCodec;
 import net.minecraft.world.level.levelgen.DensityFunction;
 import net.minecraft.world.level.levelgen.DensityFunctions;
+import org.jetbrains.annotations.NotNull;
 
 public record MergedDensityFunction(DensityFunction original, DensityFunction wrapped, DensityFunction full) implements DensityFunction {
     public static final KeyDispatchDataCodec<DensityFunction> CODEC;
@@ -18,15 +19,15 @@ public record MergedDensityFunction(DensityFunction original, DensityFunction wr
         return var10000;
     }
 
-    public double compute(DensityFunction.FunctionContext context) {
+    public double compute(DensityFunction.@NotNull FunctionContext context) {
         return this.full.compute(context);
     }
 
-    public void fillArray(double[] doubles, DensityFunction.ContextProvider contextProvider) {
+    public void fillArray(double @NotNull [] doubles, DensityFunction.@NotNull ContextProvider contextProvider) {
         this.full.fillArray(doubles, contextProvider);
     }
 
-    public DensityFunction mapAll(DensityFunction.Visitor visitor) {
+    public @NotNull DensityFunction mapAll(DensityFunction.@NotNull Visitor visitor) {
         return this.full.mapAll(visitor);
     }
 
@@ -38,15 +39,15 @@ public record MergedDensityFunction(DensityFunction original, DensityFunction wr
         return this.full.maxValue();
     }
 
-    public KeyDispatchDataCodec<? extends DensityFunction> codec() {
+    public @NotNull KeyDispatchDataCodec<? extends DensityFunction> codec() {
         return CODEC;
     }
 
     static {
         CODEC = KeyDispatchDataCodec.of(HOLDER_HELPER_CODEC.xmap((df) -> {
             DensityFunction var10000;
-            if (df instanceof DensityFunctions.HolderHolder hh) {
-                var10000 = (DensityFunction)hh.function().value();
+            if (df instanceof DensityFunctions.HolderHolder(net.minecraft.core.Holder<DensityFunction> function)) {
+                var10000 = function.value();
             } else {
                 var10000 = df;
             }

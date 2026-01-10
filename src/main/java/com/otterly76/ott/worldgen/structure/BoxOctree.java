@@ -21,9 +21,9 @@ public class BoxOctree {
     }
 
     private BoxOctree(AABB axisAlignedBB, int parentDepth) {
-        this.innerBoxes = new ArrayList();
-        this.childrenOctants = new ArrayList();
-        this.boundary = axisAlignedBB.move((double)0.0F, (double)0.0F, (double)0.0F);
+        this.innerBoxes = new ArrayList<>();
+        this.childrenOctants = new ArrayList<>();
+        this.boundary = axisAlignedBB.move(0.0F, 0.0F, 0.0F);
         this.size = new Vec3i(this.roundAwayFromZero(this.boundary.getXsize()), this.roundAwayFromZero(this.boundary.getYsize()), this.roundAwayFromZero(this.boundary.getZsize()));
         this.depth = parentDepth + 1;
     }
@@ -114,7 +114,7 @@ public class BoxOctree {
     }
 
     public boolean boundaryContains(BlockPos position) {
-        return this.boundary.contains((double)position.getX(), (double)position.getY(), (double)position.getZ());
+        return this.boundary.contains(position.getX(), position.getY(), position.getZ());
     }
 
     public boolean withinAnyBox(BlockPos position) {
@@ -126,7 +126,7 @@ public class BoxOctree {
             }
         } else {
             for(AABB innerBox : this.innerBoxes) {
-                if (innerBox.contains((double)position.getX(), (double)position.getY(), (double)position.getZ())) {
+                if (innerBox.contains(position.getX(), position.getY(), position.getZ())) {
                     return true;
                 }
             }
