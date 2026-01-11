@@ -1,8 +1,8 @@
 package com.otterly76.ott.block.custom;
 
 import com.mojang.serialization.MapCodec;
-import com.otterly76.ott.block.custom.entity.CreakingHeartBlockEntity;
-import com.otterly76.ott.block.custom.entity.ModBlockEntities;
+import com.otterly76.ott.block.entity.CreakingHeartBlockEntity;
+import com.otterly76.ott.block.entity.ModBlockEntities;
 import com.otterly76.ott.sound.ModSounds;
 import com.otterly76.ott.util.ModTags;
 import net.minecraft.core.BlockPos;

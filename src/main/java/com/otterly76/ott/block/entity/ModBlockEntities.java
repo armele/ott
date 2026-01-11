@@ -1,4 +1,4 @@
-package com.otterly76.ott.block.custom.entity;
+package com.otterly76.ott.block.entity;
 
 import com.otterly76.ott.block.ModBlocks;
 import net.minecraft.core.registries.BuiltInRegistries;

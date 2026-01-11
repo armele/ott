@@ -17,6 +17,7 @@
     "common.FenceJumpMixin",
     "common.GameTestServerMixin",
     "common.HolderReferenceAccessor",
+    "common.ItemInvoker",
     "common.JigsawStructureAccessor",
     "common.JigsawStructureMixin",
     "common.JukeboxSongPlayerMixin",

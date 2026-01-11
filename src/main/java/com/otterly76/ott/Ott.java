@@ -2,7 +2,7 @@ package com.otterly76.ott;
 
 import com.mojang.serialization.MapCodec;
 import com.otterly76.ott.block.ModBlocks;
-import com.otterly76.ott.block.custom.entity.ModBlockEntities;
+import com.otterly76.ott.block.entity.ModBlockEntities;
 import com.otterly76.ott.block.wood.ModBlockFamilies;
 import com.otterly76.ott.config.OttConfig;
 import com.otterly76.ott.entity.ModEntities;
