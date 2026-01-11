@@ -1,24 +1,26 @@
 package com.otterly76.ott.client;
 
+import com.mojang.datafixers.util.Either;
 import com.otterly76.ott.Constants;
+import com.otterly76.ott.client.tooltip.FoodTooltipComponent;
 import com.otterly76.ott.util.FoodUtil;
-import net.minecraft.ChatFormatting;
-import net.minecraft.network.chat.Component;
+import net.minecraft.client.Minecraft;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
-import net.neoforged.neoforge.event.entity.player.ItemTooltipEvent;
-import java.util.Locale;
+import net.neoforged.neoforge.client.event.RenderTooltipEvent;
 
 @EventBusSubscriber(modid = Constants.MOD_ID, value = Dist.CLIENT)
 public class TooltipHandler {
+
     @SubscribeEvent
-    public static void onItemTooltip(ItemTooltipEvent event) {
-        FoodUtil.FoodValues values = FoodUtil.getFoodValues(event.getItemStack(), event.getEntity());
+    public static void onGatherTooltipComponents(RenderTooltipEvent.GatherComponents event) {
+        var player = Minecraft.getInstance().player;
+        if (player == null) return;
+
+        FoodUtil.FoodValues values = FoodUtil.getFoodValues(event.getItemStack(), player);
         if (values != null) {
-            event.getToolTip().add(Component.literal(" "));
-            event.getToolTip().add(Component.translatable("tooltip.ott.hunger", values.hunger()).withStyle(ChatFormatting.GRAY));
-            event.getToolTip().add(Component.translatable("tooltip.ott.saturation", String.format(Locale.ROOT, "%.1f", values.saturation())).withStyle(ChatFormatting.GOLD));
+            event.getTooltipElements().add(Either.right(new FoodTooltipComponent(values.hunger(), values.saturation())));
         }
     }
 }

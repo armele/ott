@@ -6,6 +6,8 @@ import com.otterly76.ott.client.NutritionHudOverlay;
 import com.otterly76.ott.client.gui.TrashScreen;
 import com.otterly76.ott.client.render.PrismaticColorHandler;
 import com.otterly76.ott.client.render.texture.FXAtlasSpriteSource;
+import com.otterly76.ott.client.tooltip.ClientFoodTooltipComponent;
+import com.otterly76.ott.client.tooltip.FoodTooltipComponent;
 import com.otterly76.ott.config.OttConfig;
 import com.otterly76.ott.entity.ModEntities;
 import com.otterly76.ott.entity.client.CreakingRenderer;
@@ -31,7 +33,10 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.packs.resources.Resource;
 import net.minecraft.server.packs.resources.ResourceMetadata;
 import net.minecraft.util.Mth;
+import net.neoforged.api.distmarker.Dist;
 import net.neoforged.bus.api.IEventBus;
+import net.neoforged.bus.api.SubscribeEvent;
+import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.fml.event.lifecycle.FMLClientSetupEvent;
 import net.neoforged.neoforge.client.event.*;
 import net.neoforged.neoforge.client.gui.VanillaGuiLayers;
@@ -45,6 +50,7 @@ import java.util.function.IntUnaryOperator;
 import static com.otterly76.ott.Constants.MOD_ID;
 
 @SuppressWarnings("MethodRefCanBeReplacedWithLambda")
+@EventBusSubscriber(modid = Constants.MOD_ID, value = Dist.CLIENT)
 public class ClientModEvents {
     public static int particleCount;
     public static int fogCount;
@@ -261,5 +267,10 @@ public class ClientModEvents {
             ModBlocks.getAllGradientStainedGlassBlocks().forEach(block ->
                     ItemBlockRenderTypes.setRenderLayer(block.get(), RenderType.translucent()));
         });
+    }
+
+    @SubscribeEvent
+    public static void registerTooltipComponents(RegisterClientTooltipComponentFactoriesEvent event) {
+        event.register(FoodTooltipComponent.class, ClientFoodTooltipComponent::new);
     }
 }

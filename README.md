@@ -56,6 +56,8 @@ Mods, Resourcepacks, and Datapacks You Will Not Need:
 - Infinite Trial Vaults, Resettable Vaults, Renewable Vaults, etc
 - No Farmland Trample, Trample No More, etc
 - Fortune Works On Ancient Debris
+- Lava Alert
+  - Configuration Available
 
 Features
 =======

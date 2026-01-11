@@ -245,5 +245,17 @@
   "ott.configuration.cloudHeight": "Cloud height",
   "ott.configuration.alwaysRaining": "Always raining",
   "ott.configuration.yLevelWindAdjustment": "Adjust wind by Y level",
-  "ott.configuration.syncRegistry": "Sync registry with server"
+  "ott.configuration.syncRegistry": "Sync registry with server",
+
+  "message.ott.lava_warning.feet.1": "§cYour feet are burning up!§r",
+  "message.ott.lava_warning.feet.2": "§6Your feet are getting hot!§r",
+  "message.ott.lava_warning.feet.3": "§eYour feet are feeling warm.§r",
+
+  "message.ott.lava_warning.head.1": "§cYour head is burning up!§r",
+  "message.ott.lava_warning.head.2": "§6Your head is getting hot!§r",
+  "message.ott.lava_warning.head.3": "§eYour head is feeling warm.§r",
+
+  "message.ott.lava_warning.face.1": "§cYour face is burning up!§r",
+  "message.ott.lava_warning.face.2": "§6Your face is getting hot!§r",
+  "message.ott.lava_warning.face.3": "§eYour face is feeling warm.§r"
 }

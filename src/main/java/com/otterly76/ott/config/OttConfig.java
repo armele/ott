@@ -8,6 +8,7 @@ public class OttConfig {
     public static final ModConfigSpec SPEC;
 
     // --- Sections ---
+    public static final General GENERAL;
     public static final Creaking CREAKING;
     public static final WorldGen WORLDGEN;
     public static final Snow SNOW;
@@ -19,6 +20,7 @@ public class OttConfig {
 
         builder.comment("General Settings for New Otterhome").push("general");
 
+        GENERAL = new General(builder);
         CREAKING = new Creaking(builder);
         WORLDGEN = new WorldGen(builder);
         SNOW = new Snow(builder);
@@ -27,6 +29,16 @@ public class OttConfig {
 
         builder.pop();
         SPEC = builder.build();
+    }
+
+    @SuppressWarnings("ClassCanBeRecord")
+    public static class General {
+        public final ModConfigSpec.BooleanValue ENABLE_LAVA_WARNINGS;
+
+        public General(ModConfigSpec.Builder builder) {
+            ENABLE_LAVA_WARNINGS = builder.comment("Should the player be warned when lava is nearby while mining?")
+                    .define("enableLavaWarnings", true);
+        }
     }
 
     public static class Time {
