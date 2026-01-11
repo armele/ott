@@ -58,6 +58,7 @@ Mods, Resourcepacks, and Datapacks You Will Not Need:
 - Fortune Works On Ancient Debris
 - Lava Alert
   - Configuration Available
+- Pretty Beaches
 
 Features
 =======
