@@ -59,6 +59,7 @@ Mods, Resourcepacks, and Datapacks You Will Not Need:
 - Lava Alert
   - Configuration Available
 - Pretty Beaches 🏖️
+- Tiny Coal, Tiny Charcoal, ect
 
 Features
 =======
