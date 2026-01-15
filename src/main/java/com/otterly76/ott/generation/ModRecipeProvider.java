@@ -169,6 +169,33 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
                 .save(noAdv, getRecipePath("minecraft", "chiseled_resin_bricks_from_stonecutting"));
 
         ModBlocks.ALL_GRADIENT_BLOCKS.forEach(deferredBlock -> createGradientRecipe(noAdv, deferredBlock.get()));
+
+        // Tiny Coal and Charcoal
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, ModItems.TINY_COAL.get(), 9)
+                .requires(Items.COAL)
+                .unlockedBy("has_coal", has(Items.COAL))
+                .save(noAdv);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, Items.COAL)
+                .define('#', ModItems.TINY_COAL.get())
+                .pattern("###")
+                .pattern("# #")
+                .pattern("###")
+                .unlockedBy("has_tiny_coal", has(ModItems.TINY_COAL.get()))
+                .save(noAdv, getRecipePath("ott", "coal_from_tiny_coal"));
+
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, ModItems.TINY_CHARCOAL.get(), 9)
+                .requires(Items.CHARCOAL)
+                .unlockedBy("has_charcoal", has(Items.CHARCOAL))
+                .save(noAdv);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, Items.CHARCOAL)
+                .define('#', ModItems.TINY_CHARCOAL.get())
+                .pattern("###")
+                .pattern("# #")
+                .pattern("###")
+                .unlockedBy("has_tiny_charcoal", has(ModItems.TINY_CHARCOAL.get()))
+                .save(noAdv, getRecipePath("ott", "charcoal_from_tiny_charcoal"));
     }
 
     private void woodRecipes(RecipeOutput noAdv) {

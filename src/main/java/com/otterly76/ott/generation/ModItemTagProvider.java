@@ -137,5 +137,7 @@ public class ModItemTagProvider extends ItemTagsProvider {
         this.tag(ItemTags.HANGING_SIGNS).add(ModItems.PALE_OAK_HANGING_SIGN.get());
         this.tag(ItemTags.BOATS).add(ModItems.PALE_OAK_BOAT.get());
         this.tag(ItemTags.CHEST_BOATS).add(ModItems.PALE_OAK_CHEST_BOAT.get());
+
+        this.tag(ItemTags.COALS).add(ModItems.TINY_COAL.get(), ModItems.TINY_CHARCOAL.get());
     }
 }

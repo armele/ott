@@ -36,6 +36,9 @@
   "item.ott.otter": "Otter",
   "item.ott.hedge_sprouts": "Hedge Sprouts",
 
+  "item.ott.tiny_coal": "Coal Chunk",
+  "item.ott.tiny_charcoal": "Charcoal Chunk",
+
   "com.otterly76.ott.block.gradient.name": "%s and %s Gradient Block",
 
   "block.ott.testblock_00": "TestBlock 00",

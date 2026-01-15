@@ -58,28 +58,40 @@ public abstract class SpriteLoaderMixin {
             try {
                 rainImage = ClientModEvents.loadTexture(ResourceLocation.withDefaultNamespace("textures/environment/rain.png"));
                 snowImage = ClientModEvents.loadTexture(ResourceLocation.withDefaultNamespace("textures/environment/snow.png"));
-                if (OttConfig.WEATHER.BIOME_TINT.get()) {
+
+                boolean shouldTint = false;
+                try {
+                    shouldTint = OttConfig.WEATHER.BIOME_TINT.get();
+                } catch (IllegalStateException ignored) {}
+
+                if (shouldTint) {
                     rainImage.applyToAllPixels(ClientModEvents.desaturateOperation);
                 }
             } catch (IOException e) {
                 throw new RuntimeException("Failed to load OTT environment textures", e);
             }
 
-            for(int j = 0; j < 4; ++j) {
+            for (int j = 0; j < 4; ++j) {
                 newList.add(ClientModEvents.splitImage(rainImage, j, "rain"));
             }
 
-            for(int j = 0; j < 4; ++j) {
+            for (int j = 0; j < 4; ++j) {
                 newList.add(ClientModEvents.splitImage(snowImage, j, "snow"));
             }
 
             int rippleResolution = ClientModEvents.getRippleResolution(newList);
-
             for(int j = 0; j < 8; ++j) {
                 newList.add(ClientModEvents.generateRipple(j, rippleResolution));
             }
 
-            if (OttConfig.WEATHER.BIOME_TINT.get()) {
+            boolean shouldTint = false;
+            try {
+                shouldTint = OttConfig.WEATHER.BIOME_TINT.get();
+            } catch (IllegalStateException e) {
+                // Config not loaded yet, default to false
+            }
+
+            if (shouldTint) {
                 for(int j = 0; j < 4; ++j) {
                     NativeImage splashImage;
 

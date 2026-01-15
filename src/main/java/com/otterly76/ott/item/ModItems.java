@@ -37,6 +37,9 @@ public class ModItems {
     public static final DeferredHolder<Item, BlockItem> PROTECTIVE_LANTERN = registerBlockItem("protective_lantern", ModBlocks.PROTECTIVE_LANTERN);
     public static final DeferredHolder<Item, BlockItem> STURDY_PROTECTIVE_LANTERN = registerBlockItem("sturdy_protective_lantern", ModBlocks.STURDY_PROTECTIVE_LANTERN);
 
+    public static final DeferredItem<Item> TINY_COAL = ITEMS.register("tiny_coal", () -> new Item(new Item.Properties()));
+    public static final DeferredItem<Item> TINY_CHARCOAL = ITEMS.register("tiny_charcoal", () -> new Item(new Item.Properties()));
+
     public static DeferredItem<Item> PALE_OAK_SAPLING;
 
     // Backport / Minecraft Namespace Items

@@ -63,6 +63,9 @@ public class ModItemModelProvider extends ItemModelProvider {
             withExistingParent(setName + "_chest_boat", mcLoc("item/oak_chest_boat"))
                     .texture("texture", modLoc("item/entity/chest_boat/" + setName));
         });
+
+        generatedItemFromTexture(ModItems.TINY_COAL.getId().getPath(), modLoc("item/tiny_coal"));
+        generatedItemFromTexture(ModItems.TINY_CHARCOAL.getId().getPath(), modLoc("item/tiny_charcoal"));
     }
 
     private void generatedItemFromTexture(String itemName, ResourceLocation texture) {

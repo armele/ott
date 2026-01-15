@@ -143,6 +143,7 @@ public class Ott {
         ModPlacedFeatures.PLACEMENT_MODIFIERS.register(modEventBus);
         ModMenuTypes.register(modEventBus);
         NeoForge.EVENT_BUS.register(this);
+        NeoForge.EVENT_BUS.register(ModEventBusEvents.class);
         modEventBus.addListener(this::addCreative);
         com.otterly76.ott.ClientModEvents.register(modEventBus);
         modEventBus.addListener(ModEventBusEvents::registerLayers);
@@ -499,6 +500,11 @@ public class Ott {
                     new net.minecraft.world.item.ItemStack((ItemLike) ModItems.RESIN_BRICK),
                     CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS
             );
+        }
+
+        if (event.getTabKey() == CreativeModeTabs.INGREDIENTS) {
+            event.accept(ModItems.TINY_COAL);
+            event.accept(ModItems.TINY_CHARCOAL);
         }
     }
 

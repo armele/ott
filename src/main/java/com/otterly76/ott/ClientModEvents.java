@@ -126,16 +126,26 @@ public class ClientModEvents {
     }
 
     public static int getRippleResolution(List<SpriteContents> contents) {
-        if (OttConfig.WEATHER.USE_RESOURCEPACK_RESOLUTION.get()) {
-            ResourceLocation resourceLocation = ResourceLocation.withDefaultNamespace("big_smoke_0");
-            for(SpriteContents spriteContents : contents) {
-                if (spriteContents.name().equals(resourceLocation) && spriteContents.width() < 256) {
-                    return spriteContents.width();
+        try {
+            if (OttConfig.WEATHER.USE_RESOURCEPACK_RESOLUTION.get()) {
+                ResourceLocation resourceLocation = ResourceLocation.withDefaultNamespace("big_smoke_0");
+                for (SpriteContents spriteContents : contents) {
+                    if (spriteContents.name().equals(resourceLocation) && spriteContents.width() < 256) {
+                        return spriteContents.width();
+                    }
                 }
             }
+        } catch (IllegalStateException ignored) {
+            // Config not loaded, proceed to default resolution check
         }
 
-        int resolution = OttConfig.WEATHER.RIPPLE_RESOLUTION.get();
+        int resolution = 16; // Default fallback
+        try {
+            resolution = OttConfig.WEATHER.RIPPLE_RESOLUTION.get();
+        } catch (IllegalStateException ignored) {
+            // Config not loaded, use hardcoded default
+        }
+
         return Math.clamp(resolution, 4, 256);
     }
 

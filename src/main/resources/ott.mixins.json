@@ -76,6 +76,7 @@
     "client.LevelRendererMixin",
     "client.MinecraftSkipExperimentalWarningMixin",
     "client.NarratorToastMixin",
+    "client.SoundEngineMixin",
     "client.SpriteLoaderMixin",
     "client.TextureSheetParticleMixin",
     "client.WaterDropParticleMixin"
