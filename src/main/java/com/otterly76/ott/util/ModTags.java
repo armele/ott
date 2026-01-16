@@ -31,4 +31,3 @@ public class ModTags {
         }
     }
 }
-// TODO go through and replace all instances of ott with MOD_ID

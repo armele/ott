@@ -137,4 +137,3 @@ public class NutritionHudOverlay implements LayeredDraw.Layer {
         }
     }
 }
-// TODO Add food value information to tooltips, visualization of potential health restored while holding food, hunger/saturation/exhaustion info to the debug overlay (F3)

@@ -45,10 +45,10 @@ public class ModParticle {
         SOUND_EVENTS.register(eventBus);
     }
 
-    public static final DeferredHolder<SoundEvent, SoundEvent> WEATHER_SNOW = SOUND_EVENTS.register("weather.snow", () -> SoundEvent.createVariableRangeEvent(ResourceLocation.fromNamespaceAndPath("ott", "weather.snow")));
-    public static final DeferredHolder<SoundEvent, SoundEvent> WEATHER_SNOW_ABOVE = SOUND_EVENTS.register("weather.snow.above", () -> SoundEvent.createVariableRangeEvent(ResourceLocation.fromNamespaceAndPath("ott", "weather.snow.above")));
-    public static final DeferredHolder<SoundEvent, SoundEvent> WEATHER_SANDSTORM = SOUND_EVENTS.register("weather.sandstorm", () -> SoundEvent.createVariableRangeEvent(ResourceLocation.fromNamespaceAndPath("ott", "weather.sandstorm")));
-    public static final DeferredHolder<SoundEvent, SoundEvent> WEATHER_SANDSTORM_ABOVE = SOUND_EVENTS.register("weather.sandstorm.above", () -> SoundEvent.createVariableRangeEvent(ResourceLocation.fromNamespaceAndPath("ott", "weather.sandstorm.above")));
+    public static final DeferredHolder<SoundEvent, SoundEvent> WEATHER_SNOW = SOUND_EVENTS.register("weather.snow", () -> SoundEvent.createVariableRangeEvent(ResourceLocation.fromNamespaceAndPath("MOD_ID", "weather.snow")));
+    public static final DeferredHolder<SoundEvent, SoundEvent> WEATHER_SNOW_ABOVE = SOUND_EVENTS.register("weather.snow.above", () -> SoundEvent.createVariableRangeEvent(ResourceLocation.fromNamespaceAndPath("MOD_ID", "weather.snow.above")));
+    public static final DeferredHolder<SoundEvent, SoundEvent> WEATHER_SANDSTORM = SOUND_EVENTS.register("weather.sandstorm", () -> SoundEvent.createVariableRangeEvent(ResourceLocation.fromNamespaceAndPath("MOD_ID", "weather.sandstorm")));
+    public static final DeferredHolder<SoundEvent, SoundEvent> WEATHER_SANDSTORM_ABOVE = SOUND_EVENTS.register("weather.sandstorm.above", () -> SoundEvent.createVariableRangeEvent(ResourceLocation.fromNamespaceAndPath("MOD_ID", "weather.sandstorm.above")));
 
     public static final DeferredHolder<ParticleType<?>, SimpleParticleType> PALE_OAK_LEAVES = MINECRAFT_PARTICLE_TYPES.register("pale_oak_leaves", () -> new SimpleParticleType(true));
 

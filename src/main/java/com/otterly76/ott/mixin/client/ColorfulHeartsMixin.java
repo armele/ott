@@ -40,13 +40,12 @@ public abstract class ColorfulHeartsMixin {
             0xff60e5, // Deck 19: mid-Magenta-Pink 201-210
             0xffc0cb, // Deck 20: Pink 211-220
             0xff6066 // Deck 21: mid-Pink-Red 221-230
-            // TODO might need more, will check
     };
 
     @Unique
-    private static final ResourceLocation WHITE_HEART_FULL = ResourceLocation.fromNamespaceAndPath("ott", "hud/heart/white_full");
+    private static final ResourceLocation WHITE_HEART_FULL = ResourceLocation.fromNamespaceAndPath("MOD_ID", "hud/heart/white_full");
     @Unique
-    private static final ResourceLocation WHITE_HEART_HALF = ResourceLocation.fromNamespaceAndPath("ott", "hud/heart/white_half");
+    private static final ResourceLocation WHITE_HEART_HALF = ResourceLocation.fromNamespaceAndPath("MOD_ID", "hud/heart/white_half");
 
     @SuppressWarnings("resource")
     @Inject(method = "renderHearts", at = @At("HEAD"), cancellable = true)

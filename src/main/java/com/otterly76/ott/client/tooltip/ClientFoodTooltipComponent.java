@@ -11,20 +11,20 @@ import net.minecraft.world.entity.player.Player;
 import org.jetbrains.annotations.NotNull;
 
 public class ClientFoodTooltipComponent implements ClientTooltipComponent {
-    private static final ResourceLocation FOOD_FULL = ResourceLocation.fromNamespaceAndPath("ott", "hud/food_full");
-    private static final ResourceLocation FOOD_HALF = ResourceLocation.fromNamespaceAndPath("ott", "hud/food_half");
-    private static final ResourceLocation SATURATION = ResourceLocation.fromNamespaceAndPath("ott", "hud/saturation_overlay");
-    private static final ResourceLocation SATURATION_HALF = ResourceLocation.fromNamespaceAndPath("ott", "hud/saturation_overlay_half");
+    private static final ResourceLocation FOOD_FULL = ResourceLocation.fromNamespaceAndPath("MOD_ID", "hud/food_full");
+    private static final ResourceLocation FOOD_HALF = ResourceLocation.fromNamespaceAndPath("MOD_ID", "hud/food_half");
+    private static final ResourceLocation SATURATION = ResourceLocation.fromNamespaceAndPath("MOD_ID", "hud/saturation_overlay");
+    private static final ResourceLocation SATURATION_HALF = ResourceLocation.fromNamespaceAndPath("MOD_ID", "hud/saturation_overlay_half");
 
     // Status Heart Sprites
-    private static final ResourceLocation WHITE_FULL = ResourceLocation.fromNamespaceAndPath("ott", "hud/heart/white_full");
-    private static final ResourceLocation WHITE_HALF = ResourceLocation.fromNamespaceAndPath("ott", "hud/heart/white_half");
-    private static final ResourceLocation FROZEN_FULL = ResourceLocation.fromNamespaceAndPath("ott", "hud/heart/frozen_full");
-    private static final ResourceLocation FROZEN_HALF = ResourceLocation.fromNamespaceAndPath("ott", "hud/heart/frozen_half");
-    private static final ResourceLocation POISONED_FULL = ResourceLocation.fromNamespaceAndPath("ott", "hud/heart/poisoned_full");
-    private static final ResourceLocation POISONED_HALF = ResourceLocation.fromNamespaceAndPath("ott", "hud/heart/poisoned_half");
-    private static final ResourceLocation WITHERED_FULL = ResourceLocation.fromNamespaceAndPath("ott", "hud/heart/withered_full");
-    private static final ResourceLocation WITHERED_HALF = ResourceLocation.fromNamespaceAndPath("ott", "hud/heart/withered_half");
+    private static final ResourceLocation WHITE_FULL = ResourceLocation.fromNamespaceAndPath("MOD_ID", "hud/heart/white_full");
+    private static final ResourceLocation WHITE_HALF = ResourceLocation.fromNamespaceAndPath("MOD_ID", "hud/heart/white_half");
+    private static final ResourceLocation FROZEN_FULL = ResourceLocation.fromNamespaceAndPath("MOD_ID", "hud/heart/frozen_full");
+    private static final ResourceLocation FROZEN_HALF = ResourceLocation.fromNamespaceAndPath("MOD_ID", "hud/heart/frozen_half");
+    private static final ResourceLocation POISONED_FULL = ResourceLocation.fromNamespaceAndPath("MOD_ID", "hud/heart/poisoned_full");
+    private static final ResourceLocation POISONED_HALF = ResourceLocation.fromNamespaceAndPath("MOD_ID", "hud/heart/poisoned_half");
+    private static final ResourceLocation WITHERED_FULL = ResourceLocation.fromNamespaceAndPath("MOD_ID", "hud/heart/withered_full");
+    private static final ResourceLocation WITHERED_HALF = ResourceLocation.fromNamespaceAndPath("MOD_ID", "hud/heart/withered_half");
 
     private final FoodTooltipComponent data;
 

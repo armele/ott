@@ -16,6 +16,6 @@ public class ModModelLayers {
     }
 
     private static ModelLayerLocation registerOttLayer(String name) {
-        return new ModelLayerLocation(ResourceLocation.fromNamespaceAndPath("ott", name), "main");
+        return new ModelLayerLocation(ResourceLocation.fromNamespaceAndPath("MOD_ID", name), "main");
     }
 }

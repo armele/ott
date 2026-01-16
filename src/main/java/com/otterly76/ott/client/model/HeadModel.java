@@ -14,7 +14,7 @@ public class HeadModel extends GeoModel<HeadAnimatable> {
             case ZOMBIE -> "zombie/head_zombie";
             default -> "dragon/head_dragon";
         };
-        return ResourceLocation.fromNamespaceAndPath("ott", "geo/entity/" + path + ".geo.json");
+        return ResourceLocation.fromNamespaceAndPath("MOD_ID", "geo/entity/" + path + ".geo.json");
     }
 
     @Override
@@ -25,7 +25,7 @@ public class HeadModel extends GeoModel<HeadAnimatable> {
             case ZOMBIE -> "zombie/zombie_head";
             default -> "dragon/dragon_head";
         };
-        return ResourceLocation.fromNamespaceAndPath("ott", "textures/entity/" + path + ".png");
+        return ResourceLocation.fromNamespaceAndPath("MOD_ID", "textures/entity/" + path + ".png");
     }
 
     @Override
