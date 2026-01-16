@@ -13,6 +13,8 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
+import static com.otterly76.ott.Constants.MOD_ID;
+
 @Mixin(Gui.class)
 public abstract class ColorfulHeartsMixin {
 
@@ -43,9 +45,9 @@ public abstract class ColorfulHeartsMixin {
     };
 
     @Unique
-    private static final ResourceLocation WHITE_HEART_FULL = ResourceLocation.fromNamespaceAndPath("MOD_ID", "hud/heart/white_full");
+    private static final ResourceLocation WHITE_HEART_FULL = ResourceLocation.fromNamespaceAndPath(MOD_ID, "hud/heart/white_full");
     @Unique
-    private static final ResourceLocation WHITE_HEART_HALF = ResourceLocation.fromNamespaceAndPath("MOD_ID", "hud/heart/white_half");
+    private static final ResourceLocation WHITE_HEART_HALF = ResourceLocation.fromNamespaceAndPath(MOD_ID, "hud/heart/white_half");
 
     @SuppressWarnings("resource")
     @Inject(method = "renderHearts", at = @At("HEAD"), cancellable = true)

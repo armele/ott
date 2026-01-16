@@ -5,6 +5,8 @@ import org.jetbrains.annotations.Nullable;
 import software.bernie.geckolib.model.GeoModel;
 import net.minecraft.world.level.block.SkullBlock;
 
+import static com.otterly76.ott.Constants.MOD_ID;
+
 public class HeadModel extends GeoModel<HeadAnimatable> {
     @Override
     public ResourceLocation getModelResource(HeadAnimatable animatable) {
@@ -14,7 +16,7 @@ public class HeadModel extends GeoModel<HeadAnimatable> {
             case ZOMBIE -> "zombie/head_zombie";
             default -> "dragon/head_dragon";
         };
-        return ResourceLocation.fromNamespaceAndPath("MOD_ID", "geo/entity/" + path + ".geo.json");
+        return ResourceLocation.fromNamespaceAndPath(MOD_ID, "geo/entity/" + path + ".geo.json");
     }
 
     @Override
@@ -25,7 +27,7 @@ public class HeadModel extends GeoModel<HeadAnimatable> {
             case ZOMBIE -> "zombie/zombie_head";
             default -> "dragon/dragon_head";
         };
-        return ResourceLocation.fromNamespaceAndPath("MOD_ID", "textures/entity/" + path + ".png");
+        return ResourceLocation.fromNamespaceAndPath(MOD_ID, "textures/entity/" + path + ".png");
     }
 
     @Override
