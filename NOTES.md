@@ -50,12 +50,15 @@ Mod Cherry Picking:
 =====
 Utilitarian
 - Restraining Order
-- Merchant Sign
-- No Soliciting Sign
+- Merchant Banner, Carpet
+- No Soliciting Banner, Carpet
 - Sound Muffler (config distance)
-- Raider Outpost Claim Sign
+- Raider Outpost Claim Banner
   - make it look like a little crown
   - maybe a crown on top of a banner post and a small dyable banner on the front?
+
+GAG
+- No Soliciting Sign
 
 Add To Datagen:
 =====
