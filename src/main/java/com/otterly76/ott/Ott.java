@@ -139,6 +139,7 @@ public class Ott {
         ModParticle.register(modEventBus);
         ModEntities.register(modEventBus);
         ModTreeDecoratorTypes.register(modEventBus);
+        ModWorldGenModifiers.register(modEventBus);
         ModFeatures.register(modEventBus);
         ModPlacedFeatures.PLACEMENT_MODIFIERS.register(modEventBus);
         ModMenuTypes.register(modEventBus);
@@ -149,6 +150,7 @@ public class Ott {
         modEventBus.addListener(ModEventBusEvents::registerLayers);
         modEventBus.addListener(ModEventBusEvents::registerLayers);
         modEventBus.addListener(ModEventBusEvents::registerAttributes);
+        modEventBus.addListener(ModEventBusEvents::registerSpawnPlacements);
         modEventBus.addListener(ModBlockEntities::registerTileExtensions);
     }
 

@@ -4,9 +4,14 @@ import com.otterly76.ott.entity.Creaking;
 import com.otterly76.ott.entity.ModEntities;
 import com.otterly76.ott.entity.client.CreakingModel;
 import com.otterly76.ott.item.ModItems;
+import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.Mob;
+import net.minecraft.world.entity.SpawnPlacementTypes;
+import net.minecraft.world.level.levelgen.Heightmap;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.neoforge.client.event.EntityRenderersEvent;
 import net.neoforged.neoforge.event.entity.EntityAttributeCreationEvent;
+import net.neoforged.neoforge.event.entity.RegisterSpawnPlacementsEvent;
 import net.neoforged.neoforge.event.furnace.FurnaceFuelBurnTimeEvent;
 
 public class ModEventBusEvents {
@@ -24,5 +29,16 @@ public class ModEventBusEvents {
         if (event.getItemStack().is(ModItems.TINY_COAL.get()) || event.getItemStack().is(ModItems.TINY_CHARCOAL.get())) {
             event.setBurnTime(200);
         }
+    }
+
+    public static void registerSpawnPlacements(RegisterSpawnPlacementsEvent event) {
+        // Tell the game that Allays are allowed to spawn on the ground in our biome
+        event.register(
+                EntityType.ALLAY,
+                SpawnPlacementTypes.ON_GROUND,
+                Heightmap.Types.MOTION_BLOCKING_NO_LEAVES,
+                Mob::checkMobSpawnRules,
+                RegisterSpawnPlacementsEvent.Operation.OR
+        );
     }
 }

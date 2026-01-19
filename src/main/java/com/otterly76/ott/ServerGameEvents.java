@@ -3,6 +3,7 @@ package com.otterly76.ott;
 import com.otterly76.ott.mixin.common.ItemInvoker;
 import com.otterly76.ott.network.ClientboundSyncNutritionPacket;
 import com.otterly76.ott.util.FloodingManager;
+import com.otterly76.ott.worldgen.surface.SurfaceRuleManager;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerLevel;
@@ -20,12 +21,18 @@ import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.event.entity.player.PlayerInteractEvent;
 import net.neoforged.neoforge.event.level.BlockEvent;
+import net.neoforged.neoforge.event.server.ServerAboutToStartEvent;
 import net.neoforged.neoforge.event.tick.LevelTickEvent;
 import net.neoforged.neoforge.event.tick.PlayerTickEvent;
 import net.neoforged.neoforge.network.PacketDistributor;
 
 @EventBusSubscriber(modid = Constants.MOD_ID)
 public class ServerGameEvents {
+
+    @SubscribeEvent
+    public static void onServerAboutToStart(ServerAboutToStartEvent event) {
+        SurfaceRuleManager.applySurfaceRules(event.getServer());
+    }
 
     @SubscribeEvent
     public static void onWorldTick(LevelTickEvent.Post event) {

@@ -1,7 +1,9 @@
 package com.otterly76.ott.worldgen.biome;
 
 import com.mojang.datafixers.util.Pair;
+import com.otterly76.ott.Constants;
 import net.minecraft.core.Registry;
+import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.biome.Biome;
@@ -28,7 +30,12 @@ public class ModOverworldRegion extends Region {
                 .erosion(Erosion.EROSION_2, Erosion.EROSION_3)
                 .depth(Depth.SURFACE)
                 .weirdness(Weirdness.MID_SLICE_NORMAL_ASCENDING, Weirdness.MID_SLICE_NORMAL_DESCENDING)
-                .build().forEach((point) -> builder.add(point, ModBiomes.PALE_GARDEN));
+                .build().forEach((point) -> builder.add(point, VERDANT_FOREST));
         builder.build().forEach(mapper);
     }
+
+    public static final ResourceKey<Biome> VERDANT_FOREST = ResourceKey.create(
+            Registries.BIOME,
+            ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, "verdant_forest")
+    );
 }
