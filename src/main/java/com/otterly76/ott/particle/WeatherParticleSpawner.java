@@ -65,6 +65,9 @@ public final class WeatherParticleSpawner {
     }
 
     public static void update(ClientLevel level, Entity entity, float partialTicks) {
+        RandomSource rand = RandomSource.create();
+
+        // --- Precipitation Effects (Weather Dependent) ---
         if (level.isRaining() || OttConfig.WEATHER.ALWAYS_RAINING.get()) {
             int density;
             if (level.isThundering()) {
@@ -78,8 +81,6 @@ public final class WeatherParticleSpawner {
             } else {
                 density = (int) (OttConfig.WEATHER.PARTICLE_DENSITY.get() * level.getRainLevel(partialTicks));
             }
-
-            RandomSource rand = RandomSource.create();
 
             for (int pass = 0; pass < density; ++pass) {
                 float theta = (float) ((Math.PI * 2D) * (double) rand.nextFloat());

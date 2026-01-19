@@ -32,14 +32,12 @@ public class ModParticle {
     public static final DeferredHolder<ParticleType<?>, SimpleParticleType> RIPPLE = PARTICLE_TYPES.register("ripple", () -> new SimpleParticleType(true));
     public static final DeferredHolder<ParticleType<?>, SimpleParticleType> STREAK = PARTICLE_TYPES.register("streak", () -> new SimpleParticleType(true));
 
-    public static final DeferredHolder<ParticleType<?>, SimpleParticleType> STARLIGHT_LEAF =
-            PARTICLE_TYPES.register("starlight_leaf", () -> new SimpleParticleType(true));
-    public static final DeferredHolder<ParticleType<?>, SimpleParticleType> MIDNIGHT_LEAF =
-            PARTICLE_TYPES.register("midnight_leaf", () -> new SimpleParticleType(true));
-    public static final DeferredHolder<ParticleType<?>, SimpleParticleType> BLOOMING_STARLIGHT_LEAF =
-            PARTICLE_TYPES.register("blooming_starlight_leaf", () -> new SimpleParticleType(true));
-    public static final DeferredHolder<ParticleType<?>, SimpleParticleType> BLOOMING_MIDNIGHT_LEAF =
-            PARTICLE_TYPES.register("blooming_midnight_leaf", () -> new SimpleParticleType(true));
+    public static final DeferredHolder<ParticleType<?>, SimpleParticleType> WILL_O_WISP = PARTICLE_TYPES.register("will_o_wisp", () -> new SimpleParticleType(true));
+
+    public static final DeferredHolder<ParticleType<?>, SimpleParticleType> STARLIGHT_LEAF = PARTICLE_TYPES.register("starlight_leaf", () -> new SimpleParticleType(true));
+    public static final DeferredHolder<ParticleType<?>, SimpleParticleType> MIDNIGHT_LEAF = PARTICLE_TYPES.register("midnight_leaf", () -> new SimpleParticleType(true));
+    public static final DeferredHolder<ParticleType<?>, SimpleParticleType> BLOOMING_STARLIGHT_LEAF = PARTICLE_TYPES.register("blooming_starlight_leaf", () -> new SimpleParticleType(true));
+    public static final DeferredHolder<ParticleType<?>, SimpleParticleType> BLOOMING_MIDNIGHT_LEAF = PARTICLE_TYPES.register("blooming_midnight_leaf", () -> new SimpleParticleType(true));
 
     public static void register(IEventBus eventBus) {
         PARTICLE_TYPES.register(eventBus);

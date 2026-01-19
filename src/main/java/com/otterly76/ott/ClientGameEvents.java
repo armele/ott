@@ -3,6 +3,7 @@ package com.otterly76.ott;
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.otterly76.ott.config.OttConfig;
 import com.otterly76.ott.mixin.client.GuiAccessor;
+import com.otterly76.ott.particle.AmbientParticleSpawner;
 import com.otterly76.ott.particle.WeatherParticleSpawner;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiGraphics;
@@ -78,7 +79,9 @@ public class ClientGameEvents {
     @SubscribeEvent
     public static void onClientTick(ClientTickEvent.Post event) {
         Minecraft mc = Minecraft.getInstance();
-        if (!mc.isPaused() && mc.level != null && mc.cameraEntity != null) {
+        if (mc.level != null && mc.player != null && !mc.isPaused()) {
+            AmbientParticleSpawner.update(mc.level, mc.player);
+
             float partialTicks = mc.getTimer().getGameTimeDeltaPartialTick(true);
             WeatherParticleSpawner.update(mc.level, mc.cameraEntity, partialTicks);
         }

@@ -80,6 +80,7 @@ public class ClientModEvents {
 
     @SuppressWarnings("DuplicatedCode")
     public static void registerParticleFactories(RegisterParticleProvidersEvent event) {
+        event.registerSpriteSet(ModParticle.WILL_O_WISP.get(), WillOWispParticle.Provider::new);
         event.registerSpriteSet(ModParticle.PALE_OAK_LEAVES.get(), PaleOakParticle.Provider::new);
         event.registerSpriteSet(ModParticle.TRAIL.get(), TrailParticle.Provider::new);
         event.registerSpriteSet(ModParticle.GROUND_FOG.get(), GroundFogParticle.DefaultFactory::new);
