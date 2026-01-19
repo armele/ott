@@ -277,6 +277,8 @@ making 3D of every flower is going to be HELL
 - breaking grass/patches of flowers drops loot table of variety of plants found in said biome
 - instead of having to look for very specific and sometimes rare spawns of plants
 
+Add lush/underground jungle type cave biome and link to verdant forest
+
 Mobs Nonsense:
 =====
 a ghostlike entity that is textured as transparent distortion
