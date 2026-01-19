@@ -30,8 +30,9 @@
   "ott.tip.crafterbottles": "✦ Check In On Your Crafters And Pick Up Any Stray Bottles and Bowls ✦",
   "ott.tip.tieredarmor": "✦ Higher Level Guards Can Use Better Armor And Weapons ✦",
 
-  "ott.biome.name.flatness": "Schematic: Flatness",
-  "ott.biome.name.flatness_water": "Schematic: Flatness Water",
+  "biome.ott.flatness": "Schematic: Flatness",
+  "biome.ott.flatness_water": "Schematic: Flatness Water",
+  "biome.ott.verdant_forest": "Verdant Forest",
 
   "item.ott.otter": "Otter",
   "item.ott.hedge_sprouts": "Hedge Sprouts",

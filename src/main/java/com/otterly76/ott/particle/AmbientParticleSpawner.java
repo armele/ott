@@ -17,7 +17,7 @@ public final class AmbientParticleSpawner {
         float timeOfDay = level.getTimeOfDay(1.0F);
         if (timeOfDay < 0.22F || timeOfDay > 0.78F) return;
 
-        for (int pass = 0; pass < 6; ++pass) {
+        for (int pass = 0; pass < 16; ++pass) {
             double x = entity.getX() + (rand.nextDouble() - 0.5D) * 48.0D;
             double z = entity.getZ() + (rand.nextDouble() - 0.5D) * 48.0D;
 

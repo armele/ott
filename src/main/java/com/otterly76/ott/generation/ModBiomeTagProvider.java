@@ -1,5 +1,6 @@
 package com.otterly76.ott.generation;
 
+import com.otterly76.ott.worldgen.biome.ModBiomes;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.data.PackOutput;
@@ -34,5 +35,11 @@ public class ModBiomeTagProvider extends BiomeTagsProvider {
     protected void addVanillaTags() {
         this.tag(SPAWNS_WARM_VARIANT_FARM_ANIMALS).add(Biomes.DESERT, Biomes.WARM_OCEAN, Biomes.MANGROVE_SWAMP, Biomes.DEEP_LUKEWARM_OCEAN, Biomes.LUKEWARM_OCEAN).addTag(BiomeTags.IS_NETHER).addTag(BiomeTags.IS_SAVANNA).addTag(BiomeTags.IS_JUNGLE).addTag(BiomeTags.IS_BADLANDS);
         this.tag(SPAWNS_COLD_VARIANT_FARM_ANIMALS).add(Biomes.SNOWY_PLAINS, Biomes.ICE_SPIKES, Biomes.FROZEN_PEAKS, Biomes.JAGGED_PEAKS, Biomes.SNOWY_SLOPES, Biomes.FROZEN_OCEAN, Biomes.DEEP_FROZEN_OCEAN, Biomes.GROVE, Biomes.DEEP_DARK, Biomes.FROZEN_RIVER, Biomes.SNOWY_TAIGA, Biomes.SNOWY_BEACH, Biomes.COLD_OCEAN, Biomes.DEEP_COLD_OCEAN, Biomes.OLD_GROWTH_PINE_TAIGA, Biomes.OLD_GROWTH_SPRUCE_TAIGA, Biomes.TAIGA, Biomes.WINDSWEPT_FOREST, Biomes.WINDSWEPT_GRAVELLY_HILLS, Biomes.WINDSWEPT_GRAVELLY_HILLS, Biomes.STONY_PEAKS).addTag(BiomeTags.IS_END);
+        TagKey<Biome> isLushCaves = TagKey.create(Registries.BIOME, ResourceLocation.withDefaultNamespace("is_lush_caves"));
+        TagKey<Biome> spawnsNormalFrogs = TagKey.create(Registries.BIOME, ResourceLocation.withDefaultNamespace("spawns_white_variant_frogs"));
+        this.tag(isLushCaves).add(ModBiomes.VERDANT_FOREST);
+        this.tag(spawnsNormalFrogs).add(ModBiomes.VERDANT_FOREST);
+        this.tag(BiomeTags.IS_FOREST).add(ModBiomes.VERDANT_FOREST);
+        this.tag(BiomeTags.IS_OVERWORLD).add(ModBiomes.VERDANT_FOREST);
     }
 }

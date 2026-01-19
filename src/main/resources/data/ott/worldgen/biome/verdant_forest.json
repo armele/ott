@@ -21,35 +21,28 @@
     "water_fog_color": -13408513
   },
   "spawners": {
-    "monster": [
-      {
-        "type": "minecraft:enderman",
-        "weight": 2,
-        "minCount": 1,
-        "maxCount": 1
-      }
-    ],
+    "monster": [],
     "creature": [
       {
         "type": "minecraft:allay",
-        "weight": 8,
-        "minCount": 3,
-        "maxCount": 3
+        "weight": 10,
+        "minCount": 4,
+        "maxCount": 9
       },
       {
         "type": "minecraft:frog",
-        "weight": 10,
-        "minCount": 2,
-        "maxCount": 5
+        "weight": 20,
+        "minCount": 4,
+        "maxCount": 9
       }
     ],
     "ambient": [],
     "axolotls": [
       {
         "type": "minecraft:axolotl",
-        "weight": 25,
-        "minCount": 6,
-        "maxCount": 11
+        "weight": 30,
+        "minCount": 8,
+        "maxCount": 15
       }
     ],
     "underground_water_creature": [],
@@ -67,9 +60,7 @@
   },
   "features": [
     [],
-    [
-      "minecraft:lake_lava_underground"
-    ],
+    [],
     [
       "minecraft:amethyst_geode",
       "minecraft:large_dripstone"
@@ -81,25 +72,36 @@
     [],
     [],
     [
-      "minecraft:ore_coal_upper",
+      "minecraft:disk_clay",
+      "minecraft:disk_gravel",
+      "minecraft:disk_sand",
+      "minecraft:ore_andesite_lower",
+      "minecraft:ore_andesite_upper",
       "minecraft:ore_coal_lower",
-      "minecraft:ore_iron_upper",
+      "minecraft:ore_coal_upper",
+      "minecraft:ore_copper",
+      "minecraft:ore_diamond",
+      "minecraft:ore_diamond_buried",
+      "minecraft:ore_diamond_large",
+      "minecraft:ore_diamond_medium",
+      "minecraft:ore_diorite_lower",
+      "minecraft:ore_diorite_upper",
+      "minecraft:ore_dirt",
+      "minecraft:ore_emerald",
+      "minecraft:ore_gold",
+      "minecraft:ore_gold_extra",
+      "minecraft:ore_gold_lower",
+      "minecraft:ore_granite_lower",
+      "minecraft:ore_granite_upper",
+      "minecraft:ore_gravel",
       "minecraft:ore_iron_middle",
       "minecraft:ore_iron_small",
-      "minecraft:ore_gold",
-      "minecraft:ore_gold_lower",
-      "minecraft:ore_redstone",
-      "minecraft:ore_redstone_lower",
-      "minecraft:ore_diamond",
-      "minecraft:ore_diamond_medium",
-      "minecraft:ore_diamond_large",
-      "minecraft:ore_diamond_buried",
+      "minecraft:ore_iron_upper",
       "minecraft:ore_lapis",
       "minecraft:ore_lapis_buried",
-      "minecraft:ore_copper",
-      "minecraft:underwater_magma",
-      "minecraft:ore_gold_extra",
-      "minecraft:ore_emerald"
+      "minecraft:ore_redstone",
+      "minecraft:ore_redstone_lower",
+      "minecraft:ore_tuff"
     ],
     [],
     [],
@@ -112,8 +114,10 @@
       "minecraft:rooted_azalea_tree",
       "minecraft:spore_blossom",
       "minecraft:classic_vines_cave_feature",
-      "minecraft:patch_sugar_cane",
-      "minecraft:patch_pumpkin"
+      "minecraft:patch_grass_normal",
+      "minecraft:patch_sugar_cane_swamp",
+      "minecraft:patch_pumpkin",
+      "minecraft:seagrass_normal"
     ],
     []
   ]
