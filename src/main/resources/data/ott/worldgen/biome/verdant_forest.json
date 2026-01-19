@@ -25,13 +25,13 @@
     "creature": [
       {
         "type": "minecraft:allay",
-        "weight": 10,
+        "weight": 25,
         "minCount": 4,
         "maxCount": 9
       },
       {
         "type": "minecraft:frog",
-        "weight": 20,
+        "weight": 30,
         "minCount": 4,
         "maxCount": 9
       }
@@ -40,7 +40,7 @@
     "axolotls": [
       {
         "type": "minecraft:axolotl",
-        "weight": 30,
+        "weight": 35,
         "minCount": 8,
         "maxCount": 15
       }
