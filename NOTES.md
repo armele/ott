@@ -133,11 +133,6 @@ add additional crops, flowers
 
 check other chipped/chiseled items
 
-Figure out if the broken texture for bookshelf blocks in DO is fixable
-- 3D model breaks texture
-- is DO calling basic block parent?
-- is the 3D model altering the base MC texture?
-
 make eyebloom (closed, open) models
 - make potted models for both
 - remove from datagen

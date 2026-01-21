@@ -3,7 +3,7 @@
 	"parent": "minecraft:block/cube_column",
 	"textures": {
 		"2": "block/bookshelf_empty",
-		"end": "block/oak_planks",
+		"end": "minecraft:block/oak_planks",
 		"side": "block/bookshelf2",
 		"particle": "block/bookshelf_empty"
 	},

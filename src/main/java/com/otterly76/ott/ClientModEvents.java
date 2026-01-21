@@ -4,6 +4,7 @@ import com.mojang.blaze3d.platform.NativeImage;
 import com.otterly76.ott.block.ModBlocks;
 import com.otterly76.ott.client.NutritionHudOverlay;
 import com.otterly76.ott.client.gui.TrashScreen;
+import com.otterly76.ott.client.model.BookshelfModelProxy;
 import com.otterly76.ott.client.render.PrismaticColorHandler;
 import com.otterly76.ott.client.render.texture.FXAtlasSpriteSource;
 import com.otterly76.ott.client.tooltip.ClientFoodTooltipComponent;
@@ -28,6 +29,8 @@ import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.Sheets;
 import net.minecraft.client.renderer.texture.SpriteContents;
 import net.minecraft.client.resources.metadata.animation.FrameSize;
+import net.minecraft.client.resources.model.BakedModel;
+import net.minecraft.client.resources.model.ModelResourceLocation;
 import net.minecraft.core.BlockPos;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.packs.resources.Resource;
@@ -49,7 +52,7 @@ import java.util.function.IntUnaryOperator;
 
 import static com.otterly76.ott.Constants.MOD_ID;
 
-@SuppressWarnings("MethodRefCanBeReplacedWithLambda")
+@SuppressWarnings({"MethodRefCanBeReplacedWithLambda", "StringTemplateMigration"})
 @EventBusSubscriber(modid = Constants.MOD_ID, value = Dist.CLIENT)
 public class ClientModEvents {
     public static int particleCount;
@@ -70,6 +73,44 @@ public class ClientModEvents {
         modBus.addListener(ClientModEvents::registerMenuScreens);
         modBus.addListener(ClientModEvents::registerRenderers);
         modBus.addListener(ClientModEvents::registerLayerDefinitions);
+        modBus.addListener(ClientModEvents::onRegisterAdditional);
+        modBus.addListener(ClientModEvents::onModelBaking);
+    }
+
+    public static void onRegisterAdditional(ModelEvent.RegisterAdditional event) {
+        String[] suffixes = {"", "2", "3", "4", "5"};
+        for (String s : suffixes) {
+            // FIX: Side-loaded models MUST use the 'standalone' variant in 1.21.1
+            ResourceLocation loc = ResourceLocation.fromNamespaceAndPath(MOD_ID, "block/bookshelf" + s);
+            event.register(ModelResourceLocation.standalone(loc));
+        }
+    }
+
+    public static void onModelBaking(ModelEvent.ModifyBakingResult event) {
+        // 1. Fetch your baked fancy models using the 'standalone' variant
+        java.util.List<BakedModel> fancyModels = new java.util.ArrayList<>();
+        String[] suffixes = {"", "2", "3", "4", "5"};
+
+        for (String s : suffixes) {
+            ResourceLocation loc = ResourceLocation.fromNamespaceAndPath(MOD_ID, "block/bookshelf" + s);
+            BakedModel baked = event.getModels().get(ModelResourceLocation.standalone(loc));
+            if (baked != null) fancyModels.add(baked);
+        }
+
+        // 2. Wrap ALL vanilla bookshelf registry entries
+        for (ModelResourceLocation mrl : event.getModels().keySet()) {
+            ResourceLocation id = mrl.id();
+
+            // Catch both the block variants and the inventory item
+            if (id.getNamespace().equals("minecraft") && (id.getPath().equals("bookshelf") || id.getPath().equals("block/bookshelf"))) {
+                BakedModel bakedVanilla = event.getModels().get(mrl);
+
+                if (bakedVanilla != null && !fancyModels.isEmpty()) {
+                    // Inject our Proxy into the vanilla registry slots
+                    event.getModels().put(mrl, new BookshelfModelProxy(bakedVanilla, fancyModels));
+                }
+            }
+        }
     }
 
     public static void registerGuiLayers(RegisterGuiLayersEvent event) {
@@ -121,7 +162,7 @@ public class ClientModEvents {
         return new SpriteContents(ResourceLocation.fromNamespaceAndPath(MOD_ID, id + segment), new FrameSize(size, size), sprite, ResourceMetadata.EMPTY);
     }
 
-    public static float yLevelWindAdjustment(double y) {
+public static float yLevelWindAdjustment(double y) {
         float factor = (float) (y / 128.0);
         return Math.clamp(factor, 0.0F, 1.0F);
     }
@@ -155,6 +196,7 @@ public class ClientModEvents {
         NativeImage image = new NativeImage(size, size, true);
         int colorint = 0xFFFFFFFF;
         generateBresenhamCircle(image, size, (int)Math.clamp(radius, 1.0, (double)size / 2.0 - 1.0), colorint);
+        //noinspection StringTemplateMigration
         return new SpriteContents(ResourceLocation.fromNamespaceAndPath(MOD_ID, "ripple" + i), new FrameSize(size, size), image, ResourceMetadata.EMPTY);
     }
 
