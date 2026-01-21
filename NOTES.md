@@ -67,17 +67,20 @@ Add barrels, chests, trapped chests, ladders, bookshelves to wood set process
 Textures Nonsense:
 =====
 Do Aurora blocks the TF way
+
 diag gradients
+
 add wood to wood gradients
+
 marbles (black, white, pink, etc)
 
 add tint to other plants?
 - cattails
 - lily pads
 
-add yellow tulip?
+add tulips for each color
 
-ADD other weapon item textures
+add roses for each color
 
 ANIMATE Veins in geodes
 - select vein pattern (use warped)
@@ -98,6 +101,7 @@ sun-bleached clay
 - swipe chalk (paler)
 
 add Luminescent version of sea glass
+
 animate the ethereal sea glass
 
 sun-dried clay
@@ -106,20 +110,30 @@ sun-dried clay
 Models Nonsense:
 =====
 tree/plant/bush parts/shapes
+
 particles? bubbles etc
+
 lunar vine → Starlight Vine
+
 hyacinth lamp → Blossom Bulb
+
 teas & herbs
 - snatch mint model + textures
-color glow
+
+- color glow
 - check texture of wisp flower
+
 enderscape
 - vines with dif color variants
+
 mysterious seeds : all matching seed textures, no identifying text, each grows diff color glow plant
+
+ADD other weapon item models
 
 additional skins for chiseled bookshelf
 
 dandelion variant
+
 make rose bushes actual bushes
 
 music discs need 3D model
@@ -241,8 +255,6 @@ enhance mooshroom island
 Make REAL willow trees
 - look at Hexerai Willows & Willow vines
 
-vines that tangle/slow
-
 Lush Stacks but use wood, mangrove roots, vines, moss, etc
 - Ancient Roots
 
@@ -272,7 +284,7 @@ making 3D of every flower is going to be HELL
 - breaking grass/patches of flowers drops loot table of variety of plants found in said biome
 - instead of having to look for very specific and sometimes rare spawns of plants
 
-Add lush/underground jungle type cave biome and link to verdant forest
+Add lush/underground jungle type cave biome
 
 Mobs Nonsense:
 =====
