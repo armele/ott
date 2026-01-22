@@ -20,9 +20,10 @@ public class ModPlacedFeatures {
     public static final ResourceKey<PlacedFeature> PALE_OAK_CHECKED = registerKey("minecraft", "pale_oak_checked");
     public static final ResourceKey<PlacedFeature> PALE_OAK_CREAKING_CHECKED = registerKey("minecraft", "pale_oak_creaking_checked");
     public static final ResourceKey<PlacedFeature> VERDANT_FOREST_AZALEA = registerKey(Constants.MOD_ID, "verdant_forest_azalea");
+    public static final ResourceKey<PlacedFeature> GIANT_HOLLOW_ROOT_ARCH = registerKey(Constants.MOD_ID, "giant_hollow_root_arch");
+    public static final ResourceKey<PlacedFeature> GIANT_HOLLOW_ROOT_SPIKE = registerKey(Constants.MOD_ID, "giant_hollow_root_spike");
 
     public static void bootstrap(BootstrapContext<PlacedFeature> context) {
-        // Empty: Data is handled by manual JSON files in resources
     }
 
     private static ResourceKey<PlacedFeature> registerKey(String namespace, String name) {

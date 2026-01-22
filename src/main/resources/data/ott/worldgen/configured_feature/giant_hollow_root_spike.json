@@ -1,0 +1,30 @@
+{
+  "type": "ott:hollow_root",
+  "config": {
+    "radius": { "type": "minecraft:uniform", "min_inclusive": 5, "max_inclusive": 8 },
+    "height": { "type": "minecraft:uniform", "min_inclusive": 20, "max_inclusive": 45 },
+    "span": { "type": "minecraft:constant", "value": 0 },
+    "ground_depth": { "type": "minecraft:uniform", "min_inclusive": 10, "max_inclusive": 20 },
+    "thickness": { "type": "minecraft:constant", "value": 0.3 },
+    "noise_frequency": { "type": "minecraft:constant", "value": 0.05 },
+    "block_provider": {
+      "type": "minecraft:simple_state_provider",
+      "state": { "Name": "minecraft:oak_log", "Properties": { "axis": "y" } }
+    },
+    "decoration_provider": {
+      "type": "minecraft:weighted_state_provider",
+      "entries": [
+        { "weight": 2, "data": { "Name": "minecraft:moss_block" } },
+        { "weight": 1, "data": { "Name": "minecraft:clay" } }
+      ]
+    },
+    "hanging_provider": {
+      "type": "minecraft:weighted_state_provider",
+      "entries": [
+        { "weight": 5, "data": { "Name": "minecraft:cave_vines", "Properties": { "age": "10", "berries": "true" } } },
+        { "weight": 1, "data": { "Name": "minecraft:spore_blossom" } }
+      ]
+    },
+    "surface_feature": "ott:verdant_forest_azalea"
+  }
+}

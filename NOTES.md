@@ -255,9 +255,6 @@ enhance mooshroom island
 Make REAL willow trees
 - look at Hexerai Willows & Willow vines
 
-Lush Stacks but use wood, mangrove roots, vines, moss, etc
-- Ancient Roots
-
 Cave Biomes
 - look at:
   - cave biomes from Yung's
