@@ -193,6 +193,9 @@ Vines hang from slabs
 
 reuse TF firefly particles as motes
 
+implement FTB Ultramine functionality
+- needs to be able to be keymapped
+
 Biomes Nonsense:
 =====
 magic biomes
