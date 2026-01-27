@@ -2,9 +2,7 @@ Mods to Implement:
 =====
 Aquaculture2
 Autochef’s Delight
-Bad Wither No Cookie
 Better F3?
-Clumps
 Controlling
 Crafting Tweaks
 Easy Anvils

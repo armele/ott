@@ -62,6 +62,8 @@ Mods, Resourcepacks, and Datapacks You Will Not Need:
 - Tiny Coal, Tiny Charcoal, ect
 - Easy Homes, Simplest Homes, Home Wand, Set Home, etc
   - Configuration Available
+- Clumps 💎
+  - Configuration Available
 
 Features
 =======

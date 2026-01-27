@@ -6,6 +6,8 @@
   "refmap": "ott.refmap.json",
   "mixins": [
     "common.AccessorItem",
+    "common.ExperienceOrbAccessor",
+    "common.ExperienceOrbMixin",
     "common.BeardifierMixin",
     "common.BushBlockMixin",
     "common.ChunkGeneratorAccessor",

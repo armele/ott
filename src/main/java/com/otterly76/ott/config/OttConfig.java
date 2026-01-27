@@ -16,6 +16,7 @@ public class OttConfig {
     public static final Time TIME;
     public static final Homes HOMES;
     public static final Accessibility ACCESSIBILITY;
+    public static final Clumps CLUMPS;
 
     static {
         ModConfigSpec.Builder builder = new ModConfigSpec.Builder();
@@ -30,9 +31,24 @@ public class OttConfig {
         TIME = new Time(builder);
         HOMES = new Homes(builder);
         ACCESSIBILITY = new Accessibility(builder);
+        CLUMPS = new Clumps(builder);
 
         builder.pop();
         SPEC = builder.build();
+    }
+
+    public static class Clumps {
+        public final ModConfigSpec.BooleanValue ENABLED;
+        public final ModConfigSpec.DoubleValue RADIUS;
+
+        public Clumps(ModConfigSpec.Builder builder) {
+            builder.push("clumps");
+            ENABLED = builder.comment("Should experience orbs be clumped together to reduce lag?")
+                    .define("enabled", true);
+            RADIUS = builder.comment("The radius in which experience orbs will merge.")
+                    .defineInRange("radius", 2.0, 0.1, 10.0);
+            builder.pop();
+        }
     }
 
     public static class Accessibility {
