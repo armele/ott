@@ -1,6 +1,7 @@
 package com.otterly76.ott;
 
 import com.otterly76.ott.command.HomeCommand;
+import com.otterly76.ott.config.OttConfig;
 import com.otterly76.ott.mixin.common.ItemInvoker;
 import com.otterly76.ott.network.ClientboundSyncNutritionPacket;
 import com.otterly76.ott.util.FloodingManager;
@@ -9,11 +10,17 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.sounds.SoundEvents;
+import net.minecraft.sounds.SoundSource;
+import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.ClipContext;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.AnvilBlock;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.material.FluidState;
 import net.minecraft.world.level.material.Fluids;
 import net.minecraft.world.phys.BlockHitResult;
@@ -58,6 +65,39 @@ public class ServerGameEvents {
             if (level.getFluidState(pos.relative(direction)).is(Fluids.WATER)) {
                 FloodingManager.scheduleFlooding(level, pos, 0);
                 break;
+            }
+        }
+    }
+
+    @SubscribeEvent
+    public static void onAnvilRepair(PlayerInteractEvent.RightClickBlock event) {
+        if (!OttConfig.VISUALS.EASY_ANVILS.get()) return;
+
+        Level level = event.getLevel();
+        BlockPos pos = event.getPos();
+        BlockState state = level.getBlockState(pos);
+        ItemStack stack = event.getItemStack();
+        Player player = event.getEntity();
+
+        if (stack.is(Items.IRON_BLOCK)) {
+            BlockState newState = null;
+            if (state.is(Blocks.DAMAGED_ANVIL)) {
+                newState = Blocks.CHIPPED_ANVIL.defaultBlockState().setValue(AnvilBlock.FACING, state.getValue(AnvilBlock.FACING));
+            } else if (state.is(Blocks.CHIPPED_ANVIL)) {
+                newState = Blocks.ANVIL.defaultBlockState().setValue(AnvilBlock.FACING, state.getValue(AnvilBlock.FACING));
+            }
+
+            if (newState != null) {
+                event.setCancellationResult(InteractionResult.sidedSuccess(level.isClientSide));
+                event.setCanceled(true);
+
+                if (!level.isClientSide) {
+                    level.setBlockAndUpdate(pos, newState);
+                    if (!player.getAbilities().instabuild) {
+                        stack.shrink(1);
+                    }
+                    level.playSound(null, pos, SoundEvents.ANVIL_PLACE, SoundSource.BLOCKS, 1.0F, 1.0F);
+                }
             }
         }
     }

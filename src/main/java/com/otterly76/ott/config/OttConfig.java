@@ -17,6 +17,7 @@ public class OttConfig {
     public static final Homes HOMES;
     public static final Accessibility ACCESSIBILITY;
     public static final Clumps CLUMPS;
+    public static final Visuals VISUALS;
 
     static {
         ModConfigSpec.Builder builder = new ModConfigSpec.Builder();
@@ -32,9 +33,27 @@ public class OttConfig {
         HOMES = new Homes(builder);
         ACCESSIBILITY = new Accessibility(builder);
         CLUMPS = new Clumps(builder);
+        VISUALS = new Visuals(builder);
 
         builder.pop();
         SPEC = builder.build();
+    }
+
+    public static class Visuals {
+        public final ModConfigSpec.BooleanValue EASY_ANVILS;
+        public final ModConfigSpec.BooleanValue FREE_NAME_TAG_RENAMING;
+        public final ModConfigSpec.BooleanValue LOWER_ANVIL_COSTS;
+
+        public Visuals(ModConfigSpec.Builder builder) {
+            builder.push("visuals");
+            EASY_ANVILS = builder.comment("Enable Easy Anvils features (like repair with iron block)")
+                    .define("easyAnvils", true);
+            FREE_NAME_TAG_RENAMING = builder.comment("Should renaming name tags in an anvil be free?")
+                    .define("freeNameTagRenaming", true);
+            LOWER_ANVIL_COSTS = builder.comment("Should anvil costs be lowered and capped at 30?")
+                    .define("lowerAnvilCosts", true);
+            builder.pop();
+        }
     }
 
     public static class Clumps {
