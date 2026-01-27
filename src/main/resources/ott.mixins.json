@@ -61,6 +61,10 @@
     "common.template.mansion.floor.FirstFloorMixin",
     "common.template.mansion.floor.SecondFloorMixin",
     "common.template.mansion.floor.ThirdFloorMixin",
+    "visuals.AnvilBlockMixin",
+    "visuals.AnvilMenuMixin",
+    "visuals.CraftingMenuMixin",
+    "visuals.CraftingTableBlockMixin",
     "server.DedicatedServerMixin",
     "server.VaultBlockEntityMixin",
     "server.VaultServerDataAccessor"
@@ -69,6 +73,7 @@
     "client.ColorfulHeartsMixin",
     "client.ConnectScreenMixin",
     "client.DripParticleMixin",
+    "client.EditBoxMixin",
     "client.GuiAccessor",
     "client.HeadItemMixin",
     "client.HeadMixin",

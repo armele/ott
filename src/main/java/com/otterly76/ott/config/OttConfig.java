@@ -17,6 +17,7 @@ public class OttConfig {
     public static final Homes HOMES;
     public static final Accessibility ACCESSIBILITY;
     public static final Clumps CLUMPS;
+    public static final Visuals VISUALS;
 
     static {
         ModConfigSpec.Builder builder = new ModConfigSpec.Builder();
@@ -32,9 +33,33 @@ public class OttConfig {
         HOMES = new Homes(builder);
         ACCESSIBILITY = new Accessibility(builder);
         CLUMPS = new Clumps(builder);
+        VISUALS = new Visuals(builder);
 
         builder.pop();
         SPEC = builder.build();
+    }
+
+    public static class Visuals {
+        public final ModConfigSpec.BooleanValue EASY_ANVILS;
+        public final ModConfigSpec.BooleanValue VISUAL_WORKBENCH;
+        public final ModConfigSpec.BooleanValue LOWER_ANVIL_COSTS;
+        public final ModConfigSpec.BooleanValue FREE_NAME_TAG_RENAMING;
+        public final ModConfigSpec.BooleanValue NAME_TAG_DIRECT_RENAME;
+
+        public Visuals(ModConfigSpec.Builder builder) {
+            builder.push("visuals");
+            EASY_ANVILS = builder.comment("Should anvils show their items on top and keep them when closing the UI?")
+                    .define("easyAnvils", true);
+            VISUAL_WORKBENCH = builder.comment("Should crafting tables show their items on top and keep them when closing the UI?")
+                    .define("visualWorkbench", true);
+            LOWER_ANVIL_COSTS = builder.comment("Should anvil XP costs be significantly reduced for items that have been worked on multiple times?")
+                    .define("lowerAnvilCosts", true);
+            FREE_NAME_TAG_RENAMING = builder.comment("Should renaming Name Tags be free (no XP cost)?")
+                    .define("freeNameTagRenaming", true);
+            NAME_TAG_DIRECT_RENAME = builder.comment("Should shift+right-clicking in the air with a Name Tag open the renaming UI?")
+                    .define("nameTagDirectRename", true);
+            builder.pop();
+        }
     }
 
     public static class Clumps {

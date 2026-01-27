@@ -2,14 +2,18 @@ package com.otterly76.ott.client;
 
 import com.mojang.blaze3d.platform.InputConstants;
 import com.otterly76.ott.Constants;
+import com.otterly76.ott.network.ServerboundRenameNameTagPacket;
 import com.otterly76.ott.network.ServerboundSetHomePacket;
 import com.otterly76.ott.network.ServerboundTeleportHomePacket;
+import com.otterly76.ott.config.OttConfig;
 import net.minecraft.client.KeyMapping;
 import net.minecraft.client.Minecraft;
+import net.minecraft.world.item.Items;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.client.event.ClientTickEvent;
+import net.neoforged.neoforge.client.event.InputEvent;
 import net.neoforged.neoforge.client.event.RegisterKeyMappingsEvent;
 import net.neoforged.neoforge.network.PacketDistributor;
 import org.lwjgl.glfw.GLFW;
@@ -49,6 +53,20 @@ public class ClientKeyHandler {
 
         while (SET_HOME.consumeClick()) {
             PacketDistributor.sendToServer(new ServerboundSetHomePacket("home"));
+        }
+    }
+
+    @SubscribeEvent
+    public static void onMouseInput(InputEvent.InteractionKeyMappingTriggered event) {
+        if (event.isUseItem()) {
+            Minecraft mc = Minecraft.getInstance();
+            if (mc.player != null && mc.screen == null && mc.hitResult != null && mc.hitResult.getType() == net.minecraft.world.phys.HitResult.Type.MISS) {
+                if (OttConfig.VISUALS.NAME_TAG_DIRECT_RENAME.get() && mc.player.isShiftKeyDown() && mc.player.getMainHandItem().is(Items.NAME_TAG)) {
+                    PacketDistributor.sendToServer(new ServerboundRenameNameTagPacket());
+                    event.setCanceled(true);
+                    event.setSwingHand(true);
+                }
+            }
         }
     }
 }

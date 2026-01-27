@@ -2,10 +2,13 @@ package com.otterly76.ott;
 
 import com.mojang.blaze3d.platform.NativeImage;
 import com.otterly76.ott.block.ModBlocks;
+import com.otterly76.ott.block.entity.ModBlockEntities;
 import com.otterly76.ott.client.NutritionHudOverlay;
 import com.otterly76.ott.client.gui.TrashScreen;
 import com.otterly76.ott.client.model.BookshelfModelProxy;
 import com.otterly76.ott.client.render.PrismaticColorHandler;
+import com.otterly76.ott.client.render.block.VisualAnvilRenderer;
+import com.otterly76.ott.client.render.block.VisualCraftingRenderer;
 import com.otterly76.ott.client.render.texture.FXAtlasSpriteSource;
 import com.otterly76.ott.client.tooltip.ClientFoodTooltipComponent;
 import com.otterly76.ott.client.tooltip.FoodTooltipComponent;
@@ -235,6 +238,9 @@ public static float yLevelWindAdjustment(double y) {
     }
 
     public static void registerRenderers(EntityRenderersEvent.RegisterRenderers event) {
+        event.registerBlockEntityRenderer(ModBlockEntities.VISUAL_CRAFTING_TABLE.get(), VisualCraftingRenderer::new);
+        event.registerBlockEntityRenderer(ModBlockEntities.VISUAL_ANVIL.get(), VisualAnvilRenderer::new);
+
         event.registerEntityRenderer(ModEntities.CREAKING.get(), CreakingRenderer::new);
         event.registerEntityRenderer(ModEntities.PALE_OAK_BOAT.get(), (context) -> new PaleOakBoatRenderer(context, false));
         event.registerEntityRenderer(ModEntities.PALE_OAK_CHEST_BOAT.get(), (context) -> new PaleOakBoatRenderer(context, true));
