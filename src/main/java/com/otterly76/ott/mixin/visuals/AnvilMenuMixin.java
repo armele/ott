@@ -4,14 +4,12 @@ import com.otterly76.ott.block.entity.VisualAnvilBlockEntity;
 import com.otterly76.ott.config.OttConfig;
 import net.minecraft.core.NonNullList;
 import net.minecraft.core.component.DataComponents;
-import net.minecraft.world.Container;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.ContainerLevelAccess;
 import net.minecraft.world.inventory.DataSlot;
 import net.minecraft.world.inventory.ItemCombinerMenu;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
-import org.jetbrains.annotations.NotNull;
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
@@ -69,7 +67,7 @@ public abstract class AnvilMenuMixin extends ItemCombinerMenu {
     }
 
     @Inject(method = "createResult", at = @At("TAIL"))
-    private void ott$capCost(CallbackInfo ci) {
+    private void ott$capCostAndSync(CallbackInfo ci) {
         if (OttConfig.VISUALS.LOWER_ANVIL_COSTS.get()) {
             if (this.cost.get() > 39) {
                 this.cost.set(39);
@@ -81,26 +79,8 @@ public abstract class AnvilMenuMixin extends ItemCombinerMenu {
                 this.cost.set(0);
             }
         }
-    }
 
-    @Inject(method = "<init>(ILnet/minecraft/world/entity/player/Inventory;Lnet/minecraft/world/inventory/ContainerLevelAccess;)V", at = @At("RETURN"))
-    private void ott$init(int containerId, net.minecraft.world.entity.player.Inventory inventory, ContainerLevelAccess access, CallbackInfo ci) {
-        if (OttConfig.VISUALS.EASY_ANVILS.get()) {
-            this.access.execute((level, pos) -> {
-                if (level.getBlockEntity(pos) instanceof VisualAnvilBlockEntity visualAnvil) {
-                    NonNullList<ItemStack> savedItems = visualAnvil.getItems();
-                    for (int i = 0; i < 2; i++) {
-                        this.inputSlots.setItem(i, savedItems.get(i).copy());
-                    }
-                }
-            });
-        }
-    }
-
-    @Override
-    public void slotsChanged(@NotNull Container container) {
-        super.slotsChanged(container);
-        if (OttConfig.VISUALS.EASY_ANVILS.get() && !player.level().isClientSide) {
+        if (OttConfig.VISUALS.EASY_ANVILS.get() && !this.player.level().isClientSide) {
             this.access.execute((level, pos) -> {
                 if (level.getBlockEntity(pos) instanceof VisualAnvilBlockEntity visualAnvil) {
                     NonNullList<ItemStack> savedItems = visualAnvil.getItems();
@@ -114,6 +94,20 @@ public abstract class AnvilMenuMixin extends ItemCombinerMenu {
                     }
                     if (changed) {
                         visualAnvil.setChanged();
+                    }
+                }
+            });
+        }
+    }
+
+    @Inject(method = "<init>(ILnet/minecraft/world/entity/player/Inventory;Lnet/minecraft/world/inventory/ContainerLevelAccess;)V", at = @At("RETURN"))
+    private void ott$init(int containerId, net.minecraft.world.entity.player.Inventory inventory, ContainerLevelAccess access, CallbackInfo ci) {
+        if (OttConfig.VISUALS.EASY_ANVILS.get()) {
+            this.access.execute((level, pos) -> {
+                if (level.getBlockEntity(pos) instanceof VisualAnvilBlockEntity visualAnvil) {
+                    NonNullList<ItemStack> savedItems = visualAnvil.getItems();
+                    for (int i = 0; i < 2; i++) {
+                        this.inputSlots.setItem(i, savedItems.get(i).copy());
                     }
                 }
             });

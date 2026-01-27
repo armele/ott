@@ -21,15 +21,13 @@ public abstract class ItemCombinerMenuMixin {
 
     @Inject(method = "removed", at = @At("HEAD"), cancellable = true)
     private void ott$onRemoved(Player player, CallbackInfo ci) {
-        if ((Object) this instanceof net.minecraft.world.inventory.AnvilMenu) {
-            if (OttConfig.VISUALS.EASY_ANVILS.get()) {
+        if ((Object) this instanceof net.minecraft.world.inventory.AnvilMenu anvilMenu) {
+            if (OttConfig.VISUALS.EASY_ANVILS.get() && !player.level().isClientSide) {
                 this.access.execute((level, pos) -> {
                     if (level.getBlockEntity(pos) instanceof VisualAnvilBlockEntity visualAnvil) {
                         NonNullList<ItemStack> savedItems = visualAnvil.getItems();
-                        // For AnvilMenu, input slots are 0 and 1.
-                        // We access them from the menu's slots directly.
-                        savedItems.set(0, ((net.minecraft.world.inventory.ItemCombinerMenu) (Object) this).getSlot(0).getItem().copy());
-                        savedItems.set(1, ((net.minecraft.world.inventory.ItemCombinerMenu) (Object) this).getSlot(1).getItem().copy());
+                        savedItems.set(0, anvilMenu.getSlot(0).getItem().copy());
+                        savedItems.set(1, anvilMenu.getSlot(1).getItem().copy());
                         visualAnvil.setChanged();
                     }
                 });

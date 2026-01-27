@@ -71,7 +71,14 @@ public abstract class AnvilBlockMixin extends Block implements EntityBlock {
                 return InteractionResult.sidedSuccess(level.isClientSide);
             }
         }
-        return super.useWithoutItem(state, level, pos, player, hitResult);
+
+        if (!level.isClientSide) {
+            var provider = state.getMenuProvider(level, pos);
+            if (provider != null) {
+                player.openMenu(provider);
+            }
+        }
+        return InteractionResult.sidedSuccess(level.isClientSide);
     }
 
     @Override
@@ -80,7 +87,14 @@ public abstract class AnvilBlockMixin extends Block implements EntityBlock {
             InteractionResult result = this.useWithoutItem(state, level, pos, player, hitResult);
             return ItemInteractionResult.sidedSuccess(level.isClientSide);
         }
-        return super.useItemOn(stack, state, level, pos, player, hand, hitResult);
+        
+        ItemInteractionResult vanillaResult = super.useItemOn(stack, state, level, pos, player, hand, hitResult);
+        if (vanillaResult.consumesAction()) {
+            return vanillaResult;
+        }
+
+        this.useWithoutItem(state, level, pos, player, hitResult);
+        return ItemInteractionResult.sidedSuccess(level.isClientSide);
     }
 
     @Override

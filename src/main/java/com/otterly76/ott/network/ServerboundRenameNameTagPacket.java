@@ -29,7 +29,11 @@ public record ServerboundRenameNameTagPacket() implements CustomPacketPayload {
             if (!stack.is(Items.NAME_TAG)) return;
 
             context.player().openMenu(new SimpleMenuProvider(
-                    (id, inv, p) -> new AnvilMenu(id, inv, ContainerLevelAccess.NULL),
+                    (id, inv, p) -> {
+                        AnvilMenu menu = new AnvilMenu(id, inv, ContainerLevelAccess.NULL);
+                        menu.getSlot(0).set(stack.copy());
+                        return menu;
+                    },
                     Component.translatable("container.repair")
             ));
         });

@@ -43,7 +43,7 @@ public abstract class CraftingMenuMixin extends AbstractContainerMenu {
 
     @Inject(method = "removed", at = @At("HEAD"), cancellable = true)
     private void ott$onRemoved(Player player, CallbackInfo ci) {
-        if (OttConfig.VISUALS.VISUAL_WORKBENCH.get()) {
+        if (OttConfig.VISUALS.VISUAL_WORKBENCH.get() && !player.level().isClientSide) {
             this.access.execute((level, pos) -> {
                 if (level.getBlockEntity(pos) instanceof VisualCraftingBlockEntity visualCrafting) {
                     NonNullList<ItemStack> savedItems = visualCrafting.getItems();
@@ -51,9 +51,9 @@ public abstract class CraftingMenuMixin extends AbstractContainerMenu {
                         savedItems.set(i, this.craftSlots.getItem(i).copy());
                     }
                     visualCrafting.setChanged();
-                    ci.cancel();
                 }
             });
+            ci.cancel();
         }
     }
 

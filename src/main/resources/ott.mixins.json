@@ -66,6 +66,7 @@
     "visuals.CraftingMenuMixin",
     "visuals.CraftingTableBlockMixin",
     "visuals.ItemCombinerMenuMixin",
+    "visuals.CraftingTableInteractionMixin",
     "server.DedicatedServerMixin",
     "server.VaultBlockEntityMixin",
     "server.VaultServerDataAccessor"
