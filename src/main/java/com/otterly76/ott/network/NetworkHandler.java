@@ -25,5 +25,17 @@ public class NetworkHandler {
                 net.minecraft.network.codec.StreamCodec.unit(new ServerboundConfirmTrashPacket()),
                 ServerboundConfirmTrashPacket::handle
         );
+
+        registrar.playToServer(
+                ServerboundTeleportHomePacket.TYPE,
+                ServerboundTeleportHomePacket.STREAM_CODEC,
+                ServerboundTeleportHomePacket::handle
+        );
+
+        registrar.playToServer(
+                ServerboundSetHomePacket.TYPE,
+                ServerboundSetHomePacket.STREAM_CODEC,
+                ServerboundSetHomePacket::handle
+        );
     }
 }

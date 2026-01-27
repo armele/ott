@@ -14,6 +14,7 @@ public class OttConfig {
     public static final Snow SNOW;
     public static final Weather WEATHER;
     public static final Time TIME;
+    public static final Homes HOMES;
 
     static {
         ModConfigSpec.Builder builder = new ModConfigSpec.Builder();
@@ -26,6 +27,7 @@ public class OttConfig {
         SNOW = new Snow(builder);
         WEATHER = new Weather(builder);
         TIME = new Time(builder);
+        HOMES = new Homes(builder);
 
         builder.pop();
         SPEC = builder.build();
@@ -38,6 +40,19 @@ public class OttConfig {
         public General(ModConfigSpec.Builder builder) {
             ENABLE_LAVA_WARNINGS = builder.comment("Should the player be warned when lava is nearby while mining?")
                     .define("enableLavaWarnings", true);
+        }
+    }
+
+    public static class Homes {
+        public final ModConfigSpec.BooleanValue ENABLED;
+        public final ModConfigSpec.IntValue MAX_HOMES;
+
+        public Homes(ModConfigSpec.Builder builder) {
+            builder.push("homes");
+            ENABLED = builder.comment("Should the home system be enabled?").define("enabled", true);
+            MAX_HOMES = builder.comment("Maximum number of homes a player can set. -1 for infinite.")
+                    .defineInRange("maxHomes", 10, -1, 1000);
+            builder.pop();
         }
     }
 

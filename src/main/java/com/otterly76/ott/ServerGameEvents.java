@@ -1,5 +1,6 @@
 package com.otterly76.ott;
 
+import com.otterly76.ott.command.HomeCommand;
 import com.otterly76.ott.mixin.common.ItemInvoker;
 import com.otterly76.ott.network.ClientboundSyncNutritionPacket;
 import com.otterly76.ott.util.FloodingManager;
@@ -19,6 +20,7 @@ import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.HitResult;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
+import net.neoforged.neoforge.event.RegisterCommandsEvent;
 import net.neoforged.neoforge.event.entity.player.PlayerInteractEvent;
 import net.neoforged.neoforge.event.level.BlockEvent;
 import net.neoforged.neoforge.event.server.ServerAboutToStartEvent;
@@ -28,6 +30,11 @@ import net.neoforged.neoforge.network.PacketDistributor;
 
 @EventBusSubscriber(modid = Constants.MOD_ID)
 public class ServerGameEvents {
+
+    @SubscribeEvent
+    public static void onRegisterCommands(RegisterCommandsEvent event) {
+        HomeCommand.register(event.getDispatcher());
+    }
 
     @SubscribeEvent
     public static void onServerAboutToStart(ServerAboutToStartEvent event) {
