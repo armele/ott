@@ -9,7 +9,6 @@ import net.minecraft.world.inventory.ContainerLevelAccess;
 import net.minecraft.world.inventory.CraftingContainer;
 import net.minecraft.world.inventory.CraftingMenu;
 import net.minecraft.world.item.ItemStack;
-import org.jetbrains.annotations.NotNull;
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
@@ -42,8 +41,8 @@ public abstract class CraftingMenuMixin extends AbstractContainerMenu {
         }
     }
 
-    @Override
-    public void removed(@NotNull Player player) {
+    @Inject(method = "removed", at = @At("HEAD"), cancellable = true)
+    private void ott$onRemoved(Player player, CallbackInfo ci) {
         if (OttConfig.VISUALS.VISUAL_WORKBENCH.get()) {
             this.access.execute((level, pos) -> {
                 if (level.getBlockEntity(pos) instanceof VisualCraftingBlockEntity visualCrafting) {
@@ -52,13 +51,9 @@ public abstract class CraftingMenuMixin extends AbstractContainerMenu {
                         savedItems.set(i, this.craftSlots.getItem(i).copy());
                     }
                     visualCrafting.setChanged();
-                } else {
-                    // Fallback to vanilla behavior if no block entity (e.g. portable crafting)
-                    this.clearContainer(player, this.craftSlots);
+                    ci.cancel();
                 }
             });
-        } else {
-            super.removed(player);
         }
     }
 
@@ -68,10 +63,17 @@ public abstract class CraftingMenuMixin extends AbstractContainerMenu {
             this.access.execute((level, pos) -> {
                 if (level.getBlockEntity(pos) instanceof VisualCraftingBlockEntity visualCrafting) {
                     NonNullList<ItemStack> savedItems = visualCrafting.getItems();
+                    boolean changed = false;
                     for (int i = 0; i < 9; i++) {
-                        savedItems.set(i, this.craftSlots.getItem(i).copy());
+                        ItemStack current = this.craftSlots.getItem(i);
+                        if (!ItemStack.matches(savedItems.get(i), current)) {
+                            savedItems.set(i, current.copy());
+                            changed = true;
+                        }
                     }
-                    visualCrafting.setChanged();
+                    if (changed) {
+                        visualCrafting.setChanged();
+                    }
                 }
             });
         }

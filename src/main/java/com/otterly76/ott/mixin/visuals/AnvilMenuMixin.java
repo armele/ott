@@ -98,35 +98,23 @@ public abstract class AnvilMenuMixin extends ItemCombinerMenu {
     }
 
     @Override
-    public void removed(@NotNull Player player) {
-        if (OttConfig.VISUALS.EASY_ANVILS.get()) {
-            this.access.execute((level, pos) -> {
-                if (level.getBlockEntity(pos) instanceof VisualAnvilBlockEntity visualAnvil) {
-                    NonNullList<ItemStack> savedItems = visualAnvil.getItems();
-                    for (int i = 0; i < 2; i++) {
-                        savedItems.set(i, this.inputSlots.getItem(i).copy());
-                    }
-                    visualAnvil.setChanged();
-                } else {
-                    this.clearContainer(player, this.inputSlots);
-                }
-            });
-        } else {
-            super.removed(player);
-        }
-    }
-
-    @Override
     public void slotsChanged(@NotNull Container container) {
         super.slotsChanged(container);
         if (OttConfig.VISUALS.EASY_ANVILS.get() && !player.level().isClientSide) {
             this.access.execute((level, pos) -> {
                 if (level.getBlockEntity(pos) instanceof VisualAnvilBlockEntity visualAnvil) {
                     NonNullList<ItemStack> savedItems = visualAnvil.getItems();
+                    boolean changed = false;
                     for (int i = 0; i < 2; i++) {
-                        savedItems.set(i, this.inputSlots.getItem(i).copy());
+                        ItemStack current = this.inputSlots.getItem(i);
+                        if (!ItemStack.matches(savedItems.get(i), current)) {
+                            savedItems.set(i, current.copy());
+                            changed = true;
+                        }
                     }
-                    visualAnvil.setChanged();
+                    if (changed) {
+                        visualAnvil.setChanged();
+                    }
                 }
             });
         }

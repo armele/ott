@@ -7,6 +7,7 @@ import net.minecraft.core.NonNullList;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.Containers;
+import net.minecraft.world.ItemInteractionResult;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
@@ -74,11 +75,17 @@ public abstract class AnvilBlockMixin extends Block implements EntityBlock {
     }
 
     @Override
-    public @Nullable BlockEntity newBlockEntity(@NotNull BlockPos pos, @NotNull BlockState state) {
-        if (OttConfig.VISUALS.EASY_ANVILS.get()) {
-            return new VisualAnvilBlockEntity(pos, state);
+    protected @NotNull ItemInteractionResult useItemOn(@NotNull ItemStack stack, @NotNull BlockState state, @NotNull Level level, @NotNull BlockPos pos, @NotNull Player player, @NotNull InteractionHand hand, @NotNull BlockHitResult hitResult) {
+        if (OttConfig.VISUALS.EASY_ANVILS.get() && stack.is(Items.IRON_BLOCK)) {
+            InteractionResult result = this.useWithoutItem(state, level, pos, player, hitResult);
+            return ItemInteractionResult.sidedSuccess(level.isClientSide);
         }
-        return null;
+        return super.useItemOn(stack, state, level, pos, player, hand, hitResult);
+    }
+
+    @Override
+    public @Nullable BlockEntity newBlockEntity(@NotNull BlockPos pos, @NotNull BlockState state) {
+        return new VisualAnvilBlockEntity(pos, state);
     }
 
     @Override

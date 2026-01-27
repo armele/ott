@@ -1,7 +1,6 @@
 package com.otterly76.ott.mixin.visuals;
 
 import com.otterly76.ott.block.entity.VisualCraftingBlockEntity;
-import com.otterly76.ott.config.OttConfig;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.Containers;
 import net.minecraft.world.level.Level;
@@ -23,10 +22,7 @@ public abstract class CraftingTableBlockMixin extends Block implements EntityBlo
 
     @Override
     public @Nullable BlockEntity newBlockEntity(@NotNull BlockPos pos, @NotNull BlockState state) {
-        if (OttConfig.VISUALS.VISUAL_WORKBENCH.get()) {
-            return new VisualCraftingBlockEntity(pos, state);
-        }
-        return null;
+        return new VisualCraftingBlockEntity(pos, state);
     }
 
     @Override
