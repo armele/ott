@@ -37,11 +37,5 @@ public class NetworkHandler {
                 ServerboundSetHomePacket.STREAM_CODEC,
                 ServerboundSetHomePacket::handle
         );
-
-        registrar.playToServer(
-                ServerboundRenameNameTagPacket.TYPE,
-                net.minecraft.network.codec.StreamCodec.unit(new ServerboundRenameNameTagPacket()),
-                ServerboundRenameNameTagPacket::handle
-        );
     }
 }
