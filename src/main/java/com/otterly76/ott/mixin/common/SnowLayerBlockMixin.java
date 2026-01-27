@@ -45,7 +45,6 @@ public class SnowLayerBlockMixin extends Block implements Fallable {
             BlockPos below = pos.below();
             if (this.ott$isFree(level.getBlockState(below)) && pos.getY() >= level.getMinBuildHeight()) {
                 level.scheduleTick(pos, this, 2);
-                System.out.println("Pos: " + below);
                 cir.setReturnValue(state);
                 cir.cancel();
             }

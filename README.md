@@ -40,14 +40,14 @@ Mods, Resourcepacks, and Datapacks You Will Not Need:
 - Colorful Hearts ❤️
 - Simple Grass Flowers, Better Grounds, Better Grass, etc 🍀
 - Perfect Parity Neo: Pale Garden Awakens
-- - Configuration Available
+  - Configuration Available
 - Yeetus Experimentus
 - Yeetus Narratus 📢
 - The Fence Unleashed 🐮
 - Jump Over Fences, JumpOverFences, etc 🏃
 - Snow Under Trees, Simple Snowy Fix, Falling Snow, etc ❄️
 - Better Days 🌛🌝🌜
-- - Configuration Available
+  - Configuration Available
 - Trash Slot, Trash Cans, etc 🗑️
 - Torchmaster, Magnum Torch
 - Not Enough Recipe Book
@@ -60,6 +60,8 @@ Mods, Resourcepacks, and Datapacks You Will Not Need:
   - Configuration Available
 - Pretty Beaches 🏖️
 - Tiny Coal, Tiny Charcoal, ect
+- Easy Homes, Simplest Homes, Home Wand, Set Home, etc
+  - Configuration Available
 
 Features
 =======

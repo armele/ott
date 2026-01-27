@@ -65,9 +65,9 @@ public class ModItems {
                 ITEMS.register(block.getId().getPath(), () -> new GradientItem<>(new Item.Properties(), block.get())));
 
         // REGISTRATION: Test, Limestone, Seaglass
-        ModBlocks.TESTBLOCK.forEach(block -> ITEMS.register(block.getId().getPath(), () -> new BlockItem(block.get(), new Item.Properties())));
-        ModBlocks.LIMESTONE.forEach(block -> ITEMS.register(block.getId().getPath(), () -> new BlockItem(block.get(), new Item.Properties())));
-        ModBlocks.SEAGLASS.forEach(block -> ITEMS.register(block.getId().getPath(), () -> new BlockItem(block.get(), new Item.Properties())));
+        ModBlocks.TESTBLOCK.forEach(ModItems::registerBlockItem);
+        ModBlocks.LIMESTONE.forEach(ModItems::registerBlockItem);
+        ModBlocks.SEAGLASS.forEach(ModItems::registerBlockItem);
 
         // REGISTRATION: Hedges
         ModBlocks.PARTICLE_HEDGES.values().forEach(ModItems::registerBlockItem);
@@ -90,11 +90,9 @@ public class ModItems {
             registerBlockItem(setBlocks.pressurePlate());
             registerBlockItem(setBlocks.leaves());
 
-            WOOD_SET_SIGNS.put(setName, ITEMS.register(setName + "_sign",
-                    () -> new SignItem(new Item.Properties().stacksTo(16), setBlocks.sign().get(), setBlocks.wallSign().get())));
+            WOOD_SET_SIGNS.put(setName, registerSign(setName + "_sign", setBlocks.sign(), setBlocks.wallSign()));
 
-            WOOD_SET_HANGING_SIGNS.put(setName, ITEMS.register(setName + "_hanging_sign",
-                    () -> new HangingSignItem(setBlocks.hangingSign().get(), setBlocks.wallHangingSign().get(), new Item.Properties().stacksTo(16))));
+            WOOD_SET_HANGING_SIGNS.put(setName, registerHangingSign(setName + "_hanging_sign", setBlocks.hangingSign(), setBlocks.wallHangingSign()));
 
             WOOD_SET_BOATS.put(setName, ITEMS.register(setName + "_boat",
                     () -> new ModBoatItem(ModEntities.WOOD_SET_BOATS.get(setName), new Item.Properties().stacksTo(1),
@@ -108,11 +106,11 @@ public class ModItems {
         // REGISTRATION: Static Minecraft Backports
         RESIN_BRICK = MINECRAFT_ITEMS.register("resin_brick", () -> new Item(new Item.Properties()));
         CREAKING_SPAWN_EGG = MINECRAFT_ITEMS.register("creaking_spawn_egg", () -> new DeferredSpawnEggItem(ModEntities.CREAKING, 6250335, 16545810, new Item.Properties()));
-        PALE_OAK_SIGN = MINECRAFT_ITEMS.register("pale_oak_sign", () -> new SignItem((new Item.Properties()).stacksTo(16), ModBlocks.PALE_OAK_SIGN.get(), ModBlocks.PALE_OAK_WALL_SIGN.get()));
-        PALE_OAK_HANGING_SIGN = MINECRAFT_ITEMS.register("pale_oak_hanging_sign", () -> new HangingSignItem(ModBlocks.PALE_OAK_HANGING_SIGN.get(), ModBlocks.PALE_OAK_WALL_HANGING_SIGN.get(), (new Item.Properties()).stacksTo(16)));
+        PALE_OAK_SIGN = registerMinecraftSign();
+        PALE_OAK_HANGING_SIGN = registerMinecraftHangingSign();
         PALE_OAK_BOAT = MINECRAFT_ITEMS.register("pale_oak_boat", () -> new ModBoatItem(ModEntities.PALE_OAK_BOAT, new Item.Properties().stacksTo(1)));
         PALE_OAK_CHEST_BOAT = MINECRAFT_ITEMS.register("pale_oak_chest_boat", () -> new ModBoatItem(ModEntities.PALE_OAK_CHEST_BOAT, new Item.Properties().stacksTo(1)));
-        PALE_OAK_SAPLING = MINECRAFT_ITEMS.register("pale_oak_sapling", () -> new BlockItem(ModBlocks.PALE_OAK_SAPLING.get(), new Item.Properties()));
+        PALE_OAK_SAPLING = registerMinecraftBlockItem();
 
     }
 
@@ -120,12 +118,27 @@ public class ModItems {
         return ITEMS.register(name, () -> new BlockItem(block.get(), new Item.Properties()));
     }
 
-    private static DeferredHolder<Item, BlockItem> registerBlockItem(String name, Block block) {
-        return ITEMS.register(name, () -> new BlockItem(block, new Item.Properties()));
+    private static void registerBlockItem(DeferredBlock<? extends Block> block) {
+        ITEMS.register(block.getId().getPath(), () -> new BlockItem(block.get(), new Item.Properties()));
     }
 
-    private static void registerBlockItem(DeferredBlock<? extends Block> block) {
-        String name = block.getId().getPath();
-        ITEMS.register(name, () -> new BlockItem(block.get(), new Item.Properties()));
+    private static DeferredItem<Item> registerMinecraftBlockItem() {
+        return MINECRAFT_ITEMS.register("pale_oak_sapling", () -> new BlockItem(ModBlocks.PALE_OAK_SAPLING.get(), new Item.Properties()));
+    }
+
+    private static DeferredItem<SignItem> registerSign(String name, DeferredBlock<? extends Block> sign, DeferredBlock<? extends Block> wallSign) {
+        return ITEMS.register(name, () -> new SignItem(new Item.Properties().stacksTo(16), sign.get(), wallSign.get()));
+    }
+
+    private static DeferredItem<SignItem> registerMinecraftSign() {
+        return MINECRAFT_ITEMS.register("pale_oak_sign", () -> new SignItem(new Item.Properties().stacksTo(16), ModBlocks.PALE_OAK_SIGN.get(), ModBlocks.PALE_OAK_WALL_SIGN.get()));
+    }
+
+    private static DeferredItem<HangingSignItem> registerHangingSign(String name, DeferredBlock<? extends Block> sign, DeferredBlock<? extends Block> wallSign) {
+        return ITEMS.register(name, () -> new HangingSignItem(sign.get(), wallSign.get(), new Item.Properties().stacksTo(16)));
+    }
+
+    private static DeferredItem<HangingSignItem> registerMinecraftHangingSign() {
+        return MINECRAFT_ITEMS.register("pale_oak_hanging_sign", () -> new HangingSignItem(ModBlocks.PALE_OAK_HANGING_SIGN.get(), ModBlocks.PALE_OAK_WALL_HANGING_SIGN.get(), new Item.Properties().stacksTo(16)));
     }
 }

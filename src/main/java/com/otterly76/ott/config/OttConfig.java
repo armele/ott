@@ -15,6 +15,7 @@ public class OttConfig {
     public static final Weather WEATHER;
     public static final Time TIME;
     public static final Homes HOMES;
+    public static final Accessibility ACCESSIBILITY;
 
     static {
         ModConfigSpec.Builder builder = new ModConfigSpec.Builder();
@@ -28,9 +29,21 @@ public class OttConfig {
         WEATHER = new Weather(builder);
         TIME = new Time(builder);
         HOMES = new Homes(builder);
+        ACCESSIBILITY = new Accessibility(builder);
 
         builder.pop();
         SPEC = builder.build();
+    }
+
+    public static class Accessibility {
+        public final ModConfigSpec.BooleanValue LOCAL_GLOBAL_SOUNDS;
+
+        public Accessibility(ModConfigSpec.Builder builder) {
+            builder.push("accessibility");
+            LOCAL_GLOBAL_SOUNDS = builder.comment("Should global sounds (Wither spawn/death, Ender Dragon death) be local instead of server-wide?")
+                    .define("localGlobalSounds", true);
+            builder.pop();
+        }
     }
 
     @SuppressWarnings("ClassCanBeRecord")

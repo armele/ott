@@ -52,9 +52,9 @@ public class CreakingHeartBlock extends BaseEntityBlock {
     }
 
     private static BlockState updateState(BlockState blockState, LevelAccessor levelAccessor, BlockPos blockPos) {
-        boolean bl = hasRequiredLogs(blockState, levelAccessor, blockPos);
-        boolean bl2 = !(Boolean)blockState.getValue(ENABLED);
-        return bl && bl2 ? blockState.setValue(ENABLED, true) : blockState;
+        boolean hasLogs = hasRequiredLogs(blockState, levelAccessor, blockPos);
+        boolean notEnabled = !(Boolean)blockState.getValue(ENABLED);
+        return hasLogs && notEnabled ? blockState.setValue(ENABLED, true) : blockState;
     }
 
     public static boolean hasRequiredLogs(BlockState blockState, LevelAccessor levelAccessor, BlockPos blockPos) {
@@ -112,9 +112,13 @@ public class CreakingHeartBlock extends BaseEntityBlock {
     }
 
     public void animateTick(@NotNull BlockState blockState, @NotNull Level level, @NotNull BlockPos blockPos, @NotNull RandomSource randomSource) {
-        if (isNaturalNight(level) && blockState.getValue(ENABLED) && randomSource.nextInt(16) == 0 && isSurroundedByLogs(level, blockPos)) {
+        if (shouldPlayIdleSound(blockState, level, blockPos, randomSource)) {
             level.playLocalSound(blockPos.getX(), blockPos.getY(), blockPos.getZ(), ModSounds.CREAKING_HEART_IDLE.get(), SoundSource.BLOCKS, 1.0F, 1.0F, false);
         }
+    }
+
+    private boolean shouldPlayIdleSound(BlockState blockState, Level level, BlockPos blockPos, RandomSource randomSource) {
+        return isNaturalNight(level) && blockState.getValue(ENABLED) && randomSource.nextInt(16) == 0 && isSurroundedByLogs(level, blockPos);
     }
 
     protected @NotNull BlockState updateShape(@NotNull BlockState blockState, @NotNull Direction direction, @NotNull BlockState blockState2, @NotNull LevelAccessor levelAccessor, @NotNull BlockPos blockPos, @NotNull BlockPos blockPos2) {
@@ -161,16 +165,17 @@ public class CreakingHeartBlock extends BaseEntityBlock {
 
     @Override
     protected void onExplosionHit(@NotNull BlockState blockState, Level serverLevel, @NotNull BlockPos blockPos, @NotNull Explosion explosion, @NotNull BiConsumer<ItemStack, BlockPos> biConsumer) {
-        if (serverLevel.getBlockEntity(blockPos) instanceof CreakingHeartBlockEntity heart) {
-            if (explosion.interactsWithBlocks()) {
-                Entity indirectSource = explosion.getIndirectSourceEntity();
-                DamageSource lastDamage = lastDamageSourceOf(indirectSource);
+        if (!(serverLevel.getBlockEntity(blockPos) instanceof CreakingHeartBlockEntity heart)) {
+            super.onExplosionHit(blockState, serverLevel, blockPos, explosion, biConsumer);
+            return;
+        }
 
-                heart.removeProtector(lastDamage);
+        if (explosion.interactsWithBlocks()) {
+            Entity indirectSource = explosion.getIndirectSourceEntity();
+            heart.removeProtector(lastDamageSourceOf(indirectSource));
 
-                if (indirectSource instanceof Player player) {
-                    this.tryAwardExperience(player, blockState, serverLevel, blockPos);
-                }
+            if (indirectSource instanceof Player player) {
+                this.tryAwardExperience(player, blockState, serverLevel, blockPos);
             }
         }
         super.onExplosionHit(blockState, serverLevel, blockPos, explosion, biConsumer);

@@ -8,7 +8,6 @@ Clumps
 Controlling
 Crafting Tweaks
 Easy Anvils
-Easy Homes
 Enchantment Descriptions
 Everthing's Copper
 Fusion

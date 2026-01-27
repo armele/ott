@@ -151,7 +151,6 @@ public class Ott {
         modEventBus.addListener(this::addCreative);
         com.otterly76.ott.ClientModEvents.register(modEventBus);
         modEventBus.addListener(ModEventBusEvents::registerLayers);
-        modEventBus.addListener(ModEventBusEvents::registerLayers);
         modEventBus.addListener(ModEventBusEvents::registerAttributes);
         modEventBus.addListener(ModEventBusEvents::registerSpawnPlacements);
         modEventBus.addListener(ModBlockEntities::registerTileExtensions);
@@ -582,4 +581,3 @@ public class Ott {
         FARMLAND_CANSURVIVE = TagKey.create(Registries.BLOCK, ResourceLocation.fromNamespaceAndPath(MOD_ID, "farmland_cansurvive"));
     }
 }
-//TODO Refactor targets: rename bl/bl2, early-return in onExplosionHit, extract shouldPlayIdleSound.

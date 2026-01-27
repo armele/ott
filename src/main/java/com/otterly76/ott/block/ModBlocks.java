@@ -43,8 +43,12 @@ public class ModBlocks {
     public static final List<DeferredBlock<? extends Block>> LIMESTONE = new ArrayList<>();
     public static final List<DeferredBlock<? extends Block>> TESTBLOCK = new ArrayList<>();
 
+    private static <T extends Block> DeferredBlock<T> register(String name, java.util.function.Supplier<T> block) {
+        return BLOCKS.register(name, block);
+    }
+
     private static <T extends Block> DeferredBlock<T> registerTestblock(String name, java.util.function.Supplier<T> block) {
-        DeferredBlock<T> ret = BLOCKS.register(name, block);
+        DeferredBlock<T> ret = register(name, block);
         TESTBLOCK.add(ret);
         return ret;
     }
@@ -67,7 +71,7 @@ public class ModBlocks {
     public static final DeferredBlock<Block> TESTBLOCK_33 = registerTestblock("testblock_33", () -> new Block(Properties.of().strength(4.0f).requiresCorrectToolForDrops().sound(SoundType.STONE)));
 
     private static <T extends Block> DeferredBlock<T> registerLimestone(String name, java.util.function.Supplier<T> block) {
-        DeferredBlock<T> ret = BLOCKS.register(name, block);
+        DeferredBlock<T> ret = register(name, block);
         LIMESTONE.add(ret);
         return ret;
     }
@@ -90,7 +94,7 @@ public class ModBlocks {
     public static final DeferredBlock<Block> LIMESTONE_33 = registerLimestone("limestone_33", () -> new Block(Properties.of().strength(4.0f).requiresCorrectToolForDrops().sound(SoundType.STONE)));
 
     private static <T extends Block> DeferredBlock<T> registerSeaglass(String name, java.util.function.Supplier<T> block) {
-        DeferredBlock<T> ret = BLOCKS.register(name, block);
+        DeferredBlock<T> ret = register(name, block);
         SEAGLASS.add(ret);
         return ret;
     }

@@ -65,7 +65,10 @@ public class WorldTemplateHandler {
 
         try (Stream<Path> stream = Files.walk(sourceDir)) {
             stream.filter(Files::isRegularFile)
-                    .filter(p -> p.toString().endsWith(".mca"))
+                    .filter(p -> {
+                        Path fileNamePath = p.getFileName();
+                        return fileNamePath != null && fileNamePath.toString().endsWith(".mca");
+                    })
                     .forEach(source -> {
                         try {
                             String fileName = source.getFileName().toString();

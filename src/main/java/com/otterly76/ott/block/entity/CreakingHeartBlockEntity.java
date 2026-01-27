@@ -103,15 +103,6 @@ public class CreakingHeartBlockEntity extends BlockEntity {
             if (heart.ticker-- < 0) {
                 heart.ticker = level.random.nextInt(5) + 20;
                 if (heart.creakingInfo == null) {
-
-
-                    // ADD THESE LINES FOR DEBUGGING:
-                    boolean hasLogs = CreakingHeartBlock.hasRequiredLogs(blockState, level, blockPos);
-                    boolean isNight = CreakingHeartBlock.isNaturalNight(level);
-                    System.out.println("Creaking Heart Check: Logs=" + hasLogs + ", Night=" + isNight + ", Enabled=" + blockState.getValue(CreakingHeartBlock.ENABLED));
-
-
-
                     if (CreakingHeartBlock.hasRequiredLogs(blockState, level, blockPos) && !level.isDay()) {
                         if (blockState.getValue(CreakingHeartBlock.ENABLED) && CreakingHeartBlock.isNaturalNight(level)) {
                             level.setBlock(blockPos, blockState.setValue(CreakingHeartBlock.ACTIVE, true), 3);

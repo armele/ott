@@ -26,6 +26,7 @@
     "common.MixinItems",
     "common.NoiseBasedChunkGeneratorAccessor",
     "common.NoiseGeneratorSettingsAccessor",
+    "common.PlayerListMixin",
     "common.PlacedFeatureAccessor",
     "common.PoolAliasLookupMixin",
     "common.RandomStateAccessor",
