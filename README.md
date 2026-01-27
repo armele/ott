@@ -65,7 +65,7 @@ Mods, Resourcepacks, and Datapacks You Will Not Need:
 - Clumps 💎
   - Configuration Available
 - Visual Workbench
-- Easy Anvils
+- Easy Anvils, Anvil Repair, etc
 
 Features
 =======
