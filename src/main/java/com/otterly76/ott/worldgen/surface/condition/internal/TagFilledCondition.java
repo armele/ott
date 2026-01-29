@@ -1,6 +1,7 @@
 package com.otterly76.ott.worldgen.surface.condition.internal;
 
-import com.otterly76.ott.registry.OttRegistryKeys;
+
+import com.otterly76.ott.api.registry.OttRegistryKeys;
 import net.minecraft.core.HolderSet;
 import net.minecraft.core.RegistryCodecs;
 import net.minecraft.util.KeyDispatchDataCodec;
@@ -22,3 +23,4 @@ public record TagFilledCondition(HolderSet<SurfaceRules.RuleSource> rules) imple
         CODEC = KeyDispatchDataCodec.of(RegistryCodecs.homogeneousList(OttRegistryKeys.SURFACE_RULE).fieldOf("tag").xmap(TagFilledCondition::new, TagFilledCondition::rules));
     }
 }
+

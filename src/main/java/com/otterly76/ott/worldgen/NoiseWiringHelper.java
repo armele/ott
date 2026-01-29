@@ -1,7 +1,8 @@
 package com.otterly76.ott.worldgen;
 
+
 import com.otterly76.ott.mixin.common.RandomStateAccessor;
-import com.otterly76.ott.worldgen.placementcondition.PlacementCondition;
+import com.otterly76.ott.worldgen.placement.condition.PlacementCondition;
 import net.minecraft.core.Holder;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.RandomSource;
@@ -86,3 +87,12 @@ public class NoiseWiringHelper implements DensityFunction.Visitor {
         return new LegacyRandomSource(this.seed + noiseSeed);
     }
 }
+
+
+
+
+
+
+
+
+

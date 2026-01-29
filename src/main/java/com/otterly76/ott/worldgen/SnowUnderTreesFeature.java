@@ -1,5 +1,6 @@
 package com.otterly76.ott.worldgen;
 
+
 import com.mojang.serialization.Codec;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -41,3 +42,8 @@ public class SnowUnderTreesFeature extends Feature<NoneFeatureConfiguration> {
         return false;
     }
 }
+
+
+
+
+

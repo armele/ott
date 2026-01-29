@@ -1,0 +1,101 @@
+package com.otterly76.ott.worldgen.structure.pool.element;
+
+
+import com.mojang.serialization.MapCodec;
+import net.minecraft.core.BlockPos;
+import net.minecraft.core.Vec3i;
+import net.minecraft.util.InclusiveRange;
+import net.minecraft.util.RandomSource;
+import net.minecraft.world.level.StructureManager;
+import net.minecraft.world.level.WorldGenLevel;
+import net.minecraft.world.level.block.Rotation;
+import net.minecraft.world.level.chunk.ChunkGenerator;
+import net.minecraft.world.level.levelgen.structure.BoundingBox;
+import net.minecraft.world.level.levelgen.structure.pools.StructurePoolElement;
+import net.minecraft.world.level.levelgen.structure.pools.StructurePoolElementType;
+import net.minecraft.world.level.levelgen.structure.pools.StructureTemplatePool;
+import net.minecraft.world.level.levelgen.structure.templatesystem.LiquidSettings;
+import net.minecraft.world.level.levelgen.structure.templatesystem.StructureTemplate;
+import net.minecraft.world.level.levelgen.structure.templatesystem.StructureTemplateManager;
+import org.jetbrains.annotations.NotNull;
+
+import java.util.List;
+import java.util.Optional;
+
+public class DelegatingPoolElement extends StructurePoolElement {
+    public static final MapCodec<DelegatingPoolElement> CODEC;
+    public static final StructurePoolElementType<DelegatingPoolElement> TYPE;
+    protected final DelegatingConfig config;
+
+    protected DelegatingPoolElement(DelegatingConfig config) {
+        super(config.delegate().getProjection());
+        this.config = config;
+    }
+
+    @SuppressWarnings("OptionalUsedAsFieldOrParameterType")
+    protected DelegatingPoolElement(StructurePoolElement delegate, Optional<Integer> minDepth, Optional<Integer> forcedCount, Optional<Integer> maxCount) {
+        this(new DelegatingConfig(
+                delegate,
+                Optional.empty(),
+                Optional.empty(),
+                minDepth.map(min -> new InclusiveRange<>(min, Integer.MAX_VALUE)),
+                forcedCount,
+                maxCount,
+                false,
+                false,
+                Optional.empty()
+        ));
+    }
+
+    public DelegatingConfig config() {
+        return this.config;
+    }
+
+    public StructurePoolElement delegate() {
+        return this.config.delegate();
+    }
+
+    public Optional<Integer> minDepth() {
+        return this.config.allowedDepth().map(InclusiveRange::minInclusive);
+    }
+
+    public boolean prioritized() {
+        return this.config.forcedCount().isPresent();
+    }
+
+    public @NotNull Vec3i getSize(@NotNull StructureTemplateManager structureTemplateManager, @NotNull Rotation rotation) {
+        return this.config.delegate().getSize(structureTemplateManager, rotation);
+    }
+
+    public @NotNull List<StructureTemplate.StructureBlockInfo> getShuffledJigsawBlocks(@NotNull StructureTemplateManager structureTemplateManager, @NotNull BlockPos blockPos, @NotNull Rotation rotation, @NotNull RandomSource randomSource) {
+        return this.config.delegate().getShuffledJigsawBlocks(structureTemplateManager, blockPos, rotation, randomSource);
+    }
+
+    public @NotNull BoundingBox getBoundingBox(@NotNull StructureTemplateManager structureTemplateManager, @NotNull BlockPos blockPos, @NotNull Rotation rotation) {
+        return this.config.delegate().getBoundingBox(structureTemplateManager, blockPos, rotation);
+    }
+
+    public boolean place(@NotNull StructureTemplateManager structureTemplateManager, @NotNull WorldGenLevel worldGenLevel, @NotNull StructureManager structureManager, @NotNull ChunkGenerator chunkGenerator, @NotNull BlockPos blockPos, @NotNull BlockPos blockPos1, @NotNull Rotation rotation, @NotNull BoundingBox boundingBox, @NotNull RandomSource randomSource, @NotNull LiquidSettings liquidSettings, boolean b) {
+        return this.config.delegate().place(structureTemplateManager, worldGenLevel, structureManager, chunkGenerator, blockPos, blockPos1, rotation, boundingBox, randomSource, liquidSettings, b);
+    }
+
+    public @NotNull StructurePoolElement setProjection(StructureTemplatePool.@NotNull Projection projection) {
+        super.setProjection(projection);
+        this.config.delegate().setProjection(projection);
+        return this;
+    }
+
+    public @NotNull StructurePoolElementType<?> getType() {
+        return TYPE;
+    }
+
+    static {
+        CODEC = DelegatingConfig.CODEC.xmap(DelegatingPoolElement::new, DelegatingPoolElement::config);
+        TYPE = () -> CODEC;
+    }
+}
+
+
+
+
+

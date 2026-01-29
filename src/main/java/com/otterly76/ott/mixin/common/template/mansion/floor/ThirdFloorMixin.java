@@ -1,6 +1,7 @@
 package com.otterly76.ott.mixin.common.template.mansion.floor;
 
-import com.otterly76.ott.duck.MansionRoom;
+
+import com.otterly76.ott.api.mixin.MansionRoom;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Unique;
 

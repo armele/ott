@@ -1,5 +1,6 @@
 package com.otterly76.ott.worldgen.modifier;
 
+
 import com.mojang.datafixers.util.Pair;
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.MapCodec;
@@ -43,3 +44,7 @@ public record AddTemplatePoolElementsModifier(int priority, HolderSet<StructureT
         poolAccessor.setVanillaTemplates(vanillaTemplates);
     }
 }
+
+
+
+

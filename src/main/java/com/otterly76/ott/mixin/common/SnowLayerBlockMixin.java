@@ -1,6 +1,7 @@
 package com.otterly76.ott.mixin.common;
 
-import com.otterly76.ott.config.OttConfig;
+
+import com.otterly76.ott.neoforge.impl.config.OttConfig;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.particles.ParticleTypes;
@@ -74,3 +75,4 @@ public class SnowLayerBlockMixin extends Block implements Fallable {
 
     }
 }
+

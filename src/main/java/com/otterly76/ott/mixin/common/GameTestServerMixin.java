@@ -1,5 +1,6 @@
 package com.otterly76.ott.mixin.common;
 
+
 import com.otterly76.ott.worldgen.modifier.ModifierManager;
 import com.otterly76.ott.worldgen.surface.SurfaceRuleManager;
 import net.minecraft.gametest.framework.GameTestServer;

@@ -1,10 +1,11 @@
 package com.otterly76.ott.block.custom;
 
+
 import com.mojang.serialization.MapCodec;
 import com.otterly76.ott.block.entity.CreakingHeartBlockEntity;
-import com.otterly76.ott.block.entity.ModBlockEntities;
-import com.otterly76.ott.sound.ModSounds;
-import com.otterly76.ott.util.ModTags;
+import com.otterly76.ott.neoforge.impl.registry.ModBlockEntities;
+import com.otterly76.ott.neoforge.impl.registry.ModSounds;
+import com.otterly76.ott.api.registry.ModTags;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.Direction.Axis;
@@ -42,6 +43,8 @@ public class CreakingHeartBlock extends BaseEntityBlock {
     public static BooleanProperty ACTIVE;
     public static final MapCodec<CreakingHeartBlock> CODEC = simpleCodec(CreakingHeartBlock::new);
 
+    @SuppressWarnings("this-escape")
+
     public CreakingHeartBlock(BlockBehaviour.Properties properties) {
         super(properties);
         this.registerDefaultState(this.defaultBlockState().setValue(AXIS, Axis.Y).setValue(ACTIVE, false).setValue(NATURAL, false).setValue(ENABLED, false));
@@ -53,7 +56,7 @@ public class CreakingHeartBlock extends BaseEntityBlock {
 
     private static BlockState updateState(BlockState blockState, LevelAccessor levelAccessor, BlockPos blockPos) {
         boolean hasLogs = hasRequiredLogs(blockState, levelAccessor, blockPos);
-        boolean notEnabled = !(Boolean)blockState.getValue(ENABLED);
+        boolean notEnabled = !blockState.getValue(ENABLED);
         return hasLogs && notEnabled ? blockState.setValue(ENABLED, true) : blockState;
     }
 
@@ -219,3 +222,13 @@ public class CreakingHeartBlock extends BaseEntityBlock {
         ENABLED = BlockStateProperties.ENABLED;
     }
 }
+
+
+
+
+
+
+
+
+
+

@@ -1,5 +1,6 @@
 package com.otterly76.ott.util;
 
+
 import net.minecraft.world.level.block.state.properties.BlockSetType;
 import net.minecraft.world.level.block.state.properties.WoodType;
 
@@ -27,3 +28,7 @@ public enum WoodTypeVariant {
         );
     }
 }
+
+
+
+

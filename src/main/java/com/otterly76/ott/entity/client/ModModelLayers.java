@@ -1,9 +1,11 @@
 package com.otterly76.ott.entity.client;
 
+
+
 import net.minecraft.client.model.geom.ModelLayerLocation;
 import net.minecraft.resources.ResourceLocation;
 
-import static com.otterly76.ott.Constants.MOD_ID;
+import static com.otterly76.ott.api.core.Constants.MOD_ID;
 
 public class ModModelLayers {
     public static final ModelLayerLocation CREAKING = registerLayer("creaking");
@@ -21,3 +23,6 @@ public class ModModelLayers {
         return new ModelLayerLocation(ResourceLocation.fromNamespaceAndPath(MOD_ID, name), "main");
     }
 }
+
+
+

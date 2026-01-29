@@ -1,6 +1,9 @@
 
 package com.otterly76.ott.inventory;
 
+
+import com.otterly76.ott.neoforge.impl.registry.ModMenuTypes;
+
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.world.SimpleContainer;
 import net.minecraft.world.entity.player.Inventory;
@@ -14,9 +17,13 @@ public class TrashMenu extends AbstractContainerMenu {
     private final SimpleContainer container;
     private boolean deleteOnClose = false;
 
+    @SuppressWarnings("this-escape")
+
     public TrashMenu(int containerId, Inventory playerInventory, FriendlyByteBuf extraData) {
         this(containerId, playerInventory);
     }
+
+    @SuppressWarnings("this-escape")
 
     public TrashMenu(int containerId, Inventory playerInventory) {
         super(ModMenuTypes.TRASH_MENU.get(), containerId);
@@ -85,3 +92,11 @@ public class TrashMenu extends AbstractContainerMenu {
         }
     }
 }
+
+
+
+
+
+
+
+

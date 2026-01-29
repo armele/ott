@@ -1,10 +1,11 @@
 package com.otterly76.ott.entity;
 
+
 import com.mojang.serialization.Dynamic;
-import com.otterly76.ott.block.ModBlocks;
+import com.otterly76.ott.neoforge.impl.registry.ModBlocks;
 import com.otterly76.ott.block.custom.CreakingHeartBlock;
 import com.otterly76.ott.block.entity.CreakingHeartBlockEntity;
-import com.otterly76.ott.sound.ModSounds;
+import com.otterly76.ott.neoforge.impl.registry.ModSounds;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Vec3i;
 import net.minecraft.core.particles.BlockParticleOption;
@@ -83,6 +84,8 @@ public class Creaking extends Monster {
     private boolean eyesGlowing;
     private int nextFlickerTime;
     private int playerStuckCounter;
+
+    @SuppressWarnings("this-escape")
 
     public Creaking(EntityType<? extends Monster> entityType, Level level) {
         super(entityType, level);

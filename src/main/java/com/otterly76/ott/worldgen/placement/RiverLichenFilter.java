@@ -1,5 +1,6 @@
 package com.otterly76.ott.worldgen.placement;
 
+
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.MapCodec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
@@ -57,3 +58,7 @@ public class RiverLichenFilter extends PlacementModifier {
         return TYPE;
     }
 }
+
+
+
+

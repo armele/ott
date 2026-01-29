@@ -1,5 +1,6 @@
 package com.otterly76.ott.mixin.common;
 
+
 import net.minecraft.world.level.levelgen.structure.templatesystem.StructureProcessor;
 import net.minecraft.world.level.levelgen.structure.templatesystem.StructureProcessorList;
 import org.spongepowered.asm.mixin.Mixin;

@@ -1,7 +1,8 @@
 package com.otterly76.ott.worldgen.structure;
 
+
 import com.mojang.serialization.MapCodec;
-import com.otterly76.ott.worldgen.placementcondition.PlacementCondition;
+import com.otterly76.ott.worldgen.placement.condition.PlacementCondition;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.QuartPos;
 import net.minecraft.util.RandomSource;
@@ -66,3 +67,8 @@ public class DelegatingStructure extends Structure {
         TYPE = () -> CODEC;
     }
 }
+
+
+
+
+

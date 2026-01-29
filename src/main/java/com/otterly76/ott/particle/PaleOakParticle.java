@@ -1,5 +1,6 @@
 package com.otterly76.ott.particle;
 
+
 import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.client.particle.Particle;
 import net.minecraft.client.particle.ParticleProvider;
@@ -18,6 +19,8 @@ public class PaleOakParticle extends TextureSheetParticle {
     private final float particleRandom;
     private final float spinAcceleration;
     private float rotSpeed;
+
+    @SuppressWarnings("this-escape")
 
     protected PaleOakParticle(ClientLevel clientLevel, double d, double e, double f, SpriteSet spriteSet) {
         super(clientLevel, d, e, f);
@@ -82,3 +85,11 @@ public class PaleOakParticle extends TextureSheetParticle {
         }
     }
 }
+
+
+
+
+
+
+
+

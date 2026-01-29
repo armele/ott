@@ -1,5 +1,8 @@
 package com.otterly76.ott.block;
 
+
+import com.otterly76.ott.neoforge.impl.registry.ModBlocks;
+
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.registries.BuiltInRegistries;
@@ -28,7 +31,9 @@ public class GradientConcretePowderBlock extends ConcretePowderBlock implements 
     private final DyeColor secondColor;
     private final Function<DyeColor, String> textureNameMapper;
 
-    protected GradientConcretePowderBlock(Properties properties, DyeColor firstColor, DyeColor secondColor, Function<DyeColor, String> textureNameMapper) {
+    @SuppressWarnings("this-escape")
+
+    public GradientConcretePowderBlock(Properties properties, DyeColor firstColor, DyeColor secondColor, Function<DyeColor, String> textureNameMapper) {
         super(getConcreteGradientBlock(firstColor, secondColor), properties);
         this.registerDefaultState(this.defaultBlockState().setValue(DirectionalBlock.FACING, Direction.UP));
         this.firstColor = firstColor;
@@ -141,3 +146,12 @@ public class GradientConcretePowderBlock extends ConcretePowderBlock implements 
         return flag;
     }
 }
+
+
+
+
+
+
+
+
+

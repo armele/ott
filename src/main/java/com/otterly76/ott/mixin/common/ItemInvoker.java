@@ -1,5 +1,6 @@
 package com.otterly76.ott.mixin.common;
 
+
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.ClipContext;
@@ -15,3 +16,6 @@ public interface ItemInvoker {
         throw new UnsupportedOperationException();
     }
 }
+
+
+

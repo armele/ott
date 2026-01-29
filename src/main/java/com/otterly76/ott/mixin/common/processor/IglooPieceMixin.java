@@ -1,8 +1,9 @@
 package com.otterly76.ott.mixin.common.processor;
 
+
 import com.llamalad7.mixinextras.injector.ModifyReturnValue;
-import com.otterly76.ott.config.ConfigHandler;
-import com.otterly76.ott.worldgen.processor.UnboundReferenceProcessor;
+import com.otterly76.ott.neoforge.impl.config.ConfigHandler;
+import com.otterly76.ott.worldgen.structure.processor.UnboundReferenceProcessor;
 import net.minecraft.world.level.levelgen.structure.structures.IglooPieces;
 import net.minecraft.world.level.levelgen.structure.templatesystem.StructurePlaceSettings;
 import org.spongepowered.asm.mixin.Mixin;
@@ -18,3 +19,4 @@ public class IglooPieceMixin {
         return ConfigHandler.getConfig().breaksSeedParity() ? settings.addProcessor(UnboundReferenceProcessor.of("igloo")) : settings;
     }
 }
+

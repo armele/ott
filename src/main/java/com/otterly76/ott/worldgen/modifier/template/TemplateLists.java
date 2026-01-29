@@ -1,7 +1,8 @@
 package com.otterly76.ott.worldgen.modifier.template;
 
+
 import com.otterly76.ott.Ott;
-import com.otterly76.ott.registry.OttRegistryKeys;
+import com.otterly76.ott.api.registry.OttRegistryKeys;
 import net.minecraft.core.Registry;
 import net.minecraft.core.RegistryAccess;
 import net.minecraft.resources.ResourceKey;
@@ -39,3 +40,4 @@ public interface TemplateLists {
     interface Mansion {
     }
 }
+

@@ -1,9 +1,13 @@
 package com.otterly76.ott.worldgen;
 
+
+import com.otterly76.ott.api.registry.ModConfiguredFeatures;
+import com.otterly76.ott.neoforge.impl.registry.ModTreeDecoratorTypes;
+
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.MapCodec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
-import com.otterly76.ott.block.ModBlocks;
+import com.otterly76.ott.neoforge.impl.registry.ModBlocks;
 import com.otterly76.ott.block.custom.HangingMossBlock;
 import net.minecraft.Util;
 import net.minecraft.core.BlockPos;
@@ -82,3 +86,7 @@ public class PaleMossDecorator extends TreeDecorator {
 
     }
 }
+
+
+
+

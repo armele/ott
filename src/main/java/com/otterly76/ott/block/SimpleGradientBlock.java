@@ -1,5 +1,6 @@
 package com.otterly76.ott.block;
 
+
 import net.minecraft.core.Direction;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.network.chat.Component;
@@ -20,6 +21,8 @@ public abstract class SimpleGradientBlock extends Block implements IGradientBloc
     private final DyeColor firstColor;
     private final DyeColor secondColor;
     private final Function<DyeColor, String> textureNameMapper;
+
+    @SuppressWarnings("this-escape")
 
     protected SimpleGradientBlock(Properties properties, DyeColor firstColor, DyeColor secondColor, Function<DyeColor, String> textureNameMapper) {
         super(properties);
@@ -65,3 +68,7 @@ public abstract class SimpleGradientBlock extends Block implements IGradientBloc
         return Component.translatable("com.otterly76.ott.block.gradient.name", getBlockFromColor(firstColor).getName(), getBlockFromColor(secondColor).getName());
     }
 }
+
+
+
+

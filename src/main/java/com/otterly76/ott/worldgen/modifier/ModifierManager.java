@@ -3,7 +3,7 @@ package com.otterly76.ott.worldgen.modifier;
 import com.google.common.base.Suppliers;
 import com.otterly76.ott.Ott;
 import com.otterly76.ott.mixin.common.ChunkGeneratorAccessor;
-import com.otterly76.ott.registry.OttRegistryKeys;
+import com.otterly76.ott.api.registry.OttRegistryKeys;
 import net.minecraft.core.Holder;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.core.RegistryAccess;
@@ -50,3 +50,4 @@ public class ModifierManager {
         return modifiers.sorted(Comparator.comparingInt((reference) -> reference.value().priority())).toList();
     }
 }
+

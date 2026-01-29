@@ -1,6 +1,7 @@
 package com.otterly76.ott.particle;
 
-import com.otterly76.ott.config.OttConfig;
+
+import com.otterly76.ott.neoforge.impl.config.OttConfig;
 import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.client.particle.Particle;
 import net.minecraft.client.particle.ParticleProvider;
@@ -15,6 +16,7 @@ import org.jetbrains.annotations.NotNull;
 import java.awt.*;
 
 public class DustMoteParticle extends WeatherParticle {
+    @SuppressWarnings("this-escape")
     protected DustMoteParticle(ClientLevel level, double x, double y, double z, SpriteSet provider) {
         super(level, x, y, z);
         this.setSprite(provider.get(level.getRandom()));
@@ -61,3 +63,12 @@ public class DustMoteParticle extends WeatherParticle {
         }
     }
 }
+
+
+
+
+
+
+
+
+

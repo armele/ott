@@ -7,7 +7,7 @@ import com.otterly76.ott.Ott;
 import com.otterly76.ott.mixin.common.HolderReferenceAccessor;
 import com.otterly76.ott.mixin.common.MappedRegistryAccessor;
 import com.otterly76.ott.worldgen.OttCodecs;
-import com.otterly76.ott.worldgen.placementcondition.PlacementCondition;
+import com.otterly76.ott.worldgen.placement.condition.PlacementCondition;
 import com.otterly76.ott.worldgen.structure.DelegatingConfig;
 import com.otterly76.ott.worldgen.structure.DelegatingStructure;
 import net.minecraft.core.Holder;
@@ -48,3 +48,7 @@ public record SetStructureSpawnConditionModifier(int priority, HolderSet<Structu
         return CODEC;
     }
 }
+
+
+
+

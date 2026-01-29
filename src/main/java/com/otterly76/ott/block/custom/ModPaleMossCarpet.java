@@ -1,8 +1,9 @@
 package com.otterly76.ott.block.custom;
 
+
 import com.google.common.collect.ImmutableMap;
 import com.mojang.serialization.MapCodec;
-import com.otterly76.ott.block.ModBlocks;
+import com.otterly76.ott.neoforge.impl.registry.ModBlocks;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerLevel;
@@ -51,6 +52,8 @@ public class ModPaleMossCarpet extends Block implements BonemealableBlock {
     private static final VoxelShape SOUTH_SHORT_AABB;
     public static final MapCodec<ModPaleMossCarpet> CODEC = simpleCodec(ModPaleMossCarpet::new);
     private final Map<BlockState, VoxelShape> shapesCache;
+
+    @SuppressWarnings("this-escape")
 
     public ModPaleMossCarpet(BlockBehaviour.Properties properties) {
         super(properties);
@@ -141,12 +144,12 @@ public class ModPaleMossCarpet extends Block implements BonemealableBlock {
 
                 if (blockState2.is(ModBlocks.PALE_MOSS_CARPET)) {
                     assert enumProperty != null;
-                    if (blockState2.getValue(enumProperty) != WallSide.NONE && !(Boolean) blockState2.getValue(BASE)) {
+                    if (blockState2.getValue(enumProperty) != WallSide.NONE && !blockState2.getValue(BASE)) {
                         wallSide = WallSide.TALL;
                     }
                 }
 
-                if (!(Boolean)blockState.getValue(BASE)) {
+                if (!blockState.getValue(BASE)) {
                     if (blockState3 == null) {
                         blockState3 = blockGetter.getBlockState(blockPos.below());
                     }
@@ -184,7 +187,7 @@ public class ModPaleMossCarpet extends Block implements BonemealableBlock {
         BlockPos blockPos2 = blockPos.above();
         BlockState blockState = blockGetter.getBlockState(blockPos2);
         boolean bl = blockState.is(ModBlocks.PALE_MOSS_CARPET);
-        if ((!bl || !(Boolean)blockState.getValue(BASE)) && (bl || blockState.canBeReplaced())) {
+        if ((!bl || !blockState.getValue(BASE)) && (bl || blockState.canBeReplaced())) {
             BlockState blockState2 = ModBlocks.PALE_MOSS_CARPET.get().defaultBlockState().setValue(BASE, false);
             BlockState blockState3 = getUpdatedState(blockState2, blockGetter, blockPos.above(), true);
 
@@ -333,3 +336,8 @@ public class ModPaleMossCarpet extends Block implements BonemealableBlock {
         SOUTH_SHORT_AABB = Block.box(0.0F, 0.0F, 15.0F, 16.0F, 10.0F, 16.0F);
     }
 }
+
+
+
+
+

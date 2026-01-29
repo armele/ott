@@ -1,5 +1,6 @@
 package com.otterly76.ott.worldgen.modifier;
 
+
 import com.mojang.datafixers.util.Pair;
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.MapCodec;
@@ -7,7 +8,7 @@ import com.mojang.serialization.codecs.RecordCodecBuilder;
 import com.otterly76.ott.mixin.common.SinglePoolElementAccessor;
 import com.otterly76.ott.mixin.common.StructureTemplatePoolAccessor;
 import com.otterly76.ott.worldgen.OttCodecs;
-import com.otterly76.ott.worldgen.poolelement.DelegatingPoolElement;
+import com.otterly76.ott.worldgen.structure.pool.element.DelegatingPoolElement;
 import net.minecraft.core.Holder;
 import net.minecraft.core.HolderSet;
 import net.minecraft.core.registries.Registries;
@@ -64,3 +65,8 @@ public record SetPoolElementProcessorsModifier(int priority, HolderSet<Structure
         return CODEC;
     }
 }
+
+
+
+
+

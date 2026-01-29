@@ -1,5 +1,6 @@
 package com.otterly76.ott.util.weighted;
 
+
 import com.mojang.logging.LogUtils;
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.MapCodec;
@@ -36,3 +37,7 @@ public record Weighted<T>(T value, int weight) {
         return new Weighted<>(function.apply(this.value()), this.weight);
     }
 }
+
+
+
+

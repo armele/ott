@@ -1,8 +1,11 @@
 package com.otterly76.ott.worldgen;
 
+
+import com.otterly76.ott.neoforge.impl.registry.ModTreeDecoratorTypes;
+
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.MapCodec;
-import com.otterly76.ott.block.ModBlocks;
+import com.otterly76.ott.neoforge.impl.registry.ModBlocks;
 import com.otterly76.ott.block.custom.CreakingHeartBlock;
 import net.minecraft.Util;
 import net.minecraft.core.BlockPos;
@@ -57,3 +60,7 @@ public class CreakingHeartDecorator extends TreeDecorator {
         return context.level().isStateAtPosition(blockPos, predicate);
     }
 }
+
+
+
+

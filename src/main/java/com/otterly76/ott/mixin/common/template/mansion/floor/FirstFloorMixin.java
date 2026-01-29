@@ -1,7 +1,8 @@
 package com.otterly76.ott.mixin.common.template.mansion.floor;
 
-import com.otterly76.ott.config.ConfigHandler;
-import com.otterly76.ott.duck.MansionRoom;
+
+import com.otterly76.ott.neoforge.impl.config.ConfigHandler;
+import com.otterly76.ott.api.mixin.MansionRoom;
 import net.minecraft.util.RandomSource;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
@@ -98,3 +99,4 @@ public abstract class FirstFloorMixin implements MansionRoom {
         return 1;
     }
 }
+

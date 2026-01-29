@@ -1,7 +1,8 @@
 package com.otterly76.ott.worldgen.surface.condition;
 
+
 import com.mojang.serialization.codecs.RecordCodecBuilder;
-import com.otterly76.ott.duck.ContextAccessor;
+import com.otterly76.ott.api.mixin.ContextAccessor;
 import com.otterly76.ott.worldgen.OttCodecs;
 import net.minecraft.util.InclusiveRange;
 import net.minecraft.util.KeyDispatchDataCodec;
@@ -62,3 +63,7 @@ public record SlopeCondition(InclusiveRange<Integer> threshold) implements Surfa
         }
     }
 }
+
+
+
+

@@ -1,8 +1,9 @@
 package com.otterly76.ott.worldgen.modifier;
 
+
 import com.mojang.serialization.MapCodec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
-import com.otterly76.ott.registry.OttRegistryKeys;
+import com.otterly76.ott.api.registry.OttRegistryKeys;
 import com.otterly76.ott.worldgen.OttCodecs;
 import com.otterly76.ott.worldgen.modifier.template.TemplateList;
 import net.minecraft.core.HolderSet;
@@ -22,3 +23,4 @@ public record AddStructureTemplatesModifier(int priority, HolderSet<TemplateList
         return CODEC;
     }
 }
+

@@ -1,8 +1,9 @@
 package com.otterly76.ott.worldgen.bandlands;
 
+
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
-import com.otterly76.ott.duck.SurfaceSystemAccessor;
+import com.otterly76.ott.api.mixin.SurfaceSystemAccessor;
 import com.otterly76.ott.worldgen.bandlands.band.Band;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.block.state.BlockState;

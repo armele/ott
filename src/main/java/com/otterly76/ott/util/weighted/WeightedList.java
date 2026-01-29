@@ -1,5 +1,6 @@
 package com.otterly76.ott.util.weighted;
 
+
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.Lists;
 import com.mojang.serialization.Codec;
@@ -199,3 +200,7 @@ public final class WeightedList<E> {
         E get(int i);
     }
 }
+
+
+
+

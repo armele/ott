@@ -1,7 +1,8 @@
 package com.otterly76.ott.mixin.common.template.mansion;
 
-import com.otterly76.ott.config.ConfigHandler;
-import com.otterly76.ott.duck.RegistryHolder;
+
+import com.otterly76.ott.neoforge.impl.config.ConfigHandler;
+import com.otterly76.ott.api.mixin.RegistryHolder;
 import net.minecraft.core.BlockPos;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.block.Rotation;
@@ -55,3 +56,11 @@ public class WoodlandMansionStructureMixin {
         }
     }
 }
+
+
+
+
+
+
+
+

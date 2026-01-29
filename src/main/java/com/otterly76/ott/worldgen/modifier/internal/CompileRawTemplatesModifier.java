@@ -2,7 +2,7 @@ package com.otterly76.ott.worldgen.modifier.internal;
 
 import com.mojang.serialization.MapCodec;
 import com.otterly76.ott.Ott;
-import com.otterly76.ott.duck.StructurePoolAccess;
+import com.otterly76.ott.api.mixin.StructurePoolAccess;
 import com.otterly76.ott.worldgen.modifier.Modifier;
 import net.minecraft.core.RegistryAccess;
 import net.minecraft.core.registries.Registries;

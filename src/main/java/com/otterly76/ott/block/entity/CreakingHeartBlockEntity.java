@@ -1,13 +1,16 @@
 package com.otterly76.ott.block.entity;
 
+
+import com.otterly76.ott.neoforge.impl.registry.ModBlockEntities;
+
 import com.mojang.datafixers.util.Either;
-import com.otterly76.ott.block.ModBlocks;
+import com.otterly76.ott.neoforge.impl.registry.ModBlocks;
 import com.otterly76.ott.block.custom.CreakingHeartBlock;
 import com.otterly76.ott.entity.Creaking;
-import com.otterly76.ott.entity.ModEntities;
+import com.otterly76.ott.neoforge.impl.registry.ModEntities;
 import com.otterly76.ott.particle.TrailParticleOption;
-import com.otterly76.ott.sound.ModSounds;
-import com.otterly76.ott.util.ModTags;
+import com.otterly76.ott.neoforge.impl.registry.ModSounds;
+import com.otterly76.ott.api.registry.ModTags;
 import net.minecraft.Util;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -314,3 +317,7 @@ public class CreakingHeartBlockEntity extends BlockEntity {
         }
     }
 }
+
+
+
+

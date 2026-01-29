@@ -1,6 +1,7 @@
 package com.otterly76.ott.worldgen;
 
-import com.otterly76.ott.Constants;
+
+import com.otterly76.ott.api.core.Constants;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
@@ -24,7 +25,7 @@ public class WorldTemplateHandler {
 
     private static final ResourceKey<Level> TARGET_DIMENSION = ResourceKey.create(
             Registries.DIMENSION,
-            ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, "mine_colonies_schema_dimension")
+            ResourceLocation.fromNamespaceAndPath(com.otterly76.ott.api.core.Constants.MOD_ID, "mine_colonies_schema_dimension")
     );
 
     @SubscribeEvent
@@ -55,7 +56,7 @@ public class WorldTemplateHandler {
 }
 
     private static void copyTemplateFiles(Path targetDir) throws IOException {
-        Path sourceDir = ModList.get().getModFileById(Constants.MOD_ID).getFile().findResource(TEMPLATE_PATH);
+        Path sourceDir = ModList.get().getModFileById(com.otterly76.ott.api.core.Constants.MOD_ID).getFile().findResource(TEMPLATE_PATH);
 
         if (!Files.exists(sourceDir)) {
             return;

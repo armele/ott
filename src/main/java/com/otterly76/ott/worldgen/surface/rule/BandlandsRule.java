@@ -1,7 +1,8 @@
 package com.otterly76.ott.worldgen.surface.rule;
 
-import com.otterly76.ott.duck.ContextAccessor;
-import com.otterly76.ott.registry.OttRegistryKeys;
+
+import com.otterly76.ott.api.mixin.ContextAccessor;
+import com.otterly76.ott.api.registry.OttRegistryKeys;
 import com.otterly76.ott.worldgen.bandlands.Bandlands;
 import net.minecraft.core.Holder;
 import net.minecraft.resources.RegistryFileCodec;
@@ -23,3 +24,4 @@ public record BandlandsRule(Holder<Bandlands> options) implements SurfaceRules.R
         return (x, y, z) -> this.options.value().getBand(((ContextAccessor) (Object) context).ott$getSystem(), x, y, z);
     }
 }
+

@@ -1,5 +1,6 @@
 package com.otterly76.ott.util;
 
+
 import net.minecraft.world.level.block.state.properties.BlockSetType;
 
 public enum BlockSetTypeVariant {
@@ -15,3 +16,8 @@ public enum BlockSetTypeVariant {
         return blockSetType;
     }
 }
+
+
+
+
+

@@ -1,5 +1,6 @@
 package com.otterly76.ott.worldgen.modifier;
 
+
 import net.neoforged.neoforge.common.world.BiomeModifier;
 
 public abstract class AbstractBiomeModifier implements Modifier {

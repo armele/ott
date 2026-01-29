@@ -1,5 +1,6 @@
 package com.otterly76.ott.worldgen.structure;
 
+
 import com.mojang.serialization.Codec;
 import net.minecraft.core.BlockPos;
 import net.minecraft.util.StringRepresentable;

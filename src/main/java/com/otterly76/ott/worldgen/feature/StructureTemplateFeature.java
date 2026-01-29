@@ -60,3 +60,6 @@ public class StructureTemplateFeature extends Feature<StructureTemplateConfig> {
         return true;
     }
 }
+
+
+

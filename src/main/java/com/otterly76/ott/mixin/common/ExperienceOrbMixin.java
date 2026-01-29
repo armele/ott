@@ -1,6 +1,7 @@
 package com.otterly76.ott.mixin.common;
 
-import com.otterly76.ott.config.OttConfig;
+
+import com.otterly76.ott.neoforge.impl.config.OttConfig;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.ExperienceOrb;
@@ -47,3 +48,4 @@ public abstract class ExperienceOrbMixin extends Entity {
         }
     }
 }
+

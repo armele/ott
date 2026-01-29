@@ -1,5 +1,8 @@
 package com.otterly76.ott.particle;
 
+
+import com.otterly76.ott.neoforge.impl.registry.ModParticle;
+
 import com.mojang.serialization.MapCodec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 import net.minecraft.core.particles.ParticleOptions;

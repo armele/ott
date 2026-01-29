@@ -1,5 +1,8 @@
 package com.otterly76.ott.particle;
 
+
+import com.otterly76.ott.neoforge.impl.registry.ModParticle;
+
 import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Holder;

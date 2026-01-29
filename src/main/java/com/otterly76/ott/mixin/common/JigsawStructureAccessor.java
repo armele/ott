@@ -1,5 +1,6 @@
 package com.otterly76.ott.mixin.common;
 
+
 import net.minecraft.world.level.levelgen.structure.pools.alias.PoolAliasBinding;
 import net.minecraft.world.level.levelgen.structure.structures.JigsawStructure;
 import org.spongepowered.asm.mixin.Mixin;

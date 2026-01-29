@@ -1,7 +1,10 @@
 package com.otterly76.ott.particle;
 
-import com.otterly76.ott.ClientModEvents;
-import com.otterly76.ott.config.OttConfig;
+
+import com.otterly76.ott.neoforge.impl.registry.ModParticle;
+
+import com.otterly76.ott.neoforge.impl.client.ClientModEvents;
+import com.otterly76.ott.neoforge.impl.config.OttConfig;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.core.BlockPos;
@@ -34,7 +37,7 @@ public final class WeatherParticleSpawner {
 
             Biome.Precipitation precipitation = biome.value().getPrecipitationAt(level.getHeightmapPos(Types.MOTION_BLOCKING, pos));
             if (precipitation == Precipitation.RAIN) {
-                if (OttConfig.WEATHER.DO_GROUND_FOG_PARTICLES.get() && ClientModEvents.fogCount < OttConfig.WEATHER.GROUND_FOG.DENSITY.get()) {
+                if (OttConfig.WEATHER.DO_GROUND_FOG_PARTICLES.get() && com.otterly76.ott.neoforge.impl.client.ClientModEvents.fogCount < OttConfig.WEATHER.GROUND_FOG.DENSITY.get()) {
                     int height = level.getHeight(Types.MOTION_BLOCKING, (int) x, (int) z);
                     if (height <= OttConfig.WEATHER.GROUND_FOG.SPAWN_HEIGHT.get() && height >= OttConfig.WEATHER.GROUND_FOG.SPAWN_HEIGHT.get() - 4 && level.getFluidState(BlockPos.containing(x, height - 1, z)).isEmpty()) {
                         level.addParticle(ModParticle.GROUND_FOG.get(), x, (float) height + level.random.nextFloat(), z, 0.0, 0.0, 0.0);
@@ -115,3 +118,9 @@ public final class WeatherParticleSpawner {
         return precipitation == Precipitation.NONE && level.getBlockState(level.getHeightmapPos(Types.MOTION_BLOCKING, blockPos).below()).is(TagKey.create(Registries.BLOCK, ResourceLocation.parse(OttConfig.WEATHER.SAND.MATCH_TAGS.get()))) && (double) biome.value().getBaseTemperature() > 0.25;
     }
 }
+
+
+
+
+
+

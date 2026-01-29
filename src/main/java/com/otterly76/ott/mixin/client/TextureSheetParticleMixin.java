@@ -1,5 +1,6 @@
 package com.otterly76.ott.mixin.client;
 
+
 import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.client.particle.SingleQuadParticle;
 import net.minecraft.client.particle.SpriteSet;

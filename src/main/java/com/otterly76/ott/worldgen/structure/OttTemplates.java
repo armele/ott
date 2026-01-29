@@ -1,8 +1,9 @@
 package com.otterly76.ott.worldgen.structure;
 
+
 import com.google.common.collect.Iterators;
 import com.google.common.collect.Lists;
-import com.otterly76.ott.worldgen.poolelement.DelegatingPoolElement;
+import com.otterly76.ott.worldgen.structure.pool.element.DelegatingPoolElement;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.levelgen.structure.pools.StructurePoolElement;
 import org.jetbrains.annotations.NotNull;
@@ -79,3 +80,10 @@ public class OttTemplates implements Iterable<StructurePoolElement> {
         }
     }
 }
+
+
+
+
+
+
+

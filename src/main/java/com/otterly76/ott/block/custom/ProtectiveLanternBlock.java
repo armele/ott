@@ -1,5 +1,6 @@
 package com.otterly76.ott.block.custom;
 
+
 import com.otterly76.ott.util.LanternManager;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.level.Level;
@@ -33,3 +34,9 @@ public class ProtectiveLanternBlock extends LanternBlock {
         super.onRemove(state, level, pos, newState, isMoving);
     }
 }
+
+
+
+
+
+

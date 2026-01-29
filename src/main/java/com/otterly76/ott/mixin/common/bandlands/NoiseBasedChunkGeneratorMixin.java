@@ -1,8 +1,9 @@
 package com.otterly76.ott.mixin.common.bandlands;
 
-import com.otterly76.ott.registry.OttRegistryKeys;
+
+import com.otterly76.ott.api.registry.OttRegistryKeys;
 import com.otterly76.ott.worldgen.bandlands.Bandlands;
-import com.otterly76.ott.duck.SurfaceSystemAccessor;
+import com.otterly76.ott.api.mixin.SurfaceSystemAccessor;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.WorldGenRegion;
@@ -26,3 +27,4 @@ public class NoiseBasedChunkGeneratorMixin {
         registry.listElements().forEach((holder) -> holder.value().fillBands(((SurfaceSystemAccessor)randomState.surfaceSystem()).ott$getNoiseRandom().fromHashOf(ResourceLocation.withDefaultNamespace("clay_bands"))));
     }
 }
+

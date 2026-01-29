@@ -1,5 +1,6 @@
 package com.otterly76.ott.util;
 
+
 import net.minecraft.Util;
 
 public class MathUtils {
@@ -18,3 +19,6 @@ public class MathUtils {
         return SIN[(int)(value * 10430.378F + 16384.0F) & '\uffff'];
     }
 }
+
+
+

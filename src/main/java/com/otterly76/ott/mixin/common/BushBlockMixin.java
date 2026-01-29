@@ -1,6 +1,7 @@
 package com.otterly76.ott.mixin.common;
 
-import com.otterly76.ott.block.ModBlocks;
+
+import com.otterly76.ott.neoforge.impl.registry.ModBlocks;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.block.BushBlock;

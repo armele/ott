@@ -1,5 +1,6 @@
 package com.otterly76.ott.util;
 
+
 import com.otterly76.ott.entity.PaleOakBoatEntity;
 import com.otterly76.ott.entity.PaleOakChestBoatEntity;
 import net.minecraft.stats.Stats;
@@ -79,3 +80,6 @@ public class PaleOakBoatType extends Item {
         ENTITY_PREDICATE = EntitySelector.NO_SPECTATORS.and(Entity::isPickable);
     }
 }
+
+
+

@@ -1,5 +1,6 @@
 package com.otterly76.ott.worldgen.feature;
 
+
 import com.mojang.serialization.Codec;
 import com.otterly76.ott.worldgen.feature.config.CompositeConfig;
 import net.minecraft.core.BlockPos;
@@ -44,3 +45,6 @@ public class CompositeFeature extends Feature<CompositeConfig> {
         FEATURE = new CompositeFeature(CompositeConfig.CODEC);
     }
 }
+
+
+

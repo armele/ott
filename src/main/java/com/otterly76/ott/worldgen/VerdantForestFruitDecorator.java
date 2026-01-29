@@ -1,5 +1,8 @@
 package com.otterly76.ott.worldgen;
 
+
+import com.otterly76.ott.neoforge.impl.registry.ModTreeDecoratorTypes;
+
 import com.mojang.serialization.MapCodec;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;

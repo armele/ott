@@ -1,6 +1,7 @@
 package com.otterly76.ott.mixin.common;
 
-import com.otterly76.ott.duck.ContextAccessor;
+
+import com.otterly76.ott.api.mixin.ContextAccessor;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Holder;
 import net.minecraft.core.Registry;

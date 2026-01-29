@@ -1,5 +1,6 @@
 package com.otterly76.ott.util;
 
+
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.nbt.CompoundTag;
@@ -62,3 +63,9 @@ public class LanternSavedData extends SavedData {
         level.getDataStorage().computeIfAbsent(new SavedData.Factory<>(LanternSavedData::new, LanternSavedData::load), "ott_lanterns");
     }
 }
+
+
+
+
+
+

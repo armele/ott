@@ -1,5 +1,6 @@
 package com.otterly76.ott.mixin.common;
 
+
 import net.minecraft.core.Holder;
 import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.level.biome.BiomeGenerationSettings;

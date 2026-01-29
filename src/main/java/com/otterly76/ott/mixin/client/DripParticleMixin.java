@@ -1,7 +1,8 @@
 package com.otterly76.ott.mixin.client;
 
-import com.otterly76.ott.ClientModEvents;
-import com.otterly76.ott.config.OttConfig;
+
+import com.otterly76.ott.neoforge.impl.client.ClientModEvents;
+import com.otterly76.ott.neoforge.impl.config.OttConfig;
 import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.client.particle.DripParticle;
 import net.minecraft.client.particle.TextureSheetParticle;
@@ -30,7 +31,8 @@ public abstract class DripParticleMixin {
     )
     private static void createWaterFallParticle(SimpleParticleType simpleParticleType, ClientLevel clientLevel, double d, double e, double f, double g, double h, double i, CallbackInfoReturnable<TextureSheetParticle> cir) {
         if (OttConfig.WEATHER.BIOME_TINT.get()) {
-            ClientModEvents.applyWaterTint(cir.getReturnValue(), clientLevel, BlockPos.containing(d, e, f));
+            com.otterly76.ott.neoforge.impl.client.ClientModEvents.applyWaterTint(cir.getReturnValue(), clientLevel, BlockPos.containing(d, e, f));
         }
     }
 }
+

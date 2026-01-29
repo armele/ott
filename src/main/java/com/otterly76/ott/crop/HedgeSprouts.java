@@ -1,6 +1,7 @@
 package com.otterly76.ott.crop;
 
-import com.otterly76.ott.item.ModItems;
+
+import com.otterly76.ott.neoforge.impl.registry.ModItems;
 import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.block.CropBlock;
 import net.minecraft.world.level.block.state.BlockBehaviour;

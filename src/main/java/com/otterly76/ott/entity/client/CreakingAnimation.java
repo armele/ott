@@ -1,5 +1,6 @@
 package com.otterly76.ott.entity.client;
 
+
 import net.minecraft.client.animation.AnimationChannel;
 import net.minecraft.client.animation.AnimationDefinition;
 import net.minecraft.client.animation.Keyframe;
@@ -264,3 +265,6 @@ public class CreakingAnimation {
                         new Keyframe(0.2917F, KeyframeAnimations.posVec(0.0F, 0.0F, 0.0F), Interpolations.LINEAR))).build();
     }
 }
+
+
+

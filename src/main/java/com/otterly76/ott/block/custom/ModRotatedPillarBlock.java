@@ -1,6 +1,7 @@
 package com.otterly76.ott.block.custom;
 
-import com.otterly76.ott.block.ModBlocks;
+
+import com.otterly76.ott.neoforge.impl.registry.ModBlocks;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.world.item.AxeItem;

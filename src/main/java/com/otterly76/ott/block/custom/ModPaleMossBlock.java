@@ -1,6 +1,7 @@
 package com.otterly76.ott.block.custom;
 
-import com.otterly76.ott.worldgen.ModConfiguredFeatures;
+
+import com.otterly76.ott.api.registry.ModConfiguredFeatures;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.server.level.ServerLevel;

@@ -1,5 +1,6 @@
 package com.otterly76.ott.entity.client;
 
+
 import com.otterly76.ott.entity.Creaking;
 import net.minecraft.client.model.HierarchicalModel;
 import net.minecraft.client.model.geom.ModelLayerLocation;
@@ -77,3 +78,6 @@ public class CreakingModel<T extends Creaking> extends HierarchicalModel<T> {
         return this.root;
     }
 }
+
+
+
