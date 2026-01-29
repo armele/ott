@@ -60,12 +60,15 @@
     "common.template.mansion.floor.ThirdFloorMixin",
     "server.DedicatedServerMixin",
     "server.VaultBlockEntityMixin",
-    "server.VaultServerDataAccessor"
+    "server.VaultServerDataAccessor",
+    "visuals.AnvilMenuMixin"
   ],
   "client": [
+    "client.AnvilScreenMixin",
     "client.ColorfulHeartsMixin",
     "client.ConnectScreenMixin",
     "client.DripParticleMixin",
+    "client.EditBoxMixin",
     "client.GuiAccessor",
     "client.HeadItemMixin",
     "client.HeadMixin",

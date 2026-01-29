@@ -5,7 +5,6 @@ Autochef’s Delight
 Better F3?
 Controlling
 Crafting Tweaks
-Easy Anvils
 Enchantment Descriptions
 Everthing's Copper
 Fusion
@@ -21,7 +20,6 @@ Skin Layer 3D
 Toast Control
 Uncraft Everything
 Universal Bonemeal
-Visual Workbench
 WITS
 Wither Skeleton Tweaks
 
