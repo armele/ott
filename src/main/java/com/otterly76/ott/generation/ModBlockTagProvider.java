@@ -10,6 +10,7 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
 import net.neoforged.neoforge.common.data.BlockTagsProvider;
 import net.neoforged.neoforge.common.data.ExistingFileHelper;
 import org.jetbrains.annotations.NotNull;
@@ -33,9 +34,6 @@ public class ModBlockTagProvider extends BlockTagsProvider {
         TagKey<Block> ottWoolKey = TagKey.create(Registries.BLOCK, ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, "wool"));
         TagKey<Block> ottStainedGlassKey = TagKey.create(Registries.BLOCK, ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, "stained_glass"));
         TagKey<Block> ottTerracottaKey = TagKey.create(Registries.BLOCK, ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, "terracotta"));
-
-        TagKey<Block> mcTier1Key = TagKey.create(Registries.BLOCK, ResourceLocation.fromNamespaceAndPath("minecolonies", "tier1blocks"));
-        TagKey<Block> mcTier2Key = TagKey.create(Registries.BLOCK, ResourceLocation.fromNamespaceAndPath("minecolonies", "tier2blocks"));
 
         TagKey<Block> structurizeWeakKey = TagKey.create(Registries.BLOCK, ResourceLocation.fromNamespaceAndPath("structurize", "weak_solid_blocks"));
 
@@ -72,6 +70,12 @@ public class ModBlockTagProvider extends BlockTagsProvider {
         var axeTag = this.tag(BlockTags.MINEABLE_WITH_AXE);
         var hoeTag = this.tag(BlockTags.MINEABLE_WITH_HOE);
         var shearsTag = this.tag(BlockTags.create(ResourceLocation.withDefaultNamespace("mineable/shears")));
+
+        this.tag(ModTags.Blocks.PATHS).add(Blocks.DIRT_PATH).addTag(com.minecolonies.api.items.ModTags.pathingBlocks);
+        this.tag(ModTags.Blocks.STONE)
+                .addTag(BlockTags.BASE_STONE_OVERWORLD)
+                .addTag(BlockTags.BASE_STONE_NETHER)
+                .add(Blocks.STONE, Blocks.ANDESITE, Blocks.DIORITE, Blocks.GRANITE, Blocks.DEEPSLATE, Blocks.TUFF);
 
         // --- 3. REGISTRY LOOP (Populate ott: and behavior tags) ---
         ModBlocks.BLOCKS.getEntries().forEach(deferredBlock -> {
@@ -123,8 +127,8 @@ public class ModBlockTagProvider extends BlockTagsProvider {
         this.tag(cDyedKey).addTag(ottConcreteKey).addTag(ottConcretePowderKey).addTag(ottWoolKey).addTag(ottStainedGlassKey).addTag(ottTerracottaKey);
 
         // Linking to MineColonies
-        this.tag(mcTier1Key).addTag(ottWoolKey).addTag(ottTerracottaKey);
-        this.tag(mcTier2Key).addTag(ottConcreteKey).addTag(ottConcretePowderKey).addTag(ottWoolKey).addTag(ottStainedGlassKey).addTag(ottTerracottaKey);
+        this.tag(com.minecolonies.api.items.ModTags.tier1blocks).addTag(ottWoolKey).addTag(ottTerracottaKey);
+        this.tag(com.minecolonies.api.items.ModTags.tier2blocks).addTag(ottConcreteKey).addTag(ottConcretePowderKey).addTag(ottWoolKey).addTag(ottStainedGlassKey).addTag(ottTerracottaKey);
 
         this.tag(structurizeWeakKey).addTag(ottConcretePowderKey);
 

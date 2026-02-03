@@ -10,7 +10,7 @@ Everthing's Copper
 Fusion
 Glassential Renewed
 Mouse Tweaks
-OpenBlocksElevator
+Open Blocks Elevator
 Polymorph
 Project: Vibrant Journeys
 Redstone Pen
@@ -18,7 +18,6 @@ Searchables
 Skin Layer 3D
 Toast Control
 Uncraft Everything
-Universal Bonemeal
 WITS
 Wither Skeleton Tweaks
 
@@ -27,6 +26,15 @@ Storage Delight
 
 Double Slabs
 Vertical Slabs
+
+Fuzs:
+Armor Statues
+Easy Anvils
+Effect Descriptions
+Fantastic Wings
+Tiny Skeletons
+Universal Enchants
+Visual Workbench
 
 Just Enough:
 Archaeology
