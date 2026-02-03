@@ -77,7 +77,6 @@ Features
   - Custom damage for dangerous plants: Flora 🌼
 - Added Create support, first pass (3D models and textures for ores)
 - Added Chipped support, first pass (fluffy leaves, fixed some lantern models, fixed ladders(3D))
-- Added farmland protection for all crops
 - Added custom schematic dimensions!
   - flat
   - flat w/ water
