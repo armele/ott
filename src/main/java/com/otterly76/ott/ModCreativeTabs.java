@@ -39,6 +39,15 @@ public final class ModCreativeTabs {
             output.accept(ModBlocks.MIDNIGHT_SAPLING);
             output.accept(ModBlocks.PALE_OAK_SAPLING);
 
+            // Protective Lanterns
+            output.accept(ModBlocks.FLIMSY_PROTECTIVE_LANTERN);
+            output.accept(ModBlocks.PROTECTIVE_LANTERN);
+            output.accept(ModBlocks.STURDY_PROTECTIVE_LANTERN);
+
+            // Fluid Lanterns
+            output.accept(ModBlocks.WATER_LANTERN);
+            output.accept(ModBlocks.LAVA_LANTERN);
+
             ModBlocks.PARTICLE_HEDGES.values().forEach(output::accept);
             ModBlocks.CREEPING_HEDGES.values().forEach(output::accept);
 

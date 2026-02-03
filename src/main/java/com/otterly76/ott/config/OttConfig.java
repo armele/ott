@@ -18,6 +18,7 @@ public class OttConfig {
     public static final Accessibility ACCESSIBILITY;
     public static final Clumps CLUMPS;
     public static final Visuals VISUALS;
+    public static final Lanterns LANTERNS;
 
     static {
         ModConfigSpec.Builder builder = new ModConfigSpec.Builder();
@@ -34,6 +35,7 @@ public class OttConfig {
         ACCESSIBILITY = new Accessibility(builder);
         CLUMPS = new Clumps(builder);
         VISUALS = new Visuals(builder);
+        LANTERNS = new Lanterns(builder);
 
         builder.pop();
         SPEC = builder.build();
@@ -52,6 +54,22 @@ public class OttConfig {
                     .define("freeNameTagRenaming", true);
             LOWER_ANVIL_COSTS = builder.comment("Should anvil costs be lowered and capped at 30?")
                     .define("lowerAnvilCosts", true);
+            builder.pop();
+        }
+    }
+
+    public static class Lanterns {
+        public final ModConfigSpec.ConfigValue<Integer> WATER_LANTERN_RADIUS;
+        public final ModConfigSpec.ConfigValue<Integer> LAVA_LANTERN_RADIUS;
+
+        private static final java.util.Set<Integer> ALLOWED_RADII = java.util.Set.of(2, 4, 8);
+
+        public Lanterns(ModConfigSpec.Builder builder) {
+            builder.push("lanterns");
+            WATER_LANTERN_RADIUS = builder.comment("Radius (in chunks) for the Water Lantern to clear water. Allowed: 2, 4, 8. Default is 2 chunks (32 blocks).")
+                    .define("waterLanternRadius", 2, v -> v instanceof Integer i && ALLOWED_RADII.contains(i));
+            LAVA_LANTERN_RADIUS = builder.comment("Radius (in chunks) for the Lava Lantern to clear lava. Allowed: 2, 4, 8. Default is 2 chunks (32 blocks).")
+                    .define("lavaLanternRadius", 2, v -> v instanceof Integer i && ALLOWED_RADII.contains(i));
             builder.pop();
         }
     }

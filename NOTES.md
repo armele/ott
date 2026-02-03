@@ -11,7 +11,6 @@ Fusion
 Glassential Renewed
 Mouse Tweaks
 OpenBlocksElevator
-Permanent Sponges
 Polymorph
 Project: Vibrant Journeys
 Redstone Pen

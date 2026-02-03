@@ -181,6 +181,9 @@
   "block.ott.protective_lantern": "Protective Lantern",
   "block.ott.sturdy_protective_lantern": "Sturdy Protective Lantern",
 
+  "block.ott.water_lantern": "Waterbending Lantern",
+  "block.ott.lava_lantern": "Lavabending Lantern",
+
   "ott.configuration.maxParticleAmount": "Maximum number of particles allowed",
   "ott.configuration.particleDensity": "Particle density",
   "ott.configuration.particleStormDensity": "Particle density during storms",

@@ -196,6 +196,26 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
                 .pattern("###")
                 .unlockedBy("has_tiny_charcoal", has(ModItems.TINY_CHARCOAL.get()))
                 .save(noAdv, getRecipePath("ott", "charcoal_from_tiny_charcoal"));
+
+        // Water Lantern
+        ShapedRecipeBuilder.shaped(RecipeCategory.DECORATIONS, ModBlocks.WATER_LANTERN.get())
+                .define('#', Items.IRON_INGOT)
+                .define('B', Items.WATER_BUCKET)
+                .pattern("###")
+                .pattern("#B#")
+                .pattern("###")
+                .unlockedBy("has_water_bucket", has(Items.WATER_BUCKET))
+                .save(noAdv);
+
+        // Lava Lantern
+        ShapedRecipeBuilder.shaped(RecipeCategory.DECORATIONS, ModBlocks.LAVA_LANTERN.get())
+                .define('#', Items.IRON_INGOT)
+                .define('B', Items.LAVA_BUCKET)
+                .pattern("###")
+                .pattern("#B#")
+                .pattern("###")
+                .unlockedBy("has_lava_bucket", has(Items.LAVA_BUCKET))
+                .save(noAdv);
     }
 
     private void woodRecipes(RecipeOutput noAdv) {

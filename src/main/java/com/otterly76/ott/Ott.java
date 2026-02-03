@@ -522,6 +522,7 @@ public class Ott {
     @SubscribeEvent
     public void onServerStarting(ServerStartingEvent event){
         LanternSavedData.init(event.getServer().overworld());
+        com.otterly76.ott.util.FluidLanternSavedData.init(event.getServer().overworld());
     }
 
     private void addPackFinders(AddPackFindersEvent event) {

@@ -41,6 +41,7 @@
     "common.StructureTemplatePoolAccessor",
     "common.StructureTemplatePoolMixin",
     "common.SurfaceRulesContextMixin",
+    "common.FlowingFluidMixin",
     "common.TreeDecoratorTypeInvoker",
     "common.WalkNodeEvaluatorMixin",
     "common.bandlands.NoiseBasedChunkGeneratorMixin",

@@ -47,6 +47,7 @@ Mods, Resourcepacks, and Datapacks You Will Not Need:
 - Better Days 🌛🌝🌜
 - Trash Slot, Trash Cans, etc 🗑️
 - Torchmaster, Magnum Torch
+- Permanent Sponges
 - Not Enough Recipe Book
 - What The Bucket
 - Looping Jukebox 🎶

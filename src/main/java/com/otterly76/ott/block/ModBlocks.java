@@ -200,6 +200,12 @@ public class ModBlocks {
     public static final DeferredBlock<Block> STURDY_PROTECTIVE_LANTERN = BLOCKS.register("sturdy_protective_lantern",
             () -> new ProtectiveLanternBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.LANTERN), 128));
 
+    public static final DeferredBlock<Block> WATER_LANTERN = BLOCKS.register("water_lantern",
+            () -> new WaterLanternBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.LANTERN)));
+
+    public static final DeferredBlock<Block> LAVA_LANTERN = BLOCKS.register("lava_lantern",
+            () -> new LavaLanternBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.LANTERN)));
+
     /**
      * Your original "real hedge" block (damage/bonemeal/etc). Keep separate.
      */

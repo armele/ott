@@ -16,37 +16,38 @@ public class LanternSavedData extends SavedData {
 
     @Override
     public @NotNull CompoundTag save(@NotNull CompoundTag tag, HolderLookup.@NotNull Provider provider) {
-        CompoundTag rangesTag = new CompoundTag();
-        for (Map.Entry<Integer, java.util.Set<BlockPos>> entry : LanternManager.getRawData().entrySet()) {
-            ListTag list = new ListTag();
-            for (BlockPos pos : entry.getValue()) {
-                // Wrap the position in a small object with a key so readBlockPos is happy
-                CompoundTag posWrapper = new CompoundTag();
-                posWrapper.put("p", NbtUtils.writeBlockPos(pos));
-                list.add(posWrapper);
-            }
-            rangesTag.put(entry.getKey().toString(), list);
+        ListTag list = new ListTag();
+        for (Map.Entry<BlockPos, Integer> entry : LanternManager.getRawData().entrySet()) {
+            CompoundTag wrapper = new CompoundTag();
+            wrapper.put("p", NbtUtils.writeBlockPos(entry.getKey()));
+            wrapper.putInt("r", entry.getValue());
+            list.add(wrapper);
         }
-        tag.put("LanternRanges", rangesTag);
+        tag.put("ProtectiveLanterns", list);
         return tag;
     }
 
     public static LanternSavedData load(CompoundTag tag, HolderLookup.Provider provider) {
         LanternSavedData data = new LanternSavedData();
-        CompoundTag rangesTag = tag.getCompound("LanternRanges");
-
-        for (String key : rangesTag.getAllKeys()) {
-            try {
-                int range = Integer.parseInt(key);
-                ListTag list = rangesTag.getList(key, 10); // 10 = CompoundTag
-
-                for (int i = 0; i < list.size(); i++) {
-                    CompoundTag wrapper = list.getCompound(i);
-                    // Now we provide the tag and the key "p" to match the 2-argument requirement
-                    NbtUtils.readBlockPos(wrapper, "p").ifPresent(pos -> LanternManager.addLantern(pos, range));
-                }
-            } catch (NumberFormatException e) {
-                // Skip non-numeric keys
+        if (tag.contains("ProtectiveLanterns")) {
+            ListTag list = tag.getList("ProtectiveLanterns", 10);
+            for (int i = 0; i < list.size(); i++) {
+                CompoundTag wrapper = list.getCompound(i);
+                int range = wrapper.getInt("r");
+                NbtUtils.readBlockPos(wrapper, "p").ifPresent(pos -> LanternManager.addLantern(pos, range));
+            }
+        } else if (tag.contains("LanternRanges")) {
+            // Legacy loading for old format
+            CompoundTag rangesTag = tag.getCompound("LanternRanges");
+            for (String key : rangesTag.getAllKeys()) {
+                try {
+                    int range = Integer.parseInt(key);
+                    ListTag list = rangesTag.getList(key, 10);
+                    for (int j = 0; j < list.size(); j++) {
+                        CompoundTag wrapper = list.getCompound(j);
+                        NbtUtils.readBlockPos(wrapper, "p").ifPresent(pos -> LanternManager.addLantern(pos, range));
+                    }
+                } catch (NumberFormatException ignored) {}
             }
         }
         return data;
