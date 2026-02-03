@@ -1,7 +1,6 @@
 package com.otterly76.ott.trim;
 
-
-import com.otterly76.ott.neoforge.impl.registry.ModItems;
+import com.otterly76.ott.item.ModItems;
 import net.minecraft.Util;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.data.worldgen.BootstrapContext;

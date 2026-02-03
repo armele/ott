@@ -1,10 +1,9 @@
 package com.otterly76.ott.worldgen.modifier;
 
-
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.MapCodec;
 import com.otterly76.ott.mixin.common.MappedRegistryAccessor;
-import com.otterly76.ott.api.registry.OttRegistryKeys;
+import com.otterly76.ott.registry.OttRegistryKeys;
 import net.minecraft.core.Holder;
 import net.minecraft.core.RegistrationInfo;
 import net.minecraft.core.Registry;
@@ -54,7 +53,3 @@ public interface Modifier {
 
     MapCodec<? extends Modifier> codec();
 }
-
-
-
-

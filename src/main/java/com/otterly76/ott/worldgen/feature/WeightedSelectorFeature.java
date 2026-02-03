@@ -1,6 +1,5 @@
 package com.otterly76.ott.worldgen.feature;
 
-
 import com.otterly76.ott.worldgen.feature.config.WeightedSelectorConfig;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Holder;
@@ -34,6 +33,3 @@ public class WeightedSelectorFeature extends Feature<WeightedSelectorConfig> {
                 .orElse(false);
     }
 }
-
-
-

@@ -1,6 +1,5 @@
 package com.otterly76.ott.mixin.common;
 
-
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.animal.Animal;

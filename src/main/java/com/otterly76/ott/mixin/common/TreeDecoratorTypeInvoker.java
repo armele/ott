@@ -1,6 +1,5 @@
 package com.otterly76.ott.mixin.common;
 
-
 import com.mojang.serialization.MapCodec;
 import net.minecraft.world.level.levelgen.feature.treedecorators.TreeDecorator;
 import net.minecraft.world.level.levelgen.feature.treedecorators.TreeDecoratorType;
@@ -14,6 +13,3 @@ public interface TreeDecoratorTypeInvoker {
         throw new IllegalStateException();
     }
 }
-
-
-

@@ -1,8 +1,7 @@
 package com.otterly76.ott.block.custom;
 
-
 import com.mojang.serialization.MapCodec;
-import com.otterly76.ott.neoforge.impl.registry.ModParticle;
+import com.otterly76.ott.particle.ModParticle;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.util.ParticleUtils;

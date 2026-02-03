@@ -1,6 +1,5 @@
 package com.otterly76.ott.worldgen.feature.config;
 
-
 import com.mojang.serialization.Codec;
 import com.otterly76.ott.util.weighted.WeightedList;
 import net.minecraft.core.Holder;

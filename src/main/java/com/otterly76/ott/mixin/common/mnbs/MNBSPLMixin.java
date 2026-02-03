@@ -1,10 +1,9 @@
 package com.otterly76.ott.mixin.common.mnbs;
 
-
 import com.mojang.datafixers.kinds.App;
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
-import com.otterly76.ott.api.mixin.mnbs.MNBSPL;
+import com.otterly76.ott.duck.mnbs.MNBSPL;
 import com.otterly76.ott.util.CodecExtender;
 import net.minecraft.core.Holder;
 import net.minecraft.world.level.biome.Biome;

@@ -1,6 +1,5 @@
 package com.otterly76.ott.particle;
 
-
 import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.client.particle.*;
 import net.minecraft.core.particles.SimpleParticleType;
@@ -70,6 +69,3 @@ public class HedgeLeafParticle extends TextureSheetParticle {
         }
     }
 }
-
-
-

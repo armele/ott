@@ -1,6 +1,5 @@
 package com.otterly76.ott.mixin.common;
 
-
 import net.minecraft.world.level.levelgen.structure.StructureSet;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Mutable;

@@ -1,6 +1,5 @@
 package com.otterly76.ott.mixin.common;
 
-
 import com.google.common.collect.ImmutableMap;
 import net.minecraft.world.level.levelgen.structure.pools.alias.PoolAliasLookup;
 import org.spongepowered.asm.mixin.Mixin;

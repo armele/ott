@@ -1,6 +1,5 @@
 package com.otterly76.ott.worldgen.modifier;
 
-
 import com.mojang.serialization.MapCodec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 import net.minecraft.core.HolderSet;
@@ -33,7 +32,3 @@ public class RemoveBiomeSpawnsModifier extends AbstractBiomeModifier {
         return CODEC;
     }
 }
-
-
-
-

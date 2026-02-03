@@ -1,9 +1,8 @@
 package com.otterly76.ott.particle;
 
-
 import com.mojang.math.Axis;
-import com.otterly76.ott.neoforge.impl.client.ClientModEvents;
-import com.otterly76.ott.neoforge.impl.config.OttConfig;
+import com.otterly76.ott.ClientModEvents;
+import com.otterly76.ott.config.OttConfig;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.client.particle.TextureSheetParticle;
@@ -17,8 +16,6 @@ public abstract class WeatherParticle extends TextureSheetParticle {
     protected BlockPos.MutableBlockPos pos;
     boolean shouldFadeOut = false;
     float temperature;
-
-    @SuppressWarnings("this-escape")
 
     protected WeatherParticle(ClientLevel level, double x, double y, double z) {
         super(level, x, y, z);
@@ -61,7 +58,7 @@ public abstract class WeatherParticle extends TextureSheetParticle {
 
     public void remove() {
         if (this.isAlive()) {
-            --com.otterly76.ott.neoforge.impl.client.ClientModEvents.particleCount;
+            --ClientModEvents.particleCount;
         }
 
         super.remove();
@@ -90,14 +87,3 @@ public abstract class WeatherParticle extends TextureSheetParticle {
         return dot > 0.0F ? quaternion.mul(Axis.YP.rotation((float)Math.PI)) : quaternion;
     }
 }
-
-
-
-
-
-
-
-
-
-
-

@@ -1,8 +1,7 @@
 package com.otterly76.ott.mixin.client;
 
-
 import com.mojang.blaze3d.vertex.PoseStack;
-import com.otterly76.ott.neoforge.impl.client.render.DragonHeadGeoRenderer;
+import com.otterly76.ott.client.render.DragonHeadGeoRenderer;
 import net.minecraft.client.renderer.BlockEntityWithoutLevelRenderer;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.RenderType;
@@ -57,7 +56,3 @@ public class HeadItemMixin {
         }
     }
 }
-
-
-
-

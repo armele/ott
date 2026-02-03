@@ -1,6 +1,5 @@
 package com.otterly76.ott.worldgen.structure;
 
-
 import com.mojang.datafixers.util.Either;
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.MapCodec;
@@ -76,7 +75,3 @@ public record AlternateJigsawConfig(Holder<StructureTemplatePool> startPool, Opt
         }
     }
 }
-
-
-
-

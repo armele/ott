@@ -1,6 +1,5 @@
 package com.otterly76.ott.particle.render;
 
-
 import com.mojang.blaze3d.platform.GlStateManager.DestFactor;
 import com.mojang.blaze3d.platform.GlStateManager.SourceFactor;
 import com.mojang.blaze3d.systems.RenderSystem;
@@ -37,6 +36,3 @@ public class GroundFogRenderType implements ParticleRenderType {
     }
 
 }
-
-
-

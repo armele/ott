@@ -1,7 +1,6 @@
 package com.otterly76.ott.mixin.common;
 
-
-import com.otterly76.ott.neoforge.impl.config.OttConfig;
+import com.otterly76.ott.config.OttConfig;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.protocol.game.ClientboundLevelEventPacket;
 import net.minecraft.server.level.ServerPlayer;
@@ -37,4 +36,3 @@ public class PlayerListMixin {
         }
     }
 }
-

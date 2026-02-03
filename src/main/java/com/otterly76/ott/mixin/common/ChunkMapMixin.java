@@ -1,11 +1,10 @@
 package com.otterly76.ott.mixin.common;
 
-
 import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
 import com.llamalad7.mixinextras.injector.wrapoperation.WrapOperation;
 import com.llamalad7.mixinextras.sugar.Local;
 import com.otterly76.ott.Ott;
-import com.otterly76.ott.api.registry.OttRegistryKeys;
+import com.otterly76.ott.registry.OttRegistryKeys;
 import com.otterly76.ott.worldgen.NoiseRouterTarget;
 import com.otterly76.ott.worldgen.modifier.WrapNoiseRouterModifier;
 import net.minecraft.core.HolderGetter;
@@ -62,7 +61,3 @@ public class ChunkMapMixin {
         return init.call(noiseSettings, noiseGetter, seed);
     }
 }
-
-
-
-

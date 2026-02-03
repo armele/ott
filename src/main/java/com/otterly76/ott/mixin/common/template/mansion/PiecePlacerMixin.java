@@ -1,7 +1,6 @@
 package com.otterly76.ott.mixin.common.template.mansion;
 
-
-import com.otterly76.ott.api.mixin.RegistryHolder;
+import com.otterly76.ott.duck.RegistryHolder;
 import net.minecraft.core.RegistryAccess;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Unique;
@@ -37,7 +36,3 @@ public class PiecePlacerMixin implements RegistryHolder {
         OTT$REGISTRY_CONTEXT.remove();
     }
 }
-
-
-
-

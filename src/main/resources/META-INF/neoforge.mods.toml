@@ -20,9 +20,6 @@ issueTrackerURL="${mod_issue_tracker_url}" #optional
 [[mixins]]
 config = "ott.mixins.json"
 
-[[mixins]]
-config = "ott.neoforge.mixins.json"
-
 # A list of mods - how many allowed here is determined by the individual mod loader
 [[mods]] #mandatory
 

@@ -1,9 +1,8 @@
 package com.otterly76.ott.worldgen.bandlands.band;
 
-
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.MapCodec;
-import com.otterly76.ott.api.registry.OttRegistryKeys;
+import com.otterly76.ott.registry.OttRegistryKeys;
 import net.minecraft.core.Registry;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.util.RandomSource;
@@ -25,7 +24,3 @@ public interface Band {
 
     MapCodec<? extends Band> codec();
 }
-
-
-
-

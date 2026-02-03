@@ -1,6 +1,5 @@
 package com.otterly76.ott.worldgen.feature;
 
-
 import com.mojang.datafixers.util.Pair;
 import com.otterly76.ott.worldgen.feature.config.SelectConfig;
 import net.minecraft.core.BlockPos;
@@ -37,6 +36,3 @@ public class SelectFeature extends Feature<SelectConfig> {
         return false;
     }
 }
-
-
-

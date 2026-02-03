@@ -1,7 +1,5 @@
 package com.otterly76.ott.block;
 
-
-import com.otterly76.ott.api.registry.OttDamageTypes;
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.util.RandomSource;
@@ -27,6 +25,7 @@ import net.minecraft.core.registries.Registries;
 import net.minecraft.world.entity.EntityType;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
+import com.otterly76.ott.OttDamageTypes;
 
 public class HedgeBlock extends Block implements BonemealableBlock {
     private static final VoxelShape HEDGE_BB = Block.box(1.0D, 0.0D, 1.0D, 15.0D, 15.0D, 15.0D);
@@ -77,7 +76,7 @@ public class HedgeBlock extends Block implements BonemealableBlock {
         if (level.isClientSide() || (entity instanceof Player player && player.isCreative())) {
             return;
         }
-        entity.hurt(OttDamageTypes.of(level, com.otterly76.ott.api.registry.OttDamageTypes.FLORA_DAMAGE), DAMAGE);
+        entity.hurt(OttDamageTypes.of(level, OttDamageTypes.FLORA_DAMAGE), DAMAGE);
     }
 
     private int calculateHedgeHeight(LevelReader level, BlockPos pos) {
@@ -109,4 +108,3 @@ public class HedgeBlock extends Block implements BonemealableBlock {
         level.setBlockAndUpdate(pos.above(), this.defaultBlockState());
     }
 }
-

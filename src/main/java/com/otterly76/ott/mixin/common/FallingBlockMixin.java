@@ -1,6 +1,5 @@
 package com.otterly76.ott.mixin.common;
 
-
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.FallingBlock;
 import net.minecraft.world.level.block.state.BlockState;

@@ -1,6 +1,5 @@
 package com.otterly76.ott.mixin.client;
 
-
 import net.minecraft.client.resources.sounds.SoundInstance;
 import net.minecraft.client.sounds.SoundEngine;
 import org.spongepowered.asm.mixin.Mixin;
@@ -19,10 +18,9 @@ public class SoundEngineMixin {
             // We just need a way to check if 'boot' is done.
             // A simple way is to check if a known config is reachable.
             // If this throws, we skip playing the sound.
-            com.otterly76.ott.neoforge.impl.config.OttConfig.WEATHER.BIOME_TINT.get();
+            com.otterly76.ott.config.OttConfig.WEATHER.BIOME_TINT.get();
         } catch (IllegalStateException e) {
             ci.cancel();
         }
     }
 }
-

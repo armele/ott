@@ -1,9 +1,8 @@
 package com.otterly76.ott.particle;
 
-
 import com.mojang.blaze3d.vertex.VertexConsumer;
-import com.otterly76.ott.neoforge.impl.client.ClientModEvents;
-import com.otterly76.ott.neoforge.impl.config.OttConfig;
+import com.otterly76.ott.ClientModEvents;
+import com.otterly76.ott.config.OttConfig;
 import com.otterly76.ott.particle.render.GroundFogRenderType;
 import net.minecraft.client.Camera;
 import net.minecraft.client.multiplayer.ClientLevel;
@@ -55,7 +54,7 @@ public class GroundFogParticle extends WeatherParticle {
 
     public void remove() {
         if (this.isAlive()) {
-            --com.otterly76.ott.neoforge.impl.client.ClientModEvents.fogCount;
+            --ClientModEvents.fogCount;
         }
 
         super.remove();
@@ -92,7 +91,3 @@ public class GroundFogParticle extends WeatherParticle {
         }
     }
 }
-
-
-
-

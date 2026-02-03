@@ -1,9 +1,8 @@
 package com.otterly76.ott.worldgen.modifier.util;
 
-
-import com.otterly76.ott.worldgen.density.MarkerFunction;
-import com.otterly76.ott.worldgen.density.MergedDensityFunction;
-import com.otterly76.ott.worldgen.density.OriginalMarkerDensityFunction;
+import com.otterly76.ott.worldgen.densityfunction.MarkerFunction;
+import com.otterly76.ott.worldgen.densityfunction.MergedDensityFunction;
+import com.otterly76.ott.worldgen.densityfunction.OriginalMarkerDensityFunction;
 import net.minecraft.world.level.levelgen.DensityFunction;
 import net.minecraft.world.level.levelgen.DensityFunctions;
 
@@ -32,7 +31,3 @@ public class DensityFunctionWrapper {
         return false;
     }
 }
-
-
-
-

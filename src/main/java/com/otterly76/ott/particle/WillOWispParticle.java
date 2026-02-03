@@ -1,6 +1,5 @@
 package com.otterly76.ott.particle;
 
-
 import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.client.particle.*;
 import net.minecraft.core.particles.SimpleParticleType;
@@ -10,8 +9,6 @@ import org.jetbrains.annotations.NotNull;
 public class WillOWispParticle extends TextureSheetParticle {
     private final SpriteSet sprites;
     private final float colorOffset;
-
-    @SuppressWarnings("this-escape")
 
     protected WillOWispParticle(ClientLevel level, double x, double y, double z, double xSpeed, double ySpeed, double zSpeed, SpriteSet sprites) {
         super(level, x, y, z, xSpeed, ySpeed, zSpeed);
@@ -84,11 +81,3 @@ public class WillOWispParticle extends TextureSheetParticle {
         }
     }
 }
-
-
-
-
-
-
-
-

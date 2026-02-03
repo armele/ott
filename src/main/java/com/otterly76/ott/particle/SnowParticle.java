@@ -1,8 +1,7 @@
 package com.otterly76.ott.particle;
 
-
-import com.otterly76.ott.neoforge.impl.client.ClientModEvents;
-import com.otterly76.ott.neoforge.impl.config.OttConfig;
+import com.otterly76.ott.ClientModEvents;
+import com.otterly76.ott.config.OttConfig;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.client.particle.Particle;
@@ -15,12 +14,10 @@ import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
 import org.jetbrains.annotations.NotNull;
 
-import static com.otterly76.ott.api.core.Constants.MOD_ID;
+import static com.otterly76.ott.Constants.MOD_ID;
 
 public class SnowParticle extends WeatherParticle {
     float rotationAmount;
-
-    @SuppressWarnings("this-escape")
 
     protected SnowParticle(ClientLevel level, double x, double y, double z) {
         super(level, x, y, z);
@@ -78,12 +75,3 @@ public class SnowParticle extends WeatherParticle {
         }
     }
 }
-
-
-
-
-
-
-
-
-

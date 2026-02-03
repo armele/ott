@@ -1,6 +1,5 @@
 package com.otterly76.ott.util;
 
-
 import net.minecraft.network.chat.Component;
 import java.util.List;
 import java.util.Random;
@@ -43,8 +42,3 @@ public class LoadingTipManager {
         return Component.translatable(currentTip);
     }
 }
-
-
-
-
-

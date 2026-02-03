@@ -1,12 +1,11 @@
 package com.otterly76.ott.block.custom;
 
-
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.MapCodec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
-import com.otterly76.ott.neoforge.impl.registry.ModBlocks;
+import com.otterly76.ott.block.ModBlocks;
 import com.otterly76.ott.particle.TrailParticleOption;
-import com.otterly76.ott.neoforge.impl.registry.ModSounds;
+import com.otterly76.ott.sound.ModSounds;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Holder;
 import net.minecraft.server.level.ServerLevel;
@@ -164,6 +163,3 @@ public class EyeblossomBlock extends FlowerBlock {
         }
     }
 }
-
-
-

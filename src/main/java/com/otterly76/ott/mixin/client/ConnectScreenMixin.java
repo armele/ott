@@ -1,6 +1,5 @@
 package com.otterly76.ott.mixin.client;
 
-
 import com.otterly76.ott.util.LoadingTipManager;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.screens.ConnectScreen;
@@ -32,6 +31,3 @@ public abstract class ConnectScreenMixin extends Screen {
         guiGraphics.drawCenteredString(this.font, tip, x, y, 0xFFFFAA00);
     }
 }
-
-
-

@@ -1,9 +1,6 @@
 package com.otterly76.ott.entity;
 
-
-import com.otterly76.ott.neoforge.impl.registry.ModEntities;
-
-import com.otterly76.ott.neoforge.impl.registry.ModItems;
+import com.otterly76.ott.item.ModItems;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
@@ -18,13 +15,9 @@ import org.jetbrains.annotations.NotNull;
 public class PaleOakBoatEntity extends Boat {
     private static final EntityDataAccessor<Boolean> PALE_OAK;
 
-    @SuppressWarnings("this-escape")
-
     public PaleOakBoatEntity(EntityType<? extends Boat> type, Level level) {
         super(type, level);
     }
-
-    @SuppressWarnings("this-escape")
 
     public PaleOakBoatEntity(Level level, double x, double y, double z) {
         this(ModEntities.PALE_OAK_BOAT.get(), level);
@@ -60,8 +53,3 @@ public class PaleOakBoatEntity extends Boat {
         PALE_OAK = SynchedEntityData.defineId(PaleOakBoatEntity.class, EntityDataSerializers.BOOLEAN);
     }
 }
-
-
-
-
-

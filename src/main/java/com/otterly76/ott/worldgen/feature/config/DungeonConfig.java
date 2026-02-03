@@ -1,11 +1,10 @@
 package com.otterly76.ott.worldgen.feature.config;
 
-
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 import com.otterly76.ott.util.weighted.WeightedList;
 import com.otterly76.ott.worldgen.OttCodecs;
-import com.otterly76.ott.worldgen.block.stateprovider.WeightedProvider;
+import com.otterly76.ott.worldgen.stateprovider.WeightedProvider;
 import net.minecraft.core.HolderSet;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.core.registries.Registries;
@@ -42,7 +41,3 @@ public record DungeonConfig(int minOpenings, int maxOpenings, IntProvider radius
         CODEC = RecordCodecBuilder.create((instance) -> instance.group(ExtraCodecs.NON_NEGATIVE_INT.fieldOf("min_openings").orElse(1).forGetter(DungeonConfig::minOpenings), ExtraCodecs.NON_NEGATIVE_INT.fieldOf("max_openings").orElse(5).forGetter(DungeonConfig::maxOpenings), IntProvider.codec(1, 16).fieldOf("radius").orElse(UniformInt.of(2, 3)).forGetter(DungeonConfig::radius), ExtraCodecs.NON_NEGATIVE_INT.fieldOf("max_chests").orElse(2).forGetter(DungeonConfig::maxChests), WeightedList.codec(BuiltInRegistries.ENTITY_TYPE.byNameCodec()).fieldOf("spawner_entity").orElse(DEFAULT_MOBS).forGetter(DungeonConfig::spawnerMobs), BlockStateProvider.CODEC.fieldOf("floor_provider").orElse(new WeightedProvider(DEFAULT_FLOOR)).forGetter(DungeonConfig::floorProvider), BlockStateProvider.CODEC.fieldOf("wall_provider").orElse(SimpleStateProvider.simple(Blocks.COBBLESTONE)).forGetter(DungeonConfig::wallProvider), OttCodecs.BLOCK_SET.optionalFieldOf("dungeon_invalid_blocks").forGetter(DungeonConfig::dungeonInvalidBlocks), ResourceKey.codec(Registries.LOOT_TABLE).fieldOf("loot_table").orElse(BuiltInLootTables.SIMPLE_DUNGEON).forGetter(DungeonConfig::lootTable)).apply(instance, DungeonConfig::new));
     }
 }
-
-
-
-

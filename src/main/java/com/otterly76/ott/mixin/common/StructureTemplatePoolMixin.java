@@ -1,8 +1,7 @@
 package com.otterly76.ott.mixin.common;
 
-
 import com.mojang.datafixers.util.Pair;
-import com.otterly76.ott.api.mixin.StructurePoolAccess;
+import com.otterly76.ott.duck.StructurePoolAccess;
 import com.otterly76.ott.worldgen.structure.OttTemplates;
 import net.minecraft.world.level.levelgen.structure.pools.StructurePoolElement;
 import net.minecraft.world.level.levelgen.structure.pools.StructureTemplatePool;
@@ -32,6 +31,3 @@ public class StructureTemplatePoolMixin implements StructurePoolAccess {
         this.rawTemplates.forEach((pair) -> this.ott$templates.add(pair.getFirst(), pair.getSecond()));
     }
 }
-
-
-

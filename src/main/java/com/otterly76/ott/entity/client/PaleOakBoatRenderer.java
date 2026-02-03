@@ -1,6 +1,5 @@
 package com.otterly76.ott.entity.client;
 
-
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import com.mojang.math.Axis;
@@ -80,6 +79,3 @@ public class PaleOakBoatRenderer extends EntityRenderer<Boat> {
         return this.hasChest ? CHEST_BOAT_TEXTURE : BOAT_TEXTURE;
     }
 }
-
-
-

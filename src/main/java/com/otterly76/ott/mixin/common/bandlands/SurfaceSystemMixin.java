@@ -1,7 +1,6 @@
 package com.otterly76.ott.mixin.common.bandlands;
 
-
-import com.otterly76.ott.api.mixin.SurfaceSystemAccessor;
+import com.otterly76.ott.duck.SurfaceSystemAccessor;
 import net.minecraft.world.level.levelgen.PositionalRandomFactory;
 import net.minecraft.world.level.levelgen.SurfaceSystem;
 import net.minecraft.world.level.levelgen.synth.NormalNoise;

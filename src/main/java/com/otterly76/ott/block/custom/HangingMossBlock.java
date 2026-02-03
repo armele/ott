@@ -1,10 +1,9 @@
 package com.otterly76.ott.block.custom;
 
-
 import com.mojang.serialization.MapCodec;
-import com.otterly76.ott.neoforge.impl.registry.ModBlocks;
-import com.otterly76.ott.neoforge.impl.registry.ModSounds;
-import com.otterly76.ott.api.registry.ModTags;
+import com.otterly76.ott.block.ModBlocks;
+import com.otterly76.ott.sound.ModSounds;
+import com.otterly76.ott.util.ModTags;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerLevel;
@@ -32,8 +31,6 @@ public class HangingMossBlock extends Block implements BonemealableBlock {
     private static final int SIDE_PADDING = 1;
     private static final VoxelShape TIP_SHAPE = Block.box(1.0F, 2.0F, 1.0F, 15.0F, 16.0F, 15.0F);
     private static final VoxelShape BASE_SHAPE = Block.box(1.0F, 0.0F, 1.0F, 15.0F, 16.0F, 15.0F);
-
-    @SuppressWarnings("this-escape")
 
     public HangingMossBlock(BlockBehaviour.Properties properties) {
         super(properties);
@@ -122,5 +119,3 @@ public class HangingMossBlock extends Block implements BonemealableBlock {
 
     }
 }
-
-

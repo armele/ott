@@ -3,7 +3,7 @@ package com.otterly76.ott.worldgen.surface;
 import com.mojang.datafixers.util.Pair;
 import com.otterly76.ott.Ott;
 import com.otterly76.ott.mixin.common.NoiseBasedChunkGeneratorAccessor;
-import com.otterly76.ott.api.registry.OttRegistryKeys;
+import com.otterly76.ott.registry.OttRegistryKeys;
 import com.otterly76.ott.worldgen.modifier.AddSurfaceRuleModifier;
 import com.otterly76.ott.worldgen.modifier.Modifier;
 import com.otterly76.ott.worldgen.surface.rule.TransientMergedRule;
@@ -79,12 +79,3 @@ public class SurfaceRuleManager {
         }
     }
 }
-
-
-
-
-
-
-
-
-

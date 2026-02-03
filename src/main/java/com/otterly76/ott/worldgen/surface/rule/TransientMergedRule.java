@@ -1,6 +1,5 @@
 package com.otterly76.ott.worldgen.surface.rule;
 
-
 import com.google.common.collect.ImmutableList;
 import net.minecraft.util.KeyDispatchDataCodec;
 import net.minecraft.world.level.block.state.BlockState;

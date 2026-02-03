@@ -1,8 +1,7 @@
 package com.otterly76.ott.particle;
 
-
 import com.mojang.blaze3d.vertex.VertexConsumer;
-import com.otterly76.ott.neoforge.impl.config.OttConfig;
+import com.otterly76.ott.config.OttConfig;
 import net.minecraft.client.Camera;
 import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.client.particle.Particle;
@@ -54,7 +53,3 @@ public class DustParticle extends DustMoteParticle {
         }
     }
 }
-
-
-
-

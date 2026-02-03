@@ -1,6 +1,5 @@
 package com.otterly76.ott.mixin.common;
 
-
 import net.minecraft.core.Direction;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.DripstoneThickness;
@@ -15,6 +14,3 @@ public interface DripstoneUtilsAccessor {
         throw new AssertionError("Implemented via mixin");
     }
 }
-
-
-

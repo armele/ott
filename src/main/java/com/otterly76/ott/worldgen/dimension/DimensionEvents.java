@@ -1,7 +1,6 @@
 package com.otterly76.ott.worldgen.dimension;
 
-
-import com.otterly76.ott.api.core.Constants;
+import com.otterly76.ott.Constants;
 import com.otterly76.ott.util.LanternManager;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceKey;
@@ -20,7 +19,7 @@ public class DimensionEvents {
 
     public static final ResourceKey<DimensionType> SCHEMATIC_DIM_TYPE = ResourceKey.create(
             Registries.DIMENSION_TYPE,
-            ResourceLocation.fromNamespaceAndPath(com.otterly76.ott.api.core.Constants.MOD_ID, "schematic")
+            ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, "schematic")
     );
 
     @SubscribeEvent

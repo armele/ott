@@ -1,6 +1,5 @@
 package com.otterly76.ott.worldgen.modifier;
 
-
 import com.mojang.serialization.MapCodec;
 
 public record NoOpModifier() implements Modifier {

@@ -1,10 +1,9 @@
 package com.otterly76.ott.worldgen.structure;
 
-
 import com.mojang.serialization.MapCodec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
-import com.otterly76.ott.worldgen.placement.condition.AllOfPlacementCondition;
-import com.otterly76.ott.worldgen.placement.condition.PlacementCondition;
+import com.otterly76.ott.worldgen.placementcondition.AllOfPlacementCondition;
+import com.otterly76.ott.worldgen.placementcondition.PlacementCondition;
 import net.minecraft.core.Holder;
 import net.minecraft.world.level.levelgen.structure.Structure;
 
@@ -41,7 +40,3 @@ public final class DelegatingConfig {
         }
     }
 }
-
-
-
-

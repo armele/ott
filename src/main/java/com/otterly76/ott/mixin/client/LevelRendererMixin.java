@@ -1,7 +1,6 @@
 package com.otterly76.ott.mixin.client;
 
-
-import com.otterly76.ott.neoforge.impl.config.OttConfig;
+import com.otterly76.ott.config.OttConfig;
 import com.otterly76.ott.particle.WeatherParticleSpawner;
 import net.minecraft.client.Camera;
 import net.minecraft.client.Minecraft;
@@ -85,7 +84,3 @@ public class LevelRendererMixin {
         }
     }
 }
-
-
-
-

@@ -1,8 +1,7 @@
 package com.otterly76.ott.particle;
 
-
 import com.mojang.blaze3d.vertex.VertexConsumer;
-import com.otterly76.ott.neoforge.impl.config.OttConfig;
+import com.otterly76.ott.config.OttConfig;
 import net.minecraft.client.Camera;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.multiplayer.ClientLevel;
@@ -35,7 +34,6 @@ import java.io.IOException;
 import java.io.InputStream;
 
 public class ShrubParticle extends WeatherParticle {
-    @SuppressWarnings("this-escape")
     protected ShrubParticle(ClientLevel level, double x, double y, double z) {
         super(level, x, y, z);
         this.quadSize = 0.5F;
@@ -137,12 +135,3 @@ public class ShrubParticle extends WeatherParticle {
         }
     }
 }
-
-
-
-
-
-
-
-
-

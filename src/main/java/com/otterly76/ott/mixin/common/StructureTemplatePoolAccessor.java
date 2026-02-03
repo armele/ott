@@ -1,6 +1,5 @@
 package com.otterly76.ott.mixin.common;
 
-
 import com.mojang.datafixers.util.Pair;
 import it.unimi.dsi.fastutil.objects.ObjectArrayList;
 import net.minecraft.world.level.levelgen.structure.pools.StructurePoolElement;

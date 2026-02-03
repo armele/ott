@@ -1,10 +1,9 @@
 package com.otterly76.ott.entity.client;
 
-
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import com.mojang.math.Axis;
-import com.otterly76.ott.api.core.Constants;
+import com.otterly76.ott.Constants;
 import com.otterly76.ott.entity.OttWoodSetBoatEntity;
 import com.otterly76.ott.entity.OttWoodSetChestBoatEntity;
 import net.minecraft.client.model.BoatModel;
@@ -89,6 +88,3 @@ public class OttWoodSetBoatRenderer extends EntityRenderer<Boat> {
         return ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, folder + setName + ".png");
     }
 }
-
-
-

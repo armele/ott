@@ -1,11 +1,10 @@
 package com.otterly76.ott.worldgen.structure;
 
-
 import com.google.common.collect.Lists;
-import com.otterly76.ott.neoforge.impl.config.ConfigHandler;
-import com.otterly76.ott.api.mixin.StructurePoolAccess;
-import com.otterly76.ott.worldgen.structure.pool.element.DelegatingConfig;
-import com.otterly76.ott.worldgen.structure.pool.element.DelegatingPoolElement;
+import com.otterly76.ott.config.ConfigHandler;
+import com.otterly76.ott.duck.StructurePoolAccess;
+import com.otterly76.ott.worldgen.poolelement.DelegatingConfig;
+import com.otterly76.ott.worldgen.poolelement.DelegatingPoolElement;
 import net.minecraft.core.*;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.data.worldgen.Pools;
@@ -378,13 +377,3 @@ public class AlternateJigsawGenerator {
     private record PieceState(PoolElementStructurePiece piece, BoxOctree octree, int currentSize) {
     }
 }
-
-
-
-
-
-
-
-
-
-

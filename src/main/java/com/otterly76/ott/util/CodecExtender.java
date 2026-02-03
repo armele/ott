@@ -1,6 +1,5 @@
 package com.otterly76.ott.util;
 
-
 import com.mojang.datafixers.kinds.App;
 import com.mojang.datafixers.util.Either;
 import com.mojang.serialization.Codec;

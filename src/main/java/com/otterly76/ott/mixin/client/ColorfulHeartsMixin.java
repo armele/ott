@@ -1,6 +1,5 @@
 package com.otterly76.ott.mixin.client;
 
-
 import com.mojang.blaze3d.systems.RenderSystem;
 import net.minecraft.client.gui.Gui;
 import net.minecraft.client.gui.GuiGraphics;
@@ -14,7 +13,7 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
-import static com.otterly76.ott.api.core.Constants.MOD_ID;
+import static com.otterly76.ott.Constants.MOD_ID;
 
 @Mixin(Gui.class)
 public abstract class ColorfulHeartsMixin {
@@ -180,6 +179,3 @@ public abstract class ColorfulHeartsMixin {
         return DECK_COLORS[index];
     }
 }
-
-
-

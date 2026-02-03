@@ -1,7 +1,6 @@
 package com.otterly76.ott.worldgen.surface;
 
-
-import com.otterly76.ott.api.registry.ModBiomes;
+import com.otterly76.ott.worldgen.biome.ModBiomes;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.levelgen.Noises;
 import net.minecraft.world.level.levelgen.SurfaceRules;

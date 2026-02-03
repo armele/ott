@@ -1,9 +1,8 @@
 package com.otterly76.ott.mixin.client;
 
-
 import com.mojang.blaze3d.platform.NativeImage;
-import com.otterly76.ott.neoforge.impl.client.ClientModEvents;
-import com.otterly76.ott.neoforge.impl.config.OttConfig;
+import com.otterly76.ott.ClientModEvents;
+import com.otterly76.ott.config.OttConfig;
 import net.minecraft.client.renderer.texture.SpriteContents;
 import net.minecraft.client.renderer.texture.SpriteLoader;
 import net.minecraft.client.renderer.texture.Stitcher;
@@ -22,7 +21,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-import static com.otterly76.ott.api.core.Constants.MOD_ID;
+import static com.otterly76.ott.Constants.MOD_ID;
 
 @Mixin({SpriteLoader.class})
 public abstract class SpriteLoaderMixin {
@@ -52,13 +51,13 @@ public abstract class SpriteLoaderMixin {
         List<SpriteContents> newList = new ArrayList<>(list);
         if (this.location.equals(ResourceLocation.withDefaultNamespace("textures/atlas/particles.png"))) {
             ClientModEvents.particleCount = 0;
-            com.otterly76.ott.neoforge.impl.client.ClientModEvents.fogCount = 0;
+            ClientModEvents.fogCount = 0;
             NativeImage rainImage;
             NativeImage snowImage;
 
             try {
-                rainImage = com.otterly76.ott.neoforge.impl.client.ClientModEvents.loadTexture(ResourceLocation.withDefaultNamespace("textures/environment/rain.png"));
-                snowImage = com.otterly76.ott.neoforge.impl.client.ClientModEvents.loadTexture(ResourceLocation.withDefaultNamespace("textures/environment/snow.png"));
+                rainImage = ClientModEvents.loadTexture(ResourceLocation.withDefaultNamespace("textures/environment/rain.png"));
+                snowImage = ClientModEvents.loadTexture(ResourceLocation.withDefaultNamespace("textures/environment/snow.png"));
 
                 boolean shouldTint = false;
                 try {
@@ -66,23 +65,23 @@ public abstract class SpriteLoaderMixin {
                 } catch (IllegalStateException ignored) {}
 
                 if (shouldTint) {
-                    rainImage.applyToAllPixels(com.otterly76.ott.neoforge.impl.client.ClientModEvents.desaturateOperation);
+                    rainImage.applyToAllPixels(ClientModEvents.desaturateOperation);
                 }
             } catch (IOException e) {
                 throw new RuntimeException("Failed to load OTT environment textures", e);
             }
 
             for (int j = 0; j < 4; ++j) {
-                newList.add(com.otterly76.ott.neoforge.impl.client.ClientModEvents.splitImage(rainImage, j, "rain"));
+                newList.add(ClientModEvents.splitImage(rainImage, j, "rain"));
             }
 
             for (int j = 0; j < 4; ++j) {
-                newList.add(com.otterly76.ott.neoforge.impl.client.ClientModEvents.splitImage(snowImage, j, "snow"));
+                newList.add(ClientModEvents.splitImage(snowImage, j, "snow"));
             }
 
-            int rippleResolution = com.otterly76.ott.neoforge.impl.client.ClientModEvents.getRippleResolution(newList);
+            int rippleResolution = ClientModEvents.getRippleResolution(newList);
             for(int j = 0; j < 8; ++j) {
-                newList.add(com.otterly76.ott.neoforge.impl.client.ClientModEvents.generateRipple(j, rippleResolution));
+                newList.add(ClientModEvents.generateRipple(j, rippleResolution));
             }
 
             boolean shouldTint = false;
@@ -97,8 +96,8 @@ public abstract class SpriteLoaderMixin {
                     NativeImage splashImage;
 
                     try {
-                        splashImage = com.otterly76.ott.neoforge.impl.client.ClientModEvents.loadTexture(ResourceLocation.withDefaultNamespace("textures/particle/splash_" + j + ".png"));
-                        splashImage.applyToAllPixels(com.otterly76.ott.neoforge.impl.client.ClientModEvents.desaturateOperation);
+                        splashImage = ClientModEvents.loadTexture(ResourceLocation.withDefaultNamespace("textures/particle/splash_" + j + ".png"));
+                        splashImage.applyToAllPixels(ClientModEvents.desaturateOperation);
                     } catch (IOException e) {
                         throw new RuntimeException("Failed to load OTT splash particles", e);
                     }
@@ -111,12 +110,3 @@ public abstract class SpriteLoaderMixin {
         return newList;
     }
 }
-
-
-
-
-
-
-
-
-

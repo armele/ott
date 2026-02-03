@@ -1,6 +1,5 @@
 package com.otterly76.ott.worldgen.feature;
 
-
 import com.otterly76.ott.worldgen.feature.config.DungeonConfig;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -119,8 +118,3 @@ public class DungeonFeature extends Feature<DungeonConfig> {
         }
     }
 }
-
-
-
-
-

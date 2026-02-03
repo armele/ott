@@ -1,6 +1,5 @@
 package com.otterly76.ott.worldgen.feature.config;
 
-
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.DataResult;
 import com.mojang.serialization.codecs.RecordCodecBuilder;

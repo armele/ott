@@ -1,6 +1,5 @@
 package com.otterly76.ott.worldgen.modifier;
 
-
 import com.mojang.serialization.MapCodec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 import com.otterly76.ott.mixin.common.HolderReferenceAccessor;
@@ -42,7 +41,3 @@ public record StackFeatureModifier(int priority, HolderSet<ConfiguredFeature<?, 
         return CODEC;
     }
 }
-
-
-
-

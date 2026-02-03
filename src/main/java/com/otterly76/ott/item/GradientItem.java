@@ -1,6 +1,5 @@
 package com.otterly76.ott.item;
 
-
 import com.otterly76.ott.block.IGradientBlock;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.BlockItem;

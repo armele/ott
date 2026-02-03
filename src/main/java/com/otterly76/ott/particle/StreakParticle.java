@@ -1,9 +1,8 @@
 package com.otterly76.ott.particle;
 
-
 import com.mojang.blaze3d.vertex.VertexConsumer;
-import com.otterly76.ott.neoforge.impl.client.ClientModEvents;
-import com.otterly76.ott.neoforge.impl.config.OttConfig;
+import com.otterly76.ott.ClientModEvents;
+import com.otterly76.ott.config.OttConfig;
 import net.minecraft.client.Camera;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.multiplayer.ClientLevel;
@@ -96,7 +95,3 @@ public class StreakParticle extends WeatherParticle {
         }
     }
 }
-
-
-
-

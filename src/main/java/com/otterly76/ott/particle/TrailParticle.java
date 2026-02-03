@@ -1,6 +1,5 @@
 package com.otterly76.ott.particle;
 
-
 import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.client.particle.Particle;
 import net.minecraft.client.particle.ParticleProvider;
@@ -69,6 +68,3 @@ public class TrailParticle extends TextureSheetParticle {
         }
     }
 }
-
-
-

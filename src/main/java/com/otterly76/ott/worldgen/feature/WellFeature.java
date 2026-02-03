@@ -1,6 +1,5 @@
 package com.otterly76.ott.worldgen.feature;
 
-
 import com.otterly76.ott.worldgen.feature.config.WellConfig;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction.Plane;
@@ -80,6 +79,3 @@ public class WellFeature extends Feature<WellConfig> {
         return true;
     }
 }
-
-
-

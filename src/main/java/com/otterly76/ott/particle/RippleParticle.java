@@ -1,6 +1,5 @@
 package com.otterly76.ott.particle;
 
-
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import net.minecraft.client.Camera;
 import net.minecraft.client.Minecraft;
@@ -21,7 +20,7 @@ import org.joml.Math;
 import org.joml.Quaternionf;
 import org.joml.Vector3f;
 
-import static com.otterly76.ott.api.core.Constants.MOD_ID;
+import static com.otterly76.ott.Constants.MOD_ID;
 
 public class RippleParticle extends WeatherParticle {
     private RippleParticle(ClientLevel level, double x, double y, double z) {
@@ -70,6 +69,3 @@ public class RippleParticle extends WeatherParticle {
         }
     }
 }
-
-
-

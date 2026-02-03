@@ -1,8 +1,7 @@
 package com.otterly76.ott.block.wood;
 
-
 import com.google.common.collect.Maps;
-import com.otterly76.ott.neoforge.impl.registry.ModBlocks;
+import com.otterly76.ott.block.ModBlocks;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.data.BlockFamily;
 import net.minecraft.world.level.block.Block;
@@ -51,12 +50,3 @@ public class ModBlockFamilies {
                 .recipeGroupPrefix("wooden").recipeUnlockedBy("has_planks").getFamily());
     }
 }
-
-
-
-
-
-
-
-
-

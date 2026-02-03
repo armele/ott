@@ -1,6 +1,5 @@
 package com.otterly76.ott.worldgen.feature.config;
 
-
 import com.mojang.datafixers.util.Pair;
 import com.mojang.serialization.Codec;
 import net.minecraft.core.Holder;

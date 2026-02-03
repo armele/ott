@@ -1,6 +1,5 @@
 package com.otterly76.ott.block.custom;
 
-
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.particles.SimpleParticleType;

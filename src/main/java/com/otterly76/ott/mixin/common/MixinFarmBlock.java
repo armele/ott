@@ -18,7 +18,7 @@ public abstract class MixinFarmBlock {
             cancellable = true
     )
     public void canSurvive(BlockState pState, LevelReader pLevel, BlockPos pPos, CallbackInfoReturnable<Boolean> cir) {
-        if (!cir.getReturnValue()) {
+        if (!(Boolean)cir.getReturnValue()) {
             BlockState blockstate = pLevel.getBlockState(pPos.above());
             cir.setReturnValue(blockstate.is(Ott.FARMLAND_CANSURVIVE));
         }

@@ -1,6 +1,5 @@
 package com.otterly76.ott.worldgen.structure;
 
-
 import com.mojang.serialization.DataResult;
 import com.mojang.serialization.MapCodec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
@@ -62,8 +61,3 @@ public class AlternateJigsawStructure extends Structure {
         return TYPE;
     }
 }
-
-
-
-
-

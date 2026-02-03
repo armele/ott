@@ -1,7 +1,6 @@
 package com.otterly76.ott.entity;
 
-
-import com.otterly76.ott.neoforge.impl.registry.ModItems;
+import com.otterly76.ott.item.ModItems;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
@@ -61,6 +60,3 @@ public class OttWoodSetBoatEntity extends Boat {
         }
     }
 }
-
-
-

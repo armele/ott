@@ -1,6 +1,5 @@
 package com.otterly76.ott.mixin.client;
 
-
 import net.minecraft.client.gui.components.toasts.SystemToast;
 import net.minecraft.client.gui.components.toasts.ToastComponent;
 import net.minecraft.network.chat.Component;

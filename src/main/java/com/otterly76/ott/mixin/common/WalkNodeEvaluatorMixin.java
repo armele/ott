@@ -1,6 +1,5 @@
 package com.otterly76.ott.mixin.common;
 
-
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.entity.Mob;
 import net.minecraft.world.entity.animal.Animal;
@@ -33,8 +32,3 @@ public abstract class WalkNodeEvaluatorMixin {
         }
     }
 }
-
-
-
-
-

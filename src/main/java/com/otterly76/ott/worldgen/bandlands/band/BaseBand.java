@@ -1,6 +1,5 @@
 package com.otterly76.ott.worldgen.bandlands.band;
 
-
 import com.mojang.serialization.MapCodec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 import net.minecraft.util.RandomSource;

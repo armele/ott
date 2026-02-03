@@ -1,6 +1,5 @@
 package com.otterly76.ott.worldgen.structure;
 
-
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Vec3i;
 import net.minecraft.world.phys.AABB;
@@ -136,7 +135,3 @@ public class BoxOctree {
         return false;
     }
 }
-
-
-
-

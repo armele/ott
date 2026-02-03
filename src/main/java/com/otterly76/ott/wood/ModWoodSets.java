@@ -1,6 +1,5 @@
 package com.otterly76.ott.wood;
 
-
 import java.util.List;
 
 public final class ModWoodSets {
@@ -19,6 +18,3 @@ public final class ModWoodSets {
         }
     }
 }
-
-
-

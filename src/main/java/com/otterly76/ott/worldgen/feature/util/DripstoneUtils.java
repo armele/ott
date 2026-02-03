@@ -1,6 +1,5 @@
 package com.otterly76.ott.worldgen.feature.util;
 
-
 import com.otterly76.ott.util.MathUtils;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.HolderSet;

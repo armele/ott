@@ -1,6 +1,5 @@
 package com.otterly76.ott.util;
 
-
 import net.minecraft.core.BlockPos;
 
 import java.util.Map;
@@ -39,7 +38,3 @@ public class LanternManager {
         return false;
     }
 }
-
-
-
-

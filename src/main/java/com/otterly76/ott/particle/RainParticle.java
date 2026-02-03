@@ -1,11 +1,8 @@
 package com.otterly76.ott.particle;
 
-
-import com.otterly76.ott.neoforge.impl.registry.ModParticle;
-
 import com.mojang.blaze3d.vertex.VertexConsumer;
-import com.otterly76.ott.neoforge.impl.client.ClientModEvents;
-import com.otterly76.ott.neoforge.impl.config.OttConfig;
+import com.otterly76.ott.ClientModEvents;
+import com.otterly76.ott.config.OttConfig;
 import net.minecraft.client.Camera;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.multiplayer.ClientLevel;
@@ -40,10 +37,9 @@ import org.joml.Math;
 import org.joml.Quaternionf;
 import org.joml.Vector3f;
 
-import static com.otterly76.ott.api.core.Constants.MOD_ID;
+import static com.otterly76.ott.Constants.MOD_ID;
 
 public class RainParticle extends WeatherParticle {
-    @SuppressWarnings("this-escape")
     protected RainParticle(ClientLevel level, double x, double y, double z) {
         super(level, x, y, z);
         if (OttConfig.WEATHER.BIOME_TINT.get()) {
@@ -62,7 +58,7 @@ public class RainParticle extends WeatherParticle {
         }
 
         if (OttConfig.WEATHER.Y_LEVEL_WIND_ADJUSTMENT.get()) {
-            this.xd *= com.otterly76.ott.neoforge.impl.client.ClientModEvents.yLevelWindAdjustment(y);
+            this.xd *= ClientModEvents.yLevelWindAdjustment(y);
         }
 
         this.zd = this.xd;
@@ -180,11 +176,3 @@ public class RainParticle extends WeatherParticle {
         }
     }
 }
-
-
-
-
-
-
-
-

@@ -1,10 +1,9 @@
 package com.otterly76.ott.mixin.common;
 
-
 import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
 import com.llamalad7.mixinextras.injector.wrapoperation.WrapOperation;
 import com.llamalad7.mixinextras.sugar.Local;
-import com.otterly76.ott.worldgen.structure.pool.element.DelegatingPoolElement;
+import com.otterly76.ott.worldgen.poolelement.DelegatingPoolElement;
 import it.unimi.dsi.fastutil.objects.ObjectList;
 import net.minecraft.world.level.levelgen.Beardifier;
 import net.minecraft.world.level.levelgen.structure.PoolElementStructurePiece;
@@ -39,8 +38,3 @@ public abstract class BeardifierMixin {
         return operation.call(list, rigid);
     }
 }
-
-
-
-
-

@@ -1,9 +1,8 @@
 package com.otterly76.ott.worldgen.modifier;
 
-
 import com.mojang.serialization.MapCodec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
-import com.otterly76.ott.neoforge.impl.registry.OttNeoforgeBiomeModifiers;
+import com.otterly76.ott.registry.OttNeoforgeBiomeModifiers;
 import com.otterly76.ott.worldgen.modifier.util.BiomeClimate;
 import net.minecraft.core.HolderSet;
 import net.minecraft.world.level.biome.Biome;
@@ -31,8 +30,3 @@ public class ReplaceClimateModifier extends AbstractBiomeModifier {
         return CODEC;
     }
 }
-
-
-
-
-

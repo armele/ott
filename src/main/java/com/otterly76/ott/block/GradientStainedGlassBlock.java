@@ -1,6 +1,5 @@
 package com.otterly76.ott.block;
 
-
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.core.Direction;
 import net.minecraft.core.registries.BuiltInRegistries;
@@ -25,9 +24,7 @@ public class GradientStainedGlassBlock extends StainedGlassBlock implements IGra
     private final DyeColor secondColor;
     private final Function<DyeColor, String> textureNameMapper;
 
-    @SuppressWarnings("this-escape")
-
-    public GradientStainedGlassBlock(Properties properties, DyeColor firstColor, DyeColor secondColor, Function<DyeColor, String> textureNameMapper) {
+    protected GradientStainedGlassBlock(Properties properties, DyeColor firstColor, DyeColor secondColor, Function<DyeColor, String> textureNameMapper) {
         super(firstColor, properties);
         this.registerDefaultState(this.defaultBlockState().setValue(DirectionalBlock.FACING, Direction.UP));
         this.firstColor = firstColor;
@@ -98,8 +95,3 @@ public class GradientStainedGlassBlock extends StainedGlassBlock implements IGra
         return Component.translatable("com.otterly76.ott.block.gradient.name", getBlockFromColor(firstColor).getName(), getBlockFromColor(secondColor).getName());
     }
 }
-
-
-
-
-

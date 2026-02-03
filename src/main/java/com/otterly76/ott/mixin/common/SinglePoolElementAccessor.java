@@ -1,6 +1,5 @@
 package com.otterly76.ott.mixin.common;
 
-
 import com.mojang.datafixers.util.Either;
 import net.minecraft.core.Holder;
 import net.minecraft.resources.ResourceLocation;
