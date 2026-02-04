@@ -200,9 +200,10 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
         // Water Lantern
         ShapedRecipeBuilder.shaped(RecipeCategory.DECORATIONS, ModBlocks.WATER_LANTERN.get())
                 .define('#', Items.IRON_INGOT)
+                .define('G', Items.GLASS)
                 .define('B', Items.WATER_BUCKET)
                 .pattern("###")
-                .pattern("#B#")
+                .pattern("GBG")
                 .pattern("###")
                 .unlockedBy("has_water_bucket", has(Items.WATER_BUCKET))
                 .save(noAdv);
@@ -210,11 +211,34 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
         // Lava Lantern
         ShapedRecipeBuilder.shaped(RecipeCategory.DECORATIONS, ModBlocks.LAVA_LANTERN.get())
                 .define('#', Items.IRON_INGOT)
+                .define('G', Items.GLASS)
                 .define('B', Items.LAVA_BUCKET)
                 .pattern("###")
-                .pattern("#B#")
+                .pattern("GBG")
                 .pattern("###")
                 .unlockedBy("has_lava_bucket", has(Items.LAVA_BUCKET))
+                .save(noAdv);
+
+        // Protective Lantern
+        ShapedRecipeBuilder.shaped(RecipeCategory.DECORATIONS, ModBlocks.PROTECTIVE_LANTERN.get())
+                .define('#', Items.GOLD_INGOT)
+                .define('G', Items.GLASS)
+                .define('B', Items.FIRE_CHARGE)
+                .pattern("###")
+                .pattern("GBG")
+                .pattern("###")
+                .unlockedBy("has_fire_charge", has(Items.FIRE_CHARGE))
+                .save(noAdv);
+
+        // Smite Lantern
+        ShapedRecipeBuilder.shaped(RecipeCategory.DECORATIONS, ModBlocks.SMITE_LANTERN.get())
+                .define('#', Items.GOLD_INGOT)
+                .define('G', Items.GLASS)
+                .define('B', Items.MAGMA_CREAM)
+                .pattern("###")
+                .pattern("GBG")
+                .pattern("###")
+                .unlockedBy("has_magma_cream", has(Items.MAGMA_CREAM))
                 .save(noAdv);
     }
 

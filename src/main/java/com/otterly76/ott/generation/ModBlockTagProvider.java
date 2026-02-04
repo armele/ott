@@ -145,7 +145,7 @@ public class ModBlockTagProvider extends BlockTagsProvider {
         ModBlocks.PARTICLE_HEDGES.values().forEach(h -> ottHedges.add(h.value()));
         ModBlocks.CREEPING_HEDGES.values().forEach(h -> ottHedges.add(h.value()));
 
-        axeTag.add(ModBlocks.CREAKING_HEART.value(), ModBlocks.FLIMSY_PROTECTIVE_LANTERN.value(), ModBlocks.PROTECTIVE_LANTERN.value(), ModBlocks.STURDY_PROTECTIVE_LANTERN.value());
+        axeTag.add(ModBlocks.CREAKING_HEART.value(), ModBlocks.PROTECTIVE_LANTERN.value(), ModBlocks.SMITE_LANTERN.value());
         hoeTag.add(ModBlocks.PALE_MOSS_BLOCK.value(), ModBlocks.PALE_MOSS_CARPET.value(), ModBlocks.HEDGE.value());
         hoeTag.add(ModBlocks.PALE_OAK_LEAVES.value());
         pickaxeTag.add(ModBlocks.RESIN_BRICKS.value(), ModBlocks.CHISELED_RESIN_BRICKS.value(), ModBlocks.RESIN_BRICK_SLAB.value(), ModBlocks.RESIN_BLOCK.value(), ModBlocks.RESIN_BRICK_STAIRS.value(), ModBlocks.RESIN_BRICK_WALL.value());

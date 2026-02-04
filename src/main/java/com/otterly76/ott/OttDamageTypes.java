@@ -14,6 +14,11 @@ public class OttDamageTypes {
             ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, "flora_damage")
     );
 
+    public static final ResourceKey<DamageType> LANTERN_DAMAGE = ResourceKey.create(
+            Registries.DAMAGE_TYPE,
+            ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, "lantern_damage")
+    );
+
     public static DamageSource of(Level level, ResourceKey<DamageType> key) {
         return new DamageSource(level.registryAccess().registryOrThrow(Registries.DAMAGE_TYPE).getHolderOrThrow(key));
     }

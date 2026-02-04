@@ -59,17 +59,23 @@ public class OttConfig {
     }
 
     public static class Lanterns {
+        public final ModConfigSpec.ConfigValue<Integer> PROTECTIVE_LANTERN_RADIUS;
         public final ModConfigSpec.ConfigValue<Integer> WATER_LANTERN_RADIUS;
         public final ModConfigSpec.ConfigValue<Integer> LAVA_LANTERN_RADIUS;
+        public final ModConfigSpec.ConfigValue<Integer> SMITE_LANTERN_RADIUS;
 
         private static final java.util.Set<Integer> ALLOWED_RADII = java.util.Set.of(2, 4, 8);
 
         public Lanterns(ModConfigSpec.Builder builder) {
             builder.push("lanterns");
+            PROTECTIVE_LANTERN_RADIUS = builder.comment("Radius (in chunks) for the Protective Lantern. Allowed: 2, 4, 8. Default is 4 chunks (64 blocks).")
+                    .define("protectiveLanternRadius", 4, v -> v instanceof Integer i && ALLOWED_RADII.contains(i));
             WATER_LANTERN_RADIUS = builder.comment("Radius (in chunks) for the Water Lantern to clear water. Allowed: 2, 4, 8. Default is 2 chunks (32 blocks).")
                     .define("waterLanternRadius", 2, v -> v instanceof Integer i && ALLOWED_RADII.contains(i));
             LAVA_LANTERN_RADIUS = builder.comment("Radius (in chunks) for the Lava Lantern to clear lava. Allowed: 2, 4, 8. Default is 2 chunks (32 blocks).")
                     .define("lavaLanternRadius", 2, v -> v instanceof Integer i && ALLOWED_RADII.contains(i));
+            SMITE_LANTERN_RADIUS = builder.comment("Radius (in chunks) for the Smite Lantern to damage monsters. Allowed: 2, 4, 8. Default is 2 chunks (32 blocks).")
+                    .define("smiteLanternRadius", 2, v -> v instanceof Integer i && ALLOWED_RADII.contains(i));
             builder.pop();
         }
     }

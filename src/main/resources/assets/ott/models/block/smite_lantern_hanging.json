@@ -3,8 +3,8 @@
 	"credit": "Throttled by Otterly76",
 	"textures": {
 		"1": "ott:block/cloudfx",
-		"particle": "ott:block/water_lantern",
-		"lantern": "ott:block/water_lantern"
+		"particle": "ott:block/protective_lantern",
+		"lantern": "ott:block/protective_lantern"
 	},
 	"elements": [
 		{
@@ -131,10 +131,10 @@
 			"to": [10, 7, 10],
 			"rotation": {"angle": 0, "axis": "y", "origin": [14, 9, 14]},
 			"faces": {
-				"north": {"uv": [1, 3, 5, 8], "texture": "#1", "neoforge_data": {"color": "ff00ffff"}},
-				"east": {"uv": [1, 3, 5, 8], "texture": "#1", "neoforge_data": {"color": "ff00ffff"}},
-				"south": {"uv": [1, 3, 5, 8], "texture": "#1", "neoforge_data": {"color": "ff00ffff"}},
-				"west": {"uv": [1, 3, 5, 8], "texture": "#1", "neoforge_data": {"color": "ff00ffff"}}
+				"north": {"uv": [1, 3, 5, 8], "texture": "#1", "neoforge_data": {"color": "ffdc143c"}},
+				"east": {"uv": [1, 3, 5, 8], "texture": "#1", "neoforge_data": {"color": "ffdc143c"}},
+				"south": {"uv": [1, 3, 5, 8], "texture": "#1", "neoforge_data": {"color": "ffdc143c"}},
+				"west": {"uv": [1, 3, 5, 8], "texture": "#1", "neoforge_data": {"color": "ffdc143c"}}
 			}
 		},
 		{
@@ -390,8 +390,8 @@
 				"east": {"uv": [11, 3, 11.98, 3.98], "texture": "#lantern"},
 				"south": {"uv": [11, 3, 11.98, 3.98], "texture": "#lantern"},
 				"west": {"uv": [11, 3, 11.98, 3.98], "rotation": 180, "texture": "#lantern"},
-				"up": {"uv": [0, 0, 0, 0], "rotation": 270, "texture": "#lantern"},
-				"down": {"uv": [0, 0, 0, 0], "rotation": 90, "texture": "#lantern"}
+				"up": {"uv": [0, 0, 0, 0], "texture": "#lantern"},
+				"down": {"uv": [0, 0, 0, 0], "texture": "#lantern"}
 			}
 		},
 		{
@@ -404,8 +404,8 @@
 				"east": {"uv": [13, 3, 14, 4], "texture": "#lantern"},
 				"south": {"uv": [13, 3, 13.98, 3.98], "texture": "#lantern"},
 				"west": {"uv": [13, 3, 13.98, 3.98], "rotation": 180, "texture": "#lantern"},
-				"up": {"uv": [0, 0, 0, 0], "rotation": 270, "texture": "#lantern"},
-				"down": {"uv": [0, 0, 0, 0], "rotation": 90, "texture": "#lantern"}
+				"up": {"uv": [0, 0, 0, 0], "texture": "#lantern"},
+				"down": {"uv": [0, 0, 0, 0], "texture": "#lantern"}
 			}
 		}
 	],

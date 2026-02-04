@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "hanging=false": {
+      "model": "ott:block/smite_lantern"
+    },
+    "hanging=true": {
+      "model": "ott:block/smite_lantern_hanging"
+    }
+  }
+}

@@ -87,6 +87,7 @@ public class OttLootTableProvider extends BlockLootSubProvider {
         // Lantern variants drop themselves
         this.dropSelf(ModBlocks.WATER_LANTERN.get());
         this.dropSelf(ModBlocks.LAVA_LANTERN.get());
+        this.dropSelf(ModBlocks.SMITE_LANTERN.get());
 
     }
 

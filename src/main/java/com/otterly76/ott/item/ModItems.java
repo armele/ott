@@ -33,12 +33,11 @@ public class ModItems {
     public static final DeferredHolder<Item, BlockItem> STARLIGHT_SAPLING = registerBlockItem("starlight_sapling", ModBlocks.STARLIGHT_SAPLING);
     public static final DeferredHolder<Item, BlockItem> MIDNIGHT_SAPLING = registerBlockItem("midnight_sapling", ModBlocks.MIDNIGHT_SAPLING);
 
-    public static final DeferredHolder<Item, BlockItem> FLIMSY_PROTECTIVE_LANTERN = registerBlockItem("flimsy_protective_lantern", ModBlocks.FLIMSY_PROTECTIVE_LANTERN);
     public static final DeferredHolder<Item, BlockItem> PROTECTIVE_LANTERN = registerBlockItem("protective_lantern", ModBlocks.PROTECTIVE_LANTERN);
-    public static final DeferredHolder<Item, BlockItem> STURDY_PROTECTIVE_LANTERN = registerBlockItem("sturdy_protective_lantern", ModBlocks.STURDY_PROTECTIVE_LANTERN);
 
     public static final DeferredHolder<Item, BlockItem> WATER_LANTERN = registerBlockItem("water_lantern", ModBlocks.WATER_LANTERN);
     public static final DeferredHolder<Item, BlockItem> LAVA_LANTERN = registerBlockItem("lava_lantern", ModBlocks.LAVA_LANTERN);
+    public static final DeferredHolder<Item, BlockItem> SMITE_LANTERN = registerBlockItem("smite_lantern", ModBlocks.SMITE_LANTERN);
 
     public static final DeferredItem<Item> TINY_COAL = ITEMS.register("tiny_coal", () -> new Item(new Item.Properties()));
     public static final DeferredItem<Item> TINY_CHARCOAL = ITEMS.register("tiny_charcoal", () -> new Item(new Item.Properties()));

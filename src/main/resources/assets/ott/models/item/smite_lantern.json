@@ -1,5 +1,5 @@
 {
-  "parent": "ott:block/lava_lantern",
+  "parent": "ott:block/smite_lantern",
   "display": {
     "thirdperson_righthand": {
       "rotation": [

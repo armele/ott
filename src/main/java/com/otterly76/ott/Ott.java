@@ -474,9 +474,7 @@ public class Ott {
                 event.accept(ModItems.WOOD_SET_HANGING_SIGNS.get(setName), CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
             });
 
-            event.accept(ModBlocks.FLIMSY_PROTECTIVE_LANTERN, CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
             event.accept(ModBlocks.PROTECTIVE_LANTERN, CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
-            event.accept(ModBlocks.STURDY_PROTECTIVE_LANTERN, CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
         }
 
         if (event.getTabKey() == CreativeModeTabs.TOOLS_AND_UTILITIES) {
@@ -523,6 +521,7 @@ public class Ott {
     public void onServerStarting(ServerStartingEvent event){
         LanternSavedData.init(event.getServer().overworld());
         com.otterly76.ott.util.FluidLanternSavedData.init(event.getServer().overworld());
+        com.otterly76.ott.util.DamageLanternSavedData.init(event.getServer().overworld());
     }
 
     private void addPackFinders(AddPackFindersEvent event) {
