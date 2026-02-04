@@ -75,6 +75,11 @@ Features
   - Floral, Blooming, and Creeping Hedges 🌺
 - Added the Hedge
   - Custom damage for dangerous plants: Flora 🌼
+- Added Four New Magic Lanterns:
+  - Waterbending Lantern pushes water away within its range
+  - Lavabending Lantern pushes lava away within its range
+  - Protecting Lantern restricts monster spawning within its range
+  - Smiting Lantern damages monsters within its range
 - Added Create support, first pass (3D models and textures for ores)
 - Added Chipped support, first pass (fluffy leaves, fixed some lantern models, fixed ladders(3D))
 - Added custom schematic dimensions!

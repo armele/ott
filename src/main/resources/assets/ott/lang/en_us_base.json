@@ -182,7 +182,8 @@
 
   "block.ott.water_lantern": "Waterbending Lantern",
   "block.ott.lava_lantern": "Lavabending Lantern",
-  "block.ott.smite_lantern": "Smite Lantern",
+  "block.ott.protective_lantern": "Protecting Lantern",
+  "block.ott.smite_lantern": "Smiting Lantern",
 
   "ott.configuration.maxParticleAmount": "Maximum number of particles allowed",
   "ott.configuration.particleDensity": "Particle density",
