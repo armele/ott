@@ -27,6 +27,7 @@ import net.minecraft.client.renderer.BiomeColors;
 import net.minecraft.client.renderer.ItemBlockRenderTypes;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.Sheets;
+import net.minecraft.client.renderer.entity.*;
 import net.minecraft.client.renderer.texture.SpriteContents;
 import net.minecraft.client.resources.metadata.animation.FrameSize;
 import net.minecraft.client.resources.model.BakedModel;
@@ -243,6 +244,15 @@ public static float yLevelWindAdjustment(double y) {
         ModEntities.WOOD_SET_CHEST_BOATS.forEach((setName, type) ->
                 event.registerEntityRenderer(type.get(), (context) -> new OttWoodSetBoatRenderer(context, true))
         );
+
+        event.registerEntityRenderer(ModEntities.TINY_SKELETON.get(), SkeletonRenderer::new);
+        event.registerEntityRenderer(ModEntities.TINY_CREEPER.get(), CreeperRenderer::new);
+        event.registerEntityRenderer(ModEntities.TINY_ENDERMAN.get(), EndermanRenderer::new);
+        event.registerEntityRenderer(ModEntities.TINY_BOGGED.get(), BoggedRenderer::new);
+        event.registerEntityRenderer(ModEntities.TINY_DROWNED.get(), DrownedRenderer::new);
+        event.registerEntityRenderer(ModEntities.TINY_HUSK.get(), HuskRenderer::new);
+        event.registerEntityRenderer(ModEntities.TINY_STRAY.get(), StrayRenderer::new);
+        event.registerEntityRenderer(ModEntities.TINY_WITHER_SKELETON.get(), WitherSkeletonRenderer::new);
     }
 
     public static void registerLayerDefinitions(EntityRenderersEvent.RegisterLayerDefinitions event) {

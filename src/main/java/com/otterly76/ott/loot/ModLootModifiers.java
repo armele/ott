@@ -1,0 +1,20 @@
+package com.otterly76.ott.loot;
+
+import com.otterly76.ott.Constants;
+import com.mojang.serialization.MapCodec;
+import net.neoforged.bus.api.IEventBus;
+import net.neoforged.neoforge.common.loot.IGlobalLootModifier;
+import net.neoforged.neoforge.registries.DeferredRegister;
+import net.neoforged.neoforge.registries.NeoForgeRegistries;
+
+public class ModLootModifiers {
+    public static final DeferredRegister<MapCodec<? extends IGlobalLootModifier>> LOOT_MODIFIER_SERIALIZERS =
+            DeferredRegister.create(NeoForgeRegistries.Keys.GLOBAL_LOOT_MODIFIER_SERIALIZERS, Constants.MOD_ID);
+
+    public static final net.neoforged.neoforge.registries.DeferredHolder<MapCodec<? extends IGlobalLootModifier>, MapCodec<RemoveItemsModifier>> REMOVE_ITEMS =
+            LOOT_MODIFIER_SERIALIZERS.register("remove_items", () -> RemoveItemsModifier.CODEC);
+
+    public static void register(IEventBus bus) {
+        LOOT_MODIFIER_SERIALIZERS.register(bus);
+    }
+}

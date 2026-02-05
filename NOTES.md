@@ -19,7 +19,6 @@ Skin Layer 3D
 Toast Control
 Uncraft Everything
 WITS
-Wither Skeleton Tweaks
 
 Crate Delight
 Storage Delight
@@ -32,7 +31,6 @@ Armor Statues
 Easy Anvils
 Effect Descriptions
 Fantastic Wings
-Tiny Skeletons
 Universal Enchants
 Visual Workbench
 
@@ -192,8 +190,6 @@ replacements for Better Archeology
 handheld architect's cutter
 
 Vines hang from slabs
-
-reuse TF firefly particles as motes
 
 implement FTB Ultramine functionality
 - needs to be able to be keymapped

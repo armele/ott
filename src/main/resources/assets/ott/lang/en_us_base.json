@@ -265,5 +265,23 @@
 
   "message.ott.lava_warning.face.1": "§cYour face is burning up!§r",
   "message.ott.lava_warning.face.2": "§6Your face is getting hot!§r",
-  "message.ott.lava_warning.face.3": "§eYour face is feeling warm.§r"
+  "message.ott.lava_warning.face.3": "§eYour face is feeling warm.§r",
+
+  "entity.ott.tiny_skeleton": "Tiny Skeleton",
+  "entity.ott.tiny_creeper": "Tiny Creeper",
+  "entity.ott.tiny_enderman": "Tiny Enderman",
+  "entity.ott.tiny_bogged": "Tiny Bogged",
+  "entity.ott.tiny_drowned": "Tiny Drowned",
+  "entity.ott.tiny_husk": "Tiny Husk",
+  "entity.ott.tiny_stray": "Tiny Stray",
+  "entity.ott.tiny_wither_skeleton": "Tiny Wither Skeleton",
+
+  "item.ott.tiny_skeleton_spawn_egg": "Tiny Skeleton Spawn Egg",
+  "item.ott.tiny_creeper_spawn_egg": "Tiny Creeper Spawn Egg",
+  "item.ott.tiny_enderman_spawn_egg": "Tiny Enderman Spawn Egg",
+  "item.ott.tiny_bogged_spawn_egg": "Tiny Bogged Spawn Egg",
+  "item.ott.tiny_drowned_spawn_egg": "Tiny Drowned Spawn Egg",
+  "item.ott.tiny_husk_spawn_egg": "Tiny Husk Spawn Egg",
+  "item.ott.tiny_stray_spawn_egg": "Tiny Stray Spawn Egg",
+  "item.ott.tiny_wither_skeleton_spawn_egg": "Tiny Wither Skeleton Spawn Egg"
 }

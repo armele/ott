@@ -1,0 +1,12 @@
+{
+  "values": [
+    "minecraft:skeleton",
+    "minecraft:wither_skeleton",
+    "minecraft:stray",
+    "minecraft:bogged",
+    "ott:tiny_skeleton",
+    "ott:tiny_wither_skeleton",
+    "ott:tiny_stray",
+    "ott:tiny_bogged"
+  ]
+}

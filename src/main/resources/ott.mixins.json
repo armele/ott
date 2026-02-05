@@ -3,7 +3,6 @@
   "minVersion": "0.8",
   "package": "com.otterly76.ott.mixin",
   "compatibilityLevel": "JAVA_21",
-  "refmap": "ott.refmap.json",
   "mixins": [
     "common.AccessorItem",
     "common.ExperienceOrbAccessor",
@@ -89,7 +88,10 @@
     "client.SoundEngineMixin",
     "client.SpriteLoaderMixin",
     "client.TextureSheetParticleMixin",
-    "client.WaterDropParticleMixin"
+    "client.WaterDropParticleMixin",
+    "client.TinyMobRenderMixin",
+    "client.CreeperModelMixin",
+    "client.HumanoidModelMixin"
   ],
   "injectors": {
     "defaultRequire": 1

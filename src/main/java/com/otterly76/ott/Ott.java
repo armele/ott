@@ -10,6 +10,7 @@ import com.otterly76.ott.events.ModEventBusEvents;
 import com.otterly76.ott.generation.*;
 import com.otterly76.ott.inventory.ModMenuTypes;
 import com.otterly76.ott.item.ModItems;
+import com.otterly76.ott.loot.ModLootModifiers;
 import com.otterly76.ott.mixin.common.AccessorItem;
 import com.otterly76.ott.network.NetworkHandler;
 import com.otterly76.ott.particle.ModParticle;
@@ -141,6 +142,7 @@ public class Ott {
         ModSounds.register(modEventBus);
         ModParticle.register(modEventBus);
         ModEntities.register(modEventBus);
+        ModLootModifiers.register(modEventBus);
         ModTreeDecoratorTypes.register(modEventBus);
         ModWorldGenModifiers.register(modEventBus);
         ModFeatures.register(modEventBus);
@@ -405,6 +407,14 @@ public class Ott {
 
         if (event.getTabKey() == CreativeModeTabs.SPAWN_EGGS) {
             event.accept(ModItems.CREAKING_SPAWN_EGG, CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
+            event.accept(ModItems.TINY_SKELETON_SPAWN_EGG, CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
+            event.accept(ModItems.TINY_CREEPER_SPAWN_EGG, CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
+            event.accept(ModItems.TINY_ENDERMAN_SPAWN_EGG, CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
+            event.accept(ModItems.TINY_BOGGED_SPAWN_EGG, CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
+            event.accept(ModItems.TINY_DROWNED_SPAWN_EGG, CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
+            event.accept(ModItems.TINY_HUSK_SPAWN_EGG, CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
+            event.accept(ModItems.TINY_STRAY_SPAWN_EGG, CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
+            event.accept(ModItems.TINY_WITHER_SKELETON_SPAWN_EGG, CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
         }
 
         if (event.getTabKey() == CreativeModeTabs.BUILDING_BLOCKS) {

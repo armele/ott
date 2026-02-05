@@ -59,10 +59,12 @@ Mods, Resourcepacks, and Datapacks You Will Not Need:
 - Snow Under Trees, Simple Snowy Fix, Falling Snow, etc ❄️
 - The Fence Unleashed 🐮
 - Tiny Coal, Tiny Charcoal, ect
+- Tiny Skeletons, Baby Mobs, etc
 - Torchmaster, Magnum Torch
 - Trash Slot, Trash Cans, etc 🗑️
 - Universal Bone Meal
 - What The Bucket
+- Wither Skeleton Tweaks
 - Yeetus Experimentus
 - Yeetus Narratus 📢
 

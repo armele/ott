@@ -4,6 +4,7 @@ import com.otterly76.ott.entity.Creaking;
 import com.otterly76.ott.entity.ModEntities;
 import com.otterly76.ott.entity.client.CreakingModel;
 import com.otterly76.ott.item.ModItems;
+import com.otterly76.ott.entity.tiny.*;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.Mob;
 import net.minecraft.world.entity.SpawnPlacementTypes;
@@ -22,6 +23,14 @@ public class ModEventBusEvents {
 
     public static void registerAttributes(EntityAttributeCreationEvent event) {
         event.put(ModEntities.CREAKING.get(), Creaking.createAttributes().build());
+        event.put(ModEntities.TINY_SKELETON.get(), TinySkeleton.createAttributes().build());
+        event.put(ModEntities.TINY_CREEPER.get(), TinyCreeper.createAttributes().build());
+        event.put(ModEntities.TINY_ENDERMAN.get(), TinyEnderman.createAttributes().build());
+        event.put(ModEntities.TINY_BOGGED.get(), TinyBogged.createAttributes().build());
+        event.put(ModEntities.TINY_DROWNED.get(), TinyDrowned.createAttributes().build());
+        event.put(ModEntities.TINY_HUSK.get(), TinyHusk.createAttributes().build());
+        event.put(ModEntities.TINY_STRAY.get(), TinyStray.createAttributes().build());
+        event.put(ModEntities.TINY_WITHER_SKELETON.get(), TinyWitherSkeleton.createAttributes().build());
     }
 
     @SubscribeEvent
