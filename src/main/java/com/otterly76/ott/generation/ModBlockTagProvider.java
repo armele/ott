@@ -154,6 +154,7 @@ public class ModBlockTagProvider extends BlockTagsProvider {
 
         this.tag(BlockTags.create(ResourceLocation.withDefaultNamespace("combination_step_sound_blocks"))).add(ModBlocks.RESIN_CLUMP.value());
         this.tag(BlockTags.FENCE_GATES).add(ModBlocks.PALE_OAK_FENCE_GATE.value());
+        this.tag(BlockTags.LOGS).addTag(paleOakLogsKey);
         this.tag(BlockTags.LOGS_THAT_BURN).addTag(paleOakLogsKey);
         this.tag(BlockTags.SLABS).add(ModBlocks.RESIN_BRICK_SLAB.value());
         this.tag(BlockTags.STAIRS).add(ModBlocks.RESIN_BRICK_STAIRS.value());
@@ -174,6 +175,7 @@ public class ModBlockTagProvider extends BlockTagsProvider {
 
         ModBlocks.WOOD_SETS.values().forEach(set -> {
             this.tag(doDefaultKey).add(set.log().value(), set.wood().value(), set.strippedLog().value(), set.strippedWood().value(), set.planks().value(), set.leaves().value());
+            this.tag(BlockTags.LOGS).add(set.log().value(), set.wood().value(), set.strippedLog().value(), set.strippedWood().value());
             this.tag(BlockTags.LOGS_THAT_BURN).add(set.log().value(), set.wood().value(), set.strippedLog().value(), set.strippedWood().value());
             this.tag(BlockTags.PLANKS).add(set.planks().value());
             this.tag(BlockTags.LEAVES).add(set.leaves().value());

@@ -452,3 +452,29 @@ We Be Fancy
 Living On The Hedge
 - research for uni to give colonists immunity to hedge damage
 - add hedge to dangerous list
+
+Aliah Quark Notes
+=====
+Trowel
+
+"Reacharound" (place beyond) placing
+
+Rope
+
+Double-door (and double-fence) opening
+
+Swimming horses
+
+Fallen logs and hollow logs; both very nice for an environment, and the hollow logs allow a 1x1 option for getting into places that not even a baby zombie can follow.
+
+Slime in a bucket
+
+Firehounds (because you can tame them and place them on top of a furnace, which improves the furnace function)
+
+Ambient disks
+
+Ancient tomes
+
+Framed glass
+
+Glass item frame

@@ -12,7 +12,9 @@ import net.minecraft.data.tags.TagsProvider;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.tags.TagKey;
+import net.minecraft.world.item.DyeColor;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.item.Items;
 import net.minecraft.world.level.block.Block;
 import net.neoforged.neoforge.common.data.ExistingFileHelper;
 import org.jetbrains.annotations.NotNull;
@@ -94,6 +96,7 @@ public class ModItemTagProvider extends ItemTagsProvider {
                 ModBlocks.PALE_OAK_WOOD.asItem(),
                 ModBlocks.STRIPPED_PALE_OAK_WOOD.asItem()
         );
+        this.tag(ItemTags.LOGS).addTag(ModTags.Items.PALE_OAK_LOGS);
         this.tag(ItemTags.LOGS_THAT_BURN).addTag(ModTags.Items.PALE_OAK_LOGS);
         this.tag(ItemTags.PLANKS).add(ModBlocks.PALE_OAK_PLANKS.asItem());
         this.tag(ItemTags.LEAVES).add(ModBlocks.PALE_OAK_LEAVES.asItem());
@@ -114,6 +117,7 @@ public class ModItemTagProvider extends ItemTagsProvider {
         // --- 5. WOOD SETS ---
         ModBlocks.WOOD_SETS.forEach((setName, set) -> {
             this.tag(ModTags.Items.woodSetLogs(setName)).add(set.log().asItem(), set.wood().asItem(), set.strippedLog().asItem(), set.strippedWood().asItem());
+            this.tag(ItemTags.LOGS).addTag(ModTags.Items.woodSetLogs(setName));
             this.tag(ItemTags.LOGS_THAT_BURN).addTag(ModTags.Items.woodSetLogs(setName));
             this.tag(ItemTags.PLANKS).add(set.planks().asItem());
             this.tag(ItemTags.LEAVES).add(set.leaves().asItem());
@@ -139,5 +143,48 @@ public class ModItemTagProvider extends ItemTagsProvider {
         this.tag(ItemTags.CHEST_BOATS).add(ModItems.PALE_OAK_CHEST_BOAT.get());
 
         this.tag(ItemTags.COALS).add(ModItems.TINY_COAL.get(), ModItems.TINY_CHARCOAL.get());
+
+        // --- 7. DYEABLE ITEMS ---
+        var dyeableBanners = this.tag(ModTags.Items.DYEABLE_BANNERS);
+        var dyeableCandles = this.tag(ModTags.Items.DYEABLE_CANDLES);
+        var dyeableGlassBlocks = this.tag(ModTags.Items.DYEABLE_GLASS_BLOCKS);
+        var dyeableGlassPanes = this.tag(ModTags.Items.DYEABLE_GLASS_PANES);
+        var dyeableShulkerBoxes = this.tag(ModTags.Items.DYEABLE_SHULKER_BOXES);
+        var dyeableConcrete = this.tag(ModTags.Items.DYEABLE_CONCRETE);
+        var dyeableConcretePowder = this.tag(ModTags.Items.DYEABLE_CONCRETE_POWDER);
+        var dyeableTerracotta = this.tag(ModTags.Items.DYEABLE_TERRACOTTA);
+
+        for (DyeColor color : DyeColor.values()) {
+            String name = color.getName();
+            dyeableBanners.addOptional(ResourceLocation.withDefaultNamespace(name + "_banner"));
+            dyeableCandles.addOptional(ResourceLocation.withDefaultNamespace(name + "_candle"));
+            dyeableGlassBlocks.addOptional(ResourceLocation.withDefaultNamespace(name + "_stained_glass"));
+            dyeableGlassPanes.addOptional(ResourceLocation.withDefaultNamespace(name + "_stained_glass_pane"));
+            dyeableShulkerBoxes.addOptional(ResourceLocation.withDefaultNamespace(name + "_shulker_box"));
+            dyeableConcrete.addOptional(ResourceLocation.withDefaultNamespace(name + "_concrete"));
+            dyeableConcretePowder.addOptional(ResourceLocation.withDefaultNamespace(name + "_concrete_powder"));
+            dyeableTerracotta.addOptional(ResourceLocation.withDefaultNamespace(name + "_terracotta"));
+        }
+        dyeableCandles.addOptional(ResourceLocation.withDefaultNamespace("candle"));
+        dyeableGlassBlocks.addOptional(ResourceLocation.withDefaultNamespace("glass"));
+        dyeableGlassPanes.addOptional(ResourceLocation.withDefaultNamespace("glass_pane"));
+        dyeableShulkerBoxes.addOptional(ResourceLocation.withDefaultNamespace("shulker_box"));
+        dyeableTerracotta.addOptional(ResourceLocation.withDefaultNamespace("terracotta"));
+
+        this.tag(ModTags.Items.INVENTORY_OPENABLE)
+                .addTag(ModTags.Items.DYEABLE_SHULKER_BOXES)
+                .add(Items.BARREL)
+                .add(Items.CRAFTING_TABLE)
+                .add(Items.LOOM)
+                .add(Items.CARTOGRAPHY_TABLE)
+                .add(Items.GRINDSTONE)
+                .add(Items.STONECUTTER)
+                .add(Items.SMITHING_TABLE)
+                .add(Items.ANVIL)
+                .add(Items.CHIPPED_ANVIL)
+                .add(Items.DAMAGED_ANVIL)
+                .add(Items.ENDER_CHEST);
+
+        this.tag(ItemTags.ARROWS).add(Items.ARROW, Items.TIPPED_ARROW, Items.SPECTRAL_ARROW, ModItems.TORCH_ARROW.get());
     }
 }

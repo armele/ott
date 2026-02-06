@@ -309,6 +309,7 @@
   "ott.configuration.visuals.easyanvils": "Easy Anvils",
   "ott.configuration.visuals.freenametagrenaming": "Free Name Tag Renaming",
   "ott.configuration.visuals.loweranvilcosts": "Lower Anvil Costs",
+  "ott.configuration.visuals.doublepickerrange": "Double Block Picker Range",
 
   "ott.configuration.lanterns.protectivelanternradius": "Protective Lantern Radius",
   "ott.configuration.lanterns.waterlanternradius": "Water Lantern Radius",
@@ -321,6 +322,13 @@
   "ott.configuration.accessibility.localglobalsounds": "Local Global Sounds",
 
   "ott.configuration.general.enablelavawarnings": "Enable Lava Warnings",
+  "ott.configuration.general.autotoolreplacement": "Auto Tool Replacement",
+  "ott.configuration.general.villagersfollowemerald": "Villagers Follow Emeralds",
+  "ott.configuration.general.evokerskillsummonsondeath": "Evokers Kill Summons on Death",
+  "ott.configuration.general.spongesplacedonwater": "Sponges Placeable on Water",
+  "ott.configuration.general.enableinventorysearch": "Enable Inventory Search Bar",
+  "ott.configuration.general.enablerightclickopen": "Enable Middle-Click Open (Pick Block) Containers",
+  "ott.configuration.general.enabletorcharrow": "Enable Torch Arrows",
 
   "ott.configuration.homes.enabled": "Enable Homes",
   "ott.configuration.homes.maxhomes": "Maximum Homes",

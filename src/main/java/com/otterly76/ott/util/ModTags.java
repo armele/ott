@@ -24,6 +24,16 @@ public class ModTags {
     public static class Items {
         public static final TagKey<Item> PALE_OAK_LOGS = createTag("pale_oak_logs");
 
+        public static final TagKey<Item> DYEABLE_BANNERS = createTag("dyeable_banners");
+        public static final TagKey<Item> DYEABLE_CANDLES = createTag("dyeable_candles");
+        public static final TagKey<Item> DYEABLE_GLASS_BLOCKS = createTag("dyeable_glass_blocks");
+        public static final TagKey<Item> DYEABLE_GLASS_PANES = createTag("dyeable_glass_panes");
+        public static final TagKey<Item> DYEABLE_SHULKER_BOXES = createTag("dyeable_shulker_boxes");
+        public static final TagKey<Item> DYEABLE_CONCRETE = createTag("dyeable_concrete");
+        public static final TagKey<Item> DYEABLE_CONCRETE_POWDER = createTag("dyeable_concrete_powder");
+        public static final TagKey<Item> DYEABLE_TERRACOTTA = createTag("dyeable_terracotta");
+        public static final TagKey<Item> INVENTORY_OPENABLE = createTag("inventory_openable");
+
         @SuppressWarnings("SameParameterValue")
         private static TagKey<Item> createTag(String name) {
             return ItemTags.create(ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, name));

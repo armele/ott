@@ -10,9 +10,13 @@ import net.minecraft.advancements.CriteriaTriggers;
 import net.minecraft.advancements.Criterion;
 import net.minecraft.advancements.critereon.ImpossibleTrigger;
 import net.minecraft.core.HolderLookup;
+import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.recipes.*;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.tags.ItemTags;
+import net.minecraft.world.item.DyeColor;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.item.crafting.Recipe;
@@ -240,6 +244,107 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
                 .pattern("###")
                 .unlockedBy("has_magma_cream", has(Items.MAGMA_CREAM))
                 .save(noAdv);
+
+        this.addDyeingRecipes(noAdv);
+        this.addSlabToBlockRecipes(noAdv);
+        this.addMiscRecipes(noAdv);
+    }
+
+    private void addMiscRecipes(RecipeOutput exporter) {
+        ShapedRecipeBuilder.shaped(RecipeCategory.DECORATIONS, Items.CHEST, 4)
+                .define('#', ItemTags.LOGS)
+                .pattern("###")
+                .pattern("# #")
+                .pattern("###")
+                .unlockedBy("has_logs", has(ItemTags.LOGS))
+                .save(exporter, getRecipePath("ott", "chest_from_logs"));
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.REDSTONE, Items.HOPPER)
+                .define('I', Items.IRON_INGOT)
+                .define('L', ItemTags.LOGS)
+                .pattern("ILI")
+                .pattern("ILI")
+                .pattern(" I ")
+                .unlockedBy("has_logs", has(ItemTags.LOGS))
+                .save(exporter, getRecipePath("ott", "hopper_from_logs"));
+
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.COMBAT, ModItems.TORCH_ARROW.get(), 8)
+                .requires(Items.ARROW)
+                .requires(Items.TORCH)
+                .unlockedBy("has_arrow", has(Items.ARROW))
+                .unlockedBy("has_torch", has(Items.TORCH))
+                .save(exporter, getRecipePath("ott", "torch_arrow"));
+    }
+
+    private void addDyeingRecipes(RecipeOutput exporter) {
+        for (DyeColor color : DyeColor.values()) {
+            String colorName = color.getName();
+            Item dye = BuiltInRegistries.ITEM.get(ResourceLocation.withDefaultNamespace(colorName + "_dye"));
+
+            // Banner
+            Item banner = BuiltInRegistries.ITEM.get(ResourceLocation.withDefaultNamespace(colorName + "_banner"));
+            ShapelessRecipeBuilder.shapeless(RecipeCategory.DECORATIONS, banner)
+                    .requires(ModTags.Items.DYEABLE_BANNERS)
+                    .requires(dye)
+                    .unlockedBy("has_any_banner", has(ModTags.Items.DYEABLE_BANNERS))
+                    .save(exporter, getRecipePath("ott", colorName + "_banner_from_dyeing"));
+
+            // Candle
+            Item candle = BuiltInRegistries.ITEM.get(ResourceLocation.withDefaultNamespace(colorName + "_candle"));
+            ShapelessRecipeBuilder.shapeless(RecipeCategory.DECORATIONS, candle)
+                    .requires(ModTags.Items.DYEABLE_CANDLES)
+                    .requires(dye)
+                    .unlockedBy("has_any_candle", has(ModTags.Items.DYEABLE_CANDLES))
+                    .save(exporter, getRecipePath("ott", colorName + "_candle_from_dyeing"));
+
+            // Glass
+            Item glass = BuiltInRegistries.ITEM.get(ResourceLocation.withDefaultNamespace(colorName + "_stained_glass"));
+            ShapelessRecipeBuilder.shapeless(RecipeCategory.BUILDING_BLOCKS, glass)
+                    .requires(ModTags.Items.DYEABLE_GLASS_BLOCKS)
+                    .requires(dye)
+                    .unlockedBy("has_any_glass", has(ModTags.Items.DYEABLE_GLASS_BLOCKS))
+                    .save(exporter, getRecipePath("ott", colorName + "_glass_from_dyeing"));
+
+            // Pane
+            Item pane = BuiltInRegistries.ITEM.get(ResourceLocation.withDefaultNamespace(colorName + "_stained_glass_pane"));
+            ShapelessRecipeBuilder.shapeless(RecipeCategory.DECORATIONS, pane)
+                    .requires(ModTags.Items.DYEABLE_GLASS_PANES)
+                    .requires(dye)
+                    .unlockedBy("has_any_pane", has(ModTags.Items.DYEABLE_GLASS_PANES))
+                    .save(exporter, getRecipePath("ott", colorName + "_pane_from_dyeing"));
+
+            // Shulker Box
+            Item shulker = BuiltInRegistries.ITEM.get(ResourceLocation.withDefaultNamespace(colorName + "_shulker_box"));
+            ShapelessRecipeBuilder.shapeless(RecipeCategory.DECORATIONS, shulker)
+                    .requires(ModTags.Items.DYEABLE_SHULKER_BOXES)
+                    .requires(dye)
+                    .unlockedBy("has_any_shulker", has(ModTags.Items.DYEABLE_SHULKER_BOXES))
+                    .save(exporter, getRecipePath("ott", colorName + "_shulker_box_from_dyeing"));
+
+            // Concrete
+            Item concrete = BuiltInRegistries.ITEM.get(ResourceLocation.withDefaultNamespace(colorName + "_concrete"));
+            ShapelessRecipeBuilder.shapeless(RecipeCategory.BUILDING_BLOCKS, concrete)
+                    .requires(ModTags.Items.DYEABLE_CONCRETE)
+                    .requires(dye)
+                    .unlockedBy("has_any_concrete", has(ModTags.Items.DYEABLE_CONCRETE))
+                    .save(exporter, getRecipePath("ott", colorName + "_concrete_from_dyeing"));
+
+            // Concrete Powder
+            Item powder = BuiltInRegistries.ITEM.get(ResourceLocation.withDefaultNamespace(colorName + "_concrete_powder"));
+            ShapelessRecipeBuilder.shapeless(RecipeCategory.BUILDING_BLOCKS, powder)
+                    .requires(ModTags.Items.DYEABLE_CONCRETE_POWDER)
+                    .requires(dye)
+                    .unlockedBy("has_any_powder", has(ModTags.Items.DYEABLE_CONCRETE_POWDER))
+                    .save(exporter, getRecipePath("ott", colorName + "_concrete_powder_from_dyeing"));
+
+            // Terracotta
+            Item terracotta = BuiltInRegistries.ITEM.get(ResourceLocation.withDefaultNamespace(colorName + "_terracotta"));
+            ShapelessRecipeBuilder.shapeless(RecipeCategory.BUILDING_BLOCKS, terracotta)
+                    .requires(ModTags.Items.DYEABLE_TERRACOTTA)
+                    .requires(dye)
+                    .unlockedBy("has_any_terracotta", has(ModTags.Items.DYEABLE_TERRACOTTA))
+                    .save(exporter, getRecipePath("ott", colorName + "_terracotta_from_dyeing"));
+        }
     }
 
     private void woodRecipes(RecipeOutput noAdv) {
@@ -477,5 +582,101 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
                 .group("ott_gradient_blocks")
                 .unlockedBy("impossible", impossible())
                 .save(noAdv, getRecipePath("ott", gradientBlock.getRegistryID().getPath()));
+    }
+
+    private void registerSlabToBlock(RecipeOutput exporter, Item slab, Item block, String name) {
+        ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, block)
+                .define('#', slab)
+                .pattern("#")
+                .pattern("#")
+                .unlockedBy("has_" + name, has(slab))
+                .save(exporter, getRecipePath("ott", name + "_from_slabs"));
+    }
+
+    private void addSlabToBlockRecipes(RecipeOutput exporter) {
+        // Vanilla Wood
+        registerSlabToBlock(exporter, Items.OAK_SLAB, Items.OAK_PLANKS, "oak_planks");
+        registerSlabToBlock(exporter, Items.SPRUCE_SLAB, Items.SPRUCE_PLANKS, "spruce_planks");
+        registerSlabToBlock(exporter, Items.BIRCH_SLAB, Items.BIRCH_PLANKS, "birch_planks");
+        registerSlabToBlock(exporter, Items.JUNGLE_SLAB, Items.JUNGLE_PLANKS, "jungle_planks");
+        registerSlabToBlock(exporter, Items.ACACIA_SLAB, Items.ACACIA_PLANKS, "acacia_planks");
+        registerSlabToBlock(exporter, Items.DARK_OAK_SLAB, Items.DARK_OAK_PLANKS, "dark_oak_planks");
+        registerSlabToBlock(exporter, Items.MANGROVE_SLAB, Items.MANGROVE_PLANKS, "mangrove_planks");
+        registerSlabToBlock(exporter, Items.CHERRY_SLAB, Items.CHERRY_PLANKS, "cherry_planks");
+        registerSlabToBlock(exporter, Items.BAMBOO_SLAB, Items.BAMBOO_PLANKS, "bamboo_planks");
+        registerSlabToBlock(exporter, Items.BAMBOO_MOSAIC_SLAB, Items.BAMBOO_MOSAIC, "bamboo_mosaic");
+        registerSlabToBlock(exporter, Items.CRIMSON_SLAB, Items.CRIMSON_PLANKS, "crimson_planks");
+        registerSlabToBlock(exporter, Items.WARPED_SLAB, Items.WARPED_PLANKS, "warped_planks");
+
+        // Stones
+        registerSlabToBlock(exporter, Items.STONE_SLAB, Items.STONE, "stone");
+        registerSlabToBlock(exporter, Items.COBBLESTONE_SLAB, Items.COBBLESTONE, "cobblestone");
+        registerSlabToBlock(exporter, Items.MOSSY_COBBLESTONE_SLAB, Items.MOSSY_COBBLESTONE, "mossy_cobblestone");
+        registerSlabToBlock(exporter, Items.SMOOTH_STONE_SLAB, Items.SMOOTH_STONE, "smooth_stone");
+        registerSlabToBlock(exporter, Items.STONE_BRICK_SLAB, Items.STONE_BRICKS, "stone_bricks");
+        registerSlabToBlock(exporter, Items.MOSSY_STONE_BRICK_SLAB, Items.MOSSY_STONE_BRICKS, "mossy_stone_bricks");
+        registerSlabToBlock(exporter, Items.GRANITE_SLAB, Items.GRANITE, "granite");
+        registerSlabToBlock(exporter, Items.POLISHED_GRANITE_SLAB, Items.POLISHED_GRANITE, "polished_granite");
+        registerSlabToBlock(exporter, Items.DIORITE_SLAB, Items.DIORITE, "diorite");
+        registerSlabToBlock(exporter, Items.POLISHED_DIORITE_SLAB, Items.POLISHED_DIORITE, "polished_diorite");
+        registerSlabToBlock(exporter, Items.ANDESITE_SLAB, Items.ANDESITE, "andesite");
+        registerSlabToBlock(exporter, Items.POLISHED_ANDESITE_SLAB, Items.POLISHED_ANDESITE, "polished_andesite");
+
+        // Deepslate
+        registerSlabToBlock(exporter, Items.COBBLED_DEEPSLATE_SLAB, Items.COBBLED_DEEPSLATE, "cobbled_deepslate");
+        registerSlabToBlock(exporter, Items.POLISHED_DEEPSLATE_SLAB, Items.POLISHED_DEEPSLATE, "polished_deepslate");
+        registerSlabToBlock(exporter, Items.DEEPSLATE_BRICK_SLAB, Items.DEEPSLATE_BRICKS, "deepslate_bricks");
+        registerSlabToBlock(exporter, Items.DEEPSLATE_TILE_SLAB, Items.DEEPSLATE_TILES, "deepslate_tiles");
+
+        // Blackstone
+        registerSlabToBlock(exporter, Items.BLACKSTONE_SLAB, Items.BLACKSTONE, "blackstone");
+        registerSlabToBlock(exporter, Items.POLISHED_BLACKSTONE_SLAB, Items.POLISHED_BLACKSTONE, "polished_blackstone");
+        registerSlabToBlock(exporter, Items.POLISHED_BLACKSTONE_BRICK_SLAB, Items.POLISHED_BLACKSTONE_BRICKS, "polished_blackstone_bricks");
+
+        // Sandstone
+        registerSlabToBlock(exporter, Items.SANDSTONE_SLAB, Items.SANDSTONE, "sandstone");
+        registerSlabToBlock(exporter, Items.SMOOTH_SANDSTONE_SLAB, Items.SMOOTH_SANDSTONE, "smooth_sandstone");
+        registerSlabToBlock(exporter, BuiltInRegistries.ITEM.get(ResourceLocation.withDefaultNamespace("cut_sandstone_slab")), Items.CUT_SANDSTONE, "cut_sandstone");
+        registerSlabToBlock(exporter, Items.RED_SANDSTONE_SLAB, Items.RED_SANDSTONE, "red_sandstone");
+        registerSlabToBlock(exporter, Items.SMOOTH_RED_SANDSTONE_SLAB, Items.SMOOTH_RED_SANDSTONE, "smooth_red_sandstone");
+        registerSlabToBlock(exporter, BuiltInRegistries.ITEM.get(ResourceLocation.withDefaultNamespace("cut_red_sandstone_slab")), Items.CUT_RED_SANDSTONE, "cut_red_sandstone");
+
+        // Tuff
+        registerSlabToBlock(exporter, Items.TUFF_SLAB, Items.TUFF, "tuff");
+        registerSlabToBlock(exporter, Items.POLISHED_TUFF_SLAB, Items.POLISHED_TUFF, "polished_tuff");
+        registerSlabToBlock(exporter, Items.TUFF_BRICK_SLAB, Items.TUFF_BRICKS, "tuff_bricks");
+
+        // Prismarine
+        registerSlabToBlock(exporter, Items.PRISMARINE_SLAB, Items.PRISMARINE, "prismarine");
+        registerSlabToBlock(exporter, Items.PRISMARINE_BRICK_SLAB, Items.PRISMARINE_BRICKS, "prismarine_bricks");
+        registerSlabToBlock(exporter, Items.DARK_PRISMARINE_SLAB, Items.DARK_PRISMARINE, "dark_prismarine");
+
+        // Misc
+        registerSlabToBlock(exporter, Items.BRICK_SLAB, Items.BRICKS, "bricks");
+        registerSlabToBlock(exporter, Items.MUD_BRICK_SLAB, Items.MUD_BRICKS, "mud_bricks");
+        registerSlabToBlock(exporter, Items.NETHER_BRICK_SLAB, Items.NETHER_BRICKS, "nether_bricks");
+        registerSlabToBlock(exporter, Items.RED_NETHER_BRICK_SLAB, Items.RED_NETHER_BRICKS, "red_nether_bricks");
+        registerSlabToBlock(exporter, Items.QUARTZ_SLAB, Items.QUARTZ_BLOCK, "quartz_block");
+        registerSlabToBlock(exporter, Items.SMOOTH_QUARTZ_SLAB, Items.SMOOTH_QUARTZ, "smooth_quartz");
+        registerSlabToBlock(exporter, Items.PURPUR_SLAB, Items.PURPUR_BLOCK, "purpur_block");
+        registerSlabToBlock(exporter, Items.END_STONE_BRICK_SLAB, Items.END_STONE_BRICKS, "end_stone_bricks");
+
+        // Copper
+        registerSlabToBlock(exporter, Items.CUT_COPPER_SLAB, Items.CUT_COPPER, "cut_copper");
+        registerSlabToBlock(exporter, Items.EXPOSED_CUT_COPPER_SLAB, Items.EXPOSED_CUT_COPPER, "exposed_cut_copper");
+        registerSlabToBlock(exporter, Items.WEATHERED_CUT_COPPER_SLAB, Items.WEATHERED_CUT_COPPER, "weathered_cut_copper");
+        registerSlabToBlock(exporter, Items.OXIDIZED_CUT_COPPER_SLAB, Items.OXIDIZED_CUT_COPPER, "oxidized_cut_copper");
+        registerSlabToBlock(exporter, Items.WAXED_CUT_COPPER_SLAB, Items.WAXED_CUT_COPPER, "waxed_cut_copper");
+        registerSlabToBlock(exporter, Items.WAXED_EXPOSED_CUT_COPPER_SLAB, Items.WAXED_EXPOSED_CUT_COPPER, "waxed_exposed_cut_copper");
+        registerSlabToBlock(exporter, Items.WAXED_WEATHERED_CUT_COPPER_SLAB, Items.WAXED_WEATHERED_CUT_COPPER, "waxed_weathered_cut_copper");
+        registerSlabToBlock(exporter, Items.WAXED_OXIDIZED_CUT_COPPER_SLAB, Items.WAXED_OXIDIZED_CUT_COPPER, "waxed_oxidized_cut_copper");
+
+        // Mod Slabs
+        registerSlabToBlock(exporter, ModBlocks.PALE_OAK_SLAB.get().asItem(), ModBlocks.PALE_OAK_PLANKS.get().asItem(), "pale_oak_planks");
+        registerSlabToBlock(exporter, ModBlocks.RESIN_BRICK_SLAB.get().asItem(), ModBlocks.RESIN_BRICKS.get().asItem(), "resin_bricks");
+
+        ModBlocks.WOOD_SETS.forEach((setName, set) -> {
+            registerSlabToBlock(exporter, set.slab().get().asItem(), set.planks().get().asItem(), setName + "_planks");
+        });
     }
 }

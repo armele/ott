@@ -37,5 +37,11 @@ public class NetworkHandler {
                 ServerboundSetHomePacket.STREAM_CODEC,
                 ServerboundSetHomePacket::handle
         );
+
+        registrar.playToServer(
+                ServerboundOpenItemPacket.TYPE,
+                ServerboundOpenItemPacket.STREAM_CODEC,
+                ServerboundOpenItemPacket::handle
+        );
     }
 }

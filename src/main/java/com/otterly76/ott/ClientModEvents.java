@@ -15,7 +15,9 @@ import com.otterly76.ott.entity.client.CreakingRenderer;
 import com.otterly76.ott.entity.client.ModModelLayers;
 import com.otterly76.ott.entity.client.OttWoodSetBoatRenderer;
 import com.otterly76.ott.entity.client.PaleOakBoatRenderer;
+import com.otterly76.ott.entity.client.TorchArrowRenderer;
 import com.otterly76.ott.inventory.ModMenuTypes;
+import com.otterly76.ott.item.ModItems;
 import com.otterly76.ott.particle.*;
 import com.otterly76.ott.util.WoodTypeVariant;
 import net.minecraft.client.Minecraft;
@@ -253,6 +255,7 @@ public static float yLevelWindAdjustment(double y) {
         event.registerEntityRenderer(ModEntities.TINY_HUSK.get(), HuskRenderer::new);
         event.registerEntityRenderer(ModEntities.TINY_STRAY.get(), StrayRenderer::new);
         event.registerEntityRenderer(ModEntities.TINY_WITHER_SKELETON.get(), WitherSkeletonRenderer::new);
+        event.registerEntityRenderer(ModEntities.TORCH_ARROW.get(), TorchArrowRenderer::new);
     }
 
     public static void registerLayerDefinitions(EntityRenderersEvent.RegisterLayerDefinitions event) {
@@ -291,6 +294,11 @@ public static float yLevelWindAdjustment(double y) {
                     return -1;
                 },
                 ModBlocks.TESTBLOCK_02.get(), ModBlocks.TESTBLOCK_03.get(), ModBlocks.TESTBLOCK_10.get());
+
+        event.register((stack, tintIndex) -> {
+            if (tintIndex == 0) return 0xFFFFC400;
+            return -1;
+        }, ModItems.TORCH_ARROW.get());
     }
 
     @SuppressWarnings("deprecation")

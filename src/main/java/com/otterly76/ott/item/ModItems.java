@@ -41,6 +41,7 @@ public class ModItems {
 
     public static final DeferredItem<Item> TINY_COAL = ITEMS.register("tiny_coal", () -> new Item(new Item.Properties()));
     public static final DeferredItem<Item> TINY_CHARCOAL = ITEMS.register("tiny_charcoal", () -> new Item(new Item.Properties()));
+    public static final DeferredItem<Item> TORCH_ARROW = ITEMS.register("torch_arrow", () -> new TorchArrowItem(new Item.Properties()));
 
     public static final DeferredItem<Item> TINY_SKELETON_SPAWN_EGG = ITEMS.register("tiny_skeleton_spawn_egg", () -> new DeferredSpawnEggItem(ModEntities.TINY_SKELETON, 0xC1C1C1, 0x494949, new Item.Properties()));
     public static final DeferredItem<Item> TINY_CREEPER_SPAWN_EGG = ITEMS.register("tiny_creeper_spawn_egg", () -> new DeferredSpawnEggItem(ModEntities.TINY_CREEPER, 0x0DA70B, 0x000000, new Item.Properties()));

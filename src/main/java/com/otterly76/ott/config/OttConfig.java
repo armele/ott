@@ -140,6 +140,7 @@ public class OttConfig {
         public final ModConfigSpec.BooleanValue EASY_ANVILS;
         public final ModConfigSpec.BooleanValue FREE_NAME_TAG_RENAMING;
         public final ModConfigSpec.BooleanValue LOWER_ANVIL_COSTS;
+        public final ModConfigSpec.BooleanValue DOUBLE_PICKER_RANGE;
 
         public Visuals(ModConfigSpec.Builder builder) {
             builder.push("visuals");
@@ -152,6 +153,9 @@ public class OttConfig {
             LOWER_ANVIL_COSTS = builder.comment("Should anvil costs be lowered and capped at 30?")
                     .translation("ott.configuration.visuals.loweranvilcosts")
                     .define("lowerAnvilCosts", true);
+            DOUBLE_PICKER_RANGE = builder.comment("Should the range for picking blocks (middle-click) be doubled?")
+                    .translation("ott.configuration.visuals.doublepickerrange")
+                    .define("doublePickerRange", true);
             builder.pop();
         }
     }
@@ -210,14 +214,41 @@ public class OttConfig {
         }
     }
 
-    @SuppressWarnings("ClassCanBeRecord")
     public static class General {
         public final ModConfigSpec.BooleanValue ENABLE_LAVA_WARNINGS;
+        public final ModConfigSpec.BooleanValue AUTO_TOOL_REPLACEMENT;
+        public final ModConfigSpec.BooleanValue VILLAGERS_FOLLOW_EMERALD;
+        public final ModConfigSpec.BooleanValue EVOKERS_KILL_SUMMONS_ON_DEATH;
+        public final ModConfigSpec.BooleanValue SPONGES_PLACED_ON_WATER;
+        public final ModConfigSpec.BooleanValue ENABLE_INVENTORY_SEARCH;
+        public final ModConfigSpec.BooleanValue ENABLE_RIGHT_CLICK_OPEN;
+        public final ModConfigSpec.BooleanValue ENABLE_TORCH_ARROW;
 
         public General(ModConfigSpec.Builder builder) {
             ENABLE_LAVA_WARNINGS = builder.comment("Should the player be warned when lava is nearby while mining?")
                     .translation("ott.configuration.general.enablelavawarnings")
                     .define("enableLavaWarnings", true);
+            AUTO_TOOL_REPLACEMENT = builder.comment("Should broken tools in the hotbar be automatically replaced from the inventory?")
+                    .translation("ott.configuration.general.autotoolreplacement")
+                    .define("autoToolReplacement", true);
+            VILLAGERS_FOLLOW_EMERALD = builder.comment("Should villagers follow players holding emeralds?")
+                    .translation("ott.configuration.general.villagersfollowemerald")
+                    .define("villagersFollowEmerald", true);
+            EVOKERS_KILL_SUMMONS_ON_DEATH = builder.comment("Should Vexes and Fangs summoned by an Evoker die when the Evoker dies?")
+                    .translation("ott.configuration.general.evokerskillsummonsondeath")
+                    .define("evokersKillSummonsOnDeath", true);
+            SPONGES_PLACED_ON_WATER = builder.comment("Should Sponges and Wet Sponges be placeable on water like lily pads?")
+                    .translation("ott.configuration.general.spongesplacedonwater")
+                    .define("spongesPlacedOnWater", true);
+            ENABLE_INVENTORY_SEARCH = builder.comment("Should all container inventories have a search field?")
+                    .translation("ott.configuration.general.enableinventorysearch")
+                    .define("enableInventorySearch", true);
+            ENABLE_RIGHT_CLICK_OPEN = builder.comment("Should containers and crafting blocks be openable by middle-clicking them in the hand or inventory?")
+                    .translation("ott.configuration.general.enablerightclickopen")
+                    .define("enableRightClickOpen", true);
+            ENABLE_TORCH_ARROW = builder.comment("Should Torch Arrows be enabled?")
+                    .translation("ott.configuration.general.enabletorcharrow")
+                    .define("enableTorchArrow", true);
         }
     }
 

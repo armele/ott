@@ -60,6 +60,7 @@ import com.otterly76.ott.worldgen.surface.rule.BandlandsRule;
 import com.otterly76.ott.worldgen.surface.rule.ReferenceRule;
 import com.otterly76.ott.worldgen.surface.rule.TransientMergedRule;
 import com.otterly76.ott.event.HarvestEventHandler;
+import com.otterly76.ott.event.ToolEventHandler;
 import com.otterly76.ott.config.ConfigHandler;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Registry;
@@ -162,11 +163,12 @@ public class Ott {
         modEventBus.addListener(ModEventBusEvents::registerAttributes);
         modEventBus.addListener(ModEventBusEvents::registerSpawnPlacements);
         modEventBus.addListener(ModBlockEntities::registerTileExtensions);
-        modEventBus.addListener(this::commonHarvestSetup);
+        modEventBus.addListener(this::commonEventSetup);
     }
 
-    private void commonHarvestSetup(FMLCommonSetupEvent event) {
+    private void commonEventSetup(FMLCommonSetupEvent event) {
         NeoForge.EVENT_BUS.register(HarvestEventHandler.class);
+        NeoForge.EVENT_BUS.register(ToolEventHandler.class);
     }
 
     public static <T> ResourceKey<T> key(ResourceKey<? extends Registry<T>> resourceKey, String name) {
@@ -415,6 +417,10 @@ public class Ott {
     }
 
     private void addCreative(BuildCreativeModeTabContentsEvent event) {
+
+        if (event.getTabKey() == CreativeModeTabs.COMBAT) {
+            event.accept(ModItems.TORCH_ARROW, CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
+        }
 
         if (event.getTabKey() == CreativeModeTabs.SPAWN_EGGS) {
             event.accept(ModItems.CREAKING_SPAWN_EGG, CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);

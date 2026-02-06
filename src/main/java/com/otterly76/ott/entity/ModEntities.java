@@ -50,6 +50,13 @@ public class ModEntities {
     public static final Supplier<EntityType<TinyWitherSkeleton>> TINY_WITHER_SKELETON = OTT_ENTITY_TYPES.register("tiny_wither_skeleton",
             () -> Builder.of(TinyWitherSkeleton::new, MobCategory.MONSTER).sized(0.7F, 2.4F).build("tiny_wither_skeleton"));
 
+    public static final Supplier<EntityType<TorchArrowEntity>> TORCH_ARROW = OTT_ENTITY_TYPES.register("torch_arrow",
+            () -> Builder.<TorchArrowEntity>of(TorchArrowEntity::new, MobCategory.MISC)
+                    .sized(0.5F, 0.5F)
+                    .clientTrackingRange(4)
+                    .updateInterval(20)
+                    .build("torch_arrow"));
+
     public static final Supplier<EntityType<Boat>> PALE_OAK_BOAT = ENTITY_TYPES.register("pale_oak_boat",
             () -> Builder.<Boat>of(PaleOakBoatEntity::new, MobCategory.MISC).sized(1.375F, 0.5625F).clientTrackingRange(10).build("pale_oak_boat"));
 

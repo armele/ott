@@ -66,6 +66,8 @@ public class ModItemModelProvider extends ItemModelProvider {
 
         generatedItemFromTexture(ModItems.TINY_COAL.getId().getPath(), modLoc("item/tiny_coal"));
         generatedItemFromTexture(ModItems.TINY_CHARCOAL.getId().getPath(), modLoc("item/tiny_charcoal"));
+        
+        withExistingParent(ModItems.TORCH_ARROW.getId().getPath(), mcLoc("item/tipped_arrow"));
     }
 
     private void generatedItemFromTexture(String itemName, ResourceLocation texture) {
