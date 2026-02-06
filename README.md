@@ -31,6 +31,7 @@ Mods, Resourcepacks, and Datapacks You Will Not Need:
 - Minecolonies Oxidized Copper via Alchemist
 - Minecolonies Schematics World Template
 
+- Actually Harvest, Right Click Harvest, Simply Harvesting, etc
 - Appleskin 🍎
 - Better Days 🌛🌝🌜
 - Better Leaves, Bushy Leaves, JS Leaves+, etc 🍃

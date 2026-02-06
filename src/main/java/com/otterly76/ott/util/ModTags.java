@@ -13,6 +13,7 @@ public class ModTags {
         public static final TagKey<Block> PALE_OAK_LOGS = BlockTags.create(ResourceLocation.withDefaultNamespace("pale_oak_logs"));
         public static final TagKey<Block> STONE = BlockTags.create(ResourceLocation.withDefaultNamespace("stone"));
         public static final TagKey<Block> PATHS = createTag("paths");
+        public static final TagKey<Block> HARVEST_BLACKLIST = createTag("harvest_blacklist");
 
         @SuppressWarnings("SameParameterValue")
         private static TagKey<Block> createTag(String name) {

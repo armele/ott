@@ -6,7 +6,7 @@ import com.otterly76.ott.block.entity.ModBlockEntities;
 import com.otterly76.ott.block.wood.ModBlockFamilies;
 import com.otterly76.ott.config.OttConfig;
 import com.otterly76.ott.entity.ModEntities;
-import com.otterly76.ott.events.ModEventBusEvents;
+import com.otterly76.ott.event.ModEventBusEvents;
 import com.otterly76.ott.generation.*;
 import com.otterly76.ott.inventory.ModMenuTypes;
 import com.otterly76.ott.item.ModItems;
@@ -59,6 +59,8 @@ import com.otterly76.ott.worldgen.surface.condition.internal.TagFilledCondition;
 import com.otterly76.ott.worldgen.surface.rule.BandlandsRule;
 import com.otterly76.ott.worldgen.surface.rule.ReferenceRule;
 import com.otterly76.ott.worldgen.surface.rule.TransientMergedRule;
+import com.otterly76.ott.event.HarvestEventHandler;
+import com.otterly76.ott.config.ConfigHandler;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Registry;
 import net.minecraft.core.RegistryAccess;
@@ -105,6 +107,7 @@ import net.neoforged.fml.ModLoadingContext;
 import net.neoforged.fml.common.Mod;
 import net.neoforged.fml.config.ModConfig;
 import net.neoforged.fml.event.lifecycle.FMLCommonSetupEvent;
+import net.neoforged.fml.loading.FMLPaths;
 import net.neoforged.neoforge.client.gui.ConfigurationScreen;
 import net.neoforged.neoforge.client.gui.IConfigScreenFactory;
 import net.neoforged.neoforge.common.NeoForge;
@@ -127,8 +130,11 @@ import static com.otterly76.ott.generation.OttWorldGenProvider.BUILDER;
 
 @Mod(MOD_ID)
 public class Ott {
+    public static final java.util.Random RANDOM = new java.util.Random();
+
     public Ott(IEventBus modEventBus) {
         OttBuiltInRegistries.init(modEventBus);
+        ConfigHandler.load(FMLPaths.CONFIGDIR.get().resolve("ott.json"));
         ModLoadingContext.get().getActiveContainer().registerConfig(ModConfig.Type.COMMON, OttConfig.SPEC, "ott-config.toml");
         ModLoadingContext.get().getActiveContainer().registerExtensionPoint(IConfigScreenFactory.class, ConfigurationScreen::new);
         ModCreativeTabs.OTTER_TABS.register(modEventBus);
@@ -156,6 +162,11 @@ public class Ott {
         modEventBus.addListener(ModEventBusEvents::registerAttributes);
         modEventBus.addListener(ModEventBusEvents::registerSpawnPlacements);
         modEventBus.addListener(ModBlockEntities::registerTileExtensions);
+        modEventBus.addListener(this::commonHarvestSetup);
+    }
+
+    private void commonHarvestSetup(FMLCommonSetupEvent event) {
+        NeoForge.EVENT_BUS.register(HarvestEventHandler.class);
     }
 
     public static <T> ResourceKey<T> key(ResourceKey<? extends Registry<T>> resourceKey, String name) {
@@ -532,6 +543,7 @@ public class Ott {
         LanternSavedData.init(event.getServer().overworld());
         com.otterly76.ott.util.FluidLanternSavedData.init(event.getServer().overworld());
         com.otterly76.ott.util.DamageLanternSavedData.init(event.getServer().overworld());
+        ConfigHandler.initHarvest();
     }
 
     private void addPackFinders(AddPackFindersEvent event) {

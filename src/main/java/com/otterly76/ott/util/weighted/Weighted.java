@@ -1,26 +1,18 @@
 package com.otterly76.ott.util.weighted;
 
-import com.mojang.logging.LogUtils;
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.MapCodec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
-import net.minecraft.SharedConstants;
 import net.minecraft.Util;
 import net.minecraft.util.ExtraCodecs;
-import org.slf4j.Logger;
 
 import java.util.function.Function;
 
 public record Weighted<T>(T value, int weight) {
-    private static final Logger LOGGER = LogUtils.getLogger();
 
     public Weighted {
         if (weight < 0) {
             throw Util.pauseInIde(new IllegalArgumentException("Weight should be >= 0"));
-        } else {
-            if (weight == 0 && SharedConstants.IS_RUNNING_IN_IDE) {
-                LOGGER.warn("Found 0 weight, make sure this is intentional!");
-            }
         }
     }
 

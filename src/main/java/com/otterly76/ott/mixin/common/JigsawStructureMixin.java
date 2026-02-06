@@ -10,8 +10,7 @@ import net.minecraft.core.Holder;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.valueproviders.ConstantInt;
 import net.minecraft.world.level.levelgen.Heightmap;
-import net.minecraft.world.level.levelgen.VerticalAnchor;
-import net.minecraft.world.level.levelgen.heightproviders.ConstantHeight;
+import net.minecraft.world.level.levelgen.heightproviders.HeightProvider;
 import net.minecraft.world.level.levelgen.structure.Structure;
 import net.minecraft.world.level.levelgen.structure.pools.DimensionPadding;
 import net.minecraft.world.level.levelgen.structure.pools.StructureTemplatePool;
@@ -29,6 +28,10 @@ import java.util.Optional;
 
 @Mixin(JigsawStructure.class)
 public class JigsawStructureMixin {
+    @Shadow
+    @Final
+    private HeightProvider startHeight;
+
     @Shadow
     @Final
     private List<PoolAliasBinding> poolAliases;
@@ -62,9 +65,9 @@ public class JigsawStructureMixin {
                         (Optional<ResourceLocation>) startJigsawName,
                         ConstantInt.of(size),
                         false,
-                        ConstantHeight.of(VerticalAnchor.BOTTOM),
+                        this.startHeight,
                         useExpansionHack,
-                        ((Optional<Heightmap.Types>) heightmapProjection).map(Either::right),
+                        ((Optional<Heightmap.Types>) heightmapProjection).map(Either::<com.otterly76.ott.worldgen.structure.SurfaceSnap, Heightmap.Types>right),
                         new AlternateJigsawConfig.MaxDistance(maxDistToCenter),
                         this.poolAliases,
                         padding,

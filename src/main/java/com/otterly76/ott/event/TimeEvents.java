@@ -1,4 +1,4 @@
-package com.otterly76.ott.events;
+package com.otterly76.ott.event;
 
 import com.otterly76.ott.Constants;
 import com.otterly76.ott.config.OttConfig;

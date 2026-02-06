@@ -1,4 +1,4 @@
-package com.otterly76.ott.events;
+package com.otterly76.ott.event;
 
 import com.otterly76.ott.block.ModBlocks;
 import net.minecraft.world.item.ItemStack;

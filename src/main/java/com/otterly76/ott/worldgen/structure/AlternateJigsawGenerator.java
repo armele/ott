@@ -164,26 +164,12 @@ public class AlternateJigsawGenerator {
 
         private void generatePiece(PoolElementStructurePiece parentPiece, BoxOctree parentOctree, int depth, boolean useExpansionHack, LevelHeightAccessor world, PoolAliasLookup aliasLookup, LiquidSettings liquidSettings) {
             StructurePoolElement anchorElement = parentPiece.getElement();
-            BoundingBox parentBoundingBox = parentPiece.getBoundingBox();
-            BoxOctree directParentOctree = null;
 
             for (StructureTemplate.StructureBlockInfo anchorJigsawInfo : anchorElement.getShuffledJigsawBlocks(this.structureTemplateManager, parentPiece.getPosition(), parentPiece.getRotation(), this.random)) {
-                BlockPos candidateConnectorPos = anchorJigsawInfo.pos().relative(JigsawBlock.getFrontFacing(anchorJigsawInfo.state()));
                 Holder<StructureTemplatePool> poolEntry = this.getTemplatePoolHolder(getTemplatePoolKey(anchorJigsawInfo, aliasLookup));
                 if (poolEntry != null) {
-                    boolean connectorInParentBoundingBox = parentBoundingBox.isInside(candidateConnectorPos);
-                    BoxOctree octree;
-                    if (connectorInParentBoundingBox && !AlternateJigsawGenerator.getConfig(anchorElement).otherPiecesCanIntersect()) {
-                        if (directParentOctree == null) {
-                            directParentOctree = new BoxOctree(AABB.of(parentBoundingBox));
-                        }
-                        octree = directParentOctree;
-                    } else {
-                        octree = parentOctree;
-                    }
-
                     MutableObject<List<ResourceKey<StructureTemplatePool>>> checkedPools = new MutableObject<>(new ArrayList<>());
-                    this.findAndTestChildCandidates(poolEntry, checkedPools, parentPiece, anchorJigsawInfo, octree, -1, depth, useExpansionHack, world, true, aliasLookup, liquidSettings);
+                    this.findAndTestChildCandidates(poolEntry, checkedPools, parentPiece, anchorJigsawInfo, parentOctree, -1, depth, useExpansionHack, world, true, aliasLookup, liquidSettings);
                 }
             }
         }
@@ -195,6 +181,8 @@ public class AlternateJigsawGenerator {
                 if (!foundChild) {
                     this.findAndTestChildCandidates(entry.value().getFallback(), checkedPools, parentPiece, anchorJigsawInfo, octree, k, depth, useExpansionHack, world, false, aliasLookup, liquidSettings);
                 }
+            } else if (firstIteration) {
+                this.findAndTestChildCandidates(entry.value().getFallback(), checkedPools, parentPiece, anchorJigsawInfo, octree, k, depth, useExpansionHack, world, false, aliasLookup, liquidSettings);
             }
         }
 
@@ -360,7 +348,7 @@ public class AlternateJigsawGenerator {
             Optional<? extends Holder<StructureTemplatePool>> optional = this.registry.getHolder(key);
             if (optional.isPresent()) {
                 Holder<StructureTemplatePool> regularPool = optional.get();
-                if (regularPool.value().size() != 0) {
+                if (!((StructurePoolAccess)regularPool.value()).ott$getTemplates().isEmpty()) {
                     return regularPool;
                 }
             }

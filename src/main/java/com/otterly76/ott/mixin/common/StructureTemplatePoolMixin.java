@@ -22,12 +22,17 @@ public class StructureTemplatePoolMixin implements StructurePoolAccess {
     private final OttTemplates ott$templates = new OttTemplates();
 
     @Override
-    public OttTemplates ott$getTemplates() {
+    public synchronized OttTemplates ott$getTemplates() {
+        if (this.ott$templates.isEmpty()) {
+            this.ott$compileRawTemplates();
+        }
         return this.ott$templates;
     }
 
     @Override
-    public void ott$compileRawTemplates() {
-        this.rawTemplates.forEach((pair) -> this.ott$templates.add(pair.getFirst(), pair.getSecond()));
+    public synchronized void ott$compileRawTemplates() {
+        if (this.ott$templates.isEmpty()) {
+            this.rawTemplates.forEach((pair) -> this.ott$templates.add(pair.getFirst(), pair.getSecond()));
+        }
     }
 }

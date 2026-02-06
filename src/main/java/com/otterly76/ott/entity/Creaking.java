@@ -11,7 +11,6 @@ import net.minecraft.core.particles.BlockParticleOption;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.NbtUtils;
-import net.minecraft.network.protocol.game.DebugPackets;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
@@ -421,10 +420,6 @@ public class Creaking extends Monster {
         return this.getTargetFromBrain();
     }
 
-    protected void sendDebugPackets() {
-        super.sendDebugPackets();
-        DebugPackets.sendEntityBrain(this);
-    }
 
     public void knockback(double d, double e, double f) {
         if (this.canMove() && this.lastDamageSource != null && (this.lastDamageSource.is(DamageTypeTags.IS_EXPLOSION) || "wind_charge".equals(this.lastDamageSource.getMsgId()))) {

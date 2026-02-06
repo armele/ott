@@ -27,6 +27,10 @@ public class OttTemplates implements Iterable<StructurePoolElement> {
         return shuffled.stream().map(WeightedEntry::getElement).toList();
     }
 
+    public boolean isEmpty() {
+        return this.entries.isEmpty();
+    }
+
     public Stream<StructurePoolElement> stream() {
         return this.entries.stream().map(WeightedEntry::getElement);
     }
