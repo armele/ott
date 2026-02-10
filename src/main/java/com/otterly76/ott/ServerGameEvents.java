@@ -2,24 +2,24 @@ package com.otterly76.ott;
 
 import com.otterly76.ott.command.HomeCommand;
 import com.otterly76.ott.config.OttConfig;
+import com.otterly76.ott.handler.ItemInteractionHandler;
 import com.otterly76.ott.mixin.common.ItemInvoker;
 import com.otterly76.ott.network.ClientboundSyncNutritionPacket;
+import com.otterly76.ott.network.S2COpenNameTagEditorMessage;
 import com.otterly76.ott.util.FloodingManager;
 import com.otterly76.ott.worldgen.surface.SurfaceRuleManager;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
-import net.minecraft.sounds.SoundEvents;
-import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.InteractionResult;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.ClipContext;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.level.block.AnvilBlock;
-import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.material.FluidState;
 import net.minecraft.world.level.material.Fluids;
@@ -28,6 +28,9 @@ import net.minecraft.world.phys.HitResult;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.event.RegisterCommandsEvent;
+import net.neoforged.neoforge.event.TagsUpdatedEvent;
+import net.neoforged.neoforge.event.entity.living.LivingDropsEvent;
+import net.neoforged.neoforge.event.entity.player.AnvilRepairEvent;
 import net.neoforged.neoforge.event.entity.player.PlayerInteractEvent;
 import net.neoforged.neoforge.event.level.BlockEvent;
 import net.neoforged.neoforge.event.server.ServerAboutToStartEvent;
@@ -71,7 +74,7 @@ public class ServerGameEvents {
 
     @SubscribeEvent
     public static void onAnvilRepair(PlayerInteractEvent.RightClickBlock event) {
-        if (!OttConfig.VISUALS.EASY_ANVILS.get()) return;
+        if (!OttConfig.ANVILS.MISC.ANVIL_REPAIRING.get()) return;
 
         Level level = event.getLevel();
         BlockPos pos = event.getPos();
@@ -80,23 +83,14 @@ public class ServerGameEvents {
         Player player = event.getEntity();
 
         if (stack.is(Items.IRON_BLOCK)) {
-            BlockState newState = null;
-            if (state.is(Blocks.DAMAGED_ANVIL)) {
-                newState = Blocks.CHIPPED_ANVIL.defaultBlockState().setValue(AnvilBlock.FACING, state.getValue(AnvilBlock.FACING));
-            } else if (state.is(Blocks.CHIPPED_ANVIL)) {
-                newState = Blocks.ANVIL.defaultBlockState().setValue(AnvilBlock.FACING, state.getValue(AnvilBlock.FACING));
-            }
-
-            if (newState != null) {
+            if (state.is(net.minecraft.tags.BlockTags.ANVIL) && ItemInteractionHandler.tryRepairAnvil(level, pos, state)) {
                 event.setCancellationResult(InteractionResult.sidedSuccess(level.isClientSide));
                 event.setCanceled(true);
 
                 if (!level.isClientSide) {
-                    level.setBlockAndUpdate(pos, newState);
                     if (!player.getAbilities().instabuild) {
                         stack.shrink(1);
                     }
-                    level.playSound(null, pos, SoundEvents.ANVIL_PLACE, SoundSource.BLOCKS, 1.0F, 1.0F);
                 }
             }
         }
@@ -138,6 +132,51 @@ public class ServerGameEvents {
                     serverPlayer.getFoodData().getSaturationLevel(),
                     serverPlayer.getFoodData().getExhaustionLevel()
             ));
+        }
+    }
+
+    @SubscribeEvent
+    public static void onNameTagUse(PlayerInteractEvent.RightClickItem event) {
+        if (!OttConfig.ANVILS.MISC.EDIT_NAME_TAGS_NO_ANVIL.get()) return;
+
+        Player player = event.getEntity();
+        ItemStack stack = event.getItemStack();
+        Level level = event.getLevel();
+
+        if (player.isShiftKeyDown() && stack.is(Items.NAME_TAG)) {
+            if (!level.isClientSide) {
+                PacketDistributor.sendToPlayer((ServerPlayer) player, new S2COpenNameTagEditorMessage(event.getHand(), stack.getHoverName()));
+            }
+            event.setCancellationResult(InteractionResult.sidedSuccess(level.isClientSide));
+            event.setCanceled(true);
+        }
+    }
+
+    @SubscribeEvent
+    public static void onLivingDrops(LivingDropsEvent event) {
+        if (!OttConfig.ANVILS.MISC.NAME_TAGS_DROP_FROM_MOBS.get()) return;
+
+        LivingEntity entity = event.getEntity();
+        if (!(entity instanceof Player) && entity.hasCustomName()) {
+            ItemStack itemStack = new ItemStack(Items.NAME_TAG);
+            itemStack.set(net.minecraft.core.component.DataComponents.CUSTOM_NAME, entity.getCustomName());
+            ItemEntity itemEntity = new ItemEntity(entity.level(), entity.getX(), entity.getEyeY(), entity.getZ(), itemStack);
+            itemEntity.setDefaultPickUpDelay();
+            event.getDrops().add(itemEntity);
+        }
+    }
+
+    @SubscribeEvent
+    public static void onTagsUpdated(TagsUpdatedEvent event) {
+        com.otterly76.ott.handler.BlockConversionHandler.performTagsUpdated(com.otterly76.ott.Ott.ANVIL_BLOCK_PREDICATE, event.getRegistryAccess(), false);
+    }
+
+    @SubscribeEvent
+    public static void onAnvilRepairEvent(AnvilRepairEvent event) {
+        if (OttConfig.ANVILS.MISC.RISK_FREE_ANVIL_RENAMING.get() && event.getRight().isEmpty()) {
+            event.setBreakChance(0.0F);
+        } else {
+            event.setBreakChance(OttConfig.ANVILS.MISC.ANVIL_BREAK_CHANCE.get().floatValue());
         }
     }
 }

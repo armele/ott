@@ -20,6 +20,7 @@ public class OttConfig {
     public static final Visuals VISUALS;
     public static final Lanterns LANTERNS;
     public static final Harvest HARVEST;
+    public static final Anvils ANVILS;
 
     static {
         ModConfigSpec.Builder builder = new ModConfigSpec.Builder();
@@ -38,6 +39,7 @@ public class OttConfig {
         VISUALS = new Visuals(builder);
         LANTERNS = new Lanterns(builder);
         HARVEST = new Harvest(builder);
+        ANVILS = new Anvils(builder);
 
         builder.pop();
         SPEC = builder.build();
@@ -136,26 +138,12 @@ public class OttConfig {
         }
     }
 
-    public static class Visuals {
-        public final ModConfigSpec.BooleanValue EASY_ANVILS;
-        public final ModConfigSpec.BooleanValue FREE_NAME_TAG_RENAMING;
-        public final ModConfigSpec.BooleanValue LOWER_ANVIL_COSTS;
-        public final ModConfigSpec.BooleanValue DOUBLE_PICKER_RANGE;
-
+    public record Visuals(ModConfigSpec.BooleanValue DOUBLE_PICKER_RANGE) {
         public Visuals(ModConfigSpec.Builder builder) {
-            builder.push("visuals");
-            EASY_ANVILS = builder.comment("Enable Easy Anvils features (like repair with iron block)")
-                    .translation("ott.configuration.visuals.easyanvils")
-                    .define("easyAnvils", true);
-            FREE_NAME_TAG_RENAMING = builder.comment("Should renaming name tags in an anvil be free?")
-                    .translation("ott.configuration.visuals.freenametagrenaming")
-                    .define("freeNameTagRenaming", true);
-            LOWER_ANVIL_COSTS = builder.comment("Should anvil costs be lowered and capped at 30?")
-                    .translation("ott.configuration.visuals.loweranvilcosts")
-                    .define("lowerAnvilCosts", true);
-            DOUBLE_PICKER_RANGE = builder.comment("Should the range for picking blocks (middle-click) be doubled?")
+            this(builder.push("visuals")
+                    .comment("Should the range for picking blocks (middle-click) be doubled?")
                     .translation("ott.configuration.visuals.doublepickerrange")
-                    .define("doublePickerRange", true);
+                    .define("doublePickerRange", true));
             builder.pop();
         }
     }
@@ -202,14 +190,12 @@ public class OttConfig {
         }
     }
 
-    public static class Accessibility {
-        public final ModConfigSpec.BooleanValue LOCAL_GLOBAL_SOUNDS;
-
+    public record Accessibility(ModConfigSpec.BooleanValue LOCAL_GLOBAL_SOUNDS) {
         public Accessibility(ModConfigSpec.Builder builder) {
-            builder.push("accessibility");
-            LOCAL_GLOBAL_SOUNDS = builder.comment("Should global sounds (Wither spawn/death, Ender Dragon death) be local instead of server-wide?")
+            this(builder.push("accessibility")
+                    .comment("Should global sounds (Wither spawn/death, Ender Dragon death) be local instead of server-wide?")
                     .translation("ott.configuration.accessibility.localglobalsounds")
-                    .define("localGlobalSounds", true);
+                    .define("localGlobalSounds", true));
             builder.pop();
         }
     }
@@ -531,6 +517,139 @@ public class OttConfig {
                 DENSITY = builder.defineInRange("density", 20, 1, 100);
                 SPAWN_HEIGHT = builder.defineInRange("spawnHeight", 64, 0, 256);
                 SIZE = builder.defineInRange("size", 8.0, 0.0, Double.MAX_VALUE);
+                builder.pop();
+            }
+        }
+    }
+
+    public static class Anvils {
+        public final ModConfigSpec.BooleanValue RENDER_ANVIL_CONTENTS;
+        public final ModConfigSpec.BooleanValue NAME_TAG_TOOLTIP;
+        public final ModConfigSpec.BooleanValue NAME_TAG_CRAFTING_RECIPE;
+        public final ModConfigSpec.BooleanValue DISABLE_VANILLA_ANVIL;
+        public final ModConfigSpec.BooleanValue CONVERT_VANILLA_ANVIL_DURING_WORLD_GEN;
+
+        public final PriorWorkPenaltyOptions PRIOR_WORK_PENALTY;
+        public final CostsOptions COSTS;
+        public final MiscellaneousOptions MISC;
+
+        public Anvils(ModConfigSpec.Builder builder) {
+            builder.push("anvils");
+            RENDER_ANVIL_CONTENTS = builder.comment("Render inventory contents of an anvil.")
+                    .translation("ott.configuration.anvils.renderanvilcontents")
+                    .define("renderAnvilContents", true);
+            NAME_TAG_TOOLTIP = builder.comment("Add a tooltip to name tag items explaining how the change the name on the fly.")
+                    .translation("ott.configuration.anvils.nametagtooltip")
+                    .define("nameTagTooltip", true);
+            NAME_TAG_CRAFTING_RECIPE = builder.comment("Enable a crafting recipe for name tags.")
+                    .translation("ott.configuration.anvils.nametagcraftingrecipe")
+                    .define("nameTagCraftingRecipe", false);
+            DISABLE_VANILLA_ANVIL = builder.comment("Leftover vanilla anvils in a world become unusable until they are broken and replaced.")
+                    .translation("ott.configuration.anvils.disablevanillaanvil")
+                    .define("disableVanillaAnvil", true);
+            CONVERT_VANILLA_ANVIL_DURING_WORLD_GEN = builder.comment("Replace vanilla anvils created in structures during world generation. Does not affect already generated blocks.")
+                    .translation("ott.configuration.anvils.convertvanillaanvilduringworldgen")
+                    .define("convertVanillaAnvilDuringWorldGen", true);
+
+            PRIOR_WORK_PENALTY = new PriorWorkPenaltyOptions(builder);
+            COSTS = new CostsOptions(builder);
+            MISC = new MiscellaneousOptions(builder);
+
+            builder.pop();
+        }
+
+        public static class PriorWorkPenaltyOptions {
+            public final ModConfigSpec.EnumValue<PriorWorkPenalty> PRIOR_WORK_PENALTY;
+            public final ModConfigSpec.IntValue MAXIMUM_PRIOR_WORK_PENALTY_INCREASE;
+            public final ModConfigSpec.EnumValue<RenameAndRepairCost> RENAME_AND_REPAIR_COSTS;
+            public final ModConfigSpec.BooleanValue PENALTY_FREE_RENAMES_AND_REPAIRS;
+            public final ModConfigSpec.BooleanValue PENALTY_FREE_ENCHANTS_FOR_BOOKS;
+
+            public PriorWorkPenaltyOptions(ModConfigSpec.Builder builder) {
+                builder.push("priorWorkPenalty");
+                PRIOR_WORK_PENALTY = builder.comment("Controls how working an item in the anvil multiple times affects the cost of future operations.", "LIMITED: Penalty doubles every time an item is worked, but every increase cannot exceed a given limit.", "VANILLA: Penalty doubles every time an item is worked.", "NONE: Penalty is disabled by staying at 0 and does not increase.")
+                        .translation("ott.configuration.anvils.priorworkpenalty.priorworkpenalty")
+                        .defineEnum("priorWorkPenalty", PriorWorkPenalty.LIMITED);
+                MAXIMUM_PRIOR_WORK_PENALTY_INCREASE = builder.comment("Value to use when \"prior_work_penalty\" is set to \"LIMITED\". Every subsequent operation will increase at most by this value in levels.")
+                        .translation("ott.configuration.anvils.priorworkpenalty.maximumpriorworkpenaltyincrease")
+                        .defineInRange("maximumPriorWorkPenaltyIncrease", 4, 1, Integer.MAX_VALUE);
+                RENAME_AND_REPAIR_COSTS = builder.comment("FIXED: When renaming / repairing, ignore any prior work penalty on the item. Makes prior work penalty only relevant when new enchantments are added.", "LIMITED: When renaming / repairing cost exceeds max anvil repair cost, limit cost just below max cost.", "VANILLA: Renaming / repairing increase with prior work penalty and will no longer be possible when max cost is exceeded.")
+                        .translation("ott.configuration.anvils.priorworkpenalty.renameandrepaircosts")
+                        .defineEnum("renameAndRepairCosts", RenameAndRepairCost.FIXED);
+                PENALTY_FREE_RENAMES_AND_REPAIRS = builder.comment("Prevents the prior work penalty from increasing when the item has only been renamed or repaired.")
+                        .translation("ott.configuration.anvils.priorworkpenalty.penaltyfreerenamesandrepairs")
+                        .define("penaltyFreeRenamesAndRepairs", true);
+                PENALTY_FREE_ENCHANTS_FOR_BOOKS = builder.comment("Prevents the prior work penalty from increasing when combining two enchanted books.")
+                        .translation("ott.configuration.anvils.priorworkpenalty.penaltyfreeenchantsforbooks")
+                        .define("penaltyFreeEnchantsForBooks", true);
+                builder.pop();
+            }
+        }
+
+        public static class CostsOptions {
+            public final ModConfigSpec.IntValue TOO_EXPENSIVE_LIMIT;
+            public final ModConfigSpec.EnumValue<FreeRenames> FREE_RENAMES;
+            public final ModConfigSpec.BooleanValue HALVED_BOOK_COSTS;
+            public final ModConfigSpec.IntValue REPAIR_WITH_MATERIAL_UNIT_COST;
+            public final ModConfigSpec.DoubleValue REPAIR_WITH_MATERIAL_RESTORED_DURABILITY;
+            public final ModConfigSpec.IntValue REPAIR_WITH_OTHER_ITEM_COST;
+            public final ModConfigSpec.DoubleValue REPAIR_WITH_OTHER_ITEM_BONUS_DURABILITY;
+
+            public CostsOptions(ModConfigSpec.Builder builder) {
+                builder.push("costs");
+                TOO_EXPENSIVE_LIMIT = builder.comment("Max cost of enchantment level allowed to be spent in an anvil. Every operation exceeding the limit will show as 'Too Expensive!' and will be disallowed.", "If set to '-1' the limit is disabled.", "Set to '40' enchantment levels in vanilla.")
+                        .translation("ott.configuration.anvils.costs.tooexpensivelimit")
+                        .defineInRange("tooExpensiveLimit", -1, -1, Integer.MAX_VALUE);
+                FREE_RENAMES = builder.comment("Renaming any item in an anvil no longer costs any enchantment levels at all. Can be restricted to only name tags.")
+                        .translation("ott.configuration.anvils.costs.freerenames")
+                        .defineEnum("freeRenames", FreeRenames.ALL_ITEMS);
+                HALVED_BOOK_COSTS = builder.comment("Costs for applying enchantments from enchanted books are halved.")
+                        .translation("ott.configuration.anvils.costs.halvedbookcosts")
+                        .define("halvedBookCosts", true);
+                REPAIR_WITH_MATERIAL_UNIT_COST = builder.comment("The additional cost in levels for each valid repair material an item is repaired with.")
+                        .translation("ott.configuration.anvils.costs.repairwithmaterialunitcost")
+                        .defineInRange("repairWithMaterialUnitCost", 1, 0, Integer.MAX_VALUE);
+                REPAIR_WITH_MATERIAL_RESTORED_DURABILITY = builder.comment("Restored percentage of full durability for an item after repairing with a single valid repair material.")
+                        .translation("ott.configuration.anvils.costs.repairwithmaterialrestoreddurability")
+                        .defineInRange("repairWithMaterialRestoredDurability", 0.25, 0.0, 1.0);
+                REPAIR_WITH_OTHER_ITEM_COST = builder.comment("The additional cost in levels for combining an item with another item of the same kind when the first item is not fully repaired.")
+                        .translation("ott.configuration.anvils.costs.repairwithotheritemcost")
+                        .defineInRange("repairWithOtherItemCost", 2, 0, Integer.MAX_VALUE);
+                REPAIR_WITH_OTHER_ITEM_BONUS_DURABILITY = builder.comment("Percentage of full durability given as a bonus for an item after combining an item with another item of the same kind.")
+                        .translation("ott.configuration.anvils.costs.repairwithotheritembonusdurability")
+                        .defineInRange("repairWithOtherItemBonusDurability", 0.12, 0.0, 1.0);
+                builder.pop();
+            }
+        }
+
+        public static class MiscellaneousOptions {
+            public final ModConfigSpec.BooleanValue ANVIL_REPAIRING;
+            public final ModConfigSpec.BooleanValue EDIT_NAME_TAGS_NO_ANVIL;
+            public final ModConfigSpec.DoubleValue ANVIL_BREAK_CHANCE;
+            public final ModConfigSpec.BooleanValue RISK_FREE_ANVIL_RENAMING;
+            public final ModConfigSpec.BooleanValue RENAMING_SUPPORTS_FORMATTING;
+            public final ModConfigSpec.BooleanValue NAME_TAGS_DROP_FROM_MOBS;
+
+            public MiscellaneousOptions(ModConfigSpec.Builder builder) {
+                builder.push("miscellaneous");
+                ANVIL_REPAIRING = builder.comment("Allow using iron blocks to repair an anvil by one damage stage. Can be automated using dispensers.")
+                        .translation("ott.configuration.anvils.miscellaneous.anvilrepairing")
+                        .define("anvilRepairing", true);
+                EDIT_NAME_TAGS_NO_ANVIL = builder.comment("Edit name tags without cost nor anvil, simply by sneak + right-clicking.")
+                        .translation("ott.configuration.anvils.miscellaneous.editnametagsnoanvil")
+                        .define("editNameTagsNoAnvil", true);
+                ANVIL_BREAK_CHANCE = builder.comment("Chance the anvil will break into chipped or damaged variant, or break completely after using. Value is set to 0.12 in vanilla.")
+                        .translation("ott.configuration.anvils.miscellaneous.anvilbreakchance")
+                        .defineInRange("anvilBreakChance", 0.05, 0.0, 1.0);
+                RISK_FREE_ANVIL_RENAMING = builder.comment("Solely renaming items in an anvil will never cause the anvil to break.")
+                        .translation("ott.configuration.anvils.miscellaneous.riskfreeanvilrenaming")
+                        .define("riskFreeAnvilRenaming", true);
+                RENAMING_SUPPORTS_FORMATTING = builder.comment("The naming field in anvils and the name tag gui will support formatting codes for setting custom text colors and styles.")
+                        .translation("ott.configuration.anvils.miscellaneous.renamingsupportsformatting")
+                        .define("renamingSupportsFormatting", true);
+                NAME_TAGS_DROP_FROM_MOBS = builder.comment("Mobs that have a custom name drop a name tag with that name on death.")
+                        .translation("ott.configuration.anvils.miscellaneous.nametagsdropfrommobs")
+                        .define("nameTagsDropFromMobs", false);
                 builder.pop();
             }
         }

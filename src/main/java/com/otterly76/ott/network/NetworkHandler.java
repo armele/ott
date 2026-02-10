@@ -43,5 +43,29 @@ public class NetworkHandler {
                 ServerboundOpenItemPacket.STREAM_CODEC,
                 ServerboundOpenItemPacket::handle
         );
+
+        registrar.playToClient(
+                S2COpenNameTagEditorMessage.TYPE,
+                S2COpenNameTagEditorMessage.STREAM_CODEC,
+                S2COpenNameTagEditorMessage::handle
+        );
+
+        registrar.playToServer(
+                C2SNameTagUpdateMessage.TYPE,
+                C2SNameTagUpdateMessage.STREAM_CODEC,
+                C2SNameTagUpdateMessage::handle
+        );
+
+        registrar.playToClient(
+                S2CAnvilRepairMessage.TYPE,
+                S2CAnvilRepairMessage.STREAM_CODEC,
+                S2CAnvilRepairMessage::handle
+        );
+
+        registrar.playToServer(
+                C2SRenameItemMessage.TYPE,
+                C2SRenameItemMessage.STREAM_CODEC,
+                C2SRenameItemMessage::handle
+        );
     }
 }

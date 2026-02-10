@@ -13,12 +13,12 @@ import net.minecraft.client.particle.SpriteSet;
 import net.minecraft.core.particles.SimpleParticleType;
 import net.minecraft.util.Mth;
 import net.minecraft.world.phys.AABB;
-import net.minecraft.world.phys.Vec3;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
 import org.jetbrains.annotations.NotNull;
 import org.joml.AxisAngle4d;
 import org.joml.Quaternionf;
+import org.joml.Vector3f;
 
 import java.awt.*;
 
@@ -64,14 +64,11 @@ public class GroundFogParticle extends WeatherParticle {
         return this.getBoundingBox().inflate(4.0F);
     }
 
-    public void render(@NotNull VertexConsumer vertexConsumer, Camera camera, float f) {
-        Vec3 camPos = camera.getPosition();
-        float x = (float)(Mth.lerp(f, this.xo, this.x) - camPos.x());
-        float y = (float)(Mth.lerp(f, this.yo, this.y) - camPos.y());
-        float z = (float)(Mth.lerp(f, this.zo, this.z) - camPos.z());
+    public void render(@NotNull VertexConsumer vertexConsumer, @NotNull Camera camera, float f) {
+        Vector3f localPos = this.getRelativePosition(camera, f);
         Quaternionf quaternion = new Quaternionf(new AxisAngle4d((float)Math.PI / 2F, -1.0F, 0.0F, 0.0F));
         quaternion.rotateZ(Mth.lerp(f, this.oRoll, this.roll));
-        this.renderRotatedQuad(vertexConsumer, quaternion, x, y, z, f);
+        this.renderRotatedQuad(vertexConsumer, quaternion, localPos.x, localPos.y, localPos.z, f);
     }
 
     public @NotNull ParticleRenderType getRenderType() {

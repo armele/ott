@@ -45,6 +45,7 @@ public class ModBlockTagProvider extends BlockTagsProvider {
         TagKey<Block> cGlassKey = TagKey.create(Registries.BLOCK, ResourceLocation.fromNamespaceAndPath("c", "glass"));
         TagKey<Block> cGlassBlocksKey = TagKey.create(Registries.BLOCK, ResourceLocation.fromNamespaceAndPath("c", "glass_blocks"));
         TagKey<Block> cGlassBlocksCheapKey = TagKey.create(Registries.BLOCK, ResourceLocation.fromNamespaceAndPath("c", "glass_blocks_cheap"));
+        TagKey<Block> cGlassBlocksColoredKey = TagKey.create(Registries.BLOCK, ResourceLocation.fromNamespaceAndPath("c", "glass_blocks/colored"));
 
         TagKey<Block> paleOakLogsKey = ModTags.Blocks.PALE_OAK_LOGS;
 
@@ -116,19 +117,26 @@ public class ModBlockTagProvider extends BlockTagsProvider {
         // Linking to DO categories
         this.tag(doConcreteKey).addTag(ottConcreteKey);
 
-        // Linking to Common (c:)
+        // Linking to groups that contain all colored variants
+        addCommonLinkageTags(this.tag(cDyedKey), ottConcreteKey, ottConcretePowderKey, ottWoolKey, ottStainedGlassKey, ottTerracottaKey);
+
+        // Use the dyed group for other external grouping tags
+        this.tag(com.minecolonies.api.items.ModTags.tier2blocks).addTag(cDyedKey);
+
+        // Individual category links
         this.tag(cConcretesKey).addTag(ottConcreteKey);
         this.tag(cConcretePowdersKey).addTag(ottConcretePowderKey);
         this.tag(cWoolKey).addTag(ottWoolKey);
         this.tag(cTerracottaKey).addTag(ottTerracottaKey);
+
+        // Glass linking
         this.tag(cGlassKey).addTag(ottStainedGlassKey);
         this.tag(cGlassBlocksKey).addTag(ottStainedGlassKey);
         this.tag(cGlassBlocksCheapKey).addTag(ottStainedGlassKey);
-        this.tag(cDyedKey).addTag(ottConcreteKey).addTag(ottConcretePowderKey).addTag(ottWoolKey).addTag(ottStainedGlassKey).addTag(ottTerracottaKey);
+        this.tag(cGlassBlocksColoredKey).addTag(ottStainedGlassKey);
 
-        // Linking to MineColonies
+        // MineColonies Hierarchy
         this.tag(com.minecolonies.api.items.ModTags.tier1blocks).addTag(ottWoolKey).addTag(ottTerracottaKey);
-        this.tag(com.minecolonies.api.items.ModTags.tier2blocks).addTag(ottConcreteKey).addTag(ottConcretePowderKey).addTag(ottWoolKey).addTag(ottStainedGlassKey).addTag(ottTerracottaKey);
 
         this.tag(structurizeWeakKey).addTag(ottConcretePowderKey);
 
@@ -153,46 +161,51 @@ public class ModBlockTagProvider extends BlockTagsProvider {
         shearsTag.add(ModBlocks.PALE_OAK_LEAVES.value(), ModBlocks.PALE_HANGING_MOSS.value(), ModBlocks.PALE_MOSS_BLOCK.value(), ModBlocks.PALE_MOSS_CARPET.value(), ModBlocks.CLOSED_EYEBLOSSOM.value(), ModBlocks.OPEN_EYEBLOSSOM.value());
 
         this.tag(BlockTags.create(ResourceLocation.withDefaultNamespace("combination_step_sound_blocks"))).add(ModBlocks.RESIN_CLUMP.value());
-        this.tag(BlockTags.FENCE_GATES).add(ModBlocks.PALE_OAK_FENCE_GATE.value());
-        this.tag(BlockTags.LOGS).addTag(paleOakLogsKey);
-        this.tag(BlockTags.LOGS_THAT_BURN).addTag(paleOakLogsKey);
-        this.tag(BlockTags.SLABS).add(ModBlocks.RESIN_BRICK_SLAB.value());
-        this.tag(BlockTags.STAIRS).add(ModBlocks.RESIN_BRICK_STAIRS.value());
-        this.tag(BlockTags.WALLS).add(ModBlocks.RESIN_BRICK_WALL.value());
+        addWoodSetTags(
+                paleOakLogsKey,
+                ModBlocks.PALE_OAK_LOG.get(),
+                ModBlocks.PALE_OAK_WOOD.get(),
+                ModBlocks.STRIPPED_PALE_OAK_LOG.get(),
+                ModBlocks.STRIPPED_PALE_OAK_WOOD.get(),
+                ModBlocks.PALE_OAK_PLANKS.get(),
+                ModBlocks.PALE_OAK_LEAVES.get(),
+                ModBlocks.PALE_OAK_SLAB.get(),
+                ModBlocks.PALE_OAK_STAIRS.get(),
+                ModBlocks.PALE_OAK_FENCE.get(),
+                ModBlocks.PALE_OAK_FENCE_GATE.get(),
+                ModBlocks.PALE_OAK_DOOR.get(),
+                ModBlocks.PALE_OAK_TRAPDOOR.get(),
+                ModBlocks.PALE_OAK_BUTTON.get(),
+                ModBlocks.PALE_OAK_PRESSURE_PLATE.get(),
+                ModBlocks.PALE_OAK_SIGN.get(),
+                ModBlocks.PALE_OAK_WALL_SIGN.get(),
+                ModBlocks.PALE_OAK_HANGING_SIGN.get(),
+                ModBlocks.PALE_OAK_WALL_HANGING_SIGN.get()
+        );
 
-        this.tag(BlockTags.STANDING_SIGNS).add(ModBlocks.PALE_OAK_SIGN.value());
-        this.tag(BlockTags.WALL_SIGNS).add(ModBlocks.PALE_OAK_WALL_SIGN.value());
-        this.tag(BlockTags.CEILING_HANGING_SIGNS).add(ModBlocks.PALE_OAK_HANGING_SIGN.value());
-        this.tag(BlockTags.WALL_HANGING_SIGNS).add(ModBlocks.PALE_OAK_WALL_HANGING_SIGN.value());
-
-        this.tag(BlockTags.WOODEN_BUTTONS).add(ModBlocks.PALE_OAK_BUTTON.value());
-        this.tag(BlockTags.WOODEN_DOORS).add(ModBlocks.PALE_OAK_DOOR.value());
-        this.tag(BlockTags.WOODEN_FENCES).add(ModBlocks.PALE_OAK_FENCE.value());
-        this.tag(BlockTags.WOODEN_PRESSURE_PLATES).add(ModBlocks.PALE_OAK_PRESSURE_PLATE.value());
-        this.tag(BlockTags.WOODEN_SLABS).add(ModBlocks.PALE_OAK_SLAB.value());
-        this.tag(BlockTags.WOODEN_STAIRS).add(ModBlocks.PALE_OAK_STAIRS.value());
-        this.tag(BlockTags.WOODEN_TRAPDOORS).add(ModBlocks.PALE_OAK_TRAPDOOR.value());
-
-        ModBlocks.WOOD_SETS.values().forEach(set -> {
+        ModBlocks.WOOD_SETS.forEach((setName, set) -> {
             this.tag(doDefaultKey).add(set.log().value(), set.wood().value(), set.strippedLog().value(), set.strippedWood().value(), set.planks().value(), set.leaves().value());
-            this.tag(BlockTags.LOGS).add(set.log().value(), set.wood().value(), set.strippedLog().value(), set.strippedWood().value());
-            this.tag(BlockTags.LOGS_THAT_BURN).add(set.log().value(), set.wood().value(), set.strippedLog().value(), set.strippedWood().value());
-            this.tag(BlockTags.PLANKS).add(set.planks().value());
-            this.tag(BlockTags.LEAVES).add(set.leaves().value());
-            this.tag(BlockTags.MINEABLE_WITH_HOE).add(set.leaves().value());
-            shearsTag.add(set.leaves().value());
-            this.tag(BlockTags.WOODEN_SLABS).add(set.slab().value());
-            this.tag(BlockTags.WOODEN_STAIRS).add(set.stairs().value());
-            this.tag(BlockTags.WOODEN_FENCES).add(set.fence().value());
-            this.tag(BlockTags.FENCE_GATES).add(set.fenceGate().value());
-            this.tag(BlockTags.WOODEN_DOORS).add(set.door().value());
-            this.tag(BlockTags.WOODEN_TRAPDOORS).add(set.trapdoor().value());
-            this.tag(BlockTags.WOODEN_BUTTONS).add(set.button().value());
-            this.tag(BlockTags.WOODEN_PRESSURE_PLATES).add(set.pressurePlate().value());
-            this.tag(BlockTags.STANDING_SIGNS).add(set.sign().value());
-            this.tag(BlockTags.WALL_SIGNS).add(set.wallSign().value());
-            this.tag(BlockTags.CEILING_HANGING_SIGNS).add(set.hangingSign().value());
-            this.tag(BlockTags.WALL_HANGING_SIGNS).add(set.wallHangingSign().value());
+            addWoodSetTags(
+                    ModTags.Blocks.woodSetLogs(setName),
+                    set.log().get(),
+                    set.wood().get(),
+                    set.strippedLog().get(),
+                    set.strippedWood().get(),
+                    set.planks().get(),
+                    set.leaves().get(),
+                    set.slab().get(),
+                    set.stairs().get(),
+                    set.fence().get(),
+                    set.fenceGate().get(),
+                    set.door().get(),
+                    set.trapdoor().get(),
+                    set.button().get(),
+                    set.pressurePlate().get(),
+                    set.sign().get(),
+                    set.wallSign().get(),
+                    set.hangingSign().get(),
+                    set.wallHangingSign().get()
+            );
         });
 
         // --- 6. VANILLA OVERRIDES ---
@@ -203,7 +216,37 @@ public class ModBlockTagProvider extends BlockTagsProvider {
         this.tag(BlockTags.FLOWERS).add(ModBlocks.CLOSED_EYEBLOSSOM.value(), ModBlocks.OPEN_EYEBLOSSOM.value());
         this.tag(BlockTags.SMALL_FLOWERS).add(ModBlocks.CLOSED_EYEBLOSSOM.value(), ModBlocks.OPEN_EYEBLOSSOM.value());
 
-        this.tag(paleOakLogsKey)
-                .add(ModBlocks.PALE_OAK_LOG.value(), ModBlocks.STRIPPED_PALE_OAK_LOG.value(), ModBlocks.PALE_OAK_WOOD.value(), ModBlocks.STRIPPED_PALE_OAK_WOOD.value());
+    }
+
+    @SafeVarargs
+    private void addCommonLinkageTags(TagAppender<Block> appender, TagKey<Block>... tags) {
+        for (TagKey<Block> tag : tags) {
+            appender.addTag(tag);
+        }
+    }
+
+    private void addWoodSetTags(TagKey<Block> logTag, Block log, Block wood, Block strippedLog, Block strippedWood,
+                                Block planks, Block leaves, Block slab, Block stairs, Block fence, Block fenceGate,
+                                Block door, Block trapdoor, Block button, Block pressurePlate, Block sign,
+                                Block wallSign, Block hangingSign, Block wallHangingSign) {
+        this.tag(logTag).add(log, wood, strippedLog, strippedWood);
+        this.tag(BlockTags.LOGS).addTag(logTag);
+        this.tag(BlockTags.LOGS_THAT_BURN).addTag(logTag);
+        this.tag(BlockTags.PLANKS).add(planks);
+        this.tag(BlockTags.LEAVES).add(leaves);
+        this.tag(BlockTags.MINEABLE_WITH_HOE).add(leaves);
+        this.tag(BlockTags.create(ResourceLocation.withDefaultNamespace("mineable/shears"))).add(leaves);
+        this.tag(BlockTags.WOODEN_SLABS).add(slab);
+        this.tag(BlockTags.WOODEN_STAIRS).add(stairs);
+        this.tag(BlockTags.WOODEN_FENCES).add(fence);
+        this.tag(BlockTags.FENCE_GATES).add(fenceGate);
+        this.tag(BlockTags.WOODEN_DOORS).add(door);
+        this.tag(BlockTags.WOODEN_TRAPDOORS).add(trapdoor);
+        this.tag(BlockTags.WOODEN_BUTTONS).add(button);
+        this.tag(BlockTags.WOODEN_PRESSURE_PLATES).add(pressurePlate);
+        this.tag(BlockTags.STANDING_SIGNS).add(sign);
+        this.tag(BlockTags.WALL_SIGNS).add(wallSign);
+        this.tag(BlockTags.CEILING_HANGING_SIGNS).add(hangingSign);
+        this.tag(BlockTags.WALL_HANGING_SIGNS).add(wallHangingSign);
     }
 }

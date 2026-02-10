@@ -15,6 +15,10 @@ public class ModTags {
         public static final TagKey<Block> PATHS = createTag("paths");
         public static final TagKey<Block> HARVEST_BLACKLIST = createTag("harvest_blacklist");
 
+        public static TagKey<Block> woodSetLogs(String setName) {
+            return createTag(setName + "_logs");
+        }
+
         @SuppressWarnings("SameParameterValue")
         private static TagKey<Block> createTag(String name) {
             return BlockTags.create(ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, name));

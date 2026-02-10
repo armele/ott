@@ -39,6 +39,7 @@ Mods, Resourcepacks, and Datapacks You Will Not Need:
 - Clumps 💎
 - Colorful Hearts ❤️
 - Death Finder
+- Easy Anvils, Repair Anvil, Anvil Repairing, Fixed Anvil Repair Cost, Unbreakable Anvil, etc
 - Easy Homes, Simplest Homes, Home Wand, Set Home, etc
 - Fortune Works On Ancient Debris
 - Healing Bed 🛏️
@@ -55,7 +56,6 @@ Mods, Resourcepacks, and Datapacks You Will Not Need:
 - Permanent Sponges
 - Pretty Beaches 🏖️
 - Pretty Rain ⛅
-- Repair Anvil, Anvil Repairing, Fixed Anvil Repair Cost, Unbreakable Anvil, etc
 - Simple Grass Flowers, Better Grounds, Better Grass, etc 🍀
 - Snow Under Trees, Simple Snowy Fix, Falling Snow, etc ❄️
 - The Fence Unleashed 🐮

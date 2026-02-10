@@ -14,7 +14,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 public class PlayerListMixin {
     @Inject(method = "broadcastAll(Lnet/minecraft/network/protocol/Packet;)V", at = @At("HEAD"), cancellable = true)
     private void ott$onBroadcastAll(net.minecraft.network.protocol.Packet<?> packet, CallbackInfo ci) {
-        if (OttConfig.ACCESSIBILITY.LOCAL_GLOBAL_SOUNDS.get() && packet instanceof ClientboundLevelEventPacket levelEventPacket) {
+        if (OttConfig.ACCESSIBILITY.LOCAL_GLOBAL_SOUNDS().get() && packet instanceof ClientboundLevelEventPacket levelEventPacket) {
             int type = levelEventPacket.getType();
             // 1023: Wither spawn, 1028: Ender Dragon death, 1038: Wither death
             if (type == 1023 || type == 1028 || type == 1038) {

@@ -28,7 +28,6 @@ Vertical Slabs
 
 Fuzs:
 Armor Statues
-Easy Anvils
 Effect Descriptions
 Fantastic Wings
 Universal Enchants

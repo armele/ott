@@ -107,11 +107,8 @@ public class ShrubParticle extends WeatherParticle {
         return ParticleRenderType.TERRAIN_SHEET;
     }
 
-    public void render(@NotNull VertexConsumer vertexConsumer, Camera camera, float tickPercentage) {
-        Vector3f camPos = camera.getPosition().toVector3f();
-        float x = (float)(Mth.lerp(tickPercentage, this.xo, this.x) - (double)camPos.x);
-        float y = (float)(Mth.lerp(tickPercentage, this.yo, this.y) - (double)camPos.y);
-        float z = (float)(Mth.lerp(tickPercentage, this.zo, this.z) - (double)camPos.z);
+    public void render(@NotNull VertexConsumer vertexConsumer, @NotNull Camera camera, float tickPercentage) {
+        Vector3f localPos = this.getRelativePosition(camera, tickPercentage);
         float angle = (float)Math.atan2(this.xd, this.zd);
         Quaternionf quaternion = new Quaternionf();
         quaternion.rotateY(angle);
@@ -119,10 +116,10 @@ public class ShrubParticle extends WeatherParticle {
         Quaternionf quat2 = new Quaternionf(new AxisAngle4f(((float)java.lang.Math.PI / 2F), 0.0F, 1.0F, 0.0F));
         quat1.mul(quaternion).rotateX(Mth.lerp(tickPercentage, this.oRoll, this.roll));
         quat2.mul(quaternion).rotateZ(Mth.lerp(tickPercentage, this.oRoll, this.roll));
-        quat1 = this.flipItTurnwaysIfBackfaced(quat1, new Vector3f(x, y, z));
-        quat2 = this.flipItTurnwaysIfBackfaced(quat2, new Vector3f(x, y, z));
-        this.renderRotatedQuad(vertexConsumer, quat1, x, y, z, tickPercentage);
-        this.renderRotatedQuad(vertexConsumer, quat2, x, y, z, tickPercentage);
+        quat1 = this.flipItTurnwaysIfBackfaced(quat1, localPos);
+        quat2 = this.flipItTurnwaysIfBackfaced(quat2, localPos);
+        this.renderRotatedQuad(vertexConsumer, quat1, localPos.x, localPos.y, localPos.z, tickPercentage);
+        this.renderRotatedQuad(vertexConsumer, quat2, localPos.x, localPos.y, localPos.z, tickPercentage);
     }
 
     @OnlyIn(Dist.CLIENT)

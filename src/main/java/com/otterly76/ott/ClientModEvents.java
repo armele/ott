@@ -7,8 +7,6 @@ import com.otterly76.ott.client.gui.TrashScreen;
 import com.otterly76.ott.client.model.BookshelfModelProxy;
 import com.otterly76.ott.client.render.PrismaticColorHandler;
 import com.otterly76.ott.client.render.texture.FXAtlasSpriteSource;
-import com.otterly76.ott.client.tooltip.ClientFoodTooltipComponent;
-import com.otterly76.ott.client.tooltip.FoodTooltipComponent;
 import com.otterly76.ott.config.OttConfig;
 import com.otterly76.ott.entity.ModEntities;
 import com.otterly76.ott.entity.client.CreakingRenderer;
@@ -19,6 +17,7 @@ import com.otterly76.ott.entity.client.TorchArrowRenderer;
 import com.otterly76.ott.inventory.ModMenuTypes;
 import com.otterly76.ott.item.ModItems;
 import com.otterly76.ott.particle.*;
+import com.otterly76.ott.block.entity.ModBlockEntities;
 import com.otterly76.ott.util.WoodTypeVariant;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.model.BoatModel;
@@ -26,8 +25,6 @@ import net.minecraft.client.model.ChestBoatModel;
 import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.client.particle.TextureSheetParticle;
 import net.minecraft.client.renderer.BiomeColors;
-import net.minecraft.client.renderer.ItemBlockRenderTypes;
-import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.Sheets;
 import net.minecraft.client.renderer.entity.*;
 import net.minecraft.client.renderer.texture.SpriteContents;
@@ -45,6 +42,7 @@ import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.fml.event.lifecycle.FMLClientSetupEvent;
 import net.neoforged.neoforge.client.event.*;
+import net.neoforged.neoforge.event.entity.player.ItemTooltipEvent;
 import net.neoforged.neoforge.client.gui.VanillaGuiLayers;
 
 import java.awt.*;
@@ -78,6 +76,7 @@ public class ClientModEvents {
         modBus.addListener(ClientModEvents::registerLayerDefinitions);
         modBus.addListener(ClientModEvents::onRegisterAdditional);
         modBus.addListener(ClientModEvents::onModelBaking);
+        modBus.addListener(com.otterly76.ott.client.handler.BlockModelHandler::onModelBaking);
     }
 
     public static void onRegisterAdditional(ModelEvent.RegisterAdditional event) {
@@ -234,6 +233,8 @@ public static float yLevelWindAdjustment(double y) {
 
     public static void registerMenuScreens(RegisterMenuScreensEvent event) {
         event.register(ModMenuTypes.TRASH_MENU.get(), TrashScreen::new);
+
+        event.register(ModMenuTypes.ANVIL_MENU_TYPE.get(), com.otterly76.ott.client.gui.ModAnvilScreen::new);
     }
 
     public static void registerRenderers(EntityRenderersEvent.RegisterRenderers event) {
@@ -256,6 +257,8 @@ public static float yLevelWindAdjustment(double y) {
         event.registerEntityRenderer(ModEntities.TINY_STRAY.get(), StrayRenderer::new);
         event.registerEntityRenderer(ModEntities.TINY_WITHER_SKELETON.get(), WitherSkeletonRenderer::new);
         event.registerEntityRenderer(ModEntities.TORCH_ARROW.get(), TorchArrowRenderer::new);
+
+        event.registerBlockEntityRenderer(ModBlockEntities.ANVIL_BLOCK_ENTITY_TYPE.get(), com.otterly76.ott.client.render.AnvilRenderer::new);
     }
 
     public static void registerLayerDefinitions(EntityRenderersEvent.RegisterLayerDefinitions event) {
@@ -301,46 +304,18 @@ public static float yLevelWindAdjustment(double y) {
         }, ModItems.TORCH_ARROW.get());
     }
 
-    @SuppressWarnings("deprecation")
+    @SubscribeEvent
     public static void onClientSetup(FMLClientSetupEvent event) {
         event.enqueueWork(() -> {
             Sheets.addWoodType(WoodTypeVariant.PALE_OAK.getWoodType());
             ModBlocks.WOOD_SETS.keySet().forEach(setName ->
                     Sheets.addWoodType(WoodTypeVariant.ott(setName))
             );
-            ItemBlockRenderTypes.setRenderLayer(ModBlocks.CLOSED_EYEBLOSSOM.get(), RenderType.cutout());
-            ItemBlockRenderTypes.setRenderLayer(ModBlocks.OPEN_EYEBLOSSOM.get(), RenderType.cutout());
-            ItemBlockRenderTypes.setRenderLayer(ModBlocks.PALE_HANGING_MOSS.get(), RenderType.cutout());
-            ItemBlockRenderTypes.setRenderLayer(ModBlocks.PALE_MOSS_CARPET.get(), RenderType.cutout());
-            ItemBlockRenderTypes.setRenderLayer(ModBlocks.RESIN_CLUMP.get(), RenderType.cutout());
-            ItemBlockRenderTypes.setRenderLayer(ModBlocks.PALE_OAK_SAPLING.get(), RenderType.cutout());
-            ItemBlockRenderTypes.setRenderLayer(ModBlocks.POTTED_PALE_OAK_SAPLING.get(), RenderType.cutout());
-            ItemBlockRenderTypes.setRenderLayer(ModBlocks.STARLIGHT_SAPLING.get(), RenderType.cutout());
-            ItemBlockRenderTypes.setRenderLayer(ModBlocks.POTTED_STARLIGHT_SAPLING.get(), RenderType.cutout());
-            ItemBlockRenderTypes.setRenderLayer(ModBlocks.MIDNIGHT_SAPLING.get(), RenderType.cutout());
-            ItemBlockRenderTypes.setRenderLayer(ModBlocks.POTTED_MIDNIGHT_SAPLING.get(), RenderType.cutout());
-            ItemBlockRenderTypes.setRenderLayer(ModBlocks.PALE_OAK_LEAVES.get(), RenderType.cutoutMipped());
-            ModBlocks.PARTICLE_HEDGES.values().forEach(b ->
-                    ItemBlockRenderTypes.setRenderLayer(b.get(), RenderType.cutout())
-            );
-            ModBlocks.CREEPING_HEDGES.values().forEach(b ->
-                    ItemBlockRenderTypes.setRenderLayer(b.get(), RenderType.cutout())
-            );
-            ItemBlockRenderTypes.setRenderLayer(ModBlocks.PALE_OAK_DOOR.get(), RenderType.cutout());
-            ItemBlockRenderTypes.setRenderLayer(ModBlocks.PALE_OAK_TRAPDOOR.get(), RenderType.cutout());
-            ModBlocks.WOOD_SETS.values().forEach(set -> {
-                ItemBlockRenderTypes.setRenderLayer(set.door().get(), RenderType.cutout());
-                ItemBlockRenderTypes.setRenderLayer(set.trapdoor().get(), RenderType.cutout());
-            });
-            ModBlocks.SEAGLASS.forEach(block ->
-                    ItemBlockRenderTypes.setRenderLayer(block.get(), RenderType.translucent()));
-            ModBlocks.getAllGradientStainedGlassBlocks().forEach(block ->
-                    ItemBlockRenderTypes.setRenderLayer(block.get(), RenderType.translucent()));
         });
     }
 
     @SubscribeEvent
-    public static void registerTooltipComponents(RegisterClientTooltipComponentFactoriesEvent event) {
-        event.register(FoodTooltipComponent.class, ClientFoodTooltipComponent::new);
+    public static void onItemTooltip(ItemTooltipEvent event) {
+        com.otterly76.ott.client.handler.NameTagTooltipHandler.onItemTooltip(event.getItemStack(), event.getToolTip(), event.getContext(), event.getEntity(), event.getFlags());
     }
 }

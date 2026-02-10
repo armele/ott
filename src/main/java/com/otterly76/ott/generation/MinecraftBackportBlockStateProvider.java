@@ -8,21 +8,14 @@ import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.block.RotatedPillarBlock;
 import net.neoforged.neoforge.client.model.generators.BlockModelBuilder;
-import net.neoforged.neoforge.client.model.generators.BlockStateProvider;
 import net.neoforged.neoforge.client.model.generators.ConfiguredModel;
 import net.neoforged.neoforge.client.model.generators.ModelFile;
 import net.neoforged.neoforge.client.model.generators.MultiPartBlockStateBuilder;
 import net.neoforged.neoforge.common.data.ExistingFileHelper;
 
-import static net.minecraft.world.level.block.state.properties.BlockStateProperties.AXIS;
-import static net.minecraft.world.level.block.state.properties.BlockStateProperties.DOWN;
-import static net.minecraft.world.level.block.state.properties.BlockStateProperties.EAST;
-import static net.minecraft.world.level.block.state.properties.BlockStateProperties.NORTH;
-import static net.minecraft.world.level.block.state.properties.BlockStateProperties.SOUTH;
-import static net.minecraft.world.level.block.state.properties.BlockStateProperties.UP;
-import static net.minecraft.world.level.block.state.properties.BlockStateProperties.WEST;
+import static net.minecraft.world.level.block.state.properties.BlockStateProperties.*;
 
-public class MinecraftBackportBlockStateProvider extends BlockStateProvider {
+public class MinecraftBackportBlockStateProvider extends ModBlockStateProvider {
 
     public MinecraftBackportBlockStateProvider(PackOutput output, ExistingFileHelper existingFileHelper) {
         super(output, "minecraft", existingFileHelper);
@@ -35,7 +28,8 @@ public class MinecraftBackportBlockStateProvider extends BlockStateProvider {
 
         ModelFile paleMossCarpetModel = models()
                 .withExistingParent("pale_moss_carpet", mcLoc("block/carpet"))
-                .texture("wool", mcLoc("block/pale_moss_carpet"));
+                .texture("wool", mcLoc("block/pale_moss_carpet"))
+                .renderType("cutout");
         simpleBlock(ModBlocks.PALE_MOSS_CARPET.get(), paleMossCarpetModel);
         itemModels().withExistingParent("pale_moss_carpet", mcLoc("block/pale_moss_carpet"));
 
@@ -88,17 +82,8 @@ public class MinecraftBackportBlockStateProvider extends BlockStateProvider {
         models().withExistingParent("pale_oak_button_inventory", mcLoc("block/button_inventory"))
                 .texture("texture", palePlanks);
 
-        doorBlock(
-                ModBlocks.PALE_OAK_DOOR.get(),
-                mcLoc("block/pale_oak_door_bottom"),
-                mcLoc("block/pale_oak_door_top")
-        );
-
-        trapdoorBlock(
-                ModBlocks.PALE_OAK_TRAPDOOR.get(),
-                mcLoc("block/pale_oak_trapdoor"),
-                true
-        );
+        registerCutoutDoor(ModBlocks.PALE_OAK_DOOR.get(), mcLoc("block/pale_oak_door_bottom"), mcLoc("block/pale_oak_door_top"));
+        registerCutoutTrapdoor(ModBlocks.PALE_OAK_TRAPDOOR.get(), mcLoc("block/pale_oak_trapdoor"));
 
         signBlock(
                 ModBlocks.PALE_OAK_SIGN.get(),
@@ -267,4 +252,5 @@ public class MinecraftBackportBlockStateProvider extends BlockStateProvider {
                 .cross(modelName, mcLoc(texturePath))
                 .renderType("cutout");
     }
+
 }

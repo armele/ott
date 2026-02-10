@@ -12,7 +12,7 @@ public abstract class GameRendererMixin {
     @Redirect(method = "pick(F)V", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/player/LocalPlayer;blockInteractionRange()D"))
     private double ott$modifyBlockRange(LocalPlayer player) {
         double range = player.blockInteractionRange();
-        if (OttConfig.VISUALS.DOUBLE_PICKER_RANGE.get()) {
+        if (OttConfig.VISUALS.DOUBLE_PICKER_RANGE().get()) {
             return range * 2.0;
         }
         return range;
@@ -21,7 +21,7 @@ public abstract class GameRendererMixin {
     @Redirect(method = "pick(F)V", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/player/LocalPlayer;entityInteractionRange()D"))
     private double ott$modifyEntityRange(LocalPlayer player) {
         double range = player.entityInteractionRange();
-        if (OttConfig.VISUALS.DOUBLE_PICKER_RANGE.get()) {
+        if (OttConfig.VISUALS.DOUBLE_PICKER_RANGE().get()) {
             return range * 2.0;
         }
         return range;

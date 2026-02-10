@@ -24,6 +24,9 @@ public class ModBlockEntities {
     public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<SignBlockEntity>> PALE_OAK_WALL_HANGING_SIGN =
             BLOCK_ENTITIES.register("pale_oak_hanging_sign", () -> BlockEntityType.Builder.of(SignBlockEntity::new, ModBlocks.PALE_OAK_HANGING_SIGN.get(), ModBlocks.PALE_OAK_WALL_HANGING_SIGN.get()).build(null));
 
+    public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<AnvilBlockEntity>> ANVIL_BLOCK_ENTITY_TYPE =
+            BLOCK_ENTITIES.register("anvil", () -> BlockEntityType.Builder.of(AnvilBlockEntity::new).build(null));
+
     public static void register(IEventBus eventBus) {
         BLOCK_ENTITIES.register(eventBus);
     }
@@ -31,5 +34,6 @@ public class ModBlockEntities {
     public static void registerTileExtensions(BlockEntityTypeAddBlocksEvent event) {
         event.modify(BlockEntityType.SIGN, ModBlocks.PALE_OAK_SIGN.get(), ModBlocks.PALE_OAK_WALL_SIGN.get());
         event.modify(BlockEntityType.HANGING_SIGN, ModBlocks.PALE_OAK_HANGING_SIGN.get(), ModBlocks.PALE_OAK_WALL_HANGING_SIGN.get());
+        com.otterly76.ott.handler.BlockConversionHandler.getBlockConversions().values().forEach(block -> event.modify(ANVIL_BLOCK_ENTITY_TYPE.get(), block));
     }
 }

@@ -14,10 +14,8 @@ import net.minecraft.core.Direction;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.core.particles.SimpleParticleType;
 import net.minecraft.tags.BlockTags;
-import net.minecraft.util.Mth;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.material.FluidState;
-import net.minecraft.world.phys.Vec3;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
 import org.jetbrains.annotations.NotNull;
@@ -68,14 +66,11 @@ public class StreakParticle extends WeatherParticle {
 
     }
 
-    public void render(@NotNull VertexConsumer vertexConsumer, Camera camera, float f) {
-        Vec3 camPos = camera.getPosition();
-        float x = (float)(Mth.lerp(f, this.xo, this.x) - camPos.x());
-        float y = (float)(Mth.lerp(f, this.yo, this.y) - camPos.y());
-        float z = (float)(Mth.lerp(f, this.zo, this.z) - camPos.z());
+    public void render(@NotNull VertexConsumer vertexConsumer, @NotNull Camera camera, float f) {
+        Vector3f localPos = this.getRelativePosition(camera, f);
         Quaternionf quaternion = new Quaternionf(new AxisAngle4d(this.roll, 0.0F, 1.0F, 0.0F));
-        this.flipItTurnwaysIfBackfaced(quaternion, new Vector3f(x, y, z));
-        this.renderRotatedQuad(vertexConsumer, quaternion, x, y + 0.25F, z, f);
+        this.flipItTurnwaysIfBackfaced(quaternion, localPos);
+        this.renderRotatedQuad(vertexConsumer, quaternion, localPos.x, localPos.y + 0.25F, localPos.z, f);
     }
 
     public @NotNull ParticleRenderType getRenderType() {

@@ -83,22 +83,18 @@ public class FogParticle extends WeatherParticle {
         }
     }
 
-    public void render(@NotNull VertexConsumer vertexConsumer, Camera camera, float f) {
-        Vec3 camPos = camera.getPosition();
-        float x = (float)(Mth.lerp(f, this.xo, this.x) - camPos.x());
-        float y = (float)(Mth.lerp(f, this.yo, this.y) - camPos.y());
-        float z = (float)(Mth.lerp(f, this.zo, this.z) - camPos.z());
-        Vector3f localPos = new Vector3f(x, y, z);
-        Quaternionf quaternion = Axis.YP.rotation((float)Math.atan2(x, z) + (float)Math.PI);
-        float yAngle = (float)Math.asin(y / localPos.length());
+    public void render(@NotNull VertexConsumer vertexConsumer, @NotNull Camera camera, float f) {
+        Vector3f localPos = this.getRelativePosition(camera, f);
+        Quaternionf quaternion = Axis.YP.rotation((float)Math.atan2(localPos.x, localPos.z) + (float)Math.PI);
+        float yAngle = (float)Math.asin(localPos.y / localPos.length());
         quaternion.rotateX(yAngle);
-        quaternion.rotateZ((float)Math.atan2(x, z));
+        quaternion.rotateZ((float)Math.atan2(localPos.x, localPos.z));
         if (yAngle < -1.0F) {
             this.shouldFadeOut = true;
         }
 
         quaternion.rotateZ(Mth.lerp(f, this.oRoll, this.roll));
-        this.renderRotatedQuad(vertexConsumer, quaternion, x, y, z, f);
+        this.renderRotatedQuad(vertexConsumer, quaternion, localPos.x, localPos.y, localPos.z, f);
     }
 
     public @NotNull ParticleRenderType getRenderType() {

@@ -15,6 +15,7 @@ import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.DyeColor;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
+import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.block.Block;
 import net.neoforged.neoforge.common.data.ExistingFileHelper;
 import org.jetbrains.annotations.NotNull;
@@ -55,6 +56,8 @@ public class ModItemTagProvider extends ItemTagsProvider {
         TagKey<Item> mcTier1Key = TagKey.create(Registries.ITEM, ResourceLocation.fromNamespaceAndPath("minecolonies", "tier1blocks"));
         TagKey<Item> mcTier2Key = TagKey.create(Registries.ITEM, ResourceLocation.fromNamespaceAndPath("minecolonies", "tier2blocks"));
 
+        TagKey<Item> doConcreteKey = TagKey.create(Registries.ITEM, ResourceLocation.fromNamespaceAndPath("domum_ornamentum", "concrete"));
+
         // NEW: Linking Concrete Powder to Structurize weak blocks
         TagKey<Item> structurizeWeakKey = TagKey.create(Registries.ITEM, ResourceLocation.fromNamespaceAndPath("structurize", "weak_solid_blocks"));
 
@@ -66,81 +69,78 @@ public class ModItemTagProvider extends ItemTagsProvider {
         this.copy(TagKey.create(Registries.BLOCK, ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, "stained_glass")), ottStainedGlassKey);
         this.copy(TagKey.create(Registries.BLOCK, ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, "terracotta")), ottTerracottaKey);
 
-        // --- 3. BUILD HIERARCHY ---
-        this.tag(cConcretesKey).addTag(ottConcreteKey);
-        this.tag(cConcretePowdersKey).addTag(ottConcretePowderKey);
-        this.tag(cWoolKey).addTag(ottWoolKey);
-        this.tag(cTerracottaKey).addTag(ottTerracottaKey);
-        this.tag(cGlassKey).addTag(ottStainedGlassKey);
-        this.tag(cGlassBlocksKey).addTag(ottStainedGlassKey);
-        this.tag(cGlassBlocksCheapKey).addTag(ottStainedGlassKey);
-        this.tag(cGlassBlocksColoredKey).addTag(ottStainedGlassKey);
-
-        this.tag(cDyedKey)
-                .addTag(ottConcreteKey)
-                .addTag(ottConcretePowderKey)
-                .addTag(ottWoolKey)
-                .addTag(ottStainedGlassKey)
-                .addTag(ottTerracottaKey);
+        // --- 3. BUILD HIERARCHY (Inherited from blocks) ---
+        copyCommonTag(cConcretesKey);
+        copyCommonTag(cConcretePowdersKey);
+        copyCommonTag(cWoolKey);
+        copyCommonTag(cTerracottaKey);
+        copyCommonTag(cGlassKey);
+        copyCommonTag(cGlassBlocksKey);
+        copyCommonTag(cGlassBlocksCheapKey);
+        copyCommonTag(cGlassBlocksColoredKey);
+        copyCommonTag(cDyedKey);
 
         // MineColonies Hierarchy
-        this.tag(mcTier1Key).addTag(ottWoolKey).addTag(ottTerracottaKey);
-        this.tag(mcTier2Key).addTag(ottConcreteKey).addTag(ottConcretePowderKey).addTag(ottWoolKey).addTag(ottStainedGlassKey).addTag(ottTerracottaKey);
+        copyCommonTag(mcTier1Key);
+        copyCommonTag(mcTier2Key);
 
-        this.tag(structurizeWeakKey).addTag(ottConcretePowderKey);
+        copyCommonTag(structurizeWeakKey);
+
+        // Domum Ornamentum
+        copyCommonTag(doConcreteKey);
 
         // --- 4. VANILLA BACKPORTS ---
-        this.tag(ModTags.Items.PALE_OAK_LOGS).add(
-                ModBlocks.PALE_OAK_LOG.asItem(),
-                ModBlocks.STRIPPED_PALE_OAK_LOG.asItem(),
-                ModBlocks.PALE_OAK_WOOD.asItem(),
-                ModBlocks.STRIPPED_PALE_OAK_WOOD.asItem()
+        addWoodSetTags(
+                ModTags.Items.PALE_OAK_LOGS,
+                ModBlocks.PALE_OAK_LOG,
+                ModBlocks.PALE_OAK_WOOD,
+                ModBlocks.STRIPPED_PALE_OAK_LOG,
+                ModBlocks.STRIPPED_PALE_OAK_WOOD,
+                ModBlocks.PALE_OAK_PLANKS,
+                ModBlocks.PALE_OAK_LEAVES,
+                ModBlocks.PALE_OAK_SLAB,
+                ModBlocks.PALE_OAK_STAIRS,
+                ModBlocks.PALE_OAK_FENCE,
+                ModBlocks.PALE_OAK_FENCE_GATE,
+                ModBlocks.PALE_OAK_DOOR,
+                ModBlocks.PALE_OAK_TRAPDOOR,
+                ModBlocks.PALE_OAK_BUTTON,
+                ModBlocks.PALE_OAK_PRESSURE_PLATE,
+                ModItems.PALE_OAK_SIGN.get(),
+                ModItems.PALE_OAK_HANGING_SIGN.get(),
+                ModItems.PALE_OAK_BOAT.get(),
+                ModItems.PALE_OAK_CHEST_BOAT.get()
         );
-        this.tag(ItemTags.LOGS).addTag(ModTags.Items.PALE_OAK_LOGS);
-        this.tag(ItemTags.LOGS_THAT_BURN).addTag(ModTags.Items.PALE_OAK_LOGS);
-        this.tag(ItemTags.PLANKS).add(ModBlocks.PALE_OAK_PLANKS.asItem());
-        this.tag(ItemTags.LEAVES).add(ModBlocks.PALE_OAK_LEAVES.asItem());
 
-        this.tag(ItemTags.FENCE_GATES).add(ModBlocks.PALE_OAK_FENCE_GATE.asItem());
         this.tag(ItemTags.SLABS).add(ModBlocks.RESIN_BRICK_SLAB.asItem());
         this.tag(ItemTags.STAIRS).add(ModBlocks.RESIN_BRICK_STAIRS.asItem());
         this.tag(ItemTags.WALLS).add(ModBlocks.RESIN_BRICK_WALL.asItem());
 
-        this.tag(ItemTags.WOODEN_BUTTONS).add(ModBlocks.PALE_OAK_BUTTON.asItem());
-        this.tag(ItemTags.WOODEN_DOORS).add(ModBlocks.PALE_OAK_DOOR.asItem());
-        this.tag(ItemTags.WOODEN_FENCES).add(ModBlocks.PALE_OAK_FENCE.asItem());
-        this.tag(ItemTags.WOODEN_PRESSURE_PLATES).add(ModBlocks.PALE_OAK_PRESSURE_PLATE.asItem());
-        this.tag(ItemTags.WOODEN_SLABS).add(ModBlocks.PALE_OAK_SLAB.asItem());
-        this.tag(ItemTags.WOODEN_STAIRS).add(ModBlocks.PALE_OAK_STAIRS.asItem());
-        this.tag(ItemTags.WOODEN_TRAPDOORS).add(ModBlocks.PALE_OAK_TRAPDOOR.asItem());
-
         // --- 5. WOOD SETS ---
-        ModBlocks.WOOD_SETS.forEach((setName, set) -> {
-            this.tag(ModTags.Items.woodSetLogs(setName)).add(set.log().asItem(), set.wood().asItem(), set.strippedLog().asItem(), set.strippedWood().asItem());
-            this.tag(ItemTags.LOGS).addTag(ModTags.Items.woodSetLogs(setName));
-            this.tag(ItemTags.LOGS_THAT_BURN).addTag(ModTags.Items.woodSetLogs(setName));
-            this.tag(ItemTags.PLANKS).add(set.planks().asItem());
-            this.tag(ItemTags.LEAVES).add(set.leaves().asItem());
-            this.tag(ItemTags.WOODEN_SLABS).add(set.slab().asItem());
-            this.tag(ItemTags.WOODEN_STAIRS).add(set.stairs().asItem());
-            this.tag(ItemTags.WOODEN_FENCES).add(set.fence().asItem());
-            this.tag(ItemTags.FENCE_GATES).add(set.fenceGate().asItem());
-            this.tag(ItemTags.WOODEN_DOORS).add(set.door().asItem());
-            this.tag(ItemTags.WOODEN_TRAPDOORS).add(set.trapdoor().asItem());
-            this.tag(ItemTags.WOODEN_BUTTONS).add(set.button().asItem());
-            this.tag(ItemTags.WOODEN_PRESSURE_PLATES).add(set.pressurePlate().asItem());
-            this.tag(ItemTags.SIGNS).add(ModItems.WOOD_SET_SIGNS.get(setName).get());
-            this.tag(ItemTags.HANGING_SIGNS).add(ModItems.WOOD_SET_HANGING_SIGNS.get(setName).get());
-            this.tag(ItemTags.BOATS).add(ModItems.WOOD_SET_BOATS.get(setName).get());
-            this.tag(ItemTags.CHEST_BOATS).add(ModItems.WOOD_SET_CHEST_BOATS.get(setName).get());
-        });
+        ModBlocks.WOOD_SETS.forEach((setName, set) -> addWoodSetTags(
+                ModTags.Items.woodSetLogs(setName),
+                set.log(),
+                set.wood(),
+                set.strippedLog(),
+                set.strippedWood(),
+                set.planks(),
+                set.leaves(),
+                set.slab(),
+                set.stairs(),
+                set.fence(),
+                set.fenceGate(),
+                set.door(),
+                set.trapdoor(),
+                set.button(),
+                set.pressurePlate(),
+                ModItems.WOOD_SET_SIGNS.get(setName).get(),
+                ModItems.WOOD_SET_HANGING_SIGNS.get(setName).get(),
+                ModItems.WOOD_SET_BOATS.get(setName).get(),
+                ModItems.WOOD_SET_CHEST_BOATS.get(setName).get()
+        ));
 
         // --- 6. INDIVIDUALS ---
         this.tag(ItemTags.TRIM_MATERIALS).add(ModItems.RESIN_BRICK.get());
-        this.tag(ItemTags.SIGNS).add(ModItems.PALE_OAK_SIGN.get());
-        this.tag(ItemTags.HANGING_SIGNS).add(ModItems.PALE_OAK_HANGING_SIGN.get());
-        this.tag(ItemTags.BOATS).add(ModItems.PALE_OAK_BOAT.get());
-        this.tag(ItemTags.CHEST_BOATS).add(ModItems.PALE_OAK_CHEST_BOAT.get());
 
         this.tag(ItemTags.COALS).add(ModItems.TINY_COAL.get(), ModItems.TINY_CHARCOAL.get());
 
@@ -186,5 +186,39 @@ public class ModItemTagProvider extends ItemTagsProvider {
                 .add(Items.ENDER_CHEST);
 
         this.tag(ItemTags.ARROWS).add(Items.ARROW, Items.TIPPED_ARROW, Items.SPECTRAL_ARROW, ModItems.TORCH_ARROW.get());
+    }
+
+    @SafeVarargs
+    private void addCommonLinkageTags(TagAppender<Item> appender, TagKey<Item>... tags) {
+        for (TagKey<Item> tag : tags) {
+            appender.addTag(tag);
+        }
+    }
+
+    private void copyCommonTag(TagKey<Item> itemTag) {
+        this.copy(TagKey.create(Registries.BLOCK, itemTag.location()), itemTag);
+    }
+
+    private void addWoodSetTags(TagKey<Item> logTag, ItemLike log, ItemLike wood, ItemLike strippedLog, ItemLike strippedWood,
+                                ItemLike planks, ItemLike leaves, ItemLike slab, ItemLike stairs, ItemLike fence, ItemLike fenceGate,
+                                ItemLike door, ItemLike trapdoor, ItemLike button, ItemLike pressurePlate, ItemLike sign,
+                                ItemLike hangingSign, ItemLike boat, ItemLike chestBoat) {
+        this.tag(logTag).add(log.asItem(), wood.asItem(), strippedLog.asItem(), strippedWood.asItem());
+        this.tag(ItemTags.LOGS).addTag(logTag);
+        this.tag(ItemTags.LOGS_THAT_BURN).addTag(logTag);
+        this.tag(ItemTags.PLANKS).add(planks.asItem());
+        this.tag(ItemTags.LEAVES).add(leaves.asItem());
+        this.tag(ItemTags.WOODEN_SLABS).add(slab.asItem());
+        this.tag(ItemTags.WOODEN_STAIRS).add(stairs.asItem());
+        this.tag(ItemTags.WOODEN_FENCES).add(fence.asItem());
+        this.tag(ItemTags.FENCE_GATES).add(fenceGate.asItem());
+        this.tag(ItemTags.WOODEN_DOORS).add(door.asItem());
+        this.tag(ItemTags.WOODEN_TRAPDOORS).add(trapdoor.asItem());
+        this.tag(ItemTags.WOODEN_BUTTONS).add(button.asItem());
+        this.tag(ItemTags.WOODEN_PRESSURE_PLATES).add(pressurePlate.asItem());
+        this.tag(ItemTags.SIGNS).add(sign.asItem());
+        this.tag(ItemTags.HANGING_SIGNS).add(hangingSign.asItem());
+        this.tag(ItemTags.BOATS).add(boat.asItem());
+        this.tag(ItemTags.CHEST_BOATS).add(chestBoat.asItem());
     }
 }

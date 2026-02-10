@@ -24,16 +24,7 @@ public class InventoryUtils {
     public static void openItemGui(ServerPlayer player, int slotIndex) {
         if (!OttConfig.GENERAL.ENABLE_RIGHT_CLICK_OPEN.get()) return;
 
-        ItemStack stack;
-        if (slotIndex >= 0) {
-            stack = player.getInventory().getItem(slotIndex);
-        } else if (slotIndex == -1) {
-            stack = player.getMainHandItem();
-        } else if (slotIndex == -2) {
-            stack = player.getOffhandItem();
-        } else {
-            return;
-        }
+        ItemStack stack = getStackFromIndex(player, slotIndex);
 
         if (stack.isEmpty() || !stack.is(ModTags.Items.INVENTORY_OPENABLE)) return;
 
@@ -79,19 +70,7 @@ public class InventoryUtils {
         }
     }
 
-    private static class ContainerItemMenuProvider implements MenuProvider {
-        private final ItemStack stack;
-        private final int slotIndex;
-        private final int rows;
-        private final MenuType<?> menuType;
-
-        public ContainerItemMenuProvider(ItemStack stack, int slotIndex, int rows, MenuType<?> menuType) {
-            this.stack = stack;
-            this.slotIndex = slotIndex;
-            this.rows = rows;
-            this.menuType = menuType;
-        }
-
+    private record ContainerItemMenuProvider(ItemStack stack, int slotIndex, int rows, MenuType<?> menuType) implements MenuProvider {
         @Override
         public @NotNull Component getDisplayName() {
             return stack.getHoverName();
@@ -135,24 +114,27 @@ public class InventoryUtils {
         }
 
         private void save(Player player, SimpleContainer container) {
-            ItemStack currentStack;
-            if (slotIndex >= 0) {
-                currentStack = player.getInventory().getItem(slotIndex);
-            } else if (slotIndex == -1) {
-                currentStack = player.getMainHandItem();
-            } else if (slotIndex == -2) {
-                currentStack = player.getOffhandItem();
-            } else {
-                return;
-            }
+            ItemStack currentStack = getStackFromIndex(player, slotIndex);
 
-            if (currentStack.is(stack.getItem())) {
+            if (!currentStack.isEmpty() && currentStack.is(stack.getItem())) {
                 List<ItemStack> items = new ArrayList<>();
                 for (int i = 0; i < container.getContainerSize(); i++) {
                     items.add(container.getItem(i));
                 }
                 currentStack.set(DataComponents.CONTAINER, ItemContainerContents.fromItems(items));
             }
+        }
+    }
+
+    private static ItemStack getStackFromIndex(Player player, int slotIndex) {
+        if (slotIndex >= 0) {
+            return player.getInventory().getItem(slotIndex);
+        } else if (slotIndex == -1) {
+            return player.getMainHandItem();
+        } else if (slotIndex == -2) {
+            return player.getOffhandItem();
+        } else {
+            return ItemStack.EMPTY;
         }
     }
 }

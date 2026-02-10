@@ -14,6 +14,9 @@ public class ModMenuTypes {
     public static final DeferredHolder<MenuType<?>, MenuType<TrashMenu>> TRASH_MENU =
             MENUS.register("trash_menu", () -> IMenuTypeExtension.create(TrashMenu::new));
 
+    public static final DeferredHolder<MenuType<?>, MenuType<ModAnvilMenu>> ANVIL_MENU_TYPE =
+            MENUS.register("repair", () -> new MenuType<>(ModAnvilMenu::new, net.minecraft.world.flag.FeatureFlags.DEFAULT_FLAGS));
+
     public static void register(IEventBus eventBus) {
         MENUS.register(eventBus);
     }

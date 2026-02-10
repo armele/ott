@@ -58,6 +58,7 @@ public class ModPaleMossCarpet extends Block implements BonemealableBlock {
         this.shapesCache = ImmutableMap.copyOf(this.stateDefinition.getPossibleStates().stream().collect(Collectors.toMap(Function.identity(), ModPaleMossCarpet::calculateShape)));
     }
 
+    @SuppressWarnings("DuplicatedCode")
     private static VoxelShape calculateShape(BlockState blockState) {
         VoxelShape voxelShape = Shapes.empty();
         if (blockState.getValue(BASE)) {

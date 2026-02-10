@@ -1,5 +1,6 @@
 package com.otterly76.ott.mixin.visuals;
 
+import com.otterly76.ott.config.FreeRenames;
 import com.otterly76.ott.config.OttConfig;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.entity.player.Player;
@@ -8,7 +9,6 @@ import net.minecraft.world.inventory.ContainerLevelAccess;
 import net.minecraft.world.inventory.DataSlot;
 import net.minecraft.world.inventory.ResultContainer;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.Items;
 import net.minecraft.world.level.Level;
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
@@ -40,25 +40,25 @@ public abstract class AnvilMenuMixin {
 
     @Inject(method = "createResult", at = @At("TAIL"))
     private void ott$onCreateResult(CallbackInfo ci) {
-        if (OttConfig.VISUALS.LOWER_ANVIL_COSTS.get()) {
+        if (OttConfig.ANVILS.COSTS.TOO_EXPENSIVE_LIMIT.get() == 30) { // Mapping the old "lower costs" to this
             if (this.cost.get() > 30) {
                 this.cost.set(30);
             }
         }
 
-        if (!OttConfig.VISUALS.FREE_NAME_TAG_RENAMING.get()) return;
+        if (OttConfig.ANVILS.COSTS.FREE_RENAMES.get() == FreeRenames.NEVER) return;
 
         AnvilMenu menu = (AnvilMenu) (Object) this;
         ItemStack leftStack = menu.getSlot(0).getItem();
 
-        if (!leftStack.isEmpty() && leftStack.is(Items.NAME_TAG)) {
+        if (!leftStack.isEmpty() && OttConfig.ANVILS.COSTS.FREE_RENAMES.get().filter.test(leftStack)) {
             this.cost.set(0);
         }
     }
 
     @Redirect(method = "createResult", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/inventory/ResultContainer;setItem(ILnet/minecraft/world/item/ItemStack;)V"))
     private void ott$onSetResultItem(ResultContainer instance, int slot, ItemStack stack) {
-        if (OttConfig.VISUALS.LOWER_ANVIL_COSTS.get() && slot == 0 && stack.isEmpty() && this.cost.get() >= 40) {
+        if (OttConfig.ANVILS.COSTS.TOO_EXPENSIVE_LIMIT.get() == 30 && slot == 0 && stack.isEmpty() && this.cost.get() >= 40) {
             if (!instance.getItem(0).isEmpty()) {
                 return;
             }
@@ -68,10 +68,10 @@ public abstract class AnvilMenuMixin {
 
     @Inject(method = "mayPickup", at = @At("HEAD"), cancellable = true)
     protected void ott$mayPickup(Player player, boolean hasStack, CallbackInfoReturnable<Boolean> cir) {
-        if (OttConfig.VISUALS.FREE_NAME_TAG_RENAMING.get()) {
+        if (OttConfig.ANVILS.COSTS.FREE_RENAMES.get() != FreeRenames.NEVER) {
             AnvilMenu menu = (AnvilMenu) (Object) this;
             ItemStack leftStack = menu.getSlot(0).getItem();
-            if (!leftStack.isEmpty() && leftStack.is(Items.NAME_TAG)) {
+            if (!leftStack.isEmpty() && OttConfig.ANVILS.COSTS.FREE_RENAMES.get().filter.test(leftStack)) {
                 cir.setReturnValue(hasStack);
             }
         }
@@ -79,10 +79,10 @@ public abstract class AnvilMenuMixin {
 
     @Redirect(method = "onTake", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/inventory/ContainerLevelAccess;execute(Ljava/util/function/BiConsumer;)V"))
     private void ott$onTakeExecute(ContainerLevelAccess instance, BiConsumer<Level, BlockPos> biConsumer) {
-        if (OttConfig.VISUALS.FREE_NAME_TAG_RENAMING.get()) {
+        if (OttConfig.ANVILS.COSTS.FREE_RENAMES.get() != FreeRenames.NEVER) {
             AnvilMenu menu = (AnvilMenu) (Object) this;
             ItemStack leftStack = menu.getSlot(0).getItem();
-            if (!leftStack.isEmpty() && leftStack.is(Items.NAME_TAG)) {
+            if (!leftStack.isEmpty() && OttConfig.ANVILS.COSTS.FREE_RENAMES.get().filter.test(leftStack)) {
                 // Bypass damage logic
                 return;
             }

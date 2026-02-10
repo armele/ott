@@ -12,6 +12,7 @@ import org.jetbrains.annotations.NotNull;
 
 import static com.otterly76.ott.Constants.MOD_ID;
 
+@SuppressWarnings("DuplicatedCode")
 public class ClientFoodTooltipComponent implements ClientTooltipComponent {
     private static final ResourceLocation FOOD_FULL = ResourceLocation.fromNamespaceAndPath(MOD_ID, "hud/food_full");
     private static final ResourceLocation FOOD_HALF = ResourceLocation.fromNamespaceAndPath(MOD_ID, "hud/food_half");

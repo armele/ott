@@ -14,6 +14,7 @@ import net.minecraft.commands.SharedSuggestionProvider;
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
+import org.jetbrains.annotations.Nullable;
 
 import java.util.Map;
 import java.util.concurrent.CompletableFuture;
@@ -48,23 +49,18 @@ public class HomeCommand {
     }
 
     private static int tpHome(CommandContext<CommandSourceStack> context, String name) throws CommandSyntaxException {
-        if (!OttConfig.HOMES.ENABLED.get()) {
-            context.getSource().sendFailure(Component.literal("Home system is disabled."));
-            return 0;
-        }
-        ServerPlayer player = context.getSource().getPlayerOrException();
-        HomeSavedData data = HomeSavedData.get(player.serverLevel());
-        HomeSavedData.HomePos home = data.getHome(player.getUUID(), name);
+        HomeContext homeCtx = getHomeContext(context, true);
+        if (homeCtx == null) return 0;
+        HomeSavedData.HomePos home = homeCtx.homes().get(name);
 
         if (home == null) {
-            context.getSource().sendFailure(Component.literal("Home '" + name + "' not found."));
-            return 0;
+            return sendFailure(context, "Home '" + name + "' not found.");
         }
 
+        ServerPlayer player = homeCtx.player();
         ServerLevel level = player.server.getLevel(home.dimension());
         if (level == null) {
-            context.getSource().sendFailure(Component.literal("Dimension for home '" + name + "' no longer exists."));
-            return 0;
+            return sendFailure(context, "Dimension for home '" + name + "' no longer exists.");
         }
 
         player.teleportTo(level, home.pos().getX() + 0.5, home.pos().getY(), home.pos().getZ() + 0.5, player.getYRot(), player.getXRot());
@@ -73,71 +69,71 @@ public class HomeCommand {
     }
 
     private static int sethome(CommandContext<CommandSourceStack> context, String name) throws CommandSyntaxException {
-        if (!OttConfig.HOMES.ENABLED.get()) {
-            context.getSource().sendFailure(Component.literal("Home system is disabled."));
-            return 0;
-        }
-        ServerPlayer player = context.getSource().getPlayerOrException();
-        HomeSavedData data = HomeSavedData.get(player.serverLevel());
-        Map<String, HomeSavedData.HomePos> homes = data.getHomes(player.getUUID());
+        HomeContext homeCtx = getHomeContext(context, true);
+        if (homeCtx == null) return 0;
 
         int maxHomes = OttConfig.HOMES.MAX_HOMES.get();
-        if (maxHomes != -1 && homes.size() >= maxHomes && !homes.containsKey(name.toLowerCase())) {
-            context.getSource().sendFailure(Component.literal("You have reached the maximum number of homes (" + maxHomes + ")."));
-            return 0;
+        if (maxHomes != -1 && homeCtx.homes().size() >= maxHomes && !homeCtx.homes().containsKey(name.toLowerCase())) {
+            return sendFailure(context, "You have reached the maximum number of homes (" + maxHomes + ").");
         }
 
-        data.setHome(player.getUUID(), name, player.blockPosition(), player.level().dimension());
+        homeCtx.data().setHome(homeCtx.player().getUUID(), name, homeCtx.player().blockPosition(), homeCtx.player().level().dimension());
         context.getSource().sendSuccess(() -> Component.literal("Home '" + name + "' set."), false);
         return 1;
     }
 
     private static int delhome(CommandContext<CommandSourceStack> context, String name) throws CommandSyntaxException {
-        if (!OttConfig.HOMES.ENABLED.get()) {
-            context.getSource().sendFailure(Component.literal("Home system is disabled."));
-            return 0;
-        }
-        ServerPlayer player = context.getSource().getPlayerOrException();
-        HomeSavedData data = HomeSavedData.get(player.serverLevel());
-        
-        if (data.getHome(player.getUUID(), name) == null) {
-            context.getSource().sendFailure(Component.literal("Home '" + name + "' not found."));
-            return 0;
+        HomeContext homeCtx = getHomeContext(context, true);
+        if (homeCtx == null) return 0;
+
+        if (homeCtx.homes().get(name) == null) {
+            return sendFailure(context, "Home '" + name + "' not found.");
         }
 
-        data.deleteHome(player.getUUID(), name);
+        homeCtx.data().deleteHome(homeCtx.player().getUUID(), name);
         context.getSource().sendSuccess(() -> Component.literal("Home '" + name + "' deleted."), false);
         return 1;
     }
 
     private static int listHomes(CommandContext<CommandSourceStack> context) throws CommandSyntaxException {
-        if (!OttConfig.HOMES.ENABLED.get()) {
-            context.getSource().sendFailure(Component.literal("Home system is disabled."));
-            return 0;
-        }
-        ServerPlayer player = context.getSource().getPlayerOrException();
-        HomeSavedData data = HomeSavedData.get(player.serverLevel());
-        Map<String, HomeSavedData.HomePos> homes = data.getHomes(player.getUUID());
+        HomeContext homeCtx = getHomeContext(context, true);
+        if (homeCtx == null) return 0;
 
-        if (homes.isEmpty()) {
+        if (homeCtx.homes().isEmpty()) {
             context.getSource().sendSuccess(() -> Component.literal("You have no homes set."), false);
         } else {
-            String homeList = String.join(", ", homes.keySet());
+            String homeList = String.join(", ", homeCtx.homes().keySet());
             context.getSource().sendSuccess(() -> Component.literal("Your homes: " + homeList), false);
         }
         return 1;
     }
 
     private static CompletableFuture<Suggestions> suggestHomes(CommandContext<CommandSourceStack> context, SuggestionsBuilder builder) {
-        if (!OttConfig.HOMES.ENABLED.get()) {
-            return Suggestions.empty();
-        }
         try {
-            ServerPlayer player = context.getSource().getPlayerOrException();
-            HomeSavedData data = HomeSavedData.get(player.serverLevel());
-            return SharedSuggestionProvider.suggest(data.getHomes(player.getUUID()).keySet(), builder);
+            HomeContext homeCtx = getHomeContext(context, false);
+            if (homeCtx == null) return Suggestions.empty();
+            return SharedSuggestionProvider.suggest(homeCtx.homes().keySet(), builder);
         } catch (CommandSyntaxException e) {
             return Suggestions.empty();
         }
+    }
+
+    private record HomeContext(ServerPlayer player, HomeSavedData data, Map<String, HomeSavedData.HomePos> homes) {}
+
+    private static @Nullable HomeContext getHomeContext(CommandContext<CommandSourceStack> context, boolean sendFailure) throws CommandSyntaxException {
+        if (!OttConfig.HOMES.ENABLED.get()) {
+            if (sendFailure) {
+                context.getSource().sendFailure(Component.literal("Home system is disabled."));
+            }
+            return null;
+        }
+        ServerPlayer player = context.getSource().getPlayerOrException();
+        HomeSavedData data = HomeSavedData.get(player.serverLevel());
+        return new HomeContext(player, data, data.getHomes(player.getUUID()));
+    }
+
+    private static int sendFailure(CommandContext<CommandSourceStack> context, String message) {
+        context.getSource().sendFailure(Component.literal(message));
+        return 0;
     }
 }

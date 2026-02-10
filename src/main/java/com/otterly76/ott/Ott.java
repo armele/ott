@@ -4,9 +4,13 @@ import com.mojang.serialization.MapCodec;
 import com.otterly76.ott.block.ModBlocks;
 import com.otterly76.ott.block.entity.ModBlockEntities;
 import com.otterly76.ott.block.wood.ModBlockFamilies;
+import com.otterly76.ott.config.ConfigHandler;
 import com.otterly76.ott.config.OttConfig;
 import com.otterly76.ott.entity.ModEntities;
+import com.otterly76.ott.event.HarvestEventHandler;
+import com.otterly76.ott.event.LoadCompleteCallback;
 import com.otterly76.ott.event.ModEventBusEvents;
+import com.otterly76.ott.event.ToolEventHandler;
 import com.otterly76.ott.generation.*;
 import com.otterly76.ott.inventory.ModMenuTypes;
 import com.otterly76.ott.item.ModItems;
@@ -16,7 +20,9 @@ import com.otterly76.ott.network.NetworkHandler;
 import com.otterly76.ott.particle.ModParticle;
 import com.otterly76.ott.registry.OttBuiltInRegistries;
 import com.otterly76.ott.sound.ModSounds;
+import com.otterly76.ott.util.DynamicPackResources;
 import com.otterly76.ott.util.LanternSavedData;
+import com.otterly76.ott.util.PackResourcesHelper;
 import com.otterly76.ott.worldgen.ModFeatures;
 import com.otterly76.ott.worldgen.ModPlacedFeatures;
 import com.otterly76.ott.worldgen.ModTreeDecoratorTypes;
@@ -59,9 +65,6 @@ import com.otterly76.ott.worldgen.surface.condition.internal.TagFilledCondition;
 import com.otterly76.ott.worldgen.surface.rule.BandlandsRule;
 import com.otterly76.ott.worldgen.surface.rule.ReferenceRule;
 import com.otterly76.ott.worldgen.surface.rule.TransientMergedRule;
-import com.otterly76.ott.event.HarvestEventHandler;
-import com.otterly76.ott.event.ToolEventHandler;
-import com.otterly76.ott.config.ConfigHandler;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Registry;
 import net.minecraft.core.RegistryAccess;
@@ -108,6 +111,7 @@ import net.neoforged.fml.ModLoadingContext;
 import net.neoforged.fml.common.Mod;
 import net.neoforged.fml.config.ModConfig;
 import net.neoforged.fml.event.lifecycle.FMLCommonSetupEvent;
+import net.neoforged.fml.event.lifecycle.FMLLoadCompleteEvent;
 import net.neoforged.fml.loading.FMLPaths;
 import net.neoforged.neoforge.client.gui.ConfigurationScreen;
 import net.neoforged.neoforge.client.gui.IConfigScreenFactory;
@@ -117,6 +121,7 @@ import net.neoforged.neoforge.data.event.GatherDataEvent;
 import net.neoforged.neoforge.event.AddPackFindersEvent;
 import net.neoforged.neoforge.event.BuildCreativeModeTabContentsEvent;
 import net.neoforged.neoforge.event.server.ServerStartingEvent;
+import org.jetbrains.annotations.NotNull;
 import terrablender.api.Regions;
 
 import java.nio.file.Files;
@@ -133,8 +138,12 @@ import static com.otterly76.ott.generation.OttWorldGenProvider.BUILDER;
 public class Ott {
     public static final java.util.Random RANDOM = new java.util.Random();
 
+    public static final java.util.function.Predicate<net.minecraft.world.level.block.Block> ANVIL_BLOCK_PREDICATE = (block) -> block instanceof net.minecraft.world.level.block.AnvilBlock && !(block instanceof com.otterly76.ott.block.AnvilWithInventoryBlock);
+
     public Ott(IEventBus modEventBus) {
         OttBuiltInRegistries.init(modEventBus);
+
+
         ConfigHandler.load(FMLPaths.CONFIGDIR.get().resolve("ott.json"));
         ModLoadingContext.get().getActiveContainer().registerConfig(ModConfig.Type.COMMON, OttConfig.SPEC, "ott-config.toml");
         ModLoadingContext.get().getActiveContainer().registerExtensionPoint(IConfigScreenFactory.class, ConfigurationScreen::new);
@@ -162,8 +171,15 @@ public class Ott {
         modEventBus.addListener(ModEventBusEvents::registerLayers);
         modEventBus.addListener(ModEventBusEvents::registerAttributes);
         modEventBus.addListener(ModEventBusEvents::registerSpawnPlacements);
+        modEventBus.addListener(ModEventBusEvents::registerCapabilities);
         modEventBus.addListener(ModBlockEntities::registerTileExtensions);
+        modEventBus.addListener(com.otterly76.ott.handler.BlockConversionHandler::onRegisterBlocks);
+        modEventBus.addListener(this::onLoadComplete);
         modEventBus.addListener(this::commonEventSetup);
+    }
+
+    private void onLoadComplete(FMLLoadCompleteEvent event) {
+        LoadCompleteCallback.fire();
     }
 
     private void commonEventSetup(FMLCommonSetupEvent event) {
@@ -340,6 +356,7 @@ public class Ott {
         generator.addProvider(event.includeClient(), new MinecraftBackportBlockStateProvider(generator.getPackOutput(), event.getExistingFileHelper()));
         generator.addProvider(event.includeClient(), new MinecraftBackportItemModelProvider(generator.getPackOutput(), event.getExistingFileHelper()));
         generator.addProvider(event.includeClient(), new OttWoodSetBlockStateProvider(generator.getPackOutput(), event.getExistingFileHelper()));
+        generator.addProvider(event.includeClient(), new DynamicModelProvider(new DataProviderContext(Constants.MOD_ID, generator.getPackOutput(), event.getLookupProvider())));
         generator.addProvider(event.includeServer(), new LootTableProvider(generator.getPackOutput(), Collections.emptySet(), List.of(new LootTableProvider.SubProviderEntry(OttLootTableProvider::new, LootContextParamSets.BLOCK)), event.getLookupProvider()));
         ModBlockTagProvider blockTagProvider = new ModBlockTagProvider(generator.getPackOutput(), event.getLookupProvider(), event.getExistingFileHelper());
         generator.addProvider(event.includeServer(), blockTagProvider);
@@ -373,6 +390,31 @@ public class Ott {
             pot.addPlant(ModBlocks.PALE_OAK_SAPLING.getId(), ModBlocks.POTTED_PALE_OAK_SAPLING);
             pot.addPlant(ModBlocks.STARLIGHT_SAPLING.getId(), ModBlocks.POTTED_STARLIGHT_SAPLING);
             pot.addPlant(ModBlocks.MIDNIGHT_SAPLING.getId(), ModBlocks.POTTED_MIDNIGHT_SAPLING);
+
+            net.minecraft.world.level.block.DispenserBlock.registerBehavior(net.minecraft.world.item.Items.IRON_BLOCK, new net.minecraft.core.dispenser.OptionalDispenseItemBehavior() {
+                public net.minecraft.world.item.@NotNull ItemStack execute(net.minecraft.core.dispenser.@NotNull BlockSource source, net.minecraft.world.item.@NotNull ItemStack itemStack) {
+                    if (!OttConfig.ANVILS.MISC.ANVIL_REPAIRING.get()) {
+                        return super.execute(source, itemStack);
+                    } else {
+                        net.minecraft.core.Direction direction = source.state().getValue(DispenserBlock.FACING);
+                        net.minecraft.core.BlockPos pos = source.pos().relative(direction);
+                        net.minecraft.world.level.Level level = source.level();
+                        net.minecraft.world.level.block.state.BlockState state = level.getBlockState(pos);
+                        this.setSuccess(true);
+                        if (state.is(net.minecraft.tags.BlockTags.ANVIL)) {
+                            if (com.otterly76.ott.handler.ItemInteractionHandler.tryRepairAnvil(level, pos, state)) {
+                                itemStack.shrink(1);
+                            } else {
+                                this.setSuccess(false);
+                            }
+
+                            return itemStack;
+                        } else {
+                            return super.execute(source, itemStack);
+                        }
+                    }
+                }
+            });
         });
     }
 
@@ -556,30 +598,36 @@ public class Ott {
         if (event.getPackType() == PackType.CLIENT_RESOURCES) {
             var resourcePath = ModList.get().getModFileById(MOD_ID).getFile().findResource("resourcepacks/ott_core");
 
-            if (!Files.isDirectory(resourcePath)) {
-                return;
+            if (Files.isDirectory(resourcePath)) {
+                var packLocationInfo = new PackLocationInfo(
+                        MOD_ID + ":ott_core",
+                        Component.translatable("pack." + MOD_ID + ".ott_core"),
+                        PackSource.BUILT_IN,
+                        Optional.empty()
+                );
+                var packSelectionConfig = new PackSelectionConfig(
+                        true,
+                        Pack.Position.TOP,
+                        true
+                );
+                var pack = Pack.readMetaAndCreate(
+                        packLocationInfo,
+                        new PathPackResources.PathResourcesSupplier(resourcePath),
+                        PackType.CLIENT_RESOURCES,
+                        packSelectionConfig
+                );
+
+                if (pack != null) {
+                    event.addRepositorySource((packConsumer) -> packConsumer.accept(pack));
+                }
             }
 
-            var packLocationInfo = new PackLocationInfo(
-                    MOD_ID + ":ott_core",
-                    Component.translatable("pack." + MOD_ID + ".ott_core"),
-                    PackSource.BUILT_IN,
-                    Optional.empty()
-            );
-            var packSelectionConfig = new PackSelectionConfig(
-                    true,
-                    Pack.Position.TOP,
-                    true
-            );
-            var pack = Pack.readMetaAndCreate(
-                    packLocationInfo,
-                    new PathPackResources.PathResourcesSupplier(resourcePath),
-                    PackType.CLIENT_RESOURCES,
-                    packSelectionConfig
-            );
+            event.addRepositorySource(PackResourcesHelper.buildClientPack(Ott.resource("default_block_models"), DynamicPackResources.create(DynamicModelProvider::new), true));
+        }
 
-            if (pack != null) {
-                event.addRepositorySource((packConsumer) -> packConsumer.accept(pack));
+        if (event.getPackType() == PackType.SERVER_DATA) {
+            if (OttConfig.ANVILS.NAME_TAG_CRAFTING_RECIPE.get()) {
+                event.addRepositorySource(PackResourcesHelper.buildServerPack(Ott.resource("name_tag_recipe"), DynamicPackResources.create(DynamicRecipeProvider::new), true));
             }
         }
     }
@@ -599,6 +647,15 @@ public class Ott {
         if (accessor.ott$getCraftingRemainder() == null) {
             accessor.ott$setCraftingRemainder(Items.BUCKET);
         }
+    }
+
+
+    public static boolean isDevelopmentEnvironmentWithoutDataGeneration() {
+        return false;
+    }
+
+    public static boolean isDevelopmentEnvironment() {
+        return false;
     }
 
     public static TagKey<EntityType<?>> TRAMPLING_ENTITIES;

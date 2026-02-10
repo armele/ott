@@ -9,9 +9,9 @@ import net.minecraft.client.particle.ParticleProvider;
 import net.minecraft.client.particle.SpriteSet;
 import net.minecraft.core.particles.SimpleParticleType;
 import net.minecraft.util.Mth;
-import net.minecraft.world.phys.Vec3;
 import org.jetbrains.annotations.NotNull;
 import org.joml.Quaternionf;
+import org.joml.Vector3f;
 
 public class DustParticle extends DustMoteParticle {
     protected DustParticle(ClientLevel clientWorld, double x, double y, double z, SpriteSet provider) {
@@ -31,14 +31,11 @@ public class DustParticle extends DustMoteParticle {
 
     }
 
-    public void render(@NotNull VertexConsumer vertexConsumer, Camera camera, float tickPercentage) {
-        Vec3 camPos = camera.getPosition();
-        float x = (float)(Mth.lerp(tickPercentage, this.xo, this.x) - camPos.x());
-        float y = (float)(Mth.lerp(tickPercentage, this.yo, this.y) - camPos.y());
-        float z = (float)(Mth.lerp(tickPercentage, this.zo, this.z) - camPos.z());
+    public void render(@NotNull VertexConsumer vertexConsumer, @NotNull Camera camera, float tickPercentage) {
+        Vector3f localPos = this.getRelativePosition(camera, tickPercentage);
         Quaternionf quaternion = camera.rotation();
-        y = y + Mth.sin(Mth.lerp(tickPercentage, (float)this.age - 1.0F, (float)this.age) / 20.0F) + 1.5F;
-        this.renderRotatedQuad(vertexConsumer, quaternion, x, y, z, tickPercentage);
+        localPos.y = localPos.y + Mth.sin(Mth.lerp(tickPercentage, (float)this.age - 1.0F, (float)this.age) / 20.0F) + 1.5F;
+        this.renderRotatedQuad(vertexConsumer, quaternion, localPos.x, localPos.y, localPos.z, tickPercentage);
     }
 
     public static class DefaultFactory implements ParticleProvider<SimpleParticleType> {
