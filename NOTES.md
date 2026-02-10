@@ -55,6 +55,13 @@ Utilitarian
 - Raider Outpost Claim Banner
   - make it look like a little crown
   - maybe a crown on top of a banner post and a small dyable banner on the front?
+- inverted redstone lamps
+- make axe default for heads/skulls
+- give bookshelf to nitwit = regular villager
+- drop anvil on villager = nitwit
+- un-name tag
+- block magnet (works on anvils, iron blocks)
+- use crying obsidian in portal frames
 
 GAG
 - No Soliciting Sign
