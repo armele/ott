@@ -41,6 +41,7 @@
     "common.RandomStateAccessor",
     "common.ResultContainerAccessor",
     "common.ServerLifecycleHooksMixin",
+    "common.ServerLevelMixin",
     "common.ServerPlayerMixin",
     "common.SimpleContainerAccessor",
     "common.SinglePoolElementAccessor",

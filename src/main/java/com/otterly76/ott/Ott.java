@@ -113,8 +113,6 @@ import net.neoforged.fml.config.ModConfig;
 import net.neoforged.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.neoforged.fml.event.lifecycle.FMLLoadCompleteEvent;
 import net.neoforged.fml.loading.FMLPaths;
-import net.neoforged.neoforge.client.gui.ConfigurationScreen;
-import net.neoforged.neoforge.client.gui.IConfigScreenFactory;
 import net.neoforged.neoforge.common.NeoForge;
 import net.neoforged.neoforge.common.data.DatapackBuiltinEntriesProvider;
 import net.neoforged.neoforge.data.event.GatherDataEvent;
@@ -146,7 +144,6 @@ public class Ott {
 
         ConfigHandler.load(FMLPaths.CONFIGDIR.get().resolve("ott.json"));
         ModLoadingContext.get().getActiveContainer().registerConfig(ModConfig.Type.COMMON, OttConfig.SPEC, "ott-config.toml");
-        ModLoadingContext.get().getActiveContainer().registerExtensionPoint(IConfigScreenFactory.class, ConfigurationScreen::new);
         ModCreativeTabs.OTTER_TABS.register(modEventBus);
         modEventBus.addListener(NetworkHandler::register);
         modEventBus.addListener(this::dataGeneratorSetup);
@@ -167,8 +164,9 @@ public class Ott {
         NeoForge.EVENT_BUS.register(this);
         NeoForge.EVENT_BUS.register(ModEventBusEvents.class);
         modEventBus.addListener(this::addCreative);
-        com.otterly76.ott.ClientModEvents.register(modEventBus);
-        modEventBus.addListener(ModEventBusEvents::registerLayers);
+        if (net.neoforged.fml.loading.FMLEnvironment.dist.isClient()) {
+            com.otterly76.ott.client.OttClient.init(modEventBus);
+        }
         modEventBus.addListener(ModEventBusEvents::registerAttributes);
         modEventBus.addListener(ModEventBusEvents::registerSpawnPlacements);
         modEventBus.addListener(ModEventBusEvents::registerCapabilities);

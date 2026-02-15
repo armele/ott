@@ -11,7 +11,7 @@ public class NetworkHandler {
         registrar.playToClient(
                 ClientboundSyncNutritionPacket.TYPE,
                 ClientboundSyncNutritionPacket.STREAM_CODEC,
-                ClientboundSyncNutritionPacket::handle
+                (packet, context) -> context.enqueueWork(() -> ClientPayloadHandler.handleSyncNutrition(packet, context))
         );
 
         registrar.playToServer(
@@ -47,7 +47,7 @@ public class NetworkHandler {
         registrar.playToClient(
                 S2COpenNameTagEditorMessage.TYPE,
                 S2COpenNameTagEditorMessage.STREAM_CODEC,
-                S2COpenNameTagEditorMessage::handle
+                (packet, context) -> context.enqueueWork(() -> ClientPayloadHandler.handleOpenNameTagEditor(packet, context))
         );
 
         registrar.playToServer(
@@ -59,7 +59,7 @@ public class NetworkHandler {
         registrar.playToClient(
                 S2CAnvilRepairMessage.TYPE,
                 S2CAnvilRepairMessage.STREAM_CODEC,
-                S2CAnvilRepairMessage::handle
+                (packet, context) -> context.enqueueWork(() -> ClientPayloadHandler.handleAnvilRepair(packet, context))
         );
 
         registrar.playToServer(

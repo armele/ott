@@ -5,11 +5,16 @@ Autochef’s Delight
 Better F3?
 Controlling
 Crafting Tweaks
+Disenchanting Table
 Enchantment Descriptions
 Everthing's Copper
+Functional Armor Trims
 Fusion
 Glassential Renewed
+Inventory Mending
+Loot Beams
 Mouse Tweaks
+No Mob Farms
 Open Blocks Elevator
 Polymorph
 Project: Vibrant Journeys
@@ -40,10 +45,6 @@ Effect Descriptions
 Painting Previews
 Professions
 Resources
-
-Better End
-Better Nether
-Deep Aether
 
 Mod Cherry Picking:
 =====
@@ -199,6 +200,20 @@ Vines hang from slabs
 
 implement FTB Ultramine functionality
 - needs to be able to be keymapped
+
+afk command
+- protection from attack
+
+add xp for brewing potions
+
+cosmetic armors
+
+critter armorory
+- make armor that gives critter buffs
+
+create curio slot for elytra
+
+
 
 Biomes Nonsense:
 =====

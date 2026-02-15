@@ -1,10 +1,13 @@
 package com.otterly76.ott.mixin.common;
 
 import com.otterly76.ott.config.OttConfig;
+import net.minecraft.core.Holder;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.ExperienceOrb;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.gameevent.GameEvent;
+import org.jetbrains.annotations.NotNull;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
@@ -45,5 +48,10 @@ public abstract class ExperienceOrbMixin extends Entity {
                 other.discard();
             }
         }
+    }
+
+    @Override
+    public void gameEvent(@NotNull Holder<GameEvent> event, Entity entity) {
+        // Experience orbs should not trigger game events (vibrations)
     }
 }

@@ -1,14 +1,11 @@
 package com.otterly76.ott.network;
 
 import com.otterly76.ott.Constants;
-import com.otterly76.ott.client.gui.NameTagEditScreen;
-import net.minecraft.client.Minecraft;
 import net.minecraft.network.RegistryFriendlyByteBuf;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.codec.StreamCodec;
 import net.minecraft.network.protocol.common.custom.CustomPacketPayload;
 import net.minecraft.world.InteractionHand;
-import net.neoforged.neoforge.network.handling.IPayloadContext;
 import org.jetbrains.annotations.NotNull;
 
 public record S2COpenNameTagEditorMessage(InteractionHand hand, Component title) implements CustomPacketPayload {
@@ -23,11 +20,5 @@ public record S2COpenNameTagEditorMessage(InteractionHand hand, Component title)
     @Override
     public @NotNull Type<? extends CustomPacketPayload> type() {
         return TYPE;
-    }
-
-    public void handle(final IPayloadContext context) {
-        context.enqueueWork(() -> {
-            Minecraft.getInstance().setScreen(new NameTagEditScreen(this.hand, this.title));
-        });
     }
 }

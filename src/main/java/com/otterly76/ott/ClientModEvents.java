@@ -43,6 +43,8 @@ import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.fml.event.lifecycle.FMLClientSetupEvent;
 import net.neoforged.neoforge.client.event.*;
 import net.neoforged.neoforge.event.entity.player.ItemTooltipEvent;
+import net.neoforged.neoforge.client.gui.ConfigurationScreen;
+import net.neoforged.neoforge.client.gui.IConfigScreenFactory;
 import net.neoforged.neoforge.client.gui.VanillaGuiLayers;
 
 import java.awt.*;
@@ -65,6 +67,7 @@ public class ClientModEvents {
     };
 
     public static void register(IEventBus modBus) {
+        net.neoforged.fml.ModLoadingContext.get().getActiveContainer().registerExtensionPoint(IConfigScreenFactory.class, ConfigurationScreen::new);
         modBus.addListener(ClientModEvents::registerGuiLayers);
         modBus.addListener(ClientModEvents::onClientSetup);
         modBus.addListener(ClientModEvents::onRegisterSpriteLoader);
