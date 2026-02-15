@@ -177,6 +177,8 @@ public class OttConfig {
     public static class Clumps {
         public final ModConfigSpec.BooleanValue ENABLED;
         public final ModConfigSpec.DoubleValue RADIUS;
+        public final ModConfigSpec.DoubleValue ATTRACTION_RADIUS;
+        public final ModConfigSpec.BooleanValue EVERLASTING;
 
         public Clumps(ModConfigSpec.Builder builder) {
             builder.push("clumps");
@@ -186,6 +188,12 @@ public class OttConfig {
             RADIUS = builder.comment("The radius in which experience orbs will merge.")
                     .translation("ott.configuration.clumps.radius")
                     .defineInRange("radius", 2.0, 0.1, 10.0);
+            ATTRACTION_RADIUS = builder.comment("The radius in which experience orbs will be attracted to the player.")
+                    .translation("ott.configuration.clumps.attraction_radius")
+                    .defineInRange("attractionRadius", 16.0, 1.0, 64.0);
+            EVERLASTING = builder.comment("Should experience orbs be everlasting and never despawn?")
+                    .translation("ott.configuration.clumps.everlasting")
+                    .define("everlasting", true);
             builder.pop();
         }
     }

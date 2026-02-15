@@ -11,7 +11,9 @@ import org.jetbrains.annotations.NotNull;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
+import org.spongepowered.asm.mixin.injection.Constant;
 import org.spongepowered.asm.mixin.injection.Inject;
+import org.spongepowered.asm.mixin.injection.ModifyConstant;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 import java.util.List;
@@ -48,6 +50,22 @@ public abstract class ExperienceOrbMixin extends Entity {
                 other.discard();
             }
         }
+    }
+
+    @ModifyConstant(method = "tick", constant = @Constant(doubleValue = 8.0D))
+    private double ott$getAttractionRadius(double constant) {
+        return OttConfig.CLUMPS.ATTRACTION_RADIUS.get();
+    }
+
+    @ModifyConstant(method = "tick", constant = @Constant(doubleValue = 64.0D))
+    private double ott$getAttractionRadiusSqr(double constant) {
+        double radius = OttConfig.CLUMPS.ATTRACTION_RADIUS.get();
+        return radius * radius;
+    }
+
+    @ModifyConstant(method = "tick", constant = @Constant(intValue = 6000))
+    private int ott$getDespawnTime(int constant) {
+        return OttConfig.CLUMPS.EVERLASTING.get() ? Integer.MAX_VALUE : constant;
     }
 
     @Override

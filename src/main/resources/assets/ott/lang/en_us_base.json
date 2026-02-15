@@ -345,6 +345,8 @@
 
   "ott.configuration.clumps.enabled": "Enable Experience Clumping",
   "ott.configuration.clumps.radius": "Experience Clumping Radius",
+  "ott.configuration.clumps.attraction_radius": "Experience Orb Attraction Radius",
+  "ott.configuration.clumps.everlasting": "Everlasting Experience Orbs",
 
   "ott.configuration.accessibility.localglobalsounds": "Local Global Sounds",
 
