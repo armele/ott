@@ -3,7 +3,7 @@ package com.otterly76.ott.client;
 import com.mojang.datafixers.util.Either;
 import com.otterly76.ott.Constants;
 import com.otterly76.ott.client.tooltip.FoodTooltipComponent;
-import com.otterly76.ott.util.FoodUtil;
+import com.otterly76.ott.util.item.FoodUtil;
 import net.minecraft.client.Minecraft;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.bus.api.SubscribeEvent;

@@ -5,6 +5,7 @@ import com.mojang.serialization.MapCodec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 import com.otterly76.ott.block.ModBlocks;
 import com.otterly76.ott.block.custom.HangingMossBlock;
+import com.otterly76.ott.worldgen.feature.TheGardenAwakensFeatures;
 import net.minecraft.Util;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.registries.Registries;
@@ -57,7 +58,7 @@ public class PaleMossDecorator extends TreeDecorator {
             });
             BlockPos blockPos = mutable.getValue();
             if (randomSource.nextFloat() < this.groundProbability) {
-                worldGenLevel.registryAccess().lookup(Registries.CONFIGURED_FEATURE).flatMap((registry) -> registry.get(ModConfiguredFeatures.PALE_MOSS_PATCH)).ifPresent((reference) -> reference.value().place(worldGenLevel, worldGenLevel.getLevel().getChunkSource().getGenerator(), randomSource, blockPos.above()));
+                worldGenLevel.registryAccess().lookup(Registries.CONFIGURED_FEATURE).flatMap((registry) -> registry.get(TheGardenAwakensFeatures.PALE_MOSS_PATCH)).ifPresent((reference) -> reference.value().place(worldGenLevel, worldGenLevel.getLevel().getChunkSource().getGenerator(), randomSource, blockPos.above()));
             }
 
             context.logs().forEach((blockPosx) -> {

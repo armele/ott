@@ -2,8 +2,8 @@ package com.otterly76.ott.event;
 
 import com.otterly76.ott.Ott;
 import com.otterly76.ott.config.ConfigHandler.Harvest;
-import com.otterly76.ott.util.HarvestUtils;
-import com.otterly76.ott.util.HarvestUtils.InteractionType;
+import com.otterly76.ott.util.block.HarvestUtils;
+import com.otterly76.ott.util.block.HarvestUtils.InteractionType;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerLevel;

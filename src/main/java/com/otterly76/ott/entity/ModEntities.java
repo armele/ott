@@ -1,5 +1,9 @@
 package com.otterly76.ott.entity;
 
+import com.otterly76.ott.entity.vehicle.PaleOakBoat;
+import com.otterly76.ott.entity.vehicle.PaleOakChestBoat;
+import com.otterly76.ott.entity.vehicle.OttWoodSetBoatEntity;
+import com.otterly76.ott.entity.vehicle.OttWoodSetChestBoatEntity;
 import com.otterly76.ott.entity.tiny.*;
 import com.otterly76.ott.wood.ModWoodSets;
 import net.minecraft.core.registries.BuiltInRegistries;
@@ -8,6 +12,7 @@ import net.minecraft.world.entity.EntityType.Builder;
 import net.minecraft.world.entity.MobCategory;
 import net.minecraft.world.entity.vehicle.Boat;
 import net.minecraft.world.entity.vehicle.ChestBoat;
+import net.minecraft.world.phys.Vec3;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.neoforge.registries.DeferredRegister;
 
@@ -24,7 +29,10 @@ public class ModEntities {
             DeferredRegister.create(BuiltInRegistries.ENTITY_TYPE, "ott");
 
     public static final Supplier<EntityType<Creaking>> CREAKING = ENTITY_TYPES.register("creaking",
-            () -> Builder.of(Creaking::new, MobCategory.CREATURE).sized(0.9F, 2.7F).build("creaking"));
+            () -> Builder.of(Creaking::new, MobCategory.MONSTER).sized(0.9F, 2.7F).eyeHeight(2.3F).clientTrackingRange(8).build("creaking"));
+
+    public static final Supplier<EntityType<com.otterly76.ott.entity.custom.HappyGhast>> HAPPY_GHAST = ENTITY_TYPES.register("happy_ghast",
+            () -> Builder.of(com.otterly76.ott.entity.custom.HappyGhast::new, MobCategory.CREATURE).sized(4.0F, 4.0F).eyeHeight(2.6F).passengerAttachments(new Vec3[]{new Vec3((double)0.0F, (double)4.0F, 1.8), new Vec3(-1.8, (double)4.0F, (double)0.0F), new Vec3((double)0.0F, (double)4.0F, -1.8), new Vec3(1.8, (double)4.0F, (double)0.0F)}).ridingOffset(0.5F).clientTrackingRange(10).build("happy_ghast"));
 
     public static final Supplier<EntityType<TinySkeleton>> TINY_SKELETON = OTT_ENTITY_TYPES.register("tiny_skeleton",
             () -> Builder.of(TinySkeleton::new, MobCategory.MONSTER).sized(0.6F, 1.99F).build("tiny_skeleton"));
@@ -57,11 +65,11 @@ public class ModEntities {
                     .updateInterval(20)
                     .build("torch_arrow"));
 
-    public static final Supplier<EntityType<Boat>> PALE_OAK_BOAT = ENTITY_TYPES.register("pale_oak_boat",
-            () -> Builder.<Boat>of(PaleOakBoatEntity::new, MobCategory.MISC).sized(1.375F, 0.5625F).clientTrackingRange(10).build("pale_oak_boat"));
+    public static final Supplier<EntityType<PaleOakBoat>> PALE_OAK_BOAT = ENTITY_TYPES.register("pale_oak_boat",
+            () -> Builder.<PaleOakBoat>of(PaleOakBoat::new, MobCategory.MISC).sized(1.375F, 0.5625F).clientTrackingRange(10).build("pale_oak_boat"));
 
-    public static final Supplier<EntityType<ChestBoat>> PALE_OAK_CHEST_BOAT = ENTITY_TYPES.register("pale_oak_chest_boat",
-            () -> Builder.<ChestBoat>of(PaleOakChestBoatEntity::new, MobCategory.MISC).sized(1.375F, 0.5625F).clientTrackingRange(10).build("pale_oak_chest_boat"));
+    public static final Supplier<EntityType<PaleOakChestBoat>> PALE_OAK_CHEST_BOAT = ENTITY_TYPES.register("pale_oak_chest_boat",
+            () -> Builder.<PaleOakChestBoat>of(PaleOakChestBoat::new, MobCategory.MISC).sized(1.375F, 0.5625F).clientTrackingRange(10).build("pale_oak_chest_boat"));
 
     public static final Map<String, Supplier<EntityType<Boat>>> WOOD_SET_BOATS = new LinkedHashMap<>();
     public static final Map<String, Supplier<EntityType<ChestBoat>>> WOOD_SET_CHEST_BOATS = new LinkedHashMap<>();

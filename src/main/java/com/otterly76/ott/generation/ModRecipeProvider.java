@@ -1,9 +1,12 @@
 package com.otterly76.ott.generation;
 
+import com.otterly76.ott.FeatureFlag;
 import com.otterly76.ott.block.IGradientBlock;
 import com.otterly76.ott.block.ModBlocks;
 import com.otterly76.ott.item.ModItems;
 import com.otterly76.ott.util.ModTags;
+import com.otterly76.ott.recipe.BundleColoring;
+import com.otterly76.ott.registry.ModRecipeSerializers;
 import net.minecraft.advancements.Advancement;
 import net.minecraft.advancements.AdvancementHolder;
 import net.minecraft.advancements.CriteriaTriggers;
@@ -14,7 +17,6 @@ import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.recipes.*;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.tags.ItemTags;
 import net.minecraft.world.item.DyeColor;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
@@ -139,6 +141,12 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
                 .unlockedBy("impossible", impossible())
                 .save(noAdv, getRecipePath("minecraft", "resin_clump_from_resin_block"));
 
+        ShapedRecipeBuilder.shaped(RecipeCategory.DECORATIONS, ModBlocks.PALE_MOSS_CARPET.get(), 3)
+                .define('#', ModBlocks.PALE_MOSS_BLOCK.get())
+                .pattern("##")
+                .unlockedBy("impossible", impossible())
+                .save(noAdv, getRecipePath("minecraft", "pale_moss_carpet"));
+
         SingleItemRecipeBuilder.stonecutting(
                         Ingredient.of(ModBlocks.RESIN_BRICKS.get()),
                         RecipeCategory.BUILDING_BLOCKS,
@@ -173,6 +181,9 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
                 .save(noAdv, getRecipePath("minecraft", "chiseled_resin_bricks_from_stonecutting"));
 
         ModBlocks.ALL_GRADIENT_BLOCKS.forEach(deferredBlock -> createGradientRecipe(noAdv, deferredBlock.get()));
+
+        SpecialRecipeBuilder.special(BundleColoring::new)
+                .save(noAdv, getRecipePath("minecraft", "bundle_coloring"));
 
         // Tiny Coal and Charcoal
         ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, ModItems.TINY_COAL.get(), 9)
@@ -248,24 +259,146 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
         this.addDyeingRecipes(noAdv);
         this.addSlabToBlockRecipes(noAdv);
         this.addMiscRecipes(noAdv);
+
+        if (FeatureFlag.COPPER_AGE.isEnabled()) {
+            this.copperAgeRecipes(noAdv);
+        }
+
+        if (FeatureFlag.MOUNTS_OF_MAYHEM.isEnabled()) {
+            this.mountsOfMayhemRecipes(noAdv);
+        }
+    }
+
+    private void mountsOfMayhemRecipes(RecipeOutput exporter) {
+        ModItems.NETHERITE_HORSE_ARMOR.ifPresent(i -> {
+            SmithingTransformRecipeBuilder.smithing(
+                            Ingredient.of(Items.NETHERITE_UPGRADE_SMITHING_TEMPLATE),
+                            Ingredient.of(Items.DIAMOND_HORSE_ARMOR),
+                            Ingredient.of(Items.NETHERITE_INGOT),
+                            RecipeCategory.MISC,
+                            i.get()
+                    )
+                    .unlocks("has_netherite_ingot", has(Items.NETHERITE_INGOT))
+                    .save(exporter, getRecipePath("minecraft", "netherite_horse_armor_smithing"));
+        });
+    }
+
+    private void copperAgeRecipes(RecipeOutput exporter) {
+        ModItems.COPPER_NUGGET.ifPresent(i -> {
+            ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, Items.COPPER_INGOT)
+                    .requires(i.get(), 9)
+                    .unlockedBy("has_copper_nugget", has(i.get()))
+                    .save(exporter, getRecipePath("minecraft", "copper_ingot_from_nuggets"));
+
+            ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, i.get(), 9)
+                    .requires(Items.COPPER_INGOT)
+                    .unlockedBy("has_copper_ingot", has(Items.COPPER_INGOT))
+                    .save(exporter, getRecipePath("minecraft", "copper_nuggets_from_ingot"));
+        });
+
+        // Tools
+        ModItems.COPPER_SWORD.ifPresent(i -> ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, i.get())
+                .define('#', Items.COPPER_INGOT)
+                .define('S', Items.STICK)
+                .pattern("#")
+                .pattern("#")
+                .pattern("S")
+                .unlockedBy("has_copper_ingot", has(Items.COPPER_INGOT))
+                .save(exporter, getRecipePath("minecraft", "copper_sword")));
+
+        ModItems.COPPER_SHOVEL.ifPresent(i -> ShapedRecipeBuilder.shaped(RecipeCategory.TOOLS, i.get())
+                .define('#', Items.COPPER_INGOT)
+                .define('S', Items.STICK)
+                .pattern("#")
+                .pattern("S")
+                .pattern("S")
+                .unlockedBy("has_copper_ingot", has(Items.COPPER_INGOT))
+                .save(exporter, getRecipePath("minecraft", "copper_shovel")));
+
+        ModItems.COPPER_PICKAXE.ifPresent(i -> ShapedRecipeBuilder.shaped(RecipeCategory.TOOLS, i.get())
+                .define('#', Items.COPPER_INGOT)
+                .define('S', Items.STICK)
+                .pattern("###")
+                .pattern(" S ")
+                .pattern(" S ")
+                .unlockedBy("has_copper_ingot", has(Items.COPPER_INGOT))
+                .save(exporter, getRecipePath("minecraft", "copper_pickaxe")));
+
+        ModItems.COPPER_AXE.ifPresent(i -> ShapedRecipeBuilder.shaped(RecipeCategory.TOOLS, i.get())
+                .define('#', Items.COPPER_INGOT)
+                .define('S', Items.STICK)
+                .pattern("##")
+                .pattern("#S")
+                .pattern(" S")
+                .unlockedBy("has_copper_ingot", has(Items.COPPER_INGOT))
+                .save(exporter, getRecipePath("minecraft", "copper_axe")));
+
+        ModItems.COPPER_HOE.ifPresent(i -> ShapedRecipeBuilder.shaped(RecipeCategory.TOOLS, i.get())
+                .define('#', Items.COPPER_INGOT)
+                .define('S', Items.STICK)
+                .pattern("##")
+                .pattern(" S")
+                .pattern(" S")
+                .unlockedBy("has_copper_ingot", has(Items.COPPER_INGOT))
+                .save(exporter, getRecipePath("minecraft", "copper_hoe")));
+
+        // Armor
+        ModItems.COPPER_HELMET.ifPresent(i -> ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, i.get())
+                .define('#', Items.COPPER_INGOT)
+                .pattern("###")
+                .pattern("# #")
+                .unlockedBy("has_copper_ingot", has(Items.COPPER_INGOT))
+                .save(exporter, getRecipePath("minecraft", "copper_helmet")));
+
+        ModItems.COPPER_CHESTPLATE.ifPresent(i -> ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, i.get())
+                .define('#', Items.COPPER_INGOT)
+                .pattern("# #")
+                .pattern("###")
+                .pattern("###")
+                .unlockedBy("has_copper_ingot", has(Items.COPPER_INGOT))
+                .save(exporter, getRecipePath("minecraft", "copper_chestplate")));
+
+        ModItems.COPPER_LEGGINGS.ifPresent(i -> ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, i.get())
+                .define('#', Items.COPPER_INGOT)
+                .pattern("###")
+                .pattern("# #")
+                .pattern("# #")
+                .unlockedBy("has_copper_ingot", has(Items.COPPER_INGOT))
+                .save(exporter, getRecipePath("minecraft", "copper_leggings")));
+
+        ModItems.COPPER_BOOTS.ifPresent(i -> ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, i.get())
+                .define('#', Items.COPPER_INGOT)
+                .pattern("# #")
+                .pattern("# #")
+                .unlockedBy("has_copper_ingot", has(Items.COPPER_INGOT))
+                .save(exporter, getRecipePath("minecraft", "copper_boots")));
+
+        ModItems.COPPER_HORSE_ARMOR.ifPresent(i -> ShapedRecipeBuilder.shaped(RecipeCategory.MISC, i.get())
+                .define('#', Items.COPPER_INGOT)
+                .define('L', Items.LEATHER)
+                .pattern("  #")
+                .pattern("#L#")
+                .pattern("###")
+                .unlockedBy("has_copper_ingot", has(Items.COPPER_INGOT))
+                .save(exporter, getRecipePath("minecraft", "copper_horse_armor")));
     }
 
     private void addMiscRecipes(RecipeOutput exporter) {
         ShapedRecipeBuilder.shaped(RecipeCategory.DECORATIONS, Items.CHEST, 4)
-                .define('#', ItemTags.LOGS)
+                .define('#', net.minecraft.tags.ItemTags.LOGS)
                 .pattern("###")
                 .pattern("# #")
                 .pattern("###")
-                .unlockedBy("has_logs", has(ItemTags.LOGS))
+                .unlockedBy("has_logs", has(net.minecraft.tags.ItemTags.LOGS))
                 .save(exporter, getRecipePath("ott", "chest_from_logs"));
 
         ShapedRecipeBuilder.shaped(RecipeCategory.REDSTONE, Items.HOPPER)
                 .define('I', Items.IRON_INGOT)
-                .define('L', ItemTags.LOGS)
+                .define('L', net.minecraft.tags.ItemTags.LOGS)
                 .pattern("ILI")
                 .pattern("ILI")
                 .pattern(" I ")
-                .unlockedBy("has_logs", has(ItemTags.LOGS))
+                .unlockedBy("has_logs", has(net.minecraft.tags.ItemTags.LOGS))
                 .save(exporter, getRecipePath("ott", "hopper_from_logs"));
 
         ShapelessRecipeBuilder.shapeless(RecipeCategory.COMBAT, ModItems.TORCH_ARROW.get(), 8)
@@ -284,65 +417,65 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
             // Banner
             Item banner = BuiltInRegistries.ITEM.get(ResourceLocation.withDefaultNamespace(colorName + "_banner"));
             ShapelessRecipeBuilder.shapeless(RecipeCategory.DECORATIONS, banner)
-                    .requires(ModTags.Items.DYEABLE_BANNERS)
+                    .requires(ModTags.ItemTags.DYEABLE_BANNERS)
                     .requires(dye)
-                    .unlockedBy("has_any_banner", has(ModTags.Items.DYEABLE_BANNERS))
+                    .unlockedBy("has_any_banner", has(ModTags.ItemTags.DYEABLE_BANNERS))
                     .save(exporter, getRecipePath("ott", colorName + "_banner_from_dyeing"));
 
             // Candle
             Item candle = BuiltInRegistries.ITEM.get(ResourceLocation.withDefaultNamespace(colorName + "_candle"));
             ShapelessRecipeBuilder.shapeless(RecipeCategory.DECORATIONS, candle)
-                    .requires(ModTags.Items.DYEABLE_CANDLES)
+                    .requires(ModTags.ItemTags.DYEABLE_CANDLES)
                     .requires(dye)
-                    .unlockedBy("has_any_candle", has(ModTags.Items.DYEABLE_CANDLES))
+                    .unlockedBy("has_any_candle", has(ModTags.ItemTags.DYEABLE_CANDLES))
                     .save(exporter, getRecipePath("ott", colorName + "_candle_from_dyeing"));
 
             // Glass
             Item glass = BuiltInRegistries.ITEM.get(ResourceLocation.withDefaultNamespace(colorName + "_stained_glass"));
             ShapelessRecipeBuilder.shapeless(RecipeCategory.BUILDING_BLOCKS, glass)
-                    .requires(ModTags.Items.DYEABLE_GLASS_BLOCKS)
+                    .requires(ModTags.ItemTags.DYEABLE_GLASS_BLOCKS)
                     .requires(dye)
-                    .unlockedBy("has_any_glass", has(ModTags.Items.DYEABLE_GLASS_BLOCKS))
+                    .unlockedBy("has_any_glass", has(ModTags.ItemTags.DYEABLE_GLASS_BLOCKS))
                     .save(exporter, getRecipePath("ott", colorName + "_glass_from_dyeing"));
 
             // Pane
             Item pane = BuiltInRegistries.ITEM.get(ResourceLocation.withDefaultNamespace(colorName + "_stained_glass_pane"));
             ShapelessRecipeBuilder.shapeless(RecipeCategory.DECORATIONS, pane)
-                    .requires(ModTags.Items.DYEABLE_GLASS_PANES)
+                    .requires(ModTags.ItemTags.DYEABLE_GLASS_PANES)
                     .requires(dye)
-                    .unlockedBy("has_any_pane", has(ModTags.Items.DYEABLE_GLASS_PANES))
+                    .unlockedBy("has_any_pane", has(ModTags.ItemTags.DYEABLE_GLASS_PANES))
                     .save(exporter, getRecipePath("ott", colorName + "_pane_from_dyeing"));
 
             // Shulker Box
             Item shulker = BuiltInRegistries.ITEM.get(ResourceLocation.withDefaultNamespace(colorName + "_shulker_box"));
             ShapelessRecipeBuilder.shapeless(RecipeCategory.DECORATIONS, shulker)
-                    .requires(ModTags.Items.DYEABLE_SHULKER_BOXES)
+                    .requires(ModTags.ItemTags.DYEABLE_SHULKER_BOXES)
                     .requires(dye)
-                    .unlockedBy("has_any_shulker", has(ModTags.Items.DYEABLE_SHULKER_BOXES))
+                    .unlockedBy("has_any_shulker", has(ModTags.ItemTags.DYEABLE_SHULKER_BOXES))
                     .save(exporter, getRecipePath("ott", colorName + "_shulker_box_from_dyeing"));
 
             // Concrete
             Item concrete = BuiltInRegistries.ITEM.get(ResourceLocation.withDefaultNamespace(colorName + "_concrete"));
             ShapelessRecipeBuilder.shapeless(RecipeCategory.BUILDING_BLOCKS, concrete)
-                    .requires(ModTags.Items.DYEABLE_CONCRETE)
+                    .requires(ModTags.ItemTags.DYEABLE_CONCRETE)
                     .requires(dye)
-                    .unlockedBy("has_any_concrete", has(ModTags.Items.DYEABLE_CONCRETE))
+                    .unlockedBy("has_any_concrete", has(ModTags.ItemTags.DYEABLE_CONCRETE))
                     .save(exporter, getRecipePath("ott", colorName + "_concrete_from_dyeing"));
 
             // Concrete Powder
             Item powder = BuiltInRegistries.ITEM.get(ResourceLocation.withDefaultNamespace(colorName + "_concrete_powder"));
             ShapelessRecipeBuilder.shapeless(RecipeCategory.BUILDING_BLOCKS, powder)
-                    .requires(ModTags.Items.DYEABLE_CONCRETE_POWDER)
+                    .requires(ModTags.ItemTags.DYEABLE_CONCRETE_POWDER)
                     .requires(dye)
-                    .unlockedBy("has_any_powder", has(ModTags.Items.DYEABLE_CONCRETE_POWDER))
+                    .unlockedBy("has_any_powder", has(ModTags.ItemTags.DYEABLE_CONCRETE_POWDER))
                     .save(exporter, getRecipePath("ott", colorName + "_concrete_powder_from_dyeing"));
 
             // Terracotta
             Item terracotta = BuiltInRegistries.ITEM.get(ResourceLocation.withDefaultNamespace(colorName + "_terracotta"));
             ShapelessRecipeBuilder.shapeless(RecipeCategory.BUILDING_BLOCKS, terracotta)
-                    .requires(ModTags.Items.DYEABLE_TERRACOTTA)
+                    .requires(ModTags.ItemTags.DYEABLE_TERRACOTTA)
                     .requires(dye)
-                    .unlockedBy("has_any_terracotta", has(ModTags.Items.DYEABLE_TERRACOTTA))
+                    .unlockedBy("has_any_terracotta", has(ModTags.ItemTags.DYEABLE_TERRACOTTA))
                     .save(exporter, getRecipePath("ott", colorName + "_terracotta_from_dyeing"));
         }
     }
@@ -350,7 +483,7 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
     private void woodRecipes(RecipeOutput noAdv) {
         // --- Backported Pale Oak recipes (minecraft namespace) ---
         ShapelessRecipeBuilder.shapeless(RecipeCategory.BUILDING_BLOCKS, ModBlocks.PALE_OAK_PLANKS.get(), 4)
-                .requires(ModTags.Items.PALE_OAK_LOGS)
+                .requires(ModTags.ItemTags.PALE_OAK_LOGS)
                 .unlockedBy("impossible", impossible())
                 .save(noAdv, getRecipePath("minecraft", "pale_oak_planks"));
 
@@ -463,7 +596,7 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
     private void registerOttWoodSetRecipes(RecipeOutput noAdv, String setName, ModBlocks.WoodSetBlocks set) {
         // Use tag-based “any log variant” per set: ott:<setName>_logs
         ShapelessRecipeBuilder.shapeless(RecipeCategory.BUILDING_BLOCKS, set.planks().get(), 4)
-                .requires(ModTags.Items.woodSetLogs(setName))
+                .requires(ModTags.ItemTags.woodSetLogs(setName))
                 .unlockedBy("impossible", impossible())
                 .save(noAdv, getRecipePath("ott", set.planks().getId().getPath()));
 

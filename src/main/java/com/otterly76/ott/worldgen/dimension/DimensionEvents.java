@@ -3,7 +3,7 @@ package com.otterly76.ott.worldgen.dimension;
 import com.otterly76.ott.Constants;
 import com.otterly76.ott.entity.ModEntities;
 import com.otterly76.ott.entity.tiny.*;
-import com.otterly76.ott.util.LanternManager;
+import com.otterly76.ott.util.lantern.LanternManager;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;

@@ -10,8 +10,8 @@ import java.util.Map;
 
 public class ModBlockFamilies {
     private static final Map<Block, BlockFamily> MAP = Maps.newHashMap();
-    public static final BlockFamily RESIN_BRICKS;
-    public static final BlockFamily PALE_OAK;
+    public static BlockFamily RESIN_BRICKS;
+    public static BlockFamily PALE_OAK;
 
     public static BlockFamily.Builder familyBuilder(Block baseBlock) {
         return new BlockFamily.Builder(baseBlock);
@@ -28,9 +28,6 @@ public class ModBlockFamilies {
     }
 
     public static void createBlockFamilies() {
-    }
-
-    static {
         RESIN_BRICKS = registerFamily(familyBuilder(ModBlocks.RESIN_BRICKS.get())
                 .wall(ModBlocks.RESIN_BRICK_WALL.get())
                 .stairs(ModBlocks.RESIN_BRICK_STAIRS.get())

@@ -2,58 +2,55 @@ package com.otterly76.ott.worldgen;
 
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.MapCodec;
+import com.mojang.serialization.codecs.RecordCodecBuilder;
 import com.otterly76.ott.block.ModBlocks;
 import com.otterly76.ott.block.custom.CreakingHeartBlock;
-import net.minecraft.Util;
+import com.otterly76.ott.util.block.CreakingHeartState;
+import java.util.List;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
-import net.minecraft.tags.BlockTags;
 import net.minecraft.util.RandomSource;
-import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.levelgen.feature.treedecorators.TreeDecorator;
 import net.minecraft.world.level.levelgen.feature.treedecorators.TreeDecoratorType;
 import org.jetbrains.annotations.NotNull;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
-import java.util.function.Predicate;
-
 public class CreakingHeartDecorator extends TreeDecorator {
-    public static final MapCodec<CreakingHeartDecorator> CODEC = Codec.floatRange(0.0F, 1.0F).fieldOf("probability").xmap(CreakingHeartDecorator::new, (creakingHeartDecorator) -> creakingHeartDecorator.probability);
+    public static final MapCodec<CreakingHeartDecorator> CODEC = RecordCodecBuilder.mapCodec((instance) -> instance.group(Codec.floatRange(0.0F, 1.0F).fieldOf("probability").forGetter((creakingHeartDecorator) -> creakingHeartDecorator.probability)).apply(instance, CreakingHeartDecorator::new));
     private final float probability;
 
     public CreakingHeartDecorator(float f) {
         this.probability = f;
     }
 
+    @Override
     protected @NotNull TreeDecoratorType<?> type() {
         return ModTreeDecoratorTypes.CREAKING_HEART.get();
     }
 
+    @Override
     public void place(TreeDecorator.Context context) {
         RandomSource randomSource = context.random();
-        List<BlockPos> list = context.logs();
-        if (!list.isEmpty() && !(randomSource.nextFloat() >= this.probability)) {
-            List<BlockPos> list2 = new ArrayList<>(list);
-            Util.shuffle(list2, randomSource);
-            Optional<BlockPos> optional = list2.stream().filter((blockPos) -> {
-                for(Direction direction : Direction.values()) {
-                    if (!this.checkBlock(context, blockPos.relative(direction), (blockState) -> blockState.is(BlockTags.LOGS))) {
-                        return false;
+        if (randomSource.nextFloat() < this.probability) {
+            List<BlockPos> list = context.logs();
+            if (!list.isEmpty()) {
+                boolean bl = false;
+
+                for(BlockPos blockPos : list) {
+                    for(Direction direction : Direction.values()) {
+                        BlockPos blockPos2 = blockPos.relative(direction);
+                        if (context.isAir(blockPos2) && direction.getAxis().isHorizontal() && context.isAir(blockPos2.relative(direction.getOpposite(), 2))) {
+                            context.setBlock(blockPos, ModBlocks.CREAKING_HEART.get().defaultBlockState().setValue(CreakingHeartBlock.STATE, CreakingHeartState.DORMANT).setValue(CreakingHeartBlock.AXIS, direction.getAxis()));
+                            bl = true;
+                            break;
+                        }
+                    }
+
+                    if (bl) {
+                        break;
                     }
                 }
 
-                return true;
-            }).findFirst();
-            optional.ifPresent((blockPos) -> context.setBlock(blockPos, ModBlocks.CREAKING_HEART.get()
-                    .defaultBlockState()
-                    .setValue(CreakingHeartBlock.ACTIVE, true)
-                    .setValue(CreakingHeartBlock.NATURAL, true)));
+            }
         }
-    }
-
-    public boolean checkBlock(TreeDecorator.Context context, BlockPos blockPos, Predicate<BlockState> predicate) {
-        return context.level().isStateAtPosition(blockPos, predicate);
     }
 }

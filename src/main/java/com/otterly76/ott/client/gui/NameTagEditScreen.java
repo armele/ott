@@ -6,7 +6,7 @@ import com.otterly76.ott.client.gui.components.FormattableEditBox;
 import com.otterly76.ott.client.gui.components.FormattingGuideWidget;
 import com.otterly76.ott.config.OttConfig;
 import com.otterly76.ott.network.C2SNameTagUpdateMessage;
-import com.otterly76.ott.util.ComponentDecomposer;
+import com.otterly76.ott.util.data.ComponentDecomposer;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Font;
 import net.minecraft.client.gui.GuiGraphics;

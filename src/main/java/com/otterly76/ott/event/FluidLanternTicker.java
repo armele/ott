@@ -1,8 +1,8 @@
 package com.otterly76.ott.event;
 
 import com.otterly76.ott.Constants;
-import com.otterly76.ott.util.FluidLanternManager;
-import com.otterly76.ott.util.FluidLanternUtils;
+import com.otterly76.ott.util.lantern.FluidLanternManager;
+import com.otterly76.ott.util.lantern.FluidLanternUtils;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.level.Level;
 import net.minecraft.server.level.ServerLevel;

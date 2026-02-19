@@ -1,9 +1,18 @@
 package com.otterly76.ott.item;
 
 import com.otterly76.ott.Constants;
+import com.otterly76.ott.FeatureFlag;
 import com.otterly76.ott.block.ModBlocks;
 import com.otterly76.ott.entity.ModEntities;
+import com.otterly76.ott.entity.variant.ChickenVariants;
+import com.otterly76.ott.registry.ModArmorMaterials;
+import com.otterly76.ott.registry.ModDataComponents;
+import com.otterly76.ott.registry.ModJukeboxSongs;
+import com.otterly76.ott.entity.vehicle.OttWoodSetBoatEntity;
+import com.otterly76.ott.entity.vehicle.OttWoodSetChestBoatEntity;
+import net.minecraft.core.component.DataComponents;
 import net.minecraft.world.item.*;
+import net.minecraft.world.item.component.BundleContents;
 import net.minecraft.world.level.block.Block;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.neoforge.common.DeferredSpawnEggItem;
@@ -14,17 +23,22 @@ import net.neoforged.neoforge.registries.DeferredRegister;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Optional;
+import java.util.function.Function;
 
 public class ModItems {
     public static final DeferredRegister.Items ITEMS = DeferredRegister.createItems(Constants.MOD_ID);
-    public static final DeferredRegister.Items MINECRAFT_ITEMS = DeferredRegister.createItems("minecraft");
+    public static final DeferredRegister.Items MINECRAFT_ITEMS = ModBlocks.MINECRAFT_ITEMS;
 
     public static final Map<String, DeferredItem<SignItem>> WOOD_SET_SIGNS = new HashMap<>();
     public static final Map<String, DeferredItem<HangingSignItem>> WOOD_SET_HANGING_SIGNS = new HashMap<>();
     public static final Map<String, DeferredItem<ModBoatItem>> WOOD_SET_BOATS = new HashMap<>();
     public static final Map<String, DeferredItem<ModBoatItem>> WOOD_SET_CHEST_BOATS = new HashMap<>();
 
-    // Standard Items
+    public static final Map<String, DeferredItem<Item>> HARNESSES = new HashMap<>();
+    public static final Map<String, DeferredItem<Item>> BUNDLES = new HashMap<>();
+
+    // Standard ItemTags
     public static final DeferredItem<Item> OTTER = ITEMS.register("otter", () -> new Item(new Item.Properties()));
     public static final DeferredHolder<Item, BlockItem> GAPPER_PANEL_OAK = registerBlockItem("gapper_panel_oak", ModBlocks.GAPPER_PANEL_OAK);
     public static final DeferredHolder<Item, BlockItem> HEDGE = registerBlockItem("hedge", ModBlocks.HEDGE);
@@ -54,13 +68,31 @@ public class ModItems {
 
     public static DeferredItem<Item> PALE_OAK_SAPLING;
 
-    // Backport / Minecraft Namespace Items
+    // Backport / Minecraft Namespace ItemTags
     public static DeferredItem<Item> RESIN_BRICK;
+    public static DeferredItem<Item> MUSIC_DISC_TEARS;
+    public static DeferredItem<Item> MUSIC_DISC_LAVA_CHICKEN;
     public static DeferredItem<Item> CREAKING_SPAWN_EGG;
+    public static DeferredItem<Item> HAPPY_GHAST_SPAWN_EGG;
+    public static DeferredItem<Item> BLUE_EGG;
+    public static DeferredItem<Item> BROWN_EGG;
+
+    public static Optional<DeferredItem<Item>> COPPER_NUGGET;
+    public static Optional<DeferredItem<SwordItem>> COPPER_SWORD;
+    public static Optional<DeferredItem<ShovelItem>> COPPER_SHOVEL;
+    public static Optional<DeferredItem<PickaxeItem>> COPPER_PICKAXE;
+    public static Optional<DeferredItem<AxeItem>> COPPER_AXE;
+    public static Optional<DeferredItem<HoeItem>> COPPER_HOE;
+    public static Optional<DeferredItem<ArmorItem>> COPPER_HELMET;
+    public static Optional<DeferredItem<ArmorItem>> COPPER_CHESTPLATE;
+    public static Optional<DeferredItem<ArmorItem>> COPPER_LEGGINGS;
+    public static Optional<DeferredItem<ArmorItem>> COPPER_BOOTS;
+    public static Optional<DeferredItem<AnimalArmorItem>> COPPER_HORSE_ARMOR;
+    public static Optional<DeferredItem<AnimalArmorItem>> NETHERITE_HORSE_ARMOR;
     public static DeferredItem<SignItem> PALE_OAK_SIGN;
     public static DeferredItem<HangingSignItem> PALE_OAK_HANGING_SIGN;
-    public static DeferredItem<ModBoatItem> PALE_OAK_BOAT;
-    public static DeferredItem<ModBoatItem> PALE_OAK_CHEST_BOAT;
+    public static DeferredItem<PaleOakBoatItem> PALE_OAK_BOAT;
+    public static DeferredItem<PaleOakBoatItem> PALE_OAK_CHEST_BOAT;
 
     public static void register(IEventBus eventBus) {
         // 1. Run dynamic logic to set up the registration entries
@@ -68,7 +100,6 @@ public class ModItems {
 
         // 2. Attach the registers to the mod event bus
         ITEMS.register(eventBus);
-        MINECRAFT_ITEMS.register(eventBus);
     }
 
     private static void initializeDynamicItems() {
@@ -108,20 +139,47 @@ public class ModItems {
 
             WOOD_SET_BOATS.put(setName, ITEMS.register(setName + "_boat",
                     () -> new ModBoatItem(ModEntities.WOOD_SET_BOATS.get(setName), new Item.Properties().stacksTo(1),
-                            boat -> { if (boat instanceof com.otterly76.ott.entity.OttWoodSetBoatEntity b) b.setWoodSetName(setName); })));
+                            boat -> { if (boat instanceof OttWoodSetBoatEntity b) b.setWoodSetName(setName); })));
 
             WOOD_SET_CHEST_BOATS.put(setName, ITEMS.register(setName + "_chest_boat",
                     () -> new ModBoatItem(ModEntities.WOOD_SET_CHEST_BOATS.get(setName), new Item.Properties().stacksTo(1),
-                            boat -> { if (boat instanceof com.otterly76.ott.entity.OttWoodSetChestBoatEntity b) b.setWoodSetName(setName); })));
+                            boat -> { if (boat instanceof OttWoodSetChestBoatEntity b) b.setWoodSetName(setName); })));
         });
 
         // REGISTRATION: Static Minecraft Backports
         RESIN_BRICK = MINECRAFT_ITEMS.register("resin_brick", () -> new Item(new Item.Properties()));
+        MUSIC_DISC_TEARS = MINECRAFT_ITEMS.register("music_disc_tears", () -> new Item(new Item.Properties().stacksTo(1).rarity(Rarity.UNCOMMON).jukeboxPlayable(ModJukeboxSongs.TEARS.getKey())));
+        MUSIC_DISC_LAVA_CHICKEN = MINECRAFT_ITEMS.register("music_disc_lava_chicken", () -> new Item(new Item.Properties().stacksTo(1).rarity(Rarity.RARE).jukeboxPlayable(ModJukeboxSongs.LAVA_CHICKEN.getKey())));
         CREAKING_SPAWN_EGG = MINECRAFT_ITEMS.register("creaking_spawn_egg", () -> new DeferredSpawnEggItem(ModEntities.CREAKING, 6250335, 16545810, new Item.Properties()));
+        HAPPY_GHAST_SPAWN_EGG = MINECRAFT_ITEMS.register("happy_ghast_spawn_egg", () -> new DeferredSpawnEggItem(ModEntities.HAPPY_GHAST, 16382457, 12369084, new Item.Properties()));
+
+        BLUE_EGG = MINECRAFT_ITEMS.register("blue_egg", () -> new EggItem(new Item.Properties().stacksTo(16).component(ModDataComponents.CHICKEN_VARIANT.get(), ChickenVariants.COLD)));
+        BROWN_EGG = MINECRAFT_ITEMS.register("brown_egg", () -> new EggItem(new Item.Properties().stacksTo(16).component(ModDataComponents.CHICKEN_VARIANT.get(), ChickenVariants.WARM)));
+
+        for (net.minecraft.world.item.DyeColor color : net.minecraft.world.item.DyeColor.values()) {
+            HARNESSES.put(color.getName(), MINECRAFT_ITEMS.register(color.getName() + "_harness", () -> new HarnessItem(new Item.Properties().stacksTo(1))));
+            BUNDLES.put(color.getName(), MINECRAFT_ITEMS.register(color.getName() + "_bundle", () -> new BundleItem(new Item.Properties().stacksTo(1).component(DataComponents.BUNDLE_CONTENTS, BundleContents.EMPTY))));
+        }
+
+        COPPER_NUGGET = conditional("copper_nugget", Item::new, new Item.Properties(), FeatureFlag.COPPER_AGE);
+        COPPER_SWORD = conditional("copper_sword", (properties) -> new SwordItem(ModToolMaterials.COPPER, properties), (new Item.Properties()).attributes(SwordItem.createAttributes(ModToolMaterials.COPPER, 3, -2.4F)), FeatureFlag.COPPER_AGE);
+        COPPER_SHOVEL = conditional("copper_shovel", (properties) -> new ShovelItem(ModToolMaterials.COPPER, properties), (new Item.Properties()).attributes(ShovelItem.createAttributes(ModToolMaterials.COPPER, 1.5F, -3.0F)), FeatureFlag.COPPER_AGE);
+        COPPER_PICKAXE = conditional("copper_pickaxe", (properties) -> new PickaxeItem(ModToolMaterials.COPPER, properties), (new Item.Properties()).attributes(PickaxeItem.createAttributes(ModToolMaterials.COPPER, 1.0F, -2.8F)), FeatureFlag.COPPER_AGE);
+        COPPER_AXE = conditional("copper_axe", (properties) -> new AxeItem(ModToolMaterials.COPPER, properties), (new Item.Properties()).attributes(AxeItem.createAttributes(ModToolMaterials.COPPER, 7.0F, -3.2F)), FeatureFlag.COPPER_AGE);
+        COPPER_HOE = conditional("copper_hoe", (properties) -> new HoeItem(ModToolMaterials.COPPER, properties), (new Item.Properties()).attributes(HoeItem.createAttributes(ModToolMaterials.COPPER, -1.0F, -2.0F)), FeatureFlag.COPPER_AGE);
+
+        COPPER_HELMET = conditional("copper_helmet", (properties) -> new ArmorItem(ModArmorMaterials.COPPER, ArmorItem.Type.HELMET, properties), (new Item.Properties()).durability(ArmorItem.Type.HELMET.getDurability(5)), FeatureFlag.COPPER_AGE);
+        COPPER_CHESTPLATE = conditional("copper_chestplate", (properties) -> new ArmorItem(ModArmorMaterials.COPPER, ArmorItem.Type.CHESTPLATE, properties), (new Item.Properties()).durability(ArmorItem.Type.CHESTPLATE.getDurability(5)), FeatureFlag.COPPER_AGE);
+        COPPER_LEGGINGS = conditional("copper_leggings", (properties) -> new ArmorItem(ModArmorMaterials.COPPER, ArmorItem.Type.LEGGINGS, properties), (new Item.Properties()).durability(ArmorItem.Type.LEGGINGS.getDurability(5)), FeatureFlag.COPPER_AGE);
+        COPPER_BOOTS = conditional("copper_boots", (properties) -> new ArmorItem(ModArmorMaterials.COPPER, ArmorItem.Type.BOOTS, properties), (new Item.Properties()).durability(ArmorItem.Type.BOOTS.getDurability(5)), FeatureFlag.COPPER_AGE);
+
+        COPPER_HORSE_ARMOR = conditional("copper_horse_armor", (properties) -> new AnimalArmorItem(ModArmorMaterials.COPPER, AnimalArmorItem.BodyType.EQUESTRIAN, false, properties), (new Item.Properties()).stacksTo(1), FeatureFlag.COPPER_AGE);
+        NETHERITE_HORSE_ARMOR = conditional("netherite_horse_armor", (properties) -> new AnimalArmorItem(ArmorMaterials.NETHERITE, AnimalArmorItem.BodyType.EQUESTRIAN, false, properties), (new Item.Properties()).stacksTo(1).fireResistant(), FeatureFlag.MOUNTS_OF_MAYHEM);
+
         PALE_OAK_SIGN = registerMinecraftSign();
         PALE_OAK_HANGING_SIGN = registerMinecraftHangingSign();
-        PALE_OAK_BOAT = MINECRAFT_ITEMS.register("pale_oak_boat", () -> new ModBoatItem(ModEntities.PALE_OAK_BOAT, new Item.Properties().stacksTo(1)));
-        PALE_OAK_CHEST_BOAT = MINECRAFT_ITEMS.register("pale_oak_chest_boat", () -> new ModBoatItem(ModEntities.PALE_OAK_CHEST_BOAT, new Item.Properties().stacksTo(1)));
+        PALE_OAK_BOAT = MINECRAFT_ITEMS.register("pale_oak_boat", () -> new PaleOakBoatItem(false, new Item.Properties().stacksTo(1)));
+        PALE_OAK_CHEST_BOAT = MINECRAFT_ITEMS.register("pale_oak_chest_boat", () -> new PaleOakBoatItem(true, new Item.Properties().stacksTo(1)));
         PALE_OAK_SAPLING = registerMinecraftBlockItem();
 
     }
@@ -152,5 +210,9 @@ public class ModItems {
 
     private static DeferredItem<HangingSignItem> registerMinecraftHangingSign() {
         return MINECRAFT_ITEMS.register("pale_oak_hanging_sign", () -> new HangingSignItem(ModBlocks.PALE_OAK_HANGING_SIGN.get(), ModBlocks.PALE_OAK_WALL_HANGING_SIGN.get(), new Item.Properties().stacksTo(16)));
+    }
+
+    private static <T extends Item> Optional<DeferredItem<T>> conditional(String name, Function<Item.Properties, T> factory, Item.Properties properties, FeatureFlag flag) {
+        return flag.isEnabled() ? Optional.of(MINECRAFT_ITEMS.register(name, () -> factory.apply(properties))) : Optional.empty();
     }
 }

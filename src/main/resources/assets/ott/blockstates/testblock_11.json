@@ -1,9 +1,0 @@
-{
-  "variants": {
-    "": [
-      {
-        "model": "ott:block/testblock_11", "weight": 1000
-      }
-    ]
-  }
-}

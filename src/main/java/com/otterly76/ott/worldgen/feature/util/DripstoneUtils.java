@@ -1,6 +1,6 @@
 package com.otterly76.ott.worldgen.feature.util;
 
-import com.otterly76.ott.util.MathUtils;
+import com.otterly76.ott.util.math.MathUtils;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.HolderSet;
 import net.minecraft.world.level.LevelAccessor;

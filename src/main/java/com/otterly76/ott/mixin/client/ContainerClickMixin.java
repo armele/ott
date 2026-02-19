@@ -31,7 +31,7 @@ public abstract class ContainerClickMixin {
         if (!OttConfig.GENERAL.ENABLE_RIGHT_CLICK_OPEN.get()) return;
         if (button == 2) { // Middle click
             Slot slot = getSlotUnderMouse();
-            if (slot != null && slot.hasItem() && slot.getItem().is(ModTags.Items.INVENTORY_OPENABLE)) {
+            if (slot != null && slot.hasItem() && slot.getItem().is(ModTags.ItemTags.INVENTORY_OPENABLE)) {
                 if (slot.container instanceof Inventory) {
                     int slotIndex = slot.getContainerSlot();
 

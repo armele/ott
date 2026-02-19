@@ -1,8 +1,8 @@
 package com.otterly76.ott.block.custom;
 
 import com.otterly76.ott.config.OttConfig;
-import com.otterly76.ott.util.DamageLanternManager;
-import com.otterly76.ott.util.DamageLanternSavedData;
+import com.otterly76.ott.util.lantern.DamageLanternManager;
+import com.otterly76.ott.util.lantern.DamageLanternSavedData;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.LanternBlock;

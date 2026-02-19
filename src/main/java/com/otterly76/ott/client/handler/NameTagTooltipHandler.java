@@ -2,7 +2,7 @@ package com.otterly76.ott.client.handler;
 
 
 import com.otterly76.ott.config.OttConfig;
-import com.otterly76.ott.util.TooltipUtil;
+import com.otterly76.ott.util.gui.TooltipUtil;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.entity.player.Player;

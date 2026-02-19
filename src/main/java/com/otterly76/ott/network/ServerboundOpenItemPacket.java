@@ -1,7 +1,7 @@
 package com.otterly76.ott.network;
 
 import com.otterly76.ott.Constants;
-import com.otterly76.ott.util.InventoryUtils;
+import com.otterly76.ott.util.item.InventoryUtils;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.network.codec.ByteBufCodecs;
 import net.minecraft.network.codec.StreamCodec;

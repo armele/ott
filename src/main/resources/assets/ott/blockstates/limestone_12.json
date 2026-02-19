@@ -1,9 +1,0 @@
-{
-  "variants": {
-    "": [
-      {
-        "model": "ott:block/limestone_12", "weight": 1000
-      }
-    ]
-  }
-}

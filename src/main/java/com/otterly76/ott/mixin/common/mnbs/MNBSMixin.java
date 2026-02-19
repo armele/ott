@@ -3,7 +3,7 @@ package com.otterly76.ott.mixin.common.mnbs;
 import com.mojang.datafixers.util.Either;
 import com.mojang.datafixers.util.Pair;
 import com.mojang.serialization.MapCodec;
-import com.otterly76.ott.util.CodecExtender;
+import com.otterly76.ott.util.data.CodecExtender;
 import com.otterly76.ott.duck.mnbs.MNBS;
 import com.otterly76.ott.duck.mnbs.MNBSPL;
 import net.minecraft.core.Holder;

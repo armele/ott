@@ -3,11 +3,13 @@ package com.otterly76.ott.block.custom;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.particles.SimpleParticleType;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
 import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 import java.util.function.Supplier;
 
@@ -17,10 +19,21 @@ public class ParticleHedgeBlock extends Block {
     private static final double FACE_NUDGE = 0.02;
 
     private final Supplier<SimpleParticleType> particleType;
+    private final ResourceLocation overlayTexture;
 
     public ParticleHedgeBlock(Properties props, Supplier<SimpleParticleType> particleType) {
+        this(props, particleType, null);
+    }
+
+    public ParticleHedgeBlock(Properties props, Supplier<SimpleParticleType> particleType, @Nullable ResourceLocation overlayTexture) {
         super(props);
         this.particleType = particleType;
+        this.overlayTexture = overlayTexture;
+    }
+
+    @Nullable
+    public ResourceLocation getOverlayTexture() {
+        return overlayTexture;
     }
 
     @SuppressWarnings("DuplicatedCode")

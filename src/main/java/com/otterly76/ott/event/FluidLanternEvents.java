@@ -1,7 +1,7 @@
 package com.otterly76.ott.event;
 
 import com.otterly76.ott.Constants;
-import com.otterly76.ott.util.FluidLanternManager;
+import com.otterly76.ott.util.lantern.FluidLanternManager;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;

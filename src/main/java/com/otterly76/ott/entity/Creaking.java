@@ -3,6 +3,7 @@ package com.otterly76.ott.entity;
 import com.mojang.serialization.Dynamic;
 import com.otterly76.ott.block.ModBlocks;
 import com.otterly76.ott.block.custom.CreakingHeartBlock;
+import com.otterly76.ott.util.block.CreakingHeartState;
 import com.otterly76.ott.block.entity.CreakingHeartBlockEntity;
 import com.otterly76.ott.sound.ModSounds;
 import net.minecraft.core.BlockPos;
@@ -35,6 +36,7 @@ import net.minecraft.world.entity.monster.Monster;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.projectile.Projectile;
 import net.minecraft.world.level.ClipContext;
+import net.minecraft.world.level.ClipContext.Fluid;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.block.Blocks;
@@ -61,6 +63,8 @@ public class Creaking extends Monster {
     private static final EntityDataAccessor<Boolean> IS_ACTIVE = SynchedEntityData.defineId(Creaking.class, EntityDataSerializers.BOOLEAN);
     private static final EntityDataAccessor<Boolean> IS_TEARING_DOWN = SynchedEntityData.defineId(Creaking.class, EntityDataSerializers.BOOLEAN);
     private static final EntityDataAccessor<Optional<BlockPos>> HOME_POS = SynchedEntityData.defineId(Creaking.class, EntityDataSerializers.OPTIONAL_BLOCK_POS);
+    public static final byte CREAKING_ATTACK = 4;
+    public static final byte CREAKING_HURT = 66;
     private static final int ATTACK_ANIMATION_DURATION = 15;
     private static final int MAX_HEALTH = 1;
     private static final float ATTACK_DAMAGE = 3.0F;
@@ -82,6 +86,7 @@ public class Creaking extends Monster {
     private boolean eyesGlowing;
     private int nextFlickerTime;
     private int playerStuckCounter;
+    private int creakingDeathTime;
 
     public Creaking(EntityType<? extends Monster> entityType, Level level) {
         super(entityType, level);
@@ -140,46 +145,68 @@ public class Creaking extends Monster {
         return this.entityData.get(CAN_MOVE);
     }
 
-    public boolean doHurtTarget(@NotNull Entity entity) {
-        this.attackAnimationRemainingTicks = ATTACK_ANIMATION_DURATION;
-        this.level().broadcastEntityEvent(this, (byte) 4);
-        return super.doHurtTarget(entity);
+    @Override
+    public boolean doHurtTarget(@NotNull Entity target) {
+        if (!(target instanceof LivingEntity)) {
+            return false;
+        } else {
+            this.attackAnimationRemainingTicks = ATTACK_ANIMATION_DURATION;
+            this.level().broadcastEntityEvent(this, CREAKING_ATTACK);
+            return super.doHurtTarget(target);
+        }
     }
 
-    public boolean hurt(@NotNull DamageSource damageSource, float f) {
-        this.lastDamageSource = damageSource;
-        BlockPos blockPos = this.getHomePos();
-        if (blockPos != null && !damageSource.is(DamageTypeTags.BYPASSES_INVULNERABILITY)) {
-            if (this.invulnerabilityAnimationRemainingTicks <= 0 && !this.isDeadOrDying()) {
-                Entity attacker = damageSource.getEntity();
-                if (attacker instanceof LivingEntity) {
-                    this.setLastHurtByMob((LivingEntity) attacker);
-                }
-
-                Player player = this.resolvePlayerResponsibleForDamage(damageSource);
-                Entity entity = damageSource.getDirectEntity();
-                if (!(entity instanceof LivingEntity) && !(entity instanceof Projectile) && player == null) {
-                    return false;
-                } else {
+    @Override
+    public boolean hurt(@NotNull DamageSource source, float amount) {
+        BlockPos home = this.getHomePos();
+        if (home != null && !source.is(DamageTypeTags.BYPASSES_INVULNERABILITY)) {
+            if (!this.isInvulnerableTo(source) && this.invulnerabilityAnimationRemainingTicks <= 0 && !this.isDeadOrDying()) {
+                Player player = this.blameSourceForDamage(source);
+                Entity entity = source.getDirectEntity();
+                if (entity instanceof LivingEntity || entity instanceof Projectile || player != null) {
                     this.invulnerabilityAnimationRemainingTicks = INVULNERABILITY_ANIMATION_DURATION;
-                    this.level().broadcastEntityEvent(this, (byte) 66);
-                    BlockEntity var8 = this.level().getBlockEntity(blockPos);
-                    if (var8 instanceof CreakingHeartBlockEntity creakingHeartBlockEntity) {
-                        if (creakingHeartBlockEntity.isProtector(this)) {
+                    this.level().broadcastEntityEvent(this, CREAKING_HURT);
+                    BlockEntity blockEntity = this.level().getBlockEntity(home);
+                    if (blockEntity instanceof CreakingHeartBlockEntity heart) {
+                        if (heart.isProtector(this)) {
                             if (player != null) {
-                                creakingHeartBlockEntity.creakingHurt();
+                                heart.creakingHurt();
                             }
-                            this.playHurtSound(damageSource);
+                            this.playHurtSound(source);
                         }
                     }
                     return true;
                 }
-            } else {
-                return false;
             }
+            return false;
         } else {
-            return super.hurt(damageSource, f);
+            return super.hurt(source, amount);
         }
+    }
+
+    @Nullable
+    public Player blameSourceForDamage(DamageSource source) {
+        Entity entity = source.getEntity();
+        if (entity instanceof LivingEntity living) {
+            if (!source.is(DamageTypeTags.NO_ANGER)) {
+                this.setLastHurtByMob(living);
+                if (entity instanceof Player player) {
+                    this.lastHurtByPlayerTime = 100;
+                    this.lastHurtByPlayer = player;
+                } else if (entity instanceof Wolf wolf) {
+                    if (wolf.isTame()) {
+                        this.lastHurtByPlayerTime = 100;
+                        LivingEntity owner = wolf.getOwner();
+                        if (owner instanceof Player player) {
+                            this.lastHurtByPlayer = player;
+                        } else {
+                            this.lastHurtByPlayer = null;
+                        }
+                    }
+                }
+            }
+        }
+        return this.lastHurtByPlayer;
     }
 
     public boolean isPushable() {
@@ -206,6 +233,7 @@ public class Creaking extends Monster {
         super.customServerAiStep();
     }
 
+    @Override
     public void aiStep() {
         if (this.invulnerabilityAnimationRemainingTicks > 0) {
             --this.invulnerabilityAnimationRemainingTicks;
@@ -215,49 +243,51 @@ public class Creaking extends Monster {
             --this.attackAnimationRemainingTicks;
         }
 
-        if (!this.level().isClientSide) {
-            boolean bl = this.entityData.get(CAN_MOVE);
-            boolean bl2 = this.checkCanMove();
-            if (bl2 != bl) {
-                this.gameEvent(GameEvent.ENTITY_ACTION);
-                if (bl2) {
-                    this.makeSound(ModSounds.CREAKING_UNFREEZE.get());
+        if (!this.level().isClientSide()) {
+            boolean canMove = this.entityData.get(CAN_MOVE);
+            boolean checkCanMove = this.checkCanMove();
+            if (checkCanMove != canMove) {
+                if (checkCanMove) {
+                    this.playSound(ModSounds.CREAKING_UNFREEZE.get());
                 } else {
                     this.stopInPlace();
-                    this.makeSound(ModSounds.CREAKING_FREEZE.get());
+                    this.playSound(ModSounds.CREAKING_FREEZE.get());
                 }
             }
-
-            this.entityData.set(CAN_MOVE, bl2);
+            this.entityData.set(CAN_MOVE, checkCanMove);
         }
 
         super.aiStep();
     }
 
+    @Override
     public void tick() {
-        if (!this.level().isClientSide) {
+        if (!this.level().isClientSide()) {
             BlockPos blockPos = this.getHomePos();
             if (blockPos != null) {
                 BlockEntity var4 = this.level().getBlockEntity(blockPos);
-                boolean isProtected = var4 instanceof CreakingHeartBlockEntity creakingHeartBlockEntity && creakingHeartBlockEntity.isProtector(this);
+                boolean isProtected = var4 instanceof CreakingHeartBlockEntity heart && heart.isProtector(this);
                 if (!isProtected) {
-                    this.setTearingDown();
-                    this.tickDeath();
+                    this.setHealth(0.0F);
                 }
             }
         }
 
         super.tick();
-        if (this.level().isClientSide) {
+        if (this.level().isClientSide()) {
+            if (this.isTearingDown() && this.deathTime != 0) {
+                this.deathTime = 0;
+            }
             this.setupAnimationStates();
+            this.checkEyeBlink();
         }
     }
 
+    @Override
     protected void tickDeath() {
         if (this.isHeartBound() && this.isTearingDown()) {
-            ++this.deathTime;
-            this.checkEyeBlink();
-            if (!this.level().isClientSide() && this.deathTime > TWITCH_DEATH_DURATION && !this.isRemoved()) {
+            ++this.creakingDeathTime;
+            if (!this.level().isClientSide() && this.creakingDeathTime > TWITCH_DEATH_DURATION && !this.isRemoved()) {
                 this.tearDown();
             }
         } else {
@@ -285,11 +315,11 @@ public class Creaking extends Monster {
             double dy = aabb.getYsize() * 0.3;
             double dz = aabb.getZsize() * 0.3;
             serverLevel.sendParticles(new BlockParticleOption(ParticleTypes.BLOCK, ModBlocks.PALE_OAK_WOOD.get().defaultBlockState()), center.x, center.y, center.z, 100, dx, dy, dz, 0.0);
-            serverLevel.sendParticles(new BlockParticleOption(ParticleTypes.BLOCK, ModBlocks.CREAKING_HEART.get().defaultBlockState().setValue(CreakingHeartBlock.ENABLED, true)), center.x, center.y, center.z, 10, dx, dy, dz, 0.0);
+            serverLevel.sendParticles(new BlockParticleOption(ParticleTypes.BLOCK, ModBlocks.CREAKING_HEART.get().defaultBlockState().setValue(CreakingHeartBlock.STATE, CreakingHeartState.AWAKE)), center.x, center.y, center.z, 10, dx, dy, dz, 0.0);
         }
 
-        this.makeSound(this.getDeathSound());
-        this.remove(Entity.RemovalReason.DISCARDED);
+        this.playSound(this.getDeathSound());
+        this.discard();
     }
 
     public void creakingDeathEffects(DamageSource damageSource) {
@@ -297,16 +327,16 @@ public class Creaking extends Monster {
         this.makeSound(ModSounds.CREAKING_TWITCH.get());
     }
 
-    public void handleEntityEvent(byte b) {
-        if (b == 66) {
+    @Override
+    public void handleEntityEvent(byte id) {
+        if (id == CREAKING_HURT) {
             this.invulnerabilityAnimationRemainingTicks = INVULNERABILITY_ANIMATION_DURATION;
             this.playHurtSound(this.damageSources().generic());
-            this.playAmbientSound();
-        } else if (b == 4) {
+        } else if (id == CREAKING_ATTACK) {
             this.attackAnimationRemainingTicks = ATTACK_ANIMATION_DURATION;
             this.playAttackSound();
         } else {
-            super.handleEntityEvent(b);
+            super.handleEntityEvent(id);
         }
     }
 
@@ -385,14 +415,18 @@ public class Creaking extends Monster {
         return this.entityData.get(IS_TEARING_DOWN);
     }
 
+    public boolean shouldEyesGlow() {
+        return this.isTearingDown() ? this.hasGlowingEyes() : this.isActive();
+    }
+
     public boolean hasGlowingEyes() {
         return this.eyesGlowing;
     }
 
     public void checkEyeBlink() {
-        if (this.deathTime > this.nextFlickerTime) {
-            this.nextFlickerTime = this.deathTime + this.getRandom().nextIntBetweenInclusive(this.eyesGlowing ? 2 : this.deathTime / 4, this.eyesGlowing ? 8 : this.deathTime / 2);
-            this.setIsActive(!this.isActive());
+        if (this.creakingDeathTime > this.nextFlickerTime) {
+            this.nextFlickerTime = this.creakingDeathTime + this.getRandom().nextIntBetweenInclusive(this.eyesGlowing ? 2 : this.creakingDeathTime / 4, this.eyesGlowing ? 8 : this.creakingDeathTime / 2);
+            this.eyesGlowing = !this.eyesGlowing;
         }
     }
 
@@ -433,35 +467,36 @@ public class Creaking extends Monster {
             return false;
         } else {
             List<Player> players = this.getNearestPlayers();
-            boolean bl = this.isActive();
+            boolean isActive = this.isActive();
             if (players.isEmpty()) {
-                this.deactivate();
-                return true;
+                if (isActive) {
+                    this.deactivate();
+                }
             } else {
-                boolean bl2 = false;
+                boolean canMove = false;
 
-                for (Player p : players) {
-                    if (this.canAttack(p) && !this.isAlliedTo(p)) {
-                        bl2 = true;
-                        if ((!bl || !p.getInventory().armor.get(3).is(Blocks.CARVED_PUMPKIN.asItem())) && this.isLookingAtMe(p, 0.5F, false, this.getEyeY(), this.getY() + (double) 0.5F * (double) this.getScale(), (this.getEyeY() + this.getY()) / (double) 2.0F)) {
-                            if (bl) {
+                for (Player player : players) {
+                    if (this.canAttack(player) && !this.isAlliedTo(player)) {
+                        canMove = true;
+                        if ((!isActive || !player.getItemBySlot(EquipmentSlot.HEAD).is(Blocks.CARVED_PUMPKIN.asItem())) && this.isLookingAtMe(player, 0.5, false, true, this.getEyeY(), this.getY() + 0.5 * (double) this.getScale(), (this.getEyeY() + this.getY()) / 2.0)) {
+                            if (isActive) {
                                 return false;
                             }
 
-                            if (p.distanceToSqr(this) < ACTIVATION_RANGE_SQ) {
-                                this.activate(p);
+                            if (player.distanceToSqr(this) < 144.0) {
+                                this.activate(player);
                                 return false;
                             }
                         }
                     }
                 }
 
-                if (!bl2 && bl) {
+                if (!canMove && isActive) {
                     this.deactivate();
                 }
-
-                return true;
             }
+
+            return true;
         }
     }
 
@@ -509,15 +544,16 @@ public class Creaking extends Monster {
         }
     }
 
-    public boolean isLookingAtMe(Entity player, double d, boolean bl, double... ds) {
-        Vec3 vec3 = player.getViewVector(1.0F).normalize();
+    public boolean isLookingAtMe(LivingEntity entity, double tolerance, boolean scaleWithDistance, boolean checkVisibility, double... heightTargets) {
+        Vec3 viewVector = entity.getViewVector(1.0F).normalize();
 
-        for (double e : ds) {
-            Vec3 vec32 = new Vec3(this.getX() - player.getX(), e - player.getEyeY(), this.getZ() - player.getZ());
-            double f = vec32.length();
-            vec32 = vec32.normalize();
-            double g = vec3.dot(vec32);
-            if (g > 1.0 - d / (bl ? f : 1.0) && this.hasLineOfSight((Player) player, this)) {
+        for(double heightTarget : heightTargets) {
+            Vec3 directionToMe = new Vec3(this.getX() - entity.getX(), heightTarget - entity.getEyeY(), this.getZ() - entity.getZ());
+            double distance = directionToMe.length();
+            directionToMe = directionToMe.normalize();
+            double dotProduct = viewVector.dot(directionToMe);
+            double lookThreshold = 1.0 - tolerance / (scaleWithDistance ? distance : 1.0);
+            if (dotProduct > lookThreshold && this.hasLineOfSight(entity, this, checkVisibility ? ClipContext.Block.VISUAL : ClipContext.Block.COLLIDER, Fluid.NONE, heightTarget)) {
                 return true;
             }
         }
@@ -525,13 +561,13 @@ public class Creaking extends Monster {
         return false;
     }
 
-    public boolean hasLineOfSight(Player player, Mob creaking) {
-        if (creaking.level() != player.level()) {
+    public boolean hasLineOfSight(LivingEntity stalker, Entity me, ClipContext.Block block, ClipContext.Fluid fluid, double targetHeight) {
+        if (me.level() != stalker.level()) {
             return false;
         } else {
-            Vec3 vec3 = new Vec3(player.getX(), player.getEyeY(), player.getZ());
-            Vec3 vec31 = new Vec3(creaking.getX(), creaking.getEyeY(), creaking.getZ());
-            return (vec31.distanceTo(vec3) <= 12.0 && player.level().clip(new ClipContext(vec3, vec31, ClipContext.Block.COLLIDER, ClipContext.Fluid.NONE, player)).getType() == Type.MISS) && !player.isCreative();
+            Vec3 stalkerPosition = new Vec3(stalker.getX(), stalker.getEyeY(), stalker.getZ());
+            Vec3 myPosition = new Vec3(me.getX(), targetHeight, me.getZ());
+            return myPosition.distanceTo(stalkerPosition) <= 128.0 && stalker.level().clip(new ClipContext(stalkerPosition, myPosition, block, fluid, stalker)).getType() == Type.MISS;
         }
     }
 

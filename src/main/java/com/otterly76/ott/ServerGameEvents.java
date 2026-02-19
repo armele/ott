@@ -6,7 +6,7 @@ import com.otterly76.ott.handler.ItemInteractionHandler;
 import com.otterly76.ott.mixin.common.ItemInvoker;
 import com.otterly76.ott.network.ClientboundSyncNutritionPacket;
 import com.otterly76.ott.network.S2COpenNameTagEditorMessage;
-import com.otterly76.ott.util.FloodingManager;
+import com.otterly76.ott.util.worldgen.FloodingManager;
 import com.otterly76.ott.worldgen.surface.SurfaceRuleManager;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;

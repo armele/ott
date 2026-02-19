@@ -34,61 +34,67 @@ public class EyeblossomBlock extends FlowerBlock {
     private static final int EYEBLOSSOM_Y_RANGE = 2;
     private final Type type;
 
+    public Type getType() {
+        return this.type;
+    }
+
     public EyeblossomBlock(Type type, BlockBehaviour.Properties properties) {
-        super(type.effect, type.effectDuration, properties);
+        super(type.effect, (float)type.effectDuration, properties);
         this.type = type;
     }
 
-    public EyeblossomBlock(boolean bl, BlockBehaviour.Properties properties) {
-        super(EyeblossomBlock.Type.fromBoolean(bl).effect, EyeblossomBlock.Type.fromBoolean(bl).effectDuration, properties);
-        this.type = EyeblossomBlock.Type.fromBoolean(bl);
+    public EyeblossomBlock(boolean open, BlockBehaviour.Properties properties) {
+        super(EyeblossomBlock.Type.fromBoolean(open).effect, (float)EyeblossomBlock.Type.fromBoolean(open).effectDuration, properties);
+        this.type = EyeblossomBlock.Type.fromBoolean(open);
     }
 
     public @NotNull MapCodec<? extends EyeblossomBlock> codec() {
         return CODEC;
     }
 
-    public void animateTick(@NotNull BlockState blockState, @NotNull Level level, @NotNull BlockPos blockPos, @NotNull RandomSource randomSource) {
-        if (this.type.emitSounds() && randomSource.nextInt(700) == 0) {
-            BlockState blockState2 = level.getBlockState(blockPos.below());
-            if (blockState2.is(ModBlocks.PALE_MOSS_BLOCK.get())) {
-                level.playLocalSound(blockPos.getX(), blockPos.getY(), blockPos.getZ(), ModSounds.EYEBLOSSOM_IDLE.get(), SoundSource.BLOCKS, 1.0F, 1.0F, false);
+    public void animateTick(@NotNull BlockState state, @NotNull Level level, @NotNull BlockPos pos, @NotNull RandomSource random) {
+        if (this.type.emitSounds() && random.nextInt(700) == 0) {
+            BlockState floorState = level.getBlockState(pos.below());
+            if (floorState.is(ModBlocks.PALE_MOSS_BLOCK.get())) {
+                level.playLocalSound(pos.getX(), pos.getY(), pos.getZ(), ModSounds.EYEBLOSSOM_IDLE.get(), SoundSource.BLOCKS, 1.0F, 1.0F, false);
             }
         }
     }
 
-    protected void randomTick(@NotNull BlockState blockState, @NotNull ServerLevel serverLevel, @NotNull BlockPos blockPos, @NotNull RandomSource randomSource) {
-        if (this.tryChangingState(blockState, serverLevel, blockPos, randomSource)) {
-            serverLevel.playSound(null, blockPos, this.type.transform().longSwitchSound, SoundSource.BLOCKS, 1.0F, 1.0F);
+    @Override
+    protected void randomTick(@NotNull BlockState state, @NotNull ServerLevel level, @NotNull BlockPos pos, @NotNull RandomSource random) {
+        if (this.tryChangingState(state, level, pos, random)) {
+            level.playSound(null, pos, this.type.transform().longSwitchSound, SoundSource.BLOCKS, 1.0F, 1.0F);
         }
 
-        super.randomTick(blockState, serverLevel, blockPos, randomSource);
+        super.randomTick(state, level, pos, random);
     }
 
-    protected void tick(@NotNull BlockState blockState, @NotNull ServerLevel serverLevel, @NotNull BlockPos blockPos, @NotNull RandomSource randomSource) {
-        if (this.tryChangingState(blockState, serverLevel, blockPos, randomSource)) {
-            serverLevel.playSound(null, blockPos, this.type.transform().shortSwitchSound, SoundSource.BLOCKS, 1.0F, 1.0F);
+    @Override
+    protected void tick(@NotNull BlockState state, @NotNull ServerLevel level, @NotNull BlockPos pos, @NotNull RandomSource random) {
+        if (this.tryChangingState(state, level, pos, random)) {
+            level.playSound(null, pos, this.type.transform().shortSwitchSound, SoundSource.BLOCKS, 1.0F, 1.0F);
         }
 
-        super.tick(blockState, serverLevel, blockPos, randomSource);
+        super.tick(state, level, pos, random);
     }
 
-    private boolean tryChangingState(BlockState blockState, ServerLevel serverLevel, BlockPos blockPos, RandomSource randomSource) {
-        if (!serverLevel.dimensionType().natural()) {
+    private boolean tryChangingState(BlockState state, ServerLevel level, BlockPos origin, RandomSource random) {
+        if (!level.dimensionType().natural()) {
             return false;
-        } else if (serverLevel.isDay() != this.type.open) {
+        } else if (CreakingHeartBlock.isNaturalNight(level) == this.type.open) {
             return false;
         } else {
             Type type = this.type.transform();
-            serverLevel.setBlock(blockPos, type.state(), 3);
-            serverLevel.gameEvent(GameEvent.BLOCK_CHANGE, blockPos, Context.of(blockState));
-            type.spawnTransformParticle(serverLevel, blockPos, randomSource);
-            BlockPos.betweenClosed(blockPos.offset(-3, -2, -3), blockPos.offset(3, 2, 3)).forEach((blockPos2) -> {
-                BlockState blockState2 = serverLevel.getBlockState(blockPos2);
-                if (blockState2 == blockState) {
-                    double d = Math.sqrt(blockPos.distSqr(blockPos2));
-                    int i = randomSource.nextIntBetweenInclusive((int)(d * (double)5.0F), (int)(d * (double)10.0F));
-                    serverLevel.scheduleTick(blockPos2, blockState.getBlock(), i);
+            level.setBlock(origin, type.state(), 3);
+            level.gameEvent(GameEvent.BLOCK_CHANGE, origin, Context.of(state));
+            type.spawnTransformParticle(level, origin, random);
+            BlockPos.betweenClosed(origin.offset(-3, -2, -3), origin.offset(3, 2, 3)).forEach((pos) -> {
+                BlockState closeState = level.getBlockState(pos);
+                if (closeState == state) {
+                    double distance = Math.sqrt(origin.distSqr(pos));
+                    int ticks = random.nextIntBetweenInclusive((int)(distance * 5.0), (int)(distance * 10.0));
+                    level.scheduleTick(pos, state.getBlock(), ticks);
                 }
 
             });
@@ -96,37 +102,33 @@ public class EyeblossomBlock extends FlowerBlock {
         }
     }
 
-    protected void entityInside(@NotNull BlockState blockState, Level level, @NotNull BlockPos blockPos, @NotNull Entity entity) {
+    @Override
+    protected void entityInside(@NotNull BlockState state, @NotNull Level level, @NotNull BlockPos pos, @NotNull Entity entity) {
         if (!level.isClientSide() && level.getDifficulty() != Difficulty.PEACEFUL && entity instanceof Bee bee) {
-            if (bee.mayInteract(level, blockPos) && !bee.hasEffect(MobEffects.POISON)) {
-                bee.addEffect(this.getBeeInteractionEffect());
+            if (!bee.hasEffect(MobEffects.POISON)) {
+                bee.addEffect(new MobEffectInstance(MobEffects.POISON, 25));
             }
         }
-
-    }
-
-    public MobEffectInstance getBeeInteractionEffect() {
-        return new MobEffectInstance(MobEffects.POISON, 25);
     }
 
     public enum Type {
-        OPEN(true, MobEffects.BLINDNESS, 11.0F, ModSounds.EYEBLOSSOM_OPEN_LONG.get(), ModSounds.EYEBLOSSOM_OPEN.get(), 16545810),
-        CLOSED(false, MobEffects.CONFUSION, 7.0F, ModSounds.EYEBLOSSOM_CLOSE_LONG.get(), ModSounds.EYEBLOSSOM_CLOSE.get(), 6250335);
+        OPEN(true, MobEffects.BLINDNESS, 11, ModSounds.EYEBLOSSOM_OPEN_LONG.get(), ModSounds.EYEBLOSSOM_OPEN.get(), 16545810),
+        CLOSED(false, MobEffects.CONFUSION, 7, ModSounds.EYEBLOSSOM_CLOSE_LONG.get(), ModSounds.EYEBLOSSOM_CLOSE.get(), 6250335);
 
         final boolean open;
         final Holder<MobEffect> effect;
-        final float effectDuration;
+        final int effectDuration;
         final SoundEvent longSwitchSound;
         final SoundEvent shortSwitchSound;
-        private final int particleColor;
+        final int particleColor;
 
-        Type(final boolean bl, final Holder<MobEffect> holder, final float f, final SoundEvent soundEvent, final SoundEvent soundEvent2, final int j) {
-            this.open = bl;
-            this.effect = holder;
-            this.effectDuration = f;
-            this.longSwitchSound = soundEvent;
-            this.shortSwitchSound = soundEvent2;
-            this.particleColor = j;
+        Type(boolean open, Holder<MobEffect> effect, int effectDuration, SoundEvent longSwitchSound, SoundEvent shortSwitchSound, int particleColor) {
+            this.open = open;
+            this.effect = effect;
+            this.effectDuration = effectDuration;
+            this.longSwitchSound = longSwitchSound;
+            this.shortSwitchSound = shortSwitchSound;
+            this.particleColor = particleColor;
         }
 
         public static Type fromBoolean(boolean bl) {
@@ -149,16 +151,16 @@ public class EyeblossomBlock extends FlowerBlock {
             return this.open;
         }
 
-        public void spawnTransformParticle(ServerLevel serverLevel, BlockPos blockPos, RandomSource randomSource) {
-            Vec3 vec3 = blockPos.getCenter();
-            double d = (double)0.5F + randomSource.nextDouble();
-            Vec3 vec32 = new Vec3(randomSource.nextDouble() - (double)0.5F, randomSource.nextDouble() + (double)1.0F, randomSource.nextDouble() - (double)0.5F);
-            Vec3 vec33 = vec3.add(vec32.scale(d));
-            TrailParticleOption trailParticleOption = new TrailParticleOption(vec33, this.particleColor, (int)((double)20.0F * d));
-            serverLevel.sendParticles(trailParticleOption, vec3.x, vec3.y, vec3.z, 1, 0.0F, 0.0F, 0.0F, 0.0F);
+        public void spawnTransformParticle(ServerLevel level, BlockPos pos, RandomSource random) {
+            Vec3 center = pos.getCenter();
+            double scale = 0.5 + random.nextDouble();
+            Vec3 offset = new Vec3(random.nextDouble() - 0.5, random.nextDouble() + 1.0, random.nextDouble() - 0.5);
+            Vec3 target = center.add(offset.scale(scale));
+            TrailParticleOption trailParticleOption = new TrailParticleOption(target, this.particleColor, (int)(20.0 * scale));
+            level.sendParticles(trailParticleOption, center.x, center.y, center.z, 1, 0.0, 0.0, 0.0, 0.0);
         }
 
-        public SoundEvent getLongSwitchSound() {
+        public SoundEvent longSwitchSound() {
             return this.longSwitchSound;
         }
     }

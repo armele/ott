@@ -1,8 +1,8 @@
 package com.otterly76.ott.network;
 
 import com.otterly76.ott.Constants;
-import com.otterly76.ott.util.ComponentDecomposer;
-import com.otterly76.ott.util.FormattedStringDecomposer;
+import com.otterly76.ott.util.data.ComponentDecomposer;
+import com.otterly76.ott.util.data.FormattedStringDecomposer;
 import com.otterly76.ott.inventory.ModAnvilMenu;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.network.codec.ByteBufCodecs;

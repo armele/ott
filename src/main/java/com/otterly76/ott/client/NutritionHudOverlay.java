@@ -1,7 +1,7 @@
 package com.otterly76.ott.client;
 
 import com.otterly76.ott.Constants;
-import com.otterly76.ott.util.FoodUtil;
+import com.otterly76.ott.util.item.FoodUtil;
 import net.minecraft.client.DeltaTracker;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiGraphics;
@@ -33,8 +33,10 @@ public class NutritionHudOverlay implements LayeredDraw.Layer {
     @Override
     public void render(@NotNull GuiGraphics guiGraphics, @NotNull DeltaTracker deltaTracker) {
         Minecraft mc = Minecraft.getInstance();
+        if (mc.options.hideGui) return;
+
         Player player = mc.player;
-        if (player == null || mc.gameMode == null || !mc.gameMode.canHurtPlayer()) return;
+        if (player == null || player.isSpectator() || mc.gameMode == null || !mc.gameMode.canHurtPlayer()) return;
 
         FoodData stats = player.getFoodData();
         int left = mc.getWindow().getGuiScaledWidth() / 2 + 91;

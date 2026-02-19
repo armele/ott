@@ -1,5 +1,5 @@
 {
-	"parent": "block/dark_oak_trapdoor_closed",
+	"parent": "block/dark_oak_trapdoor_bottom",
 	"display": {
 		"thirdperson_righthand": {
 			"rotation": [75, -135, 0],

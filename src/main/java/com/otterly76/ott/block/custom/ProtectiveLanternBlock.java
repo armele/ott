@@ -1,7 +1,7 @@
 package com.otterly76.ott.block.custom;
 
 import com.otterly76.ott.config.OttConfig;
-import com.otterly76.ott.util.LanternManager;
+import com.otterly76.ott.util.lantern.LanternManager;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.LanternBlock;

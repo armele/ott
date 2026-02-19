@@ -66,8 +66,23 @@ public class ModItemModelProvider extends ItemModelProvider {
 
         generatedItemFromTexture(ModItems.TINY_COAL.getId().getPath(), modLoc("item/tiny_coal"));
         generatedItemFromTexture(ModItems.TINY_CHARCOAL.getId().getPath(), modLoc("item/tiny_charcoal"));
+        generatedItemFromTexture(ModItems.OTTER.getId().getPath(), modLoc("item/otter"));
         
         withExistingParent(ModItems.TORCH_ARROW.getId().getPath(), mcLoc("item/tipped_arrow"));
+
+        // Spawn Eggs
+        spawnEggItem(ModItems.TINY_SKELETON_SPAWN_EGG.getId().getPath());
+        spawnEggItem(ModItems.TINY_CREEPER_SPAWN_EGG.getId().getPath());
+        spawnEggItem(ModItems.TINY_ENDERMAN_SPAWN_EGG.getId().getPath());
+        spawnEggItem(ModItems.TINY_BOGGED_SPAWN_EGG.getId().getPath());
+        spawnEggItem(ModItems.TINY_DROWNED_SPAWN_EGG.getId().getPath());
+        spawnEggItem(ModItems.TINY_HUSK_SPAWN_EGG.getId().getPath());
+        spawnEggItem(ModItems.TINY_STRAY_SPAWN_EGG.getId().getPath());
+        spawnEggItem(ModItems.TINY_WITHER_SKELETON_SPAWN_EGG.getId().getPath());
+    }
+
+    private void spawnEggItem(String name) {
+        withExistingParent(name, mcLoc("item/template_spawn_egg"));
     }
 
     private void generatedItemFromTexture(String itemName, ResourceLocation texture) {

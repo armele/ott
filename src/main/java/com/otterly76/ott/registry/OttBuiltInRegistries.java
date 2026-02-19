@@ -1,7 +1,10 @@
 package com.otterly76.ott.registry;
 
+import com.otterly76.ott.util.data.BuiltInCoreRegistry;
 import com.mojang.serialization.MapCodec;
 import com.otterly76.ott.Ott;
+import com.otterly76.ott.entity.variant.*;
+import com.otterly76.ott.entity.variant.check.*;
 import com.otterly76.ott.resource.BreaksSeedParityCondition;
 import com.otterly76.ott.worldgen.bandlands.Bandlands;
 import com.otterly76.ott.worldgen.bandlands.band.Band;
@@ -26,12 +29,39 @@ import java.util.function.BiConsumer;
 public final class OttBuiltInRegistries {
     private static final DeferredRegister<MapCodec<? extends Modifier>> DEFERRED_MODIFIER_TYPES;
     public static final Registry<MapCodec<? extends Modifier>> MODIFIER_TYPE;
-    private static final DeferredRegister<MapCodec<? extends PlacementCondition>> DEFERRED_PLACEMENT_CONDITION_TYPES;
-    public static final Registry<MapCodec<? extends PlacementCondition>> PLACEMENT_CONDITION_TYPE;
-    private static final DeferredRegister<MapCodec<? extends ProcessorCondition>> DEFERRED_PROCESSOR_CONDITION_TYPES;
-    public static final Registry<MapCodec<? extends ProcessorCondition>> PROCESSOR_CONDITION_TYPE;
-    private static final DeferredRegister<MapCodec<? extends Band>> DEFERRED_BANDLANDS_BAND_TYPES;
-    public static final Registry<MapCodec<? extends Band>> BANDLANDS_BAND_TYPE;
+    private static final DeferredRegister<MapCodec<? extends com.otterly76.ott.worldgen.placementcondition.PlacementCondition>> DEFERRED_PLACEMENT_CONDITION_TYPES;
+    public static final Registry<MapCodec<? extends com.otterly76.ott.worldgen.placementcondition.PlacementCondition>> PLACEMENT_CONDITION_TYPE;
+    private static final DeferredRegister<MapCodec<? extends com.otterly76.ott.worldgen.processor.condition.ProcessorCondition>> DEFERRED_PROCESSOR_CONDITION_TYPES;
+    public static final Registry<MapCodec<? extends com.otterly76.ott.worldgen.processor.condition.ProcessorCondition>> PROCESSOR_CONDITION_TYPE;
+    private static final DeferredRegister<MapCodec<? extends com.otterly76.ott.worldgen.bandlands.band.Band>> DEFERRED_BANDLANDS_BAND_TYPES;
+    public static final Registry<MapCodec<? extends com.otterly76.ott.worldgen.bandlands.band.Band>> BANDLANDS_BAND_TYPE;
+    private static final DeferredRegister<MapCodec<? extends com.otterly76.ott.entity.variant.SpawnCondition>> DEFERRED_SPAWN_CONDITION_TYPES;
+    public static final Registry<MapCodec<? extends com.otterly76.ott.entity.variant.SpawnCondition>> SPAWN_CONDITION_TYPE;
+
+    public static final Registry<com.otterly76.ott.entity.variant.WolfSoundVariant> WOLF_SOUND_VARIANT;
+    public static final Registry<com.otterly76.ott.entity.variant.CowVariant> COW_VARIANT;
+    public static final Registry<com.otterly76.ott.entity.variant.ChickenVariant> CHICKEN_VARIANT;
+    public static final Registry<com.otterly76.ott.entity.variant.PigVariant> PIG_VARIANT;
+    public static final Registry<com.otterly76.ott.entity.variant.FrogDataVariant> FROG_VARIANT;
+    public static final Registry<com.otterly76.ott.entity.variant.WolfDataVariant> WOLF_VARIANT;
+    public static final Registry<com.otterly76.ott.entity.variant.CatDataVariant> CAT_VARIANT;
+
+    public static final BuiltInCoreRegistry<com.otterly76.ott.entity.variant.WolfSoundVariant> WOLF_SOUND_VARIANTS;
+    public static final BuiltInCoreRegistry<com.otterly76.ott.entity.variant.CowVariant> COW_VARIANTS;
+    public static final BuiltInCoreRegistry<com.otterly76.ott.entity.variant.ChickenVariant> CHICKEN_VARIANTS;
+    public static final BuiltInCoreRegistry<com.otterly76.ott.entity.variant.PigVariant> PIG_VARIANTS;
+    public static final BuiltInCoreRegistry<com.otterly76.ott.entity.variant.FrogDataVariant> FROG_VARIANTS;
+    public static final BuiltInCoreRegistry<com.otterly76.ott.entity.variant.WolfDataVariant> WOLF_VARIANTS;
+    public static final BuiltInCoreRegistry<com.otterly76.ott.entity.variant.CatDataVariant> CAT_VARIANTS;
+
+    private static final DeferredRegister<com.otterly76.ott.entity.variant.WolfSoundVariant> DEFERRED_WOLF_SOUND_VARIANTS;
+    private static final DeferredRegister<com.otterly76.ott.entity.variant.CowVariant> DEFERRED_COW_VARIANTS;
+    private static final DeferredRegister<com.otterly76.ott.entity.variant.ChickenVariant> DEFERRED_CHICKEN_VARIANTS;
+    private static final DeferredRegister<com.otterly76.ott.entity.variant.PigVariant> DEFERRED_PIG_VARIANTS;
+    private static final DeferredRegister<com.otterly76.ott.entity.variant.FrogDataVariant> DEFERRED_FROG_VARIANTS;
+    private static final DeferredRegister<com.otterly76.ott.entity.variant.WolfDataVariant> DEFERRED_WOLF_VARIANTS;
+    private static final DeferredRegister<com.otterly76.ott.entity.variant.CatDataVariant> DEFERRED_CAT_VARIANTS;
+
     private static final DeferredRegister<MapCodec<? extends BiomeModifier>> BIOME_MODIFIER_TYPES;
     private static final DeferredRegister<MapCodec<? extends ICondition>> RESOURCE_CONDITION_TYPES;
 
@@ -71,6 +101,16 @@ public final class OttBuiltInRegistries {
         Ott.registerCommonBandlandsBandTypes((name, codec) -> DEFERRED_BANDLANDS_BAND_TYPES.register(name, () -> codec));
         DEFERRED_BANDLANDS_BAND_TYPES.register(bus);
 
+        DEFERRED_SPAWN_CONDITION_TYPES.register(bus);
+
+        DEFERRED_WOLF_SOUND_VARIANTS.register(bus);
+        DEFERRED_COW_VARIANTS.register(bus);
+        DEFERRED_CHICKEN_VARIANTS.register(bus);
+        DEFERRED_PIG_VARIANTS.register(bus);
+        DEFERRED_FROG_VARIANTS.register(bus);
+        DEFERRED_WOLF_VARIANTS.register(bus);
+        DEFERRED_CAT_VARIANTS.register(bus);
+
         registerForgeBiomeModifiers((name, codec) -> BIOME_MODIFIER_TYPES.register(name, () -> codec));
         BIOME_MODIFIER_TYPES.register(bus);
 
@@ -100,6 +140,17 @@ public final class OttBuiltInRegistries {
         consumer.accept("replace_effects", OttNeoforgeBiomeModifiers.ReplaceEffectsBiomeModifier.CODEC);
     }
 
+    public static void bootstrap() {
+        // Force static initialization of plural factories to register their contents
+        ChickenVariants.bootstrap();
+        CowVariants.bootstrap();
+        PigVariants.bootstrap();
+        WolfDataVariants.bootstrap();
+        FrogDataVariants.bootstrap();
+        CatDataVariants.bootstrap();
+        WolfSoundVariants.bootstrap();
+    }
+
     static {
         DEFERRED_MODIFIER_TYPES = DeferredRegister.create(OttRegistryKeys.MODIFIER_TYPE, "ott");
         MODIFIER_TYPE = DEFERRED_MODIFIER_TYPES.makeRegistry(builder -> builder.sync(false));
@@ -109,7 +160,34 @@ public final class OttBuiltInRegistries {
         PROCESSOR_CONDITION_TYPE = DEFERRED_PROCESSOR_CONDITION_TYPES.makeRegistry(builder -> builder.sync(false));
         DEFERRED_BANDLANDS_BAND_TYPES = DeferredRegister.create(OttRegistryKeys.BANDLANDS_BAND_TYPE, "ott");
         BANDLANDS_BAND_TYPE = DEFERRED_BANDLANDS_BAND_TYPES.makeRegistry(builder -> builder.sync(false));
+
+        DEFERRED_SPAWN_CONDITION_TYPES = DeferredRegister.create(OttRegistryKeys.SPAWN_CONDITION_TYPE, "minecraft");
+        SPAWN_CONDITION_TYPE = DEFERRED_SPAWN_CONDITION_TYPES.makeRegistry(builder -> builder.sync(false));
+
+        DEFERRED_WOLF_SOUND_VARIANTS = DeferredRegister.create(OttRegistryKeys.WOLF_SOUND_VARIANT, "minecraft");
+        WOLF_SOUND_VARIANT = DEFERRED_WOLF_SOUND_VARIANTS.makeRegistry(builder -> builder.sync(false));
+        DEFERRED_COW_VARIANTS = DeferredRegister.create(OttRegistryKeys.COW_VARIANT, "minecraft");
+        COW_VARIANT = DEFERRED_COW_VARIANTS.makeRegistry(builder -> builder.sync(false));
+        DEFERRED_CHICKEN_VARIANTS = DeferredRegister.create(OttRegistryKeys.CHICKEN_VARIANT, "minecraft");
+        CHICKEN_VARIANT = DEFERRED_CHICKEN_VARIANTS.makeRegistry(builder -> builder.sync(false));
+        DEFERRED_PIG_VARIANTS = DeferredRegister.create(OttRegistryKeys.PIG_VARIANT, "minecraft");
+        PIG_VARIANT = DEFERRED_PIG_VARIANTS.makeRegistry(builder -> builder.sync(false));
+        DEFERRED_FROG_VARIANTS = DeferredRegister.create(OttRegistryKeys.FROG_VARIANT, "ott");
+        FROG_VARIANT = DEFERRED_FROG_VARIANTS.makeRegistry(builder -> builder.sync(false));
+        DEFERRED_WOLF_VARIANTS = DeferredRegister.create(OttRegistryKeys.WOLF_VARIANT, "ott");
+        WOLF_VARIANT = DEFERRED_WOLF_VARIANTS.makeRegistry(builder -> builder.sync(false));
+        DEFERRED_CAT_VARIANTS = DeferredRegister.create(OttRegistryKeys.CAT_VARIANT, "ott");
+        CAT_VARIANT = DEFERRED_CAT_VARIANTS.makeRegistry(builder -> builder.sync(false));
+
         BIOME_MODIFIER_TYPES = DeferredRegister.create(Keys.BIOME_MODIFIER_SERIALIZERS, "ott");
         RESOURCE_CONDITION_TYPES = DeferredRegister.create(Keys.CONDITION_CODECS, "ott");
+
+        WOLF_SOUND_VARIANTS = new BuiltInCoreRegistry<>(WOLF_SOUND_VARIANT, "minecraft");
+        COW_VARIANTS = new BuiltInCoreRegistry<>(COW_VARIANT, "minecraft");
+        CHICKEN_VARIANTS = new BuiltInCoreRegistry<>(CHICKEN_VARIANT, "minecraft");
+        PIG_VARIANTS = new BuiltInCoreRegistry<>(PIG_VARIANT, "minecraft");
+        FROG_VARIANTS = new BuiltInCoreRegistry<>(FROG_VARIANT, "minecraft");
+        WOLF_VARIANTS = new BuiltInCoreRegistry<>(WOLF_VARIANT, "minecraft");
+        CAT_VARIANTS = new BuiltInCoreRegistry<>(CAT_VARIANT, "minecraft");
     }
 }

@@ -2,8 +2,8 @@ package com.otterly76.ott.client.gui.components;
 
 import com.google.common.collect.Lists;
 import com.otterly76.ott.mixin.client.EditBoxAccessor;
-import com.otterly76.ott.util.ComponentDecomposer;
-import com.otterly76.ott.util.FormattedStringDecomposer;
+import com.otterly76.ott.util.data.ComponentDecomposer;
+import com.otterly76.ott.util.data.FormattedStringDecomposer;
 import net.minecraft.Util;
 import net.minecraft.client.gui.Font;
 import net.minecraft.client.gui.GuiGraphics;

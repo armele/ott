@@ -3,7 +3,7 @@ package com.otterly76.ott.client;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import com.otterly76.ott.Constants;
-import com.otterly76.ott.block.custom.ParticleCreepingHedgeBlock;
+import com.otterly76.ott.block.custom.ParticleHedgeBlock;
 import it.unimi.dsi.fastutil.longs.Long2ObjectOpenHashMap;
 import it.unimi.dsi.fastutil.longs.LongIterator;
 import it.unimi.dsi.fastutil.longs.LongOpenHashSet;
@@ -77,7 +77,7 @@ public final class CreepOverlayRenderer {
                 BlockPos hedgePos = BlockPos.of(hedgeLong);
 
                 BlockState hedgeState = level.getBlockState(hedgePos);
-                if (!(hedgeState.getBlock() instanceof ParticleCreepingHedgeBlock creeping)) {
+                if (!(hedgeState.getBlock() instanceof ParticleHedgeBlock phb && phb.getOverlayTexture() != null)) {
                     it.remove();
                     continue;
                 }
@@ -101,14 +101,14 @@ public final class CreepOverlayRenderer {
 
                 @SuppressWarnings("deprecation")
                 TextureAtlasSprite creepSprite = mc.getTextureAtlas(TextureAtlas.LOCATION_BLOCKS)
-                        .apply(creeping.getOverlayTexture());
+                        .apply(phb.getOverlayTexture());
 
                 renderOverlayOnCandidate(level, poseStack, vc, creepSprite, hedgePos.below(), camX, camY, camZ, alpha);
                 renderOverlayOnCandidate(level, poseStack, vc, creepSprite, hedgePos.above(), camX, camY, camZ, alpha);
 
                 @SuppressWarnings("deprecation")
                 TextureAtlasSprite hedgeSprite = mc.getTextureAtlas(TextureAtlas.LOCATION_BLOCKS)
-                        .apply(hedgeSpriteIdFromCreepId(creeping.getOverlayTexture()));
+                        .apply(hedgeSpriteIdFromCreepId(phb.getOverlayTexture()));
 
                 renderGlowOnBlock(level, poseStack, vc, hedgeSprite, hedgePos, camX, camY, camZ, alpha * 0.35f);
             }
@@ -149,7 +149,7 @@ public final class CreepOverlayRenderer {
 
                 for (int y = minY; y < maxY; y++) {
                     mp.set(wx, y, wz);
-                    if (chunk.getBlockState(mp).getBlock() instanceof ParticleCreepingHedgeBlock) {
+                    if (chunk.getBlockState(mp).getBlock() instanceof ParticleHedgeBlock phb && phb.getOverlayTexture() != null) {
                         set.add(mp.asLong());
                     }
                 }
@@ -179,7 +179,7 @@ public final class CreepOverlayRenderer {
         if (!level.isClientSide()) return;
 
         BlockPos pos = event.getPos();
-        if (!(event.getPlacedBlock().getBlock() instanceof ParticleCreepingHedgeBlock)) return;
+        if (!(event.getPlacedBlock().getBlock() instanceof ParticleHedgeBlock phb && phb.getOverlayTexture() != null)) return;
 
         LongSet set = HEDGES_BY_CHUNK.computeIfAbsent(chunkKey(pos.getX() >> 4, pos.getZ() >> 4), k -> new LongOpenHashSet());
         set.add(pos.asLong());
@@ -191,7 +191,7 @@ public final class CreepOverlayRenderer {
         if (!level.isClientSide()) return;
 
         BlockPos pos = event.getPos();
-        if (!(event.getState().getBlock() instanceof ParticleCreepingHedgeBlock)) return;
+        if (!(event.getState().getBlock() instanceof ParticleHedgeBlock phb && phb.getOverlayTexture() != null)) return;
 
         long key = chunkKey(pos.getX() >> 4, pos.getZ() >> 4);
         LongSet set = HEDGES_BY_CHUNK.get(key);
@@ -214,10 +214,10 @@ public final class CreepOverlayRenderer {
 
         if (state.getRenderShape() != RenderShape.MODEL) return;
         if (!state.isCollisionShapeFullBlock(level, pos)) return;
-        if (state.getBlock() instanceof ParticleCreepingHedgeBlock) return;
+        if (state.getBlock() instanceof ParticleHedgeBlock phb && phb.getOverlayTexture() != null) return;
 
-        boolean hedgeAbove = level.getBlockState(pos.above()).getBlock() instanceof ParticleCreepingHedgeBlock;
-        boolean hedgeBelow = level.getBlockState(pos.below()).getBlock() instanceof ParticleCreepingHedgeBlock;
+        boolean hedgeAbove = level.getBlockState(pos.above()).getBlock() instanceof ParticleHedgeBlock phba && phba.getOverlayTexture() != null;
+        boolean hedgeBelow = level.getBlockState(pos.below()).getBlock() instanceof ParticleHedgeBlock phbb && phbb.getOverlayTexture() != null;
         if (!hedgeAbove && !hedgeBelow) return;
 
         boolean flip = hedgeAbove && !hedgeBelow;

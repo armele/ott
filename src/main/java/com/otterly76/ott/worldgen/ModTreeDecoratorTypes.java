@@ -23,6 +23,9 @@ public class ModTreeDecoratorTypes {
     public static final DeferredHolder<TreeDecoratorType<?>, TreeDecoratorType<CreakingHeartDecorator>> CREAKING_HEART =
             MINECRAFT_DECORATORS.register("creaking_heart", () -> new TreeDecoratorType<>(CreakingHeartDecorator.CODEC));
 
+    public static final DeferredHolder<TreeDecoratorType<?>, TreeDecoratorType<AttachedToLogsDecorator>> ATTACHED_TO_LOGS =
+            MINECRAFT_DECORATORS.register("attached_to_logs", () -> new TreeDecoratorType<>(AttachedToLogsDecorator.CODEC));
+
     // --- OTT NAMESPACE ---
     public static final DeferredHolder<TreeDecoratorType<?>, TreeDecoratorType<VerdantForestFruitDecorator>> VERDANT_FRUIT =
             OTT_DECORATORS.register("verdant_forest_tree_fruit_decorator", () -> new TreeDecoratorType<>(VerdantForestFruitDecorator.CODEC));
@@ -32,6 +35,9 @@ public class ModTreeDecoratorTypes {
 
     public static final DeferredHolder<TreeDecoratorType<?>, TreeDecoratorType<VerdantForestTrunkDecorator>> VERDANT_TRUNK =
             OTT_DECORATORS.register("verdant_forest_tree_trunk_decorator", () -> new TreeDecoratorType<>(VerdantForestTrunkDecorator.CODEC));
+
+    public static final DeferredHolder<TreeDecoratorType<?>, TreeDecoratorType<PlaceOnGroundDecorator>> PLACE_ON_GROUND =
+            MINECRAFT_DECORATORS.register("place_on_ground", () -> new TreeDecoratorType<>(PlaceOnGroundDecorator.CODEC));
 
     public static void register(IEventBus eventBus) {
         MINECRAFT_DECORATORS.register(eventBus);

@@ -67,5 +67,11 @@ public class NetworkHandler {
                 C2SRenameItemMessage.STREAM_CODEC,
                 C2SRenameItemMessage::handle
         );
+
+        registrar.playToServer(
+                ServerboundSelectBundleItemPacket.TYPE,
+                ServerboundSelectBundleItemPacket.STREAM_CODEC,
+                ServerboundSelectBundleItemPacket::handle
+        );
     }
 }

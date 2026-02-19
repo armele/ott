@@ -33,6 +33,11 @@ public final class ModHedgeVariants {
                     "blooming_midnight",
                     ModParticle.BLOOMING_MIDNIGHT_LEAF::get,
                     ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, "block/blooming_midnight_creep")
+            ),
+            new HedgeVariant(
+                    "pale_oak",
+                    ModParticle.PALE_OAK_LEAVES::get,
+                    ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, "block/pale_oak_creep")
             )
     );
 

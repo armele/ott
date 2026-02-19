@@ -1,5 +1,6 @@
 package com.otterly76.ott.worldgen;
 
+import com.otterly76.ott.worldgen.feature.TheGardenAwakensFeatures;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
@@ -17,7 +18,7 @@ public class ModTreeGrowers {
 
     public static final TreeGrower PALE_OAK = new TreeGrower(
             "pale_oak",
-            Optional.of(ResourceKey.create(Registries.CONFIGURED_FEATURE, ResourceLocation.withDefaultNamespace("pale_oak"))),
+            Optional.of(TheGardenAwakensFeatures.PALE_OAK_BONEMEAL),
             Optional.empty(),
             Optional.empty()
     );

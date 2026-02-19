@@ -31,7 +31,7 @@ public abstract class MouseHandlerMixin {
                 HitResult hr = minecraft.hitResult;
                 if (hr == null || hr.getType() == HitResult.Type.MISS) {
                     ItemStack held = minecraft.player.getMainHandItem();
-                    if (!held.isEmpty() && held.is(ModTags.Items.INVENTORY_OPENABLE) && minecraft.getConnection() != null) {
+                    if (!held.isEmpty() && held.is(ModTags.ItemTags.INVENTORY_OPENABLE) && minecraft.getConnection() != null) {
                         // -1 denotes main hand on the server-side handler
                         minecraft.getConnection().send(new ServerboundOpenItemPacket(-1));
                     }

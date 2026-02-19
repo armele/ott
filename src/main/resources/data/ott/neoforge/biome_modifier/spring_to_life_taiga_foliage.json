@@ -1,0 +1,8 @@
+{
+  "type": "neoforge:add_features",
+  "biomes": "#minecraft:is_taiga",
+  "features": [
+    "minecraft:fallen_spruce_tree"
+  ],
+  "step": "vegetal_decoration"
+}

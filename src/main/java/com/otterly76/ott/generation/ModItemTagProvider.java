@@ -10,7 +10,6 @@ import net.minecraft.data.PackOutput;
 import net.minecraft.data.tags.ItemTagsProvider;
 import net.minecraft.data.tags.TagsProvider;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.tags.ItemTags;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.DyeColor;
 import net.minecraft.world.item.Item;
@@ -18,6 +17,7 @@ import net.minecraft.world.item.Items;
 import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.block.Block;
 import net.neoforged.neoforge.common.data.ExistingFileHelper;
+import net.neoforged.neoforge.registries.DeferredItem;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
@@ -91,7 +91,7 @@ public class ModItemTagProvider extends ItemTagsProvider {
 
         // --- 4. VANILLA BACKPORTS ---
         addWoodSetTags(
-                ModTags.Items.PALE_OAK_LOGS,
+                ModTags.ItemTags.PALE_OAK_LOGS,
                 ModBlocks.PALE_OAK_LOG,
                 ModBlocks.PALE_OAK_WOOD,
                 ModBlocks.STRIPPED_PALE_OAK_LOG,
@@ -112,13 +112,13 @@ public class ModItemTagProvider extends ItemTagsProvider {
                 ModItems.PALE_OAK_CHEST_BOAT.get()
         );
 
-        this.tag(ItemTags.SLABS).add(ModBlocks.RESIN_BRICK_SLAB.asItem());
-        this.tag(ItemTags.STAIRS).add(ModBlocks.RESIN_BRICK_STAIRS.asItem());
-        this.tag(ItemTags.WALLS).add(ModBlocks.RESIN_BRICK_WALL.asItem());
+        this.tag(net.minecraft.tags.ItemTags.SLABS).add(ModBlocks.RESIN_BRICK_SLAB.asItem());
+        this.tag(net.minecraft.tags.ItemTags.STAIRS).add(ModBlocks.RESIN_BRICK_STAIRS.asItem());
+        this.tag(net.minecraft.tags.ItemTags.WALLS).add(ModBlocks.RESIN_BRICK_WALL.asItem());
 
         // --- 5. WOOD SETS ---
         ModBlocks.WOOD_SETS.forEach((setName, set) -> addWoodSetTags(
-                ModTags.Items.woodSetLogs(setName),
+                ModTags.ItemTags.woodSetLogs(setName),
                 set.log(),
                 set.wood(),
                 set.strippedLog(),
@@ -140,19 +140,19 @@ public class ModItemTagProvider extends ItemTagsProvider {
         ));
 
         // --- 6. INDIVIDUALS ---
-        this.tag(ItemTags.TRIM_MATERIALS).add(ModItems.RESIN_BRICK.get());
+        this.tag(net.minecraft.tags.ItemTags.TRIM_MATERIALS).add(ModItems.RESIN_BRICK.get());
 
-        this.tag(ItemTags.COALS).add(ModItems.TINY_COAL.get(), ModItems.TINY_CHARCOAL.get());
+        this.tag(net.minecraft.tags.ItemTags.COALS).add(ModItems.TINY_COAL.get(), ModItems.TINY_CHARCOAL.get());
 
         // --- 7. DYEABLE ITEMS ---
-        var dyeableBanners = this.tag(ModTags.Items.DYEABLE_BANNERS);
-        var dyeableCandles = this.tag(ModTags.Items.DYEABLE_CANDLES);
-        var dyeableGlassBlocks = this.tag(ModTags.Items.DYEABLE_GLASS_BLOCKS);
-        var dyeableGlassPanes = this.tag(ModTags.Items.DYEABLE_GLASS_PANES);
-        var dyeableShulkerBoxes = this.tag(ModTags.Items.DYEABLE_SHULKER_BOXES);
-        var dyeableConcrete = this.tag(ModTags.Items.DYEABLE_CONCRETE);
-        var dyeableConcretePowder = this.tag(ModTags.Items.DYEABLE_CONCRETE_POWDER);
-        var dyeableTerracotta = this.tag(ModTags.Items.DYEABLE_TERRACOTTA);
+        var dyeableBanners = this.tag(ModTags.ItemTags.DYEABLE_BANNERS);
+        var dyeableCandles = this.tag(ModTags.ItemTags.DYEABLE_CANDLES);
+        var dyeableGlassBlocks = this.tag(ModTags.ItemTags.DYEABLE_GLASS_BLOCKS);
+        var dyeableGlassPanes = this.tag(ModTags.ItemTags.DYEABLE_GLASS_PANES);
+        var dyeableShulkerBoxes = this.tag(ModTags.ItemTags.DYEABLE_SHULKER_BOXES);
+        var dyeableConcrete = this.tag(ModTags.ItemTags.DYEABLE_CONCRETE);
+        var dyeableConcretePowder = this.tag(ModTags.ItemTags.DYEABLE_CONCRETE_POWDER);
+        var dyeableTerracotta = this.tag(ModTags.ItemTags.DYEABLE_TERRACOTTA);
 
         for (DyeColor color : DyeColor.values()) {
             String name = color.getName();
@@ -171,8 +171,14 @@ public class ModItemTagProvider extends ItemTagsProvider {
         dyeableShulkerBoxes.addOptional(ResourceLocation.withDefaultNamespace("shulker_box"));
         dyeableTerracotta.addOptional(ResourceLocation.withDefaultNamespace("terracotta"));
 
-        this.tag(ModTags.Items.INVENTORY_OPENABLE)
-                .addTag(ModTags.Items.DYEABLE_SHULKER_BOXES)
+        this.tag(ModTags.ItemTags.HAPPY_GHAST_TEMPT_ITEMS).add(Items.CHERRY_SAPLING, Items.MANGROVE_PROPAGULE);
+        this.tag(ModTags.ItemTags.HAPPY_GHAST_FOOD).add(Items.CHERRY_SAPLING, Items.MANGROVE_PROPAGULE);
+        this.tag(ModTags.ItemTags.HARNESSES).add(ModItems.HARNESSES.values().stream().map(DeferredItem::get).toArray(Item[]::new));
+        this.tag(ModTags.ItemTags.BUNDLES).add(Items.BUNDLE).add(ModItems.BUNDLES.values().stream().map(DeferredItem::get).toArray(Item[]::new));
+        this.tag(ModTags.ItemTags.EGGS).add(Items.EGG, ModItems.BLUE_EGG.get(), ModItems.BROWN_EGG.get());
+
+        this.tag(ModTags.ItemTags.INVENTORY_OPENABLE)
+                .addTag(ModTags.ItemTags.DYEABLE_SHULKER_BOXES)
                 .add(Items.BARREL)
                 .add(Items.CRAFTING_TABLE)
                 .add(Items.LOOM)
@@ -185,7 +191,18 @@ public class ModItemTagProvider extends ItemTagsProvider {
                 .add(Items.DAMAGED_ANVIL)
                 .add(Items.ENDER_CHEST);
 
-        this.tag(ItemTags.ARROWS).add(Items.ARROW, Items.TIPPED_ARROW, Items.SPECTRAL_ARROW, ModItems.TORCH_ARROW.get());
+        this.tag(net.minecraft.tags.ItemTags.ARROWS).add(Items.ARROW, Items.TIPPED_ARROW, Items.SPECTRAL_ARROW, ModItems.TORCH_ARROW.get());
+
+        ModItems.COPPER_SWORD.ifPresent(i -> this.tag(net.minecraft.tags.ItemTags.SWORDS).add(i.get()));
+        ModItems.COPPER_SHOVEL.ifPresent(i -> this.tag(net.minecraft.tags.ItemTags.SHOVELS).add(i.get()));
+        ModItems.COPPER_PICKAXE.ifPresent(i -> this.tag(net.minecraft.tags.ItemTags.PICKAXES).add(i.get()));
+        ModItems.COPPER_AXE.ifPresent(i -> this.tag(net.minecraft.tags.ItemTags.AXES).add(i.get()));
+        ModItems.COPPER_HOE.ifPresent(i -> this.tag(net.minecraft.tags.ItemTags.HOES).add(i.get()));
+
+        ModItems.COPPER_HELMET.ifPresent(i -> this.tag(net.minecraft.tags.ItemTags.HEAD_ARMOR).add(i.get()));
+        ModItems.COPPER_CHESTPLATE.ifPresent(i -> this.tag(net.minecraft.tags.ItemTags.CHEST_ARMOR).add(i.get()));
+        ModItems.COPPER_LEGGINGS.ifPresent(i -> this.tag(net.minecraft.tags.ItemTags.LEG_ARMOR).add(i.get()));
+        ModItems.COPPER_BOOTS.ifPresent(i -> this.tag(net.minecraft.tags.ItemTags.FOOT_ARMOR).add(i.get()));
     }
 
     @SafeVarargs
@@ -204,21 +221,21 @@ public class ModItemTagProvider extends ItemTagsProvider {
                                 ItemLike door, ItemLike trapdoor, ItemLike button, ItemLike pressurePlate, ItemLike sign,
                                 ItemLike hangingSign, ItemLike boat, ItemLike chestBoat) {
         this.tag(logTag).add(log.asItem(), wood.asItem(), strippedLog.asItem(), strippedWood.asItem());
-        this.tag(ItemTags.LOGS).addTag(logTag);
-        this.tag(ItemTags.LOGS_THAT_BURN).addTag(logTag);
-        this.tag(ItemTags.PLANKS).add(planks.asItem());
-        this.tag(ItemTags.LEAVES).add(leaves.asItem());
-        this.tag(ItemTags.WOODEN_SLABS).add(slab.asItem());
-        this.tag(ItemTags.WOODEN_STAIRS).add(stairs.asItem());
-        this.tag(ItemTags.WOODEN_FENCES).add(fence.asItem());
-        this.tag(ItemTags.FENCE_GATES).add(fenceGate.asItem());
-        this.tag(ItemTags.WOODEN_DOORS).add(door.asItem());
-        this.tag(ItemTags.WOODEN_TRAPDOORS).add(trapdoor.asItem());
-        this.tag(ItemTags.WOODEN_BUTTONS).add(button.asItem());
-        this.tag(ItemTags.WOODEN_PRESSURE_PLATES).add(pressurePlate.asItem());
-        this.tag(ItemTags.SIGNS).add(sign.asItem());
-        this.tag(ItemTags.HANGING_SIGNS).add(hangingSign.asItem());
-        this.tag(ItemTags.BOATS).add(boat.asItem());
-        this.tag(ItemTags.CHEST_BOATS).add(chestBoat.asItem());
+        this.tag(net.minecraft.tags.ItemTags.LOGS).addTag(logTag);
+        this.tag(net.minecraft.tags.ItemTags.LOGS_THAT_BURN).addTag(logTag);
+        this.tag(net.minecraft.tags.ItemTags.PLANKS).add(planks.asItem());
+        this.tag(net.minecraft.tags.ItemTags.LEAVES).add(leaves.asItem());
+        this.tag(net.minecraft.tags.ItemTags.WOODEN_SLABS).add(slab.asItem());
+        this.tag(net.minecraft.tags.ItemTags.WOODEN_STAIRS).add(stairs.asItem());
+        this.tag(net.minecraft.tags.ItemTags.WOODEN_FENCES).add(fence.asItem());
+        this.tag(net.minecraft.tags.ItemTags.FENCE_GATES).add(fenceGate.asItem());
+        this.tag(net.minecraft.tags.ItemTags.WOODEN_DOORS).add(door.asItem());
+        this.tag(net.minecraft.tags.ItemTags.WOODEN_TRAPDOORS).add(trapdoor.asItem());
+        this.tag(net.minecraft.tags.ItemTags.WOODEN_BUTTONS).add(button.asItem());
+        this.tag(net.minecraft.tags.ItemTags.WOODEN_PRESSURE_PLATES).add(pressurePlate.asItem());
+        this.tag(net.minecraft.tags.ItemTags.SIGNS).add(sign.asItem());
+        this.tag(net.minecraft.tags.ItemTags.HANGING_SIGNS).add(hangingSign.asItem());
+        this.tag(net.minecraft.tags.ItemTags.BOATS).add(boat.asItem());
+        this.tag(net.minecraft.tags.ItemTags.CHEST_BOATS).add(chestBoat.asItem());
     }
 }

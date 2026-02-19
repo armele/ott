@@ -72,6 +72,19 @@ public class ModBlockTagProvider extends BlockTagsProvider {
         var hoeTag = this.tag(BlockTags.MINEABLE_WITH_HOE);
         var shearsTag = this.tag(BlockTags.create(ResourceLocation.withDefaultNamespace("mineable/shears")));
 
+        this.tag(ModTags.Blocks.CREAKING_HEART_HOLDERS).add(ModBlocks.PALE_OAK_LOG.get(), ModBlocks.PALE_OAK_WOOD.get(), ModBlocks.STRIPPED_PALE_OAK_LOG.get(), ModBlocks.STRIPPED_PALE_OAK_WOOD.get());
+        this.tag(ModTags.Blocks.HAPPY_GHAST_AVOIDS).add(Blocks.LAVA, Blocks.FIRE, Blocks.SOUL_FIRE);
+        this.tag(ModTags.Blocks.TRIGGERS_AMBIENT_DESERT_SAND_BLOCK_SOUNDS).add(Blocks.SAND, Blocks.RED_SAND);
+        this.tag(ModTags.Blocks.TRIGGERS_AMBIENT_DESERT_DRY_VEGETATION_BLOCK_SOUNDS).add(Blocks.SAND, Blocks.RED_SAND, Blocks.TERRACOTTA);
+        this.tag(ModTags.Blocks.TRIGGERS_AMBIENT_DRIED_GHAST_BLOCK_SOUNDS).add(Blocks.SAND, Blocks.RED_SAND, Blocks.SOUL_SAND, Blocks.SOUL_SOIL);
+        this.tag(ModTags.Blocks.ALLOWS_LEAF_LITTER).add(ModBlocks.PALE_OAK_LEAVES.get());
+        this.tag(ModTags.Blocks.SPAWN_FALLING_LEAVES).add(ModBlocks.PALE_OAK_LEAVES.get());
+        this.tag(ModTags.Blocks.CAMELS_SPAWNABLE_ON).add(Blocks.SAND, Blocks.RED_SAND);
+        this.tag(ModTags.Blocks.INCORRECT_FOR_COPPER_TOOL).addTag(BlockTags.INCORRECT_FOR_STONE_TOOL);
+        this.tag(ModTags.Blocks.COPPER_GOLEM_STATUES).add(ModBlocks.RESIN_BLOCK.get()); // Placeholder if no copper golem block
+        this.tag(ModTags.Blocks.COPPER_CHESTS).add(ModBlocks.RESIN_BLOCK.get()); // Placeholder
+        this.tag(ModTags.Blocks.COPPER).add(Blocks.COPPER_BLOCK, Blocks.CUT_COPPER, Blocks.EXPOSED_COPPER, Blocks.WEATHERED_COPPER, Blocks.OXIDIZED_COPPER);
+
         this.tag(ModTags.Blocks.PATHS).add(Blocks.DIRT_PATH).addTag(com.minecolonies.api.items.ModTags.pathingBlocks);
         this.tag(ModTags.Blocks.STONE)
                 .addTag(BlockTags.BASE_STONE_OVERWORLD)
@@ -154,6 +167,10 @@ public class ModBlockTagProvider extends BlockTagsProvider {
         ModBlocks.CREEPING_HEDGES.values().forEach(h -> ottHedges.add(h.value()));
 
         axeTag.add(ModBlocks.CREAKING_HEART.value(), ModBlocks.PROTECTIVE_LANTERN.value(), ModBlocks.SMITE_LANTERN.value());
+        axeTag.add(ModBlocks.PALE_OAK_LOG.get(), ModBlocks.PALE_OAK_WOOD.get(), ModBlocks.STRIPPED_PALE_OAK_LOG.get(), ModBlocks.STRIPPED_PALE_OAK_WOOD.get());
+        axeTag.add(ModBlocks.PALE_OAK_PLANKS.get(), ModBlocks.PALE_OAK_STAIRS.get(), ModBlocks.PALE_OAK_SLAB.get(), ModBlocks.PALE_OAK_FENCE.get(), ModBlocks.PALE_OAK_FENCE_GATE.get());
+        axeTag.add(ModBlocks.PALE_OAK_DOOR.get(), ModBlocks.PALE_OAK_TRAPDOOR.get(), ModBlocks.PALE_OAK_BUTTON.get(), ModBlocks.PALE_OAK_PRESSURE_PLATE.get());
+
         hoeTag.add(ModBlocks.PALE_MOSS_BLOCK.value(), ModBlocks.PALE_MOSS_CARPET.value(), ModBlocks.HEDGE.value());
         hoeTag.add(ModBlocks.PALE_OAK_LEAVES.value());
         pickaxeTag.add(ModBlocks.RESIN_BRICKS.value(), ModBlocks.CHISELED_RESIN_BRICKS.value(), ModBlocks.RESIN_BRICK_SLAB.value(), ModBlocks.RESIN_BLOCK.value(), ModBlocks.RESIN_BRICK_STAIRS.value(), ModBlocks.RESIN_BRICK_WALL.value());
@@ -212,9 +229,17 @@ public class ModBlockTagProvider extends BlockTagsProvider {
         this.tag(BlockTags.LEAVES).add(ModBlocks.PALE_OAK_LEAVES.value());
         this.tag(BlockTags.PLANKS).add(ModBlocks.PALE_OAK_PLANKS.value());
         this.tag(BlockTags.DIRT).add(ModBlocks.PALE_MOSS_BLOCK.value());
+        this.tag(BlockTags.FENCE_GATES).add(ModBlocks.PALE_OAK_FENCE_GATE.get());
+        this.tag(BlockTags.WOODEN_FENCES).add(ModBlocks.PALE_OAK_FENCE.get());
+        this.tag(BlockTags.STANDING_SIGNS).add(ModBlocks.PALE_OAK_SIGN.get());
+        this.tag(BlockTags.WALL_SIGNS).add(ModBlocks.PALE_OAK_WALL_SIGN.get());
+        this.tag(BlockTags.CEILING_HANGING_SIGNS).add(ModBlocks.PALE_OAK_HANGING_SIGN.get());
+        this.tag(BlockTags.WALL_HANGING_SIGNS).add(ModBlocks.PALE_OAK_WALL_HANGING_SIGN.get());
+
         this.tag(BlockTags.REPLACEABLE_BY_TREES).add(ModBlocks.PALE_MOSS_BLOCK.value());
-        this.tag(BlockTags.FLOWERS).add(ModBlocks.CLOSED_EYEBLOSSOM.value(), ModBlocks.OPEN_EYEBLOSSOM.value());
-        this.tag(BlockTags.SMALL_FLOWERS).add(ModBlocks.CLOSED_EYEBLOSSOM.value(), ModBlocks.OPEN_EYEBLOSSOM.value());
+        this.tag(BlockTags.FLOWERS).add(ModBlocks.CLOSED_EYEBLOSSOM.value(), ModBlocks.OPEN_EYEBLOSSOM.value(), ModBlocks.WILDFLOWERS.value(), ModBlocks.BUSH.value(), ModBlocks.FIREFLY_BUSH.value(), ModBlocks.CACTUS_FLOWER.value());
+        this.tag(BlockTags.SMALL_FLOWERS).add(ModBlocks.CLOSED_EYEBLOSSOM.value(), ModBlocks.OPEN_EYEBLOSSOM.value(), ModBlocks.WILDFLOWERS.value(), ModBlocks.BUSH.value(), ModBlocks.FIREFLY_BUSH.value(), ModBlocks.CACTUS_FLOWER.value());
+        this.tag(BlockTags.REPLACEABLE).add(ModBlocks.WILDFLOWERS.value(), ModBlocks.BUSH.value(), ModBlocks.SHORT_DRY_GRASS.value(), ModBlocks.TALL_DRY_GRASS.value(), ModBlocks.LEAF_LITTER.value());
 
     }
 
@@ -234,6 +259,8 @@ public class ModBlockTagProvider extends BlockTagsProvider {
         this.tag(BlockTags.LOGS_THAT_BURN).addTag(logTag);
         this.tag(BlockTags.PLANKS).add(planks);
         this.tag(BlockTags.LEAVES).add(leaves);
+        this.tag(BlockTags.MINEABLE_WITH_AXE).add(leaves);
+        this.tag(BlockTags.MINEABLE_WITH_AXE).add(planks, slab, stairs, fence, fenceGate, door, trapdoor, button, pressurePlate, sign, wallSign, hangingSign, wallHangingSign);
         this.tag(BlockTags.MINEABLE_WITH_HOE).add(leaves);
         this.tag(BlockTags.create(ResourceLocation.withDefaultNamespace("mineable/shears"))).add(leaves);
         this.tag(BlockTags.WOODEN_SLABS).add(slab);

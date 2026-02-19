@@ -2,6 +2,7 @@ package com.otterly76.ott.mixin.common;
 
 import net.minecraft.world.level.levelgen.NoiseGeneratorSettings;
 import net.minecraft.world.level.levelgen.NoiseRouter;
+import net.minecraft.world.level.levelgen.SurfaceRules;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Mutable;
 import org.spongepowered.asm.mixin.gen.Accessor;
@@ -11,4 +12,8 @@ public interface NoiseGeneratorSettingsAccessor {
     @Accessor("noiseRouter")
     @Mutable
     void setNoiseRouter(NoiseRouter noiseRouter);
+
+    @Mutable
+    @Accessor("surfaceRule")
+    void setSurfaceRule(SurfaceRules.RuleSource surfaceRule);
 }

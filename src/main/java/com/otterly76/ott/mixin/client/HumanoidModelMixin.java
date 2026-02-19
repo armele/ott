@@ -1,6 +1,6 @@
 package com.otterly76.ott.mixin.client;
 
-import com.otterly76.ott.util.TinyMobRenderState;
+import com.otterly76.ott.util.entity.TinyMobRenderState;
 import net.minecraft.client.model.HumanoidModel;
 import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.world.entity.LivingEntity;

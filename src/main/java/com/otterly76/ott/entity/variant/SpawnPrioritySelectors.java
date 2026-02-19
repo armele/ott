@@ -1,0 +1,23 @@
+package com.otterly76.ott.entity.variant;
+
+import com.otterly76.ott.entity.variant.PriorityProvider.Selector;
+import com.mojang.serialization.Codec;
+import io.netty.buffer.ByteBuf;
+import net.minecraft.network.codec.ByteBufCodecs;
+import net.minecraft.network.codec.StreamCodec;
+
+import java.util.List;
+
+public record SpawnPrioritySelectors(List<PriorityProvider.Selector<SpawnContext, SpawnCondition>> selectors) {
+    public static final SpawnPrioritySelectors EMPTY = new SpawnPrioritySelectors(List.of());
+    public static final Codec<SpawnPrioritySelectors> CODEC = Selector.codec(SpawnCondition.CODEC).listOf().xmap(SpawnPrioritySelectors::new, SpawnPrioritySelectors::selectors);
+    public static final StreamCodec<ByteBuf, SpawnPrioritySelectors> STREAM_CODEC = ByteBufCodecs.fromCodec(CODEC);
+
+    public static SpawnPrioritySelectors single(SpawnCondition condition, int priority) {
+        return new SpawnPrioritySelectors(PriorityProvider.single(condition, priority));
+    }
+
+    public static SpawnPrioritySelectors fallback(int priority) {
+        return new SpawnPrioritySelectors(PriorityProvider.alwaysTrue(priority));
+    }
+}

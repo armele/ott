@@ -2,7 +2,9 @@ package com.otterly76.ott.event;
 
 import com.otterly76.ott.entity.Creaking;
 import com.otterly76.ott.entity.ModEntities;
-import com.otterly76.ott.entity.client.CreakingModel;
+import com.otterly76.ott.client.model.CreakingModel;
+import com.otterly76.ott.client.registries.ModModelLayers;
+import com.otterly76.ott.entity.custom.HappyGhast;
 import com.otterly76.ott.item.ModItems;
 import com.otterly76.ott.entity.tiny.*;
 import net.minecraft.world.entity.EntityType;
@@ -19,11 +21,12 @@ import net.neoforged.neoforge.event.furnace.FurnaceFuelBurnTimeEvent;
 public class ModEventBusEvents {
 
     public static void registerLayers(EntityRenderersEvent.RegisterLayerDefinitions event) {
-        event.registerLayerDefinition(CreakingModel.LAYER_LOCATION, CreakingModel::createBodyLayer);
+        event.registerLayerDefinition(ModModelLayers.CREAKING, CreakingModel::createBodyLayer);
     }
 
     public static void registerAttributes(EntityAttributeCreationEvent event) {
         event.put(ModEntities.CREAKING.get(), Creaking.createAttributes().build());
+        event.put(ModEntities.HAPPY_GHAST.get(), HappyGhast.createAttributes().build());
         event.put(ModEntities.TINY_SKELETON.get(), TinySkeleton.createAttributes().build());
         event.put(ModEntities.TINY_CREEPER.get(), TinyCreeper.createAttributes().build());
         event.put(ModEntities.TINY_ENDERMAN.get(), TinyEnderman.createAttributes().build());

@@ -1,9 +1,10 @@
 package com.otterly76.ott.block.custom;
 
-import com.mojang.serialization.MapCodec;
 import com.otterly76.ott.block.ModBlocks;
+import com.otterly76.ott.registry.ModBlockStateProperties;
 import com.otterly76.ott.sound.ModSounds;
 import com.otterly76.ott.util.ModTags;
+import com.mojang.serialization.MapCodec;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerLevel;
@@ -24,98 +25,105 @@ import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import org.jetbrains.annotations.NotNull;
 
-
 public class HangingMossBlock extends Block implements BonemealableBlock {
-    public static final BooleanProperty TIP = BooleanProperty.create("tip");
     public static final MapCodec<HangingMossBlock> CODEC = simpleCodec(HangingMossBlock::new);
-    private static final int SIDE_PADDING = 1;
-    private static final VoxelShape TIP_SHAPE = Block.box(1.0F, 2.0F, 1.0F, 15.0F, 16.0F, 15.0F);
-    private static final VoxelShape BASE_SHAPE = Block.box(1.0F, 0.0F, 1.0F, 15.0F, 16.0F, 15.0F);
+    private static final VoxelShape TIP_SHAPE = Block.box(1.0, 2.0, 1.0, 15.0, 16.0, 15.0);
+    private static final VoxelShape BASE_SHAPE = Block.box(1.0, 0.0, 1.0, 15.0, 16.0, 15.0);
+    public static final BooleanProperty TIP = ModBlockStateProperties.TIP;
+
+    @Override
+    public @NotNull MapCodec<HangingMossBlock> codec() {
+        return CODEC;
+    }
 
     public HangingMossBlock(BlockBehaviour.Properties properties) {
         super(properties);
         this.registerDefaultState(this.stateDefinition.any().setValue(TIP, true));
     }
 
-    public @NotNull MapCodec<HangingMossBlock> codec() {
-        return CODEC;
+    @Override
+    public @NotNull VoxelShape getShape(@NotNull BlockState state, @NotNull BlockGetter level, @NotNull BlockPos pos, @NotNull CollisionContext context) {
+        return state.getValue(TIP) ? TIP_SHAPE : BASE_SHAPE;
     }
 
-    protected @NotNull VoxelShape getShape(BlockState blockState, @NotNull BlockGetter blockGetter, @NotNull BlockPos blockPos, @NotNull CollisionContext collisionContext) {
-        return blockState.getValue(TIP) ? TIP_SHAPE : BASE_SHAPE;
-    }
-
-    public void animateTick(@NotNull BlockState blockState, @NotNull Level level, @NotNull BlockPos blockPos, RandomSource randomSource) {
-        if (randomSource.nextInt(500) == 0) {
-            BlockState blockState2 = level.getBlockState(blockPos.above());
-            if (blockState2.is(ModTags.Blocks.PALE_OAK_LOGS) || blockState2.is(ModBlocks.PALE_OAK_LEAVES.get())) {
-                level.playLocalSound(blockPos.getX(), blockPos.getY(), blockPos.getZ(), ModSounds.PALE_HANGING_MOSS_IDLE.get(), SoundSource.BLOCKS, 1.0F, 1.0F, false);
+    @Override
+    public void animateTick(@NotNull BlockState state, @NotNull Level level, @NotNull BlockPos pos, @NotNull RandomSource random) {
+        if (random.nextInt(500) == 0) {
+            BlockState aboveState = level.getBlockState(pos.above());
+            if (aboveState.is(ModTags.Blocks.PALE_OAK_LOGS) || aboveState.is(ModBlocks.PALE_OAK_LEAVES.get())) {
+                level.playLocalSound(pos.getX(), pos.getY(), pos.getZ(), ModSounds.PALE_HANGING_MOSS_IDLE.get(), SoundSource.BLOCKS, 1.0F, 1.0F, false);
             }
         }
     }
 
-    protected boolean propagatesSkylightDown(@NotNull BlockState p_320652_, @NotNull BlockGetter p_320953_, @NotNull BlockPos p_320082_) {
+    @Override
+    protected boolean propagatesSkylightDown(@NotNull BlockState state, @NotNull BlockGetter level, @NotNull BlockPos pos) {
         return true;
     }
 
-    protected boolean canSurvive(@NotNull BlockState blockState, @NotNull LevelReader levelReader, @NotNull BlockPos blockPos) {
-        return this.canStayAtPosition(levelReader, blockPos);
+    @Override
+    public boolean canSurvive(@NotNull BlockState state, @NotNull LevelReader level, @NotNull BlockPos pos) {
+        return this.canStayAtPosition(level, pos);
     }
 
-    private boolean canStayAtPosition(BlockGetter blockGetter, BlockPos blockPos) {
-        BlockPos blockPos2 = blockPos.relative(Direction.UP);
-        BlockState blockState = blockGetter.getBlockState(blockPos2);
-        return MultifaceBlock.canAttachTo(blockGetter, Direction.UP, blockPos2, blockState) || blockState.is(ModBlocks.PALE_HANGING_MOSS);
+    private boolean canStayAtPosition(BlockGetter level, BlockPos pos) {
+        BlockPos above = pos.above();
+        BlockState aboveState = level.getBlockState(above);
+        return MultifaceBlock.canAttachTo(level, Direction.UP, above, aboveState) || aboveState.is(ModBlocks.PALE_HANGING_MOSS.get());
     }
 
-    protected @NotNull BlockState updateShape(@NotNull BlockState blockState, @NotNull Direction direction, @NotNull BlockState blockState2, @NotNull LevelAccessor levelAccessor, @NotNull BlockPos blockPos, @NotNull BlockPos blockPos2) {
-        if (!this.canStayAtPosition(levelAccessor, blockPos)) {
-            levelAccessor.scheduleTick(blockPos, this, 1);
+    @Override
+    public @NotNull BlockState updateShape(@NotNull BlockState state, @NotNull Direction direction, @NotNull BlockState neighborState, @NotNull LevelAccessor level, @NotNull BlockPos pos, @NotNull BlockPos neighborPos) {
+        if (!this.canStayAtPosition(level, pos)) {
+            level.scheduleTick(pos, this, 1);
         }
 
-        return blockState.setValue(TIP, !levelAccessor.getBlockState(blockPos.below()).is(this));
+        return state.setValue(TIP, !level.getBlockState(pos.below()).is(this));
     }
 
-    protected void tick(@NotNull BlockState blockState, @NotNull ServerLevel serverLevel, @NotNull BlockPos blockPos, @NotNull RandomSource randomSource) {
-        if (!this.canStayAtPosition(serverLevel, blockPos)) {
-            serverLevel.destroyBlock(blockPos, true);
+    @Override
+    public void tick(@NotNull BlockState state, @NotNull ServerLevel level, @NotNull BlockPos pos, @NotNull RandomSource random) {
+        if (!this.canStayAtPosition(level, pos)) {
+            level.destroyBlock(pos, true);
         }
-
     }
 
+    @Override
     protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
         builder.add(TIP);
     }
 
-    public boolean isValidBonemealTarget(LevelReader levelReader, @NotNull BlockPos blockPos, @NotNull BlockState blockState) {
-        return this.canGrowInto(levelReader.getBlockState(this.getTip(levelReader, blockPos).below()));
+    @Override
+    public boolean isValidBonemealTarget(@NotNull LevelReader level, @NotNull BlockPos pos, @NotNull BlockState state) {
+        return this.canGrowInto(level.getBlockState(this.getTip(level, pos).below()));
     }
 
-    private boolean canGrowInto(BlockState blockState) {
-        return blockState.isAir();
+    private boolean canGrowInto(BlockState state) {
+        return state.isAir();
     }
 
-    public BlockPos getTip(BlockGetter blockGetter, BlockPos blockPos) {
-        BlockPos.MutableBlockPos mutableBlockPos = blockPos.mutable();
+    public BlockPos getTip(BlockGetter level, BlockPos pos) {
+        BlockPos.MutableBlockPos mutablePos = pos.mutable();
 
-        BlockState blockState;
+        BlockState state;
         do {
-            mutableBlockPos.move(Direction.DOWN);
-            blockState = blockGetter.getBlockState(mutableBlockPos);
-        } while(blockState.is(this));
+            mutablePos.move(Direction.DOWN);
+            state = level.getBlockState(mutablePos);
+        } while(state.is(this));
 
-        return mutableBlockPos.relative(Direction.UP).immutable();
+        return mutablePos.relative(Direction.UP).immutable();
     }
 
-    public boolean isBonemealSuccess(@NotNull Level level, @NotNull RandomSource randomSource, @NotNull BlockPos blockPos, @NotNull BlockState blockState) {
+    @Override
+    public boolean isBonemealSuccess(@NotNull Level level, @NotNull RandomSource random, @NotNull BlockPos pos, @NotNull BlockState state) {
         return true;
     }
 
-    public void performBonemeal(@NotNull ServerLevel serverLevel, @NotNull RandomSource randomSource, @NotNull BlockPos blockPos, @NotNull BlockState blockState) {
-        BlockPos blockPos2 = this.getTip(serverLevel, blockPos).below();
-        if (this.canGrowInto(serverLevel.getBlockState(blockPos2))) {
-            serverLevel.setBlockAndUpdate(blockPos2, blockState.setValue(TIP, true));
+    @Override
+    public void performBonemeal(@NotNull ServerLevel level, @NotNull RandomSource random, @NotNull BlockPos pos, @NotNull BlockState state) {
+        BlockPos tipPos = this.getTip(level, pos).below();
+        if (this.canGrowInto(level.getBlockState(tipPos))) {
+            level.setBlockAndUpdate(tipPos, state.setValue(TIP, true));
         }
-
     }
 }

@@ -22,15 +22,27 @@ Ongoing:
 
 Mods, Resourcepacks, and Datapacks You Will Not Need:
 =======
+
+**Visuals:**
 - ANY 3D Model Mods or Resourcepacks
 - ANY 32x Texture Resourcepacks
 - ANY World Generation Mods 🌎
   - This includes the Lithostitched suite (Tectonic, Underground Rivers, Improved Village Placement, etc)
 
+**Minecolonies:**
 - Copper Paths / Roads for Minecolonies
 - Minecolonies Oxidized Copper via Alchemist
 - Minecolonies Schematics World Template
 
+**Backports:**
+- Bundles of Bravery
+- The Garden Awakens
+- Spring to Life
+- Chase the Skies
+- Copper Age (WIP)
+- Mounts of Mayhem (WIP)
+
+**Mods, Resourcepacks, and Datapacks:**
 - Actually Harvest, Right Click Harvest, Simply Harvesting, etc
 - Appleskin 🍎
 - Better Days 🌛🌝🌜
@@ -52,7 +64,6 @@ Mods, Resourcepacks, and Datapacks You Will Not Need:
 - No Farmland Trample, Trample No More, etc
 - Not Enough Recipe Book
 - Overloaded Armor Bar
-- Perfect Parity Neo: Pale Garden Awakens
 - Permanent Sponges
 - Pretty Beaches 🏖️
 - Pretty Rain ⛅

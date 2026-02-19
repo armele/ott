@@ -1,6 +1,6 @@
 package com.otterly76.ott.worldgen.feature;
 
-import com.otterly76.ott.util.MathUtils;
+import com.otterly76.ott.util.math.MathUtils;
 import com.otterly76.ott.worldgen.feature.config.LargeDripstoneConfig;
 import com.otterly76.ott.worldgen.feature.util.DripstoneUtils;
 import net.minecraft.core.BlockPos;

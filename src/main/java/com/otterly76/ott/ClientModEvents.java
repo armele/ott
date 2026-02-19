@@ -9,23 +9,34 @@ import com.otterly76.ott.client.render.PrismaticColorHandler;
 import com.otterly76.ott.client.render.texture.FXAtlasSpriteSource;
 import com.otterly76.ott.config.OttConfig;
 import com.otterly76.ott.entity.ModEntities;
-import com.otterly76.ott.entity.client.CreakingRenderer;
-import com.otterly76.ott.entity.client.ModModelLayers;
-import com.otterly76.ott.entity.client.OttWoodSetBoatRenderer;
-import com.otterly76.ott.entity.client.PaleOakBoatRenderer;
-import com.otterly76.ott.entity.client.TorchArrowRenderer;
+import com.otterly76.ott.client.model.chicken.ColdChickenModel;
+import com.otterly76.ott.client.model.cow.ColdCowModel;
+import com.otterly76.ott.client.model.cow.WarmCowModel;
+import com.otterly76.ott.client.model.pig.ColdPigModel;
+import com.otterly76.ott.client.render.entity.CreakingRenderer;
+import com.otterly76.ott.client.render.entity.HappyGhastRenderer;
+import com.otterly76.ott.client.render.entity.ModBoatRenderer;
+import com.otterly76.ott.client.render.entity.TorchArrowRenderer;
+import com.otterly76.ott.client.model.CreakingModel;
+import com.otterly76.ott.client.model.HappyGhastModel;
+import com.otterly76.ott.client.model.HappyGhastHarnessModel;
+import com.otterly76.ott.client.registries.ModModelLayers;
 import com.otterly76.ott.inventory.ModMenuTypes;
 import com.otterly76.ott.item.ModItems;
+import com.otterly76.ott.client.handler.DryFoliageColorReloadListener;
+import com.otterly76.ott.client.handler.ItemPropertyRegistrar;
+import com.otterly76.ott.client.handler.LeafColorReloadListener;
+import com.otterly76.ott.client.util.LeafColors;
 import com.otterly76.ott.particle.*;
 import com.otterly76.ott.block.entity.ModBlockEntities;
-import com.otterly76.ott.util.WoodTypeVariant;
+import com.otterly76.ott.util.block.WoodTypeVariant;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.model.BoatModel;
 import net.minecraft.client.model.ChestBoatModel;
+import net.minecraft.client.model.geom.builders.CubeDeformation;
 import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.client.particle.TextureSheetParticle;
 import net.minecraft.client.renderer.BiomeColors;
-import net.minecraft.client.renderer.Sheets;
 import net.minecraft.client.renderer.entity.*;
 import net.minecraft.client.renderer.texture.SpriteContents;
 import net.minecraft.client.resources.metadata.animation.FrameSize;
@@ -36,6 +47,7 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.packs.resources.Resource;
 import net.minecraft.server.packs.resources.ResourceMetadata;
 import net.minecraft.util.Mth;
+import net.minecraft.world.level.GrassColor;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.bus.api.SubscribeEvent;
@@ -80,6 +92,14 @@ public class ClientModEvents {
         modBus.addListener(ClientModEvents::onRegisterAdditional);
         modBus.addListener(ClientModEvents::onModelBaking);
         modBus.addListener(com.otterly76.ott.client.handler.BlockModelHandler::onModelBaking);
+        modBus.addListener(com.otterly76.ott.client.handler.EmissiveModelHandler::onModelBake);
+        modBus.addListener(com.otterly76.ott.client.handler.EmissiveModelHandler::onRegisterAdditionalModels);
+        modBus.addListener(ClientModEvents::onRegisterReloadListeners);
+    }
+
+    public static void onRegisterReloadListeners(RegisterClientReloadListenersEvent event) {
+        event.registerReloadListener(DryFoliageColorReloadListener.INSTANCE);
+        event.registerReloadListener(LeafColorReloadListener.INSTANCE);
     }
 
     public static void onRegisterAdditional(ModelEvent.RegisterAdditional event) {
@@ -127,7 +147,10 @@ public class ClientModEvents {
     @SuppressWarnings("DuplicatedCode")
     public static void registerParticleFactories(RegisterParticleProvidersEvent event) {
         event.registerSpriteSet(ModParticle.WILL_O_WISP.get(), WillOWispParticle.Provider::new);
-        event.registerSpriteSet(ModParticle.PALE_OAK_LEAVES.get(), PaleOakParticle.Provider::new);
+        event.registerSpriteSet(ModParticle.PALE_OAK_LEAVES.get(), FallingLeavesParticle.PaleOakProvider::new);
+        event.registerSpriteSet(ModParticle.FIREFLY.get(), FireflyParticle.Provider::new);
+        event.registerSpriteSet(ModParticle.TINTED_LEAVES.get(), FallingLeavesParticle.TintedLeavesProvider::new);
+        event.registerSpriteSet(ModParticle.TINTED_NEEDLES.get(), FallingLeavesParticle.TintedLeavesProvider::new);
         event.registerSpriteSet(ModParticle.TRAIL.get(), TrailParticle.Provider::new);
         event.registerSpriteSet(ModParticle.GROUND_FOG.get(), GroundFogParticle.DefaultFactory::new);
         event.registerSpriteSet(ModParticle.STARLIGHT_LEAF.get(), HedgeLeafParticle.Provider::new);
@@ -242,13 +265,14 @@ public static float yLevelWindAdjustment(double y) {
 
     public static void registerRenderers(EntityRenderersEvent.RegisterRenderers event) {
         event.registerEntityRenderer(ModEntities.CREAKING.get(), CreakingRenderer::new);
-        event.registerEntityRenderer(ModEntities.PALE_OAK_BOAT.get(), (context) -> new PaleOakBoatRenderer(context, false));
-        event.registerEntityRenderer(ModEntities.PALE_OAK_CHEST_BOAT.get(), (context) -> new PaleOakBoatRenderer(context, true));
+        event.registerEntityRenderer(ModEntities.HAPPY_GHAST.get(), HappyGhastRenderer::new);
+        event.registerEntityRenderer(ModEntities.PALE_OAK_BOAT.get(), (context) -> new ModBoatRenderer(context, false));
+        event.registerEntityRenderer(ModEntities.PALE_OAK_CHEST_BOAT.get(), (context) -> new ModBoatRenderer(context, true));
         ModEntities.WOOD_SET_BOATS.forEach((setName, type) ->
-                event.registerEntityRenderer(type.get(), (context) -> new OttWoodSetBoatRenderer(context, false))
+                event.registerEntityRenderer(type.get(), (context) -> new ModBoatRenderer(context, false))
         );
         ModEntities.WOOD_SET_CHEST_BOATS.forEach((setName, type) ->
-                event.registerEntityRenderer(type.get(), (context) -> new OttWoodSetBoatRenderer(context, true))
+                event.registerEntityRenderer(type.get(), (context) -> new ModBoatRenderer(context, true))
         );
 
         event.registerEntityRenderer(ModEntities.TINY_SKELETON.get(), SkeletonRenderer::new);
@@ -265,10 +289,20 @@ public static float yLevelWindAdjustment(double y) {
     }
 
     public static void registerLayerDefinitions(EntityRenderersEvent.RegisterLayerDefinitions event) {
+        event.registerLayerDefinition(ModModelLayers.CREAKING, CreakingModel::createBodyLayer);
         event.registerLayerDefinition(ModModelLayers.PALE_OAK_BOAT, BoatModel::createBodyModel);
         event.registerLayerDefinition(ModModelLayers.PALE_OAK_CHEST_BOAT, ChestBoatModel::createBodyModel);
         event.registerLayerDefinition(ModModelLayers.OTT_WOOD_SET_BOAT, BoatModel::createBodyModel);
         event.registerLayerDefinition(ModModelLayers.OTT_WOOD_SET_CHEST_BOAT, ChestBoatModel::createBodyModel);
+
+        event.registerLayerDefinition(ModModelLayers.COLD_PIG, ColdPigModel::createBodyLayer);
+        event.registerLayerDefinition(ModModelLayers.COLD_CHICKEN, ColdChickenModel::createBodyLayer);
+        event.registerLayerDefinition(ModModelLayers.COLD_COW, ColdCowModel::createBodyLayer);
+        event.registerLayerDefinition(ModModelLayers.WARM_COW, WarmCowModel::createBodyLayer);
+
+        event.registerLayerDefinition(ModModelLayers.HAPPY_GHAST, () -> HappyGhastModel.createBodyLayer(CubeDeformation.NONE));
+        event.registerLayerDefinition(ModModelLayers.HAPPY_GHAST_HARNESS, HappyGhastHarnessModel::createHarnessLayer);
+        event.registerLayerDefinition(ModModelLayers.HAPPY_GHAST_ROPES, () -> HappyGhastModel.createBodyLayer(new CubeDeformation(0.2F)));
     }
 
     public static void onRegisterSpriteLoader(RegisterSpriteSourceTypesEvent event) {
@@ -276,12 +310,24 @@ public static float yLevelWindAdjustment(double y) {
     }
 
     public static void registerBlockColors(RegisterColorHandlersEvent.Block event) {
+        event.register((state, level, pos, tint) -> level != null && pos != null ? LeafColors.getAverageDryFoliageColor(pos) : -10732494, ModBlocks.LEAF_LITTER.get());
+        event.register((state, level, pos, tint) -> level != null && pos != null ? BiomeColors.getAverageGrassColor(level, pos) : GrassColor.getDefaultColor(), ModBlocks.BUSH.get());
+        event.register((state, level, pos, tint) -> {
+            if (tint == 0) {
+                return -1;
+            } else {
+                return level != null && pos != null ? BiomeColors.getAverageGrassColor(level, pos) : GrassColor.getDefaultColor();
+            }
+        }, ModBlocks.WILDFLOWERS.get());
+
         event.register(PrismaticColorHandler.create(PrismaticColorHandler.Type.FULL_3D, 32f, 1.0f, 0.0f, 1.0f, 0.0f), ModBlocks.TESTBLOCK_02.get());
         event.register(PrismaticColorHandler.create(PrismaticColorHandler.Type.HORIZONTAL, 16f, 0.5f, 0.5f, 0.7f, 0.0f), ModBlocks.TESTBLOCK_03.get());
         event.register(PrismaticColorHandler.create(PrismaticColorHandler.Type.VERTICAL, 8f, 0.25f, 0.3f, 0.5f, 0.0f), ModBlocks.TESTBLOCK_10.get());
     }
 
     public static void registerItemColors(RegisterColorHandlersEvent.Item event) {
+        event.register((stack, tintIndex) -> event.getBlockColors().getColor(((net.minecraft.world.item.BlockItem)stack.getItem()).getBlock().defaultBlockState(), null, null, tintIndex), ModBlocks.BUSH.get());
+
         ModBlocks.getAllGradientBlocks().forEach(deferredBlock -> {
             event.register((stack, tintIndex) -> {
                 if (stack.getItem() instanceof net.minecraft.world.item.BlockItem blockItem &&
@@ -307,14 +353,10 @@ public static float yLevelWindAdjustment(double y) {
         }, ModItems.TORCH_ARROW.get());
     }
 
-    @SubscribeEvent
     public static void onClientSetup(FMLClientSetupEvent event) {
-        event.enqueueWork(() -> {
-            Sheets.addWoodType(WoodTypeVariant.PALE_OAK.getWoodType());
-            ModBlocks.WOOD_SETS.keySet().forEach(setName ->
-                    Sheets.addWoodType(WoodTypeVariant.ott(setName))
-            );
-        });
+        ItemPropertyRegistrar.bootstrap();
+        com.otterly76.ott.client.registries.ModBundledTabs.bootstrap();
+        com.otterly76.ott.client.gui.BundledTabSelector.bootstrap();
     }
 
     @SubscribeEvent

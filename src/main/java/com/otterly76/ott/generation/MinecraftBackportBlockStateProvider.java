@@ -2,11 +2,16 @@ package com.otterly76.ott.generation;
 
 import com.otterly76.ott.block.ModBlocks;
 import com.otterly76.ott.block.custom.CreakingHeartBlock;
+import com.otterly76.ott.registry.ModBlockStateProperties;
+import com.otterly76.ott.util.block.CreakingHeartState;
 import com.otterly76.ott.block.custom.HangingMossBlock;
+import com.otterly76.ott.block.custom.MossyCarpetBlock;
 import net.minecraft.core.Direction;
 import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.level.block.RotatedPillarBlock;
+import net.minecraft.world.level.block.*;
+import net.minecraft.world.level.block.state.properties.WallSide;
+import net.minecraft.world.level.block.state.properties.EnumProperty;
 import net.neoforged.neoforge.client.model.generators.BlockModelBuilder;
 import net.neoforged.neoforge.client.model.generators.ConfiguredModel;
 import net.neoforged.neoforge.client.model.generators.ModelFile;
@@ -25,12 +30,24 @@ public class MinecraftBackportBlockStateProvider extends ModBlockStateProvider {
     protected void registerStatesAndModels() {
 
         simpleBlock(ModBlocks.PALE_MOSS_BLOCK.get());
-
+        
         ModelFile paleMossCarpetModel = models()
                 .withExistingParent("pale_moss_carpet", mcLoc("block/carpet"))
                 .texture("wool", mcLoc("block/pale_moss_carpet"))
                 .renderType("cutout");
-        simpleBlock(ModBlocks.PALE_MOSS_CARPET.get(), paleMossCarpetModel);
+
+        MultiPartBlockStateBuilder carpetBuilder = getMultipartBuilder(ModBlocks.PALE_MOSS_CARPET.get());
+        carpetBuilder.part().modelFile(paleMossCarpetModel).addModel().condition(MossyCarpetBlock.BASE, true).end();
+
+        for (Direction dir : Direction.Plane.HORIZONTAL) {
+            EnumProperty<WallSide> prop = MossyCarpetBlock.getPropertyForFace(dir);
+            int yRot = (int) dir.getOpposite().toYRot();
+            carpetBuilder.part().modelFile(models().getExistingFile(mcLoc("block/pale_moss_carpet_side_small"))).rotationY(yRot).addModel()
+                    .condition(prop, WallSide.LOW).end();
+            carpetBuilder.part().modelFile(models().getExistingFile(mcLoc("block/pale_moss_carpet_side_tall"))).rotationY(yRot).addModel()
+                    .condition(prop, WallSide.TALL).end();
+        }
+
         itemModels().withExistingParent("pale_moss_carpet", mcLoc("block/pale_moss_carpet"));
 
         RotatedPillarBlock paleLog = ModBlocks.PALE_OAK_LOG.get();
@@ -198,7 +215,7 @@ public class MinecraftBackportBlockStateProvider extends ModBlockStateProvider {
                 .texture("side", mcLoc("block/creaking_heart_active"));
 
         getVariantBuilder(ModBlocks.CREAKING_HEART.get()).forAllStates(state -> {
-            boolean active = state.getValue(CreakingHeartBlock.ACTIVE);
+            boolean active = state.getValue(CreakingHeartBlock.STATE) != CreakingHeartState.UPROOTED;
             Direction.Axis axis = state.getValue(AXIS);
 
             ModelFile model;
@@ -221,6 +238,66 @@ public class MinecraftBackportBlockStateProvider extends ModBlockStateProvider {
                     .rotationY(yRot)
                     .build();
         });
+
+        // Spring to Life
+        simpleBlockWithItem(ModBlocks.BUSH.get(), models().cross("bush", mcLoc("block/bush")).renderType("cutout"));
+        simpleBlockWithItem(ModBlocks.FIREFLY_BUSH.get(), models().cross("firefly_bush", mcLoc("block/firefly_bush")).renderType("cutout"));
+
+        getVariantBuilder(ModBlocks.WILDFLOWERS.get()).forAllStates(state -> {
+            Direction facing = state.getValue(HORIZONTAL_FACING);
+            int amount = state.getValue(FLOWER_AMOUNT);
+            return ConfiguredModel.builder()
+                    .modelFile(models().withExistingParent("wildflowers_" + amount, mcLoc("block/flowerbed_" + amount))
+                            .texture("flowerbed", mcLoc("block/wildflowers"))
+                            .texture("stem", mcLoc("block/wildflowers_stem"))
+                            .renderType("cutout"))
+                    .rotationY((int) facing.toYRot())
+                    .build();
+        });
+        itemModels().withExistingParent("wildflowers", mcLoc("block/wildflowers_1"));
+
+        getVariantBuilder(ModBlocks.LEAF_LITTER.get()).forAllStates(state -> {
+            Direction facing = state.getValue(HORIZONTAL_FACING);
+            int amount = state.getValue(FLOWER_AMOUNT);
+            return ConfiguredModel.builder()
+                    .modelFile(models().withExistingParent("leaf_litter_" + amount, mcLoc("block/template_leaf_litter_" + amount))
+                            .texture("texture", mcLoc("block/leaf_litter"))
+                            .renderType("cutout"))
+                    .rotationY((int) facing.toYRot())
+                    .build();
+        });
+        itemModels().withExistingParent("leaf_litter", mcLoc("block/leaf_litter_1"));
+
+        getVariantBuilder(ModBlocks.DRIED_GHAST.get()).forAllStates(state -> {
+            Direction facing = state.getValue(HORIZONTAL_FACING);
+            int hydration = state.getValue(ModBlockStateProperties.HYDRATION_LEVEL);
+            String name = "dried_ghast_hydration_" + hydration;
+            return ConfiguredModel.builder()
+                    .modelFile(models().withExistingParent(name, mcLoc("block/dried_ghast"))
+                            .texture("bottom", mcLoc("block/dried_ghast_hydration_" + hydration + "_bottom"))
+                            .texture("east", mcLoc("block/dried_ghast_hydration_" + hydration + "_east"))
+                            .texture("north", mcLoc("block/dried_ghast_hydration_" + hydration + "_north"))
+                            .texture("south", mcLoc("block/dried_ghast_hydration_" + hydration + "_south"))
+                            .texture("tentacles", mcLoc("block/dried_ghast_hydration_" + hydration + "_tentacles"))
+                            .texture("top", mcLoc("block/dried_ghast_hydration_" + hydration + "_top"))
+                            .texture("west", mcLoc("block/dried_ghast_hydration_" + hydration + "_west"))
+                            .renderType("cutout"))
+                    .rotationY((int) facing.toYRot())
+                    .build();
+        });
+        itemModels().withExistingParent("dried_ghast", mcLoc("block/dried_ghast_hydration_0"));
+
+        simpleBlockWithItem(ModBlocks.CACTUS_FLOWER.get(), models().cross("cactus_flower", mcLoc("block/cactus_flower")).renderType("cutout"));
+        simpleBlockWithItem(ModBlocks.SHORT_DRY_GRASS.get(), models().cross("short_dry_grass", mcLoc("block/short_dry_grass")).renderType("cutout"));
+        simpleBlockWithItem(ModBlocks.TALL_DRY_GRASS.get(), models().cross("tall_dry_grass", mcLoc("block/tall_dry_grass")).renderType("cutout"));
+        
+        getVariantBuilder(ModBlocks.PALE_OAK_LEAVES.get()).partialState().addModels(
+                new ConfiguredModel(models().getExistingFile(mcLoc("block/pale_oak_leaves")), 0, 0, false, 1),
+                new ConfiguredModel(models().getExistingFile(mcLoc("block/pale_oak_leaves1")), 0, 0, false, 1),
+                new ConfiguredModel(models().getExistingFile(mcLoc("block/pale_oak_leaves2")), 0, 0, false, 1),
+                new ConfiguredModel(models().getExistingFile(mcLoc("block/pale_oak_leaves3")), 0, 0, false, 1),
+                new ConfiguredModel(models().getExistingFile(mcLoc("block/pale_oak_leaves4")), 0, 0, false, 1)
+        );
     }
 
     private ModelFile resinClumpModel() {

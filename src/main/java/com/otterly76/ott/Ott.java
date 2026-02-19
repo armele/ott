@@ -12,17 +12,28 @@ import com.otterly76.ott.event.LoadCompleteCallback;
 import com.otterly76.ott.event.ModEventBusEvents;
 import com.otterly76.ott.event.ToolEventHandler;
 import com.otterly76.ott.generation.*;
+import com.otterly76.ott.entity.vehicle.PaleOakBoatDispenseBehavior;
+import com.otterly76.ott.entity.variant.WolfSoundVariantReloadListener;
+import com.otterly76.ott.entity.variant.SpawnConditions;
 import com.otterly76.ott.inventory.ModMenuTypes;
+import com.otterly76.ott.handler.CreativeTabHandler;
 import com.otterly76.ott.item.ModItems;
 import com.otterly76.ott.loot.ModLootModifiers;
 import com.otterly76.ott.mixin.common.AccessorItem;
 import com.otterly76.ott.network.NetworkHandler;
 import com.otterly76.ott.particle.ModParticle;
+import com.otterly76.ott.registry.ModArmorMaterials;
+import com.otterly76.ott.registry.ModDataComponents;
+import com.otterly76.ott.registry.ModJukeboxSongs;
+import com.otterly76.ott.registry.ModRecipeSerializers;
+import com.otterly76.ott.registry.ModSensorTypes;
 import com.otterly76.ott.registry.OttBuiltInRegistries;
 import com.otterly76.ott.sound.ModSounds;
-import com.otterly76.ott.util.DynamicPackResources;
-import com.otterly76.ott.util.LanternSavedData;
-import com.otterly76.ott.util.PackResourcesHelper;
+import com.otterly76.ott.util.data.DynamicPackResources;
+import com.otterly76.ott.util.lantern.DamageLanternSavedData;
+import com.otterly76.ott.util.lantern.FluidLanternSavedData;
+import com.otterly76.ott.util.lantern.LanternSavedData;
+import com.otterly76.ott.util.data.PackResourcesHelper;
 import com.otterly76.ott.worldgen.ModFeatures;
 import com.otterly76.ott.worldgen.ModPlacedFeatures;
 import com.otterly76.ott.worldgen.ModTreeDecoratorTypes;
@@ -41,6 +52,8 @@ import com.otterly76.ott.worldgen.densityfunction.MergedDensityFunction;
 import com.otterly76.ott.worldgen.densityfunction.OriginalMarkerDensityFunction;
 import com.otterly76.ott.worldgen.densityfunction.WrappedMarkerDensityFunction;
 import com.otterly76.ott.worldgen.feature.*;
+import com.otterly76.ott.platform.core.events.ResourceReloadManager;
+import com.otterly76.ott.resource.*;
 import com.otterly76.ott.worldgen.modifier.*;
 import com.otterly76.ott.worldgen.modifier.internal.CompileRawTemplatesModifier;
 import com.otterly76.ott.worldgen.placementcondition.*;
@@ -86,6 +99,7 @@ import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.CreativeModeTabs;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.Level;
@@ -140,6 +154,8 @@ public class Ott {
 
     public Ott(IEventBus modEventBus) {
         OttBuiltInRegistries.init(modEventBus);
+        OttBuiltInRegistries.bootstrap();
+        setup();
 
 
         ConfigHandler.load(FMLPaths.CONFIGDIR.get().resolve("ott.json"));
@@ -151,10 +167,16 @@ public class Ott {
         modEventBus.addListener(this::commonSetup);
         ModBlocks.register(modEventBus);
         ModBlockEntities.register(modEventBus);
+        ModDataComponents.register(modEventBus);
+        ModArmorMaterials.register(modEventBus);
+        ModJukeboxSongs.register(modEventBus);
         ModItems.register(modEventBus);
+        SpawnConditions.register(modEventBus);
         ModSounds.register(modEventBus);
         ModParticle.register(modEventBus);
         ModEntities.register(modEventBus);
+        ModSensorTypes.register(modEventBus);
+        ModRecipeSerializers.register(modEventBus);
         ModLootModifiers.register(modEventBus);
         ModTreeDecoratorTypes.register(modEventBus);
         ModWorldGenModifiers.register(modEventBus);
@@ -180,7 +202,23 @@ public class Ott {
         LoadCompleteCallback.fire();
     }
 
+    private void setup() {
+        ResourceReloadManager.registerServer((event) -> {
+            event.register(Ott.resource("cow_variants"), new CowVariantReloadListener());
+            event.register(Ott.resource("chicken_variants"), new ChickenVariantReloadListener());
+            event.register(Ott.resource("pig_variants"), new PigVariantReloadListener());
+            event.register(Ott.resource("wolf_variants"), new WolfVariantReloadListener());
+            event.register(Ott.resource("frog_variants"), new FrogVariantReloadListener());
+            event.register(Ott.resource("cat_variants"), new CatVariantReloadListener());
+            event.register(Ott.resource("wolf_sound_variants"), WolfSoundVariantReloadListener.INSTANCE);
+        });
+    }
+
     private void commonEventSetup(FMLCommonSetupEvent event) {
+        event.enqueueWork(() -> {
+            DispenserBlock.registerBehavior(ModItems.PALE_OAK_BOAT.get(), new PaleOakBoatDispenseBehavior(false));
+            DispenserBlock.registerBehavior(ModItems.PALE_OAK_CHEST_BOAT.get(), new PaleOakBoatDispenseBehavior(true));
+        });
         NeoForge.EVENT_BUS.register(HarvestEventHandler.class);
         NeoForge.EVENT_BUS.register(ToolEventHandler.class);
     }
@@ -350,10 +388,10 @@ public class Ott {
     private void dataGeneratorSetup(final GatherDataEvent event) {
         final DataGenerator generator = event.getGenerator();
 
-        generator.addProvider(event.includeClient(), new GradientBlockProvider(generator.getPackOutput(), event.getExistingFileHelper()));
+        generator.addProvider(event.includeClient(), new GradientTextureProvider(generator.getPackOutput(), event.getExistingFileHelper()));
+        generator.addProvider(event.includeClient(), new OttBlockStateProvider(generator.getPackOutput(), event.getExistingFileHelper()));
         generator.addProvider(event.includeClient(), new MinecraftBackportBlockStateProvider(generator.getPackOutput(), event.getExistingFileHelper()));
         generator.addProvider(event.includeClient(), new MinecraftBackportItemModelProvider(generator.getPackOutput(), event.getExistingFileHelper()));
-        generator.addProvider(event.includeClient(), new OttWoodSetBlockStateProvider(generator.getPackOutput(), event.getExistingFileHelper()));
         generator.addProvider(event.includeClient(), new DynamicModelProvider(new DataProviderContext(Constants.MOD_ID, generator.getPackOutput(), event.getLookupProvider())));
         generator.addProvider(event.includeServer(), new LootTableProvider(generator.getPackOutput(), Collections.emptySet(), List.of(new LootTableProvider.SubProviderEntry(OttLootTableProvider::new, LootContextParamSets.BLOCK)), event.getLookupProvider()));
         ModBlockTagProvider blockTagProvider = new ModBlockTagProvider(generator.getPackOutput(), event.getLookupProvider(), event.getExistingFileHelper());
@@ -365,12 +403,7 @@ public class Ott {
         generator.addProvider(event.includeServer(), new ModRecipeProvider(generator.getPackOutput(), event.getLookupProvider()));
         generator.addProvider(event.includeServer(), new ModBiomeTagProvider(generator.getPackOutput(), event.getLookupProvider(), MOD_ID, event.getExistingFileHelper()));
 
-        generator.addProvider(event.includeServer(), new DatapackBuiltinEntriesProvider(
-                generator.getPackOutput(),
-                event.getLookupProvider(),
-                BUILDER,
-                Set.of(MOD_ID)
-        ));
+        generator.addProvider(event.includeServer(), new OttWorldGenProvider(generator.getPackOutput(), event.getLookupProvider()));
 
         if (event.includeClient()) {
             generator.addProvider(true, new ModItemModelProvider(generator.getPackOutput(), event.getExistingFileHelper()));
@@ -457,138 +490,14 @@ public class Ott {
     }
 
     private void addCreative(BuildCreativeModeTabContentsEvent event) {
-
-        if (event.getTabKey() == CreativeModeTabs.COMBAT) {
-            event.accept(ModItems.TORCH_ARROW, CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
-        }
-
-        if (event.getTabKey() == CreativeModeTabs.SPAWN_EGGS) {
-            event.accept(ModItems.CREAKING_SPAWN_EGG, CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
-            event.accept(ModItems.TINY_SKELETON_SPAWN_EGG, CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
-            event.accept(ModItems.TINY_CREEPER_SPAWN_EGG, CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
-            event.accept(ModItems.TINY_ENDERMAN_SPAWN_EGG, CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
-            event.accept(ModItems.TINY_BOGGED_SPAWN_EGG, CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
-            event.accept(ModItems.TINY_DROWNED_SPAWN_EGG, CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
-            event.accept(ModItems.TINY_HUSK_SPAWN_EGG, CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
-            event.accept(ModItems.TINY_STRAY_SPAWN_EGG, CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
-            event.accept(ModItems.TINY_WITHER_SKELETON_SPAWN_EGG, CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
-        }
-
-        if (event.getTabKey() == CreativeModeTabs.BUILDING_BLOCKS) {
-            event.accept(ModBlocks.RESIN_CLUMP, CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
-            event.accept(ModBlocks.RESIN_BLOCK, CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
-            event.accept(ModBlocks.RESIN_BRICKS, CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
-            event.accept(ModBlocks.RESIN_BRICK_STAIRS, CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
-            event.accept(ModBlocks.RESIN_BRICK_SLAB, CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
-            event.accept(ModBlocks.RESIN_BRICK_WALL, CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
-            event.accept(ModBlocks.CHISELED_RESIN_BRICKS, CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
-
-            event.accept(ModBlocks.PALE_OAK_PLANKS, CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
-            event.accept(ModBlocks.PALE_OAK_LOG, CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
-            event.accept(ModBlocks.PALE_OAK_WOOD, CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
-            event.accept(ModBlocks.STRIPPED_PALE_OAK_LOG, CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
-            event.accept(ModBlocks.STRIPPED_PALE_OAK_WOOD, CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
-
-            event.accept(ModBlocks.CREAKING_HEART, CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
-
-            event.accept(ModBlocks.PALE_OAK_STAIRS, CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
-            event.accept(ModBlocks.PALE_OAK_SLAB, CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
-            event.accept(ModBlocks.PALE_OAK_FENCE, CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
-
-            ModBlocks.WOOD_SETS.values().forEach(set -> {
-                event.accept(set.planks(), CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
-                event.accept(set.log(), CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
-                event.accept(set.wood(), CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
-                event.accept(set.strippedLog(), CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
-                event.accept(set.strippedWood(), CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
-
-                event.accept(set.stairs(), CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
-                event.accept(set.slab(), CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
-                event.accept(set.fence(), CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
-            });
-        }
-
-        if (event.getTabKey() == CreativeModeTabs.NATURAL_BLOCKS) {
-            event.accept(ModBlocks.PALE_OAK_SAPLING, CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
-            event.accept(ModBlocks.PALE_OAK_LEAVES, CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
-            event.accept(ModBlocks.PALE_MOSS_CARPET, CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
-            event.accept(ModBlocks.PALE_HANGING_MOSS, CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
-            event.accept(ModBlocks.OPEN_EYEBLOSSOM, CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
-            event.accept(ModBlocks.CLOSED_EYEBLOSSOM, CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
-
-            event.accept(ModBlocks.STARLIGHT_SAPLING, CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
-            event.accept(ModBlocks.MIDNIGHT_SAPLING, CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
-
-            ModBlocks.PARTICLE_HEDGES.values().forEach(b ->
-                    event.accept(b, CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS)
-            );
-            ModBlocks.CREEPING_HEDGES.values().forEach(b ->
-                    event.accept(b, CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS)
-            );
-
-            ModBlocks.WOOD_SETS.values().forEach(set -> {
-                        event.accept(set.leaves(), CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
-                    }
-            );
-        }
-
-        if (event.getTabKey() == CreativeModeTabs.FUNCTIONAL_BLOCKS) {
-            event.accept(ModItems.PALE_OAK_SIGN, CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
-            event.accept(ModItems.PALE_OAK_HANGING_SIGN, CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
-
-            ModBlocks.WOOD_SETS.keySet().forEach(setName -> {
-                event.accept(ModItems.WOOD_SET_SIGNS.get(setName), CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
-                event.accept(ModItems.WOOD_SET_HANGING_SIGNS.get(setName), CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
-            });
-
-            event.accept(ModBlocks.PROTECTIVE_LANTERN, CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
-        }
-
-        if (event.getTabKey() == CreativeModeTabs.TOOLS_AND_UTILITIES) {
-            event.accept(ModItems.PALE_OAK_BOAT, CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
-            event.accept(ModItems.PALE_OAK_CHEST_BOAT, CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
-
-            ModBlocks.WOOD_SETS.keySet().forEach(setName -> {
-                event.accept(ModItems.WOOD_SET_BOATS.get(setName), CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
-                event.accept(ModItems.WOOD_SET_CHEST_BOATS.get(setName), CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
-            });
-        }
-
-        if (event.getTabKey() == CreativeModeTabs.REDSTONE_BLOCKS) {
-            event.accept(ModBlocks.PALE_OAK_PRESSURE_PLATE, CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
-            event.accept(ModBlocks.PALE_OAK_BUTTON, CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
-            event.accept(ModBlocks.PALE_OAK_DOOR, CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
-            event.accept(ModBlocks.PALE_OAK_TRAPDOOR, CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
-            event.accept(ModBlocks.PALE_OAK_FENCE_GATE, CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
-
-            ModBlocks.WOOD_SETS.values().forEach(set -> {
-                event.accept(set.pressurePlate(), CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
-                event.accept(set.button(), CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
-                event.accept(set.door(), CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
-                event.accept(set.trapdoor(), CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
-                event.accept(set.fenceGate(), CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
-            });
-        }
-
-        if (event.getTabKey() == CreativeModeTabs.SEARCH) {
-            event.insertAfter(
-                    new net.minecraft.world.item.ItemStack(ModBlocks.RESIN_CLUMP),
-                    new net.minecraft.world.item.ItemStack((ItemLike) ModItems.RESIN_BRICK),
-                    CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS
-            );
-        }
-
-        if (event.getTabKey() == CreativeModeTabs.INGREDIENTS) {
-            event.accept(ModItems.TINY_COAL);
-            event.accept(ModItems.TINY_CHARCOAL);
-        }
+        CreativeTabHandler.onBuildContents(event);
     }
 
     @SubscribeEvent
     public void onServerStarting(ServerStartingEvent event){
         LanternSavedData.init(event.getServer().overworld());
-        com.otterly76.ott.util.FluidLanternSavedData.init(event.getServer().overworld());
-        com.otterly76.ott.util.DamageLanternSavedData.init(event.getServer().overworld());
+        FluidLanternSavedData.init(event.getServer().overworld());
+        DamageLanternSavedData.init(event.getServer().overworld());
         ConfigHandler.initHarvest();
     }
 

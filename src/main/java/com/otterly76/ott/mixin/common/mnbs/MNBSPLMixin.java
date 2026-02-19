@@ -4,7 +4,7 @@ import com.mojang.datafixers.kinds.App;
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 import com.otterly76.ott.duck.mnbs.MNBSPL;
-import com.otterly76.ott.util.CodecExtender;
+import com.otterly76.ott.util.data.CodecExtender;
 import net.minecraft.core.Holder;
 import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.level.biome.Climate;

@@ -24,7 +24,7 @@ public class MinecraftBackportItemModelProvider extends ItemModelProvider {
             Block block = deferredBlock.get();
 
             // EXCLUSIONS
-            if (path.equals("pale_oak_sapling") || path.equals("potted_pale_oak_sapling")) {
+            if (path.equals("wildflowers") || path.equals("leaf_litter") || path.equals("dried_ghast") || path.equals("pale_oak_sapling") || path.equals("potted_pale_oak_sapling")) {
                 return;
             }
             if (path.endsWith("_wall_sign") || path.endsWith("_wall_hanging_sign")) {
@@ -67,6 +67,19 @@ public class MinecraftBackportItemModelProvider extends ItemModelProvider {
         });
 
         generatedItem(ModItems.RESIN_BRICK.getId().getPath());
+        generatedItem(ModItems.MUSIC_DISC_TEARS.getId().getPath());
+        generatedItem(ModItems.MUSIC_DISC_LAVA_CHICKEN.getId().getPath());
+        generatedItem(ModItems.BLUE_EGG.getId().getPath());
+        generatedItem(ModItems.BROWN_EGG.getId().getPath());
+
+        spawnEggItem(ModItems.CREAKING_SPAWN_EGG.getId().getPath());
+        spawnEggItem(ModItems.HAPPY_GHAST_SPAWN_EGG.getId().getPath());
+
+        ModItems.HARNESSES.values().forEach(item -> generatedItem(item.getId().getPath()));
+    }
+
+    private void spawnEggItem(String name) {
+        withExistingParent(name, mcLoc("item/template_spawn_egg"));
     }
 
     private void doorItemFromTextures(String doorItemName) {

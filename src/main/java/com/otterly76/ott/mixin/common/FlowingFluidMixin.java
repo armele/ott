@@ -1,6 +1,6 @@
 package com.otterly76.ott.mixin.common;
 
-import com.otterly76.ott.util.FluidLanternManager;
+import com.otterly76.ott.util.lantern.FluidLanternManager;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.world.level.BlockGetter;

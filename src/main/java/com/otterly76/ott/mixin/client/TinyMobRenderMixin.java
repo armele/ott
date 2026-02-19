@@ -2,7 +2,7 @@ package com.otterly76.ott.mixin.client;
 
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.otterly76.ott.entity.tiny.*;
-import com.otterly76.ott.util.TinyMobRenderState;
+import com.otterly76.ott.util.entity.TinyMobRenderState;
 import net.minecraft.client.model.EntityModel;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.entity.LivingEntityRenderer;

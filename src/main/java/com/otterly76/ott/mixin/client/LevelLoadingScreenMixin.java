@@ -1,6 +1,6 @@
 package com.otterly76.ott.mixin.client;
 
-import com.otterly76.ott.util.LoadingTipManager;
+import com.otterly76.ott.util.gui.LoadingTipManager;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.screens.LevelLoadingScreen;
 import net.minecraft.client.gui.screens.Screen;

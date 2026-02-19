@@ -7,7 +7,7 @@ import com.otterly76.ott.client.gui.components.FormattingGuideWidget;
 import com.otterly76.ott.config.OttConfig;
 import com.otterly76.ott.mixin.client.AnvilScreenAccessor;
 import com.otterly76.ott.network.C2SRenameItemMessage;
-import com.otterly76.ott.util.ComponentDecomposer;
+import com.otterly76.ott.util.data.ComponentDecomposer;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.components.EditBox;

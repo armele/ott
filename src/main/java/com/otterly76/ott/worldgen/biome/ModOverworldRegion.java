@@ -31,6 +31,16 @@ public class ModOverworldRegion extends Region {
                 .depth(Depth.SURFACE)
                 .weirdness(Weirdness.MID_SLICE_NORMAL_ASCENDING, Weirdness.MID_SLICE_NORMAL_DESCENDING)
                 .build().forEach((point) -> builder.add(point, VERDANT_FOREST));
+
+        (new ParameterUtils.ParameterPointListBuilder())
+                .temperature(Temperature.COOL)
+                .humidity(Humidity.ARID)
+                .continentalness(Continentalness.INLAND)
+                .erosion(Erosion.EROSION_0, Erosion.EROSION_1)
+                .depth(Depth.SURFACE)
+                .weirdness(Weirdness.MID_SLICE_NORMAL_ASCENDING, Weirdness.MID_SLICE_NORMAL_DESCENDING)
+                .build().forEach((point) -> builder.add(point, ModBiomes.PALE_GARDEN));
+
         builder.build().forEach(mapper);
     }
 

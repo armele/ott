@@ -2,7 +2,7 @@ package com.otterly76.ott.event;
 
 import com.otterly76.ott.Constants;
 import com.otterly76.ott.OttDamageTypes;
-import com.otterly76.ott.util.DamageLanternManager;
+import com.otterly76.ott.util.lantern.DamageLanternManager;
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.entity.Mob;

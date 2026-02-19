@@ -6,22 +6,16 @@ import net.minecraft.core.registries.Registries;
 import net.minecraft.data.worldgen.BootstrapContext;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.level.levelgen.placement.PlacedFeature;
-import net.minecraft.world.level.levelgen.placement.PlacementModifierType;
+import net.minecraft.world.level.levelgen.placement.*;
 import net.neoforged.neoforge.registries.DeferredRegister;
 
 import java.util.function.Supplier;
 
 public class ModPlacedFeatures {
-    public static final ResourceKey<PlacedFeature> FLOWER_PALE_GARDEN = registerKey("minecraft", "flower_pale_garden");
-    public static final ResourceKey<PlacedFeature> PALE_GARDEN_VEGETATION = registerKey("minecraft", "pale_garden_vegetation");
-    public static final ResourceKey<PlacedFeature> PALE_GARDEN_FLOWERS = registerKey("minecraft", "pale_garden_flowers");
-    public static final ResourceKey<PlacedFeature> PALE_MOSS_PATCH = registerKey("minecraft", "pale_moss_patch");
-    public static final ResourceKey<PlacedFeature> PALE_OAK_CHECKED = registerKey("minecraft", "pale_oak_checked");
-    public static final ResourceKey<PlacedFeature> PALE_OAK_CREAKING_CHECKED = registerKey("minecraft", "pale_oak_creaking_checked");
     public static final ResourceKey<PlacedFeature> VERDANT_FOREST_AZALEA = registerKey(Constants.MOD_ID, "verdant_forest_azalea");
     public static final ResourceKey<PlacedFeature> GIANT_HOLLOW_ROOT_ARCH = registerKey(Constants.MOD_ID, "giant_hollow_root_arch");
     public static final ResourceKey<PlacedFeature> GIANT_HOLLOW_ROOT_SPIKE = registerKey(Constants.MOD_ID, "giant_hollow_root_spike");
+
 
     public static void bootstrap(BootstrapContext<PlacedFeature> context) {
     }
