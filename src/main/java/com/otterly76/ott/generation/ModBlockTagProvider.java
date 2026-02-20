@@ -80,10 +80,6 @@ public class ModBlockTagProvider extends BlockTagsProvider {
         this.tag(ModTags.Blocks.ALLOWS_LEAF_LITTER).add(ModBlocks.PALE_OAK_LEAVES.get());
         this.tag(ModTags.Blocks.SPAWN_FALLING_LEAVES).add(ModBlocks.PALE_OAK_LEAVES.get());
         this.tag(ModTags.Blocks.CAMELS_SPAWNABLE_ON).add(Blocks.SAND, Blocks.RED_SAND);
-        this.tag(ModTags.Blocks.INCORRECT_FOR_COPPER_TOOL).addTag(BlockTags.INCORRECT_FOR_STONE_TOOL);
-        this.tag(ModTags.Blocks.COPPER_GOLEM_STATUES).add(ModBlocks.RESIN_BLOCK.get()); // Placeholder if no copper golem block
-        this.tag(ModTags.Blocks.COPPER_CHESTS).add(ModBlocks.RESIN_BLOCK.get()); // Placeholder
-        this.tag(ModTags.Blocks.COPPER).add(Blocks.COPPER_BLOCK, Blocks.CUT_COPPER, Blocks.EXPOSED_COPPER, Blocks.WEATHERED_COPPER, Blocks.OXIDIZED_COPPER);
 
         this.tag(ModTags.Blocks.PATHS).add(Blocks.DIRT_PATH).addTag(com.minecolonies.api.items.ModTags.pathingBlocks);
         this.tag(ModTags.Blocks.STONE)

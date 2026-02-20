@@ -119,6 +119,24 @@ public class CreativeTabHandler {
             event.insertAfter(Items.HONEY_BLOCK.getDefaultInstance(), new ItemStack(ModBlocks.RESIN_BLOCK.get()), visibility);
         }
 
+        if (event.getTabKey() == CreativeModeTabs.BUILDING_BLOCKS) {
+            // Find oxidized copper bulb as target for copper building blocks
+            ItemLike lastTarget = Items.OXIDIZED_COPPER_BULB;
+
+            for (DeferredBlock<Block> block : ModBlocks.COPPER_BARS.values()) {
+                event.insertAfter(new ItemStack(lastTarget), new ItemStack(block.get()), visibility);
+                lastTarget = block.get();
+            }
+            for (DeferredBlock<Block> block : ModBlocks.COPPER_CHAINS.values()) {
+                event.insertAfter(new ItemStack(lastTarget), new ItemStack(block.get()), visibility);
+                lastTarget = block.get();
+            }
+            for (DeferredBlock<Block> block : ModBlocks.COPPER_BUTTONS.values()) {
+                event.insertAfter(new ItemStack(lastTarget), new ItemStack(block.get()), visibility);
+                lastTarget = block.get();
+            }
+        }
+
         if (event.getTabKey() == CreativeModeTabs.FUNCTIONAL_BLOCKS) {
             ItemLike lastTarget = Items.CHERRY_HANGING_SIGN;
 
@@ -135,6 +153,51 @@ public class CreativeTabHandler {
                 lastTarget = sign;
                 event.insertAfter(new ItemStack(lastTarget), new ItemStack(hangingSign), visibility);
                 lastTarget = hangingSign;
+            }
+
+            // Copper Functional Blocks
+            lastTarget = Items.LANTERN;
+            for (DeferredBlock<Block> block : ModBlocks.COPPER_LANTERNS.values()) {
+                event.insertAfter(new ItemStack(lastTarget), new ItemStack(block.get()), visibility);
+                lastTarget = block.get();
+            }
+
+            lastTarget = Items.CHEST;
+            event.insertAfter(new ItemStack(lastTarget), new ItemStack(ModBlocks.COPPER_CHEST.get()), visibility);
+            lastTarget = ModBlocks.COPPER_CHEST.get();
+            event.insertAfter(new ItemStack(lastTarget), new ItemStack(ModBlocks.EXPOSED_COPPER_CHEST.get()), visibility);
+            lastTarget = ModBlocks.EXPOSED_COPPER_CHEST.get();
+            event.insertAfter(new ItemStack(lastTarget), new ItemStack(ModBlocks.WEATHERED_COPPER_CHEST.get()), visibility);
+            lastTarget = ModBlocks.WEATHERED_COPPER_CHEST.get();
+            event.insertAfter(new ItemStack(lastTarget), new ItemStack(ModBlocks.OXIDIZED_COPPER_CHEST.get()), visibility);
+            lastTarget = ModBlocks.OXIDIZED_COPPER_CHEST.get();
+
+            event.insertAfter(new ItemStack(lastTarget), new ItemStack(ModBlocks.WAXED_COPPER_CHEST.get()), visibility);
+            lastTarget = ModBlocks.WAXED_COPPER_CHEST.get();
+            event.insertAfter(new ItemStack(lastTarget), new ItemStack(ModBlocks.WAXED_EXPOSED_COPPER_CHEST.get()), visibility);
+            lastTarget = ModBlocks.WAXED_EXPOSED_COPPER_CHEST.get();
+            event.insertAfter(new ItemStack(lastTarget), new ItemStack(ModBlocks.WAXED_WEATHERED_COPPER_CHEST.get()), visibility);
+            lastTarget = ModBlocks.WAXED_WEATHERED_COPPER_CHEST.get();
+            event.insertAfter(new ItemStack(lastTarget), new ItemStack(ModBlocks.WAXED_OXIDIZED_COPPER_CHEST.get()), visibility);
+
+            lastTarget = Items.LIGHTNING_ROD;
+            for (DeferredBlock<Block> block : ModBlocks.LIGHTNING_RODS.values()) {
+                event.insertAfter(new ItemStack(lastTarget), new ItemStack(block.get()), visibility);
+                lastTarget = block.get();
+            }
+
+            for (DeferredBlock<com.otterly76.ott.block.custom.CopperGolemStatueBlock> block : ModBlocks.COPPER_GOLEM_STATUES) {
+                event.insertAfter(new ItemStack(lastTarget), new ItemStack(block.get()), visibility);
+                lastTarget = block.get();
+            }
+
+            lastTarget = Items.SOUL_TORCH; // After soul torch
+            event.insertAfter(new ItemStack(lastTarget), new ItemStack(ModBlocks.COPPER_TORCH.get()), visibility);
+
+            lastTarget = Items.CHISELED_BOOKSHELF;
+            for (DeferredBlock<com.otterly76.ott.block.shelf.ShelfBlock> block : ModBlocks.SHELVES) {
+                event.insertAfter(new ItemStack(lastTarget), new ItemStack(block.get()), visibility);
+                lastTarget = block.get();
             }
         }
 
@@ -193,6 +256,10 @@ public class CreativeTabHandler {
                 event.accept(set.trapdoor(), visibility);
                 event.accept(set.fenceGate(), visibility);
             });
+
+            for (DeferredBlock<Block> block : ModBlocks.COPPER_BUTTONS.values()) {
+                event.accept(block.get(), visibility);
+            }
         }
 
 
@@ -238,6 +305,8 @@ public class CreativeTabHandler {
             event.accept(ModItems.TINY_HUSK_SPAWN_EGG);
             event.accept(ModItems.TINY_STRAY_SPAWN_EGG);
             event.accept(ModItems.TINY_WITHER_SKELETON_SPAWN_EGG);
+
+            event.accept(ModItems.COPPER_GOLEM_SPAWN_EGG);
         }
     }
 

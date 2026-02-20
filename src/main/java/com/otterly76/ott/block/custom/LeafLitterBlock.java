@@ -24,6 +24,7 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.function.BiFunction;
 
+@SuppressWarnings("DuplicatedCode")
 public class LeafLitterBlock extends BushBlock {
     public static final MapCodec<LeafLitterBlock> CODEC = simpleCodec(LeafLitterBlock::new);
     public static final DirectionProperty FACING = BlockStateProperties.HORIZONTAL_FACING;

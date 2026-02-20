@@ -19,10 +19,11 @@ public class ModTags {
         public static final TagKey<Block> SPAWN_FALLING_LEAVES = mcTag("spawn_falling_leaves");
         public static final TagKey<Block> SPAWN_FALLING_NEEDLES = mcTag("spawn_falling_needles");
         public static final TagKey<Block> CAMELS_SPAWNABLE_ON = mcTag("camel_spawnable_on");
+
         public static final TagKey<Block> INCORRECT_FOR_COPPER_TOOL = mcTag("incorrect_for_copper_tool");
-        public static final TagKey<Block> COPPER_GOLEM_STATUES = mcTag("copper_golem_statues");
+        public static final TagKey<Block> COPPER_GOLEM_SPAWN_BLOCKS = mcTag("copper_golem_spawn_blocks");
         public static final TagKey<Block> COPPER_CHESTS = mcTag("copper_chests");
-        public static final TagKey<Block> COPPER = mcTag("copper");
+        public static final TagKey<Block> WOODEN_SHELVES = mcTag("wooden_shelves");
 
         public static final TagKey<Block> STONE = mcTag("stone");
         public static final TagKey<Block> PATHS = createTag("paths");

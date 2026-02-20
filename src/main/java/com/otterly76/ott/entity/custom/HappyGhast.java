@@ -46,6 +46,7 @@ import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.levelgen.Heightmap;
 import net.minecraft.world.level.material.FluidState;
+import net.minecraft.world.level.gameevent.GameEvent;
 import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.Vec2;
 import net.minecraft.world.phys.Vec3;
@@ -69,6 +70,17 @@ public class HappyGhast extends Animal implements LeashExtension, PlayerRideable
         super(entityType, level);
         this.moveControl = new GhastMoveControl(this, true, this::isOnStillTimeout);
         this.lookControl = new HappyGhastLookControl();
+        this.setNoGravity(true);
+    }
+
+    @Override
+    public void setBaby(boolean baby) {
+        super.setBaby(baby);
+        if (baby) {
+            this.babyGhastSetup();
+        } else {
+            this.adultGhastSetup();
+        }
     }
 
     @Override
@@ -81,7 +93,7 @@ public class HappyGhast extends Animal implements LeashExtension, PlayerRideable
     public static AttributeSupplier.Builder createAttributes() {
         return Animal.createLivingAttributes()
                 .add(Attributes.MAX_HEALTH, 20.0)
-                .add(Attributes.FLYING_SPEED, 0.05)
+                .add(Attributes.FLYING_SPEED, 0.1)
                 .add(Attributes.MOVEMENT_SPEED, 0.05)
                 .add(Attributes.FOLLOW_RANGE, 16.0);
     }
@@ -130,7 +142,10 @@ public class HappyGhast extends Animal implements LeashExtension, PlayerRideable
         this.lookControl = new LookControl(this);
         this.navigation = this.createBabyNavigation(this.level());
         this.setServerStillTimeout(0);
-        this.goalSelector.getAvailableGoals().removeIf(goal -> true);
+        if (this.level() instanceof ServerLevel) {
+            this.goalSelector.getAvailableGoals().removeIf(goal -> true);
+            this.registerGoals();
+        }
     }
 
     @Override
@@ -148,6 +163,9 @@ public class HappyGhast extends Animal implements LeashExtension, PlayerRideable
         if (this.isOnStillTimeout()) {
             this.setDeltaMovement(Vec3.ZERO);
         } else {
+            if (this.isControlledByLocalInstance() && this.jumping && (this.isInWater() || this.isInLava())) {
+                this.setDeltaMovement(this.getDeltaMovement().add(0, 0.04, 0));
+            }
             float speed = (float)this.getAttributeValue(Attributes.FLYING_SPEED) * 5.0F / 3.0F;
             if (this.isControlledByLocalInstance()) {
                 if (this.isInWater()) {
@@ -236,10 +254,21 @@ public class HappyGhast extends Animal implements LeashExtension, PlayerRideable
 
     @Override
     public @NotNull InteractionResult mobInteract(@NotNull Player player, @NotNull InteractionHand hand) {
+        ItemStack stack = player.getItemInHand(hand);
         if (this.isBaby()) {
+            if (stack.is(Items.SNOWBALL) || this.isFood(stack)) {
+                if (!this.level().isClientSide) {
+                    this.ageUp((int)((float)(-this.getAge() / 20) * 0.1F), true);
+                    if (!player.getAbilities().instabuild) {
+                        stack.shrink(1);
+                    }
+                    this.gameEvent(GameEvent.ENTITY_INTERACT, player);
+                    this.level().broadcastEntityEvent(this, (byte) 18);
+                }
+                return InteractionResult.sidedSuccess(this.level().isClientSide);
+            }
             return super.mobInteract(player, hand);
         } else {
-            ItemStack stack = player.getItemInHand(hand);
             if (!stack.isEmpty()) {
                 InteractionResult result = stack.interactLivingEntity(player, this, hand);
                 if (result.consumesAction()) {

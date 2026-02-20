@@ -22,15 +22,15 @@ public class ModArmorMaterials {
     public static final DeferredHolder<ArmorMaterial, ArmorMaterial> COPPER = ARMOR_MATERIALS.register("copper", () -> new ArmorMaterial(
             Util.make(new EnumMap<>(ArmorItem.Type.class), map -> {
                 map.put(ArmorItem.Type.BOOTS, 1);
-                map.put(ArmorItem.Type.LEGGINGS, 3);
-                map.put(ArmorItem.Type.CHESTPLATE, 4);
+                map.put(ArmorItem.Type.LEGGINGS, 4);
+                map.put(ArmorItem.Type.CHESTPLATE, 5);
                 map.put(ArmorItem.Type.HELMET, 2);
                 map.put(ArmorItem.Type.BODY, 4);
             }),
-            8,
+            9,
             SoundEvents.ARMOR_EQUIP_IRON,
             () -> Ingredient.of(Items.COPPER_INGOT),
-            List.of(new ArmorMaterial.Layer(ResourceLocation.withDefaultNamespace("copper"))),
+            List.of(new ArmorMaterial.Layer(ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, "copper"))),
             0.0F,
             0.0F
     ));

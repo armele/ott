@@ -1,7 +1,9 @@
 package com.otterly76.ott.block.entity;
 
 import com.otterly76.ott.block.ModBlocks;
+import com.otterly76.ott.block.shelf.ShelfBlockEntity;
 import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.entity.SignBlockEntity;
 import net.neoforged.bus.api.IEventBus;
@@ -27,6 +29,19 @@ public class ModBlockEntities {
 
     public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<AnvilBlockEntity>> ANVIL_BLOCK_ENTITY_TYPE =
             BLOCK_ENTITIES.register("anvil", () -> BlockEntityType.Builder.of(AnvilBlockEntity::new).build(null));
+
+    public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<CopperChestBlockEntity>> COPPER_CHEST =
+            BLOCK_ENTITIES.register("copper_chest", () -> BlockEntityType.Builder.of(CopperChestBlockEntity::new,
+                    ModBlocks.COPPER_CHEST.get(), ModBlocks.EXPOSED_COPPER_CHEST.get(), ModBlocks.WEATHERED_COPPER_CHEST.get(), ModBlocks.OXIDIZED_COPPER_CHEST.get(),
+                    ModBlocks.WAXED_COPPER_CHEST.get(), ModBlocks.WAXED_EXPOSED_COPPER_CHEST.get(), ModBlocks.WAXED_WEATHERED_COPPER_CHEST.get(), ModBlocks.WAXED_OXIDIZED_COPPER_CHEST.get()).build(null));
+
+    public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<ShelfBlockEntity>> SHELF =
+            BLOCK_ENTITIES.register("shelf", () -> BlockEntityType.Builder.of(ShelfBlockEntity::new,
+                    ModBlocks.SHELVES.stream().map(net.neoforged.neoforge.registries.DeferredHolder::get).toArray(Block[]::new)).build(null));
+
+    public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<CopperGolemStatueBlockEntity>> COPPER_GOLEM_STATUE =
+            BLOCK_ENTITIES.register("copper_golem_statue", () -> BlockEntityType.Builder.of(CopperGolemStatueBlockEntity::new,
+                    ModBlocks.COPPER_GOLEM_STATUES.stream().map(net.neoforged.neoforge.registries.DeferredHolder::get).toArray(Block[]::new)).build(null));
 
     public static void register(IEventBus eventBus) {
         BLOCK_ENTITIES.register(eventBus);

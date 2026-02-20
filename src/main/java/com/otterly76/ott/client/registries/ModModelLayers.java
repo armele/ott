@@ -14,6 +14,7 @@ public class ModModelLayers {
     public static final ModelLayerLocation HAPPY_GHAST = register("happy_ghast");
     public static final ModelLayerLocation HAPPY_GHAST_HARNESS = register("happy_ghast", "harness");
     public static final ModelLayerLocation HAPPY_GHAST_ROPES = register("happy_ghast", "ropes");
+    public static final ModelLayerLocation COPPER_GOLEM = register("copper_golem");
 
     public static final ModelLayerLocation OTT_WOOD_SET_BOAT = register("wood_set_boat");
     public static final ModelLayerLocation OTT_WOOD_SET_CHEST_BOAT = register("wood_set_chest_boat");

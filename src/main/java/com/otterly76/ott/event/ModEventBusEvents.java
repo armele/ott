@@ -27,6 +27,7 @@ public class ModEventBusEvents {
     public static void registerAttributes(EntityAttributeCreationEvent event) {
         event.put(ModEntities.CREAKING.get(), Creaking.createAttributes().build());
         event.put(ModEntities.HAPPY_GHAST.get(), HappyGhast.createAttributes().build());
+        event.put(ModEntities.COPPER_GOLEM.get(), com.otterly76.ott.entity.custom.CopperGolem.createAttributes().build());
         event.put(ModEntities.TINY_SKELETON.get(), TinySkeleton.createAttributes().build());
         event.put(ModEntities.TINY_CREEPER.get(), TinyCreeper.createAttributes().build());
         event.put(ModEntities.TINY_ENDERMAN.get(), TinyEnderman.createAttributes().build());

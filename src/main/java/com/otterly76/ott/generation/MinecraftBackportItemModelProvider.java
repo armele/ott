@@ -77,20 +77,24 @@ public class MinecraftBackportItemModelProvider extends ItemModelProvider {
 
         ModItems.HARNESSES.values().forEach(item -> generatedItem(item.getId().getPath()));
 
-        generatedItem(ModItems.COPPER_NUGGET.getId().getPath());
+        generatedItem(ModItems.NETHERITE_HORSE_ARMOR.getId().getPath());
+
+        // Copper Tools
         handheldItem(ModItems.COPPER_SWORD.getId().getPath());
         handheldItem(ModItems.COPPER_SHOVEL.getId().getPath());
         handheldItem(ModItems.COPPER_PICKAXE.getId().getPath());
         handheldItem(ModItems.COPPER_AXE.getId().getPath());
         handheldItem(ModItems.COPPER_HOE.getId().getPath());
 
+        // Copper Armor
         generatedItem(ModItems.COPPER_HELMET.getId().getPath());
         generatedItem(ModItems.COPPER_CHESTPLATE.getId().getPath());
         generatedItem(ModItems.COPPER_LEGGINGS.getId().getPath());
         generatedItem(ModItems.COPPER_BOOTS.getId().getPath());
-
         generatedItem(ModItems.COPPER_HORSE_ARMOR.getId().getPath());
-        generatedItem(ModItems.NETHERITE_HORSE_ARMOR.getId().getPath());
+        generatedItem(ModItems.COPPER_NUGGET.getId().getPath());
+
+        spawnEggItem(ModItems.COPPER_GOLEM_SPAWN_EGG.getId().getPath());
 
         withExistingParent(ModItems.PALE_OAK_BOAT.getId().getPath(), mcLoc("item/oak_boat"))
                 .texture("texture", mcLoc("item/entity/boat/pale_oak"));

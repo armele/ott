@@ -290,8 +290,12 @@ public static float yLevelWindAdjustment(double y) {
         event.registerEntityRenderer(ModEntities.TINY_STRAY.get(), StrayRenderer::new);
         event.registerEntityRenderer(ModEntities.TINY_WITHER_SKELETON.get(), WitherSkeletonRenderer::new);
         event.registerEntityRenderer(ModEntities.TORCH_ARROW.get(), TorchArrowRenderer::new);
+        event.registerEntityRenderer(ModEntities.COPPER_GOLEM.get(), com.otterly76.ott.client.render.entity.CopperGolemRenderer::new);
 
         event.registerBlockEntityRenderer(ModBlockEntities.ANVIL_BLOCK_ENTITY_TYPE.get(), com.otterly76.ott.client.render.AnvilRenderer::new);
+        event.registerBlockEntityRenderer(ModBlockEntities.SHELF.get(), com.otterly76.ott.client.render.blockentity.ShelfRenderer::new);
+        event.registerBlockEntityRenderer(ModBlockEntities.COPPER_CHEST.get(), com.otterly76.ott.client.render.blockentity.CopperChestRenderer::new);
+        event.registerBlockEntityRenderer(ModBlockEntities.COPPER_GOLEM_STATUE.get(), com.otterly76.ott.client.render.blockentity.CopperGolemStatueRenderer::new);
     }
 
     public static void registerLayerDefinitions(EntityRenderersEvent.RegisterLayerDefinitions event) {
@@ -305,6 +309,7 @@ public static float yLevelWindAdjustment(double y) {
         event.registerLayerDefinition(ModModelLayers.COLD_CHICKEN, ColdChickenModel::createBodyLayer);
         event.registerLayerDefinition(ModModelLayers.COLD_COW, ColdCowModel::createBodyLayer);
         event.registerLayerDefinition(ModModelLayers.WARM_COW, WarmCowModel::createBodyLayer);
+        event.registerLayerDefinition(ModModelLayers.COPPER_GOLEM, com.otterly76.ott.client.model.CopperGolemModel::createBodyLayer);
 
         event.registerLayerDefinition(ModModelLayers.HAPPY_GHAST, () -> HappyGhastModel.createBodyLayer(CubeDeformation.NONE));
         event.registerLayerDefinition(ModModelLayers.HAPPY_GHAST_HARNESS, HappyGhastHarnessModel::createHarnessLayer);
@@ -332,7 +337,7 @@ public static float yLevelWindAdjustment(double y) {
     }
 
     public static void registerItemColors(RegisterColorHandlersEvent.Item event) {
-        event.register((stack, tintIndex) -> event.getBlockColors().getColor(((net.minecraft.world.item.BlockItem)stack.getItem()).getBlock().defaultBlockState(), null, null, tintIndex), ModBlocks.BUSH.get());
+        event.register((stack, tintIndex) -> event.getBlockColors().getColor(((net.minecraft.world.item.BlockItem)stack.getItem()).getBlock().defaultBlockState(), null, null, tintIndex), ModBlocks.BUSH.get(), ModBlocks.WILDFLOWERS.get());
 
         ModBlocks.getAllGradientBlocks().forEach(deferredBlock -> {
             event.register((stack, tintIndex) -> {

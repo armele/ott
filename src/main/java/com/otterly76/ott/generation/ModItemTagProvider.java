@@ -171,8 +171,8 @@ public class ModItemTagProvider extends ItemTagsProvider {
         dyeableShulkerBoxes.addOptional(ResourceLocation.withDefaultNamespace("shulker_box"));
         dyeableTerracotta.addOptional(ResourceLocation.withDefaultNamespace("terracotta"));
 
-        this.tag(ModTags.ItemTags.HAPPY_GHAST_TEMPT_ITEMS).add(Items.CHERRY_SAPLING, Items.MANGROVE_PROPAGULE);
-        this.tag(ModTags.ItemTags.HAPPY_GHAST_FOOD).add(Items.CHERRY_SAPLING, Items.MANGROVE_PROPAGULE);
+        this.tag(ModTags.ItemTags.HAPPY_GHAST_TEMPT_ITEMS).add(Items.CHERRY_SAPLING, Items.MANGROVE_PROPAGULE, Items.SNOWBALL);
+        this.tag(ModTags.ItemTags.HAPPY_GHAST_FOOD).add(Items.CHERRY_SAPLING, Items.MANGROVE_PROPAGULE, Items.SNOWBALL);
         this.tag(ModTags.ItemTags.HARNESSES).add(ModItems.HARNESSES.values().stream().map(DeferredItem::get).toArray(Item[]::new));
         this.tag(ModTags.ItemTags.BUNDLES).add(Items.BUNDLE).add(ModItems.BUNDLES.values().stream().map(DeferredItem::get).toArray(Item[]::new));
         this.tag(ModTags.ItemTags.EGGS).add(Items.EGG, ModItems.BLUE_EGG.get(), ModItems.BROWN_EGG.get());

@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "redstone",
+  "pattern": [
+    "#"
+  ],
+  "key": {
+    "#": {
+      "item": "minecraft:cut_copper"
+    }
+  },
+  "result": {
+    "id": "minecraft:copper_button",
+    "count": 1
+  }
+}

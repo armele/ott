@@ -22,7 +22,6 @@ Ongoing:
 
 Mods, Resourcepacks, and Datapacks You Will Not Need:
 =======
-
 **Visuals:**
 - ANY 3D Model Mods or Resourcepacks
 - ANY 32x Texture Resourcepacks
@@ -39,7 +38,7 @@ Mods, Resourcepacks, and Datapacks You Will Not Need:
 - The Garden Awakens
 - Spring to Life
 - Chase the Skies
-- Copper Age (WIP)
+- Copper Age
 - Mounts of Mayhem (WIP)
 
 **Mods, Resourcepacks, and Datapacks:**

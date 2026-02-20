@@ -389,7 +389,6 @@ public class Ott {
         generator.addProvider(event.includeServer(), new LootTableProvider(generator.getPackOutput(), Collections.emptySet(), List.of(new LootTableProvider.SubProviderEntry(OttLootTableProvider::new, LootContextParamSets.BLOCK)), event.getLookupProvider()));
         ModBlockTagProvider blockTagProvider = new ModBlockTagProvider(generator.getPackOutput(), event.getLookupProvider(), event.getExistingFileHelper());
         generator.addProvider(event.includeServer(), blockTagProvider);
-        generator.addProvider(event.includeClient(), new OttLangMergeProvider(generator.getPackOutput()));
         generator.addProvider(event.includeClient(), new MinecraftLangMergeProvider(generator.getPackOutput()));
         generator.addProvider(event.includeClient(), new MinecraftBackportSpecialItemModels(generator.getPackOutput()));
         generator.addProvider(event.includeServer(), new ModItemTagProvider(generator.getPackOutput(), event.getLookupProvider(), blockTagProvider.contentsGetter(), event.getExistingFileHelper()));
@@ -409,6 +408,7 @@ public class Ott {
         event.enqueueWork(() -> {
             registerCompostables();
             registerFlammables();
+            com.otterly76.ott.handler.WeatheringHandler.registerTransitions();
             Regions.register(new ModOverworldRegion(ResourceLocation.fromNamespaceAndPath("minecraft", "palegarden"), 2));
             ModBlockFamilies.createBlockFamilies();
 

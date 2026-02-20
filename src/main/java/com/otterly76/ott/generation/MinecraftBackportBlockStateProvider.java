@@ -216,7 +216,7 @@ public class MinecraftBackportBlockStateProvider extends ModBlockStateProvider {
                 .texture("side", mcLoc("block/creaking_heart_active"));
 
         getVariantBuilder(ModBlocks.CREAKING_HEART.get()).forAllStates(state -> {
-            boolean active = state.getValue(CreakingHeartBlock.STATE) != CreakingHeartState.UPROOTED;
+            boolean active = state.getValue(CreakingHeartBlock.STATE) == CreakingHeartState.AWAKE;
             Direction.Axis axis = state.getValue(AXIS);
 
             ModelFile model;
@@ -248,14 +248,14 @@ public class MinecraftBackportBlockStateProvider extends ModBlockStateProvider {
             Direction facing = state.getValue(HORIZONTAL_FACING);
             int amount = state.getValue(FLOWER_AMOUNT);
             return ConfiguredModel.builder()
-                    .modelFile(models().withExistingParent("wildflowers_" + amount, mcLoc("block/flowerbed_" + amount))
+                    .modelFile(models().withExistingParent("wildflowers_" + amount, mcLoc("block/template_flowerbed_" + amount))
                             .texture("flowerbed", mcLoc("block/wildflowers"))
-                            .texture("stem", mcLoc("block/wildflowers_stem"))
                             .renderType("cutout"))
                     .rotationY((int) facing.toYRot())
                     .build();
         });
-        itemModels().withExistingParent("wildflowers", mcLoc("block/wildflowers_1"));
+        itemModels().withExistingParent("wildflowers", mcLoc("item/generated"))
+                .texture("layer0", mcLoc("item/wildflowers"));
 
         getVariantBuilder(ModBlocks.LEAF_LITTER.get()).forAllStates(state -> {
             Direction facing = state.getValue(HORIZONTAL_FACING);
@@ -267,7 +267,8 @@ public class MinecraftBackportBlockStateProvider extends ModBlockStateProvider {
                     .rotationY((int) facing.toYRot())
                     .build();
         });
-        itemModels().withExistingParent("leaf_litter", mcLoc("block/leaf_litter_1"));
+        itemModels().withExistingParent("leaf_litter", mcLoc("item/generated"))
+                .texture("layer0", mcLoc("item/leaf_litter"));
 
         getVariantBuilder(ModBlocks.DRIED_GHAST.get()).forAllStates(state -> {
             Direction facing = state.getValue(HORIZONTAL_FACING);
