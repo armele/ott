@@ -54,5 +54,11 @@ public class ModBiomeTagProvider extends BiomeTagsProvider {
         this.tag(spawnsNormalFrogs).addOptional(ModBiomes.VERDANT_FOREST.location());
         this.tag(BiomeTags.IS_FOREST).addOptional(ModBiomes.VERDANT_FOREST.location());
         this.tag(BiomeTags.IS_OVERWORLD).addOptional(ModBiomes.VERDANT_FOREST.location());
+
+        TagKey<Biome> isBirchForest = TagKey.create(Registries.BIOME, ResourceLocation.withDefaultNamespace("is_birch_forest"));
+        this.tag(isBirchForest).add(Biomes.BIRCH_FOREST, Biomes.OLD_GROWTH_BIRCH_FOREST);
+
+        TagKey<Biome> isMeadow = TagKey.create(Registries.BIOME, ResourceLocation.withDefaultNamespace("is_meadow"));
+        this.tag(isMeadow).add(Biomes.MEADOW);
     }
 }

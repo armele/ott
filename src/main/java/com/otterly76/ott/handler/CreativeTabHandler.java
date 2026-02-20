@@ -8,7 +8,9 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.ItemLike;
+import net.minecraft.world.level.block.Block;
 import net.neoforged.neoforge.event.BuildCreativeModeTabContentsEvent;
+import net.neoforged.neoforge.registries.DeferredBlock;
 import net.neoforged.neoforge.registries.DeferredItem;
 
 import java.util.List;
@@ -18,7 +20,10 @@ public class CreativeTabHandler {
         CreativeModeTab.TabVisibility visibility = CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS;
 
         if (event.getTabKey() == CreativeModeTabs.BUILDING_BLOCKS) {
-            insertAllAfter(event, Items.CHERRY_BUTTON, List.of(
+            ItemLike lastTarget = Items.CHERRY_BUTTON;
+
+            // Add Pale Oak components
+            List<ItemLike> paleOakBuilding = List.of(
                     ModBlocks.PALE_OAK_LOG,
                     ModBlocks.PALE_OAK_WOOD,
                     ModBlocks.STRIPPED_PALE_OAK_LOG,
@@ -32,7 +37,23 @@ public class CreativeTabHandler {
                     ModBlocks.PALE_OAK_TRAPDOOR,
                     ModBlocks.PALE_OAK_PRESSURE_PLATE,
                     ModBlocks.PALE_OAK_BUTTON
-            ), visibility);
+            );
+            insertAllAfter(event, lastTarget, paleOakBuilding, visibility);
+            lastTarget = ModBlocks.PALE_OAK_BUTTON.get();
+
+            // Add components for all wood sets
+            for (ModBlocks.WoodSetBlocks set : ModBlocks.WOOD_SETS.values()) {
+                List<ItemLike> setBuilding = List.of(
+                        set.log(), set.wood(),
+                        set.strippedLog(), set.strippedWood(),
+                        set.planks(), set.stairs(), set.slab(),
+                        set.fence(), set.fenceGate(),
+                        set.door(), set.trapdoor(),
+                        set.pressurePlate(), set.button()
+                );
+                insertAllAfter(event, lastTarget, setBuilding, visibility);
+                lastTarget = set.button().get();
+            }
 
             insertAllAfter(event, Items.MUD_BRICK_WALL, List.of(
                     ModBlocks.RESIN_BRICKS,
@@ -47,12 +68,46 @@ public class CreativeTabHandler {
             insertAllAfter(event, Items.MOSS_CARPET, List.of(
                     ModBlocks.PALE_MOSS_BLOCK,
                     ModBlocks.PALE_MOSS_CARPET,
-                    ModBlocks.PALE_HANGING_MOSS
+                    ModBlocks.PALE_HANGING_MOSS,
+                    ModBlocks.CREAKING_HEART
             ), visibility);
 
-            event.insertAfter(Items.CHERRY_LOG.getDefaultInstance(), new ItemStack(ModBlocks.PALE_OAK_LOG.get()), visibility);
-            event.insertAfter(Items.CHERRY_LEAVES.getDefaultInstance(), new ItemStack(ModBlocks.PALE_OAK_LEAVES.get()), visibility);
-            event.insertAfter(Items.CHERRY_SAPLING.getDefaultInstance(), new ItemStack(ModBlocks.PALE_OAK_SAPLING.get()), visibility);
+            ItemLike lastLog = Items.CHERRY_LOG;
+            ItemLike lastLeaves = Items.CHERRY_LEAVES;
+            ItemLike lastSapling = Items.CHERRY_SAPLING;
+
+            // Pale Oak
+            event.insertAfter(new ItemStack(lastLog), new ItemStack(ModBlocks.PALE_OAK_LOG.get()), visibility);
+            lastLog = ModBlocks.PALE_OAK_LOG.get();
+            event.insertAfter(new ItemStack(lastLeaves), new ItemStack(ModBlocks.PALE_OAK_LEAVES.get()), visibility);
+            lastLeaves = ModBlocks.PALE_OAK_LEAVES.get();
+            event.insertAfter(new ItemStack(lastSapling), new ItemStack(ModBlocks.PALE_OAK_SAPLING.get()), visibility);
+            lastSapling = ModBlocks.PALE_OAK_SAPLING.get();
+
+            // All wood sets
+            for (ModBlocks.WoodSetBlocks set : ModBlocks.WOOD_SETS.values()) {
+                event.insertAfter(new ItemStack(lastLog), new ItemStack(set.log().get()), visibility);
+                lastLog = set.log().get();
+                event.insertAfter(new ItemStack(lastLeaves), new ItemStack(set.leaves().get()), visibility);
+                lastLeaves = set.leaves().get();
+                event.insertAfter(new ItemStack(lastSapling), new ItemStack(set.sapling().get()), visibility);
+                lastSapling = set.sapling().get();
+            }
+
+            // Hedges after Leaves
+            ItemLike lastHedge = lastLeaves;
+            event.insertAfter(new ItemStack(lastHedge), new ItemStack(ModBlocks.THORNY_HEDGE.get()), visibility);
+            lastHedge = ModBlocks.THORNY_HEDGE.get();
+            event.insertAfter(new ItemStack(lastHedge), new ItemStack(ModItems.THORNY_HEDGE_SPROUTS.get()), visibility);
+            lastHedge = ModItems.THORNY_HEDGE_SPROUTS.get();
+            for (DeferredBlock<Block> hedge : ModBlocks.PARTICLE_HEDGES.values()) {
+                event.insertAfter(new ItemStack(lastHedge), new ItemStack(hedge.get()), visibility);
+                lastHedge = hedge.get();
+            }
+            for (DeferredBlock<Block> hedge : ModBlocks.CREEPING_HEDGES.values()) {
+                event.insertAfter(new ItemStack(lastHedge), new ItemStack(hedge.get()), visibility);
+                lastHedge = hedge.get();
+            }
 
             insertAllAfter(event, Items.FERN, List.of(ModBlocks.SHORT_DRY_GRASS, ModBlocks.BUSH), visibility);
             insertAllAfter(event, Items.TORCHFLOWER, List.of(ModBlocks.CACTUS_FLOWER, ModBlocks.CLOSED_EYEBLOSSOM, ModBlocks.OPEN_EYEBLOSSOM), visibility);
@@ -65,16 +120,47 @@ public class CreativeTabHandler {
         }
 
         if (event.getTabKey() == CreativeModeTabs.FUNCTIONAL_BLOCKS) {
-            insertAllAfter(event, Items.CHERRY_HANGING_SIGN, List.of(
-                    ModBlocks.PALE_OAK_SIGN,
-                    ModBlocks.PALE_OAK_HANGING_SIGN
-            ), visibility);
+            ItemLike lastTarget = Items.CHERRY_HANGING_SIGN;
+
+            event.insertAfter(new ItemStack(lastTarget), new ItemStack(ModItems.PALE_OAK_SIGN.get()), visibility);
+            lastTarget = ModItems.PALE_OAK_SIGN.get();
+            event.insertAfter(new ItemStack(lastTarget), new ItemStack(ModItems.PALE_OAK_HANGING_SIGN.get()), visibility);
+            lastTarget = ModItems.PALE_OAK_HANGING_SIGN.get();
+
+            for (String setName : ModBlocks.WOOD_SETS.keySet()) {
+                Item sign = ModItems.WOOD_SET_SIGNS.get(setName).get();
+                Item hangingSign = ModItems.WOOD_SET_HANGING_SIGNS.get(setName).get();
+
+                event.insertAfter(new ItemStack(lastTarget), new ItemStack(sign), visibility);
+                lastTarget = sign;
+                event.insertAfter(new ItemStack(lastTarget), new ItemStack(hangingSign), visibility);
+                lastTarget = hangingSign;
+            }
         }
 
         if (event.getTabKey() == CreativeModeTabs.TOOLS_AND_UTILITIES) {
-            insertAllAfter(event, Items.CHERRY_CHEST_BOAT, List.of(
-                    ModItems.PALE_OAK_BOAT,
-                    ModItems.PALE_OAK_CHEST_BOAT
+            ItemLike lastTarget = Items.CHERRY_CHEST_BOAT;
+
+            event.insertAfter(new ItemStack(lastTarget), new ItemStack(ModItems.PALE_OAK_BOAT.get()), visibility);
+            lastTarget = ModItems.PALE_OAK_BOAT.get();
+            event.insertAfter(new ItemStack(lastTarget), new ItemStack(ModItems.PALE_OAK_CHEST_BOAT.get()), visibility);
+            lastTarget = ModItems.PALE_OAK_CHEST_BOAT.get();
+
+            for (String setName : ModBlocks.WOOD_SETS.keySet()) {
+                Item boat = ModItems.WOOD_SET_BOATS.get(setName).get();
+                Item chestBoat = ModItems.WOOD_SET_CHEST_BOATS.get(setName).get();
+
+                event.insertAfter(new ItemStack(lastTarget), new ItemStack(boat), visibility);
+                lastTarget = boat;
+                event.insertAfter(new ItemStack(lastTarget), new ItemStack(chestBoat), visibility);
+                lastTarget = chestBoat;
+            }
+
+            insertAllAfter(event, Items.IRON_HOE, List.of(
+                    ModItems.COPPER_SHOVEL,
+                    ModItems.COPPER_PICKAXE,
+                    ModItems.COPPER_AXE,
+                    ModItems.COPPER_HOE
             ), visibility);
 
             insertAllAfter(event, Items.MUSIC_DISC_RELIC, List.of(
@@ -115,17 +201,43 @@ public class CreativeTabHandler {
             event.insertAfter(Items.HONEYCOMB.getDefaultInstance(), new ItemStack(ModBlocks.RESIN_CLUMP.get()), visibility);
             insertAllAfter(event, Items.EGG, List.of(ModItems.BROWN_EGG, ModItems.BLUE_EGG), visibility);
 
+            event.insertAfter(Items.COPPER_INGOT.getDefaultInstance(), new ItemStack(ModItems.COPPER_NUGGET.get()), visibility);
+
             event.accept(ModItems.TINY_COAL);
             event.accept(ModItems.TINY_CHARCOAL);
         }
 
         if (event.getTabKey() == CreativeModeTabs.COMBAT) {
+            insertAllAfter(event, Items.IRON_SWORD, List.of(ModItems.COPPER_SWORD), visibility);
+            insertAllAfter(event, Items.IRON_BOOTS, List.of(
+                    ModItems.COPPER_HELMET,
+                    ModItems.COPPER_CHESTPLATE,
+                    ModItems.COPPER_LEGGINGS,
+                    ModItems.COPPER_BOOTS
+            ), visibility);
+
+            event.insertAfter(Items.GOLDEN_HORSE_ARMOR.getDefaultInstance(), new ItemStack(ModItems.COPPER_HORSE_ARMOR.get()), visibility);
+            event.insertAfter(Items.DIAMOND_HORSE_ARMOR.getDefaultInstance(), new ItemStack(ModItems.NETHERITE_HORSE_ARMOR.get()), visibility);
+
+            event.insertAfter(Items.TIPPED_ARROW.getDefaultInstance(), new ItemStack(ModItems.TORCH_ARROW.get()), visibility);
+
             event.accept(ModItems.BROWN_EGG);
             event.accept(ModItems.BLUE_EGG);
         }
 
         if (event.getTabKey() == CreativeModeTabs.SPAWN_EGGS) {
             event.accept(ModBlocks.CREAKING_HEART);
+            event.accept(ModItems.CREAKING_SPAWN_EGG);
+            event.accept(ModItems.HAPPY_GHAST_SPAWN_EGG);
+
+            event.accept(ModItems.TINY_SKELETON_SPAWN_EGG);
+            event.accept(ModItems.TINY_CREEPER_SPAWN_EGG);
+            event.accept(ModItems.TINY_ENDERMAN_SPAWN_EGG);
+            event.accept(ModItems.TINY_BOGGED_SPAWN_EGG);
+            event.accept(ModItems.TINY_DROWNED_SPAWN_EGG);
+            event.accept(ModItems.TINY_HUSK_SPAWN_EGG);
+            event.accept(ModItems.TINY_STRAY_SPAWN_EGG);
+            event.accept(ModItems.TINY_WITHER_SKELETON_SPAWN_EGG);
         }
     }
 

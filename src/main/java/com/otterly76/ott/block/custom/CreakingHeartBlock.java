@@ -72,7 +72,7 @@ public class CreakingHeartBlock extends BaseEntityBlock {
 
     @Override
     public void animateTick(@NotNull BlockState state, @NotNull Level level, @NotNull BlockPos pos, @NotNull RandomSource random) {
-        if (isNaturalNight(level) && state.getValue(STATE) != CreakingHeartState.UPROOTED && random.nextInt(16) == 0 && isSurroundedByLogs(level, pos)) {
+        if (isNaturalNight(level) && state.getValue(STATE) != CreakingHeartState.UPROOTED && random.nextInt(16) == 0) {
             level.playLocalSound(pos.getX(), pos.getY(), pos.getZ(), ModSounds.CREAKING_HEART_IDLE.get(), SoundSource.BLOCKS, 1.0F, 1.0F, false);
         }
     }
@@ -98,8 +98,10 @@ public class CreakingHeartBlock extends BaseEntityBlock {
 
     private static BlockState updateState(BlockState state, Level level, BlockPos pos) {
         boolean hasRequiredLogs = hasRequiredLogs(state, level, pos);
-        boolean isUprooted = state.getValue(STATE) == CreakingHeartState.UPROOTED;
-        return hasRequiredLogs && isUprooted ? state.setValue(STATE, isNaturalNight(level) ? CreakingHeartState.AWAKE : CreakingHeartState.DORMANT) : state;
+        if (!hasRequiredLogs) {
+            return state.setValue(STATE, CreakingHeartState.UPROOTED);
+        }
+        return state.setValue(STATE, isNaturalNight(level) ? CreakingHeartState.AWAKE : CreakingHeartState.DORMANT);
     }
 
     public static boolean hasRequiredLogs(BlockState state, LevelReader level, BlockPos pos) {
@@ -122,23 +124,12 @@ public class CreakingHeartBlock extends BaseEntityBlock {
 
     private static Direction[] directions(Direction.Axis axis) {
         return switch (axis) {
-            case X -> new Direction[]{Direction.NORTH, Direction.SOUTH};
+            case X -> new Direction[]{Direction.EAST, Direction.WEST};
             case Y -> new Direction[]{Direction.UP, Direction.DOWN};
-            case Z -> new Direction[]{Direction.EAST, Direction.WEST};
+            case Z -> new Direction[]{Direction.NORTH, Direction.SOUTH};
         };
     }
 
-    private static boolean isSurroundedByLogs(LevelAccessor level, BlockPos pos) {
-        for(Direction direction : Direction.values()) {
-            BlockPos neighborPos = pos.relative(direction);
-            BlockState neighborState = level.getBlockState(neighborPos);
-            if (!neighborState.is(ModTags.Blocks.CREAKING_HEART_HOLDERS)) {
-                return false;
-            }
-        }
-
-        return true;
-    }
 
     @Override
     public @Nullable BlockState getStateForPlacement(BlockPlaceContext context) {

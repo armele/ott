@@ -101,7 +101,7 @@ public class CreakingHeartBlockEntity extends BlockEntity {
 
                 if (heart.creakingInfo == null) {
                     if (updatedState.getValue(CreakingHeartBlock.STATE) == CreakingHeartState.AWAKE && level.getDifficulty() != Difficulty.PEACEFUL && level.getGameRules().getBoolean(GameRules.RULE_DOMOBSPAWNING)) {
-                        Player player = level.getNearestPlayer(pos.getX(), pos.getY(), pos.getZ(), 32.0, false);
+                        Player player = level.getNearestPlayer(pos.getX(), pos.getY(), pos.getZ(), 48.0, false);
                         if (player != null) {
                             Creaking creaking = spawnProtector(server, heart);
                             if (creaking != null) {
@@ -114,7 +114,7 @@ public class CreakingHeartBlockEntity extends BlockEntity {
                 } else {
                     heart.getCreakingProtector().ifPresent((creaking) -> {
                         double distance = Math.sqrt(creaking.distanceToSqr(Vec3.atBottomCenterOf(heart.getBlockPos())));
-                        if (!CreakingHeartBlock.isNaturalNight(level) && !creaking.isPersistenceRequired() || distance > 34.0 || creaking.playerIsStuckInYou()) {
+                        if (!CreakingHeartBlock.isNaturalNight(level) && !creaking.isPersistenceRequired() || distance > 64.0 || creaking.playerIsStuckInYou()) {
                             heart.removeProtector(null);
                         }
                     });
@@ -124,14 +124,11 @@ public class CreakingHeartBlockEntity extends BlockEntity {
     }
 
     private static BlockState updateCreakingState(Level level, BlockState state, BlockPos pos, CreakingHeartBlockEntity heart) {
-        CreakingHeartState heartState;
-        if (!CreakingHeartBlock.hasRequiredLogs(state, level, pos) && heart.creakingInfo == null) {
-            heartState = CreakingHeartState.UPROOTED;
-        } else {
-            heartState = CreakingHeartBlock.isNaturalNight(level) ? CreakingHeartState.AWAKE : CreakingHeartState.DORMANT;
+        boolean hasRequiredLogs = CreakingHeartBlock.hasRequiredLogs(state, level, pos);
+        if (!hasRequiredLogs && heart.creakingInfo == null) {
+            return state.setValue(CreakingHeartBlock.STATE, CreakingHeartState.UPROOTED);
         }
-
-        return state.setValue(CreakingHeartBlock.STATE, heartState);
+        return state.setValue(CreakingHeartBlock.STATE, CreakingHeartBlock.isNaturalNight(level) ? CreakingHeartState.AWAKE : CreakingHeartState.DORMANT);
     }
 
 
@@ -179,12 +176,8 @@ public class CreakingHeartBlockEntity extends BlockEntity {
     }
 
     private static @Nullable Creaking spawnProtector(ServerLevel level, CreakingHeartBlockEntity heart) {
-        if (!OttConfig.GENERAL.HAS_CREAKING.get()) {
-            return null;
-        }
-
         BlockPos pos = heart.getBlockPos();
-        return SpawnExtras.trySpawnMob(ModEntities.CREAKING.get(), MobSpawnType.SPAWNER, level, pos, 5, 16, 8, SpawnExtras.ON_TOP_OF_COLLIDER_NO_LEAVES, true)
+        return SpawnExtras.trySpawnMob(ModEntities.CREAKING.get(), MobSpawnType.SPAWNER, level, pos, 15, 16, 20, SpawnExtras.ON_TOP_OF_COLLIDER_NO_LEAVES, true)
                 .map((creaking) -> {
                     level.gameEvent(creaking, GameEvent.ENTITY_PLACE, creaking.position());
                     level.broadcastEntityEvent(creaking, (byte)60);
@@ -206,7 +199,7 @@ public class CreakingHeartBlockEntity extends BlockEntity {
             if (this.level instanceof ServerLevel server) {
                 if (this.emitter <= 0) {
                     this.emitParticles(server, 20, false);
-                    if (this.getBlockState().getValue(CreakingHeartBlock.STATE) == CreakingHeartState.AWAKE && OttConfig.GENERAL.HAS_RESIN.get()) {
+                    if (this.getBlockState().getValue(CreakingHeartBlock.STATE) == CreakingHeartState.AWAKE) {
                         int i = this.level.getRandom().nextIntBetweenInclusive(2, 3);
 
                         for(int j = 0; j < i; ++j) {

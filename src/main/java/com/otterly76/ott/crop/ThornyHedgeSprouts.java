@@ -10,17 +10,17 @@ import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.IntegerProperty;
 import org.jetbrains.annotations.NotNull;
 
-public class HedgeSprouts extends CropBlock {
+public class ThornyHedgeSprouts extends CropBlock {
     public static final int MAX_AGE = 3;
     public static final IntegerProperty AGE = BlockStateProperties.AGE_3;
 
-    public HedgeSprouts(BlockBehaviour.Properties properties) {
+    public ThornyHedgeSprouts(BlockBehaviour.Properties properties) {
         super(properties);
     }
 
     @Override
     protected @NotNull ItemLike getBaseSeedId() {
-        return ModItems.HEDGE_SPROUTS.get();
+        return ModItems.THORNY_HEDGE_SPROUTS.get();
     }
 
     @Override

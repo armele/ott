@@ -10,7 +10,6 @@ public class OttConfig {
     // --- Sections ---
     public static final General GENERAL;
     public static final Creaking CREAKING;
-    public static final Bundles BUNDLES;
     public static final WorldGen WORLDGEN;
     public static final Snow SNOW;
     public static final Weather WEATHER;
@@ -30,7 +29,6 @@ public class OttConfig {
 
         GENERAL = new General(builder);
         CREAKING = new Creaking(builder);
-        BUNDLES = new Bundles(builder);
         WORLDGEN = new WorldGen(builder);
         SNOW = new Snow(builder);
         WEATHER = new Weather(builder);
@@ -184,7 +182,7 @@ public class OttConfig {
 
         public Clumps(ModConfigSpec.Builder builder) {
             builder.push("clumps");
-            ENABLED = builder.comment("Should experience orbs be clumped together to reduce lag?")
+            ENABLED = builder.comment("Enable Experience Clumping.")
                     .translation("ott.configuration.clumps.enabled")
                     .define("enabled", true);
             RADIUS = builder.comment("The radius in which experience orbs will merge.")
@@ -218,30 +216,14 @@ public class OttConfig {
         public final ModConfigSpec.BooleanValue SPONGES_PLACED_ON_WATER;
         public final ModConfigSpec.BooleanValue ENABLE_INVENTORY_SEARCH;
         public final ModConfigSpec.BooleanValue ENABLE_RIGHT_CLICK_OPEN;
-        public final ModConfigSpec.BooleanValue ENABLE_TORCH_ARROW;
         public final ModConfigSpec.BooleanValue HAS_FARM_ANIMAL_VARIANTS;
         public final ModConfigSpec.BooleanValue USE_SHEEP_WOOL_UNDERCOAT;
         public final ModConfigSpec.BooleanValue HAS_WOLF_SOUND_VARIANTS;
-        public final ModConfigSpec.BooleanValue HAS_BUSHES;
-        public final ModConfigSpec.BooleanValue HAS_FIREFLY_BUSHES;
-        public final ModConfigSpec.BooleanValue HAS_WILDFLOWERS;
-        public final ModConfigSpec.BooleanValue HAS_DRY_GRASS;
-        public final ModConfigSpec.BooleanValue HAS_FALLEN_TREES;
-        public final ModConfigSpec.BooleanValue HAS_LEAF_LITTER;
-        public final ModConfigSpec.BooleanValue HAS_CACTUS_FLOWERS;
-        public final ModConfigSpec.BooleanValue HAS_CAMEL_SPAWNS;
-        public final ModConfigSpec.BooleanValue HAS_TEARS_MUSIC_DISC;
-        public final ModConfigSpec.BooleanValue HAS_LAVA_CHICKEN_MUSIC_DISC;
         public final ModConfigSpec.DoubleValue HAPPY_GHAST_SPEED_MODIFIER;
         public final ModConfigSpec.BooleanValue USE_LEGACY_SPAWN_EGGS;
-        public final ModConfigSpec.BooleanValue HAS_FALLING_LEAVES;
         public final ModConfigSpec.DoubleValue FALLING_LEAVES_FREQUENCY;
-        public final ModConfigSpec.BooleanValue HAS_CREAKING;
-        public final ModConfigSpec.BooleanValue HAS_RESIN;
         public final ModConfigSpec.IntValue CREAKING_PARTICLE_COLOR;
         public final ModConfigSpec.IntValue CREAKING_PARTICLE_REVERSE_COLOR;
-        public final ModConfigSpec.BooleanValue COPPER_AGE;
-        public final ModConfigSpec.BooleanValue MOUNTS_OF_MAYHEM;
 
         public General(ModConfigSpec.Builder builder) {
             ENABLE_LAVA_WARNINGS = builder.comment("Should the player be warned when lava is nearby while mining?")
@@ -265,38 +247,20 @@ public class OttConfig {
             ENABLE_RIGHT_CLICK_OPEN = builder.comment("Should containers and crafting blocks be openable by middle-clicking them in the hand or inventory?")
                     .translation("ott.configuration.general.enablerightclickopen")
                     .define("enableRightClickOpen", true);
-            ENABLE_TORCH_ARROW = builder.comment("Should Torch Arrows be enabled?")
-                    .translation("ott.configuration.general.enabletorcharrow")
-                    .define("enableTorchArrow", true);
-            HAS_FARM_ANIMAL_VARIANTS = builder.comment("Should biome-dependent farm animal variants be enabled?")
-                    .translation("ott.configuration.general.hasfarmanimalvariants")
+            HAS_FARM_ANIMAL_VARIANTS = builder.comment("Enable Farm Animal Variants (Pig, Cow, Chicken, Frog).")
+                    .translation("ott.configuration.general.has_farm_animal_variants")
                     .define("hasFarmAnimalVariants", true);
-            USE_SHEEP_WOOL_UNDERCOAT = builder.comment("Should sheep have a visible wool undercoat after being sheared?")
-                    .translation("ott.configuration.general.usesheepwoolundercoat")
+            USE_SHEEP_WOOL_UNDERCOAT = builder.comment("Enable Sheep Wool Undercoat layer.")
+                    .translation("ott.configuration.general.use_sheep_wool_undercoat")
                     .define("useSheepWoolUndercoat", true);
-            HAS_WOLF_SOUND_VARIANTS = builder.comment("Should biome-dependent wolf sound variants be enabled?")
-                    .translation("ott.configuration.general.haswolfsoundvariants")
+            HAS_WOLF_SOUND_VARIANTS = builder.comment("Enable Wolf Sound Variants.")
+                    .translation("ott.configuration.general.has_wolf_sound_variants")
                     .define("hasWolfSoundVariants", true);
-            HAS_BUSHES = builder.comment("allow bushes to generate in the overworld").define("hasBushes", true);
-            HAS_FIREFLY_BUSHES = builder.comment("allow firefly bushes to generate in the overworld").define("hasFireflyBushes", true);
-            HAS_WILDFLOWERS = builder.comment("allow wildflowers to generate in the overworld").define("hasWildflowers", true);
-            HAS_DRY_GRASS = builder.comment("allow dry grass to generate in the overworld").define("hasDryGrass", true);
-            HAS_FALLEN_TREES = builder.comment("allow fallen trees to generate in the overworld").define("hasFallenTrees", true);
-            HAS_LEAF_LITTER = builder.comment("allow leaf litter to generate in the overworld").define("hasLeafLitter", true);
-            HAS_CACTUS_FLOWERS = builder.comment("allow cactus flowers to generate").define("hasCactusFlowers", true);
-            HAS_CAMEL_SPAWNS = builder.comment("allow camels to spawn outside of villages").define("hasCamelSpawns", true);
-            HAS_TEARS_MUSIC_DISC = builder.comment("allows ghasts drop the tears music disc").define("hasTearsMusicDisc", true);
-            HAS_LAVA_CHICKEN_MUSIC_DISC = builder.comment("allows chicken jockeys to drop the lava chicken music disc").define("hasLavaChickenMusicDisc", true);
             HAPPY_GHAST_SPEED_MODIFIER = builder.comment("apply a modifier to the speed of happy ghasts when ridden, 1.0 is default speed").defineInRange("happyGhastSpeedModifier", 1.0, 0.1, 10.0);
             USE_LEGACY_SPAWN_EGGS = builder.comment("use the legacy spawn egg textures").define("useLegacySpawnEggs", false);
-            HAS_FALLING_LEAVES = builder.comment("Should falling leaves be enabled?").define("hasFallingLeaves", true);
             FALLING_LEAVES_FREQUENCY = builder.comment("Frequency of falling leaves particles.").defineInRange("fallingLeavesFrequency", 0.05, 0.0, 1.0);
-            HAS_CREAKING = builder.comment("allow the creaking to spawn").define("hasCreaking", true);
-            HAS_RESIN = builder.comment("Should resin generate?").define("hasResin", true);
             CREAKING_PARTICLE_COLOR = builder.comment("Color of creaking particles.").defineInRange("creakingParticleColor", 6250335, 0, 16777215);
             CREAKING_PARTICLE_REVERSE_COLOR = builder.comment("Color of creaking particles in reverse direction.").defineInRange("creakingParticleReverseColor", 16545810, 0, 16777215);
-            COPPER_AGE = builder.comment("Enable Copper Age features.").define("copperAge", false);
-            MOUNTS_OF_MAYHEM = builder.comment("Enable Mounts of Mayhem features.").define("mountsOfMayhem", false);
         }
     }
 
@@ -306,7 +270,7 @@ public class OttConfig {
 
         public Homes(ModConfigSpec.Builder builder) {
             builder.push("homes");
-            ENABLED = builder.comment("Should the home system be enabled?")
+            ENABLED = builder.comment("Enable the home system (/home, /sethome, /delhome, /homes).")
                     .translation("ott.configuration.homes.enabled")
                     .define("enabled", true);
             MAX_HOMES = builder.comment("Maximum number of homes a player can set. -1 for infinite.")
@@ -357,15 +321,6 @@ public class OttConfig {
         }
     }
 
-    public record Bundles(ModConfigSpec.BooleanValue UPDATED_BUNDLES) {
-        public Bundles(ModConfigSpec.Builder builder) {
-            this(builder.push("bundles")
-                    .comment("Enable updated bundles from 1.21.1 (selective item removal, slot selection).")
-                    .translation("ott.configuration.bundles.updated_bundles")
-                    .define("hasUpdatedBundles", true));
-            builder.pop();
-        }
-    }
 
     @SuppressWarnings("ClassCanBeRecord")
     public static class WorldGen {

@@ -2,7 +2,7 @@ package com.otterly76.ott.generation;
 
 import com.otterly76.ott.block.GradientStainedGlassBlock;
 import com.otterly76.ott.block.ModBlocks;
-import com.otterly76.ott.crop.HedgeSprouts;
+import com.otterly76.ott.crop.ThornyHedgeSprouts;
 import com.otterly76.ott.item.ModItems;
 import net.minecraft.advancements.critereon.StatePropertiesPredicate;
 import net.minecraft.core.HolderLookup;
@@ -40,13 +40,13 @@ public class OttLootTableProvider extends BlockLootSubProvider {
         ).map(Supplier::get).forEach(block -> {
             if (block instanceof GradientStainedGlassBlock) {
                 this.add(block, this::createSilkTouchOnlyTable);
-            } else if (block instanceof HedgeSprouts) {
+            } else if (block instanceof ThornyHedgeSprouts) {
                 this.add(block, createCropDrops(
                         block,
-                        ModItems.HEDGE_SPROUTS.get(),
-                        ModItems.HEDGE.get().asItem(),
+                        ModItems.THORNY_HEDGE_SPROUTS.get(),
+                        ModItems.THORNY_HEDGE.get().asItem(),
                         LootItemBlockStatePropertyCondition.hasBlockStateProperties(block)
-                                .setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(HedgeSprouts.AGE, HedgeSprouts.MAX_AGE))
+                                .setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(ThornyHedgeSprouts.AGE, ThornyHedgeSprouts.MAX_AGE))
                 ));
             } else if (block instanceof DoorBlock) {
                 this.add(block, this::createDoorTable);

@@ -3,6 +3,7 @@ package com.otterly76.ott.block.wood;
 import com.otterly76.ott.block.ModBlocks;
 import com.otterly76.ott.util.block.BlockSetTypeVariant;
 import com.otterly76.ott.util.block.WoodTypeVariant;
+import com.otterly76.ott.worldgen.ModTreeGrowers;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.neoforged.neoforge.registries.DeferredBlock;
@@ -26,6 +27,7 @@ public class WoodSetBlockRegistrar {
         String buttonName = set + "_button";
         String pressurePlateName = set + "_pressure_plate";
         String leavesName = set + "_leaves";
+        String saplingName = set + "_sapling";
 
         String signName = set + "_sign";
         String wallSignName = set + "_wall_sign";
@@ -77,6 +79,12 @@ public class WoodSetBlockRegistrar {
         DeferredBlock<LeavesBlock> leaves = BLOCKS.register(leavesName,
                 () -> new LeavesBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_LEAVES)));
 
+        DeferredBlock<SaplingBlock> sapling = BLOCKS.register(saplingName,
+                () -> new SaplingBlock(ModTreeGrowers.OAK, BlockBehaviour.Properties.of().strength(4.0f).sound(SoundType.WOOD).noOcclusion()));
+
+        DeferredBlock<FlowerPotBlock> pottedSapling = BLOCKS.register("potted_" + saplingName,
+                () -> new FlowerPotBlock(() -> (FlowerPotBlock) Blocks.FLOWER_POT, sapling, BlockBehaviour.Properties.of().strength(4.0f).sound(SoundType.WOOD).noOcclusion()));
+
         // Signs (blocks only; the item is registered in ModItems)
         DeferredBlock<StandingSignBlock> sign = BLOCKS.register(signName,
                 () -> new StandingSignBlock(WoodTypeVariant.ott(set), BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_SIGN)));
@@ -97,6 +105,8 @@ public class WoodSetBlockRegistrar {
                 door, trapdoor,
                 button, pressurePlate,
                 leaves,
+                sapling,
+                pottedSapling,
                 sign, wallSign, hangingSign, wallHangingSign
         );
     }

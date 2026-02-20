@@ -7,7 +7,6 @@
     "access.BiomeAccessor",
     "access.BoatAccessor",
     "access.BundleContentsAccessor",
-    "access.CreativeModeInventoryScreenAccessor",
     "access.EntityAccessor",
     "access.EntityRendererAccessor",
     "access.GuiGraphicsAccessor",
@@ -117,7 +116,6 @@
     "visuals.AnvilMenuMixin"
   ],
   "client": [
-    "client.AbstractContainerScreenAccessor",
     "client.AbstractContainerScreenMixin",
     "client.AnvilScreenAccessor",
     "client.AnvilScreenMixin",
@@ -131,7 +129,6 @@
     "client.ConnectScreenMixin",
     "client.ContainerClickMixin",
     "client.CowRendererMixin",
-    "client.CreativeModeInventoryScreenAccessor",
     "client.CreeperModelMixin",
     "client.DeathScreenMixin",
     "client.DripParticleMixin",

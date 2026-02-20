@@ -123,7 +123,7 @@ public class HomeCommand {
     private static @Nullable HomeContext getHomeContext(CommandContext<CommandSourceStack> context, boolean sendFailure) throws CommandSyntaxException {
         if (!OttConfig.HOMES.ENABLED.get()) {
             if (sendFailure) {
-                context.getSource().sendFailure(Component.literal("Home system is disabled."));
+                sendFailure(context, "Home system is disabled in config.");
             }
             return null;
         }

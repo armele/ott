@@ -24,7 +24,7 @@ public class MinecraftBackportItemModelProvider extends ItemModelProvider {
             Block block = deferredBlock.get();
 
             // EXCLUSIONS
-            if (path.equals("wildflowers") || path.equals("leaf_litter") || path.equals("dried_ghast") || path.equals("pale_oak_sapling") || path.equals("potted_pale_oak_sapling")) {
+            if (path.equals("wildflowers") || path.equals("leaf_litter") || path.equals("dried_ghast") || path.equals("potted_pale_oak_sapling")) {
                 return;
             }
             if (path.endsWith("_wall_sign") || path.endsWith("_wall_hanging_sign")) {

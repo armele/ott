@@ -1,5 +1,6 @@
 package com.otterly76.ott.util.entity;
 
+import com.otterly76.ott.block.ModBlocks;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerLevel;
@@ -15,7 +16,10 @@ import net.minecraft.world.level.block.state.BlockState;
 import java.util.Optional;
 
 public class SpawnExtras {
-    public static final SpawnUtil.Strategy ON_TOP_OF_COLLIDER_NO_LEAVES = (level, pos, target, mutable, state) -> state.getCollisionShape(level, mutable).isEmpty() && !target.is(BlockTags.LEAVES) && Block.isFaceFull(target.getCollisionShape(level, pos), Direction.UP);
+    public static final SpawnUtil.Strategy ON_TOP_OF_COLLIDER_NO_LEAVES = (level, pos, target, mutable, state) ->
+            !target.is(BlockTags.LEAVES) && !target.is(BlockTags.LOGS) &&
+            (state.getCollisionShape(level, mutable).isEmpty() || state.is(ModBlocks.PALE_MOSS_CARPET.get())) &&
+            (target.is(ModBlocks.PALE_MOSS_CARPET.get()) || Block.isFaceFull(target.getCollisionShape(level, pos), Direction.UP));
 
     public static <T extends Mob> Optional<T> trySpawnMob(EntityType<T> entityType, MobSpawnType spawnType, ServerLevel level, BlockPos pos, int attempts, int spread, int yOffset, SpawnUtil.Strategy strategy, boolean checkForCollisions) {
         BlockPos.MutableBlockPos mutable = pos.mutable();

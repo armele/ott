@@ -27,12 +27,8 @@ public record ServerboundSetHomePacket(String name) implements CustomPacketPaylo
     }
 
     public static void handle(final ServerboundSetHomePacket payload, final IPayloadContext context) {
+        if (!OttConfig.HOMES.ENABLED.get()) return;
         context.enqueueWork(() -> {
-            if (!OttConfig.HOMES.ENABLED.get()) {
-                context.player().sendSystemMessage(Component.literal("Home system is disabled."));
-                return;
-            }
-
             ServerPlayer player = (ServerPlayer) context.player();
             HomeSavedData data = HomeSavedData.get(player.serverLevel());
             Map<String, HomeSavedData.HomePos> homes = data.getHomes(player.getUUID());

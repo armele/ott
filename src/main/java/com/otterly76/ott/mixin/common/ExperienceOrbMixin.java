@@ -36,7 +36,7 @@ public abstract class ExperienceOrbMixin extends Entity {
 
     @Inject(method = "tick", at = @At("HEAD"))
     private void ott$onTick(CallbackInfo ci) {
-        if (!this.level().isClientSide && OttConfig.CLUMPS.ENABLED.get() && this.isAlive() && this.age % 20 == 0) {
+        if (OttConfig.CLUMPS.ENABLED.get() && !this.level().isClientSide && this.isAlive() && this.age % 20 == 0) {
             double radius = OttConfig.CLUMPS.RADIUS.get();
             List<ExperienceOrb> nearbyOrbs = this.level().getEntitiesOfClass(
                     ExperienceOrb.class,
@@ -54,18 +54,21 @@ public abstract class ExperienceOrbMixin extends Entity {
 
     @ModifyConstant(method = "tick", constant = @Constant(doubleValue = 8.0D))
     private double ott$getAttractionRadius(double constant) {
-        return OttConfig.CLUMPS.ATTRACTION_RADIUS.get();
+        return OttConfig.CLUMPS.ENABLED.get() ? OttConfig.CLUMPS.ATTRACTION_RADIUS.get() : constant;
     }
 
     @ModifyConstant(method = "tick", constant = @Constant(doubleValue = 64.0D))
     private double ott$getAttractionRadiusSqr(double constant) {
-        double radius = OttConfig.CLUMPS.ATTRACTION_RADIUS.get();
-        return radius * radius;
+        if (OttConfig.CLUMPS.ENABLED.get()) {
+            double radius = OttConfig.CLUMPS.ATTRACTION_RADIUS.get();
+            return radius * radius;
+        }
+        return constant;
     }
 
     @ModifyConstant(method = "tick", constant = @Constant(intValue = 6000))
     private int ott$getDespawnTime(int constant) {
-        return OttConfig.CLUMPS.EVERLASTING.get() ? Integer.MAX_VALUE : constant;
+        return OttConfig.CLUMPS.ENABLED.get() && OttConfig.CLUMPS.EVERLASTING.get() ? Integer.MAX_VALUE : constant;
     }
 
     @Override

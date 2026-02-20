@@ -38,6 +38,7 @@ import net.minecraft.world.entity.projectile.Projectile;
 import net.minecraft.world.level.ClipContext;
 import net.minecraft.world.level.ClipContext.Fluid;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.entity.BlockEntity;
@@ -222,6 +223,11 @@ public class Creaking extends Monster {
     @SuppressWarnings("unchecked")
     public @NotNull Brain<Creaking> getBrain() {
         return (Brain<Creaking>) super.getBrain();
+    }
+
+    @Override
+    public boolean checkSpawnRules(@NotNull LevelAccessor level, @NotNull MobSpawnType spawnType) {
+        return spawnType == MobSpawnType.SPAWNER || super.checkSpawnRules(level, spawnType);
     }
 
     protected void customServerAiStep() {

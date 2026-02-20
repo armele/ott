@@ -1,5 +1,6 @@
 package com.otterly76.ott.mixin.client;
 
+import com.otterly76.ott.client.CreepOverlayRenderer;
 import com.otterly76.ott.config.OttConfig;
 import com.otterly76.ott.particle.WeatherParticleSpawner;
 import net.minecraft.client.Camera;
@@ -10,7 +11,9 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.util.Mth;
+import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.LevelReader;
+import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.levelgen.Heightmap.Types;
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
@@ -74,13 +77,21 @@ public class LevelRendererMixin {
     }
 
     @Inject(
-            method = {"renderSnowAndRain"},
-            at = {@At("HEAD")},
+            method = "renderSnowAndRain",
+            at = @At("HEAD"),
             cancellable = true
     )
     public void renderWeather(LightTexture lightTexture, float partialTicks, double x, double y, double z, CallbackInfo ci) {
         if (!OttConfig.WEATHER.RENDER_VANILLA_WEATHER.get()) {
             ci.cancel();
         }
+    }
+
+    @Inject(
+            method = "blockChanged",
+            at = @At("HEAD")
+    )
+    private void ott$onBlockChanged(BlockGetter level, BlockPos pos, BlockState oldState, BlockState newState, int flags, CallbackInfo ci) {
+        CreepOverlayRenderer.updateHedgeCache(pos, newState);
     }
 }

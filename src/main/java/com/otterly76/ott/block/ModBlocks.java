@@ -3,7 +3,7 @@ package com.otterly76.ott.block;
 import com.otterly76.ott.block.custom.*;
 import com.otterly76.ott.particle.ModParticle;
 import com.otterly76.ott.block.wood.WoodSetBlockRegistrar;
-import com.otterly76.ott.crop.HedgeSprouts;
+import com.otterly76.ott.crop.ThornyHedgeSprouts;
 import com.otterly76.ott.hedge.ModHedgeVariants;
 import com.otterly76.ott.sound.ModSounds;
 import com.otterly76.ott.util.block.BlockSetTypeVariant;
@@ -11,7 +11,6 @@ import com.otterly76.ott.util.block.WoodTypeVariant;
 import net.minecraft.world.level.block.grower.TreeGrower;
 import com.otterly76.ott.worldgen.feature.TheGardenAwakensFeatures;
 import com.otterly76.ott.wood.ModWoodSets;
-import com.otterly76.ott.worldgen.ModTreeGrowers;
 import net.minecraft.core.Direction;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.world.item.DyeColor;
@@ -188,12 +187,6 @@ public class ModBlocks {
 
     public static final DeferredBlock<Block> GAPPER_PANEL_OAK = BLOCKS.register("gapper_panel_oak", () -> new Block(Properties.of().strength(4.0f).requiresCorrectToolForDrops().sound(SoundType.STONE).noOcclusion()));
 
-    public static final DeferredBlock<SaplingBlock> STARLIGHT_SAPLING = BLOCKS.register("starlight_sapling", () -> new SaplingBlock(ModTreeGrowers.OAK, Properties.of().strength(4.0f).sound(SoundType.WOOD).noOcclusion()));
-    public static final DeferredBlock<SaplingBlock> MIDNIGHT_SAPLING = BLOCKS.register("midnight_sapling", () -> new SaplingBlock(ModTreeGrowers.OAK, Properties.of().strength(4.0f).sound(SoundType.WOOD).noOcclusion()));
-
-    public static final DeferredBlock<FlowerPotBlock> POTTED_STARLIGHT_SAPLING = BLOCKS.register("potted_starlight_sapling", () -> new FlowerPotBlock(() -> (FlowerPotBlock) Blocks.FLOWER_POT, STARLIGHT_SAPLING, Properties.of().strength(4.0f).sound(SoundType.WOOD).noOcclusion()));
-    public static final DeferredBlock<FlowerPotBlock> POTTED_MIDNIGHT_SAPLING = BLOCKS.register("potted_midnight_sapling", () -> new FlowerPotBlock(() -> (FlowerPotBlock) Blocks.FLOWER_POT, MIDNIGHT_SAPLING, Properties.of().strength(4.0f).sound(SoundType.WOOD).noOcclusion()));
-
     public static final DeferredBlock<SaplingBlock> PALE_OAK_SAPLING = registerBackportedBlock("pale_oak_sapling", () -> new SaplingBlock(new TreeGrower("pale_oak", Optional.of(TheGardenAwakensFeatures.PALE_OAK_BONEMEAL), Optional.empty(), Optional.empty()), BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_SAPLING).mapColor(MapColor.COLOR_LIGHT_GRAY).noCollission().randomTicks().instabreak().sound(SoundType.GRASS).pushReaction(PushReaction.DESTROY)), false);
     public static final DeferredBlock<FlowerPotBlock> POTTED_PALE_OAK_SAPLING = registerBackportedBlock("potted_pale_oak_sapling", () -> new FlowerPotBlock(() -> (FlowerPotBlock) Blocks.FLOWER_POT, PALE_OAK_SAPLING, BlockBehaviour.Properties.ofFullCopy(Blocks.POTTED_OAK_SAPLING).noOcclusion()), false);
 
@@ -212,11 +205,11 @@ public class ModBlocks {
     /**
      * Your original "real hedge" block (damage/bonemeal/etc). Keep separate.
      */
-    public static final DeferredBlock<HedgeBlock> HEDGE =
-            BLOCKS.register("hedge", () -> new HedgeBlock(Properties.of().strength(4.0f).requiresCorrectToolForDrops().sound(SoundType.WOOD).noOcclusion()));
+    public static final DeferredBlock<ThornyHedgeBlock> THORNY_HEDGE =
+            BLOCKS.register("thorny_hedge", () -> new ThornyHedgeBlock(Properties.of().strength(4.0f).requiresCorrectToolForDrops().sound(SoundType.WOOD).noOcclusion()));
 
-    public static final DeferredBlock<Block> HEDGE_SPROUTS =
-            BLOCKS.register("hedge_sprouts", () -> new HedgeSprouts(Block.Properties.ofFullCopy(Blocks.WHEAT)));
+    public static final DeferredBlock<Block> THORNY_HEDGE_SPROUTS =
+            BLOCKS.register("thorny_hedge_sprouts", () -> new ThornyHedgeSprouts(Block.Properties.ofFullCopy(Blocks.WHEAT)));
 
     public static final Map<String, DeferredBlock<Block>> PARTICLE_HEDGES = new LinkedHashMap<>();
     public static final Map<String, DeferredBlock<Block>> CREEPING_HEDGES = new LinkedHashMap<>();
@@ -236,7 +229,7 @@ public class ModBlocks {
 
             CREEPING_HEDGES.put(variant.name(), BLOCKS.register(
                     variant.name() + "_creeping_hedge",
-                    () -> new ParticleHedgeBlock(
+                    () -> new ParticleCreepingHedgeBlock(
                             hedgeProps,
                             variant.leafParticle(),
                             variant.creepOverlayTexture()
@@ -380,6 +373,8 @@ public class ModBlocks {
             DeferredBlock<ButtonBlock> button,
             DeferredBlock<PressurePlateBlock> pressurePlate,
             DeferredBlock<LeavesBlock> leaves,
+            DeferredBlock<SaplingBlock> sapling,
+            DeferredBlock<FlowerPotBlock> pottedSapling,
             DeferredBlock<StandingSignBlock> sign,
             DeferredBlock<WallSignBlock> wallSign,
             DeferredBlock<CeilingHangingSignBlock> hangingSign,

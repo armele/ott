@@ -11,8 +11,8 @@ import java.util.function.BiConsumer;
 import java.util.function.Predicate;
 
 public abstract class FeatureManager {
-    private final BiomeContext context;
-    private final BiomeWriter writer;
+    protected final BiomeContext context;
+    protected final BiomeWriter writer;
 
     public FeatureManager(BiomeContext context, BiomeWriter writer) {
         this.context = context;
@@ -41,22 +41,11 @@ public abstract class FeatureManager {
         feature.accept(this.context, this.writer);
     }
 
-    protected void addIf(boolean filter, BiConsumer<BiomeContext, BiomeWriter> feature) {
-        if (filter) {
-            this.add(feature);
-        }
-
-    }
-
-    protected void addIf(Predicate<BiomeContext> filter, BiConsumer<BiomeContext, BiomeWriter> feature) {
-        this.addIf(filter.test(this.context), feature);
-    }
-
     protected void addVegetation(ResourceKey<PlacedFeature> feature) {
         this.writer.addFeature(net.minecraft.world.level.levelgen.GenerationStep.Decoration.VEGETAL_DECORATION, feature);
     }
 
-    public class Builder {
+    public static class Builder {
         private final BiomeContext context;
         private final Predicate<BiomeContext> filter;
 
@@ -68,14 +57,6 @@ public abstract class FeatureManager {
         public Builder add(Runnable runnable) {
             if (this.filter.test(this.context)) {
                 runnable.run();
-            }
-
-            return this;
-        }
-
-        public Builder addIf(BiConsumer<BiomeContext, BiomeWriter> feature) {
-            if (this.filter.test(this.context)) {
-                FeatureManager.this.add(feature);
             }
 
             return this;

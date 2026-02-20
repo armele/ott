@@ -3,7 +3,7 @@ package com.otterly76.ott.client;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import com.otterly76.ott.Constants;
-import com.otterly76.ott.block.custom.ParticleHedgeBlock;
+import com.otterly76.ott.block.custom.ParticleCreepingHedgeBlock;
 import it.unimi.dsi.fastutil.longs.Long2ObjectOpenHashMap;
 import it.unimi.dsi.fastutil.longs.LongIterator;
 import it.unimi.dsi.fastutil.longs.LongOpenHashSet;
@@ -25,7 +25,6 @@ import net.neoforged.api.distmarker.Dist;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.client.event.RenderLevelStageEvent;
-import net.neoforged.neoforge.event.level.BlockEvent;
 import net.neoforged.neoforge.event.level.ChunkEvent;
 import net.neoforged.neoforge.event.level.LevelEvent;
 
@@ -77,7 +76,7 @@ public final class CreepOverlayRenderer {
                 BlockPos hedgePos = BlockPos.of(hedgeLong);
 
                 BlockState hedgeState = level.getBlockState(hedgePos);
-                if (!(hedgeState.getBlock() instanceof ParticleHedgeBlock phb && phb.getOverlayTexture() != null)) {
+                if (!(hedgeState.getBlock() instanceof ParticleCreepingHedgeBlock phb)) {
                     it.remove();
                     continue;
                 }
@@ -149,7 +148,7 @@ public final class CreepOverlayRenderer {
 
                 for (int y = minY; y < maxY; y++) {
                     mp.set(wx, y, wz);
-                    if (chunk.getBlockState(mp).getBlock() instanceof ParticleHedgeBlock phb && phb.getOverlayTexture() != null) {
+                    if (chunk.getBlockState(mp).getBlock() instanceof ParticleCreepingHedgeBlock phb) {
                         set.add(mp.asLong());
                     }
                 }
@@ -173,33 +172,19 @@ public final class CreepOverlayRenderer {
         HEDGES_BY_CHUNK.remove(key);
     }
 
-    @SubscribeEvent
-    public static void onBlockPlaced(BlockEvent.EntityPlaceEvent event) {
-        if (!(event.getLevel() instanceof Level level)) return;
-        if (!level.isClientSide()) return;
-
-        BlockPos pos = event.getPos();
-        if (!(event.getPlacedBlock().getBlock() instanceof ParticleHedgeBlock phb && phb.getOverlayTexture() != null)) return;
-
-        LongSet set = HEDGES_BY_CHUNK.computeIfAbsent(chunkKey(pos.getX() >> 4, pos.getZ() >> 4), k -> new LongOpenHashSet());
-        set.add(pos.asLong());
-    }
-
-    @SubscribeEvent
-    public static void onBlockBroken(BlockEvent.BreakEvent event) {
-        if (!(event.getLevel() instanceof Level level)) return;
-        if (!level.isClientSide()) return;
-
-        BlockPos pos = event.getPos();
-        if (!(event.getState().getBlock() instanceof ParticleHedgeBlock phb && phb.getOverlayTexture() != null)) return;
-
+    public static void updateHedgeCache(BlockPos pos, BlockState state) {
         long key = chunkKey(pos.getX() >> 4, pos.getZ() >> 4);
-        LongSet set = HEDGES_BY_CHUNK.get(key);
-        if (set == null) return;
-
-        set.remove(pos.asLong());
-        if (set.isEmpty()) {
-            HEDGES_BY_CHUNK.remove(key);
+        if (state != null && state.getBlock() instanceof ParticleCreepingHedgeBlock) {
+            LongSet set = HEDGES_BY_CHUNK.computeIfAbsent(key, k -> new LongOpenHashSet());
+            set.add(pos.asLong());
+        } else {
+            LongSet set = HEDGES_BY_CHUNK.get(key);
+            if (set != null) {
+                set.remove(pos.asLong());
+                if (set.isEmpty()) {
+                    HEDGES_BY_CHUNK.remove(key);
+                }
+            }
         }
     }
 
@@ -214,10 +199,10 @@ public final class CreepOverlayRenderer {
 
         if (state.getRenderShape() != RenderShape.MODEL) return;
         if (!state.isCollisionShapeFullBlock(level, pos)) return;
-        if (state.getBlock() instanceof ParticleHedgeBlock phb && phb.getOverlayTexture() != null) return;
+        if (state.getBlock() instanceof ParticleCreepingHedgeBlock phb) return;
 
-        boolean hedgeAbove = level.getBlockState(pos.above()).getBlock() instanceof ParticleHedgeBlock phba && phba.getOverlayTexture() != null;
-        boolean hedgeBelow = level.getBlockState(pos.below()).getBlock() instanceof ParticleHedgeBlock phbb && phbb.getOverlayTexture() != null;
+        boolean hedgeAbove = level.getBlockState(pos.above()).getBlock() instanceof ParticleCreepingHedgeBlock phba;
+        boolean hedgeBelow = level.getBlockState(pos.below()).getBlock() instanceof ParticleCreepingHedgeBlock phbb;
         if (!hedgeAbove && !hedgeBelow) return;
 
         boolean flip = hedgeAbove && !hedgeBelow;

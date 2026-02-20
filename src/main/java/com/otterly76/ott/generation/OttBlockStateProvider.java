@@ -3,7 +3,7 @@ package com.otterly76.ott.generation;
 import com.otterly76.ott.Constants;
 import com.otterly76.ott.block.IGradientBlock;
 import com.otterly76.ott.block.ModBlocks;
-import com.otterly76.ott.crop.HedgeSprouts;
+import com.otterly76.ott.crop.ThornyHedgeSprouts;
 import com.otterly76.ott.hedge.ModHedgeVariants;
 import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceLocation;
@@ -37,44 +37,39 @@ public class OttBlockStateProvider extends ModBlockStateProvider {
 
         ModHedgeVariants.ALL.forEach(variant -> {
             String name = variant.name();
-            ResourceLocation leavesTexture;
-            if (name.equals("pale_oak")) {
-                leavesTexture = mcLoc("block/pale_oak_leaves");
-            } else if (name.contains("blooming")) {
-                leavesTexture = modLoc("block/" + name + "_hedge");
-            } else {
-                leavesTexture = modLoc("block/wood/" + name + "/leaves");
-            }
-            
+            ResourceLocation leavesTexture = modLoc("block/" + name + "_hedge");
+
+            // Regular Hedge Model
             ResourceLocation hedgeModel = modLoc("block/" + name + "_hedge");
-            models().withExistingParent(name + "_hedge", modLoc("block/hedge"))
-                    .texture("all", leavesTexture);
+            models().withExistingParent(name + "_hedge", mcLoc("block/cube_all"))
+                    .texture("all", leavesTexture)
+                    .renderType("minecraft:cutout");
             simpleBlock(ModBlocks.PARTICLE_HEDGES.get(name).get(), models().getExistingFile(hedgeModel));
             itemModels().withExistingParent(name + "_hedge", hedgeModel);
 
+            // Creeping Hedge Model
             ResourceLocation creepingModel = modLoc("block/" + name + "_creeping_hedge");
-            models().withExistingParent(name + "_creeping_hedge", modLoc("block/hedge"))
-                    .texture("all", leavesTexture);
+            models().withExistingParent(name + "_creeping_hedge", mcLoc("block/cube_all"))
+                    .texture("all", leavesTexture)
+                    .texture("particle", variant.creepOverlayTexture())
+                    .renderType("minecraft:cutout");
             simpleBlock(ModBlocks.CREEPING_HEDGES.get(name).get(), models().getExistingFile(creepingModel));
             itemModels().withExistingParent(name + "_creeping_hedge", creepingModel);
         });
 
         ModBlocks.getAllGradientBlocks().forEach(this::registerGradientBlock);
 
-        registerSapling(ModBlocks.STARLIGHT_SAPLING.get(), ModBlocks.POTTED_STARLIGHT_SAPLING.get(), "starlight");
-        registerSapling(ModBlocks.MIDNIGHT_SAPLING.get(), ModBlocks.POTTED_MIDNIGHT_SAPLING.get(), "midnight");
-
         registerLantern(ModBlocks.PROTECTIVE_LANTERN.get(), "protective");
         registerLantern(ModBlocks.WATER_LANTERN.get(), "water");
         registerLantern(ModBlocks.LAVA_LANTERN.get(), "lava");
         registerLantern(ModBlocks.SMITE_LANTERN.get(), "smite");
 
-        simpleBlock(ModBlocks.HEDGE.get(), models().getExistingFile(modLoc("block/hedge")));
+        simpleBlock(ModBlocks.THORNY_HEDGE.get(), models().getExistingFile(modLoc("block/thorny_hedge")));
 
-        getVariantBuilder(ModBlocks.HEDGE_SPROUTS.get()).forAllStates(state -> {
-            int age = state.getValue(HedgeSprouts.AGE);
+        getVariantBuilder(ModBlocks.THORNY_HEDGE_SPROUTS.get()).forAllStates(state -> {
+            int age = state.getValue(ThornyHedgeSprouts.AGE);
             return ConfiguredModel.builder()
-                    .modelFile(models().cross("hedge_sprouts_stage" + age, modLoc("block/hedge")).renderType("cutout"))
+                    .modelFile(models().cross("thorny_hedge_sprouts_stage" + age, modLoc("block/thorny_hedge")).renderType("cutout"))
                     .build();
         });
     }
@@ -82,7 +77,7 @@ public class OttBlockStateProvider extends ModBlockStateProvider {
     private void registerSapling(Block sapling, Block potted, String name) {
         ModelFile saplingModel = models().getExistingFile(modLoc("block/" + name + "_sapling"));
         simpleBlock(sapling, saplingModel);
-        itemModels().withExistingParent(name + "_sapling", mcLoc("item/generated")).texture("layer0", modLoc("block/" + name + "_leaves_sapling"));
+        itemModels().withExistingParent(name + "_sapling", modLoc("block/" + name + "_sapling"));
 
         ModelFile pottedModel = models().getExistingFile(modLoc("block/potted_" + name + "_sapling"));
         simpleBlock(potted, pottedModel);
@@ -145,6 +140,7 @@ public class OttBlockStateProvider extends ModBlockStateProvider {
         hangingSignBlock(set.hangingSign().get(), set.wallHangingSign().get(), planksTex);
 
         registerFluffyLeaves(setName, set.leaves().get());
+        registerSapling(set.sapling().get(), set.pottedSapling().get(), setName);
     }
 
     private void registerPlanksSlab(String setName, SlabBlock slab, ResourceLocation planksTex, ResourceLocation doubleModelLoc) {

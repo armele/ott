@@ -25,18 +25,16 @@ public class FallingLeavesModule {
 
     private void spawnFallingLeavesParticle(Level level, BlockPos pos, RandomSource random) {
         BlockState state = level.getBlockState(pos);
-        if (OttConfig.GENERAL.HAS_FALLING_LEAVES.get()) {
-            ParticleType<ColorParticleOption> particle = null;
-            if (state.is(ModTags.Blocks.SPAWN_FALLING_LEAVES)) {
-                particle = ModParticle.TINTED_LEAVES.get();
-            } else if (state.is(ModTags.Blocks.SPAWN_FALLING_NEEDLES)) {
-                particle = ModParticle.TINTED_NEEDLES.get();
-            }
+        ParticleType<ColorParticleOption> particle = null;
+        if (state.is(ModTags.Blocks.SPAWN_FALLING_LEAVES)) {
+            particle = ModParticle.TINTED_LEAVES.get();
+        } else if (state.is(ModTags.Blocks.SPAWN_FALLING_NEEDLES)) {
+            particle = ModParticle.TINTED_NEEDLES.get();
+        }
 
-            if (particle != null) {
-                ColorParticleOption option = ColorParticleOption.create(particle, LeafColors.getClientLeafTintColor(pos));
-                ParticleUtils.spawnParticleBelow(level, pos, random, option);
-            }
+        if (particle != null) {
+            ColorParticleOption option = ColorParticleOption.create(particle, LeafColors.getClientLeafTintColor(pos));
+            ParticleUtils.spawnParticleBelow(level, pos, random, option);
         }
     }
 }

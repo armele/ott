@@ -1,6 +1,5 @@
 package com.otterly76.ott.util.item;
 
-import com.otterly76.ott.config.OttConfig;
 import com.otterly76.ott.duck.IBundle;
 import com.otterly76.ott.item.ModItems;
 import com.otterly76.ott.sound.ModSounds;
@@ -18,7 +17,7 @@ import java.util.Optional;
 
 public class BundleFeatures {
     public static boolean onBundleUpdate() {
-        return OttConfig.BUNDLES.UPDATED_BUNDLES().get();
+        return true;
     }
 
     public static boolean canItemBeInBundle(ItemStack stack) {

@@ -44,7 +44,7 @@ public class TorchArrowEntity extends AbstractArrow {
     @Override
     protected void onHitBlock(@NotNull BlockHitResult result) {
         super.onHitBlock(result);
-        if (!this.level().isClientSide && com.otterly76.ott.config.OttConfig.GENERAL.ENABLE_TORCH_ARROW.get()) {
+        if (!this.level().isClientSide) {
             BlockPos hitPos = result.getBlockPos();
             Direction direction = result.getDirection();
             BlockPos placePos = hitPos.relative(direction);

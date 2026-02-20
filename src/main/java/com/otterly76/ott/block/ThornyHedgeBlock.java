@@ -27,14 +27,14 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import com.otterly76.ott.OttDamageTypes;
 
-public class HedgeBlock extends Block implements BonemealableBlock {
+public class ThornyHedgeBlock extends Block implements BonemealableBlock {
     private static final VoxelShape HEDGE_BB = Block.box(1.0D, 0.0D, 1.0D, 15.0D, 15.0D, 15.0D);
     private static final float DAMAGE = 2.0F;
     private static final int MAX_HEIGHT = 5;
 
     private static final TagKey<EntityType<?>> MINECOLONIES_RAIDER = TagKey.create(Registries.ENTITY_TYPE, ResourceLocation.fromNamespaceAndPath("minecolonies", "raider"));
 
-    public HedgeBlock(BlockBehaviour.Properties properties) {
+    public ThornyHedgeBlock(BlockBehaviour.Properties properties) {
         super(properties);
     }
     @Override

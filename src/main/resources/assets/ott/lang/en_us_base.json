@@ -1,10 +1,4 @@
 {
-"bundled_tab.ott.pale_oak": "Pale Oak",
-"bundled_tab.ott.pale_garden": "Pale Garden",
-"bundled_tab.ott.resin": "Resin",
-"bundled_tab.ott.spring_to_life": "Spring to Life",
-"bundled_tab.ott.chase_the_skies": "Chase The Skies",
-"bundled_tab.ott.bundles_of_bravery": "Bundles of Bravery",
 
 "biome.ott.flatness": "Schematic: Flatness",
 "biome.ott.flatness_water": "Schematic: Flatness Water",
@@ -54,8 +48,8 @@
 "block.ott.green_seaglass": "Green Seaglass",
 "block.ott.green_smooth_seaglass": "Green Smooth Seaglass",
 "block.ott.green_waves_seaglass": "Green Waves Seaglass",
-"block.ott.hedge": "Hedge",
-"block.ott.hedge_sprouts": "Hedge Sprouts",
+"block.ott.thorny_hedge": "Thorny Hedge",
+"block.ott.thorny_hedge_sprouts": "Thorny Hedge Sprouts",
 "block.ott.lava_lantern": "Lavabending Lantern",
 "block.ott.light_blue_bubbles_seaglass": "Light Blue Bubbles Seaglass",
 "block.ott.light_blue_seaglass": "Light Blue Seaglass",
@@ -216,7 +210,7 @@
 "entity.ott.tiny_stray": "Tiny Stray",
 "entity.ott.tiny_wither_skeleton": "Tiny Wither Skeleton",
 
-"item.ott.hedge_sprouts": "Hedge Sprouts",
+"item.ott.thorny_hedge_sprouts": "Thorny Hedge Sprouts",
 
 "item.ott.midnight_boat": "Midnight Boat",
 "item.ott.midnight_chest_boat": "Midnight Chest Boat",

@@ -26,12 +26,8 @@ public record ServerboundTeleportHomePacket(String name) implements CustomPacket
     }
 
     public static void handle(final ServerboundTeleportHomePacket payload, final IPayloadContext context) {
+        if (!OttConfig.HOMES.ENABLED.get()) return;
         context.enqueueWork(() -> {
-            if (!OttConfig.HOMES.ENABLED.get()) {
-                context.player().sendSystemMessage(Component.literal("Home system is disabled."));
-                return;
-            }
-
             ServerPlayer player = (ServerPlayer) context.player();
             HomeSavedData data = HomeSavedData.get(player.serverLevel());
             HomeSavedData.HomePos home = data.getHome(player.getUUID(), payload.name());

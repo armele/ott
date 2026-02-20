@@ -53,6 +53,8 @@ import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.fml.event.lifecycle.FMLClientSetupEvent;
 import net.neoforged.neoforge.client.event.*;
+import com.otterly76.ott.client.tooltip.FoodTooltipComponent;
+import com.otterly76.ott.client.tooltip.ClientFoodTooltipComponent;
 import net.neoforged.neoforge.event.entity.player.ItemTooltipEvent;
 import net.neoforged.neoforge.client.gui.ConfigurationScreen;
 import net.neoforged.neoforge.client.gui.IConfigScreenFactory;
@@ -94,11 +96,16 @@ public class ClientModEvents {
         modBus.addListener(com.otterly76.ott.client.handler.EmissiveModelHandler::onModelBake);
         modBus.addListener(com.otterly76.ott.client.handler.EmissiveModelHandler::onRegisterAdditionalModels);
         modBus.addListener(ClientModEvents::onRegisterReloadListeners);
+        modBus.addListener(ClientModEvents::onRegisterTooltipComponents);
     }
 
     public static void onRegisterReloadListeners(RegisterClientReloadListenersEvent event) {
         event.registerReloadListener(DryFoliageColorReloadListener.INSTANCE);
         event.registerReloadListener(LeafColorReloadListener.INSTANCE);
+    }
+
+    public static void onRegisterTooltipComponents(RegisterClientTooltipComponentFactoriesEvent event) {
+        event.register(FoodTooltipComponent.class, ClientFoodTooltipComponent::new);
     }
 
     public static void onRegisterAdditional(ModelEvent.RegisterAdditional event) {
@@ -354,8 +361,6 @@ public static float yLevelWindAdjustment(double y) {
 
     public static void onClientSetup(FMLClientSetupEvent event) {
         ItemPropertyRegistrar.bootstrap();
-        com.otterly76.ott.client.registries.ModBundledTabs.bootstrap();
-        com.otterly76.ott.client.gui.BundledTabSelector.bootstrap();
     }
 
     @SubscribeEvent

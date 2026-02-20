@@ -1,7 +1,6 @@
 package com.otterly76.ott.client.render.item;
 
 import com.otterly76.ott.item.ModItems;
-import com.otterly76.ott.config.OttConfig;
 import com.otterly76.ott.util.data.ResultHolder;
 import com.google.common.collect.ImmutableSet;
 import net.minecraft.client.renderer.ItemModelShaper;
@@ -39,7 +38,7 @@ public class BundleRenderer implements ItemRendererRegistry.Renderer {
 
     @Override
     public boolean shouldUse() {
-        return OttConfig.BUNDLES.UPDATED_BUNDLES().get();
+        return true;
     }
 
     @Override

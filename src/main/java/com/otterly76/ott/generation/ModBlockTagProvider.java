@@ -162,7 +162,7 @@ public class ModBlockTagProvider extends BlockTagsProvider {
         ModBlocks.SEAGLASS.forEach(d -> this.tag(BlockTags.IMPERMEABLE).add(d.value()));
 
         var ottHedges = this.tag(ottHedgesKey);
-        ottHedges.add(ModBlocks.HEDGE.value());
+        ottHedges.add(ModBlocks.THORNY_HEDGE.value());
         ModBlocks.PARTICLE_HEDGES.values().forEach(h -> ottHedges.add(h.value()));
         ModBlocks.CREEPING_HEDGES.values().forEach(h -> ottHedges.add(h.value()));
 
@@ -171,7 +171,7 @@ public class ModBlockTagProvider extends BlockTagsProvider {
         axeTag.add(ModBlocks.PALE_OAK_PLANKS.get(), ModBlocks.PALE_OAK_STAIRS.get(), ModBlocks.PALE_OAK_SLAB.get(), ModBlocks.PALE_OAK_FENCE.get(), ModBlocks.PALE_OAK_FENCE_GATE.get());
         axeTag.add(ModBlocks.PALE_OAK_DOOR.get(), ModBlocks.PALE_OAK_TRAPDOOR.get(), ModBlocks.PALE_OAK_BUTTON.get(), ModBlocks.PALE_OAK_PRESSURE_PLATE.get());
 
-        hoeTag.add(ModBlocks.PALE_MOSS_BLOCK.value(), ModBlocks.PALE_MOSS_CARPET.value(), ModBlocks.HEDGE.value());
+        hoeTag.add(ModBlocks.PALE_MOSS_BLOCK.value(), ModBlocks.PALE_MOSS_CARPET.value(), ModBlocks.THORNY_HEDGE.value());
         hoeTag.add(ModBlocks.PALE_OAK_LEAVES.value());
         pickaxeTag.add(ModBlocks.RESIN_BRICKS.value(), ModBlocks.CHISELED_RESIN_BRICKS.value(), ModBlocks.RESIN_BRICK_SLAB.value(), ModBlocks.RESIN_BLOCK.value(), ModBlocks.RESIN_BRICK_STAIRS.value(), ModBlocks.RESIN_BRICK_WALL.value());
 
