@@ -13,14 +13,10 @@ import org.jetbrains.annotations.NotNull;
 import java.io.InputStreamReader;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Path;
-import java.util.Locale;
-import java.util.Map;
 import java.util.concurrent.CompletableFuture;
 
 /**
  * Merges src/main/resources/assets/minecraft/lang/en_us_base.json
- * and src/main/resources/assets/ott/lang/en_us_base.json,
- * adds auto-generated wood set entries,
  * and writes src/generated/resources/assets/minecraft/lang/en_us.json
  */
 public class MinecraftLangMergeProvider implements DataProvider {
@@ -55,9 +51,31 @@ public class MinecraftLangMergeProvider implements DataProvider {
         return DataProvider.saveStable(cachedOutput, merged, out);
     }
 
+    private void addWoodSetEntries(JsonObject json, String name) {
+        String capitalized = name.substring(0, 1).toUpperCase() + name.substring(1);
+        json.addProperty("block.ott." + name + "_button", capitalized + " Button");
+        json.addProperty("block.ott." + name + "_door", capitalized + " Door");
+        json.addProperty("block.ott." + name + "_fence", capitalized + " Fence");
+        json.addProperty("block.ott." + name + "_fence_gate", capitalized + " Fence Gate");
+        json.addProperty("block.ott." + name + "_hanging_sign", capitalized + " Hanging Sign");
+        json.addProperty("block.ott." + name + "_leaves", capitalized + " Leaves");
+        json.addProperty("block.ott." + name + "_log", capitalized + " Log");
+        json.addProperty("block.ott." + name + "_planks", capitalized + " Planks");
+        json.addProperty("block.ott." + name + "_pressure_plate", capitalized + " Pressure Plate");
+        json.addProperty("block.ott." + name + "_sapling", capitalized + " Sapling");
+        json.addProperty("block.ott." + name + "_sign", capitalized + " Sign");
+        json.addProperty("block.ott." + name + "_slab", capitalized + " Slab");
+        json.addProperty("block.ott." + name + "_stairs", capitalized + " Stairs");
+        json.addProperty("block.ott." + name + "_trapdoor", capitalized + " Trapdoor");
+        json.addProperty("block.ott." + name + "_wood", capitalized + " Wood");
+        json.addProperty("block.ott.stripped_" + name + "_log", "Stripped " + capitalized + " Log");
+        json.addProperty("block.ott.stripped_" + name + "_wood", "Stripped " + capitalized + " Wood");
+        json.addProperty("block.ott.potted_" + name + "_sapling", "Potted " + capitalized + " Sapling");
+    }
+
     @Override
     public @NotNull String getName() {
-        return "Minecraft Lang (merge base files + wood sets into en_us.json)";
+        return "Minecraft Lang (merge base into en_us.json)";
     }
 
     @SuppressWarnings("DuplicatedCode")
@@ -73,58 +91,5 @@ public class MinecraftLangMergeProvider implements DataProvider {
         } catch (Exception e) {
             throw new RuntimeException("Failed reading base lang file: " + path, e);
         }
-    }
-
-    private void addWoodSetEntries(JsonObject out, String setName) {
-        String prettySet = titleCase(setName);
-
-        Map<String, String> blockKeys = Map.ofEntries(
-                Map.entry("block.ott." + setName + "_log", prettySet + " Log"),
-                Map.entry("block.ott." + setName + "_wood", prettySet + " Wood"),
-                Map.entry("block.ott.stripped_" + setName + "_log", "Stripped " + prettySet + " Log"),
-                Map.entry("block.ott.stripped_" + setName + "_wood", "Stripped " + prettySet + " Wood"),
-                Map.entry("block.ott." + setName + "_planks", prettySet + " Planks"),
-                Map.entry("block.ott." + setName + "_stairs", prettySet + " Stairs"),
-                Map.entry("block.ott." + setName + "_slab", prettySet + " Slab"),
-                Map.entry("block.ott." + setName + "_fence", prettySet + " Fence"),
-                Map.entry("block.ott." + setName + "_fence_gate", prettySet + " Fence Gate"),
-                Map.entry("block.ott." + setName + "_door", prettySet + " Door"),
-                Map.entry("block.ott." + setName + "_trapdoor", prettySet + " Trapdoor"),
-                Map.entry("block.ott." + setName + "_button", prettySet + " Button"),
-                Map.entry("block.ott." + setName + "_pressure_plate", prettySet + " Pressure Plate"),
-                Map.entry("block.ott." + setName + "_leaves", prettySet + " Leaves"),
-                Map.entry("block.ott." + setName + "_sapling", prettySet + " Sapling"),
-                Map.entry("block.ott.potted_" + setName + "_sapling", "Potted " + prettySet + " Sapling"),
-
-                Map.entry("block.ott." + setName + "_sign", prettySet + " Sign"),
-                Map.entry("block.ott." + setName + "_wall_sign", prettySet + " Wall Sign"),
-                Map.entry("block.ott." + setName + "_hanging_sign", prettySet + " Hanging Sign"),
-                Map.entry("block.ott." + setName + "_wall_hanging_sign", prettySet + " Wall Hanging Sign")
-        );
-
-        Map<String, String> itemKeys = Map.ofEntries(
-                Map.entry("item.ott." + setName + "_sign", prettySet + " Sign"),
-                Map.entry("item.ott." + setName + "_hanging_sign", prettySet + " Hanging Sign"),
-                Map.entry("item.ott." + setName + "_boat", prettySet + " Boat"),
-                Map.entry("item.ott." + setName + "_chest_boat", prettySet + " Chest Boat")
-        );
-
-        blockKeys.forEach((k, v) -> putIfAbsent(out, k, v));
-        itemKeys.forEach((k, v) -> putIfAbsent(out, k, v));
-    }
-
-    private void putIfAbsent(JsonObject obj, String key, String value) {
-        if (!obj.has(key)) obj.addProperty(key, value);
-    }
-
-    private String titleCase(String id) {
-        String[] parts = id.toLowerCase(Locale.ROOT).split("_+");
-        StringBuilder sb = new StringBuilder();
-        for (String p : parts) {
-            if (p.isBlank()) continue;
-            if (!sb.isEmpty()) sb.append(' ');
-            sb.append(Character.toUpperCase(p.charAt(0))).append(p.substring(1));
-        }
-        return sb.toString();
     }
 }

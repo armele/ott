@@ -21,6 +21,7 @@ public class OttConfig {
     public static final Lanterns LANTERNS;
     public static final Harvest HARVEST;
     public static final Anvils ANVILS;
+    public static final AFK afk;
 
     static {
         ModConfigSpec.Builder builder = new ModConfigSpec.Builder();
@@ -40,9 +41,34 @@ public class OttConfig {
         LANTERNS = new Lanterns(builder);
         HARVEST = new Harvest(builder);
         ANVILS = new Anvils(builder);
+        afk = new AFK(builder);
 
         builder.pop();
         SPEC = builder.build();
+    }
+
+    public static class AFK {
+        public final ModConfigSpec.IntValue AUTO_AFK_TICKS;
+        public final ModConfigSpec.BooleanValue ENABLE_IMMUNITY;
+        public final ModConfigSpec.BooleanValue EXCLUDE_FROM_SLEEP;
+        public final ModConfigSpec.ConfigValue<String> AFK_TAG_COLOR;
+
+        public AFK(ModConfigSpec.Builder builder) {
+            builder.push("afk");
+            AUTO_AFK_TICKS = builder.comment("Time in ticks before a player is automatically set to AFK. 0 to disable.")
+                    .translation("ott.configuration.afk.autoafkticks")
+                    .defineInRange("autoAFKTicks", 6000, 0, Integer.MAX_VALUE);
+            ENABLE_IMMUNITY = builder.comment("Whether AFK players are immune to damage.")
+                    .translation("ott.configuration.afk.enableimmunity")
+                    .define("enableImmunity", true);
+            EXCLUDE_FROM_SLEEP = builder.comment("Whether AFK players are excluded from sleep requirements.")
+                    .translation("ott.configuration.afk.excludefromsleep")
+                    .define("excludeFromSleep", true);
+            AFK_TAG_COLOR = builder.comment("Color of the <AFK> tag in ChatFormatting name (e.g. GRAY, GOLD, etc.)")
+                    .translation("ott.configuration.afk.afktagcolor")
+                    .define("afkTagColor", "GRAY");
+            builder.pop();
+        }
     }
 
     public static class Harvest {

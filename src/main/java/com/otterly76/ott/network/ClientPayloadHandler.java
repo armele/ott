@@ -24,4 +24,8 @@ public class ClientPayloadHandler {
             Minecraft.getInstance().particleEngine.destroy(packet.pos(), net.minecraft.world.level.block.Block.stateById(packet.stateId()));
         }
     }
+
+    public static void handleSyncAFKStatus(final S2CSyncAFKStatusPacket packet, final IPayloadContext context) {
+        com.otterly76.ott.afk.AFKClientStates.setAFK(packet.playerUUID(), packet.afk());
+    }
 }

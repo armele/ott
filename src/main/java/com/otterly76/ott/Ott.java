@@ -161,6 +161,7 @@ public class Ott {
         ModBlocks.register(modEventBus);
         ModBlockEntities.register(modEventBus);
         ModDataComponents.register(modEventBus);
+        com.otterly76.ott.registry.ModAttachmentTypes.register(modEventBus);
         ModArmorMaterials.register(modEventBus);
         ModJukeboxSongs.register(modEventBus);
         ModItems.register(modEventBus);

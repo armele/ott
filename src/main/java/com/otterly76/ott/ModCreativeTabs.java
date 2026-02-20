@@ -28,8 +28,6 @@ public final class ModCreativeTabs {
         return CreativeModeTab.builder().title(Component.translatable(createTranslationKey("misc"))).icon(() -> new ItemStack(ModItems.OTTER.get())).displayItems((config, output) -> {
             output.accept(ModItems.OTTER);
 
-            // output.accept(ModBlocks.GAPPER_PANEL_OAK);
-
             // Protective Lanterns
             output.accept(ModBlocks.PROTECTIVE_LANTERN);
 

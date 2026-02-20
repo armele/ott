@@ -63,6 +63,7 @@
     "common.MixinItems",
     "common.MobMixin",
     "common.MutableBundleContentsMixin",
+    "common.SleepStatusMixin",
     "common.NoiseBasedChunkGeneratorAccessor",
     "common.NoiseGeneratorSettingsAccessor",
     "common.PigMixin",

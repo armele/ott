@@ -73,5 +73,17 @@ public class NetworkHandler {
                 ServerboundSelectBundleItemPacket.STREAM_CODEC,
                 ServerboundSelectBundleItemPacket::handle
         );
+
+        registrar.playToClient(
+                S2CSyncAFKStatusPacket.TYPE,
+                S2CSyncAFKStatusPacket.STREAM_CODEC,
+                (packet, context) -> context.enqueueWork(() -> ClientPayloadHandler.handleSyncAFKStatus(packet, context))
+        );
+
+        registrar.playToServer(
+                C2SNotifyActionPacket.TYPE,
+                C2SNotifyActionPacket.STREAM_CODEC,
+                C2SNotifyActionPacket::handle
+        );
     }
 }

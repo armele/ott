@@ -25,16 +25,14 @@ public class OttBlockStateProvider extends ModBlockStateProvider {
     protected void registerStatesAndModels() {
         ModBlocks.WOOD_SETS.forEach(this::registerWoodSet);
         
-        simpleBlockWithItem(ModBlocks.GAPPER_PANEL_OAK.get(), models().getExistingFile(modLoc("block/gapper_panel_oak")));
-        
         ModBlocks.SEAGLASS.forEach(block -> simpleBlockWithItem(block.get(), cubeAll(block.get())));
         ModBlocks.LIMESTONE.forEach(block -> simpleBlockWithItem(block.get(), cubeAll(block.get())));
+        
         ModBlocks.TESTBLOCK.forEach(block -> {
-            String name = block.getId().getPath();
-            String texName = name.replace("testblock_", "testtexture_");
-            simpleBlockWithItem(block.get(), models().cubeAll(name, modLoc("block/" + texName)));
+            ModelFile model = models().getExistingFile(modLoc("block/" + block.getId().getPath()));
+            simpleBlock(block.get(), model);
         });
-
+        
         ModHedgeVariants.ALL.forEach(variant -> {
             String name = variant.name();
             ResourceLocation leavesTexture = modLoc("block/" + name + "_hedge");

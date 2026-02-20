@@ -272,4 +272,5 @@ public class ModBlockTagProvider extends BlockTagsProvider {
         this.tag(BlockTags.CEILING_HANGING_SIGNS).add(hangingSign);
         this.tag(BlockTags.WALL_HANGING_SIGNS).add(wallHangingSign);
     }
+
 }
