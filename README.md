@@ -43,8 +43,9 @@ Mods, Resourcepacks, and Datapacks You Will Not Need:
 
 **Mods, Resourcepacks, and Datapacks:**
 - Actually Harvest, Right Click Harvest, Simply Harvesting, etc
+- AFKStatus, SimpleAFK, etc
 - Appleskin 🍎
-- Best Bundles, other mods/etc that implement bundles
+- Best Bundles, LootBundles
 - Better Days 🌛🌝🌜
 - Better Leaves, Bushy Leaves, JS Leaves+, etc 🍃
 - Block Runner
