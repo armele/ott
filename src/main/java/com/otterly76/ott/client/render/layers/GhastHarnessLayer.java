@@ -1,13 +1,13 @@
 package com.otterly76.ott.client.render.layers;
 
-import com.otterly76.ott.item.ModItems;
 import com.google.common.collect.ImmutableMap;
-import java.util.Map;
+import com.otterly76.ott.item.ModItems;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.level.ItemLike;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
+
+import java.util.Map;
 
 @OnlyIn(Dist.CLIENT)
 public class GhastHarnessLayer {

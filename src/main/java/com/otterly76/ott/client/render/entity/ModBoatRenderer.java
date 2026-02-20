@@ -5,7 +5,6 @@ import com.otterly76.ott.Constants;
 import com.otterly76.ott.client.registries.ModModelLayers;
 import com.otterly76.ott.entity.vehicle.OttWoodSetBoatEntity;
 import com.otterly76.ott.entity.vehicle.OttWoodSetChestBoatEntity;
-import com.otterly76.ott.client.render.entity.CustomBoatModel;
 import net.minecraft.client.model.BoatModel;
 import net.minecraft.client.model.ChestBoatModel;
 import net.minecraft.client.model.ListModel;
@@ -33,7 +32,7 @@ public class ModBoatRenderer extends BoatRenderer implements CustomBoatModel {
     }
 
     @Override
-    public Pair<ResourceLocation, ListModel<Boat>> getModelWithLocation(Boat boat) {
+    public @NotNull Pair<ResourceLocation, ListModel<Boat>> getModelWithLocation(@NotNull Boat boat) {
         String woodType = getWoodType(boat);
         return boatResources.computeIfAbsent(woodType, k -> {
             ResourceLocation texture;
@@ -45,7 +44,7 @@ public class ModBoatRenderer extends BoatRenderer implements CustomBoatModel {
             } else {
                 String folder = isChest ? "textures/entity/chest_boat/" : "textures/entity/boat/";
                 texture = ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, folder + k + ".png");
-                model = isChest ? new ChestBoatModel(context.bakeLayer(isChest ? ModModelLayers.OTT_WOOD_SET_CHEST_BOAT : ModModelLayers.OTT_WOOD_SET_BOAT)) : new BoatModel(context.bakeLayer(isChest ? ModModelLayers.OTT_WOOD_SET_CHEST_BOAT : ModModelLayers.OTT_WOOD_SET_BOAT));
+                model = isChest ? new ChestBoatModel(context.bakeLayer(ModModelLayers.OTT_WOOD_SET_CHEST_BOAT)) : new BoatModel(context.bakeLayer(ModModelLayers.OTT_WOOD_SET_BOAT));
             }
             return Pair.of(texture, model);
         });

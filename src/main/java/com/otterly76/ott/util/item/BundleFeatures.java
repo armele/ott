@@ -1,6 +1,5 @@
 package com.otterly76.ott.util.item;
 
-import com.otterly76.ott.ModChecker;
 import com.otterly76.ott.config.OttConfig;
 import com.otterly76.ott.duck.IBundle;
 import com.otterly76.ott.item.ModItems;
@@ -13,49 +12,49 @@ import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.item.DyeColor;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.Items;
 import net.minecraft.world.item.component.BundleContents;
 
 import java.util.Optional;
 
 public class BundleFeatures {
     public static boolean onBundleUpdate() {
-        return OttConfig.BUNDLES.UPDATED_BUNDLES.get() && !ModChecker.BEST_BUNDLES_LOADED;
+        return OttConfig.BUNDLES.UPDATED_BUNDLES().get();
     }
 
     public static boolean canItemBeInBundle(ItemStack stack) {
-        return !stack.isEmpty() && stack.getItem().canFitInsideContainerItems();
+        return !stack.isEmpty() && stack.canFitInsideContainerItems();
     }
 
     public static void toggleSelectedItem(ItemStack stack, int index) {
         BundleContents contents = stack.get(DataComponents.BUNDLE_CONTENTS);
         if (contents != null) {
             BundleContents.Mutable mutable = new BundleContents.Mutable(contents);
-            ((IBundle.Mutable)mutable).toggleSelectedItem(index);
+            ((IBundle.Mutable)mutable).ott$toggleSelectedItem(index);
             stack.set(DataComponents.BUNDLE_CONTENTS, mutable.toImmutable());
         }
     }
 
     public static int getSelectedItem(ItemStack stack) {
         BundleContents contents = stack.getOrDefault(DataComponents.BUNDLE_CONTENTS, BundleContents.EMPTY);
-        return ((IBundle)(Object)contents).getSelectedItem();
+        return ((IBundle)(Object)contents).ott$getSelectedItem();
     }
 
     public static ItemStack getSelectedItemStack(ItemStack stack) {
         BundleContents contents = stack.get(DataComponents.BUNDLE_CONTENTS);
         if (contents == null) return ItemStack.EMPTY;
         IBundle ibundle = (IBundle)(Object)contents;
-        return ibundle.getSelectedItem() != -1 ? contents.getItemUnsafe(ibundle.getSelectedItem()) : ItemStack.EMPTY;
+        return ibundle.ott$getSelectedItem() != -1 ? contents.getItemUnsafe(ibundle.ott$getSelectedItem()) : ItemStack.EMPTY;
     }
 
     public static int getNumberOfItemsToShow(ItemStack stack) {
         BundleContents contents = stack.getOrDefault(DataComponents.BUNDLE_CONTENTS, BundleContents.EMPTY);
-        return ((IBundle)(Object)contents).getNumberOfItemsToShow();
+        return ((IBundle)(Object)contents).ott$getNumberOfItemsToShow();
     }
 
     public static Optional<ItemStack> removeOneItemFromBundle(ItemStack stack, Player player, BundleContents contents) {
         BundleContents.Mutable mutable = new BundleContents.Mutable(contents);
         ItemStack itemStack = mutable.removeOne();
+        assert itemStack != null;
         if (!itemStack.isEmpty()) {
             playRemoveOneSound(player);
             stack.set(DataComponents.BUNDLE_CONTENTS, mutable.toImmutable());
@@ -83,7 +82,6 @@ public class BundleFeatures {
             case RED -> ModItems.BUNDLES.get("red").get();
             case BLACK -> ModItems.BUNDLES.get("black").get();
             case PURPLE -> ModItems.BUNDLES.get("purple").get();
-            default -> Items.BUNDLE;
         };
     }
 

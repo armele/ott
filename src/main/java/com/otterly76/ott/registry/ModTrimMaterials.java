@@ -16,22 +16,22 @@ import net.minecraft.world.item.armortrim.TrimMaterial;
 import java.util.Map;
 
 public class ModTrimMaterials {
-    public static final ResourceKey<TrimMaterial> RESIN = registryKey("resin");
+    public static final ResourceKey<TrimMaterial> RESIN = registryKey();
 
     public static void bootstrap(BootstrapContext<TrimMaterial> context) {
-        register(context, RESIN, ModItems.RESIN_BRICK.get(), Style.EMPTY.withColor(16545810), 0.5F);
+        register(context, ModItems.RESIN_BRICK.get(), Style.EMPTY.withColor(16545810));
     }
 
-    private static void register(BootstrapContext<TrimMaterial> context, ResourceKey<TrimMaterial> materialKey, Item ingredient, Style style, float itemModelIndex) {
-        register(context, materialKey, ingredient, style, itemModelIndex, Map.of());
+    private static void register(BootstrapContext<TrimMaterial> context, Item ingredient, Style style) {
+        register(context, ingredient, style, Map.of());
     }
 
-    private static void register(BootstrapContext<TrimMaterial> context, ResourceKey<TrimMaterial> materialKey, Item ingredient, Style style, float itemModelIndex, Map<Holder<ArmorMaterial>, String> overrideArmorMaterials) {
-        TrimMaterial trimMaterial = TrimMaterial.create(materialKey.location().getPath(), ingredient, itemModelIndex, Component.translatable(Util.makeDescriptionId("trim_material", materialKey.location())).withStyle(style), overrideArmorMaterials);
-        context.register(materialKey, trimMaterial);
+    private static void register(BootstrapContext<TrimMaterial> context, Item ingredient, Style style, Map<Holder<ArmorMaterial>, String> overrideArmorMaterials) {
+        TrimMaterial trimMaterial = TrimMaterial.create(ModTrimMaterials.RESIN.location().getPath(), ingredient, (float) 0.5, Component.translatable(Util.makeDescriptionId("trim_material", ModTrimMaterials.RESIN.location())).withStyle(style), overrideArmorMaterials);
+        context.register(ModTrimMaterials.RESIN, trimMaterial);
     }
 
-    private static ResourceKey<TrimMaterial> registryKey(String name) {
-        return ResourceKey.create(Registries.TRIM_MATERIAL, ResourceLocation.fromNamespaceAndPath("minecraft", name));
+    private static ResourceKey<TrimMaterial> registryKey() {
+        return ResourceKey.create(Registries.TRIM_MATERIAL, ResourceLocation.fromNamespaceAndPath("minecraft", "resin"));
     }
 }

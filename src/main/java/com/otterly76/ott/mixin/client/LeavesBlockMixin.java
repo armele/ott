@@ -18,13 +18,13 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 @Mixin({LeavesBlock.class})
 public class LeavesBlockMixin {
     @Unique
-    private final FallingLeavesModule module = new FallingLeavesModule();
+    private final FallingLeavesModule ott$module = new FallingLeavesModule();
 
     @Inject(
         method = {"animateTick(Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/world/level/Level;Lnet/minecraft/core/BlockPos;Lnet/minecraft/util/RandomSource;)V"},
         at = {@At("HEAD")}
     )
     public void vb$animateTick(BlockState state, Level level, BlockPos pos, RandomSource random, CallbackInfo ci) {
-        this.module.makeFallingLeavesParticles(level, pos, random, level.getBlockState(pos.below()), pos.below());
+        this.ott$module.makeFallingLeavesParticles(level, pos, random, level.getBlockState(pos.below()), pos.below());
     }
 }

@@ -1,6 +1,5 @@
 package com.otterly76.ott.util.entity;
 
-import java.util.List;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.level.BlockGetter;
@@ -9,9 +8,11 @@ import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.Vec3;
 import org.jetbrains.annotations.Nullable;
 
+import java.util.List;
+
 public class CollisionUtils {
     public static boolean intersects(AABB box, BlockPos pos) {
-        return box.intersects((double)pos.getX(), (double)pos.getY(), (double)pos.getZ(), (double)(pos.getX() + 1), (double)(pos.getY() + 1), (double)(pos.getZ() + 1));
+        return box.intersects(pos.getX(), pos.getY(), pos.getZ(), pos.getX() + 1, pos.getY() + 1, pos.getZ() + 1);
     }
 
     public static boolean collidedWithFluid(LivingEntity entity, FluidState state, BlockPos pos, Vec3 origin, Vec3 target) {
@@ -30,7 +31,7 @@ public class CollisionUtils {
             return null;
         } else {
             float fluidHeight = state.getHeight(level, pos);
-            return new AABB((double)pos.getX(), (double)pos.getY(), (double)pos.getZ(), (double)pos.getX() + 1.0, (double)((float)pos.getY() + fluidHeight), (double)pos.getZ() + 1.0);
+            return new AABB(pos.getX(), pos.getY(), pos.getZ(), (double)pos.getX() + 1.0, (float)pos.getY() + fluidHeight, (double)pos.getZ() + 1.0);
         }
     }
 

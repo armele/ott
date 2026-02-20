@@ -9,25 +9,13 @@ import net.minecraft.world.level.levelgen.feature.treedecorators.TreeDecorator;
 
 import java.util.List;
 
-public class FallenTreeConfiguration implements FeatureConfiguration {
+public record FallenTreeConfiguration(BlockStateProvider trunkProvider, IntProvider logLength, List<TreeDecorator> stumpDecorators, List<TreeDecorator> logDecorators) implements FeatureConfiguration {
     public static final Codec<FallenTreeConfiguration> CODEC = RecordCodecBuilder.create((instance) -> instance.group(
-            BlockStateProvider.CODEC.fieldOf("trunk_provider").forGetter((config) -> config.trunkProvider),
-            IntProvider.codec(0, 16).fieldOf("log_length").forGetter((config) -> config.logLength),
-            TreeDecorator.CODEC.listOf().fieldOf("stump_decorators").forGetter((config) -> config.stumpDecorators),
-            TreeDecorator.CODEC.listOf().fieldOf("log_decorators").forGetter((config) -> config.logDecorators)
+            BlockStateProvider.CODEC.fieldOf("trunk_provider").forGetter(FallenTreeConfiguration::trunkProvider),
+            IntProvider.codec(0, 16).fieldOf("log_length").forGetter(FallenTreeConfiguration::logLength),
+            TreeDecorator.CODEC.listOf().fieldOf("stump_decorators").forGetter(FallenTreeConfiguration::stumpDecorators),
+            TreeDecorator.CODEC.listOf().fieldOf("log_decorators").forGetter(FallenTreeConfiguration::logDecorators)
     ).apply(instance, FallenTreeConfiguration::new));
-
-    public final BlockStateProvider trunkProvider;
-    public final IntProvider logLength;
-    public final List<TreeDecorator> stumpDecorators;
-    public final List<TreeDecorator> logDecorators;
-
-    public FallenTreeConfiguration(BlockStateProvider trunkProvider, IntProvider logLength, List<TreeDecorator> stumpDecorators, List<TreeDecorator> logDecorators) {
-        this.trunkProvider = trunkProvider;
-        this.logLength = logLength;
-        this.stumpDecorators = stumpDecorators;
-        this.logDecorators = logDecorators;
-    }
 
     public static class Builder {
         private final BlockStateProvider trunkProvider;

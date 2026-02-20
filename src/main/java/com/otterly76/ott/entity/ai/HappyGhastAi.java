@@ -57,7 +57,7 @@ public class HappyGhastAi {
     }
 
     private static void initCoreActivity(Brain<HappyGhast> brain) {
-        brain.addActivity(Activity.CORE, 0, ImmutableList.<BehaviorControl<? super HappyGhast>>of(new Swim(0.8F), new AnimalPanic(2.0F), new LookAtTargetSink(45, 90), new MoveToTargetSink(), new CountDownCooldownTicks(MemoryModuleType.TEMPTATION_COOLDOWN_TICKS)));
+        brain.addActivity(Activity.CORE, 0, ImmutableList.<BehaviorControl<? super HappyGhast>>of(new Swim(0.8F), new AnimalPanic<>(2.0F), new LookAtTargetSink(45, 90), new MoveToTargetSink(), new CountDownCooldownTicks(MemoryModuleType.TEMPTATION_COOLDOWN_TICKS)));
     }
 
     private static void initIdleActivity(Brain<HappyGhast> brain) {

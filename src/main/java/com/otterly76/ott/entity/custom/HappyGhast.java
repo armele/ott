@@ -72,7 +72,7 @@ public class HappyGhast extends Animal implements LeashExtension, PlayerRideable
     }
 
     @Override
-    protected void defineSynchedData(SynchedEntityData.Builder builder) {
+    protected void defineSynchedData(SynchedEntityData.@NotNull Builder builder) {
         super.defineSynchedData(builder);
         builder.define(IS_LEASH_HOLDER, false);
         builder.define(STAYS_STILL, false);
@@ -103,6 +103,12 @@ public class HappyGhast extends Animal implements LeashExtension, PlayerRideable
         this.goalSelector.addGoal(5, new RandomFloatAroundGoal(this, 16));
     }
 
+    @Override
+    @SuppressWarnings("unchecked")
+    public @NotNull Brain<HappyGhast> getBrain() {
+        return (Brain<HappyGhast>) super.getBrain();
+    }
+
     private PathNavigation createBabyNavigation(Level level) {
         return new BabyFlyingPathNavigation(this, level);
     }
@@ -114,7 +120,7 @@ public class HappyGhast extends Animal implements LeashExtension, PlayerRideable
         if (this.level() instanceof ServerLevel server) {
             this.goalSelector.getAvailableGoals().removeIf(goal -> true);
             this.registerGoals();
-            ((Brain<HappyGhast>)this.getBrain()).stopAll(server, this);
+            this.getBrain().stopAll(server, this);
             this.getBrain().clearMemories();
         }
     }
@@ -229,7 +235,7 @@ public class HappyGhast extends Animal implements LeashExtension, PlayerRideable
     }
 
     @Override
-    public @NotNull InteractionResult mobInteract(Player player, @NotNull InteractionHand hand) {
+    public @NotNull InteractionResult mobInteract(@NotNull Player player, @NotNull InteractionHand hand) {
         if (this.isBaby()) {
             return super.mobInteract(player, hand);
         } else {
@@ -367,7 +373,7 @@ public class HappyGhast extends Animal implements LeashExtension, PlayerRideable
     }
 
     @Override
-    protected void tickRidden(Player controller, @NotNull Vec3 riddenInput) {
+    protected void tickRidden(@NotNull Player controller, @NotNull Vec3 riddenInput) {
         super.tickRidden(controller, riddenInput);
         Vec2 rotation = this.getRiddenRotation(controller);
         float yRot = this.getYRot();
@@ -378,7 +384,7 @@ public class HappyGhast extends Animal implements LeashExtension, PlayerRideable
     }
 
     @Override
-    protected BodyRotationControl createBodyControl() {
+    protected @NotNull BodyRotationControl createBodyControl() {
         return new GhastBodyRotationControl(this);
     }
 
@@ -427,7 +433,7 @@ public class HappyGhast extends Animal implements LeashExtension, PlayerRideable
     }
 
     @Override
-    protected void checkFallDamage(double y, boolean onGround, BlockState state, BlockPos pos) {
+    protected void checkFallDamage(double y, boolean onGround, @NotNull BlockState state, @NotNull BlockPos pos) {
     }
 
     public boolean isHarnessed() {
@@ -676,7 +682,7 @@ public class HappyGhast extends Animal implements LeashExtension, PlayerRideable
             AABB targetBox = entityBox.move(target);
             if (this.careful) {
                 for (BlockPos position : BlockPosUtils.betweenClosed(targetBox.inflate(1.0))) {
-                    if (!this.blockTraversalPossible(this.ghast.level(), null, null, position, false, false)) {
+                    if (this.isBlockTraversalImpossible(this.ghast.level(), null, null, position, false, false)) {
                         return false;
                     }
                 }
@@ -686,31 +692,31 @@ public class HappyGhast extends Animal implements LeashExtension, PlayerRideable
             boolean inLava = this.ghast.isInLava();
             Vec3 currentPos = this.ghast.position();
             Vec3 targetPos = currentPos.add(target);
-            return BlockPosUtils.forEachBlockIntersectedBetween(currentPos, targetPos, targetBox, (pos, step) -> CollisionUtils.intersects(entityBox, pos) || this.blockTraversalPossible(this.ghast.level(), currentPos, targetPos, pos, inWater, inLava));
+            return BlockPosUtils.forEachBlockIntersectedBetween(currentPos, targetPos, targetBox, (pos, step) -> !CollisionUtils.intersects(entityBox, pos) && this.isBlockTraversalImpossible(this.ghast.level(), currentPos, targetPos, pos, inWater, inLava));
         }
 
-        private boolean blockTraversalPossible(BlockGetter level, @Nullable Vec3 origin, @Nullable Vec3 target, BlockPos pos, boolean inWater, boolean inLava) {
+        private boolean isBlockTraversalImpossible(BlockGetter level, @Nullable Vec3 origin, @Nullable Vec3 target, BlockPos pos, boolean inWater, boolean inLava) {
             BlockState state = level.getBlockState(pos);
             if (state.isAir()) {
-                return true;
+                return false;
             } else {
                 boolean hasValidPath = origin != null && target != null;
-                boolean noCollisionDetected = hasValidPath ? !CollisionUtils.collidedWithShapeMovingFrom(this.ghast, origin, target, List.of(state.getCollisionShape(level, pos).move(pos.getX(), pos.getY(), pos.getZ()).bounds())) : state.getCollisionShape(level, pos).isEmpty();
+                boolean collisionDetected = hasValidPath ? CollisionUtils.collidedWithShapeMovingFrom(this.ghast, origin, target, List.of(state.getCollisionShape(level, pos).move(pos.getX(), pos.getY(), pos.getZ()).bounds())) : !state.getCollisionShape(level, pos).isEmpty();
                 if (!this.careful) {
-                    return noCollisionDetected;
+                    return collisionDetected;
                 } else if (state.is(ModTags.Blocks.HAPPY_GHAST_AVOIDS)) {
-                    return false;
+                    return true;
                 } else {
                     FluidState fluidState = level.getFluidState(pos);
                     if (!fluidState.isEmpty() && (!hasValidPath || CollisionUtils.collidedWithFluid(this.ghast, fluidState, pos, origin, target))) {
                         if (fluidState.is(net.minecraft.tags.FluidTags.WATER)) {
-                            return inWater;
+                            return !inWater;
                         }
                         if (fluidState.is(net.minecraft.tags.FluidTags.LAVA)) {
-                            return inLava;
+                            return !inLava;
                         }
                     }
-                    return noCollisionDetected;
+                    return collisionDetected;
                 }
             }
         }
@@ -764,7 +770,7 @@ public class HappyGhast extends Animal implements LeashExtension, PlayerRideable
         }
 
         @Override
-        protected boolean canMoveDirectly(Vec3 posVec31, Vec3 posVec32) {
+        protected boolean canMoveDirectly(@NotNull Vec3 posVec31, @NotNull Vec3 posVec32) {
             return isClearForMovementBetween(this.mob, posVec31, posVec32, false);
         }
     }

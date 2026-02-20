@@ -1,19 +1,13 @@
 package com.otterly76.ott.util.data;
 
-import java.util.Collection;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Map;
-import java.util.Objects;
-import java.util.Optional;
 import net.minecraft.core.Holder;
 import net.minecraft.core.Registry;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.TagKey;
 import net.minecraft.util.RandomSource;
+
+import java.util.*;
 
 public class BuiltInCoreRegistry<T> {
     private final Map<ResourceLocation, T> hardcodedEntries = new HashMap<>();
@@ -28,17 +22,16 @@ public class BuiltInCoreRegistry<T> {
         this.registry.keySet().forEach((id) -> this.hardcodedEntries.putIfAbsent(id, this.registry.get(id)));
     }
 
-    public T register(ResourceLocation name, T entry) {
-        return this.hardcodedEntries.put(name, entry);
+    public void register(ResourceLocation name, T entry) {
+        this.hardcodedEntries.put(name, entry);
     }
 
-    public T register(String name, T entry) {
-        ResourceLocation location = ResourceLocation.fromNamespaceAndPath(this.modId, name);
-        return this.hardcodedEntries.put(location, entry);
+    public void register(String name, T entry) {
+        this.register(ResourceLocation.fromNamespaceAndPath(this.modId, name), entry);
     }
 
-    public T registerDataDriven(ResourceLocation name, T entry) {
-        return this.dataDrivenEntries.put(name, entry);
+    public void registerDataDriven(ResourceLocation name, T entry) {
+        this.dataDrivenEntries.put(name, entry);
     }
 
     public <E extends T> ResourceKey<T> resource(String name, E entry) {
@@ -75,13 +68,15 @@ public class BuiltInCoreRegistry<T> {
     }
 
     public ResourceLocation getKey(T value) {
-        Optional<ResourceLocation> dataDrivenKey = this.dataDrivenEntries.entrySet().stream()
+        return this.findKeyIn(this.dataDrivenEntries, value)
+                .or(() -> this.findKeyIn(this.hardcodedEntries, value))
+                .orElseThrow(() -> new IllegalArgumentException("Value not found in registry: " + value));
+    }
+
+    private Optional<ResourceLocation> findKeyIn(Map<ResourceLocation, T> map, T value) {
+        return map.entrySet().stream()
                 .filter((entry) -> Objects.equals(entry.getValue(), value))
                 .findFirst().map(Map.Entry::getKey);
-        return dataDrivenKey.orElseGet(() -> this.hardcodedEntries.entrySet().stream()
-                .filter((entry) -> Objects.equals(entry.getValue(), value))
-                .findFirst().map(Map.Entry::getKey)
-                .orElseThrow(() -> new IllegalArgumentException("Value not found in registry: " + value)));
     }
 
     public Optional<List<T>> fromTag(TagKey<T> tag) {
@@ -96,19 +91,9 @@ public class BuiltInCoreRegistry<T> {
     public T getRandomElement(Collection<T> collection, RandomSource random) {
         if (collection.isEmpty()) {
             throw new IllegalArgumentException("Cannot get random element from empty collection");
-        } else if (collection instanceof List) {
-            List<T> list = (List<T>)collection;
-            return list.get(random.nextInt(list.size()));
-        } else {
-            int index = random.nextInt(collection.size());
-            Iterator<T> iterator = collection.iterator();
-
-            for(int i = 0; i < index; ++i) {
-                iterator.next();
-            }
-
-            return iterator.next();
         }
+        List<T> list = collection instanceof List<T> l ? l : new ArrayList<>(collection);
+        return list.get(random.nextInt(list.size()));
     }
 
     public T getRandomElement(RandomSource random) {

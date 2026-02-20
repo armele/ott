@@ -42,6 +42,7 @@ public class MinecraftBackportBlockStateProvider extends ModBlockStateProvider {
         for (Direction dir : Direction.Plane.HORIZONTAL) {
             EnumProperty<WallSide> prop = MossyCarpetBlock.getPropertyForFace(dir);
             int yRot = (int) dir.getOpposite().toYRot();
+            assert prop != null;
             carpetBuilder.part().modelFile(models().getExistingFile(mcLoc("block/pale_moss_carpet_side_small"))).rotationY(yRot).addModel()
                     .condition(prop, WallSide.LOW).end();
             carpetBuilder.part().modelFile(models().getExistingFile(mcLoc("block/pale_moss_carpet_side_tall"))).rotationY(yRot).addModel()

@@ -16,8 +16,6 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.PinkPetalsBlock;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.level.block.state.properties.EnumProperty;
-import net.minecraft.world.level.block.state.properties.IntegerProperty;
 import net.minecraft.world.level.levelgen.blockpredicates.BlockPredicate;
 import net.minecraft.world.level.levelgen.feature.ConfiguredFeature;
 import net.minecraft.world.level.levelgen.feature.Feature;
@@ -60,10 +58,10 @@ public class SpringToLifeFeatures {
                 new RandomPatchConfiguration(8, 6, 2, PlacementUtils.onlyWhenEmpty(Feature.SIMPLE_BLOCK, new SimpleBlockConfiguration(new WeightedStateProvider(flowerBedPatchBuilder(ModBlocks.WILDFLOWERS.get()))))));
         
         FeatureUtils.register(context, PATCH_DRY_GRASS, Feature.RANDOM_PATCH, 
-                grassPatch(new WeightedStateProvider(SimpleWeightedRandomList.<BlockState>builder().add(ModBlocks.SHORT_DRY_GRASS.get().defaultBlockState(), 1).add(ModBlocks.TALL_DRY_GRASS.get().defaultBlockState(), 1).build()), 64));
+                grassPatch(new WeightedStateProvider(SimpleWeightedRandomList.<BlockState>builder().add(ModBlocks.SHORT_DRY_GRASS.get().defaultBlockState(), 1).add(ModBlocks.TALL_DRY_GRASS.get().defaultBlockState(), 1).build())));
         
         FeatureUtils.register(context, PATCH_LEAF_LITTER, Feature.RANDOM_PATCH, 
-                FeatureUtils.simpleRandomPatchConfiguration(32, PlacementUtils.filtered(Feature.SIMPLE_BLOCK, new SimpleBlockConfiguration(new WeightedStateProvider(leafLitterPatchBuilder(1, 3))), BlockPredicate.allOf(BlockPredicate.ONLY_IN_AIR_PREDICATE, BlockPredicate.matchesBlocks(Direction.DOWN.getNormal(), Blocks.GRASS_BLOCK)))));
+                FeatureUtils.simpleRandomPatchConfiguration(32, PlacementUtils.filtered(Feature.SIMPLE_BLOCK, new SimpleBlockConfiguration(new WeightedStateProvider(leafLitterPatchBuilder())), BlockPredicate.allOf(BlockPredicate.ONLY_IN_AIR_PREDICATE, BlockPredicate.matchesBlocks(Direction.DOWN.getNormal(), Blocks.GRASS_BLOCK)))));
         
         FeatureUtils.register(context, FALLEN_OAK_TREE, ModFeatures.FALLEN_TREE.get(), createFallenOak().build());
         FeatureUtils.register(context, FALLEN_BIRCH_TREE, ModFeatures.FALLEN_TREE.get(), createFallenBirch(8).build());
@@ -75,24 +73,24 @@ public class SpringToLifeFeatures {
         FeatureUtils.register(context, CACTUS_FLOWER, ModFeatures.CACTUS_FLOWER.get(), FeatureConfiguration.NONE);
     }
 
-    private static RandomPatchConfiguration grassPatch(BlockStateProvider provider, int tries) {
-        return FeatureUtils.simpleRandomPatchConfiguration(tries, PlacementUtils.onlyWhenEmpty(Feature.SIMPLE_BLOCK, new SimpleBlockConfiguration(provider)));
+    private static RandomPatchConfiguration grassPatch(BlockStateProvider provider) {
+        return FeatureUtils.simpleRandomPatchConfiguration(64, PlacementUtils.onlyWhenEmpty(Feature.SIMPLE_BLOCK, new SimpleBlockConfiguration(provider)));
     }
 
     private static SimpleWeightedRandomList.Builder<BlockState> flowerBedPatchBuilder(Block block) {
-        return segmentedBlockPatchBuilder(block, 1, 4, PinkPetalsBlock.AMOUNT, PinkPetalsBlock.FACING);
+        return segmentedBlockPatchBuilder(block, 4);
     }
 
-    private static SimpleWeightedRandomList.Builder<BlockState> leafLitterPatchBuilder(int min, int max) {
-        return segmentedBlockPatchBuilder(ModBlocks.LEAF_LITTER.get(), min, max, PinkPetalsBlock.AMOUNT, PinkPetalsBlock.FACING);
+    private static SimpleWeightedRandomList.Builder<BlockState> leafLitterPatchBuilder() {
+        return segmentedBlockPatchBuilder(ModBlocks.LEAF_LITTER.get(), 3);
     }
 
-    private static SimpleWeightedRandomList.Builder<BlockState> segmentedBlockPatchBuilder(Block block, int min, int max, IntegerProperty amount, EnumProperty<Direction> facing) {
+    private static SimpleWeightedRandomList.Builder<BlockState> segmentedBlockPatchBuilder(Block block, int max) {
         SimpleWeightedRandomList.Builder<BlockState> builder = SimpleWeightedRandomList.builder();
 
-        for(int i = min; i <= max; ++i) {
+        for(int i = 1; i <= max; ++i) {
             for(Direction direction : Direction.Plane.HORIZONTAL) {
-                builder.add(block.defaultBlockState().setValue(amount, i).setValue(facing, direction), 1);
+                builder.add(block.defaultBlockState().setValue(PinkPetalsBlock.AMOUNT, i).setValue(PinkPetalsBlock.FACING, direction), 1);
             }
         }
 

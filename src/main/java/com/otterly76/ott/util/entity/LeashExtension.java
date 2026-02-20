@@ -21,11 +21,9 @@ import net.minecraft.world.phys.Vec3;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
-import java.util.Objects;
 import java.util.Optional;
 import java.util.function.Function;
 import java.util.function.Predicate;
-import java.util.stream.Stream;
 
 public interface LeashExtension {
     Map<Predicate<Entity>, Function<Entity, Vec3[]>> QUAD_LEASH_OFFSETS = Util.make(() -> {
@@ -84,15 +82,17 @@ public interface LeashExtension {
     default void vb$notifyLeashHolder(Leashable leashable) {
     }
 
+    @SuppressWarnings({"ConstantValue"})
     default void vb$resetAngularMomentum() {
         if (this instanceof Leashable leashable) {
             Leashable.LeashData data = leashable.getLeashData();
             if (data != null && (Object)data instanceof LeashDataExtension extension) {
-                extension.setAngularMomentum(0.0);
+                extension.ott$setAngularMomentum(0.0);
             }
         }
     }
 
+    @SuppressWarnings({"ConstantValue"})
     default boolean vb$checkElasticInteractions(Entity entity, Leashable.LeashData data) {
         if (((Entity)this).getControllingPassenger() instanceof Player) {
             return false;
@@ -110,7 +110,7 @@ public interface LeashExtension {
             } else {
                 Wrench wrench = LeashExtension.Wrench.accumulate(wrenches).scale(supportQuadLeash ? 0.25 : 1.0);
                 if (data != null && (Object)data instanceof LeashDataExtension extension) {
-                    extension.setAngularMomentum(extension.angularMomentum() + 10.0 * wrench.torque());
+                    extension.ott$setAngularMomentum(extension.ott$angularMomentum() + 10.0 * wrench.torque());
                 }
                 Vec3 offset = vb$getHolderMovement(entity).subtract(vb$getKnownMovement((Entity)this));
                 ((Entity)this).addDeltaMovement(wrench.force().multiply(AXIS_SPECIFIC_ELASTICITY).add(offset.scale(0.11)));
@@ -141,7 +141,7 @@ public interface LeashExtension {
     }
 
     static <E extends Entity & Leashable & LeashExtension> List<Wrench> vb$computeElasticInteraction(E entity, Entity holder, List<Vec3> attachmentPoints, List<Vec3> holderAttachmentPoints) {
-        double elasticDistance = ((LeashExtension)entity).vb$leashElasticDistance();
+        double elasticDistance = entity.vb$leashElasticDistance();
         Vec3 entityMovement = vb$getHolderMovement(entity);
         float entityYaw = entity.getYRot() * ((float)Math.PI / 180F);
         Vec3 entityDimensions = new Vec3(entity.getBbWidth(), entity.getBbHeight(), entity.getBbWidth());

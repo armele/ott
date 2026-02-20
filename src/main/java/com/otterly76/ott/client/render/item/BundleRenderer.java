@@ -39,7 +39,7 @@ public class BundleRenderer implements ItemRendererRegistry.Renderer {
 
     @Override
     public boolean shouldUse() {
-        return OttConfig.BUNDLES.UPDATED_BUNDLES.get();
+        return OttConfig.BUNDLES.UPDATED_BUNDLES().get();
     }
 
     @Override

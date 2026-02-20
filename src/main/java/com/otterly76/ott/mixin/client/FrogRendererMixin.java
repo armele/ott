@@ -25,7 +25,7 @@ public abstract class FrogRendererMixin extends MobRendererMixin<Frog, FrogModel
     private void vb$getTextureLocation(Frog entity, CallbackInfoReturnable<ResourceLocation> cir) {
         VariantDataHolder<com.otterly76.ott.entity.variant.FrogDataVariant> holder = VariantDataHolder.getHolder(entity);
         if (holder != null) {
-            holder.getVariantData().ifPresent((variant) -> cir.setReturnValue(variant.assetInfo().path()));
+            holder.ott$getVariantData().ifPresent((variant) -> cir.setReturnValue(variant.assetInfo().path()));
         }
     }
 }

@@ -2,13 +2,14 @@ package com.otterly76.ott.util.block;
 
 import it.unimi.dsi.fastutil.longs.LongOpenHashSet;
 import it.unimi.dsi.fastutil.longs.LongSet;
-import java.util.Optional;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.util.Mth;
 import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.Vec3;
 import org.jetbrains.annotations.Nullable;
+
+import java.util.Optional;
 
 public class BlockPosUtils {
     public static Iterable<BlockPos> betweenClosed(AABB box) {
@@ -21,7 +22,7 @@ public class BlockPosUtils {
         Vec3 direction = end.subtract(start);
         if (direction.lengthSqr() < (double)Mth.square(0.99999F)) {
             for(BlockPos pos : betweenClosed(aabb)) {
-                if (!visitor.visit(pos, 0)) {
+                if (visitor.shouldAbort(pos, 0)) {
                     return false;
                 }
             }
@@ -36,7 +37,7 @@ public class BlockPosUtils {
                 return false;
             } else {
                 for(BlockPos pos : betweenClosed(aabb)) {
-                    if (!visitedPositions.contains(pos.asLong()) && !visitor.visit(pos, stepCount + 1)) {
+                    if (!visitedPositions.contains(pos.asLong()) && visitor.shouldAbort(pos, stepCount + 1)) {
                         return false;
                     }
                 }
@@ -84,7 +85,7 @@ public class BlockPosUtils {
                 break;
             }
 
-            Optional<Vec3> intersectionPoint = clip((double)startX, (double)startY, (double)startZ, (double)(startX + 1), (double)(startY + 1), (double)(startZ + 1), startPos, endPos);
+            Optional<Vec3> intersectionPoint = clip(startX, startY, startZ, startX + 1, startY + 1, startZ + 1, startPos, endPos);
             if (intersectionPoint.isPresent()) {
                 Vec3 hitPoint = intersectionPoint.get();
                 double x = Mth.clamp(hitPoint.x, (double)startX + 1.0E-5, (double)startX + 1.0 - 1.0E-5);
@@ -97,7 +98,7 @@ public class BlockPosUtils {
                 for(int localX = startX; localX <= maxX; ++localX) {
                     for(int localY = startY; localY <= maxY; ++localY) {
                         for(int localZ = startZ; localZ <= maxZ; ++localZ) {
-                            if (visitedPositions.add(BlockPos.asLong(localX, localY, localZ)) && !visitor.visit(mutable.set(localX, localY, localZ), stepsTaken)) {
+                            if (visitedPositions.add(BlockPos.asLong(localX, localY, localZ)) && visitor.shouldAbort(mutable.set(localX, localY, localZ), stepsTaken)) {
                                 return -1;
                             }
                         }
@@ -159,6 +160,6 @@ public class BlockPosUtils {
 
     @FunctionalInterface
     public interface BlockStepVisitor {
-        boolean visit(BlockPos pos, int steps);
+        boolean shouldAbort(BlockPos pos, int steps);
     }
 }

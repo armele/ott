@@ -41,25 +41,6 @@ public class BundleMouseActions implements ItemSlotMouseAction {
         }
     }
 
-    @SubscribeEvent
-    public static void onMouseButtonPressed(ScreenEvent.MouseButtonPressed.Pre event) {
-        if (!BundleFeatures.onBundleUpdate()) {
-            return;
-        }
-
-        Screen screen = event.getScreen();
-        if (screen instanceof AbstractContainerScreen<?> container) {
-            Slot slot = container.getSlotUnderMouse();
-            if (slot != null && slot.hasItem()) {
-                if (INSTANCE.matches(slot)) {
-                    // NeoForge doesn't directly expose click type here in the same way HudInteractions does
-                    // But we can infer some things or just handle common clicks if needed.
-                    // The reference handles SWAP and QUICK_MOVE to unselect.
-                }
-            }
-        }
-    }
-
     @Override
     public boolean matches(Slot slot) {
         return slot.getItem().is(ModTags.ItemTags.BUNDLES);
@@ -75,7 +56,7 @@ public class BundleMouseActions implements ItemSlotMouseAction {
             int delta = scroll.y == 0 ? -scroll.x : scroll.y;
             if (delta != 0) {
                 int selectedItem = BundleFeatures.getSelectedItem(stack);
-                int selectedItemIndex = ScrollWheelHandler.getNextScrollWheelSelection((double)delta, selectedItem, itemsToShow);
+                int selectedItemIndex = ScrollWheelHandler.getNextScrollWheelSelection(delta, selectedItem, itemsToShow);
                 if (selectedItem != selectedItemIndex) {
                     this.toggleSelectedBundleItem(stack, slotId, selectedItemIndex);
                 }
@@ -100,7 +81,10 @@ public class BundleMouseActions implements ItemSlotMouseAction {
     private void toggleSelectedBundleItem(ItemStack stack, int slotId, int selectedItemIndex) {
         if (selectedItemIndex < BundleFeatures.getNumberOfItemsToShow(stack)) {
             BundleFeatures.toggleSelectedItem(stack, selectedItemIndex);
-            Minecraft.getInstance().getConnection().send(new ServerboundSelectBundleItemPacket(slotId, selectedItemIndex));
+            var connection = Minecraft.getInstance().getConnection();
+            if (connection != null) {
+                connection.send(new ServerboundSelectBundleItemPacket(slotId, selectedItemIndex));
+            }
         }
     }
 

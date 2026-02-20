@@ -11,6 +11,7 @@ import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.levelgen.feature.stateproviders.BlockStateProvider;
 import net.minecraft.world.level.levelgen.feature.treedecorators.TreeDecorator;
 import net.minecraft.world.level.levelgen.feature.treedecorators.TreeDecoratorType;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
 
@@ -30,7 +31,7 @@ public class AttachedToLogsDecorator extends TreeDecorator {
         RandomSource random = context.random();
 
         for(BlockPos pos : Util.shuffledCopy(context.logs(), random)) {
-            Direction direction = (Direction)Util.getRandom(this.directions, random);
+            Direction direction = Util.getRandom(this.directions, random);
             BlockPos offset = pos.relative(direction);
             if (random.nextFloat() <= this.probability && context.isAir(offset)) {
                 context.setBlock(offset, this.blockProvider.getState(random, offset));
@@ -39,7 +40,7 @@ public class AttachedToLogsDecorator extends TreeDecorator {
 
     }
 
-    protected TreeDecoratorType<?> type() {
+    protected @NotNull TreeDecoratorType<?> type() {
         return ModTreeDecoratorTypes.ATTACHED_TO_LOGS.get();
     }
 }

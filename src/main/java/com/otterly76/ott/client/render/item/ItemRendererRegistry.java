@@ -12,7 +12,9 @@ import java.util.Set;
 import java.util.function.Supplier;
 
 public interface ItemRendererRegistry {
-    Supplier<ItemRendererRegistry> INSTANCE = () -> null;
+    Supplier<ItemRendererRegistry> INSTANCE = () -> {
+        throw new IllegalStateException("ItemRendererRegistry instance not initialized");
+    };
 
     void register(ItemLike item, Renderer renderer);
 

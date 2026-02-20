@@ -1,7 +1,5 @@
 package com.otterly76.ott.util.entity;
 
-import java.util.Optional;
-import java.util.function.Consumer;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerLevel;
@@ -14,6 +12,8 @@ import net.minecraft.world.entity.MobSpawnType;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
 
+import java.util.Optional;
+
 public class SpawnExtras {
     public static final SpawnUtil.Strategy ON_TOP_OF_COLLIDER_NO_LEAVES = (level, pos, target, mutable, state) -> state.getCollisionShape(level, mutable).isEmpty() && !target.is(BlockTags.LEAVES) && Block.isFaceFull(target.getCollisionShape(level, pos), Direction.UP);
 
@@ -24,8 +24,8 @@ public class SpawnExtras {
             int xOffset = Mth.randomBetweenInclusive(level.random, -spread, spread);
             int zOffset = Mth.randomBetweenInclusive(level.random, -spread, spread);
             mutable.setWithOffset(pos, xOffset, yOffset, zOffset);
-            if (level.getWorldBorder().isWithinBounds(mutable) && moveToPossibleSpawnPosition(level, yOffset, mutable, strategy) && (!checkForCollisions || level.noCollision(entityType.getSpawnAABB((double)mutable.getX() + 0.5, (double)mutable.getY(), (double)mutable.getZ() + 0.5)))) {
-                T mob = entityType.create(level, (Consumer<T>)null, mutable, spawnType, false, false);
+            if (level.getWorldBorder().isWithinBounds(mutable) && moveToPossibleSpawnPosition(level, yOffset, mutable, strategy) && (!checkForCollisions || level.noCollision(entityType.getSpawnAABB((double)mutable.getX() + 0.5, mutable.getY(), (double)mutable.getZ() + 0.5)))) {
+                T mob = entityType.create(level, null, mutable, spawnType, false, false);
                 if (mob != null) {
                     if (mob.checkSpawnRules(level, spawnType) && mob.checkSpawnObstruction(level)) {
                         level.addFreshEntityWithPassengers(mob);

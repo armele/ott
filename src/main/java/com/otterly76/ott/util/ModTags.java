@@ -72,6 +72,7 @@ public class ModTags {
             return net.minecraft.tags.ItemTags.create(ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, name));
         }
 
+        @SuppressWarnings("SameParameterValue")
         private static TagKey<Item> createTag(String namespace, String name) {
             return net.minecraft.tags.ItemTags.create(ResourceLocation.fromNamespaceAndPath(namespace, name));
         }
@@ -113,10 +114,12 @@ public class ModTags {
         public static final TagKey<net.minecraft.world.entity.EntityType<?>> PALE_GARDEN_IGNORED = createTag("pale_garden_ignored");
         public static final TagKey<net.minecraft.world.entity.EntityType<?>> FOLLOWABLE_FRIENDLY_MOBS = mcTag("followable_friendly_mobs");
 
+        @SuppressWarnings("SameParameterValue")
         private static TagKey<net.minecraft.world.entity.EntityType<?>> createTag(String name) {
             return TagKey.create(net.minecraft.core.registries.Registries.ENTITY_TYPE, ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, name));
         }
 
+        @SuppressWarnings("SameParameterValue")
         private static TagKey<net.minecraft.world.entity.EntityType<?>> mcTag(String name) {
             return TagKey.create(net.minecraft.core.registries.Registries.ENTITY_TYPE, ResourceLocation.withDefaultNamespace(name));
         }

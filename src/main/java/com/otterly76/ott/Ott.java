@@ -96,12 +96,8 @@ import net.minecraft.server.packs.repository.Pack;
 import net.minecraft.server.packs.repository.PackSource;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.entity.EntityType;
-import net.minecraft.world.item.CreativeModeTab;
-import net.minecraft.world.item.CreativeModeTabs;
 import net.minecraft.world.item.Item;
-import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
-import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.levelgen.DensityFunction;
@@ -128,7 +124,6 @@ import net.neoforged.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.neoforged.fml.event.lifecycle.FMLLoadCompleteEvent;
 import net.neoforged.fml.loading.FMLPaths;
 import net.neoforged.neoforge.common.NeoForge;
-import net.neoforged.neoforge.common.data.DatapackBuiltinEntriesProvider;
 import net.neoforged.neoforge.data.event.GatherDataEvent;
 import net.neoforged.neoforge.event.AddPackFindersEvent;
 import net.neoforged.neoforge.event.BuildCreativeModeTabContentsEvent;
@@ -140,11 +135,9 @@ import java.nio.file.Files;
 import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
-import java.util.Set;
 import java.util.function.BiConsumer;
 
 import static com.otterly76.ott.Constants.MOD_ID;
-import static com.otterly76.ott.generation.OttWorldGenProvider.BUILDER;
 
 @Mod(MOD_ID)
 public class Ott {
@@ -421,6 +414,8 @@ public class Ott {
             pot.addPlant(ModBlocks.PALE_OAK_SAPLING.getId(), ModBlocks.POTTED_PALE_OAK_SAPLING);
             pot.addPlant(ModBlocks.STARLIGHT_SAPLING.getId(), ModBlocks.POTTED_STARLIGHT_SAPLING);
             pot.addPlant(ModBlocks.MIDNIGHT_SAPLING.getId(), ModBlocks.POTTED_MIDNIGHT_SAPLING);
+            pot.addPlant(ModBlocks.CLOSED_EYEBLOSSOM.getId(), ModBlocks.POTTED_CLOSED_EYEBLOSSOM);
+            pot.addPlant(ModBlocks.OPEN_EYEBLOSSOM.getId(), ModBlocks.POTTED_OPEN_EYEBLOSSOM);
 
             net.minecraft.world.level.block.DispenserBlock.registerBehavior(net.minecraft.world.item.Items.IRON_BLOCK, new net.minecraft.core.dispenser.OptionalDispenseItemBehavior() {
                 public net.minecraft.world.item.@NotNull ItemStack execute(net.minecraft.core.dispenser.@NotNull BlockSource source, net.minecraft.world.item.@NotNull ItemStack itemStack) {

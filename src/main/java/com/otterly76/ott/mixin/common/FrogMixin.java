@@ -5,7 +5,6 @@ import com.otterly76.ott.entity.variant.SpawnContext;
 import com.otterly76.ott.entity.variant.VariantDataHolder;
 import com.otterly76.ott.entity.variant.VariantUtils;
 import com.otterly76.ott.registry.OttBuiltInRegistries;
-import java.util.Optional;
 import net.minecraft.core.Holder;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.syncher.EntityDataAccessor;
@@ -13,10 +12,8 @@ import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
 import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.entity.EntityType;
-import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.MobSpawnType;
 import net.minecraft.world.entity.SpawnGroupData;
-import net.minecraft.world.entity.animal.Animal;
 import net.minecraft.world.entity.animal.FrogVariant;
 import net.minecraft.world.entity.animal.frog.Frog;
 import net.minecraft.world.level.Level;
@@ -29,28 +26,32 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
+import java.util.Optional;
+
 @Mixin(Frog.class)
 public abstract class FrogMixin extends MobMixin implements VariantDataHolder<FrogDataVariant> {
     @Unique
-    private static final EntityDataAccessor<String> DATA_VARIANT_ID;
+    private static final EntityDataAccessor<String> DATA_OTT_VARIANT_ID;
 
     @Shadow
     public abstract Holder<FrogVariant> getVariant();
 
-    protected FrogMixin(EntityType<? extends Animal> entityType, Level level) {
-        super((EntityType<? extends LivingEntity>)entityType, level);
+    protected FrogMixin(EntityType<? extends Frog> entityType, Level level) {
+        super(entityType, level);
     }
 
     protected void vb$defineSynchedData(SynchedEntityData.Builder builder, CallbackInfo ci) {
-        builder.define(DATA_VARIANT_ID, "minecraft:temperate");
+        builder.define(DATA_OTT_VARIANT_ID, "minecraft:temperate");
     }
 
-    public void setVariantData(FrogDataVariant variant) {
-        this.entityData.set(DATA_VARIANT_ID, VariantUtils.getID(OttBuiltInRegistries.FROG_VARIANTS, variant));
+    @Override
+    public void ott$setVariantData(FrogDataVariant variant) {
+        this.entityData.set(DATA_OTT_VARIANT_ID, VariantUtils.getID(OttBuiltInRegistries.FROG_VARIANTS, variant));
     }
 
-    public Optional<FrogDataVariant> getVariantData() {
-        return VariantUtils.getOrDefault(OttBuiltInRegistries.FROG_VARIANTS, this.entityData.get(DATA_VARIANT_ID));
+    @Override
+    public Optional<FrogDataVariant> ott$getVariantData() {
+        return VariantUtils.getOrDefault(OttBuiltInRegistries.FROG_VARIANTS, this.entityData.get(DATA_OTT_VARIANT_ID));
     }
 
     @Inject(
@@ -70,10 +71,10 @@ public abstract class FrogMixin extends MobMixin implements VariantDataHolder<Fr
     }
 
     protected void vb$finalizeSpawn(ServerLevelAccessor level, DifficultyInstance difficulty, MobSpawnType reason, SpawnGroupData spawnData, CallbackInfoReturnable<SpawnGroupData> cir) {
-        VariantUtils.selectVariantToSpawn(SpawnContext.create(level, this.blockPosition()), OttBuiltInRegistries.FROG_VARIANTS).ifPresent(this::setVariantData);
+        VariantUtils.selectVariantToSpawn(SpawnContext.create(level, this.blockPosition()), OttBuiltInRegistries.FROG_VARIANTS).ifPresent(this::ott$setVariantData);
     }
 
     static {
-        DATA_VARIANT_ID = SynchedEntityData.defineId(Frog.class, EntityDataSerializers.STRING);
+        DATA_OTT_VARIANT_ID = SynchedEntityData.defineId(FrogMixin.class, EntityDataSerializers.STRING);
     }
 }

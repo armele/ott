@@ -6,7 +6,6 @@ import com.otterly76.ott.entity.variant.VariantDataHolder;
 import com.otterly76.ott.entity.variant.VariantUtils;
 import com.otterly76.ott.registry.OttBuiltInRegistries;
 import com.otterly76.ott.util.color.ColorUtils;
-import java.util.Optional;
 import net.minecraft.core.Holder;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.syncher.EntityDataAccessor;
@@ -16,10 +15,8 @@ import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.entity.AgeableMob;
 import net.minecraft.world.entity.EntityType;
-import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.MobSpawnType;
 import net.minecraft.world.entity.SpawnGroupData;
-import net.minecraft.world.entity.animal.Animal;
 import net.minecraft.world.entity.animal.Cat;
 import net.minecraft.world.entity.animal.CatVariant;
 import net.minecraft.world.item.DyeColor;
@@ -34,10 +31,12 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
+import java.util.Optional;
+
 @Mixin(Cat.class)
 public abstract class CatMixin extends TamableAnimalMixin implements VariantDataHolder<CatDataVariant> {
     @Unique
-    private static final EntityDataAccessor<String> DATA_VARIANT_ID;
+    private static final EntityDataAccessor<String> DATA_OTT_VARIANT_ID;
     @Shadow
     @Final
     private static EntityDataAccessor<Integer> DATA_COLLAR_COLOR;
@@ -48,20 +47,22 @@ public abstract class CatMixin extends TamableAnimalMixin implements VariantData
     @Shadow
     public abstract DyeColor getCollarColor();
 
-    protected CatMixin(EntityType<? extends Animal> entityType, Level level) {
-        super((EntityType<? extends LivingEntity>)entityType, level);
+    protected CatMixin(EntityType<? extends Cat> entityType, Level level) {
+        super(entityType, level);
     }
 
     protected void vb$defineSynchedData(SynchedEntityData.Builder builder, CallbackInfo ci) {
-        builder.define(DATA_VARIANT_ID, "minecraft:tabby");
+        builder.define(DATA_OTT_VARIANT_ID, "minecraft:tabby");
     }
 
-    public void setVariantData(CatDataVariant variant) {
-        this.entityData.set(DATA_VARIANT_ID, VariantUtils.getID(OttBuiltInRegistries.CAT_VARIANTS, variant));
+    @Override
+    public void ott$setVariantData(CatDataVariant variant) {
+        this.entityData.set(DATA_OTT_VARIANT_ID, VariantUtils.getID(OttBuiltInRegistries.CAT_VARIANTS, variant));
     }
 
-    public Optional<CatDataVariant> getVariantData() {
-        return VariantUtils.getOrDefault(OttBuiltInRegistries.CAT_VARIANTS, this.entityData.get(DATA_VARIANT_ID));
+    @Override
+    public Optional<CatDataVariant> ott$getVariantData() {
+        return VariantUtils.getOrDefault(OttBuiltInRegistries.CAT_VARIANTS, this.entityData.get(DATA_OTT_VARIANT_ID));
     }
 
     protected void vb$addAdditionalSaveData(CompoundTag tag, CallbackInfo ci) {
@@ -73,7 +74,7 @@ public abstract class CatMixin extends TamableAnimalMixin implements VariantData
     }
 
     protected void vb$finalizeSpawn(ServerLevelAccessor level, DifficultyInstance difficulty, MobSpawnType reason, SpawnGroupData spawnData, CallbackInfoReturnable<SpawnGroupData> cir) {
-        VariantUtils.selectVariantToSpawn(SpawnContext.create(level, this.blockPosition()), OttBuiltInRegistries.CAT_VARIANTS).ifPresent(this::setVariantData);
+        VariantUtils.selectVariantToSpawn(SpawnContext.create(level, this.blockPosition()), OttBuiltInRegistries.CAT_VARIANTS).ifPresent(this::ott$setVariantData);
     }
 
     @Inject(
@@ -95,6 +96,6 @@ public abstract class CatMixin extends TamableAnimalMixin implements VariantData
     }
 
     static {
-        DATA_VARIANT_ID = SynchedEntityData.defineId(Cat.class, EntityDataSerializers.STRING);
+        DATA_OTT_VARIANT_ID = SynchedEntityData.defineId(CatMixin.class, EntityDataSerializers.STRING);
     }
 }

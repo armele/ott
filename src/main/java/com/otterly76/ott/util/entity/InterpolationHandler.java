@@ -66,7 +66,7 @@ public class InterpolationHandler {
             double z = Mth.lerp(progress, this.entity.getZ(), this.data.position.z);
             Vec3 position = new Vec3(x, y, z);
             float yRot = Mth.rotLerp((float)progress, this.entity.getYRot(), this.data.yRot);
-            float xRot = (float)Mth.lerp(progress, (double)this.entity.getXRot(), (double)this.data.xRot);
+            float xRot = (float)Mth.lerp(progress, this.entity.getXRot(), this.data.xRot);
             this.entity.setPos(position);
             ((EntityAccessor)this.entity).callSetRot(yRot, xRot);
             this.data.decrease();

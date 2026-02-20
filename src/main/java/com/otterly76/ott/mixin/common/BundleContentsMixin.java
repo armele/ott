@@ -9,23 +9,23 @@ import org.spongepowered.asm.mixin.Unique;
 @Mixin(BundleContents.class)
 public abstract class BundleContentsMixin implements IBundle {
     @Unique
-    private int selectedItem = -1;
+    private int ott$selectedItem = -1;
 
     @Shadow
     public abstract int size();
 
     @Override
-    public void setSelectedItem(int index) {
-        this.selectedItem = index;
+    public void ott$setSelectedItem(int index) {
+        this.ott$selectedItem = index;
     }
 
     @Override
-    public int getSelectedItem() {
-        return this.selectedItem;
+    public int ott$getSelectedItem() {
+        return this.ott$selectedItem;
     }
 
     @Override
-    public int getNumberOfItemsToShow() {
+    public int ott$getNumberOfItemsToShow() {
         int contents = this.size();
         int maxDisplay = contents > 12 ? 11 : 12;
         int remainder = contents % 4;

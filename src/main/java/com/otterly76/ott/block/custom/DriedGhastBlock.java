@@ -89,12 +89,13 @@ public class DriedGhastBlock extends HorizontalDirectionalBlock implements Simpl
     public void tick(@NotNull BlockState state, @NotNull ServerLevel level, @NotNull BlockPos pos, @NotNull RandomSource random) {
         if (state.getValue(WATERLOGGED)) {
             this.tickWaterlogged(state, level, pos, random);
-        } else {
-            int hydrationLevel = this.getHydrationLevel(state);
-            if (hydrationLevel > 0) {
-                level.setBlock(pos, state.setValue(HYDRATION_LEVEL, hydrationLevel - 1), 2);
-                level.gameEvent(GameEvent.BLOCK_CHANGE, pos, GameEvent.Context.of(state));
-            }
+            return;
+        }
+
+        int hydrationLevel = this.getHydrationLevel(state);
+        if (hydrationLevel > 0) {
+            level.setBlock(pos, state.setValue(HYDRATION_LEVEL, hydrationLevel - 1), 2);
+            level.gameEvent(GameEvent.BLOCK_CHANGE, pos, GameEvent.Context.of(state));
         }
     }
 
@@ -111,25 +112,24 @@ public class DriedGhastBlock extends HorizontalDirectionalBlock implements Simpl
     private void spawnGhastling(ServerLevel level, BlockPos pos, BlockState state) {
         level.removeBlock(pos, false);
         HappyGhast ghast = ModEntities.HAPPY_GHAST.get().create(level);
-        if (ghast != null) {
-            Vec3 center = Vec3.atBottomCenterOf(pos);
-            ghast.setBaby(true);
-            float yRot = getYRot(state.getValue(FACING));
-            ghast.setYHeadRot(yRot);
-            ghast.setPosRaw(center.x(), center.y(), center.z());
-            ghast.setYRot(yRot);
-            ghast.setXRot(0.0F);
-            ghast.setOldPosAndRot();
-            ghast.setPos(ghast.getX(), ghast.getY(), ghast.getZ());
-            level.addFreshEntity(ghast);
-            level.playSound(null, ghast.getX(), ghast.getY(), ghast.getZ(), ModSounds.GHASTLING_SPAWN.get(), SoundSource.BLOCKS, 1.0F, 1.0F);
-        }
+        if (ghast == null) return;
+
+        Vec3 center = Vec3.atBottomCenterOf(pos);
+        ghast.setBaby(true);
+        float yRot = getYRot(state.getValue(FACING));
+        ghast.setYHeadRot(yRot);
+        ghast.setPosRaw(center.x(), center.y(), center.z());
+        ghast.setYRot(yRot);
+        ghast.setXRot(0.0F);
+        ghast.setOldPosAndRot();
+        ghast.setPos(ghast.getX(), ghast.getY(), ghast.getZ());
+        level.addFreshEntity(ghast);
+        level.playSound(null, ghast.getX(), ghast.getY(), ghast.getZ(), ModSounds.GHASTLING_SPAWN.get(), SoundSource.BLOCKS, 1.0F, 1.0F);
     }
 
     public static float getYRot(Direction direction) {
         return switch (direction) {
             case NORTH -> 180.0F;
-            case SOUTH -> 0.0F;
             case WEST -> 90.0F;
             case EAST -> -90.0F;
             default -> 0.0F;
@@ -138,24 +138,27 @@ public class DriedGhastBlock extends HorizontalDirectionalBlock implements Simpl
 
     @Override
     public void animateTick(@NotNull BlockState state, @NotNull Level level, @NotNull BlockPos pos, @NotNull RandomSource random) {
-        double x = (double)pos.getX() + 0.5;
-        double y = (double)pos.getY() + 0.5;
-        double z = (double)pos.getZ() + 0.5;
-        if (!state.getValue(WATERLOGGED)) {
+        double x = (double) pos.getX() + 0.5;
+        double y = (double) pos.getY() + 0.5;
+        double z = (double) pos.getZ() + 0.5;
+
+        if (state.getValue(WATERLOGGED)) {
+            if (random.nextInt(40) == 0) {
+                level.playLocalSound(x, y, z, ModSounds.DRIED_GHAST_AMBIENT_WATER.get(), SoundSource.AMBIENT, 1.0F, 1.0F, false);
+            }
+
+            if (random.nextInt(6) == 0) {
+                double xOff = (random.nextFloat() * 2.0F - 1.0F) / 3.0F;
+                double zOff = (random.nextFloat() * 2.0F - 1.0F) / 3.0F;
+                level.addParticle(ParticleTypes.HAPPY_VILLAGER, x + xOff, y + 0.4, z + zOff, 0.0, random.nextFloat(), 0.0);
+            }
+        } else {
             if (random.nextInt(40) == 0 && level.getBlockState(pos.below()).is(ModTags.Blocks.TRIGGERS_AMBIENT_DRIED_GHAST_BLOCK_SOUNDS)) {
                 level.playLocalSound(x, y, z, ModSounds.DRIED_GHAST_AMBIENT.get(), SoundSource.AMBIENT, 1.0F, 1.0F, false);
             }
 
             if (random.nextInt(6) == 0) {
                 level.addParticle(ParticleTypes.SMOKE, x, y, z, 0.0, 0.02, 0.0);
-            }
-        } else {
-            if (random.nextInt(40) == 0) {
-                level.playLocalSound(x, y, z, ModSounds.DRIED_GHAST_AMBIENT_WATER.get(), SoundSource.AMBIENT, 1.0F, 1.0F, false);
-            }
-
-            if (random.nextInt(6) == 0) {
-                level.addParticle(ParticleTypes.HAPPY_VILLAGER, x + (double)((random.nextFloat() * 2.0F - 1.0F) / 3.0F), y + 0.4, z + (double)((random.nextFloat() * 2.0F - 1.0F) / 3.0F), 0.0, random.nextFloat(), 0.0);
             }
         }
     }
@@ -183,16 +186,16 @@ public class DriedGhastBlock extends HorizontalDirectionalBlock implements Simpl
 
     @Override
     public boolean placeLiquid(@NotNull LevelAccessor level, @NotNull BlockPos pos, @NotNull BlockState state, @NotNull FluidState fluidState) {
-        if (!state.getValue(WATERLOGGED) && fluidState.getType() == Fluids.WATER) {
-            if (!level.isClientSide()) {
-                level.setBlock(pos, state.setValue(WATERLOGGED, true), 3);
-                level.scheduleTick(pos, fluidState.getType(), fluidState.getType().getTickDelay(level));
-                level.playSound(null, pos, ModSounds.DRIED_GHAST_PLACE_IN_WATER.get(), SoundSource.BLOCKS, 1.0F, 1.0F);
-            }
-            return true;
-        } else {
+        if (state.getValue(WATERLOGGED) || fluidState.getType() != Fluids.WATER) {
             return false;
         }
+
+        if (!level.isClientSide()) {
+            level.setBlock(pos, state.setValue(WATERLOGGED, true), 3);
+            level.scheduleTick(pos, fluidState.getType(), fluidState.getType().getTickDelay(level));
+            level.playSound(null, pos, ModSounds.DRIED_GHAST_PLACE_IN_WATER.get(), SoundSource.BLOCKS, 1.0F, 1.0F);
+        }
+        return true;
     }
 
     @Override

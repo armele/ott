@@ -87,7 +87,11 @@ public class GradientConcretePowderBlock extends ConcretePowderBlock implements 
         BlockGetter blockgetter = context.getLevel();
         BlockPos blockpos = context.getClickedPos();
         BlockState blockstate = blockgetter.getBlockState(blockpos);
-        return shouldSolidify(blockgetter, blockpos, blockstate) ? Objects.requireNonNull(this.concrete.getStateForPlacement(context)) : super.getStateForPlacement(context).setValue(DirectionalBlock.FACING, context.getClickedFace());
+        if (shouldSolidify(blockgetter, blockpos, blockstate)) {
+            return Objects.requireNonNull(this.concrete.getStateForPlacement(context));
+        }
+        BlockState placementState = super.getStateForPlacement(context);
+        return Objects.requireNonNull(placementState).setValue(DirectionalBlock.FACING, context.getClickedFace());
     }
 
     @Override

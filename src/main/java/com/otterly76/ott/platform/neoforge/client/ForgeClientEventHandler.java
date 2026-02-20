@@ -4,6 +4,7 @@ import com.otterly76.ott.platform.core.events.ResourceReloadManager;
 import net.neoforged.fml.ModLoadingContext;
 import net.neoforged.neoforge.client.event.RegisterClientReloadListenersEvent;
 
+import java.util.Objects;
 import java.util.function.Consumer;
 
 public class ForgeClientEventHandler {
@@ -12,6 +13,9 @@ public class ForgeClientEventHandler {
             ResourceReloadManager.ListenerEvent listener = (id, reloadListener) -> event.registerReloadListener(reloadListener);
             exporter.accept(listener);
         };
-        ModLoadingContext.get().getActiveContainer().getEventBus().addListener(consumer);
+        var container = ModLoadingContext.get().getActiveContainer();
+        if (container != null) {
+            Objects.requireNonNull(container.getEventBus()).addListener(consumer);
+        }
     }
 }

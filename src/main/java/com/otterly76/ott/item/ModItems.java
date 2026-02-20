@@ -1,7 +1,6 @@
 package com.otterly76.ott.item;
 
 import com.otterly76.ott.Constants;
-import com.otterly76.ott.FeatureFlag;
 import com.otterly76.ott.block.ModBlocks;
 import com.otterly76.ott.entity.ModEntities;
 import com.otterly76.ott.entity.variant.ChickenVariants;
@@ -23,8 +22,6 @@ import net.neoforged.neoforge.registries.DeferredRegister;
 
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Optional;
-import java.util.function.Function;
 
 public class ModItems {
     public static final DeferredRegister.Items ITEMS = DeferredRegister.createItems(Constants.MOD_ID);
@@ -77,18 +74,18 @@ public class ModItems {
     public static DeferredItem<Item> BLUE_EGG;
     public static DeferredItem<Item> BROWN_EGG;
 
-    public static Optional<DeferredItem<Item>> COPPER_NUGGET;
-    public static Optional<DeferredItem<SwordItem>> COPPER_SWORD;
-    public static Optional<DeferredItem<ShovelItem>> COPPER_SHOVEL;
-    public static Optional<DeferredItem<PickaxeItem>> COPPER_PICKAXE;
-    public static Optional<DeferredItem<AxeItem>> COPPER_AXE;
-    public static Optional<DeferredItem<HoeItem>> COPPER_HOE;
-    public static Optional<DeferredItem<ArmorItem>> COPPER_HELMET;
-    public static Optional<DeferredItem<ArmorItem>> COPPER_CHESTPLATE;
-    public static Optional<DeferredItem<ArmorItem>> COPPER_LEGGINGS;
-    public static Optional<DeferredItem<ArmorItem>> COPPER_BOOTS;
-    public static Optional<DeferredItem<AnimalArmorItem>> COPPER_HORSE_ARMOR;
-    public static Optional<DeferredItem<AnimalArmorItem>> NETHERITE_HORSE_ARMOR;
+    public static DeferredItem<Item> COPPER_NUGGET;
+    public static DeferredItem<SwordItem> COPPER_SWORD;
+    public static DeferredItem<ShovelItem> COPPER_SHOVEL;
+    public static DeferredItem<PickaxeItem> COPPER_PICKAXE;
+    public static DeferredItem<AxeItem> COPPER_AXE;
+    public static DeferredItem<HoeItem> COPPER_HOE;
+    public static DeferredItem<ArmorItem> COPPER_HELMET;
+    public static DeferredItem<ArmorItem> COPPER_CHESTPLATE;
+    public static DeferredItem<ArmorItem> COPPER_LEGGINGS;
+    public static DeferredItem<ArmorItem> COPPER_BOOTS;
+    public static DeferredItem<AnimalArmorItem> COPPER_HORSE_ARMOR;
+    public static DeferredItem<AnimalArmorItem> NETHERITE_HORSE_ARMOR;
     public static DeferredItem<SignItem> PALE_OAK_SIGN;
     public static DeferredItem<HangingSignItem> PALE_OAK_HANGING_SIGN;
     public static DeferredItem<PaleOakBoatItem> PALE_OAK_BOAT;
@@ -161,20 +158,20 @@ public class ModItems {
             BUNDLES.put(color.getName(), MINECRAFT_ITEMS.register(color.getName() + "_bundle", () -> new BundleItem(new Item.Properties().stacksTo(1).component(DataComponents.BUNDLE_CONTENTS, BundleContents.EMPTY))));
         }
 
-        COPPER_NUGGET = conditional("copper_nugget", Item::new, new Item.Properties(), FeatureFlag.COPPER_AGE);
-        COPPER_SWORD = conditional("copper_sword", (properties) -> new SwordItem(ModToolMaterials.COPPER, properties), (new Item.Properties()).attributes(SwordItem.createAttributes(ModToolMaterials.COPPER, 3, -2.4F)), FeatureFlag.COPPER_AGE);
-        COPPER_SHOVEL = conditional("copper_shovel", (properties) -> new ShovelItem(ModToolMaterials.COPPER, properties), (new Item.Properties()).attributes(ShovelItem.createAttributes(ModToolMaterials.COPPER, 1.5F, -3.0F)), FeatureFlag.COPPER_AGE);
-        COPPER_PICKAXE = conditional("copper_pickaxe", (properties) -> new PickaxeItem(ModToolMaterials.COPPER, properties), (new Item.Properties()).attributes(PickaxeItem.createAttributes(ModToolMaterials.COPPER, 1.0F, -2.8F)), FeatureFlag.COPPER_AGE);
-        COPPER_AXE = conditional("copper_axe", (properties) -> new AxeItem(ModToolMaterials.COPPER, properties), (new Item.Properties()).attributes(AxeItem.createAttributes(ModToolMaterials.COPPER, 7.0F, -3.2F)), FeatureFlag.COPPER_AGE);
-        COPPER_HOE = conditional("copper_hoe", (properties) -> new HoeItem(ModToolMaterials.COPPER, properties), (new Item.Properties()).attributes(HoeItem.createAttributes(ModToolMaterials.COPPER, -1.0F, -2.0F)), FeatureFlag.COPPER_AGE);
+        COPPER_NUGGET = MINECRAFT_ITEMS.register("copper_nugget", () -> new Item(new Item.Properties()));
+        COPPER_SWORD = MINECRAFT_ITEMS.register("copper_sword", () -> new SwordItem(ModToolMaterials.COPPER, (new Item.Properties()).attributes(SwordItem.createAttributes(ModToolMaterials.COPPER, 3, -2.4F))));
+        COPPER_SHOVEL = MINECRAFT_ITEMS.register("copper_shovel", () -> new ShovelItem(ModToolMaterials.COPPER, (new Item.Properties()).attributes(ShovelItem.createAttributes(ModToolMaterials.COPPER, 1.5F, -3.0F))));
+        COPPER_PICKAXE = MINECRAFT_ITEMS.register("copper_pickaxe", () -> new PickaxeItem(ModToolMaterials.COPPER, (new Item.Properties()).attributes(PickaxeItem.createAttributes(ModToolMaterials.COPPER, 1.0F, -2.8F))));
+        COPPER_AXE = MINECRAFT_ITEMS.register("copper_axe", () -> new AxeItem(ModToolMaterials.COPPER, (new Item.Properties()).attributes(AxeItem.createAttributes(ModToolMaterials.COPPER, 7.0F, -3.2F))));
+        COPPER_HOE = MINECRAFT_ITEMS.register("copper_hoe", () -> new HoeItem(ModToolMaterials.COPPER, (new Item.Properties()).attributes(HoeItem.createAttributes(ModToolMaterials.COPPER, -1.0F, -2.0F))));
 
-        COPPER_HELMET = conditional("copper_helmet", (properties) -> new ArmorItem(ModArmorMaterials.COPPER, ArmorItem.Type.HELMET, properties), (new Item.Properties()).durability(ArmorItem.Type.HELMET.getDurability(5)), FeatureFlag.COPPER_AGE);
-        COPPER_CHESTPLATE = conditional("copper_chestplate", (properties) -> new ArmorItem(ModArmorMaterials.COPPER, ArmorItem.Type.CHESTPLATE, properties), (new Item.Properties()).durability(ArmorItem.Type.CHESTPLATE.getDurability(5)), FeatureFlag.COPPER_AGE);
-        COPPER_LEGGINGS = conditional("copper_leggings", (properties) -> new ArmorItem(ModArmorMaterials.COPPER, ArmorItem.Type.LEGGINGS, properties), (new Item.Properties()).durability(ArmorItem.Type.LEGGINGS.getDurability(5)), FeatureFlag.COPPER_AGE);
-        COPPER_BOOTS = conditional("copper_boots", (properties) -> new ArmorItem(ModArmorMaterials.COPPER, ArmorItem.Type.BOOTS, properties), (new Item.Properties()).durability(ArmorItem.Type.BOOTS.getDurability(5)), FeatureFlag.COPPER_AGE);
+        COPPER_HELMET = MINECRAFT_ITEMS.register("copper_helmet", () -> new ArmorItem(ModArmorMaterials.COPPER, ArmorItem.Type.HELMET, (new Item.Properties()).durability(ArmorItem.Type.HELMET.getDurability(5))));
+        COPPER_CHESTPLATE = MINECRAFT_ITEMS.register("copper_chestplate", () -> new ArmorItem(ModArmorMaterials.COPPER, ArmorItem.Type.CHESTPLATE, (new Item.Properties()).durability(ArmorItem.Type.CHESTPLATE.getDurability(5))));
+        COPPER_LEGGINGS = MINECRAFT_ITEMS.register("copper_leggings", () -> new ArmorItem(ModArmorMaterials.COPPER, ArmorItem.Type.LEGGINGS, (new Item.Properties()).durability(ArmorItem.Type.LEGGINGS.getDurability(5))));
+        COPPER_BOOTS = MINECRAFT_ITEMS.register("copper_boots", () -> new ArmorItem(ModArmorMaterials.COPPER, ArmorItem.Type.BOOTS, (new Item.Properties()).durability(ArmorItem.Type.BOOTS.getDurability(5))));
 
-        COPPER_HORSE_ARMOR = conditional("copper_horse_armor", (properties) -> new AnimalArmorItem(ModArmorMaterials.COPPER, AnimalArmorItem.BodyType.EQUESTRIAN, false, properties), (new Item.Properties()).stacksTo(1), FeatureFlag.COPPER_AGE);
-        NETHERITE_HORSE_ARMOR = conditional("netherite_horse_armor", (properties) -> new AnimalArmorItem(ArmorMaterials.NETHERITE, AnimalArmorItem.BodyType.EQUESTRIAN, false, properties), (new Item.Properties()).stacksTo(1).fireResistant(), FeatureFlag.MOUNTS_OF_MAYHEM);
+        COPPER_HORSE_ARMOR = MINECRAFT_ITEMS.register("copper_horse_armor", () -> new AnimalArmorItem(ModArmorMaterials.COPPER, AnimalArmorItem.BodyType.EQUESTRIAN, false, (new Item.Properties()).stacksTo(1)));
+        NETHERITE_HORSE_ARMOR = MINECRAFT_ITEMS.register("netherite_horse_armor", () -> new AnimalArmorItem(ArmorMaterials.NETHERITE, AnimalArmorItem.BodyType.EQUESTRIAN, false, (new Item.Properties()).stacksTo(1).fireResistant()));
 
         PALE_OAK_SIGN = registerMinecraftSign();
         PALE_OAK_HANGING_SIGN = registerMinecraftHangingSign();
@@ -212,7 +209,4 @@ public class ModItems {
         return MINECRAFT_ITEMS.register("pale_oak_hanging_sign", () -> new HangingSignItem(ModBlocks.PALE_OAK_HANGING_SIGN.get(), ModBlocks.PALE_OAK_WALL_HANGING_SIGN.get(), new Item.Properties().stacksTo(16)));
     }
 
-    private static <T extends Item> Optional<DeferredItem<T>> conditional(String name, Function<Item.Properties, T> factory, Item.Properties properties, FeatureFlag flag) {
-        return flag.isEnabled() ? Optional.of(MINECRAFT_ITEMS.register(name, () -> factory.apply(properties))) : Optional.empty();
-    }
 }

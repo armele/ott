@@ -461,7 +461,6 @@ public class Creaking extends Monster {
         }
     }
 
-    @SuppressWarnings("IfStatementWithIdenticalBranches")
     public boolean checkCanMove() {
         if (this.isTearingDown()) {
             return false;
@@ -571,23 +570,20 @@ public class Creaking extends Monster {
         }
     }
 
-    protected @Nullable Player resolvePlayerResponsibleForDamage(DamageSource damageSource) {
+    protected void resolvePlayerResponsibleForDamage(DamageSource damageSource) {
         Entity entity = damageSource.getEntity();
         if (entity instanceof Player player) {
             this.lastHurtByPlayerTime = 100;
             this.lastHurtByPlayer = player;
-            return player;
         } else if (entity instanceof Wolf wolf && wolf.isTame()) {
             this.lastHurtByPlayerTime = 100;
             LivingEntity owner = wolf.getOwner();
             if (owner instanceof Player player) {
                 this.lastHurtByPlayer = player;
-                return player;
             } else {
                 this.lastHurtByPlayer = null;
             }
         }
-        return null;
     }
 
     public void makeSound(SoundEvent sound) {

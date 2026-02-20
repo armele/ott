@@ -3,6 +3,7 @@ package com.otterly76.ott.client.handler;
 import com.otterly76.ott.item.ModItems;
 import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.client.renderer.item.ItemProperties;
+import net.minecraft.client.renderer.item.ItemPropertyFunction;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.BundleItem;
@@ -15,7 +16,9 @@ public class ItemPropertyRegistrar {
     }
 
     private static void registerBundle(Item item) {
-        ItemProperties.register(item, ResourceLocation.withDefaultNamespace("filled"), ItemPropertyRegistrar::bundleDisplay);
+        @SuppressWarnings("deprecation")
+        ItemPropertyFunction function = ItemPropertyRegistrar::bundleDisplay;
+        ItemProperties.register(item, ResourceLocation.withDefaultNamespace("filled"), function);
     }
 
     private static float bundleDisplay(ItemStack stack, ClientLevel level, LivingEntity entity, int i) {

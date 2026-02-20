@@ -17,15 +17,15 @@ public abstract class MusicManagerMixin {
     @Shadow
     private @Nullable SoundInstance currentMusic;
     @Unique
-    private MusicFadeManager fadeManager;
+    private MusicFadeManager ott$fadeManager;
 
     @Unique
-    private MusicFadeManager getFadeManager() {
-        if (this.fadeManager == null) {
-            this.fadeManager = new MusicFadeManager((MusicManager) (Object) this);
+    private MusicFadeManager ott$getFadeManager() {
+        if (this.ott$fadeManager == null) {
+            this.ott$fadeManager = new MusicFadeManager((MusicManager) (Object) this);
         }
 
-        return this.fadeManager;
+        return this.ott$fadeManager;
     }
 
     @Inject(
@@ -34,7 +34,7 @@ public abstract class MusicManagerMixin {
             cancellable = true
     )
     private void onTick(CallbackInfo ci) {
-        if (this.getFadeManager().onTick(this.currentMusic)) {
+        if (this.ott$getFadeManager().onTick(this.currentMusic)) {
             ci.cancel();
         }
 
@@ -46,7 +46,7 @@ public abstract class MusicManagerMixin {
             cancellable = true
     )
     private void preventPlayingInPaleGarden(Music selector, CallbackInfo ci) {
-        if (this.getFadeManager().preventPlayingInPaleGarden()) {
+        if (this.ott$getFadeManager().preventPlayingInPaleGarden()) {
             ci.cancel();
         }
 
@@ -60,7 +60,7 @@ public abstract class MusicManagerMixin {
             )
     )
     private void updateVolume(Music selector, CallbackInfo ci) {
-        this.getFadeManager().updateVolume(this.currentMusic);
+        this.ott$getFadeManager().updateVolume(this.currentMusic);
     }
 
     @Inject(
@@ -68,6 +68,6 @@ public abstract class MusicManagerMixin {
             at = @At("TAIL")
     )
     private void onStartPlaying(Music selector, CallbackInfo ci) {
-        this.getFadeManager().onStartPlaying();
+        this.ott$getFadeManager().onStartPlaying();
     }
 }

@@ -1,12 +1,12 @@
 package com.otterly76.ott.generation;
 
-import com.otterly76.ott.FeatureFlag;
+import net.minecraft.world.item.*;
+import net.neoforged.neoforge.registries.DeferredItem;
 import com.otterly76.ott.block.IGradientBlock;
 import com.otterly76.ott.block.ModBlocks;
 import com.otterly76.ott.item.ModItems;
 import com.otterly76.ott.util.ModTags;
 import com.otterly76.ott.recipe.BundleColoring;
-import com.otterly76.ott.registry.ModRecipeSerializers;
 import net.minecraft.advancements.Advancement;
 import net.minecraft.advancements.AdvancementHolder;
 import net.minecraft.advancements.CriteriaTriggers;
@@ -260,17 +260,13 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
         this.addSlabToBlockRecipes(noAdv);
         this.addMiscRecipes(noAdv);
 
-        if (FeatureFlag.COPPER_AGE.isEnabled()) {
-            this.copperAgeRecipes(noAdv);
-        }
-
-        if (FeatureFlag.MOUNTS_OF_MAYHEM.isEnabled()) {
-            this.mountsOfMayhemRecipes(noAdv);
-        }
+        this.copperAgeRecipes(noAdv);
+        this.mountsOfMayhemRecipes(noAdv);
     }
 
     private void mountsOfMayhemRecipes(RecipeOutput exporter) {
-        ModItems.NETHERITE_HORSE_ARMOR.ifPresent(i -> {
+        {
+            DeferredItem<AnimalArmorItem> i = ModItems.NETHERITE_HORSE_ARMOR;
             SmithingTransformRecipeBuilder.smithing(
                             Ingredient.of(Items.NETHERITE_UPGRADE_SMITHING_TEMPLATE),
                             Ingredient.of(Items.DIAMOND_HORSE_ARMOR),
@@ -280,11 +276,12 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
                     )
                     .unlocks("has_netherite_ingot", has(Items.NETHERITE_INGOT))
                     .save(exporter, getRecipePath("minecraft", "netherite_horse_armor_smithing"));
-        });
+        }
     }
 
     private void copperAgeRecipes(RecipeOutput exporter) {
-        ModItems.COPPER_NUGGET.ifPresent(i -> {
+        {
+            DeferredItem<Item> i = ModItems.COPPER_NUGGET;
             ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, Items.COPPER_INGOT)
                     .requires(i.get(), 9)
                     .unlockedBy("has_copper_nugget", has(i.get()))
@@ -294,93 +291,123 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
                     .requires(Items.COPPER_INGOT)
                     .unlockedBy("has_copper_ingot", has(Items.COPPER_INGOT))
                     .save(exporter, getRecipePath("minecraft", "copper_nuggets_from_ingot"));
-        });
+        }
 
         // Tools
-        ModItems.COPPER_SWORD.ifPresent(i -> ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, i.get())
+        {
+            DeferredItem<SwordItem> i = ModItems.COPPER_SWORD;
+            ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, i.get())
                 .define('#', Items.COPPER_INGOT)
                 .define('S', Items.STICK)
                 .pattern("#")
                 .pattern("#")
                 .pattern("S")
                 .unlockedBy("has_copper_ingot", has(Items.COPPER_INGOT))
-                .save(exporter, getRecipePath("minecraft", "copper_sword")));
+                .save(exporter, getRecipePath("minecraft", "copper_sword"));
+        }
 
-        ModItems.COPPER_SHOVEL.ifPresent(i -> ShapedRecipeBuilder.shaped(RecipeCategory.TOOLS, i.get())
+        {
+            DeferredItem<ShovelItem> i = ModItems.COPPER_SHOVEL;
+            ShapedRecipeBuilder.shaped(RecipeCategory.TOOLS, i.get())
                 .define('#', Items.COPPER_INGOT)
                 .define('S', Items.STICK)
                 .pattern("#")
                 .pattern("S")
                 .pattern("S")
                 .unlockedBy("has_copper_ingot", has(Items.COPPER_INGOT))
-                .save(exporter, getRecipePath("minecraft", "copper_shovel")));
+                .save(exporter, getRecipePath("minecraft", "copper_shovel"));
+        }
 
-        ModItems.COPPER_PICKAXE.ifPresent(i -> ShapedRecipeBuilder.shaped(RecipeCategory.TOOLS, i.get())
+        {
+            DeferredItem<PickaxeItem> i = ModItems.COPPER_PICKAXE;
+            ShapedRecipeBuilder.shaped(RecipeCategory.TOOLS, i.get())
                 .define('#', Items.COPPER_INGOT)
                 .define('S', Items.STICK)
                 .pattern("###")
                 .pattern(" S ")
                 .pattern(" S ")
                 .unlockedBy("has_copper_ingot", has(Items.COPPER_INGOT))
-                .save(exporter, getRecipePath("minecraft", "copper_pickaxe")));
+                .save(exporter, getRecipePath("minecraft", "copper_pickaxe"));
+        }
 
-        ModItems.COPPER_AXE.ifPresent(i -> ShapedRecipeBuilder.shaped(RecipeCategory.TOOLS, i.get())
+        {
+            DeferredItem<AxeItem> i = ModItems.COPPER_AXE;
+            ShapedRecipeBuilder.shaped(RecipeCategory.TOOLS, i.get())
                 .define('#', Items.COPPER_INGOT)
                 .define('S', Items.STICK)
                 .pattern("##")
                 .pattern("#S")
                 .pattern(" S")
                 .unlockedBy("has_copper_ingot", has(Items.COPPER_INGOT))
-                .save(exporter, getRecipePath("minecraft", "copper_axe")));
+                .save(exporter, getRecipePath("minecraft", "copper_axe"));
+        }
 
-        ModItems.COPPER_HOE.ifPresent(i -> ShapedRecipeBuilder.shaped(RecipeCategory.TOOLS, i.get())
+        {
+            DeferredItem<HoeItem> i = ModItems.COPPER_HOE;
+            ShapedRecipeBuilder.shaped(RecipeCategory.TOOLS, i.get())
                 .define('#', Items.COPPER_INGOT)
                 .define('S', Items.STICK)
                 .pattern("##")
                 .pattern(" S")
                 .pattern(" S")
                 .unlockedBy("has_copper_ingot", has(Items.COPPER_INGOT))
-                .save(exporter, getRecipePath("minecraft", "copper_hoe")));
+                .save(exporter, getRecipePath("minecraft", "copper_hoe"));
+        }
 
         // Armor
-        ModItems.COPPER_HELMET.ifPresent(i -> ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, i.get())
+        {
+            DeferredItem<ArmorItem> i = ModItems.COPPER_HELMET;
+            ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, i.get())
                 .define('#', Items.COPPER_INGOT)
                 .pattern("###")
                 .pattern("# #")
                 .unlockedBy("has_copper_ingot", has(Items.COPPER_INGOT))
-                .save(exporter, getRecipePath("minecraft", "copper_helmet")));
+                .save(exporter, getRecipePath("minecraft", "copper_helmet"));
+        }
 
-        ModItems.COPPER_CHESTPLATE.ifPresent(i -> ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, i.get())
+        {
+            DeferredItem<ArmorItem> i = ModItems.COPPER_CHESTPLATE;
+            ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, i.get())
                 .define('#', Items.COPPER_INGOT)
                 .pattern("# #")
                 .pattern("###")
                 .pattern("###")
                 .unlockedBy("has_copper_ingot", has(Items.COPPER_INGOT))
-                .save(exporter, getRecipePath("minecraft", "copper_chestplate")));
+                .save(exporter, getRecipePath("minecraft", "copper_chestplate"));
+        }
 
-        ModItems.COPPER_LEGGINGS.ifPresent(i -> ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, i.get())
+        {
+            DeferredItem<ArmorItem> i = ModItems.COPPER_LEGGINGS;
+            ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, i.get())
                 .define('#', Items.COPPER_INGOT)
                 .pattern("###")
                 .pattern("# #")
                 .pattern("# #")
                 .unlockedBy("has_copper_ingot", has(Items.COPPER_INGOT))
-                .save(exporter, getRecipePath("minecraft", "copper_leggings")));
+                .save(exporter, getRecipePath("minecraft", "copper_leggings"));
+        }
 
-        ModItems.COPPER_BOOTS.ifPresent(i -> ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, i.get())
+        {
+            DeferredItem<ArmorItem> i = ModItems.COPPER_BOOTS;
+            ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, i.get())
                 .define('#', Items.COPPER_INGOT)
                 .pattern("# #")
                 .pattern("# #")
                 .unlockedBy("has_copper_ingot", has(Items.COPPER_INGOT))
-                .save(exporter, getRecipePath("minecraft", "copper_boots")));
+                .save(exporter, getRecipePath("minecraft", "copper_boots"));
+        }
 
-        ModItems.COPPER_HORSE_ARMOR.ifPresent(i -> ShapedRecipeBuilder.shaped(RecipeCategory.MISC, i.get())
+        {
+            DeferredItem<AnimalArmorItem> i = ModItems.COPPER_HORSE_ARMOR;
+            ShapedRecipeBuilder.shaped(RecipeCategory.MISC, i.get())
                 .define('#', Items.COPPER_INGOT)
                 .define('L', Items.LEATHER)
                 .pattern("  #")
                 .pattern("#L#")
                 .pattern("###")
                 .unlockedBy("has_copper_ingot", has(Items.COPPER_INGOT))
-                .save(exporter, getRecipePath("minecraft", "copper_horse_armor")));
+                .save(exporter, getRecipePath("minecraft", "copper_horse_armor"));
+        }
     }
 
     private void addMiscRecipes(RecipeOutput exporter) {

@@ -1,12 +1,11 @@
 package com.otterly76.ott.client.render.item;
 
-import com.otterly76.ott.item.ModItems;
-import com.otterly76.ott.util.data.ResultHolder;
 import com.google.common.collect.ImmutableSet;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
+import com.otterly76.ott.item.ModItems;
+import com.otterly76.ott.util.data.ResultHolder;
 import net.minecraft.client.color.item.ItemColors;
-import net.minecraft.client.renderer.ItemBlockRenderTypes;
 import net.minecraft.client.renderer.ItemModelShaper;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.RenderType;
@@ -54,9 +53,9 @@ public class SpawnEggRenderer implements DynamicItemRenderer.Renderer {
     @Override
     public void renderFirstPerson(ItemStack stack, ItemDisplayContext context, boolean leftHand, PoseStack pose, MultiBufferSource buffer, int light, int overlay, BakedModel model, ItemModelShaper shaper, ItemColors colors) {
         model = shaper.getModelManager().getModel(EGG_MODELS.get(stack.getItem()));
-        model.getTransforms().getTransform(context).apply(leftHand, pose);
+        model.applyTransform(context, pose, leftHand);
         pose.translate(-0.5F, -0.5F, -0.5F);
-        RenderType renderType = ItemBlockRenderTypes.getRenderType(stack, true);
+        RenderType renderType = model.getRenderTypes(stack, true).getFirst();
         VertexConsumer vertices = ItemRenderer.getFoilBufferDirect(buffer, renderType, true, stack.hasFoil());
         this.renderModelLists(model, stack, light, overlay, pose, vertices, colors);
     }

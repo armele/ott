@@ -14,6 +14,7 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
+import org.jetbrains.annotations.NotNull;
 
 @OnlyIn(Dist.CLIENT)
 public class HappyGhastRenderer extends MobRenderer<HappyGhast, HappyGhastModel<HappyGhast>> {
@@ -28,7 +29,7 @@ public class HappyGhastRenderer extends MobRenderer<HappyGhast, HappyGhastModel<
     }
 
     @Override
-    public ResourceLocation getTextureLocation(HappyGhast entity) {
+    public @NotNull ResourceLocation getTextureLocation(HappyGhast entity) {
         return entity.isBaby() ? GHAST_BABY_LOCATION : GHAST_LOCATION;
     }
 

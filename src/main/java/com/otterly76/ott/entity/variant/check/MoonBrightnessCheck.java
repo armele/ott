@@ -14,7 +14,7 @@ public record MoonBrightnessCheck(MinMaxBounds.Doubles range) implements SpawnCo
 
     @Override
     public boolean test(SpawnContext context) {
-        return this.range.matches((double)context.level().getLevel().getMoonBrightness());
+        return this.range.matches(context.level().getLevel().getMoonBrightness());
     }
 
     @Override

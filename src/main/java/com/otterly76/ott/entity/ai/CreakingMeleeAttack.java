@@ -1,6 +1,5 @@
 package com.otterly76.ott.entity.ai;
 
-import java.util.function.Predicate;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.Mob;
@@ -8,9 +7,10 @@ import net.minecraft.world.entity.ai.behavior.EntityTracker;
 import net.minecraft.world.entity.ai.behavior.OneShot;
 import net.minecraft.world.entity.ai.behavior.declarative.BehaviorBuilder;
 import net.minecraft.world.entity.ai.memory.MemoryModuleType;
-import net.minecraft.world.entity.ai.memory.NearestVisibleLivingEntities;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ProjectileWeaponItem;
+
+import java.util.function.Predicate;
 
 public class CreakingMeleeAttack {
     public static <T extends Mob> OneShot<T> create(Predicate<T> canAttackPredicate, int cooldownBetweenAttacks) {
@@ -20,7 +20,7 @@ public class CreakingMeleeAttack {
                 lookTarget.set(new EntityTracker(target, true));
                 body.swing(InteractionHand.MAIN_HAND);
                 body.doHurtTarget(target);
-                attackCoolingDown.setWithExpiry(true, (long)cooldownBetweenAttacks);
+                attackCoolingDown.setWithExpiry(true, cooldownBetweenAttacks);
                 return true;
             } else {
                 return false;

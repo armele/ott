@@ -1,9 +1,10 @@
 package com.otterly76.ott.entity.variant;
 
 import net.minecraft.world.entity.animal.Wolf;
+import org.jetbrains.annotations.Nullable;
 
 public interface WolfSoundVariantHolder {
-    static WolfSoundVariantHolder of(Wolf wolf) {
+    static @Nullable WolfSoundVariantHolder of(Wolf wolf) {
         if (wolf instanceof WolfSoundVariantHolder holder) {
             return holder;
         } else {
@@ -11,7 +12,7 @@ public interface WolfSoundVariantHolder {
         }
     }
 
-    WolfSoundVariant getSoundVariant();
+    WolfSoundVariant ott$getSoundVariant();
 
-    void setSoundVariant(WolfSoundVariant variant);
+    void ott$setSoundVariant(WolfSoundVariant variant);
 }

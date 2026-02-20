@@ -58,7 +58,7 @@ public class SheepColorSpawnRules {
         COLD_SPAWN_CONFIGURATION = new SheepColorSpawnConfiguration(weighted(builder().add(single(DyeColor.LIGHT_GRAY), 5).add(single(DyeColor.GRAY), 5).add(single(DyeColor.WHITE), 5).add(single(DyeColor.BROWN), 3).add(commonColors(DyeColor.BLACK), 82).build()));
     }
 
-    static record SheepColorSpawnConfiguration(SheepColorProvider colors) {
+    record SheepColorSpawnConfiguration(SheepColorProvider colors) {
     }
 
     interface SheepColorProvider {

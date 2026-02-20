@@ -18,7 +18,9 @@ import java.util.Set;
 import java.util.function.Supplier;
 
 public interface DynamicItemRenderer {
-    Supplier<DynamicItemRenderer> INSTANCE = () -> null;
+    Supplier<DynamicItemRenderer> INSTANCE = () -> {
+        throw new IllegalStateException("DynamicItemRenderer instance not initialized");
+    };
 
     void register(ItemLike item, Renderer renderer);
 

@@ -2,7 +2,6 @@ package com.otterly76.ott.entity.ai;
 
 import net.minecraft.util.valueproviders.UniformInt;
 import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.entity.ai.behavior.BehaviorControl;
 import net.minecraft.world.entity.ai.behavior.EntityTracker;
 import net.minecraft.world.entity.ai.behavior.OneShot;
 import net.minecraft.world.entity.ai.behavior.declarative.BehaviorBuilder;
@@ -22,7 +21,7 @@ public class GhastlingFollowAdult {
                 return false;
             } else {
                 LivingEntity leader = instance.get(followTarget);
-                if (entity.closerThan(leader, (double)(followRange.getMaxValue() + 1)) && !entity.closerThan(leader, (double)followRange.getMinValue())) {
+                if (entity.closerThan(leader, followRange.getMaxValue() + 1) && !entity.closerThan(leader, followRange.getMinValue())) {
                     WalkTarget target = new WalkTarget(new EntityTracker(leader, false), speedFactory.apply(entity), followRange.getMinValue() - 1);
                     lookTarget.set(new EntityTracker(leader, true));
                     walkTarget.set(target);

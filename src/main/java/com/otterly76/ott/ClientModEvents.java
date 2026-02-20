@@ -29,7 +29,6 @@ import com.otterly76.ott.client.handler.LeafColorReloadListener;
 import com.otterly76.ott.client.util.LeafColors;
 import com.otterly76.ott.particle.*;
 import com.otterly76.ott.block.entity.ModBlockEntities;
-import com.otterly76.ott.util.block.WoodTypeVariant;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.model.BoatModel;
 import net.minecraft.client.model.ChestBoatModel;

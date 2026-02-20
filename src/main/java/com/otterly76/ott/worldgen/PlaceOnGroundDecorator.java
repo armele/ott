@@ -13,6 +13,7 @@ import net.minecraft.world.level.levelgen.feature.stateproviders.BlockStateProvi
 import net.minecraft.world.level.levelgen.feature.treedecorators.TreeDecorator;
 import net.minecraft.world.level.levelgen.feature.treedecorators.TreeDecoratorType;
 import net.minecraft.world.level.levelgen.structure.BoundingBox;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
 
@@ -30,7 +31,7 @@ public class PlaceOnGroundDecorator extends TreeDecorator {
         this.blockStateProvider = blockStateProvider;
     }
 
-    protected TreeDecoratorType<?> type() {
+    protected @NotNull TreeDecoratorType<?> type() {
         return ModTreeDecoratorTypes.PLACE_ON_GROUND.get();
     }
 
@@ -40,7 +41,7 @@ public class PlaceOnGroundDecorator extends TreeDecorator {
         List<BlockPos> list3 = context.logs();
         if (list2.isEmpty()) {
             list.addAll(list3);
-        } else if (!list3.isEmpty() && ((BlockPos)list2.get(0)).getY() == ((BlockPos)list3.get(0)).getY()) {
+        } else if (!list3.isEmpty() && list2.getFirst().getY() == list3.getFirst().getY()) {
             list.addAll(list3);
             list.addAll(list2);
         } else {
@@ -48,7 +49,7 @@ public class PlaceOnGroundDecorator extends TreeDecorator {
         }
 
         if (!list.isEmpty()) {
-            BlockPos blockPos = (BlockPos)list.get(0);
+            BlockPos blockPos = list.getFirst();
             int i = blockPos.getY();
             int j = blockPos.getX();
             int k = blockPos.getX();

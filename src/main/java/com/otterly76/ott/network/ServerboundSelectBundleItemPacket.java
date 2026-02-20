@@ -10,6 +10,7 @@ import net.minecraft.network.protocol.common.custom.CustomPacketPayload;
 import net.minecraft.world.inventory.Slot;
 import net.minecraft.world.item.ItemStack;
 import net.neoforged.neoforge.network.handling.IPayloadContext;
+import org.jetbrains.annotations.NotNull;
 
 public record ServerboundSelectBundleItemPacket(int slotId, int selectedItemIndex) implements CustomPacketPayload {
     public static final Type<ServerboundSelectBundleItemPacket> TYPE = new Type<>(Ott.resource("serverbound_select_bundle_item"));
@@ -28,7 +29,7 @@ public record ServerboundSelectBundleItemPacket(int slotId, int selectedItemInde
     }
 
     @Override
-    public Type<? extends CustomPacketPayload> type() {
+    public @NotNull Type<? extends CustomPacketPayload> type() {
         return TYPE;
     }
 

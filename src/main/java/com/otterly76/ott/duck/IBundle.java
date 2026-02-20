@@ -1,17 +1,17 @@
 package com.otterly76.ott.duck;
 
 public interface IBundle {
-    void setSelectedItem(int index);
+    void ott$setSelectedItem(int index);
 
-    default int getSelectedItem() {
+    default int ott$getSelectedItem() {
         return -1;
     }
 
-    int getNumberOfItemsToShow();
+    int ott$getNumberOfItemsToShow();
 
     interface Mutable {
-        void toggleSelectedItem(int index);
+        void ott$toggleSelectedItem(int index);
 
-        boolean indexIsOutsideAllowedBounds(int index);
+        boolean ott$indexIsOutsideAllowedBounds(int index);
     }
 }

@@ -15,7 +15,9 @@ import java.util.List;
 import java.util.Set;
 
 public interface DynamicItemRenderer {
-    DynamicItemRenderer INSTANCE = null; // This would be initialized by the platform
+    DynamicItemRenderer INSTANCE = (item, renderer) -> {
+        throw new IllegalStateException("DynamicItemRenderer not initialized");
+    };
 
     void register(net.minecraft.world.level.ItemLike item, Renderer renderer);
 

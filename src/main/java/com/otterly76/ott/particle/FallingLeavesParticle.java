@@ -77,7 +77,7 @@ public class FallingLeavesParticle extends TextureSheetParticle {
 
             this.xd += xa * (double) ACCELERATION_SCALE;
             this.zd += za * (double) ACCELERATION_SCALE;
-            this.yd -= (double) this.gravity;
+            this.yd -= this.gravity;
             this.rotSpeed += this.spinAcceleration / 20.0F;
             this.oRoll = this.roll;
             this.roll += this.rotSpeed / 20.0F;
@@ -87,18 +87,23 @@ public class FallingLeavesParticle extends TextureSheetParticle {
             }
 
             if (!this.removed) {
-                this.xd *= (double) this.friction;
-                this.yd *= (double) this.friction;
-                this.zd *= (double) this.friction;
+                this.xd *= this.friction;
+                this.yd *= this.friction;
+                this.zd *= this.friction;
             }
         }
+    }
+
+    @OnlyIn(Dist.CLIENT)
+    private static FallingLeavesParticle create(ClientLevel level, double x, double y, double z, SpriteSet sprites) {
+        return new FallingLeavesParticle(level, x, y, z, sprites, 0.07F, 10.0F, true, false, 2.0F, 0.021F);
     }
 
     @OnlyIn(Dist.CLIENT)
     public record PaleOakProvider(SpriteSet sprites) implements ParticleProvider<SimpleParticleType> {
         @Override
         public Particle createParticle(@NotNull SimpleParticleType type, @NotNull ClientLevel level, double x, double y, double z, double xSpeed, double ySpeed, double zSpeed) {
-            return new FallingLeavesParticle(level, x, y, z, this.sprites, 0.07F, 10.0F, true, false, 2.0F, 0.021F);
+            return FallingLeavesParticle.create(level, x, y, z, this.sprites);
         }
     }
 
@@ -106,7 +111,7 @@ public class FallingLeavesParticle extends TextureSheetParticle {
     public record TintedLeavesProvider(SpriteSet sprites) implements ParticleProvider<ColorParticleOption> {
         @Override
         public Particle createParticle(@NotNull ColorParticleOption type, @NotNull ClientLevel level, double x, double y, double z, double xSpeed, double ySpeed, double zSpeed) {
-            FallingLeavesParticle particle = new FallingLeavesParticle(level, x, y, z, this.sprites, 0.07F, 10.0F, true, false, 2.0F, 0.021F);
+            FallingLeavesParticle particle = FallingLeavesParticle.create(level, x, y, z, this.sprites);
             particle.setColor(type.getRed(), type.getGreen(), type.getBlue());
             return particle;
         }

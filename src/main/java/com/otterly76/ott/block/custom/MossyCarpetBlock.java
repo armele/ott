@@ -56,6 +56,19 @@ public class MossyCarpetBlock extends Block implements BonemealableBlock {
     private static final VoxelShape SOUTH_SHORT_AABB = Block.box(0.0, 0.0, 15.0, 16.0, 10.0, 16.0);
     private final Map<BlockState, VoxelShape> shapesCache;
 
+    private static final Map<Direction, VoxelShape> AABBS_LOW = ImmutableMap.of(
+            Direction.NORTH, NORTH_SHORT_AABB,
+            Direction.SOUTH, SOUTH_SHORT_AABB,
+            Direction.EAST, EAST_SHORT_AABB,
+            Direction.WEST, WEST_SHORT_AABB
+    );
+    private static final Map<Direction, VoxelShape> AABBS_TALL = ImmutableMap.of(
+            Direction.NORTH, NORTH_AABB,
+            Direction.SOUTH, SOUTH_AABB,
+            Direction.EAST, EAST_AABB,
+            Direction.WEST, WEST_AABB
+    );
+
     @Override
     public @NotNull MapCodec<MossyCarpetBlock> codec() {
         return CODEC;
@@ -73,34 +86,16 @@ public class MossyCarpetBlock extends Block implements BonemealableBlock {
     }
 
     private static VoxelShape calculateShape(BlockState state) {
-        VoxelShape shape = Shapes.empty();
-        if (state.getValue(BASE)) {
-            shape = DOWN_AABB;
+        VoxelShape shape = state.getValue(BASE) ? DOWN_AABB : Shapes.empty();
+
+        for (Direction direction : Plane.HORIZONTAL) {
+            WallSide side = state.getValue(Objects.requireNonNull(getPropertyForFace(direction)));
+            if (side == WallSide.LOW) {
+                shape = Shapes.or(shape, AABBS_LOW.get(direction));
+            } else if (side == WallSide.TALL) {
+                shape = Shapes.or(shape, AABBS_TALL.get(direction));
+            }
         }
-
-        shape = switch (state.getValue(NORTH)) {
-            case NONE -> shape;
-            case LOW -> Shapes.or(shape, NORTH_SHORT_AABB);
-            case TALL -> Shapes.or(shape, NORTH_AABB);
-        };
-
-        shape = switch (state.getValue(SOUTH)) {
-            case NONE -> shape;
-            case LOW -> Shapes.or(shape, SOUTH_SHORT_AABB);
-            case TALL -> Shapes.or(shape, SOUTH_AABB);
-        };
-
-        shape = switch (state.getValue(EAST)) {
-            case NONE -> shape;
-            case LOW -> Shapes.or(shape, EAST_SHORT_AABB);
-            case TALL -> Shapes.or(shape, EAST_AABB);
-        };
-
-        shape = switch (state.getValue(WEST)) {
-            case NONE -> shape;
-            case LOW -> Shapes.or(shape, WEST_SHORT_AABB);
-            case TALL -> Shapes.or(shape, WEST_AABB);
-        };
 
         return shape.isEmpty() ? Shapes.empty() : shape;
     }
@@ -125,13 +120,12 @@ public class MossyCarpetBlock extends Block implements BonemealableBlock {
         bl |= blockState.getValue(BASE);
 
         for(Direction direction : Plane.HORIZONTAL) {
-            EnumProperty<WallSide> enumProperty = getPropertyForFace(direction);
+            EnumProperty<WallSide> enumProperty = Objects.requireNonNull(getPropertyForFace(direction));
             WallSide wallSide;
             if (canSupportAtFace(blockGetter, blockPos, direction)) {
                 if (bl) {
                     wallSide = (WallSide.LOW);
                 } else {
-                    assert enumProperty != null;
                     wallSide = (blockState.getValue(enumProperty));
                 }
             } else {
@@ -143,7 +137,6 @@ public class MossyCarpetBlock extends Block implements BonemealableBlock {
                 }
 
                 if (aboveState.is(ModBlocks.PALE_MOSS_CARPET.get())) {
-                    assert enumProperty != null;
                     if (aboveState.getValue(enumProperty) != WallSide.NONE && !(Boolean) aboveState.getValue(BASE)) {
                         wallSide = WallSide.TALL;
                     }
@@ -155,7 +148,6 @@ public class MossyCarpetBlock extends Block implements BonemealableBlock {
                     }
 
                     if (belowState.is(ModBlocks.PALE_MOSS_CARPET.get())) {
-                        assert enumProperty != null;
                         if (belowState.getValue(enumProperty) == WallSide.NONE) {
                             wallSide = WallSide.NONE;
                         }
@@ -163,7 +155,6 @@ public class MossyCarpetBlock extends Block implements BonemealableBlock {
                 }
             }
 
-            assert enumProperty != null;
             blockState = blockState.setValue(enumProperty, wallSide);
         }
 
@@ -192,8 +183,7 @@ public class MossyCarpetBlock extends Block implements BonemealableBlock {
             BlockState blockState3 = getUpdatedState(blockState2, blockGetter, blockPos.above(), true);
 
             for(Direction direction : Plane.HORIZONTAL) {
-                EnumProperty<WallSide> enumProperty = getPropertyForFace(direction);
-                assert enumProperty != null;
+                EnumProperty<WallSide> enumProperty = Objects.requireNonNull(getPropertyForFace(direction));
                 if (blockState3.getValue(enumProperty) != WallSide.NONE && !booleanSupplier.getAsBoolean()) {
                     blockState3 = blockState3.setValue(enumProperty, WallSide.NONE);
                 }
@@ -264,21 +254,20 @@ public class MossyCarpetBlock extends Block implements BonemealableBlock {
 
     @Override
     protected @NotNull BlockState rotate(@NotNull BlockState blockState, @NotNull Rotation rotation) {
-        return switch (rotation) {
-            case CLOCKWISE_180 -> blockState.setValue(NORTH, blockState.getValue(SOUTH)).setValue(EAST, blockState.getValue(WEST)).setValue(SOUTH, blockState.getValue(NORTH)).setValue(WEST, blockState.getValue(EAST));
-            case COUNTERCLOCKWISE_90 -> blockState.setValue(NORTH, blockState.getValue(EAST)).setValue(EAST, blockState.getValue(SOUTH)).setValue(SOUTH, blockState.getValue(WEST)).setValue(WEST, blockState.getValue(NORTH));
-            case CLOCKWISE_90 -> blockState.setValue(NORTH, blockState.getValue(WEST)).setValue(EAST, blockState.getValue(NORTH)).setValue(SOUTH, blockState.getValue(EAST)).setValue(WEST, blockState.getValue(SOUTH));
-            default -> blockState;
-        };
+        BlockState rotated = blockState;
+        for (Direction direction : Plane.HORIZONTAL) {
+            rotated = rotated.setValue(Objects.requireNonNull(getPropertyForFace(rotation.rotate(direction))), blockState.getValue(Objects.requireNonNull(getPropertyForFace(direction))));
+        }
+        return rotated;
     }
 
     @Override
     protected @NotNull BlockState mirror(@NotNull BlockState blockState, @NotNull Mirror mirror) {
-        return switch (mirror) {
-            case LEFT_RIGHT -> blockState.setValue(NORTH, blockState.getValue(SOUTH)).setValue(SOUTH, blockState.getValue(NORTH));
-            case FRONT_BACK -> blockState.setValue(EAST, blockState.getValue(WEST)).setValue(WEST, blockState.getValue(EAST));
-            default -> super.mirror(blockState, mirror);
-        };
+        BlockState mirrored = blockState;
+        for (Direction direction : Plane.HORIZONTAL) {
+            mirrored = mirrored.setValue(Objects.requireNonNull(getPropertyForFace(mirror.mirror(direction))), blockState.getValue(Objects.requireNonNull(getPropertyForFace(direction))));
+        }
+        return mirrored;
     }
 
     @Override

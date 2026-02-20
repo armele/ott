@@ -21,10 +21,7 @@ public record SampleNoiseRouterPlacementCondition(NoiseRouterTarget target, Opti
             return false;
         } else {
             DensityFunction df = this.target().getDensityFunction(context.randomState().router()).mapAll(new NoiseWiringHelper(context, chunkGenerator.generatorSettings().value()));
-            double density = df.compute(new DensityFunction.SinglePointContext(pos.getX(), pos.getY(), pos.getZ()));
-            boolean min = this.minInclusive.isEmpty() || density >= this.minInclusive.get();
-            boolean max = this.maxInclusive.isEmpty() || density <= this.maxInclusive.get();
-            return min && max;
+            return PlacementConditionUtils.withinRange(df, pos, this.minInclusive.orElse(null), this.maxInclusive.orElse(null));
         }
     }
 

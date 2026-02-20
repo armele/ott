@@ -64,6 +64,7 @@ public abstract class BundleItemMixin {
                     cir.setReturnValue(true);
                 } else if (action == ClickAction.SECONDARY && itemInSlot.isEmpty()) {
                     ItemStack removed = mutable.removeOne();
+                    assert removed != null;
                     if (!removed.isEmpty()) {
                         ItemStack insert = slot.safeInsert(removed);
                         if (insert.getCount() > 0) {
@@ -112,6 +113,7 @@ public abstract class BundleItemMixin {
                     } else if (action == ClickAction.SECONDARY && other.isEmpty()) {
                         if (slot.allowModification(player)) {
                             ItemStack removed = mutable.removeOne();
+                            assert removed != null;
                             if (!removed.isEmpty()) {
                                 this.playRemoveOneSound(player);
                                 access.set(removed);

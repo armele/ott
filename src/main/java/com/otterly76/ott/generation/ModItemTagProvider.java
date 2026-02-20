@@ -193,16 +193,16 @@ public class ModItemTagProvider extends ItemTagsProvider {
 
         this.tag(net.minecraft.tags.ItemTags.ARROWS).add(Items.ARROW, Items.TIPPED_ARROW, Items.SPECTRAL_ARROW, ModItems.TORCH_ARROW.get());
 
-        ModItems.COPPER_SWORD.ifPresent(i -> this.tag(net.minecraft.tags.ItemTags.SWORDS).add(i.get()));
-        ModItems.COPPER_SHOVEL.ifPresent(i -> this.tag(net.minecraft.tags.ItemTags.SHOVELS).add(i.get()));
-        ModItems.COPPER_PICKAXE.ifPresent(i -> this.tag(net.minecraft.tags.ItemTags.PICKAXES).add(i.get()));
-        ModItems.COPPER_AXE.ifPresent(i -> this.tag(net.minecraft.tags.ItemTags.AXES).add(i.get()));
-        ModItems.COPPER_HOE.ifPresent(i -> this.tag(net.minecraft.tags.ItemTags.HOES).add(i.get()));
+        this.tag(net.minecraft.tags.ItemTags.SWORDS).add(ModItems.COPPER_SWORD.get());
+        this.tag(net.minecraft.tags.ItemTags.SHOVELS).add(ModItems.COPPER_SHOVEL.get());
+        this.tag(net.minecraft.tags.ItemTags.PICKAXES).add(ModItems.COPPER_PICKAXE.get());
+        this.tag(net.minecraft.tags.ItemTags.AXES).add(ModItems.COPPER_AXE.get());
+        this.tag(net.minecraft.tags.ItemTags.HOES).add(ModItems.COPPER_HOE.get());
 
-        ModItems.COPPER_HELMET.ifPresent(i -> this.tag(net.minecraft.tags.ItemTags.HEAD_ARMOR).add(i.get()));
-        ModItems.COPPER_CHESTPLATE.ifPresent(i -> this.tag(net.minecraft.tags.ItemTags.CHEST_ARMOR).add(i.get()));
-        ModItems.COPPER_LEGGINGS.ifPresent(i -> this.tag(net.minecraft.tags.ItemTags.LEG_ARMOR).add(i.get()));
-        ModItems.COPPER_BOOTS.ifPresent(i -> this.tag(net.minecraft.tags.ItemTags.FOOT_ARMOR).add(i.get()));
+        this.tag(net.minecraft.tags.ItemTags.HEAD_ARMOR).add(ModItems.COPPER_HELMET.get());
+        this.tag(net.minecraft.tags.ItemTags.CHEST_ARMOR).add(ModItems.COPPER_CHESTPLATE.get());
+        this.tag(net.minecraft.tags.ItemTags.LEG_ARMOR).add(ModItems.COPPER_LEGGINGS.get());
+        this.tag(net.minecraft.tags.ItemTags.FOOT_ARMOR).add(ModItems.COPPER_BOOTS.get());
     }
 
     @SafeVarargs

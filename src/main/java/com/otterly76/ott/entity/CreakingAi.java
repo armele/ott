@@ -5,8 +5,6 @@ import com.google.common.collect.ImmutableSet;
 import com.mojang.datafixers.util.Pair;
 import com.otterly76.ott.entity.ai.CreakingMeleeAttack;
 import net.minecraft.server.level.ServerLevel;
-import net.minecraft.util.valueproviders.UniformInt;
-import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.Mob;
 import net.minecraft.world.entity.ai.Brain;
 import net.minecraft.world.entity.ai.behavior.*;
@@ -15,8 +13,6 @@ import net.minecraft.world.entity.ai.sensing.Sensor;
 import net.minecraft.world.entity.ai.sensing.SensorType;
 import net.minecraft.world.entity.schedule.Activity;
 import org.jetbrains.annotations.NotNull;
-
-import java.util.Optional;
 
 public class CreakingAi {
     protected static final ImmutableList<? extends SensorType<? extends Sensor<? super Creaking>>> SENSOR_TYPES;
@@ -34,7 +30,7 @@ public class CreakingAi {
     }
 
     static void initIdleActivity(Brain<Creaking> brain) {
-        brain.addActivity(Activity.IDLE, 10, ImmutableList.of(StartAttacking.create(Creaking::isActive, (creaking) -> creaking.getBrain().getMemory(MemoryModuleType.NEAREST_VISIBLE_ATTACKABLE_PLAYER)), SetEntityLookTargetSometimes.create(8.0F, UniformInt.of(30, 60)), new RunOne<>(ImmutableList.of(Pair.of(RandomStroll.stroll(0.3F), 2), Pair.of(SetWalkTargetFromLookTarget.create(0.3F, 3), 2), Pair.of(new DoNothing(30, 60), 1)))));
+        brain.addActivity(Activity.IDLE, 10, ImmutableList.of(StartAttacking.create(Creaking::isActive, (creaking) -> creaking.getBrain().getMemory(MemoryModuleType.NEAREST_VISIBLE_ATTACKABLE_PLAYER)), SetEntityLookTarget.create(8.0F), new RunOne<>(ImmutableList.of(Pair.of(RandomStroll.stroll(0.3F), 2), Pair.of(SetWalkTargetFromLookTarget.create(0.3F, 3), 2), Pair.of(new DoNothing(30, 60), 1)))));
     }
 
     static void initFightActivity(Brain<Creaking> brain) {

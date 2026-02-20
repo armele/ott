@@ -1,11 +1,9 @@
 package com.otterly76.ott.client.render.entity;
 
-import com.otterly76.ott.mixin.access.EntityRendererAccessor;
-import com.otterly76.ott.util.entity.LeashExtension;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
-import java.util.ArrayList;
-import java.util.List;
+import com.otterly76.ott.mixin.access.EntityRendererAccessor;
+import com.otterly76.ott.util.entity.LeashExtension;
 import net.minecraft.client.renderer.LightTexture;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.RenderType;
@@ -22,6 +20,9 @@ import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
 import org.jetbrains.annotations.Nullable;
 import org.joml.Matrix4f;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @OnlyIn(Dist.CLIENT)
 public class LeashFeatureRenderer<T extends Entity> {
@@ -84,27 +85,27 @@ public class LeashFeatureRenderer<T extends Entity> {
         Matrix4f matrices = stack.last().pose();
 
         for(int segment = 0; segment <= 24; ++segment) {
-            addVertexPair(builder, matrices, dx, dy, dz, 0.05F, dxOff, dzOff, segment, false, state);
+            addVertexPair(builder, matrices, dx, dy, dz, dxOff, dzOff, segment, false, state);
         }
 
         for(int segment = 24; segment >= 0; --segment) {
-            addVertexPair(builder, matrices, dx, dy, dz, 0.05F, dxOff, dzOff, segment, true, state);
+            addVertexPair(builder, matrices, dx, dy, dz, dxOff, dzOff, segment, true, state);
         }
 
         if (!state.slack) {
             for(int segment = 0; segment <= 24; ++segment) {
-                addVertexPair(builder, matrices, dx, dy, dz, 0.05F, -dxOff, dzOff, segment, false, state);
+                addVertexPair(builder, matrices, dx, dy, dz, -dxOff, dzOff, segment, false, state);
             }
 
             for(int segment = 24; segment >= 0; --segment) {
-                addVertexPair(builder, matrices, dx, dy, dz, 0.05F, -dxOff, dzOff, segment, true, state);
+                addVertexPair(builder, matrices, dx, dy, dz, -dxOff, dzOff, segment, true, state);
             }
         }
 
         stack.popPose();
     }
 
-    private static void addVertexPair(VertexConsumer builder, Matrix4f pose, float dx, float dy, float dz, float fudge, float dxOff, float dzOff, int segment, boolean backwards, LeashState state) {
+    private static void addVertexPair(VertexConsumer builder, Matrix4f pose, float dx, float dy, float dz, float dxOff, float dzOff, int segment, boolean backwards, LeashState state) {
         float progress = (float)segment / 24.0F;
         int block = (int)Mth.lerp(progress, (float)state.startBlockLight, (float)state.endBlockLight);
         int sky = (int)Mth.lerp(progress, (float)state.startSkyLight, (float)state.endSkyLight);
@@ -120,8 +121,8 @@ public class LeashFeatureRenderer<T extends Entity> {
             y = dy > 0.0F ? dy * progress * progress : dy - dy * (1.0F - progress) * (1.0F - progress);
         }
 
-        builder.addVertex(pose, x - dxOff, y + fudge, z + dzOff).setColor(r, g, b, 1.0F).setLight(lightCoords);
-        builder.addVertex(pose, x + dxOff, y + 0.05F - fudge, z - dzOff).setColor(r, g, b, 1.0F).setLight(lightCoords);
+        builder.addVertex(pose, x - dxOff, y + (float) 0.05, z + dzOff).setColor(r, g, b, 1.0F).setLight(lightCoords);
+        builder.addVertex(pose, x + dxOff, y + 0.05F - (float) 0.05, z - dzOff).setColor(r, g, b, 1.0F).setLight(lightCoords);
     }
 
     private void setupLeashRendering(T entity, float partialTicks) {

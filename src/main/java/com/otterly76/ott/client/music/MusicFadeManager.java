@@ -122,7 +122,7 @@ public class MusicFadeManager {
     private void setVolume(SoundEngine engine, SoundInstance instance, float volume) {
         SoundEngineAccessor accessor = (SoundEngineAccessor)engine;
         if (accessor.isLoaded()) {
-            ChannelAccess.ChannelHandle handle = (ChannelAccess.ChannelHandle)accessor.getInstanceToChannel().get(instance);
+            ChannelAccess.ChannelHandle handle = accessor.getInstanceToChannel().get(instance);
             if (handle != null) {
                 handle.execute((channel) -> channel.setVolume(volume * accessor.callCalculateVolume(instance)));
             }

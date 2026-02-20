@@ -1,6 +1,5 @@
 package com.otterly76.ott.sound;
 
-import com.otterly76.ott.FeatureFlag;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.sounds.Music;
@@ -10,7 +9,6 @@ import net.neoforged.neoforge.common.util.DeferredSoundType;
 import net.neoforged.neoforge.registries.DeferredHolder;
 import net.neoforged.neoforge.registries.DeferredRegister;
 
-import java.util.Optional;
 import java.util.function.Supplier;
 
 public class ModSounds {
@@ -22,14 +20,14 @@ public class ModSounds {
     public static final DeferredHolder<SoundEvent, SoundEvent> RESIN_FALL = registerSoundEvent("block.resin.fall");
     public static final DeferredHolder<SoundEvent, SoundEvent> RESIN_PLACE = registerSoundEvent("block.resin.place");
     public static final DeferredHolder<SoundEvent, SoundEvent> RESIN_STEP = registerSoundEvent("block.resin.step");
-    public static final DeferredSoundType RESIN = new DeferredSoundType(1.0F, 1.0F, (Supplier<SoundEvent>)RESIN_BREAK, (Supplier<SoundEvent>)RESIN_STEP, (Supplier<SoundEvent>)RESIN_PLACE, (Supplier<SoundEvent>)RESIN_PLACE, (Supplier<SoundEvent>)RESIN_FALL);
+    public static final DeferredSoundType RESIN = new DeferredSoundType(1.0F, 1.0F, RESIN_BREAK, RESIN_STEP, RESIN_PLACE, RESIN_PLACE, RESIN_FALL);
 
     public static final DeferredHolder<SoundEvent, SoundEvent> RESIN_BRICKS_BREAK = registerSoundEvent("block.resin_bricks.break");
     public static final DeferredHolder<SoundEvent, SoundEvent> RESIN_BRICKS_FALL = registerSoundEvent("block.resin_bricks.fall");
     public static final DeferredHolder<SoundEvent, SoundEvent> RESIN_BRICKS_HIT = registerSoundEvent("block.resin_bricks.hit");
     public static final DeferredHolder<SoundEvent, SoundEvent> RESIN_BRICKS_PLACE = registerSoundEvent("block.resin_bricks.place");
     public static final DeferredHolder<SoundEvent, SoundEvent> RESIN_BRICKS_STEP = registerSoundEvent("block.resin_bricks.step");
-    public static final DeferredSoundType RESIN_BRICKS = new DeferredSoundType(1.0F, 1.0F, (Supplier<SoundEvent>)RESIN_BRICKS_BREAK, (Supplier<SoundEvent>)RESIN_BRICKS_STEP, (Supplier<SoundEvent>)RESIN_BRICKS_PLACE, (Supplier<SoundEvent>)RESIN_BRICKS_HIT, (Supplier<SoundEvent>)RESIN_BRICKS_FALL);
+    public static final DeferredSoundType RESIN_BRICKS = new DeferredSoundType(1.0F, 1.0F, RESIN_BRICKS_BREAK, RESIN_BRICKS_STEP, RESIN_BRICKS_PLACE, RESIN_BRICKS_HIT, RESIN_BRICKS_FALL);
 
     public static final DeferredHolder<SoundEvent, SoundEvent> CREAKING_HEART_BREAK = registerSoundEvent("block.creaking_heart.break");
     public static final DeferredHolder<SoundEvent, SoundEvent> CREAKING_HEART_FALL = registerSoundEvent("block.creaking_heart.fall");
@@ -37,7 +35,7 @@ public class ModSounds {
     public static final DeferredHolder<SoundEvent, SoundEvent> CREAKING_HEART_HURT = registerSoundEvent("block.creaking_heart.hurt");
     public static final DeferredHolder<SoundEvent, SoundEvent> CREAKING_HEART_PLACE = registerSoundEvent("block.creaking_heart.place");
     public static final DeferredHolder<SoundEvent, SoundEvent> CREAKING_HEART_STEP = registerSoundEvent("block.creaking_heart.step");
-    public static final DeferredSoundType CREAKING_HEART = new DeferredSoundType(1.0F, 1.0F, (Supplier<SoundEvent>)CREAKING_HEART_BREAK, (Supplier<SoundEvent>)CREAKING_HEART_STEP, (Supplier<SoundEvent>)CREAKING_HEART_PLACE, (Supplier<SoundEvent>)CREAKING_HEART_HIT, (Supplier<SoundEvent>)CREAKING_HEART_FALL);
+    public static final DeferredSoundType CREAKING_HEART = new DeferredSoundType(1.0F, 1.0F, CREAKING_HEART_BREAK, CREAKING_HEART_STEP, CREAKING_HEART_PLACE, CREAKING_HEART_HIT, CREAKING_HEART_FALL);
 
     public static final DeferredHolder<SoundEvent, SoundEvent> CREAKING_HEART_IDLE = registerSoundEvent("block.creaking_heart.idle");
     public static final DeferredHolder<SoundEvent, SoundEvent> CREAKING_HEART_SPAWN = registerSoundEvent("block.creaking_heart.spawn");
@@ -125,7 +123,7 @@ public class ModSounds {
     public static final DeferredHolder<SoundEvent, SoundEvent> DRIED_GHAST_AMBIENT_WATER = registerSoundEvent("block.dried_ghast.ambient_water");
     public static final DeferredHolder<SoundEvent, SoundEvent> DRIED_GHAST_PLACE = registerSoundEvent("block.dried_ghast.place");
     public static final DeferredHolder<SoundEvent, SoundEvent> DRIED_GHAST_PLACE_IN_WATER = registerSoundEvent("block.dried_ghast.place_in_water");
-    public static final DeferredSoundType DRIED_GHAST = new DeferredSoundType(1.0F, 1.0F, (Supplier<SoundEvent>)DRIED_GHAST_BREAK, (Supplier<SoundEvent>)DRIED_GHAST_STEP, () -> net.minecraft.sounds.SoundEvents.EMPTY, () -> net.minecraft.sounds.SoundEvents.EMPTY, (Supplier<SoundEvent>)DRIED_GHAST_FALL);
+    public static final DeferredSoundType DRIED_GHAST = new DeferredSoundType(1.0F, 1.0F, DRIED_GHAST_BREAK, DRIED_GHAST_STEP, () -> net.minecraft.sounds.SoundEvents.EMPTY, () -> net.minecraft.sounds.SoundEvents.EMPTY, DRIED_GHAST_FALL);
 
     public static final DeferredHolder<SoundEvent, SoundEvent> FIREFLY_BUSH_IDLE = registerSoundEvent("block.firefly_bush.idle");
 
@@ -134,14 +132,14 @@ public class ModSounds {
     public static final DeferredHolder<SoundEvent, SoundEvent> LEAF_LITTER_PLACE = registerSoundEvent("block.leaf_litter.place");
     public static final DeferredHolder<SoundEvent, SoundEvent> LEAF_LITTER_HIT = registerSoundEvent("block.leaf_litter.hit");
     public static final DeferredHolder<SoundEvent, SoundEvent> LEAF_LITTER_FALL = registerSoundEvent("block.leaf_litter.fall");
-    public static final DeferredSoundType LEAF_LITTER = new DeferredSoundType(1.0F, 1.0F, (Supplier<SoundEvent>)LEAF_LITTER_BREAK, (Supplier<SoundEvent>)LEAF_LITTER_STEP, (Supplier<SoundEvent>)LEAF_LITTER_PLACE, (Supplier<SoundEvent>)LEAF_LITTER_HIT, (Supplier<SoundEvent>)LEAF_LITTER_FALL);
+    public static final DeferredSoundType LEAF_LITTER = new DeferredSoundType(1.0F, 1.0F, LEAF_LITTER_BREAK, LEAF_LITTER_STEP, LEAF_LITTER_PLACE, LEAF_LITTER_HIT, LEAF_LITTER_FALL);
 
     public static final DeferredHolder<SoundEvent, SoundEvent> CACTUS_FLOWER_BREAK = registerSoundEvent("block.cactus_flower.break");
     public static final DeferredHolder<SoundEvent, SoundEvent> CACTUS_FLOWER_STEP = registerSoundEvent("block.cactus_flower.step");
     public static final DeferredHolder<SoundEvent, SoundEvent> CACTUS_FLOWER_PLACE = registerSoundEvent("block.cactus_flower.place");
     public static final DeferredHolder<SoundEvent, SoundEvent> CACTUS_FLOWER_HIT = registerSoundEvent("block.cactus_flower.hit");
     public static final DeferredHolder<SoundEvent, SoundEvent> CACTUS_FLOWER_FALL = registerSoundEvent("block.cactus_flower.fall");
-    public static final DeferredSoundType CACTUS_FLOWER = new DeferredSoundType(1.0F, 1.0F, (Supplier<SoundEvent>)CACTUS_FLOWER_BREAK, (Supplier<SoundEvent>)CACTUS_FLOWER_STEP, (Supplier<SoundEvent>)CACTUS_FLOWER_PLACE, (Supplier<SoundEvent>)CACTUS_FLOWER_HIT, (Supplier<SoundEvent>)CACTUS_FLOWER_FALL);
+    public static final DeferredSoundType CACTUS_FLOWER = new DeferredSoundType(1.0F, 1.0F, CACTUS_FLOWER_BREAK, CACTUS_FLOWER_STEP, CACTUS_FLOWER_PLACE, CACTUS_FLOWER_HIT, CACTUS_FLOWER_FALL);
 
     public static final DeferredHolder<SoundEvent, SoundEvent> SAND_IDLE = registerSoundEvent("block.sand.idle");
     public static final DeferredHolder<SoundEvent, SoundEvent> DRY_GRASS = registerSoundEvent("block.dry_grass.ambient");
@@ -152,34 +150,34 @@ public class ModSounds {
     public static final DeferredHolder<SoundEvent, SoundEvent> COPPER_GOLEM_STATUE_PLACE = registerSoundEvent("block.copper_golem_statue.place");
     public static final DeferredHolder<SoundEvent, SoundEvent> COPPER_GOLEM_STATUE_HIT = registerSoundEvent("block.copper_golem_statue.hit");
     public static final DeferredHolder<SoundEvent, SoundEvent> COPPER_GOLEM_STATUE_FALL = registerSoundEvent("block.copper_golem_statue.fall");
-    public static final DeferredSoundType COPPER_GOLEM_STATUE = new DeferredSoundType(1.0F, 1.0F, (Supplier<SoundEvent>)COPPER_GOLEM_STATUE_BREAK, (Supplier<SoundEvent>)COPPER_GOLEM_STATUE_STEP, (Supplier<SoundEvent>)COPPER_GOLEM_STATUE_PLACE, (Supplier<SoundEvent>)COPPER_GOLEM_STATUE_HIT, (Supplier<SoundEvent>)COPPER_GOLEM_STATUE_FALL);
+    public static final DeferredSoundType COPPER_GOLEM_STATUE = new DeferredSoundType(1.0F, 1.0F, COPPER_GOLEM_STATUE_BREAK, COPPER_GOLEM_STATUE_STEP, COPPER_GOLEM_STATUE_PLACE, COPPER_GOLEM_STATUE_HIT, COPPER_GOLEM_STATUE_FALL);
 
-    public static final Optional<DeferredHolder<SoundEvent, SoundEvent>> COPPER_CHEST_CLOSE = conditional("block.copper_chest.close", FeatureFlag.COPPER_AGE);
-    public static final Optional<DeferredHolder<SoundEvent, SoundEvent>> COPPER_CHEST_OPEN = conditional("block.copper_chest.open", FeatureFlag.COPPER_AGE);
-    public static final Optional<DeferredHolder<SoundEvent, SoundEvent>> COPPER_CHEST_WEATHERED_CLOSE = conditional("block.copper_chest_weathered.close", FeatureFlag.COPPER_AGE);
-    public static final Optional<DeferredHolder<SoundEvent, SoundEvent>> COPPER_CHEST_WEATHERED_OPEN = conditional("block.copper_chest_weathered.open", FeatureFlag.COPPER_AGE);
-    public static final Optional<DeferredHolder<SoundEvent, SoundEvent>> COPPER_CHEST_OXIDIZED_CLOSE = conditional("block.copper_chest_oxidized.close", FeatureFlag.COPPER_AGE);
-    public static final Optional<DeferredHolder<SoundEvent, SoundEvent>> COPPER_CHEST_OXIDIZED_OPEN = conditional("block.copper_chest_oxidized.open", FeatureFlag.COPPER_AGE);
+    public static final DeferredHolder<SoundEvent, SoundEvent> COPPER_CHEST_CLOSE = registerSoundEvent("block.copper_chest.close");
+    public static final DeferredHolder<SoundEvent, SoundEvent> COPPER_CHEST_OPEN = registerSoundEvent("block.copper_chest.open");
+    public static final DeferredHolder<SoundEvent, SoundEvent> COPPER_CHEST_WEATHERED_CLOSE = registerSoundEvent("block.copper_chest_weathered.close");
+    public static final DeferredHolder<SoundEvent, SoundEvent> COPPER_CHEST_WEATHERED_OPEN = registerSoundEvent("block.copper_chest_weathered.open");
+    public static final DeferredHolder<SoundEvent, SoundEvent> COPPER_CHEST_OXIDIZED_CLOSE = registerSoundEvent("block.copper_chest_oxidized.close");
+    public static final DeferredHolder<SoundEvent, SoundEvent> COPPER_CHEST_OXIDIZED_OPEN = registerSoundEvent("block.copper_chest_oxidized.open");
 
-    public static final Optional<DeferredHolder<SoundEvent, SoundEvent>> COPPER_GOLEM_STEP = conditional("entity.copper_golem.step", FeatureFlag.COPPER_AGE);
-    public static final Optional<DeferredHolder<SoundEvent, SoundEvent>> COPPER_GOLEM_HURT = conditional("entity.copper_golem.hurt", FeatureFlag.COPPER_AGE);
-    public static final Optional<DeferredHolder<SoundEvent, SoundEvent>> COPPER_GOLEM_DEATH = conditional("entity.copper_golem.death", FeatureFlag.COPPER_AGE);
-    public static final Optional<DeferredHolder<SoundEvent, SoundEvent>> COPPER_GOLEM_WEATHERED_STEP = conditional("entity.copper_golem_weathered.step", FeatureFlag.COPPER_AGE);
-    public static final Optional<DeferredHolder<SoundEvent, SoundEvent>> COPPER_GOLEM_WEATHERED_HURT = conditional("entity.copper_golem_weathered.hurt", FeatureFlag.COPPER_AGE);
-    public static final Optional<DeferredHolder<SoundEvent, SoundEvent>> COPPER_GOLEM_WEATHERED_DEATH = conditional("entity.copper_golem_weathered.death", FeatureFlag.COPPER_AGE);
-    public static final Optional<DeferredHolder<SoundEvent, SoundEvent>> COPPER_GOLEM_OXIDIZED_STEP = conditional("entity.copper_golem_oxidized.step", FeatureFlag.COPPER_AGE);
-    public static final Optional<DeferredHolder<SoundEvent, SoundEvent>> COPPER_GOLEM_OXIDIZED_HURT = conditional("entity.copper_golem_oxidized.hurt", FeatureFlag.COPPER_AGE);
-    public static final Optional<DeferredHolder<SoundEvent, SoundEvent>> COPPER_GOLEM_OXIDIZED_DEATH = conditional("entity.copper_golem_oxidized.death", FeatureFlag.COPPER_AGE);
-    public static final Optional<DeferredHolder<SoundEvent, SoundEvent>> COPPER_GOLEM_SPIN = conditional("entity.copper_golem.spin", FeatureFlag.COPPER_AGE);
-    public static final Optional<DeferredHolder<SoundEvent, SoundEvent>> COPPER_GOLEM_WEATHERED_SPIN = conditional("entity.copper_golem_weathered.spin", FeatureFlag.COPPER_AGE);
-    public static final Optional<DeferredHolder<SoundEvent, SoundEvent>> COPPER_GOLEM_OXIDIZED_SPIN = conditional("entity.copper_golem_oxidized.spin", FeatureFlag.COPPER_AGE);
-    public static final Optional<DeferredHolder<SoundEvent, SoundEvent>> COPPER_GOLEM_ITEM_GET = conditional("entity.copper_golem.no_item_get", FeatureFlag.COPPER_AGE);
-    public static final Optional<DeferredHolder<SoundEvent, SoundEvent>> COPPER_GOLEM_ITEM_NO_GET = conditional("entity.copper_golem.item_no_get", FeatureFlag.COPPER_AGE);
-    public static final Optional<DeferredHolder<SoundEvent, SoundEvent>> COPPER_GOLEM_ITEM_DROP = conditional("entity.copper_golem.item_drop", FeatureFlag.COPPER_AGE);
-    public static final Optional<DeferredHolder<SoundEvent, SoundEvent>> COPPER_GOLEM_ITEM_NO_DROP = conditional("entity.copper_golem.item_no_drop", FeatureFlag.COPPER_AGE);
-    public static final Optional<DeferredHolder<SoundEvent, SoundEvent>> COPPER_GOLEM_BECOME_STATUE = conditional("entity.copper_golem_become_statue", FeatureFlag.COPPER_AGE);
-    public static final Optional<DeferredHolder<SoundEvent, SoundEvent>> COPPER_GOLEM_SPAWN = conditional("entity.copper_golem.spawn", FeatureFlag.COPPER_AGE);
-    public static final Optional<DeferredHolder<SoundEvent, SoundEvent>> COPPER_GOLEM_SHEAR = conditional("entity.copper_golem.shear", FeatureFlag.COPPER_AGE);
+    public static final DeferredHolder<SoundEvent, SoundEvent> COPPER_GOLEM_STEP = registerSoundEvent("entity.copper_golem.step");
+    public static final DeferredHolder<SoundEvent, SoundEvent> COPPER_GOLEM_HURT = registerSoundEvent("entity.copper_golem.hurt");
+    public static final DeferredHolder<SoundEvent, SoundEvent> COPPER_GOLEM_DEATH = registerSoundEvent("entity.copper_golem.death");
+    public static final DeferredHolder<SoundEvent, SoundEvent> COPPER_GOLEM_WEATHERED_STEP = registerSoundEvent("entity.copper_golem_weathered.step");
+    public static final DeferredHolder<SoundEvent, SoundEvent> COPPER_GOLEM_WEATHERED_HURT = registerSoundEvent("entity.copper_golem_weathered.hurt");
+    public static final DeferredHolder<SoundEvent, SoundEvent> COPPER_GOLEM_WEATHERED_DEATH = registerSoundEvent("entity.copper_golem_weathered.death");
+    public static final DeferredHolder<SoundEvent, SoundEvent> COPPER_GOLEM_OXIDIZED_STEP = registerSoundEvent("entity.copper_golem_oxidized.step");
+    public static final DeferredHolder<SoundEvent, SoundEvent> COPPER_GOLEM_OXIDIZED_HURT = registerSoundEvent("entity.copper_golem_oxidized.hurt");
+    public static final DeferredHolder<SoundEvent, SoundEvent> COPPER_GOLEM_OXIDIZED_DEATH = registerSoundEvent("entity.copper_golem_oxidized.death");
+    public static final DeferredHolder<SoundEvent, SoundEvent> COPPER_GOLEM_SPIN = registerSoundEvent("entity.copper_golem.spin");
+    public static final DeferredHolder<SoundEvent, SoundEvent> COPPER_GOLEM_WEATHERED_SPIN = registerSoundEvent("entity.copper_golem_weathered.spin");
+    public static final DeferredHolder<SoundEvent, SoundEvent> COPPER_GOLEM_OXIDIZED_SPIN = registerSoundEvent("entity.copper_golem_oxidized.spin");
+    public static final DeferredHolder<SoundEvent, SoundEvent> COPPER_GOLEM_ITEM_GET = registerSoundEvent("entity.copper_golem.no_item_get");
+    public static final DeferredHolder<SoundEvent, SoundEvent> COPPER_GOLEM_ITEM_NO_GET = registerSoundEvent("entity.copper_golem.no_item_no_get");
+    public static final DeferredHolder<SoundEvent, SoundEvent> COPPER_GOLEM_ITEM_DROP = registerSoundEvent("entity.copper_golem.item_drop");
+    public static final DeferredHolder<SoundEvent, SoundEvent> COPPER_GOLEM_ITEM_NO_DROP = registerSoundEvent("entity.copper_golem.item_no_drop");
+    public static final DeferredHolder<SoundEvent, SoundEvent> COPPER_GOLEM_BECOME_STATUE = registerSoundEvent("entity.copper_golem_become_statue");
+    public static final DeferredHolder<SoundEvent, SoundEvent> COPPER_GOLEM_SPAWN = registerSoundEvent("entity.copper_golem.spawn");
+    public static final DeferredHolder<SoundEvent, SoundEvent> COPPER_GOLEM_SHEAR = registerSoundEvent("entity.copper_golem.shear");
 
     public static final DeferredHolder<SoundEvent, SoundEvent> PALE_HANGING_MOSS_IDLE = registerSoundEvent("block.pale_hanging_moss.idle");
 
@@ -190,9 +188,6 @@ public class ModSounds {
     public static final ResourceLocation NONE_ID = ResourceLocation.fromNamespaceAndPath("minecraft", "music.none");
     public static final Supplier<Music> NO_MUSIC = () -> new Music(BuiltInRegistries.SOUND_EVENT.getHolder(NONE_ID).orElseThrow(() -> new IllegalStateException("SoundEvent not registered yet for 'music.none'")), 999999, 999999, false);
 
-    private static Optional<DeferredHolder<SoundEvent, SoundEvent>> conditional(String id, FeatureFlag flag) {
-        return flag.isEnabled() ? Optional.of(registerSoundEvent(id)) : Optional.empty();
-    }
 
     private static DeferredHolder<SoundEvent, SoundEvent> registerSoundEvent(String name) {
         ResourceLocation id = ResourceLocation.fromNamespaceAndPath("minecraft", name);

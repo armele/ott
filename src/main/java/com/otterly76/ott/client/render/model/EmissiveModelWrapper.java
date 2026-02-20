@@ -1,7 +1,6 @@
 package com.otterly76.ott.client.render.model;
 
-import java.util.ArrayList;
-import java.util.List;
+import com.mojang.blaze3d.vertex.PoseStack;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.block.model.BakedQuad;
 import net.minecraft.client.renderer.block.model.ItemOverrides;
@@ -11,11 +10,15 @@ import net.minecraft.client.resources.model.BakedModel;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.util.RandomSource;
+import net.minecraft.world.item.ItemDisplayContext;
 import net.minecraft.world.level.BlockAndTintGetter;
 import net.minecraft.world.level.block.state.BlockState;
 import net.neoforged.neoforge.client.model.data.ModelData;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class EmissiveModelWrapper implements BakedModel {
     private final BakedModel baseModel;
@@ -63,13 +66,25 @@ public class EmissiveModelWrapper implements BakedModel {
     }
 
     @Override
+    @SuppressWarnings("deprecation")
     public @NotNull TextureAtlasSprite getParticleIcon() {
         return this.baseModel.getParticleIcon();
     }
 
     @Override
+    public @NotNull TextureAtlasSprite getParticleIcon(@NotNull ModelData data) {
+        return this.baseModel.getParticleIcon(data);
+    }
+
+    @Override
+    @SuppressWarnings("deprecation")
     public @NotNull ItemTransforms getTransforms() {
         return this.baseModel.getTransforms();
+    }
+
+    @Override
+    public @NotNull BakedModel applyTransform(@NotNull ItemDisplayContext context, @NotNull PoseStack poseStack, boolean leftHand) {
+        return this.baseModel.applyTransform(context, poseStack, leftHand);
     }
 
     @Override

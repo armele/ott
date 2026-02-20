@@ -8,15 +8,15 @@ import org.spongepowered.asm.mixin.Unique;
 @Mixin({Leashable.LeashData.class})
 public class LeashDataMixin implements LeashDataExtension {
     @Unique
-    private double angularMomentum;
+    private double ott$angularMomentum;
 
     @Override
-    public double angularMomentum() {
-        return this.angularMomentum;
+    public double ott$angularMomentum() {
+        return this.ott$angularMomentum;
     }
 
     @Override
-    public void setAngularMomentum(double angularMomentum) {
-        this.angularMomentum = angularMomentum;
+    public void ott$setAngularMomentum(double angularMomentum) {
+        this.ott$angularMomentum = angularMomentum;
     }
 }

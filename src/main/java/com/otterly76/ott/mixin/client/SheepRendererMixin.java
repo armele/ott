@@ -6,7 +6,6 @@ import com.otterly76.ott.client.render.layers.SheepWoolUndercoatLayer;
 import net.minecraft.client.model.SheepModel;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
 import net.minecraft.client.renderer.entity.SheepRenderer;
-import net.minecraft.client.renderer.entity.layers.RenderLayer;
 import net.minecraft.world.entity.animal.Sheep;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
@@ -24,6 +23,6 @@ public abstract class SheepRendererMixin extends MobRendererMixin<Sheep, SheepMo
         at = @At("TAIL")
     )
     private void onInit(EntityRendererProvider.Context context, CallbackInfo ci) {
-        SpecialMobRenderer.create(context, (ctx) -> new SheepWoolUndercoatLayer(this, ctx.getModelSet()), RenderConditions.SHEEP_UNDERCOAT).ifPresent((layer) -> this.addLayer((RenderLayer<Sheep, SheepModel<Sheep>>)layer.get()));
+        SpecialMobRenderer.create(context, (ctx) -> new SheepWoolUndercoatLayer(this, ctx.getModelSet()), RenderConditions.SHEEP_UNDERCOAT).ifPresent((layer) -> this.addLayer(layer.get()));
     }
 }

@@ -34,7 +34,7 @@ public class FallenTreeFeature extends Feature<FallenTreeConfiguration> {
     private void placeFallenTree(FallenTreeConfiguration config, BlockPos pos, WorldGenLevel level, RandomSource random) {
         this.placeStump(config, level, random, pos.mutable());
         Direction direction = Plane.HORIZONTAL.getRandomDirection(random);
-        int length = config.logLength.sample(random) - 2;
+        int length = config.logLength().sample(random) - 2;
         BlockPos.MutableBlockPos mutable = pos.relative(direction, 2 + random.nextInt(2)).mutable();
         this.setGroundHeightForFallenLogStartPos(level, mutable);
         if (this.canPlaceEntireFallenLog(level, length, mutable, direction)) {
@@ -56,7 +56,7 @@ public class FallenTreeFeature extends Feature<FallenTreeConfiguration> {
 
     private void placeStump(FallenTreeConfiguration config, WorldGenLevel level, RandomSource random, BlockPos.MutableBlockPos mutable) {
         BlockPos origin = this.placeLogBlock(config, level, random, mutable, Function.identity());
-        this.decorateLogs(level, random, Set.of(origin), config.stumpDecorators);
+        this.decorateLogs(level, random, Set.of(origin), config.stumpDecorators());
     }
 
     private boolean canPlaceEntireFallenLog(WorldGenLevel level, int length, BlockPos.MutableBlockPos mutable, Direction direction) {
@@ -90,7 +90,7 @@ public class FallenTreeFeature extends Feature<FallenTreeConfiguration> {
             mutable.move(direction);
         }
 
-        this.decorateLogs(level, random, positions, config.logDecorators);
+        this.decorateLogs(level, random, positions, config.logDecorators());
     }
 
     private boolean mayPlaceOn(LevelAccessor level, BlockPos pos) {
@@ -102,7 +102,7 @@ public class FallenTreeFeature extends Feature<FallenTreeConfiguration> {
     }
 
     private BlockPos placeLogBlock(FallenTreeConfiguration config, WorldGenLevel level, RandomSource random, BlockPos.MutableBlockPos mutable, Function<BlockState, BlockState> factory) {
-        level.setBlock(mutable, factory.apply(config.trunkProvider.getState(random, mutable)), 3);
+        level.setBlock(mutable, factory.apply(config.trunkProvider().getState(random, mutable)), 3);
         this.markAboveForPostProcessing(level, mutable);
         return mutable.immutable();
     }

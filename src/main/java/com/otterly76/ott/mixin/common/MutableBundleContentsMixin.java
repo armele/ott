@@ -27,7 +27,7 @@ public abstract class MutableBundleContentsMixin implements IBundle.Mutable {
     @Shadow
     private Fraction weight;
     @Unique
-    private int selectedItem = -1;
+    private int ott$selectedItem = -1;
 
     @Shadow
     protected abstract int getMaxAmountToAdd(ItemStack stack);
@@ -41,7 +41,7 @@ public abstract class MutableBundleContentsMixin implements IBundle.Mutable {
     )
     private void vb$onInit(BundleContents contents, CallbackInfo ci) {
         if (BundleFeatures.onBundleUpdate()) {
-            this.selectedItem = ((IBundle) (Object) contents).getSelectedItem();
+            this.ott$selectedItem = ((IBundle) (Object) contents).ott$getSelectedItem();
         }
     }
 
@@ -60,12 +60,12 @@ public abstract class MutableBundleContentsMixin implements IBundle.Mutable {
     }
 
     @Override
-    public void toggleSelectedItem(int index) {
-        this.selectedItem = this.selectedItem != index && !this.indexIsOutsideAllowedBounds(index) ? index : -1;
+    public void ott$toggleSelectedItem(int index) {
+        this.ott$selectedItem = this.ott$selectedItem != index && !this.ott$indexIsOutsideAllowedBounds(index) ? index : -1;
     }
 
     @Override
-    public boolean indexIsOutsideAllowedBounds(int index) {
+    public boolean ott$indexIsOutsideAllowedBounds(int index) {
         return index < 0 || index >= this.items.size();
     }
 
@@ -77,10 +77,10 @@ public abstract class MutableBundleContentsMixin implements IBundle.Mutable {
     private void vb$onRemoveOne(CallbackInfoReturnable<ItemStack> cir) {
         if (BundleFeatures.onBundleUpdate()) {
             if (!this.items.isEmpty()) {
-                int index = this.indexIsOutsideAllowedBounds(this.selectedItem) ? 0 : this.selectedItem;
+                int index = this.ott$indexIsOutsideAllowedBounds(this.ott$selectedItem) ? 0 : this.ott$selectedItem;
                 ItemStack stack = this.items.remove(index).copy();
                 this.weight = this.weight.subtract(BundleContentsAccessor.callGetWeight(stack).multiplyBy(Fraction.getFraction(stack.getCount(), 1)));
-                this.toggleSelectedItem(-1);
+                this.ott$toggleSelectedItem(-1);
                 cir.setReturnValue(stack);
             }
         }
@@ -94,7 +94,7 @@ public abstract class MutableBundleContentsMixin implements IBundle.Mutable {
     private void vb$onToImmutable(CallbackInfoReturnable<BundleContents> cir) {
         if (BundleFeatures.onBundleUpdate()) {
             BundleContents original = cir.getReturnValue();
-            ((IBundle) (Object) original).setSelectedItem(this.selectedItem);
+            ((IBundle) (Object) original).ott$setSelectedItem(this.ott$selectedItem);
             cir.setReturnValue(original);
         }
     }

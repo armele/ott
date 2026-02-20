@@ -54,8 +54,8 @@ public class ModParticle {
     public static final DeferredHolder<SoundEvent, SoundEvent> WEATHER_SANDSTORM_ABOVE = SOUND_EVENTS.register("weather.sandstorm.above", () -> SoundEvent.createVariableRangeEvent(ResourceLocation.fromNamespaceAndPath(MOD_ID, "weather.sandstorm.above")));
 
     public static final DeferredHolder<ParticleType<?>, SimpleParticleType> PALE_OAK_LEAVES = MINECRAFT_PARTICLE_TYPES.register("pale_oak_leaves", () -> new SimpleParticleType(true));
-    public static final DeferredHolder<ParticleType<?>, ParticleType<ColorParticleOption>> TINTED_LEAVES = MINECRAFT_PARTICLE_TYPES.register("tinted_leaves", () -> createColorParticleType());
-    public static final DeferredHolder<ParticleType<?>, ParticleType<ColorParticleOption>> TINTED_NEEDLES = MINECRAFT_PARTICLE_TYPES.register("tinted_needles", () -> createColorParticleType());
+    public static final DeferredHolder<ParticleType<?>, ParticleType<ColorParticleOption>> TINTED_LEAVES = MINECRAFT_PARTICLE_TYPES.register("tinted_leaves", ModParticle::createColorParticleType);
+    public static final DeferredHolder<ParticleType<?>, ParticleType<ColorParticleOption>> TINTED_NEEDLES = MINECRAFT_PARTICLE_TYPES.register("tinted_needles", ModParticle::createColorParticleType);
 
     private static ParticleType<ColorParticleOption> createColorParticleType() {
         return new ParticleType<>(false) {
@@ -80,7 +80,7 @@ public class ModParticle {
         int sent = 0;
 
         for (int i = 0; i < level.players().size(); ++i) {
-            net.minecraft.server.level.ServerPlayer player = (net.minecraft.server.level.ServerPlayer)level.players().get(i);
+            net.minecraft.server.level.ServerPlayer player = level.players().get(i);
             if (sendParticles(level, player, longDistance, x, y, z, packet)) {
                 ++sent;
             }

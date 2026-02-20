@@ -1,6 +1,5 @@
 package com.otterly76.ott.client.render.entity;
 
-import com.otterly76.ott.ModChecker;
 import com.otterly76.ott.entity.variant.VariantDataHolder;
 import com.otterly76.ott.entity.variant.VariantUtils;
 import com.otterly76.ott.util.data.BuiltInCoreRegistry;
@@ -26,7 +25,8 @@ public abstract class AbstractVariantRenderer<T extends LivingEntity, M extends 
     protected abstract Map<E, M> bakeModels(EntityRendererProvider.Context context);
 
     protected Optional<V> getVariant(T entity) {
-        return ((VariantDataHolder<V>)VariantDataHolder.getHolder(entity)).getVariantData();
+        VariantDataHolder<V> holder = VariantDataHolder.getHolder(entity);
+        return holder != null ? holder.ott$getVariantData() : Optional.empty();
     }
 
     protected abstract E getModelType(V variant);
@@ -49,17 +49,13 @@ public abstract class AbstractVariantRenderer<T extends LivingEntity, M extends 
 
     @Override
     public Optional<M> getModel(T entity) {
-        if (ModChecker.MIXED_LITTER_LOADED) {
+        Optional<V> variant = this.getVariant(entity);
+        if (variant.isEmpty()) {
             return Optional.empty();
         } else {
-            Optional<V> variant = this.getVariant(entity);
-            if (variant.isEmpty()) {
-                return Optional.empty();
-            } else {
-                E modelType = this.getModelType(variant.get());
-                M model = this.modelByVariant.get(modelType);
-                return Optional.ofNullable(model);
-            }
+            E modelType = this.getModelType(variant.get());
+            M model = this.modelByVariant.get(modelType);
+            return Optional.ofNullable(model);
         }
     }
 }

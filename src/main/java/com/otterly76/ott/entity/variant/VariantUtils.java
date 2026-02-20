@@ -36,7 +36,7 @@ public class VariantUtils {
     }
 
     public static <T> void addVariantSaveData(VariantDataHolder<T> entity, CompoundTag tag, BuiltInCoreRegistry<T> registry) {
-        entity.getVariantData().ifPresent((variant) -> {
+        entity.ott$getVariantData().ifPresent((variant) -> {
             ResourceLocation key = registry.getKey(variant);
             if (key != null) {
                 tag.putString("variant", key.toString());
@@ -49,7 +49,7 @@ public class VariantUtils {
         if (tag.contains("variant")) {
             T variant = registry.get(ResourceLocation.tryParse(tag.getString("variant")));
             if (variant != null) {
-                entity.setVariantData(variant);
+                entity.ott$setVariantData(variant);
             }
         }
 

@@ -45,6 +45,7 @@ Mods, Resourcepacks, and Datapacks You Will Not Need:
 **Mods, Resourcepacks, and Datapacks:**
 - Actually Harvest, Right Click Harvest, Simply Harvesting, etc
 - Appleskin 🍎
+- Best Bundles, other mods/etc that implement bundles
 - Better Days 🌛🌝🌜
 - Better Leaves, Bushy Leaves, JS Leaves+, etc 🍃
 - Block Runner
@@ -61,6 +62,7 @@ Mods, Resourcepacks, and Datapacks You Will Not Need:
 - Looping Jukebox 🎶
 - Low On Fire, etc 🔥
 - Low Shield, Lower Shield, Small Shield & Totem, Smaller Shield & Totem, etc
+- Mixed Litter, other randomization and variation mods/resourcepacks for mobs
 - No Farmland Trample, Trample No More, etc
 - Not Enough Recipe Book
 - Overloaded Armor Bar

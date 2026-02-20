@@ -4,7 +4,6 @@ import com.otterly76.ott.sound.ModSounds;
 import com.otterly76.ott.util.ModTags;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
-import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.util.RandomSource;

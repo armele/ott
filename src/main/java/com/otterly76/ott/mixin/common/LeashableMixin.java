@@ -7,7 +7,6 @@ import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.Leashable;
-import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.GameRules;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
@@ -74,8 +73,8 @@ public interface LeashableMixin extends LeashExtension {
                 }
 
                 LeashDataExtension leashData = (LeashDataExtension)(Object)data;
-                entity.setYRot((float)((double)entity.getYRot() - leashData.angularMomentum()));
-                leashData.setAngularMomentum(leashData.angularMomentum() * (double)LeashExtension.vb$angularFriction(entity));
+                entity.setYRot((float)((double)entity.getYRot() - leashData.ott$angularMomentum()));
+                leashData.ott$setAngularMomentum(leashData.ott$angularMomentum() * (double)LeashExtension.vb$angularFriction(entity));
             }
         }
 

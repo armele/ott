@@ -8,7 +8,6 @@ import com.otterly76.ott.entity.variant.check.RawBiomeCheck;
 import com.otterly76.ott.entity.variant.check.RawStructureCheck;
 import com.otterly76.ott.registry.OttRegistryKeys;
 import com.mojang.serialization.MapCodec;
-import net.minecraft.core.Registry;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.neoforge.registries.DeferredRegister;
 

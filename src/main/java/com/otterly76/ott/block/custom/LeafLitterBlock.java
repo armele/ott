@@ -41,28 +41,32 @@ public class LeafLitterBlock extends BushBlock {
     }
 
     @Override
-    public @NotNull BlockState rotate(BlockState state, Rotation rotation) {
+    protected @NotNull BlockState rotate(BlockState state, Rotation rotation) {
         return state.setValue(FACING, rotation.rotate(state.getValue(FACING)));
     }
 
     @Override
-    public @NotNull BlockState mirror(BlockState state, Mirror mirror) {
+    @SuppressWarnings("deprecation")
+    protected @NotNull BlockState mirror(BlockState state, Mirror mirror) {
         return state.rotate(mirror.getRotation(state.getValue(FACING)));
     }
 
     @Override
     public boolean canBeReplaced(@NotNull BlockState state, BlockPlaceContext useContext) {
-        return !useContext.isSecondaryUseActive() && useContext.getItemInHand().is(this.asItem()) && state.getValue(AMOUNT) < 4 || super.canBeReplaced(state, useContext);
+        if (!useContext.isSecondaryUseActive() && useContext.getItemInHand().is(this.asItem()) && state.getValue(AMOUNT) < 4) {
+            return true;
+        }
+        return super.canBeReplaced(state, useContext);
     }
 
     @Override
-    public boolean canSurvive(@NotNull BlockState state, @NotNull LevelReader level, @NotNull BlockPos pos) {
+    protected boolean canSurvive(@NotNull BlockState state, @NotNull LevelReader level, @NotNull BlockPos pos) {
         BlockPos below = pos.below();
         return level.getBlockState(below).isFaceSturdy(level, below, Direction.UP);
     }
 
     @Override
-    public @NotNull VoxelShape getShape(BlockState state, @NotNull BlockGetter level, @NotNull BlockPos pos, @NotNull CollisionContext context) {
+    protected @NotNull VoxelShape getShape(BlockState state, @NotNull BlockGetter level, @NotNull BlockPos pos, @NotNull CollisionContext context) {
         return SHAPE_BY_PROPERTIES.apply(state.getValue(FACING), state.getValue(AMOUNT));
     }
 
@@ -72,7 +76,8 @@ public class LeafLitterBlock extends BushBlock {
         if (state.is(this)) {
             return state.setValue(AMOUNT, Math.min(4, state.getValue(AMOUNT) + 1));
         }
-        return this.defaultBlockState().setValue(FACING, context.getHorizontalDirection().getOpposite());
+        BlockState placementState = super.getStateForPlacement(context);
+        return placementState != null ? placementState.setValue(FACING, context.getHorizontalDirection().getOpposite()) : null;
     }
 
     @Override
@@ -80,19 +85,20 @@ public class LeafLitterBlock extends BushBlock {
         builder.add(FACING, AMOUNT);
     }
 
+    private static final VoxelShape[] SHAPES = new VoxelShape[]{
+            Block.box(8.0, 0.0, 8.0, 16.0, 3.0, 16.0),
+            Block.box(8.0, 0.0, 0.0, 16.0, 3.0, 8.0),
+            Block.box(0.0, 0.0, 0.0, 8.0, 3.0, 8.0),
+            Block.box(0.0, 0.0, 8.0, 8.0, 3.0, 16.0)
+    };
+
     static {
         SHAPE_BY_PROPERTIES = Util.memoize((direction, value) -> {
             VoxelShape shape = Shapes.empty();
-            VoxelShape[] shapes = new VoxelShape[]{
-                    Block.box(8.0, 0.0, 8.0, 16.0, 3.0, 16.0),
-                    Block.box(8.0, 0.0, 0.0, 16.0, 3.0, 8.0),
-                    Block.box(0.0, 0.0, 0.0, 8.0, 3.0, 8.0),
-                    Block.box(0.0, 0.0, 8.0, 8.0, 3.0, 16.0)
-            };
 
-            for(int index = 0; index < value; ++index) {
+            for (int index = 0; index < value; ++index) {
                 int i = Math.floorMod(index - direction.get2DDataValue(), 4);
-                shape = Shapes.or(shape, shapes[i]);
+                shape = Shapes.or(shape, SHAPES[i]);
             }
 
             return shape.singleEncompassing();

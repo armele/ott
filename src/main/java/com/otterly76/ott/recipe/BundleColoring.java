@@ -14,6 +14,7 @@ import net.minecraft.world.item.crafting.CraftingInput;
 import net.minecraft.world.item.crafting.CustomRecipe;
 import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.minecraft.world.level.Level;
+import org.jetbrains.annotations.NotNull;
 
 public class BundleColoring extends CustomRecipe {
     public BundleColoring(CraftingBookCategory category) {
@@ -21,7 +22,7 @@ public class BundleColoring extends CustomRecipe {
     }
 
     @Override
-    public boolean matches(CraftingInput input, Level level) {
+    public boolean matches(CraftingInput input, @NotNull Level level) {
         int bundles = 0;
         int dyes = 0;
 
@@ -46,7 +47,7 @@ public class BundleColoring extends CustomRecipe {
     }
 
     @Override
-    public ItemStack assemble(CraftingInput input, HolderLookup.Provider registries) {
+    public @NotNull ItemStack assemble(CraftingInput input, HolderLookup.@NotNull Provider registries) {
         ItemStack bundle = ItemStack.EMPTY;
         DyeItem dye = (DyeItem) Items.WHITE_DYE;
 
@@ -78,7 +79,7 @@ public class BundleColoring extends CustomRecipe {
     }
 
     @Override
-    public RecipeSerializer<?> getSerializer() {
+    public @NotNull RecipeSerializer<?> getSerializer() {
         return ModRecipeSerializers.BUNDLE_COLORING.get();
     }
 }

@@ -1,12 +1,7 @@
 package com.otterly76.ott.mixin.common;
 
-import com.otterly76.ott.entity.variant.CowVariant;
-import com.otterly76.ott.entity.variant.SpawnContext;
-import com.otterly76.ott.entity.variant.VariantDataHolder;
-import com.otterly76.ott.entity.variant.VariantSpawner;
-import com.otterly76.ott.entity.variant.VariantUtils;
+import com.otterly76.ott.entity.variant.*;
 import com.otterly76.ott.registry.OttBuiltInRegistries;
-import java.util.Optional;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
@@ -15,10 +10,8 @@ import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.entity.AgeableMob;
 import net.minecraft.world.entity.EntityType;
-import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.MobSpawnType;
 import net.minecraft.world.entity.SpawnGroupData;
-import net.minecraft.world.entity.animal.Animal;
 import net.minecraft.world.entity.animal.Cow;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.ServerLevelAccessor;
@@ -29,13 +22,15 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
+import java.util.Optional;
+
 @Mixin(Cow.class)
 public abstract class CowMixin extends MobMixin implements VariantDataHolder<CowVariant> {
     @Unique
-    private static final EntityDataAccessor<String> DATA_VARIANT_ID;
+    private static final EntityDataAccessor<String> DATA_OTT_VARIANT_ID;
 
-    protected CowMixin(EntityType<? extends Animal> entityType, Level level) {
-        super((EntityType<? extends LivingEntity>)entityType, level);
+    protected CowMixin(EntityType<? extends Cow> entityType, Level level) {
+        super(entityType, level);
     }
 
     @Inject(
@@ -51,15 +46,17 @@ public abstract class CowMixin extends MobMixin implements VariantDataHolder<Cow
     }
 
     protected void vb$defineSynchedData(SynchedEntityData.Builder builder, CallbackInfo ci) {
-        builder.define(DATA_VARIANT_ID, "minecraft:temperate");
+        builder.define(DATA_OTT_VARIANT_ID, "minecraft:temperate");
     }
 
-    public void setVariantData(CowVariant variant) {
-        this.entityData.set(DATA_VARIANT_ID, VariantUtils.getID(OttBuiltInRegistries.COW_VARIANTS, variant));
+    @Override
+    public void ott$setVariantData(CowVariant variant) {
+        this.entityData.set(DATA_OTT_VARIANT_ID, VariantUtils.getID(OttBuiltInRegistries.COW_VARIANTS, variant));
     }
 
-    public Optional<CowVariant> getVariantData() {
-        return VariantUtils.getOrDefault(OttBuiltInRegistries.COW_VARIANTS, this.entityData.get(DATA_VARIANT_ID));
+    @Override
+    public Optional<CowVariant> ott$getVariantData() {
+        return VariantUtils.getOrDefault(OttBuiltInRegistries.COW_VARIANTS, this.entityData.get(DATA_OTT_VARIANT_ID));
     }
 
     protected void vb$addAdditionalSaveData(CompoundTag tag, CallbackInfo ci) {
@@ -71,10 +68,10 @@ public abstract class CowMixin extends MobMixin implements VariantDataHolder<Cow
     }
 
     protected void vb$finalizeSpawn(ServerLevelAccessor level, DifficultyInstance difficulty, MobSpawnType reason, SpawnGroupData spawnData, CallbackInfoReturnable<SpawnGroupData> cir) {
-        VariantUtils.selectVariantToSpawn(SpawnContext.create(level, this.blockPosition()), OttBuiltInRegistries.COW_VARIANTS, VariantSpawner.FARM_ANIMALS).ifPresent(this::setVariantData);
+        VariantUtils.selectVariantToSpawn(SpawnContext.create(level, this.blockPosition()), OttBuiltInRegistries.COW_VARIANTS, VariantSpawner.FARM_ANIMALS).ifPresent(this::ott$setVariantData);
     }
 
     static {
-        DATA_VARIANT_ID = SynchedEntityData.defineId(Cow.class, EntityDataSerializers.STRING);
+        DATA_OTT_VARIANT_ID = SynchedEntityData.defineId(CowMixin.class, EntityDataSerializers.STRING);
     }
 }

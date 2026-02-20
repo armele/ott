@@ -3,8 +3,6 @@ package com.otterly76.ott.client.registries;
 import net.minecraft.client.model.geom.ModelLayerLocation;
 import net.minecraft.resources.ResourceLocation;
 
-import static com.otterly76.ott.Constants.MOD_ID;
-
 public class ModModelLayers {
     public static final ModelLayerLocation CREAKING = register("creaking");
     public static final ModelLayerLocation PALE_OAK_BOAT = register("pale_oak_boat");

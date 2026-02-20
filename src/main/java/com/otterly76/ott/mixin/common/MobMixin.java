@@ -13,6 +13,7 @@ import net.minecraft.world.entity.SpawnGroupData;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.ServerLevelAccessor;
+import org.jetbrains.annotations.NotNull;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
@@ -23,10 +24,10 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 @Mixin(Mob.class)
 public abstract class MobMixin extends LivingEntity {
     @Shadow
-    public abstract InteractionResult interact(Player player, InteractionHand hand);
+    public abstract @NotNull InteractionResult interact(@NotNull Player player, @NotNull InteractionHand hand);
 
     @Shadow
-    protected abstract void defineSynchedData(SynchedEntityData.Builder builder);
+    protected abstract void defineSynchedData(SynchedEntityData.@NotNull Builder builder);
 
     protected MobMixin(EntityType<? extends LivingEntity> entityType, Level level) {
         super(entityType, level);

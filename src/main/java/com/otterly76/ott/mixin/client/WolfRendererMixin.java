@@ -25,7 +25,7 @@ public abstract class WolfRendererMixin extends MobRendererMixin<Wolf, WolfModel
     private void vb$getTextureLocation(Wolf entity, CallbackInfoReturnable<ResourceLocation> cir) {
         VariantDataHolder<com.otterly76.ott.entity.variant.WolfDataVariant> holder = VariantDataHolder.getHolder(entity);
         if (holder != null) {
-            holder.getVariantData().ifPresent((variant) -> {
+            holder.ott$getVariantData().ifPresent((variant) -> {
                 if (entity.isTame()) {
                     cir.setReturnValue(variant.assetInfo().tame().path());
                 } else {

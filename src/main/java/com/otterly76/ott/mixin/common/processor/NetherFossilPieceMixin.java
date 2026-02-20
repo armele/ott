@@ -11,6 +11,8 @@ import net.minecraft.world.level.ChunkPos;
 import net.minecraft.world.level.StructureManager;
 import net.minecraft.world.level.WorldGenLevel;
 import net.minecraft.world.level.block.Rotation;
+import net.minecraft.world.level.block.HorizontalDirectionalBlock;
+import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.chunk.ChunkGenerator;
 import net.minecraft.world.level.levelgen.structure.BoundingBox;
 import net.minecraft.world.level.levelgen.structure.TemplateStructurePiece;
@@ -51,7 +53,9 @@ public abstract class NetherFossilPieceMixin extends TemplateStructurePiece {
                 int z = template.minZ() + random.nextInt(template.getZSpan());
                 BlockPos pos = new BlockPos(x, y, z);
                 if (level.getBlockState(pos).isAir() && box.isInside(pos)) {
-                    level.setBlock(pos, ModBlocks.DRIED_GHAST.get().defaultBlockState().rotate(Rotation.getRandom(random)), 2);
+                    Rotation rotation = Rotation.getRandom(random);
+                    BlockState state = ModBlocks.DRIED_GHAST.get().defaultBlockState();
+                    level.setBlock(pos, state.setValue(HorizontalDirectionalBlock.FACING, rotation.rotate(state.getValue(HorizontalDirectionalBlock.FACING))), 2);
                 }
             }
         }

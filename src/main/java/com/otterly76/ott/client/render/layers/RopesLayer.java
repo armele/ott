@@ -13,6 +13,7 @@ import net.minecraft.client.renderer.texture.OverlayTexture;
 import net.minecraft.resources.ResourceLocation;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
+import org.jetbrains.annotations.NotNull;
 
 @OnlyIn(Dist.CLIENT)
 public class RopesLayer<T extends HappyGhast> extends RenderLayer<T, HappyGhastModel<T>> {
@@ -26,7 +27,7 @@ public class RopesLayer<T extends HappyGhast> extends RenderLayer<T, HappyGhastM
     }
 
     @Override
-    public void render(PoseStack poseStack, MultiBufferSource buffer, int packedLight, T entity, float limbSwing, float limbSwingAmount, float partialTick, float ageInTicks, float netHeadYaw, float headPitch) {
+    public void render(@NotNull PoseStack poseStack, @NotNull MultiBufferSource buffer, int packedLight, T entity, float limbSwing, float limbSwingAmount, float partialTick, float ageInTicks, float netHeadYaw, float headPitch) {
         if (entity.isLeashHolder() && entity.isHarnessed()) {
             this.model.setupAnim(entity, limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch);
             this.model.renderToBuffer(poseStack, buffer.getBuffer(this.ropes), packedLight, OverlayTexture.NO_OVERLAY);

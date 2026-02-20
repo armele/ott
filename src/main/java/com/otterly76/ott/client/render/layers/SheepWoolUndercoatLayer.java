@@ -15,6 +15,7 @@ import net.minecraft.util.FastColor.ARGB32;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.animal.Sheep;
 import net.minecraft.world.item.DyeColor;
+import org.jetbrains.annotations.NotNull;
 
 public class SheepWoolUndercoatLayer extends RenderLayer<Sheep, SheepModel<Sheep>> {
     private static final ResourceLocation SHEEP_WOOL_UNDERCOAT_TEXTURE = ResourceLocation.withDefaultNamespace("textures/entity/sheep/sheep_wool_undercoat.png");
@@ -26,7 +27,7 @@ public class SheepWoolUndercoatLayer extends RenderLayer<Sheep, SheepModel<Sheep
     }
 
     @Override
-    public void render(PoseStack poseStack, MultiBufferSource buffer, int packedLight, Sheep sheep, float limbSwing, float limbSwingAmount, float partialTick, float ageInTicks, float netHeadYaw, float headPitch) {
+    public void render(@NotNull PoseStack poseStack, @NotNull MultiBufferSource buffer, int packedLight, Sheep sheep, float limbSwing, float limbSwingAmount, float partialTick, float ageInTicks, float netHeadYaw, float headPitch) {
         if (sheep.getType() == EntityType.SHEEP && !sheep.isInvisible()) {
             int color;
             if (sheep.hasCustomName() && "jeb_".equals(sheep.getName().getString())) {

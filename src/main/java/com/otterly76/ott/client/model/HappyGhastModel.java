@@ -14,6 +14,7 @@ import net.minecraft.util.Mth;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
+import org.jetbrains.annotations.NotNull;
 
 @OnlyIn(Dist.CLIENT)
 public class HappyGhastModel<T extends HappyGhast> extends HierarchicalModel<T> {
@@ -72,7 +73,7 @@ public class HappyGhastModel<T extends HappyGhast> extends HierarchicalModel<T> 
     }
 
     @Override
-    public ModelPart root() {
+    public @NotNull ModelPart root() {
         return this.root;
     }
 }

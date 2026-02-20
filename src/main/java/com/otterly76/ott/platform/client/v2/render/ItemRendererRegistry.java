@@ -9,7 +9,9 @@ import net.minecraft.world.item.ItemStack;
 import java.util.Set;
 
 public interface ItemRendererRegistry {
-    ItemRendererRegistry INSTANCE = null; // This would be initialized by the platform
+    ItemRendererRegistry INSTANCE = (item, renderer) -> {
+        throw new IllegalStateException("ItemRendererRegistry not initialized");
+    };
 
     void register(net.minecraft.world.level.ItemLike item, Renderer renderer);
 

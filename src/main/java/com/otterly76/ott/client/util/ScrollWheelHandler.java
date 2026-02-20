@@ -18,7 +18,7 @@ public class ScrollWheelHandler {
         if (scroll == 0) {
             return new Vector2i(0, 0);
         } else {
-            this.accumulatedScrollY -= (double) scroll;
+            this.accumulatedScrollY -= scroll;
             return new Vector2i(0, scroll);
         }
     }

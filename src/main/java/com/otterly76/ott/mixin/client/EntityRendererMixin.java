@@ -20,7 +20,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 @Mixin({EntityRenderer.class})
 public class EntityRendererMixin<T extends Entity> {
     @Unique
-    private LeashFeatureRenderer<T> leashRenderer;
+    private LeashFeatureRenderer<T> ott$leashRenderer;
     @Shadow
     @Final
     protected EntityRenderDispatcher entityRenderDispatcher;
@@ -30,7 +30,7 @@ public class EntityRendererMixin<T extends Entity> {
         at = {@At("TAIL")}
     )
     private void vb$init(EntityRendererProvider.Context context, CallbackInfo ci) {
-        this.leashRenderer = new LeashFeatureRenderer<>(this.entityRenderDispatcher);
+        this.ott$leashRenderer = new LeashFeatureRenderer<>(this.entityRenderDispatcher);
     }
 
     @Inject(
@@ -38,7 +38,7 @@ public class EntityRendererMixin<T extends Entity> {
         at = {@At("HEAD")}
     )
     private void renderAdditional(T entity, float entityYaw, float partialTick, PoseStack poseStack, MultiBufferSource buffer, int packedLight, CallbackInfo ci) {
-        this.leashRenderer.render(entity, partialTick, poseStack, buffer);
+        this.ott$leashRenderer.render(entity, partialTick, poseStack, buffer);
     }
 
     @Inject(
@@ -47,6 +47,6 @@ public class EntityRendererMixin<T extends Entity> {
         cancellable = true
     )
     private void vb$shouldRender(T entity, Frustum camera, double camX, double camY, double camZ, CallbackInfoReturnable<Boolean> cir) {
-        cir.setReturnValue(this.leashRenderer.shouldRender(entity, camera, cir.getReturnValue()));
+        cir.setReturnValue(this.ott$leashRenderer.shouldRender(entity, camera, cir.getReturnValue()));
     }
 }

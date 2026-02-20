@@ -2,11 +2,10 @@ package com.otterly76.ott.client.gui;
 
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.otterly76.ott.Constants;
-import com.otterly76.ott.client.registries.ModBundledTabs;
 import com.otterly76.ott.ModCreativeTabs;
+import com.otterly76.ott.client.registries.ModBundledTabs;
 import com.otterly76.ott.mixin.client.AbstractContainerScreenAccessor;
 import com.otterly76.ott.mixin.client.CreativeModeInventoryScreenAccessor;
-import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.components.AbstractWidget;
 import net.minecraft.client.gui.components.Button;
@@ -159,10 +158,10 @@ public class BundledTabSelector {
                 });
             }
         });
-        NonNullList<ItemStack> items = ((CreativeModeInventoryScreen.ItemPickerMenu)screen.getMenu()).items;
+        NonNullList<ItemStack> items = screen.getMenu().items;
         items.clear();
         items.addAll(display);
-        ((CreativeModeInventoryScreen.ItemPickerMenu)screen.getMenu()).scrollTo(0.0F);
+        screen.getMenu().scrollTo(0.0F);
     }
 
     private void updateWidgets() {

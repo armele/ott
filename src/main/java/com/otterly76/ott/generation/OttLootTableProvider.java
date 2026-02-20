@@ -4,7 +4,6 @@ import com.otterly76.ott.block.GradientStainedGlassBlock;
 import com.otterly76.ott.block.ModBlocks;
 import com.otterly76.ott.crop.HedgeSprouts;
 import com.otterly76.ott.item.ModItems;
-import com.otterly76.ott.block.custom.EyeblossomBlock;
 import net.minecraft.advancements.critereon.StatePropertiesPredicate;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.loot.BlockLootSubProvider;
@@ -56,8 +55,8 @@ public class OttLootTableProvider extends BlockLootSubProvider {
             } else if (block == ModBlocks.PALE_OAK_LEAVES.get()) {
                 this.add(block, (b) -> this.createLeavesDrops(b, ModBlocks.PALE_OAK_SAPLING.get(), NORMAL_LEAVES_SAPLING_CHANCES));
             } else if (block == ModBlocks.PALE_HANGING_MOSS.get()) {
-                this.add(block, (b) -> this.createDoublePlantShearsDrop(b));
-            } else if (block instanceof EyeblossomBlock || block instanceof SaplingBlock || block instanceof FlowerBlock) {
+                this.add(block, this::createDoublePlantShearsDrop);
+            } else if (block instanceof SaplingBlock || block instanceof FlowerBlock) {
                 this.dropSelf(block);
             } else if (block instanceof FlowerPotBlock potted) {
                 this.add(block, (b) -> this.createPotFlowerItemTable(potted.getPotted()));
@@ -81,9 +80,9 @@ public class OttLootTableProvider extends BlockLootSubProvider {
     @Override
     protected @NotNull Iterable<Block> getKnownBlocks() {
         List<Block> knownBlocks = new ArrayList<>();
-        knownBlocks.addAll(ModBlocks.BLOCKS.getEntries().stream().map(block -> (Block) block.get()).toList());
+        knownBlocks.addAll(ModBlocks.BLOCKS.getEntries().stream().map(Supplier::get).toList());
         knownBlocks.addAll(ModBlocks.MINECRAFT_BLOCKS.getEntries().stream()
-                .map(block -> (Block) block.get()).toList());
+                .map(Supplier::get).toList());
         return knownBlocks;
     }
 }

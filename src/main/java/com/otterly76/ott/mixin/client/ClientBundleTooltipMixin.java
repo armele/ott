@@ -16,6 +16,7 @@ import net.minecraft.util.Mth;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.component.BundleContents;
 import org.apache.commons.lang3.math.Fraction;
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
@@ -51,58 +52,58 @@ public abstract class ClientBundleTooltipMixin implements ClientTooltipComponent
     @Unique
     private static final Component BUNDLE_EMPTY = Component.translatable("item.minecraft.bundle.empty");
     @Unique
-    private int selectedItem;
+    private int ott$selectedItem;
 
     @Inject(
             method = "<init>(Lnet/minecraft/world/item/component/BundleContents;)V",
             at = @At("TAIL")
     )
     private void vb$onInit(BundleContents contents, CallbackInfo ci) {
-        this.selectedItem = ((IBundle) (Object) contents).getSelectedItem();
+        this.ott$selectedItem = ((IBundle) (Object) contents).ott$getSelectedItem();
     }
 
     @Unique
-    private int getSelectedItem() {
-        return this.selectedItem;
+    private int ott$getSelectedItem() {
+        return this.ott$selectedItem;
     }
 
     @Unique
-    private boolean hasSelectedItem() {
-        return this.selectedItem != -1;
+    private boolean ott$hasSelectedItem() {
+        return this.ott$selectedItem != -1;
     }
 
     @Override
     public int getHeight() {
-        return this.contents.isEmpty() ? 39 : this.backgroundHeight();
+        return this.contents.isEmpty() ? 39 : this.ott$backgroundHeight();
     }
 
     @Override
-    public int getWidth(Font font) {
+    public int getWidth(@NotNull Font font) {
         return 96;
     }
 
     @Unique
-    private int backgroundHeight() {
-        return this.itemGridHeight() + 13 + 8;
+    private int ott$backgroundHeight() {
+        return this.ott$itemGridHeight() + 13 + 8;
     }
 
     @Unique
-    private int itemGridHeight() {
-        return this.gridSizeY() * 24;
+    private int ott$itemGridHeight() {
+        return this.ott$gridSizeY() * 24;
     }
 
     @Unique
-    private int getContentXOffset(int width) {
+    private int ott$getContentXOffset(int width) {
         return (width - 96) / 2;
     }
 
     @Unique
-    private int gridSizeY() {
-        return Mth.positiveCeilDiv(this.slotCount(), 4);
+    private int ott$gridSizeY() {
+        return Mth.positiveCeilDiv(this.ott$slotCount(), 4);
     }
 
     @Unique
-    private int slotCount() {
+    private int ott$slotCount() {
         return Math.min(12, this.contents.size());
     }
 
@@ -115,69 +116,69 @@ public abstract class ClientBundleTooltipMixin implements ClientTooltipComponent
         if (BundleFeatures.onBundleUpdate()) {
             ci.cancel();
             if (this.contents.isEmpty()) {
-                this.renderEmptyBundleTooltip(font, x, y, this.getWidth(font), graphics);
+                this.ott$renderEmptyBundleTooltip(font, x, y, this.getWidth(font), graphics);
             } else {
-                this.renderBundleWithItemsTooltip(font, x, y, this.getWidth(font), graphics);
+                this.ott$renderBundleWithItemsTooltip(font, x, y, this.getWidth(font), graphics);
             }
         }
     }
 
     @Unique
-    private void renderEmptyBundleTooltip(Font font, int x, int y, int width, GuiGraphics graphics) {
-        this.drawEmptyBundleDescriptionText(x + this.getContentXOffset(width), y, font, graphics);
-        this.drawProgressBar(x + this.getContentXOffset(width), y + this.getEmptyBundleDescriptionTextHeight(font) + 4, font, graphics);
+    private void ott$renderEmptyBundleTooltip(Font font, int x, int y, int width, GuiGraphics graphics) {
+        this.ott$drawEmptyBundleDescriptionText(x + this.ott$getContentXOffset(width), y, font, graphics);
+        this.ott$drawProgressBar(x + this.ott$getContentXOffset(width), y + this.ott$getEmptyBundleDescriptionTextHeight(font) + 4, font, graphics);
     }
 
     @Unique
-    private void renderBundleWithItemsTooltip(Font font, int x, int y, int width, GuiGraphics graphics) {
+    private void ott$renderBundleWithItemsTooltip(Font font, int x, int y, int width, GuiGraphics graphics) {
         boolean maxDisplay = this.contents.size() > 12;
-        List<ItemStack> stacks = this.getShownItems(((IBundle) (Object) this.contents).getNumberOfItemsToShow());
-        int xOffset = x + this.getContentXOffset(width) + 96;
-        int yOffset = y + this.gridSizeY() * 24;
+        List<ItemStack> stacks = this.ott$getShownItems(((IBundle) (Object) this.contents).ott$getNumberOfItemsToShow());
+        int xOffset = x + this.ott$getContentXOffset(width) + 96;
+        int yOffset = y + this.ott$gridSizeY() * 24;
         int index = 1;
 
-        for(int row = 1; row <= this.gridSizeY(); ++row) {
+        for(int row = 1; row <= this.ott$gridSizeY(); ++row) {
             for(int column = 1; column <= 4; ++column) {
                 int slotX = xOffset - column * 24;
                 int slotY = yOffset - row * 24;
-                if (this.shouldRenderSurplusText(maxDisplay, column, row)) {
-                    this.renderCount(slotX, slotY, this.getAmountOfHiddenItems(stacks), font, graphics);
-                } else if (this.shouldRenderItemSlot(stacks, index)) {
-                    this.renderSlot(index, slotX, slotY, stacks, index, font, graphics);
+                if (this.ott$shouldRenderSurplusText(maxDisplay, column, row)) {
+                    this.ott$renderCount(slotX, slotY, this.ott$getAmountOfHiddenItems(stacks), font, graphics);
+                } else if (this.ott$shouldRenderItemSlot(stacks, index)) {
+                    this.ott$renderSlot(index, slotX, slotY, stacks, index, font, graphics);
                     ++index;
                 }
             }
         }
 
-        this.drawSelectedItemTooltip(font, graphics, x, y, width);
-        this.drawProgressBar(x + this.getContentXOffset(width), y + this.itemGridHeight() + 4, font, graphics);
+        this.ott$drawSelectedItemTooltip(font, graphics, x, y, width);
+        this.ott$drawProgressBar(x + this.ott$getContentXOffset(width), y + this.ott$itemGridHeight() + 4, font, graphics);
     }
 
     @Unique
-    private List<ItemStack> getShownItems(int max) {
+    private List<ItemStack> ott$getShownItems(int max) {
         int size = Math.min(this.contents.size(), max);
         return this.contents.itemCopyStream().toList().subList(0, size);
     }
 
     @Unique
-    private boolean shouldRenderSurplusText(boolean maxDisplay, int column, int row) {
+    private boolean ott$shouldRenderSurplusText(boolean maxDisplay, int column, int row) {
         return maxDisplay && column * row == 1;
     }
 
     @Unique
-    private boolean shouldRenderItemSlot(List<ItemStack> items, int itemIndex) {
+    private boolean ott$shouldRenderItemSlot(List<ItemStack> items, int itemIndex) {
         return items.size() >= itemIndex;
     }
 
     @Unique
-    private int getAmountOfHiddenItems(List<ItemStack> items) {
+    private int ott$getAmountOfHiddenItems(List<ItemStack> items) {
         return this.contents.itemCopyStream().skip(items.size()).mapToInt(ItemStack::getCount).sum();
     }
 
     @Unique
-    private void renderSlot(int index, int x, int y, List<ItemStack> stacks, int seed, Font font, GuiGraphics graphics) {
+    private void ott$renderSlot(int index, int x, int y, List<ItemStack> stacks, int seed, Font font, GuiGraphics graphics) {
         int itemIndex = stacks.size() - index;
-        boolean hasSelectedItem = itemIndex == this.getSelectedItem();
+        boolean hasSelectedItem = itemIndex == this.ott$getSelectedItem();
         ItemStack stack = stacks.get(itemIndex);
         if (hasSelectedItem) {
             RenderSystem.enableBlend();
@@ -199,14 +200,14 @@ public abstract class ClientBundleTooltipMixin implements ClientTooltipComponent
     }
 
     @Unique
-    private void renderCount(int x, int y, int value, Font font, GuiGraphics graphics) {
+    private void ott$renderCount(int x, int y, int value, Font font, GuiGraphics graphics) {
         graphics.drawCenteredString(font, "+" + value, x + 12, y + 10, -1);
     }
 
     @Unique
-    private void drawSelectedItemTooltip(Font font, GuiGraphics graphics, int x, int y, int width) {
-        if (this.hasSelectedItem()) {
-            ItemStack stack = this.contents.getItemUnsafe(this.getSelectedItem());
+    private void ott$drawSelectedItemTooltip(Font font, GuiGraphics graphics, int x, int y, int width) {
+        if (this.ott$hasSelectedItem()) {
+            ItemStack stack = this.contents.getItemUnsafe(this.ott$getSelectedItem());
             MutableComponent component = Component.empty().append(stack.getHoverName()).withStyle(stack.getRarity().getStyleModifier());
             if (stack.has(DataComponents.CUSTOM_NAME)) {
                 component.withStyle(ChatFormatting.ITALIC);
@@ -219,37 +220,37 @@ public abstract class ClientBundleTooltipMixin implements ClientTooltipComponent
     }
 
     @Unique
-    private void drawProgressBar(int x, int y, Font textRenderer, GuiGraphics graphics) {
-        graphics.blitSprite(this.getProgressBarTexture(), x + 1, y, this.getProgressBarFill(), 13);
+    private void ott$drawProgressBar(int x, int y, Font textRenderer, GuiGraphics graphics) {
+        graphics.blitSprite(this.ott$getProgressBarTexture(), x + 1, y, this.ott$getProgressBarFill(), 13);
         graphics.blitSprite(PROGRESSBAR_BORDER_SPRITE, x, y, 96, 13);
-        Component component = this.getProgressBarFillText();
+        Component component = this.ott$getProgressBarFillText();
         if (component != null) {
             graphics.drawCenteredString(textRenderer, component, x + 48, y + 3, -1);
         }
     }
 
     @Unique
-    private void drawEmptyBundleDescriptionText(int x, int y, Font font, GuiGraphics graphics) {
+    private void ott$drawEmptyBundleDescriptionText(int x, int y, Font font, GuiGraphics graphics) {
         graphics.drawWordWrap(font, BUNDLE_EMPTY_DESCRIPTION, x, y, 96, -5592406);
     }
 
     @Unique
-    private int getEmptyBundleDescriptionTextHeight(Font font) {
+    private int ott$getEmptyBundleDescriptionTextHeight(Font font) {
         return font.split(BUNDLE_EMPTY_DESCRIPTION, 96).size() * 9;
     }
 
     @Unique
-    private int getProgressBarFill() {
+    private int ott$getProgressBarFill() {
         return Mth.clamp(Mth.mulAndTruncate(this.contents.weight(), 94), 0, 94);
     }
 
     @Unique
-    private ResourceLocation getProgressBarTexture() {
+    private ResourceLocation ott$getProgressBarTexture() {
         return this.contents.weight().compareTo(Fraction.ONE) >= 0 ? PROGRESSBAR_FULL_SPRITE : PROGRESSBAR_FILL_SPRITE;
     }
 
     @Unique
-    private @Nullable Component getProgressBarFillText() {
+    private @Nullable Component ott$getProgressBarFillText() {
         if (this.contents.isEmpty()) {
             return BUNDLE_EMPTY;
         } else {

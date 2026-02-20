@@ -2,10 +2,6 @@ package com.otterly76.ott.client.render.layers;
 
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
-import java.util.Map;
-import java.util.Optional;
-import java.util.function.BiPredicate;
-import java.util.function.Predicate;
 import net.minecraft.client.model.EntityModel;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.RenderType;
@@ -18,6 +14,12 @@ import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.ItemStack;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
+import org.jetbrains.annotations.NotNull;
+
+import java.util.Map;
+import java.util.Optional;
+import java.util.function.BiPredicate;
+import java.util.function.Predicate;
 
 @OnlyIn(Dist.CLIENT)
 public class SimpleEquipmentLayer<T extends LivingEntity, M extends EntityModel<T>> extends RenderLayer<T, M> {
@@ -41,7 +43,7 @@ public class SimpleEquipmentLayer<T extends LivingEntity, M extends EntityModel<
     }
 
     @Override
-    public void render(PoseStack pose, MultiBufferSource buffer, int packedLight, T entity, float limbSwing, float limbSwingAmount, float partialTick, float ageInTicks, float netHeadYaw, float headPitch) {
+    public void render(@NotNull PoseStack pose, @NotNull MultiBufferSource buffer, int packedLight, @NotNull T entity, float limbSwing, float limbSwingAmount, float partialTick, float ageInTicks, float netHeadYaw, float headPitch) {
         Optional<ResourceLocation> texture = this.textureByItem.entrySet().stream().filter((entry) -> this.itemGetter.test(entry.getKey(), entity)).map(Map.Entry::getValue).findFirst();
         if (this.shouldRender.test(entity) && texture.isPresent() && (!entity.isBaby() || this.babyModel != null)) {
             EntityModel<T> model = entity.isBaby() ? this.babyModel : this.model;

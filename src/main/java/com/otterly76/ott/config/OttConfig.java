@@ -357,14 +357,12 @@ public class OttConfig {
         }
     }
 
-    public static class Bundles {
-        public final ModConfigSpec.BooleanValue UPDATED_BUNDLES;
-
+    public record Bundles(ModConfigSpec.BooleanValue UPDATED_BUNDLES) {
         public Bundles(ModConfigSpec.Builder builder) {
-            builder.push("bundles");
-            UPDATED_BUNDLES = builder.comment("Enable updated bundles from 1.21.1 (selective item removal, slot selection).")
+            this(builder.push("bundles")
+                    .comment("Enable updated bundles from 1.21.1 (selective item removal, slot selection).")
                     .translation("ott.configuration.bundles.updated_bundles")
-                    .define("hasUpdatedBundles", true);
+                    .define("hasUpdatedBundles", true));
             builder.pop();
         }
     }

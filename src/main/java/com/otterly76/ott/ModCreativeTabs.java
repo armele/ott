@@ -21,8 +21,6 @@ import static com.otterly76.ott.block.ModBlocks.ALL_GRADIENT_BLOCKS;
 
 
 public final class ModCreativeTabs {
-    private static final CreativeModeTab.Row DEFAULT_ROW = CreativeModeTab.Row.TOP;
-    private static final int DEFAULT_COLUMN = 1;
     private static final String ITEM_GROUP_PREFIX = "itemGroup." + Constants.MOD_ID + ".";
 
     public static final DeferredRegister<CreativeModeTab> OTTER_TABS = DeferredRegister.create(Registries.CREATIVE_MODE_TAB, Constants.MOD_ID);
@@ -32,7 +30,7 @@ public final class ModCreativeTabs {
 
 
     private static CreativeModeTab createVanillaBackportTab() {
-        return CreativeModeTab.builder(CreativeModeTab.Row.TOP, 3).title(Component.literal("Vanilla Backport")).icon(() -> new ItemStack(Items.BUNDLE)).displayItems((parameters, output) -> {
+        return CreativeModeTab.builder().title(Component.literal("Vanilla Backport")).icon(() -> new ItemStack(Items.BUNDLE)).displayItems((parameters, output) -> {
             HolderLookup.Provider provider = parameters.holders();
             List<BundledTabs> tabs = ModBundledTabs.getTabs();
             tabs.forEach((tab) -> tab.populate(provider));
@@ -43,11 +41,11 @@ public final class ModCreativeTabs {
     }
 
     private static CreativeModeTab createGradientsTab() {
-        return new CreativeModeTab.Builder(DEFAULT_ROW, DEFAULT_COLUMN).title(Component.translatable(createTranslationKey("gradients"))).icon(() -> new ItemStack(ALL_GRADIENT_BLOCKS.getFirst())).displayItems((params, output) -> ModBlocks.getAllGradientBlocks().forEach(output::accept)).build();
+        return CreativeModeTab.builder().title(Component.translatable(createTranslationKey("gradients"))).icon(() -> new ItemStack(ALL_GRADIENT_BLOCKS.getFirst())).displayItems((params, output) -> ModBlocks.getAllGradientBlocks().forEach(output::accept)).build();
     }
 
     private static CreativeModeTab createMiscTab() {
-        return new CreativeModeTab.Builder(DEFAULT_ROW, DEFAULT_COLUMN).title(Component.translatable(createTranslationKey("misc"))).icon(() -> new ItemStack(ModItems.OTTER.get())).displayItems((config, output) -> {
+        return CreativeModeTab.builder().title(Component.translatable(createTranslationKey("misc"))).icon(() -> new ItemStack(ModItems.OTTER.get())).displayItems((config, output) -> {
             output.accept(ModItems.OTTER);
 
             // output.accept(ModBlocks.GAPPER_PANEL_OAK);

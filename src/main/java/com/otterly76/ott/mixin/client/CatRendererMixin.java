@@ -25,7 +25,7 @@ public abstract class CatRendererMixin extends MobRendererMixin<Cat, CatModel<Ca
     private void vb$getTextureLocation(Cat entity, CallbackInfoReturnable<ResourceLocation> cir) {
         VariantDataHolder<com.otterly76.ott.entity.variant.CatDataVariant> holder = VariantDataHolder.getHolder(entity);
         if (holder != null) {
-            holder.getVariantData().ifPresent((variant) -> cir.setReturnValue(variant.assetInfo().path()));
+            holder.ott$getVariantData().ifPresent((variant) -> cir.setReturnValue(variant.assetInfo().path()));
         }
     }
 }
