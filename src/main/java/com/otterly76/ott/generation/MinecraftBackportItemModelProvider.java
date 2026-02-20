@@ -76,6 +76,26 @@ public class MinecraftBackportItemModelProvider extends ItemModelProvider {
         spawnEggItem(ModItems.HAPPY_GHAST_SPAWN_EGG.getId().getPath());
 
         ModItems.HARNESSES.values().forEach(item -> generatedItem(item.getId().getPath()));
+
+        generatedItem(ModItems.COPPER_NUGGET.getId().getPath());
+        handheldItem(ModItems.COPPER_SWORD.getId().getPath());
+        handheldItem(ModItems.COPPER_SHOVEL.getId().getPath());
+        handheldItem(ModItems.COPPER_PICKAXE.getId().getPath());
+        handheldItem(ModItems.COPPER_AXE.getId().getPath());
+        handheldItem(ModItems.COPPER_HOE.getId().getPath());
+
+        generatedItem(ModItems.COPPER_HELMET.getId().getPath());
+        generatedItem(ModItems.COPPER_CHESTPLATE.getId().getPath());
+        generatedItem(ModItems.COPPER_LEGGINGS.getId().getPath());
+        generatedItem(ModItems.COPPER_BOOTS.getId().getPath());
+
+        generatedItem(ModItems.COPPER_HORSE_ARMOR.getId().getPath());
+        generatedItem(ModItems.NETHERITE_HORSE_ARMOR.getId().getPath());
+
+        withExistingParent(ModItems.PALE_OAK_BOAT.getId().getPath(), mcLoc("item/oak_boat"))
+                .texture("texture", mcLoc("item/entity/boat/pale_oak"));
+        withExistingParent(ModItems.PALE_OAK_CHEST_BOAT.getId().getPath(), mcLoc("item/oak_chest_boat"))
+                .texture("texture", mcLoc("item/entity/chest_boat/pale_oak"));
     }
 
     private void spawnEggItem(String name) {
@@ -102,5 +122,10 @@ public class MinecraftBackportItemModelProvider extends ItemModelProvider {
 
     private void parentItemToBlockModel(String itemName, String blockModelPath) {
         getBuilder(itemName).parent(new ModelFile.UncheckedModelFile(mcLoc(blockModelPath)));
+    }
+
+    private void handheldItem(String name) {
+        withExistingParent(name, mcLoc("item/handheld"))
+                .texture("layer0", mcLoc("item/" + name));
     }
 }
