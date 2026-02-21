@@ -36,6 +36,7 @@ public class ModEventBusEvents {
         event.put(ModEntities.TINY_HUSK.get(), TinyHusk.createAttributes().build());
         event.put(ModEntities.TINY_STRAY.get(), TinyStray.createAttributes().build());
         event.put(ModEntities.TINY_WITHER_SKELETON.get(), TinyWitherSkeleton.createAttributes().build());
+        event.put(ModEntities.MAN_O_WAR.get(), com.otterly76.ott.entity.custom.ManOWar.createAttributes().build());
     }
 
     @SubscribeEvent
@@ -52,6 +53,14 @@ public class ModEventBusEvents {
                 SpawnPlacementTypes.ON_GROUND,
                 Heightmap.Types.MOTION_BLOCKING_NO_LEAVES,
                 Mob::checkMobSpawnRules,
+                RegisterSpawnPlacementsEvent.Operation.OR
+        );
+
+        event.register(
+                ModEntities.MAN_O_WAR.get(),
+                SpawnPlacementTypes.IN_WATER,
+                Heightmap.Types.MOTION_BLOCKING_NO_LEAVES,
+                com.otterly76.ott.entity.custom.ManOWar::checkManOWarSpawnRules,
                 RegisterSpawnPlacementsEvent.Operation.OR
         );
     }

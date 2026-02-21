@@ -10,6 +10,8 @@ import com.otterly76.ott.registry.ModJukeboxSongs;
 import com.otterly76.ott.entity.vehicle.OttWoodSetBoatEntity;
 import com.otterly76.ott.entity.vehicle.OttWoodSetChestBoatEntity;
 import net.minecraft.core.component.DataComponents;
+import net.minecraft.world.level.material.Fluids;
+import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.item.*;
 import net.minecraft.world.item.component.BundleContents;
 import net.minecraft.world.level.block.Block;
@@ -58,6 +60,11 @@ public class ModItems {
     public static final DeferredItem<Item> TINY_HUSK_SPAWN_EGG = ITEMS.register("tiny_husk_spawn_egg", () -> new DeferredSpawnEggItem(ModEntities.TINY_HUSK, 0x797061, 0xE6CC94, new Item.Properties()));
     public static final DeferredItem<Item> TINY_STRAY_SPAWN_EGG = ITEMS.register("tiny_stray_spawn_egg", () -> new DeferredSpawnEggItem(ModEntities.TINY_STRAY, 0x617677, 0xDDEAEA, new Item.Properties()));
     public static final DeferredItem<Item> TINY_WITHER_SKELETON_SPAWN_EGG = ITEMS.register("tiny_wither_skeleton_spawn_egg", () -> new DeferredSpawnEggItem(ModEntities.TINY_WITHER_SKELETON, 0x141414, 0x474D4D, new Item.Properties()));
+
+    public static final DeferredItem<Item> MAN_O_WAR_BUCKET = ITEMS.register("man_o_war_bucket",
+            () -> new MobBucketItem(ModEntities.MAN_O_WAR.get(), Fluids.WATER, SoundEvents.BUCKET_EMPTY_FISH, (new Item.Properties()).stacksTo(1)));
+    public static final DeferredItem<Item> MAN_O_WAR_SPAWN_EGG = ITEMS.register("man_o_war_spawn_egg",
+            () -> new DeferredSpawnEggItem(ModEntities.MAN_O_WAR, 0x4751E0, 0x5D33A4, new Item.Properties()));
 
     public static DeferredItem<Item> PALE_OAK_SAPLING;
 

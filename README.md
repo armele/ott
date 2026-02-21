@@ -108,3 +108,8 @@ Features
 - Added new weather textures and expanded particle effects ⛅
 - Custom Biomes
   - Verdant Forest
+- Custom Critters
+  - Man-O-War
+    - Found in warm and lukewarm oceans
+    - Can be caught in a bucket
+    - Yes, it stings!

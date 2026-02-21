@@ -1,4 +1,4 @@
-package com.otterly76.ott.platform.client.v2.render;
+package com.otterly76.ott.platform.client.render;
 
 import com.otterly76.ott.platform.core.util.event.ResultHolder;
 import net.minecraft.client.renderer.ItemModelShaper;

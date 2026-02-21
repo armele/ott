@@ -291,6 +291,7 @@ public static float yLevelWindAdjustment(double y) {
         event.registerEntityRenderer(ModEntities.TINY_WITHER_SKELETON.get(), WitherSkeletonRenderer::new);
         event.registerEntityRenderer(ModEntities.TORCH_ARROW.get(), TorchArrowRenderer::new);
         event.registerEntityRenderer(ModEntities.COPPER_GOLEM.get(), com.otterly76.ott.client.render.entity.CopperGolemRenderer::new);
+        event.registerEntityRenderer(ModEntities.MAN_O_WAR.get(), com.otterly76.ott.client.render.entity.ManOWarRenderer::new);
 
         event.registerBlockEntityRenderer(ModBlockEntities.ANVIL_BLOCK_ENTITY_TYPE.get(), com.otterly76.ott.client.render.AnvilRenderer::new);
         event.registerBlockEntityRenderer(ModBlockEntities.SHELF.get(), com.otterly76.ott.client.render.blockentity.ShelfRenderer::new);
