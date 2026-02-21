@@ -1,0 +1,21 @@
+{
+	"ambientocclusion": false,
+	"textures": {
+		"particle": "block/jungle_door_bottom",
+		"bottom": "block/jungle_door_bottom",
+		"extra": "block/jungle_door_extra"
+	},
+	"elements": [ 	 
+		{
+			"from": [ 0, 0, 0 ],
+			"to": [ 3, 16, 16 ],
+			"faces": {
+				"down": { "uv": [ 12, 0, 15, 16 ], "texture": "#extra", "cullface": "down" },
+				"north": { "uv": [ 9, 0, 12, 16 ], "texture": "#extra", "cullface": "north" },
+				"south": { "uv": [ 3, 0, 6, 16 ], "texture": "#extra", "cullface": "south" },
+				"west": { "uv": [ 16, 0, 0, 16 ], "texture": "#bottom", "cullface": "west" },
+				"east": { "uv": [ 0, 0, 16, 16 ], "texture": "#bottom" }
+			}
+		}
+	]
+}

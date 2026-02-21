@@ -208,12 +208,14 @@ add xp for brewing potions
 
 cosmetic armors
 
-critter armorory
-- make armor that gives critter buffs
+critter armory
+- make armor for critters
 
 create curio slot for elytra
 
-
+Translations Maybe:
+=====
+- Cherokee
 
 Biomes Nonsense:
 =====
@@ -343,6 +345,12 @@ look at goblin trader goblin tuned items
 Torn Ancient Tome
 - loot from custom dungeons
 - 3 combined to make Ancient Tome
+
+Highland
+- cows and sheep
+- fuzzy flop of bangs in face
+- shaggy
+- boar vs pig
 
 Structures Nonsense:
 =====

@@ -1,0 +1,76 @@
+{
+  "variants": {
+    "facing=east": [
+      {
+        "model": "minecraft:block/attached_melon_stem",
+        "y": 90
+      },
+      {
+        "model": "minecraft:block/attached_melon_stem2",
+        "y": 90
+      },
+      {
+        "model": "minecraft:block/attached_melon_stem3",
+        "y": 90
+      },
+      {
+        "model": "minecraft:block/attached_melon_stem4",
+        "y": 90
+      }
+    ],
+    "facing=north": [
+      {
+        "model": "minecraft:block/attached_melon_stem",
+        "y": 0
+      },
+      {
+        "model": "minecraft:block/attached_melon_stem2",
+        "y": 0
+      },
+      {
+        "model": "minecraft:block/attached_melon_stem3",
+        "y": 0
+      },
+      {
+        "model": "minecraft:block/attached_melon_stem4",
+        "y": 0
+      }
+    ],
+    "facing=south": [
+      {
+        "model": "minecraft:block/attached_melon_stem",
+        "y": 180
+      },
+      {
+        "model": "minecraft:block/attached_melon_stem2",
+        "y": 180
+      },
+      {
+        "model": "minecraft:block/attached_melon_stem3",
+        "y": 180
+      },
+      {
+        "model": "minecraft:block/attached_melon_stem4",
+        "y": 180
+      }
+    ],
+    "facing=west": [
+      {
+        "model": "minecraft:block/attached_melon_stem",
+        "y": 270
+      },
+      {
+        "model": "minecraft:block/attached_melon_stem2",
+        "y": 270
+      },
+      {
+        "model": "minecraft:block/attached_melon_stem3",
+        "y": 270
+      },
+      {
+        "model": "minecraft:block/attached_melon_stem4",
+        "y": 270
+      }
+    ]
+  }
+}

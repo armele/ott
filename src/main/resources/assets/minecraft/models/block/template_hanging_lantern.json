@@ -1,8 +1,8 @@
 {
     "ambientocclusion": true,
 	"textures": {
-		"particle": "#lantern",
-		"lantern": "#lantern"
+		"particle": "block/",
+		"lantern": "block/"
 	},
 	"elements": [
 		{

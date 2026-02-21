@@ -1,5 +1,5 @@
 {
-	"parent": "block/iron_trapdoor_bottom",
+	"parent": "block/iron_trapdoor_closed",
 	"display": {
 		"thirdperson_righthand": {
 			"rotation": [75, -135, 0],

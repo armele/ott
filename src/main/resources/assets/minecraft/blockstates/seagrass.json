@@ -1,0 +1,82 @@
+{
+  "variants": {
+    "": 
+    [
+      {
+        "model": "minecraft:block/seagrass1"
+      },
+      {
+        "model": "minecraft:block/seagrass1",
+        "y": 90
+      },
+      {
+        "model": "minecraft:block/seagrass1",
+        "y": 180
+      },
+      {
+        "model": "minecraft:block/seagrass1",
+        "y": 270
+      },
+      {
+        "model": "minecraft:block/seagrass2"
+      },
+      {
+        "model": "minecraft:block/seagrass2",
+        "y": 90
+      },
+      {
+        "model": "minecraft:block/seagrass2",
+        "y": 180
+      },
+      {
+        "model": "minecraft:block/seagrass2",
+        "y": 270
+      },
+      {
+        "model": "minecraft:block/seagrass3"
+      },
+      {
+        "model": "minecraft:block/seagrass3",
+        "y": 90
+      },
+      {
+        "model": "minecraft:block/seagrass3",
+        "y": 180
+      },
+      {
+        "model": "minecraft:block/seagrass3",
+        "y": 270
+      },
+      {
+        "model": "minecraft:block/seagrass4"
+      },
+      {
+        "model": "minecraft:block/seagrass4",
+        "y": 90
+      },
+      {
+        "model": "minecraft:block/seagrass4",
+        "y": 180
+      },
+      {
+        "model": "minecraft:block/seagrass4",
+        "y": 270
+      },
+      {
+        "model": "minecraft:block/seagrass5"
+      },
+      {
+        "model": "minecraft:block/seagrass5",
+        "y": 90
+      },
+      {
+        "model": "minecraft:block/seagrass5",
+        "y": 180
+      },
+      {
+        "model": "minecraft:block/seagrass5",
+        "y": 270
+      }
+    ]
+  }
+}

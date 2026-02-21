@@ -1,0 +1,8 @@
+{
+	"parent": "block/copper_door_bottom_hinge",
+	"textures": {
+		"extra": "block/weathered_copper_door_extra",
+		"particle": "block/weathered_copper_door_bottom",
+		"bottom": "block/weathered_copper_door_bottom"
+	}
+}

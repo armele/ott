@@ -1,0 +1,232 @@
+{
+  "variants": {
+    "":
+      [
+      {
+        "model": "minecraft:block/grass1"
+      },
+      {
+        "model": "minecraft:block/grass1",
+        "y": 90
+      },
+      {
+        "model": "minecraft:block/grass1",
+        "y": 180
+      },
+      {
+        "model": "minecraft:block/grass1",
+        "y": 270
+      },
+      {
+        "model": "minecraft:block/grass2"
+      },
+      {
+        "model": "minecraft:block/grass2",
+        "y": 90
+      },
+      {
+        "model": "minecraft:block/grass2",
+        "y": 180
+      },
+      {
+        "model": "minecraft:block/grass2",
+        "y": 270
+      },
+      {
+        "model": "minecraft:block/grass3"
+      },
+      {
+        "model": "minecraft:block/grass3",
+        "y": 90
+      },
+      {
+        "model": "minecraft:block/grass3",
+        "y": 180
+      },
+      {
+        "model": "minecraft:block/grass3",
+        "y": 270
+      },
+      {
+        "model": "minecraft:block/grass4"
+      },
+      {
+        "model": "minecraft:block/grass4",
+        "y": 90
+      },
+      {
+        "model": "minecraft:block/grass4",
+        "y": 180
+      },
+      {
+        "model": "minecraft:block/grass4",
+        "y": 270
+      },
+      {
+        "model": "minecraft:block/grass5"
+      },
+      {
+        "model": "minecraft:block/grass5",
+        "y": 90
+      },
+      {
+        "model": "minecraft:block/grass5",
+        "y": 180
+      },
+      {
+        "model": "minecraft:block/grass5",
+        "y": 270
+      },
+      {
+        "model": "minecraft:block/grass6"
+      },
+      {
+        "model": "minecraft:block/grass6",
+        "y": 90
+      },
+      {
+        "model": "minecraft:block/grass6",
+        "y": 180
+      },
+      {
+        "model": "minecraft:block/grass6",
+        "y": 270
+      },
+      {
+        "model": "minecraft:block/grass7"
+      },
+      {
+        "model": "minecraft:block/grass7",
+        "y": 90
+      },
+      {
+        "model": "minecraft:block/grass7",
+        "y": 180
+      },
+      {
+        "model": "minecraft:block/grass7",
+        "y": 270
+      },
+      {
+        "model": "minecraft:block/grass8"
+      },
+      {
+        "model": "minecraft:block/grass8",
+        "y": 90
+      },
+      {
+        "model": "minecraft:block/grass8",
+        "y": 180
+      },
+      {
+        "model": "minecraft:block/grass8",
+        "y": 270
+      },
+      {
+        "model": "minecraft:block/grass9"
+      },
+      {
+        "model": "minecraft:block/grass9",
+        "y": 90
+      },
+      {
+        "model": "minecraft:block/grass9",
+        "y": 180
+      },
+      {
+        "model": "minecraft:block/grass9",
+        "y": 270
+      },
+      {
+        "model": "minecraft:block/grass10"
+      },
+      {
+        "model": "minecraft:block/grass10",
+        "y": 90
+      },
+      {
+        "model": "minecraft:block/grass10",
+        "y": 180
+      },
+      {
+        "model": "minecraft:block/grass10",
+        "y": 270
+      },
+      {
+        "model": "minecraft:block/grass11"
+      },
+      {
+        "model": "minecraft:block/grass11",
+        "y": 90
+      },
+      {
+        "model": "minecraft:block/grass11",
+        "y": 180
+      },
+      {
+        "model": "minecraft:block/grass11",
+        "y": 270
+      },
+      {
+        "model": "minecraft:block/grass12"
+      },
+      {
+        "model": "minecraft:block/grass12",
+        "y": 90
+      },
+      {
+        "model": "minecraft:block/grass12",
+        "y": 180
+      },
+      {
+        "model": "minecraft:block/grass12",
+        "y": 270
+      },
+      {
+        "model": "minecraft:block/grass13"
+      },
+      {
+        "model": "minecraft:block/grass13",
+        "y": 90
+      },
+      {
+        "model": "minecraft:block/grass13",
+        "y": 180
+      },
+      {
+        "model": "minecraft:block/grass13",
+        "y": 270
+      },
+      {
+        "model": "minecraft:block/grass14"
+      },
+      {
+        "model": "minecraft:block/grass14",
+        "y": 90
+      },
+      {
+        "model": "minecraft:block/grass14",
+        "y": 180
+      },
+      {
+        "model": "minecraft:block/grass14",
+        "y": 270
+      },
+      {
+        "model": "minecraft:block/grass15"
+      },
+      {
+        "model": "minecraft:block/grass15",
+        "y": 90
+      },
+      {
+        "model": "minecraft:block/grass15",
+        "y": 180
+      },
+      {
+        "model": "minecraft:block/grass15",
+        "y": 270
+      }
+    ]
+  }
+}

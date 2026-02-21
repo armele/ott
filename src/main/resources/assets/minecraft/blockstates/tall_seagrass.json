@@ -1,0 +1,160 @@
+{
+  "variants": {
+    "half=lower": 
+    [
+      {
+        "model": "minecraft:block/tall_seagrass_bottom1"
+      },
+      {
+        "model": "minecraft:block/tall_seagrass_bottom1",
+        "y": 90
+      },
+      {
+        "model": "minecraft:block/tall_seagrass_bottom1",
+        "y": 180
+      },
+      {
+        "model": "minecraft:block/tall_seagrass_bottom1",
+        "y": 270
+      },
+      {
+        "model": "minecraft:block/tall_seagrass_bottom2"
+      },
+      {
+        "model": "minecraft:block/tall_seagrass_bottom2",
+        "y": 90
+      },
+      {
+        "model": "minecraft:block/tall_seagrass_bottom2",
+        "y": 180
+      },
+      {
+        "model": "minecraft:block/tall_seagrass_bottom2",
+        "y": 270
+      },
+      {
+        "model": "minecraft:block/tall_seagrass_bottom3"
+      },
+      {
+        "model": "minecraft:block/tall_seagrass_bottom3",
+        "y": 90
+      },
+      {
+        "model": "minecraft:block/tall_seagrass_bottom3",
+        "y": 180
+      },
+      {
+        "model": "minecraft:block/tall_seagrass_bottom3",
+        "y": 270
+      },
+      {
+        "model": "minecraft:block/tall_seagrass_bottom4"
+      },
+      {
+        "model": "minecraft:block/tall_seagrass_bottom4",
+        "y": 90
+      },
+      {
+        "model": "minecraft:block/tall_seagrass_bottom4",
+        "y": 180
+      },
+      {
+        "model": "minecraft:block/tall_seagrass_bottom4",
+        "y": 270
+      },
+      {
+        "model": "minecraft:block/tall_seagrass_bottom5"
+      },
+      {
+        "model": "minecraft:block/tall_seagrass_bottom5",
+        "y": 90
+      },
+      {
+        "model": "minecraft:block/tall_seagrass_bottom5",
+        "y": 180
+      },
+      {
+        "model": "minecraft:block/tall_seagrass_bottom5",
+        "y": 270
+      }
+    ],
+    "half=upper": 
+    [
+      {
+        "model": "minecraft:block/tall_seagrass_top1"
+      },
+      {
+        "model": "minecraft:block/tall_seagrass_top1",
+        "y": 90
+      },
+      {
+        "model": "minecraft:block/tall_seagrass_top1",
+        "y": 180
+      },
+      {
+        "model": "minecraft:block/tall_seagrass_top1",
+        "y": 270
+      },
+      {
+        "model": "minecraft:block/tall_seagrass_top2"
+      },
+      {
+        "model": "minecraft:block/tall_seagrass_top2",
+        "y": 90
+      },
+      {
+        "model": "minecraft:block/tall_seagrass_top2",
+        "y": 180
+      },
+      {
+        "model": "minecraft:block/tall_seagrass_top2",
+        "y": 270
+      },
+      {
+        "model": "minecraft:block/tall_seagrass_top3"
+      },
+      {
+        "model": "minecraft:block/tall_seagrass_top3",
+        "y": 90
+      },
+      {
+        "model": "minecraft:block/tall_seagrass_top3",
+        "y": 180
+      },
+      {
+        "model": "minecraft:block/tall_seagrass_top3",
+        "y": 270
+      },
+      {
+        "model": "minecraft:block/tall_seagrass_top4"
+      },
+      {
+        "model": "minecraft:block/tall_seagrass_top4",
+        "y": 90
+      },
+      {
+        "model": "minecraft:block/tall_seagrass_top4",
+        "y": 180
+      },
+      {
+        "model": "minecraft:block/tall_seagrass_top4",
+        "y": 270
+      },
+      {
+        "model": "minecraft:block/tall_seagrass_top5"
+      },
+      {
+        "model": "minecraft:block/tall_seagrass_top5",
+        "y": 90
+      },
+      {
+        "model": "minecraft:block/tall_seagrass_top5",
+        "y": 180
+      },
+      {
+        "model": "minecraft:block/tall_seagrass_top5",
+        "y": 270
+      }
+    ]
+  }
+}

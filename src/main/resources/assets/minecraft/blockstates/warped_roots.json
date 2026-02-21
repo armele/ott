@@ -1,0 +1,82 @@
+{
+  "variants": {
+    "": 
+    [
+      {
+        "model": "minecraft:block/warped_roots1"
+      },
+      {
+        "model": "minecraft:block/warped_roots1",
+        "y": 90
+      },
+      {
+        "model": "minecraft:block/warped_roots1",
+        "y": 180
+      },
+      {
+        "model": "minecraft:block/warped_roots1",
+        "y": 270
+      },
+      {
+        "model": "minecraft:block/warped_roots2"
+      },
+      {
+        "model": "minecraft:block/warped_roots2",
+        "y": 90
+      },
+      {
+        "model": "minecraft:block/warped_roots2",
+        "y": 180
+      },
+      {
+        "model": "minecraft:block/warped_roots2",
+        "y": 270
+      },
+      {
+        "model": "minecraft:block/warped_roots3"
+      },
+      {
+        "model": "minecraft:block/warped_roots3",
+        "y": 90
+      },
+      {
+        "model": "minecraft:block/warped_roots3",
+        "y": 180
+      },
+      {
+        "model": "minecraft:block/warped_roots3",
+        "y": 270
+      },
+      {
+        "model": "minecraft:block/warped_roots4"
+      },
+      {
+        "model": "minecraft:block/warped_roots4",
+        "y": 90
+      },
+      {
+        "model": "minecraft:block/warped_roots4",
+        "y": 180
+      },
+      {
+        "model": "minecraft:block/warped_roots4",
+        "y": 270
+      },
+      {
+        "model": "minecraft:block/warped_roots5"
+      },
+      {
+        "model": "minecraft:block/warped_roots5",
+        "y": 90
+      },
+      {
+        "model": "minecraft:block/warped_roots5",
+        "y": 180
+      },
+      {
+        "model": "minecraft:block/warped_roots5",
+        "y": 270
+      }
+    ]
+  }
+}

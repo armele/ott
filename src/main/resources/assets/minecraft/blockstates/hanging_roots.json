@@ -1,0 +1,82 @@
+{
+  "variants": {
+    "": 
+    [
+      {
+        "model": "minecraft:block/hanging_roots1"
+      },
+      {
+        "model": "minecraft:block/hanging_roots1",
+        "y": 90
+      },
+      {
+        "model": "minecraft:block/hanging_roots1",
+        "y": 180
+      },
+      {
+        "model": "minecraft:block/hanging_roots1",
+        "y": 270
+      },
+      {
+        "model": "minecraft:block/hanging_roots2"
+      },
+      {
+        "model": "minecraft:block/hanging_roots2",
+        "y": 90
+      },
+      {
+        "model": "minecraft:block/hanging_roots2",
+        "y": 180
+      },
+      {
+        "model": "minecraft:block/hanging_roots2",
+        "y": 270
+      },
+      {
+        "model": "minecraft:block/hanging_roots3"
+      },
+      {
+        "model": "minecraft:block/hanging_roots3",
+        "y": 90
+      },
+      {
+        "model": "minecraft:block/hanging_roots3",
+        "y": 180
+      },
+      {
+        "model": "minecraft:block/hanging_roots3",
+        "y": 270
+      },
+      {
+        "model": "minecraft:block/hanging_roots4"
+      },
+      {
+        "model": "minecraft:block/hanging_roots4",
+        "y": 90
+      },
+      {
+        "model": "minecraft:block/hanging_roots4",
+        "y": 180
+      },
+      {
+        "model": "minecraft:block/hanging_roots4",
+        "y": 270
+      },
+      {
+        "model": "minecraft:block/hanging_roots5"
+      },
+      {
+        "model": "minecraft:block/hanging_roots5",
+        "y": 90
+      },
+      {
+        "model": "minecraft:block/hanging_roots5",
+        "y": 180
+      },
+      {
+        "model": "minecraft:block/hanging_roots5",
+        "y": 270
+      }
+    ]
+  }
+}

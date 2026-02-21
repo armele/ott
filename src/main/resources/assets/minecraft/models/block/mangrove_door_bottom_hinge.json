@@ -1,0 +1,43 @@
+{
+	"ambientocclusion": false,
+	"textures": {
+		"particle": "block/mangrove_door_bottom",
+		"bottom": "block/mangrove_door_bottom",
+		"extra": "block/mangrove_door_extra"
+	},
+	"elements": [
+		{
+			"from": [0, 0, 0],
+			"to": [3, 16, 16],
+			"faces": {
+				"north": {"uv": [9, 0, 12, 16], "texture": "#extra", "cullface": "north"},
+				"east": {"uv": [0, 0, 16, 16], "texture": "#bottom"},
+				"south": {"uv": [3, 0, 6, 16], "texture": "#extra", "cullface": "south"},
+				"west": {"uv": [16, 0, 0, 16], "texture": "#bottom", "cullface": "west"},
+				"down": {"uv": [12, 0, 15, 16], "texture": "#extra", "cullface": "down"}
+			}
+		},
+		{
+			"from": [-0.5, 13, 2],
+			"to": [3.5, 16, 3],
+			"faces": {
+				"north": {"uv": [13, 0, 14, 3], "texture": "#bottom"},
+				"east": {"uv": [13, 0, 14, 3], "texture": "#bottom"},
+				"south": {"uv": [13, 0, 14, 3], "texture": "#bottom"},
+				"west": {"uv": [14, 0, 13, 3], "texture": "#bottom", "cullface": "west"},
+				"down": {"uv": [13, 2, 14, 3], "rotation": 90, "texture": "#bottom"}
+			}
+		},
+		{
+			"from": [-0.5, 13, 3],
+			"to": [3.5, 14, 4],
+			"faces": {
+				"east": {"uv": [12, 2, 13, 3], "texture": "#bottom"},
+				"south": {"uv": [12, 2, 13, 3], "texture": "#bottom"},
+				"west": {"uv": [13, 2, 12, 3], "texture": "#bottom", "cullface": "west"},
+				"up": {"uv": [12, 2, 13, 3], "rotation": 180, "texture": "#bottom"},
+				"down": {"uv": [12, 2, 13, 3], "rotation": 90, "texture": "#bottom"}
+			}
+		}
+	]
+}

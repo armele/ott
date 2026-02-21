@@ -1,0 +1,28 @@
+{
+    "variants": {
+        "": [
+	{ "model": "minecraft:block/allium", "weight": 40 },
+	{ "model": "minecraft:block/allium", "weight": 40, "y": 90  },
+	{ "model": "minecraft:block/allium", "weight": 40 , "y": 180 },
+	{ "model": "minecraft:block/allium", "weight": 40 , "y": 270 },
+
+	{ "model": "minecraft:block/allium_pink", "weight": 25 },
+	{ "model": "minecraft:block/allium_pink", "weight": 25, "y": 90  },
+	{ "model": "minecraft:block/allium_pink", "weight": 25 , "y": 180 },
+	{ "model": "minecraft:block/allium_pink", "weight": 25 , "y": 270 },
+
+	{ "model": "minecraft:block/allium_white", "weight": 25 },
+	{ "model": "minecraft:block/allium_white", "weight": 25, "y": 90  },
+	{ "model": "minecraft:block/allium_white", "weight": 25 , "y": 180 },
+	{ "model": "minecraft:block/allium_white", "weight": 25 , "y": 270 },
+
+	{ "model": "minecraft:block/allium_blue", "weight": 10 },
+	{ "model": "minecraft:block/allium_blue", "weight": 10, "y": 90  },
+	{ "model": "minecraft:block/allium_blue", "weight": 10 , "y": 180 },
+	{ "model": "minecraft:block/allium_blue", "weight": 10 , "y": 270 }
+        ]
+    }
+}
+
+
+

@@ -1,5 +1,5 @@
 {
-	"parent": "block/spruce_trapdoor_bottom",
+	"parent": "block/spruce_trapdoor_closed",
 	"display": {
 		"thirdperson_righthand": {
 			"rotation": [75, -135, 0],

@@ -1,9 +1,4 @@
 {
-	"disable_mlock": true,
-	"listener": [],
-	"storage": {
-		"inmemory": {}
-	},
 	"parent": "block/cube",
 	"textures": {
 		"top_ejecting": "block/vault_top_ejecting",

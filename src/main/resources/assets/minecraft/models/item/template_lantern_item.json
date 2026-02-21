@@ -1,5 +1,5 @@
 {
-    "parent": "minecraft:block/template_lantern",
+    "parent": "block/template_lantern",
     "gui_light": "front",
     "display": {
         "thirdperson_righthand": {

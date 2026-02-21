@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "": 
+    [
+      {
+        "model": "minecraft:block/cactus", "weight": 5
+      },
+      {
+        "model": "minecraft:block/cactus_flower", "weight": 2
+      }
+    ]
+  }
+}

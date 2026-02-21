@@ -1,0 +1,20 @@
+{
+    "variants": {
+        "half=lower": [
+			{ "model": "minecraft:block/rose_bush_bottom", "weight": 40 },
+			{ "model": "minecraft:block/rose_bush_bottom_orange", "weight": 20 },
+			{ "model": "minecraft:block/rose_bush_bottom_pink", "weight": 20 },
+			{ "model": "minecraft:block/rose_bush_bottom_yellow", "weight": 20 },
+			{ "model": "minecraft:block/rose_bush_bottom_blue", "weight": 10 },
+			{ "model": "minecraft:block/rose_bush_bottom_white", "weight": 10 }
+        ],
+        "half=upper":  [
+			{ "model": "minecraft:block/rose_bush_top", "weight": 40 },
+			{ "model": "minecraft:block/rose_bush_top_orange", "weight": 20 },
+			{ "model": "minecraft:block/rose_bush_top_pink", "weight": 20 },
+			{ "model": "minecraft:block/rose_bush_top_yellow", "weight": 20 },
+			{ "model": "minecraft:block/rose_bush_top_blue", "weight": 10 },
+			{ "model": "minecraft:block/rose_bush_top_white", "weight": 10 }
+	]
+    }
+}

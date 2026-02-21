@@ -1,5 +1,5 @@
 {
-	"parent": "block/mangrove_trapdoor_bottom",
+	"parent": "block/mangrove_trapdoor_closed",
 	"display": {
 		"thirdperson_righthand": {
 			"rotation": [75, -135, 0],

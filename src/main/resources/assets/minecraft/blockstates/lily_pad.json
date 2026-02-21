@@ -1,0 +1,66 @@
+{
+  "variants": {
+    "": [
+      {
+        "model": "minecraft:block/lily_pad", "weight": 1000
+      },
+      {
+        "model": "minecraft:block/lily_pad", "weight": 1000,
+        "y": 90
+      },
+      {
+        "model": "minecraft:block/lily_pad", "weight": 1000,
+        "y": 180
+      },
+      {
+        "model": "minecraft:block/lily_pad", "weight": 1000,
+        "y": 270
+      },
+      {
+        "model": "minecraft:block/lily_pad_lily1", "weight": 100
+      },
+      {
+        "model": "minecraft:block/lily_pad_lily1", "weight": 100,
+        "y": 90
+      },
+      {
+        "model": "minecraft:block/lily_pad_lily1", "weight": 100,
+        "y": 180
+      },
+      {
+        "model": "minecraft:block/lily_pad_lily1", "weight": 100,
+        "y": 270
+      },
+      {
+        "model": "minecraft:block/lily_pad_lily2", "weight": 50
+      },
+      {
+        "model": "minecraft:block/lily_pad_lily2", "weight": 50,
+        "y": 90
+      },
+      {
+        "model": "minecraft:block/lily_pad_lily2", "weight": 50,
+        "y": 180
+      },
+      {
+        "model": "minecraft:block/lily_pad_lily2", "weight": 50,
+        "y": 270
+      },
+      {
+        "model": "minecraft:block/lily_pad_lily3", "weight": 1
+      },
+      {
+        "model": "minecraft:block/lily_pad_lily3", "weight": 1,
+        "y": 90
+      },
+      {
+        "model": "minecraft:block/lily_pad_lily3", "weight": 1,
+        "y": 180
+      },
+      {
+        "model": "minecraft:block/lily_pad_lily3", "weight": 1,
+        "y": 270
+      }
+    ]
+  }
+}

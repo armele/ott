@@ -1,0 +1,75 @@
+{
+	"textures": {
+		"0": "block/sunflower_bottom",
+		"1": "block/sunflower_top",
+		"particle": "block/sunflower_bottom"
+	},
+	"elements": [
+		{
+			"from": [7.5, 0, 7.5],
+			"to": [8.5, 16, 8.5],
+			"faces": {
+				"north": {"uv": [8, 0, 9, 16], "texture": "#0"},
+				"east": {"uv": [7, 0, 8, 16], "texture": "#0"},
+				"south": {"uv": [8, 0, 9, 16], "texture": "#0"},
+				"west": {"uv": [7, 0, 8, 16], "texture": "#0"},
+				"down": {"uv": [7.5, 15, 8.5, 16], "texture": "#0"}
+			}
+		},
+		{
+			"from": [5.95563, 12.96173, 10.72867],
+			"to": [10.45563, 12.96173, 14.22867],
+			"shade": false,
+			"rotation": {"angle": 22.5, "axis": "x", "origin": [10.03793, 9.09362, 9.91769]},
+			"faces": {
+				"up": {"uv": [0, 0, 4.5, 3.5], "rotation": 180, "texture": "#1"},
+				"down": {"uv": [4.5, 0, 0, 3.5], "texture": "#1"}
+			}
+		},
+		{
+			"from": [5.95563, 11.25481, 8.7383],
+			"to": [10.45563, 11.25481, 13.2383],
+			"shade": false,
+			"rotation": {"angle": -22.5, "axis": "x", "origin": [10.03793, 9.09362, 9.91769]},
+			"faces": {
+				"up": {"uv": [0, 3.5, 4.5, 7.5], "rotation": 180, "texture": "#1"},
+				"down": {"uv": [4.5, 3.5, 0, 7.5], "texture": "#1"}
+			}
+		},
+		{
+			"from": [12.85354, 8.27656, 5.50726],
+			"to": [16.35354, 8.27656, 10.00726],
+			"shade": false,
+			"rotation": {"angle": -22.5, "axis": "z", "origin": [10.28793, 9.09362, 9.76144]},
+			"faces": {
+				"up": {"uv": [0, 0, 4.5, 3.5], "rotation": 90, "texture": "#1"},
+				"down": {"uv": [4.5, 0, 0, 3.5], "rotation": 90, "texture": "#1"}
+			}
+		},
+		{
+			"from": [7.03634, 6.70118, 5.50726],
+			"to": [11.53634, 6.70118, 10.00726],
+			"shade": false,
+			"rotation": {"angle": 22.5, "axis": "z", "origin": [10.28793, 9.09362, 9.76144]},
+			"faces": {
+				"up": {"uv": [0, 3.5, 4.5, 7.5], "rotation": 90, "texture": "#1"},
+				"down": {"uv": [4.5, 3.5, 0, 7.5], "rotation": 90, "texture": "#1"}
+			}
+		}
+	],
+	"groups": [
+		0,
+		{
+			"name": "group",
+			"origin": [8, 8, 8],
+			"color": 0,
+			"children": [1, 2]
+		},
+		{
+			"name": "group",
+			"origin": [8, 8, 8],
+			"color": 0,
+			"children": [3, 4]
+		}
+	]
+}
