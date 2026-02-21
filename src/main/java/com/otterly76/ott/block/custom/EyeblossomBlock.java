@@ -64,7 +64,7 @@ public class EyeblossomBlock extends FlowerBlock {
     @Override
     protected void randomTick(@NotNull BlockState state, @NotNull ServerLevel level, @NotNull BlockPos pos, @NotNull RandomSource random) {
         if (this.tryChangingState(state, level, pos, random)) {
-            level.playSound(null, pos, this.type.transform().longSwitchSound, SoundSource.BLOCKS, 1.0F, 1.0F);
+            level.playSound(null, pos, this.type.transform().longSwitchSound(), SoundSource.BLOCKS, 1.0F, 1.0F);
         }
 
         super.randomTick(state, level, pos, random);
@@ -73,7 +73,7 @@ public class EyeblossomBlock extends FlowerBlock {
     @Override
     protected void tick(@NotNull BlockState state, @NotNull ServerLevel level, @NotNull BlockPos pos, @NotNull RandomSource random) {
         if (this.tryChangingState(state, level, pos, random)) {
-            level.playSound(null, pos, this.type.transform().shortSwitchSound, SoundSource.BLOCKS, 1.0F, 1.0F);
+            level.playSound(null, pos, this.type.transform().shortSwitchSound(), SoundSource.BLOCKS, 1.0F, 1.0F);
         }
 
         super.tick(state, level, pos, random);
@@ -112,17 +112,17 @@ public class EyeblossomBlock extends FlowerBlock {
     }
 
     public enum Type {
-        OPEN(true, MobEffects.BLINDNESS, 11, ModSounds.EYEBLOSSOM_OPEN_LONG.get(), ModSounds.EYEBLOSSOM_OPEN.get(), 16545810),
-        CLOSED(false, MobEffects.CONFUSION, 7, ModSounds.EYEBLOSSOM_CLOSE_LONG.get(), ModSounds.EYEBLOSSOM_CLOSE.get(), 6250335);
+        OPEN(true, MobEffects.BLINDNESS, 11, ModSounds.EYEBLOSSOM_OPEN_LONG, ModSounds.EYEBLOSSOM_OPEN, 16545810),
+        CLOSED(false, MobEffects.CONFUSION, 7, ModSounds.EYEBLOSSOM_CLOSE_LONG, ModSounds.EYEBLOSSOM_CLOSE, 6250335);
 
         final boolean open;
         final Holder<MobEffect> effect;
         final int effectDuration;
-        final SoundEvent longSwitchSound;
-        final SoundEvent shortSwitchSound;
+        private final java.util.function.Supplier<SoundEvent> longSwitchSound;
+        private final java.util.function.Supplier<SoundEvent> shortSwitchSound;
         final int particleColor;
 
-        Type(boolean open, Holder<MobEffect> effect, int effectDuration, SoundEvent longSwitchSound, SoundEvent shortSwitchSound, int particleColor) {
+        Type(boolean open, Holder<MobEffect> effect, int effectDuration, java.util.function.Supplier<SoundEvent> longSwitchSound, java.util.function.Supplier<SoundEvent> shortSwitchSound, int particleColor) {
             this.open = open;
             this.effect = effect;
             this.effectDuration = effectDuration;
@@ -161,7 +161,11 @@ public class EyeblossomBlock extends FlowerBlock {
         }
 
         public SoundEvent longSwitchSound() {
-            return this.longSwitchSound;
+            return this.longSwitchSound.get();
+        }
+
+        public SoundEvent shortSwitchSound() {
+            return this.shortSwitchSound.get();
         }
     }
 }

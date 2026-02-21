@@ -28,9 +28,7 @@ public class ItemInteractionHandler {
     }
 
     private static @Nullable BlockState getRepairedState(BlockState oldBlockState) {
-        oldBlockState = BlockConversionHandler.convertToVanillaBlock(oldBlockState);
         BlockState newBlockState;
-        assert oldBlockState != null;
         if (oldBlockState.is(Blocks.DAMAGED_ANVIL)) {
             newBlockState = Blocks.CHIPPED_ANVIL.defaultBlockState().setValue(AnvilBlock.FACING, oldBlockState.getValue(AnvilBlock.FACING));
         } else {
@@ -41,6 +39,6 @@ public class ItemInteractionHandler {
             newBlockState = Blocks.ANVIL.defaultBlockState().setValue(AnvilBlock.FACING, oldBlockState.getValue(AnvilBlock.FACING));
         }
 
-        return BlockConversionHandler.convertFromVanillaBlock(newBlockState);
+        return newBlockState;
     }
 }

@@ -213,29 +213,6 @@ public class ModBlocks {
     public static final Map<String, DeferredBlock<Block>> PARTICLE_HEDGES = new LinkedHashMap<>();
     public static final Map<String, DeferredBlock<Block>> CREEPING_HEDGES = new LinkedHashMap<>();
 
-    static {
-        // Shared props for all particle hedges
-        Properties hedgeProps = Properties.of().strength(1.0f).sound(SoundType.GRASS).noOcclusion();
-
-        ModHedgeVariants.ALL.forEach(variant -> {
-            PARTICLE_HEDGES.put(variant.name(), BLOCKS.register(
-                    variant.name() + "_hedge",
-                    () -> new ParticleHedgeBlock(
-                            hedgeProps,
-                            variant.leafParticle()
-                    )
-            ));
-
-            CREEPING_HEDGES.put(variant.name(), BLOCKS.register(
-                    variant.name() + "_creeping_hedge",
-                    () -> new ParticleCreepingHedgeBlock(
-                            hedgeProps,
-                            variant.leafParticle(),
-                            variant.creepOverlayTexture()
-                    )
-            ));
-        });
-    }
 
     private static <T extends Block> DeferredBlock<T> registerBackportedBlock(String name, java.util.function.Supplier<T> block) {
         return registerBackportedBlock(name, block, true);
@@ -322,7 +299,7 @@ public class ModBlocks {
         MINECRAFT_ITEMS.register(block.getId().getPath(), () -> new com.otterly76.ott.item.custom.Copper3DBlockItem(block.get(), new net.minecraft.world.item.Item.Properties()));
     }
 
-    static {
+    private static void registerDynamicBlocks() {
         register3DBlockItem(COPPER_CHEST);
         register3DBlockItem(EXPOSED_COPPER_CHEST);
         register3DBlockItem(WEATHERED_COPPER_CHEST);
@@ -364,17 +341,41 @@ public class ModBlocks {
             COPPER_BARS.put(stateName, registerBackportedBlock(stateName + "copper_bars", () -> new com.otterly76.ott.block.custom.WeatheringCopperBarsBlock(state, BlockBehaviour.Properties.of().strength(5.0f).sound(SoundType.COPPER).noOcclusion())));
             COPPER_BARS.put("waxed_" + stateName, registerBackportedBlock("waxed_" + stateName + "copper_bars", () -> new com.otterly76.ott.block.custom.WeatheringCopperBarsBlock(state, BlockBehaviour.Properties.of().strength(5.0f).sound(SoundType.COPPER).noOcclusion())));
 
-            LIGHTNING_RODS.put(stateName, registerBackportedBlock(stateName + "lightning_rod", () -> new com.otterly76.ott.block.custom.WeatheringCopperLightningRodBlock(state, BlockBehaviour.Properties.of().strength(3.0f).sound(SoundType.COPPER))));
-            LIGHTNING_RODS.put("waxed_" + stateName, registerBackportedBlock("waxed_" + stateName + "lightning_rod", () -> new com.otterly76.ott.block.custom.WeatheringCopperLightningRodBlock(state, BlockBehaviour.Properties.of().strength(3.0f).sound(SoundType.COPPER))));
+            String rodName = stateName + "lightning_rod";
+            if (!rodName.equals("lightning_rod")) {
+                LIGHTNING_RODS.put(stateName, registerBackportedBlock(rodName, () -> new com.otterly76.ott.block.custom.WeatheringCopperLightningRodBlock(state, BlockBehaviour.Properties.of().strength(3.0f).sound(SoundType.COPPER))));
+            }
+            LIGHTNING_RODS.put("waxed_" + stateName, registerBackportedBlock("waxed_" + rodName, () -> new com.otterly76.ott.block.custom.WeatheringCopperLightningRodBlock(state, BlockBehaviour.Properties.of().strength(3.0f).sound(SoundType.COPPER))));
         }
-    }
 
-    static {
         registerGradientBlocks(Blocks.WHITE_CONCRETE, GradientConcreteBlock::new, ALL_CONCRETE_BLOCKS::add);
         registerGradientBlocks(Blocks.WHITE_TERRACOTTA, GradientTerracottaBlock::new, ALL_TERRACOTTA_BLOCKS::add);
         registerGradientBlocks(Blocks.WHITE_WOOL, GradientWoolBlock::new, ALL_WOOL_BLOCKS::add);
         registerGradientBlocks(Blocks.WHITE_STAINED_GLASS, GradientStainedGlassBlock::new, ALL_STAINED_GLASS_BLOCKS::add);
         registerGradientBlocks(Blocks.WHITE_CONCRETE_POWDER, GradientConcretePowderBlock::new, ALL_CONCRETE_POWDER_BLOCKS::add);
+
+        // Register all ott wood sets
+        ModWoodSets.ALL.forEach(set -> WOOD_SETS.put(set.name(), WoodSetBlockRegistrar.registerOttWoodSet(set.name())));
+
+        // Register all particle hedges
+        ModHedgeVariants.ALL.forEach(variant -> {
+            PARTICLE_HEDGES.put(variant.name(), BLOCKS.register(
+                    variant.name() + "_hedge",
+                    () -> new ParticleHedgeBlock(
+                            Properties.of().strength(1.0f).sound(SoundType.GRASS).noOcclusion(),
+                            variant.leafParticle()
+                    )
+            ));
+
+            CREEPING_HEDGES.put(variant.name(), BLOCKS.register(
+                    variant.name() + "_creeping_hedge",
+                    () -> new ParticleCreepingHedgeBlock(
+                            Properties.of().strength(1.0f).sound(SoundType.GRASS).noOcclusion(),
+                            variant.leafParticle(),
+                            variant.creepOverlayTexture()
+                    )
+            ));
+        });
     }
 
     private static <T extends Block & IGradientBlock> void registerGradientBlocks(Block block, GradientBlockBuilder<T> builder, Consumer<DeferredBlock<? extends IGradientBlock>> adder) {
@@ -389,7 +390,7 @@ public class ModBlocks {
                     final String fullName = String.format("%s_%s_%s", color1.getName(), color2.getName(), blockBaseName);
 
                     DeferredBlock<? extends IGradientBlock> gradientBlock = BLOCKS.register(fullName, () ->
-                            builder.create(block.properties(), color1, color2, color -> "%s_%s".formatted(color.getName(), blockBaseName))
+                            builder.create(BlockBehaviour.Properties.ofFullCopy(block), color1, color2, color -> "%s_%s".formatted(color.getName(), blockBaseName))
                     );
 
                     adder.accept(gradientBlock);
@@ -453,12 +454,8 @@ public class ModBlocks {
     {
     }
 
-    static {
-        // Register all ott wood sets
-        ModWoodSets.ALL.forEach(set -> WOOD_SETS.put(set.name(), WoodSetBlockRegistrar.registerOttWoodSet(set.name())));
-    }
-
     public static void register(IEventBus eventBus) {
+        registerDynamicBlocks();
         BLOCKS.register(eventBus);
         MINECRAFT_BLOCKS.register(eventBus);
         MINECRAFT_ITEMS.register(eventBus);

@@ -143,8 +143,6 @@ import static com.otterly76.ott.Constants.MOD_ID;
 public class Ott {
     public static final java.util.Random RANDOM = new java.util.Random();
 
-    public static final java.util.function.Predicate<net.minecraft.world.level.block.Block> ANVIL_BLOCK_PREDICATE = (block) -> block instanceof net.minecraft.world.level.block.AnvilBlock && !(block instanceof com.otterly76.ott.block.AnvilWithInventoryBlock);
-
     public Ott(IEventBus modEventBus) {
         OttBuiltInRegistries.init(modEventBus);
         OttBuiltInRegistries.bootstrap();
@@ -187,7 +185,6 @@ public class Ott {
         modEventBus.addListener(ModEventBusEvents::registerSpawnPlacements);
         modEventBus.addListener(ModEventBusEvents::registerCapabilities);
         modEventBus.addListener(ModBlockEntities::registerTileExtensions);
-        modEventBus.addListener(com.otterly76.ott.handler.BlockConversionHandler::onRegisterBlocks);
         modEventBus.addListener(this::onLoadComplete);
         modEventBus.addListener(this::commonEventSetup);
     }

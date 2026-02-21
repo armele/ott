@@ -38,9 +38,9 @@ import org.jetbrains.annotations.Nullable;
 
 public class CreakingHeartBlock extends BaseEntityBlock {
     public static final MapCodec<CreakingHeartBlock> CODEC = simpleCodec(CreakingHeartBlock::new);
-    public static final EnumProperty<Direction.Axis> AXIS;
-    public static final EnumProperty<CreakingHeartState> STATE;
-    public static final BooleanProperty NATURAL;
+    public static final EnumProperty<Direction.Axis> AXIS = BlockStateProperties.AXIS;
+    public static final EnumProperty<CreakingHeartState> STATE = ModBlockStateProperties.CREAKING_HEART_STATE;
+    public static final BooleanProperty NATURAL = ModBlockStateProperties.NATURAL;
 
     @Override
     protected @NotNull MapCodec<? extends BaseEntityBlock> codec() {
@@ -180,9 +180,4 @@ public class CreakingHeartBlock extends BaseEntityBlock {
         }
     }
 
-    static {
-        AXIS = BlockStateProperties.AXIS;
-        STATE = ModBlockStateProperties.CREAKING_HEART_STATE;
-        NATURAL = ModBlockStateProperties.NATURAL;
-    }
 }

@@ -28,7 +28,7 @@ public class WeatheringHandler {
         addChainFromMap(ModBlocks.COPPER_CHAINS, states);
         addChainFromMap(ModBlocks.COPPER_BARS, states);
         addChainFromMap(ModBlocks.LIGHTNING_RODS, states);
-        
+
         // Statues - stored in a list (alternating normal/waxed)
         for (int i = 0; i < 3; i++) {
             addWeatheringTransition(ModBlocks.COPPER_GOLEM_STATUES.get(i*2).get(), ModBlocks.COPPER_GOLEM_STATUES.get((i+1)*2).get());
@@ -40,10 +40,23 @@ public class WeatheringHandler {
 
     private static void addChainFromMap(Map<String, ? extends DeferredBlock<? extends Block>> map, String[] states) {
         for (int i = 0; i < states.length - 1; i++) {
-            addWeatheringTransition(map.get(states[i]).get(), map.get(states[i+1]).get());
+            DeferredBlock<? extends Block> original = map.get(states[i]);
+            DeferredBlock<? extends Block> next = map.get(states[i+1]);
+            if (original != null && next != null) {
+                addWeatheringTransition(original.get(), next.get());
+            } else if (states[i].isEmpty() && next != null) {
+                // Special case: if base state is missing (e.g. lightning_rod), use vanilla
+                addWeatheringTransition(net.minecraft.world.level.block.Blocks.LIGHTNING_ROD, next.get());
+            }
         }
         for (String state : states) {
-            addWaxingTransition(map.get(state).get(), map.get("waxed_" + state).get());
+            DeferredBlock<? extends Block> original = map.get(state);
+            DeferredBlock<? extends Block> waxed = map.get("waxed_" + state);
+            if (original != null && waxed != null) {
+                addWaxingTransition(original.get(), waxed.get());
+            } else if (state.isEmpty() && waxed != null) {
+                addWaxingTransition(net.minecraft.world.level.block.Blocks.LIGHTNING_ROD, waxed.get());
+            }
         }
     }
 

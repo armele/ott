@@ -28,7 +28,6 @@ import net.minecraft.world.phys.HitResult;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.event.RegisterCommandsEvent;
-import net.neoforged.neoforge.event.TagsUpdatedEvent;
 import net.neoforged.neoforge.event.entity.living.LivingDropsEvent;
 import net.neoforged.neoforge.event.entity.player.AnvilRepairEvent;
 import net.neoforged.neoforge.event.entity.player.PlayerInteractEvent;
@@ -167,10 +166,6 @@ public class ServerGameEvents {
         }
     }
 
-    @SubscribeEvent
-    public static void onTagsUpdated(TagsUpdatedEvent event) {
-        com.otterly76.ott.handler.BlockConversionHandler.performTagsUpdated(com.otterly76.ott.Ott.ANVIL_BLOCK_PREDICATE, event.getRegistryAccess(), false);
-    }
 
     @SubscribeEvent
     public static void onAnvilRepairEvent(AnvilRepairEvent event) {

@@ -4,6 +4,7 @@ import com.otterly76.ott.block.ModBlocks;
 import com.otterly76.ott.block.shelf.ShelfBlockEntity;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.entity.SignBlockEntity;
 import net.neoforged.bus.api.IEventBus;
@@ -51,6 +52,6 @@ public class ModBlockEntities {
     public static void registerTileExtensions(BlockEntityTypeAddBlocksEvent event) {
         event.modify(BlockEntityType.SIGN, ModBlocks.PALE_OAK_SIGN.get(), ModBlocks.PALE_OAK_WALL_SIGN.get());
         event.modify(BlockEntityType.HANGING_SIGN, ModBlocks.PALE_OAK_HANGING_SIGN.get(), ModBlocks.PALE_OAK_WALL_HANGING_SIGN.get());
-        com.otterly76.ott.handler.BlockConversionHandler.getBlockConversions().values().forEach(block -> event.modify(ANVIL_BLOCK_ENTITY_TYPE.get(), block));
+        event.modify(ANVIL_BLOCK_ENTITY_TYPE.get(), Blocks.ANVIL, Blocks.CHIPPED_ANVIL, Blocks.DAMAGED_ANVIL);
     }
 }

@@ -1,5 +1,6 @@
 package com.otterly76.ott.util.worldgen;
 
+import net.minecraft.resources.ResourceKey;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerLevel;
@@ -16,27 +17,27 @@ public class FloodingManager {
     private static final int MAX_DEPTH = 6;
     private static final List<ScheduledFlood> scheduledFloods = new ArrayList<>();
 
-    public record ScheduledFlood(ServerLevel level, BlockPos pos, int depth, long targetTick) {}
+    public record ScheduledFlood(ResourceKey<Level> dimension, BlockPos pos, int depth, long targetTick) {}
 
     public static void scheduleFlooding(Level level, BlockPos pos, int depth) {
         if (level instanceof ServerLevel serverLevel) {
-            scheduledFloods.add(new ScheduledFlood(serverLevel, pos.immutable(), depth, serverLevel.getGameTime() + FLOOD_DELAY_TICKS));
+            scheduledFloods.add(new ScheduledFlood(serverLevel.dimension(), pos.immutable(), depth, serverLevel.getGameTime() + FLOOD_DELAY_TICKS));
         }
     }
 
     public static void tick(ServerLevel level) {
         long currentTime = level.getGameTime();
+        ResourceKey<Level> dimension = level.dimension();
         scheduledFloods.removeIf(entry -> {
-            if (entry.level() == level && currentTime >= entry.targetTick()) {
-                executeFlood(entry);
+            if (entry.dimension().equals(dimension) && currentTime >= entry.targetTick()) {
+                executeFlood(level, entry);
                 return true;
             }
             return false;
         });
     }
 
-    private static void executeFlood(ScheduledFlood entry) {
-        ServerLevel level = entry.level();
+    private static void executeFlood(ServerLevel level, ScheduledFlood entry) {
         BlockPos pos = entry.pos();
         FluidState fluidState = level.getFluidState(pos);
 

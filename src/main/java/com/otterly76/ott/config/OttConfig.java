@@ -580,7 +580,6 @@ public class OttConfig {
         public final ModConfigSpec.BooleanValue NAME_TAG_TOOLTIP;
         public final ModConfigSpec.BooleanValue NAME_TAG_CRAFTING_RECIPE;
         public final ModConfigSpec.BooleanValue DISABLE_VANILLA_ANVIL;
-        public final ModConfigSpec.BooleanValue CONVERT_VANILLA_ANVIL_DURING_WORLD_GEN;
 
         public final PriorWorkPenaltyOptions PRIOR_WORK_PENALTY;
         public final CostsOptions COSTS;
@@ -600,9 +599,6 @@ public class OttConfig {
             DISABLE_VANILLA_ANVIL = builder.comment("Leftover vanilla anvils in a world become unusable until they are broken and replaced.")
                     .translation("ott.configuration.anvils.disablevanillaanvil")
                     .define("disableVanillaAnvil", true);
-            CONVERT_VANILLA_ANVIL_DURING_WORLD_GEN = builder.comment("Replace vanilla anvils created in structures during world generation. Does not affect already generated blocks.")
-                    .translation("ott.configuration.anvils.convertvanillaanvilduringworldgen")
-                    .define("convertVanillaAnvilDuringWorldGen", true);
 
             PRIOR_WORK_PENALTY = new PriorWorkPenaltyOptions(builder);
             COSTS = new CostsOptions(builder);
