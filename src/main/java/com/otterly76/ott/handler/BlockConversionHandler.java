@@ -11,6 +11,7 @@ import com.otterly76.ott.mixin.common.BlockAccessor;
 import com.otterly76.ott.mixin.common.BlockItemAccessor;
 import com.otterly76.ott.mixin.common.HolderReferenceAccessor;
 import net.minecraft.core.Holder;
+import net.minecraft.core.Registry;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceKey;
@@ -59,13 +60,14 @@ public class BlockConversionHandler {
     }
 
     public static void performTagsUpdated(Predicate<Block> filter, net.minecraft.core.RegistryAccess registryAccess, boolean client) {
-        for(java.util.Map.Entry<ResourceKey<Item>, Item> entry : BuiltInRegistries.ITEM.entrySet()) {
+        Registry<Item> itemRegistry = registryAccess.registryOrThrow(net.minecraft.core.registries.Registries.ITEM);
+        for(java.util.Map.Entry<ResourceKey<Item>, Item> entry : itemRegistry.entrySet()) {
             Object patt0$temp = entry.getValue();
             if (patt0$temp instanceof BlockItem blockItem) {
                 Block block = blockItem.getBlock();
                 setItemForBlock(filter, blockItem, block);
                 Block newBlock = BLOCK_CONVERSIONS.get(block);
-                if (newBlock != null) {
+                if (newBlock != null && blockItem.getBlock() != newBlock) {
                     setBlockForItem(blockItem, newBlock);
                 }
             }
@@ -98,6 +100,8 @@ public class BlockConversionHandler {
         });
         Objects.requireNonNull(block, () -> "block for item '" + BuiltInRegistries.ITEM.getKey(item) + "' is null");
         Block oldBlock = item.getBlock();
+        if (oldBlock == block) return;
+
         ((BlockAccessor) oldBlock).setItem(item);
 
         ((BlockItemAccessor) item).setBlock(block);

@@ -3,9 +3,7 @@ package com.otterly76.ott.worldgen.modifier;
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.MapCodec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
-import com.otterly76.ott.Ott;
 import com.otterly76.ott.mixin.common.HolderReferenceAccessor;
-import com.otterly76.ott.mixin.common.MappedRegistryAccessor;
 import com.otterly76.ott.worldgen.OttCodecs;
 import com.otterly76.ott.worldgen.placementcondition.PlacementCondition;
 import com.otterly76.ott.worldgen.structure.DelegatingConfig;
@@ -34,10 +32,6 @@ public record SetStructureSpawnConditionModifier(int priority, HolderSet<Structu
             @SuppressWarnings("unchecked")
             HolderReferenceAccessor<Structure> holderAccessor = (HolderReferenceAccessor<Structure>) structure;
             holderAccessor.setValue(delegating);
-
-            @SuppressWarnings("unchecked")
-            MappedRegistryAccessor<Structure> registryAccessor = (MappedRegistryAccessor<Structure>) Ott.registry(registries, Registries.STRUCTURE);
-            registryAccessor.getByValue().put(delegating, reference);
         }
     }
 

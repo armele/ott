@@ -46,7 +46,10 @@ public interface Modifier {
             if (knownPackInfo.isPresent() && registry instanceof MappedRegistryAccessor) {
                 @SuppressWarnings("unchecked")
                 MappedRegistryAccessor<T> accessor = (MappedRegistryAccessor<T>) registry;
-                accessor.ott$getRegistrationInfos().put(key, new RegistrationInfo(Optional.empty(), knownPackInfo.get().lifecycle()));
+                try {
+                    accessor.ott$getRegistrationInfos().put(key, new RegistrationInfo(Optional.empty(), knownPackInfo.get().lifecycle()));
+                } catch (UnsupportedOperationException ignored) {
+                }
             }
         });
     }
