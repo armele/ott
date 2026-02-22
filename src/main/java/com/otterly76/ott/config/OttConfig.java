@@ -254,6 +254,7 @@ public class OttConfig {
         public final ModConfigSpec.DoubleValue FALLING_LEAVES_FREQUENCY;
         public final ModConfigSpec.IntValue CREAKING_PARTICLE_COLOR;
         public final ModConfigSpec.IntValue CREAKING_PARTICLE_REVERSE_COLOR;
+        public final ModConfigSpec.BooleanValue INVENTORY_MENDING;
 
         public General(ModConfigSpec.Builder builder) {
             ENABLE_LAVA_WARNINGS = builder.comment("Should the player be warned when lava is nearby while mining?")
@@ -291,6 +292,9 @@ public class OttConfig {
             FALLING_LEAVES_FREQUENCY = builder.comment("Frequency of falling leaves particles.").defineInRange("fallingLeavesFrequency", 0.05, 0.0, 1.0);
             CREAKING_PARTICLE_COLOR = builder.comment("Color of creaking particles.").defineInRange("creakingParticleColor", 6250335, 0, 16777215);
             CREAKING_PARTICLE_REVERSE_COLOR = builder.comment("Color of creaking particles in reverse direction.").defineInRange("creakingParticleReverseColor", 16545810, 0, 16777215);
+            INVENTORY_MENDING = builder.comment("Should Mending repair any item in the inventory, not just held/worn ones?")
+                    .translation("ott.configuration.general.inventorymending")
+                    .define("inventoryMending", true);
         }
     }
 

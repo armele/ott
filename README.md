@@ -42,40 +42,42 @@ Mods, Resourcepacks, and Datapacks You Will Not Need:
 - Mounts of Mayhem (WIP)
 
 **Mods, Resourcepacks, and Datapacks:**
-- Actually Harvest, Right Click Harvest, Simply Harvesting, etc
-- AFKStatus, SimpleAFK, etc
+- Actually Harvest, Right Click Harvest, Simply Harvesting
+- AFKStatus, SimpleAFK
 - Appleskin 🍎
 - Best Bundles, LootBundles
 - Better Days 🌛🌝🌜
-- Better Leaves, Bushy Leaves, JS Leaves+, etc 🍃
+- Better Leaves, Bushy Leaves, JS Leaves+ 🍃
 - Block Runner
 - Clumps 💎
 - Colorful Hearts ❤️
 - Death Finder
-- Easy Anvils, Repair Anvil, Anvil Repairing, Fixed Anvil Repair Cost, Unbreakable Anvil, etc
-- Easy Homes, Simplest Homes, Home Wand, Set Home, etc
+- Easy Anvils, Repair Anvil, Anvil Repairing, Fixed Anvil Repair Cost, Unbreakable Anvil
+- Easy Homes, Simplest Homes, Home Wand, Set Home
 - Fortune Works On Ancient Debris
 - Healing Bed 🛏️
-- Infinite Trial Vaults, Resettable Vaults, Renewable Vaults, etc
-- Jump Over Fences, JumpOverFences, etc 🏃
+- Infinite Trial Vaults, Resettable Vaults, Renewable Vaults
+- Inventory Mending, Overpowered Mending
+- Jump Over Fences, JumpOverFences 🏃
 - Lava Alert
 - Looping Jukebox 🎶
-- Low On Fire, etc 🔥
-- Low Shield, Lower Shield, Small Shield & Totem, Smaller Shield & Totem, etc
+- Low On Fire 🔥
+- Low Shield, Lower Shield, Small Shield & Totem, Smaller Shield & Totem
 - Mixed Litter, other randomization and variation mods/resourcepacks for mobs
-- No Farmland Trample, Trample No More, etc
+- No Farmland Trample, Trample No More
 - Not Enough Recipe Book
 - Overloaded Armor Bar
 - Permanent Sponges
 - Pretty Beaches 🏖️
 - Pretty Rain ⛅
-- Simple Grass Flowers, Better Grounds, Better Grass, etc 🍀
-- Snow Under Trees, Simple Snowy Fix, Falling Snow, etc ❄️
+- Safe Harvest
+- Simple Grass Flowers, Better Grounds, Better Grass 🍀
+- Snow Under Trees, Simple Snowy Fix, Falling Snow ❄️
 - The Fence Unleashed 🐮
-- Tiny Coal, Tiny Charcoal, ect
-- Tiny Skeletons, Baby Mobs, etc
+- Tiny Coal, Tiny Charcoal
+- Tiny Skeletons, Baby Mobs
 - Torchmaster, Magnum Torch
-- Trash Slot, Trash Cans, etc 🗑️
+- Trash Slot, Trash Cans 🗑️
 - Universal Bone Meal
 - What The Bucket
 - Wither Skeleton Tweaks
@@ -110,6 +112,3 @@ Features
   - Verdant Forest
 - Custom Critters
   - Man-O-War
-    - Found in warm and lukewarm oceans
-    - Can be caught in a bucket
-    - Yes, it stings!

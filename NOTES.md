@@ -11,7 +11,6 @@ Everthing's Copper
 Functional Armor Trims
 Fusion
 Glassential Renewed
-Inventory Mending
 Loot Beams
 Mouse Tweaks
 No Mob Farms

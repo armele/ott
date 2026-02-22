@@ -261,6 +261,7 @@
     "ott.configuration.general.enablelavawarnings":  "Enable Lava Warnings",
     "ott.configuration.general.enablerightclickopen":  "Enable Middle-Click Open (Pick Block) Containers",
     "ott.configuration.general.enabletorcharrow":  "Enable Torch Arrows",
+    "ott.configuration.general.inventorymending": "Inventory Mending",
     "ott.configuration.general.evokerskillsummonsondeath":  "Evokers Kill Summons on Death",
     "ott.configuration.general.spongesplacedonwater":  "Sponges Placeable on Water",
     "ott.configuration.general.villagersfollowemerald":  "Villagers Follow Emeralds",
