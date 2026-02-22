@@ -303,6 +303,10 @@ public class ConfigHandler {
         public static boolean replantCrops() {
             return OttConfig.HARVEST.REPLANT_CROPS.get();
         }
+
+        public static boolean safeHarvest() {
+            return OttConfig.HARVEST.SAFE_HARVEST.get();
+        }
     }
 
     static {

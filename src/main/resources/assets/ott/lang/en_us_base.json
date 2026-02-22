@@ -283,6 +283,7 @@
     "ott.configuration.harvest.hoeitems":  "List of individual hoe tools and their harvest tier. This is for modded items not covered.\nFormat: minecraft:wooden_hoe-0 (with number being tier)",
     "ott.configuration.harvest.maxhoeexpansionrange":  "Maximum range hoe can expand for harvesting.\nThis is the maximum of tier + efficiency enchantment.",
     "ott.configuration.harvest.replantcrops":  "Automatically replant crops after harvesting.",
+    "ott.configuration.harvest.safeharvest":  "Prevents immature crops from being broken.",
     "ott.configuration.harvest.smalltierexpansionrange":  "Regular hoe (gold, wood, iron) expansion range.",
     "ott.configuration.harvest.xpfromharvestamount":  "Amount of XP dropped on harvest.",
     "ott.configuration.harvest.xpfromharvestchance":  "Chance of XP dropping on harvest.",

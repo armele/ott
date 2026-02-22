@@ -24,6 +24,8 @@ import net.minecraft.world.level.block.DoublePlantBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.world.level.block.state.properties.DoubleBlockHalf;
+import net.minecraft.world.level.block.state.properties.IntegerProperty;
+import net.minecraft.world.level.block.state.properties.Property;
 import net.minecraft.world.level.gameevent.GameEvent;
 import net.minecraft.world.level.gameevent.GameEvent.Context;
 import net.minecraft.world.phys.BlockHitResult;
@@ -33,6 +35,7 @@ import net.neoforged.bus.api.EventPriority;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.neoforge.common.util.TriState;
 import net.neoforged.neoforge.event.entity.player.PlayerInteractEvent;
+import net.neoforged.neoforge.event.level.BlockEvent;
 import org.apache.commons.lang3.mutable.MutableBoolean;
 import org.apache.commons.lang3.tuple.Pair;
 import org.jetbrains.annotations.Nullable;
@@ -53,6 +56,52 @@ public class HarvestEventHandler {
             event.setUseBlock(TriState.FALSE);
             event.setUseItem(TriState.FALSE);
         }
+    }
+
+    @SubscribeEvent(
+            priority = EventPriority.HIGHEST
+    )
+    public static void onBlockBreak(BlockEvent.BreakEvent event) {
+        if (!Harvest.safeHarvest()) return;
+        Player player = event.getPlayer();
+        if (player.isCreative() || player.isShiftKeyDown()) return;
+
+        BlockState state = event.getState();
+        if (isImmatureCrop(state)) {
+            event.setCanceled(true);
+        }
+    }
+
+    private static boolean isImmatureCrop(BlockState state) {
+        Block block = state.getBlock();
+        if (block instanceof CropBlock crop) {
+            return !crop.isMaxAge(state);
+        }
+
+        // Check if any state of this block is in our harvestable crops map
+        for (BlockState harvestableState : Harvest.getCrops().keySet()) {
+            if (harvestableState.getBlock() == block) {
+                // If current state IS one of the harvestable states, it's not immature
+                if (state.equals(harvestableState)) {
+                    return false;
+                }
+
+                // If block has an age property, check if current age is less than harvestable age
+                for (Property<?> prop : state.getProperties()) {
+                    if (prop instanceof IntegerProperty intProp && (prop.getName().equals("age") || prop.getName().equals("growth"))) {
+                        if (harvestableState.hasProperty(intProp)) {
+                            int currentAge = state.getValue(intProp);
+                            int harvestAge = harvestableState.getValue(intProp);
+                            if (currentAge < harvestAge) {
+                                return true;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        return false;
     }
 
     public static ClickResult rightClickBlock(Player player, InteractionHand hand, BlockPos pos, BlockHitResult hitResult) {

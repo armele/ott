@@ -92,6 +92,7 @@ public class OttConfig {
         public final ModConfigSpec.ConfigValue<List<? extends String>> BLACKLIST_HELD_ITEMS;
         public final ModConfigSpec.BooleanValue ALLOW_FAKE_PLAYER;
         public final ModConfigSpec.BooleanValue REPLANT_CROPS;
+        public final ModConfigSpec.BooleanValue SAFE_HARVEST;
 
         private static final java.util.function.Predicate<Object> RESOURCE_LOCATION_VALIDATOR = (s) -> s instanceof String str && str.matches("[a-z0-9_.-]+:[a-z0-9_/.-]+");
         private static final java.util.function.Predicate<Object> MOD_ID_VALIDATOR = (s) -> s instanceof String str && str.matches("^[a-z][a-z0-9_]{1,63}$");
@@ -160,6 +161,9 @@ public class OttConfig {
             REPLANT_CROPS = builder.comment("Automatically replant crops after harvesting.")
                     .translation("ott.configuration.harvest.replantcrops")
                     .define("replantCrops", true);
+            SAFE_HARVEST = builder.comment("Prevents immature crops from being broken.")
+                    .translation("ott.configuration.harvest.safeharvest")
+                    .define("safeHarvest", true);
             builder.pop();
         }
     }
