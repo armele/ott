@@ -285,8 +285,6 @@ public static float yLevelWindAdjustment(double y) {
         event.registerEntityRenderer(ModEntities.TINY_CREEPER.get(), CreeperRenderer::new);
         event.registerEntityRenderer(ModEntities.TINY_ENDERMAN.get(), EndermanRenderer::new);
         event.registerEntityRenderer(ModEntities.TINY_BOGGED.get(), BoggedRenderer::new);
-        event.registerEntityRenderer(ModEntities.TINY_DROWNED.get(), DrownedRenderer::new);
-        event.registerEntityRenderer(ModEntities.TINY_HUSK.get(), HuskRenderer::new);
         event.registerEntityRenderer(ModEntities.TINY_STRAY.get(), StrayRenderer::new);
         event.registerEntityRenderer(ModEntities.TINY_WITHER_SKELETON.get(), WitherSkeletonRenderer::new);
         event.registerEntityRenderer(ModEntities.TORCH_ARROW.get(), TorchArrowRenderer::new);

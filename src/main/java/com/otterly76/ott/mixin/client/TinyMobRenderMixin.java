@@ -16,8 +16,8 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 public abstract class TinyMobRenderMixin<T extends LivingEntity, M extends EntityModel<T>> {
     @Inject(method = "render(Lnet/minecraft/world/entity/LivingEntity;FFLcom/mojang/blaze3d/vertex/PoseStack;Lnet/minecraft/client/renderer/MultiBufferSource;I)V", at = @At("HEAD"))
     private void ott$setTinyFlag(LivingEntity entity, float entityYaw, float partialTicks, PoseStack poseStack, MultiBufferSource buffer, int packedLight, CallbackInfo ci) {
-        if (entity instanceof TinySkeleton || entity instanceof TinyBogged || entity instanceof TinyDrowned || 
-            entity instanceof TinyHusk || entity instanceof TinyStray || entity instanceof TinyEnderman ||
+        if (entity instanceof TinySkeleton || entity instanceof TinyBogged || 
+            entity instanceof TinyStray || entity instanceof TinyEnderman ||
             entity instanceof TinyCreeper || entity instanceof TinyWitherSkeleton) {
             TinyMobRenderState.isRenderingTiny = true;
         }

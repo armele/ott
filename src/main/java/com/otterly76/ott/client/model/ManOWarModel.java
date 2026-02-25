@@ -8,7 +8,7 @@ import software.bernie.geckolib.model.GeoModel;
 public class ManOWarModel<T extends ManOWar> extends GeoModel<T> {
     @Override
     public ResourceLocation getModelResource(T manOWar) {
-        return Constants.loc("geo/man_o_war.geo.json");
+        return Constants.loc("geo/entity/man_o_war/man_o_war.geo.json");
     }
 
     @Override

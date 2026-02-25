@@ -49,11 +49,6 @@ public class ModEntities {
     public static final Supplier<EntityType<TinyBogged>> TINY_BOGGED = OTT_ENTITY_TYPES.register("tiny_bogged",
             () -> Builder.of(TinyBogged::new, MobCategory.MONSTER).sized(0.6F, 1.99F).build("tiny_bogged"));
 
-    public static final Supplier<EntityType<TinyDrowned>> TINY_DROWNED = OTT_ENTITY_TYPES.register("tiny_drowned",
-            () -> Builder.of(TinyDrowned::new, MobCategory.MONSTER).sized(0.6F, 1.95F).build("tiny_drowned"));
-
-    public static final Supplier<EntityType<TinyHusk>> TINY_HUSK = OTT_ENTITY_TYPES.register("tiny_husk",
-            () -> Builder.of(TinyHusk::new, MobCategory.MONSTER).sized(0.6F, 1.95F).build("tiny_husk"));
 
     public static final Supplier<EntityType<TinyStray>> TINY_STRAY = OTT_ENTITY_TYPES.register("tiny_stray",
             () -> Builder.of(TinyStray::new, MobCategory.MONSTER).sized(0.6F, 1.99F).build("tiny_stray"));

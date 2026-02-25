@@ -66,8 +66,6 @@ public class DimensionEvents {
                 case Skeleton s when !(s instanceof TinySkeleton) -> ModEntities.TINY_SKELETON.get();
                 case Creeper c when !(c instanceof TinyCreeper) -> ModEntities.TINY_CREEPER.get();
                 case EnderMan e when !(e instanceof TinyEnderman) -> ModEntities.TINY_ENDERMAN.get();
-                case Drowned d when !(d instanceof TinyDrowned) -> ModEntities.TINY_DROWNED.get();
-                case Husk h when !(h instanceof TinyHusk) -> ModEntities.TINY_HUSK.get();
                 default -> null;
             };
         }

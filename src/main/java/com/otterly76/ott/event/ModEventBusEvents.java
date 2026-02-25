@@ -32,8 +32,6 @@ public class ModEventBusEvents {
         event.put(ModEntities.TINY_CREEPER.get(), TinyCreeper.createAttributes().build());
         event.put(ModEntities.TINY_ENDERMAN.get(), TinyEnderman.createAttributes().build());
         event.put(ModEntities.TINY_BOGGED.get(), TinyBogged.createAttributes().build());
-        event.put(ModEntities.TINY_DROWNED.get(), TinyDrowned.createAttributes().build());
-        event.put(ModEntities.TINY_HUSK.get(), TinyHusk.createAttributes().build());
         event.put(ModEntities.TINY_STRAY.get(), TinyStray.createAttributes().build());
         event.put(ModEntities.TINY_WITHER_SKELETON.get(), TinyWitherSkeleton.createAttributes().build());
         event.put(ModEntities.MAN_O_WAR.get(), com.otterly76.ott.entity.custom.ManOWar.createAttributes().build());

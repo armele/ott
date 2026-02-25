@@ -19,7 +19,7 @@ public class CreakingRenderer<T extends Creaking> extends MobRenderer<T, Creakin
 
     public CreakingRenderer(EntityRendererProvider.Context context) {
         super(context, new CreakingModel<>(context.bakeLayer(ModModelLayers.CREAKING)), 0.7F);
-        this.addLayer(new LivingEntityEmissiveLayer<>(this, (creaking) -> EYES_TEXTURE_LOCATION, (creaking, ageInTicks) -> creaking.shouldEyesGlow() ? 1.0F : 0.0F, new CreakingModel<>(context.bakeLayer(ModModelLayers.CREAKING)), RenderType::eyes, true));
+        this.addLayer(new LivingEntityEmissiveLayer<>(this, (creaking) -> EYES_TEXTURE_LOCATION, (creaking, ageInTicks) -> creaking.shouldEyesGlow() ? 1.0F : 0.0F, new CreakingModel<>(context.bakeLayer(ModModelLayers.CREAKING)), RenderType::entityTranslucentEmissive, true));
     }
 
     @Override

@@ -2,6 +2,7 @@ package com.otterly76.ott.client.render.layers;
 
 import com.mojang.blaze3d.vertex.PoseStack;
 import net.minecraft.client.model.HierarchicalModel;
+import net.minecraft.client.renderer.LightTexture;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.entity.LivingEntityRenderer;
@@ -43,7 +44,7 @@ public class LivingEntityEmissiveLayer<T extends LivingEntity, M extends Hierarc
                 int color = ARGB32.color(Mth.floor(alpha * 255.0F), 255, 255, 255);
                 this.model.prepareMobModel(entity, limbSwing, limbSwingAmount, partialTick);
                 this.model.setupAnim(entity, limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch);
-                this.model.renderToBuffer(poseStack, buffer.getBuffer(renderType), packedLight, LivingEntityRenderer.getOverlayCoords(entity, 0.0F), color);
+                this.model.renderToBuffer(poseStack, buffer.getBuffer(renderType), LightTexture.FULL_BRIGHT, LivingEntityRenderer.getOverlayCoords(entity, 0.0F), color);
                 this.getParentModel().copyPropertiesTo(this.model);
             }
         }

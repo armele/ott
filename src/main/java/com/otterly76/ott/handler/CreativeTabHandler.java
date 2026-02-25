@@ -301,8 +301,6 @@ public class CreativeTabHandler {
             event.accept(ModItems.TINY_CREEPER_SPAWN_EGG);
             event.accept(ModItems.TINY_ENDERMAN_SPAWN_EGG);
             event.accept(ModItems.TINY_BOGGED_SPAWN_EGG);
-            event.accept(ModItems.TINY_DROWNED_SPAWN_EGG);
-            event.accept(ModItems.TINY_HUSK_SPAWN_EGG);
             event.accept(ModItems.TINY_STRAY_SPAWN_EGG);
             event.accept(ModItems.TINY_WITHER_SKELETON_SPAWN_EGG);
 
