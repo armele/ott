@@ -22,7 +22,7 @@ public class WorldTemplateHandler {
 
     private static final String TEMPLATE_PATH = "world_template/region";
 
-    private static final ResourceKey<Level> TARGET_DIMENSION = ResourceKey.create(
+    public static final ResourceKey<Level> TARGET_DIMENSION = ResourceKey.create(
             Registries.DIMENSION,
             ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, "mine_colonies_schema_dimension")
     );

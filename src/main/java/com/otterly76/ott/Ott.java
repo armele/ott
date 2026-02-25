@@ -17,6 +17,9 @@ import com.otterly76.ott.entity.variant.WolfSoundVariantReloadListener;
 import com.otterly76.ott.entity.variant.SpawnConditions;
 import com.otterly76.ott.inventory.ModMenuTypes;
 import com.otterly76.ott.handler.CreativeTabHandler;
+import com.otterly76.ott.handler.DimensionAwareSurvivalHandler;
+import com.ldtteam.structurize.storage.ISurvivalBlueprintHandler;
+import com.ldtteam.structurize.storage.SurvivalBlueprintHandlers;
 import com.otterly76.ott.item.ModItems;
 import com.otterly76.ott.loot.ModLootModifiers;
 import com.otterly76.ott.mixin.common.AccessorItem;
@@ -191,6 +194,12 @@ public class Ott {
 
     private void onLoadComplete(FMLLoadCompleteEvent event) {
         LoadCompleteCallback.fire();
+
+        // Wrap MineColonies survival handler to enable blueprint mode in schema dimension
+        ISurvivalBlueprintHandler original = SurvivalBlueprintHandlers.getHandler("minecolonies");
+        if (original != null) {
+            SurvivalBlueprintHandlers.registerHandler(new DimensionAwareSurvivalHandler(original));
+        }
     }
 
     private void setup() {
