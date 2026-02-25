@@ -16,39 +16,36 @@ import java.nio.file.Path;
 import java.util.concurrent.CompletableFuture;
 
 /**
- * Merges src/main/resources/assets/minecraft/lang/en_us_base.json
- * and writes src/generated/resources/assets/minecraft/lang/en_us.json
+ * Merges base lang files and writes generated en_us.json files for both minecraft and ott namespaces.
  */
-public class MinecraftLangMergeProvider implements DataProvider {
+public class ModLangMergeProvider implements DataProvider {
     private static final Gson GSON = new GsonBuilder().setPrettyPrinting().create();
 
     private final PackOutput output;
 
-    public MinecraftLangMergeProvider(PackOutput output) {
+    public ModLangMergeProvider(PackOutput output) {
         this.output = output;
     }
 
     @Override
     public @NotNull CompletableFuture<?> run(@NotNull CachedOutput cachedOutput) {
-        JsonObject merged = readBaseLang("assets/minecraft/lang/en_us_base.json");
+        JsonObject mcBase = readBaseLang("assets/minecraft/lang/en_us_base.json");
         JsonObject ottBase = readBaseLang("assets/ott/lang/en_us_base.json");
 
-        // Merge OTT base into Minecraft base
-        ottBase.entrySet().forEach(entry -> {
-            if (!merged.has(entry.getKey())) {
-                merged.add(entry.getKey(), entry.getValue());
-            }
-        });
-
-        // Add auto-generated wood set entries
+        // Add auto-generated wood set entries to OTT base
         for (ModWoodSets.WoodSet set : ModWoodSets.ALL) {
-            addWoodSetEntries(merged, set.name());
+            addWoodSetEntries(ottBase, set.name());
         }
 
-        Path out = output.getOutputFolder(PackOutput.Target.RESOURCE_PACK)
+        Path mcOut = output.getOutputFolder(PackOutput.Target.RESOURCE_PACK)
                 .resolve("minecraft/lang/en_us.json");
+        Path ottOut = output.getOutputFolder(PackOutput.Target.RESOURCE_PACK)
+                .resolve("ott/lang/en_us.json");
 
-        return DataProvider.saveStable(cachedOutput, merged, out);
+        return CompletableFuture.allOf(
+                DataProvider.saveStable(cachedOutput, mcBase, mcOut),
+                DataProvider.saveStable(cachedOutput, ottBase, ottOut)
+        );
     }
 
     private void addWoodSetEntries(JsonObject json, String name) {
@@ -75,12 +72,12 @@ public class MinecraftLangMergeProvider implements DataProvider {
 
     @Override
     public @NotNull String getName() {
-        return "Minecraft Lang (merge base into en_us.json)";
+        return "Mod Lang Merge Provider";
     }
 
     @SuppressWarnings("DuplicatedCode")
     private JsonObject readBaseLang(String path) {
-        try (var in = MinecraftLangMergeProvider.class.getClassLoader().getResourceAsStream(path)) {
+        try (var in = ModLangMergeProvider.class.getClassLoader().getResourceAsStream(path)) {
             if (in == null) throw new IllegalStateException("Missing " + path + " on classpath");
 
             JsonElement el = GSON.fromJson(new InputStreamReader(in, StandardCharsets.UTF_8), JsonElement.class);
