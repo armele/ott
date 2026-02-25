@@ -1,6 +1,0 @@
-{
-    "parent": "optifine/cit/items/paintings/models/painting1x2",
-    "textures": {
-        "front": "item/painting/graham"
-    }
-}

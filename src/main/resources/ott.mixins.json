@@ -154,6 +154,7 @@
     "client.MouseHandlerMixin",
     "client.MusicManagerMixin",
     "client.NarratorToastMixin",
+    "client.PaintingItemMixin",
     "client.PigRendererMixin",
     "client.SheepRendererMixin",
     "client.SoundEngineMixin",
