@@ -5,7 +5,6 @@ import com.mojang.serialization.codecs.RecordCodecBuilder;
 import com.otterly76.ott.duck.StructurePoolAccess;
 import com.otterly76.ott.mixin.common.HolderReferenceAccessor;
 import com.otterly76.ott.mixin.common.JigsawStructureAccessor;
-import com.otterly76.ott.worldgen.OttCodecs;
 import com.otterly76.ott.worldgen.placementcondition.LandBasePlacementCondition;
 import com.otterly76.ott.worldgen.structure.AlternateJigsawStructure;
 import com.otterly76.ott.worldgen.structure.DelegatingConfig;
