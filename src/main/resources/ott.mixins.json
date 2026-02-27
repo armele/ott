@@ -77,7 +77,6 @@
     "common.SimpleBlockFeatureMixin",
     "common.SimpleContainerAccessor",
     "common.SinglePoolElementAccessor",
-    "common.SinglePoolElementMixin",
     "common.SnowLayerBlockMixin",
     "common.StructureProcessorListAccessor",
     "common.StructureSetAccessor",

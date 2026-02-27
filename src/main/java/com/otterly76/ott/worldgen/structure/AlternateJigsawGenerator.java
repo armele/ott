@@ -11,6 +11,7 @@ import net.minecraft.data.worldgen.Pools;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.tags.TagKey;
 import net.minecraft.util.RandomSource;
 import net.minecraft.util.SequencedPriorityIterator;
 import net.minecraft.world.level.LevelHeightAccessor;
@@ -78,9 +79,10 @@ public class AlternateJigsawGenerator {
 
             if (pieceWithinPaddingBounds(heightLimitView, config.dimensionPadding(), piece.getBoundingBox())) {
                 return Optional.empty();
-            } else {
-                int originY = computedY + vec3i.getY();
-                return Optional.of(new Structure.GenerationStub(new BlockPos(originX, originY, originZ), (collector) -> {
+            }
+
+            int originY = computedY + vec3i.getY();
+            return Optional.of(new Structure.GenerationStub(new BlockPos(originX, originY, originZ), (collector) -> {
                     List<PoolElementStructurePiece> list = Lists.newArrayList();
                     list.add(piece);
                     if (size > 0) {
@@ -95,7 +97,6 @@ public class AlternateJigsawGenerator {
                     }
                     list.forEach(collector::addPiece);
                 }));
-            }
         }
     }
 
@@ -108,6 +109,7 @@ public class AlternateJigsawGenerator {
             return boundingBox.minY() < minY || boundingBox.maxY() > maxY;
         }
     }
+
 
     private static Optional<BlockPos> findNamedJigsaw(StructurePoolElement pool, ResourceLocation id, BlockPos pos, Rotation rotation, StructureTemplateManager structureManager, WorldgenRandom random) {
         List<StructureTemplate.StructureBlockInfo> list = pool.getShuffledJigsawBlocks(structureManager, pos, rotation, random);
