@@ -81,7 +81,7 @@
                             
                             "type": "noise",
                             "noise": "ott:mountains_valleys",
-                            "xz_scale": 0.0875,
+                            "xz_scale": 0.175,
                             "y_scale": 0
                           }
                         }

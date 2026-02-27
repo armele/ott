@@ -39,7 +39,7 @@
                           
                           "type": "noise",
                           "noise": "ott:orogeny",
-                          "xz_scale": 0.03,
+                          "xz_scale": 0.06,
                           "y_scale": 0
                         }
                       }
@@ -72,7 +72,7 @@
                       
                       "type": "noise",
                       "noise": "ott:orogeny_variation",
-                      "xz_scale": 0.04,
+                      "xz_scale": 0.08,
                       "y_scale": 0
                     }
                   },

@@ -114,7 +114,7 @@
                         
                         "type": "noise",
                         "noise": "minecraft:continentalness_large",
-                        "xz_scale": 0.05,
+                        "xz_scale": 0.1,
                         "y_scale": 0
                       }
                     },
@@ -125,7 +125,7 @@
                         
                         "type": "noise",
                         "noise": "ott:continentalness",
-                        "xz_scale": 0.025,
+                        "xz_scale": 0.05,
                         "y_scale": 0
                       }
                     }

@@ -258,6 +258,7 @@ public class Ott {
     public static void registerCommonModifiers(BiConsumer<String, MapCodec<? extends Modifier>> consumer) {
         @SuppressWarnings("unchecked")
         BiConsumer<String, MapCodec<?>> registry = (id, codec) -> consumer.accept(id, (MapCodec<? extends Modifier>) codec);
+        registry.accept("auto_land_base", AutoLandBaseModifier.CODEC);
         registry.accept("internal/compile_raw_templates", CompileRawTemplatesModifier.CODEC);
         registry.accept("add_processor_list_processors", AddProcessorListProcessorsModifier.CODEC);
         registry.accept("add_structure_set_entries", AddStructureSetEntriesModifier.CODEC);
@@ -331,6 +332,7 @@ public class Ott {
         consumer.accept("grid", GridPlacementCondition.CODEC);
         consumer.accept("height_filter", HeightFilterPlacementCondition.CODEC);
         consumer.accept("in_biome", InBiomePlacementCondition.CODEC);
+        consumer.accept("land_base", LandBasePlacementCondition.CODEC);
         consumer.accept("multiple_of", MultipleOfPlacementCondition.CODEC);
         consumer.accept("not", NotPlacementCondition.CODEC);
         consumer.accept("offset", OffsetPlacementCondition.CODEC);

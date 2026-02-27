@@ -30,7 +30,7 @@ import java.util.function.Function;
 public abstract class SinglePoolElementMixin {
 
     @Unique
-    private static final int MAX_H_DIFF = 4;
+    private static final int MAX_H_DIFF = 12;
 
     /**
      * Deterministic validation using the building's ACTUAL NBT size.
@@ -79,12 +79,6 @@ public abstract class SinglePoolElementMixin {
         };
 
         for (int[] pt : footprint) {
-            Holder<Biome> biome = level.getUncachedNoiseBiome(pt[0] >> 2, pos.getY() >> 2, pt[1] >> 2);
-            if (biome.is(BiomeTags.IS_RIVER) || biome.is(BiomeTags.IS_OCEAN)) {
-                cir.setReturnValue(false);
-                return;
-            }
-
             int ptH = generator.getFirstFreeHeight(pt[0], pt[1], Heightmap.Types.WORLD_SURFACE_WG, level, rs);
             if (Math.abs(ptH - anchorH) > MAX_H_DIFF) {
                 cir.setReturnValue(false);

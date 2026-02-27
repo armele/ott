@@ -1,0 +1,5 @@
+{
+  "type": "ott:auto_land_base",
+  "exclude": "#ott:auto_land_base_exclude",
+  "include": "#ott:auto_land_base_include"
+}
