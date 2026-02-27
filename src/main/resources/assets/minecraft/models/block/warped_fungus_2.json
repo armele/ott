@@ -1,4 +1,5 @@
 {
+"render_type": "minecraft:cutout",
 	"textures": {
 		"1": "block/warped_fungus_2",
         	"particle": "item/warped_fungus"

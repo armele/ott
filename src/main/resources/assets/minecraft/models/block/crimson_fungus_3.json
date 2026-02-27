@@ -1,4 +1,5 @@
 {
+"render_type": "minecraft:cutout",
 	"credit": "Made by NinthWorld with Blockbench",
 	"textures": {
 		"2": "block/crimson_fungus_4",

@@ -1,5 +1,6 @@
 {
 	"parent": "block/block",
+	"render_type": "minecraft:cutout",
 	"textures": {
 		"3": "block/cactus_flower_1",
 		"4": "block/cactus_flower_2",

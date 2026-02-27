@@ -1,4 +1,5 @@
 {
+"render_type": "minecraft:cutout",
 	"ambientocclusion": false,
 	"textures": {
 		"particle": "block/dark_oak_door_top",

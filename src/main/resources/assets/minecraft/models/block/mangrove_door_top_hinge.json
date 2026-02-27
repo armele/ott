@@ -1,4 +1,5 @@
 {
+"render_type": "minecraft:cutout",
 	"ambientocclusion": false,
 	"textures": {
 		"extra": "block/mangrove_door_extra",

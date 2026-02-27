@@ -1,4 +1,5 @@
 {
+"render_type": "minecraft:cutout",
     "ambientocclusion": false,
     "textures": {
         "texture": "block/bamboo_small_leaves",

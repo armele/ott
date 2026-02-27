@@ -1,4 +1,5 @@
 {
+"render_type": "minecraft:cutout",
 	"textures": {
 		"particle": "block/crimson_trapdoor",
 		"texture": "block/crimson_trapdoor",
