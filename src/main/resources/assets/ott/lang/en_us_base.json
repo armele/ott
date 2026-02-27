@@ -341,6 +341,7 @@
     "ott.configuration.visuals.freenametagrenaming":  "Free Name Tag Renaming",
     "ott.configuration.visuals.loweranvilcosts":  "Lower Anvil Costs",
     "ott.configuration.worldgen.palegardenrarity":  "Pale Garden Rarity",
+    "ott.configuration.worldgen.spawnruinedportals": "Spawn Ruined Portals",
     "ott.configuration.yLevelWindAdjustment":  "Adjust wind by Y level",
     "ott.item.name_tag.description":  "Use %s + %s to set a new name without an anvil.",
     "ott.name_tag.edit":  "Edit %s",

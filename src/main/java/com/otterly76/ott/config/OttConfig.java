@@ -355,16 +355,18 @@ public class OttConfig {
         }
     }
 
-
-    @SuppressWarnings("ClassCanBeRecord")
     public static class WorldGen {
         public final ModConfigSpec.IntValue PALE_GARDEN_RARITY;
+        public final ModConfigSpec.BooleanValue SPAWN_RUINED_PORTALS;
 
         public WorldGen(ModConfigSpec.Builder builder) {
             builder.push("worldgen");
             PALE_GARDEN_RARITY = builder.comment("Rarity of the Pale Garden biome")
                     .translation("ott.configuration.worldgen.palegardenrarity")
                     .defineInRange("rarity", 10, 1, 100);
+            SPAWN_RUINED_PORTALS = builder.comment("Should ruined nether portals spawn in the world?")
+                    .translation("ott.configuration.worldgen.spawnruinedportals")
+                    .define("spawnRuinedPortals", true);
             builder.pop();
         }
     }
