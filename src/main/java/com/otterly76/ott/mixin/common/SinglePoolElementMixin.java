@@ -27,7 +27,7 @@ import java.util.function.Function;
 public abstract class SinglePoolElementMixin {
 
     @Unique
-    private static final int MAX_H_DIFF = 12;
+    private static final int MAX_H_DIFF = 24;
 
     /**
      * Deterministic validation using the building's ACTUAL NBT size.
