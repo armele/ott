@@ -65,6 +65,7 @@ Mods, Resourcepacks, and Datapacks You Will Not Need:
 - Low Shield, Lower Shield, Small Shield & Totem, Smaller Shield & Totem
 - Mixed Litter, other randomization and variation mods/resourcepacks for mobs
 - No Farmland Trample, Trample No More
+- No Ruined Nether Portals
 - Not Enough Recipe Book
 - Overloaded Armor Bar
 - Permanent Sponges
