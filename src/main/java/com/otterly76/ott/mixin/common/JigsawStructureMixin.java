@@ -60,6 +60,7 @@ public class JigsawStructureMixin {
     ) {
         return AlternateJigsawStructure.generate(
                 context,
+                (JigsawStructure) (Object) this,
                 new AlternateJigsawConfig(
                         startPool,
                         (Optional<ResourceLocation>) startJigsawName,

@@ -50,11 +50,11 @@ public class AlternateJigsawStructure extends Structure {
         ChunkPos chunkPos = context.chunkPos();
         int i = this.config.startHeight().sample(context.random(), new WorldGenerationContext(context.chunkGenerator(), context.heightAccessor()));
         BlockPos blockPos = new BlockPos(chunkPos.getMinBlockX(), i, chunkPos.getMinBlockZ());
-        return generate(context, this.config, false, this.config.size().sample(context.random()), blockPos, PoolAliasLookup.create(this.config.poolAliases(), blockPos, context.seed()));
+        return generate(context, this, this.config, false, this.config.size().sample(context.random()), blockPos, PoolAliasLookup.create(this.config.poolAliases(), blockPos, context.seed()));
     }
 
-    public static Optional<Structure.GenerationStub> generate(Structure.GenerationContext context, AlternateJigsawConfig config, boolean vanilla, int size, BlockPos pos, PoolAliasLookup aliasLookup) {
-        return AlternateJigsawGenerator.generate(context, config, vanilla, size, pos, aliasLookup);
+    public static Optional<Structure.GenerationStub> generate(Structure.GenerationContext context, Structure structure, AlternateJigsawConfig config, boolean vanilla, int size, BlockPos pos, PoolAliasLookup aliasLookup) {
+        return AlternateJigsawGenerator.generate(context, structure, config, vanilla, size, pos, aliasLookup);
     }
 
     public @NotNull StructureType<?> type() {

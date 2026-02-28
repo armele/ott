@@ -11,6 +11,7 @@ import net.minecraft.data.worldgen.Pools;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.tags.TagKey;
 import net.minecraft.util.RandomSource;
 import net.minecraft.util.SequencedPriorityIterator;
 import net.minecraft.world.level.LevelHeightAccessor;
@@ -18,6 +19,7 @@ import net.minecraft.world.level.block.JigsawBlock;
 import net.minecraft.world.level.block.Rotation;
 import net.minecraft.world.level.chunk.ChunkGenerator;
 import net.minecraft.world.level.levelgen.Heightmap.Types;
+import net.minecraft.world.level.levelgen.RandomState;
 import net.minecraft.world.level.levelgen.WorldgenRandom;
 import net.minecraft.world.level.levelgen.structure.BoundingBox;
 import net.minecraft.world.level.levelgen.structure.PoolElementStructurePiece;
@@ -35,7 +37,9 @@ import org.jetbrains.annotations.Nullable;
 import java.util.*;
 
 public class AlternateJigsawGenerator {
-    public static Optional<Structure.GenerationStub> generate(Structure.GenerationContext context, AlternateJigsawConfig config, boolean vanilla, int size, BlockPos pos, PoolAliasLookup aliasLookup) {
+    private static final TagKey<Structure> VILLAGE_TAG = TagKey.create(Registries.STRUCTURE, ResourceLocation.fromNamespaceAndPath("minecraft", "village"));
+
+    public static Optional<Structure.GenerationStub> generate(Structure.GenerationContext context, Structure structure, AlternateJigsawConfig config, boolean vanilla, int size, BlockPos pos, PoolAliasLookup aliasLookup) {
         RegistryAccess registries = context.registryAccess();
         ChunkGenerator chunkGenerator = context.chunkGenerator();
         StructureTemplateManager structureTemplateManager = context.structureTemplateManager();
@@ -65,6 +69,16 @@ public class AlternateJigsawGenerator {
             BlockPos blockPos2 = pos.subtract(vec3i);
             PoolElementStructurePiece piece = new PoolElementStructurePiece(structureTemplateManager, startingElement, blockPos2, startingElement.getGroundLevelDelta(), rotation, startingElement.getBoundingBox(structureTemplateManager, blockPos2, rotation), config.liquidSettings());
             BoundingBox blockBox = piece.getBoundingBox();
+
+            if (isVillage(context.registryAccess(), structure)) {
+                if (blockBox.getXSpan() <= 1 && blockBox.getZSpan() <= 1) {
+                    return Optional.empty();
+                }
+                if (!isAnchorStable(context, blockBox)) {
+                    return Optional.empty();
+                }
+            }
+
             int originX = (blockBox.maxX() + blockBox.minX()) / 2;
             int originZ = (blockBox.maxZ() + blockBox.minZ()) / 2;
 
@@ -107,6 +121,38 @@ public class AlternateJigsawGenerator {
             int maxY = levelHeightAccessor.getMaxBuildHeight() - dimensionPadding.top();
             return boundingBox.minY() < minY || boundingBox.maxY() > maxY;
         }
+    }
+
+    private static boolean isVillage(RegistryAccess registries, Structure structure) {
+        if (structure instanceof DelegatingStructure delegating) {
+            structure = delegating.delegate();
+        }
+        Registry<Structure> registry = registries.registryOrThrow(Registries.STRUCTURE);
+        return registry.getResourceKey(structure).flatMap(registry::getHolder).map((holder) -> holder.is(VILLAGE_TAG)).orElse(false);
+    }
+
+    private static boolean isAnchorStable(Structure.GenerationContext context, BoundingBox box) {
+        ChunkGenerator generator = context.chunkGenerator();
+        LevelHeightAccessor heightLimitView = context.heightAccessor();
+        RandomState randomState = context.randomState();
+
+        int x1 = box.minX();
+        int z1 = box.minZ();
+        int x2 = box.maxX();
+        int z2 = box.maxZ();
+        int xm = (x1 + x2) / 2;
+        int zm = (z1 + z2) / 2;
+
+        int h1 = generator.getFirstFreeHeight(x1, z1, Types.WORLD_SURFACE_WG, heightLimitView, randomState);
+        int h2 = generator.getFirstFreeHeight(x2, z2, Types.WORLD_SURFACE_WG, heightLimitView, randomState);
+        int h3 = generator.getFirstFreeHeight(x1, z2, Types.WORLD_SURFACE_WG, heightLimitView, randomState);
+        int h4 = generator.getFirstFreeHeight(x2, z1, Types.WORLD_SURFACE_WG, heightLimitView, randomState);
+        int hm = generator.getFirstFreeHeight(xm, zm, Types.WORLD_SURFACE_WG, heightLimitView, randomState);
+
+        int minH = Math.min(Math.min(Math.min(h1, h2), Math.min(h3, h4)), hm);
+        int maxH = Math.max(Math.max(Math.max(h1, h2), Math.max(h3, h4)), hm);
+
+        return (maxH - minH) <= 16;
     }
 
 
