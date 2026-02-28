@@ -106,7 +106,7 @@ public class AlternateJigsawGenerator {
                             boxOctree.addBox(AABB.of(blockBox));
                         }
 
-                        generatePieces(context, vanilla, size, config.useExpansionHack(), chunkGenerator, structureTemplateManager, heightLimitView, random, registry, piece, list, boxOctree, aliasLookup, config.liquidSettings());
+                        generatePieces(context, structure, vanilla, size, config.useExpansionHack(), chunkGenerator, structureTemplateManager, heightLimitView, random, registry, piece, list, boxOctree, aliasLookup, config.liquidSettings());
                     }
                     list.forEach(collector::addPiece);
                 }));
@@ -156,6 +156,40 @@ public class AlternateJigsawGenerator {
     }
 
 
+    private static boolean isPieceStable(Structure.GenerationContext context, BoundingBox box) {
+        ChunkGenerator generator = context.chunkGenerator();
+        LevelHeightAccessor heightLimitView = context.heightAccessor();
+        RandomState randomState = context.randomState();
+
+        int x1 = box.minX();
+        int z1 = box.minZ();
+        int x2 = box.maxX();
+        int z2 = box.maxZ();
+        int xm = (x1 + x2) / 2;
+        int zm = (z1 + z2) / 2;
+
+        int[] xs = {x1, x2, x1, x2, xm, xm, x1, x2, xm};
+        int[] zs = {z1, z2, z2, z1, z1, z2, zm, zm, zm};
+
+        int minH = Integer.MAX_VALUE;
+        int maxH = Integer.MIN_VALUE;
+        int pieceY = box.minY();
+        int stableCount = 0;
+
+        for (int i = 0; i < 9; i++) {
+            int h = generator.getFirstFreeHeight(xs[i], zs[i], Types.WORLD_SURFACE_WG, heightLimitView, randomState);
+            minH = Math.min(minH, h);
+            maxH = Math.max(maxH, h);
+            if (pieceY >= h - 16 && pieceY <= h + 8) {
+                stableCount++;
+            }
+        }
+
+        if (stableCount < 5) return false;
+
+        return (maxH - minH) <= 32;
+    }
+
     private static Optional<BlockPos> findNamedJigsaw(StructurePoolElement pool, ResourceLocation id, BlockPos pos, Rotation rotation, StructureTemplateManager structureManager, WorldgenRandom random) {
         List<StructureTemplate.StructureBlockInfo> list = pool.getShuffledJigsawBlocks(structureManager, pos, rotation, random);
         for (StructureTemplate.StructureBlockInfo structureBlockInfo : list) {
@@ -169,8 +203,8 @@ public class AlternateJigsawGenerator {
         return Optional.empty();
     }
 
-    private static void generatePieces(Structure.GenerationContext context, boolean vanilla, int maxSize, boolean useExpansionHack, ChunkGenerator chunkGenerator, StructureTemplateManager structureTemplateManager, LevelHeightAccessor heightLimitView, RandomSource random, Registry<StructureTemplatePool> structurePoolRegistry, PoolElementStructurePiece firstPiece, List<PoolElementStructurePiece> pieces, BoxOctree boxOctree, PoolAliasLookup aliasLookup, LiquidSettings liquidSettings) {
-        StructurePoolGenerator generator = new StructurePoolGenerator(context, vanilla, structurePoolRegistry, maxSize, chunkGenerator, structureTemplateManager, pieces, random);
+    private static void generatePieces(Structure.GenerationContext context, Structure structure, boolean vanilla, int maxSize, boolean useExpansionHack, ChunkGenerator chunkGenerator, StructureTemplateManager structureTemplateManager, LevelHeightAccessor heightLimitView, RandomSource random, Registry<StructureTemplatePool> structurePoolRegistry, PoolElementStructurePiece firstPiece, List<PoolElementStructurePiece> pieces, BoxOctree boxOctree, PoolAliasLookup aliasLookup, LiquidSettings liquidSettings) {
+        StructurePoolGenerator generator = new StructurePoolGenerator(context, structure, vanilla, structurePoolRegistry, maxSize, chunkGenerator, structureTemplateManager, pieces, random);
         generator.generatePiece(firstPiece, boxOctree, 0, useExpansionHack, heightLimitView, aliasLookup, liquidSettings);
 
         while (generator.pieces.hasNext()) {
@@ -188,6 +222,7 @@ public class AlternateJigsawGenerator {
 
     static final class StructurePoolGenerator {
         private final Structure.GenerationContext context;
+        private final Structure structure;
         private final boolean vanilla;
         private final Registry<StructureTemplatePool> registry;
         private final int maxSize;
@@ -198,8 +233,9 @@ public class AlternateJigsawGenerator {
         private final Map<ResourceLocation, Integer> groupCounts = new HashMap<>();
         final SequencedPriorityIterator<PieceState> pieces = new SequencedPriorityIterator<>();
 
-        private StructurePoolGenerator(Structure.GenerationContext context, boolean vanilla, Registry<StructureTemplatePool> registry, int maxSize, ChunkGenerator chunkGenerator, StructureTemplateManager structureTemplateManager, List<? super PoolElementStructurePiece> children, RandomSource random) {
+        private StructurePoolGenerator(Structure.GenerationContext context, Structure structure, boolean vanilla, Registry<StructureTemplatePool> registry, int maxSize, ChunkGenerator chunkGenerator, StructureTemplateManager structureTemplateManager, List<? super PoolElementStructurePiece> children, RandomSource random) {
             this.context = context;
+            this.structure = structure;
             this.vanilla = vanilla;
             this.registry = registry;
             this.maxSize = maxSize;
@@ -343,6 +379,10 @@ public class AlternateJigsawGenerator {
                                         blockBox4.minX(), blockBox4.minY(), blockBox4.minZ(),
                                         blockBox4.maxX(), Math.max(blockBox4.maxY(), blockBox4.minY() + r), blockBox4.maxZ()
                                 );
+                            }
+
+                            if (isVillage(this.context.registryAccess(), this.structure) && !isPieceStable(this.context, blockBox4)) {
+                                continue;
                             }
 
                             if (config.allowBoundingBoxCollisions() || octree.withinBoundsButNotIntersectingChildren(AABB.of(blockBox4).deflate(0.25F))) {
