@@ -4,9 +4,7 @@ import com.otterly76.ott.util.data.BuiltInCoreRegistry;
 import com.mojang.serialization.MapCodec;
 import com.otterly76.ott.Ott;
 import com.otterly76.ott.entity.variant.*;
-import com.otterly76.ott.entity.variant.check.*;
 import com.otterly76.ott.resource.BreaksSeedParityCondition;
-import com.otterly76.ott.worldgen.bandlands.Bandlands;
 import com.otterly76.ott.worldgen.modifier.*;
 import com.otterly76.ott.worldgen.modifier.template.TemplateList;
 import net.minecraft.core.Registry;
@@ -28,10 +26,6 @@ public final class OttBuiltInRegistries {
     public static final Registry<MapCodec<? extends Modifier>> MODIFIER_TYPE;
     private static final DeferredRegister<MapCodec<? extends com.otterly76.ott.worldgen.placementcondition.PlacementCondition>> DEFERRED_PLACEMENT_CONDITION_TYPES;
     public static final Registry<MapCodec<? extends com.otterly76.ott.worldgen.placementcondition.PlacementCondition>> PLACEMENT_CONDITION_TYPE;
-    private static final DeferredRegister<MapCodec<? extends com.otterly76.ott.worldgen.processor.condition.ProcessorCondition>> DEFERRED_PROCESSOR_CONDITION_TYPES;
-    public static final Registry<MapCodec<? extends com.otterly76.ott.worldgen.processor.condition.ProcessorCondition>> PROCESSOR_CONDITION_TYPE;
-    private static final DeferredRegister<MapCodec<? extends com.otterly76.ott.worldgen.bandlands.band.Band>> DEFERRED_BANDLANDS_BAND_TYPES;
-    public static final Registry<MapCodec<? extends com.otterly76.ott.worldgen.bandlands.band.Band>> BANDLANDS_BAND_TYPE;
     private static final DeferredRegister<MapCodec<? extends com.otterly76.ott.entity.variant.SpawnCondition>> DEFERRED_SPAWN_CONDITION_TYPES;
     public static final Registry<MapCodec<? extends com.otterly76.ott.entity.variant.SpawnCondition>> SPAWN_CONDITION_TYPE;
 
@@ -81,7 +75,6 @@ public final class OttBuiltInRegistries {
         bus.addListener(DataPackRegistryEvent.NewRegistry.class, event -> {
             event.dataPackRegistry(OttRegistryKeys.WORLDGEN_MODIFIER, Modifier.CODEC);
             event.dataPackRegistry(OttRegistryKeys.SURFACE_RULE, SurfaceRules.RuleSource.CODEC);
-            event.dataPackRegistry(OttRegistryKeys.BANDLANDS, Bandlands.CODEC);
             event.dataPackRegistry(OttRegistryKeys.TEMPLATE_LIST, TemplateList.CODEC);
         });
 
@@ -91,12 +84,6 @@ public final class OttBuiltInRegistries {
 
         Ott.registerCommonPlacementConditions((name, codec) -> DEFERRED_PLACEMENT_CONDITION_TYPES.register(name, () -> codec));
         DEFERRED_PLACEMENT_CONDITION_TYPES.register(bus);
-
-        Ott.registerCommonProcessorConditions((name, codec) -> DEFERRED_PROCESSOR_CONDITION_TYPES.register(name, () -> codec));
-        DEFERRED_PROCESSOR_CONDITION_TYPES.register(bus);
-
-        Ott.registerCommonBandlandsBandTypes((name, codec) -> DEFERRED_BANDLANDS_BAND_TYPES.register(name, () -> codec));
-        DEFERRED_BANDLANDS_BAND_TYPES.register(bus);
 
         DEFERRED_SPAWN_CONDITION_TYPES.register(bus);
 
@@ -153,10 +140,6 @@ public final class OttBuiltInRegistries {
         MODIFIER_TYPE = DEFERRED_MODIFIER_TYPES.makeRegistry(builder -> builder.sync(false));
         DEFERRED_PLACEMENT_CONDITION_TYPES = DeferredRegister.create(OttRegistryKeys.PLACEMENT_CONDITION_TYPE, "ott");
         PLACEMENT_CONDITION_TYPE = DEFERRED_PLACEMENT_CONDITION_TYPES.makeRegistry(builder -> builder.sync(false));
-        DEFERRED_PROCESSOR_CONDITION_TYPES = DeferredRegister.create(OttRegistryKeys.PROCESSOR_CONDITION_TYPE, "ott");
-        PROCESSOR_CONDITION_TYPE = DEFERRED_PROCESSOR_CONDITION_TYPES.makeRegistry(builder -> builder.sync(false));
-        DEFERRED_BANDLANDS_BAND_TYPES = DeferredRegister.create(OttRegistryKeys.BANDLANDS_BAND_TYPE, "ott");
-        BANDLANDS_BAND_TYPE = DEFERRED_BANDLANDS_BAND_TYPES.makeRegistry(builder -> builder.sync(false));
 
         DEFERRED_SPAWN_CONDITION_TYPES = DeferredRegister.create(OttRegistryKeys.SPAWN_CONDITION_TYPE, "minecraft");
         SPAWN_CONDITION_TYPE = DEFERRED_SPAWN_CONDITION_TYPES.makeRegistry(builder -> builder.sync(false));

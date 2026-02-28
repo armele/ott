@@ -6,7 +6,6 @@ import com.otterly76.ott.mixin.common.NoiseBasedChunkGeneratorAccessor;
 import com.otterly76.ott.registry.OttRegistryKeys;
 import com.otterly76.ott.worldgen.modifier.AddSurfaceRuleModifier;
 import com.otterly76.ott.worldgen.modifier.Modifier;
-import com.otterly76.ott.worldgen.surface.rule.TransientMergedRule;
 import net.minecraft.core.Holder;
 import net.minecraft.core.Registry;
 import net.minecraft.core.RegistryAccess;
@@ -71,11 +70,6 @@ public class SurfaceRuleManager {
         moddedSourceList.sort(Comparator.comparingInt((pair) -> pair.getSecond().priority()));
         moddedSourceList.forEach((pair) -> newRuleSourceList.add(pair.getSecond().surfaceRule()));
         newRuleSourceList.add(originalSource);
-        if (originalSource instanceof TransientMergedRule transientMerged) {
-            transientMerged.sequence().addAll(newRuleSourceList);
-            return originalSource;
-        } else {
-            return new TransientMergedRule(newRuleSourceList, originalSource);
-        }
+        return SurfaceRules.sequence(newRuleSourceList.toArray(SurfaceRules.RuleSource[]::new));
     }
 }

@@ -2,6 +2,7 @@ package com.otterly76.ott.worldgen.structure;
 
 import com.google.common.collect.Lists;
 import com.otterly76.ott.config.ConfigHandler;
+import com.otterly76.ott.config.OttConfig;
 import com.otterly76.ott.duck.StructurePoolAccess;
 import com.otterly76.ott.worldgen.poolelement.DelegatingConfig;
 import com.otterly76.ott.worldgen.poolelement.DelegatingPoolElement;
@@ -38,6 +39,7 @@ import java.util.*;
 
 public class AlternateJigsawGenerator {
     private static final TagKey<Structure> VILLAGE_TAG = TagKey.create(Registries.STRUCTURE, ResourceLocation.fromNamespaceAndPath("minecraft", "village"));
+    private static final Map<Structure, Boolean> IS_VILLAGE_CACHE = Collections.synchronizedMap(new WeakHashMap<>());
 
     public static Optional<Structure.GenerationStub> generate(Structure.GenerationContext context, Structure structure, AlternateJigsawConfig config, boolean vanilla, int size, BlockPos pos, PoolAliasLookup aliasLookup) {
         RegistryAccess registries = context.registryAccess();
@@ -49,7 +51,7 @@ public class AlternateJigsawGenerator {
         Rotation rotation = config.fixedRotation() ? Rotation.NONE : Rotation.getRandom(random);
         StructurePoolElement startingElement = config.startPool().unwrapKey().flatMap((resourceKey) -> registry.getOptional(aliasLookup.lookup(resourceKey))).orElse(config.startPool().value()).getRandomTemplate(random);
 
-        boolean isVillage = isVillage(registries, structure);
+        boolean isVillage = isVillage(registries, structure, config);
         if (startingElement == EmptyPoolElement.INSTANCE) {
             return Optional.empty();
         } else {
@@ -75,7 +77,8 @@ public class AlternateJigsawGenerator {
                 if (blockBox.getXSpan() <= 1 && blockBox.getZSpan() <= 1) {
                     return Optional.empty();
                 }
-                if (!isAnchorStable(context, blockBox)) {
+                Types heightmap = Types.MOTION_BLOCKING_NO_LEAVES;
+                if (OttConfig.WORLDGEN.VILLAGE_STABILITY_ENABLED.get() && !isAnchorStable(context, blockBox, heightmap)) {
                     return Optional.empty();
                 }
             }
@@ -85,7 +88,7 @@ public class AlternateJigsawGenerator {
 
             int computedY = config.startProjection().flatMap((either) -> either.map(
                     (snap) -> snap.findY(new BlockPos(originX, blockPos2.getY(), originZ), context, heightLimitView, context.randomState()),
-                    (type) -> Optional.of(pos.getY() + chunkGenerator.getFirstFreeHeight(originX, originZ, isVillage ? Types.OCEAN_FLOOR_WG : type, heightLimitView, context.randomState()))
+                    (type) -> Optional.of(pos.getY() + chunkGenerator.getFirstFreeHeight(originX, originZ, isVillage ? Types.MOTION_BLOCKING_NO_LEAVES : type, heightLimitView, context.randomState()))
             )).orElse(blockPos2.getY());
 
             int l = blockBox.minY() + piece.getGroundLevelDelta();
@@ -101,13 +104,13 @@ public class AlternateJigsawGenerator {
                     list.add(piece);
                     if (size > 0) {
                         AlternateJigsawConfig.MaxDistance maxDistance = config.maxDistanceFromCenter();
-                        AABB box = new AABB(originX - maxDistance.horizontal(), Math.max(originY - maxDistance.vertical(), heightLimitView.getMinBuildHeight() + config.dimensionPadding().bottom()), originZ - maxDistance.horizontal(), originX + maxDistance.horizontal() + 1, Math.min(originY + maxDistance.vertical() + 1, heightLimitView.getMaxBuildHeight() - config.dimensionPadding().top()), originZ + maxDistance.horizontal() + 1);
+                        AABB box = new AABB(pos.getX() - maxDistance.horizontal(), Math.max(originY - maxDistance.vertical(), heightLimitView.getMinBuildHeight() + config.dimensionPadding().bottom()), pos.getZ() - maxDistance.horizontal(), pos.getX() + maxDistance.horizontal() + 1, Math.min(originY + maxDistance.vertical() + 1, heightLimitView.getMaxBuildHeight() - config.dimensionPadding().top()), pos.getZ() + maxDistance.horizontal() + 1);
                         BoxOctree boxOctree = new BoxOctree(box);
                         if (!getConfig(startingElement).otherPiecesCanIntersect()) {
-                            boxOctree.addBox(AABB.of(blockBox));
+                            getCollisionBox(blockBox).ifPresent(boxOctree::addBox);
                         }
 
-                        generatePieces(context, structure, vanilla, size, config.useExpansionHack(), chunkGenerator, structureTemplateManager, heightLimitView, random, registry, piece, list, boxOctree, aliasLookup, config.liquidSettings(), isVillage ? Types.OCEAN_FLOOR_WG : config.startProjection().flatMap(e -> e.right()).orElse(Types.WORLD_SURFACE_WG));
+                        generatePieces(context, structure, vanilla, size, config.useExpansionHack(), chunkGenerator, structureTemplateManager, heightLimitView, random, registry, piece, list, boxOctree, aliasLookup, config.liquidSettings(), isVillage ? Types.MOTION_BLOCKING_NO_LEAVES : config.startProjection().flatMap(e -> e.right()).orElse(Types.WORLD_SURFACE_WG), isVillage);
                     }
                     list.forEach(collector::addPiece);
                 }));
@@ -124,39 +127,43 @@ public class AlternateJigsawGenerator {
         }
     }
 
-    private static boolean isVillage(RegistryAccess registries, Structure structure) {
-        Registry<Structure> registry = registries.registryOrThrow(Registries.STRUCTURE);
-
-        // 1. Check all holders to see if they contain this structure or delegate to it
-        for (Holder.Reference<Structure> holder : registry.holders().toList()) {
-            Structure value = holder.value();
-            if (value == structure) {
-                return holder.is(VILLAGE_TAG);
-            }
-            while (value instanceof DelegatingStructure delegating) {
-                value = delegating.delegate();
-                if (value == structure) {
-                    return holder.is(VILLAGE_TAG);
-                }
-            }
+    private static boolean isVillage(RegistryAccess registries, Structure structure, AlternateJigsawConfig config) {
+        if (config.startPool().unwrapKey().map(k -> k.location().getPath().contains("village")).orElse(false)) {
+            return true;
         }
+        return IS_VILLAGE_CACHE.computeIfAbsent(structure, s -> {
+            Registry<Structure> registry = registries.registryOrThrow(Registries.STRUCTURE);
 
-        // 2. Fallback: if structure itself is a delegate, unwrap and check registry directly
-        Structure temp = structure;
-        while (temp instanceof DelegatingStructure delegating) {
-            temp = delegating.delegate();
+            // 1. Unwrap DelegatingStructure to find the base structure
+            Structure temp = s;
+            while (temp instanceof DelegatingStructure delegating) {
+                temp = delegating.delegate();
+            }
+
+            // 2. Check if the base structure is in the village tag
             Optional<ResourceKey<Structure>> key = registry.getResourceKey(temp);
             if (key.isPresent()) {
                 if (registry.getHolder(key.get()).map(h -> h.is(VILLAGE_TAG)).orElse(false)) {
                     return true;
                 }
             }
-        }
 
-        return false;
+            // 3. Fallback: Check all holders (expensive, but only once per structure type)
+            for (Holder.Reference<Structure> holder : registry.holders().toList()) {
+                Structure value = holder.value();
+                while (value instanceof DelegatingStructure delegating) {
+                    value = delegating.delegate();
+                }
+                if (value == temp && holder.is(VILLAGE_TAG)) {
+                    return true;
+                }
+            }
+
+            return false;
+        });
     }
 
-    private static boolean isAnchorStable(Structure.GenerationContext context, BoundingBox box) {
+    private static boolean isAnchorStable(Structure.GenerationContext context, BoundingBox box, Types heightmap) {
         ChunkGenerator generator = context.chunkGenerator();
         LevelHeightAccessor heightLimitView = context.heightAccessor();
         RandomState randomState = context.randomState();
@@ -168,20 +175,20 @@ public class AlternateJigsawGenerator {
         int xm = (x1 + x2) / 2;
         int zm = (z1 + z2) / 2;
 
-        int h1 = generator.getFirstFreeHeight(x1, z1, Types.OCEAN_FLOOR_WG, heightLimitView, randomState);
-        int h2 = generator.getFirstFreeHeight(x2, z2, Types.OCEAN_FLOOR_WG, heightLimitView, randomState);
-        int h3 = generator.getFirstFreeHeight(x1, z2, Types.OCEAN_FLOOR_WG, heightLimitView, randomState);
-        int h4 = generator.getFirstFreeHeight(x2, z1, Types.OCEAN_FLOOR_WG, heightLimitView, randomState);
-        int hm = generator.getFirstFreeHeight(xm, zm, Types.OCEAN_FLOOR_WG, heightLimitView, randomState);
+        int h1 = generator.getFirstFreeHeight(x1, z1, heightmap, heightLimitView, randomState);
+        int h2 = generator.getFirstFreeHeight(x2, z2, heightmap, heightLimitView, randomState);
+        int h3 = generator.getFirstFreeHeight(x1, z2, heightmap, heightLimitView, randomState);
+        int h4 = generator.getFirstFreeHeight(x2, z1, heightmap, heightLimitView, randomState);
+        int hm = generator.getFirstFreeHeight(xm, zm, heightmap, heightLimitView, randomState);
 
         int minH = Math.min(Math.min(Math.min(h1, h2), Math.min(h3, h4)), hm);
         int maxH = Math.max(Math.max(Math.max(h1, h2), Math.max(h3, h4)), hm);
 
-        return (maxH - minH) <= 64;
+        return (maxH - minH) <= 128;
     }
 
 
-    private static boolean isPieceStable(Structure.GenerationContext context, BoundingBox box) {
+    private static boolean isPieceStable(Structure.GenerationContext context, BoundingBox box, Types heightmap) {
         ChunkGenerator generator = context.chunkGenerator();
         LevelHeightAccessor heightLimitView = context.heightAccessor();
         RandomState randomState = context.randomState();
@@ -202,17 +209,25 @@ public class AlternateJigsawGenerator {
         int stableCount = 0;
 
         for (int i = 0; i < 9; i++) {
-            int h = generator.getFirstFreeHeight(xs[i], zs[i], Types.OCEAN_FLOOR_WG, heightLimitView, randomState);
+            int h = generator.getFirstFreeHeight(xs[i], zs[i], heightmap, heightLimitView, randomState);
             minH = Math.min(minH, h);
             maxH = Math.max(maxH, h);
-            if (pieceY >= h - 128 && pieceY <= h + 64) {
+            if (pieceY >= h - 256 && pieceY <= h + 128) {
                 stableCount++;
             }
         }
 
         if (stableCount < 1) return false;
 
-        return (maxH - minH) <= 128;
+        return (maxH - minH) <= 256;
+    }
+
+    private static Optional<AABB> getCollisionBox(BoundingBox box) {
+        AABB aabb = AABB.of(box).inflate(-1.0);
+        if (aabb.minX >= aabb.maxX || aabb.minY >= aabb.maxY || aabb.minZ >= aabb.maxZ) {
+            return Optional.empty();
+        }
+        return Optional.of(aabb);
     }
 
     private static Optional<BlockPos> findNamedJigsaw(StructurePoolElement pool, ResourceLocation id, BlockPos pos, Rotation rotation, StructureTemplateManager structureManager, WorldgenRandom random) {
@@ -228,8 +243,8 @@ public class AlternateJigsawGenerator {
         return Optional.empty();
     }
 
-    private static void generatePieces(Structure.GenerationContext context, Structure structure, boolean vanilla, int maxSize, boolean useExpansionHack, ChunkGenerator chunkGenerator, StructureTemplateManager structureTemplateManager, LevelHeightAccessor heightLimitView, RandomSource random, Registry<StructureTemplatePool> structurePoolRegistry, PoolElementStructurePiece firstPiece, List<PoolElementStructurePiece> pieces, BoxOctree boxOctree, PoolAliasLookup aliasLookup, LiquidSettings liquidSettings, Types heightmap) {
-        StructurePoolGenerator generator = new StructurePoolGenerator(context, structure, vanilla, structurePoolRegistry, maxSize, chunkGenerator, structureTemplateManager, pieces, random, heightmap);
+    private static void generatePieces(Structure.GenerationContext context, Structure structure, boolean vanilla, int maxSize, boolean useExpansionHack, ChunkGenerator chunkGenerator, StructureTemplateManager structureTemplateManager, LevelHeightAccessor heightLimitView, RandomSource random, Registry<StructureTemplatePool> structurePoolRegistry, PoolElementStructurePiece firstPiece, List<PoolElementStructurePiece> pieces, BoxOctree boxOctree, PoolAliasLookup aliasLookup, LiquidSettings liquidSettings, Types heightmap, boolean isVillage) {
+        StructurePoolGenerator generator = new StructurePoolGenerator(context, structure, vanilla, structurePoolRegistry, maxSize, chunkGenerator, structureTemplateManager, pieces, random, heightmap, isVillage);
         generator.generatePiece(firstPiece, boxOctree, 0, useExpansionHack, heightLimitView, aliasLookup, liquidSettings);
 
         while (generator.pieces.hasNext()) {
@@ -247,7 +262,6 @@ public class AlternateJigsawGenerator {
 
     static final class StructurePoolGenerator {
         private final Structure.GenerationContext context;
-        private final Structure structure;
         private final boolean isVillage;
         private final boolean vanilla;
         private final Registry<StructureTemplatePool> registry;
@@ -260,10 +274,9 @@ public class AlternateJigsawGenerator {
         private final Map<ResourceLocation, Integer> groupCounts = new HashMap<>();
         final SequencedPriorityIterator<PieceState> pieces = new SequencedPriorityIterator<>();
 
-        private StructurePoolGenerator(Structure.GenerationContext context, Structure structure, boolean vanilla, Registry<StructureTemplatePool> registry, int maxSize, ChunkGenerator chunkGenerator, StructureTemplateManager structureTemplateManager, List<? super PoolElementStructurePiece> children, RandomSource random, Types heightmap) {
+        private StructurePoolGenerator(Structure.GenerationContext context, Structure structure, boolean vanilla, Registry<StructureTemplatePool> registry, int maxSize, ChunkGenerator chunkGenerator, StructureTemplateManager structureTemplateManager, List<? super PoolElementStructurePiece> children, RandomSource random, Types heightmap, boolean isVillage) {
             this.context = context;
-            this.structure = structure;
-            this.isVillage = isVillage(context.registryAccess(), structure);
+            this.isVillage = isVillage;
             this.vanilla = vanilla;
             this.registry = registry;
             this.maxSize = maxSize;
@@ -410,8 +423,15 @@ public class AlternateJigsawGenerator {
                                 );
                             }
 
-                            if (config.allowBoundingBoxCollisions() || octree.withinBoundsButNotIntersectingChildren(AABB.of(blockBox4).deflate(1.0F))) {
-                                if (this.isVillage && !isPieceStable(this.context, blockBox4)) {
+                            boolean allowed;
+                            if (!OttConfig.WORLDGEN.JIGSAW_PLACEMENT_RESTRICTIONS_ENABLED.get()) {
+                                allowed = true;
+                            } else {
+                                allowed = config.allowBoundingBoxCollisions() || octree.withinBoundsButNotIntersectingChildren(AABB.of(blockBox4));
+                            }
+
+                            if (allowed) {
+                                if (this.isVillage && OttConfig.WORLDGEN.VILLAGE_STABILITY_ENABLED.get() && !isPieceStable(this.context, blockBox4, this.heightmap)) {
                                     continue;
                                 }
                                 if (isDelegating) {
@@ -419,7 +439,7 @@ public class AlternateJigsawGenerator {
                                 }
 
                                 if (!config.otherPiecesCanIntersect()) {
-                                    octree.addBox(AABB.of(blockBox4));
+                                    getCollisionBox(blockBox4).ifPresent(octree::addBox);
                                 }
 
                                 int r = parentPiece.getGroundLevelDelta();

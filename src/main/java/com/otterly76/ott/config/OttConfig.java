@@ -358,6 +358,8 @@ public class OttConfig {
     public static class WorldGen {
         public final ModConfigSpec.IntValue PALE_GARDEN_RARITY;
         public final ModConfigSpec.BooleanValue SPAWN_RUINED_PORTALS;
+        public final ModConfigSpec.BooleanValue VILLAGE_STABILITY_ENABLED;
+        public final ModConfigSpec.BooleanValue JIGSAW_PLACEMENT_RESTRICTIONS_ENABLED;
 
         public WorldGen(ModConfigSpec.Builder builder) {
             builder.push("worldgen");
@@ -367,6 +369,12 @@ public class OttConfig {
             SPAWN_RUINED_PORTALS = builder.comment("Should ruined nether portals spawn in the world?")
                     .translation("ott.configuration.worldgen.spawnruinedportals")
                     .define("spawnRuinedPortals", true);
+            VILLAGE_STABILITY_ENABLED = builder.comment("Should villages have stability checks to prevent buried or floating structures?")
+                    .translation("ott.configuration.worldgen.villagestabilityenabled")
+                    .define("villageStabilityEnabled", false);
+            JIGSAW_PLACEMENT_RESTRICTIONS_ENABLED = builder.comment("Should jigsaw structures have placement restrictions (collision and boundary checks)?")
+                    .translation("ott.configuration.worldgen.jigsawplacementrestrictionsenabled")
+                    .define("jigsawPlacementRestrictionsEnabled", true);
             builder.pop();
         }
     }

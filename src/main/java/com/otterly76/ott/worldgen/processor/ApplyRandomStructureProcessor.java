@@ -26,18 +26,17 @@ public class ApplyRandomStructureProcessor extends StructureProcessor {
     private static final Codec<HolderSet<StructureProcessorList>> SET_CODEC;
     public static final MapCodec<ApplyRandomStructureProcessor> CODEC;
     public static final StructureProcessorType<ApplyRandomStructureProcessor> TYPE;
+
     private final HolderSet<StructureProcessorList> processorLists;
     private final RandomSettings randomSettings;
 
     private static HolderSet<StructureProcessorList> convertToSet(WeightedList<Holder<StructureProcessorList>> weightedList) {
         List<Holder<StructureProcessorList>> holders = new ArrayList<>();
-
         for(Weighted<Holder<StructureProcessorList>> processor : weightedList.unwrap()) {
             for(int i = 0; i < processor.weight(); ++i) {
                 holders.add(processor.value());
             }
         }
-
         return HolderSet.direct(holders);
     }
 
@@ -62,19 +61,15 @@ public class ApplyRandomStructureProcessor extends StructureProcessor {
             Optional<Holder<StructureProcessorList>> processorList = this.processorLists.getRandomElement(random);
             if (processorList.isPresent()) {
                 StructureTemplate.StructureBlockInfo processedBlock = absolute;
-
                 for(StructureProcessor processor : processorList.get().value().list()) {
-                    // Call the correct 7-argument 'process' method
                     processedBlock = processor.process(levelReader, pos, pivot, relative, processedBlock, settings, template);
                     if (processedBlock == null) {
                         break;
                     }
                 }
-
                 return processedBlock;
             }
         }
-
         return absolute;
     }
 
@@ -86,7 +81,10 @@ public class ApplyRandomStructureProcessor extends StructureProcessor {
     static {
         WEIGHTED_LIST_CODEC = WeightedList.codec(StructureProcessorType.LIST_CODEC);
         SET_CODEC = RegistryCodecs.homogeneousList(Registries.PROCESSOR_LIST, StructureProcessorType.DIRECT_CODEC);
-        CODEC = RecordCodecBuilder.mapCodec((instance) -> instance.group(Codec.withAlternative(SET_CODEC, WEIGHTED_LIST_CODEC, ApplyRandomStructureProcessor::convertToSet).fieldOf("processor_lists").forGetter(ApplyRandomStructureProcessor::processorLists), RandomSettings.CODEC.fieldOf("mode").forGetter(ApplyRandomStructureProcessor::randomSettings)).apply(instance, ApplyRandomStructureProcessor::new));
+        CODEC = RecordCodecBuilder.mapCodec((instance) -> instance.group(
+                Codec.withAlternative(SET_CODEC, WEIGHTED_LIST_CODEC, ApplyRandomStructureProcessor::convertToSet).fieldOf("processor_lists").forGetter(ApplyRandomStructureProcessor::processorLists),
+                RandomSettings.CODEC.fieldOf("mode").forGetter(ApplyRandomStructureProcessor::randomSettings)
+        ).apply(instance, ApplyRandomStructureProcessor::new));
         TYPE = () -> CODEC;
     }
 }

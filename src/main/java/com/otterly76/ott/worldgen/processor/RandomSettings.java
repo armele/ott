@@ -11,7 +11,11 @@ import net.minecraft.world.level.WorldGenLevel;
 import net.minecraft.world.level.levelgen.structure.templatesystem.StructureTemplate;
 
 public record RandomSettings(RandomMode mode, ResourceLocation name) {
-    private static final Codec<RandomSettings> FULL_CODEC = RecordCodecBuilder.create((instance) -> instance.group(RandomMode.CODEC.fieldOf("mode").orElse(RandomMode.PER_BLOCK).forGetter(RandomSettings::mode), ResourceLocation.CODEC.fieldOf("name").forGetter(RandomSettings::name)).apply(instance, RandomSettings::new));
+    private static final Codec<RandomSettings> FULL_CODEC = RecordCodecBuilder.create((instance) -> instance.group(
+            RandomMode.CODEC.fieldOf("mode").orElse(RandomMode.PER_BLOCK).forGetter(RandomSettings::mode),
+            ResourceLocation.CODEC.fieldOf("name").forGetter(RandomSettings::name)
+    ).apply(instance, RandomSettings::new));
+
     public static final Codec<RandomSettings> CODEC;
 
     public RandomSettings(RandomMode mode) {

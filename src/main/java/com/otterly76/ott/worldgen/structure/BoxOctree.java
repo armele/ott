@@ -83,19 +83,29 @@ public class BoxOctree {
 
     }
 
+    private boolean isInvalid(AABB box) {
+        return box.minX >= box.maxX || box.minY >= box.maxY || box.minZ >= box.maxZ;
+    }
+
     public boolean boundaryEntirelyContains(AABB axisAlignedBB) {
-        return this.boundary.contains(axisAlignedBB.minX, axisAlignedBB.minY, axisAlignedBB.minZ) && this.boundary.contains(axisAlignedBB.maxX, axisAlignedBB.maxY, axisAlignedBB.maxZ);
+        if (this.isInvalid(axisAlignedBB)) return false;
+        return axisAlignedBB.minX >= this.boundary.minX && axisAlignedBB.maxX <= this.boundary.maxX &&
+               axisAlignedBB.minY >= this.boundary.minY && axisAlignedBB.maxY <= this.boundary.maxY &&
+               axisAlignedBB.minZ >= this.boundary.minZ && axisAlignedBB.maxZ <= this.boundary.maxZ;
     }
 
     public boolean boundaryIntersects(AABB axisAlignedBB) {
+        if (this.isInvalid(axisAlignedBB)) return false;
         return this.boundary.intersects(axisAlignedBB);
     }
 
     public boolean withinBoundsButNotIntersectingChildren(AABB axisAlignedBB) {
-        return this.boundaryEntirelyContains(axisAlignedBB) && !this.intersectsAnyBox(axisAlignedBB);
+        if (this.isInvalid(axisAlignedBB)) return true; // Empty/inverted box doesn't collide
+        return this.boundaryIntersects(axisAlignedBB) && !this.intersectsAnyBox(axisAlignedBB);
     }
 
     public boolean intersectsAnyBox(AABB axisAlignedBB) {
+        if (this.isInvalid(axisAlignedBB)) return false;
         if (!this.childrenOctants.isEmpty()) {
             for(BoxOctree octree : this.childrenOctants) {
                 if (octree.boundaryIntersects(axisAlignedBB) && octree.intersectsAnyBox(axisAlignedBB)) {
