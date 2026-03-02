@@ -64,6 +64,11 @@ public class OttBlockStateProvider extends ModBlockStateProvider {
 
         simpleBlock(ModBlocks.THORNY_HEDGE.get(), models().getExistingFile(modLoc("block/thorny_hedge")));
 
+        // Use builtin/entity for skull blocks so they rely on the BER and don't require a JSON parent
+        ModelFile skullModel = models().getBuilder("dragon_skull").parent(new ModelFile.UncheckedModelFile("builtin/entity"));
+        simpleBlock(ModBlocks.DRAGON_SKULL.get(), skullModel);
+        simpleBlock(ModBlocks.DRAGON_WALL_SKULL.get(), skullModel);
+
         getVariantBuilder(ModBlocks.THORNY_HEDGE_SPROUTS.get()).forAllStates(state -> {
             int age = state.getValue(ThornyHedgeSprouts.AGE);
             return ConfiguredModel.builder()

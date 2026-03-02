@@ -104,6 +104,10 @@ public class BoxOctree {
         return this.boundaryIntersects(axisAlignedBB) && !this.intersectsAnyBox(axisAlignedBB);
     }
 
+    public AABB getBoundary() {
+        return this.boundary;
+    }
+
     public boolean intersectsAnyBox(AABB axisAlignedBB) {
         if (this.isInvalid(axisAlignedBB)) return false;
         if (!this.childrenOctants.isEmpty()) {

@@ -20,7 +20,6 @@ import net.minecraft.world.level.levelgen.Heightmap.Types;
 import org.jetbrains.annotations.Nullable;
 
 public final class WeatherParticleSpawner {
-    private static final BlockPos.MutableBlockPos pos = new BlockPos.MutableBlockPos();
 
     private static void spawnParticle(ClientLevel level, Holder<Biome> biome, double x, double y, double z) {
         if (ClientModEvents.particleCount <= OttConfig.WEATHER.MAX_PARTICLE_AMOUNT.get()) {
@@ -32,7 +31,8 @@ public final class WeatherParticleSpawner {
                 level.addParticle(ModParticle.FOG.get(), x, y, z, 0.0, 0.0, 0.0);
             }
 
-            Biome.Precipitation precipitation = biome.value().getPrecipitationAt(level.getHeightmapPos(Types.MOTION_BLOCKING, pos));
+            BlockPos particlePos = BlockPos.containing(x, y, z);
+            Biome.Precipitation precipitation = biome.value().getPrecipitationAt(level.getHeightmapPos(Types.MOTION_BLOCKING, particlePos));
             if (precipitation == Precipitation.RAIN) {
                 if (OttConfig.WEATHER.DO_GROUND_FOG_PARTICLES.get() && ClientModEvents.fogCount < OttConfig.WEATHER.GROUND_FOG.DENSITY.get()) {
                     int height = level.getHeight(Types.MOTION_BLOCKING, (int) x, (int) z);
@@ -65,7 +65,8 @@ public final class WeatherParticleSpawner {
     }
 
     public static void update(ClientLevel level, Entity entity, float partialTicks) {
-        RandomSource rand = RandomSource.create();
+        if (entity == null || level == null) return;
+        RandomSource rand = level.getRandom();
 
         // --- Precipitation Effects (Weather Dependent) ---
         if (level.isRaining() || OttConfig.WEATHER.ALWAYS_RAINING.get()) {
@@ -88,9 +89,16 @@ public final class WeatherParticleSpawner {
                 double x = (double) ((float) OttConfig.WEATHER.PARTICLE_RADIUS.get() * Mth.sin(phi)) * Math.cos(theta);
                 double y = (double) ((float) OttConfig.WEATHER.PARTICLE_RADIUS.get() * Mth.sin(phi)) * Math.sin(theta);
                 double z = (float) OttConfig.WEATHER.PARTICLE_RADIUS.get() * Mth.cos(phi);
-                pos.set(x + entity.getX(), y + entity.getY(), z + entity.getZ());
-                if (level.getHeight(Types.MOTION_BLOCKING, pos.getX(), pos.getZ()) <= pos.getY()) {
-                    spawnParticle(level, level.getBiome(pos), (float) pos.getX() + rand.nextFloat(), (float) pos.getY() + rand.nextFloat(), (float) pos.getZ() + rand.nextFloat());
+                
+                double spawnX = x + entity.getX();
+                double spawnY = y + entity.getY();
+                double spawnZ = z + entity.getZ();
+                
+                BlockPos spawnPos = BlockPos.containing(spawnX, spawnY, spawnZ);
+                if (level.isLoaded(spawnPos)) {
+                    if (level.getHeight(Types.MOTION_BLOCKING, spawnPos.getX(), spawnPos.getZ()) <= spawnPos.getY()) {
+                        spawnParticle(level, level.getBiome(spawnPos), spawnX + rand.nextFloat(), spawnY + rand.nextFloat(), spawnZ + rand.nextFloat());
+                    }
                 }
             }
         }

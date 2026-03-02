@@ -8,14 +8,11 @@ import net.minecraft.core.particles.SimpleParticleType;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.network.RegistryFriendlyByteBuf;
 import net.minecraft.network.codec.StreamCodec;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.sounds.SoundEvent;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.neoforge.registries.DeferredHolder;
 import net.neoforged.neoforge.registries.DeferredRegister;
 import org.jetbrains.annotations.NotNull;
-
-import static com.otterly76.ott.Constants.MOD_ID;
 
 public class ModParticle {
     public static final DeferredRegister<ParticleType<?>> PARTICLE_TYPES = DeferredRegister.create(BuiltInRegistries.PARTICLE_TYPE, "ott");
@@ -48,10 +45,10 @@ public class ModParticle {
         SOUND_EVENTS.register(eventBus);
     }
 
-    public static final DeferredHolder<SoundEvent, SoundEvent> WEATHER_SNOW = SOUND_EVENTS.register("weather.snow", () -> SoundEvent.createVariableRangeEvent(ResourceLocation.fromNamespaceAndPath(MOD_ID, "weather.snow")));
-    public static final DeferredHolder<SoundEvent, SoundEvent> WEATHER_SNOW_ABOVE = SOUND_EVENTS.register("weather.snow.above", () -> SoundEvent.createVariableRangeEvent(ResourceLocation.fromNamespaceAndPath(MOD_ID, "weather.snow.above")));
-    public static final DeferredHolder<SoundEvent, SoundEvent> WEATHER_SANDSTORM = SOUND_EVENTS.register("weather.sandstorm", () -> SoundEvent.createVariableRangeEvent(ResourceLocation.fromNamespaceAndPath(MOD_ID, "weather.sandstorm")));
-    public static final DeferredHolder<SoundEvent, SoundEvent> WEATHER_SANDSTORM_ABOVE = SOUND_EVENTS.register("weather.sandstorm.above", () -> SoundEvent.createVariableRangeEvent(ResourceLocation.fromNamespaceAndPath(MOD_ID, "weather.sandstorm.above")));
+    public static final DeferredHolder<SoundEvent, SoundEvent> WEATHER_SNOW = SOUND_EVENTS.register("weather.snow", () -> SoundEvent.createVariableRangeEvent(net.minecraft.resources.ResourceLocation.fromNamespaceAndPath(com.otterly76.ott.Constants.MOD_ID, "weather.snow")));
+    public static final DeferredHolder<SoundEvent, SoundEvent> WEATHER_SNOW_ABOVE = SOUND_EVENTS.register("weather.snow.above", () -> SoundEvent.createVariableRangeEvent(net.minecraft.resources.ResourceLocation.fromNamespaceAndPath(com.otterly76.ott.Constants.MOD_ID, "weather.snow.above")));
+    public static final DeferredHolder<SoundEvent, SoundEvent> WEATHER_SANDSTORM = SOUND_EVENTS.register("weather.sandstorm", () -> SoundEvent.createVariableRangeEvent(net.minecraft.resources.ResourceLocation.fromNamespaceAndPath(com.otterly76.ott.Constants.MOD_ID, "weather.sandstorm")));
+    public static final DeferredHolder<SoundEvent, SoundEvent> WEATHER_SANDSTORM_ABOVE = SOUND_EVENTS.register("weather.sandstorm.above", () -> SoundEvent.createVariableRangeEvent(net.minecraft.resources.ResourceLocation.fromNamespaceAndPath(com.otterly76.ott.Constants.MOD_ID, "weather.sandstorm.above")));
 
     public static final DeferredHolder<ParticleType<?>, SimpleParticleType> PALE_OAK_LEAVES = MINECRAFT_PARTICLE_TYPES.register("pale_oak_leaves", () -> new SimpleParticleType(true));
     public static final DeferredHolder<ParticleType<?>, ParticleType<ColorParticleOption>> TINTED_LEAVES = MINECRAFT_PARTICLE_TYPES.register("tinted_leaves", ModParticle::createColorParticleType);

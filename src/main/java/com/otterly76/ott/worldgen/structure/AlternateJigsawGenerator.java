@@ -52,6 +52,7 @@ public class AlternateJigsawGenerator {
         StructurePoolElement startingElement = config.startPool().unwrapKey().flatMap((resourceKey) -> registry.getOptional(aliasLookup.lookup(resourceKey))).orElse(config.startPool().value()).getRandomTemplate(random);
 
         boolean isVillage = isVillage(registries, structure, config);
+        System.out.println("[OTT_DEBUG] Generating structure: " + structure + " isVillage: " + isVillage);
         if (startingElement == EmptyPoolElement.INSTANCE) {
             return Optional.empty();
         } else {
@@ -131,9 +132,12 @@ public class AlternateJigsawGenerator {
         if (config.startPool().unwrapKey().map(k -> k.location().getPath().contains("village")).orElse(false)) {
             return true;
         }
+        Registry<Structure> registry = registries.registryOrThrow(Registries.STRUCTURE);
+        Optional<ResourceLocation> id = registry.getResourceKey(structure).map(ResourceKey::location);
+        if (id.isPresent() && id.get().getPath().contains("village")) {
+            return true;
+        }
         return IS_VILLAGE_CACHE.computeIfAbsent(structure, s -> {
-            Registry<Structure> registry = registries.registryOrThrow(Registries.STRUCTURE);
-
             // 1. Unwrap DelegatingStructure to find the base structure
             Structure temp = s;
             while (temp instanceof DelegatingStructure delegating) {
@@ -163,7 +167,7 @@ public class AlternateJigsawGenerator {
         });
     }
 
-    private static boolean isAnchorStable(Structure.GenerationContext context, BoundingBox box, Types heightmap) {
+    private static int[] getSampleHeights(Structure.GenerationContext context, BoundingBox box, Types heightmap, boolean ninePoints) {
         ChunkGenerator generator = context.chunkGenerator();
         LevelHeightAccessor heightLimitView = context.heightAccessor();
         RandomState randomState = context.randomState();
@@ -175,41 +179,45 @@ public class AlternateJigsawGenerator {
         int xm = (x1 + x2) / 2;
         int zm = (z1 + z2) / 2;
 
-        int h1 = generator.getFirstFreeHeight(x1, z1, heightmap, heightLimitView, randomState);
-        int h2 = generator.getFirstFreeHeight(x2, z2, heightmap, heightLimitView, randomState);
-        int h3 = generator.getFirstFreeHeight(x1, z2, heightmap, heightLimitView, randomState);
-        int h4 = generator.getFirstFreeHeight(x2, z1, heightmap, heightLimitView, randomState);
-        int hm = generator.getFirstFreeHeight(xm, zm, heightmap, heightLimitView, randomState);
+        int[] xs;
+        int[] zs;
+        if (ninePoints) {
+            xs = new int[]{x1, x2, x1, x2, xm, xm, x1, x2, xm};
+            zs = new int[]{z1, z2, z2, z1, z1, z2, zm, zm, zm};
+        } else {
+            xs = new int[]{x1, x2, x1, x2, xm};
+            zs = new int[]{z1, z2, z2, z1, zm};
+        }
 
-        int minH = Math.min(Math.min(Math.min(h1, h2), Math.min(h3, h4)), hm);
-        int maxH = Math.max(Math.max(Math.max(h1, h2), Math.max(h3, h4)), hm);
+        int[] heights = new int[xs.length];
+        for (int i = 0; i < xs.length; i++) {
+            heights[i] = generator.getFirstFreeHeight(xs[i], zs[i], heightmap, heightLimitView, randomState);
+        }
+        return heights;
+    }
+
+    private static boolean isAnchorStable(Structure.GenerationContext context, BoundingBox box, Types heightmap) {
+        int[] heights = getSampleHeights(context, box, heightmap, false);
+        int minH = Integer.MAX_VALUE;
+        int maxH = Integer.MIN_VALUE;
+
+        for (int h : heights) {
+            minH = Math.min(minH, h);
+            maxH = Math.max(maxH, h);
+        }
 
         return (maxH - minH) <= 128;
     }
 
 
     private static boolean isPieceStable(Structure.GenerationContext context, BoundingBox box, Types heightmap) {
-        ChunkGenerator generator = context.chunkGenerator();
-        LevelHeightAccessor heightLimitView = context.heightAccessor();
-        RandomState randomState = context.randomState();
-
-        int x1 = box.minX();
-        int z1 = box.minZ();
-        int x2 = box.maxX();
-        int z2 = box.maxZ();
-        int xm = (x1 + x2) / 2;
-        int zm = (z1 + z2) / 2;
-
-        int[] xs = {x1, x2, x1, x2, xm, xm, x1, x2, xm};
-        int[] zs = {z1, z2, z2, z1, z1, z2, zm, zm, zm};
-
+        int[] heights = getSampleHeights(context, box, heightmap, true);
         int minH = Integer.MAX_VALUE;
         int maxH = Integer.MIN_VALUE;
         int pieceY = box.minY();
         int stableCount = 0;
 
-        for (int i = 0; i < 9; i++) {
-            int h = generator.getFirstFreeHeight(xs[i], zs[i], heightmap, heightLimitView, randomState);
+        for (int h : heights) {
             minH = Math.min(minH, h);
             maxH = Math.max(maxH, h);
             if (pieceY >= h - 256 && pieceY <= h + 128) {
@@ -223,7 +231,7 @@ public class AlternateJigsawGenerator {
     }
 
     private static Optional<AABB> getCollisionBox(BoundingBox box) {
-        AABB aabb = AABB.of(box).inflate(-1.0);
+        AABB aabb = AABB.of(box).inflate(-1.01);
         if (aabb.minX >= aabb.maxX || aabb.minY >= aabb.maxY || aabb.minZ >= aabb.maxZ) {
             return Optional.empty();
         }
@@ -427,7 +435,10 @@ public class AlternateJigsawGenerator {
                             if (!OttConfig.WORLDGEN.JIGSAW_PLACEMENT_RESTRICTIONS_ENABLED.get()) {
                                 allowed = true;
                             } else {
-                                allowed = config.allowBoundingBoxCollisions() || octree.withinBoundsButNotIntersectingChildren(AABB.of(blockBox4));
+                                allowed = config.allowBoundingBoxCollisions() || (octree.boundaryIntersects(AABB.of(blockBox4)) && !octree.intersectsAnyBox(AABB.of(blockBox4)));
+                                if (!allowed) {
+                                    System.out.println("[OTT_DEBUG] Rejected piece: " + config.getName() + " (isVillage: " + this.isVillage + "). Collision: " + octree.intersectsAnyBox(AABB.of(blockBox4)) + ", Boundary: " + !octree.boundaryIntersects(AABB.of(blockBox4)));
+                                }
                             }
 
                             if (allowed) {
@@ -437,6 +448,7 @@ public class AlternateJigsawGenerator {
                                 if (isDelegating) {
                                     this.groupCounts.put(config.getName(), this.groupCounts.getOrDefault(config.getName(), 0) + 1);
                                 }
+                                System.out.println("[OTT_DEBUG] Placed piece: " + config.getName() + " at " + blockPos6);
 
                                 if (!config.otherPiecesCanIntersect()) {
                                     getCollisionBox(blockBox4).ifPresent(octree::addBox);

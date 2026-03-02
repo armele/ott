@@ -33,9 +33,10 @@ public class HeadMixin {
         if (state.getBlock() instanceof AbstractSkullBlock skullBlock) {
             SkullBlock.Type type = skullBlock.getType();
 
-            // Catch all four types
+            // Catch all five types
             if (type == SkullBlock.Types.DRAGON || type == SkullBlock.Types.ZOMBIE ||
-                    type == SkullBlock.Types.SKELETON || type == SkullBlock.Types.WITHER_SKELETON) {
+                    type == SkullBlock.Types.SKELETON || type == SkullBlock.Types.WITHER_SKELETON ||
+                    type == com.otterly76.ott.util.block.ModSkullType.DRAGON_SKULL) {
 
                 ci.cancel();
                 ott$RENDERER.getAnimatable().setHeadType(type);
@@ -61,7 +62,7 @@ public class HeadMixin {
                     }
 
                     // NUDGE: Dragon needs -0.5, small heads might only need -0.05
-                    float nudge = (type == SkullBlock.Types.DRAGON) ? -0.5f : 0.25f;
+                    float nudge = (type == SkullBlock.Types.DRAGON || type == com.otterly76.ott.util.block.ModSkullType.DRAGON_SKULL) ? -0.5f : 0.25f;
                     poseStack.translate(0, 0, nudge);
                 }
 

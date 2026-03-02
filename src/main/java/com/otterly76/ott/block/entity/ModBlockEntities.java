@@ -6,7 +6,6 @@ import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.entity.BlockEntityType;
-import net.minecraft.world.level.block.entity.SignBlockEntity;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.neoforge.event.BlockEntityTypeAddBlocksEvent;
 import net.neoforged.neoforge.registries.DeferredHolder;
@@ -19,14 +18,8 @@ public class ModBlockEntities {
     public static final DeferredRegister<BlockEntityType<?>> BLOCK_ENTITIES = DeferredRegister.create(BuiltInRegistries.BLOCK_ENTITY_TYPE, MOD_ID);
     public static final DeferredRegister<BlockEntityType<?>> MINECRAFT_BLOCK_ENTITIES = DeferredRegister.create(BuiltInRegistries.BLOCK_ENTITY_TYPE, "minecraft");
 
-    public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<SignBlockEntity>> PALE_OAK_SIGN =
-            BLOCK_ENTITIES.register("pale_oak_sign", () -> BlockEntityType.Builder.of(SignBlockEntity::new, ModBlocks.PALE_OAK_SIGN.get(), ModBlocks.PALE_OAK_WALL_SIGN.get()).build(null));
-
     public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<CreakingHeartBlockEntity>> CREAKING_HEART =
             MINECRAFT_BLOCK_ENTITIES.register("creaking_heart", () -> BlockEntityType.Builder.of(CreakingHeartBlockEntity::new, ModBlocks.CREAKING_HEART.get()).build(null));
-
-    public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<SignBlockEntity>> PALE_OAK_WALL_HANGING_SIGN =
-            BLOCK_ENTITIES.register("pale_oak_hanging_sign", () -> BlockEntityType.Builder.of(SignBlockEntity::new, ModBlocks.PALE_OAK_HANGING_SIGN.get(), ModBlocks.PALE_OAK_WALL_HANGING_SIGN.get()).build(null));
 
     public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<AnvilBlockEntity>> ANVIL_BLOCK_ENTITY_TYPE =
             BLOCK_ENTITIES.register("anvil", () -> BlockEntityType.Builder.of(AnvilBlockEntity::new).build(null));
@@ -50,8 +43,17 @@ public class ModBlockEntities {
     }
 
     public static void registerTileExtensions(BlockEntityTypeAddBlocksEvent event) {
+        // Handle Pale Oak (backported)
         event.modify(BlockEntityType.SIGN, ModBlocks.PALE_OAK_SIGN.get(), ModBlocks.PALE_OAK_WALL_SIGN.get());
         event.modify(BlockEntityType.HANGING_SIGN, ModBlocks.PALE_OAK_HANGING_SIGN.get(), ModBlocks.PALE_OAK_WALL_HANGING_SIGN.get());
+        event.modify(BlockEntityType.SKULL, ModBlocks.DRAGON_SKULL.get(), ModBlocks.DRAGON_WALL_SKULL.get());
+
+        // Handle other wood sets (starlight, midnight, etc.)
+        ModBlocks.WOOD_SETS.values().forEach(woodSet -> {
+            event.modify(BlockEntityType.SIGN, woodSet.sign().get(), woodSet.wallSign().get());
+            event.modify(BlockEntityType.HANGING_SIGN, woodSet.hangingSign().get(), woodSet.wallHangingSign().get());
+        });
+
         event.modify(ANVIL_BLOCK_ENTITY_TYPE.get(), Blocks.ANVIL, Blocks.CHIPPED_ANVIL, Blocks.DAMAGED_ANVIL);
     }
 }

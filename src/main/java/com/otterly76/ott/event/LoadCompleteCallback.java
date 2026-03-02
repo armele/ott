@@ -1,11 +1,11 @@
 package com.otterly76.ott.event;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 @FunctionalInterface
 public interface LoadCompleteCallback {
-    List<LoadCompleteCallback> CALLBACKS = new ArrayList<>();
+    List<LoadCompleteCallback> CALLBACKS = new CopyOnWriteArrayList<>();
 
     void onLoadComplete();
 

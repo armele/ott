@@ -175,13 +175,15 @@ public class Ott {
     }
 
     private void onLoadComplete(FMLLoadCompleteEvent event) {
-        LoadCompleteCallback.fire();
+        event.enqueueWork(() -> {
+            LoadCompleteCallback.fire();
 
-        // Wrap MineColonies survival handler to enable blueprint mode in schema dimension
-        ISurvivalBlueprintHandler original = SurvivalBlueprintHandlers.getHandler("minecolonies");
-        if (original != null) {
-            SurvivalBlueprintHandlers.registerHandler(new DimensionAwareSurvivalHandler(original));
-        }
+            // Wrap MineColonies survival handler to enable blueprint mode in schema dimension
+            ISurvivalBlueprintHandler original = SurvivalBlueprintHandlers.getHandler("minecolonies");
+            if (original != null) {
+                SurvivalBlueprintHandlers.registerHandler(new DimensionAwareSurvivalHandler(original));
+            }
+        });
     }
 
     private void setup() {

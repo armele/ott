@@ -68,9 +68,8 @@ public class EmissiveModelWrapper implements BakedModel {
     }
 
     @Override
-    @SuppressWarnings("deprecation")
     public @NotNull TextureAtlasSprite getParticleIcon() {
-        return this.baseModel.getParticleIcon();
+        return this.getParticleIcon(ModelData.EMPTY);
     }
 
     @Override
@@ -86,7 +85,8 @@ public class EmissiveModelWrapper implements BakedModel {
 
     @Override
     public @NotNull BakedModel applyTransform(@NotNull ItemDisplayContext context, @NotNull PoseStack poseStack, boolean leftHand) {
-        return this.baseModel.applyTransform(context, poseStack, leftHand);
+        BakedModel bakedmodel = this.baseModel.applyTransform(context, poseStack, leftHand);
+        return (bakedmodel == this.baseModel) ? this : new EmissiveModelWrapper(bakedmodel, this.emissiveModel);
     }
 
     @Override

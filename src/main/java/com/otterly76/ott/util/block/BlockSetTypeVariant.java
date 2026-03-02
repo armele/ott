@@ -19,7 +19,7 @@ public enum BlockSetTypeVariant {
 
     public static BlockSetType ott(String setName) {
         return OTT_BLOCK_SET_TYPES.computeIfAbsent(setName, name ->
-                BlockSetType.register(new BlockSetType("ott:" + name))
+                BlockSetType.register(new BlockSetType(name))
         );
     }
 }

@@ -15,10 +15,11 @@ public class ModItemModelProvider extends ItemModelProvider {
 
     @Override
     protected void registerModels() {
-        withExistingParent(
-                ModItems.CREAKING_SPAWN_EGG.getId().getPath(),
-                mcLoc("item/template_spawn_egg")
-        );
+        getBuilder(ModItems.CREAKING_SPAWN_EGG.getId().getPath()).parent(new ModelFile.UncheckedModelFile(mcLoc("item/template_spawn_egg")));
+
+        // Use vanilla dragon_head as parent to inherit its display transforms (GUI, ground, hand, etc.)
+        getBuilder(ModItems.DRAGON_SKULL.getId().getPath())
+                .parent(new ModelFile.UncheckedModelFile(mcLoc("item/dragon_head")));
 
         ModBlocks.WOOD_SETS.forEach((setName, set) -> {
             parentItemToBlockModel(set.log().getId().getPath(), "block/" + set.log().getId().getPath());
@@ -49,12 +50,12 @@ public class ModItemModelProvider extends ItemModelProvider {
 
             // Signs: use vanilla 3D sign item models, swap textures
             withExistingParent(setName + "_sign", mcLoc("item/sign_base"))
-                    .texture("sign", modLoc("item/entity/signs/" + setName))
-                    .texture("particle", modLoc("item/entity/signs/" + setName));
+                    .texture("sign", mcLoc("item/entity/signs/" + setName))
+                    .texture("particle", mcLoc("item/entity/signs/" + setName));
 
             withExistingParent(setName + "_hanging_sign", mcLoc("item/hanging_sign_base"))
-                    .texture("sign", modLoc("item/entity/signs/hanging/" + setName))
-                    .texture("particle", modLoc("item/entity/signs/hanging/" + setName));
+                    .texture("sign", mcLoc("item/entity/signs/hanging/" + setName))
+                    .texture("particle", mcLoc("item/entity/signs/hanging/" + setName));
 
             // Boats: inherit vanilla item model geometry, only swap the texture
             withExistingParent(setName + "_boat", mcLoc("item/oak_boat"))
@@ -68,7 +69,7 @@ public class ModItemModelProvider extends ItemModelProvider {
         generatedItemFromTexture(ModItems.TINY_CHARCOAL.getId().getPath(), modLoc("item/tiny_charcoal"));
         generatedItemFromTexture(ModItems.OTTER.getId().getPath(), modLoc("item/otter"));
         
-        withExistingParent(ModItems.TORCH_ARROW.getId().getPath(), mcLoc("item/tipped_arrow"));
+        getBuilder(ModItems.TORCH_ARROW.getId().getPath()).parent(new ModelFile.UncheckedModelFile(mcLoc("item/tipped_arrow")));
 
         // Spawn Eggs
         spawnEggItem(ModItems.TINY_SKELETON_SPAWN_EGG.getId().getPath());
@@ -80,7 +81,7 @@ public class ModItemModelProvider extends ItemModelProvider {
     }
 
     private void spawnEggItem(String name) {
-        withExistingParent(name, mcLoc("item/template_spawn_egg"));
+        getBuilder(name).parent(new ModelFile.UncheckedModelFile(mcLoc("item/template_spawn_egg")));
     }
 
     private void generatedItemFromTexture(String itemName, ResourceLocation texture) {

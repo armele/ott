@@ -1,13 +1,11 @@
 package com.otterly76.ott;
 
-import com.mojang.blaze3d.platform.NativeImage;
 import com.otterly76.ott.block.ModBlocks;
 import com.otterly76.ott.client.NutritionHudOverlay;
 import com.otterly76.ott.client.gui.TrashScreen;
 import com.otterly76.ott.client.model.BookshelfModelProxy;
 import com.otterly76.ott.client.render.PrismaticColorHandler;
 import com.otterly76.ott.client.render.texture.FXAtlasSpriteSource;
-import com.otterly76.ott.config.OttConfig;
 import com.otterly76.ott.entity.ModEntities;
 import com.otterly76.ott.client.model.chicken.ColdChickenModel;
 import com.otterly76.ott.client.model.cow.ColdCowModel;
@@ -29,23 +27,22 @@ import com.otterly76.ott.client.handler.LeafColorReloadListener;
 import com.otterly76.ott.client.util.LeafColors;
 import com.otterly76.ott.particle.*;
 import com.otterly76.ott.block.entity.ModBlockEntities;
-import net.minecraft.client.Minecraft;
 import net.minecraft.client.model.BoatModel;
 import net.minecraft.client.model.ChestBoatModel;
 import net.minecraft.client.model.geom.builders.CubeDeformation;
-import net.minecraft.client.multiplayer.ClientLevel;
-import net.minecraft.client.particle.TextureSheetParticle;
 import net.minecraft.client.renderer.BiomeColors;
 import net.minecraft.client.renderer.entity.*;
-import net.minecraft.client.renderer.texture.SpriteContents;
-import net.minecraft.client.resources.metadata.animation.FrameSize;
 import net.minecraft.client.resources.model.BakedModel;
 import net.minecraft.client.resources.model.ModelResourceLocation;
-import net.minecraft.core.BlockPos;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.util.Mth;
+import net.minecraft.client.Minecraft;
+import com.mojang.blaze3d.platform.NativeImage;
 import net.minecraft.server.packs.resources.Resource;
 import net.minecraft.server.packs.resources.ResourceMetadata;
-import net.minecraft.util.Mth;
+import net.minecraft.client.renderer.texture.SpriteContents;
+import net.minecraft.client.resources.metadata.animation.FrameSize;
+import com.otterly76.ott.config.OttConfig;
 import net.minecraft.world.level.GrassColor;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.bus.api.IEventBus;
@@ -61,9 +58,6 @@ import net.neoforged.neoforge.client.gui.IConfigScreenFactory;
 import net.neoforged.neoforge.client.gui.VanillaGuiLayers;
 
 import java.awt.*;
-import java.io.IOException;
-import java.io.InputStream;
-import java.util.List;
 import java.util.function.IntUnaryOperator;
 
 import static com.otterly76.ott.Constants.MOD_ID;
@@ -71,8 +65,9 @@ import static com.otterly76.ott.Constants.MOD_ID;
 @SuppressWarnings({"MethodRefCanBeReplacedWithLambda"})
 @EventBusSubscriber(modid = Constants.MOD_ID, value = Dist.CLIENT)
 public class ClientModEvents {
-    public static int particleCount;
-    public static int fogCount;
+    public static int particleCount = 0;
+    public static int fogCount = 0;
+
     public static final IntUnaryOperator desaturateOperation = (rgba) -> {
         Color col = new Color(rgba, true);
         int gray = Math.max(Math.max(col.getRed(), col.getGreen()), col.getBlue());
@@ -153,114 +148,26 @@ public class ClientModEvents {
     @SuppressWarnings("DuplicatedCode")
     public static void registerParticleFactories(RegisterParticleProvidersEvent event) {
         event.registerSpriteSet(ModParticle.WILL_O_WISP.get(), WillOWispParticle.Provider::new);
-        event.registerSpriteSet(ModParticle.PALE_OAK_LEAVES.get(), FallingLeavesParticle.PaleOakProvider::new);
         event.registerSpriteSet(ModParticle.FIREFLY.get(), FireflyParticle.Provider::new);
-        event.registerSpriteSet(ModParticle.TINTED_LEAVES.get(), FallingLeavesParticle.TintedLeavesProvider::new);
-        event.registerSpriteSet(ModParticle.TINTED_NEEDLES.get(), FallingLeavesParticle.TintedLeavesProvider::new);
-        event.registerSpriteSet(ModParticle.TRAIL.get(), TrailParticle.Provider::new);
-        event.registerSpriteSet(ModParticle.GROUND_FOG.get(), GroundFogParticle.DefaultFactory::new);
-        event.registerSpriteSet(ModParticle.STARLIGHT_LEAF.get(), HedgeLeafParticle.Provider::new);
-        event.registerSpriteSet(ModParticle.MIDNIGHT_LEAF.get(), HedgeLeafParticle.Provider::new);
-        event.registerSpriteSet(ModParticle.BLOOMING_STARLIGHT_LEAF.get(), HedgeLeafParticle.Provider::new);
-        event.registerSpriteSet(ModParticle.BLOOMING_MIDNIGHT_LEAF.get(), HedgeLeafParticle.Provider::new);
+
         event.registerSpriteSet(ModParticle.RAIN.get(), RainParticle.DefaultFactory::new);
         event.registerSpriteSet(ModParticle.SNOW.get(), SnowParticle.DefaultFactory::new);
         event.registerSpriteSet(ModParticle.DUST_MOTE.get(), DustMoteParticle.DefaultFactory::new);
         event.registerSpriteSet(ModParticle.DUST.get(), DustParticle.DefaultFactory::new);
-        event.registerSpriteSet(ModParticle.SHRUB.get(), ShrubParticle.DefaultFactory::new);
         event.registerSpriteSet(ModParticle.FOG.get(), FogParticle.DefaultFactory::new);
+        event.registerSpriteSet(ModParticle.GROUND_FOG.get(), GroundFogParticle.DefaultFactory::new);
+        event.registerSpriteSet(ModParticle.SHRUB.get(), ShrubParticle.DefaultFactory::new);
         event.registerSpriteSet(ModParticle.RIPPLE.get(), RippleParticle.DefaultFactory::new);
         event.registerSpriteSet(ModParticle.STREAK.get(), StreakParticle.DefaultFactory::new);
-    }
 
-    public static void applyWaterTint(TextureSheetParticle particle, ClientLevel clientLevel, BlockPos blockPos) {
-        Color waterColor = new Color(BiomeColors.getAverageWaterColor(clientLevel, blockPos));
-        Color fogColor = new Color(clientLevel.getBiome(blockPos).value().getFogColor());
-        float rCol = Mth.lerp((float)OttConfig.WEATHER.TINT_MIX.get() / 100.0F, (float)waterColor.getRed(), (float)fogColor.getRed()) / 255.0F;
-        float gCol = Mth.lerp((float)OttConfig.WEATHER.TINT_MIX.get() / 100.0F, (float)waterColor.getGreen(), (float)fogColor.getGreen()) / 255.0F;
-        float bCol = Mth.lerp((float)OttConfig.WEATHER.TINT_MIX.get() / 100.0F, (float)waterColor.getBlue(), (float)fogColor.getBlue()) / 255.0F;
-        particle.setColor(rCol, gCol, bCol);
-    }
-
-    public static NativeImage loadTexture(ResourceLocation resourceLocation) throws IOException {
-        Resource resource = Minecraft.getInstance().getResourceManager().getResourceOrThrow(resourceLocation);
-        try (InputStream inputStream = resource.open()) {
-            return NativeImage.read(inputStream);
-        }
-    }
-
-    public static SpriteContents splitImage(NativeImage image, int segment, String id) {
-        int size = image.getWidth();
-        NativeImage sprite = new NativeImage(size, size, false);
-        image.copyRect(sprite, 0, size * segment, 0, 0, size, size, true, true);
-        return new SpriteContents(ResourceLocation.fromNamespaceAndPath(MOD_ID, id + segment), new FrameSize(size, size), sprite, ResourceMetadata.EMPTY);
-    }
-
-public static float yLevelWindAdjustment(double y) {
-        float factor = (float) (y / 128.0);
-        return Math.clamp(factor, 0.0F, 1.0F);
-    }
-
-    public static int getRippleResolution(List<SpriteContents> contents) {
-        try {
-            if (OttConfig.WEATHER.USE_RESOURCEPACK_RESOLUTION.get()) {
-                ResourceLocation resourceLocation = ResourceLocation.withDefaultNamespace("big_smoke_0");
-                for (SpriteContents spriteContents : contents) {
-                    if (spriteContents.name().equals(resourceLocation) && spriteContents.width() < 256) {
-                        return spriteContents.width();
-                    }
-                }
-            }
-        } catch (IllegalStateException ignored) {
-            // Config not loaded, proceed to default resolution check
-        }
-
-        int resolution = 16; // Default fallback
-        try {
-            resolution = OttConfig.WEATHER.RIPPLE_RESOLUTION.get();
-        } catch (IllegalStateException ignored) {
-            // Config not loaded, use hardcoded default
-        }
-
-        return Math.clamp(resolution, 4, 256);
-    }
-
-    public static SpriteContents generateRipple(int i, int size) {
-        float radius = (float)size / 2.0F / 8.0F * (float)(i + 1);
-        NativeImage image = new NativeImage(size, size, true);
-        int colorint = 0xFFFFFFFF;
-        generateBresenhamCircle(image, size, (int)Math.clamp(radius, 1.0, (double)size / 2.0 - 1.0), colorint);
-        return new SpriteContents(ResourceLocation.fromNamespaceAndPath(MOD_ID, "ripple" + i), new FrameSize(size, size), image, ResourceMetadata.EMPTY);
-    }
-
-    public static void generateBresenhamCircle(NativeImage image, int imgSize, int radius, int colorint) {
-        int centerX = imgSize / 2;
-        int centerY = imgSize / 2;
-        int x = 0;
-        int y = radius;
-        int d = 3 - 2 * radius;
-        drawCirclePixel(centerX, centerY, x, radius, image, colorint);
-        while(y >= x) {
-            if (d > 0) {
-                --y;
-                d = d + 4 * (x - y) + 10;
-            } else {
-                d = d + 4 * x + 6;
-            }
-            ++x;
-            drawCirclePixel(centerX, centerY, x, y, image, colorint);
-        }
-    }
-
-    private static void drawCirclePixel(int xc, int yc, int x, int y, NativeImage img, int col) {
-        img.setPixelRGBA(xc + x, yc + y, col);
-        img.setPixelRGBA(xc - x, yc + y, col);
-        img.setPixelRGBA(xc + x, yc - y, col);
-        img.setPixelRGBA(xc - x, yc - y, col);
-        img.setPixelRGBA(xc + y, yc + x, col);
-        img.setPixelRGBA(xc - y, yc + x, col);
-        img.setPixelRGBA(xc + y, yc - x, col);
-        img.setPixelRGBA(xc - y, yc - x, col);
+        event.registerSpriteSet(ModParticle.STARLIGHT_LEAF.get(), HedgeLeafParticle.Provider::new);
+        event.registerSpriteSet(ModParticle.MIDNIGHT_LEAF.get(), HedgeLeafParticle.Provider::new);
+        event.registerSpriteSet(ModParticle.BLOOMING_STARLIGHT_LEAF.get(), HedgeLeafParticle.Provider::new);
+        event.registerSpriteSet(ModParticle.BLOOMING_MIDNIGHT_LEAF.get(), HedgeLeafParticle.Provider::new);
+        event.registerSpriteSet(ModParticle.PALE_OAK_LEAVES.get(), FallingLeavesParticle.PaleOakProvider::new);
+        event.registerSpriteSet(ModParticle.TINTED_LEAVES.get(), FallingLeavesParticle.TintedLeavesProvider::new);
+        event.registerSpriteSet(ModParticle.TINTED_NEEDLES.get(), FallingLeavesParticle.TintedLeavesProvider::new);
+        event.registerSpriteSet(ModParticle.TRAIL.get(), TrailParticle.Provider::new);
     }
 
     public static void registerMenuScreens(RegisterMenuScreensEvent event) {
@@ -370,5 +277,88 @@ public static float yLevelWindAdjustment(double y) {
     @SubscribeEvent
     public static void onItemTooltip(ItemTooltipEvent event) {
         com.otterly76.ott.client.handler.NameTagTooltipHandler.onItemTooltip(event.getItemStack(), event.getToolTip(), event.getContext(), event.getEntity(), event.getFlags());
+    }
+
+    public static void applyWaterTint(net.minecraft.client.particle.Particle particle, net.minecraft.client.multiplayer.ClientLevel clientLevel, net.minecraft.core.BlockPos blockPos) {
+        Color waterColor = new Color(BiomeColors.getAverageWaterColor(clientLevel, blockPos));
+        Color fogColor = new Color(clientLevel.getBiome(blockPos).value().getFogColor());
+        float rCol = Mth.lerp((float)OttConfig.WEATHER.TINT_MIX.get() / 100.0F, (float)waterColor.getRed(), (float)fogColor.getRed()) / 255.0F;
+        float gCol = Mth.lerp((float)OttConfig.WEATHER.TINT_MIX.get() / 100.0F, (float)waterColor.getGreen(), (float)fogColor.getGreen()) / 255.0F;
+        float bCol = Mth.lerp((float)OttConfig.WEATHER.TINT_MIX.get() / 100.0F, (float)waterColor.getBlue(), (float)fogColor.getBlue()) / 255.0F;
+        particle.setColor(rCol, gCol, bCol);
+    }
+
+    public static NativeImage loadTexture(ResourceLocation resourceLocation) throws java.io.IOException {
+        Resource resource = Minecraft.getInstance().getResourceManager().getResourceOrThrow(resourceLocation);
+        try (java.io.InputStream inputStream = resource.open()) {
+            return NativeImage.read(inputStream);
+        }
+    }
+
+    public static SpriteContents splitImage(NativeImage image, int segment, String id) {
+        int size = image.getWidth();
+        NativeImage sprite = new NativeImage(size, size, false);
+        image.copyRect(sprite, 0, size * segment, 0, 0, size, size, true, true);
+        return new SpriteContents(ResourceLocation.fromNamespaceAndPath(MOD_ID, id + segment), new FrameSize(size, size), sprite, ResourceMetadata.EMPTY);
+    }
+
+    public static float yLevelWindAdjustment(double y) {
+        float factor = (float) (y / 128.0);
+        return Math.clamp(factor, 0.0F, 1.0F);
+    }
+
+    public static int getRippleResolution(java.util.List<SpriteContents> contents) {
+        try {
+            if (OttConfig.WEATHER.USE_RESOURCEPACK_RESOLUTION.get()) {
+                int max = 0;
+                for (SpriteContents content : contents) {
+                    if (content.width() > max) {
+                        max = content.width();
+                    }
+                }
+                return max;
+            }
+        } catch (Exception ignored) {
+        }
+        return OttConfig.WEATHER.RIPPLE_RESOLUTION.get();
+    }
+
+    public static SpriteContents generateRipple(int i, int size) {
+        float radius = (float)size / 2.0F / 8.0F * (float)(i + 1);
+        NativeImage image = new NativeImage(size, size, true);
+        int colorint = 0xFFFFFFFF;
+        generateBresenhamCircle(image, size, (int)Math.clamp(radius, 1.0, (double)size / 2.0 - 1.0), colorint);
+        return new SpriteContents(ResourceLocation.fromNamespaceAndPath(MOD_ID, "ripple" + i), new FrameSize(size, size), image, ResourceMetadata.EMPTY);
+    }
+
+    public static void generateBresenhamCircle(NativeImage image, int imgSize, int radius, int colorint) {
+        int centerX = imgSize / 2;
+        int centerY = imgSize / 2;
+        int x = 0;
+        int y = radius;
+        int d = 3 - 2 * radius;
+        drawCirclePixels(image, centerX, centerY, x, y, colorint);
+        while(y >= x) {
+            if (d > 0) {
+                --y;
+                d = d + 4 * (x - y) + 10;
+            } else {
+                d = d + 4 * x + 6;
+            }
+
+            ++x;
+            drawCirclePixels(image, centerX, centerY, x, y, colorint);
+        }
+    }
+
+    private static void drawCirclePixels(NativeImage image, int xc, int yc, int x, int y, int color) {
+        image.setPixelRGBA(xc + x, yc + y, color);
+        image.setPixelRGBA(xc - x, yc + y, color);
+        image.setPixelRGBA(xc + x, yc - y, color);
+        image.setPixelRGBA(xc - x, yc - y, color);
+        image.setPixelRGBA(xc + y, yc + x, color);
+        image.setPixelRGBA(xc - y, yc + x, color);
+        image.setPixelRGBA(xc + y, yc - x, color);
+        image.setPixelRGBA(xc - y, yc - x, color);
     }
 }

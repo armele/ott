@@ -80,6 +80,7 @@ public class ModBlockTagProvider extends BlockTagsProvider {
         this.tag(ModTags.Blocks.ALLOWS_LEAF_LITTER).add(ModBlocks.PALE_OAK_LEAVES.get());
         this.tag(ModTags.Blocks.SPAWN_FALLING_LEAVES).add(ModBlocks.PALE_OAK_LEAVES.get());
         this.tag(ModTags.Blocks.CAMELS_SPAWNABLE_ON).add(Blocks.SAND, Blocks.RED_SAND);
+        this.tag(ModTags.Blocks.INCORRECT_FOR_COPPER_TOOL).addTag(BlockTags.INCORRECT_FOR_STONE_TOOL);
 
         this.tag(ModTags.Blocks.PATHS).add(Blocks.DIRT_PATH).addTag(com.minecolonies.api.items.ModTags.pathingBlocks);
         this.tag(ModTags.Blocks.STONE)
@@ -163,6 +164,7 @@ public class ModBlockTagProvider extends BlockTagsProvider {
         ModBlocks.CREEPING_HEDGES.values().forEach(h -> ottHedges.add(h.value()));
 
         axeTag.add(ModBlocks.CREAKING_HEART.value(), ModBlocks.PROTECTIVE_LANTERN.value(), ModBlocks.SMITE_LANTERN.value());
+        axeTag.add(ModBlocks.DRAGON_SKULL.get(), ModBlocks.DRAGON_WALL_SKULL.get());
         axeTag.add(ModBlocks.PALE_OAK_LOG.get(), ModBlocks.PALE_OAK_WOOD.get(), ModBlocks.STRIPPED_PALE_OAK_LOG.get(), ModBlocks.STRIPPED_PALE_OAK_WOOD.get());
         axeTag.add(ModBlocks.PALE_OAK_PLANKS.get(), ModBlocks.PALE_OAK_STAIRS.get(), ModBlocks.PALE_OAK_SLAB.get(), ModBlocks.PALE_OAK_FENCE.get(), ModBlocks.PALE_OAK_FENCE_GATE.get());
         axeTag.add(ModBlocks.PALE_OAK_DOOR.get(), ModBlocks.PALE_OAK_TRAPDOOR.get(), ModBlocks.PALE_OAK_BUTTON.get(), ModBlocks.PALE_OAK_PRESSURE_PLATE.get());

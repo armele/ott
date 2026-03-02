@@ -241,8 +241,8 @@ public class MinecraftBackportBlockStateProvider extends ModBlockStateProvider {
         });
 
         // Spring to Life
-        simpleBlockWithItem(ModBlocks.BUSH.get(), models().cross("bush", mcLoc("block/bush")).renderType("cutout"));
-        simpleBlockWithItem(ModBlocks.FIREFLY_BUSH.get(), models().cross("firefly_bush", mcLoc("block/firefly_bush")).renderType("cutout"));
+        simpleBlockWithItem(ModBlocks.BUSH.get(), models().withExistingParent("bush", "minecraft:block/tinted_cross").texture("cross", mcLoc("block/bush")).renderType("cutout"));
+        simpleBlockWithItem(ModBlocks.FIREFLY_BUSH.get(), models().withExistingParent("firefly_bush", "minecraft:block/tinted_cross").texture("cross", mcLoc("block/firefly_bush")).renderType("cutout"));
 
         getVariantBuilder(ModBlocks.WILDFLOWERS.get()).forAllStates(state -> {
             Direction facing = state.getValue(HORIZONTAL_FACING);

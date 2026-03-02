@@ -3,6 +3,8 @@ package com.otterly76.ott.generation;
 import com.google.common.hash.Hashing;
 import com.otterly76.ott.block.IGradientBlock;
 import com.otterly76.ott.block.ModBlocks;
+import com.otterly76.ott.wood.ModWoodSets;
+import com.otterly76.ott.wood.ModWoodSets.WoodSet;
 import net.minecraft.data.CachedOutput;
 import net.minecraft.data.DataProvider;
 import net.minecraft.data.PackOutput;
@@ -37,7 +39,65 @@ public class GradientTextureProvider implements DataProvider {
         for (DeferredBlock<? extends IGradientBlock> deferredBlock : ModBlocks.getAllGradientBlocks()) {
             processGradientBlock(cache, outputProvider, deferredBlock.get());
         }
+
+        BufferedImage template = null;
+        try {
+            ResourceLocation templateLoc = ResourceLocation.fromNamespaceAndPath("ott", "textures/gui/template_hanging_sign.png");
+            Resource templateResource = existingFileHelper.getResource(templateLoc, PackType.CLIENT_RESOURCES);
+            template = convertToARGB(ImageIO.read(templateResource.open()));
+        } catch (IOException ignored) {
+        }
+
+        final PackOutput.PathProvider guiOutputProvider = packOutput.createPathProvider(PackOutput.Target.RESOURCE_PACK, "textures/gui/hanging_signs");
+        for (WoodSet woodSet : ModWoodSets.ALL) {
+            processWoodSetGuiTexture(cache, guiOutputProvider, woodSet, template);
+        }
+
         return CompletableFuture.completedFuture(null);
+    }
+
+    private void processWoodSetGuiTexture(@NotNull CachedOutput cache, PackOutput.PathProvider outputProvider, WoodSet woodSet, BufferedImage template) {
+        try {
+            String name = woodSet.name();
+            ResourceLocation planksLoc = ResourceLocation.fromNamespaceAndPath("ott", "textures/block/wood/" + name + "/planks.png");
+            Resource planksResource = existingFileHelper.getResource(planksLoc, PackType.CLIENT_RESOURCES);
+            BufferedImage planks = convertToARGB(ImageIO.read(planksResource.open()));
+
+            int width = template != null ? template.getWidth() : 32;
+            int height = template != null ? template.getHeight() : 32;
+
+            BufferedImage guiTexture = new BufferedImage(width, height, BufferedImage.TYPE_INT_ARGB);
+
+            if (template != null) {
+                for (int x = 0; x < width; x++) {
+                    for (int y = 0; y < height; y++) {
+                        int templateRgb = template.getRGB(x, y);
+                        // Check if pure white (0xFFFFFFFF)
+                        if (templateRgb == 0xFFFFFFFF) {
+                            // Tile the planks texture
+                            guiTexture.setRGB(x, y, planks.getRGB(x % planks.getWidth(), y % planks.getHeight()));
+                        } else {
+                            guiTexture.setRGB(x, y, templateRgb);
+                        }
+                    }
+                }
+            } else {
+                // Fallback: Resize planks to 32x32 if no template found
+                Graphics2D g = guiTexture.createGraphics();
+                g.setRenderingHint(RenderingHints.KEY_INTERPOLATION, RenderingHints.VALUE_INTERPOLATION_BILINEAR);
+                g.drawImage(planks, 0, 0, width, height, null);
+                g.dispose();
+            }
+
+            final ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+            ImageIO.write(guiTexture, "PNG", outputStream);
+            byte[] bytes = outputStream.toByteArray();
+
+            ResourceLocation key = ResourceLocation.withDefaultNamespace(name);
+            cache.writeIfNeeded(outputProvider.file(key, "png"), bytes, Hashing.sha256().hashBytes(bytes));
+            existingFileHelper.trackGenerated(key, PackType.CLIENT_RESOURCES, ".png", "textures/gui/hanging_signs");
+        } catch (IOException ignored) {
+        }
     }
 
     private void processGradientBlock(@NotNull CachedOutput cache, PackOutput.PathProvider outputProvider, IGradientBlock gradientBlock) {

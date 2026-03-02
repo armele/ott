@@ -46,6 +46,12 @@ public class ModBiomeTagProvider extends BiomeTagsProvider {
         this.tag(ModTags.Biomes.HAS_DARK_LEAF_LITTER).add(Biomes.DARK_FOREST, Biomes.SWAMP, Biomes.MANGROVE_SWAMP);
         this.tag(ModTags.Biomes.HAS_PALE_LEAF_LITTER).addOptional(ModBiomes.PALE_GARDEN.location());
 
+        this.tag(ModTags.Biomes.IS_HUMID).add(Biomes.SWAMP, Biomes.MANGROVE_SWAMP, Biomes.JUNGLE, Biomes.BAMBOO_JUNGLE, Biomes.SPARSE_JUNGLE, Biomes.LUSH_CAVES);
+        this.tag(ModTags.Biomes.IS_HUMID).addOptional(ModBiomes.VERDANT_FOREST.location());
+
+        TagKey<Biome> neoforgeIsHumid = TagKey.create(Registries.BIOME, ResourceLocation.fromNamespaceAndPath("neoforge", "is_humid"));
+        this.tag(neoforgeIsHumid).addTag(ModTags.Biomes.IS_HUMID);
+
         this.addVanillaTags();
     }
 

@@ -30,6 +30,7 @@ public class HeadItemMixin {
         else if (stack.is(Items.ZOMBIE_HEAD)) type = SkullBlock.Types.ZOMBIE;
         else if (stack.is(Items.SKELETON_SKULL)) type = SkullBlock.Types.SKELETON;
         else if (stack.is(Items.WITHER_SKELETON_SKULL)) type = SkullBlock.Types.WITHER_SKELETON;
+        else if (stack.is(com.otterly76.ott.item.ModItems.DRAGON_SKULL.get())) type = com.otterly76.ott.util.block.ModSkullType.DRAGON_SKULL;
 
         if (type != null) {
             ci.cancel();
@@ -37,13 +38,24 @@ public class HeadItemMixin {
 
             poseStack.pushPose();
 
-            // 1. POSITIONING: Maintained at your perfect 0.0f height
+            boolean isDragon = (type == SkullBlock.Types.DRAGON || type == com.otterly76.ott.util.block.ModSkullType.DRAGON_SKULL);
+
+            // 1. POSITIONING: Center the head
             poseStack.translate(0.5f, 0.0f, 0.5f);
 
-            // 2. ROTATION: Turning them 180 degrees to face the player
-            poseStack.mulPose(Axis.YP.rotationDegrees(180f));
+            // 2. ROTATION: Turning them 180 degrees to face the player,
+            // EXCEPT in item frames (FIXED) where we want them facing out from the wall.
+            if (displayContext != ItemDisplayContext.FIXED) {
+                poseStack.mulPose(Axis.YP.rotationDegrees(180f));
+            }
 
-            // 3. Render Call
+            // 3. SCALING & NUDGE: Dragon heads are massive, scale and nudge them down/right
+            if (isDragon) {
+                poseStack.scale(0.65f, 0.65f, 0.65f);
+                poseStack.translate(-0.6f, -0.7f, 0.0f);
+            }
+
+            // 4. Render Call
             ResourceLocation texture = ott$RENDERER.getTextureLocation(ott$RENDERER.getAnimatable());
             BakedGeoModel bakedModel = ott$RENDERER.getGeoModel().getBakedModel(ott$RENDERER.getGeoModel().getModelResource(ott$RENDERER.getAnimatable()));
             RenderType renderType = ott$RENDERER.getRenderType(ott$RENDERER.getAnimatable(), texture, bufferSource, 0);

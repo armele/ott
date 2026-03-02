@@ -8,6 +8,7 @@ import com.otterly76.ott.hedge.ModHedgeVariants;
 import com.otterly76.ott.sound.ModSounds;
 import com.otterly76.ott.util.block.BlockSetTypeVariant;
 import com.otterly76.ott.util.block.WoodTypeVariant;
+import com.otterly76.ott.util.block.ModSkullType;
 import net.minecraft.world.level.block.grower.TreeGrower;
 import com.otterly76.ott.worldgen.feature.TheGardenAwakensFeatures;
 import com.otterly76.ott.wood.ModWoodSets;
@@ -294,6 +295,8 @@ public class ModBlocks {
     public static final Map<String, DeferredBlock<Block>> LIGHTNING_RODS = new LinkedHashMap<>();
     public static final DeferredBlock<Block> COPPER_TORCH = registerBackportedBlock("copper_torch", () -> new TorchBlock(net.minecraft.core.particles.ParticleTypes.FLAME, BlockBehaviour.Properties.of().noCollission().instabreak().lightLevel(s -> 14).sound(SoundType.WOOD)));
     public static final DeferredBlock<Block> COPPER_WALL_TORCH = registerBackportedBlock("copper_wall_torch", () -> new WallTorchBlock(net.minecraft.core.particles.ParticleTypes.FLAME, BlockBehaviour.Properties.of().noCollission().instabreak().lightLevel(s -> 14).sound(SoundType.WOOD).lootFrom(COPPER_TORCH)), false);
+    public static final DeferredBlock<SkullBlock> DRAGON_SKULL = BLOCKS.register("dragon_skull", () -> new SkullBlock(ModSkullType.DRAGON_SKULL, BlockBehaviour.Properties.ofFullCopy(Blocks.DRAGON_HEAD)));
+    public static final DeferredBlock<WallSkullBlock> DRAGON_WALL_SKULL = BLOCKS.register("dragon_wall_skull", () -> new WallSkullBlock(ModSkullType.DRAGON_SKULL, BlockBehaviour.Properties.ofFullCopy(Blocks.DRAGON_WALL_HEAD).lootFrom(DRAGON_SKULL)));
 
     private static void register3DBlockItem(DeferredBlock<? extends Block> block) {
         MINECRAFT_ITEMS.register(block.getId().getPath(), () -> new com.otterly76.ott.item.custom.Copper3DBlockItem(block.get(), new net.minecraft.world.item.Item.Properties()));

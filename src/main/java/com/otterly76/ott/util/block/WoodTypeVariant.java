@@ -6,7 +6,7 @@ import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
 public enum WoodTypeVariant {
-    PALE_OAK(WoodType.register(new WoodType("minecraft:pale_oak", BlockSetTypeVariant.PALE_OAK.getBlockSetType())));
+    PALE_OAK(WoodType.register(new WoodType("pale_oak", BlockSetTypeVariant.PALE_OAK.getBlockSetType())));
 
     private final WoodType woodType;
 
@@ -22,7 +22,7 @@ public enum WoodTypeVariant {
 
     public static WoodType ott(String setName) {
         return OTT_WOOD_TYPES.computeIfAbsent(setName, name ->
-                WoodType.register(new WoodType("ott:" + name, BlockSetTypeVariant.ott(name)))
+                WoodType.register(new WoodType(name, BlockSetTypeVariant.ott(name)))
         );
     }
 }

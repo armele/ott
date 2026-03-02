@@ -25,7 +25,21 @@ public class DryFoliageColorReloadListener extends SimplePreparableReloadListene
             Resource resource = resourceManager.getResourceOrThrow(LOCATION);
             try (InputStream inputStream = resource.open();
                  NativeImage nativeImage = NativeImage.read(inputStream)) {
-                return nativeImage.getPixelsRGBA();
+                int width = nativeImage.getWidth();
+                int height = nativeImage.getHeight();
+                int[] pixels = new int[width * height];
+                for (int y = 0; y < height; y++) {
+                    for (int x = 0; x < width; x++) {
+                        int abgr = nativeImage.getPixelRGBA(x, y);
+                        // Swap R and B: 0xAABBGGRR -> 0xAARRGGBB
+                        int a = (abgr >> 24) & 0xFF;
+                        int b = (abgr >> 16) & 0xFF;
+                        int g = (abgr >> 8) & 0xFF;
+                        int r = abgr & 0xFF;
+                        pixels[y * width + x] = (a << 24) | (r << 16) | (g << 8) | b;
+                    }
+                }
+                return pixels;
             }
         } catch (IOException exception) {
             throw new IllegalStateException("Failed to load dry foliage color texture", exception);

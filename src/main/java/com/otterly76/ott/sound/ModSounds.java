@@ -183,7 +183,6 @@ public class ModSounds {
     public static final DeferredHolder<SoundEvent, SoundEvent> SHELF_SINGLE_SWAP = registerSoundEvent("block.shelf.single_swap");
     public static final DeferredHolder<SoundEvent, SoundEvent> SHELF_MULTI_SWAP = registerSoundEvent("block.shelf.multi_swap");
     public static final DeferredHolder<SoundEvent, SoundEvent> ARMOR_EQUIP_COPPER = registerSoundEvent("item.armor.equip_copper");
-    public static final DeferredHolder<SoundEvent, SoundEvent> WEATHER_END_FLASH = registerSoundEvent("weather.end_flash");
 
     public static final DeferredHolder<SoundEvent, SoundEvent> NONE = registerSoundEvent("music.none");
     public static final DeferredHolder<SoundEvent, SoundEvent> BUNDLE_INSERT_FAIL = registerSoundEvent("item.bundle.insert_fail");

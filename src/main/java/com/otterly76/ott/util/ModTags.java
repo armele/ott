@@ -105,6 +105,12 @@ public class ModTags {
         public static final TagKey<net.minecraft.world.level.biome.Biome> SPAWNS_LEAF_LITTER_PATCHES = createTag("spawns_leaf_litter_patches");
         public static final TagKey<net.minecraft.world.level.biome.Biome> HAS_DARK_LEAF_LITTER = createTag("has_dark_leaf_litter");
         public static final TagKey<net.minecraft.world.level.biome.Biome> HAS_PALE_LEAF_LITTER = createTag("has_pale_leaf_litter");
+        public static final TagKey<net.minecraft.world.level.biome.Biome> IS_HUMID = commonTag("is_humid");
+        public static final TagKey<net.minecraft.world.level.biome.Biome> IS_DRY = commonTag("is_dry");
+
+        private static TagKey<net.minecraft.world.level.biome.Biome> commonTag(String name) {
+            return TagKey.create(net.minecraft.core.registries.Registries.BIOME, ResourceLocation.fromNamespaceAndPath("c", name));
+        }
 
         private static TagKey<net.minecraft.world.level.biome.Biome> createTag(String name) {
             return TagKey.create(net.minecraft.core.registries.Registries.BIOME, ResourceLocation.fromNamespaceAndPath("minecraft", name));
