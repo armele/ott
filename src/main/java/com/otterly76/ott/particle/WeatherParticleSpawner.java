@@ -36,7 +36,7 @@ public final class WeatherParticleSpawner {
             if (precipitation == Precipitation.RAIN) {
                 if (OttConfig.WEATHER.DO_GROUND_FOG_PARTICLES.get() && ClientModEvents.fogCount < OttConfig.WEATHER.GROUND_FOG.DENSITY.get()) {
                     int height = level.getHeight(Types.MOTION_BLOCKING, (int) x, (int) z);
-                    if (height <= OttConfig.WEATHER.GROUND_FOG.SPAWN_HEIGHT.get() && height >= OttConfig.WEATHER.GROUND_FOG.SPAWN_HEIGHT.get() - 4 && level.getFluidState(BlockPos.containing(x, height - 1, z)).isEmpty()) {
+                    if (level.getFluidState(BlockPos.containing(x, height - 1, z)).isEmpty()) {
                         level.addParticle(ModParticle.GROUND_FOG.get(), x, (float) height + level.random.nextFloat(), z, 0.0, 0.0, 0.0);
                     }
                 }

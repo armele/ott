@@ -20,6 +20,10 @@ public class LanternManager {
         return ACTIVE_LANTERNS;
     }
 
+    public static void clear() {
+        ACTIVE_LANTERNS.clear();
+    }
+
     public static boolean isPosProtected(BlockPos pos) {
         for (Map.Entry<BlockPos, Integer> entry : ACTIVE_LANTERNS.entrySet()) {
             if (pos.closerThan(entry.getKey(), entry.getValue())) {

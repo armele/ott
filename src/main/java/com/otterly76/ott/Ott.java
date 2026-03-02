@@ -33,8 +33,11 @@ import com.otterly76.ott.registry.ModSensorTypes;
 import com.otterly76.ott.registry.OttBuiltInRegistries;
 import com.otterly76.ott.sound.ModSounds;
 import com.otterly76.ott.util.data.DynamicPackResources;
+import com.otterly76.ott.util.lantern.DamageLanternManager;
 import com.otterly76.ott.util.lantern.DamageLanternSavedData;
+import com.otterly76.ott.util.lantern.FluidLanternManager;
 import com.otterly76.ott.util.lantern.FluidLanternSavedData;
+import com.otterly76.ott.util.lantern.LanternManager;
 import com.otterly76.ott.util.lantern.LanternSavedData;
 import com.otterly76.ott.util.data.PackResourcesHelper;
 import com.otterly76.ott.worldgen.ModFeatures;
@@ -434,6 +437,9 @@ public class Ott {
 
     @SubscribeEvent
     public void onServerStarting(ServerStartingEvent event){
+        LanternManager.clear();
+        FluidLanternManager.clear();
+        DamageLanternManager.clear();
         LanternSavedData.init(event.getServer().overworld());
         FluidLanternSavedData.init(event.getServer().overworld());
         DamageLanternSavedData.init(event.getServer().overworld());

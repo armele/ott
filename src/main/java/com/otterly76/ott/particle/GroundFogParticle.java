@@ -3,7 +3,6 @@ package com.otterly76.ott.particle;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import com.otterly76.ott.ClientModEvents;
 import com.otterly76.ott.config.OttConfig;
-import com.otterly76.ott.particle.render.GroundFogRenderType;
 import net.minecraft.client.Camera;
 import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.client.particle.Particle;
@@ -23,6 +22,7 @@ import org.joml.Vector3f;
 import java.awt.*;
 
 public class GroundFogParticle extends WeatherParticle {
+    private static final float MAX_ALPHA = 1.0F; // Manual alpha knob for testing
     float xdxd;
     float zdzd;
 
@@ -52,6 +52,24 @@ public class GroundFogParticle extends WeatherParticle {
         this.zd = this.zdzd;
     }
 
+    @Override
+    public void fadeIn() {
+        if (this.age < 20) {
+            this.alpha = ((float) this.age / 20.0F) * MAX_ALPHA;
+        } else {
+            this.alpha = MAX_ALPHA;
+        }
+    }
+
+    @Override
+    public void fadeOut() {
+        if ((double)this.alpha < 0.01) {
+            this.remove();
+        } else {
+            this.alpha -= 0.05F * MAX_ALPHA;
+        }
+    }
+
     public void remove() {
         if (this.isAlive()) {
             --ClientModEvents.fogCount;
@@ -72,7 +90,7 @@ public class GroundFogParticle extends WeatherParticle {
     }
 
     public @NotNull ParticleRenderType getRenderType() {
-        return GroundFogRenderType.INSTANCE;
+        return ParticleRenderType.PARTICLE_SHEET_TRANSLUCENT;
     }
 
     @OnlyIn(Dist.CLIENT)

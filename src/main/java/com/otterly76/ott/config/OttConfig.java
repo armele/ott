@@ -619,6 +619,7 @@ public class OttConfig {
             public final ModConfigSpec.IntValue OPACITY;
             public final ModConfigSpec.IntValue SPLASH_DENSITY;
             public final ModConfigSpec.DoubleValue SIZE;
+            public final ModConfigSpec.IntValue STREAK_DENSITY;
 
             public RainOptions(ModConfigSpec.Builder builder) {
                 builder.push("rain");
@@ -629,6 +630,7 @@ public class OttConfig {
                 OPACITY = builder.defineInRange("opacity", 100, 1, 100);
                 SPLASH_DENSITY = builder.defineInRange("splashDensity", 5, 0, Integer.MAX_VALUE);
                 SIZE = builder.defineInRange("size", 2.0, 0.0, Double.MAX_VALUE);
+                STREAK_DENSITY = builder.defineInRange("streakDensity", 1, 0, Integer.MAX_VALUE);
                 builder.pop();
             }
         }

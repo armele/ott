@@ -53,7 +53,7 @@ public class StreakParticle extends WeatherParticle {
 
         BlockState state = this.level.getBlockState(this.pos.relative(this.direction.getOpposite()));
         FluidState fluidState = this.level.getFluidState(this.pos);
-        if (!this.shouldFadeOut && (this.onGround || !state.is(BlockTags.IMPERMEABLE) && !state.is(BlockTags.MINEABLE_WITH_PICKAXE) || !fluidState.isEmpty())) {
+        if (!this.shouldFadeOut && (this.onGround || !state.is(BlockTags.IMPERMEABLE) && !state.is(BlockTags.MINEABLE_WITH_PICKAXE) && !state.is(BlockTags.MINEABLE_WITH_AXE) && !state.is(BlockTags.LEAVES) && !state.is(BlockTags.LOGS) || !fluidState.isEmpty())) {
             if (state.isAir()) {
                 double var10003 = this.y - (double)0.25F;
                 Minecraft.getInstance().particleEngine.createParticle(ParticleTypes.DRIPPING_WATER, this.x, var10003, this.z, 0.0F, 0.0F, 0.0F);

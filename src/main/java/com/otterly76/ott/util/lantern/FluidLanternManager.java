@@ -25,6 +25,11 @@ public class FluidLanternManager {
         LAVA_LANTERNS.remove(pos);
     }
 
+    public static void clear() {
+        WATER_LANTERNS.clear();
+        LAVA_LANTERNS.clear();
+    }
+
     public static Map<BlockPos, Integer> getWaterLanterns() {
         return WATER_LANTERNS;
     }

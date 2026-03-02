@@ -87,10 +87,12 @@ public class RainParticle extends WeatherParticle {
                 if (hit.getType().equals(Type.BLOCK)) {
                     if (OttConfig.WEATHER.DO_STREAK_PARTICLES.get()) {
                         assert Minecraft.getInstance().cameraEntity != null;
-                        if (Minecraft.getInstance().cameraEntity.position().distanceTo(this.pos.getCenter()) < (double)OttConfig.WEATHER.PARTICLE_RADIUS.get() - (double)OttConfig.WEATHER.PARTICLE_RADIUS.get() / 2.0) {
+                        if (Minecraft.getInstance().cameraEntity.position().distanceTo(this.pos.getCenter()) < (double)OttConfig.WEATHER.PARTICLE_RADIUS.get() * 0.8) {
                             BlockState state = this.level.getBlockState(hit.getBlockPos());
-                            if (state.is(BlockTags.IMPERMEABLE) || state.is(BlockTags.MINEABLE_WITH_PICKAXE)) {
-                                Minecraft.getInstance().particleEngine.createParticle(ModParticle.STREAK.get(), this.x, this.y, this.z, hit.getDirection().get2DDataValue(), 0.0, 0.0);
+                            if (state.is(BlockTags.IMPERMEABLE) || state.is(BlockTags.MINEABLE_WITH_PICKAXE) || state.is(BlockTags.MINEABLE_WITH_AXE) || state.is(BlockTags.LEAVES) || state.is(BlockTags.LOGS)) {
+                                for (int i = 0; i < OttConfig.WEATHER.RAIN.STREAK_DENSITY.get(); ++i) {
+                                    Minecraft.getInstance().particleEngine.createParticle(ModParticle.STREAK.get(), this.x, this.y, this.z, hit.getDirection().get2DDataValue(), 0.0, 0.0);
+                                }
                                 Minecraft.getInstance().particleEngine.createParticle(ParticleTypes.RAIN, this.x, this.y, this.z, 0.0, 0.0, 0.0);
                             }
                         }

@@ -16,6 +16,10 @@ public class DamageLanternManager {
         ACTIVE.remove(pos);
     }
 
+    public static void clear() {
+        ACTIVE.clear();
+    }
+
     public static Map<BlockPos, Integer> getAll() {
         return ACTIVE;
     }
