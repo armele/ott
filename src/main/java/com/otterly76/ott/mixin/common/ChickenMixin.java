@@ -1,5 +1,6 @@
 package com.otterly76.ott.mixin.common;
 
+import com.otterly76.ott.entity.gecko.ChickenGeoEntity;
 import com.otterly76.ott.entity.variant.*;
 import com.otterly76.ott.loot.ModBuiltInLootTables;
 import com.otterly76.ott.registry.OttBuiltInRegistries;
@@ -26,13 +27,19 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.ModifyArg;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
+import software.bernie.geckolib.animatable.instance.AnimatableInstanceCache;
+import software.bernie.geckolib.animation.AnimatableManager;
+import software.bernie.geckolib.util.GeckoLibUtil;
 
 import java.util.Optional;
 
 @Mixin(Chicken.class)
-public abstract class ChickenMixin extends MobMixin implements VariantDataHolder<ChickenVariant> {
+public abstract class ChickenMixin extends MobMixin implements VariantDataHolder<ChickenVariant>, ChickenGeoEntity {
     @Unique
     private static final EntityDataAccessor<String> DATA_OTT_VARIANT_ID;
+
+    @Unique
+    private final AnimatableInstanceCache ott$animatableInstanceCache = GeckoLibUtil.createInstanceCache(this);
 
     protected ChickenMixin(EntityType<? extends Chicken> entityType, Level level) {
         super(entityType, level);
@@ -50,6 +57,7 @@ public abstract class ChickenMixin extends MobMixin implements VariantDataHolder
 
     }
 
+    @Override
     protected void vb$defineSynchedData(SynchedEntityData.Builder builder, CallbackInfo ci) {
         builder.define(DATA_OTT_VARIANT_ID, "minecraft:temperate");
     }
@@ -64,14 +72,17 @@ public abstract class ChickenMixin extends MobMixin implements VariantDataHolder
         return VariantUtils.getOrDefault(OttBuiltInRegistries.CHICKEN_VARIANTS, this.entityData.get(DATA_OTT_VARIANT_ID));
     }
 
+    @Override
     protected void vb$addAdditionalSaveData(CompoundTag tag, CallbackInfo ci) {
         VariantUtils.addVariantSaveData(this, tag, OttBuiltInRegistries.CHICKEN_VARIANTS);
     }
 
+    @Override
     protected void vb$readAdditionalSaveData(CompoundTag tag, CallbackInfo ci) {
         VariantUtils.readVariantSaveData(this, tag, OttBuiltInRegistries.CHICKEN_VARIANTS);
     }
 
+    @Override
     protected void vb$finalizeSpawn(ServerLevelAccessor level, DifficultyInstance difficulty, MobSpawnType reason, SpawnGroupData spawnData, CallbackInfoReturnable<SpawnGroupData> cir) {
         VariantUtils.selectVariantToSpawn(SpawnContext.create(level, this.blockPosition()), OttBuiltInRegistries.CHICKEN_VARIANTS, VariantSpawner.FARM_ANIMALS).ifPresent(this::ott$setVariantData);
     }
@@ -87,6 +98,15 @@ public abstract class ChickenMixin extends MobMixin implements VariantDataHolder
     private ItemLike vb$modifyEggDrop(ItemLike originalItem) {
         Optional<ChickenVariant> variant = this.ott$getVariantData();
         return (variant.isPresent() && !VariantUtils.matches(OttBuiltInRegistries.CHICKEN_VARIANTS, variant.get(), ChickenVariants.TEMPERATE) && LootUtils.dropFromGiftLootTable(this, (ServerLevel)this.level(), ModBuiltInLootTables.CHICKEN_LAY, (level, stack) -> this.spawnAtLocation(stack)) ? Items.AIR : originalItem);
+    }
+
+    @Override
+    public void registerControllers(AnimatableManager.ControllerRegistrar controllers) {
+    }
+
+    @Override
+    public AnimatableInstanceCache getAnimatableInstanceCache() {
+        return this.ott$animatableInstanceCache;
     }
 
     static {

@@ -11,8 +11,8 @@ import net.minecraft.world.level.biome.Biome;
 
 public class SheepVariants {
     public static final ResourceKey<SheepVariant> TEMPERATE = register("temperate", "sheep", 20, SpawnPrioritySelectors.fallback(0));
-    public static final ResourceKey<SheepVariant> COLD = register("cold", "cold_sheep_1", ModTags.Biomes.SPAWNS_COLD_VARIANT_FARM_ANIMALS);
-    public static final ResourceKey<SheepVariant> WARM = register("warm", "warm_sheep_1", ModTags.Biomes.SPAWNS_WARM_VARIANT_FARM_ANIMALS);
+    public static final ResourceKey<SheepVariant> COLD = register("cold", "cold_sheep", ModTags.Biomes.SPAWNS_COLD_VARIANT_FARM_ANIMALS);
+    public static final ResourceKey<SheepVariant> WARM = register("warm", "warm_sheep", ModTags.Biomes.SPAWNS_WARM_VARIANT_FARM_ANIMALS);
 
     private static ResourceKey<SheepVariant> register(String key, String assetId, TagKey<Biome> biome) {
         return register(key, assetId, 1, SpawnPrioritySelectors.single(new RawBiomeCheck(biome), 1));

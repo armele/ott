@@ -24,7 +24,8 @@ public record ChickenVariant(ModelAndTexture<ModelType> modelAndTexture, SpawnPr
 
     public enum ModelType implements StringRepresentable {
         NORMAL("normal"),
-        COLD("cold");
+        COLD("cold"),
+        WARM("warm");
 
         public static final Codec<ModelType> CODEC = StringRepresentable.fromEnum(ModelType::values);
         private final String name;

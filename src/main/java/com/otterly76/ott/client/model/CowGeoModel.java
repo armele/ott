@@ -30,17 +30,14 @@ public class CowGeoModel<T extends Cow & CowGeoEntity> extends GeoModel<T> {
             Optional<CowVariant> variant = holder.ott$getVariantData();
             if (variant.isPresent()) {
                 ClientAsset asset = variant.get().modelAndTexture().asset();
-                if (asset.count() > 1) {
-                    int index = (Math.abs((int) animatable.getUUID().getLeastSignificantBits()) % asset.count()) + 1;
-                    // Handle non-contiguous cow textures (5 and 7 are missing, up to 70)
-                    if (asset.id().getPath().equals("entity/cow/cow")) {
-                        if (index >= 5) index++;
-                        if (index >= 7) index++;
-                    }
-                    final int finalIndex = index;
-                    return asset.id().withPath((path) -> "textures/" + path + "_" + finalIndex + ".png");
+                int index = (Math.abs((int) animatable.getUUID().getLeastSignificantBits()) % asset.count()) + 1;
+                // Handle non-contiguous cow textures (5 and 7 are missing, up to 70)
+                if (asset.id().getPath().equals("entity/cow/cow")) {
+                    if (index >= 5) index++;
+                    if (index >= 7) index++;
                 }
-                return asset.path();
+                final int finalIndex = index;
+                return asset.id().withPath((path) -> "textures/" + path + "_" + finalIndex + ".png");
             }
         }
         return Ott.resource("textures/entity/cow/cow_1.png");

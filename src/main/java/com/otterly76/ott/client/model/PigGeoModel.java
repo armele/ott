@@ -1,13 +1,13 @@
 package com.otterly76.ott.client.model;
 
 import com.otterly76.ott.Ott;
-import com.otterly76.ott.entity.gecko.MooshroomGeoEntity;
+import com.otterly76.ott.entity.gecko.PigGeoEntity;
 import com.otterly76.ott.entity.variant.ClientAsset;
-import com.otterly76.ott.entity.variant.MooshroomVariant;
+import com.otterly76.ott.entity.variant.PigVariant;
 import com.otterly76.ott.entity.variant.VariantDataHolder;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.Mth;
-import net.minecraft.world.entity.animal.MushroomCow;
+import net.minecraft.world.entity.animal.Pig;
 import org.jetbrains.annotations.Nullable;
 import software.bernie.geckolib.animation.AnimationState;
 import software.bernie.geckolib.cache.object.GeoBone;
@@ -17,24 +17,24 @@ import software.bernie.geckolib.model.data.EntityModelData;
 
 import java.util.Optional;
 
-public class MooshroomGeoModel<T extends MushroomCow & MooshroomGeoEntity> extends GeoModel<T> {
+public class PigGeoModel<T extends Pig & PigGeoEntity> extends GeoModel<T> {
     @Override
     public ResourceLocation getModelResource(T animatable) {
-        return Ott.resource("geo/entity/mooshroom/mooshroom.geo.json");
+        return Ott.resource("geo/entity/pig/pig.geo.json");
     }
 
     @Override
     public ResourceLocation getTextureResource(T animatable) {
-        VariantDataHolder<MooshroomVariant> holder = VariantDataHolder.getHolder(animatable);
+        VariantDataHolder<PigVariant> holder = VariantDataHolder.getHolder(animatable);
         if (holder != null) {
-            Optional<MooshroomVariant> variant = holder.ott$getVariantData();
+            Optional<PigVariant> variant = holder.ott$getVariantData();
             if (variant.isPresent()) {
                 ClientAsset asset = variant.get().modelAndTexture().asset();
-                final int index = (Math.abs((int) animatable.getUUID().getLeastSignificantBits()) % asset.count()) + 1;
+                int index = (Math.abs((int) animatable.getUUID().getLeastSignificantBits()) % asset.count()) + 1;
                 return asset.id().withPath((path) -> "textures/" + path + "_" + index + ".png");
             }
         }
-        return Ott.resource("textures/entity/mooshroom/red_mooshroom_1.png");
+        return Ott.resource("textures/entity/pig/pig_1.png");
     }
 
     @Override

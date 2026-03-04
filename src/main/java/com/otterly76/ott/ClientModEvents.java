@@ -208,6 +208,14 @@ public class ClientModEvents {
             net.minecraft.client.renderer.entity.EntityRenderer<?> renderer = new com.otterly76.ott.client.render.entity.MooshroomGeoRenderer<>(context);
             return (net.minecraft.client.renderer.entity.EntityRenderer<net.minecraft.world.entity.animal.MushroomCow>) renderer;
         });
+        event.registerEntityRenderer(net.minecraft.world.entity.EntityType.CHICKEN, (context) -> {
+            net.minecraft.client.renderer.entity.EntityRenderer<?> renderer = new com.otterly76.ott.client.render.entity.ChickenGeoRenderer<>(context);
+            return (net.minecraft.client.renderer.entity.EntityRenderer<net.minecraft.world.entity.animal.Chicken>) renderer;
+        });
+        event.registerEntityRenderer(net.minecraft.world.entity.EntityType.PIG, (context) -> {
+            net.minecraft.client.renderer.entity.EntityRenderer<?> renderer = new com.otterly76.ott.client.render.entity.PigGeoRenderer<>(context);
+            return (net.minecraft.client.renderer.entity.EntityRenderer<net.minecraft.world.entity.animal.Pig>) renderer;
+        });
 
         event.registerBlockEntityRenderer(ModBlockEntities.ANVIL_BLOCK_ENTITY_TYPE.get(), com.otterly76.ott.client.render.AnvilRenderer::new);
         event.registerBlockEntityRenderer(ModBlockEntities.SHELF.get(), com.otterly76.ott.client.render.blockentity.ShelfRenderer::new);

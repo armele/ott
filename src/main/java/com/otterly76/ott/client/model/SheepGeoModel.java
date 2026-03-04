@@ -31,11 +31,8 @@ public class SheepGeoModel<T extends Sheep & SheepGeoEntity> extends GeoModel<T>
             Optional<SheepVariant> variant = holder.ott$getVariantData();
             if (variant.isPresent()) {
                 ClientAsset asset = variant.get().modelAndTexture().asset();
-                if (asset.count() > 1) {
-                    int index = (Math.abs((int) animatable.getUUID().getLeastSignificantBits()) % asset.count()) + 1;
-                    return asset.id().withPath((path) -> "textures/" + path + "_" + index + ".png");
-                }
-                return asset.path();
+                int index = (Math.abs((int) animatable.getUUID().getLeastSignificantBits()) % asset.count()) + 1;
+                return asset.id().withPath((path) -> "textures/" + path + "_" + index + ".png");
             }
         }
         // Default temperate texture
