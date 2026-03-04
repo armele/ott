@@ -70,14 +70,6 @@ public class ModItemModelProvider extends ItemModelProvider {
         generatedItemFromTexture(ModItems.OTTER.getId().getPath(), modLoc("item/otter"));
         
         getBuilder(ModItems.TORCH_ARROW.getId().getPath()).parent(new ModelFile.UncheckedModelFile(mcLoc("item/tipped_arrow")));
-
-        // Spawn Eggs
-        spawnEggItem(ModItems.TINY_SKELETON_SPAWN_EGG.getId().getPath());
-        spawnEggItem(ModItems.TINY_CREEPER_SPAWN_EGG.getId().getPath());
-        spawnEggItem(ModItems.TINY_ENDERMAN_SPAWN_EGG.getId().getPath());
-        spawnEggItem(ModItems.TINY_BOGGED_SPAWN_EGG.getId().getPath());
-        spawnEggItem(ModItems.TINY_STRAY_SPAWN_EGG.getId().getPath());
-        spawnEggItem(ModItems.TINY_WITHER_SKELETON_SPAWN_EGG.getId().getPath());
     }
 
     private void spawnEggItem(String name) {

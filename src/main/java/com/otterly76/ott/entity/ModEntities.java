@@ -4,7 +4,6 @@ import com.otterly76.ott.entity.vehicle.PaleOakBoat;
 import com.otterly76.ott.entity.vehicle.PaleOakChestBoat;
 import com.otterly76.ott.entity.vehicle.OttWoodSetBoatEntity;
 import com.otterly76.ott.entity.vehicle.OttWoodSetChestBoatEntity;
-import com.otterly76.ott.entity.tiny.*;
 import com.otterly76.ott.wood.ModWoodSets;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.world.entity.EntityType;
@@ -36,25 +35,6 @@ public class ModEntities {
     
     public static final Supplier<EntityType<com.otterly76.ott.entity.custom.CopperGolem>> COPPER_GOLEM = ENTITY_TYPES.register("copper_golem",
             () -> Builder.of(com.otterly76.ott.entity.custom.CopperGolem::new, MobCategory.MISC).sized(0.6F, 1.2F).build("copper_golem"));
-
-    public static final Supplier<EntityType<TinySkeleton>> TINY_SKELETON = OTT_ENTITY_TYPES.register("tiny_skeleton",
-            () -> Builder.of(TinySkeleton::new, MobCategory.MONSTER).sized(0.6F, 1.99F).build("tiny_skeleton"));
-
-    public static final Supplier<EntityType<TinyCreeper>> TINY_CREEPER = OTT_ENTITY_TYPES.register("tiny_creeper",
-            () -> Builder.of(TinyCreeper::new, MobCategory.MONSTER).sized(0.6F, 1.7F).build("tiny_creeper"));
-
-    public static final Supplier<EntityType<TinyEnderman>> TINY_ENDERMAN = OTT_ENTITY_TYPES.register("tiny_enderman",
-            () -> Builder.of(TinyEnderman::new, MobCategory.MONSTER).sized(0.6F, 2.9F).build("tiny_enderman"));
-
-    public static final Supplier<EntityType<TinyBogged>> TINY_BOGGED = OTT_ENTITY_TYPES.register("tiny_bogged",
-            () -> Builder.of(TinyBogged::new, MobCategory.MONSTER).sized(0.6F, 1.99F).build("tiny_bogged"));
-
-
-    public static final Supplier<EntityType<TinyStray>> TINY_STRAY = OTT_ENTITY_TYPES.register("tiny_stray",
-            () -> Builder.of(TinyStray::new, MobCategory.MONSTER).sized(0.6F, 1.99F).build("tiny_stray"));
-
-    public static final Supplier<EntityType<TinyWitherSkeleton>> TINY_WITHER_SKELETON = OTT_ENTITY_TYPES.register("tiny_wither_skeleton",
-            () -> Builder.of(TinyWitherSkeleton::new, MobCategory.MONSTER).sized(0.7F, 2.4F).build("tiny_wither_skeleton"));
 
     public static final Supplier<EntityType<TorchArrowEntity>> TORCH_ARROW = OTT_ENTITY_TYPES.register("torch_arrow",
             () -> Builder.<TorchArrowEntity>of(TorchArrowEntity::new, MobCategory.MISC)

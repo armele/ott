@@ -4,9 +4,6 @@ import com.otterly76.ott.entity.gecko.PigGeoEntity;
 import com.otterly76.ott.entity.variant.*;
 import com.otterly76.ott.registry.OttBuiltInRegistries;
 import net.minecraft.nbt.CompoundTag;
-import net.minecraft.network.syncher.EntityDataAccessor;
-import net.minecraft.network.syncher.EntityDataSerializers;
-import net.minecraft.network.syncher.SynchedEntityData;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.entity.AgeableMob;
@@ -29,9 +26,7 @@ import software.bernie.geckolib.util.GeckoLibUtil;
 import java.util.Optional;
 
 @Mixin(Pig.class)
-public abstract class PigMixin extends MobMixin implements VariantDataHolder<PigVariant>, PigGeoEntity {
-    @Unique
-    private static final EntityDataAccessor<String> DATA_OTT_VARIANT_ID;
+public abstract class PigMixin extends MobMixin implements VariantDataHolder<Object>, PigGeoEntity {
 
     @Unique
     private final AnimatableInstanceCache ott$animatableInstanceCache = GeckoLibUtil.createInstanceCache(this);
@@ -47,39 +42,44 @@ public abstract class PigMixin extends MobMixin implements VariantDataHolder<Pig
     private void vb$getBreedOffspring(ServerLevel level, AgeableMob otherParent, CallbackInfoReturnable<Pig> cir) {
         Pig child = cir.getReturnValue();
         if (child != null && otherParent instanceof Pig mate) {
-            VariantDataHolder.trySetOffspringVariant(child, this, mate);
+            VariantDataHolder.trySetOffspringVariant(child, (Pig)(Object)this, mate);
         }
 
     }
 
+
     @Override
-    protected void vb$defineSynchedData(SynchedEntityData.Builder builder, CallbackInfo ci) {
-        builder.define(DATA_OTT_VARIANT_ID, "minecraft:temperate");
+    public void ott$setVariantData(Object variant) {
+        if (variant instanceof PigVariant pigVariant) {
+            this.entityData.set(this.ott$getVariantDataAccessor(), VariantUtils.getID(OttBuiltInRegistries.PIG_VARIANTS, pigVariant));
+        }
     }
 
     @Override
-    public void ott$setVariantData(PigVariant variant) {
-        this.entityData.set(DATA_OTT_VARIANT_ID, VariantUtils.getID(OttBuiltInRegistries.PIG_VARIANTS, variant));
+    @SuppressWarnings("unchecked")
+    public Optional<Object> ott$getVariantData() {
+        return (Optional) VariantUtils.getOrDefault(OttBuiltInRegistries.PIG_VARIANTS, this.entityData.get(this.ott$getVariantDataAccessor()));
     }
 
     @Override
-    public Optional<PigVariant> ott$getVariantData() {
-        return VariantUtils.getOrDefault(OttBuiltInRegistries.PIG_VARIANTS, this.entityData.get(DATA_OTT_VARIANT_ID));
+    protected void ott$addSubAdditionalSaveData(CompoundTag tag, CallbackInfo ci) {
+        if ((Object)this.getClass() == Pig.class) {
+            VariantUtils.addVariantSaveData((VariantDataHolder)this, tag, OttBuiltInRegistries.PIG_VARIANTS);
+        }
     }
 
     @Override
-    protected void vb$addAdditionalSaveData(CompoundTag tag, CallbackInfo ci) {
-        VariantUtils.addVariantSaveData(this, tag, OttBuiltInRegistries.PIG_VARIANTS);
+    protected void ott$readSubAdditionalSaveData(CompoundTag tag, CallbackInfo ci) {
+        if ((Object)this.getClass() == Pig.class) {
+            VariantUtils.readVariantSaveData((VariantDataHolder)this, tag, OttBuiltInRegistries.PIG_VARIANTS);
+        }
     }
 
     @Override
-    protected void vb$readAdditionalSaveData(CompoundTag tag, CallbackInfo ci) {
-        VariantUtils.readVariantSaveData(this, tag, OttBuiltInRegistries.PIG_VARIANTS);
-    }
-
-    @Override
-    protected void vb$finalizeSpawn(ServerLevelAccessor level, DifficultyInstance difficulty, MobSpawnType reason, SpawnGroupData spawnData, CallbackInfoReturnable<SpawnGroupData> cir) {
-        VariantUtils.selectVariantToSpawn(SpawnContext.create(level, this.blockPosition()), OttBuiltInRegistries.PIG_VARIANTS, VariantSpawner.FARM_ANIMALS).ifPresent(this::ott$setVariantData);
+    protected void ott$finalizeSubSpawn(ServerLevelAccessor level, DifficultyInstance difficulty, MobSpawnType reason, SpawnGroupData spawnData, CallbackInfoReturnable<SpawnGroupData> cir) {
+        if ((Object)this.getClass() == Pig.class) {
+            VariantUtils.selectVariantToSpawn(SpawnContext.create(level, this.blockPosition()), OttBuiltInRegistries.PIG_VARIANTS, VariantSpawner.FARM_ANIMALS).ifPresent(this::ott$setVariantData);
+        }
     }
 
     @Override
@@ -89,9 +89,5 @@ public abstract class PigMixin extends MobMixin implements VariantDataHolder<Pig
     @Override
     public AnimatableInstanceCache getAnimatableInstanceCache() {
         return this.ott$animatableInstanceCache;
-    }
-
-    static {
-        DATA_OTT_VARIANT_ID = SynchedEntityData.defineId(PigMixin.class, EntityDataSerializers.STRING);
     }
 }

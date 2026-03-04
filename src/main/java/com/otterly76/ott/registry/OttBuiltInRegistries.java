@@ -38,6 +38,13 @@ public final class OttBuiltInRegistries {
     public static final Registry<com.otterly76.ott.entity.variant.FrogDataVariant> FROG_VARIANT;
     public static final Registry<com.otterly76.ott.entity.variant.WolfDataVariant> WOLF_VARIANT;
     public static final Registry<com.otterly76.ott.entity.variant.CatDataVariant> CAT_VARIANT;
+    public static final Registry<com.otterly76.ott.entity.variant.SkeletonVariant> SKELETON_VARIANT;
+    public static final Registry<com.otterly76.ott.entity.variant.BoggedVariant> BOGGED_VARIANT;
+    public static final Registry<com.otterly76.ott.entity.variant.StrayVariant> STRAY_VARIANT;
+    public static final Registry<com.otterly76.ott.entity.variant.WitherSkeletonVariant> WITHER_SKELETON_VARIANT;
+    public static final Registry<com.otterly76.ott.entity.variant.ZombieVariant> ZOMBIE_VARIANT;
+    public static final Registry<com.otterly76.ott.entity.variant.DrownedVariant> DROWNED_VARIANT;
+    public static final Registry<com.otterly76.ott.entity.variant.HuskVariant> HUSK_VARIANT;
 
     public static final BuiltInCoreRegistry<com.otterly76.ott.entity.variant.WolfSoundVariant> WOLF_SOUND_VARIANTS;
     public static final BuiltInCoreRegistry<com.otterly76.ott.entity.variant.CowVariant> COW_VARIANTS;
@@ -48,6 +55,13 @@ public final class OttBuiltInRegistries {
     public static final BuiltInCoreRegistry<com.otterly76.ott.entity.variant.FrogDataVariant> FROG_VARIANTS;
     public static final BuiltInCoreRegistry<com.otterly76.ott.entity.variant.WolfDataVariant> WOLF_VARIANTS;
     public static final BuiltInCoreRegistry<com.otterly76.ott.entity.variant.CatDataVariant> CAT_VARIANTS;
+    public static final BuiltInCoreRegistry<com.otterly76.ott.entity.variant.SkeletonVariant> SKELETON_VARIANTS;
+    public static final BuiltInCoreRegistry<com.otterly76.ott.entity.variant.BoggedVariant> BOGGED_VARIANTS;
+    public static final BuiltInCoreRegistry<com.otterly76.ott.entity.variant.StrayVariant> STRAY_VARIANTS;
+    public static final BuiltInCoreRegistry<com.otterly76.ott.entity.variant.WitherSkeletonVariant> WITHER_SKELETON_VARIANTS;
+    public static final BuiltInCoreRegistry<com.otterly76.ott.entity.variant.ZombieVariant> ZOMBIE_VARIANTS;
+    public static final BuiltInCoreRegistry<com.otterly76.ott.entity.variant.DrownedVariant> DROWNED_VARIANTS;
+    public static final BuiltInCoreRegistry<com.otterly76.ott.entity.variant.HuskVariant> HUSK_VARIANTS;
 
     private static final DeferredRegister<com.otterly76.ott.entity.variant.WolfSoundVariant> DEFERRED_WOLF_SOUND_VARIANTS;
     private static final DeferredRegister<com.otterly76.ott.entity.variant.CowVariant> DEFERRED_COW_VARIANTS;
@@ -58,6 +72,13 @@ public final class OttBuiltInRegistries {
     private static final DeferredRegister<com.otterly76.ott.entity.variant.FrogDataVariant> DEFERRED_FROG_VARIANTS;
     private static final DeferredRegister<com.otterly76.ott.entity.variant.WolfDataVariant> DEFERRED_WOLF_VARIANTS;
     private static final DeferredRegister<com.otterly76.ott.entity.variant.CatDataVariant> DEFERRED_CAT_VARIANTS;
+    private static final DeferredRegister<com.otterly76.ott.entity.variant.SkeletonVariant> DEFERRED_SKELETON_VARIANTS;
+    private static final DeferredRegister<com.otterly76.ott.entity.variant.BoggedVariant> DEFERRED_BOGGED_VARIANTS;
+    private static final DeferredRegister<com.otterly76.ott.entity.variant.StrayVariant> DEFERRED_STRAY_VARIANTS;
+    private static final DeferredRegister<com.otterly76.ott.entity.variant.WitherSkeletonVariant> DEFERRED_WITHER_SKELETON_VARIANTS;
+    private static final DeferredRegister<com.otterly76.ott.entity.variant.ZombieVariant> DEFERRED_ZOMBIE_VARIANTS;
+    private static final DeferredRegister<com.otterly76.ott.entity.variant.DrownedVariant> DEFERRED_DROWNED_VARIANTS;
+    private static final DeferredRegister<com.otterly76.ott.entity.variant.HuskVariant> DEFERRED_HUSK_VARIANTS;
 
     private static final DeferredRegister<MapCodec<? extends BiomeModifier>> BIOME_MODIFIER_TYPES;
     private static final DeferredRegister<MapCodec<? extends ICondition>> RESOURCE_CONDITION_TYPES;
@@ -102,6 +123,13 @@ public final class OttBuiltInRegistries {
         DEFERRED_FROG_VARIANTS.register(bus);
         DEFERRED_WOLF_VARIANTS.register(bus);
         DEFERRED_CAT_VARIANTS.register(bus);
+        DEFERRED_SKELETON_VARIANTS.register(bus);
+        DEFERRED_BOGGED_VARIANTS.register(bus);
+        DEFERRED_STRAY_VARIANTS.register(bus);
+        DEFERRED_WITHER_SKELETON_VARIANTS.register(bus);
+        DEFERRED_ZOMBIE_VARIANTS.register(bus);
+        DEFERRED_DROWNED_VARIANTS.register(bus);
+        DEFERRED_HUSK_VARIANTS.register(bus);
 
         registerForgeBiomeModifiers((name, codec) -> BIOME_MODIFIER_TYPES.register(name, () -> codec));
         BIOME_MODIFIER_TYPES.register(bus);
@@ -142,6 +170,13 @@ public final class OttBuiltInRegistries {
         WolfDataVariants.bootstrap();
         FrogDataVariants.bootstrap();
         CatDataVariants.bootstrap();
+        SkeletonVariants.bootstrap();
+        BoggedVariants.bootstrap();
+        StrayVariants.bootstrap();
+        WitherSkeletonVariants.bootstrap();
+        ZombieVariants.bootstrap();
+        DrownedVariants.bootstrap();
+        HuskVariants.bootstrap();
         WolfSoundVariants.bootstrap();
     }
 
@@ -172,6 +207,20 @@ public final class OttBuiltInRegistries {
         WOLF_VARIANT = DEFERRED_WOLF_VARIANTS.makeRegistry(builder -> builder.sync(false));
         DEFERRED_CAT_VARIANTS = DeferredRegister.create(OttRegistryKeys.CAT_VARIANT, "ott");
         CAT_VARIANT = DEFERRED_CAT_VARIANTS.makeRegistry(builder -> builder.sync(false));
+        DEFERRED_SKELETON_VARIANTS = DeferredRegister.create(OttRegistryKeys.SKELETON_VARIANT, "minecraft");
+        SKELETON_VARIANT = DEFERRED_SKELETON_VARIANTS.makeRegistry(builder -> builder.sync(false));
+        DEFERRED_BOGGED_VARIANTS = DeferredRegister.create(OttRegistryKeys.BOGGED_VARIANT, "minecraft");
+        BOGGED_VARIANT = DEFERRED_BOGGED_VARIANTS.makeRegistry(builder -> builder.sync(false));
+        DEFERRED_STRAY_VARIANTS = DeferredRegister.create(OttRegistryKeys.STRAY_VARIANT, "minecraft");
+        STRAY_VARIANT = DEFERRED_STRAY_VARIANTS.makeRegistry(builder -> builder.sync(false));
+        DEFERRED_WITHER_SKELETON_VARIANTS = DeferredRegister.create(OttRegistryKeys.WITHER_SKELETON_VARIANT, "minecraft");
+        WITHER_SKELETON_VARIANT = DEFERRED_WITHER_SKELETON_VARIANTS.makeRegistry(builder -> builder.sync(false));
+        DEFERRED_ZOMBIE_VARIANTS = DeferredRegister.create(OttRegistryKeys.ZOMBIE_VARIANT, "minecraft");
+        ZOMBIE_VARIANT = DEFERRED_ZOMBIE_VARIANTS.makeRegistry(builder -> builder.sync(false));
+        DEFERRED_DROWNED_VARIANTS = DeferredRegister.create(OttRegistryKeys.DROWNED_VARIANT, "minecraft");
+        DROWNED_VARIANT = DEFERRED_DROWNED_VARIANTS.makeRegistry(builder -> builder.sync(false));
+        DEFERRED_HUSK_VARIANTS = DeferredRegister.create(OttRegistryKeys.HUSK_VARIANT, "minecraft");
+        HUSK_VARIANT = DEFERRED_HUSK_VARIANTS.makeRegistry(builder -> builder.sync(false));
 
         BIOME_MODIFIER_TYPES = DeferredRegister.create(Keys.BIOME_MODIFIER_SERIALIZERS, "ott");
         RESOURCE_CONDITION_TYPES = DeferredRegister.create(Keys.CONDITION_CODECS, "ott");
@@ -185,5 +234,12 @@ public final class OttBuiltInRegistries {
         FROG_VARIANTS = new BuiltInCoreRegistry<>(FROG_VARIANT, "minecraft");
         WOLF_VARIANTS = new BuiltInCoreRegistry<>(WOLF_VARIANT, "minecraft");
         CAT_VARIANTS = new BuiltInCoreRegistry<>(CAT_VARIANT, "minecraft");
+        SKELETON_VARIANTS = new BuiltInCoreRegistry<>(SKELETON_VARIANT, "minecraft");
+        BOGGED_VARIANTS = new BuiltInCoreRegistry<>(BOGGED_VARIANT, "minecraft");
+        STRAY_VARIANTS = new BuiltInCoreRegistry<>(STRAY_VARIANT, "minecraft");
+        WITHER_SKELETON_VARIANTS = new BuiltInCoreRegistry<>(WITHER_SKELETON_VARIANT, "minecraft");
+        ZOMBIE_VARIANTS = new BuiltInCoreRegistry<>(ZOMBIE_VARIANT, "minecraft");
+        DROWNED_VARIANTS = new BuiltInCoreRegistry<>(DROWNED_VARIANT, "minecraft");
+        HUSK_VARIANTS = new BuiltInCoreRegistry<>(HUSK_VARIANT, "minecraft");
     }
 }

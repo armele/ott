@@ -1,6 +1,9 @@
 package com.otterly76.ott.mixin.common;
 
+import com.otterly76.ott.util.entity.OttBabyMob;
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.network.syncher.EntityDataAccessor;
+import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
 import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.InteractionHand;
@@ -10,19 +13,32 @@ import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.Mob;
 import net.minecraft.world.entity.MobSpawnType;
 import net.minecraft.world.entity.SpawnGroupData;
+import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.ServerLevelAccessor;
 import org.jetbrains.annotations.NotNull;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
+import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 @Mixin(Mob.class)
-public abstract class MobMixin extends LivingEntity {
+public abstract class MobMixin extends LivingEntity implements OttBabyMob {
+    @Unique
+    private static final EntityDataAccessor<Boolean> OTT_DATA_BABY_ID = SynchedEntityData.defineId(Mob.class, EntityDataSerializers.BOOLEAN);
+
+    @Unique
+    private static final EntityDataAccessor<String> DATA_OTT_VARIANT_ID = SynchedEntityData.defineId(Mob.class, EntityDataSerializers.STRING);
+
+    @Unique
+    protected EntityDataAccessor<String> ott$getVariantDataAccessor() {
+        return DATA_OTT_VARIANT_ID;
+    }
+
     @Shadow
     public abstract @NotNull InteractionResult interact(@NotNull Player player, @NotNull InteractionHand hand);
 
@@ -38,6 +54,7 @@ public abstract class MobMixin extends LivingEntity {
         at = @At("TAIL")
     )
     protected void vb$defineSynchedData(SynchedEntityData.Builder builder, CallbackInfo ci) {
+        builder.define(OTT_DATA_BABY_ID, false);
     }
 
     @Inject(
@@ -45,6 +62,7 @@ public abstract class MobMixin extends LivingEntity {
         at = @At("TAIL")
     )
     protected void ott$defineSubSynchedData(SynchedEntityData.Builder builder, CallbackInfo ci) {
+        builder.define(DATA_OTT_VARIANT_ID, "ott:none");
     }
 
     @Inject(
@@ -52,6 +70,9 @@ public abstract class MobMixin extends LivingEntity {
         at = @At("RETURN")
     )
     protected void vb$addAdditionalSaveData(CompoundTag tag, CallbackInfo ci) {
+        if (this.entityData.get(OTT_DATA_BABY_ID)) {
+            tag.putBoolean("IsBaby", true);
+        }
     }
 
     @Inject(
@@ -66,6 +87,7 @@ public abstract class MobMixin extends LivingEntity {
         at = @At("RETURN")
     )
     protected void vb$readAdditionalSaveData(CompoundTag tag, CallbackInfo ci) {
+        this.ott$setBaby(tag.getBoolean("IsBaby"));
     }
 
     @Inject(
@@ -87,6 +109,21 @@ public abstract class MobMixin extends LivingEntity {
         at = @At("RETURN")
     )
     protected void ott$finalizeSubSpawn(ServerLevelAccessor level, DifficultyInstance difficulty, MobSpawnType reason, SpawnGroupData spawnData, CallbackInfoReturnable<SpawnGroupData> cir) {
+    }
+
+    @Override
+    public boolean ott$isBaby() {
+        return this.entityData.get(OTT_DATA_BABY_ID);
+    }
+
+    @Override
+    public void ott$setBaby(boolean baby) {
+        this.entityData.set(OTT_DATA_BABY_ID, baby);
+        if ((Object)this instanceof net.minecraft.world.entity.AgeableMob ageable) {
+            ageable.setBaby(baby);
+        } else if (this.getAttribute(Attributes.SCALE) != null) {
+            this.getAttribute(Attributes.SCALE).setBaseValue(baby ? 0.5D : 1.0D);
+        }
     }
 
     @Inject(

@@ -4,9 +4,6 @@ import com.otterly76.ott.entity.gecko.MooshroomGeoEntity;
 import com.otterly76.ott.entity.variant.*;
 import com.otterly76.ott.registry.OttBuiltInRegistries;
 import net.minecraft.nbt.CompoundTag;
-import net.minecraft.network.syncher.EntityDataAccessor;
-import net.minecraft.network.syncher.EntityDataSerializers;
-import net.minecraft.network.syncher.SynchedEntityData;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.entity.AgeableMob;
@@ -29,9 +26,7 @@ import software.bernie.geckolib.util.GeckoLibUtil;
 import java.util.Optional;
 
 @Mixin(MushroomCow.class)
-public abstract class MooshroomMixin extends MobMixin implements VariantDataHolder<MooshroomVariant>, MooshroomGeoEntity {
-    @Unique
-    private static final EntityDataAccessor<String> DATA_OTT_VARIANT_ID;
+public abstract class MooshroomMixin extends MobMixin implements VariantDataHolder<Object>, MooshroomGeoEntity {
 
     @Unique
     private final AnimatableInstanceCache ott$animatableInstanceCache = GeckoLibUtil.createInstanceCache(this);
@@ -47,46 +42,51 @@ public abstract class MooshroomMixin extends MobMixin implements VariantDataHold
     private void vb$getBreedOffspring(ServerLevel level, AgeableMob otherParent, CallbackInfoReturnable<MushroomCow> cir) {
         MushroomCow child = cir.getReturnValue();
         if (child != null && otherParent instanceof MushroomCow mate) {
-            VariantDataHolder.trySetOffspringVariant(child, this, mate);
+            VariantDataHolder.trySetOffspringVariant(child, (MushroomCow)(Object)this, mate);
         }
     }
 
-    @Override
-    protected void ott$defineSubSynchedData(SynchedEntityData.Builder builder, CallbackInfo ci) {
-        builder.define(DATA_OTT_VARIANT_ID, "minecraft:red");
-    }
 
     @Override
-    public void ott$setVariantData(MooshroomVariant variant) {
-        String id = VariantUtils.getID(OttBuiltInRegistries.MOOSHROOM_VARIANTS, variant);
-        this.entityData.set(DATA_OTT_VARIANT_ID, id);
-        if ((Object)this instanceof MushroomCow cow) {
-            if (id.equals("minecraft:brown")) {
-                cow.setVariant(MushroomCow.MushroomType.BROWN);
-            } else {
-                cow.setVariant(MushroomCow.MushroomType.RED);
+    public void ott$setVariantData(Object variant) {
+        if (variant instanceof MooshroomVariant mooshroomVariant) {
+            String id = VariantUtils.getID(OttBuiltInRegistries.MOOSHROOM_VARIANTS, mooshroomVariant);
+            this.entityData.set(this.ott$getVariantDataAccessor(), id);
+            if ((Object)this instanceof MushroomCow cow) {
+                if (id.equals("minecraft:brown")) {
+                    cow.setVariant(MushroomCow.MushroomType.BROWN);
+                } else {
+                    cow.setVariant(MushroomCow.MushroomType.RED);
+                }
             }
         }
     }
 
     @Override
-    public Optional<MooshroomVariant> ott$getVariantData() {
-        return VariantUtils.getOrDefault(OttBuiltInRegistries.MOOSHROOM_VARIANTS, this.entityData.get(DATA_OTT_VARIANT_ID));
+    @SuppressWarnings("unchecked")
+    public Optional<Object> ott$getVariantData() {
+        return (Optional) VariantUtils.getOrDefault(OttBuiltInRegistries.MOOSHROOM_VARIANTS, this.entityData.get(this.ott$getVariantDataAccessor()));
     }
 
     @Override
     protected void ott$addSubAdditionalSaveData(CompoundTag tag, CallbackInfo ci) {
-        VariantUtils.addVariantSaveData(this, tag, OttBuiltInRegistries.MOOSHROOM_VARIANTS);
+        if ((Object)this.getClass() == MushroomCow.class) {
+            VariantUtils.addVariantSaveData((VariantDataHolder)this, tag, OttBuiltInRegistries.MOOSHROOM_VARIANTS);
+        }
     }
 
     @Override
     protected void ott$readSubAdditionalSaveData(CompoundTag tag, CallbackInfo ci) {
-        VariantUtils.readVariantSaveData(this, tag, OttBuiltInRegistries.MOOSHROOM_VARIANTS);
+        if ((Object)this.getClass() == MushroomCow.class) {
+            VariantUtils.readVariantSaveData((VariantDataHolder)this, tag, OttBuiltInRegistries.MOOSHROOM_VARIANTS);
+        }
     }
 
     @Override
     protected void ott$finalizeSubSpawn(ServerLevelAccessor level, DifficultyInstance difficulty, MobSpawnType reason, SpawnGroupData spawnData, CallbackInfoReturnable<SpawnGroupData> cir) {
-        VariantUtils.selectVariantToSpawn(SpawnContext.create(level, this.blockPosition()), OttBuiltInRegistries.MOOSHROOM_VARIANTS, VariantSpawner.FARM_ANIMALS).ifPresent(this::ott$setVariantData);
+        if ((Object)this.getClass() == MushroomCow.class) {
+            VariantUtils.selectVariantToSpawn(SpawnContext.create(level, this.blockPosition()), OttBuiltInRegistries.MOOSHROOM_VARIANTS, VariantSpawner.FARM_ANIMALS).ifPresent(this::ott$setVariantData);
+        }
     }
 
     @Override
@@ -96,9 +96,5 @@ public abstract class MooshroomMixin extends MobMixin implements VariantDataHold
     @Override
     public AnimatableInstanceCache getAnimatableInstanceCache() {
         return this.ott$animatableInstanceCache;
-    }
-
-    static {
-        DATA_OTT_VARIANT_ID = SynchedEntityData.defineId(MooshroomMixin.class, EntityDataSerializers.STRING);
     }
 }

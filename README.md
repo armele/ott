@@ -92,7 +92,7 @@ Features
   - 16 new Limestone blocks, 4 styles in 4 shades
   - Seaglass, Ethereal, and Prismatic blocks
   - Floral, Blooming, and Creeping Hedges 🌺
-- Added the Hedge
+- Added the Thorny Hedge
   - Custom damage for dangerous plants: Flora 🌼
 - Added Four New Magic Lanterns:
   - Waterbending Lantern pushes water away within its range

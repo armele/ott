@@ -187,12 +187,6 @@ public class ClientModEvents {
                 event.registerEntityRenderer(type.get(), (context) -> new ModBoatRenderer(context, true))
         );
 
-        event.registerEntityRenderer(ModEntities.TINY_SKELETON.get(), SkeletonRenderer::new);
-        event.registerEntityRenderer(ModEntities.TINY_CREEPER.get(), CreeperRenderer::new);
-        event.registerEntityRenderer(ModEntities.TINY_ENDERMAN.get(), EndermanRenderer::new);
-        event.registerEntityRenderer(ModEntities.TINY_BOGGED.get(), BoggedRenderer::new);
-        event.registerEntityRenderer(ModEntities.TINY_STRAY.get(), StrayRenderer::new);
-        event.registerEntityRenderer(ModEntities.TINY_WITHER_SKELETON.get(), WitherSkeletonRenderer::new);
         event.registerEntityRenderer(ModEntities.TORCH_ARROW.get(), TorchArrowRenderer::new);
         event.registerEntityRenderer(ModEntities.COPPER_GOLEM.get(), com.otterly76.ott.client.render.entity.CopperGolemRenderer::new);
         event.registerEntityRenderer(ModEntities.MAN_O_WAR.get(), com.otterly76.ott.client.render.entity.ManOWarRenderer::new);
@@ -215,6 +209,34 @@ public class ClientModEvents {
         event.registerEntityRenderer(net.minecraft.world.entity.EntityType.PIG, (context) -> {
             net.minecraft.client.renderer.entity.EntityRenderer<?> renderer = new com.otterly76.ott.client.render.entity.PigGeoRenderer<>(context);
             return (net.minecraft.client.renderer.entity.EntityRenderer<net.minecraft.world.entity.animal.Pig>) renderer;
+        });
+        event.registerEntityRenderer(net.minecraft.world.entity.EntityType.SKELETON, (context) -> {
+            net.minecraft.client.renderer.entity.EntityRenderer<?> renderer = new com.otterly76.ott.client.render.entity.SkeletonGeoRenderer<>(context);
+            return (net.minecraft.client.renderer.entity.EntityRenderer<net.minecraft.world.entity.monster.Skeleton>) renderer;
+        });
+        event.registerEntityRenderer(net.minecraft.world.entity.EntityType.BOGGED, (context) -> {
+            net.minecraft.client.renderer.entity.EntityRenderer<?> renderer = new com.otterly76.ott.client.render.entity.BoggedGeoRenderer<>(context);
+            return (net.minecraft.client.renderer.entity.EntityRenderer<net.minecraft.world.entity.monster.Bogged>) renderer;
+        });
+        event.registerEntityRenderer(net.minecraft.world.entity.EntityType.STRAY, (context) -> {
+            net.minecraft.client.renderer.entity.EntityRenderer<?> renderer = new com.otterly76.ott.client.render.entity.StrayGeoRenderer<>(context);
+            return (net.minecraft.client.renderer.entity.EntityRenderer<net.minecraft.world.entity.monster.Stray>) renderer;
+        });
+        event.registerEntityRenderer(net.minecraft.world.entity.EntityType.WITHER_SKELETON, (context) -> {
+            net.minecraft.client.renderer.entity.EntityRenderer<?> renderer = new com.otterly76.ott.client.render.entity.WitherSkeletonGeoRenderer<>(context);
+            return (net.minecraft.client.renderer.entity.EntityRenderer<net.minecraft.world.entity.monster.WitherSkeleton>) renderer;
+        });
+        event.registerEntityRenderer(net.minecraft.world.entity.EntityType.ZOMBIE, (context) -> {
+            net.minecraft.client.renderer.entity.EntityRenderer<?> renderer = new com.otterly76.ott.client.render.entity.ZombieGeoRenderer<>(context);
+            return (net.minecraft.client.renderer.entity.EntityRenderer<net.minecraft.world.entity.monster.Zombie>) renderer;
+        });
+        event.registerEntityRenderer(net.minecraft.world.entity.EntityType.DROWNED, (context) -> {
+            net.minecraft.client.renderer.entity.EntityRenderer<?> renderer = new com.otterly76.ott.client.render.entity.DrownedGeoRenderer<>(context);
+            return (net.minecraft.client.renderer.entity.EntityRenderer<net.minecraft.world.entity.monster.Drowned>) renderer;
+        });
+        event.registerEntityRenderer(net.minecraft.world.entity.EntityType.HUSK, (context) -> {
+            net.minecraft.client.renderer.entity.EntityRenderer<?> renderer = new com.otterly76.ott.client.render.entity.HuskGeoRenderer<>(context);
+            return (net.minecraft.client.renderer.entity.EntityRenderer<net.minecraft.world.entity.monster.Husk>) renderer;
         });
 
         event.registerBlockEntityRenderer(ModBlockEntities.ANVIL_BLOCK_ENTITY_TYPE.get(), com.otterly76.ott.client.render.AnvilRenderer::new);

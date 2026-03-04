@@ -4,6 +4,7 @@ import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import com.mojang.math.Axis;
 import com.otterly76.ott.client.model.ManOWarModel;
+import com.otterly76.ott.client.render.layers.LivingEntityEmissiveGeoLayer;
 import com.otterly76.ott.entity.custom.ManOWar;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
@@ -12,12 +13,12 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import software.bernie.geckolib.cache.object.BakedGeoModel;
 import software.bernie.geckolib.renderer.GeoEntityRenderer;
-import software.bernie.geckolib.renderer.layer.AutoGlowingGeoLayer;
 
 public class ManOWarRenderer<T extends ManOWar> extends GeoEntityRenderer<T> {
     public ManOWarRenderer(EntityRendererProvider.Context context) {
         super(context, new ManOWarModel<>());
-        this.addRenderLayer(new AutoGlowingGeoLayer<>(this));
+        this.addRenderLayer(new LivingEntityEmissiveGeoLayer<>(this,
+            (texture) -> texture.withPath((path) -> path.replace(".png", "_glowmask.png"))));
     }
 
     @Override

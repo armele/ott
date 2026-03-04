@@ -4,9 +4,6 @@ import com.otterly76.ott.entity.gecko.SheepGeoEntity;
 import com.otterly76.ott.entity.variant.*;
 import com.otterly76.ott.registry.OttBuiltInRegistries;
 import net.minecraft.nbt.CompoundTag;
-import net.minecraft.network.syncher.EntityDataAccessor;
-import net.minecraft.network.syncher.EntityDataSerializers;
-import net.minecraft.network.syncher.SynchedEntityData;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.DifficultyInstance;
@@ -32,9 +29,7 @@ import software.bernie.geckolib.util.GeckoLibUtil;
 import java.util.Optional;
 
 @Mixin(Sheep.class)
-public abstract class SheepMixin extends MobMixin implements VariantDataHolder<SheepVariant>, SheepGeoEntity {
-    @Unique
-    private static final EntityDataAccessor<String> DATA_OTT_VARIANT_ID;
+public abstract class SheepMixin extends MobMixin implements VariantDataHolder<Object>, SheepGeoEntity {
 
     @Unique
     private final AnimatableInstanceCache ott$animatableInstanceCache = GeckoLibUtil.createInstanceCache(this);
@@ -50,33 +45,36 @@ public abstract class SheepMixin extends MobMixin implements VariantDataHolder<S
     private void vb$getBreedOffspring(ServerLevel level, AgeableMob otherParent, CallbackInfoReturnable<Sheep> cir) {
         Sheep child = cir.getReturnValue();
         if (child != null && otherParent instanceof Sheep mate) {
-            VariantDataHolder.trySetOffspringVariant(child, this, mate);
+            VariantDataHolder.trySetOffspringVariant(child, (Sheep)(Object)this, mate);
+        }
+    }
+
+
+    @Override
+    public void ott$setVariantData(Object variant) {
+        if (variant instanceof SheepVariant sheepVariant) {
+            this.entityData.set(this.ott$getVariantDataAccessor(), VariantUtils.getID(OttBuiltInRegistries.SHEEP_VARIANTS, sheepVariant));
         }
     }
 
     @Override
-    protected void vb$defineSynchedData(SynchedEntityData.Builder builder, CallbackInfo ci) {
-        builder.define(DATA_OTT_VARIANT_ID, "minecraft:temperate");
+    @SuppressWarnings("unchecked")
+    public Optional<Object> ott$getVariantData() {
+        return (Optional) VariantUtils.getOrDefault(OttBuiltInRegistries.SHEEP_VARIANTS, this.entityData.get(this.ott$getVariantDataAccessor()));
     }
 
     @Override
-    public void ott$setVariantData(SheepVariant variant) {
-        this.entityData.set(DATA_OTT_VARIANT_ID, VariantUtils.getID(OttBuiltInRegistries.SHEEP_VARIANTS, variant));
+    protected void ott$addSubAdditionalSaveData(CompoundTag tag, CallbackInfo ci) {
+        if ((Object)this.getClass() == Sheep.class) {
+            VariantUtils.addVariantSaveData((VariantDataHolder)this, tag, OttBuiltInRegistries.SHEEP_VARIANTS);
+        }
     }
 
     @Override
-    public Optional<SheepVariant> ott$getVariantData() {
-        return VariantUtils.getOrDefault(OttBuiltInRegistries.SHEEP_VARIANTS, this.entityData.get(DATA_OTT_VARIANT_ID));
-    }
-
-    @Override
-    protected void vb$addAdditionalSaveData(CompoundTag tag, CallbackInfo ci) {
-        VariantUtils.addVariantSaveData(this, tag, OttBuiltInRegistries.SHEEP_VARIANTS);
-    }
-
-    @Override
-    protected void vb$readAdditionalSaveData(CompoundTag tag, CallbackInfo ci) {
-        VariantUtils.readVariantSaveData(this, tag, OttBuiltInRegistries.SHEEP_VARIANTS);
+    protected void ott$readSubAdditionalSaveData(CompoundTag tag, CallbackInfo ci) {
+        if ((Object)this.getClass() == Sheep.class) {
+            VariantUtils.readVariantSaveData((VariantDataHolder)this, tag, OttBuiltInRegistries.SHEEP_VARIANTS);
+        }
     }
 
     @Redirect(
@@ -101,9 +99,5 @@ public abstract class SheepMixin extends MobMixin implements VariantDataHolder<S
     @Override
     public AnimatableInstanceCache getAnimatableInstanceCache() {
         return this.ott$animatableInstanceCache;
-    }
-
-    static {
-        DATA_OTT_VARIANT_ID = SynchedEntityData.defineId(SheepMixin.class, EntityDataSerializers.STRING);
     }
 }

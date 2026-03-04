@@ -33,8 +33,6 @@ import java.util.Optional;
 public abstract class WolfMixin extends TamableAnimalMixin implements NeutralMob, WolfSoundVariantHolder, VariantDataHolder<WolfDataVariant> {
     @Unique
     private static final EntityDataAccessor<String> DATA_OTT_SOUND_VARIANT_ID;
-    @Unique
-    private static final EntityDataAccessor<String> DATA_OTT_VARIANT_ID;
 
     @Shadow
     public abstract DyeColor getCollarColor();
@@ -48,23 +46,17 @@ public abstract class WolfMixin extends TamableAnimalMixin implements NeutralMob
 
     static {
         DATA_OTT_SOUND_VARIANT_ID = SynchedEntityData.defineId(WolfMixin.class, EntityDataSerializers.STRING);
-        DATA_OTT_VARIANT_ID = SynchedEntityData.defineId(WolfMixin.class, EntityDataSerializers.STRING);
     }
 
-    @Override
-    protected void vb$defineSynchedData(SynchedEntityData.Builder builder, CallbackInfo ci) {
-        builder.define(DATA_OTT_SOUND_VARIANT_ID, VariantUtils.getDefaultID(OttBuiltInRegistries.WOLF_SOUND_VARIANTS, WolfSoundVariants.CLASSIC));
-        builder.define(DATA_OTT_VARIANT_ID, "minecraft:pale");
-    }
 
     @Override
-    protected void vb$addAdditionalSaveData(CompoundTag tag, CallbackInfo ci) {
+    protected void ott$addSubAdditionalSaveData(CompoundTag tag, CallbackInfo ci) {
         VariantUtils.addVariantSaveData(this, tag, OttBuiltInRegistries.WOLF_VARIANTS);
         tag.putString("sound_variant", OttBuiltInRegistries.WOLF_SOUND_VARIANTS.getKey(this.ott$getSoundVariant()).toString());
     }
 
     @Override
-    protected void vb$readAdditionalSaveData(CompoundTag tag, CallbackInfo ci) {
+    protected void ott$readSubAdditionalSaveData(CompoundTag tag, CallbackInfo ci) {
         VariantUtils.readVariantSaveData(this, tag, OttBuiltInRegistries.WOLF_VARIANTS);
         if (tag.contains("sound_variant")) {
             WolfSoundVariant soundVariant = OttBuiltInRegistries.WOLF_SOUND_VARIANTS.get(ResourceLocation.tryParse(tag.getString("sound_variant")));
@@ -86,12 +78,12 @@ public abstract class WolfMixin extends TamableAnimalMixin implements NeutralMob
 
     @Override
     public Optional<WolfDataVariant> ott$getVariantData() {
-        return VariantUtils.getOrDefault(OttBuiltInRegistries.WOLF_VARIANTS, this.entityData.get(DATA_OTT_VARIANT_ID));
+        return VariantUtils.getOrDefault(OttBuiltInRegistries.WOLF_VARIANTS, this.entityData.get(this.ott$getVariantDataAccessor()));
     }
 
     @Override
     public void ott$setVariantData(WolfDataVariant variant) {
-        this.entityData.set(DATA_OTT_VARIANT_ID, VariantUtils.getID(OttBuiltInRegistries.WOLF_VARIANTS, variant));
+        this.entityData.set(this.ott$getVariantDataAccessor(), VariantUtils.getID(OttBuiltInRegistries.WOLF_VARIANTS, variant));
     }
 
     @Inject(
@@ -134,7 +126,7 @@ public abstract class WolfMixin extends TamableAnimalMixin implements NeutralMob
     }
 
     @Override
-    protected void vb$finalizeSpawn(ServerLevelAccessor level, DifficultyInstance difficulty, MobSpawnType reason, SpawnGroupData spawnData, CallbackInfoReturnable<SpawnGroupData> cir) {
+    protected void ott$finalizeSubSpawn(ServerLevelAccessor level, DifficultyInstance difficulty, MobSpawnType reason, SpawnGroupData spawnData, CallbackInfoReturnable<SpawnGroupData> cir) {
         this.ott$setSoundVariant(OttBuiltInRegistries.WOLF_SOUND_VARIANTS.getRandomElement(level.getRandom()));
         VariantUtils.selectVariantToSpawn(SpawnContext.create(level, this.blockPosition()), OttBuiltInRegistries.WOLF_VARIANTS).ifPresent(this::ott$setVariantData);
     }

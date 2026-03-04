@@ -6,7 +6,6 @@ import com.otterly76.ott.client.model.CreakingModel;
 import com.otterly76.ott.client.registries.ModModelLayers;
 import com.otterly76.ott.entity.custom.HappyGhast;
 import com.otterly76.ott.item.ModItems;
-import com.otterly76.ott.entity.tiny.*;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.Mob;
 import net.minecraft.world.entity.SpawnPlacementTypes;
@@ -28,12 +27,6 @@ public class ModEventBusEvents {
         event.put(ModEntities.CREAKING.get(), Creaking.createAttributes().build());
         event.put(ModEntities.HAPPY_GHAST.get(), HappyGhast.createAttributes().build());
         event.put(ModEntities.COPPER_GOLEM.get(), com.otterly76.ott.entity.custom.CopperGolem.createAttributes().build());
-        event.put(ModEntities.TINY_SKELETON.get(), TinySkeleton.createAttributes().build());
-        event.put(ModEntities.TINY_CREEPER.get(), TinyCreeper.createAttributes().build());
-        event.put(ModEntities.TINY_ENDERMAN.get(), TinyEnderman.createAttributes().build());
-        event.put(ModEntities.TINY_BOGGED.get(), TinyBogged.createAttributes().build());
-        event.put(ModEntities.TINY_STRAY.get(), TinyStray.createAttributes().build());
-        event.put(ModEntities.TINY_WITHER_SKELETON.get(), TinyWitherSkeleton.createAttributes().build());
         event.put(ModEntities.MAN_O_WAR.get(), com.otterly76.ott.entity.custom.ManOWar.createAttributes().build());
     }
 

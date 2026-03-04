@@ -26,6 +26,13 @@ public interface OttRegistryKeys {
     ResourceKey<Registry<FrogDataVariant>> FROG_VARIANT = create("frog_variant");
     ResourceKey<Registry<WolfDataVariant>> WOLF_VARIANT = create("wolf_variant");
     ResourceKey<Registry<CatDataVariant>> CAT_VARIANT = create("cat_variant");
+    ResourceKey<Registry<SkeletonVariant>> SKELETON_VARIANT = create("skeleton_variant");
+    ResourceKey<Registry<BoggedVariant>> BOGGED_VARIANT = create("bogged_variant");
+    ResourceKey<Registry<StrayVariant>> STRAY_VARIANT = create("stray_variant");
+    ResourceKey<Registry<WitherSkeletonVariant>> WITHER_SKELETON_VARIANT = create("wither_skeleton_variant");
+    ResourceKey<Registry<ZombieVariant>> ZOMBIE_VARIANT = create("zombie_variant");
+    ResourceKey<Registry<DrownedVariant>> DROWNED_VARIANT = create("drowned_variant");
+    ResourceKey<Registry<HuskVariant>> HUSK_VARIANT = create("husk_variant");
 
     private static <T> ResourceKey<Registry<T>> create(String name) {
         return ResourceKey.createRegistryKey(Ott.resource(name));

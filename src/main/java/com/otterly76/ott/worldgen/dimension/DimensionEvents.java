@@ -1,14 +1,14 @@
 package com.otterly76.ott.worldgen.dimension;
 
 import com.otterly76.ott.Constants;
-import com.otterly76.ott.entity.ModEntities;
-import com.otterly76.ott.entity.tiny.*;
+import com.otterly76.ott.util.entity.OttBabyMob;
 import com.otterly76.ott.util.lantern.LanternManager;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.entity.*;
+import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.monster.*;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelAccessor;
@@ -17,6 +17,8 @@ import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.event.entity.living.FinalizeSpawnEvent;
 import net.neoforged.neoforge.event.entity.living.MobSpawnEvent;
+
+import java.util.Objects;
 
 @EventBusSubscriber(modid = Constants.MOD_ID)
 public class DimensionEvents {
@@ -44,45 +46,38 @@ public class DimensionEvents {
         Level level = mob.level();
         boolean isNether = level.dimension() == Level.NETHER;
         float rand = mob.getRandom().nextFloat();
-        EntityType<?> replacementType = null;
 
         // 1. Handle Nether Conversion (Skeletons -> Wither Skeletons)
-        if (isNether) {
-            if (mob instanceof Skeleton) {
-                if (rand < 0.05F || mob instanceof TinySkeleton) {
-                    replacementType = ModEntities.TINY_WITHER_SKELETON.get();
-                } else {
-                    replacementType = EntityType.WITHER_SKELETON;
+        if (isNether && mob instanceof AbstractSkeleton && !(mob instanceof WitherSkeleton) && level instanceof ServerLevel serverLevel) {
+            EntityType<?> replacementType = EntityType.WITHER_SKELETON;
+            Entity newEntity = replacementType.spawn(serverLevel, mob.blockPosition(), MobSpawnType.TRIGGERED);
+            if (newEntity instanceof Mob replacementMob) {
+                replacementMob.moveTo(mob.getX(), mob.getY(), mob.getZ(), mob.getYRot(), mob.getXRot());
+                replacementMob.addTag("ott_converted");
+                for (EquipmentSlot slot : EquipmentSlot.values()) {
+                    replacementMob.setItemSlot(slot, mob.getItemBySlot(slot).copy());
                 }
+
+                // Apply baby chance to the replacement
+                if (rand < 0.05F && replacementMob instanceof OttBabyMob babyMob) {
+                    babyMob.ott$setBaby(true);
+                    double speedMult = 1.35D;
+                    Objects.requireNonNull(replacementMob.getAttribute(Attributes.MOVEMENT_SPEED)).setBaseValue(replacementMob.getAttributeBaseValue(Attributes.MOVEMENT_SPEED) * speedMult);
+                }
+                event.setSpawnCancelled(true);
+                return;
             }
         }
 
-        // 2. If no nether conversion happened, check for 5% Tiny replacement
-        if (replacementType == null && rand < 0.05F) {
-            replacementType = switch (mob) {
-                case WitherSkeleton ws when !(ws instanceof TinyWitherSkeleton) -> ModEntities.TINY_WITHER_SKELETON.get();
-                case Stray s when !(s instanceof TinyStray) -> ModEntities.TINY_STRAY.get();
-                case Bogged b when !(b instanceof TinyBogged) -> ModEntities.TINY_BOGGED.get();
-                case Skeleton s when !(s instanceof TinySkeleton) -> ModEntities.TINY_SKELETON.get();
-                case Creeper c when !(c instanceof TinyCreeper) -> ModEntities.TINY_CREEPER.get();
-                case EnderMan e when !(e instanceof TinyEnderman) -> ModEntities.TINY_ENDERMAN.get();
-                default -> null;
-            };
-        }
-
-        if (replacementType != null && level instanceof ServerLevel serverLevel) {
-            Entity newEntity = replacementType.spawn(serverLevel, mob.blockPosition(), MobSpawnType.TRIGGERED);
-            if (newEntity != null) {
-                newEntity.moveTo(mob.getX(), mob.getY(), mob.getZ(), mob.getYRot(), mob.getXRot());
-                newEntity.addTag("ott_converted");
-
-                if (newEntity instanceof Mob m) {
-                    // Copy equipment from old mob to new mob
-                    for (EquipmentSlot slot : EquipmentSlot.values()) {
-                        m.setItemSlot(slot, mob.getItemBySlot(slot).copy());
-                    }
+        // 2. 5% Tiny replacement for monsters
+        if (rand < 0.05F) {
+            if (mob instanceof AbstractSkeleton || mob instanceof Creeper || mob instanceof EnderMan) {
+                if (mob instanceof OttBabyMob babyMob) {
+                    babyMob.ott$setBaby(true);
+                    // Adjust speed for tiny mobs
+                    double speedMult = 1.35D;
+                    Objects.requireNonNull(mob.getAttribute(Attributes.MOVEMENT_SPEED)).setBaseValue(mob.getAttributeBaseValue(Attributes.MOVEMENT_SPEED) * speedMult);
                 }
-                event.setSpawnCancelled(true);
             }
         }
     }

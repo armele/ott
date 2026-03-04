@@ -247,6 +247,7 @@ public class OttConfig {
         public final ModConfigSpec.BooleanValue ENABLE_INVENTORY_SEARCH;
         public final ModConfigSpec.BooleanValue ENABLE_RIGHT_CLICK_OPEN;
         public final ModConfigSpec.BooleanValue HAS_FARM_ANIMAL_VARIANTS;
+        public final ModConfigSpec.BooleanValue HAS_MONSTER_VARIANTS;
         public final ModConfigSpec.BooleanValue USE_SHEEP_WOOL_UNDERCOAT;
         public final ModConfigSpec.BooleanValue HAS_WOLF_SOUND_VARIANTS;
         public final ModConfigSpec.DoubleValue HAPPY_GHAST_SPEED_MODIFIER;
@@ -281,6 +282,9 @@ public class OttConfig {
             HAS_FARM_ANIMAL_VARIANTS = builder.comment("Enable Farm Animal Variants (Pig, Cow, Chicken, Frog).")
                     .translation("ott.configuration.general.has_farm_animal_variants")
                     .define("hasFarmAnimalVariants", true);
+            HAS_MONSTER_VARIANTS = builder.comment("Enable Monster Variants (Skeleton, Bogged, Stray, Wither Skeleton).")
+                    .translation("ott.configuration.general.has_monster_variants")
+                    .define("hasMonsterVariants", true);
             USE_SHEEP_WOOL_UNDERCOAT = builder.comment("Enable Sheep Wool Undercoat layer.")
                     .translation("ott.configuration.general.use_sheep_wool_undercoat")
                     .define("useSheepWoolUndercoat", true);

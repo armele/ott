@@ -6,9 +6,6 @@ import com.otterly76.ott.loot.ModBuiltInLootTables;
 import com.otterly76.ott.registry.OttBuiltInRegistries;
 import com.otterly76.ott.util.LootUtils;
 import net.minecraft.nbt.CompoundTag;
-import net.minecraft.network.syncher.EntityDataAccessor;
-import net.minecraft.network.syncher.EntityDataSerializers;
-import net.minecraft.network.syncher.SynchedEntityData;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.entity.AgeableMob;
@@ -34,9 +31,7 @@ import software.bernie.geckolib.util.GeckoLibUtil;
 import java.util.Optional;
 
 @Mixin(Chicken.class)
-public abstract class ChickenMixin extends MobMixin implements VariantDataHolder<ChickenVariant>, ChickenGeoEntity {
-    @Unique
-    private static final EntityDataAccessor<String> DATA_OTT_VARIANT_ID;
+public abstract class ChickenMixin extends MobMixin implements VariantDataHolder<Object>, ChickenGeoEntity {
 
     @Unique
     private final AnimatableInstanceCache ott$animatableInstanceCache = GeckoLibUtil.createInstanceCache(this);
@@ -52,39 +47,44 @@ public abstract class ChickenMixin extends MobMixin implements VariantDataHolder
     private void vb$getBreedOffspring(ServerLevel level, AgeableMob otherParent, CallbackInfoReturnable<Chicken> cir) {
         Chicken child = cir.getReturnValue();
         if (child != null && otherParent instanceof Chicken mate) {
-            VariantDataHolder.trySetOffspringVariant(child, this, mate);
+            VariantDataHolder.trySetOffspringVariant(child, (Chicken)(Object)this, mate);
         }
 
     }
 
+
     @Override
-    protected void vb$defineSynchedData(SynchedEntityData.Builder builder, CallbackInfo ci) {
-        builder.define(DATA_OTT_VARIANT_ID, "minecraft:temperate");
+    public void ott$setVariantData(Object variant) {
+        if (variant instanceof ChickenVariant chickenVariant) {
+            this.entityData.set(this.ott$getVariantDataAccessor(), VariantUtils.getID(OttBuiltInRegistries.CHICKEN_VARIANTS, chickenVariant));
+        }
     }
 
     @Override
-    public void ott$setVariantData(ChickenVariant variant) {
-        this.entityData.set(DATA_OTT_VARIANT_ID, VariantUtils.getID(OttBuiltInRegistries.CHICKEN_VARIANTS, variant));
+    @SuppressWarnings("unchecked")
+    public Optional<Object> ott$getVariantData() {
+        return (Optional) VariantUtils.getOrDefault(OttBuiltInRegistries.CHICKEN_VARIANTS, this.entityData.get(this.ott$getVariantDataAccessor()));
     }
 
     @Override
-    public Optional<ChickenVariant> ott$getVariantData() {
-        return VariantUtils.getOrDefault(OttBuiltInRegistries.CHICKEN_VARIANTS, this.entityData.get(DATA_OTT_VARIANT_ID));
+    protected void ott$addSubAdditionalSaveData(CompoundTag tag, CallbackInfo ci) {
+        if ((Object)this.getClass() == Chicken.class) {
+            VariantUtils.addVariantSaveData((VariantDataHolder)this, tag, OttBuiltInRegistries.CHICKEN_VARIANTS);
+        }
     }
 
     @Override
-    protected void vb$addAdditionalSaveData(CompoundTag tag, CallbackInfo ci) {
-        VariantUtils.addVariantSaveData(this, tag, OttBuiltInRegistries.CHICKEN_VARIANTS);
+    protected void ott$readSubAdditionalSaveData(CompoundTag tag, CallbackInfo ci) {
+        if ((Object)this.getClass() == Chicken.class) {
+            VariantUtils.readVariantSaveData((VariantDataHolder)this, tag, OttBuiltInRegistries.CHICKEN_VARIANTS);
+        }
     }
 
     @Override
-    protected void vb$readAdditionalSaveData(CompoundTag tag, CallbackInfo ci) {
-        VariantUtils.readVariantSaveData(this, tag, OttBuiltInRegistries.CHICKEN_VARIANTS);
-    }
-
-    @Override
-    protected void vb$finalizeSpawn(ServerLevelAccessor level, DifficultyInstance difficulty, MobSpawnType reason, SpawnGroupData spawnData, CallbackInfoReturnable<SpawnGroupData> cir) {
-        VariantUtils.selectVariantToSpawn(SpawnContext.create(level, this.blockPosition()), OttBuiltInRegistries.CHICKEN_VARIANTS, VariantSpawner.FARM_ANIMALS).ifPresent(this::ott$setVariantData);
+    protected void ott$finalizeSubSpawn(ServerLevelAccessor level, DifficultyInstance difficulty, MobSpawnType reason, SpawnGroupData spawnData, CallbackInfoReturnable<SpawnGroupData> cir) {
+        if ((Object)this.getClass() == Chicken.class) {
+            VariantUtils.selectVariantToSpawn(SpawnContext.create(level, this.blockPosition()), OttBuiltInRegistries.CHICKEN_VARIANTS, VariantSpawner.FARM_ANIMALS).ifPresent(this::ott$setVariantData);
+        }
     }
 
     @ModifyArg(
@@ -96,8 +96,8 @@ public abstract class ChickenMixin extends MobMixin implements VariantDataHolder
         index = 0
     )
     private ItemLike vb$modifyEggDrop(ItemLike originalItem) {
-        Optional<ChickenVariant> variant = this.ott$getVariantData();
-        return (variant.isPresent() && !VariantUtils.matches(OttBuiltInRegistries.CHICKEN_VARIANTS, variant.get(), ChickenVariants.TEMPERATE) && LootUtils.dropFromGiftLootTable(this, (ServerLevel)this.level(), ModBuiltInLootTables.CHICKEN_LAY, (level, stack) -> this.spawnAtLocation(stack)) ? Items.AIR : originalItem);
+        Optional<Object> variant = this.ott$getVariantData();
+        return (variant.isPresent() && !VariantUtils.matches(OttBuiltInRegistries.CHICKEN_VARIANTS, (ChickenVariant)variant.get(), ChickenVariants.TEMPERATE) && LootUtils.dropFromGiftLootTable(this, (ServerLevel)this.level(), ModBuiltInLootTables.CHICKEN_LAY, (level, stack) -> this.spawnAtLocation(stack)) ? Items.AIR : originalItem);
     }
 
     @Override
@@ -107,9 +107,5 @@ public abstract class ChickenMixin extends MobMixin implements VariantDataHolder
     @Override
     public AnimatableInstanceCache getAnimatableInstanceCache() {
         return this.ott$animatableInstanceCache;
-    }
-
-    static {
-        DATA_OTT_VARIANT_ID = SynchedEntityData.defineId(ChickenMixin.class, EntityDataSerializers.STRING);
     }
 }

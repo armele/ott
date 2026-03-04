@@ -6,6 +6,7 @@ import com.otterly76.ott.config.OttConfig;
 public interface VariantSpawner {
     VariantSpawner DEFAULT = () -> true;
     VariantSpawner FARM_ANIMALS = OttConfig.GENERAL.HAS_FARM_ANIMAL_VARIANTS::get;
+    VariantSpawner MONSTERS = OttConfig.GENERAL.HAS_MONSTER_VARIANTS::get;
 
     boolean apply();
 }

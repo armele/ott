@@ -53,13 +53,6 @@ public class ModItems {
     public static final DeferredItem<Item> TINY_CHARCOAL = ITEMS.register("tiny_charcoal", () -> new Item(new Item.Properties()));
     public static final DeferredItem<Item> TORCH_ARROW = ITEMS.register("torch_arrow", () -> new TorchArrowItem(new Item.Properties()));
 
-    public static final DeferredItem<Item> TINY_SKELETON_SPAWN_EGG = ITEMS.register("tiny_skeleton_spawn_egg", () -> new DeferredSpawnEggItem(ModEntities.TINY_SKELETON, 0xC1C1C1, 0x494949, new Item.Properties()));
-    public static final DeferredItem<Item> TINY_CREEPER_SPAWN_EGG = ITEMS.register("tiny_creeper_spawn_egg", () -> new DeferredSpawnEggItem(ModEntities.TINY_CREEPER, 0x0DA70B, 0x000000, new Item.Properties()));
-    public static final DeferredItem<Item> TINY_ENDERMAN_SPAWN_EGG = ITEMS.register("tiny_enderman_spawn_egg", () -> new DeferredSpawnEggItem(ModEntities.TINY_ENDERMAN, 0x161616, 0x000000, new Item.Properties()));
-    public static final DeferredItem<Item> TINY_BOGGED_SPAWN_EGG = ITEMS.register("tiny_bogged_spawn_egg", () -> new DeferredSpawnEggItem(ModEntities.TINY_BOGGED, 0x818E6F, 0x363F2C, new Item.Properties()));
-    public static final DeferredItem<Item> TINY_STRAY_SPAWN_EGG = ITEMS.register("tiny_stray_spawn_egg", () -> new DeferredSpawnEggItem(ModEntities.TINY_STRAY, 0x617677, 0xDDEAEA, new Item.Properties()));
-    public static final DeferredItem<Item> TINY_WITHER_SKELETON_SPAWN_EGG = ITEMS.register("tiny_wither_skeleton_spawn_egg", () -> new DeferredSpawnEggItem(ModEntities.TINY_WITHER_SKELETON, 0x141414, 0x474D4D, new Item.Properties()));
-
     public static final DeferredItem<Item> MAN_O_WAR_BUCKET = ITEMS.register("man_o_war_bucket",
             () -> new MobBucketItem(ModEntities.MAN_O_WAR.get(), Fluids.WATER, SoundEvents.BUCKET_EMPTY_FISH, (new Item.Properties()).stacksTo(1)));
     public static final DeferredItem<Item> MAN_O_WAR_SPAWN_EGG = ITEMS.register("man_o_war_spawn_egg",
