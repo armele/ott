@@ -1,5 +1,6 @@
 package com.otterly76.ott.mixin.common;
 
+import com.otterly76.ott.entity.gecko.CowGeoEntity;
 import com.otterly76.ott.entity.variant.*;
 import com.otterly76.ott.registry.OttBuiltInRegistries;
 import net.minecraft.nbt.CompoundTag;
@@ -21,13 +22,19 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
+import software.bernie.geckolib.animatable.instance.AnimatableInstanceCache;
+import software.bernie.geckolib.animation.AnimatableManager;
+import software.bernie.geckolib.util.GeckoLibUtil;
 
 import java.util.Optional;
 
 @Mixin(Cow.class)
-public abstract class CowMixin extends MobMixin implements VariantDataHolder<CowVariant> {
+public abstract class CowMixin extends MobMixin implements VariantDataHolder<CowVariant>, CowGeoEntity {
     @Unique
     private static final EntityDataAccessor<String> DATA_OTT_VARIANT_ID;
+
+    @Unique
+    private final AnimatableInstanceCache ott$animatableInstanceCache = GeckoLibUtil.createInstanceCache(this);
 
     protected CowMixin(EntityType<? extends Cow> entityType, Level level) {
         super(entityType, level);
@@ -60,15 +67,30 @@ public abstract class CowMixin extends MobMixin implements VariantDataHolder<Cow
     }
 
     protected void vb$addAdditionalSaveData(CompoundTag tag, CallbackInfo ci) {
-        VariantUtils.addVariantSaveData(this, tag, OttBuiltInRegistries.COW_VARIANTS);
+        if (this.getType() != EntityType.MOOSHROOM) {
+            VariantUtils.addVariantSaveData(this, tag, OttBuiltInRegistries.COW_VARIANTS);
+        }
     }
 
     protected void vb$readAdditionalSaveData(CompoundTag tag, CallbackInfo ci) {
-        VariantUtils.readVariantSaveData(this, tag, OttBuiltInRegistries.COW_VARIANTS);
+        if (this.getType() != EntityType.MOOSHROOM) {
+            VariantUtils.readVariantSaveData(this, tag, OttBuiltInRegistries.COW_VARIANTS);
+        }
     }
 
     protected void vb$finalizeSpawn(ServerLevelAccessor level, DifficultyInstance difficulty, MobSpawnType reason, SpawnGroupData spawnData, CallbackInfoReturnable<SpawnGroupData> cir) {
-        VariantUtils.selectVariantToSpawn(SpawnContext.create(level, this.blockPosition()), OttBuiltInRegistries.COW_VARIANTS, VariantSpawner.FARM_ANIMALS).ifPresent(this::ott$setVariantData);
+        if (this.getType() != EntityType.MOOSHROOM) {
+            VariantUtils.selectVariantToSpawn(SpawnContext.create(level, this.blockPosition()), OttBuiltInRegistries.COW_VARIANTS, VariantSpawner.FARM_ANIMALS).ifPresent(this::ott$setVariantData);
+        }
+    }
+
+    @Override
+    public void registerControllers(AnimatableManager.ControllerRegistrar controllers) {
+    }
+
+    @Override
+    public AnimatableInstanceCache getAnimatableInstanceCache() {
+        return this.ott$animatableInstanceCache;
     }
 
     static {

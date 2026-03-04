@@ -31,6 +31,7 @@ public final class OttBuiltInRegistries {
 
     public static final Registry<com.otterly76.ott.entity.variant.WolfSoundVariant> WOLF_SOUND_VARIANT;
     public static final Registry<com.otterly76.ott.entity.variant.CowVariant> COW_VARIANT;
+    public static final Registry<com.otterly76.ott.entity.variant.MooshroomVariant> MOOSHROOM_VARIANT;
     public static final Registry<com.otterly76.ott.entity.variant.SheepVariant> SHEEP_VARIANT;
     public static final Registry<com.otterly76.ott.entity.variant.ChickenVariant> CHICKEN_VARIANT;
     public static final Registry<com.otterly76.ott.entity.variant.PigVariant> PIG_VARIANT;
@@ -40,6 +41,7 @@ public final class OttBuiltInRegistries {
 
     public static final BuiltInCoreRegistry<com.otterly76.ott.entity.variant.WolfSoundVariant> WOLF_SOUND_VARIANTS;
     public static final BuiltInCoreRegistry<com.otterly76.ott.entity.variant.CowVariant> COW_VARIANTS;
+    public static final BuiltInCoreRegistry<com.otterly76.ott.entity.variant.MooshroomVariant> MOOSHROOM_VARIANTS;
     public static final BuiltInCoreRegistry<com.otterly76.ott.entity.variant.SheepVariant> SHEEP_VARIANTS;
     public static final BuiltInCoreRegistry<com.otterly76.ott.entity.variant.ChickenVariant> CHICKEN_VARIANTS;
     public static final BuiltInCoreRegistry<com.otterly76.ott.entity.variant.PigVariant> PIG_VARIANTS;
@@ -49,6 +51,7 @@ public final class OttBuiltInRegistries {
 
     private static final DeferredRegister<com.otterly76.ott.entity.variant.WolfSoundVariant> DEFERRED_WOLF_SOUND_VARIANTS;
     private static final DeferredRegister<com.otterly76.ott.entity.variant.CowVariant> DEFERRED_COW_VARIANTS;
+    private static final DeferredRegister<com.otterly76.ott.entity.variant.MooshroomVariant> DEFERRED_MOOSHROOM_VARIANTS;
     private static final DeferredRegister<com.otterly76.ott.entity.variant.SheepVariant> DEFERRED_SHEEP_VARIANTS;
     private static final DeferredRegister<com.otterly76.ott.entity.variant.ChickenVariant> DEFERRED_CHICKEN_VARIANTS;
     private static final DeferredRegister<com.otterly76.ott.entity.variant.PigVariant> DEFERRED_PIG_VARIANTS;
@@ -92,6 +95,7 @@ public final class OttBuiltInRegistries {
 
         DEFERRED_WOLF_SOUND_VARIANTS.register(bus);
         DEFERRED_COW_VARIANTS.register(bus);
+        DEFERRED_MOOSHROOM_VARIANTS.register(bus);
         DEFERRED_SHEEP_VARIANTS.register(bus);
         DEFERRED_CHICKEN_VARIANTS.register(bus);
         DEFERRED_PIG_VARIANTS.register(bus);
@@ -132,6 +136,7 @@ public final class OttBuiltInRegistries {
         // Force static initialization of plural factories to register their contents
         ChickenVariants.bootstrap();
         SheepVariants.bootstrap();
+        MooshroomVariants.bootstrap();
         CowVariants.bootstrap();
         PigVariants.bootstrap();
         WolfDataVariants.bootstrap();
@@ -153,6 +158,8 @@ public final class OttBuiltInRegistries {
         WOLF_SOUND_VARIANT = DEFERRED_WOLF_SOUND_VARIANTS.makeRegistry(builder -> builder.sync(false));
         DEFERRED_COW_VARIANTS = DeferredRegister.create(OttRegistryKeys.COW_VARIANT, "minecraft");
         COW_VARIANT = DEFERRED_COW_VARIANTS.makeRegistry(builder -> builder.sync(false));
+        DEFERRED_MOOSHROOM_VARIANTS = DeferredRegister.create(OttRegistryKeys.MOOSHROOM_VARIANT, "minecraft");
+        MOOSHROOM_VARIANT = DEFERRED_MOOSHROOM_VARIANTS.makeRegistry(builder -> builder.sync(false));
         DEFERRED_SHEEP_VARIANTS = DeferredRegister.create(OttRegistryKeys.SHEEP_VARIANT, "minecraft");
         SHEEP_VARIANT = DEFERRED_SHEEP_VARIANTS.makeRegistry(builder -> builder.sync(false));
         DEFERRED_CHICKEN_VARIANTS = DeferredRegister.create(OttRegistryKeys.CHICKEN_VARIANT, "minecraft");
@@ -171,6 +178,7 @@ public final class OttBuiltInRegistries {
 
         WOLF_SOUND_VARIANTS = new BuiltInCoreRegistry<>(WOLF_SOUND_VARIANT, "minecraft");
         COW_VARIANTS = new BuiltInCoreRegistry<>(COW_VARIANT, "minecraft");
+        MOOSHROOM_VARIANTS = new BuiltInCoreRegistry<>(MOOSHROOM_VARIANT, "minecraft");
         SHEEP_VARIANTS = new BuiltInCoreRegistry<>(SHEEP_VARIANT, "minecraft");
         CHICKEN_VARIANTS = new BuiltInCoreRegistry<>(CHICKEN_VARIANT, "minecraft");
         PIG_VARIANTS = new BuiltInCoreRegistry<>(PIG_VARIANT, "minecraft");

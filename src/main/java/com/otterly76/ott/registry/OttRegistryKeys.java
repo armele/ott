@@ -19,6 +19,7 @@ public interface OttRegistryKeys {
     ResourceKey<Registry<MapCodec<? extends SpawnCondition>>> SPAWN_CONDITION_TYPE = create("spawn_condition_type");
     ResourceKey<Registry<WolfSoundVariant>> WOLF_SOUND_VARIANT = create("wolf_sound_variant");
     ResourceKey<Registry<CowVariant>> COW_VARIANT = create("cow_variant");
+    ResourceKey<Registry<MooshroomVariant>> MOOSHROOM_VARIANT = create("mooshroom_variant");
     ResourceKey<Registry<SheepVariant>> SHEEP_VARIANT = create("sheep_variant");
     ResourceKey<Registry<ChickenVariant>> CHICKEN_VARIANT = create("chicken_variant");
     ResourceKey<Registry<PigVariant>> PIG_VARIANT = create("pig_variant");

@@ -41,10 +41,24 @@ public abstract class MobMixin extends LivingEntity {
     }
 
     @Inject(
+        method = "defineSynchedData(Lnet/minecraft/network/syncher/SynchedEntityData$Builder;)V",
+        at = @At("TAIL")
+    )
+    protected void ott$defineSubSynchedData(SynchedEntityData.Builder builder, CallbackInfo ci) {
+    }
+
+    @Inject(
         method = "addAdditionalSaveData(Lnet/minecraft/nbt/CompoundTag;)V",
         at = @At("RETURN")
     )
     protected void vb$addAdditionalSaveData(CompoundTag tag, CallbackInfo ci) {
+    }
+
+    @Inject(
+        method = "addAdditionalSaveData(Lnet/minecraft/nbt/CompoundTag;)V",
+        at = @At("RETURN")
+    )
+    protected void ott$addSubAdditionalSaveData(CompoundTag tag, CallbackInfo ci) {
     }
 
     @Inject(
@@ -55,10 +69,24 @@ public abstract class MobMixin extends LivingEntity {
     }
 
     @Inject(
+        method = "readAdditionalSaveData(Lnet/minecraft/nbt/CompoundTag;)V",
+        at = @At("RETURN")
+    )
+    protected void ott$readSubAdditionalSaveData(CompoundTag tag, CallbackInfo ci) {
+    }
+
+    @Inject(
         method = "finalizeSpawn(Lnet/minecraft/world/level/ServerLevelAccessor;Lnet/minecraft/world/DifficultyInstance;Lnet/minecraft/world/entity/MobSpawnType;Lnet/minecraft/world/entity/SpawnGroupData;)Lnet/minecraft/world/entity/SpawnGroupData;",
         at = @At("RETURN")
     )
     protected void vb$finalizeSpawn(ServerLevelAccessor level, DifficultyInstance difficulty, MobSpawnType reason, SpawnGroupData spawnData, CallbackInfoReturnable<SpawnGroupData> cir) {
+    }
+
+    @Inject(
+        method = "finalizeSpawn(Lnet/minecraft/world/level/ServerLevelAccessor;Lnet/minecraft/world/DifficultyInstance;Lnet/minecraft/world/entity/MobSpawnType;Lnet/minecraft/world/entity/SpawnGroupData;)Lnet/minecraft/world/entity/SpawnGroupData;",
+        at = @At("RETURN")
+    )
+    protected void ott$finalizeSubSpawn(ServerLevelAccessor level, DifficultyInstance difficulty, MobSpawnType reason, SpawnGroupData spawnData, CallbackInfoReturnable<SpawnGroupData> cir) {
     }
 
     @Inject(

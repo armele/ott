@@ -8,8 +8,6 @@ import com.otterly76.ott.client.render.PrismaticColorHandler;
 import com.otterly76.ott.client.render.texture.FXAtlasSpriteSource;
 import com.otterly76.ott.entity.ModEntities;
 import com.otterly76.ott.client.model.chicken.ColdChickenModel;
-import com.otterly76.ott.client.model.cow.ColdCowModel;
-import com.otterly76.ott.client.model.cow.WarmCowModel;
 import com.otterly76.ott.client.model.pig.ColdPigModel;
 import com.otterly76.ott.client.render.entity.CreakingRenderer;
 import com.otterly76.ott.client.render.entity.HappyGhastRenderer;
@@ -202,6 +200,14 @@ public class ClientModEvents {
             net.minecraft.client.renderer.entity.EntityRenderer<?> renderer = new com.otterly76.ott.client.render.entity.SheepGeoRenderer<>(context);
             return (net.minecraft.client.renderer.entity.EntityRenderer<net.minecraft.world.entity.animal.Sheep>) renderer;
         });
+        event.registerEntityRenderer(net.minecraft.world.entity.EntityType.COW, (context) -> {
+            net.minecraft.client.renderer.entity.EntityRenderer<?> renderer = new com.otterly76.ott.client.render.entity.CowGeoRenderer<>(context);
+            return (net.minecraft.client.renderer.entity.EntityRenderer<net.minecraft.world.entity.animal.Cow>) renderer;
+        });
+        event.registerEntityRenderer(net.minecraft.world.entity.EntityType.MOOSHROOM, (context) -> {
+            net.minecraft.client.renderer.entity.EntityRenderer<?> renderer = new com.otterly76.ott.client.render.entity.MooshroomGeoRenderer<>(context);
+            return (net.minecraft.client.renderer.entity.EntityRenderer<net.minecraft.world.entity.animal.MushroomCow>) renderer;
+        });
 
         event.registerBlockEntityRenderer(ModBlockEntities.ANVIL_BLOCK_ENTITY_TYPE.get(), com.otterly76.ott.client.render.AnvilRenderer::new);
         event.registerBlockEntityRenderer(ModBlockEntities.SHELF.get(), com.otterly76.ott.client.render.blockentity.ShelfRenderer::new);
@@ -218,8 +224,6 @@ public class ClientModEvents {
 
         event.registerLayerDefinition(ModModelLayers.COLD_PIG, ColdPigModel::createBodyLayer);
         event.registerLayerDefinition(ModModelLayers.COLD_CHICKEN, ColdChickenModel::createBodyLayer);
-        event.registerLayerDefinition(ModModelLayers.COLD_COW, ColdCowModel::createBodyLayer);
-        event.registerLayerDefinition(ModModelLayers.WARM_COW, WarmCowModel::createBodyLayer);
         event.registerLayerDefinition(ModModelLayers.COPPER_GOLEM, com.otterly76.ott.client.model.CopperGolemModel::createBodyLayer);
 
         event.registerLayerDefinition(ModModelLayers.HAPPY_GHAST, () -> HappyGhastModel.createBodyLayer(CubeDeformation.NONE));
