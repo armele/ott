@@ -40,28 +40,29 @@ public abstract class BoggedMixin extends MobMixin implements VariantDataHolder<
     }
 
     @Override
-    @SuppressWarnings("unchecked")
     public Optional<Object> ott$getVariantData() {
-        return (Optional) VariantUtils.getOrDefault(OttBuiltInRegistries.BOGGED_VARIANTS, this.entityData.get(this.ott$getVariantDataAccessor()));
+        return VariantUtils.getOrDefault(OttBuiltInRegistries.BOGGED_VARIANTS, this.entityData.get(this.ott$getVariantDataAccessor())).map(v -> v);
     }
 
     @Override
+    @SuppressWarnings("unchecked")
     protected void ott$addSubAdditionalSaveData(CompoundTag tag, CallbackInfo ci) {
-        if ((Object)this.getClass() == Bogged.class) {
-            VariantUtils.addVariantSaveData((VariantDataHolder)this, tag, OttBuiltInRegistries.BOGGED_VARIANTS);
+        if (this.getType() == EntityType.BOGGED) {
+            VariantUtils.addVariantSaveData((VariantDataHolder<BoggedVariant>)(Object)this, tag, OttBuiltInRegistries.BOGGED_VARIANTS);
         }
     }
 
     @Override
+    @SuppressWarnings("unchecked")
     protected void ott$readSubAdditionalSaveData(CompoundTag tag, CallbackInfo ci) {
-        if ((Object)this.getClass() == Bogged.class) {
-            VariantUtils.readVariantSaveData((VariantDataHolder)this, tag, OttBuiltInRegistries.BOGGED_VARIANTS);
+        if (this.getType() == EntityType.BOGGED) {
+            VariantUtils.readVariantSaveData((VariantDataHolder<BoggedVariant>)(Object)this, tag, OttBuiltInRegistries.BOGGED_VARIANTS);
         }
     }
 
     @Override
     protected void ott$finalizeSubSpawn(ServerLevelAccessor level, DifficultyInstance difficulty, MobSpawnType reason, SpawnGroupData spawnData, CallbackInfoReturnable<SpawnGroupData> cir) {
-        if ((Object)this.getClass() == Bogged.class) {
+        if (this.getType() == EntityType.BOGGED) {
             VariantUtils.selectVariantToSpawn(SpawnContext.create(level, this.blockPosition()), OttBuiltInRegistries.BOGGED_VARIANTS, VariantSpawner.MONSTERS).ifPresent(this::ott$setVariantData);
         }
     }

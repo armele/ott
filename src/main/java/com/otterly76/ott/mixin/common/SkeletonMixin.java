@@ -40,28 +40,29 @@ public abstract class SkeletonMixin extends MobMixin implements VariantDataHolde
     }
 
     @Override
-    @SuppressWarnings("unchecked")
     public Optional<Object> ott$getVariantData() {
-        return (Optional) VariantUtils.getOrDefault(OttBuiltInRegistries.SKELETON_VARIANTS, this.entityData.get(this.ott$getVariantDataAccessor()));
+        return VariantUtils.getOrDefault(OttBuiltInRegistries.SKELETON_VARIANTS, this.entityData.get(this.ott$getVariantDataAccessor())).map(v -> v);
     }
 
     @Override
+    @SuppressWarnings("unchecked")
     protected void ott$addSubAdditionalSaveData(CompoundTag tag, CallbackInfo ci) {
-        if ((Object)this.getClass() == Skeleton.class) {
-            VariantUtils.addVariantSaveData((VariantDataHolder)this, tag, OttBuiltInRegistries.SKELETON_VARIANTS);
+        if (this.getType() == EntityType.SKELETON) {
+            VariantUtils.addVariantSaveData((VariantDataHolder<SkeletonVariant>)(Object)this, tag, OttBuiltInRegistries.SKELETON_VARIANTS);
         }
     }
 
     @Override
+    @SuppressWarnings("unchecked")
     protected void ott$readSubAdditionalSaveData(CompoundTag tag, CallbackInfo ci) {
-        if ((Object)this.getClass() == Skeleton.class) {
-            VariantUtils.readVariantSaveData((VariantDataHolder)this, tag, OttBuiltInRegistries.SKELETON_VARIANTS);
+        if (this.getType() == EntityType.SKELETON) {
+            VariantUtils.readVariantSaveData((VariantDataHolder<SkeletonVariant>)(Object)this, tag, OttBuiltInRegistries.SKELETON_VARIANTS);
         }
     }
 
     @Override
     protected void ott$finalizeSubSpawn(ServerLevelAccessor level, DifficultyInstance difficulty, MobSpawnType reason, SpawnGroupData spawnData, CallbackInfoReturnable<SpawnGroupData> cir) {
-        if ((Object)this.getClass() == Skeleton.class) {
+        if (this.getType() == EntityType.SKELETON) {
             VariantUtils.selectVariantToSpawn(SpawnContext.create(level, this.blockPosition()), OttBuiltInRegistries.SKELETON_VARIANTS, VariantSpawner.MONSTERS).ifPresent(this::ott$setVariantData);
         }
     }

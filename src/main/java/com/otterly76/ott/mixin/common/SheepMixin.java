@@ -58,22 +58,23 @@ public abstract class SheepMixin extends MobMixin implements VariantDataHolder<O
     }
 
     @Override
-    @SuppressWarnings("unchecked")
     public Optional<Object> ott$getVariantData() {
-        return (Optional) VariantUtils.getOrDefault(OttBuiltInRegistries.SHEEP_VARIANTS, this.entityData.get(this.ott$getVariantDataAccessor()));
+        return VariantUtils.getOrDefault(OttBuiltInRegistries.SHEEP_VARIANTS, this.entityData.get(this.ott$getVariantDataAccessor())).map(v -> v);
     }
 
     @Override
+    @SuppressWarnings("unchecked")
     protected void ott$addSubAdditionalSaveData(CompoundTag tag, CallbackInfo ci) {
-        if ((Object)this.getClass() == Sheep.class) {
-            VariantUtils.addVariantSaveData((VariantDataHolder)this, tag, OttBuiltInRegistries.SHEEP_VARIANTS);
+        if (this.getType() == EntityType.SHEEP) {
+            VariantUtils.addVariantSaveData((VariantDataHolder<SheepVariant>)(Object)this, tag, OttBuiltInRegistries.SHEEP_VARIANTS);
         }
     }
 
     @Override
+    @SuppressWarnings("unchecked")
     protected void ott$readSubAdditionalSaveData(CompoundTag tag, CallbackInfo ci) {
-        if ((Object)this.getClass() == Sheep.class) {
-            VariantUtils.readVariantSaveData((VariantDataHolder)this, tag, OttBuiltInRegistries.SHEEP_VARIANTS);
+        if (this.getType() == EntityType.SHEEP) {
+            VariantUtils.readVariantSaveData((VariantDataHolder<SheepVariant>)(Object)this, tag, OttBuiltInRegistries.SHEEP_VARIANTS);
         }
     }
 

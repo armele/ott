@@ -56,28 +56,29 @@ public abstract class PigMixin extends MobMixin implements VariantDataHolder<Obj
     }
 
     @Override
-    @SuppressWarnings("unchecked")
     public Optional<Object> ott$getVariantData() {
-        return (Optional) VariantUtils.getOrDefault(OttBuiltInRegistries.PIG_VARIANTS, this.entityData.get(this.ott$getVariantDataAccessor()));
+        return VariantUtils.getOrDefault(OttBuiltInRegistries.PIG_VARIANTS, this.entityData.get(this.ott$getVariantDataAccessor())).map(v -> v);
     }
 
     @Override
+    @SuppressWarnings("unchecked")
     protected void ott$addSubAdditionalSaveData(CompoundTag tag, CallbackInfo ci) {
-        if ((Object)this.getClass() == Pig.class) {
-            VariantUtils.addVariantSaveData((VariantDataHolder)this, tag, OttBuiltInRegistries.PIG_VARIANTS);
+        if (this.getType() == EntityType.PIG) {
+            VariantUtils.addVariantSaveData((VariantDataHolder<PigVariant>)(Object)this, tag, OttBuiltInRegistries.PIG_VARIANTS);
         }
     }
 
     @Override
+    @SuppressWarnings("unchecked")
     protected void ott$readSubAdditionalSaveData(CompoundTag tag, CallbackInfo ci) {
-        if ((Object)this.getClass() == Pig.class) {
-            VariantUtils.readVariantSaveData((VariantDataHolder)this, tag, OttBuiltInRegistries.PIG_VARIANTS);
+        if (this.getType() == EntityType.PIG) {
+            VariantUtils.readVariantSaveData((VariantDataHolder<PigVariant>)(Object)this, tag, OttBuiltInRegistries.PIG_VARIANTS);
         }
     }
 
     @Override
     protected void ott$finalizeSubSpawn(ServerLevelAccessor level, DifficultyInstance difficulty, MobSpawnType reason, SpawnGroupData spawnData, CallbackInfoReturnable<SpawnGroupData> cir) {
-        if ((Object)this.getClass() == Pig.class) {
+        if (this.getType() == EntityType.PIG) {
             VariantUtils.selectVariantToSpawn(SpawnContext.create(level, this.blockPosition()), OttBuiltInRegistries.PIG_VARIANTS, VariantSpawner.FARM_ANIMALS).ifPresent(this::ott$setVariantData);
         }
     }

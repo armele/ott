@@ -40,28 +40,29 @@ public abstract class DrownedMixin extends MobMixin implements VariantDataHolder
     }
 
     @Override
-    @SuppressWarnings("unchecked")
     public Optional<Object> ott$getVariantData() {
-        return (Optional) VariantUtils.getOrDefault(OttBuiltInRegistries.DROWNED_VARIANTS, this.entityData.get(this.ott$getVariantDataAccessor()));
+        return VariantUtils.getOrDefault(OttBuiltInRegistries.DROWNED_VARIANTS, this.entityData.get(this.ott$getVariantDataAccessor())).map(v -> v);
     }
 
     @Override
+    @SuppressWarnings("unchecked")
     protected void ott$addSubAdditionalSaveData(CompoundTag tag, CallbackInfo ci) {
-        if ((Object)this.getClass() == Drowned.class) {
-            VariantUtils.addVariantSaveData((VariantDataHolder)this, tag, OttBuiltInRegistries.DROWNED_VARIANTS);
+        if (this.getType() == EntityType.DROWNED) {
+            VariantUtils.addVariantSaveData((VariantDataHolder<DrownedVariant>)(Object)this, tag, OttBuiltInRegistries.DROWNED_VARIANTS);
         }
     }
 
     @Override
+    @SuppressWarnings("unchecked")
     protected void ott$readSubAdditionalSaveData(CompoundTag tag, CallbackInfo ci) {
-        if ((Object)this.getClass() == Drowned.class) {
-            VariantUtils.readVariantSaveData((VariantDataHolder)this, tag, OttBuiltInRegistries.DROWNED_VARIANTS);
+        if (this.getType() == EntityType.DROWNED) {
+            VariantUtils.readVariantSaveData((VariantDataHolder<DrownedVariant>)(Object)this, tag, OttBuiltInRegistries.DROWNED_VARIANTS);
         }
     }
 
     @Override
     protected void ott$finalizeSubSpawn(ServerLevelAccessor level, DifficultyInstance difficulty, MobSpawnType reason, SpawnGroupData spawnData, CallbackInfoReturnable<SpawnGroupData> cir) {
-        if ((Object)this.getClass() == Drowned.class) {
+        if (this.getType() == EntityType.DROWNED) {
             VariantUtils.selectVariantToSpawn(SpawnContext.create(level, this.blockPosition()), OttBuiltInRegistries.DROWNED_VARIANTS, VariantSpawner.MONSTERS).ifPresent(this::ott$setVariantData);
         }
     }

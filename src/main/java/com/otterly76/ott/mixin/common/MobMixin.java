@@ -29,9 +29,11 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 @Mixin(Mob.class)
 public abstract class MobMixin extends LivingEntity implements OttBabyMob {
     @Unique
+    @SuppressWarnings("all")
     private static final EntityDataAccessor<Boolean> OTT_DATA_BABY_ID = SynchedEntityData.defineId(Mob.class, EntityDataSerializers.BOOLEAN);
 
     @Unique
+    @SuppressWarnings("all")
     private static final EntityDataAccessor<String> DATA_OTT_VARIANT_ID = SynchedEntityData.defineId(Mob.class, EntityDataSerializers.STRING);
 
     @Unique
@@ -121,8 +123,11 @@ public abstract class MobMixin extends LivingEntity implements OttBabyMob {
         this.entityData.set(OTT_DATA_BABY_ID, baby);
         if ((Object)this instanceof net.minecraft.world.entity.AgeableMob ageable) {
             ageable.setBaby(baby);
-        } else if (this.getAttribute(Attributes.SCALE) != null) {
-            this.getAttribute(Attributes.SCALE).setBaseValue(baby ? 0.5D : 1.0D);
+        } else {
+            var attribute = this.getAttribute(Attributes.SCALE);
+            if (attribute != null) {
+                attribute.setBaseValue(baby ? 0.5D : 1.0D);
+            }
         }
     }
 

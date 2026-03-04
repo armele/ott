@@ -40,28 +40,29 @@ public abstract class WitherSkeletonMixin extends MobMixin implements VariantDat
     }
 
     @Override
-    @SuppressWarnings("unchecked")
     public Optional<Object> ott$getVariantData() {
-        return (Optional) VariantUtils.getOrDefault(OttBuiltInRegistries.WITHER_SKELETON_VARIANTS, this.entityData.get(this.ott$getVariantDataAccessor()));
+        return VariantUtils.getOrDefault(OttBuiltInRegistries.WITHER_SKELETON_VARIANTS, this.entityData.get(this.ott$getVariantDataAccessor())).map(v -> v);
     }
 
     @Override
+    @SuppressWarnings("unchecked")
     protected void ott$addSubAdditionalSaveData(CompoundTag tag, CallbackInfo ci) {
-        if ((Object)this.getClass() == WitherSkeleton.class) {
-            VariantUtils.addVariantSaveData((VariantDataHolder)this, tag, OttBuiltInRegistries.WITHER_SKELETON_VARIANTS);
+        if (this.getType() == EntityType.WITHER_SKELETON) {
+            VariantUtils.addVariantSaveData((VariantDataHolder<WitherSkeletonVariant>)(Object)this, tag, OttBuiltInRegistries.WITHER_SKELETON_VARIANTS);
         }
     }
 
     @Override
+    @SuppressWarnings("unchecked")
     protected void ott$readSubAdditionalSaveData(CompoundTag tag, CallbackInfo ci) {
-        if ((Object)this.getClass() == WitherSkeleton.class) {
-            VariantUtils.readVariantSaveData((VariantDataHolder)this, tag, OttBuiltInRegistries.WITHER_SKELETON_VARIANTS);
+        if (this.getType() == EntityType.WITHER_SKELETON) {
+            VariantUtils.readVariantSaveData((VariantDataHolder<WitherSkeletonVariant>)(Object)this, tag, OttBuiltInRegistries.WITHER_SKELETON_VARIANTS);
         }
     }
 
     @Override
     protected void ott$finalizeSubSpawn(ServerLevelAccessor level, DifficultyInstance difficulty, MobSpawnType reason, SpawnGroupData spawnData, CallbackInfoReturnable<SpawnGroupData> cir) {
-        if ((Object)this.getClass() == WitherSkeleton.class) {
+        if (this.getType() == EntityType.WITHER_SKELETON) {
             VariantUtils.selectVariantToSpawn(SpawnContext.create(level, this.blockPosition()), OttBuiltInRegistries.WITHER_SKELETON_VARIANTS, VariantSpawner.MONSTERS).ifPresent(this::ott$setVariantData);
         }
     }

@@ -40,28 +40,29 @@ public abstract class ZombieMixin extends MobMixin implements VariantDataHolder<
     }
 
     @Override
-    @SuppressWarnings("unchecked")
     public Optional<Object> ott$getVariantData() {
-        return (Optional) VariantUtils.getOrDefault(OttBuiltInRegistries.ZOMBIE_VARIANTS, this.entityData.get(this.ott$getVariantDataAccessor()));
+        return VariantUtils.getOrDefault(OttBuiltInRegistries.ZOMBIE_VARIANTS, this.entityData.get(this.ott$getVariantDataAccessor())).map(v -> v);
     }
 
     @Override
+    @SuppressWarnings("unchecked")
     protected void ott$addSubAdditionalSaveData(CompoundTag tag, CallbackInfo ci) {
-        if ((Object)this.getClass() == Zombie.class) {
-            VariantUtils.addVariantSaveData((VariantDataHolder)this, tag, OttBuiltInRegistries.ZOMBIE_VARIANTS);
+        if (this.getType() == EntityType.ZOMBIE) {
+            VariantUtils.addVariantSaveData((VariantDataHolder<ZombieVariant>)(Object)this, tag, OttBuiltInRegistries.ZOMBIE_VARIANTS);
         }
     }
 
     @Override
+    @SuppressWarnings("unchecked")
     protected void ott$readSubAdditionalSaveData(CompoundTag tag, CallbackInfo ci) {
-        if ((Object)this.getClass() == Zombie.class) {
-            VariantUtils.readVariantSaveData((VariantDataHolder)this, tag, OttBuiltInRegistries.ZOMBIE_VARIANTS);
+        if (this.getType() == EntityType.ZOMBIE) {
+            VariantUtils.readVariantSaveData((VariantDataHolder<ZombieVariant>)(Object)this, tag, OttBuiltInRegistries.ZOMBIE_VARIANTS);
         }
     }
 
     @Override
     protected void ott$finalizeSubSpawn(ServerLevelAccessor level, DifficultyInstance difficulty, MobSpawnType reason, SpawnGroupData spawnData, CallbackInfoReturnable<SpawnGroupData> cir) {
-        if ((Object)this.getClass() == Zombie.class) {
+        if (this.getType() == EntityType.ZOMBIE) {
             VariantUtils.selectVariantToSpawn(SpawnContext.create(level, this.blockPosition()), OttBuiltInRegistries.ZOMBIE_VARIANTS, VariantSpawner.MONSTERS).ifPresent(this::ott$setVariantData);
         }
     }
@@ -71,10 +72,12 @@ public abstract class ZombieMixin extends MobMixin implements VariantDataHolder<
     }
 
     @Override
+    @org.spongepowered.asm.mixin.Overwrite
     public boolean isBaby() {
         return this.ott$isBaby();
     }
 
+    @org.spongepowered.asm.mixin.Overwrite
     public void setBaby(boolean baby) {
         this.ott$setBaby(baby);
     }

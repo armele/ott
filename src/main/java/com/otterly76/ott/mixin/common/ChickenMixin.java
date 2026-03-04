@@ -61,28 +61,29 @@ public abstract class ChickenMixin extends MobMixin implements VariantDataHolder
     }
 
     @Override
-    @SuppressWarnings("unchecked")
     public Optional<Object> ott$getVariantData() {
-        return (Optional) VariantUtils.getOrDefault(OttBuiltInRegistries.CHICKEN_VARIANTS, this.entityData.get(this.ott$getVariantDataAccessor()));
+        return VariantUtils.getOrDefault(OttBuiltInRegistries.CHICKEN_VARIANTS, this.entityData.get(this.ott$getVariantDataAccessor())).map(v -> v);
     }
 
     @Override
+    @SuppressWarnings("unchecked")
     protected void ott$addSubAdditionalSaveData(CompoundTag tag, CallbackInfo ci) {
-        if ((Object)this.getClass() == Chicken.class) {
-            VariantUtils.addVariantSaveData((VariantDataHolder)this, tag, OttBuiltInRegistries.CHICKEN_VARIANTS);
+        if (this.getType() == EntityType.CHICKEN) {
+            VariantUtils.addVariantSaveData((VariantDataHolder<ChickenVariant>)(Object)this, tag, OttBuiltInRegistries.CHICKEN_VARIANTS);
         }
     }
 
     @Override
+    @SuppressWarnings("unchecked")
     protected void ott$readSubAdditionalSaveData(CompoundTag tag, CallbackInfo ci) {
-        if ((Object)this.getClass() == Chicken.class) {
-            VariantUtils.readVariantSaveData((VariantDataHolder)this, tag, OttBuiltInRegistries.CHICKEN_VARIANTS);
+        if (this.getType() == EntityType.CHICKEN) {
+            VariantUtils.readVariantSaveData((VariantDataHolder<ChickenVariant>)(Object)this, tag, OttBuiltInRegistries.CHICKEN_VARIANTS);
         }
     }
 
     @Override
     protected void ott$finalizeSubSpawn(ServerLevelAccessor level, DifficultyInstance difficulty, MobSpawnType reason, SpawnGroupData spawnData, CallbackInfoReturnable<SpawnGroupData> cir) {
-        if ((Object)this.getClass() == Chicken.class) {
+        if (this.getType() == EntityType.CHICKEN) {
             VariantUtils.selectVariantToSpawn(SpawnContext.create(level, this.blockPosition()), OttBuiltInRegistries.CHICKEN_VARIANTS, VariantSpawner.FARM_ANIMALS).ifPresent(this::ott$setVariantData);
         }
     }

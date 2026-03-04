@@ -89,8 +89,4 @@ public abstract class CatMixin extends TamableAnimalMixin implements VariantData
         }
 
     }
-
-    static {
-        // No variant ID initialization needed here anymore
-    }
 }

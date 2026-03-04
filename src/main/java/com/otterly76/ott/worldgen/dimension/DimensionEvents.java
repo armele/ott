@@ -18,7 +18,6 @@ import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.event.entity.living.FinalizeSpawnEvent;
 import net.neoforged.neoforge.event.entity.living.MobSpawnEvent;
 
-import java.util.Objects;
 
 @EventBusSubscriber(modid = Constants.MOD_ID)
 public class DimensionEvents {
@@ -62,7 +61,10 @@ public class DimensionEvents {
                 if (rand < 0.05F && replacementMob instanceof OttBabyMob babyMob) {
                     babyMob.ott$setBaby(true);
                     double speedMult = 1.35D;
-                    Objects.requireNonNull(replacementMob.getAttribute(Attributes.MOVEMENT_SPEED)).setBaseValue(replacementMob.getAttributeBaseValue(Attributes.MOVEMENT_SPEED) * speedMult);
+                    var speedAttribute = replacementMob.getAttribute(Attributes.MOVEMENT_SPEED);
+                    if (speedAttribute != null) {
+                        speedAttribute.setBaseValue(replacementMob.getAttributeBaseValue(Attributes.MOVEMENT_SPEED) * speedMult);
+                    }
                 }
                 event.setSpawnCancelled(true);
                 return;
@@ -76,7 +78,10 @@ public class DimensionEvents {
                     babyMob.ott$setBaby(true);
                     // Adjust speed for tiny mobs
                     double speedMult = 1.35D;
-                    Objects.requireNonNull(mob.getAttribute(Attributes.MOVEMENT_SPEED)).setBaseValue(mob.getAttributeBaseValue(Attributes.MOVEMENT_SPEED) * speedMult);
+                    var speedAttribute = mob.getAttribute(Attributes.MOVEMENT_SPEED);
+                    if (speedAttribute != null) {
+                        speedAttribute.setBaseValue(mob.getAttributeBaseValue(Attributes.MOVEMENT_SPEED) * speedMult);
+                    }
                 }
             }
         }

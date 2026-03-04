@@ -63,28 +63,29 @@ public abstract class MooshroomMixin extends MobMixin implements VariantDataHold
     }
 
     @Override
-    @SuppressWarnings("unchecked")
     public Optional<Object> ott$getVariantData() {
-        return (Optional) VariantUtils.getOrDefault(OttBuiltInRegistries.MOOSHROOM_VARIANTS, this.entityData.get(this.ott$getVariantDataAccessor()));
+        return VariantUtils.getOrDefault(OttBuiltInRegistries.MOOSHROOM_VARIANTS, this.entityData.get(this.ott$getVariantDataAccessor())).map(v -> v);
     }
 
     @Override
+    @SuppressWarnings("unchecked")
     protected void ott$addSubAdditionalSaveData(CompoundTag tag, CallbackInfo ci) {
-        if ((Object)this.getClass() == MushroomCow.class) {
-            VariantUtils.addVariantSaveData((VariantDataHolder)this, tag, OttBuiltInRegistries.MOOSHROOM_VARIANTS);
+        if (this.getType() == EntityType.MOOSHROOM) {
+            VariantUtils.addVariantSaveData((VariantDataHolder<MooshroomVariant>)(Object)this, tag, OttBuiltInRegistries.MOOSHROOM_VARIANTS);
         }
     }
 
     @Override
+    @SuppressWarnings("unchecked")
     protected void ott$readSubAdditionalSaveData(CompoundTag tag, CallbackInfo ci) {
-        if ((Object)this.getClass() == MushroomCow.class) {
-            VariantUtils.readVariantSaveData((VariantDataHolder)this, tag, OttBuiltInRegistries.MOOSHROOM_VARIANTS);
+        if (this.getType() == EntityType.MOOSHROOM) {
+            VariantUtils.readVariantSaveData((VariantDataHolder<MooshroomVariant>)(Object)this, tag, OttBuiltInRegistries.MOOSHROOM_VARIANTS);
         }
     }
 
     @Override
     protected void ott$finalizeSubSpawn(ServerLevelAccessor level, DifficultyInstance difficulty, MobSpawnType reason, SpawnGroupData spawnData, CallbackInfoReturnable<SpawnGroupData> cir) {
-        if ((Object)this.getClass() == MushroomCow.class) {
+        if (this.getType() == EntityType.MOOSHROOM) {
             VariantUtils.selectVariantToSpawn(SpawnContext.create(level, this.blockPosition()), OttBuiltInRegistries.MOOSHROOM_VARIANTS, VariantSpawner.FARM_ANIMALS).ifPresent(this::ott$setVariantData);
         }
     }

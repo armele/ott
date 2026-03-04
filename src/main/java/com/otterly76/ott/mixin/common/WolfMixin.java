@@ -30,8 +30,10 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 import java.util.Optional;
 
 @Mixin(Wolf.class)
+@SuppressWarnings("all")
 public abstract class WolfMixin extends TamableAnimalMixin implements NeutralMob, WolfSoundVariantHolder, VariantDataHolder<WolfDataVariant> {
     @Unique
+    @SuppressWarnings("all")
     private static final EntityDataAccessor<String> DATA_OTT_SOUND_VARIANT_ID;
 
     @Shadow
@@ -45,7 +47,7 @@ public abstract class WolfMixin extends TamableAnimalMixin implements NeutralMob
     }
 
     static {
-        DATA_OTT_SOUND_VARIANT_ID = SynchedEntityData.defineId(WolfMixin.class, EntityDataSerializers.STRING);
+        DATA_OTT_SOUND_VARIANT_ID = SynchedEntityData.defineId(Wolf.class, EntityDataSerializers.STRING);
     }
 
 
