@@ -87,6 +87,7 @@
     "common.SkeletonMixin",
     "common.SimpleContainerAccessor",
     "common.SinglePoolElementAccessor",
+    "common.SnowGolemMixin",
     "common.SnowLayerBlockMixin",
     "common.StrayMixin",
     "common.StructureProcessorListAccessor",
@@ -113,6 +114,7 @@
   ],
   "client": [
     "client.AbstractContainerScreenMixin",
+    "client.BedMixin",
     "client.AnvilScreenAccessor",
     "client.AnvilScreenMixin",
     "client.BlockModelGeneratorsAccessor",

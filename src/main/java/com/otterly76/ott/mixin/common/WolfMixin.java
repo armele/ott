@@ -50,6 +50,13 @@ public abstract class WolfMixin extends TamableAnimalMixin implements NeutralMob
         DATA_OTT_SOUND_VARIANT_ID = SynchedEntityData.defineId(Wolf.class, EntityDataSerializers.STRING);
     }
 
+    @Inject(
+        method = "defineSynchedData(Lnet/minecraft/network/syncher/SynchedEntityData$Builder;)V",
+        at = @At("TAIL")
+    )
+    protected void ott$defineSynchedData(SynchedEntityData.Builder builder, CallbackInfo ci) {
+        builder.define(DATA_OTT_SOUND_VARIANT_ID, "ott:none");
+    }
 
     @Override
     protected void ott$addSubAdditionalSaveData(CompoundTag tag, CallbackInfo ci) {
