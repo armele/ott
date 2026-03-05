@@ -68,8 +68,21 @@ public class SheepGeoModel<T extends Sheep & SheepGeoEntity> extends GeoModel<T>
         EntityModelData entityData = animationState.getData(DataTickets.ENTITY_MODEL_DATA);
 
         if (head != null) {
-            head.setRotX(entityData.headPitch() * Mth.DEG_TO_RAD);
+            float headEatAngleScale = animatable.getHeadEatAngleScale(animationState.getPartialTick());
+            float headEatPositionScale = animatable.getHeadEatPositionScale(animationState.getPartialTick());
+
+            if (headEatAngleScale > 0.0F) {
+                head.setRotX(headEatAngleScale);
+            } else {
+                head.setRotX(entityData.headPitch() * Mth.DEG_TO_RAD);
+            }
             head.setRotY(entityData.netHeadYaw() * Mth.DEG_TO_RAD);
+
+            if (headEatPositionScale > 0.0F) {
+                head.setPosY(-headEatPositionScale * 9.0F);
+            } else {
+                head.setPosY(0.0F);
+            }
         }
 
         float limbSwing = animationState.getLimbSwing();
@@ -79,10 +92,5 @@ public class SheepGeoModel<T extends Sheep & SheepGeoEntity> extends GeoModel<T>
         if (leg2 != null) leg2.setRotX(Mth.cos(limbSwing * 0.6662F + (float)Math.PI) * 1.4F * limbSwingAmount);
         if (leg3 != null) leg3.setRotX(Mth.cos(limbSwing * 0.6662F + (float)Math.PI) * 1.4F * limbSwingAmount);
         if (leg4 != null) leg4.setRotX(Mth.cos(limbSwing * 0.6662F) * 1.4F * limbSwingAmount);
-
-        float headEatAngleScale = animatable.getHeadEatAngleScale(animationState.getPartialTick());
-        if (headEatAngleScale > 0.0F && head != null) {
-            head.setRotX(head.getRotX() + headEatAngleScale * 4.449911F);
-        }
     }
 }
