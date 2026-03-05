@@ -9,6 +9,7 @@ public interface VariantSpawner {
     VariantSpawner MONSTERS = OttConfig.GENERAL.HAS_MONSTER_VARIANTS::get;
     VariantSpawner ALLAY = OttConfig.GENERAL.HAS_ALLAY_VARIANTS::get;
     VariantSpawner VEX = OttConfig.GENERAL.HAS_VEX_VARIANTS::get;
+    VariantSpawner RABBIT = OttConfig.GENERAL.HAS_RABBIT_VARIANTS::get;
 
     boolean apply();
 }

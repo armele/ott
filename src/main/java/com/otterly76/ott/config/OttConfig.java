@@ -250,6 +250,7 @@ public class OttConfig {
         public final ModConfigSpec.BooleanValue HAS_MONSTER_VARIANTS;
         public final ModConfigSpec.BooleanValue HAS_ALLAY_VARIANTS;
         public final ModConfigSpec.BooleanValue HAS_VEX_VARIANTS;
+        public final ModConfigSpec.BooleanValue HAS_RABBIT_VARIANTS;
         public final ModConfigSpec.BooleanValue USE_SHEEP_WOOL_UNDERCOAT;
         public final ModConfigSpec.BooleanValue HAS_WOLF_SOUND_VARIANTS;
         public final ModConfigSpec.DoubleValue HAPPY_GHAST_SPEED_MODIFIER;
@@ -293,6 +294,9 @@ public class OttConfig {
             HAS_VEX_VARIANTS = builder.comment("Enable Vex Variants.")
                     .translation("ott.configuration.general.has_vex_variants")
                     .define("hasVexVariants", true);
+            HAS_RABBIT_VARIANTS = builder.comment("Enable Rabbit Variants.")
+                    .translation("ott.configuration.general.has_rabbit_variants")
+                    .define("hasRabbitVariants", true);
             USE_SHEEP_WOOL_UNDERCOAT = builder.comment("Enable Sheep Wool Undercoat layer.")
                     .translation("ott.configuration.general.use_sheep_wool_undercoat")
                     .define("useSheepWoolUndercoat", true);

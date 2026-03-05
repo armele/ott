@@ -35,6 +35,7 @@ public interface OttRegistryKeys {
     ResourceKey<Registry<HuskVariant>> HUSK_VARIANT = create("husk_variant");
     ResourceKey<Registry<AllayVariant>> ALLAY_VARIANT = create("allay_variant");
     ResourceKey<Registry<VexVariant>> VEX_VARIANT = create("vex_variant");
+    ResourceKey<Registry<RabbitVariant>> RABBIT_VARIANT = create("rabbit_variant");
 
     private static <T> ResourceKey<Registry<T>> create(String name) {
         return ResourceKey.createRegistryKey(Ott.resource(name));

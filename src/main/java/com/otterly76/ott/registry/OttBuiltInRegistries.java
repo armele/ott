@@ -47,6 +47,7 @@ public final class OttBuiltInRegistries {
     public static final Registry<com.otterly76.ott.entity.variant.HuskVariant> HUSK_VARIANT;
     public static final Registry<com.otterly76.ott.entity.variant.AllayVariant> ALLAY_VARIANT;
     public static final Registry<com.otterly76.ott.entity.variant.VexVariant> VEX_VARIANT;
+    public static final Registry<com.otterly76.ott.entity.variant.RabbitVariant> RABBIT_VARIANT;
 
     public static final BuiltInCoreRegistry<com.otterly76.ott.entity.variant.WolfSoundVariant> WOLF_SOUND_VARIANTS;
     public static final BuiltInCoreRegistry<com.otterly76.ott.entity.variant.CowVariant> COW_VARIANTS;
@@ -66,6 +67,7 @@ public final class OttBuiltInRegistries {
     public static final BuiltInCoreRegistry<com.otterly76.ott.entity.variant.HuskVariant> HUSK_VARIANTS;
     public static final BuiltInCoreRegistry<com.otterly76.ott.entity.variant.AllayVariant> ALLAY_VARIANTS;
     public static final BuiltInCoreRegistry<com.otterly76.ott.entity.variant.VexVariant> VEX_VARIANTS;
+    public static final BuiltInCoreRegistry<com.otterly76.ott.entity.variant.RabbitVariant> RABBIT_VARIANTS;
 
     private static final DeferredRegister<com.otterly76.ott.entity.variant.WolfSoundVariant> DEFERRED_WOLF_SOUND_VARIANTS;
     private static final DeferredRegister<com.otterly76.ott.entity.variant.CowVariant> DEFERRED_COW_VARIANTS;
@@ -85,6 +87,7 @@ public final class OttBuiltInRegistries {
     private static final DeferredRegister<com.otterly76.ott.entity.variant.HuskVariant> DEFERRED_HUSK_VARIANTS;
     private static final DeferredRegister<com.otterly76.ott.entity.variant.AllayVariant> DEFERRED_ALLAY_VARIANTS;
     private static final DeferredRegister<com.otterly76.ott.entity.variant.VexVariant> DEFERRED_VEX_VARIANTS;
+    private static final DeferredRegister<com.otterly76.ott.entity.variant.RabbitVariant> DEFERRED_RABBIT_VARIANTS;
 
     private static final DeferredRegister<MapCodec<? extends BiomeModifier>> BIOME_MODIFIER_TYPES;
     private static final DeferredRegister<MapCodec<? extends ICondition>> RESOURCE_CONDITION_TYPES;
@@ -138,6 +141,7 @@ public final class OttBuiltInRegistries {
         DEFERRED_HUSK_VARIANTS.register(bus);
         DEFERRED_ALLAY_VARIANTS.register(bus);
         DEFERRED_VEX_VARIANTS.register(bus);
+        DEFERRED_RABBIT_VARIANTS.register(bus);
 
         registerForgeBiomeModifiers((name, codec) -> BIOME_MODIFIER_TYPES.register(name, () -> codec));
         BIOME_MODIFIER_TYPES.register(bus);
@@ -187,6 +191,7 @@ public final class OttBuiltInRegistries {
         HuskVariants.bootstrap();
         AllayVariants.bootstrap();
         VexVariants.bootstrap();
+        RabbitVariants.bootstrap();
         WolfSoundVariants.bootstrap();
     }
 
@@ -235,6 +240,8 @@ public final class OttBuiltInRegistries {
         ALLAY_VARIANT = DEFERRED_ALLAY_VARIANTS.makeRegistry(builder -> builder.sync(false));
         DEFERRED_VEX_VARIANTS = DeferredRegister.create(OttRegistryKeys.VEX_VARIANT, "minecraft");
         VEX_VARIANT = DEFERRED_VEX_VARIANTS.makeRegistry(builder -> builder.sync(false));
+        DEFERRED_RABBIT_VARIANTS = DeferredRegister.create(OttRegistryKeys.RABBIT_VARIANT, "minecraft");
+        RABBIT_VARIANT = DEFERRED_RABBIT_VARIANTS.makeRegistry(builder -> builder.sync(false));
 
         BIOME_MODIFIER_TYPES = DeferredRegister.create(Keys.BIOME_MODIFIER_SERIALIZERS, "ott");
         RESOURCE_CONDITION_TYPES = DeferredRegister.create(Keys.CONDITION_CODECS, "ott");
@@ -257,5 +264,6 @@ public final class OttBuiltInRegistries {
         HUSK_VARIANTS = new BuiltInCoreRegistry<>(HUSK_VARIANT, "minecraft");
         ALLAY_VARIANTS = new BuiltInCoreRegistry<>(ALLAY_VARIANT, "minecraft");
         VEX_VARIANTS = new BuiltInCoreRegistry<>(VEX_VARIANT, "minecraft");
+        RABBIT_VARIANTS = new BuiltInCoreRegistry<>(RABBIT_VARIANT, "minecraft");
     }
 }
