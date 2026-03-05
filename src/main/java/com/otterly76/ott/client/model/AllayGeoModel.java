@@ -84,11 +84,11 @@ public class AllayGeoModel<T extends Allay & AllayGeoEntity> extends GeoModel<T>
 
         // Arms
         if (rightArm != null) {
-            rightArm.setRotX(-0.7853982F + bob);
+            rightArm.setRotX(0.7853982F + bob);
             rightArm.setRotY(-0.19634955F);
         }
         if (leftArm != null) {
-            leftArm.setRotX(-0.7853982F + bob);
+            leftArm.setRotX(0.7853982F + bob);
             leftArm.setRotY(0.19634955F);
         }
 
