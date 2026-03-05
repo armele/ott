@@ -109,6 +109,14 @@
 					]
 				},
 				{
+					"name": "wool_left_ear",
+					"parent": "left_ear",
+					"pivot": [4, 19, -11],
+					"cubes": [
+						{"origin": [2.5, 18.5, -12], "size": [3, 1, 2], "inflate": 0.1, "uv": [20, 0]}
+					]
+				},
+				{
 					"name": "right_ear",
 					"parent": "head",
 					"pivot": [-4, 19, -11],
@@ -116,6 +124,15 @@
 					"mirror": true,
 					"cubes": [
 						{"origin": [-5.5, 18.5, -12], "size": [3, 1, 2], "uv": [20, 0]}
+					]
+				},
+				{
+					"name": "wool_right_ear",
+					"parent": "right_ear",
+					"pivot": [-4, 19, -11],
+					"mirror": true,
+					"cubes": [
+						{"origin": [-5.5, 18.5, -12], "size": [3, 1, 2], "inflate": 0.1, "uv": [20, 0]}
 					]
 				},
 				{

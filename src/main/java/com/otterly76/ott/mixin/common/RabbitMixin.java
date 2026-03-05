@@ -5,6 +5,7 @@ import com.otterly76.ott.entity.variant.*;
 import com.otterly76.ott.registry.OttBuiltInRegistries;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.network.chat.Component;
 import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.entity.AgeableMob;
 import net.minecraft.world.entity.EntityType;
@@ -13,6 +14,7 @@ import net.minecraft.world.entity.SpawnGroupData;
 import net.minecraft.world.entity.animal.Rabbit;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.ServerLevelAccessor;
+import org.jetbrains.annotations.Nullable;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
@@ -85,16 +87,36 @@ public abstract class RabbitMixin extends MobMixin implements VariantDataHolder<
     public void ott$setVariantData(Object variant) {
         if (variant instanceof RabbitVariant rabbitVariant) {
             String id = VariantUtils.getID(OttBuiltInRegistries.RABBIT_VARIANTS, rabbitVariant);
+            if (this.getType() == EntityType.RABBIT) {
+                Rabbit rabbit = (Rabbit) (Object) this;
+                Rabbit.Variant vanillaVariant = switch (id) {
+                    case "minecraft:white" -> Rabbit.Variant.WHITE;
+                    case "minecraft:black" -> Rabbit.Variant.BLACK;
+                    case "minecraft:white_splotched" -> Rabbit.Variant.WHITE_SPLOTCHED;
+                    case "minecraft:gold" -> Rabbit.Variant.GOLD;
+                    case "minecraft:salt" -> Rabbit.Variant.SALT;
+                    case "minecraft:caerbannog" -> Rabbit.Variant.EVIL;
+                    default -> Rabbit.Variant.BROWN;
+                };
+                rabbit.setVariant(vanillaVariant);
+            }
             this.entityData.set(this.ott$getVariantDataAccessor(), id);
-            if ((Object)this instanceof Rabbit rabbit) {
-                switch (id) {
-                    case "minecraft:white" -> rabbit.setVariant(Rabbit.Variant.WHITE);
-                    case "minecraft:black" -> rabbit.setVariant(Rabbit.Variant.BLACK);
-                    case "minecraft:white_splotched" -> rabbit.setVariant(Rabbit.Variant.WHITE_SPLOTCHED);
-                    case "minecraft:gold" -> rabbit.setVariant(Rabbit.Variant.GOLD);
-                    case "minecraft:salt" -> rabbit.setVariant(Rabbit.Variant.SALT);
-                    case "minecraft:caerbannog" -> rabbit.setVariant(Rabbit.Variant.EVIL);
-                    default -> rabbit.setVariant(Rabbit.Variant.BROWN);
+        }
+    }
+
+    @Override
+    public void setCustomName(@Nullable Component name) {
+        super.setCustomName(name);
+        if (!this.level().isClientSide && this.getType() == EntityType.RABBIT) {
+            Rabbit rabbit = (Rabbit) (Object) this;
+            if (rabbit.getVariant() == Rabbit.Variant.BROWN) {
+                String current = this.entityData.get(this.ott$getVariantDataAccessor());
+                if (name != null && "Toast".equals(name.getString())) {
+                    if (!"minecraft:toast".equals(current)) {
+                        this.entityData.set(this.ott$getVariantDataAccessor(), "minecraft:toast");
+                    }
+                } else if ("minecraft:toast".equals(current)) {
+                    this.entityData.set(this.ott$getVariantDataAccessor(), "minecraft:brown");
                 }
             }
         }
