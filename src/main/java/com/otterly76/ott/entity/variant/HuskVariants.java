@@ -8,6 +8,7 @@ import net.minecraft.resources.ResourceLocation;
 public class HuskVariants {
     public static final ResourceKey<HuskVariant> HUSK = register("husk", HuskVariant.ModelType.NORMAL, "husk", 10, SpawnPrioritySelectors.fallback(0));
 
+    @SuppressWarnings("SameParameterValue")
     private static ResourceKey<HuskVariant> register(String key, HuskVariant.ModelType type, String assetId, int count, SpawnPrioritySelectors selectors) {
         ResourceLocation id = Ott.resource("entity/zombie/" + assetId);
         ResourceLocation path = id.withPath((string) -> "textures/" + string + ".png");

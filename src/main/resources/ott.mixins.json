@@ -20,6 +20,8 @@
     "common.AbstractContainerMenuInvoker",
     "common.AbstractSkeletonMixin",
     "common.AccessorItem",
+    "common.AllayMixin",
+    "common.VexMixin",
     "common.AnvilBlockMixin",
     "common.AnvilMenuAccessor",
     "common.BeardifierMixin",

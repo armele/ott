@@ -238,6 +238,14 @@ public class ClientModEvents {
             net.minecraft.client.renderer.entity.EntityRenderer<?> renderer = new com.otterly76.ott.client.render.entity.HuskGeoRenderer<>(context);
             return (net.minecraft.client.renderer.entity.EntityRenderer<net.minecraft.world.entity.monster.Husk>) renderer;
         });
+        event.registerEntityRenderer(net.minecraft.world.entity.EntityType.ALLAY, (context) -> {
+            net.minecraft.client.renderer.entity.EntityRenderer<?> renderer = new com.otterly76.ott.client.render.entity.AllayGeoRenderer<>(context);
+            return (net.minecraft.client.renderer.entity.EntityRenderer<net.minecraft.world.entity.animal.allay.Allay>) renderer;
+        });
+        event.registerEntityRenderer(net.minecraft.world.entity.EntityType.VEX, (context) -> {
+            net.minecraft.client.renderer.entity.EntityRenderer<?> renderer = new com.otterly76.ott.client.render.entity.VexGeoRenderer<>(context);
+            return (net.minecraft.client.renderer.entity.EntityRenderer<net.minecraft.world.entity.monster.Vex>) renderer;
+        });
 
         event.registerBlockEntityRenderer(ModBlockEntities.ANVIL_BLOCK_ENTITY_TYPE.get(), com.otterly76.ott.client.render.AnvilRenderer::new);
         event.registerBlockEntityRenderer(ModBlockEntities.SHELF.get(), com.otterly76.ott.client.render.blockentity.ShelfRenderer::new);

@@ -8,6 +8,7 @@ import net.minecraft.resources.ResourceLocation;
 public class SkeletonVariants {
     public static final ResourceKey<SkeletonVariant> SKELETON = register("skeleton", SkeletonVariant.ModelType.NORMAL, "skeleton", 10, SpawnPrioritySelectors.fallback(0));
 
+    @SuppressWarnings("SameParameterValue")
     private static ResourceKey<SkeletonVariant> register(String key, SkeletonVariant.ModelType type, String assetId, int count, SpawnPrioritySelectors selectors) {
         ResourceLocation id = Ott.resource("entity/skeleton/" + assetId);
         ResourceLocation path = id.withPath((string) -> "textures/" + string + ".png");

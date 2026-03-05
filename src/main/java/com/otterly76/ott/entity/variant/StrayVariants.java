@@ -8,6 +8,7 @@ import net.minecraft.resources.ResourceLocation;
 public class StrayVariants {
     public static final ResourceKey<StrayVariant> STRAY = register("stray", StrayVariant.ModelType.NORMAL, "stray", 1, SpawnPrioritySelectors.fallback(0));
 
+    @SuppressWarnings("SameParameterValue")
     private static ResourceKey<StrayVariant> register(String key, StrayVariant.ModelType type, String assetId, int count, SpawnPrioritySelectors selectors) {
         ResourceLocation id = Ott.resource("entity/skeleton/" + assetId);
         ResourceLocation path = id.withPath((string) -> "textures/" + string + ".png");

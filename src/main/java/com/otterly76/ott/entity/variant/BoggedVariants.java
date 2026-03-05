@@ -8,6 +8,7 @@ import net.minecraft.resources.ResourceLocation;
 public class BoggedVariants {
     public static final ResourceKey<BoggedVariant> BOGGED = register("bogged", BoggedVariant.ModelType.NORMAL, "bogged", 1, SpawnPrioritySelectors.fallback(0));
 
+    @SuppressWarnings("SameParameterValue")
     private static ResourceKey<BoggedVariant> register(String key, BoggedVariant.ModelType type, String assetId, int count, SpawnPrioritySelectors selectors) {
         ResourceLocation id = Ott.resource("entity/skeleton/" + assetId);
         ResourceLocation path = id.withPath((string) -> "textures/" + string + ".png");

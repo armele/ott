@@ -9,6 +9,7 @@ public class MooshroomVariants {
     public static final ResourceKey<MooshroomVariant> RED = register("red", MooshroomVariant.ModelType.RED, "red_mooshroom", 15, SpawnPrioritySelectors.fallback(0));
     public static final ResourceKey<MooshroomVariant> BROWN = register("brown", MooshroomVariant.ModelType.BROWN, "brown_mooshroom", 33, SpawnPrioritySelectors.fallback(0));
 
+    @SuppressWarnings("SameParameterValue")
     private static ResourceKey<MooshroomVariant> register(String key, MooshroomVariant.ModelType type, String assetId, int count, SpawnPrioritySelectors selectors) {
         ResourceLocation id = Ott.resource("entity/mooshroom/" + assetId);
         ResourceLocation path = id.withPath((string) -> "textures/" + string + ".png");

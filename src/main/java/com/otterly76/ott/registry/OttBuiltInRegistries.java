@@ -45,6 +45,8 @@ public final class OttBuiltInRegistries {
     public static final Registry<com.otterly76.ott.entity.variant.ZombieVariant> ZOMBIE_VARIANT;
     public static final Registry<com.otterly76.ott.entity.variant.DrownedVariant> DROWNED_VARIANT;
     public static final Registry<com.otterly76.ott.entity.variant.HuskVariant> HUSK_VARIANT;
+    public static final Registry<com.otterly76.ott.entity.variant.AllayVariant> ALLAY_VARIANT;
+    public static final Registry<com.otterly76.ott.entity.variant.VexVariant> VEX_VARIANT;
 
     public static final BuiltInCoreRegistry<com.otterly76.ott.entity.variant.WolfSoundVariant> WOLF_SOUND_VARIANTS;
     public static final BuiltInCoreRegistry<com.otterly76.ott.entity.variant.CowVariant> COW_VARIANTS;
@@ -62,6 +64,8 @@ public final class OttBuiltInRegistries {
     public static final BuiltInCoreRegistry<com.otterly76.ott.entity.variant.ZombieVariant> ZOMBIE_VARIANTS;
     public static final BuiltInCoreRegistry<com.otterly76.ott.entity.variant.DrownedVariant> DROWNED_VARIANTS;
     public static final BuiltInCoreRegistry<com.otterly76.ott.entity.variant.HuskVariant> HUSK_VARIANTS;
+    public static final BuiltInCoreRegistry<com.otterly76.ott.entity.variant.AllayVariant> ALLAY_VARIANTS;
+    public static final BuiltInCoreRegistry<com.otterly76.ott.entity.variant.VexVariant> VEX_VARIANTS;
 
     private static final DeferredRegister<com.otterly76.ott.entity.variant.WolfSoundVariant> DEFERRED_WOLF_SOUND_VARIANTS;
     private static final DeferredRegister<com.otterly76.ott.entity.variant.CowVariant> DEFERRED_COW_VARIANTS;
@@ -79,6 +83,8 @@ public final class OttBuiltInRegistries {
     private static final DeferredRegister<com.otterly76.ott.entity.variant.ZombieVariant> DEFERRED_ZOMBIE_VARIANTS;
     private static final DeferredRegister<com.otterly76.ott.entity.variant.DrownedVariant> DEFERRED_DROWNED_VARIANTS;
     private static final DeferredRegister<com.otterly76.ott.entity.variant.HuskVariant> DEFERRED_HUSK_VARIANTS;
+    private static final DeferredRegister<com.otterly76.ott.entity.variant.AllayVariant> DEFERRED_ALLAY_VARIANTS;
+    private static final DeferredRegister<com.otterly76.ott.entity.variant.VexVariant> DEFERRED_VEX_VARIANTS;
 
     private static final DeferredRegister<MapCodec<? extends BiomeModifier>> BIOME_MODIFIER_TYPES;
     private static final DeferredRegister<MapCodec<? extends ICondition>> RESOURCE_CONDITION_TYPES;
@@ -130,6 +136,8 @@ public final class OttBuiltInRegistries {
         DEFERRED_ZOMBIE_VARIANTS.register(bus);
         DEFERRED_DROWNED_VARIANTS.register(bus);
         DEFERRED_HUSK_VARIANTS.register(bus);
+        DEFERRED_ALLAY_VARIANTS.register(bus);
+        DEFERRED_VEX_VARIANTS.register(bus);
 
         registerForgeBiomeModifiers((name, codec) -> BIOME_MODIFIER_TYPES.register(name, () -> codec));
         BIOME_MODIFIER_TYPES.register(bus);
@@ -177,6 +185,8 @@ public final class OttBuiltInRegistries {
         ZombieVariants.bootstrap();
         DrownedVariants.bootstrap();
         HuskVariants.bootstrap();
+        AllayVariants.bootstrap();
+        VexVariants.bootstrap();
         WolfSoundVariants.bootstrap();
     }
 
@@ -221,6 +231,10 @@ public final class OttBuiltInRegistries {
         DROWNED_VARIANT = DEFERRED_DROWNED_VARIANTS.makeRegistry(builder -> builder.sync(false));
         DEFERRED_HUSK_VARIANTS = DeferredRegister.create(OttRegistryKeys.HUSK_VARIANT, "minecraft");
         HUSK_VARIANT = DEFERRED_HUSK_VARIANTS.makeRegistry(builder -> builder.sync(false));
+        DEFERRED_ALLAY_VARIANTS = DeferredRegister.create(OttRegistryKeys.ALLAY_VARIANT, "minecraft");
+        ALLAY_VARIANT = DEFERRED_ALLAY_VARIANTS.makeRegistry(builder -> builder.sync(false));
+        DEFERRED_VEX_VARIANTS = DeferredRegister.create(OttRegistryKeys.VEX_VARIANT, "minecraft");
+        VEX_VARIANT = DEFERRED_VEX_VARIANTS.makeRegistry(builder -> builder.sync(false));
 
         BIOME_MODIFIER_TYPES = DeferredRegister.create(Keys.BIOME_MODIFIER_SERIALIZERS, "ott");
         RESOURCE_CONDITION_TYPES = DeferredRegister.create(Keys.CONDITION_CODECS, "ott");
@@ -241,5 +255,7 @@ public final class OttBuiltInRegistries {
         ZOMBIE_VARIANTS = new BuiltInCoreRegistry<>(ZOMBIE_VARIANT, "minecraft");
         DROWNED_VARIANTS = new BuiltInCoreRegistry<>(DROWNED_VARIANT, "minecraft");
         HUSK_VARIANTS = new BuiltInCoreRegistry<>(HUSK_VARIANT, "minecraft");
+        ALLAY_VARIANTS = new BuiltInCoreRegistry<>(ALLAY_VARIANT, "minecraft");
+        VEX_VARIANTS = new BuiltInCoreRegistry<>(VEX_VARIANT, "minecraft");
     }
 }
