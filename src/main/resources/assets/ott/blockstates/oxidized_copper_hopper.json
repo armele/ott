@@ -1,0 +1,22 @@
+{
+    "variants": {
+        "facing=down": {
+            "model": "ott:block/oxidized_copper_hopper"
+        },
+        "facing=east": {
+            "model": "ott:block/oxidized_copper_hopper_side",
+            "y": 90
+        },
+        "facing=north": {
+            "model": "ott:block/oxidized_copper_hopper_side"
+        },
+        "facing=south": {
+            "model": "ott:block/oxidized_copper_hopper_side",
+            "y": 180
+        },
+        "facing=west": {
+            "model": "ott:block/oxidized_copper_hopper_side",
+            "y": 270
+        }
+    }
+}

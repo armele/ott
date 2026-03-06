@@ -1,0 +1,11 @@
+{
+  "parent": "minecraft:block/template_cauldron_full",
+  "textures": {
+    "content": "minecraft:block/powder_snow",
+    "inside": "ott:block/exposed_copper_cauldron_inner",
+    "particle": "ott:block/exposed_copper_cauldron_side",
+    "top": "ott:block/exposed_copper_cauldron_top",
+    "bottom": "ott:block/exposed_copper_cauldron_bottom",
+    "side": "ott:block/exposed_copper_cauldron_side"
+  }
+}

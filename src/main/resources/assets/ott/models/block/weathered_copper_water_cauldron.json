@@ -1,0 +1,11 @@
+{
+  "parent": "minecraft:block/template_cauldron_full",
+  "textures": {
+    "content": "minecraft:block/water_still",
+    "inside": "ott:block/weathered_copper_cauldron_inner",
+    "particle": "ott:block/weathered_copper_cauldron_side",
+    "top": "ott:block/weathered_copper_cauldron_top",
+    "bottom": "ott:block/weathered_copper_cauldron_bottom",
+    "side": "ott:block/weathered_copper_cauldron_side"
+  }
+}

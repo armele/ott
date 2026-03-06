@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "wet=true": {
+      "model": "ott:block/weathering_station"
+    },
+    "wet=false": {
+      "model": "ott:block/weathering_station_dry"
+    }
+  }
+}
