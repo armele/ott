@@ -6,14 +6,11 @@ import com.otterly76.ott.entity.variant.ClientAsset;
 import com.otterly76.ott.entity.variant.CowVariant;
 import com.otterly76.ott.entity.variant.VariantDataHolder;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.util.Mth;
 import net.minecraft.world.entity.animal.Cow;
 import org.jetbrains.annotations.Nullable;
 import software.bernie.geckolib.animation.AnimationState;
 import software.bernie.geckolib.cache.object.GeoBone;
-import software.bernie.geckolib.constant.DataTickets;
 import software.bernie.geckolib.model.GeoModel;
-import software.bernie.geckolib.model.data.EntityModelData;
 
 import java.util.Optional;
 
@@ -59,19 +56,7 @@ public class CowGeoModel<T extends Cow & CowGeoEntity> extends GeoModel<T> {
         GeoBone leg3 = this.getAnimationProcessor().getBone("leg3");
         GeoBone leg4 = this.getAnimationProcessor().getBone("leg4");
 
-        EntityModelData entityData = animationState.getData(DataTickets.ENTITY_MODEL_DATA);
-
-        if (head != null) {
-            head.setRotX(entityData.headPitch() * Mth.DEG_TO_RAD);
-            head.setRotY(entityData.netHeadYaw() * Mth.DEG_TO_RAD);
-        }
-
-        float limbSwing = animationState.getLimbSwing();
-        float limbSwingAmount = animationState.getLimbSwingAmount();
-
-        if (leg1 != null) leg1.setRotX(Mth.cos(limbSwing * 0.6662F) * 1.4F * limbSwingAmount);
-        if (leg2 != null) leg2.setRotX(Mth.cos(limbSwing * 0.6662F + (float)Math.PI) * 1.4F * limbSwingAmount);
-        if (leg3 != null) leg3.setRotX(Mth.cos(limbSwing * 0.6662F + (float)Math.PI) * 1.4F * limbSwingAmount);
-        if (leg4 != null) leg4.setRotX(Mth.cos(limbSwing * 0.6662F) * 1.4F * limbSwingAmount);
+        GeoModelUtils.applyHeadRotation(animationState, head);
+        GeoModelUtils.applyLimbSwing4Legs(animationState, leg1, leg2, leg3, leg4);
     }
 }

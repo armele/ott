@@ -4,6 +4,7 @@ import com.otterly76.ott.block.ModBlocks;
 import com.otterly76.ott.item.ModItems;
 import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.item.Item;
 import net.neoforged.neoforge.client.model.generators.ItemModelProvider;
 import net.neoforged.neoforge.client.model.generators.ModelFile;
 import net.neoforged.neoforge.common.data.ExistingFileHelper;
@@ -15,7 +16,10 @@ public class ModItemModelProvider extends ItemModelProvider {
 
     @Override
     protected void registerModels() {
-        getBuilder(ModItems.CREAKING_SPAWN_EGG.getId().getPath()).parent(new ModelFile.UncheckedModelFile(mcLoc("item/template_spawn_egg")));
+        spawnEggItem(ModItems.CREAKING_SPAWN_EGG);
+        spawnEggItem(ModItems.DUCK_SPAWN_EGG);
+        spawnEggItem(ModItems.GOOSE_SPAWN_EGG);
+        spawnEggItem(ModItems.MAN_O_WAR_SPAWN_EGG);
 
         // Use vanilla dragon_head as parent to inherit its display transforms (GUI, ground, hand, etc.)
         getBuilder(ModItems.DRAGON_SKULL.getId().getPath())
@@ -72,8 +76,18 @@ public class ModItemModelProvider extends ItemModelProvider {
         getBuilder(ModItems.TORCH_ARROW.getId().getPath()).parent(new ModelFile.UncheckedModelFile(mcLoc("item/tipped_arrow")));
     }
 
+    private void spawnEggItem(net.neoforged.neoforge.registries.DeferredItem<? extends Item> item) {
+        getBuilder(item.getId().getPath())
+                .parent(new ModelFile.UncheckedModelFile(mcLoc("item/template_spawn_egg")))
+                .texture("layer0", mcLoc("item/spawn_egg"))
+                .texture("layer1", mcLoc("item/spawn_egg_overlay"));
+    }
+
     private void spawnEggItem(String name) {
-        getBuilder(name).parent(new ModelFile.UncheckedModelFile(mcLoc("item/template_spawn_egg")));
+        getBuilder(name)
+                .parent(new ModelFile.UncheckedModelFile(mcLoc("item/template_spawn_egg")))
+                .texture("layer0", mcLoc("item/spawn_egg"))
+                .texture("layer1", mcLoc("item/spawn_egg_overlay"));
     }
 
     private void generatedItemFromTexture(String itemName, ResourceLocation texture) {

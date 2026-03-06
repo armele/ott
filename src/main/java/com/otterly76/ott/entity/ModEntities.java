@@ -46,6 +46,12 @@ public class ModEntities {
     public static final Supplier<EntityType<com.otterly76.ott.entity.custom.ManOWar>> MAN_O_WAR = OTT_ENTITY_TYPES.register("man_o_war",
             () -> Builder.of(com.otterly76.ott.entity.custom.ManOWar::new, MobCategory.WATER_CREATURE).sized(0.7F, 0.7F).clientTrackingRange(8).build("man_o_war"));
 
+    public static final Supplier<EntityType<com.otterly76.ott.entity.custom.Duck>> DUCK = OTT_ENTITY_TYPES.register("duck",
+            () -> Builder.of(com.otterly76.ott.entity.custom.Duck::new, MobCategory.CREATURE).sized(0.4F, 0.7F).clientTrackingRange(8).build("duck"));
+
+    public static final Supplier<EntityType<com.otterly76.ott.entity.custom.Goose>> GOOSE = OTT_ENTITY_TYPES.register("goose",
+            () -> Builder.of(com.otterly76.ott.entity.custom.Goose::new, MobCategory.CREATURE).sized(0.4F, 0.7F).clientTrackingRange(8).build("goose"));
+
     public static final Supplier<EntityType<PaleOakBoat>> PALE_OAK_BOAT = ENTITY_TYPES.register("pale_oak_boat",
             () -> Builder.<PaleOakBoat>of(PaleOakBoat::new, MobCategory.MISC).sized(1.375F, 0.5625F).clientTrackingRange(10).build("pale_oak_boat"));
 

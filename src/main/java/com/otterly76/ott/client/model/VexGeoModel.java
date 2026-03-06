@@ -11,9 +11,7 @@ import net.minecraft.world.entity.monster.Vex;
 import org.jetbrains.annotations.Nullable;
 import software.bernie.geckolib.animation.AnimationState;
 import software.bernie.geckolib.cache.object.GeoBone;
-import software.bernie.geckolib.constant.DataTickets;
 import software.bernie.geckolib.model.GeoModel;
-import software.bernie.geckolib.model.data.EntityModelData;
 
 import java.util.Optional;
 
@@ -55,12 +53,7 @@ public class VexGeoModel<T extends Vex & VexGeoEntity> extends GeoModel<T> {
         GeoBone rightWing = this.getAnimationProcessor().getBone("right_wing");
         GeoBone leftWing = this.getAnimationProcessor().getBone("left_wing");
 
-        EntityModelData entityData = animationState.getData(DataTickets.ENTITY_MODEL_DATA);
-
-        if (head != null) {
-            head.setRotX(entityData.headPitch() * Mth.DEG_TO_RAD);
-            head.setRotY(entityData.netHeadYaw() * Mth.DEG_TO_RAD);
-        }
+        GeoModelUtils.applyHeadRotation(animationState, head);
 
         float ageInTicks = (float) animatable.tickCount + animationState.getPartialTick();
         float limbSwingAmount = animationState.getLimbSwingAmount();

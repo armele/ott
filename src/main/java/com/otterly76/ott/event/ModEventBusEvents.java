@@ -28,6 +28,8 @@ public class ModEventBusEvents {
         event.put(ModEntities.HAPPY_GHAST.get(), HappyGhast.createAttributes().build());
         event.put(ModEntities.COPPER_GOLEM.get(), com.otterly76.ott.entity.custom.CopperGolem.createAttributes().build());
         event.put(ModEntities.MAN_O_WAR.get(), com.otterly76.ott.entity.custom.ManOWar.createAttributes().build());
+        event.put(ModEntities.DUCK.get(), net.minecraft.world.entity.animal.Chicken.createAttributes().build());
+        event.put(ModEntities.GOOSE.get(), net.minecraft.world.entity.animal.Chicken.createAttributes().build());
     }
 
     @SubscribeEvent

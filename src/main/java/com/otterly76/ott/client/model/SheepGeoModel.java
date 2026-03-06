@@ -67,7 +67,7 @@ public class SheepGeoModel<T extends Sheep & SheepGeoEntity> extends GeoModel<T>
 
         EntityModelData entityData = animationState.getData(DataTickets.ENTITY_MODEL_DATA);
 
-        if (head != null) {
+        if (head != null && entityData != null) {
             float headEatAngleScale = animatable.getHeadEatAngleScale(animationState.getPartialTick());
             float headEatPositionScale = animatable.getHeadEatPositionScale(animationState.getPartialTick());
 
@@ -85,12 +85,6 @@ public class SheepGeoModel<T extends Sheep & SheepGeoEntity> extends GeoModel<T>
             }
         }
 
-        float limbSwing = animationState.getLimbSwing();
-        float limbSwingAmount = animationState.getLimbSwingAmount();
-
-        if (leg1 != null) leg1.setRotX(Mth.cos(limbSwing * 0.6662F) * 1.4F * limbSwingAmount);
-        if (leg2 != null) leg2.setRotX(Mth.cos(limbSwing * 0.6662F + (float)Math.PI) * 1.4F * limbSwingAmount);
-        if (leg3 != null) leg3.setRotX(Mth.cos(limbSwing * 0.6662F + (float)Math.PI) * 1.4F * limbSwingAmount);
-        if (leg4 != null) leg4.setRotX(Mth.cos(limbSwing * 0.6662F) * 1.4F * limbSwingAmount);
+        GeoModelUtils.applyLimbSwing4Legs(animationState, leg1, leg2, leg3, leg4);
     }
 }

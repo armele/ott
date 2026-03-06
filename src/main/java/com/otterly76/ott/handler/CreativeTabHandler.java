@@ -300,6 +300,9 @@ public class CreativeTabHandler {
             event.accept(ModItems.HAPPY_GHAST_SPAWN_EGG);
 
             event.accept(ModItems.COPPER_GOLEM_SPAWN_EGG);
+            
+            event.accept(ModItems.DUCK_SPAWN_EGG);
+            event.accept(ModItems.GOOSE_SPAWN_EGG);
 
             event.accept(ModItems.MAN_O_WAR_SPAWN_EGG);
             event.accept(ModItems.MAN_O_WAR_BUCKET);

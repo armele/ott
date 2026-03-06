@@ -11,9 +11,7 @@ import net.minecraft.world.entity.animal.Rabbit;
 import org.jetbrains.annotations.Nullable;
 import software.bernie.geckolib.animation.AnimationState;
 import software.bernie.geckolib.cache.object.GeoBone;
-import software.bernie.geckolib.constant.DataTickets;
 import software.bernie.geckolib.model.GeoModel;
-import software.bernie.geckolib.model.data.EntityModelData;
 
 import java.util.Optional;
 
@@ -54,12 +52,7 @@ public class RabbitGeoModel<T extends Rabbit & RabbitGeoEntity> extends GeoModel
         GeoBone leftFrontLeg = this.getAnimationProcessor().getBone("rabbit_leg_front_left");
         GeoBone rightFrontLeg = this.getAnimationProcessor().getBone("rabbit_leg_front_right");
 
-        EntityModelData entityData = animationState.getData(DataTickets.ENTITY_MODEL_DATA);
-
-        if (head != null) {
-            head.setRotX(entityData.headPitch() * Mth.DEG_TO_RAD);
-            head.setRotY(entityData.netHeadYaw() * Mth.DEG_TO_RAD);
-        }
+        GeoModelUtils.applyHeadRotation(animationState, head);
 
         float jumpCompletion = animatable.getJumpCompletion(animationState.getPartialTick());
         float jumpFactor = Mth.sin(jumpCompletion * (float) Math.PI);

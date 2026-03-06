@@ -19,6 +19,7 @@ import com.otterly76.ott.client.model.HappyGhastHarnessModel;
 import com.otterly76.ott.client.registries.ModModelLayers;
 import com.otterly76.ott.inventory.ModMenuTypes;
 import com.otterly76.ott.item.ModItems;
+import net.neoforged.neoforge.common.DeferredSpawnEggItem;
 import com.otterly76.ott.client.handler.DryFoliageColorReloadListener;
 import com.otterly76.ott.client.handler.ItemPropertyRegistrar;
 import com.otterly76.ott.client.handler.LeafColorReloadListener;
@@ -190,6 +191,8 @@ public class ClientModEvents {
         event.registerEntityRenderer(ModEntities.TORCH_ARROW.get(), TorchArrowRenderer::new);
         event.registerEntityRenderer(ModEntities.COPPER_GOLEM.get(), com.otterly76.ott.client.render.entity.CopperGolemRenderer::new);
         event.registerEntityRenderer(ModEntities.MAN_O_WAR.get(), com.otterly76.ott.client.render.entity.ManOWarRenderer::new);
+        event.registerEntityRenderer(ModEntities.DUCK.get(), com.otterly76.ott.client.render.entity.DuckGeoRenderer::new);
+        event.registerEntityRenderer(ModEntities.GOOSE.get(), com.otterly76.ott.client.render.entity.GooseGeoRenderer::new);
         event.registerEntityRenderer(net.minecraft.world.entity.EntityType.SHEEP, (context) -> {
             net.minecraft.client.renderer.entity.EntityRenderer<?> renderer = new com.otterly76.ott.client.render.entity.SheepGeoRenderer<>(context);
             return (net.minecraft.client.renderer.entity.EntityRenderer<net.minecraft.world.entity.animal.Sheep>) renderer;
@@ -323,6 +326,9 @@ public class ClientModEvents {
             if (tintIndex == 0) return 0xFFFFC400;
             return -1;
         }, ModItems.TORCH_ARROW.get());
+
+        event.register((stack, tintIndex) -> ((DeferredSpawnEggItem)stack.getItem()).getColor(tintIndex),
+                ModItems.DUCK_SPAWN_EGG.get(), ModItems.GOOSE_SPAWN_EGG.get(), ModItems.MAN_O_WAR_SPAWN_EGG.get());
     }
 
     public static void onClientSetup(FMLClientSetupEvent event) {

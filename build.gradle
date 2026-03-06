@@ -126,7 +126,7 @@ dependencies {
     // For all intents and purposes: You can treat this dependency as if it is a normal library you would use.
     implementation "net.neoforged:neoforge:${neo_version}"
 
-    implementation "software.bernie.geckolib:geckolib-neoforge-1.21.1:4.6.6"
+    implementation "software.bernie.geckolib:geckolib-neoforge-1.21.1:4.8.4"
 
     implementation("com.ldtteam:minecolonies:${project.minecoloniesVersion}") {
         transitive = false
