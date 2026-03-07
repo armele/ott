@@ -71,6 +71,7 @@ import net.minecraft.core.Registry;
 import net.minecraft.core.RegistryAccess;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.data.DataGenerator;
+import net.minecraft.data.DataProvider;
 import net.minecraft.data.loot.LootTableProvider;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
@@ -327,26 +328,29 @@ public class Ott {
     private void dataGeneratorSetup(final GatherDataEvent event) {
         final DataGenerator generator = event.getGenerator();
 
-        generator.addProvider(event.includeClient(), new GradientTextureProvider(generator.getPackOutput(), event.getExistingFileHelper()));
-        generator.addProvider(event.includeClient(), new OttBlockStateProvider(generator.getPackOutput(), event.getExistingFileHelper()));
-        generator.addProvider(event.includeClient(), new MinecraftBackportBlockStateProvider(generator.getPackOutput(), event.getExistingFileHelper()));
-        generator.addProvider(event.includeClient(), new MinecraftBackportItemModelProvider(generator.getPackOutput(), event.getExistingFileHelper()));
-        generator.addProvider(event.includeClient(), new DynamicModelProvider(new DataProviderContext(Constants.MOD_ID, generator.getPackOutput(), event.getLookupProvider())));
-        generator.addProvider(event.includeServer(), new LootTableProvider(generator.getPackOutput(), Collections.emptySet(), List.of(new LootTableProvider.SubProviderEntry(OttLootTableProvider::new, LootContextParamSets.BLOCK)), event.getLookupProvider()));
+        generator.addProvider(event.includeClient(), (DataProvider.Factory<GradientTextureProvider>) output -> new GradientTextureProvider(output, event.getExistingFileHelper()));
+        generator.addProvider(event.includeClient(), (DataProvider.Factory<OttBlockStateProvider>) output -> new OttBlockStateProvider(output, event.getExistingFileHelper()));
+        generator.addProvider(event.includeClient(), (DataProvider.Factory<MinecraftBackportBlockStateProvider>) output -> new MinecraftBackportBlockStateProvider(output, event.getExistingFileHelper()));
+        generator.addProvider(event.includeClient(), (DataProvider.Factory<MinecraftBackportItemModelProvider>) output -> new MinecraftBackportItemModelProvider(output, event.getExistingFileHelper()));
+        generator.addProvider(event.includeClient(), (DataProvider.Factory<DynamicModelProvider>) output -> new DynamicModelProvider(new DataProviderContext(Constants.MOD_ID, output, event.getLookupProvider())));
+        generator.addProvider(event.includeServer(), (DataProvider.Factory<LootTableProvider>) output -> new LootTableProvider(output, Collections.emptySet(), List.of(
+                new LootTableProvider.SubProviderEntry(OttLootTableProvider::new, LootContextParamSets.BLOCK),
+                new LootTableProvider.SubProviderEntry(OttEntityLootTableProvider::new, LootContextParamSets.ENTITY)
+        ), event.getLookupProvider()));
         ModBlockTagProvider blockTagProvider = new ModBlockTagProvider(generator.getPackOutput(), event.getLookupProvider(), event.getExistingFileHelper());
-        generator.addProvider(event.includeServer(), blockTagProvider);
-        generator.addProvider(event.includeClient(), new ModLangMergeProvider(generator.getPackOutput()));
-        generator.addProvider(event.includeClient(), new MinecraftBackportSpecialItemModels(generator.getPackOutput()));
-        generator.addProvider(event.includeServer(), new ModItemTagProvider(generator.getPackOutput(), event.getLookupProvider(), blockTagProvider.contentsGetter(), event.getExistingFileHelper()));
-        generator.addProvider(event.includeServer(), new ModRecipeProvider(generator.getPackOutput(), event.getLookupProvider()));
-        generator.addProvider(event.includeServer(), new ModBiomeTagProvider(generator.getPackOutput(), event.getLookupProvider(), MOD_ID, event.getExistingFileHelper()));
-        generator.addProvider(event.includeServer(), new ModEntityTypeTagProvider(generator.getPackOutput(), event.getLookupProvider(), event.getExistingFileHelper()));
-        generator.addProvider(event.includeServer(), new ModProcessorListTagProvider(generator.getPackOutput(), event.getLookupProvider(), event.getExistingFileHelper()));
+        generator.addProvider(event.includeServer(), (DataProvider.Factory<ModBlockTagProvider>) output -> blockTagProvider);
+        generator.addProvider(event.includeClient(), (DataProvider.Factory<ModLangMergeProvider>) ModLangMergeProvider::new);
+        generator.addProvider(event.includeClient(), (DataProvider.Factory<MinecraftBackportSpecialItemModels>) MinecraftBackportSpecialItemModels::new);
+        generator.addProvider(event.includeServer(), (DataProvider.Factory<ModItemTagProvider>) output -> new ModItemTagProvider(output, event.getLookupProvider(), blockTagProvider.contentsGetter(), event.getExistingFileHelper()));
+        generator.addProvider(event.includeServer(), (DataProvider.Factory<ModRecipeProvider>) output -> new ModRecipeProvider(output, event.getLookupProvider()));
+        generator.addProvider(event.includeServer(), (DataProvider.Factory<ModBiomeTagProvider>) output -> new ModBiomeTagProvider(output, event.getLookupProvider(), MOD_ID, event.getExistingFileHelper()));
+        generator.addProvider(event.includeServer(), (DataProvider.Factory<ModEntityTypeTagProvider>) output -> new ModEntityTypeTagProvider(output, event.getLookupProvider(), event.getExistingFileHelper()));
+        generator.addProvider(event.includeServer(), (DataProvider.Factory<ModProcessorListTagProvider>) output -> new ModProcessorListTagProvider(output, event.getLookupProvider(), event.getExistingFileHelper()));
 
-        generator.addProvider(event.includeServer(), new OttWorldGenProvider(generator.getPackOutput(), event.getLookupProvider()));
+        generator.addProvider(event.includeServer(), (DataProvider.Factory<OttWorldGenProvider>) output -> new OttWorldGenProvider(output, event.getLookupProvider()));
 
         if (event.includeClient()) {
-            generator.addProvider(true, new ModItemModelProvider(generator.getPackOutput(), event.getExistingFileHelper()));
+            generator.addProvider(true, (DataProvider.Factory<ModItemModelProvider>) output -> new ModItemModelProvider(output, event.getExistingFileHelper()));
         }
     }
 
