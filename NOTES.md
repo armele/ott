@@ -72,6 +72,8 @@ Add barrels, chests, trapped chests, ladders, bookshelves to wood set process
 
 Textures Nonsense:
 =====
+fix copper lantern models
+
 Do Aurora blocks the TF way
 
 diag gradients
