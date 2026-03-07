@@ -38,14 +38,5 @@
       "ott:weather/sandstormabove-05",
       "ott:weather/sandstormabove-06"
     ]
-  },
-  "block.copper_chime.chime": {
-    "category": "block",
-    "subtitle": "everythingcopper.subtitle.copper_chime.chime",
-    "sounds": [
-      {
-        "name": "everythingcopper:block/chime"
-      }
-    ]
   }
 }
