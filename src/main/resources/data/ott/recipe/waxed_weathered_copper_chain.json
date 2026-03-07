@@ -1,0 +1,14 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "ott:weathered_copper_chain"
+    },
+    {
+      "tag": "ott:waxing_items"
+    }
+  ],
+  "result": {
+    "id": "ott:waxed_weathered_copper_chain"
+  }
+}

@@ -1,0 +1,28 @@
+{
+    "values":  [
+                   "ott:copper_anvil",
+                   "ott:exposed_copper_anvil",
+                   "ott:weathered_copper_anvil",
+                   "ott:oxidized_copper_anvil",
+                   "ott:chipped_copper_anvil",
+                   "ott:chipped_exposed_copper_anvil",
+                   "ott:chipped_weathered_copper_anvil",
+                   "ott:chipped_oxidized_copper_anvil",
+                   "ott:damaged_copper_anvil",
+                   "ott:damaged_exposed_copper_anvil",
+                   "ott:damaged_weathered_copper_anvil",
+                   "ott:damaged_oxidized_copper_anvil",
+                   "ott:waxed_copper_anvil",
+                   "ott:waxed_exposed_copper_anvil",
+                   "ott:waxed_weathered_copper_anvil",
+                   "ott:waxed_oxidized_copper_anvil",
+                   "ott:waxed_chipped_copper_anvil",
+                   "ott:waxed_chipped_exposed_copper_anvil",
+                   "ott:waxed_chipped_weathered_copper_anvil",
+                   "ott:waxed_chipped_oxidized_copper_anvil",
+                   "ott:waxed_damaged_copper_anvil",
+                   "ott:waxed_damaged_exposed_copper_anvil",
+                   "ott:waxed_damaged_weathered_copper_anvil",
+                   "ott:waxed_damaged_oxidized_copper_anvil"
+               ]
+}

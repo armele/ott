@@ -1,0 +1,9 @@
+{
+  "type": "ott:wax_on",
+  "item": {
+    "item": "ott:copper_pickaxe"
+  },
+  "wax": {
+    "tag": "ott:waxing_items"
+  }
+}

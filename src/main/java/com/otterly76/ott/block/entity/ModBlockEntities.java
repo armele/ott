@@ -37,6 +37,9 @@ public class ModBlockEntities {
             BLOCK_ENTITIES.register("copper_golem_statue", () -> BlockEntityType.Builder.of(CopperGolemStatueBlockEntity::new,
                     ModBlocks.COPPER_GOLEM_STATUES.stream().map(net.neoforged.neoforge.registries.DeferredHolder::get).toArray(Block[]::new)).build(null));
 
+    public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<WeatheringStationBlockEntity>> WEATHERING_STATION =
+            BLOCK_ENTITIES.register("weathering_station", () -> BlockEntityType.Builder.of(WeatheringStationBlockEntity::new, ModBlocks.WEATHERING_STATION.get()).build(null));
+
     public static void register(IEventBus eventBus) {
         BLOCK_ENTITIES.register(eventBus);
         MINECRAFT_BLOCK_ENTITIES.register(eventBus);
