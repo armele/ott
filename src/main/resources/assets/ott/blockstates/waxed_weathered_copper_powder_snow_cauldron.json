@@ -1,0 +1,13 @@
+{
+    "variants": {
+        "level=1": {
+            "model": "ott:block/weathered_copper_powder_snow_cauldron"
+        },
+        "level=2": {
+            "model": "ott:block/weathered_copper_powder_snow_cauldron"
+        },
+        "level=3": {
+            "model": "ott:block/weathered_copper_powder_snow_cauldron"
+        }
+    }
+}

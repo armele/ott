@@ -1,0 +1,26 @@
+{
+    "parent": "minecraft:item/handheld",
+    "textures": {
+        "layer0": "ott:item/copper_hoe"
+    },
+    "overrides": [
+        {
+            "predicate": {
+                "state": 1.0
+            },
+            "model": "ott:item/exposed_copper_hoe"
+        },
+        {
+            "predicate": {
+                "state": 2.0
+            },
+            "model": "ott:item/weathered_copper_hoe"
+        },
+        {
+            "predicate": {
+                "state": 3.0
+            },
+            "model": "ott:item/oxidized_copper_hoe"
+        }
+    ]
+}

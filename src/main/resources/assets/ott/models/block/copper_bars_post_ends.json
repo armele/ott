@@ -1,0 +1,9 @@
+{
+  "parent": "block/iron_bars_post_ends",
+  "render_type": "cutout",
+  "textures": {
+    "texture": "ott:block/copper_bars",
+    "particle": "ott:block/copper_bars",
+    "edge": "ott:block/copper_bars"
+  }
+}
