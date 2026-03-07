@@ -191,6 +191,9 @@ aether enhanced extinguishing
   - Relics
   - Artifacts
 
+curious
+- use "pins" like Harper's Pin, Order of the Gauntlet Pin, etc
+
 replacements for Better Archeology
 - tiered brushes
 - structures
