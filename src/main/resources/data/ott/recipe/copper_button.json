@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "group": "everythingcopper",
+  "key": {
+    "n": {
+      "tag": "c:nuggets/copper"
+    }
+  },
+  "pattern": [
+    "nnn",
+    "nnn"
+  ],
+  "result": {
+    "count": 1,
+    "id": "ott:copper_button"
+  }
+}

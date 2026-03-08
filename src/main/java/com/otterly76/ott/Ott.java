@@ -22,6 +22,7 @@ import com.ldtteam.structurize.storage.ISurvivalBlueprintHandler;
 import com.ldtteam.structurize.storage.SurvivalBlueprintHandlers;
 import com.otterly76.ott.item.ModItems;
 import com.otterly76.ott.loot.ModLootModifiers;
+import com.otterly76.ott.registry.ModEffects;
 import com.otterly76.ott.mixin.common.AccessorItem;
 import com.otterly76.ott.network.NetworkHandler;
 import com.otterly76.ott.particle.ModParticle;
@@ -147,6 +148,7 @@ public class Ott {
         modEventBus.addListener(this::commonSetup);
         ModBlocks.register(modEventBus);
         ModBlockEntities.register(modEventBus);
+        ModEffects.register(modEventBus);
         ModDataComponents.register(modEventBus);
         com.otterly76.ott.registry.ModAttachmentTypes.register(modEventBus);
         ModArmorMaterials.register(modEventBus);

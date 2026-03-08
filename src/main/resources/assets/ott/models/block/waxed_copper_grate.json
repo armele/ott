@@ -1,0 +1,7 @@
+{
+	"parent": "block/template_copper_grate",
+	"textures": {
+		"particle": "block/copper_grate",
+		"all": "block/copper_grate"
+	}
+}
