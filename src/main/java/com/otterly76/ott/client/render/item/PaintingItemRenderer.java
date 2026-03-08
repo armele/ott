@@ -22,6 +22,7 @@ import java.util.Optional;
 public class PaintingItemRenderer extends BlockEntityWithoutLevelRenderer {
     public static final PaintingItemRenderer INSTANCE = new PaintingItemRenderer();
     private static final ResourceLocation PAINTING_BACK = ResourceLocation.fromNamespaceAndPath("minecraft", "textures/item/painting/painting_back.png");
+    private static final ResourceLocation PAINTING_FRONT = ResourceLocation.fromNamespaceAndPath("minecraft", "textures/item/painting/painting_front.png");
 
     public PaintingItemRenderer() {
         super(Minecraft.getInstance().getBlockEntityRenderDispatcher(), Minecraft.getInstance().getEntityModels());
@@ -59,11 +60,11 @@ public class PaintingItemRenderer extends BlockEntityWithoutLevelRenderer {
 
         // Front face
         VertexConsumer frontBuffer = buffer.getBuffer(RenderType.entityCutout(texture));
-        addQuad(matrix, frontBuffer, 0, 0, 1, 1, zFront, zFront, 0, 0, -1, packedLight, packedOverlay);
+        addQuad(matrix, frontBuffer, 1, 0, 0, 1, zFront, zFront, 0, 0, -1, packedLight, packedOverlay);
 
         // Back face
         VertexConsumer backBuffer = buffer.getBuffer(RenderType.entityCutout(PAINTING_BACK));
-        addQuad(matrix, backBuffer, 1, 0, 0, 1, zBack, zBack, 0, 0, 1, packedLight, packedOverlay);
+        addQuad(matrix, backBuffer, 0, 0, 1, 1, zBack, zBack, 0, 0, 1, packedLight, packedOverlay);
 
         // Sides (all using back texture)
         // Top

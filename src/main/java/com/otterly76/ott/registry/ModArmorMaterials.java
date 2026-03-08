@@ -30,7 +30,7 @@ public class ModArmorMaterials {
             9,
             SoundEvents.ARMOR_EQUIP_IRON,
             () -> Ingredient.of(Items.COPPER_INGOT),
-            List.of(new ArmorMaterial.Layer(ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, "copper"))),
+            List.of(new ArmorMaterial.Layer(ResourceLocation.withDefaultNamespace("copper"))),
             0.0F,
             0.0F
     ));

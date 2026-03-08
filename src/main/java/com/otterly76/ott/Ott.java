@@ -332,7 +332,10 @@ public class Ott {
         generator.addProvider(event.includeClient(), new MinecraftBackportBlockStateProvider(generator.getPackOutput(), event.getExistingFileHelper()));
         generator.addProvider(event.includeClient(), new MinecraftBackportItemModelProvider(generator.getPackOutput(), event.getExistingFileHelper()));
         generator.addProvider(event.includeClient(), new DynamicModelProvider(new DataProviderContext(Constants.MOD_ID, generator.getPackOutput(), event.getLookupProvider())));
-        generator.addProvider(event.includeServer(), new LootTableProvider(generator.getPackOutput(), Collections.emptySet(), List.of(new LootTableProvider.SubProviderEntry(OttLootTableProvider::new, LootContextParamSets.BLOCK)), event.getLookupProvider()));
+        generator.addProvider(event.includeServer(), new LootTableProvider(generator.getPackOutput(), Collections.emptySet(), List.of(
+                new LootTableProvider.SubProviderEntry(OttLootTableProvider::new, LootContextParamSets.BLOCK),
+                new LootTableProvider.SubProviderEntry(OttEntityLootTableProvider::new, LootContextParamSets.ENTITY)
+        ), event.getLookupProvider()));
         ModBlockTagProvider blockTagProvider = new ModBlockTagProvider(generator.getPackOutput(), event.getLookupProvider(), event.getExistingFileHelper());
         generator.addProvider(event.includeServer(), blockTagProvider);
         generator.addProvider(event.includeClient(), new ModLangMergeProvider(generator.getPackOutput()));
