@@ -1,7 +1,0 @@
-{
-  "render_type": "cutout",
-  "parent": "minecraft:block/template_rail_raised_ne",
-  "textures": {
-    "rail": "ott:block/copper_rail"
-  }
-}

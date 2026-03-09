@@ -1,7 +1,0 @@
-{
-  "parent": "minecraft:block/rail_curved",
-  "render_type": "cutout",
-  "textures": {
-    "rail": "ott:block/weathered_copper_rail_corner"
-  }
-}

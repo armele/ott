@@ -1,8 +1,0 @@
-{
-  "parent": "block/ladder",
-  "render_type": "cutout",
-  "textures": {
-  "particle": "ott:block/exposed_copper_ladder",
-  "texture": "ott:block/exposed_copper_ladder"
-  }
-}

@@ -1,8 +1,0 @@
-{
-  "parent": "minecraft:block/template_anvil",
-  "textures": {
-    "particle": "ott:block/weathered_copper_anvil",
-    "body": "ott:block/weathered_copper_anvil",
-    "top": "ott:block/damaged_weathered_copper_anvil_top"
-  }
-}
