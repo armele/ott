@@ -132,6 +132,25 @@ public class MinecraftBackportBlockStateProvider extends ModBlockStateProvider {
                 .renderType("cutout");
         simpleBlockWithItem(ModBlocks.OPEN_EYEBLOSSOM.get(), openEyeblossom);
 
+        // Copper Chains
+        ModBlocks.COPPER_CHAINS.forEach((name, block) -> {
+            String stateName = name.startsWith("waxed_") ? name.substring(6) : name;
+            ResourceLocation texture = mcLoc("block/" + stateName + "copper_chain");
+            ModelFile model = models().withExistingParent(name + "copper_chain", mcLoc("block/chain"))
+                    .texture("1", texture)
+                    .texture("particle", texture)
+                    .renderType("cutout");
+            
+            getVariantBuilder(block.get()).forAllStates(state -> {
+                Direction.Axis axis = state.getValue(ChainBlock.AXIS);
+                return ConfiguredModel.builder()
+                        .modelFile(model)
+                        .rotationX(axis == Direction.Axis.Y ? 0 : 90)
+                        .rotationY(axis == Direction.Axis.X ? 90 : 0)
+                        .build();
+            });
+        });
+
         ModelFile pottedClosedEyeblossom = models()
                 .withExistingParent("potted_closed_eyeblossom", mcLoc("block/flower_pot_cross"))
                 .texture("plant", mcLoc("block/closed_eyeblossom"))

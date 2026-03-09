@@ -63,6 +63,11 @@ public class MinecraftBackportItemModelProvider extends ItemModelProvider {
                 return;
             }
 
+            if (block instanceof ChainBlock) {
+                parentItemToBlockModel(path, "block/" + path);
+                return;
+            }
+
             parentItemToBlockModel(path, "block/" + path);
         });
 
