@@ -3,6 +3,7 @@ package com.otterly76.ott.handler;
 import com.google.common.collect.BiMap;
 import com.google.common.collect.HashBiMap;
 import com.otterly76.ott.block.ModBlocks;
+import com.otterly76.ott.item.ModItems;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
@@ -59,6 +60,9 @@ public class WeatheringHandler {
         for (Map.Entry<Block, Block> entry : WAX_ON_BY_BLOCK.entrySet()) {
             addItemWaxingTransition(entry.getKey().asItem(), entry.getValue().asItem());
         }
+
+        // Horse Armor
+        addItemChain(ModItems.COPPER_HORSE_ARMOR.get(), ModItems.EXPOSED_COPPER_HORSE_ARMOR.get(), ModItems.WEATHERED_COPPER_HORSE_ARMOR.get(), ModItems.OXIDIZED_COPPER_HORSE_ARMOR.get());
     }
 
     private static Item getItem(String id) {

@@ -184,6 +184,9 @@ public class MinecraftBackportItemModelProvider extends ItemModelProvider {
         generatedItem(ModItems.COPPER_LEGGINGS.getId().getPath());
         generatedItem(ModItems.COPPER_BOOTS.getId().getPath());
         generatedItem(ModItems.COPPER_HORSE_ARMOR.getId().getPath());
+        generatedItem(ModItems.EXPOSED_COPPER_HORSE_ARMOR.getId().getPath());
+        generatedItem(ModItems.WEATHERED_COPPER_HORSE_ARMOR.getId().getPath());
+        generatedItem(ModItems.OXIDIZED_COPPER_HORSE_ARMOR.getId().getPath());
         generatedItem(ModItems.COPPER_NUGGET.getId().getPath());
 
         // Lightning Rods & Grates

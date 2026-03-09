@@ -293,6 +293,9 @@ public class CreativeTabHandler {
             ), visibility);
 
             safeInsertAfter(event, Items.GOLDEN_HORSE_ARMOR.getDefaultInstance(), new ItemStack(ModItems.COPPER_HORSE_ARMOR.get()), visibility);
+            safeInsertAfter(event, ModItems.COPPER_HORSE_ARMOR.get().getDefaultInstance(), new ItemStack(ModItems.EXPOSED_COPPER_HORSE_ARMOR.get()), visibility);
+            safeInsertAfter(event, ModItems.EXPOSED_COPPER_HORSE_ARMOR.get().getDefaultInstance(), new ItemStack(ModItems.WEATHERED_COPPER_HORSE_ARMOR.get()), visibility);
+            safeInsertAfter(event, ModItems.WEATHERED_COPPER_HORSE_ARMOR.get().getDefaultInstance(), new ItemStack(ModItems.OXIDIZED_COPPER_HORSE_ARMOR.get()), visibility);
             safeInsertAfter(event, Items.DIAMOND_HORSE_ARMOR.getDefaultInstance(), new ItemStack(ModItems.NETHERITE_HORSE_ARMOR.get()), visibility);
 
             safeInsertAfter(event, Items.TIPPED_ARROW.getDefaultInstance(), new ItemStack(ModItems.TORCH_ARROW.get()), visibility);
