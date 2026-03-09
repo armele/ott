@@ -19,6 +19,7 @@
                    {
                        "id":  "minecraft:pale_oak_shelf",
                        "required":  false
-                   }
+                   },
+                   "ott:weathering_station"
                ]
 }

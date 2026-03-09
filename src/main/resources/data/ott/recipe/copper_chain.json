@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "group": "everythingcopper",
+  "key": {
+    "i": {
+      "tag": "c:ingots/copper"
+    },
+    "n": {
+      "tag": "c:nuggets/copper"
+    }
+  },
+  "pattern": [
+    "n",
+    "i",
+    "n"
+  ],
+  "result": {
+    "count": 1,
+    "id": "ott:copper_chain"
+  }
+}

@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/door_bottom_right",
+  "render_type": "cutout",
+  "textures": {
+  "bottom": "ott:block/weathered_copper_door_bottom",
+  "top": "ott:block/weathered_copper_door_top"
+  }
+}

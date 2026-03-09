@@ -72,6 +72,8 @@ Add barrels, chests, trapped chests, ladders, bookshelves to wood set process
 
 Textures Nonsense:
 =====
+fix copper lantern models
+
 Do Aurora blocks the TF way
 
 diag gradients
@@ -188,6 +190,9 @@ aether enhanced extinguishing
   - Apotheosis
   - Relics
   - Artifacts
+
+curious
+- use "pins" like Harper's Pin, Order of the Gauntlet Pin, etc
 
 replacements for Better Archeology
 - tiered brushes

@@ -1,0 +1,14 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "ott:copper_anvil"
+    },
+    {
+      "tag": "ott:waxing_items"
+    }
+  ],
+  "result": {
+    "id": "ott:waxed_copper_anvil"
+  }
+}

@@ -1,0 +1,7 @@
+{
+    "parent": "minecraft:item/iron_bars",
+    "textures": {
+        "layer0": "ott:block/oxidized_copper_bars",
+        "texture": "ott:block/oxidized_copper_bars"
+    }
+}
