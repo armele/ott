@@ -72,8 +72,6 @@ Add barrels, chests, trapped chests, ladders, bookshelves to wood set process
 
 Textures Nonsense:
 =====
-fix copper lantern models
-
 Do Aurora blocks the TF way
 
 diag gradients
@@ -377,8 +375,6 @@ dark woods
 
 Checks:
 =====
-add dark prismarine to DO defaults
-
 why do only oak chest boat and bamboo chest boat show up in redstone items?
 - only oak button, pressure plate, door, fence gate, trapdoor in redstone items
 
