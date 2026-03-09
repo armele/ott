@@ -18,7 +18,7 @@ public class PaintingItemMixin {
     private void ott$renderPaintingItem(ItemStack stack, ItemDisplayContext context, PoseStack poseStack, MultiBufferSource buffer, int packedLight, int packedOverlay, CallbackInfo ci) {
         if (stack.is(Items.PAINTING)) {
             ci.cancel();
-            PaintingItemRenderer.INSTANCE.renderByItem(stack, context, poseStack, buffer, packedLight, packedOverlay);
+            PaintingItemRenderer.getInstance().renderByItem(stack, context, poseStack, buffer, packedLight, packedOverlay);
         }
     }
 }

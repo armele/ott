@@ -20,9 +20,15 @@ import org.joml.Matrix4f;
 import java.util.Optional;
 
 public class PaintingItemRenderer extends BlockEntityWithoutLevelRenderer {
-    public static final PaintingItemRenderer INSTANCE = new PaintingItemRenderer();
-    private static final ResourceLocation PAINTING_BACK = ResourceLocation.fromNamespaceAndPath("minecraft", "textures/item/painting/painting_back.png");
-    private static final ResourceLocation PAINTING_FRONT = ResourceLocation.fromNamespaceAndPath("minecraft", "textures/item/painting/painting_front.png");
+    private static PaintingItemRenderer INSTANCE;
+    private static final ResourceLocation PAINTING_BACK = ResourceLocation.fromNamespaceAndPath("minecraft", "textures/painting/back.png");
+    
+    public static PaintingItemRenderer getInstance() {
+        if (INSTANCE == null) {
+            INSTANCE = new PaintingItemRenderer();
+        }
+        return INSTANCE;
+    }
 
     public PaintingItemRenderer() {
         super(Minecraft.getInstance().getBlockEntityRenderDispatcher(), Minecraft.getInstance().getEntityModels());
@@ -31,7 +37,7 @@ public class PaintingItemRenderer extends BlockEntityWithoutLevelRenderer {
     @Override
     public void renderByItem(@NotNull ItemStack stack, @NotNull ItemDisplayContext context, @NotNull PoseStack poseStack, @NotNull MultiBufferSource buffer, int packedLight, int packedOverlay) {
         ResourceLocation variantLoc = getVariant(stack);
-        ResourceLocation texture = ResourceLocation.fromNamespaceAndPath("minecraft", "textures/item/painting/" + variantLoc.getPath() + ".png");
+        ResourceLocation texture = ResourceLocation.fromNamespaceAndPath("minecraft", "textures/painting/" + variantLoc.getPath() + ".png");
 
         int width = 1;
         int height = 1;
@@ -61,13 +67,13 @@ public class PaintingItemRenderer extends BlockEntityWithoutLevelRenderer {
         // All faces use full bright light (15728880 = 0xF000F0) to prevent the item from being too dark in inventory/hand
         int brightLight = 15728880;
 
-        // Front face
-        VertexConsumer frontBuffer = buffer.getBuffer(RenderType.entityCutout(texture));
-        addQuad(matrix, frontBuffer, 1, 0, 0, 1, zFront, zFront, 0, 0, -1, brightLight, packedOverlay);
+        // Front face - Using entityTranslucentEmissive to ensure full brightness as requested
+        VertexConsumer frontBuffer = buffer.getBuffer(RenderType.entityTranslucentEmissive(texture));
+        addQuad(matrix, frontBuffer, 1, 1, 0, 0, zFront, zFront, 0, 0, -1, brightLight, packedOverlay);
 
         // Back face
         VertexConsumer backBuffer = buffer.getBuffer(RenderType.entityCutout(PAINTING_BACK));
-        addQuad(matrix, backBuffer, 0, 0, 1, 1, zBack, zBack, 0, 0, 1, brightLight, packedOverlay);
+        addQuad(matrix, backBuffer, 0, 1, 1, 0, zBack, zBack, 0, 0, 1, brightLight, packedOverlay);
 
         // Sides (all using back texture)
         // Top

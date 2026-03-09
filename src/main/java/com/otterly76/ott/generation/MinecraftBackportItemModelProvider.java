@@ -85,7 +85,42 @@ public class MinecraftBackportItemModelProvider extends ItemModelProvider {
             }
 
             if (block instanceof LanternBlock || block instanceof TorchBlock) {
-                parentItemToBlockModel(path, "block/" + path);
+                // Requested display settings
+                getBuilder(path).parent(getExistingFile(mcLoc("block/" + path)))
+                        .transforms()
+                        .transform(ItemDisplayContext.THIRD_PERSON_RIGHT_HAND)
+                        .rotation(60, 45, 0)
+                        .translation(0, 2, 2)
+                        .scale(0.375f, 0.375f, 0.375f)
+                        .end()
+                        .transform(ItemDisplayContext.THIRD_PERSON_LEFT_HAND)
+                        .rotation(60, 45, 0)
+                        .translation(0, 2, 2)
+                        .scale(0.375f, 0.375f, 0.375f)
+                        .end()
+                        .transform(ItemDisplayContext.FIRST_PERSON_RIGHT_HAND)
+                        .rotation(0, 45, 0)
+                        .translation(0, 3.5f, 0)
+                        .scale(0.4f, 0.4f, 0.4f)
+                        .end()
+                        .transform(ItemDisplayContext.FIRST_PERSON_LEFT_HAND)
+                        .rotation(0, 45, 0)
+                        .translation(0, 3.5f, 0)
+                        .scale(0.4f, 0.4f, 0.4f)
+                        .end()
+                        .transform(ItemDisplayContext.GUI)
+                        .rotation(30, 225, 0)
+                        .translation(0, 2, 0)
+                        .scale(0.9f, 0.9f, 0.9f)
+                        .end()
+                        .transform(ItemDisplayContext.GROUND)
+                        .translation(0, 3, 0)
+                        .scale(0.25f, 0.25f, 0.25f)
+                        .end()
+                        .transform(ItemDisplayContext.FIXED)
+                        .translation(0, 2, 0)
+                        .scale(0.5f, 0.5f, 0.5f)
+                        .end();
                 return;
             }
 
