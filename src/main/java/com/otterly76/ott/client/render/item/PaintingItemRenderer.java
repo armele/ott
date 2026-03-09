@@ -61,52 +61,63 @@ public class PaintingItemRenderer extends BlockEntityWithoutLevelRenderer {
         poseStack.translate(-0.5f, -0.5f, -0.5f);
 
         Matrix4f matrix = poseStack.last().pose();
-        float zFront = 0.46875f; // 7.5/16
-        float zBack = 0.53125f;  // 8.5/16
+        
+        // Face North (-Z) for the painting side by default
+        float zNorth = 0.46875f; // 7.5/16 (North side of center)
+        float zSouth = 0.53125f; // 8.5/16 (South side of center)
 
-        // All faces use full bright light (15728880 = 0xF000F0) to prevent the item from being too dark in inventory/hand
+        // All faces use full bright light to prevent the item from being too dark
         int brightLight = 15728880;
 
-        // Front face - Using entityTranslucentEmissive to ensure full brightness as requested
-        VertexConsumer frontBuffer = buffer.getBuffer(RenderType.entityTranslucentEmissive(texture));
-        addQuad(matrix, frontBuffer, 1, 1, 0, 0, zFront, zFront, 0, 0, -1, brightLight, packedOverlay);
+        // Front face (Painting) - Facing North (-Z)
+        // Opaque backing first
+        VertexConsumer frontOpaque = buffer.getBuffer(RenderType.entityCutoutNoCull(texture));
+        vertex(matrix, frontOpaque, 1, 0, zNorth, 1, 1, 0, 0, -1, packedLight, packedOverlay);
+        vertex(matrix, frontOpaque, 0, 0, zNorth, 0, 1, 0, 0, -1, packedLight, packedOverlay);
+        vertex(matrix, frontOpaque, 0, 1, zNorth, 0, 0, 0, 0, -1, packedLight, packedOverlay);
+        vertex(matrix, frontOpaque, 1, 1, zNorth, 1, 0, 0, 0, -1, packedLight, packedOverlay);
+        
+        // Emissive glow layer on top
+        VertexConsumer frontEmissive = buffer.getBuffer(RenderType.entityTranslucentEmissive(texture));
+        vertex(matrix, frontEmissive, 1, 0, zNorth - 0.001f, 1, 1, 0, 0, -1, brightLight, packedOverlay);
+        vertex(matrix, frontEmissive, 0, 0, zNorth - 0.001f, 0, 1, 0, 0, -1, brightLight, packedOverlay);
+        vertex(matrix, frontEmissive, 0, 1, zNorth - 0.001f, 0, 0, 0, 0, -1, brightLight, packedOverlay);
+        vertex(matrix, frontEmissive, 1, 1, zNorth - 0.001f, 1, 0, 0, 0, -1, brightLight, packedOverlay);
 
-        // Back face
-        VertexConsumer backBuffer = buffer.getBuffer(RenderType.entityCutout(PAINTING_BACK));
-        addQuad(matrix, backBuffer, 0, 1, 1, 0, zBack, zBack, 0, 0, 1, brightLight, packedOverlay);
+        // Back face (Wood) - Facing South (+Z)
+        // CCW from South: BL -> BR -> TR -> TL
+        VertexConsumer backBuffer = buffer.getBuffer(RenderType.entityCutoutNoCull(PAINTING_BACK));
+        vertex(matrix, backBuffer, 0, 0, zSouth, 0, 1, 0, 0, 1, packedLight, packedOverlay);
+        vertex(matrix, backBuffer, 1, 0, zSouth, 1, 1, 0, 0, 1, packedLight, packedOverlay);
+        vertex(matrix, backBuffer, 1, 1, zSouth, 1, 0, 0, 0, 1, packedLight, packedOverlay);
+        vertex(matrix, backBuffer, 0, 1, zSouth, 0, 0, 0, 0, 1, packedLight, packedOverlay);
 
-        // Sides (all using back texture)
-        // Top
-        addQuad(matrix, backBuffer, 0, 1, 1, 1, zFront, zBack, 0, 1, 0, brightLight, packedOverlay);
-        // Bottom
-        addQuad(matrix, backBuffer, 0, 1, 0, 0, zBack, zFront, 0, -1, 0, brightLight, packedOverlay);
-        // Left (West)
-        addQuad(matrix, backBuffer, 0, 0, 0, 1, zBack, zFront, -1, 0, 0, brightLight, packedOverlay);
-        // Right (East)
-        addQuad(matrix, backBuffer, 1, 1, 0, 1, zFront, zBack, 1, 0, 0, brightLight, packedOverlay);
+        // Sides (all using back texture - wood)
+        // Top (+Y) - CCW from Top: TL South -> TR South -> TR North -> TL North
+        vertex(matrix, backBuffer, 0, 1, zSouth, 0, 1, 0, 1, 0, packedLight, packedOverlay);
+        vertex(matrix, backBuffer, 1, 1, zSouth, 1, 1, 0, 1, 0, packedLight, packedOverlay);
+        vertex(matrix, backBuffer, 1, 1, zNorth, 1, 0, 0, 1, 0, packedLight, packedOverlay);
+        vertex(matrix, backBuffer, 0, 1, zNorth, 0, 0, 0, 1, 0, packedLight, packedOverlay);
+
+        // Bottom (-Y) - CCW from Bottom: BL North -> BR North -> BR South -> BL South
+        vertex(matrix, backBuffer, 0, 0, zNorth, 0, 1, 0, -1, 0, packedLight, packedOverlay);
+        vertex(matrix, backBuffer, 1, 0, zNorth, 1, 1, 0, -1, 0, packedLight, packedOverlay);
+        vertex(matrix, backBuffer, 1, 0, zSouth, 1, 0, 0, -1, 0, packedLight, packedOverlay);
+        vertex(matrix, backBuffer, 0, 0, zSouth, 0, 0, 0, -1, 0, packedLight, packedOverlay);
+
+        // Left (West, -X) - CCW from West: BL North -> BL South -> TL South -> TL North
+        vertex(matrix, backBuffer, 0, 0, zNorth, 1, 1, -1, 0, 0, packedLight, packedOverlay);
+        vertex(matrix, backBuffer, 0, 0, zSouth, 0, 1, -1, 0, 0, packedLight, packedOverlay);
+        vertex(matrix, backBuffer, 0, 1, zSouth, 0, 0, -1, 0, 0, packedLight, packedOverlay);
+        vertex(matrix, backBuffer, 0, 1, zNorth, 1, 0, -1, 0, 0, packedLight, packedOverlay);
+
+        // Right (East, +X) - CCW from East: BR South -> BR North -> TR North -> TR South
+        vertex(matrix, backBuffer, 1, 0, zSouth, 1, 1, 1, 0, 0, packedLight, packedOverlay);
+        vertex(matrix, backBuffer, 1, 0, zNorth, 0, 1, 1, 0, 0, packedLight, packedOverlay);
+        vertex(matrix, backBuffer, 1, 1, zNorth, 0, 0, 1, 0, 0, packedLight, packedOverlay);
+        vertex(matrix, backBuffer, 1, 1, zSouth, 1, 0, 1, 0, 0, packedLight, packedOverlay);
 
         poseStack.popPose();
-    }
-
-    private void addQuad(Matrix4f matrix, VertexConsumer buffer, float x1, float y1, float x2, float y2, float z1, float z2, float nx, float ny, float nz, int light, int overlay) {
-        // All quads start at (x1, y1, z1) with UV (0, 0)
-        vertex(matrix, buffer, x1, y1, z1, 0, 0, nx, ny, nz, light, overlay);
-
-        if (nx != 0) { // Left/Right
-            vertex(matrix, buffer, x1, y2, z1, 0, 1, nx, ny, nz, light, overlay);
-            vertex(matrix, buffer, x1, y2, z2, 1, 1, nx, ny, nz, light, overlay);
-            vertex(matrix, buffer, x1, y1, z2, 1, 0, nx, ny, nz, light, overlay);
-        } else {
-            // Both Top/Bottom and Front/Back use this second vertex
-            vertex(matrix, buffer, x2, y1, z1, 1, 0, nx, ny, nz, light, overlay);
-            if (ny != 0) { // Top/Bottom
-                vertex(matrix, buffer, x2, y1, z2, 1, 1, nx, ny, nz, light, overlay);
-                vertex(matrix, buffer, x1, y1, z2, 0, 1, nx, ny, nz, light, overlay);
-            } else { // Front/Back
-                vertex(matrix, buffer, x2, y2, z1, 1, 1, nx, ny, nz, light, overlay);
-                vertex(matrix, buffer, x1, y2, z1, 0, 1, nx, ny, nz, light, overlay);
-            }
-        }
     }
 
     private void vertex(Matrix4f matrix, VertexConsumer buffer, float x, float y, float z, float u, float v, float nx, float ny, float nz, int light, int overlay) {
