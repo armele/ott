@@ -1,5 +1,7 @@
 {
-    "values":  [
-                   "ott:copper_pickaxe"
+    "replace":  false,
+    "values": [
+                   "minecraft:copper_pickaxe"
                ]
 }
+

@@ -58,23 +58,26 @@ public class PaintingItemRenderer extends BlockEntityWithoutLevelRenderer {
         float zFront = 0.46875f; // 7.5/16
         float zBack = 0.53125f;  // 8.5/16
 
+        // All faces use full bright light (15728880 = 0xF000F0) to prevent the item from being too dark in inventory/hand
+        int brightLight = 15728880;
+
         // Front face
         VertexConsumer frontBuffer = buffer.getBuffer(RenderType.entityCutout(texture));
-        addQuad(matrix, frontBuffer, 1, 0, 0, 1, zFront, zFront, 0, 0, -1, packedLight, packedOverlay);
+        addQuad(matrix, frontBuffer, 1, 0, 0, 1, zFront, zFront, 0, 0, -1, brightLight, packedOverlay);
 
         // Back face
         VertexConsumer backBuffer = buffer.getBuffer(RenderType.entityCutout(PAINTING_BACK));
-        addQuad(matrix, backBuffer, 0, 0, 1, 1, zBack, zBack, 0, 0, 1, packedLight, packedOverlay);
+        addQuad(matrix, backBuffer, 0, 0, 1, 1, zBack, zBack, 0, 0, 1, brightLight, packedOverlay);
 
         // Sides (all using back texture)
         // Top
-        addQuad(matrix, backBuffer, 0, 1, 1, 1, zFront, zBack, 0, 1, 0, packedLight, packedOverlay);
+        addQuad(matrix, backBuffer, 0, 1, 1, 1, zFront, zBack, 0, 1, 0, brightLight, packedOverlay);
         // Bottom
-        addQuad(matrix, backBuffer, 0, 1, 0, 0, zBack, zFront, 0, -1, 0, packedLight, packedOverlay);
+        addQuad(matrix, backBuffer, 0, 1, 0, 0, zBack, zFront, 0, -1, 0, brightLight, packedOverlay);
         // Left (West)
-        addQuad(matrix, backBuffer, 0, 0, 0, 1, zBack, zFront, -1, 0, 0, packedLight, packedOverlay);
+        addQuad(matrix, backBuffer, 0, 0, 0, 1, zBack, zFront, -1, 0, 0, brightLight, packedOverlay);
         // Right (East)
-        addQuad(matrix, backBuffer, 1, 1, 0, 1, zFront, zBack, 1, 0, 0, packedLight, packedOverlay);
+        addQuad(matrix, backBuffer, 1, 1, 0, 1, zFront, zBack, 1, 0, 0, brightLight, packedOverlay);
 
         poseStack.popPose();
     }

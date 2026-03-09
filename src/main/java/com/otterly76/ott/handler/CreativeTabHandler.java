@@ -8,12 +8,14 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.ItemLike;
+import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.Block;
 import net.neoforged.neoforge.event.BuildCreativeModeTabContentsEvent;
 import net.neoforged.neoforge.registries.DeferredBlock;
 import net.neoforged.neoforge.registries.DeferredItem;
 
 import java.util.List;
+import java.util.function.Supplier;
 
 public class CreativeTabHandler {
     public static void onBuildContents(BuildCreativeModeTabContentsEvent event) {
@@ -123,15 +125,15 @@ public class CreativeTabHandler {
             // Find oxidized copper bulb as target for copper building blocks
             ItemLike lastTarget = Items.OXIDIZED_COPPER_BULB;
 
-            for (DeferredBlock<Block> block : ModBlocks.COPPER_BARS.values()) {
+            for (Supplier<? extends Block> block : ModBlocks.COPPER_BARS.values()) {
                 safeInsertAfter(event, new ItemStack(lastTarget), new ItemStack(block.get()), visibility);
                 lastTarget = block.get();
             }
-            for (DeferredBlock<Block> block : ModBlocks.COPPER_CHAINS.values()) {
+            for (Supplier<? extends Block> block : ModBlocks.COPPER_CHAINS.values()) {
                 safeInsertAfter(event, new ItemStack(lastTarget), new ItemStack(block.get()), visibility);
                 lastTarget = block.get();
             }
-            for (DeferredBlock<Block> block : ModBlocks.COPPER_BUTTONS.values()) {
+            for (Supplier<? extends Block> block : ModBlocks.COPPER_BUTTONS.values()) {
                 safeInsertAfter(event, new ItemStack(lastTarget), new ItemStack(block.get()), visibility);
                 lastTarget = block.get();
             }
@@ -157,7 +159,7 @@ public class CreativeTabHandler {
 
             // Copper Functional Blocks
             lastTarget = Items.LANTERN;
-            for (DeferredBlock<Block> block : ModBlocks.COPPER_LANTERNS.values()) {
+            for (Supplier<? extends Block> block : ModBlocks.COPPER_LANTERNS.values()) {
                 safeInsertAfter(event, new ItemStack(lastTarget), new ItemStack(block.get()), visibility);
                 lastTarget = block.get();
             }
@@ -181,12 +183,17 @@ public class CreativeTabHandler {
             safeInsertAfter(event, new ItemStack(lastTarget), new ItemStack(ModBlocks.WAXED_OXIDIZED_COPPER_CHEST.get()), visibility);
 
             lastTarget = Items.LIGHTNING_ROD;
-            for (DeferredBlock<Block> block : ModBlocks.LIGHTNING_RODS.values()) {
-                safeInsertAfter(event, new ItemStack(lastTarget), new ItemStack(block.get()), visibility);
-                lastTarget = block.get();
+            for (Supplier<? extends Block> block : ModBlocks.LIGHTNING_RODS.values()) {
+                Block b = block.get();
+                if (b == Blocks.LIGHTNING_ROD) {
+                    lastTarget = b;
+                    continue;
+                }
+                safeInsertAfter(event, new ItemStack(lastTarget), new ItemStack(b), visibility);
+                lastTarget = b;
             }
-
-            for (DeferredBlock<com.otterly76.ott.block.custom.CopperGolemStatueBlock> block : ModBlocks.COPPER_GOLEM_STATUES) {
+            
+            for (Supplier<? extends com.otterly76.ott.block.custom.CopperGolemStatueBlock> block : ModBlocks.COPPER_GOLEM_STATUES.values()) {
                 safeInsertAfter(event, new ItemStack(lastTarget), new ItemStack(block.get()), visibility);
                 lastTarget = block.get();
             }
@@ -245,22 +252,22 @@ public class CreativeTabHandler {
         }
 
         if (event.getTabKey() == CreativeModeTabs.REDSTONE_BLOCKS) {
-            event.accept(ModBlocks.PALE_OAK_PRESSURE_PLATE, visibility);
-            event.accept(ModBlocks.PALE_OAK_BUTTON, visibility);
-            event.accept(ModBlocks.PALE_OAK_DOOR, visibility);
-            event.accept(ModBlocks.PALE_OAK_TRAPDOOR, visibility);
-            event.accept(ModBlocks.PALE_OAK_FENCE_GATE, visibility);
+            safeAccept(event, ModBlocks.PALE_OAK_PRESSURE_PLATE, visibility);
+            safeAccept(event, ModBlocks.PALE_OAK_BUTTON, visibility);
+            safeAccept(event, ModBlocks.PALE_OAK_DOOR, visibility);
+            safeAccept(event, ModBlocks.PALE_OAK_TRAPDOOR, visibility);
+            safeAccept(event, ModBlocks.PALE_OAK_FENCE_GATE, visibility);
 
             ModBlocks.WOOD_SETS.values().forEach(set -> {
-                event.accept(set.pressurePlate(), visibility);
-                event.accept(set.button(), visibility);
-                event.accept(set.door(), visibility);
-                event.accept(set.trapdoor(), visibility);
-                event.accept(set.fenceGate(), visibility);
+                safeAccept(event, set.pressurePlate(), visibility);
+                safeAccept(event, set.button(), visibility);
+                safeAccept(event, set.door(), visibility);
+                safeAccept(event, set.trapdoor(), visibility);
+                safeAccept(event, set.fenceGate(), visibility);
             });
 
-            for (DeferredBlock<Block> block : ModBlocks.COPPER_BUTTONS.values()) {
-                event.accept(block.get(), visibility);
+            for (Supplier<? extends Block> block : ModBlocks.COPPER_BUTTONS.values()) {
+                safeAccept(event, block.get(), visibility);
             }
         }
 
@@ -272,8 +279,8 @@ public class CreativeTabHandler {
 
             safeInsertAfter(event, Items.COPPER_INGOT.getDefaultInstance(), new ItemStack(ModItems.COPPER_NUGGET.get()), visibility);
 
-            event.accept(ModItems.TINY_COAL);
-            event.accept(ModItems.TINY_CHARCOAL);
+            safeAccept(event, ModItems.TINY_COAL, visibility);
+            safeAccept(event, ModItems.TINY_CHARCOAL, visibility);
         }
 
         if (event.getTabKey() == CreativeModeTabs.COMBAT) {
@@ -290,22 +297,22 @@ public class CreativeTabHandler {
 
             safeInsertAfter(event, Items.TIPPED_ARROW.getDefaultInstance(), new ItemStack(ModItems.TORCH_ARROW.get()), visibility);
 
-            event.accept(ModItems.BROWN_EGG);
-            event.accept(ModItems.BLUE_EGG);
+            safeAccept(event, ModItems.BROWN_EGG, visibility);
+            safeAccept(event, ModItems.BLUE_EGG, visibility);
         }
 
         if (event.getTabKey() == CreativeModeTabs.SPAWN_EGGS) {
-            event.accept(ModBlocks.CREAKING_HEART);
-            event.accept(ModItems.CREAKING_SPAWN_EGG);
-            event.accept(ModItems.HAPPY_GHAST_SPAWN_EGG);
+            safeAccept(event, ModBlocks.CREAKING_HEART, visibility);
+            safeAccept(event, ModItems.CREAKING_SPAWN_EGG, visibility);
+            safeAccept(event, ModItems.HAPPY_GHAST_SPAWN_EGG, visibility);
 
-            event.accept(ModItems.COPPER_GOLEM_SPAWN_EGG);
+            safeAccept(event, ModItems.COPPER_GOLEM_SPAWN_EGG, visibility);
             
-            event.accept(ModItems.DUCK_SPAWN_EGG);
-            event.accept(ModItems.GOOSE_SPAWN_EGG);
+            safeAccept(event, ModItems.DUCK_SPAWN_EGG, visibility);
+            safeAccept(event, ModItems.GOOSE_SPAWN_EGG, visibility);
 
-            event.accept(ModItems.MAN_O_WAR_SPAWN_EGG);
-            event.accept(ModItems.MAN_O_WAR_BUCKET);
+            safeAccept(event, ModItems.MAN_O_WAR_SPAWN_EGG, visibility);
+            safeAccept(event, ModItems.MAN_O_WAR_BUCKET, visibility);
         }
     }
 
@@ -323,6 +330,14 @@ public class CreativeTabHandler {
         }
     }
 
+    private static void safeAccept(BuildCreativeModeTabContentsEvent event, ItemLike item, CreativeModeTab.TabVisibility visibility) {
+        try {
+            event.accept(item, visibility);
+        } catch (IllegalArgumentException e) {
+            // Item already exists in the tab, ignore the error to avoid crashing.
+        }
+    }
+
     private static void safeInsertAfter(BuildCreativeModeTabContentsEvent event, ItemLike target, ItemStack stack, CreativeModeTab.TabVisibility visibility) {
         safeInsertAfter(event, new ItemStack(target), stack, visibility);
     }
@@ -331,8 +346,13 @@ public class CreativeTabHandler {
         try {
             event.insertAfter(target, stack, visibility);
         } catch (Exception e) {
-            // Fallback: if the target is missing from the tab, just accept it normally (adds to end)
-            event.accept(stack, visibility);
+            // Target might be missing, try to just accept it.
+            // Note: If the item already exists in the tab, NeoForge throws an IllegalArgumentException.
+            try {
+                event.accept(stack, visibility);
+            } catch (IllegalArgumentException e2) {
+                // Item already exists in the tab, ignore the error to avoid crashing.
+            }
         }
     }
 }

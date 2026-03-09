@@ -15,10 +15,8 @@ import com.otterly76.ott.wood.ModWoodSets;
 import net.minecraft.core.Direction;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.world.item.DyeColor;
-import net.minecraft.core.cauldron.CauldronInteraction;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.BlockBehaviour;
-import net.minecraft.world.level.block.state.properties.BlockSetType;
 import net.minecraft.world.level.block.state.BlockBehaviour.Properties;
 import net.minecraft.world.level.block.state.properties.NoteBlockInstrument;
 import net.minecraft.world.level.material.MapColor;
@@ -30,7 +28,7 @@ import net.neoforged.neoforge.registries.DeferredRegister;
 import java.util.*;
 import java.util.function.Consumer;
 import java.util.function.Function;
-import java.util.function.Predicate;
+import java.util.function.Supplier;
 
 import static com.otterly76.ott.Constants.MOD_ID;
 
@@ -52,22 +50,6 @@ public class ModBlocks {
     public static final List<DeferredBlock<? extends Block>> LIMESTONE = new ArrayList<>();
     public static final List<DeferredBlock<? extends Block>> TESTBLOCK = new ArrayList<>();
 
-    public static final DeferredBlock<WeatheringStationBlock> WEATHERING_STATION = register("weathering_station", () -> new WeatheringStationBlock(Properties.of().mapColor(MapColor.METAL).requiresCorrectToolForDrops().strength(5.0F, 6.0F).sound(SoundType.COPPER)));
-
-    public static final Map<String, DeferredBlock<Block>> COPPER_ANVILS = new LinkedHashMap<>();
-    public static final Map<String, DeferredBlock<Block>> CHIPPED_COPPER_ANVILS = new LinkedHashMap<>();
-    public static final Map<String, DeferredBlock<Block>> DAMAGED_COPPER_ANVILS = new LinkedHashMap<>();
-
-    public static final Map<String, DeferredBlock<Block>> COPPER_CAULDRONS = new LinkedHashMap<>();
-    public static final Map<String, DeferredBlock<Block>> COPPER_WATER_CAULDRONS = new LinkedHashMap<>();
-    public static final Map<String, DeferredBlock<Block>> COPPER_LAVA_CAULDRONS = new LinkedHashMap<>();
-    public static final Map<String, DeferredBlock<Block>> COPPER_POWDER_SNOW_CAULDRONS = new LinkedHashMap<>();
-
-    public static final Map<String, DeferredBlock<Block>> COPPER_HOPPERS = new LinkedHashMap<>();
-    public static final Map<String, DeferredBlock<Block>> COPPER_LADDERS = new LinkedHashMap<>();
-    public static final Map<String, DeferredBlock<Block>> COPPER_PRESSURE_PLATES = new LinkedHashMap<>();
-    public static final Map<String, DeferredBlock<Block>> COPPER_RAILS = new LinkedHashMap<>();
-    public static final Map<String, DeferredBlock<Block>> COPPER_SOUL_LANTERNS = new LinkedHashMap<>();
 
     private static <T extends Block> DeferredBlock<T> register(String name, java.util.function.Supplier<T> block) {
         return BLOCKS.register(name, block);
@@ -307,12 +289,14 @@ public class ModBlocks {
     public static final DeferredBlock<CopperChestBlock> WAXED_OXIDIZED_COPPER_CHEST = registerBackportedBlock("waxed_oxidized_copper_chest", () -> new CopperChestBlock(WeatheringCopper.WeatherState.OXIDIZED, BlockBehaviour.Properties.of().strength(2.5f).sound(SoundType.COPPER)), false);
 
     public static final List<DeferredBlock<com.otterly76.ott.block.shelf.ShelfBlock>> SHELVES = new ArrayList<>();
-    public static final List<DeferredBlock<com.otterly76.ott.block.custom.CopperGolemStatueBlock>> COPPER_GOLEM_STATUES = new ArrayList<>();
-    public static final Map<String, DeferredBlock<Block>> COPPER_BUTTONS = new LinkedHashMap<>();
-    public static final Map<String, DeferredBlock<Block>> COPPER_LANTERNS = new LinkedHashMap<>();
-    public static final Map<String, DeferredBlock<Block>> COPPER_CHAINS = new LinkedHashMap<>();
-    public static final Map<String, DeferredBlock<Block>> COPPER_BARS = new LinkedHashMap<>();
-    public static final Map<String, DeferredBlock<Block>> LIGHTNING_RODS = new LinkedHashMap<>();
+    public static final Map<String, Supplier<? extends com.otterly76.ott.block.custom.CopperGolemStatueBlock>> COPPER_GOLEM_STATUES = new LinkedHashMap<>();
+    public static final Map<String, Supplier<? extends Block>> COPPER_BUTTONS = new LinkedHashMap<>();
+    public static final Map<String, Supplier<? extends Block>> COPPER_DOORS = new LinkedHashMap<>();
+    public static final Map<String, Supplier<? extends Block>> COPPER_TRAPDOORS = new LinkedHashMap<>();
+    public static final Map<String, Supplier<? extends Block>> COPPER_LANTERNS = new LinkedHashMap<>();
+    public static final Map<String, Supplier<? extends Block>> COPPER_CHAINS = new LinkedHashMap<>();
+    public static final Map<String, Supplier<? extends Block>> COPPER_BARS = new LinkedHashMap<>();
+    public static final Map<String, Supplier<? extends Block>> LIGHTNING_RODS = new LinkedHashMap<>();
     public static final DeferredBlock<Block> COPPER_TORCH = registerBackportedBlock("copper_torch", () -> new TorchBlock(net.minecraft.core.particles.ParticleTypes.FLAME, BlockBehaviour.Properties.of().noCollission().instabreak().lightLevel(s -> 14).sound(SoundType.WOOD)));
     public static final DeferredBlock<Block> COPPER_WALL_TORCH = registerBackportedBlock("copper_wall_torch", () -> new WallTorchBlock(net.minecraft.core.particles.ParticleTypes.FLAME, BlockBehaviour.Properties.of().noCollission().instabreak().lightLevel(s -> 14).sound(SoundType.WOOD).lootFrom(COPPER_TORCH)), false);
     public static final DeferredBlock<SkullBlock> DRAGON_SKULL = BLOCKS.register("dragon_skull", () -> new SkullBlock(ModSkullType.DRAGON_SKULL, BlockBehaviour.Properties.ofFullCopy(Blocks.DRAGON_HEAD)));
@@ -347,12 +331,41 @@ public class ModBlocks {
             COPPER_BUTTONS.put(stateName, registerBackportedBlock(stateName + "copper_button", () -> new com.otterly76.ott.block.custom.CopperButtonBlock(state, net.minecraft.world.level.block.state.properties.BlockSetType.IRON, 30, BlockBehaviour.Properties.of().strength(0.5f).sound(SoundType.COPPER))));
             COPPER_BUTTONS.put("waxed_" + stateName, registerBackportedBlock("waxed_" + stateName + "copper_button", () -> new com.otterly76.ott.block.custom.CopperButtonBlock(state, net.minecraft.world.level.block.state.properties.BlockSetType.IRON, 30, BlockBehaviour.Properties.of().strength(0.5f).sound(SoundType.COPPER))));
 
+            // In 1.21.1, all 8 variants of copper doors and trapdoors are vanilla.
+            // We use vanilla instances from the Blocks class to avoid duplicate registration issues and NPEs during baking.
+            switch (stateName) {
+                case "" -> {
+                    COPPER_DOORS.put("", () -> Blocks.COPPER_DOOR);
+                    COPPER_DOORS.put("waxed_", () -> Blocks.WAXED_COPPER_DOOR);
+                    COPPER_TRAPDOORS.put("", () -> Blocks.COPPER_TRAPDOOR);
+                    COPPER_TRAPDOORS.put("waxed_", () -> Blocks.WAXED_COPPER_TRAPDOOR);
+                }
+                case "exposed_" -> {
+                    COPPER_DOORS.put("exposed_", () -> Blocks.EXPOSED_COPPER_DOOR);
+                    COPPER_DOORS.put("waxed_exposed_", () -> Blocks.WAXED_EXPOSED_COPPER_DOOR);
+                    COPPER_TRAPDOORS.put("exposed_", () -> Blocks.EXPOSED_COPPER_TRAPDOOR);
+                    COPPER_TRAPDOORS.put("waxed_exposed_", () -> Blocks.WAXED_EXPOSED_COPPER_TRAPDOOR);
+                }
+                case "weathered_" -> {
+                    COPPER_DOORS.put("weathered_", () -> Blocks.WEATHERED_COPPER_DOOR);
+                    COPPER_DOORS.put("waxed_weathered_", () -> Blocks.WAXED_WEATHERED_COPPER_DOOR);
+                    COPPER_TRAPDOORS.put("weathered_", () -> Blocks.WEATHERED_COPPER_TRAPDOOR);
+                    COPPER_TRAPDOORS.put("waxed_weathered_", () -> Blocks.WAXED_WEATHERED_COPPER_TRAPDOOR);
+                }
+                case "oxidized_" -> {
+                    COPPER_DOORS.put("oxidized_", () -> Blocks.OXIDIZED_COPPER_DOOR);
+                    COPPER_DOORS.put("waxed_oxidized_", () -> Blocks.WAXED_OXIDIZED_COPPER_DOOR);
+                    COPPER_TRAPDOORS.put("oxidized_", () -> Blocks.OXIDIZED_COPPER_TRAPDOOR);
+                    COPPER_TRAPDOORS.put("waxed_oxidized_", () -> Blocks.WAXED_OXIDIZED_COPPER_TRAPDOOR);
+                }
+            }
+
             var statue = registerBackportedBlock(stateName + "copper_golem_statue", () -> new com.otterly76.ott.block.custom.CopperGolemStatueBlock(state, BlockBehaviour.Properties.of().strength(3.0f).sound(SoundType.COPPER)), false);
-            COPPER_GOLEM_STATUES.add(statue);
+            COPPER_GOLEM_STATUES.put(stateName, statue);
             register3DBlockItem(statue);
 
             var waxedStatue = registerBackportedBlock("waxed_" + stateName + "copper_golem_statue", () -> new com.otterly76.ott.block.custom.CopperGolemStatueBlock(state, BlockBehaviour.Properties.of().strength(3.0f).sound(SoundType.COPPER)), false);
-            COPPER_GOLEM_STATUES.add(waxedStatue);
+            COPPER_GOLEM_STATUES.put("waxed_" + stateName, waxedStatue);
             register3DBlockItem(waxedStatue);
 
             COPPER_LANTERNS.put(stateName, registerBackportedBlock(stateName + "copper_lantern", () -> new com.otterly76.ott.block.custom.WeatheringCopperLanternBlock(state, BlockBehaviour.Properties.of().strength(3.5f).sound(SoundType.LANTERN).lightLevel(s -> 15).noOcclusion())));
@@ -364,11 +377,15 @@ public class ModBlocks {
             COPPER_BARS.put(stateName, registerBackportedBlock(stateName + "copper_bars", () -> new com.otterly76.ott.block.custom.WeatheringCopperBarsBlock(state, BlockBehaviour.Properties.of().strength(5.0f).sound(SoundType.COPPER).noOcclusion())));
             COPPER_BARS.put("waxed_" + stateName, registerBackportedBlock("waxed_" + stateName + "copper_bars", () -> new com.otterly76.ott.block.custom.WeatheringCopperBarsBlock(state, BlockBehaviour.Properties.of().strength(5.0f).sound(SoundType.COPPER).noOcclusion())));
 
-            String rodName = stateName + "lightning_rod";
-            if (!rodName.equals("lightning_rod")) {
-                LIGHTNING_RODS.put(stateName, registerBackportedBlock(rodName, () -> new com.otterly76.ott.block.custom.WeatheringCopperLightningRodBlock(state, BlockBehaviour.Properties.of().strength(3.0f).sound(SoundType.COPPER))));
+            // In 1.21.1, all 8 variants of lightning rods and copper grates are vanilla?
+            // Wait, only lightning_rod is vanilla. Weathered variants of lightning rods are backported.
+            // All 8 variants of copper grates ARE vanilla in 1.21.1.
+            if (stateName.isEmpty()) {
+                LIGHTNING_RODS.put("", () -> Blocks.LIGHTNING_ROD);
+            } else {
+                LIGHTNING_RODS.put(stateName, registerBackportedBlock(stateName + "lightning_rod", () -> new com.otterly76.ott.block.custom.WeatheringCopperLightningRodBlock(state, BlockBehaviour.Properties.of().strength(3.0f).sound(SoundType.COPPER))));
             }
-            LIGHTNING_RODS.put("waxed_" + stateName, registerBackportedBlock("waxed_" + rodName, () -> new com.otterly76.ott.block.custom.WeatheringCopperLightningRodBlock(state, BlockBehaviour.Properties.of().strength(3.0f).sound(SoundType.COPPER))));
+            LIGHTNING_RODS.put("waxed_" + stateName, registerBackportedBlock("waxed_" + stateName + "lightning_rod", () -> new com.otterly76.ott.block.custom.WeatheringCopperLightningRodBlock(state, BlockBehaviour.Properties.of().strength(3.0f).sound(SoundType.COPPER))));
         }
 
         registerGradientBlocks(Blocks.WHITE_CONCRETE, GradientConcreteBlock::new, ALL_CONCRETE_BLOCKS::add);
@@ -479,59 +496,11 @@ public class ModBlocks {
 
     public static void register(IEventBus eventBus) {
         registerDynamicBlocks();
-        registerCopperBlocks();
         BLOCKS.register(eventBus);
         MINECRAFT_BLOCKS.register(eventBus);
         MINECRAFT_ITEMS.register(eventBus);
     }
 
-    private static void registerCopperBlocks() {
-        Properties metalProps = Properties.of().mapColor(MapColor.METAL).requiresCorrectToolForDrops().strength(5.0F, 6.0F).sound(SoundType.COPPER);
-        Properties hopperProps = Properties.of().mapColor(MapColor.METAL).requiresCorrectToolForDrops().strength(3.0F, 4.8F).sound(SoundType.COPPER).noOcclusion();
-        Properties ladderProps = Properties.of().mapColor(MapColor.METAL).requiresCorrectToolForDrops().strength(0.4F).sound(SoundType.COPPER).noOcclusion();
-        Properties railProps = Properties.of().mapColor(MapColor.METAL).strength(0.7F).sound(SoundType.COPPER);
-        Properties lanternProps = Properties.of().mapColor(MapColor.METAL).requiresCorrectToolForDrops().strength(3.5F).sound(SoundType.COPPER).noOcclusion().lightLevel(state -> 10);
-
-        Predicate<net.minecraft.world.level.biome.Biome.Precipitation> isRain = p -> p == net.minecraft.world.level.biome.Biome.Precipitation.RAIN;
-        Predicate<net.minecraft.world.level.biome.Biome.Precipitation> isSnow = p -> p == net.minecraft.world.level.biome.Biome.Precipitation.SNOW;
-
-        String[] stages = {"", "exposed_", "weathered_", "oxidized_"};
-        for (String stage : stages) {
-            String baseName = stage + "copper_";
-            COPPER_ANVILS.put(stage, register(baseName + "anvil", () -> new AnvilBlock(metalProps)));
-            CHIPPED_COPPER_ANVILS.put(stage, register("chipped_" + baseName + "anvil", () -> new AnvilBlock(metalProps)));
-            DAMAGED_COPPER_ANVILS.put(stage, register("damaged_" + baseName + "anvil", () -> new AnvilBlock(metalProps)));
-
-            COPPER_CAULDRONS.put(stage, register(baseName + "cauldron", () -> new CauldronBlock(metalProps)));
-            COPPER_WATER_CAULDRONS.put(stage, register(baseName + "water_cauldron", () -> new LayeredCauldronBlock(net.minecraft.world.level.biome.Biome.Precipitation.RAIN, CauldronInteraction.WATER, metalProps)));
-            COPPER_LAVA_CAULDRONS.put(stage, register(baseName + "lava_cauldron", () -> new LavaCauldronBlock(metalProps)));
-            COPPER_POWDER_SNOW_CAULDRONS.put(stage, register(baseName + "powder_snow_cauldron", () -> new LayeredCauldronBlock(net.minecraft.world.level.biome.Biome.Precipitation.SNOW, CauldronInteraction.POWDER_SNOW, metalProps)));
-
-            COPPER_HOPPERS.put(stage, register(baseName + "hopper", () -> new HopperBlock(hopperProps)));
-            COPPER_LADDERS.put(stage, register(baseName + "ladder", () -> new LadderBlock(ladderProps)));
-            COPPER_PRESSURE_PLATES.put(stage, register(baseName + "pressure_plate", () -> new PressurePlateBlock(BlockSetType.GOLD, metalProps)));
-            COPPER_RAILS.put(stage, register(baseName + "rail", () -> new RailBlock(railProps)));
-            COPPER_SOUL_LANTERNS.put(stage, register(baseName + "soul_lantern", () -> new LanternBlock(lanternProps)));
-
-            // Waxed versions
-            String waxedStage = "waxed_" + stage;
-            String waxedBaseName = "waxed_" + baseName;
-            COPPER_ANVILS.put(waxedStage, register(waxedBaseName + "anvil", () -> new AnvilBlock(metalProps)));
-            CHIPPED_COPPER_ANVILS.put(waxedStage, register("waxed_chipped_" + baseName + "anvil", () -> new AnvilBlock(metalProps)));
-            DAMAGED_COPPER_ANVILS.put(waxedStage, register("waxed_damaged_" + baseName + "anvil", () -> new AnvilBlock(metalProps)));
-
-            COPPER_CAULDRONS.put(waxedStage, register(waxedBaseName + "cauldron", () -> new CauldronBlock(metalProps)));
-            COPPER_WATER_CAULDRONS.put(waxedStage, register(waxedBaseName + "water_cauldron", () -> new LayeredCauldronBlock(net.minecraft.world.level.biome.Biome.Precipitation.RAIN, CauldronInteraction.WATER, metalProps)));
-            COPPER_LAVA_CAULDRONS.put(waxedStage, register(waxedBaseName + "lava_cauldron", () -> new LavaCauldronBlock(metalProps)));
-            COPPER_POWDER_SNOW_CAULDRONS.put(waxedStage, register(waxedBaseName + "powder_snow_cauldron", () -> new LayeredCauldronBlock(net.minecraft.world.level.biome.Biome.Precipitation.SNOW, CauldronInteraction.POWDER_SNOW, metalProps)));
-
-            COPPER_HOPPERS.put(waxedStage, register(waxedBaseName + "hopper", () -> new HopperBlock(hopperProps)));
-            COPPER_LADDERS.put(waxedStage, register(waxedBaseName + "ladder", () -> new LadderBlock(ladderProps)));
-            COPPER_PRESSURE_PLATES.put(waxedStage, register(waxedBaseName + "pressure_plate", () -> new PressurePlateBlock(BlockSetType.GOLD, metalProps)));
-            COPPER_RAILS.put(waxedStage, register(waxedBaseName + "rail", () -> new RailBlock(railProps)));
-            COPPER_SOUL_LANTERNS.put(waxedStage, register(waxedBaseName + "soul_lantern", () -> new LanternBlock(lanternProps)));
-        }
-    }
 
     @FunctionalInterface
     private interface GradientBlockBuilder<T extends Block & IGradientBlock> {

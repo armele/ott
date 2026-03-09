@@ -1,13 +1,11 @@
 package com.otterly76.ott.generation;
 
-import net.minecraft.core.Direction;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.DoorBlock;
 import net.minecraft.world.level.block.TrapDoorBlock;
-import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.DoorHingeSide;
 import net.minecraft.world.level.block.state.properties.DoubleBlockHalf;
 import net.minecraft.world.level.block.state.properties.Half;
@@ -49,32 +47,21 @@ public abstract class ModBlockStateProvider extends BlockStateProvider {
                 .texture("top", topTex)
                 .renderType("cutout");
 
-        getVariantBuilder(door)
-                .forAllStates(state -> {
-                    boolean open = state.getValue(BlockStateProperties.OPEN);
-                    boolean right = state.getValue(BlockStateProperties.DOOR_HINGE) == DoorHingeSide.RIGHT;
-                    boolean upper = state.getValue(BlockStateProperties.DOUBLE_BLOCK_HALF) == DoubleBlockHalf.UPPER;
-                    Direction facing = state.getValue(BlockStateProperties.HORIZONTAL_FACING);
+        getVariantBuilder(door).forAllStatesExcept(state -> {
+            int yRot = (int) state.getValue(DoorBlock.FACING).toYRot() + 90;
+            boolean right = state.getValue(DoorBlock.HINGE) == DoorHingeSide.RIGHT;
+            boolean open = state.getValue(DoorBlock.OPEN);
+            if (open) {
+                yRot += 90;
+            }
+            if (right && open) {
+                yRot += 180;
+            }
+            yRot %= 360;
 
-                    int yRot = (((int) facing.toYRot()) + 90) % 360;
-
-                    ModelFile model;
-                    if (upper) {
-                        model = (open ^ right) ? topRight : topLeft;
-                    } else {
-                        model = (open ^ right) ? bottomRight : bottomLeft;
-                    }
-
-                    if (open) {
-                        yRot = (yRot + (right ? 90 : -90)) % 360;
-                        if (yRot < 0) yRot += 360;
-                    }
-
-                    return ConfiguredModel.builder()
-                            .modelFile(model)
-                            .rotationY(yRot)
-                            .build();
-                });
+            ModelFile model = state.getValue(DoorBlock.HALF) == DoubleBlockHalf.LOWER ? (right ? bottomRight : bottomLeft) : (right ? topRight : topLeft);
+            return ConfiguredModel.builder().modelFile(model).rotationY(yRot).build();
+        }, DoorBlock.POWERED);
     }
 
     protected void registerCutoutTrapdoor(TrapDoorBlock trapdoor, ResourceLocation tex) {
@@ -84,21 +71,29 @@ public abstract class ModBlockStateProvider extends BlockStateProvider {
         ModelFile top = models().trapdoorTop(trapdoorName + "_top", tex).renderType("cutout");
         ModelFile open = models().trapdoorOpen(trapdoorName + "_open", tex).renderType("cutout");
 
-        getVariantBuilder(trapdoor)
-                .forAllStates(state -> {
-                    Direction facing = state.getValue(BlockStateProperties.HORIZONTAL_FACING);
-                    boolean isOpen = state.getValue(BlockStateProperties.OPEN);
-                    Half half = state.getValue(BlockStateProperties.HALF);
+        getVariantBuilder(trapdoor).forAllStates(state -> {
+            int xRot = 0;
+            int yRot = (int) state.getValue(TrapDoorBlock.FACING).toYRot();
+            yRot = (yRot + 180) % 360;
 
-                    ModelFile model = isOpen ? open : (half == Half.TOP ? top : bottom);
+            ModelFile model = bottom;
+            if (state.getValue(TrapDoorBlock.OPEN)) {
+                model = open;
+            } else {
+                if (state.getValue(TrapDoorBlock.HALF) == Half.TOP) {
+                    model = top;
+                }
+            }
 
-                    int yRot = (((int) facing.toYRot()) + 180) % 360;
+            if (state.getValue(TrapDoorBlock.OPEN)) {
+                if (state.getValue(TrapDoorBlock.HALF) == Half.TOP) {
+                    xRot = 180;
+                    yRot = (yRot + 180) % 360;
+                }
+            }
 
-                    return ConfiguredModel.builder()
-                            .modelFile(model)
-                            .rotationY(yRot)
-                            .build();
-                });
+            return ConfiguredModel.builder().modelFile(model).rotationX(xRot).rotationY(yRot).build();
+        });
     }
 
     protected static @NotNull String blockPath(Block block) {

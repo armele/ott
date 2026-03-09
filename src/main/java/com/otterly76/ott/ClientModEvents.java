@@ -173,7 +173,6 @@ public class ClientModEvents {
         event.register(ModMenuTypes.TRASH_MENU.get(), TrashScreen::new);
 
         event.register(ModMenuTypes.ANVIL_MENU_TYPE.get(), com.otterly76.ott.client.gui.ModAnvilScreen::new);
-        event.register(ModMenuTypes.WEATHERING_STATION_MENU.get(), com.otterly76.ott.client.gui.WeatheringStationScreen::new);
     }
 
     @SuppressWarnings("unchecked")

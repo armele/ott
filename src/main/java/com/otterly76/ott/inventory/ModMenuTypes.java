@@ -17,8 +17,6 @@ public class ModMenuTypes {
     public static final DeferredHolder<MenuType<?>, MenuType<ModAnvilMenu>> ANVIL_MENU_TYPE =
             MENUS.register("repair", () -> new MenuType<>(ModAnvilMenu::new, net.minecraft.world.flag.FeatureFlags.DEFAULT_FLAGS));
 
-    public static final DeferredHolder<MenuType<?>, MenuType<WeatheringStationMenu>> WEATHERING_STATION_MENU =
-            MENUS.register("weathering_station", () -> IMenuTypeExtension.create(WeatheringStationMenu::new));
 
     public static void register(IEventBus eventBus) {
         MENUS.register(eventBus);

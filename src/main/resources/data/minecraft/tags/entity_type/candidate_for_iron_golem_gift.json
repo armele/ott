@@ -1,6 +1,7 @@
 {
     "replace":  false,
-    "values":  [
+    "values": [
                    "#minecraft:accepts_iron_golem_gift"
                ]
 }
+

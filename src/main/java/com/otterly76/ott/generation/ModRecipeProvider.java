@@ -22,6 +22,7 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.item.crafting.Recipe;
+import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.block.Block;
 import net.neoforged.neoforge.common.conditions.ICondition;
 import net.neoforged.neoforge.common.conditions.IConditionBuilder;
@@ -62,6 +63,13 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
 
         // Wood (backported pale oak + ott wood sets)
         this.woodRecipes(noAdv);
+
+        // Copper (backported items and blocks)
+        this.copperRecipes(noAdv);
+        this.copperToolArmorRecipes(noAdv);
+
+        // Shelves
+        this.shelfRecipes(noAdv);
 
         ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, Items.GRAY_DYE)
                 .requires(ModBlocks.CLOSED_EYEBLOSSOM.get())
@@ -373,6 +381,167 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
                     .unlockedBy("has_any_terracotta", has(ModTags.ItemTags.DYEABLE_TERRACOTTA))
                     .save(exporter, getRecipePath("ott", colorName + "_terracotta_from_dyeing"));
         }
+    }
+
+    private void shelfRecipes(RecipeOutput noAdv) {
+        String[] shelfWoods = {"oak", "spruce", "birch", "jungle", "acacia", "dark_oak", "mangrove", "cherry", "bamboo", "crimson", "warped", "pale_oak"};
+        for (int i = 0; i < shelfWoods.length; i++) {
+            String wood = shelfWoods[i];
+            Block shelf = ModBlocks.SHELVES.get(i).get();
+            Item log = switch (wood) {
+                case "pale_oak" -> ModBlocks.STRIPPED_PALE_OAK_LOG.get().asItem();
+                case "crimson", "warped" ->
+                        BuiltInRegistries.ITEM.get(ResourceLocation.withDefaultNamespace("stripped_" + wood + "_stem"));
+                case "bamboo" -> Items.STRIPPED_BAMBOO_BLOCK;
+                default ->
+                        BuiltInRegistries.ITEM.get(ResourceLocation.withDefaultNamespace("stripped_" + wood + "_log"));
+            };
+
+            ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, shelf, 6)
+                    .define('#', log)
+                    .pattern("###")
+                    .pattern("   ")
+                    .pattern("###")
+                    .unlockedBy("impossible", impossible())
+                    .save(noAdv, getRecipePath("minecraft", wood + "_shelf"));
+        }
+    }
+
+    private void copperRecipes(RecipeOutput noAdv) {
+        // Nuggets <-> Ingot
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, ModItems.COPPER_NUGGET.get(), 9)
+                .requires(Items.COPPER_INGOT)
+                .unlockedBy("impossible", impossible())
+                .save(noAdv, getRecipePath("minecraft", "copper_nugget"));
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, Items.COPPER_INGOT)
+                .define('#', ModItems.COPPER_NUGGET.get())
+                .pattern("###")
+                .pattern("###")
+                .pattern("###")
+                .unlockedBy("impossible", impossible())
+                .save(noAdv, getRecipePath("minecraft", "copper_ingot_from_nuggets"));
+
+        // Smelting / Blasting for Nuggets
+        Item[] smeltables = {
+                ModItems.COPPER_PICKAXE.get(), ModItems.COPPER_SHOVEL.get(), ModItems.COPPER_AXE.get(),
+                ModItems.COPPER_HOE.get(), ModItems.COPPER_SWORD.get(), ModItems.COPPER_HELMET.get(),
+                ModItems.COPPER_CHESTPLATE.get(), ModItems.COPPER_LEGGINGS.get(), ModItems.COPPER_BOOTS.get(),
+                ModItems.COPPER_HORSE_ARMOR.get()
+        };
+        SimpleCookingRecipeBuilder.smelting(Ingredient.of(smeltables), RecipeCategory.MISC, ModItems.COPPER_NUGGET.get(), 0.1F, 200)
+                .unlockedBy("impossible", impossible())
+                .save(noAdv, getRecipePath("minecraft", "copper_nugget_from_smelting"));
+        SimpleCookingRecipeBuilder.blasting(Ingredient.of(smeltables), RecipeCategory.MISC, ModItems.COPPER_NUGGET.get(), 0.1F, 100)
+                .unlockedBy("impossible", impossible())
+                .save(noAdv, getRecipePath("minecraft", "copper_nugget_from_blasting"));
+
+        // Copper Blocks
+        ShapedRecipeBuilder.shaped(RecipeCategory.DECORATIONS, ModBlocks.COPPER_BARS.get("").get(), 16)
+                .define('#', Items.COPPER_INGOT).pattern("###").pattern("###")
+                .unlockedBy("impossible", impossible()).save(noAdv, getRecipePath("minecraft", "copper_bars"));
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.REDSTONE, ModBlocks.COPPER_BUTTONS.get("").get())
+                .requires(Items.COPPER_INGOT)
+                .unlockedBy("impossible", impossible()).save(noAdv, getRecipePath("minecraft", "copper_button"));
+        ShapedRecipeBuilder.shaped(RecipeCategory.DECORATIONS, ModBlocks.COPPER_CHAINS.get("").get())
+                .define('I', Items.COPPER_INGOT).define('N', ModItems.COPPER_NUGGET.get()).pattern("N").pattern("I").pattern("N")
+                .unlockedBy("impossible", impossible()).save(noAdv, getRecipePath("minecraft", "copper_chain"));
+        ShapedRecipeBuilder.shaped(RecipeCategory.DECORATIONS, ModBlocks.COPPER_CHEST.get())
+                .define('#', Items.COPPER_INGOT).pattern("###").pattern("# #").pattern("###")
+                .unlockedBy("impossible", impossible()).save(noAdv, getRecipePath("minecraft", "copper_chest"));
+        ShapedRecipeBuilder.shaped(RecipeCategory.REDSTONE, ModBlocks.COPPER_DOORS.get("").get(), 3)
+                .define('#', Items.COPPER_INGOT).pattern("##").pattern("##").pattern("##")
+                .unlockedBy("impossible", impossible()).save(noAdv, getRecipePath("minecraft", "copper_door"));
+        ShapedRecipeBuilder.shaped(RecipeCategory.REDSTONE, ModBlocks.COPPER_TRAPDOORS.get("").get(), 2)
+                .define('#', Items.COPPER_INGOT).pattern("###").pattern("###")
+                .unlockedBy("impossible", impossible()).save(noAdv, getRecipePath("minecraft", "copper_trapdoor"));
+        ShapedRecipeBuilder.shaped(RecipeCategory.DECORATIONS, ModBlocks.COPPER_LANTERNS.get("").get())
+                .define('#', ModItems.COPPER_NUGGET.get()).define('X', Items.TORCH).pattern("###").pattern("#X#").pattern("###")
+                .unlockedBy("impossible", impossible()).save(noAdv, getRecipePath("minecraft", "copper_lantern"));
+        ShapedRecipeBuilder.shaped(RecipeCategory.DECORATIONS, ModBlocks.COPPER_TORCH.get(), 4)
+                .define('#', Items.COAL).define('S', Items.COPPER_INGOT).pattern("#").pattern("S")
+                .unlockedBy("impossible", impossible()).save(noAdv, getRecipePath("minecraft", "copper_torch"));
+
+        // Waxing recipes and button conversion
+        String[] states = {"", "exposed_", "weathered_", "oxidized_"};
+        for (String state : states) {
+            registerWaxing(noAdv, ModBlocks.COPPER_BARS.get(state).get(), ModBlocks.COPPER_BARS.get("waxed_" + state).get());
+            registerWaxing(noAdv, ModBlocks.COPPER_BUTTONS.get(state).get(), ModBlocks.COPPER_BUTTONS.get("waxed_" + state).get());
+            registerWaxing(noAdv, ModBlocks.COPPER_CHAINS.get(state).get(), ModBlocks.COPPER_CHAINS.get("waxed_" + state).get());
+            registerWaxing(noAdv, ModBlocks.COPPER_DOORS.get(state).get(), ModBlocks.COPPER_DOORS.get("waxed_" + state).get());
+            registerWaxing(noAdv, ModBlocks.COPPER_TRAPDOORS.get(state).get(), ModBlocks.COPPER_TRAPDOORS.get("waxed_" + state).get());
+            registerWaxing(noAdv, ModBlocks.COPPER_LANTERNS.get(state).get(), ModBlocks.COPPER_LANTERNS.get("waxed_" + state).get());
+            registerWaxing(noAdv, ModBlocks.COPPER_GOLEM_STATUES.get(state).get(), ModBlocks.COPPER_GOLEM_STATUES.get("waxed_" + state).get());
+            
+            if (ModBlocks.LIGHTNING_RODS.containsKey(state)) {
+                registerWaxing(noAdv, ModBlocks.LIGHTNING_RODS.get(state).get(), ModBlocks.LIGHTNING_RODS.get("waxed_" + state).get());
+            } else if (state.isEmpty()) {
+                registerWaxing(noAdv, Items.LIGHTNING_ROD, ModBlocks.LIGHTNING_RODS.get("waxed_").get());
+            }
+
+            // Button from cut copper
+            Item cutCopper = state.isEmpty() ? Items.CUT_COPPER : BuiltInRegistries.ITEM.get(ResourceLocation.withDefaultNamespace(state + "cut_copper"));
+            ShapedRecipeBuilder.shaped(RecipeCategory.REDSTONE, ModBlocks.COPPER_BUTTONS.get(state).get())
+                    .define('#', cutCopper)
+                    .pattern("#")
+                    .unlockedBy("impossible", impossible())
+                    .save(noAdv, getRecipePath("minecraft", state + "copper_button_from_" + state + "cut_copper"));
+
+            // Waxed button from waxed cut copper
+            Item waxedCutCopper = state.isEmpty() ? Items.WAXED_CUT_COPPER : BuiltInRegistries.ITEM.get(ResourceLocation.withDefaultNamespace("waxed_" + state + "cut_copper"));
+            ShapedRecipeBuilder.shaped(RecipeCategory.REDSTONE, ModBlocks.COPPER_BUTTONS.get("waxed_" + state).get())
+                    .define('#', waxedCutCopper)
+                    .pattern("#")
+                    .unlockedBy("impossible", impossible())
+                    .save(noAdv, getRecipePath("minecraft", "waxed_" + state + "copper_button_from_waxed_" + state + "cut_copper"));
+        }
+        
+        registerWaxing(noAdv, ModBlocks.COPPER_CHEST.get(), ModBlocks.WAXED_COPPER_CHEST.get());
+        registerWaxing(noAdv, ModBlocks.EXPOSED_COPPER_CHEST.get(), ModBlocks.WAXED_EXPOSED_COPPER_CHEST.get());
+        registerWaxing(noAdv, ModBlocks.WEATHERED_COPPER_CHEST.get(), ModBlocks.WAXED_WEATHERED_COPPER_CHEST.get());
+        registerWaxing(noAdv, ModBlocks.OXIDIZED_COPPER_CHEST.get(), ModBlocks.WAXED_OXIDIZED_COPPER_CHEST.get());
+    }
+
+    private void registerWaxing(RecipeOutput noAdv, ItemLike unaffected, ItemLike waxed) {
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.BUILDING_BLOCKS, waxed)
+                .requires(unaffected)
+                .requires(Items.HONEYCOMB)
+                .unlockedBy("impossible", impossible())
+                .save(noAdv, getRecipePath("minecraft", BuiltInRegistries.ITEM.getKey(waxed.asItem()).getPath() + "_from_honeycomb"));
+    }
+
+    private void copperToolArmorRecipes(RecipeOutput noAdv) {
+        ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, ModItems.COPPER_SWORD.get())
+                .define('#', Items.COPPER_INGOT).define('S', Items.STICK).pattern("#").pattern("#").pattern("S")
+                .unlockedBy("impossible", impossible()).save(noAdv, getRecipePath("minecraft", "copper_sword"));
+        ShapedRecipeBuilder.shaped(RecipeCategory.TOOLS, ModItems.COPPER_SHOVEL.get())
+                .define('#', Items.COPPER_INGOT).define('S', Items.STICK).pattern("#").pattern("S").pattern("S")
+                .unlockedBy("impossible", impossible()).save(noAdv, getRecipePath("minecraft", "copper_shovel"));
+        ShapedRecipeBuilder.shaped(RecipeCategory.TOOLS, ModItems.COPPER_PICKAXE.get())
+                .define('#', Items.COPPER_INGOT).define('S', Items.STICK).pattern("###").pattern(" S ").pattern(" S ")
+                .unlockedBy("impossible", impossible()).save(noAdv, getRecipePath("minecraft", "copper_pickaxe"));
+        ShapedRecipeBuilder.shaped(RecipeCategory.TOOLS, ModItems.COPPER_AXE.get())
+                .define('#', Items.COPPER_INGOT).define('S', Items.STICK).pattern("##").pattern("#S").pattern(" S")
+                .unlockedBy("impossible", impossible()).save(noAdv, getRecipePath("minecraft", "copper_axe"));
+        ShapedRecipeBuilder.shaped(RecipeCategory.TOOLS, ModItems.COPPER_HOE.get())
+                .define('#', Items.COPPER_INGOT).define('S', Items.STICK).pattern("##").pattern(" S").pattern(" S")
+                .unlockedBy("impossible", impossible()).save(noAdv, getRecipePath("minecraft", "copper_hoe"));
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, ModItems.COPPER_HELMET.get())
+                .define('#', Items.COPPER_INGOT).pattern("###").pattern("# #")
+                .unlockedBy("impossible", impossible()).save(noAdv, getRecipePath("minecraft", "copper_helmet"));
+        ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, ModItems.COPPER_CHESTPLATE.get())
+                .define('#', Items.COPPER_INGOT).pattern("# #").pattern("###").pattern("###")
+                .unlockedBy("impossible", impossible()).save(noAdv, getRecipePath("minecraft", "copper_chestplate"));
+        ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, ModItems.COPPER_LEGGINGS.get())
+                .define('#', Items.COPPER_INGOT).pattern("###").pattern("# #").pattern("# #")
+                .unlockedBy("impossible", impossible()).save(noAdv, getRecipePath("minecraft", "copper_leggings"));
+        ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, ModItems.COPPER_BOOTS.get())
+                .define('#', Items.COPPER_INGOT).pattern("# #").pattern("# #")
+                .unlockedBy("impossible", impossible()).save(noAdv, getRecipePath("minecraft", "copper_boots"));
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModItems.COPPER_HORSE_ARMOR.get())
+                .define('#', Items.COPPER_INGOT).define('S', Items.LEATHER)
+                .pattern("# #").pattern("#S#").pattern("# #")
+                .unlockedBy("impossible", impossible()).save(noAdv, getRecipePath("minecraft", "copper_horse_armor"));
     }
 
     private void woodRecipes(RecipeOutput noAdv) {

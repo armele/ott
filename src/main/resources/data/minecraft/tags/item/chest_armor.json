@@ -1,5 +1,7 @@
 {
-    "values":  [
-                   "ott:copper_chestplate"
+    "replace":  false,
+    "values": [
+                   "minecraft:copper_chestplate"
                ]
 }
+

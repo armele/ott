@@ -1,6 +1,6 @@
 {
     "replace":  false,
-    "values":  [
+    "values": [
                    "minecraft:copper_chest",
                    "minecraft:exposed_copper_chest",
                    "minecraft:weathered_copper_chest",
@@ -51,3 +51,4 @@
                    "minecraft:waxed_oxidized_lightning_rod"
                ]
 }
+

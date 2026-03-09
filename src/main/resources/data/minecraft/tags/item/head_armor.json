@@ -1,5 +1,7 @@
 {
-    "values":  [
-                   "ott:copper_helmet"
+    "replace":  false,
+    "values": [
+                   "minecraft:copper_helmet"
                ]
 }
+

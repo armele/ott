@@ -11,6 +11,8 @@ import net.neoforged.neoforge.event.BlockEntityTypeAddBlocksEvent;
 import net.neoforged.neoforge.registries.DeferredHolder;
 import net.neoforged.neoforge.registries.DeferredRegister;
 
+import java.util.function.Supplier;
+
 import static com.otterly76.ott.Constants.MOD_ID;
 
 @SuppressWarnings("DataFlowIssue")
@@ -35,10 +37,8 @@ public class ModBlockEntities {
 
     public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<CopperGolemStatueBlockEntity>> COPPER_GOLEM_STATUE =
             BLOCK_ENTITIES.register("copper_golem_statue", () -> BlockEntityType.Builder.of(CopperGolemStatueBlockEntity::new,
-                    ModBlocks.COPPER_GOLEM_STATUES.stream().map(net.neoforged.neoforge.registries.DeferredHolder::get).toArray(Block[]::new)).build(null));
+                    ModBlocks.COPPER_GOLEM_STATUES.values().stream().map(Supplier::get).toArray(Block[]::new)).build(null));
 
-    public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<WeatheringStationBlockEntity>> WEATHERING_STATION =
-            BLOCK_ENTITIES.register("weathering_station", () -> BlockEntityType.Builder.of(WeatheringStationBlockEntity::new, ModBlocks.WEATHERING_STATION.get()).build(null));
 
     public static void register(IEventBus eventBus) {
         BLOCK_ENTITIES.register(eventBus);

@@ -7,6 +7,8 @@ import net.minecraft.data.PackOutput;
 import org.jetbrains.annotations.NotNull;
 
 import java.nio.file.Path;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.concurrent.CompletableFuture;
 
 public class MinecraftBackportSpecialItemModels implements DataProvider {
@@ -20,12 +22,29 @@ public class MinecraftBackportSpecialItemModels implements DataProvider {
     public @NotNull CompletableFuture<?> run(@NotNull CachedOutput cachedOutput) {
         Path root = output.getOutputFolder(PackOutput.Target.RESOURCE_PACK);
 
-        return CompletableFuture.allOf(
-                DataProvider.saveStable(cachedOutput, paleOakSign(), root.resolve("minecraft/models/item/pale_oak_sign.json")),
-                DataProvider.saveStable(cachedOutput, paleOakHangingSign(), root.resolve("minecraft/models/item/pale_oak_hanging_sign.json")),
-                DataProvider.saveStable(cachedOutput, paleOakBoat(), root.resolve("minecraft/models/item/pale_oak_boat.json")),
-                DataProvider.saveStable(cachedOutput, paleOakChestBoat(), root.resolve("minecraft/models/item/pale_oak_chest_boat.json"))
-        );
+        List<CompletableFuture<?>> futures = new ArrayList<>();
+        futures.add(DataProvider.saveStable(cachedOutput, paleOakSign(), root.resolve("minecraft/models/item/pale_oak_sign.json")));
+        futures.add(DataProvider.saveStable(cachedOutput, paleOakHangingSign(), root.resolve("minecraft/models/item/pale_oak_hanging_sign.json")));
+        futures.add(DataProvider.saveStable(cachedOutput, paleOakBoat(), root.resolve("minecraft/models/item/pale_oak_boat.json")));
+        futures.add(DataProvider.saveStable(cachedOutput, paleOakChestBoat(), root.resolve("minecraft/models/item/pale_oak_chest_boat.json")));
+
+        // Connectible Chains
+        String[] copperStates = {"", "exposed_", "weathered_", "oxidized_"};
+        for (String state : copperStates) {
+            futures.add(DataProvider.saveStable(cachedOutput, connectibleChain(state), root.resolve("minecraft/models/entity/connectiblechains/" + state + "copper_chain.json")));
+            futures.add(DataProvider.saveStable(cachedOutput, connectibleChain(state), root.resolve("minecraft/models/entity/connectiblechains/waxed_" + state + "copper_chain.json")));
+        }
+
+        return CompletableFuture.allOf(futures.toArray(new CompletableFuture[0]));
+    }
+
+    private JsonObject connectibleChain(String state) {
+        JsonObject root = new JsonObject();
+        JsonObject textures = new JsonObject();
+        textures.addProperty("chain", "minecraft:block/" + state + "copper_chain");
+        textures.addProperty("knot", "minecraft:item/" + state + "copper_chain");
+        root.add("textures", textures);
+        return root;
     }
 
     @Override

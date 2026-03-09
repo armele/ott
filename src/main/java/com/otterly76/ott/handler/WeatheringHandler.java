@@ -9,10 +9,10 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.block.Block;
-import net.neoforged.neoforge.registries.DeferredBlock;
 
 import java.util.Map;
 import java.util.Optional;
+import java.util.function.Supplier;
 
 public class WeatheringHandler {
     private static final BiMap<Block, Block> NEXT_BY_STATE = HashBiMap.create();
@@ -45,66 +45,12 @@ public class WeatheringHandler {
         addChainFromMap(ModBlocks.LIGHTNING_RODS, states);
 
         // Statues
-        for (int i = 0; i < 3; i++) {
-            addWeatheringTransition(ModBlocks.COPPER_GOLEM_STATUES.get(i*2).get(), ModBlocks.COPPER_GOLEM_STATUES.get((i+1)*2).get());
-        }
-        for (int i = 0; i < 4; i++) {
-            addWaxingTransition(ModBlocks.COPPER_GOLEM_STATUES.get(i*2).get(), ModBlocks.COPPER_GOLEM_STATUES.get(i*2+1).get());
-        }
+        addChainFromMap(ModBlocks.COPPER_GOLEM_STATUES, states);
 
-        // New Blocks from everythingcopper
-        addChainFromMap(ModBlocks.COPPER_ANVILS, states);
-        addChainFromMap(ModBlocks.CHIPPED_COPPER_ANVILS, states);
-        addChainFromMap(ModBlocks.DAMAGED_COPPER_ANVILS, states);
-
-        addChainFromMap(ModBlocks.COPPER_CAULDRONS, states);
-        addChainFromMap(ModBlocks.COPPER_WATER_CAULDRONS, states);
-        addChainFromMap(ModBlocks.COPPER_LAVA_CAULDRONS, states);
-        addChainFromMap(ModBlocks.COPPER_POWDER_SNOW_CAULDRONS, states);
-
-        addChainFromMap(ModBlocks.COPPER_HOPPERS, states);
-        addChainFromMap(ModBlocks.COPPER_LADDERS, states);
-        addChainFromMap(ModBlocks.COPPER_PRESSURE_PLATES, states);
-        addChainFromMap(ModBlocks.COPPER_RAILS, states);
-        addChainFromMap(ModBlocks.COPPER_SOUL_LANTERNS, states);
     }
 
     private static void registerItemTransitions() {
         String[] states = {"", "exposed_", "weathered_", "oxidized_"};
-        String[] tools = {"axe", "pickaxe", "shovel", "hoe", "sword", "shears"};
-        String[] armor = {"helmet", "chestplate", "leggings", "boots", "horse_armor"};
-
-        // Map Tool Transitions
-        for (String tool : tools) {
-            Item base = getItem("minecraft:copper_" + tool);
-            Item exposed = getItem("ott:exposed_copper_" + tool);
-            Item weathered = getItem("ott:weathered_copper_" + tool);
-            Item oxidized = getItem("ott:oxidized_copper_" + tool);
-
-            addItemChain(base, exposed, weathered, oxidized);
-
-            // Waxed versions
-            addItemWaxing(base, getItem("ott:waxed_copper_" + tool));
-            addItemWaxing(exposed, getItem("ott:waxed_exposed_copper_" + tool));
-            addItemWaxing(weathered, getItem("ott:waxed_weathered_copper_" + tool));
-            addItemWaxing(oxidized, getItem("ott:waxed_oxidized_copper_" + tool));
-        }
-
-        // Map Armor Transitions
-        for (String part : armor) {
-            Item base = getItem("minecraft:copper_" + part);
-            Item exposed = getItem("ott:exposed_copper_" + part);
-            Item weathered = getItem("ott:weathered_copper_" + part);
-            Item oxidized = getItem("ott:oxidized_copper_" + part);
-
-            addItemChain(base, exposed, weathered, oxidized);
-
-            // Waxed versions
-            addItemWaxing(base, getItem("ott:waxed_copper_" + part));
-            addItemWaxing(exposed, getItem("ott:waxed_exposed_copper_" + part));
-            addItemWaxing(weathered, getItem("ott:waxed_weathered_copper_" + part));
-            addItemWaxing(oxidized, getItem("ott:waxed_oxidized_copper_" + part));
-        }
 
         // Add transitions for block items by linking to the block transitions
         for (Map.Entry<Block, Block> entry : NEXT_BY_STATE.entrySet()) {
@@ -119,24 +65,19 @@ public class WeatheringHandler {
         return BuiltInRegistries.ITEM.get(ResourceLocation.parse(id));
     }
 
-    private static void addChainFromMap(Map<String, ? extends DeferredBlock<? extends Block>> map, String[] states) {
+    private static void addChainFromMap(Map<String, ? extends Supplier<? extends Block>> map, String[] states) {
         for (int i = 0; i < states.length - 1; i++) {
-            DeferredBlock<? extends Block> original = map.get(states[i]);
-            DeferredBlock<? extends Block> next = map.get(states[i+1]);
-            if (original != null && next != null) {
+            Supplier<? extends Block> original = map.get(states[i]);
+            Supplier<? extends Block> next = map.get(states[i+1]);
+            if (original != null && next != null && original.get() != null && next.get() != null) {
                 addWeatheringTransition(original.get(), next.get());
-            } else if (states[i].isEmpty() && next != null) {
-                // Special case: if base state is missing (e.g. lightning_rod), use vanilla
-                addWeatheringTransition(net.minecraft.world.level.block.Blocks.LIGHTNING_ROD, next.get());
             }
         }
         for (String state : states) {
-            DeferredBlock<? extends Block> original = map.get(state);
-            DeferredBlock<? extends Block> waxed = map.get("waxed_" + state);
-            if (original != null && waxed != null) {
+            Supplier<? extends Block> original = map.get(state);
+            Supplier<? extends Block> waxed = map.get("waxed_" + state);
+            if (original != null && waxed != null && original.get() != null && waxed.get() != null) {
                 addWaxingTransition(original.get(), waxed.get());
-            } else if (state.isEmpty() && waxed != null) {
-                addWaxingTransition(net.minecraft.world.level.block.Blocks.LIGHTNING_ROD, waxed.get());
             }
         }
     }

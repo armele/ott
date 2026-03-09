@@ -19,7 +19,7 @@ public class Copper3DBlockItem extends BlockItem {
         consumer.accept(new IClientItemExtensions() {
             @Override
             public @NotNull net.minecraft.client.renderer.BlockEntityWithoutLevelRenderer getCustomRenderer() {
-                return com.otterly76.ott.client.render.item.CopperItemRenderer.INSTANCE;
+                return com.otterly76.ott.client.render.item.CopperItemRenderer.getInstance();
             }
         });
     }

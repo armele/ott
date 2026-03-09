@@ -7,6 +7,8 @@ import com.otterly76.ott.util.block.CreakingHeartState;
 import com.otterly76.ott.block.custom.HangingMossBlock;
 import com.otterly76.ott.block.custom.MossyCarpetBlock;
 import net.minecraft.core.Direction;
+import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.world.level.block.state.properties.ChestType;
 import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.block.*;
@@ -308,17 +310,165 @@ public class MinecraftBackportBlockStateProvider extends ModBlockStateProvider {
         });
         itemModels().withExistingParent("dried_ghast", mcLoc("block/dried_ghast_hydration_0"));
 
-        simpleBlockWithItem(ModBlocks.CACTUS_FLOWER.get(), models().cross("cactus_flower", mcLoc("block/cactus_flower")).renderType("cutout"));
+        // Cactus Flower
+        getVariantBuilder(ModBlocks.CACTUS_FLOWER.get()).partialState().setModels(new ConfiguredModel(models().getExistingFile(mcLoc("block/cactus_flower"))));
+
+        // Dry Grass
         simpleBlockWithItem(ModBlocks.SHORT_DRY_GRASS.get(), models().cross("short_dry_grass", mcLoc("block/short_dry_grass")).renderType("cutout"));
         simpleBlockWithItem(ModBlocks.TALL_DRY_GRASS.get(), models().cross("tall_dry_grass", mcLoc("block/tall_dry_grass")).renderType("cutout"));
-        
-        getVariantBuilder(ModBlocks.PALE_OAK_LEAVES.get()).partialState().addModels(
-                new ConfiguredModel(models().getExistingFile(mcLoc("block/pale_oak_leaves")), 0, 0, false, 1),
-                new ConfiguredModel(models().getExistingFile(mcLoc("block/pale_oak_leaves1")), 0, 0, false, 1),
-                new ConfiguredModel(models().getExistingFile(mcLoc("block/pale_oak_leaves2")), 0, 0, false, 1),
-                new ConfiguredModel(models().getExistingFile(mcLoc("block/pale_oak_leaves3")), 0, 0, false, 1),
-                new ConfiguredModel(models().getExistingFile(mcLoc("block/pale_oak_leaves4")), 0, 0, false, 1)
-        );
+
+        // Copper Blocks
+        String[] copperStates = {"", "exposed_", "weathered_", "oxidized_"};
+        for (String state : copperStates) {
+            String waxedPrefix = "waxed_" + state;
+
+            // Bars
+            registerCopperBars(ModBlocks.COPPER_BARS.get(state).get(), mcLoc("block/" + state + "copper_bars"));
+            registerCopperBars(ModBlocks.COPPER_BARS.get(waxedPrefix).get(), mcLoc("block/" + state + "copper_bars"));
+
+            // Buttons
+            String blockTexturePath = state.isEmpty() ? "copper_block" : state + "copper";
+            ResourceLocation blockTexture = mcLoc("block/" + blockTexturePath);
+            buttonBlock((ButtonBlock) ModBlocks.COPPER_BUTTONS.get(state).get(), blockTexture);
+            buttonBlock((ButtonBlock) ModBlocks.COPPER_BUTTONS.get(waxedPrefix).get(), blockTexture);
+
+            // Generate the button inventory model for the item to reference:
+            models().withExistingParent(state + "copper_button_inventory", mcLoc("block/button_inventory"))
+                    .texture("texture", blockTexture);
+            models().withExistingParent(waxedPrefix + "copper_button_inventory", mcLoc("block/button_inventory"))
+                    .texture("texture", blockTexture);
+
+            // Doors
+            registerCutoutDoor((DoorBlock) ModBlocks.COPPER_DOORS.get(state).get(), mcLoc("block/" + state + "copper_door_bottom"), mcLoc("block/" + state + "copper_door_top"));
+            registerCutoutDoor((DoorBlock) ModBlocks.COPPER_DOORS.get(waxedPrefix).get(), mcLoc("block/" + state + "copper_door_bottom"), mcLoc("block/" + state + "copper_door_top"));
+
+            // Trapdoors
+            registerCutoutTrapdoor((TrapDoorBlock) ModBlocks.COPPER_TRAPDOORS.get(state).get(), mcLoc("block/" + state + "copper_trapdoor"));
+            registerCutoutTrapdoor((TrapDoorBlock) ModBlocks.COPPER_TRAPDOORS.get(waxedPrefix).get(), mcLoc("block/" + state + "copper_trapdoor"));
+
+            // Lanterns
+            registerCopperLantern(ModBlocks.COPPER_LANTERNS.get(state).get(), mcLoc("block/" + state + "copper_lantern"));
+            registerCopperLantern(ModBlocks.COPPER_LANTERNS.get(waxedPrefix).get(), mcLoc("block/" + state + "copper_lantern"));
+
+            // Golem Statues
+            registerCopperGolemStatue(ModBlocks.COPPER_GOLEM_STATUES.get(state).get(), blockTexture);
+            registerCopperGolemStatue(ModBlocks.COPPER_GOLEM_STATUES.get(waxedPrefix).get(), blockTexture);
+
+            // Lightning Rods
+            Block rod = state.isEmpty() ? Blocks.LIGHTNING_ROD : ModBlocks.LIGHTNING_RODS.get(state).get();
+            registerLightningRod(rod, state);
+            registerLightningRod(ModBlocks.LIGHTNING_RODS.get(waxedPrefix).get(), state);
+
+            // Grates
+            registerCopperGrate(BuiltInRegistries.BLOCK.get(mcLoc(state + "copper_grate")), state);
+            registerCopperGrate(BuiltInRegistries.BLOCK.get(mcLoc(waxedPrefix + "copper_grate")), state);
+        }
+
+        // Chests (They are not in a map)
+        registerCopperChest(ModBlocks.COPPER_CHEST.get(), mcLoc("block/copper_block"));
+        registerCopperChest(ModBlocks.EXPOSED_COPPER_CHEST.get(), mcLoc("block/exposed_copper"));
+        registerCopperChest(ModBlocks.WEATHERED_COPPER_CHEST.get(), mcLoc("block/weathered_copper"));
+        registerCopperChest(ModBlocks.OXIDIZED_COPPER_CHEST.get(), mcLoc("block/oxidized_copper"));
+        registerCopperChest(ModBlocks.WAXED_COPPER_CHEST.get(), mcLoc("block/copper_block"));
+        registerCopperChest(ModBlocks.WAXED_EXPOSED_COPPER_CHEST.get(), mcLoc("block/exposed_copper"));
+        registerCopperChest(ModBlocks.WAXED_WEATHERED_COPPER_CHEST.get(), mcLoc("block/weathered_copper"));
+        registerCopperChest(ModBlocks.WAXED_OXIDIZED_COPPER_CHEST.get(), mcLoc("block/oxidized_copper"));
+    }
+
+    protected void registerCopperBars(Block block, ResourceLocation texture) {
+        String name = BuiltInRegistries.BLOCK.getKey(block).getPath();
+        ModelFile post = models().withExistingParent(name + "_post", mcLoc("block/template_bars_post")).texture("bars", texture).texture("edge", texture);
+        ModelFile side = models().withExistingParent(name + "_side", mcLoc("block/template_bars_side")).texture("bars", texture).texture("edge", texture);
+        ModelFile sideAlt = models().withExistingParent(name + "_side_alt", mcLoc("block/template_bars_side_alt")).texture("bars", texture).texture("edge", texture);
+        ModelFile cap = models().withExistingParent(name + "_cap", mcLoc("block/template_bars_cap")).texture("bars", texture).texture("edge", texture);
+        ModelFile capAlt = models().withExistingParent(name + "_cap_alt", mcLoc("block/template_bars_cap_alt")).texture("bars", texture).texture("edge", texture);
+        ModelFile postEnds = models().withExistingParent(name + "_post_ends", mcLoc("block/template_bars_post_ends")).texture("bars", texture).texture("edge", texture);
+
+        MultiPartBlockStateBuilder builder = getMultipartBuilder(block);
+
+        builder.part().modelFile(postEnds).addModel().end();
+        builder.part().modelFile(post).addModel().condition(NORTH, false).condition(EAST, false).condition(SOUTH, false).condition(WEST, false).end();
+        builder.part().modelFile(cap).addModel().condition(NORTH, true).condition(EAST, false).condition(SOUTH, false).condition(WEST, false).end();
+        builder.part().modelFile(cap).rotationY(90).addModel().condition(NORTH, false).condition(EAST, true).condition(SOUTH, false).condition(WEST, false).end();
+        builder.part().modelFile(capAlt).addModel().condition(NORTH, false).condition(EAST, false).condition(SOUTH, true).condition(WEST, false).end();
+        builder.part().modelFile(capAlt).rotationY(90).addModel().condition(NORTH, false).condition(EAST, false).condition(SOUTH, false).condition(WEST, true).end();
+        builder.part().modelFile(side).addModel().condition(NORTH, true).end();
+        builder.part().modelFile(side).rotationY(90).addModel().condition(EAST, true).end();
+        builder.part().modelFile(sideAlt).addModel().condition(SOUTH, true).end();
+        builder.part().modelFile(sideAlt).rotationY(90).addModel().condition(WEST, true).end();
+    }
+
+    protected void registerCopperLantern(Block block, ResourceLocation texture) {
+        String name = BuiltInRegistries.BLOCK.getKey(block).getPath();
+        ModelFile lantern = models().withExistingParent(name, mcLoc("block/template_lantern"))
+                .texture("lantern", texture);
+        ModelFile hangingLantern = models().withExistingParent(name + "_hanging", mcLoc("block/template_hanging_lantern"))
+                .texture("lantern", texture);
+
+        getVariantBuilder(block).forAllStates(state -> {
+            boolean hanging = state.getValue(LanternBlock.HANGING);
+            return ConfiguredModel.builder()
+                    .modelFile(hanging ? hangingLantern : lantern)
+                    .build();
+        });
+    }
+
+    protected void registerCopperGolemStatue(Block block, ResourceLocation texture) {
+        String name = BuiltInRegistries.BLOCK.getKey(block).getPath();
+        ModelFile model = models().withExistingParent(name, mcLoc("block/block"))
+                .texture("particle", texture);
+
+        getVariantBuilder(block).forAllStates(state -> {
+            Direction facing = state.getValue(HorizontalDirectionalBlock.FACING);
+            return ConfiguredModel.builder()
+                    .modelFile(model)
+                    .rotationY((int) facing.toYRot())
+                    .build();
+        });
+    }
+
+    protected void registerCopperChest(Block block, ResourceLocation texture) {
+        String name = BuiltInRegistries.BLOCK.getKey(block).getPath();
+        ModelFile model = models().withExistingParent(name, mcLoc("block/cube_all"))
+                .texture("all", texture);
+        ModelFile modelLeft = models().withExistingParent(name + "_left", mcLoc("block/cube_all"))
+                .texture("all", texture);
+        ModelFile modelRight = models().withExistingParent(name + "_right", mcLoc("block/cube_all"))
+                .texture("all", texture);
+
+        getVariantBuilder(block).forAllStates(state -> {
+            Direction facing = state.getValue(ChestBlock.FACING);
+            ChestType type = state.getValue(ChestBlock.TYPE);
+            ModelFile m = type == ChestType.LEFT ? modelLeft : (type == ChestType.RIGHT ? modelRight : model);
+            return ConfiguredModel.builder()
+                    .modelFile(m)
+                    .rotationY((int) facing.toYRot())
+                    .build();
+        });
+    }
+
+    protected void registerLightningRod(Block block, String state) {
+        String name = BuiltInRegistries.BLOCK.getKey(block).getPath();
+        ModelFile model = models().withExistingParent(name, mcLoc("block/template_lightning_rod"))
+                .texture("texture", mcLoc("block/" + state + "lightning_rod"));
+
+        getVariantBuilder(block).forAllStates(s -> {
+            Direction facing = s.getValue(LightningRodBlock.FACING);
+            return ConfiguredModel.builder()
+                    .modelFile(model)
+                    .rotationX(facing == Direction.DOWN ? 180 : (facing.getAxis().isHorizontal() ? 90 : 0))
+                    .rotationY(facing.getAxis().isVertical() ? 0 : (int) facing.toYRot())
+                    .build();
+        });
+    }
+
+    protected void registerCopperGrate(Block block, String state) {
+        String name = BuiltInRegistries.BLOCK.getKey(block).getPath();
+        ModelFile model = models().withExistingParent(name, mcLoc("block/template_copper_grate"))
+                .texture("all", mcLoc("block/" + state + "copper_grate"))
+                .texture("particle", mcLoc("block/" + state + "copper_grate"));
+
+        simpleBlock(block, model);
     }
 
     private ModelFile resinClumpModel() {

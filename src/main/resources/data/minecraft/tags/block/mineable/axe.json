@@ -1,6 +1,6 @@
 {
     "replace":  false,
-    "values":  [
+    "values": [
                    "minecraft:oak_shelf",
                    "minecraft:spruce_shelf",
                    "minecraft:birch_shelf",
@@ -14,12 +14,8 @@
                    "minecraft:warped_shelf",
                    {
                        "id":  "minecraft:pale_oak_shelf",
-                       "required":  false
-                   },
-                   {
-                       "id":  "minecraft:pale_oak_shelf",
-                       "required":  false
-                   },
-                   "ott:weathering_station"
+                   "required":  false
+                   }
                ]
 }
+

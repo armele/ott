@@ -1,5 +1,7 @@
 {
-    "values":  [
-                   "ott:copper_leggings"
+    "replace":  false,
+    "values": [
+                   "minecraft:copper_leggings"
                ]
 }
+

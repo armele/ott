@@ -16,7 +16,14 @@ import net.minecraft.world.level.block.Block;
 import org.jetbrains.annotations.NotNull;
 
 public class CopperItemRenderer extends BlockEntityWithoutLevelRenderer {
-    public static final CopperItemRenderer INSTANCE = new CopperItemRenderer();
+    private static CopperItemRenderer INSTANCE;
+
+    public static CopperItemRenderer getInstance() {
+        if (INSTANCE == null) {
+            INSTANCE = new CopperItemRenderer();
+        }
+        return INSTANCE;
+    }
 
     public CopperItemRenderer() {
         super(Minecraft.getInstance().getBlockEntityRenderDispatcher(), Minecraft.getInstance().getEntityModels());

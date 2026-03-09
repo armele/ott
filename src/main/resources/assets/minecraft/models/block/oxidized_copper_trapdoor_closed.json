@@ -1,8 +1,0 @@
-{
-	"parent": "block/copper_trapdoor_closed",
-	"textures": {
-		"particle": "block/oxidized_copper_trapdoor",
-		"texture": "block/oxidized_copper_trapdoor",
-		"extra": "block/oxidized_copper_trapdoor_extra"
-	}
-}

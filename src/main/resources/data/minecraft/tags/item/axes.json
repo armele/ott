@@ -1,5 +1,7 @@
 {
-    "values":  [
-                   "ott:copper_axe"
+    "replace":  false,
+    "values": [
+                   "minecraft:copper_axe"
                ]
 }
+

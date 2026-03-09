@@ -95,7 +95,6 @@ public class ModItems {
     public static void register(IEventBus eventBus) {
         // 1. Run dynamic logic to set up the registration entries
         initializeDynamicItems();
-        registerCopperItems();
 
         // 2. Attach the registers to the mod event bus
         ITEMS.register(eventBus);
@@ -212,86 +211,5 @@ public class ModItems {
         return MINECRAFT_ITEMS.register("pale_oak_hanging_sign", () -> new HangingSignItem(ModBlocks.PALE_OAK_HANGING_SIGN.get(), ModBlocks.PALE_OAK_WALL_HANGING_SIGN.get(), new Item.Properties().stacksTo(16)));
     }
 
-    private static void registerCopperItems() {
-        registerBlockItem("weathering_station", ModBlocks.WEATHERING_STATION);
-
-        String[] stages = {"", "exposed_", "weathered_", "oxidized_"};
-        for (String stage : stages) {
-            registerBlockItem(ModBlocks.COPPER_ANVILS.get(stage));
-            registerBlockItem(ModBlocks.CHIPPED_COPPER_ANVILS.get(stage));
-            registerBlockItem(ModBlocks.DAMAGED_COPPER_ANVILS.get(stage));
-
-            registerBlockItem(ModBlocks.COPPER_CAULDRONS.get(stage));
-            registerBlockItem(ModBlocks.COPPER_WATER_CAULDRONS.get(stage));
-            registerBlockItem(ModBlocks.COPPER_LAVA_CAULDRONS.get(stage));
-            registerBlockItem(ModBlocks.COPPER_POWDER_SNOW_CAULDRONS.get(stage));
-
-            registerBlockItem(ModBlocks.COPPER_HOPPERS.get(stage));
-            registerBlockItem(ModBlocks.COPPER_LADDERS.get(stage));
-            registerBlockItem(ModBlocks.COPPER_PRESSURE_PLATES.get(stage));
-            registerBlockItem(ModBlocks.COPPER_RAILS.get(stage));
-            registerBlockItem(ModBlocks.COPPER_SOUL_LANTERNS.get(stage));
-
-            // Waxed versions
-            String waxedSuffix = "waxed_" + stage;
-            registerBlockItem(ModBlocks.COPPER_ANVILS.get(waxedSuffix));
-            registerBlockItem(ModBlocks.CHIPPED_COPPER_ANVILS.get(waxedSuffix));
-            registerBlockItem(ModBlocks.DAMAGED_COPPER_ANVILS.get(waxedSuffix));
-
-            registerBlockItem(ModBlocks.COPPER_CAULDRONS.get(waxedSuffix));
-            registerBlockItem(ModBlocks.COPPER_WATER_CAULDRONS.get(waxedSuffix));
-            registerBlockItem(ModBlocks.COPPER_LAVA_CAULDRONS.get(waxedSuffix));
-            registerBlockItem(ModBlocks.COPPER_POWDER_SNOW_CAULDRONS.get(waxedSuffix));
-
-            registerBlockItem(ModBlocks.COPPER_HOPPERS.get(waxedSuffix));
-            registerBlockItem(ModBlocks.COPPER_LADDERS.get(waxedSuffix));
-            registerBlockItem(ModBlocks.COPPER_PRESSURE_PLATES.get(waxedSuffix));
-            registerBlockItem(ModBlocks.COPPER_RAILS.get(waxedSuffix));
-            registerBlockItem(ModBlocks.COPPER_SOUL_LANTERNS.get(waxedSuffix));
-        }
-
-        // Buckets
-        ITEMS.register("copper_bucket", () -> new BucketItem(Fluids.EMPTY, new Item.Properties().stacksTo(16)));
-        ITEMS.register("copper_water_bucket", () -> new BucketItem(Fluids.WATER, new Item.Properties().stacksTo(1).craftRemainder(Items.BUCKET)));
-        ITEMS.register("copper_lava_bucket", () -> new BucketItem(Fluids.LAVA, new Item.Properties().stacksTo(1).craftRemainder(Items.BUCKET)));
-        ITEMS.register("copper_powder_snow_bucket", () -> new SolidBucketItem(net.minecraft.world.level.block.Blocks.POWDER_SNOW, SoundEvents.BUCKET_EMPTY_POWDER_SNOW, new Item.Properties().stacksTo(1)));
-
-        // Tools and Armor Weathering Versions
-        for (String stage : stages) {
-            if (stage.isEmpty()) continue; // Unaffected versions are in the 'minecraft' namespace and already registered
-            String baseName = stage + "copper_";
-
-            ITEMS.register(baseName + "axe", () -> new AxeItem(ModToolMaterials.COPPER, (new Item.Properties()).attributes(AxeItem.createAttributes(ModToolMaterials.COPPER, 6.0F, -3.1F))));
-            ITEMS.register(baseName + "pickaxe", () -> new PickaxeItem(ModToolMaterials.COPPER, (new Item.Properties()).attributes(PickaxeItem.createAttributes(ModToolMaterials.COPPER, 1.0F, -2.8F))));
-            ITEMS.register(baseName + "shovel", () -> new ShovelItem(ModToolMaterials.COPPER, (new Item.Properties()).attributes(ShovelItem.createAttributes(ModToolMaterials.COPPER, 1.5F, -3.0F))));
-            ITEMS.register(baseName + "hoe", () -> new HoeItem(ModToolMaterials.COPPER, (new Item.Properties()).attributes(HoeItem.createAttributes(ModToolMaterials.COPPER, -2.0F, -1.0F))));
-            ITEMS.register(baseName + "sword", () -> new SwordItem(ModToolMaterials.COPPER, (new Item.Properties()).attributes(SwordItem.createAttributes(ModToolMaterials.COPPER, 3, -2.4F))));
-            ITEMS.register(baseName + "shears", () -> new ShearsItem(new Item.Properties().durability(238)));
-
-            ITEMS.register(baseName + "helmet", () -> new ArmorItem(ModArmorMaterials.COPPER, ArmorItem.Type.HELMET, (new Item.Properties()).durability(ArmorItem.Type.HELMET.getDurability(5))));
-            ITEMS.register(baseName + "chestplate", () -> new ArmorItem(ModArmorMaterials.COPPER, ArmorItem.Type.CHESTPLATE, (new Item.Properties()).durability(ArmorItem.Type.CHESTPLATE.getDurability(5))));
-            ITEMS.register(baseName + "leggings", () -> new ArmorItem(ModArmorMaterials.COPPER, ArmorItem.Type.LEGGINGS, (new Item.Properties()).durability(ArmorItem.Type.LEGGINGS.getDurability(5))));
-            ITEMS.register(baseName + "boots", () -> new ArmorItem(ModArmorMaterials.COPPER, ArmorItem.Type.BOOTS, (new Item.Properties()).durability(ArmorItem.Type.BOOTS.getDurability(5))));
-            ITEMS.register(baseName + "horse_armor", () -> new AnimalArmorItem(ModArmorMaterials.COPPER, AnimalArmorItem.BodyType.EQUESTRIAN, false, (new Item.Properties()).stacksTo(1)));
-        }
-
-        // Waxed versions (including unaffected)
-        for (String stage : stages) {
-            String waxedBaseName = "waxed_" + (stage.isEmpty() ? "" : stage) + "copper_";
-
-            ITEMS.register(waxedBaseName + "axe", () -> new AxeItem(ModToolMaterials.COPPER, (new Item.Properties()).attributes(AxeItem.createAttributes(ModToolMaterials.COPPER, 6.0F, -3.1F))));
-            ITEMS.register(waxedBaseName + "pickaxe", () -> new PickaxeItem(ModToolMaterials.COPPER, (new Item.Properties()).attributes(PickaxeItem.createAttributes(ModToolMaterials.COPPER, 1.0F, -2.8F))));
-            ITEMS.register(waxedBaseName + "shovel", () -> new ShovelItem(ModToolMaterials.COPPER, (new Item.Properties()).attributes(ShovelItem.createAttributes(ModToolMaterials.COPPER, 1.5F, -3.0F))));
-            ITEMS.register(waxedBaseName + "hoe", () -> new HoeItem(ModToolMaterials.COPPER, (new Item.Properties()).attributes(HoeItem.createAttributes(ModToolMaterials.COPPER, -2.0F, -1.0F))));
-            ITEMS.register(waxedBaseName + "sword", () -> new SwordItem(ModToolMaterials.COPPER, (new Item.Properties()).attributes(SwordItem.createAttributes(ModToolMaterials.COPPER, 3, -2.4F))));
-            ITEMS.register(waxedBaseName + "shears", () -> new ShearsItem(new Item.Properties().durability(238)));
-
-            ITEMS.register(waxedBaseName + "helmet", () -> new ArmorItem(ModArmorMaterials.COPPER, ArmorItem.Type.HELMET, (new Item.Properties()).durability(ArmorItem.Type.HELMET.getDurability(5))));
-            ITEMS.register(waxedBaseName + "chestplate", () -> new ArmorItem(ModArmorMaterials.COPPER, ArmorItem.Type.CHESTPLATE, (new Item.Properties()).durability(ArmorItem.Type.CHESTPLATE.getDurability(5))));
-            ITEMS.register(waxedBaseName + "leggings", () -> new ArmorItem(ModArmorMaterials.COPPER, ArmorItem.Type.LEGGINGS, (new Item.Properties()).durability(ArmorItem.Type.LEGGINGS.getDurability(5))));
-            ITEMS.register(waxedBaseName + "boots", () -> new ArmorItem(ModArmorMaterials.COPPER, ArmorItem.Type.BOOTS, (new Item.Properties()).durability(ArmorItem.Type.BOOTS.getDurability(5))));
-            ITEMS.register(waxedBaseName + "horse_armor", () -> new AnimalArmorItem(ModArmorMaterials.COPPER, AnimalArmorItem.BodyType.EQUESTRIAN, false, (new Item.Properties()).stacksTo(1)));
-        }
-    }
 
 }
