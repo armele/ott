@@ -82,6 +82,70 @@ public class ModArmorMaterials {
             0.0F
     ));
 
+    public static final DeferredHolder<ArmorMaterial, ArmorMaterial> COPPER_CHAINMAIL = ARMOR_MATERIALS.register("copper_chainmail", () -> new ArmorMaterial(
+            Util.make(new EnumMap<>(ArmorItem.Type.class), map -> {
+                map.put(ArmorItem.Type.BOOTS, 1);
+                map.put(ArmorItem.Type.LEGGINGS, 4);
+                map.put(ArmorItem.Type.CHESTPLATE, 5);
+                map.put(ArmorItem.Type.HELMET, 2);
+                map.put(ArmorItem.Type.BODY, 4);
+            }),
+            12,
+            SoundEvents.ARMOR_EQUIP_CHAIN,
+            () -> Ingredient.of(Items.COPPER_INGOT),
+            List.of(new ArmorMaterial.Layer(ResourceLocation.withDefaultNamespace("copper_chainmail"))),
+            0.0F,
+            0.0F
+    ));
+
+    public static final DeferredHolder<ArmorMaterial, ArmorMaterial> EXPOSED_COPPER_CHAINMAIL = ARMOR_MATERIALS.register("exposed_copper_chainmail", () -> new ArmorMaterial(
+            Util.make(new EnumMap<>(ArmorItem.Type.class), map -> {
+                map.put(ArmorItem.Type.BOOTS, 1);
+                map.put(ArmorItem.Type.LEGGINGS, 4);
+                map.put(ArmorItem.Type.CHESTPLATE, 5);
+                map.put(ArmorItem.Type.HELMET, 2);
+                map.put(ArmorItem.Type.BODY, 4);
+            }),
+            12,
+            SoundEvents.ARMOR_EQUIP_CHAIN,
+            () -> Ingredient.of(Items.COPPER_INGOT),
+            List.of(new ArmorMaterial.Layer(ResourceLocation.withDefaultNamespace("exposed_copper_chainmail"))),
+            0.0F,
+            0.0F
+    ));
+
+    public static final DeferredHolder<ArmorMaterial, ArmorMaterial> WEATHERED_COPPER_CHAINMAIL = ARMOR_MATERIALS.register("weathered_copper_chainmail", () -> new ArmorMaterial(
+            Util.make(new EnumMap<>(ArmorItem.Type.class), map -> {
+                map.put(ArmorItem.Type.BOOTS, 1);
+                map.put(ArmorItem.Type.LEGGINGS, 4);
+                map.put(ArmorItem.Type.CHESTPLATE, 5);
+                map.put(ArmorItem.Type.HELMET, 2);
+                map.put(ArmorItem.Type.BODY, 4);
+            }),
+            12,
+            SoundEvents.ARMOR_EQUIP_CHAIN,
+            () -> Ingredient.of(Items.COPPER_INGOT),
+            List.of(new ArmorMaterial.Layer(ResourceLocation.withDefaultNamespace("weathered_copper_chainmail"))),
+            0.0F,
+            0.0F
+    ));
+
+    public static final DeferredHolder<ArmorMaterial, ArmorMaterial> OXIDIZED_COPPER_CHAINMAIL = ARMOR_MATERIALS.register("oxidized_copper_chainmail", () -> new ArmorMaterial(
+            Util.make(new EnumMap<>(ArmorItem.Type.class), map -> {
+                map.put(ArmorItem.Type.BOOTS, 1);
+                map.put(ArmorItem.Type.LEGGINGS, 4);
+                map.put(ArmorItem.Type.CHESTPLATE, 5);
+                map.put(ArmorItem.Type.HELMET, 2);
+                map.put(ArmorItem.Type.BODY, 4);
+            }),
+            12,
+            SoundEvents.ARMOR_EQUIP_CHAIN,
+            () -> Ingredient.of(Items.COPPER_INGOT),
+            List.of(new ArmorMaterial.Layer(ResourceLocation.withDefaultNamespace("oxidized_copper_chainmail"))),
+            0.0F,
+            0.0F
+    ));
+
     public static void register(IEventBus eventBus) {
         ARMOR_MATERIALS.register(eventBus);
     }

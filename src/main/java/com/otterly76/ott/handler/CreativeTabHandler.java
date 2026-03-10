@@ -278,6 +278,10 @@ public class CreativeTabHandler {
             insertAllAfter(event, Items.EGG, List.of(ModItems.BROWN_EGG, ModItems.BLUE_EGG), visibility);
 
             safeInsertAfter(event, Items.COPPER_INGOT.getDefaultInstance(), new ItemStack(ModItems.COPPER_NUGGET.get()), visibility);
+            safeInsertAfter(event, ModItems.COPPER_NUGGET.get().getDefaultInstance(), new ItemStack(ModBlocks.COPPER_CHAINS.get("").get()), visibility);
+            safeInsertAfter(event, ModBlocks.COPPER_CHAINS.get("").get().asItem().getDefaultInstance(), new ItemStack(ModBlocks.COPPER_CHAINS.get("exposed_").get()), visibility);
+            safeInsertAfter(event, ModBlocks.COPPER_CHAINS.get("exposed_").get().asItem().getDefaultInstance(), new ItemStack(ModBlocks.COPPER_CHAINS.get("weathered_").get()), visibility);
+            safeInsertAfter(event, ModBlocks.COPPER_CHAINS.get("weathered_").get().asItem().getDefaultInstance(), new ItemStack(ModBlocks.COPPER_CHAINS.get("oxidized_").get()), visibility);
 
             safeAccept(event, ModItems.TINY_COAL, visibility);
             safeAccept(event, ModItems.TINY_CHARCOAL, visibility);
@@ -289,7 +293,38 @@ public class CreativeTabHandler {
                     ModItems.COPPER_HELMET,
                     ModItems.COPPER_CHESTPLATE,
                     ModItems.COPPER_LEGGINGS,
-                    ModItems.COPPER_BOOTS
+                    ModItems.COPPER_BOOTS,
+                    ModItems.EXPOSED_COPPER_HELMET,
+                    ModItems.EXPOSED_COPPER_CHESTPLATE,
+                    ModItems.EXPOSED_COPPER_LEGGINGS,
+                    ModItems.EXPOSED_COPPER_BOOTS,
+                    ModItems.WEATHERED_COPPER_HELMET,
+                    ModItems.WEATHERED_COPPER_CHESTPLATE,
+                    ModItems.WEATHERED_COPPER_LEGGINGS,
+                    ModItems.WEATHERED_COPPER_BOOTS,
+                    ModItems.OXIDIZED_COPPER_HELMET,
+                    ModItems.OXIDIZED_COPPER_CHESTPLATE,
+                    ModItems.OXIDIZED_COPPER_LEGGINGS,
+                    ModItems.OXIDIZED_COPPER_BOOTS
+            ), visibility);
+
+            insertAllAfter(event, Items.CHAINMAIL_BOOTS, List.of(
+                    ModItems.COPPER_CHAINMAIL_HELMET,
+                    ModItems.COPPER_CHAINMAIL_CHESTPLATE,
+                    ModItems.COPPER_CHAINMAIL_LEGGINGS,
+                    ModItems.COPPER_CHAINMAIL_BOOTS,
+                    ModItems.EXPOSED_COPPER_CHAINMAIL_HELMET,
+                    ModItems.EXPOSED_COPPER_CHAINMAIL_CHESTPLATE,
+                    ModItems.EXPOSED_COPPER_CHAINMAIL_LEGGINGS,
+                    ModItems.EXPOSED_COPPER_CHAINMAIL_BOOTS,
+                    ModItems.WEATHERED_COPPER_CHAINMAIL_HELMET,
+                    ModItems.WEATHERED_COPPER_CHAINMAIL_CHESTPLATE,
+                    ModItems.WEATHERED_COPPER_CHAINMAIL_LEGGINGS,
+                    ModItems.WEATHERED_COPPER_CHAINMAIL_BOOTS,
+                    ModItems.OXIDIZED_COPPER_CHAINMAIL_HELMET,
+                    ModItems.OXIDIZED_COPPER_CHAINMAIL_CHESTPLATE,
+                    ModItems.OXIDIZED_COPPER_CHAINMAIL_LEGGINGS,
+                    ModItems.OXIDIZED_COPPER_CHAINMAIL_BOOTS
             ), visibility);
 
             safeInsertAfter(event, Items.GOLDEN_HORSE_ARMOR.getDefaultInstance(), new ItemStack(ModItems.COPPER_HORSE_ARMOR.get()), visibility);

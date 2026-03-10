@@ -63,6 +63,18 @@ public class WeatheringHandler {
 
         // Horse Armor
         addItemChain(ModItems.COPPER_HORSE_ARMOR.get(), ModItems.EXPOSED_COPPER_HORSE_ARMOR.get(), ModItems.WEATHERED_COPPER_HORSE_ARMOR.get(), ModItems.OXIDIZED_COPPER_HORSE_ARMOR.get());
+
+        // Plate Armor
+        addItemChain(ModItems.COPPER_HELMET.get(), ModItems.EXPOSED_COPPER_HELMET.get(), ModItems.WEATHERED_COPPER_HELMET.get(), ModItems.OXIDIZED_COPPER_HELMET.get());
+        addItemChain(ModItems.COPPER_CHESTPLATE.get(), ModItems.EXPOSED_COPPER_CHESTPLATE.get(), ModItems.WEATHERED_COPPER_CHESTPLATE.get(), ModItems.OXIDIZED_COPPER_CHESTPLATE.get());
+        addItemChain(ModItems.COPPER_LEGGINGS.get(), ModItems.EXPOSED_COPPER_LEGGINGS.get(), ModItems.WEATHERED_COPPER_LEGGINGS.get(), ModItems.OXIDIZED_COPPER_LEGGINGS.get());
+        addItemChain(ModItems.COPPER_BOOTS.get(), ModItems.EXPOSED_COPPER_BOOTS.get(), ModItems.WEATHERED_COPPER_BOOTS.get(), ModItems.OXIDIZED_COPPER_BOOTS.get());
+
+        // Chainmail Armor
+        addItemChain(ModItems.COPPER_CHAINMAIL_HELMET.get(), ModItems.EXPOSED_COPPER_CHAINMAIL_HELMET.get(), ModItems.WEATHERED_COPPER_CHAINMAIL_HELMET.get(), ModItems.OXIDIZED_COPPER_CHAINMAIL_HELMET.get());
+        addItemChain(ModItems.COPPER_CHAINMAIL_CHESTPLATE.get(), ModItems.EXPOSED_COPPER_CHAINMAIL_CHESTPLATE.get(), ModItems.WEATHERED_COPPER_CHAINMAIL_CHESTPLATE.get(), ModItems.OXIDIZED_COPPER_CHAINMAIL_CHESTPLATE.get());
+        addItemChain(ModItems.COPPER_CHAINMAIL_LEGGINGS.get(), ModItems.EXPOSED_COPPER_CHAINMAIL_LEGGINGS.get(), ModItems.WEATHERED_COPPER_CHAINMAIL_LEGGINGS.get(), ModItems.OXIDIZED_COPPER_CHAINMAIL_LEGGINGS.get());
+        addItemChain(ModItems.COPPER_CHAINMAIL_BOOTS.get(), ModItems.EXPOSED_COPPER_CHAINMAIL_BOOTS.get(), ModItems.WEATHERED_COPPER_CHAINMAIL_BOOTS.get(), ModItems.OXIDIZED_COPPER_CHAINMAIL_BOOTS.get());
     }
 
     private static Item getItem(String id) {

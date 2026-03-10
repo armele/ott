@@ -84,6 +84,13 @@ public class MinecraftBackportItemModelProvider extends ItemModelProvider {
                 return;
             }
 
+            if (path.contains("copper_chain") && !path.contains("chainmail")) {
+                String textureName = path.replace("waxed_", "");
+                getBuilder(path).parent(getExistingFile(mcLoc("item/generated")))
+                        .texture("layer0", mcLoc("item/" + textureName));
+                return;
+            }
+
             if (block instanceof LanternBlock || block instanceof TorchBlock) {
                 // Requested display settings
                 getBuilder(path).parent(getExistingFile(mcLoc("block/" + path)))
@@ -183,6 +190,37 @@ public class MinecraftBackportItemModelProvider extends ItemModelProvider {
         generatedItem(ModItems.COPPER_CHESTPLATE.getId().getPath());
         generatedItem(ModItems.COPPER_LEGGINGS.getId().getPath());
         generatedItem(ModItems.COPPER_BOOTS.getId().getPath());
+        generatedItem(ModItems.EXPOSED_COPPER_HELMET.getId().getPath());
+        generatedItem(ModItems.EXPOSED_COPPER_CHESTPLATE.getId().getPath());
+        generatedItem(ModItems.EXPOSED_COPPER_LEGGINGS.getId().getPath());
+        generatedItem(ModItems.EXPOSED_COPPER_BOOTS.getId().getPath());
+        generatedItem(ModItems.WEATHERED_COPPER_HELMET.getId().getPath());
+        generatedItem(ModItems.WEATHERED_COPPER_CHESTPLATE.getId().getPath());
+        generatedItem(ModItems.WEATHERED_COPPER_LEGGINGS.getId().getPath());
+        generatedItem(ModItems.WEATHERED_COPPER_BOOTS.getId().getPath());
+        generatedItem(ModItems.OXIDIZED_COPPER_HELMET.getId().getPath());
+        generatedItem(ModItems.OXIDIZED_COPPER_CHESTPLATE.getId().getPath());
+        generatedItem(ModItems.OXIDIZED_COPPER_LEGGINGS.getId().getPath());
+        generatedItem(ModItems.OXIDIZED_COPPER_BOOTS.getId().getPath());
+        
+        // Copper Chainmail Armor
+        generatedItem(ModItems.COPPER_CHAINMAIL_HELMET.getId().getPath());
+        generatedItem(ModItems.COPPER_CHAINMAIL_CHESTPLATE.getId().getPath());
+        generatedItem(ModItems.COPPER_CHAINMAIL_LEGGINGS.getId().getPath());
+        generatedItem(ModItems.COPPER_CHAINMAIL_BOOTS.getId().getPath());
+        generatedItem(ModItems.EXPOSED_COPPER_CHAINMAIL_HELMET.getId().getPath());
+        generatedItem(ModItems.EXPOSED_COPPER_CHAINMAIL_CHESTPLATE.getId().getPath());
+        generatedItem(ModItems.EXPOSED_COPPER_CHAINMAIL_LEGGINGS.getId().getPath());
+        generatedItem(ModItems.EXPOSED_COPPER_CHAINMAIL_BOOTS.getId().getPath());
+        generatedItem(ModItems.WEATHERED_COPPER_CHAINMAIL_HELMET.getId().getPath());
+        generatedItem(ModItems.WEATHERED_COPPER_CHAINMAIL_CHESTPLATE.getId().getPath());
+        generatedItem(ModItems.WEATHERED_COPPER_CHAINMAIL_LEGGINGS.getId().getPath());
+        generatedItem(ModItems.WEATHERED_COPPER_CHAINMAIL_BOOTS.getId().getPath());
+        generatedItem(ModItems.OXIDIZED_COPPER_CHAINMAIL_HELMET.getId().getPath());
+        generatedItem(ModItems.OXIDIZED_COPPER_CHAINMAIL_CHESTPLATE.getId().getPath());
+        generatedItem(ModItems.OXIDIZED_COPPER_CHAINMAIL_LEGGINGS.getId().getPath());
+        generatedItem(ModItems.OXIDIZED_COPPER_CHAINMAIL_BOOTS.getId().getPath());
+
         generatedItem(ModItems.COPPER_HORSE_ARMOR.getId().getPath());
         generatedItem(ModItems.EXPOSED_COPPER_HORSE_ARMOR.getId().getPath());
         generatedItem(ModItems.WEATHERED_COPPER_HORSE_ARMOR.getId().getPath());
