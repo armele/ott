@@ -31,9 +31,5 @@ public interface Modifier {
 
     int priority();
 
-    default boolean internal$modifiesFabricFeatures() {
-        return false;
-    }
-
     MapCodec<? extends Modifier> codec();
 }

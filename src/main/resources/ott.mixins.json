@@ -94,7 +94,6 @@
     "common.StructureSetAccessor",
     "common.StructureTemplatePoolAccessor",
     "common.StructureTemplatePoolMixin",
-    "common.SurfaceRulesContextMixin",
     "common.TamableAnimalMixin",
     "common.ThrownEggMixin",
     "common.TreeDecoratorTypeInvoker",

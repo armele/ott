@@ -72,6 +72,56 @@ Add barrels, chests, trapped chests, ladders, bookshelves to wood set process
 
 Textures Nonsense:
 =====
+Stone Sets:
+- block (raw)
+- cobble
+- mossy cobble
+- cut/smooth
+- polished
+- chiseled
+- brick
+- cracked brick
+- mossy brick
+- mossy cracked brick
+- chiseled brick
+- mossy chiseled brick
+- large brick
+- mossy large brick
+- cracked large brick
+- mossy cracked large brick
+- tiles
+- mossy tiles
+- cracked tiles
+- mossy cracked tiles
+- pillar
+- pillar cap
+
+Wood Sets:
+- log
+- wood
+- stripped log
+- stripped wood
+- planks
+- mosaic
+
+Sand Sets:
+- sand
+- sandstone
+- smooth sandstone
+- cracked sandstone
+- chiseled sandstone
+- sandstone bricks
+- smooth sandstone bricks
+- cracked sandstone bricks
+- chiseled sandstone bricks
+- sandstone tiles
+- smooth sandstone tiles
+- cracked sandstone tiles
+- chiseled sandstone tiles
+- sandstone pillar
+- sandstone pillar cap
+- quicksand
+
 Do Aurora blocks the TF way
 
 diag gradients
