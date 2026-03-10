@@ -5,6 +5,8 @@ import com.mojang.serialization.codecs.RecordCodecBuilder;
 import com.otterly76.ott.block.entity.CopperGolemStatueBlockEntity;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.server.level.ServerLevel;
+import net.minecraft.util.RandomSource;
 import net.minecraft.util.StringRepresentable;
 import net.minecraft.world.ItemInteractionResult;
 import net.minecraft.world.entity.player.Player;
@@ -63,6 +65,16 @@ public class CopperGolemStatueBlock extends BaseEntityBlock implements Weatherin
     @Override
     public @NotNull WeatherState getAge() {
         return this.weatherState;
+    }
+
+    @Override
+    public void randomTick(@NotNull BlockState state, @NotNull ServerLevel level, @NotNull BlockPos pos, @NotNull RandomSource random) {
+        this.changeOverTime(state, level, pos, random);
+    }
+
+    @Override
+    public boolean isRandomlyTicking(BlockState state) {
+        return WeatheringCopper.getNext(state.getBlock()).isPresent();
     }
 
     @Override

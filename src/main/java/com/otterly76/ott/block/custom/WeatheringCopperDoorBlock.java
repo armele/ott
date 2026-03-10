@@ -1,16 +1,46 @@
 package com.otterly76.ott.block.custom;
 
+import com.mojang.serialization.MapCodec;
+import com.mojang.serialization.codecs.RecordCodecBuilder;
+import net.minecraft.core.BlockPos;
+import net.minecraft.server.level.ServerLevel;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.block.DoorBlock;
 import net.minecraft.world.level.block.WeatheringCopper;
+import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.BlockSetType;
 import org.jetbrains.annotations.NotNull;
 
 public class WeatheringCopperDoorBlock extends DoorBlock implements WeatheringCopper {
+    public static final MapCodec<WeatheringCopperDoorBlock> CODEC = RecordCodecBuilder.mapCodec(
+            instance -> instance.group(
+                            WeatheringCopper.WeatherState.CODEC.fieldOf("weathering_state").forGetter(WeatheringCopperDoorBlock::getAge),
+                            BlockSetType.CODEC.fieldOf("block_set_type").forGetter(WeatheringCopperDoorBlock::type),
+                            propertiesCodec()
+                    )
+                    .apply(instance, WeatheringCopperDoorBlock::new)
+    );
+
     private final WeatherState weatherState;
 
     public WeatheringCopperDoorBlock(WeatherState weatherState, BlockSetType blockSetType, Properties properties) {
         super(blockSetType, properties);
         this.weatherState = weatherState;
+    }
+
+    @Override
+    public @NotNull MapCodec<? extends DoorBlock> codec() {
+        return CODEC;
+    }
+
+    @Override
+    public void randomTick(@NotNull BlockState state, @NotNull ServerLevel level, @NotNull BlockPos pos, @NotNull RandomSource random) {
+        this.changeOverTime(state, level, pos, random);
+    }
+
+    @Override
+    public boolean isRandomlyTicking(BlockState state) {
+        return WeatheringCopper.getNext(state.getBlock()).isPresent();
     }
 
     @Override

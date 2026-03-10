@@ -134,6 +134,9 @@ public class MinecraftBackportBlockStateProvider extends ModBlockStateProvider {
                 .renderType("cutout");
         simpleBlockWithItem(ModBlocks.OPEN_EYEBLOSSOM.get(), openEyeblossom);
 
+        // Copper Cauldron
+        simpleBlock(ModBlocks.COPPER_CAULDRON.get(), models().getExistingFile(mcLoc("block/copper_cauldron")));
+
         // Copper Chains
         ModBlocks.COPPER_CHAINS.forEach((name, block) -> {
             String stateName = name.startsWith("waxed_") ? name.substring(6) : name;
@@ -272,7 +275,7 @@ public class MinecraftBackportBlockStateProvider extends ModBlockStateProvider {
                     .modelFile(models().withExistingParent("wildflowers_" + amount, mcLoc("block/template_flowerbed_" + amount))
                             .texture("flowerbed", mcLoc("block/wildflowers"))
                             .renderType("cutout"))
-                    .rotationY((int) facing.toYRot())
+                    .rotationY(((int) facing.toYRot() + 180) % 360)
                     .build();
         });
         itemModels().withExistingParent("wildflowers", mcLoc("item/generated"))
@@ -285,7 +288,7 @@ public class MinecraftBackportBlockStateProvider extends ModBlockStateProvider {
                     .modelFile(models().withExistingParent("leaf_litter_" + amount, mcLoc("block/template_leaf_litter_" + amount))
                             .texture("texture", mcLoc("block/leaf_litter"))
                             .renderType("cutout"))
-                    .rotationY((int) facing.toYRot())
+                    .rotationY(((int) facing.toYRot() + 180) % 360)
                     .build();
         });
         itemModels().withExistingParent("leaf_litter", mcLoc("item/generated"))
@@ -305,7 +308,7 @@ public class MinecraftBackportBlockStateProvider extends ModBlockStateProvider {
                             .texture("top", mcLoc("block/dried_ghast_hydration_" + hydration + "_top"))
                             .texture("west", mcLoc("block/dried_ghast_hydration_" + hydration + "_west"))
                             .renderType("cutout"))
-                    .rotationY((int) facing.toYRot())
+                    .rotationY(((int) facing.toYRot() + 180) % 360)
                     .build();
         });
         itemModels().withExistingParent("dried_ghast", mcLoc("block/dried_ghast_hydration_0"));
@@ -350,6 +353,9 @@ public class MinecraftBackportBlockStateProvider extends ModBlockStateProvider {
             registerCopperLantern(ModBlocks.COPPER_LANTERNS.get(state).get(), mcLoc("block/" + state + "copper_lantern"));
             registerCopperLantern(ModBlocks.COPPER_LANTERNS.get(waxedPrefix).get(), mcLoc("block/" + state + "copper_lantern"));
 
+            registerCopperLantern(ModBlocks.COPPER_SOUL_LANTERNS.get(state).get(), mcLoc("block/" + state + "copper_soul_lantern"));
+            registerCopperLantern(ModBlocks.COPPER_SOUL_LANTERNS.get(waxedPrefix).get(), mcLoc("block/" + state + "copper_soul_lantern"));
+
             // Golem Statues
             registerCopperGolemStatue(ModBlocks.COPPER_GOLEM_STATUES.get(state).get(), blockTexture);
             registerCopperGolemStatue(ModBlocks.COPPER_GOLEM_STATUES.get(waxedPrefix).get(), blockTexture);
@@ -362,6 +368,14 @@ public class MinecraftBackportBlockStateProvider extends ModBlockStateProvider {
             // Grates
             registerCopperGrate(BuiltInRegistries.BLOCK.get(mcLoc(state + "copper_grate")), state);
             registerCopperGrate(BuiltInRegistries.BLOCK.get(mcLoc(waxedPrefix + "copper_grate")), state);
+
+            // Hoppers
+            registerCopperHopper(ModBlocks.COPPER_HOPPERS.get(state).get(), state);
+            registerCopperHopper(ModBlocks.COPPER_HOPPERS.get(waxedPrefix).get(), state);
+
+            // Ladders
+            registerCopperLadder(ModBlocks.COPPER_LADDERS.get(state).get(), mcLoc("block/" + state + "copper_ladder"));
+            registerCopperLadder(ModBlocks.COPPER_LADDERS.get(waxedPrefix).get(), mcLoc("block/" + state + "copper_ladder"));
         }
 
         // Chests (They are not in a map)
@@ -422,7 +436,28 @@ public class MinecraftBackportBlockStateProvider extends ModBlockStateProvider {
             Direction facing = state.getValue(HorizontalDirectionalBlock.FACING);
             return ConfiguredModel.builder()
                     .modelFile(model)
-                    .rotationY((int) facing.toYRot())
+                    .rotationY(((int) facing.toYRot() + 180) % 360)
+                    .build();
+        });
+    }
+
+    protected void registerCopperHopper(Block block, String state) {
+        String name = BuiltInRegistries.BLOCK.getKey(block).getPath();
+        ModelFile model = models().withExistingParent(name, mcLoc("block/hopper"))
+                .texture("top", mcLoc("block/" + state + "copper_hopper_top"))
+                .texture("inside", mcLoc("block/" + state + "copper_hopper_inside"))
+                .texture("outside", mcLoc("block/" + state + "copper_hopper_outside"));
+        ModelFile modelSide = models().withExistingParent(name + "_side", mcLoc("block/hopper_side"))
+                .texture("top", mcLoc("block/" + state + "copper_hopper_top"))
+                .texture("inside", mcLoc("block/" + state + "copper_hopper_inside"))
+                .texture("side", mcLoc("block/" + state + "copper_hopper_outside"));
+
+        getVariantBuilder(block).forAllStates(s -> {
+            Direction facing = s.getValue(HopperBlock.FACING);
+            ModelFile m = facing == Direction.DOWN ? model : modelSide;
+            return ConfiguredModel.builder()
+                    .modelFile(m)
+                    .rotationY(facing == Direction.DOWN ? 0 : ((int) facing.toYRot() + 180) % 360)
                     .build();
         });
     }
@@ -442,7 +477,7 @@ public class MinecraftBackportBlockStateProvider extends ModBlockStateProvider {
             ModelFile m = type == ChestType.LEFT ? modelLeft : (type == ChestType.RIGHT ? modelRight : model);
             return ConfiguredModel.builder()
                     .modelFile(m)
-                    .rotationY((int) facing.toYRot())
+                    .rotationY(((int) facing.toYRot() + 180) % 360)
                     .build();
         });
     }
@@ -457,7 +492,7 @@ public class MinecraftBackportBlockStateProvider extends ModBlockStateProvider {
             return ConfiguredModel.builder()
                     .modelFile(model)
                     .rotationX(facing == Direction.DOWN ? 180 : (facing.getAxis().isHorizontal() ? 90 : 0))
-                    .rotationY(facing.getAxis().isVertical() ? 0 : (int) facing.toYRot())
+                    .rotationY(facing.getAxis().isVertical() ? 0 : ((int) facing.toYRot() + 180) % 360)
                     .build();
         });
     }
@@ -469,6 +504,22 @@ public class MinecraftBackportBlockStateProvider extends ModBlockStateProvider {
                 .texture("particle", mcLoc("block/" + state + "copper_grate"));
 
         simpleBlock(block, model);
+    }
+
+    protected void registerCopperLadder(Block block, ResourceLocation texture) {
+        String name = BuiltInRegistries.BLOCK.getKey(block).getPath();
+        ModelFile model = models().withExistingParent(name, mcLoc("block/ladder"))
+                .texture("texture", texture)
+                .texture("particle", texture)
+                .renderType("cutout");
+
+        getVariantBuilder(block).forAllStates(state -> {
+            Direction facing = state.getValue(LadderBlock.FACING);
+            return ConfiguredModel.builder()
+                    .modelFile(model)
+                    .rotationY(((int) facing.toYRot() + 180) % 360)
+                    .build();
+        });
     }
 
     private ModelFile resinClumpModel() {

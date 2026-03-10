@@ -11,7 +11,10 @@ import org.jetbrains.annotations.NotNull;
 import java.util.function.Supplier;
 
 public enum ModToolMaterials implements Tier {
-    COPPER(ModTags.Blocks.INCORRECT_FOR_COPPER_TOOL, 190, 5.0F, 1.0F, 13, () -> Ingredient.of(Items.COPPER_INGOT));
+    COPPER(ModTags.Blocks.INCORRECT_FOR_COPPER_TOOL, 190, 5.0F, 1.0F, 13, () -> Ingredient.of(Items.COPPER_INGOT)),
+    EXPOSED_COPPER(ModTags.Blocks.INCORRECT_FOR_COPPER_TOOL, 190, 5.0F, 1.0F, 13, () -> Ingredient.of(Items.COPPER_INGOT)),
+    WEATHERED_COPPER(ModTags.Blocks.INCORRECT_FOR_COPPER_TOOL, 190, 5.0F, 1.0F, 13, () -> Ingredient.of(Items.COPPER_INGOT)),
+    OXIDIZED_COPPER(ModTags.Blocks.INCORRECT_FOR_COPPER_TOOL, 190, 5.0F, 1.0F, 13, () -> Ingredient.of(Items.COPPER_INGOT));
 
     private final TagKey<Block> incorrectBlocksForDrops;
     private final int uses;

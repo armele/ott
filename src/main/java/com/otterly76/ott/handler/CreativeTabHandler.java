@@ -137,6 +137,10 @@ public class CreativeTabHandler {
                 safeInsertAfter(event, new ItemStack(lastTarget), new ItemStack(block.get()), visibility);
                 lastTarget = block.get();
             }
+            for (Supplier<? extends Block> block : ModBlocks.COPPER_LADDERS.values()) {
+                safeInsertAfter(event, new ItemStack(lastTarget), new ItemStack(block.get()), visibility);
+                lastTarget = block.get();
+            }
         }
 
         if (event.getTabKey() == CreativeModeTabs.FUNCTIONAL_BLOCKS) {
@@ -164,6 +168,12 @@ public class CreativeTabHandler {
                 lastTarget = block.get();
             }
 
+            lastTarget = Items.SOUL_LANTERN;
+            for (Supplier<? extends Block> block : ModBlocks.COPPER_SOUL_LANTERNS.values()) {
+                safeInsertAfter(event, new ItemStack(lastTarget), new ItemStack(block.get()), visibility);
+                lastTarget = block.get();
+            }
+
             lastTarget = Items.CHEST;
             safeInsertAfter(event, new ItemStack(lastTarget), new ItemStack(ModBlocks.COPPER_CHEST.get()), visibility);
             lastTarget = ModBlocks.COPPER_CHEST.get();
@@ -181,6 +191,15 @@ public class CreativeTabHandler {
             safeInsertAfter(event, new ItemStack(lastTarget), new ItemStack(ModBlocks.WAXED_WEATHERED_COPPER_CHEST.get()), visibility);
             lastTarget = ModBlocks.WAXED_WEATHERED_COPPER_CHEST.get();
             safeInsertAfter(event, new ItemStack(lastTarget), new ItemStack(ModBlocks.WAXED_OXIDIZED_COPPER_CHEST.get()), visibility);
+
+            lastTarget = Items.HOPPER;
+            for (Supplier<? extends Block> block : ModBlocks.COPPER_HOPPERS.values()) {
+                safeInsertAfter(event, new ItemStack(lastTarget), new ItemStack(block.get()), visibility);
+                lastTarget = block.get();
+            }
+
+            lastTarget = Items.CAULDRON;
+            safeInsertAfter(event, new ItemStack(lastTarget), new ItemStack(ModBlocks.COPPER_CAULDRON.get()), visibility);
 
             lastTarget = Items.LIGHTNING_ROD;
             for (Supplier<? extends Block> block : ModBlocks.LIGHTNING_RODS.values()) {
@@ -232,7 +251,34 @@ public class CreativeTabHandler {
                     ModItems.COPPER_SHOVEL,
                     ModItems.COPPER_PICKAXE,
                     ModItems.COPPER_AXE,
-                    ModItems.COPPER_HOE
+                    ModItems.COPPER_HOE,
+                    ModItems.EXPOSED_COPPER_SHOVEL,
+                    ModItems.EXPOSED_COPPER_PICKAXE,
+                    ModItems.EXPOSED_COPPER_AXE,
+                    ModItems.EXPOSED_COPPER_HOE,
+                    ModItems.WEATHERED_COPPER_SHOVEL,
+                    ModItems.WEATHERED_COPPER_PICKAXE,
+                    ModItems.WEATHERED_COPPER_AXE,
+                    ModItems.WEATHERED_COPPER_HOE,
+                    ModItems.OXIDIZED_COPPER_SHOVEL,
+                    ModItems.OXIDIZED_COPPER_PICKAXE,
+                    ModItems.OXIDIZED_COPPER_AXE,
+                    ModItems.OXIDIZED_COPPER_HOE
+            ), visibility);
+
+            insertAllAfter(event, Items.SHEARS, List.of(
+                    ModItems.COPPER_SHEARS,
+                    ModItems.EXPOSED_COPPER_SHEARS,
+                    ModItems.WEATHERED_COPPER_SHEARS,
+                    ModItems.OXIDIZED_COPPER_SHEARS
+            ), visibility);
+
+            insertAllAfter(event, Items.MILK_BUCKET, List.of(
+                    ModItems.COPPER_BUCKET,
+                    ModItems.COPPER_WATER_BUCKET,
+                    ModItems.COPPER_LAVA_BUCKET,
+                    ModItems.COPPER_POWDER_SNOW_BUCKET,
+                    ModItems.COPPER_MILK_BUCKET
             ), visibility);
 
             insertAllAfter(event, Items.MUSIC_DISC_RELIC, List.of(
@@ -269,6 +315,10 @@ public class CreativeTabHandler {
             for (Supplier<? extends Block> block : ModBlocks.COPPER_BUTTONS.values()) {
                 safeAccept(event, block.get(), visibility);
             }
+
+            for (Supplier<? extends Block> block : ModBlocks.COPPER_HOPPERS.values()) {
+                safeAccept(event, block.get(), visibility);
+            }
         }
 
 
@@ -288,7 +338,19 @@ public class CreativeTabHandler {
         }
 
         if (event.getTabKey() == CreativeModeTabs.COMBAT) {
-            insertAllAfter(event, Items.IRON_SWORD, List.of(ModItems.COPPER_SWORD), visibility);
+            insertAllAfter(event, Items.IRON_SWORD, List.of(
+                    ModItems.COPPER_SWORD,
+                    ModItems.EXPOSED_COPPER_SWORD,
+                    ModItems.WEATHERED_COPPER_SWORD,
+                    ModItems.OXIDIZED_COPPER_SWORD
+            ), visibility);
+
+            insertAllAfter(event, Items.IRON_AXE, List.of(
+                    ModItems.COPPER_AXE,
+                    ModItems.EXPOSED_COPPER_AXE,
+                    ModItems.WEATHERED_COPPER_AXE,
+                    ModItems.OXIDIZED_COPPER_AXE
+            ), visibility);
             insertAllAfter(event, Items.IRON_BOOTS, List.of(
                     ModItems.COPPER_HELMET,
                     ModItems.COPPER_CHESTPLATE,

@@ -184,6 +184,28 @@ public class MinecraftBackportItemModelProvider extends ItemModelProvider {
         handheldItem(ModItems.COPPER_PICKAXE.getId().getPath());
         handheldItem(ModItems.COPPER_AXE.getId().getPath());
         handheldItem(ModItems.COPPER_HOE.getId().getPath());
+        generatedItem(ModItems.COPPER_SHEARS.getId().getPath());
+
+        handheldItem(ModItems.EXPOSED_COPPER_SWORD.getId().getPath());
+        handheldItem(ModItems.EXPOSED_COPPER_SHOVEL.getId().getPath());
+        handheldItem(ModItems.EXPOSED_COPPER_PICKAXE.getId().getPath());
+        handheldItem(ModItems.EXPOSED_COPPER_AXE.getId().getPath());
+        handheldItem(ModItems.EXPOSED_COPPER_HOE.getId().getPath());
+        generatedItem(ModItems.EXPOSED_COPPER_SHEARS.getId().getPath());
+
+        handheldItem(ModItems.WEATHERED_COPPER_SWORD.getId().getPath());
+        handheldItem(ModItems.WEATHERED_COPPER_SHOVEL.getId().getPath());
+        handheldItem(ModItems.WEATHERED_COPPER_PICKAXE.getId().getPath());
+        handheldItem(ModItems.WEATHERED_COPPER_AXE.getId().getPath());
+        handheldItem(ModItems.WEATHERED_COPPER_HOE.getId().getPath());
+        generatedItem(ModItems.WEATHERED_COPPER_SHEARS.getId().getPath());
+
+        handheldItem(ModItems.OXIDIZED_COPPER_SWORD.getId().getPath());
+        handheldItem(ModItems.OXIDIZED_COPPER_SHOVEL.getId().getPath());
+        handheldItem(ModItems.OXIDIZED_COPPER_PICKAXE.getId().getPath());
+        handheldItem(ModItems.OXIDIZED_COPPER_AXE.getId().getPath());
+        handheldItem(ModItems.OXIDIZED_COPPER_HOE.getId().getPath());
+        generatedItem(ModItems.OXIDIZED_COPPER_SHEARS.getId().getPath());
 
         // Copper Armor
         generatedItem(ModItems.COPPER_HELMET.getId().getPath());
@@ -227,6 +249,12 @@ public class MinecraftBackportItemModelProvider extends ItemModelProvider {
         generatedItem(ModItems.OXIDIZED_COPPER_HORSE_ARMOR.getId().getPath());
         generatedItem(ModItems.COPPER_NUGGET.getId().getPath());
 
+        generatedItem(ModItems.COPPER_BUCKET.getId().getPath());
+        generatedItem(ModItems.COPPER_WATER_BUCKET.getId().getPath());
+        generatedItem(ModItems.COPPER_LAVA_BUCKET.getId().getPath());
+        generatedItem(ModItems.COPPER_MILK_BUCKET.getId().getPath());
+        generatedItem(ModItems.COPPER_POWDER_SNOW_BUCKET.getId().getPath());
+
         // Lightning Rods & Grates
         String[] copperStates = {"", "exposed_", "weathered_", "oxidized_"};
         for (String state : copperStates) {
@@ -235,6 +263,14 @@ public class MinecraftBackportItemModelProvider extends ItemModelProvider {
 
             parentItemToBlockModel(state + "copper_grate", "block/" + state + "copper_grate");
             parentItemToBlockModel("waxed_" + state + "copper_grate", "block/waxed_" + state + "copper_grate");
+
+            String hopperTextureName = state + "copper_hopper";
+            generatedItem(state + "copper_hopper", hopperTextureName);
+            generatedItem("waxed_" + state + "copper_hopper", hopperTextureName);
+
+            String ladderTextureName = "block/" + state + "copper_ladder";
+            generatedItem(state + "copper_ladder", ladderTextureName);
+            generatedItem("waxed_" + state + "copper_ladder", ladderTextureName);
         }
 
         spawnEggItem(ModItems.COPPER_GOLEM_SPAWN_EGG.getId().getPath());
@@ -295,8 +331,13 @@ public class MinecraftBackportItemModelProvider extends ItemModelProvider {
     }
 
     private void generatedItem(String name) {
+        generatedItem(name, name);
+    }
+
+    private void generatedItem(String name, String textureName) {
+        String path = textureName.contains("/") ? textureName : "item/" + textureName;
         withExistingParent(name, mcLoc("item/generated"))
-                .texture("layer0", mcLoc("item/" + name));
+                .texture("layer0", mcLoc(path));
     }
 
     private void parentItemToBlockModel(String itemName, String blockModelPath) {
@@ -304,7 +345,8 @@ public class MinecraftBackportItemModelProvider extends ItemModelProvider {
     }
 
     private void handheldItem(String name) {
+        String path = name.contains("/") ? name : "item/" + name;
         withExistingParent(name, mcLoc("item/handheld"))
-                .texture("layer0", mcLoc("item/" + name));
+                .texture("layer0", mcLoc(path));
     }
 }

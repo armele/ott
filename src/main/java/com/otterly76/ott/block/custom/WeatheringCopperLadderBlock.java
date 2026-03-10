@@ -5,30 +5,31 @@ import com.mojang.serialization.codecs.RecordCodecBuilder;
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.util.RandomSource;
-import net.minecraft.world.level.block.IronBarsBlock;
+import net.minecraft.world.level.block.LadderBlock;
 import net.minecraft.world.level.block.WeatheringCopper;
 import net.minecraft.world.level.block.state.BlockState;
 import org.jetbrains.annotations.NotNull;
 
-public class WeatheringCopperBarsBlock extends IronBarsBlock implements WeatheringCopper {
-    public static final MapCodec<WeatheringCopperBarsBlock> CODEC = RecordCodecBuilder.mapCodec(
+public class WeatheringCopperLadderBlock extends LadderBlock implements WeatheringCopper {
+    public static final MapCodec<WeatheringCopperLadderBlock> CODEC = RecordCodecBuilder.mapCodec(
             instance -> instance.group(
-                            WeatheringCopper.WeatherState.CODEC.fieldOf("weathering_state").forGetter(WeatheringCopperBarsBlock::getAge),
+                            WeatheringCopper.WeatherState.CODEC.fieldOf("weathering_state").forGetter(WeatheringCopperLadderBlock::getAge),
                             propertiesCodec()
                     )
-                    .apply(instance, WeatheringCopperBarsBlock::new)
+                    .apply(instance, WeatheringCopperLadderBlock::new)
     );
 
     private final WeatherState weatherState;
 
-    public WeatheringCopperBarsBlock(WeatherState weatherState, Properties properties) {
+    public WeatheringCopperLadderBlock(WeatherState weatherState, Properties properties) {
         super(properties);
         this.weatherState = weatherState;
     }
 
     @Override
-    public @NotNull MapCodec<? extends IronBarsBlock> codec() {
-        return CODEC;
+    @SuppressWarnings("unchecked")
+    public @NotNull MapCodec<LadderBlock> codec() {
+        return (MapCodec<LadderBlock>) (MapCodec<?>) CODEC;
     }
 
     @Override

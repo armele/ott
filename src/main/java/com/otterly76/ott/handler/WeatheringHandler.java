@@ -41,8 +41,11 @@ public class WeatheringHandler {
         String[] states = {"", "exposed_", "weathered_", "oxidized_"};
         addChainFromMap(ModBlocks.COPPER_BUTTONS, states);
         addChainFromMap(ModBlocks.COPPER_LANTERNS, states);
+        addChainFromMap(ModBlocks.COPPER_SOUL_LANTERNS, states);
         addChainFromMap(ModBlocks.COPPER_CHAINS, states);
         addChainFromMap(ModBlocks.COPPER_BARS, states);
+        addChainFromMap(ModBlocks.COPPER_HOPPERS, states);
+        addChainFromMap(ModBlocks.COPPER_LADDERS, states);
         addChainFromMap(ModBlocks.LIGHTNING_RODS, states);
 
         // Statues
@@ -75,6 +78,14 @@ public class WeatheringHandler {
         addItemChain(ModItems.COPPER_CHAINMAIL_CHESTPLATE.get(), ModItems.EXPOSED_COPPER_CHAINMAIL_CHESTPLATE.get(), ModItems.WEATHERED_COPPER_CHAINMAIL_CHESTPLATE.get(), ModItems.OXIDIZED_COPPER_CHAINMAIL_CHESTPLATE.get());
         addItemChain(ModItems.COPPER_CHAINMAIL_LEGGINGS.get(), ModItems.EXPOSED_COPPER_CHAINMAIL_LEGGINGS.get(), ModItems.WEATHERED_COPPER_CHAINMAIL_LEGGINGS.get(), ModItems.OXIDIZED_COPPER_CHAINMAIL_LEGGINGS.get());
         addItemChain(ModItems.COPPER_CHAINMAIL_BOOTS.get(), ModItems.EXPOSED_COPPER_CHAINMAIL_BOOTS.get(), ModItems.WEATHERED_COPPER_CHAINMAIL_BOOTS.get(), ModItems.OXIDIZED_COPPER_CHAINMAIL_BOOTS.get());
+
+        // Tools
+        addItemChain(ModItems.COPPER_SWORD.get(), ModItems.EXPOSED_COPPER_SWORD.get(), ModItems.WEATHERED_COPPER_SWORD.get(), ModItems.OXIDIZED_COPPER_SWORD.get());
+        addItemChain(ModItems.COPPER_SHOVEL.get(), ModItems.EXPOSED_COPPER_SHOVEL.get(), ModItems.WEATHERED_COPPER_SHOVEL.get(), ModItems.OXIDIZED_COPPER_SHOVEL.get());
+        addItemChain(ModItems.COPPER_PICKAXE.get(), ModItems.EXPOSED_COPPER_PICKAXE.get(), ModItems.WEATHERED_COPPER_PICKAXE.get(), ModItems.OXIDIZED_COPPER_PICKAXE.get());
+        addItemChain(ModItems.COPPER_AXE.get(), ModItems.EXPOSED_COPPER_AXE.get(), ModItems.WEATHERED_COPPER_AXE.get(), ModItems.OXIDIZED_COPPER_AXE.get());
+        addItemChain(ModItems.COPPER_HOE.get(), ModItems.EXPOSED_COPPER_HOE.get(), ModItems.WEATHERED_COPPER_HOE.get(), ModItems.OXIDIZED_COPPER_HOE.get());
+        addItemChain(ModItems.COPPER_SHEARS.get(), ModItems.EXPOSED_COPPER_SHEARS.get(), ModItems.WEATHERED_COPPER_SHEARS.get(), ModItems.OXIDIZED_COPPER_SHEARS.get());
     }
 
     private static Item getItem(String id) {

@@ -51,6 +51,9 @@ public class ModBlockEntities {
         event.modify(BlockEntityType.HANGING_SIGN, ModBlocks.PALE_OAK_HANGING_SIGN.get(), ModBlocks.PALE_OAK_WALL_HANGING_SIGN.get());
         event.modify(BlockEntityType.SKULL, ModBlocks.DRAGON_SKULL.get(), ModBlocks.DRAGON_WALL_SKULL.get());
 
+        // Handle Copper Hoppers
+        ModBlocks.COPPER_HOPPERS.values().forEach(hopper -> event.modify(BlockEntityType.HOPPER, hopper.get()));
+
         // Handle other wood sets (starlight, midnight, etc.)
         ModBlocks.WOOD_SETS.values().forEach(woodSet -> {
             event.modify(BlockEntityType.SIGN, woodSet.sign().get(), woodSet.wallSign().get());
