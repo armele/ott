@@ -10,6 +10,7 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.WeatheringCopper;
 
 import java.util.Map;
 import java.util.Optional;
@@ -29,7 +30,11 @@ public class WeatheringHandler {
         registerItemTransitions();
     }
 
+    @SuppressWarnings("deprecation")
     private static void registerBlockTransitions() {
+        // Vanilla transitions
+        WeatheringCopper.NEXT_BY_BLOCK.get().forEach(WeatheringHandler::addWeatheringTransition);
+
         // Copper Chests
         addChain(ModBlocks.COPPER_CHEST.get(), ModBlocks.EXPOSED_COPPER_CHEST.get(), ModBlocks.WEATHERED_COPPER_CHEST.get(), ModBlocks.OXIDIZED_COPPER_CHEST.get());
         addWaxing(ModBlocks.COPPER_CHEST.get(), ModBlocks.WAXED_COPPER_CHEST.get());

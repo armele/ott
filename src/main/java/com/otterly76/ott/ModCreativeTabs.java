@@ -38,6 +38,8 @@ public final class ModCreativeTabs {
             // Damage Lantern
             output.accept(ModBlocks.SMITE_LANTERN);
 
+            output.accept(ModBlocks.WEATHERING_STATION);
+
             ModBlocks.TESTBLOCK.forEach(output::accept);
             ModBlocks.LIMESTONE.forEach(output::accept);
             ModBlocks.SEAGLASS.forEach(output::accept);

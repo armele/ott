@@ -236,6 +236,8 @@ public class CreativeTabHandler {
                 safeInsertAfter(event, new ItemStack(lastTarget), new ItemStack(block.get()), visibility);
                 lastTarget = block.get();
             }
+
+            safeInsertAfter(event, new ItemStack(lastTarget), new ItemStack(ModBlocks.WEATHERING_STATION.get()), visibility);
         }
 
         if (event.getTabKey() == CreativeModeTabs.TOOLS_AND_UTILITIES) {

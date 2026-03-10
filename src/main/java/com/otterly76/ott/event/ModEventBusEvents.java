@@ -12,6 +12,8 @@ import net.minecraft.world.entity.SpawnPlacementTypes;
 import net.minecraft.world.level.levelgen.Heightmap;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.neoforge.capabilities.RegisterCapabilitiesEvent;
+import net.neoforged.neoforge.capabilities.Capabilities;
+import net.neoforged.neoforge.fluids.capability.wrappers.FluidBucketWrapper;
 import net.neoforged.neoforge.client.event.EntityRenderersEvent;
 import net.neoforged.neoforge.event.entity.EntityAttributeCreationEvent;
 import net.neoforged.neoforge.event.entity.RegisterSpawnPlacementsEvent;
@@ -60,9 +62,29 @@ public class ModEventBusEvents {
 
     public static void registerCapabilities(RegisterCapabilitiesEvent event) {
         event.registerBlockEntity(
-                net.neoforged.neoforge.capabilities.Capabilities.ItemHandler.BLOCK,
+                Capabilities.ItemHandler.BLOCK,
+                com.otterly76.ott.block.entity.ModBlockEntities.WEATHERING_STATION.get(),
+                (blockEntity, side) -> blockEntity.getInventory()
+        );
+
+        event.registerBlockEntity(
+                Capabilities.FluidHandler.BLOCK,
+                com.otterly76.ott.block.entity.ModBlockEntities.WEATHERING_STATION.get(),
+                (blockEntity, side) -> blockEntity.getWaterTank()
+        );
+
+        event.registerBlockEntity(
+                Capabilities.ItemHandler.BLOCK,
                 com.otterly76.ott.block.entity.ModBlockEntities.ANVIL_BLOCK_ENTITY_TYPE.get(),
                 (blockEntity, side) -> new net.neoforged.neoforge.items.wrapper.SidedInvWrapper(blockEntity, null)
+        );
+
+        event.registerItem(
+                Capabilities.FluidHandler.ITEM,
+                (stack, context) -> new FluidBucketWrapper(stack),
+                ModItems.COPPER_BUCKET.get(),
+                ModItems.COPPER_WATER_BUCKET.get(),
+                ModItems.COPPER_LAVA_BUCKET.get()
         );
     }
 }

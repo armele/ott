@@ -2,6 +2,9 @@ package com.otterly76.ott.handler;
 
 import com.otterly76.ott.block.ModBlocks;
 import com.otterly76.ott.item.ModItems;
+import com.otterly76.ott.item.custom.CopperBucketItem;
+import com.otterly76.ott.item.custom.CopperMilkBucketItem;
+import com.otterly76.ott.item.custom.CopperSolidBucketItem;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.cauldron.CauldronInteraction;
 import net.minecraft.sounds.SoundEvent;
@@ -138,7 +141,7 @@ public class CauldronInteractionHandler {
     private static ItemInteractionResult emptyBucket(Level level, BlockPos pos, Player player, InteractionHand hand, ItemStack stack, BlockState newState, SoundEvent sound) {
         if (!level.isClientSide) {
             Item item = stack.getItem();
-            ItemStack emptyStack = stack.is(ModItems.COPPER_WATER_BUCKET.get()) || stack.is(ModItems.COPPER_LAVA_BUCKET.get()) || stack.is(ModItems.COPPER_POWDER_SNOW_BUCKET.get()) || stack.is(ModItems.COPPER_MILK_BUCKET.get()) 
+            ItemStack emptyStack = stack.getItem() instanceof CopperBucketItem || stack.getItem() instanceof CopperMilkBucketItem || stack.getItem() instanceof CopperSolidBucketItem
                     ? new ItemStack(ModItems.COPPER_BUCKET.get()) : new ItemStack(Items.BUCKET);
             player.setItemInHand(hand, ItemUtils.createFilledResult(stack, player, emptyStack));
             player.awardStat(Stats.ITEM_USED.get(item));

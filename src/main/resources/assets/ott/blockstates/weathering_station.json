@@ -1,0 +1,33 @@
+{
+  "multipart": [
+    {
+      "apply": {
+        "model": "ott:block/weathering_station"
+      }
+    },
+    {
+      "when": {
+        "level": 1
+      },
+      "apply": {
+        "model": "ott:block/weathering_station_water_level1"
+      }
+    },
+    {
+      "when": {
+        "level": 2
+      },
+      "apply": {
+        "model": "ott:block/weathering_station_water_level2"
+      }
+    },
+    {
+      "when": {
+        "level": 3
+      },
+      "apply": {
+        "model": "ott:block/weathering_station_water_level3"
+      }
+    }
+  ]
+}

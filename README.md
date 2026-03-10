@@ -54,6 +54,7 @@ Mods, Resourcepacks, and Datapacks You Will Not Need:
 - Death Finder
 - Easy Anvils, Repair Anvil, Anvil Repairing, Fixed Anvil Repair Cost, Unbreakable Anvil
 - Easy Homes, Simplest Homes, Home Wand, Set Home
+- Everything Copper, Better Copper, etc
 - Fortune Works On Ancient Debris
 - Healing Bed 🛏️
 - Infinite Trial Vaults, Resettable Vaults, Renewable Vaults

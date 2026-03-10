@@ -262,6 +262,7 @@ public class ClientModEvents {
         event.registerBlockEntityRenderer(ModBlockEntities.SHELF.get(), com.otterly76.ott.client.render.blockentity.ShelfRenderer::new);
         event.registerBlockEntityRenderer(ModBlockEntities.COPPER_CHEST.get(), com.otterly76.ott.client.render.blockentity.CopperChestRenderer::new);
         event.registerBlockEntityRenderer(ModBlockEntities.COPPER_GOLEM_STATUE.get(), com.otterly76.ott.client.render.blockentity.CopperGolemStatueRenderer::new);
+        event.registerBlockEntityRenderer(ModBlockEntities.WEATHERING_STATION.get(), com.otterly76.ott.client.render.blockentity.WeatheringStationRenderer::new);
     }
 
     public static void registerLayerDefinitions(EntityRenderersEvent.RegisterLayerDefinitions event) {
@@ -302,10 +303,12 @@ public class ClientModEvents {
         ModBlocks.COPPER_WATER_CAULDRONS.values().forEach(blockSupplier -> {
             event.register((state, level, pos, tint) -> tint == 0 && level != null && pos != null ? BiomeColors.getAverageWaterColor(level, pos) : -1, blockSupplier.get());
         });
+
+        event.register((state, level, pos, tint) -> tint == 0 && level != null && pos != null ? BiomeColors.getAverageWaterColor(level, pos) : -1, ModBlocks.WEATHERING_STATION.get());
     }
 
     public static void registerItemColors(RegisterColorHandlersEvent.Item event) {
-        event.register((stack, tintIndex) -> event.getBlockColors().getColor(((net.minecraft.world.item.BlockItem)stack.getItem()).getBlock().defaultBlockState(), null, null, tintIndex), ModBlocks.BUSH.get(), ModBlocks.WILDFLOWERS.get());
+        event.register((stack, tintIndex) -> event.getBlockColors().getColor(((net.minecraft.world.item.BlockItem)stack.getItem()).getBlock().defaultBlockState(), null, null, tintIndex), ModBlocks.BUSH.get(), ModBlocks.WILDFLOWERS.get(), ModBlocks.WEATHERING_STATION.get());
 
         ModBlocks.getAllGradientBlocks().forEach(deferredBlock -> {
             event.register((stack, tintIndex) -> {

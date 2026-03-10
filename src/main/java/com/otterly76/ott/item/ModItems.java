@@ -9,6 +9,7 @@ import com.otterly76.ott.registry.ModDataComponents;
 import com.otterly76.ott.registry.ModJukeboxSongs;
 import com.otterly76.ott.entity.vehicle.OttWoodSetBoatEntity;
 import com.otterly76.ott.entity.vehicle.OttWoodSetChestBoatEntity;
+import com.otterly76.ott.item.custom.*;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.world.level.material.Fluids;
 import net.minecraft.sounds.SoundEvents;
@@ -45,6 +46,7 @@ public class ModItems {
     public static final DeferredItem<Item> THORNY_HEDGE_SPROUTS = ITEMS.register("thorny_hedge_sprouts", () -> new ItemNameBlockItem(ModBlocks.THORNY_HEDGE_SPROUTS.get(), new Item.Properties()));
 
     public static final DeferredHolder<Item, BlockItem> PROTECTIVE_LANTERN = registerBlockItem("protective_lantern", ModBlocks.PROTECTIVE_LANTERN);
+    public static final DeferredHolder<Item, BlockItem> WEATHERING_STATION = registerBlockItem("weathering_station", ModBlocks.WEATHERING_STATION);
 
     public static final DeferredHolder<Item, BlockItem> WATER_LANTERN = registerBlockItem("water_lantern", ModBlocks.WATER_LANTERN);
     public static final DeferredHolder<Item, BlockItem> LAVA_LANTERN = registerBlockItem("lava_lantern", ModBlocks.LAVA_LANTERN);
@@ -142,11 +144,11 @@ public class ModItems {
     public static DeferredItem<AnimalArmorItem> OXIDIZED_COPPER_HORSE_ARMOR;
     public static DeferredItem<Item> COPPER_GOLEM_SPAWN_EGG;
 
-    public static DeferredItem<BucketItem> COPPER_BUCKET;
-    public static DeferredItem<BucketItem> COPPER_WATER_BUCKET;
-    public static DeferredItem<BucketItem> COPPER_LAVA_BUCKET;
-    public static DeferredItem<MilkBucketItem> COPPER_MILK_BUCKET;
-    public static DeferredItem<SolidBucketItem> COPPER_POWDER_SNOW_BUCKET;
+    public static DeferredItem<CopperBucketItem> COPPER_BUCKET;
+    public static DeferredItem<CopperBucketItem> COPPER_WATER_BUCKET;
+    public static DeferredItem<CopperBucketItem> COPPER_LAVA_BUCKET;
+    public static DeferredItem<CopperMilkBucketItem> COPPER_MILK_BUCKET;
+    public static DeferredItem<CopperSolidBucketItem> COPPER_POWDER_SNOW_BUCKET;
 
     public static DeferredItem<AnimalArmorItem> NETHERITE_HORSE_ARMOR;
     public static DeferredItem<SignItem> PALE_OAK_SIGN;
@@ -246,11 +248,11 @@ public class ModItems {
         OXIDIZED_COPPER_HOE = MINECRAFT_ITEMS.register("oxidized_copper_hoe", () -> new HoeItem(ModToolMaterials.OXIDIZED_COPPER, (new Item.Properties()).attributes(HoeItem.createAttributes(ModToolMaterials.OXIDIZED_COPPER, -2.0F, -1.0F))));
         OXIDIZED_COPPER_SHEARS = MINECRAFT_ITEMS.register("oxidized_copper_shears", () -> new ShearsItem((new Item.Properties()).durability(190)));
 
-        COPPER_BUCKET = MINECRAFT_ITEMS.register("copper_bucket", () -> new BucketItem(Fluids.EMPTY, (new Item.Properties()).stacksTo(16)));
-        COPPER_WATER_BUCKET = MINECRAFT_ITEMS.register("copper_water_bucket", () -> new BucketItem(Fluids.WATER, (new Item.Properties()).craftRemainder(COPPER_BUCKET.get()).stacksTo(1)));
-        COPPER_LAVA_BUCKET = MINECRAFT_ITEMS.register("copper_lava_bucket", () -> new BucketItem(Fluids.LAVA, (new Item.Properties()).craftRemainder(COPPER_BUCKET.get()).stacksTo(1)));
-        COPPER_MILK_BUCKET = MINECRAFT_ITEMS.register("copper_milk_bucket", () -> new MilkBucketItem((new Item.Properties()).craftRemainder(COPPER_BUCKET.get()).stacksTo(1)));
-        COPPER_POWDER_SNOW_BUCKET = MINECRAFT_ITEMS.register("copper_powder_snow_bucket", () -> new SolidBucketItem(Blocks.POWDER_SNOW, SoundEvents.BUCKET_EMPTY_POWDER_SNOW, (new Item.Properties()).stacksTo(1)));
+        COPPER_BUCKET = MINECRAFT_ITEMS.register("copper_bucket", () -> new CopperBucketItem(Fluids.EMPTY, (new Item.Properties()).stacksTo(16)));
+        COPPER_WATER_BUCKET = MINECRAFT_ITEMS.register("copper_water_bucket", () -> new CopperBucketItem(Fluids.WATER, (new Item.Properties()).craftRemainder(COPPER_BUCKET.get()).stacksTo(1)));
+        COPPER_LAVA_BUCKET = MINECRAFT_ITEMS.register("copper_lava_bucket", () -> new CopperBucketItem(Fluids.LAVA, (new Item.Properties()).craftRemainder(COPPER_BUCKET.get()).stacksTo(1)));
+        COPPER_MILK_BUCKET = MINECRAFT_ITEMS.register("copper_milk_bucket", () -> new CopperMilkBucketItem((new Item.Properties()).craftRemainder(COPPER_BUCKET.get()).stacksTo(1)));
+        COPPER_POWDER_SNOW_BUCKET = MINECRAFT_ITEMS.register("copper_powder_snow_bucket", () -> new CopperSolidBucketItem(Blocks.POWDER_SNOW, SoundEvents.BUCKET_EMPTY_POWDER_SNOW, (new Item.Properties()).craftRemainder(COPPER_BUCKET.get()).stacksTo(1)));
 
         COPPER_HELMET = MINECRAFT_ITEMS.register("copper_helmet", () -> new ArmorItem(ModArmorMaterials.COPPER, ArmorItem.Type.HELMET, (new Item.Properties()).durability(ArmorItem.Type.HELMET.getDurability(5))));
         COPPER_CHESTPLATE = MINECRAFT_ITEMS.register("copper_chestplate", () -> new ArmorItem(ModArmorMaterials.COPPER, ArmorItem.Type.CHESTPLATE, (new Item.Properties()).durability(ArmorItem.Type.CHESTPLATE.getDurability(5))));
