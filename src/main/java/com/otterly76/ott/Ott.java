@@ -43,7 +43,6 @@ import com.otterly76.ott.util.data.PackResourcesHelper;
 import com.otterly76.ott.worldgen.ModFeatures;
 import com.otterly76.ott.worldgen.ModPlacedFeatures;
 import com.otterly76.ott.worldgen.ModTreeDecoratorTypes;
-import com.otterly76.ott.worldgen.biome.ModOverworldRegion;
 import com.otterly76.ott.worldgen.blockentitymodifier.ApplyAll;
 import com.otterly76.ott.worldgen.blockentitymodifier.ApplyRandom;
 import com.otterly76.ott.worldgen.blockpredicate.BlockStatePredicate;
@@ -117,7 +116,6 @@ import net.neoforged.neoforge.event.AddPackFindersEvent;
 import net.neoforged.neoforge.event.BuildCreativeModeTabContentsEvent;
 import net.neoforged.neoforge.event.server.ServerStartingEvent;
 import org.jetbrains.annotations.NotNull;
-import terrablender.api.Regions;
 
 import java.nio.file.Files;
 import java.util.Collections;
@@ -359,7 +357,6 @@ public class Ott {
             registerFlammables();
             com.otterly76.ott.handler.WeatheringHandler.registerTransitions();
             com.otterly76.ott.handler.CauldronInteractionHandler.bootstrap();
-            Regions.register(new ModOverworldRegion(ResourceLocation.fromNamespaceAndPath("minecraft", "palegarden"), 2));
             ModBlockFamilies.createBlockFamilies();
 
             FlowerPotBlock pot = (FlowerPotBlock) Blocks.FLOWER_POT;

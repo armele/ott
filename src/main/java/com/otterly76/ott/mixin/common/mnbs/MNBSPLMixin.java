@@ -16,9 +16,12 @@ import org.jetbrains.annotations.Nullable;
 import org.spongepowered.asm.mixin.*;
 import org.spongepowered.asm.mixin.injection.At;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 import java.util.function.Function;
+import com.mojang.datafixers.util.Pair;
 
 @Mixin({MultiNoiseBiomeSourceParameterList.class})
 public abstract class MNBSPLMixin implements MNBSPL {
@@ -62,7 +65,11 @@ public abstract class MNBSPLMixin implements MNBSPL {
         return CodecExtender.extend(originalCall.call(builder), (instance, wrapper) -> instance.group(wrapper, ParameterList.codec(Biome.CODEC.fieldOf("biome")).optionalFieldOf("ott:biomes").forGetter((mnbspl) -> Optional.of(mnbspl.parameters())), Biome.CODEC.optionalFieldOf("ott:migration_biome").forGetter((mnbspl) -> ((MNBSPL)mnbspl).ott$getMigrationBiome())).apply(instance, (mnbspl, parameters, biomeOpt) -> {
             MNBSPL duck = (MNBSPL)mnbspl;
             Objects.requireNonNull(duck);
-            parameters.ifPresent(duck::ott$setParameters);
+            parameters.ifPresent(extraParams -> {
+                List<Pair<Climate.ParameterPoint, Holder<Biome>>> combined = new ArrayList<>(mnbspl.parameters().values());
+                combined.addAll(extraParams.values());
+                duck.ott$setParameters(new Climate.ParameterList<>(combined));
+            });
 
             // Resolve the Optional here to satisfy the setter's type requirement
             duck.ott$setMigrationBiome(biomeOpt.orElse(null));

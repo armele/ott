@@ -36,10 +36,6 @@ repositories {
         }
     }
     maven {
-        name = 'TerraBlender'
-        url = 'https://maven.minecraftforge.net/releases/'
-    }
-    maven {
         name = 'GeckoLib'
         url = 'https://dl.cloudsmith.io/public/geckolib3/geckolib/maven/'
         content {
@@ -152,7 +148,6 @@ dependencies {
         transitive = false
     }
 
-    implementation "com.github.glitchfiend:TerraBlender-neoforge:${terrablender_version}"
 
 
     // Example optional mod dependency with JEI
@@ -200,8 +195,6 @@ tasks.withType(ProcessResources).configureEach {
                              blockUI_version        : blockUI_version,
                              structurize_version    : structurize_version,
                              multiPistonVersion     : multiPistonVersion,
-                             jei_version            : jei_version,
-                             terrablender_version   : terrablender_version,
                              dataGeneratorsVersion  : dataGeneratorsVersion,]
 
     inputs.properties replaceProperties

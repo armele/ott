@@ -17,6 +17,9 @@ public class ModBiomes {
         HolderGetter<PlacedFeature> features = context.lookup(Registries.PLACED_FEATURE);
         HolderGetter<ConfiguredWorldCarver<?>> carvers = context.lookup(Registries.CONFIGURED_CARVER);
         context.register(PALE_GARDEN, TheGardenAwakensBiomes.paleGarden(features, carvers));
+        // Verdant Forest and Flatness biomes are loaded from JSON, but we can register their keys here if needed
+        // However, if we want to include them in the MultiNoiseBiomeSourceParameterList in Java, 
+        // they must be present in the registry during bootstrap or referenced by key.
     }
     public static final ResourceKey<Biome> VERDANT_FOREST = ResourceKey.create(Registries.BIOME, ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, "verdant_forest"));
     public static final ResourceKey<Biome> FLATNESS = ResourceKey.create(Registries.BIOME, ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, "flatness"));
