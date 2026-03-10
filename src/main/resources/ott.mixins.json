@@ -58,6 +58,7 @@
     "common.ItemCombinerMenuAccessor",
     "common.ItemInvoker",
     "common.ItemMixin",
+    "common.LayeredCauldronBlockMixin",
     "common.JigsawStructureAccessor",
     "common.JigsawStructureMixin",
     "common.JukeboxSongPlayerMixin",

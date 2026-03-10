@@ -230,6 +230,12 @@ public class CreativeTabHandler {
             }
 
             safeInsertAfter(event, new ItemStack(Items.DRAGON_HEAD), new ItemStack(ModItems.DRAGON_SKULL.get()), visibility);
+
+            lastTarget = Items.DAMAGED_ANVIL;
+            for (Supplier<? extends Block> block : ModBlocks.COPPER_ANVILS.values()) {
+                safeInsertAfter(event, new ItemStack(lastTarget), new ItemStack(block.get()), visibility);
+                lastTarget = block.get();
+            }
         }
 
         if (event.getTabKey() == CreativeModeTabs.TOOLS_AND_UTILITIES) {

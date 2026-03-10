@@ -358,6 +358,7 @@ public class Ott {
             registerCompostables();
             registerFlammables();
             com.otterly76.ott.handler.WeatheringHandler.registerTransitions();
+            com.otterly76.ott.handler.CauldronInteractionHandler.bootstrap();
             Regions.register(new ModOverworldRegion(ResourceLocation.fromNamespaceAndPath("minecraft", "palegarden"), 2));
             ModBlockFamilies.createBlockFamilies();
 

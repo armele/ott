@@ -61,5 +61,6 @@ public class ModBlockEntities {
         });
 
         event.modify(ANVIL_BLOCK_ENTITY_TYPE.get(), Blocks.ANVIL, Blocks.CHIPPED_ANVIL, Blocks.DAMAGED_ANVIL);
+        ModBlocks.COPPER_ANVILS.values().forEach(anvil -> event.modify(ANVIL_BLOCK_ENTITY_TYPE.get(), anvil.get()));
     }
 }

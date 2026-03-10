@@ -31,12 +31,30 @@ public class ItemInteractionHandler {
         BlockState newBlockState;
         if (oldBlockState.is(Blocks.DAMAGED_ANVIL)) {
             newBlockState = Blocks.CHIPPED_ANVIL.defaultBlockState().setValue(AnvilBlock.FACING, oldBlockState.getValue(AnvilBlock.FACING));
-        } else {
-            if (!oldBlockState.is(Blocks.CHIPPED_ANVIL)) {
-                return null;
-            }
-
+        } else if (oldBlockState.is(Blocks.CHIPPED_ANVIL)) {
             newBlockState = Blocks.ANVIL.defaultBlockState().setValue(AnvilBlock.FACING, oldBlockState.getValue(AnvilBlock.FACING));
+        } else {
+            // Check copper anvils
+            for (java.util.Map.Entry<String, java.util.function.Supplier<? extends net.minecraft.world.level.block.Block>> entry : com.otterly76.ott.block.ModBlocks.COPPER_ANVILS.entrySet()) {
+                if (oldBlockState.is(entry.getValue().get())) {
+                    String key = entry.getKey();
+                    String newKey = null;
+                    if (key.contains("damaged_")) {
+                        // Damaged -> Chipped
+                        newKey = key.replace("damaged_", "chipped_");
+                    } else if (key.contains("chipped_")) {
+                        // Chipped -> Normal
+                        newKey = key.replace("chipped_", "");
+                    }
+
+                    if (newKey != null) {
+                        net.minecraft.world.level.block.Block newBlock = com.otterly76.ott.block.ModBlocks.COPPER_ANVILS.get(newKey).get();
+                        return newBlock.defaultBlockState().setValue(AnvilBlock.FACING, oldBlockState.getValue(AnvilBlock.FACING));
+                    }
+                    return null;
+                }
+            }
+            return null;
         }
 
         return newBlockState;

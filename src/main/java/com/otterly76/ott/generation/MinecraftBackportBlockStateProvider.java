@@ -134,15 +134,6 @@ public class MinecraftBackportBlockStateProvider extends ModBlockStateProvider {
                 .renderType("cutout");
         simpleBlockWithItem(ModBlocks.OPEN_EYEBLOSSOM.get(), openEyeblossom);
 
-        // Copper Cauldron
-        ModBlocks.COPPER_CAULDRONS.forEach((name, block) -> {
-            String stateName = name.startsWith("waxed_") ? name.substring(6) : name;
-            ResourceLocation texture = mcLoc("block/" + stateName + "copper_cauldron");
-            ModelFile model = models().withExistingParent(name + "copper_cauldron", mcLoc("block/copper_cauldron"))
-                    .texture("3", texture)
-                    .renderType("cutout");
-            simpleBlock(block.get(), model);
-        });
 
         // Copper Chains
         ModBlocks.COPPER_CHAINS.forEach((name, block) -> {
@@ -332,6 +323,10 @@ public class MinecraftBackportBlockStateProvider extends ModBlockStateProvider {
         for (String state : copperStates) {
             String waxedPrefix = "waxed_" + state;
 
+            // Cauldrons
+            registerCopperCauldronSet(state);
+            registerCopperCauldronSet(waxedPrefix);
+
             // Bars
             registerCopperBars(ModBlocks.COPPER_BARS.get(state).get(), mcLoc("block/" + state + "copper_bars"));
             registerCopperBars(ModBlocks.COPPER_BARS.get(waxedPrefix).get(), mcLoc("block/" + state + "copper_bars"));
@@ -387,6 +382,12 @@ public class MinecraftBackportBlockStateProvider extends ModBlockStateProvider {
             // Rails
             registerCopperRail(ModBlocks.COPPER_RAILS.get(state).get(), state);
             registerCopperRail(ModBlocks.COPPER_RAILS.get(waxedPrefix).get(), state);
+
+            // Anvils
+            for (String damagePrefix : new String[]{"", "chipped_", "damaged_"}) {
+                registerCopperAnvil(ModBlocks.COPPER_ANVILS.get(damagePrefix + state).get(), state, damagePrefix);
+                registerCopperAnvil(ModBlocks.COPPER_ANVILS.get("waxed_" + damagePrefix + state).get(), state, damagePrefix);
+            }
         }
 
         // Chests (They are not in a map)
@@ -576,6 +577,89 @@ public class MinecraftBackportBlockStateProvider extends ModBlockStateProvider {
                 case NORTH_EAST -> ConfiguredModel.builder().modelFile(curvedModel).rotationY(270).build();
             };
         });
+    }
+
+    protected void registerCopperAnvil(Block block, String state, String damage) {
+        String name = BuiltInRegistries.BLOCK.getKey(block).getPath();
+        ResourceLocation body = mcLoc("block/" + state + "copper_anvil");
+        ResourceLocation top = mcLoc("block/" + damage + state + "copper_anvil_top");
+
+        ModelFile model = models().withExistingParent(name, mcLoc("block/template_anvil"))
+                .texture("body", body)
+                .texture("top", top)
+                .texture("tools", mcLoc("block/anvil_detail"))
+                .texture("particle", body)
+                .renderType("cutout");
+
+        getVariantBuilder(block).forAllStates(stateBlock -> {
+            Direction facing = stateBlock.getValue(AnvilBlock.FACING);
+            return ConfiguredModel.builder()
+                    .modelFile(model)
+                    .rotationY(((int) facing.toYRot() + 180) % 360)
+                    .build();
+        });
+    }
+
+    protected void registerCopperCauldronSet(String stateKey) {
+        String stateName = stateKey.startsWith("waxed_") ? stateKey.substring(6) : stateKey;
+        ResourceLocation copperTex = mcLoc("block/" + stateName + "copper_cauldron");
+
+        // Base Model
+        ModelFile baseModel = models().withExistingParent(stateKey + "copper_cauldron", mcLoc("block/copper_cauldron"))
+                .texture("3", copperTex)
+                .renderType("cutout");
+
+        // Empty
+        simpleBlock(ModBlocks.COPPER_CAULDRONS.get(stateKey).get(), baseModel);
+
+        // Water
+        registerFluidCauldron(ModBlocks.COPPER_WATER_CAULDRONS.get(stateKey).get(), baseModel, mcLoc("block/water_still"), true, true);
+
+        // Lava
+        registerFluidCauldron(ModBlocks.COPPER_LAVA_CAULDRONS.get(stateKey).get(), baseModel, mcLoc("block/lava_still"), false, false);
+
+        // Powder Snow
+        registerFluidCauldron(ModBlocks.COPPER_POWDER_SNOW_CAULDRONS.get(stateKey).get(), baseModel, mcLoc("block/powder_snow"), true, false);
+    }
+
+    protected void registerFluidCauldron(Block block, ModelFile baseModel, ResourceLocation fluidTex, boolean layered, boolean water) {
+        String name = BuiltInRegistries.BLOCK.getKey(block).getPath();
+        MultiPartBlockStateBuilder builder = getMultipartBuilder(block);
+
+        // Base cauldron is always there
+        builder.part().modelFile(baseModel).addModel().end();
+
+        if (layered) {
+            for (int level = 1; level <= 3; level++) {
+                ModelFile contentModel = getFluidContentModel(name + "_level" + level, fluidTex, level, water);
+                builder.part().modelFile(contentModel).addModel()
+                        .condition(LayeredCauldronBlock.LEVEL, level)
+                        .end();
+            }
+        } else {
+            ModelFile contentModel = getFluidContentModel(name + "_full", fluidTex, 3, water);
+            builder.part().modelFile(contentModel).addModel().end();
+        }
+    }
+
+    private ModelFile getFluidContentModel(String name, ResourceLocation fluidTex, int level, boolean water) {
+        float y = 5 + (level == 3 ? 9 : (level == 2 ? 7 : 3));
+        BlockModelBuilder builder = models().getBuilder(name)
+                .texture("particle", fluidTex)
+                .texture("content", fluidTex);
+
+        BlockModelBuilder.ElementBuilder element = builder.element()
+                .from(3, y, 3).to(13, y, 13);
+
+        if (water) {
+            element.face(Direction.UP).uvs(3, 3, 13, 13).texture("#content").tintindex(0).end()
+                   .face(Direction.DOWN).uvs(3, 3, 13, 13).texture("#content").tintindex(0).end();
+        } else {
+            element.face(Direction.UP).uvs(3, 3, 13, 13).texture("#content").end()
+                   .face(Direction.DOWN).uvs(3, 3, 13, 13).texture("#content").end();
+        }
+
+        return builder.renderType("cutout");
     }
 
     private ModelFile resinClumpModel() {

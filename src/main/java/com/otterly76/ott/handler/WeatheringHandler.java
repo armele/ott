@@ -47,8 +47,21 @@ public class WeatheringHandler {
         addChainFromMap(ModBlocks.COPPER_HOPPERS, states);
         addChainFromMap(ModBlocks.COPPER_LADDERS, states);
         addChainFromMap(ModBlocks.COPPER_CAULDRONS, states);
+        addChainFromMap(ModBlocks.COPPER_WATER_CAULDRONS, states);
+        addChainFromMap(ModBlocks.COPPER_LAVA_CAULDRONS, states);
+        addChainFromMap(ModBlocks.COPPER_POWDER_SNOW_CAULDRONS, states);
         addChainFromMap(ModBlocks.COPPER_RAILS, states);
         addChainFromMap(ModBlocks.LIGHTNING_RODS, states);
+
+        for (String damagePrefix : new String[]{"", "chipped_", "damaged_"}) {
+            for (int i = 0; i < states.length - 1; i++) {
+                addWeatheringTransition(ModBlocks.COPPER_ANVILS.get(damagePrefix + states[i]).get(), ModBlocks.COPPER_ANVILS.get(damagePrefix + states[i+1]).get());
+                addWeatheringTransition(ModBlocks.COPPER_ANVILS.get("waxed_" + damagePrefix + states[i]).get(), ModBlocks.COPPER_ANVILS.get("waxed_" + damagePrefix + states[i+1]).get());
+            }
+            for (String state : states) {
+                addWaxingTransition(ModBlocks.COPPER_ANVILS.get(damagePrefix + state).get(), ModBlocks.COPPER_ANVILS.get("waxed_" + damagePrefix + state).get());
+            }
+        }
 
         // Statues
         addChainFromMap(ModBlocks.COPPER_GOLEM_STATUES, states);

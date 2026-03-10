@@ -24,10 +24,43 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
+import java.util.Map;
+import java.util.function.Supplier;
+import net.minecraft.world.level.block.Block;
+
 @Mixin(value = AnvilBlock.class, priority = 2000)
 public abstract class AnvilBlockMixin extends FallingBlock implements EntityBlock {
     public AnvilBlockMixin(BlockBehaviour.Properties properties) {
         super(properties);
+    }
+
+    @Inject(method = "damage", at = @At("HEAD"), cancellable = true)
+    private static void ott$damage(BlockState state, CallbackInfoReturnable<BlockState> cir) {
+        for (Map.Entry<String, Supplier<? extends Block>> entry : com.otterly76.ott.block.ModBlocks.COPPER_ANVILS.entrySet()) {
+            if (state.is(entry.getValue().get())) {
+                String key = entry.getKey();
+                String newKey = null;
+                if (!key.contains("chipped_") && !key.contains("damaged_")) {
+                    // Normal -> Chipped
+                    if (key.startsWith("waxed_")) {
+                        newKey = "waxed_chipped_" + key.substring("waxed_".length());
+                    } else {
+                        newKey = "chipped_" + key;
+                    }
+                } else if (key.contains("chipped_")) {
+                    // Chipped -> Damaged
+                    newKey = key.replace("chipped_", "damaged_");
+                }
+
+                if (newKey != null) {
+                    Block newBlock = com.otterly76.ott.block.ModBlocks.COPPER_ANVILS.get(newKey).get();
+                    cir.setReturnValue(newBlock.defaultBlockState().setValue(AnvilBlock.FACING, state.getValue(AnvilBlock.FACING)));
+                } else {
+                    cir.setReturnValue(null);
+                }
+                return;
+            }
+        }
     }
 
     @Inject(method = "useWithoutItem", at = @At("HEAD"), cancellable = true)
