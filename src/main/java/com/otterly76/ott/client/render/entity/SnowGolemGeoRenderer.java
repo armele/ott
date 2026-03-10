@@ -6,8 +6,8 @@ import net.minecraft.client.renderer.entity.EntityRendererProvider;
 import net.minecraft.world.entity.animal.SnowGolem;
 import software.bernie.geckolib.renderer.GeoEntityRenderer;
 
-public class SnowGolemGeoRenderer<T extends SnowGolem & SnowGolemGeoEntity> extends GeoEntityRenderer<T> {
+public class SnowGolemGeoRenderer<T extends SnowGolem & SnowGolemGeoEntity> extends GeoLivingRendererWrapper<T> {
     public SnowGolemGeoRenderer(EntityRendererProvider.Context renderManager) {
-        super(renderManager, new SnowGolemGeoModel<>());
+        super(renderManager, new GeoEntityRenderer<>(renderManager, new SnowGolemGeoModel<>()));
     }
 }

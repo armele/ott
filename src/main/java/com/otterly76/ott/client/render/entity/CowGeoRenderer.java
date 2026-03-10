@@ -11,16 +11,16 @@ import software.bernie.geckolib.cache.object.BakedGeoModel;
 import software.bernie.geckolib.renderer.GeoEntityRenderer;
 import org.jetbrains.annotations.Nullable;
 
-public class CowGeoRenderer<T extends Cow & CowGeoEntity> extends GeoEntityRenderer<T> {
+public class CowGeoRenderer<T extends Cow & CowGeoEntity> extends GeoLivingRendererWrapper<T> {
     public CowGeoRenderer(EntityRendererProvider.Context renderManager) {
-        super(renderManager, new CowGeoModel<>());
-    }
-
-    @Override
-    public void preRender(PoseStack poseStack, T animatable, BakedGeoModel model, @Nullable MultiBufferSource bufferSource, @Nullable VertexConsumer buffer, boolean isReRender, float partialTick, int packedLight, int packedOverlay, int colour) {
-        if (!isReRender && animatable.isBaby()) {
-            poseStack.scale(0.5F, 0.5F, 0.5F);
-        }
-        super.preRender(poseStack, animatable, model, bufferSource, buffer, isReRender, partialTick, packedLight, packedOverlay, colour);
+        super(renderManager, new GeoEntityRenderer<>(renderManager, new CowGeoModel<>()) {
+            @Override
+            public void preRender(PoseStack poseStack, T animatable, BakedGeoModel model, @Nullable MultiBufferSource bufferSource, @Nullable VertexConsumer buffer, boolean isReRender, float partialTick, int packedLight, int packedOverlay, int colour) {
+                if (!isReRender && animatable.isBaby()) {
+                    poseStack.scale(0.5F, 0.5F, 0.5F);
+                }
+                super.preRender(poseStack, animatable, model, bufferSource, buffer, isReRender, partialTick, packedLight, packedOverlay, colour);
+            }
+        });
     }
 }

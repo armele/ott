@@ -6,8 +6,8 @@ import net.minecraft.client.renderer.entity.EntityRendererProvider;
 import net.minecraft.world.entity.monster.Vex;
 import software.bernie.geckolib.renderer.GeoEntityRenderer;
 
-public class VexGeoRenderer<T extends Vex & VexGeoEntity> extends GeoEntityRenderer<T> {
+public class VexGeoRenderer<T extends Vex & VexGeoEntity> extends GeoLivingRendererWrapper<T> {
     public VexGeoRenderer(EntityRendererProvider.Context renderManager) {
-        super(renderManager, new VexGeoModel<>());
+        super(renderManager, new GeoEntityRenderer<>(renderManager, new VexGeoModel<>()));
     }
 }

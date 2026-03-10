@@ -6,8 +6,8 @@ import net.minecraft.client.renderer.entity.EntityRendererProvider;
 import net.minecraft.world.entity.animal.Rabbit;
 import software.bernie.geckolib.renderer.GeoEntityRenderer;
 
-public class RabbitGeoRenderer<T extends Rabbit & RabbitGeoEntity> extends GeoEntityRenderer<T> {
+public class RabbitGeoRenderer<T extends Rabbit & RabbitGeoEntity> extends GeoLivingRendererWrapper<T> {
     public RabbitGeoRenderer(EntityRendererProvider.Context renderManager) {
-        super(renderManager, new RabbitGeoModel<>());
+        super(renderManager, new GeoEntityRenderer<>(renderManager, new RabbitGeoModel<>()));
     }
 }

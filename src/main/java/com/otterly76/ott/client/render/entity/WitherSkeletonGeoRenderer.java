@@ -6,8 +6,8 @@ import net.minecraft.client.renderer.entity.EntityRendererProvider;
 import net.minecraft.world.entity.monster.WitherSkeleton;
 import software.bernie.geckolib.renderer.GeoEntityRenderer;
 
-public class WitherSkeletonGeoRenderer<T extends WitherSkeleton & WitherSkeletonGeoEntity> extends GeoEntityRenderer<T> {
+public class WitherSkeletonGeoRenderer<T extends WitherSkeleton & WitherSkeletonGeoEntity> extends GeoLivingRendererWrapper<T> {
     public WitherSkeletonGeoRenderer(EntityRendererProvider.Context renderManager) {
-        super(renderManager, new WitherSkeletonGeoModel<>());
+        super(renderManager, new GeoEntityRenderer<>(renderManager, new WitherSkeletonGeoModel<>()));
     }
 }
