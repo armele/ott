@@ -9,8 +9,7 @@ import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.tags.TagKey;
-import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.*;
 import net.neoforged.neoforge.common.data.BlockTagsProvider;
 import net.neoforged.neoforge.common.data.ExistingFileHelper;
 import org.jetbrains.annotations.NotNull;
@@ -119,6 +118,29 @@ public class ModBlockTagProvider extends BlockTagsProvider {
                     this.tag(BlockTags.IMPERMEABLE).add(glass);
                 }
                 default -> { }
+            }
+        });
+
+        // --- 3.1 POPULATE minecraft: tags for backported blocks ---
+        ModBlocks.MINECRAFT_BLOCKS.getEntries().forEach(deferredBlock -> {
+            Block block = deferredBlock.value();
+
+            if (block instanceof BaseRailBlock) this.tag(BlockTags.RAILS).add(block);
+            if (block instanceof DoorBlock) this.tag(BlockTags.DOORS).add(block);
+            if (block instanceof TrapDoorBlock) this.tag(BlockTags.TRAPDOORS).add(block);
+            if (block instanceof LadderBlock) this.tag(BlockTags.CLIMBABLE).add(block);
+            if (block instanceof CauldronBlock) this.tag(BlockTags.CAULDRONS).add(block);
+
+            // Mineability
+            if (block instanceof BaseRailBlock || block instanceof LanternBlock || block instanceof ChainBlock ||
+                    block instanceof IronBarsBlock || block instanceof HopperBlock || block instanceof LightningRodBlock ||
+                    block instanceof CauldronBlock || block instanceof DoorBlock || block instanceof TrapDoorBlock ||
+                    block instanceof com.otterly76.ott.block.custom.CopperGolemStatueBlock) {
+                pickaxeTag.add(block);
+            }
+            if (block instanceof LadderBlock) {
+                pickaxeTag.add(block);
+                axeTag.add(block);
             }
         });
 

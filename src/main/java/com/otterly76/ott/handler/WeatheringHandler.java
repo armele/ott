@@ -47,6 +47,7 @@ public class WeatheringHandler {
         addChainFromMap(ModBlocks.COPPER_HOPPERS, states);
         addChainFromMap(ModBlocks.COPPER_LADDERS, states);
         addChainFromMap(ModBlocks.COPPER_CAULDRONS, states);
+        addChainFromMap(ModBlocks.COPPER_RAILS, states);
         addChainFromMap(ModBlocks.LIGHTNING_RODS, states);
 
         // Statues

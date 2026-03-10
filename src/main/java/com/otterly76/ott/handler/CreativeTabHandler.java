@@ -322,6 +322,12 @@ public class CreativeTabHandler {
             for (Supplier<? extends Block> block : ModBlocks.COPPER_HOPPERS.values()) {
                 safeAccept(event, block.get(), visibility);
             }
+
+            ItemLike lastRailTarget = Items.RAIL;
+            for (Supplier<? extends Block> block : ModBlocks.COPPER_RAILS.values()) {
+                safeInsertAfter(event, new ItemStack(lastRailTarget), new ItemStack(block.get()), visibility);
+                lastRailTarget = block.get();
+            }
         }
 
 

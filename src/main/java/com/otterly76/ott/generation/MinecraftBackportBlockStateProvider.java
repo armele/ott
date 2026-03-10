@@ -139,7 +139,8 @@ public class MinecraftBackportBlockStateProvider extends ModBlockStateProvider {
             String stateName = name.startsWith("waxed_") ? name.substring(6) : name;
             ResourceLocation texture = mcLoc("block/" + stateName + "copper_cauldron");
             ModelFile model = models().withExistingParent(name + "copper_cauldron", mcLoc("block/copper_cauldron"))
-                    .texture("3", texture);
+                    .texture("3", texture)
+                    .renderType("cutout");
             simpleBlock(block.get(), model);
         });
 
@@ -382,6 +383,10 @@ public class MinecraftBackportBlockStateProvider extends ModBlockStateProvider {
             // Ladders
             registerCopperLadder(ModBlocks.COPPER_LADDERS.get(state).get(), mcLoc("block/" + state + "copper_ladder"));
             registerCopperLadder(ModBlocks.COPPER_LADDERS.get(waxedPrefix).get(), mcLoc("block/" + state + "copper_ladder"));
+
+            // Rails
+            registerCopperRail(ModBlocks.COPPER_RAILS.get(state).get(), state);
+            registerCopperRail(ModBlocks.COPPER_RAILS.get(waxedPrefix).get(), state);
         }
 
         // Chests (They are not in a map)
@@ -397,12 +402,12 @@ public class MinecraftBackportBlockStateProvider extends ModBlockStateProvider {
 
     protected void registerCopperBars(Block block, ResourceLocation texture) {
         String name = BuiltInRegistries.BLOCK.getKey(block).getPath();
-        ModelFile post = models().withExistingParent(name + "_post", mcLoc("block/template_bars_post")).texture("bars", texture).texture("edge", texture);
-        ModelFile side = models().withExistingParent(name + "_side", mcLoc("block/template_bars_side")).texture("bars", texture).texture("edge", texture);
-        ModelFile sideAlt = models().withExistingParent(name + "_side_alt", mcLoc("block/template_bars_side_alt")).texture("bars", texture).texture("edge", texture);
-        ModelFile cap = models().withExistingParent(name + "_cap", mcLoc("block/template_bars_cap")).texture("bars", texture).texture("edge", texture);
-        ModelFile capAlt = models().withExistingParent(name + "_cap_alt", mcLoc("block/template_bars_cap_alt")).texture("bars", texture).texture("edge", texture);
-        ModelFile postEnds = models().withExistingParent(name + "_post_ends", mcLoc("block/template_bars_post_ends")).texture("bars", texture).texture("edge", texture);
+        ModelFile post = models().withExistingParent(name + "_post", mcLoc("block/template_bars_post")).texture("bars", texture).texture("edge", texture).renderType("cutout");
+        ModelFile side = models().withExistingParent(name + "_side", mcLoc("block/template_bars_side")).texture("bars", texture).texture("edge", texture).renderType("cutout");
+        ModelFile sideAlt = models().withExistingParent(name + "_side_alt", mcLoc("block/template_bars_side_alt")).texture("bars", texture).texture("edge", texture).renderType("cutout");
+        ModelFile cap = models().withExistingParent(name + "_cap", mcLoc("block/template_bars_cap")).texture("bars", texture).texture("edge", texture).renderType("cutout");
+        ModelFile capAlt = models().withExistingParent(name + "_cap_alt", mcLoc("block/template_bars_cap_alt")).texture("bars", texture).texture("edge", texture).renderType("cutout");
+        ModelFile postEnds = models().withExistingParent(name + "_post_ends", mcLoc("block/template_bars_post_ends")).texture("bars", texture).texture("edge", texture).renderType("cutout");
 
         MultiPartBlockStateBuilder builder = getMultipartBuilder(block);
 
@@ -421,9 +426,11 @@ public class MinecraftBackportBlockStateProvider extends ModBlockStateProvider {
     protected void registerCopperLantern(Block block, ResourceLocation texture) {
         String name = BuiltInRegistries.BLOCK.getKey(block).getPath();
         ModelFile lantern = models().withExistingParent(name, mcLoc("block/template_lantern"))
-                .texture("lantern", texture);
+                .texture("lantern", texture)
+                .renderType("cutout");
         ModelFile hangingLantern = models().withExistingParent(name + "_hanging", mcLoc("block/template_hanging_lantern"))
-                .texture("lantern", texture);
+                .texture("lantern", texture)
+                .renderType("cutout");
 
         getVariantBuilder(block).forAllStates(state -> {
             boolean hanging = state.getValue(LanternBlock.HANGING);
@@ -452,11 +459,13 @@ public class MinecraftBackportBlockStateProvider extends ModBlockStateProvider {
         ModelFile model = models().withExistingParent(name, mcLoc("block/hopper"))
                 .texture("top", mcLoc("block/" + state + "copper_hopper_top"))
                 .texture("inside", mcLoc("block/" + state + "copper_hopper_inside"))
-                .texture("outside", mcLoc("block/" + state + "copper_hopper_outside"));
+                .texture("outside", mcLoc("block/" + state + "copper_hopper_outside"))
+                .renderType("cutout");
         ModelFile modelSide = models().withExistingParent(name + "_side", mcLoc("block/hopper_side"))
                 .texture("top", mcLoc("block/" + state + "copper_hopper_top"))
                 .texture("inside", mcLoc("block/" + state + "copper_hopper_inside"))
-                .texture("side", mcLoc("block/" + state + "copper_hopper_outside"));
+                .texture("side", mcLoc("block/" + state + "copper_hopper_outside"))
+                .renderType("cutout");
 
         getVariantBuilder(block).forAllStates(s -> {
             Direction facing = s.getValue(HopperBlock.FACING);
@@ -491,7 +500,8 @@ public class MinecraftBackportBlockStateProvider extends ModBlockStateProvider {
     protected void registerLightningRod(Block block, String state) {
         String name = BuiltInRegistries.BLOCK.getKey(block).getPath();
         ModelFile model = models().withExistingParent(name, mcLoc("block/template_lightning_rod"))
-                .texture("texture", mcLoc("block/" + state + "lightning_rod"));
+                .texture("texture", mcLoc("block/" + state + "lightning_rod"))
+                .renderType("cutout");
 
         getVariantBuilder(block).forAllStates(s -> {
             Direction facing = s.getValue(LightningRodBlock.FACING);
@@ -507,7 +517,8 @@ public class MinecraftBackportBlockStateProvider extends ModBlockStateProvider {
         String name = BuiltInRegistries.BLOCK.getKey(block).getPath();
         ModelFile model = models().withExistingParent(name, mcLoc("block/template_copper_grate"))
                 .texture("all", mcLoc("block/" + state + "copper_grate"))
-                .texture("particle", mcLoc("block/" + state + "copper_grate"));
+                .texture("particle", mcLoc("block/" + state + "copper_grate"))
+                .renderType("cutout");
 
         simpleBlock(block, model);
     }
@@ -525,6 +536,45 @@ public class MinecraftBackportBlockStateProvider extends ModBlockStateProvider {
                     .modelFile(model)
                     .rotationY(((int) facing.toYRot() + 180) % 360)
                     .build();
+        });
+    }
+
+    protected void registerCopperRail(Block block, String state) {
+        String name = BuiltInRegistries.BLOCK.getKey(block).getPath();
+        ResourceLocation straight = mcLoc("block/" + state + "copper_rail");
+        ResourceLocation curved = mcLoc("block/" + state + "copper_rail_corner");
+
+        ModelFile flat = models().withExistingParent(name + "_flat", mcLoc("block/rail"))
+                .texture("rail", straight)
+                .texture("particle", straight)
+                .renderType("cutout");
+        ModelFile curvedModel = models().withExistingParent(name + "_curved", mcLoc("block/rail_corner"))
+                .texture("rail", curved)
+                .texture("particle", curved)
+                .renderType("cutout");
+        ModelFile raisedNe = models().withExistingParent(name + "_raised_ne", mcLoc("block/rail_raised_ne"))
+                .texture("rail", straight)
+                .texture("particle", straight)
+                .renderType("cutout");
+        ModelFile raisedSw = models().withExistingParent(name + "_raised_sw", mcLoc("block/rail_raised_sw"))
+                .texture("rail", straight)
+                .texture("particle", straight)
+                .renderType("cutout");
+
+        getVariantBuilder(block).forAllStates(stateBlock -> {
+            net.minecraft.world.level.block.state.properties.RailShape shape = stateBlock.getValue(RailBlock.SHAPE);
+            return switch (shape) {
+                case NORTH_SOUTH -> ConfiguredModel.builder().modelFile(flat).build();
+                case EAST_WEST -> ConfiguredModel.builder().modelFile(flat).rotationY(90).build();
+                case ASCENDING_EAST -> ConfiguredModel.builder().modelFile(raisedSw).rotationY(270).build();
+                case ASCENDING_WEST -> ConfiguredModel.builder().modelFile(raisedNe).rotationY(270).build();
+                case ASCENDING_NORTH -> ConfiguredModel.builder().modelFile(raisedNe).rotationY(180).build();
+                case ASCENDING_SOUTH -> ConfiguredModel.builder().modelFile(raisedSw).rotationY(180).build();
+                case SOUTH_EAST -> ConfiguredModel.builder().modelFile(curvedModel).build();
+                case SOUTH_WEST -> ConfiguredModel.builder().modelFile(curvedModel).rotationY(90).build();
+                case NORTH_WEST -> ConfiguredModel.builder().modelFile(curvedModel).rotationY(180).build();
+                case NORTH_EAST -> ConfiguredModel.builder().modelFile(curvedModel).rotationY(270).build();
+            };
         });
     }
 
