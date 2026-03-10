@@ -199,7 +199,10 @@ public class CreativeTabHandler {
             }
 
             lastTarget = Items.CAULDRON;
-            safeInsertAfter(event, new ItemStack(lastTarget), new ItemStack(ModBlocks.COPPER_CAULDRON.get()), visibility);
+            for (Supplier<? extends Block> block : ModBlocks.COPPER_CAULDRONS.values()) {
+                safeInsertAfter(event, new ItemStack(lastTarget), new ItemStack(block.get()), visibility);
+                lastTarget = block.get();
+            }
 
             lastTarget = Items.LIGHTNING_ROD;
             for (Supplier<? extends Block> block : ModBlocks.LIGHTNING_RODS.values()) {

@@ -271,6 +271,9 @@ public class MinecraftBackportItemModelProvider extends ItemModelProvider {
             String ladderTextureName = "block/" + state + "copper_ladder";
             generatedItem(state + "copper_ladder", ladderTextureName);
             generatedItem("waxed_" + state + "copper_ladder", ladderTextureName);
+
+            parentItemToBlockModel(state + "copper_cauldron", "block/" + state + "copper_cauldron");
+            parentItemToBlockModel("waxed_" + state + "copper_cauldron", "block/waxed_" + state + "copper_cauldron");
         }
 
         spawnEggItem(ModItems.COPPER_GOLEM_SPAWN_EGG.getId().getPath());

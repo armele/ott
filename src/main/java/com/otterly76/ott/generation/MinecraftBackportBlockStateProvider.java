@@ -135,7 +135,13 @@ public class MinecraftBackportBlockStateProvider extends ModBlockStateProvider {
         simpleBlockWithItem(ModBlocks.OPEN_EYEBLOSSOM.get(), openEyeblossom);
 
         // Copper Cauldron
-        simpleBlock(ModBlocks.COPPER_CAULDRON.get(), models().getExistingFile(mcLoc("block/copper_cauldron")));
+        ModBlocks.COPPER_CAULDRONS.forEach((name, block) -> {
+            String stateName = name.startsWith("waxed_") ? name.substring(6) : name;
+            ResourceLocation texture = mcLoc("block/" + stateName + "copper_cauldron");
+            ModelFile model = models().withExistingParent(name + "copper_cauldron", mcLoc("block/copper_cauldron"))
+                    .texture("3", texture);
+            simpleBlock(block.get(), model);
+        });
 
         // Copper Chains
         ModBlocks.COPPER_CHAINS.forEach((name, block) -> {
