@@ -1,13 +1,14 @@
 package com.otterly76.ott.worldgen.structure;
 
-import com.mojang.serialization.DataResult;
 import com.mojang.serialization.MapCodec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.level.ChunkPos;
+import net.minecraft.world.level.levelgen.Heightmap;
 import net.minecraft.world.level.levelgen.WorldGenerationContext;
 import net.minecraft.world.level.levelgen.structure.Structure;
 import net.minecraft.world.level.levelgen.structure.StructureType;
+import net.minecraft.world.level.levelgen.structure.pools.JigsawPlacement;
 import net.minecraft.world.level.levelgen.structure.pools.alias.PoolAliasBinding;
 import net.minecraft.world.level.levelgen.structure.pools.alias.PoolAliasLookup;
 import org.jetbrains.annotations.NotNull;
@@ -20,18 +21,9 @@ public class AlternateJigsawStructure extends Structure {
             settingsCodec(instance),
             AlternateJigsawConfig.CODEC.forGetter(AlternateJigsawStructure::config)
     ).apply(instance, AlternateJigsawStructure::new));
-
+    
     public static final StructureType<AlternateJigsawStructure> TYPE = () -> CODEC;
     private AlternateJigsawConfig config;
-
-    private static DataResult<AlternateJigsawStructure> validate(AlternateJigsawStructure structure) {
-
-        int i = switch (structure.terrainAdaptation()) {
-            case NONE -> 0;
-            case BURY, BEARD_THIN, BEARD_BOX, ENCAPSULATE -> 12;
-        };
-        return structure.config().maxDistanceFromCenter().horizontal() + i > 128 ? DataResult.error(() -> "Structure size including terrain adaptation must not exceed 128") : DataResult.success(structure);
-    }
 
     protected AlternateJigsawStructure(Structure.StructureSettings settings, AlternateJigsawConfig config) {
         super(settings);
@@ -46,15 +38,39 @@ public class AlternateJigsawStructure extends Structure {
         return this.config;
     }
 
+    @Override
     public @NotNull Optional<Structure.GenerationStub> findGenerationPoint(Structure.GenerationContext context) {
         ChunkPos chunkPos = context.chunkPos();
         int i = this.config.startHeight().sample(context.random(), new WorldGenerationContext(context.chunkGenerator(), context.heightAccessor()));
         BlockPos blockPos = new BlockPos(chunkPos.getMinBlockX(), i, chunkPos.getMinBlockZ());
-        return generate(context, this, this.config, false, this.config.size().sample(context.random()), blockPos, PoolAliasLookup.create(this.config.poolAliases(), blockPos, context.seed()));
-    }
 
-    public static Optional<Structure.GenerationStub> generate(Structure.GenerationContext context, Structure structure, AlternateJigsawConfig config, boolean vanilla, int size, BlockPos pos, PoolAliasLookup aliasLookup) {
-        return AlternateJigsawGenerator.generate(context, structure, config, vanilla, size, pos, aliasLookup);
+        int size = this.config.size().sample(context.random());
+        PoolAliasLookup aliasLookup = PoolAliasLookup.create(this.config.poolAliases(), blockPos, context.seed());
+
+        BlockPos computedPos = blockPos;
+        Optional<Heightmap.Types> finalHeightmapProjection = Optional.empty();
+
+        if (this.config.startProjection().isPresent()) {
+            int computedY = this.config.startProjection().get().map(
+                    (snap) -> snap.findY(blockPos, context, context.heightAccessor(), context.randomState()),
+                    (type) -> Optional.of(blockPos.getY() + context.chunkGenerator().getFirstFreeHeight(blockPos.getX(), blockPos.getZ(), type, context.heightAccessor(), context.randomState()))
+            ).orElse(blockPos.getY());
+            computedPos = new BlockPos(blockPos.getX(), computedY, blockPos.getZ());
+        }
+
+        return JigsawPlacement.addPieces(
+                context,
+                this.config.startPool(),
+                this.config.startJigsawName(),
+                size,
+                computedPos,
+                this.config.useExpansionHack(),
+                finalHeightmapProjection,
+                this.config.maxDistanceFromCenter().horizontal(),
+                aliasLookup,
+                this.config.dimensionPadding(),
+                this.config.liquidSettings()
+        );
     }
 
     public @NotNull StructureType<?> type() {

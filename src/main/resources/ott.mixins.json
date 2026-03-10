@@ -60,7 +60,6 @@
     "common.ItemMixin",
     "common.LayeredCauldronBlockMixin",
     "common.JigsawStructureAccessor",
-    "common.JigsawStructureMixin",
     "common.JukeboxSongPlayerMixin",
     "common.LeashableMixin",
     "common.LeashDataMixin",
