@@ -1,5 +1,7 @@
 package com.otterly76.ott.mixin.common.mnbs;
 
+import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
+import com.llamalad7.mixinextras.injector.wrapoperation.WrapOperation;
 import com.mojang.datafixers.kinds.App;
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
@@ -13,7 +15,6 @@ import net.minecraft.world.level.biome.MultiNoiseBiomeSourceParameterList;
 import org.jetbrains.annotations.Nullable;
 import org.spongepowered.asm.mixin.*;
 import org.spongepowered.asm.mixin.injection.At;
-import org.spongepowered.asm.mixin.injection.Redirect;
 
 import java.util.Objects;
 import java.util.Optional;
@@ -50,15 +51,15 @@ public abstract class MNBSPLMixin implements MNBSPL {
         return Optional.ofNullable(this.ott$migrationBiome);
     }
 
-    @Redirect(
+    @WrapOperation(
             method = {"<clinit>()V"},
             at = @At(
                     value = "INVOKE",
                     target = "Lcom/mojang/serialization/codecs/RecordCodecBuilder;create(Ljava/util/function/Function;)Lcom/mojang/serialization/Codec;"
             )
     )
-    private static Codec<MultiNoiseBiomeSourceParameterList> wrapCodec(Function<RecordCodecBuilder.Instance<MultiNoiseBiomeSourceParameterList>, ? extends App<RecordCodecBuilder.Mu<MultiNoiseBiomeSourceParameterList>, MultiNoiseBiomeSourceParameterList>> builder) {
-        return CodecExtender.extend(RecordCodecBuilder.create(builder), (instance, wrapper) -> instance.group(wrapper, ParameterList.codec(Biome.CODEC.fieldOf("biome")).optionalFieldOf("ott:biomes").forGetter((mnbspl) -> Optional.of(mnbspl.parameters())), Biome.CODEC.optionalFieldOf("ott:migration_biome").forGetter((mnbspl) -> ((MNBSPL)mnbspl).ott$getMigrationBiome())).apply(instance, (mnbspl, parameters, biomeOpt) -> {
+    private static Codec<MultiNoiseBiomeSourceParameterList> wrapCodec(Function<RecordCodecBuilder.Instance<MultiNoiseBiomeSourceParameterList>, ? extends App<RecordCodecBuilder.Mu<MultiNoiseBiomeSourceParameterList>, MultiNoiseBiomeSourceParameterList>> builder, Operation<Codec<MultiNoiseBiomeSourceParameterList>> originalCall) {
+        return CodecExtender.extend(originalCall.call(builder), (instance, wrapper) -> instance.group(wrapper, ParameterList.codec(Biome.CODEC.fieldOf("biome")).optionalFieldOf("ott:biomes").forGetter((mnbspl) -> Optional.of(mnbspl.parameters())), Biome.CODEC.optionalFieldOf("ott:migration_biome").forGetter((mnbspl) -> ((MNBSPL)mnbspl).ott$getMigrationBiome())).apply(instance, (mnbspl, parameters, biomeOpt) -> {
             MNBSPL duck = (MNBSPL)mnbspl;
             Objects.requireNonNull(duck);
             parameters.ifPresent(duck::ott$setParameters);

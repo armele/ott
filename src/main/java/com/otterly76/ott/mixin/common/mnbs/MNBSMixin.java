@@ -1,5 +1,7 @@
 package com.otterly76.ott.mixin.common.mnbs;
 
+import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
+import com.llamalad7.mixinextras.injector.wrapoperation.WrapOperation;
 import com.mojang.datafixers.util.Either;
 import com.mojang.datafixers.util.Pair;
 import com.mojang.serialization.MapCodec;
@@ -15,7 +17,6 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Mutable;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
-import org.spongepowered.asm.mixin.injection.Redirect;
 
 import java.util.List;
 import java.util.Optional;
@@ -40,15 +41,15 @@ public abstract class MNBSMixin implements MNBS {
         this.parameters = (Either<Climate.ParameterList<Holder<Biome>>, Holder<MultiNoiseBiomeSourceParameterList>>) (Object) entries;
     }
 
-    @Redirect(
+    @WrapOperation(
             method = {"<clinit>()V"},
             at = @At(
                     value = "INVOKE",
                     target = "Lcom/mojang/serialization/MapCodec;xmap(Ljava/util/function/Function;Ljava/util/function/Function;)Lcom/mojang/serialization/MapCodec;"
             )
     )
-    private static MapCodec<MultiNoiseBiomeSource> wrapCodec(MapCodec<Either<Climate.ParameterList<Holder<Biome>>, Holder<MultiNoiseBiomeSourceParameterList>>> original, Function<? super Either<Climate.ParameterList<Holder<Biome>>, Holder<MultiNoiseBiomeSourceParameterList>>, ? extends MultiNoiseBiomeSource> to, Function<? super MultiNoiseBiomeSource, ? extends Either<Climate.ParameterList<Holder<Biome>>, Holder<MultiNoiseBiomeSourceParameterList>>> from) {
-        return CodecExtender.extend(original.xmap(to, from), (instance, wrapper) -> instance.group(wrapper, RegistryOps.retrieveGetter(Registries.MULTI_NOISE_BIOME_SOURCE_PARAMETER_LIST)).apply(instance, (mnbs, lookup) -> {
+    private static MapCodec<MultiNoiseBiomeSource> wrapCodec(MapCodec<Either<Climate.ParameterList<Holder<Biome>>, Holder<MultiNoiseBiomeSourceParameterList>>> original, Function<? super Either<Climate.ParameterList<Holder<Biome>>, Holder<MultiNoiseBiomeSourceParameterList>>, ? extends MultiNoiseBiomeSource> to, Function<? super MultiNoiseBiomeSource, ? extends Either<Climate.ParameterList<Holder<Biome>>, Holder<MultiNoiseBiomeSourceParameterList>>> from, Operation<MapCodec<MultiNoiseBiomeSource>> originalCall) {
+        return CodecExtender.extend(originalCall.call(original, to, from), (instance, wrapper) -> instance.group(wrapper, RegistryOps.retrieveGetter(Registries.MULTI_NOISE_BIOME_SOURCE_PARAMETER_LIST)).apply(instance, (mnbs, lookup) -> {
             MNBS duck = (MNBS) mnbs;
             Either<Climate.ParameterList<Holder<Biome>>, Holder<MNBSPL>> biomeEntries = duck.ott$getEntries();
 
