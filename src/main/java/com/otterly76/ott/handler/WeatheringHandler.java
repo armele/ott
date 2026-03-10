@@ -180,7 +180,7 @@ public class WeatheringHandler {
         Item nextItem = NEXT_BY_ITEM.get(stack.getItem());
         if (nextItem != null) {
             ItemStack nextStack = stack.copy();
-            return Optional.of(nextStack.transmuteCopy(nextItem, 1));
+            return Optional.of(nextStack.transmuteCopy(nextItem, stack.getCount()));
         }
         return Optional.empty();
     }
@@ -189,7 +189,7 @@ public class WeatheringHandler {
         Item waxedItem = WAX_ON_BY_ITEM.get(stack.getItem());
         if (waxedItem != null) {
             ItemStack nextStack = stack.copy();
-            return Optional.of(nextStack.transmuteCopy(waxedItem, 1));
+            return Optional.of(nextStack.transmuteCopy(waxedItem, stack.getCount()));
         }
         return Optional.empty();
     }
