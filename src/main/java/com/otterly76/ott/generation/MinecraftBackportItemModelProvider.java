@@ -79,8 +79,9 @@ public class MinecraftBackportItemModelProvider extends ItemModelProvider {
 
             if (block instanceof IronBarsBlock) {
                 String textureName = path.replace("waxed_", "");
-                getBuilder(path).parent(getExistingFile(mcLoc("item/generated")))
-                        .texture("layer0", mcLoc("block/" + textureName));
+                getBuilder(path).parent(getExistingFile(mcLoc("item/iron_bars")))
+                        .texture("bars", mcLoc("block/" + textureName))
+                        .texture("particle", mcLoc("block/" + textureName));
                 return;
             }
 
@@ -264,9 +265,15 @@ public class MinecraftBackportItemModelProvider extends ItemModelProvider {
             parentItemToBlockModel(state + "copper_grate", "block/" + state + "copper_grate");
             parentItemToBlockModel("waxed_" + state + "copper_grate", "block/waxed_" + state + "copper_grate");
 
-            String hopperTextureName = state + "copper_hopper";
-            generatedItem(state + "copper_hopper", hopperTextureName);
-            generatedItem("waxed_" + state + "copper_hopper", hopperTextureName);
+            getBuilder(state + "copper_hopper").parent(getExistingFile(mcLoc("item/hopper")))
+                    .texture("top", mcLoc("block/" + state + "copper_hopper_top"))
+                    .texture("inside", mcLoc("block/" + state + "copper_hopper_inside"))
+                    .texture("outside", mcLoc("block/" + state + "copper_hopper_outside"));
+
+            getBuilder("waxed_" + state + "copper_hopper").parent(getExistingFile(mcLoc("item/hopper")))
+                    .texture("top", mcLoc("block/" + state + "copper_hopper_top"))
+                    .texture("inside", mcLoc("block/" + state + "copper_hopper_inside"))
+                    .texture("outside", mcLoc("block/" + state + "copper_hopper_outside"));
 
             String ladderTextureName = "block/" + state + "copper_ladder";
             generatedItem(state + "copper_ladder", ladderTextureName);

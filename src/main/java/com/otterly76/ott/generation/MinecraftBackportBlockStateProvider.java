@@ -407,12 +407,12 @@ public class MinecraftBackportBlockStateProvider extends ModBlockStateProvider {
 
     protected void registerCopperBars(Block block, ResourceLocation texture) {
         String name = BuiltInRegistries.BLOCK.getKey(block).getPath();
-        ModelFile post = models().withExistingParent(name + "_post", mcLoc("block/template_bars_post")).texture("bars", texture).texture("edge", texture).renderType("cutout");
-        ModelFile side = models().withExistingParent(name + "_side", mcLoc("block/template_bars_side")).texture("bars", texture).texture("edge", texture).renderType("cutout");
-        ModelFile sideAlt = models().withExistingParent(name + "_side_alt", mcLoc("block/template_bars_side_alt")).texture("bars", texture).texture("edge", texture).renderType("cutout");
-        ModelFile cap = models().withExistingParent(name + "_cap", mcLoc("block/template_bars_cap")).texture("bars", texture).texture("edge", texture).renderType("cutout");
-        ModelFile capAlt = models().withExistingParent(name + "_cap_alt", mcLoc("block/template_bars_cap_alt")).texture("bars", texture).texture("edge", texture).renderType("cutout");
-        ModelFile postEnds = models().withExistingParent(name + "_post_ends", mcLoc("block/template_bars_post_ends")).texture("bars", texture).texture("edge", texture).renderType("cutout");
+        ModelFile post = models().withExistingParent(name + "_post", mcLoc("block/iron_bars_post")).texture("bars", texture).renderType("cutout");
+        ModelFile side = models().withExistingParent(name + "_side", mcLoc("block/iron_bars_side")).texture("bars", texture).renderType("cutout");
+        ModelFile sideAlt = models().withExistingParent(name + "_side_alt", mcLoc("block/iron_bars_side_alt")).texture("bars", texture).renderType("cutout");
+        ModelFile cap = models().withExistingParent(name + "_cap", mcLoc("block/iron_bars_cap")).texture("bars", texture).renderType("cutout");
+        ModelFile capAlt = models().withExistingParent(name + "_cap_alt", mcLoc("block/iron_bars_cap_alt")).texture("bars", texture).renderType("cutout");
+        ModelFile postEnds = models().withExistingParent(name + "_post_ends", mcLoc("block/iron_bars_post_ends")).texture("bars", texture).renderType("cutout");
 
         MultiPartBlockStateBuilder builder = getMultipartBuilder(block);
 

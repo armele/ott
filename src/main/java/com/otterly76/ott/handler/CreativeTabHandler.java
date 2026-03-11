@@ -141,10 +141,6 @@ public class CreativeTabHandler {
                 safeInsertAfter(event, new ItemStack(lastTarget), new ItemStack(block.get()), visibility);
                 lastTarget = block.get();
             }
-            for (Supplier<? extends Block> block : ModBlocks.COPPER_LADDERS.values()) {
-                safeInsertAfter(event, new ItemStack(lastTarget), new ItemStack(block.get()), visibility);
-                lastTarget = block.get();
-            }
         }
 
         if (event.getTabKey() == CreativeModeTabs.FUNCTIONAL_BLOCKS) {
@@ -204,6 +200,18 @@ public class CreativeTabHandler {
 
             lastTarget = Items.CAULDRON;
             for (Supplier<? extends Block> block : ModBlocks.COPPER_CAULDRONS.values()) {
+                safeInsertAfter(event, new ItemStack(lastTarget), new ItemStack(block.get()), visibility);
+                lastTarget = block.get();
+            }
+
+            lastTarget = Items.CHAIN;
+            for (Supplier<? extends Block> block : ModBlocks.COPPER_CHAINS.values()) {
+                safeInsertAfter(event, new ItemStack(lastTarget), new ItemStack(block.get()), visibility);
+                lastTarget = block.get();
+            }
+
+            lastTarget = Items.LADDER;
+            for (Supplier<? extends Block> block : ModBlocks.COPPER_LADDERS.values()) {
                 safeInsertAfter(event, new ItemStack(lastTarget), new ItemStack(block.get()), visibility);
                 lastTarget = block.get();
             }
@@ -312,12 +320,114 @@ public class CreativeTabHandler {
             }
         }
 
+        if (event.getTabKey() == CreativeModeTabs.FOOD_AND_DRINKS) {
+            safeInsertAfter(event, new ItemStack(ModItems.COPPER_MILK_BUCKET.get()), visibility);
+        }
+
         if (event.getTabKey() == CreativeModeTabs.REDSTONE_BLOCKS) {
-            safeAccept(event, ModBlocks.PALE_OAK_PRESSURE_PLATE, visibility);
-            safeAccept(event, ModBlocks.PALE_OAK_BUTTON, visibility);
-            safeAccept(event, ModBlocks.PALE_OAK_DOOR, visibility);
-            safeAccept(event, ModBlocks.PALE_OAK_TRAPDOOR, visibility);
-            safeAccept(event, ModBlocks.PALE_OAK_FENCE_GATE, visibility);
+            safeAccept(event, Items.SPRUCE_BUTTON, visibility);
+            safeAccept(event, Items.BIRCH_BUTTON, visibility);
+            safeAccept(event, Items.JUNGLE_BUTTON, visibility);
+            safeAccept(event, Items.ACACIA_BUTTON, visibility);
+            safeAccept(event, Items.DARK_OAK_BUTTON, visibility);
+            safeAccept(event, Items.MANGROVE_BUTTON, visibility);
+            safeAccept(event, Items.CHERRY_BUTTON, visibility);
+            safeAccept(event, Items.BAMBOO_BUTTON, visibility);
+            safeAccept(event, Items.CRIMSON_BUTTON, visibility);
+            safeAccept(event, Items.WARPED_BUTTON, visibility);
+            safeAccept(event, Items.POLISHED_BLACKSTONE_BUTTON, visibility);
+
+            safeAccept(event, Items.SPRUCE_PRESSURE_PLATE, visibility);
+            safeAccept(event, Items.BIRCH_PRESSURE_PLATE, visibility);
+            safeAccept(event, Items.JUNGLE_PRESSURE_PLATE, visibility);
+            safeAccept(event, Items.ACACIA_PRESSURE_PLATE, visibility);
+            safeAccept(event, Items.DARK_OAK_PRESSURE_PLATE, visibility);
+            safeAccept(event, Items.MANGROVE_PRESSURE_PLATE, visibility);
+            safeAccept(event, Items.CHERRY_PRESSURE_PLATE, visibility);
+            safeAccept(event, Items.BAMBOO_PRESSURE_PLATE, visibility);
+            safeAccept(event, Items.CRIMSON_PRESSURE_PLATE, visibility);
+            safeAccept(event, Items.WARPED_PRESSURE_PLATE, visibility);
+            safeAccept(event, Items.LIGHT_WEIGHTED_PRESSURE_PLATE, visibility);
+            safeAccept(event, Items.HEAVY_WEIGHTED_PRESSURE_PLATE, visibility);
+            safeAccept(event, Items.POLISHED_BLACKSTONE_PRESSURE_PLATE, visibility);
+
+            safeAccept(event, Items.TRAPPED_CHEST, visibility);
+            safeAccept(event, Items.ENDER_CHEST, visibility);
+            safeAccept(event, Items.BARREL, visibility);
+            safeAccept(event, ModBlocks.COPPER_CHEST.get(), visibility);
+            safeAccept(event, ModBlocks.EXPOSED_COPPER_CHEST.get(), visibility);
+            safeAccept(event, ModBlocks.WEATHERED_COPPER_CHEST.get(), visibility);
+            safeAccept(event, ModBlocks.OXIDIZED_COPPER_CHEST.get(), visibility);
+            safeAccept(event, ModBlocks.WAXED_COPPER_CHEST.get(), visibility);
+            safeAccept(event, ModBlocks.WAXED_EXPOSED_COPPER_CHEST.get(), visibility);
+            safeAccept(event, ModBlocks.WAXED_WEATHERED_COPPER_CHEST.get(), visibility);
+            safeAccept(event, ModBlocks.WAXED_OXIDIZED_COPPER_CHEST.get(), visibility);
+
+            for (Supplier<? extends Block> block : ModBlocks.COPPER_CAULDRONS.values()) {
+                safeAccept(event, block.get(), visibility);
+            }
+
+            for (Supplier<? extends Block> block : ModBlocks.LIGHTNING_RODS.values()) {
+                safeAccept(event, block.get(), visibility);
+            }
+
+            safeAccept(event, Items.SPRUCE_DOOR, visibility);
+            safeAccept(event, Items.BIRCH_DOOR, visibility);
+            safeAccept(event, Items.JUNGLE_DOOR, visibility);
+            safeAccept(event, Items.ACACIA_DOOR, visibility);
+            safeAccept(event, Items.DARK_OAK_DOOR, visibility);
+            safeAccept(event, Items.MANGROVE_DOOR, visibility);
+            safeAccept(event, Items.CHERRY_DOOR, visibility);
+            safeAccept(event, Items.BAMBOO_DOOR, visibility);
+            safeAccept(event, Items.CRIMSON_DOOR, visibility);
+            safeAccept(event, Items.WARPED_DOOR, visibility);
+            for (Supplier<? extends Block> block : ModBlocks.COPPER_DOORS.values()) {
+                safeAccept(event, block.get(), visibility);
+            }
+
+            safeAccept(event, Items.SPRUCE_FENCE_GATE, visibility);
+            safeAccept(event, Items.BIRCH_FENCE_GATE, visibility);
+            safeAccept(event, Items.JUNGLE_FENCE_GATE, visibility);
+            safeAccept(event, Items.ACACIA_FENCE_GATE, visibility);
+            safeAccept(event, Items.DARK_OAK_FENCE_GATE, visibility);
+            safeAccept(event, Items.MANGROVE_FENCE_GATE, visibility);
+            safeAccept(event, Items.CHERRY_FENCE_GATE, visibility);
+            safeAccept(event, Items.BAMBOO_FENCE_GATE, visibility);
+            safeAccept(event, Items.CRIMSON_FENCE_GATE, visibility);
+            safeAccept(event, Items.WARPED_FENCE_GATE, visibility);
+
+            safeAccept(event, Items.SPRUCE_TRAPDOOR, visibility);
+            safeAccept(event, Items.BIRCH_TRAPDOOR, visibility);
+            safeAccept(event, Items.JUNGLE_TRAPDOOR, visibility);
+            safeAccept(event, Items.ACACIA_TRAPDOOR, visibility);
+            safeAccept(event, Items.DARK_OAK_TRAPDOOR, visibility);
+            safeAccept(event, Items.MANGROVE_TRAPDOOR, visibility);
+            safeAccept(event, Items.CHERRY_TRAPDOOR, visibility);
+            safeAccept(event, Items.BAMBOO_TRAPDOOR, visibility);
+            safeAccept(event, Items.CRIMSON_TRAPDOOR, visibility);
+            safeAccept(event, Items.WARPED_TRAPDOOR, visibility);
+            for (Supplier<? extends Block> block : ModBlocks.COPPER_TRAPDOORS.values()) {
+                safeAccept(event, block.get(), visibility);
+            }
+
+            safeAccept(event, Items.SPRUCE_CHEST_BOAT, visibility);
+            safeAccept(event, Items.BIRCH_CHEST_BOAT, visibility);
+            safeAccept(event, Items.JUNGLE_CHEST_BOAT, visibility);
+            safeAccept(event, Items.ACACIA_CHEST_BOAT, visibility);
+            safeAccept(event, Items.DARK_OAK_CHEST_BOAT, visibility);
+            safeAccept(event, Items.MANGROVE_CHEST_BOAT, visibility);
+            safeAccept(event, Items.CHERRY_CHEST_BOAT, visibility);
+            safeAccept(event, Items.BAMBOO_CHEST_RAFT, visibility);
+            safeAccept(event, ModItems.PALE_OAK_CHEST_BOAT.get(), visibility);
+            for (DeferredItem<? extends Item> boat : ModItems.WOOD_SET_CHEST_BOATS.values()) {
+                safeAccept(event, boat.get(), visibility);
+            }
+
+            safeAccept(event, ModBlocks.PALE_OAK_PRESSURE_PLATE.get(), visibility);
+            safeAccept(event, ModBlocks.PALE_OAK_BUTTON.get(), visibility);
+            safeAccept(event, ModBlocks.PALE_OAK_DOOR.get(), visibility);
+            safeAccept(event, ModBlocks.PALE_OAK_TRAPDOOR.get(), visibility);
+            safeAccept(event, ModBlocks.PALE_OAK_FENCE_GATE.get(), visibility);
 
             ModBlocks.WOOD_SETS.values().forEach(set -> {
                 safeAccept(event, set.pressurePlate(), visibility);
@@ -348,6 +458,7 @@ public class CreativeTabHandler {
 
 
         if (event.getTabKey() == CreativeModeTabs.INGREDIENTS) {
+            safeAccept(event, Items.CHAIN, visibility);
             safeInsertAfter(event, Items.NETHER_BRICK.getDefaultInstance(), new ItemStack(ModItems.RESIN_BRICK.get()), visibility);
             safeInsertAfter(event, Items.HONEYCOMB.getDefaultInstance(), new ItemStack(ModBlocks.RESIN_CLUMP.get()), visibility);
             insertAllAfter(event, Items.EGG, List.of(ModItems.BROWN_EGG, ModItems.BLUE_EGG), visibility);
@@ -463,8 +574,8 @@ public class CreativeTabHandler {
         }
     }
 
-    private static void safeInsertAfter(BuildCreativeModeTabContentsEvent event, ItemLike target, ItemStack stack, CreativeModeTab.TabVisibility visibility) {
-        safeInsertAfter(event, new ItemStack(target), stack, visibility);
+    private static void safeInsertAfter(BuildCreativeModeTabContentsEvent event, ItemStack stack, CreativeModeTab.TabVisibility visibility) {
+        safeInsertAfter(event, new ItemStack(Items.MILK_BUCKET), stack, visibility);
     }
 
     private static void safeInsertAfter(BuildCreativeModeTabContentsEvent event, ItemStack target, ItemStack stack, CreativeModeTab.TabVisibility visibility) {

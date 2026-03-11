@@ -7,7 +7,6 @@ Controlling
 Crafting Tweaks
 Disenchanting Table
 Enchantment Descriptions
-Everthing's Copper
 Functional Armor Trims
 Fusion
 Glassential Renewed
@@ -53,8 +52,6 @@ Utilitarian
 - No Soliciting Banner, Carpet
 - Sound Muffler (config distance)
 - Raider Outpost Claim Banner
-  - make it look like a little crown
-  - maybe a crown on top of a banner post and a small dyable banner on the front?
 - inverted redstone lamps
 - make axe default for heads/skulls
 - give bookshelf to nitwit = regular villager
@@ -130,10 +127,6 @@ add wood to wood gradients
 
 marbles (black, white, pink, etc)
 
-add tint to other plants?
-- cattails
-- lily pads
-
 add tulips for each color
 
 add roses for each color
@@ -160,29 +153,22 @@ add Luminescent version of sea glass
 
 animate the ethereal sea glass
 
-sun-dried clay
-- use water (similar to concrete) to turn back into clay
-
 Models Nonsense:
 =====
 tree/plant/bush parts/shapes
 
 particles? bubbles etc
 
-lunar vine → Starlight Vine
-
 hyacinth lamp → Blossom Bulb
 
 teas & herbs
 - snatch mint model + textures
 
-- color glow
+color glow
 - check texture of wisp flower
 
 enderscape
 - vines with dif color variants
-
-mysterious seeds : all matching seed textures, no identifying text, each grows diff color glow plant
 
 ADD other weapon item models
 
@@ -250,11 +236,8 @@ handheld architect's cutter
 
 Vines hang from slabs
 
-implement FTB Ultramine functionality
+implement vein mining functionality
 - needs to be able to be keymapped
-
-afk command
-- protection from attack
 
 add xp for brewing potions
 
@@ -425,11 +408,6 @@ dark woods
 
 Checks:
 =====
-why do only oak chest boat and bamboo chest boat show up in redstone items?
-- only oak button, pressure plate, door, fence gate, trapdoor in redstone items
-
-all boats in tools & utilities
-
 check for unused item textures
 
 Dimension Nonsense:
