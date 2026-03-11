@@ -128,17 +128,30 @@ public class ModBlockTagProvider extends BlockTagsProvider {
             if (block instanceof BaseRailBlock) this.tag(BlockTags.RAILS).add(block);
             if (block instanceof DoorBlock) this.tag(BlockTags.DOORS).add(block);
             if (block instanceof TrapDoorBlock) this.tag(BlockTags.TRAPDOORS).add(block);
+            if (block instanceof PressurePlateBlock) this.tag(BlockTags.PRESSURE_PLATES).add(block);
             if (block instanceof LadderBlock) this.tag(BlockTags.CLIMBABLE).add(block);
             if (block instanceof AbstractCauldronBlock) this.tag(BlockTags.CAULDRONS).add(block);
             if (block instanceof com.otterly76.ott.block.custom.WeatheringCopperAnvilBlock) this.tag(BlockTags.ANVIL).add(block);
 
             // Mineability
-            if (block instanceof BaseRailBlock || block instanceof LanternBlock || block instanceof ChainBlock ||
+            if (block instanceof WeatheringCopper ||
+                    block instanceof BaseRailBlock || block instanceof LanternBlock || block instanceof ChainBlock ||
                     block instanceof IronBarsBlock || block instanceof HopperBlock || block instanceof LightningRodBlock ||
-                    block instanceof AbstractCauldronBlock || block instanceof DoorBlock || block instanceof TrapDoorBlock ||
-                    block instanceof com.otterly76.ott.block.custom.WeatheringCopperAnvilBlock ||
-                    block instanceof com.otterly76.ott.block.custom.CopperGolemStatueBlock) {
+                    block instanceof AbstractCauldronBlock) {
                 pickaxeTag.add(block);
+            }
+            if (block instanceof DoorBlock || block instanceof TrapDoorBlock) {
+                if (block instanceof WeatheringCopper) {
+                    pickaxeTag.add(block);
+                } else {
+                    axeTag.add(block);
+                }
+            }
+            if (block instanceof PressurePlateBlock && !(block instanceof WeatheringCopper)) {
+                axeTag.add(block);
+            }
+            if (block instanceof ButtonBlock && !(block instanceof WeatheringCopper)) {
+                axeTag.add(block);
             }
             if (block instanceof LadderBlock) {
                 pickaxeTag.add(block);

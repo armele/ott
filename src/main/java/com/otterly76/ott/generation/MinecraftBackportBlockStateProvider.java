@@ -337,6 +337,10 @@ public class MinecraftBackportBlockStateProvider extends ModBlockStateProvider {
             buttonBlock((ButtonBlock) ModBlocks.COPPER_BUTTONS.get(state).get(), blockTexture);
             buttonBlock((ButtonBlock) ModBlocks.COPPER_BUTTONS.get(waxedPrefix).get(), blockTexture);
 
+            // Pressure Plates
+            pressurePlateBlock((PressurePlateBlock) ModBlocks.COPPER_PRESSURE_PLATES.get(state).get(), blockTexture);
+            pressurePlateBlock((PressurePlateBlock) ModBlocks.COPPER_PRESSURE_PLATES.get(waxedPrefix).get(), blockTexture);
+
             // Generate the button inventory model for the item to reference:
             models().withExistingParent(state + "copper_button_inventory", mcLoc("block/button_inventory"))
                     .texture("texture", blockTexture);

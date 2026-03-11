@@ -454,6 +454,9 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
         ShapedRecipeBuilder.shaped(RecipeCategory.REDSTONE, ModBlocks.COPPER_TRAPDOORS.get("").get(), 2)
                 .define('#', Items.COPPER_INGOT).pattern("###").pattern("###")
                 .unlockedBy("impossible", impossible()).save(noAdv, getRecipePath("minecraft", "copper_trapdoor"));
+        ShapedRecipeBuilder.shaped(RecipeCategory.REDSTONE, ModBlocks.COPPER_PRESSURE_PLATES.get("").get())
+                .define('#', Items.COPPER_INGOT).pattern("##")
+                .unlockedBy("impossible", impossible()).save(noAdv, getRecipePath("minecraft", "copper_pressure_plate"));
         ShapedRecipeBuilder.shaped(RecipeCategory.DECORATIONS, ModBlocks.COPPER_LANTERNS.get("").get())
                 .define('#', ModItems.COPPER_NUGGET.get()).define('X', Items.TORCH).pattern("###").pattern("#X#").pattern("###")
                 .unlockedBy("impossible", impossible()).save(noAdv, getRecipePath("minecraft", "copper_lantern"));
@@ -469,6 +472,7 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
             registerWaxing(noAdv, ModBlocks.COPPER_CHAINS.get(state).get(), ModBlocks.COPPER_CHAINS.get("waxed_" + state).get());
             registerWaxing(noAdv, ModBlocks.COPPER_DOORS.get(state).get(), ModBlocks.COPPER_DOORS.get("waxed_" + state).get());
             registerWaxing(noAdv, ModBlocks.COPPER_TRAPDOORS.get(state).get(), ModBlocks.COPPER_TRAPDOORS.get("waxed_" + state).get());
+            registerWaxing(noAdv, ModBlocks.COPPER_PRESSURE_PLATES.get(state).get(), ModBlocks.COPPER_PRESSURE_PLATES.get("waxed_" + state).get());
             registerWaxing(noAdv, ModBlocks.COPPER_LANTERNS.get(state).get(), ModBlocks.COPPER_LANTERNS.get("waxed_" + state).get());
             registerWaxing(noAdv, ModBlocks.COPPER_GOLEM_STATUES.get(state).get(), ModBlocks.COPPER_GOLEM_STATUES.get("waxed_" + state).get());
             
@@ -493,6 +497,20 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
                     .pattern("#")
                     .unlockedBy("impossible", impossible())
                     .save(noAdv, getRecipePath("minecraft", "waxed_" + state + "copper_button_from_waxed_" + state + "cut_copper"));
+
+            // Pressure plate from cut copper
+            ShapedRecipeBuilder.shaped(RecipeCategory.REDSTONE, ModBlocks.COPPER_PRESSURE_PLATES.get(state).get())
+                    .define('#', cutCopper)
+                    .pattern("##")
+                    .unlockedBy("impossible", impossible())
+                    .save(noAdv, getRecipePath("minecraft", state + "copper_pressure_plate_from_" + state + "cut_copper"));
+
+            // Waxed pressure plate from waxed cut copper
+            ShapedRecipeBuilder.shaped(RecipeCategory.REDSTONE, ModBlocks.COPPER_PRESSURE_PLATES.get("waxed_" + state).get())
+                    .define('#', waxedCutCopper)
+                    .pattern("##")
+                    .unlockedBy("impossible", impossible())
+                    .save(noAdv, getRecipePath("minecraft", "waxed_" + state + "copper_pressure_plate_from_waxed_" + state + "cut_copper"));
         }
         
         registerWaxing(noAdv, ModBlocks.COPPER_CHEST.get(), ModBlocks.WAXED_COPPER_CHEST.get());
