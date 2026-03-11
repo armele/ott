@@ -137,6 +137,10 @@ public class CreativeTabHandler {
                 safeInsertAfter(event, new ItemStack(lastTarget), new ItemStack(block.get()), visibility);
                 lastTarget = block.get();
             }
+            for (Supplier<? extends Block> block : ModBlocks.COPPER_PRESSURE_PLATES.values()) {
+                safeInsertAfter(event, new ItemStack(lastTarget), new ItemStack(block.get()), visibility);
+                lastTarget = block.get();
+            }
             for (Supplier<? extends Block> block : ModBlocks.COPPER_LADDERS.values()) {
                 safeInsertAfter(event, new ItemStack(lastTarget), new ItemStack(block.get()), visibility);
                 lastTarget = block.get();
@@ -324,6 +328,10 @@ public class CreativeTabHandler {
             });
 
             for (Supplier<? extends Block> block : ModBlocks.COPPER_BUTTONS.values()) {
+                safeAccept(event, block.get(), visibility);
+            }
+
+            for (Supplier<? extends Block> block : ModBlocks.COPPER_PRESSURE_PLATES.values()) {
                 safeAccept(event, block.get(), visibility);
             }
 
