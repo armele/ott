@@ -373,7 +373,9 @@ public class OttConfig {
 
     public static class WorldGen {
         public final ModConfigSpec.IntValue PALE_GARDEN_RARITY;
+        public final ModConfigSpec.BooleanValue ALLOW_CUSTOM_PORTAL_FRAMES;
         public final ModConfigSpec.BooleanValue SPAWN_RUINED_PORTALS;
+        public final ModConfigSpec.BooleanValue SPAWN_DRIED_GHASTS;
         public final ModConfigSpec.BooleanValue VILLAGE_STABILITY_ENABLED;
         public final ModConfigSpec.BooleanValue JIGSAW_PLACEMENT_RESTRICTIONS_ENABLED;
 
@@ -382,9 +384,15 @@ public class OttConfig {
             PALE_GARDEN_RARITY = builder.comment("Rarity of the Pale Garden biome")
                     .translation("ott.configuration.worldgen.palegardenrarity")
                     .defineInRange("rarity", 10, 1, 100);
+            ALLOW_CUSTOM_PORTAL_FRAMES = builder.comment("Should any type of obsidian or crying obsidian be allowed in nether portal frames?")
+                    .translation("ott.configuration.worldgen.allowcustomportalframes")
+                    .define("allowCustomPortalFrames", true);
             SPAWN_RUINED_PORTALS = builder.comment("Should ruined nether portals spawn in the world?")
                     .translation("ott.configuration.worldgen.spawnruinedportals")
                     .define("spawnRuinedPortals", true);
+            SPAWN_DRIED_GHASTS = builder.comment("Should dried ghast blocks spawn near nether fossils?")
+                    .translation("ott.configuration.worldgen.spawndriedghasts")
+                    .define("spawnDriedGhasts", true);
             VILLAGE_STABILITY_ENABLED = builder.comment("Should villages have stability checks to prevent buried or floating structures?")
                     .translation("ott.configuration.worldgen.villagestabilityenabled")
                     .define("villageStabilityEnabled", false);

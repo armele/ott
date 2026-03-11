@@ -225,7 +225,7 @@ aether enhanced extinguishing
   - Relics
   - Artifacts
 
-curious
+curios
 - use "pins" like Harper's Pin, Order of the Gauntlet Pin, etc
 
 replacements for Better Archeology

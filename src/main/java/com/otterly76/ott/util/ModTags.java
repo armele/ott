@@ -19,6 +19,8 @@ public class ModTags {
         public static final TagKey<Block> SPAWN_FALLING_LEAVES = mcTag("spawn_falling_leaves");
         public static final TagKey<Block> SPAWN_FALLING_NEEDLES = mcTag("spawn_falling_needles");
         public static final TagKey<Block> CAMELS_SPAWNABLE_ON = mcTag("camel_spawnable_on");
+        public static final TagKey<Block> PORTAL_FRAME_BLOCKS = createTag("portal_frame_blocks");
+        public static final TagKey<Block> C_OBSIDIAN = commonTag();
 
         public static final TagKey<Block> INCORRECT_FOR_COPPER_TOOL = mcTag("incorrect_for_copper_tool");
         public static final TagKey<Block> COPPER_GOLEM_SPAWN_BLOCKS = mcTag("copper_golem_spawn_blocks");
@@ -43,6 +45,10 @@ public class ModTags {
         @SuppressWarnings("SameParameterValue")
         private static TagKey<Block> createTag(String name) {
             return BlockTags.create(ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, name));
+        }
+
+        private static TagKey<Block> commonTag() {
+            return BlockTags.create(ResourceLocation.fromNamespaceAndPath("c", "obsidian"));
         }
     }
 
