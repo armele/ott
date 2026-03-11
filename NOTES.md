@@ -47,7 +47,6 @@ Resources
 Mod Cherry Picking:
 =====
 Utilitarian
-- Restraining Order
 - Merchant Banner, Carpet
 - No Soliciting Banner, Carpet
 - Sound Muffler (config distance)
@@ -58,7 +57,6 @@ Utilitarian
 - drop anvil on villager = nitwit
 - un-name tag
 - block magnet (works on anvils, iron blocks)
-- use crying obsidian in portal frames
 
 GAG
 - No Soliciting Sign
@@ -227,6 +225,9 @@ aether enhanced extinguishing
 
 curios
 - use "pins" like Harper's Pin, Order of the Gauntlet Pin, etc
+- slot for elytra
+- slot for builder goggles
+- restraining Order  (Utilitarian)
 
 replacements for Better Archeology
 - tiered brushes
@@ -245,8 +246,6 @@ cosmetic armors
 
 critter armory
 - make armor for critters
-
-create curio slot for elytra
 
 Translations Maybe:
 =====
