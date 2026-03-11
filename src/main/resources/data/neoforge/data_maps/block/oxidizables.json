@@ -1,0 +1,94 @@
+{
+  "values": {
+    "minecraft:copper_anvil": {
+      "next_oxidation_stage": "minecraft:exposed_copper_anvil"
+    },
+    "minecraft:copper_bars": {
+      "next_oxidation_stage": "minecraft:exposed_copper_bars"
+    },
+    "minecraft:copper_button": {
+      "next_oxidation_stage": "minecraft:exposed_copper_button"
+    },
+    "minecraft:copper_chain": {
+      "next_oxidation_stage": "minecraft:exposed_copper_chain"
+    },
+    "minecraft:copper_hopper": {
+      "next_oxidation_stage": "minecraft:exposed_copper_hopper"
+    },
+    "minecraft:copper_ladder": {
+      "next_oxidation_stage": "minecraft:exposed_copper_ladder"
+    },
+    "minecraft:copper_lantern": {
+      "next_oxidation_stage": "minecraft:exposed_copper_lantern"
+    },
+    "minecraft:copper_pressure_plate": {
+      "next_oxidation_stage": "minecraft:exposed_copper_pressure_plate"
+    },
+    "minecraft:copper_rail": {
+      "next_oxidation_stage": "minecraft:exposed_copper_rail"
+    },
+    "minecraft:copper_soul_lantern": {
+      "next_oxidation_stage": "minecraft:exposed_copper_soul_lantern"
+    },
+    "minecraft:exposed_copper_anvil": {
+      "next_oxidation_stage": "minecraft:weathered_copper_anvil"
+    },
+    "minecraft:exposed_copper_bars": {
+      "next_oxidation_stage": "minecraft:weathered_copper_bars"
+    },
+    "minecraft:exposed_copper_button": {
+      "next_oxidation_stage": "minecraft:weathered_copper_button"
+    },
+    "minecraft:exposed_copper_chain": {
+      "next_oxidation_stage": "minecraft:weathered_copper_chain"
+    },
+    "minecraft:exposed_copper_hopper": {
+      "next_oxidation_stage": "minecraft:weathered_copper_hopper"
+    },
+    "minecraft:exposed_copper_ladder": {
+      "next_oxidation_stage": "minecraft:weathered_copper_ladder"
+    },
+    "minecraft:exposed_copper_lantern": {
+      "next_oxidation_stage": "minecraft:weathered_copper_lantern"
+    },
+    "minecraft:exposed_copper_pressure_plate": {
+      "next_oxidation_stage": "minecraft:weathered_copper_pressure_plate"
+    },
+    "minecraft:exposed_copper_rail": {
+      "next_oxidation_stage": "minecraft:weathered_copper_rail"
+    },
+    "minecraft:exposed_copper_soul_lantern": {
+      "next_oxidation_stage": "minecraft:weathered_copper_soul_lantern"
+    },
+    "minecraft:weathered_copper_anvil": {
+      "next_oxidation_stage": "minecraft:oxidized_copper_anvil"
+    },
+    "minecraft:weathered_copper_bars": {
+      "next_oxidation_stage": "minecraft:oxidized_copper_bars"
+    },
+    "minecraft:weathered_copper_button": {
+      "next_oxidation_stage": "minecraft:oxidized_copper_button"
+    },
+    "minecraft:weathered_copper_chain": {
+      "next_oxidation_stage": "minecraft:oxidized_copper_chain"
+    },
+    "minecraft:weathered_copper_hopper": {
+      "next_oxidation_stage": "minecraft:oxidized_copper_hopper"
+    },
+    "minecraft:weathered_copper_ladder": {
+      "next_oxidation_stage": "minecraft:oxidized_copper_ladder"
+    },
+    "minecraft:weathered_copper_lantern": {
+      "next_oxidation_stage": "minecraft:oxidized_copper_lantern"
+    },
+    "minecraft:weathered_copper_pressure_plate": {
+      "next_oxidation_stage": "minecraft:oxidized_copper_pressure_plate"
+    },
+    "minecraft:weathered_copper_rail": {
+      "next_oxidation_stage": "minecraft:oxidized_copper_rail"
+    },
+    "minecraft:weathered_copper_soul_lantern": {
+      "next_oxidation_stage": "minecraft:oxidized_copper_soul_lantern"
+    }
+  }
+}

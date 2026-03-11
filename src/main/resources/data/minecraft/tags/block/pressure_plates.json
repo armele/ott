@@ -1,0 +1,13 @@
+{
+  "replace": false,
+  "values": [
+    "minecraft:copper_pressure_plate",
+    "minecraft:exposed_copper_pressure_plate",
+    "minecraft:weathered_copper_pressure_plate",
+    "minecraft:oxidized_copper_pressure_plate",
+    "minecraft:waxed_copper_pressure_plate",
+    "minecraft:waxed_exposed_copper_pressure_plate",
+    "minecraft:waxed_weathered_copper_pressure_plate",
+    "minecraft:waxed_oxidized_copper_pressure_plate"
+  ]
+}

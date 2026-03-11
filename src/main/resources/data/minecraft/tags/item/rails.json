@@ -1,5 +1,12 @@
 {
-    "values": [
-               ]
+  "values": [
+    "minecraft:copper_rails",
+    "minecraft:exposed_copper_rails",
+    "minecraft:weathered_copper_rails",
+    "minecraft:oxidized_copper_rails",
+    "minecraft:waxed_copper_rails",
+    "minecraft:waxed_exposed_copper_rails",
+    "minecraft:waxed_weathered_copper_rails",
+    "minecraft:waxed_oxidized_copper_rails"
+  ]
 }
-

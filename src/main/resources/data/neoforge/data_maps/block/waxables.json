@@ -1,0 +1,124 @@
+{
+  "values": {
+    "minecraft:copper_anvil": {
+      "waxed": "minecraft:waxed_copper_anvil"
+    },
+    "minecraft:copper_bars": {
+      "waxed": "minecraft:waxed_copper_bars"
+    },
+    "minecraft:copper_button": {
+      "waxed": "minecraft:waxed_copper_button"
+    },
+    "minecraft:copper_chain": {
+      "waxed": "minecraft:waxed_copper_chain"
+    },
+    "minecraft:copper_hopper": {
+      "waxed": "minecraft:waxed_copper_hopper"
+    },
+    "minecraft:copper_ladder": {
+      "waxed": "minecraft:waxed_copper_ladder"
+    },
+    "minecraft:copper_lantern": {
+      "waxed": "minecraft:waxed_copper_lantern"
+    },
+    "minecraft:copper_pressure_plate": {
+      "waxed": "minecraft:waxed_copper_pressure_plate"
+    },
+    "minecraft:copper_rail": {
+      "waxed": "minecraft:waxed_copper_rail"
+    },
+    "minecraft:copper_soul_lantern": {
+      "waxed": "minecraft:waxed_copper_soul_lantern"
+    },
+    "minecraft:exposed_copper_anvil": {
+      "waxed": "minecraft:waxed_exposed_copper_anvil"
+    },
+    "minecraft:exposed_copper_bars": {
+      "waxed": "minecraft:waxed_exposed_copper_bars"
+    },
+    "minecraft:exposed_copper_button": {
+      "waxed": "minecraft:waxed_exposed_copper_button"
+    },
+    "minecraft:exposed_copper_chain": {
+      "waxed": "minecraft:waxed_exposed_copper_chain"
+    },
+    "minecraft:exposed_copper_hopper": {
+      "waxed": "minecraft:waxed_exposed_copper_hopper"
+    },
+    "minecraft:exposed_copper_ladder": {
+      "waxed": "minecraft:waxed_exposed_copper_ladder"
+    },
+    "minecraft:exposed_copper_lantern": {
+      "waxed": "minecraft:waxed_exposed_copper_lantern"
+    },
+    "minecraft:exposed_copper_pressure_plate": {
+      "waxed": "minecraft:waxed_exposed_copper_pressure_plate"
+    },
+    "minecraft:exposed_copper_rail": {
+      "waxed": "minecraft:waxed_exposed_copper_rail"
+    },
+    "minecraft:exposed_copper_soul_lantern": {
+      "waxed": "minecraft:waxed_exposed_copper_soul_lantern"
+    },
+    "minecraft:oxidized_copper_anvil": {
+      "waxed": "minecraft:waxed_oxidized_copper_anvil"
+    },
+    "minecraft:oxidized_copper_bars": {
+      "waxed": "minecraft:waxed_oxidized_copper_bars"
+    },
+    "minecraft:oxidized_copper_button": {
+      "waxed": "minecraft:waxed_oxidized_copper_button"
+    },
+    "minecraft:oxidized_copper_chain": {
+      "waxed": "minecraft:waxed_oxidized_copper_chain"
+    },
+    "minecraft:oxidized_copper_hopper": {
+      "waxed": "minecraft:waxed_oxidized_copper_hopper"
+    },
+    "minecraft:oxidized_copper_ladder": {
+      "waxed": "minecraft:waxed_oxidized_copper_ladder"
+    },
+    "minecraft:oxidized_copper_lantern": {
+      "waxed": "minecraft:waxed_oxidized_copper_lantern"
+    },
+    "minecraft:oxidized_copper_pressure_plate": {
+      "waxed": "minecraft:waxed_oxidized_copper_pressure_plate"
+    },
+    "minecraft:oxidized_copper_rail": {
+      "waxed": "minecraft:waxed_oxidized_copper_rail"
+    },
+    "minecraft:oxidized_copper_soul_lantern": {
+      "waxed": "minecraft:waxed_oxidized_copper_soul_lantern"
+    },
+    "minecraft:weathered_copper_anvil": {
+      "waxed": "minecraft:waxed_weathered_copper_anvil"
+    },
+    "minecraft:weathered_copper_bars": {
+      "waxed": "minecraft:waxed_weathered_copper_bars"
+    },
+    "minecraft:weathered_copper_button": {
+      "waxed": "minecraft:waxed_weathered_copper_button"
+    },
+    "minecraft:weathered_copper_chain": {
+      "waxed": "minecraft:waxed_weathered_copper_chain"
+    },
+    "minecraft:weathered_copper_hopper": {
+      "waxed": "minecraft:waxed_weathered_copper_hopper"
+    },
+    "minecraft:weathered_copper_ladder": {
+      "waxed": "minecraft:waxed_weathered_copper_ladder"
+    },
+    "minecraft:weathered_copper_lantern": {
+      "waxed": "minecraft:waxed_weathered_copper_lantern"
+    },
+    "minecraft:weathered_copper_pressure_plate": {
+      "waxed": "minecraft:waxed_weathered_copper_pressure_plate"
+    },
+    "minecraft:weathered_copper_rail": {
+      "waxed": "minecraft:waxed_weathered_copper_rail"
+    },
+    "minecraft:weathered_copper_soul_lantern": {
+      "waxed": "minecraft:waxed_weathered_copper_soul_lantern"
+    }
+  }
+}
