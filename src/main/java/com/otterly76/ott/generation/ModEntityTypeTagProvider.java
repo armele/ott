@@ -1,11 +1,10 @@
 package com.otterly76.ott.generation;
 
 import com.otterly76.ott.Constants;
+import com.otterly76.ott.util.ModTags;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.tags.EntityTypeTagsProvider;
-import net.minecraft.resources.ResourceLocation;
-import net.minecraft.tags.TagKey;
 import net.minecraft.world.entity.EntityType;
 import net.neoforged.neoforge.common.data.ExistingFileHelper;
 import org.jetbrains.annotations.NotNull;
@@ -21,13 +20,15 @@ public class ModEntityTypeTagProvider extends EntityTypeTagsProvider {
 
     @Override
     protected void addTags(HolderLookup.@NotNull Provider provider) {
-        TagKey<EntityType<?>> skeletonMobs = TagKey.create(net.minecraft.core.registries.Registries.ENTITY_TYPE, ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, "skeleton_mobs"));
-        
-        this.tag(skeletonMobs).add(
+        this.tag(ModTags.EntityTypes.SKELETON_MOBS).add(
                 EntityType.SKELETON,
                 EntityType.STRAY,
                 EntityType.WITHER_SKELETON,
                 EntityType.BOGGED
         );
+
+        this.tag(ModTags.EntityTypes.ACCEPTS_IRON_GOLEM_GIFT).add(EntityType.VILLAGER);
+        this.tag(ModTags.EntityTypes.CANDIDATE_FOR_IRON_GOLEM_GIFT).add(EntityType.VILLAGER);
+        this.tag(ModTags.EntityTypes.SMART_ANIMALS).add(EntityType.PIG, EntityType.COW, EntityType.SHEEP, EntityType.CHICKEN);
     }
 }

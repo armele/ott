@@ -142,6 +142,39 @@ public class ModItemTagProvider extends ItemTagsProvider {
         // --- 6. INDIVIDUALS ---
         this.tag(net.minecraft.tags.ItemTags.TRIM_MATERIALS).add(ModItems.RESIN_BRICK.get());
 
+        this.tag(ModTags.ItemTags.C_CHAINS).add(Items.CHAIN);
+        ModBlocks.COPPER_CHAINS.values().forEach(supplier -> this.tag(ModTags.ItemTags.C_CHAINS).add(supplier.get().asItem()));
+
+        this.tag(ModTags.ItemTags.C_NUGGETS).addTag(ModTags.ItemTags.C_NUGGETS_COPPER);
+        this.tag(ModTags.ItemTags.C_NUGGETS_COPPER).add(ModItems.COPPER_NUGGET.get());
+        this.tag(ModTags.ItemTags.C_COPPER_NUGGETS).add(ModItems.COPPER_NUGGET.get());
+
+        this.tag(ModTags.ItemTags.C_TOOLS_MELEE_WEAPON).add(
+                ModItems.COPPER_SWORD.get(), ModItems.EXPOSED_COPPER_SWORD.get(), ModItems.WEATHERED_COPPER_SWORD.get(), ModItems.OXIDIZED_COPPER_SWORD.get()
+        );
+        this.tag(ModTags.ItemTags.C_TOOLS_MINING_TOOL).add(
+                ModItems.COPPER_PICKAXE.get(), ModItems.EXPOSED_COPPER_PICKAXE.get(), ModItems.WEATHERED_COPPER_PICKAXE.get(), ModItems.OXIDIZED_COPPER_PICKAXE.get(),
+                ModItems.COPPER_SHOVEL.get(), ModItems.EXPOSED_COPPER_SHOVEL.get(), ModItems.WEATHERED_COPPER_SHOVEL.get(), ModItems.OXIDIZED_COPPER_SHOVEL.get(),
+                ModItems.COPPER_AXE.get(), ModItems.EXPOSED_COPPER_AXE.get(), ModItems.WEATHERED_COPPER_AXE.get(), ModItems.OXIDIZED_COPPER_AXE.get(),
+                ModItems.COPPER_HOE.get(), ModItems.EXPOSED_COPPER_HOE.get(), ModItems.WEATHERED_COPPER_HOE.get(), ModItems.OXIDIZED_COPPER_HOE.get()
+        );
+        this.tag(ModTags.ItemTags.C_TOOLS_SHEAR).add(
+                ModItems.COPPER_SHEARS.get(), ModItems.EXPOSED_COPPER_SHEARS.get(), ModItems.WEATHERED_COPPER_SHEARS.get(), ModItems.OXIDIZED_COPPER_SHEARS.get()
+        );
+
+        this.tag(ModTags.ItemTags.LANTERNS).add(Items.LANTERN, Items.SOUL_LANTERN);
+        ModBlocks.COPPER_LANTERNS.values().forEach(supplier -> this.tag(ModTags.ItemTags.LANTERNS).add(supplier.get().asItem()));
+        ModBlocks.COPPER_SOUL_LANTERNS.values().forEach(supplier -> this.tag(ModTags.ItemTags.LANTERNS).add(supplier.get().asItem()));
+
+        this.tag(ModTags.ItemTags.LIGHTNING_RODS).add(Items.LIGHTNING_ROD);
+        ModBlocks.LIGHTNING_RODS.values().forEach(supplier -> this.tag(ModTags.ItemTags.LIGHTNING_RODS).add(supplier.get().asItem()));
+
+        this.tag(ModTags.ItemTags.RAILS).add(Items.RAIL, Items.POWERED_RAIL, Items.DETECTOR_RAIL, Items.ACTIVATOR_RAIL);
+        ModBlocks.COPPER_RAILS.values().forEach(supplier -> this.tag(ModTags.ItemTags.RAILS).add(supplier.get().asItem()));
+
+        this.tag(ModTags.ItemTags.ANVIL).add(Items.ANVIL, Items.CHIPPED_ANVIL, Items.DAMAGED_ANVIL);
+        ModBlocks.COPPER_ANVILS.values().forEach(supplier -> this.tag(ModTags.ItemTags.ANVIL).add(supplier.get().asItem()));
+
         this.tag(net.minecraft.tags.ItemTags.COALS).add(ModItems.TINY_COAL.get(), ModItems.TINY_CHARCOAL.get());
 
         // --- 7. DYEABLE ITEMS ---
@@ -193,16 +226,51 @@ public class ModItemTagProvider extends ItemTagsProvider {
 
         this.tag(net.minecraft.tags.ItemTags.ARROWS).add(Items.ARROW, Items.TIPPED_ARROW, Items.SPECTRAL_ARROW, ModItems.TORCH_ARROW.get());
 
-        this.tag(net.minecraft.tags.ItemTags.SWORDS).add(ModItems.COPPER_SWORD.get());
-        this.tag(net.minecraft.tags.ItemTags.SHOVELS).add(ModItems.COPPER_SHOVEL.get());
-        this.tag(net.minecraft.tags.ItemTags.PICKAXES).add(ModItems.COPPER_PICKAXE.get());
-        this.tag(net.minecraft.tags.ItemTags.AXES).add(ModItems.COPPER_AXE.get());
-        this.tag(net.minecraft.tags.ItemTags.HOES).add(ModItems.COPPER_HOE.get());
+        this.tag(net.minecraft.tags.ItemTags.SWORDS).add(
+                ModItems.COPPER_SWORD.get(), ModItems.EXPOSED_COPPER_SWORD.get(), ModItems.WEATHERED_COPPER_SWORD.get(), ModItems.OXIDIZED_COPPER_SWORD.get()
+        );
+        this.tag(net.minecraft.tags.ItemTags.SHOVELS).add(
+                ModItems.COPPER_SHOVEL.get(), ModItems.EXPOSED_COPPER_SHOVEL.get(), ModItems.WEATHERED_COPPER_SHOVEL.get(), ModItems.OXIDIZED_COPPER_SHOVEL.get()
+        );
+        this.tag(net.minecraft.tags.ItemTags.PICKAXES).add(
+                ModItems.COPPER_PICKAXE.get(), ModItems.EXPOSED_COPPER_PICKAXE.get(), ModItems.WEATHERED_COPPER_PICKAXE.get(), ModItems.OXIDIZED_COPPER_PICKAXE.get()
+        );
+        this.tag(net.minecraft.tags.ItemTags.AXES).add(
+                ModItems.COPPER_AXE.get(), ModItems.EXPOSED_COPPER_AXE.get(), ModItems.WEATHERED_COPPER_AXE.get(), ModItems.OXIDIZED_COPPER_AXE.get()
+        );
+        this.tag(net.minecraft.tags.ItemTags.HOES).add(
+                ModItems.COPPER_HOE.get(), ModItems.EXPOSED_COPPER_HOE.get(), ModItems.WEATHERED_COPPER_HOE.get(), ModItems.OXIDIZED_COPPER_HOE.get()
+        );
 
-        this.tag(net.minecraft.tags.ItemTags.HEAD_ARMOR).add(ModItems.COPPER_HELMET.get());
-        this.tag(net.minecraft.tags.ItemTags.CHEST_ARMOR).add(ModItems.COPPER_CHESTPLATE.get());
-        this.tag(net.minecraft.tags.ItemTags.LEG_ARMOR).add(ModItems.COPPER_LEGGINGS.get());
-        this.tag(net.minecraft.tags.ItemTags.FOOT_ARMOR).add(ModItems.COPPER_BOOTS.get());
+        this.tag(net.minecraft.tags.ItemTags.HEAD_ARMOR).add(
+                ModItems.COPPER_HELMET.get(), ModItems.EXPOSED_COPPER_HELMET.get(), ModItems.WEATHERED_COPPER_HELMET.get(), ModItems.OXIDIZED_COPPER_HELMET.get(),
+                ModItems.COPPER_CHAINMAIL_HELMET.get(), ModItems.EXPOSED_COPPER_CHAINMAIL_HELMET.get(), ModItems.WEATHERED_COPPER_CHAINMAIL_HELMET.get(), ModItems.OXIDIZED_COPPER_CHAINMAIL_HELMET.get()
+        );
+        this.tag(net.minecraft.tags.ItemTags.CHEST_ARMOR).add(
+                ModItems.COPPER_CHESTPLATE.get(), ModItems.EXPOSED_COPPER_CHESTPLATE.get(), ModItems.WEATHERED_COPPER_CHESTPLATE.get(), ModItems.OXIDIZED_COPPER_CHESTPLATE.get(),
+                ModItems.COPPER_CHAINMAIL_CHESTPLATE.get(), ModItems.EXPOSED_COPPER_CHAINMAIL_CHESTPLATE.get(), ModItems.WEATHERED_COPPER_CHAINMAIL_CHESTPLATE.get(), ModItems.OXIDIZED_COPPER_CHAINMAIL_CHESTPLATE.get()
+        );
+        this.tag(net.minecraft.tags.ItemTags.LEG_ARMOR).add(
+                ModItems.COPPER_LEGGINGS.get(), ModItems.EXPOSED_COPPER_LEGGINGS.get(), ModItems.WEATHERED_COPPER_LEGGINGS.get(), ModItems.OXIDIZED_COPPER_LEGGINGS.get(),
+                ModItems.COPPER_CHAINMAIL_LEGGINGS.get(), ModItems.EXPOSED_COPPER_CHAINMAIL_LEGGINGS.get(), ModItems.WEATHERED_COPPER_CHAINMAIL_LEGGINGS.get(), ModItems.OXIDIZED_COPPER_CHAINMAIL_LEGGINGS.get()
+        );
+        this.tag(net.minecraft.tags.ItemTags.FOOT_ARMOR).add(
+                ModItems.COPPER_BOOTS.get(), ModItems.EXPOSED_COPPER_BOOTS.get(), ModItems.WEATHERED_COPPER_BOOTS.get(), ModItems.OXIDIZED_COPPER_BOOTS.get(),
+                ModItems.COPPER_CHAINMAIL_BOOTS.get(), ModItems.EXPOSED_COPPER_CHAINMAIL_BOOTS.get(), ModItems.WEATHERED_COPPER_CHAINMAIL_BOOTS.get(), ModItems.OXIDIZED_COPPER_CHAINMAIL_BOOTS.get()
+        );
+
+        this.tag(net.minecraft.tags.ItemTags.TRIMMABLE_ARMOR).add(
+                ModItems.COPPER_HELMET.get(), ModItems.COPPER_CHESTPLATE.get(), ModItems.COPPER_LEGGINGS.get(), ModItems.COPPER_BOOTS.get(),
+                ModItems.EXPOSED_COPPER_HELMET.get(), ModItems.EXPOSED_COPPER_CHESTPLATE.get(), ModItems.EXPOSED_COPPER_LEGGINGS.get(), ModItems.EXPOSED_COPPER_BOOTS.get(),
+                ModItems.WEATHERED_COPPER_HELMET.get(), ModItems.WEATHERED_COPPER_CHESTPLATE.get(), ModItems.WEATHERED_COPPER_LEGGINGS.get(), ModItems.WEATHERED_COPPER_BOOTS.get(),
+                ModItems.OXIDIZED_COPPER_HELMET.get(), ModItems.OXIDIZED_COPPER_CHESTPLATE.get(), ModItems.OXIDIZED_COPPER_LEGGINGS.get(), ModItems.OXIDIZED_COPPER_BOOTS.get(),
+                ModItems.COPPER_CHAINMAIL_HELMET.get(), ModItems.COPPER_CHAINMAIL_CHESTPLATE.get(), ModItems.COPPER_CHAINMAIL_LEGGINGS.get(), ModItems.COPPER_CHAINMAIL_BOOTS.get(),
+                ModItems.EXPOSED_COPPER_CHAINMAIL_HELMET.get(), ModItems.EXPOSED_COPPER_CHAINMAIL_CHESTPLATE.get(), ModItems.EXPOSED_COPPER_CHAINMAIL_LEGGINGS.get(), ModItems.EXPOSED_COPPER_CHAINMAIL_BOOTS.get(),
+                ModItems.WEATHERED_COPPER_CHAINMAIL_HELMET.get(), ModItems.WEATHERED_COPPER_CHAINMAIL_CHESTPLATE.get(), ModItems.WEATHERED_COPPER_CHAINMAIL_LEGGINGS.get(), ModItems.WEATHERED_COPPER_CHAINMAIL_BOOTS.get(),
+                ModItems.OXIDIZED_COPPER_CHAINMAIL_HELMET.get(), ModItems.OXIDIZED_COPPER_CHAINMAIL_CHESTPLATE.get(), ModItems.OXIDIZED_COPPER_CHAINMAIL_LEGGINGS.get(), ModItems.OXIDIZED_COPPER_CHAINMAIL_BOOTS.get()
+        );
+        this.tag(ModTags.ItemTags.STRIPPED_PALE_OAK_LOG).add(ModBlocks.STRIPPED_PALE_OAK_LOG.get().asItem())
+                .addOptional(ResourceLocation.fromNamespaceAndPath("vanillabackport", "stripped_pale_oak_log"));
     }
 
     @SafeVarargs

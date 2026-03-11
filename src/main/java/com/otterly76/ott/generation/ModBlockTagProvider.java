@@ -70,6 +70,7 @@ public class ModBlockTagProvider extends BlockTagsProvider {
         var axeTag = this.tag(BlockTags.MINEABLE_WITH_AXE);
         var hoeTag = this.tag(BlockTags.MINEABLE_WITH_HOE);
         var shearsTag = this.tag(BlockTags.create(ResourceLocation.withDefaultNamespace("mineable/shears")));
+        var needsStoneToolTag = this.tag(BlockTags.NEEDS_STONE_TOOL);
 
         this.tag(ModTags.Blocks.CREAKING_HEART_HOLDERS).add(ModBlocks.PALE_OAK_LOG.get(), ModBlocks.PALE_OAK_WOOD.get(), ModBlocks.STRIPPED_PALE_OAK_LOG.get(), ModBlocks.STRIPPED_PALE_OAK_WOOD.get());
         this.tag(ModTags.Blocks.HAPPY_GHAST_AVOIDS).add(Blocks.LAVA, Blocks.FIRE, Blocks.SOUL_FIRE);
@@ -79,7 +80,13 @@ public class ModBlockTagProvider extends BlockTagsProvider {
         this.tag(ModTags.Blocks.ALLOWS_LEAF_LITTER).add(ModBlocks.PALE_OAK_LEAVES.get());
         this.tag(ModTags.Blocks.SPAWN_FALLING_LEAVES).add(ModBlocks.PALE_OAK_LEAVES.get());
         this.tag(ModTags.Blocks.CAMELS_SPAWNABLE_ON).add(Blocks.SAND, Blocks.RED_SAND);
-        this.tag(ModTags.Blocks.INCORRECT_FOR_COPPER_TOOL).addTag(BlockTags.INCORRECT_FOR_STONE_TOOL);
+        this.tag(ModTags.Blocks.INCORRECT_FOR_COPPER_TOOL).addTag(BlockTags.INCORRECT_FOR_IRON_TOOL);
+        this.tag(ModTags.Blocks.COPPER)
+                .add(Blocks.COPPER_BLOCK, Blocks.EXPOSED_COPPER, Blocks.WEATHERED_COPPER, Blocks.OXIDIZED_COPPER)
+                .add(Blocks.WAXED_COPPER_BLOCK, Blocks.WAXED_EXPOSED_COPPER, Blocks.WAXED_WEATHERED_COPPER, Blocks.WAXED_OXIDIZED_COPPER);
+
+        var woodenShelves = this.tag(ModTags.Blocks.WOODEN_SHELVES);
+        ModBlocks.SHELVES.forEach(db -> woodenShelves.add(db.get()));
 
         this.tag(ModTags.Blocks.PATHS).add(Blocks.DIRT_PATH).addTag(com.minecolonies.api.items.ModTags.pathingBlocks);
         this.tag(ModTags.Blocks.STONE)
@@ -132,6 +139,9 @@ public class ModBlockTagProvider extends BlockTagsProvider {
             if (block instanceof LadderBlock) this.tag(BlockTags.CLIMBABLE).add(block);
             if (block instanceof AbstractCauldronBlock) this.tag(BlockTags.CAULDRONS).add(block);
             if (block instanceof com.otterly76.ott.block.custom.WeatheringCopperAnvilBlock) this.tag(BlockTags.ANVIL).add(block);
+            if (block instanceof LanternBlock) this.tag(ModTags.Blocks.LANTERNS).add(block);
+            if (block instanceof LightningRodBlock) this.tag(ModTags.Blocks.LIGHTNING_RODS).add(block);
+            if (block instanceof com.otterly76.ott.block.custom.CopperChestBlock) this.tag(ModTags.Blocks.COPPER_CHESTS).add(block);
 
             // Mineability
             if (block instanceof WeatheringCopper ||
@@ -139,6 +149,7 @@ public class ModBlockTagProvider extends BlockTagsProvider {
                     block instanceof IronBarsBlock || block instanceof HopperBlock || block instanceof LightningRodBlock ||
                     block instanceof AbstractCauldronBlock) {
                 pickaxeTag.add(block);
+                needsStoneToolTag.add(block);
             }
             if (block instanceof DoorBlock || block instanceof TrapDoorBlock) {
                 if (block instanceof WeatheringCopper) {

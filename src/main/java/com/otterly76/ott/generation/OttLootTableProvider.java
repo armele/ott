@@ -2,21 +2,21 @@ package com.otterly76.ott.generation;
 
 import com.otterly76.ott.block.GradientStainedGlassBlock;
 import com.otterly76.ott.block.ModBlocks;
+import com.otterly76.ott.block.custom.CopperChestBlock;
+import com.otterly76.ott.block.custom.CopperGolemStatueBlock;
 import com.otterly76.ott.crop.ThornyHedgeSprouts;
 import com.otterly76.ott.item.ModItems;
 import net.minecraft.advancements.critereon.StatePropertiesPredicate;
 import net.minecraft.core.HolderLookup;
+import net.minecraft.core.component.DataComponents;
 import net.minecraft.data.loot.BlockLootSubProvider;
 import net.minecraft.world.flag.FeatureFlags;
-import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.DoorBlock;
-import net.minecraft.world.level.block.FlowerBlock;
-import net.minecraft.world.level.block.FlowerPotBlock;
-import net.minecraft.world.level.block.SaplingBlock;
-import net.minecraft.world.level.block.SlabBlock;
+import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.storage.loot.LootPool;
 import net.minecraft.world.level.storage.loot.LootTable;
 import net.minecraft.world.level.storage.loot.entries.LootItem;
+import net.minecraft.world.level.storage.loot.functions.CopyBlockState;
+import net.minecraft.world.level.storage.loot.functions.CopyComponentsFunction;
 import net.minecraft.world.level.storage.loot.predicates.LootItemBlockStatePropertyCondition;
 import net.minecraft.world.level.storage.loot.providers.number.ConstantValue;
 import org.jetbrains.annotations.NotNull;
@@ -50,6 +50,20 @@ public class OttLootTableProvider extends BlockLootSubProvider {
                 ));
             } else if (block instanceof DoorBlock) {
                 this.add(block, this::createDoorTable);
+            } else if (block instanceof CopperChestBlock) {
+                this.add(block, (b) -> LootTable.lootTable().withPool(this.applyExplosionCondition(b, LootPool.lootPool().setRolls(ConstantValue.exactly(1.0f)).add(LootItem.lootTableItem(b).apply(CopyComponentsFunction.copyComponents(CopyComponentsFunction.Source.BLOCK_ENTITY).include(DataComponents.CUSTOM_NAME))))));
+            } else if (block instanceof CopperGolemStatueBlock) {
+                this.add(block, (b) -> LootTable.lootTable().withPool(this.applyExplosionCondition(b, LootPool.lootPool().setRolls(ConstantValue.exactly(1.0f)).add(LootItem.lootTableItem(b).apply(CopyComponentsFunction.copyComponents(CopyComponentsFunction.Source.BLOCK_ENTITY).include(DataComponents.CUSTOM_NAME)).apply(CopyBlockState.copyState(b).copy(CopperGolemStatueBlock.POSE))))));
+            } else if (block instanceof WallTorchBlock) {
+                if (block == ModBlocks.COPPER_WALL_TORCH.get()) this.dropOther(block, ModBlocks.COPPER_TORCH.get());
+                else this.dropSelf(block);
+            } else if (block instanceof WallSkullBlock) {
+                if (block == ModBlocks.DRAGON_WALL_SKULL.get()) this.dropOther(block, ModBlocks.DRAGON_SKULL.get());
+                else this.dropSelf(block);
+            } else if (block instanceof WallSignBlock) {
+                this.dropOther(block, ModBlocks.PALE_OAK_SIGN.get());
+            } else if (block instanceof WallHangingSignBlock) {
+                this.dropOther(block, ModBlocks.PALE_OAK_HANGING_SIGN.get());
             } else if (block instanceof SlabBlock) {
                 this.add(block, this::createSlabItemTable);
             } else if (block == ModBlocks.PALE_OAK_LEAVES.get()) {

@@ -24,6 +24,9 @@ public class ModTags {
         public static final TagKey<Block> COPPER_GOLEM_SPAWN_BLOCKS = mcTag("copper_golem_spawn_blocks");
         public static final TagKey<Block> COPPER_CHESTS = mcTag("copper_chests");
         public static final TagKey<Block> WOODEN_SHELVES = mcTag("wooden_shelves");
+        public static final TagKey<Block> COPPER = mcTag("copper");
+        public static final TagKey<Block> LIGHTNING_RODS = mcTag("lightning_rods");
+        public static final TagKey<Block> LANTERNS = mcTag("lanterns");
 
         public static final TagKey<Block> STONE = mcTag("stone");
         public static final TagKey<Block> PATHS = createTag("paths");
@@ -50,6 +53,19 @@ public class ModTags {
         public static final TagKey<Item> HARNESSES = mcTag("harnesses");
         public static final TagKey<Item> BUNDLES = mcTag("bundles");
         public static final TagKey<Item> EGGS = mcTag("eggs");
+        public static final TagKey<Item> STRIPPED_PALE_OAK_LOG = mcTag("stripped_pale_oak_log");
+        public static final TagKey<Item> LANTERNS = mcTag("lanterns");
+        public static final TagKey<Item> LIGHTNING_RODS = mcTag("lightning_rods");
+        public static final TagKey<Item> RAILS = mcTag("rails");
+        public static final TagKey<Item> ANVIL = mcTag("anvil");
+
+        public static final TagKey<Item> C_CHAINS = commonTag("chains");
+        public static final TagKey<Item> C_NUGGETS = commonTag("nuggets");
+        public static final TagKey<Item> C_NUGGETS_COPPER = commonTag("nuggets/copper");
+        public static final TagKey<Item> C_COPPER_NUGGETS = commonTag("copper_nuggets");
+        public static final TagKey<Item> C_TOOLS_MELEE_WEAPON = commonTag("tools/melee_weapon");
+        public static final TagKey<Item> C_TOOLS_MINING_TOOL = commonTag("tools/mining_tool");
+        public static final TagKey<Item> C_TOOLS_SHEAR = commonTag("tools/shear");
 
         public static final TagKey<Item> DYEABLE_BANNERS = createTag("dyeable_banners");
         public static final TagKey<Item> DYEABLE_CANDLES = createTag("dyeable_candles");
@@ -76,6 +92,10 @@ public class ModTags {
         @SuppressWarnings("SameParameterValue")
         private static TagKey<Item> createTag(String namespace, String name) {
             return net.minecraft.tags.ItemTags.create(ResourceLocation.fromNamespaceAndPath(namespace, name));
+        }
+
+        private static TagKey<Item> commonTag(String name) {
+            return net.minecraft.tags.ItemTags.create(ResourceLocation.fromNamespaceAndPath("c", name));
         }
 
         public static TagKey<Item> woodSetLogs(String setName) {
@@ -120,6 +140,10 @@ public class ModTags {
     public static class EntityTypes {
         public static final TagKey<net.minecraft.world.entity.EntityType<?>> PALE_GARDEN_IGNORED = createTag("pale_garden_ignored");
         public static final TagKey<net.minecraft.world.entity.EntityType<?>> FOLLOWABLE_FRIENDLY_MOBS = mcTag("followable_friendly_mobs");
+        public static final TagKey<net.minecraft.world.entity.EntityType<?>> SKELETON_MOBS = createTag("skeleton_mobs");
+        public static final TagKey<net.minecraft.world.entity.EntityType<?>> ACCEPTS_IRON_GOLEM_GIFT = mcTag("accepts_iron_golem_gift");
+        public static final TagKey<net.minecraft.world.entity.EntityType<?>> CANDIDATE_FOR_IRON_GOLEM_GIFT = mcTag("candidate_for_iron_golem_gift");
+        public static final TagKey<net.minecraft.world.entity.EntityType<?>> SMART_ANIMALS = createTag("smart_animals");
 
         @SuppressWarnings("SameParameterValue")
         private static TagKey<net.minecraft.world.entity.EntityType<?>> createTag(String name) {

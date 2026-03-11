@@ -2,13 +2,14 @@
   "replace": false,
   "entries": [
     "ott:remove_skeleton_drops",
-    "minecraft:copper_boots",
-    "minecraft:copper_chestplate",
-    "minecraft:copper_helmet",
-    "minecraft:copper_horse_armor",
-    "minecraft:copper_leggings",
-    "minecraft:copper_pickaxe",
-    "minecraft:copper_shovel",
-    "minecraft:copper_sword"
+    "ott:copper_boots",
+    "ott:copper_chestplate",
+    "ott:copper_helmet",
+    "ott:copper_horse_armor",
+    "ott:copper_leggings",
+    "ott:copper_pickaxe",
+    "ott:copper_shovel",
+    "ott:copper_sword",
+    "ott:copper_rail"
   ]
 }

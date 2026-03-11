@@ -345,6 +345,7 @@ public class Ott {
         generator.addProvider(event.includeServer(), new ModProcessorListTagProvider(generator.getPackOutput(), event.getLookupProvider(), event.getExistingFileHelper()));
 
         generator.addProvider(event.includeServer(), new OttWorldGenProvider(generator.getPackOutput(), event.getLookupProvider()));
+        generator.addProvider(event.includeServer(), new ModGlobalLootModifierProvider(generator.getPackOutput(), event.getLookupProvider()));
 
         if (event.includeClient()) {
             generator.addProvider(true, new ModItemModelProvider(generator.getPackOutput(), event.getExistingFileHelper()));
