@@ -110,8 +110,6 @@ Features
 - Added new MCol specific splash texts for the main menu
 - Added new skybox textures ☀️🌙
 - Added new weather textures and expanded particle effects ⛅
-- Additional Copper Blocks, Tools, and Armor to round out the weathering system
-  - Custom Weathering Station
 - Custom Biomes
   - Verdant Forest
 - Custom Critters
