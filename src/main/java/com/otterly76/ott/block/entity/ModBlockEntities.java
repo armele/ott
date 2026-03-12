@@ -1,6 +1,9 @@
 package com.otterly76.ott.block.entity;
 
 import com.otterly76.ott.block.ModBlocks;
+import com.otterly76.ott.block.color.ColorSetBedBlockEntity;
+import com.otterly76.ott.block.color.ColorSetShulkerBoxBlockEntity;
+import com.otterly76.ott.block.color.ColorSetBannerBlockEntity;
 import com.otterly76.ott.block.shelf.ShelfBlockEntity;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.world.level.block.Block;
@@ -43,6 +46,18 @@ public class ModBlockEntities {
             BLOCK_ENTITIES.register("weathering_station", () -> BlockEntityType.Builder.of(WeatheringStationBlockEntity::new,
                     ModBlocks.WEATHERING_STATION.get()).build(null));
 
+    public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<ColorSetShulkerBoxBlockEntity>> COLOR_SET_SHULKER_BOX =
+            BLOCK_ENTITIES.register("color_set_shulker_box", () -> BlockEntityType.Builder.of((pos, state) -> new ColorSetShulkerBoxBlockEntity(null, pos, state),
+                    ModBlocks.COLOR_SETS.values().stream().map(set -> set.shulkerBox().get()).toArray(Block[]::new)).build(null));
+
+    public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<ColorSetBedBlockEntity>> COLOR_SET_BED =
+            BLOCK_ENTITIES.register("color_set_bed", () -> BlockEntityType.Builder.of(ColorSetBedBlockEntity::new,
+                    ModBlocks.COLOR_SETS.values().stream().map(set -> set.bed().get()).toArray(Block[]::new)).build(null));
+
+    public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<ColorSetBannerBlockEntity>> COLOR_SET_BANNER =
+            BLOCK_ENTITIES.register("color_set_banner", () -> BlockEntityType.Builder.of(ColorSetBannerBlockEntity::new,
+                    ModBlocks.COLOR_SETS.values().stream().flatMap(set -> java.util.stream.Stream.of(set.banner().get(), set.wallBanner().get())).toArray(Block[]::new)).build(null));
+
 
     public static void register(IEventBus eventBus) {
         BLOCK_ENTITIES.register(eventBus);
@@ -63,6 +78,9 @@ public class ModBlockEntities {
             event.modify(BlockEntityType.SIGN, woodSet.sign().get(), woodSet.wallSign().get());
             event.modify(BlockEntityType.HANGING_SIGN, woodSet.hangingSign().get(), woodSet.wallHangingSign().get());
         });
+
+        // Handle color sets (shulker boxes)
+        // We use our own BlockEntityType for these to avoid the vanilla ShulkerBoxRenderer
 
         event.modify(ANVIL_BLOCK_ENTITY_TYPE.get(), Blocks.ANVIL, Blocks.CHIPPED_ANVIL, Blocks.DAMAGED_ANVIL);
         ModBlocks.COPPER_ANVILS.values().forEach(anvil -> event.modify(ANVIL_BLOCK_ENTITY_TYPE.get(), anvil.get()));

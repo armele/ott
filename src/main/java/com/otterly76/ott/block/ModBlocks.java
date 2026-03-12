@@ -3,7 +3,6 @@ package com.otterly76.ott.block;
 import com.otterly76.ott.block.custom.*;
 import com.otterly76.ott.particle.ModParticle;
 import net.minecraft.world.level.biome.Biome;
-import com.otterly76.ott.block.wood.WoodSetBlockRegistrar;
 import com.otterly76.ott.crop.ThornyHedgeSprouts;
 import com.otterly76.ott.hedge.ModHedgeVariants;
 import com.otterly76.ott.sound.ModSounds;
@@ -448,7 +447,10 @@ public class ModBlocks {
         registerGradientBlocks(Blocks.WHITE_CONCRETE_POWDER, GradientConcretePowderBlock::new, ALL_CONCRETE_POWDER_BLOCKS::add);
 
         // Register all ott wood sets
-        ModWoodSets.ALL.forEach(set -> WOOD_SETS.put(set.name(), WoodSetBlockRegistrar.registerOttWoodSet(set.name())));
+        ModWoodSets.ALL.forEach(set -> WOOD_SETS.put(set.name(), com.otterly76.ott.block.wood.WoodSetBlockRegistrar.registerOttWoodSet(set.name())));
+
+        // Register all ott color sets
+        com.otterly76.ott.color.ModColorSets.ALL.forEach(set -> COLOR_SETS.put(set.name(), com.otterly76.ott.block.color.ColorSetBlockRegistrar.registerOttColorSet(set.name())));
 
         // Register all particle hedges
         ModHedgeVariants.ALL.forEach(variant -> {
@@ -521,6 +523,27 @@ public class ModBlocks {
      * ott wood sets (ott namespace). Key = set name (e.g. "starlight").
      */
     public static final Map<String, WoodSetBlocks> WOOD_SETS = new LinkedHashMap<>();
+
+    /**
+     * ott color sets (ott namespace). Key = color name (e.g. "aquamarine").
+     */
+    public static final Map<String, ColorSetBlocks> COLOR_SETS = new LinkedHashMap<>();
+
+    public record ColorSetBlocks(
+            DeferredBlock<CandleBlock> candle,
+            DeferredBlock<Block> concrete,
+            DeferredBlock<ColoredFallingBlock> concretePowder,
+            DeferredBlock<GlazedTerracottaBlock> glazedTerracotta,
+            DeferredBlock<ShulkerBoxBlock> shulkerBox,
+            DeferredBlock<StainedGlassBlock> stainedGlass,
+            DeferredBlock<StainedGlassPaneBlock> stainedGlassPane,
+            DeferredBlock<Block> terracotta,
+            DeferredBlock<Block> wool,
+            DeferredBlock<BedBlock> bed,
+            DeferredBlock<CarpetBlock> carpet,
+            DeferredBlock<BannerBlock> banner,
+            DeferredBlock<WallBannerBlock> wallBanner
+    ) {}
 
     public record WoodSetBlocks(
             DeferredBlock<RotatedPillarBlock> log,

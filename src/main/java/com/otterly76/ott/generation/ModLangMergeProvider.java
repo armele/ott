@@ -4,6 +4,7 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
+import com.otterly76.ott.color.ModColorSets;
 import com.otterly76.ott.wood.ModWoodSets;
 import net.minecraft.data.CachedOutput;
 import net.minecraft.data.DataProvider;
@@ -13,7 +14,9 @@ import org.jetbrains.annotations.NotNull;
 import java.io.InputStreamReader;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Path;
+import java.util.Arrays;
 import java.util.concurrent.CompletableFuture;
+import java.util.stream.Collectors;
 
 /**
  * Merges base lang files and writes generated en_us.json files for both minecraft and ott namespaces.
@@ -35,6 +38,11 @@ public class ModLangMergeProvider implements DataProvider {
         // Add auto-generated wood set entries to OTT base
         for (ModWoodSets.WoodSet set : ModWoodSets.ALL) {
             addWoodSetEntries(ottBase, set.name());
+        }
+
+        // Add auto-generated color set entries to OTT base
+        for (ModColorSets.ColorSet set : ModColorSets.ALL) {
+            addColorSetEntries(ottBase, set.name());
         }
 
         Path mcOut = output.getOutputFolder(PackOutput.Target.RESOURCE_PACK)
@@ -68,6 +76,25 @@ public class ModLangMergeProvider implements DataProvider {
         json.addProperty("block.ott.stripped_" + name + "_log", "Stripped " + capitalized + " Log");
         json.addProperty("block.ott.stripped_" + name + "_wood", "Stripped " + capitalized + " Wood");
         json.addProperty("block.ott.potted_" + name + "_sapling", "Potted " + capitalized + " Sapling");
+    }
+
+    private void addColorSetEntries(JsonObject json, String name) {
+        String capitalized = Arrays.stream(name.split("_"))
+                .map(s -> s.substring(0, 1).toUpperCase() + s.substring(1))
+                .collect(Collectors.joining(" "));
+
+        json.addProperty("block.ott." + name + "_candle", capitalized + " Candle");
+        json.addProperty("block.ott." + name + "_concrete", capitalized + " Concrete");
+        json.addProperty("block.ott." + name + "_concrete_powder", capitalized + " Concrete Powder");
+        json.addProperty("block.ott." + name + "_glazed_terracotta", capitalized + " Glazed Terracotta");
+        json.addProperty("block.ott." + name + "_shulker_box", capitalized + " Shulker Box");
+        json.addProperty("block.ott." + name + "_stained_glass", capitalized + " Stained Glass");
+        json.addProperty("block.ott." + name + "_stained_glass_pane", capitalized + " Stained Glass Pane");
+        json.addProperty("block.ott." + name + "_terracotta", capitalized + " Terracotta");
+        json.addProperty("block.ott." + name + "_wool", capitalized + " Wool");
+        json.addProperty("block.ott." + name + "_bed", capitalized + " Bed");
+        json.addProperty("block.ott." + name + "_carpet", capitalized + " Carpet");
+        json.addProperty("block.ott." + name + "_banner", capitalized + " Banner");
     }
 
     @Override

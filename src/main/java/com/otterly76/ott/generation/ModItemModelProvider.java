@@ -69,6 +69,38 @@ public class ModItemModelProvider extends ItemModelProvider {
                     .texture("texture", modLoc("item/entity/chest_boat/" + setName));
         });
 
+        ModBlocks.COLOR_SETS.forEach((color, set) -> {
+            parentItemToBlockModel(set.concrete().getId().getPath(), "block/" + set.concrete().getId().getPath());
+            parentItemToBlockModel(set.terracotta().getId().getPath(), "block/" + set.terracotta().getId().getPath());
+            parentItemToBlockModel(set.wool().getId().getPath(), "block/" + set.wool().getId().getPath());
+            parentItemToBlockModel(set.concretePowder().getId().getPath(), "block/" + set.concretePowder().getId().getPath());
+            getBuilder(set.stainedGlass().getId().getPath())
+                    .parent(new ModelFile.UncheckedModelFile(modLoc("block/" + set.stainedGlass().getId().getPath())))
+                    .renderType("minecraft:translucent");
+            withExistingParent(set.stainedGlassPane().getId().getPath(), mcLoc("item/glass_pane"))
+                    .texture("front", modLoc("block/color/" + color + "/" + color + "_stained_glass"))
+                    .texture("side", modLoc("block/color/" + color + "/" + color + "_stained_glass_pane_top"))
+                    .renderType("minecraft:translucent");
+            parentItemToBlockModel(set.glazedTerracotta().getId().getPath(), "block/" + set.glazedTerracotta().getId().getPath());
+
+            // Shulker box item: parent to a block model that is a cube for visibility in GUI/hand
+            withExistingParent(set.shulkerBox().getId().getPath(), mcLoc("block/cube_all"))
+                    .texture("all", modLoc("block/color/" + color + "/" + color + "_shulker_box"));
+
+            // Candle item: parent to the "one candle" block model
+            parentItemToBlockModel(set.candle().getId().getPath(), "block/" + color + "_candle_one_candle");
+
+            // Carpet item: parent to block model
+            parentItemToBlockModel(set.carpet().getId().getPath(), "block/" + set.carpet().getId().getPath());
+
+            // Banner item: extend the vanilla banner template
+            withExistingParent(set.banner().getId().getPath(), mcLoc("item/template_banner"));
+
+            // Bed item: extend the vanilla bed item model to use standard renderer
+            withExistingParent(set.bed().getId().getPath(), mcLoc("item/template_bed"))
+                    .texture("particle", modLoc("block/color/" + color + "/" + color + "_wool"));
+        });
+
         generatedItemFromTexture(ModItems.TINY_COAL.getId().getPath(), modLoc("item/tiny_coal"));
         generatedItemFromTexture(ModItems.TINY_CHARCOAL.getId().getPath(), modLoc("item/tiny_charcoal"));
         generatedItemFromTexture(ModItems.OTTER.getId().getPath(), modLoc("item/otter"));

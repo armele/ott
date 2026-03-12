@@ -273,6 +273,8 @@ public class ModBlockTagProvider extends BlockTagsProvider {
             );
         });
 
+        ModBlocks.COLOR_SETS.values().forEach(this::addColorSetTags);
+
         // --- 6. VANILLA OVERRIDES ---
         this.tag(BlockTags.LEAVES).add(ModBlocks.PALE_OAK_LEAVES.value());
         this.tag(BlockTags.PLANKS).add(ModBlocks.PALE_OAK_PLANKS.value());
@@ -323,6 +325,58 @@ public class ModBlockTagProvider extends BlockTagsProvider {
         this.tag(BlockTags.WALL_SIGNS).add(wallSign);
         this.tag(BlockTags.CEILING_HANGING_SIGNS).add(hangingSign);
         this.tag(BlockTags.WALL_HANGING_SIGNS).add(wallHangingSign);
+    }
+
+    private void addColorSetTags(ModBlocks.ColorSetBlocks set) {
+        this.tag(BlockTags.CANDLES).add(set.candle().getKey());
+        this.tag(BlockTags.SHULKER_BOXES).add(set.shulkerBox().getKey());
+        this.tag(BlockTags.WOOL).add(set.wool().getKey());
+        this.tag(BlockTags.BEDS).add(set.bed().getKey());
+        this.tag(BlockTags.WOOL_CARPETS).add(set.carpet().getKey());
+        this.tag(BlockTags.BANNERS).add(set.banner().getKey()).addOptional(set.wallBanner().getId());
+        this.tag(TagKey.create(Registries.BLOCK, ResourceLocation.withDefaultNamespace("stained_glass"))).add(set.stainedGlass().getKey());
+        this.tag(TagKey.create(Registries.BLOCK, ResourceLocation.withDefaultNamespace("stained_glass_panes"))).add(set.stainedGlassPane().getKey());
+        this.tag(BlockTags.IMPERMEABLE).add(set.stainedGlass().getKey()).add(set.stainedGlassPane().getKey());
+
+        // Mineable tags
+        this.tag(BlockTags.MINEABLE_WITH_PICKAXE).add(
+                set.concrete().getKey(),
+                set.terracotta().getKey(),
+                set.glazedTerracotta().getKey(),
+                set.shulkerBox().getKey(),
+                set.stainedGlass().getKey(),
+                set.stainedGlassPane().getKey()
+        );
+        this.tag(BlockTags.MINEABLE_WITH_SHOVEL).add(set.concretePowder().getKey());
+        this.tag(BlockTags.MINEABLE_WITH_AXE).add(set.bed().getKey()).add(set.banner().getKey()).addOptional(set.wallBanner().getId());
+        this.tag(BlockTags.MINEABLE_WITH_HOE).add(set.carpet().getKey());
+
+        // Mod/Common tags
+        TagKey<Block> ottConcreteKey = TagKey.create(Registries.BLOCK, ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, "concrete"));
+        TagKey<Block> ottConcretePowderKey = TagKey.create(Registries.BLOCK, ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, "concrete_powder"));
+        TagKey<Block> ottWoolKey = TagKey.create(Registries.BLOCK, ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, "wool"));
+        TagKey<Block> ottStainedGlassKey = TagKey.create(Registries.BLOCK, ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, "stained_glass"));
+        TagKey<Block> ottTerracottaKey = TagKey.create(Registries.BLOCK, ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, "terracotta"));
+
+        this.tag(ottConcreteKey).add(set.concrete().get());
+        this.tag(ottConcretePowderKey).add(set.concretePowder().get());
+        this.tag(ottWoolKey).add(set.wool().get());
+        this.tag(ottStainedGlassKey).add(set.stainedGlass().get());
+        this.tag(ottTerracottaKey).add(set.terracotta().get());
+
+        // Add to vanilla tags being tracked in this provider (if they exist)
+        this.tag(TagKey.create(Registries.BLOCK, ResourceLocation.withDefaultNamespace("concrete"))).add(set.concrete().get());
+        this.tag(TagKey.create(Registries.BLOCK, ResourceLocation.withDefaultNamespace("concrete_powder"))).add(set.concretePowder().get());
+        this.tag(TagKey.create(Registries.BLOCK, ResourceLocation.withDefaultNamespace("stained_glass"))).add(set.stainedGlass().get());
+
+        // Add to Domum Ornamentum default
+        TagKey<Block> doDefaultKey = TagKey.create(Registries.BLOCK, ResourceLocation.fromNamespaceAndPath("domum_ornamentum", "default"));
+        this.tag(doDefaultKey).add(
+                set.candle().get(), set.concrete().get(), set.concretePowder().get(),
+                set.glazedTerracotta().get(), set.shulkerBox().get(), set.stainedGlass().get(),
+                set.stainedGlassPane().get(), set.terracotta().get(), set.wool().get(),
+                set.bed().get(), set.carpet().get(), set.banner().get(), set.wallBanner().get()
+        );
     }
 
 }

@@ -211,6 +211,22 @@ public class ModItems {
                             boat -> { if (boat instanceof OttWoodSetChestBoatEntity b) b.setWoodSetName(setName); })));
         });
 
+        // REGISTRATION: Color Sets
+        ModBlocks.COLOR_SETS.forEach((color, set) -> {
+            registerBlockItem(set.candle());
+            registerBlockItem(set.concrete());
+            registerBlockItem(set.concretePowder());
+            registerBlockItem(set.glazedTerracotta());
+            registerBlockItem(set.shulkerBox());
+            registerBlockItem(set.stainedGlass());
+            registerBlockItem(set.stainedGlassPane());
+            registerBlockItem(set.terracotta());
+            registerBlockItem(set.wool());
+            registerBlockItem(set.carpet());
+            ITEMS.register(set.banner().getId().getPath(), () -> new com.otterly76.ott.item.custom.ColorSetBannerItem(set.banner().get(), set.wallBanner().get(), new Item.Properties().stacksTo(16)));
+            ITEMS.register(set.bed().getId().getPath(), () -> new ColorSetBedItem(set.bed().get(), new Item.Properties()));
+        });
+
         // REGISTRATION: Static Minecraft Backports
         RESIN_BRICK = MINECRAFT_ITEMS.register("resin_brick", () -> new Item(new Item.Properties()));
         MUSIC_DISC_TEARS = MINECRAFT_ITEMS.register("music_disc_tears", () -> new Item(new Item.Properties().stacksTo(1).rarity(Rarity.UNCOMMON).jukeboxPlayable(ModJukeboxSongs.TEARS.getKey())));

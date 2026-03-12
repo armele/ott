@@ -122,6 +122,92 @@ public class CreativeTabHandler {
             safeInsertAfter(event, new ItemStack(Items.LILY_PAD), new ItemStack(ModBlocks.BIG_LILY_PAD.get()), visibility);
         }
 
+        if (event.getTabKey() == CreativeModeTabs.COLORED_BLOCKS) {
+            // Add Wool
+            ItemLike lastWool = Items.BLACK_WOOL;
+            for (ModBlocks.ColorSetBlocks set : ModBlocks.COLOR_SETS.values()) {
+                safeInsertAfter(event, new ItemStack(lastWool), new ItemStack(set.wool().get()), visibility);
+                lastWool = set.wool().get();
+            }
+
+            // Add Terracotta
+            ItemLike lastTerracotta = Items.BLACK_TERRACOTTA;
+            for (ModBlocks.ColorSetBlocks set : ModBlocks.COLOR_SETS.values()) {
+                safeInsertAfter(event, new ItemStack(lastTerracotta), new ItemStack(set.terracotta().get()), visibility);
+                lastTerracotta = set.terracotta().get();
+            }
+
+            // Add Glazed Terracotta
+            ItemLike lastGlazed = Items.BLACK_GLAZED_TERRACOTTA;
+            for (ModBlocks.ColorSetBlocks set : ModBlocks.COLOR_SETS.values()) {
+                safeInsertAfter(event, new ItemStack(lastGlazed), new ItemStack(set.glazedTerracotta().get()), visibility);
+                lastGlazed = set.glazedTerracotta().get();
+            }
+
+            // Add Concrete
+            ItemLike lastConcrete = Items.BLACK_CONCRETE;
+            for (ModBlocks.ColorSetBlocks set : ModBlocks.COLOR_SETS.values()) {
+                safeInsertAfter(event, new ItemStack(lastConcrete), new ItemStack(set.concrete().get()), visibility);
+                lastConcrete = set.concrete().get();
+            }
+
+            // Add Concrete Powder
+            ItemLike lastPowder = Items.BLACK_CONCRETE_POWDER;
+            for (ModBlocks.ColorSetBlocks set : ModBlocks.COLOR_SETS.values()) {
+                safeInsertAfter(event, new ItemStack(lastPowder), new ItemStack(set.concretePowder().get()), visibility);
+                lastPowder = set.concretePowder().get();
+            }
+
+            // Add Stained Glass
+            ItemLike lastGlass = Items.BLACK_STAINED_GLASS;
+            for (ModBlocks.ColorSetBlocks set : ModBlocks.COLOR_SETS.values()) {
+                safeInsertAfter(event, new ItemStack(lastGlass), new ItemStack(set.stainedGlass().get()), visibility);
+                lastGlass = set.stainedGlass().get();
+            }
+
+            // Add Stained Glass Pane
+            ItemLike lastPane = Items.BLACK_STAINED_GLASS_PANE;
+            for (ModBlocks.ColorSetBlocks set : ModBlocks.COLOR_SETS.values()) {
+                safeInsertAfter(event, new ItemStack(lastPane), new ItemStack(set.stainedGlassPane().get()), visibility);
+                lastPane = set.stainedGlassPane().get();
+            }
+
+            // Add Shulker Box
+            ItemLike lastShulker = Items.BLACK_SHULKER_BOX;
+            for (ModBlocks.ColorSetBlocks set : ModBlocks.COLOR_SETS.values()) {
+                safeInsertAfter(event, new ItemStack(lastShulker), new ItemStack(set.shulkerBox().get()), visibility);
+                lastShulker = set.shulkerBox().get();
+            }
+
+            // Add Candle
+            ItemLike lastCandle = Items.BLACK_CANDLE;
+            for (ModBlocks.ColorSetBlocks set : ModBlocks.COLOR_SETS.values()) {
+                safeInsertAfter(event, new ItemStack(lastCandle), new ItemStack(set.candle().get()), visibility);
+                lastCandle = set.candle().get();
+            }
+
+            // Add Bed
+            ItemLike lastBed = Items.BLACK_BED;
+            for (ModBlocks.ColorSetBlocks set : ModBlocks.COLOR_SETS.values()) {
+                safeInsertAfter(event, new ItemStack(lastBed), new ItemStack(set.bed().get()), visibility);
+                lastBed = set.bed().get();
+            }
+
+            // Add Carpet
+            ItemLike lastCarpet = Items.BLACK_CARPET;
+            for (ModBlocks.ColorSetBlocks set : ModBlocks.COLOR_SETS.values()) {
+                safeInsertAfter(event, new ItemStack(lastCarpet), new ItemStack(set.carpet().get()), visibility);
+                lastCarpet = set.carpet().get();
+            }
+
+            // Add Banner
+            ItemLike lastBanner = Items.BLACK_BANNER;
+            for (ModBlocks.ColorSetBlocks set : ModBlocks.COLOR_SETS.values()) {
+                safeInsertAfter(event, new ItemStack(lastBanner), new ItemStack(set.banner().get()), visibility);
+                lastBanner = set.banner().get();
+            }
+        }
+
         if (event.getTabKey() == CreativeModeTabs.BUILDING_BLOCKS) {
             // Find oxidized copper bulb as target for copper building blocks
             ItemLike lastTarget = Items.OXIDIZED_COPPER_BULB;
@@ -141,6 +227,31 @@ public class CreativeTabHandler {
             for (Supplier<? extends Block> block : ModBlocks.COPPER_PRESSURE_PLATES.values()) {
                 safeInsertAfter(event, new ItemStack(lastTarget), new ItemStack(block.get()), visibility);
                 lastTarget = block.get();
+            }
+
+            // Add Color Set Building Blocks
+            ItemLike lastWool = Items.BLACK_WOOL;
+            for (ModBlocks.ColorSetBlocks set : ModBlocks.COLOR_SETS.values()) {
+                safeInsertAfter(event, new ItemStack(lastWool), new ItemStack(set.wool().get()), visibility);
+                lastWool = set.wool().get();
+            }
+
+            ItemLike lastCarpet = Items.BLACK_CARPET;
+            for (ModBlocks.ColorSetBlocks set : ModBlocks.COLOR_SETS.values()) {
+                safeInsertAfter(event, new ItemStack(lastCarpet), new ItemStack(set.carpet().get()), visibility);
+                lastCarpet = set.carpet().get();
+            }
+
+            ItemLike lastTerracotta = Items.BLACK_TERRACOTTA;
+            for (ModBlocks.ColorSetBlocks set : ModBlocks.COLOR_SETS.values()) {
+                safeInsertAfter(event, new ItemStack(lastTerracotta), new ItemStack(set.terracotta().get()), visibility);
+                lastTerracotta = set.terracotta().get();
+            }
+
+            ItemLike lastConcrete = Items.BLACK_CONCRETE;
+            for (ModBlocks.ColorSetBlocks set : ModBlocks.COLOR_SETS.values()) {
+                safeInsertAfter(event, new ItemStack(lastConcrete), new ItemStack(set.concrete().get()), visibility);
+                lastConcrete = set.concrete().get();
             }
         }
 
@@ -251,6 +362,34 @@ public class CreativeTabHandler {
             }
 
             safeInsertAfter(event, new ItemStack(lastTarget), new ItemStack(ModBlocks.WEATHERING_STATION.get()), visibility);
+
+            // Add Color Set Shulker Boxes
+            ItemLike lastShulker = Items.BLACK_SHULKER_BOX;
+            for (ModBlocks.ColorSetBlocks set : ModBlocks.COLOR_SETS.values()) {
+                safeInsertAfter(event, new ItemStack(lastShulker), new ItemStack(set.shulkerBox().get()), visibility);
+                lastShulker = set.shulkerBox().get();
+            }
+
+            // Add Color Set Candles
+            ItemLike lastCandle = Items.BLACK_CANDLE;
+            for (ModBlocks.ColorSetBlocks set : ModBlocks.COLOR_SETS.values()) {
+                safeInsertAfter(event, new ItemStack(lastCandle), new ItemStack(set.candle().get()), visibility);
+                lastCandle = set.candle().get();
+            }
+
+            // Add Color Set Beds
+            ItemLike lastBed = Items.BLACK_BED;
+            for (ModBlocks.ColorSetBlocks set : ModBlocks.COLOR_SETS.values()) {
+                safeInsertAfter(event, new ItemStack(lastBed), new ItemStack(set.bed().get()), visibility);
+                lastBed = set.bed().get();
+            }
+
+            // Add Color Set Banners
+            ItemLike lastBanner = Items.BLACK_BANNER;
+            for (ModBlocks.ColorSetBlocks set : ModBlocks.COLOR_SETS.values()) {
+                safeInsertAfter(event, new ItemStack(lastBanner), new ItemStack(set.banner().get()), visibility);
+                lastBanner = set.banner().get();
+            }
         }
 
         if (event.getTabKey() == CreativeModeTabs.TOOLS_AND_UTILITIES) {

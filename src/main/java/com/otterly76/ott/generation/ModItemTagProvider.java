@@ -10,6 +10,7 @@ import net.minecraft.data.PackOutput;
 import net.minecraft.data.tags.ItemTagsProvider;
 import net.minecraft.data.tags.TagsProvider;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.tags.ItemTags;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.DyeColor;
 import net.minecraft.world.item.Item;
@@ -79,6 +80,18 @@ public class ModItemTagProvider extends ItemTagsProvider {
         copyCommonTag(cGlassBlocksCheapKey);
         copyCommonTag(cGlassBlocksColoredKey);
         copyCommonTag(cDyedKey);
+
+        // Vanilla Copies
+        copyCommonTag(ItemTags.CANDLES);
+        copyCommonTag(ItemTags.BEDS);
+        copyCommonTag(ItemTags.WOOL_CARPETS);
+        copyCommonTag(ItemTags.BANNERS);
+        copyCommonTag(TagKey.create(Registries.ITEM, ResourceLocation.withDefaultNamespace("shulker_boxes")));
+        copyCommonTag(ItemTags.WOOL);
+        copyCommonTag(TagKey.create(Registries.ITEM, ResourceLocation.withDefaultNamespace("stained_glass")));
+        copyCommonTag(TagKey.create(Registries.ITEM, ResourceLocation.withDefaultNamespace("stained_glass_panes")));
+        copyCommonTag(TagKey.create(Registries.ITEM, ResourceLocation.withDefaultNamespace("concrete")));
+        copyCommonTag(TagKey.create(Registries.ITEM, ResourceLocation.withDefaultNamespace("concrete_powder")));
 
         // MineColonies Hierarchy
         copyCommonTag(mcTier1Key);

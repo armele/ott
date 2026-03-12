@@ -263,6 +263,8 @@ public class ClientModEvents {
         event.registerBlockEntityRenderer(ModBlockEntities.COPPER_CHEST.get(), com.otterly76.ott.client.render.blockentity.CopperChestRenderer::new);
         event.registerBlockEntityRenderer(ModBlockEntities.COPPER_GOLEM_STATUE.get(), com.otterly76.ott.client.render.blockentity.CopperGolemStatueRenderer::new);
         event.registerBlockEntityRenderer(ModBlockEntities.WEATHERING_STATION.get(), com.otterly76.ott.client.render.blockentity.WeatheringStationRenderer::new);
+        event.registerBlockEntityRenderer(ModBlockEntities.COLOR_SET_BED.get(), com.otterly76.ott.client.render.blockentity.ColorSetBedRenderer::new);
+        event.registerBlockEntityRenderer(ModBlockEntities.COLOR_SET_BANNER.get(), com.otterly76.ott.client.render.blockentity.ColorSetBannerRenderer::new);
     }
 
     public static void registerLayerDefinitions(EntityRenderersEvent.RegisterLayerDefinitions event) {
