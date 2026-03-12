@@ -1,0 +1,8 @@
+{
+  "type": "neoforge:add_features",
+  "biomes": "#minecraft:is_overworld",
+  "features": [
+    "ott:big_lily_pad"
+  ],
+  "step": "vegetal_decoration"
+}

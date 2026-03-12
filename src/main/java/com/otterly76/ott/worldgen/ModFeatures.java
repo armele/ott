@@ -43,6 +43,11 @@ public class ModFeatures {
             () -> new CactusFlowerFeature(NoneFeatureConfiguration.CODEC)
     );
 
+    public static final DeferredHolder<Feature<?>, com.otterly76.ott.worldgen.feature.BigLilyPadFeature> BIG_LILY_PAD = FEATURES.register(
+            "big_lily_pad",
+            () -> new com.otterly76.ott.worldgen.feature.BigLilyPadFeature(NoneFeatureConfiguration.CODEC)
+    );
+
     public static void register(IEventBus eventBus) {
         FEATURES.register(eventBus);
         MINECRAFT_FEATURES.register(eventBus);

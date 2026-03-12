@@ -287,7 +287,7 @@ public class ClientModEvents {
 
     public static void registerBlockColors(RegisterColorHandlersEvent.Block event) {
         event.register((state, level, pos, tint) -> level != null && pos != null ? LeafColors.getAverageDryFoliageColor(pos) : -10732494, ModBlocks.LEAF_LITTER.get());
-        event.register((state, level, pos, tint) -> level != null && pos != null ? BiomeColors.getAverageGrassColor(level, pos) : GrassColor.getDefaultColor(), ModBlocks.BUSH.get());
+        event.register((state, level, pos, tint) -> level != null && pos != null ? BiomeColors.getAverageGrassColor(level, pos) : GrassColor.getDefaultColor(), ModBlocks.BUSH.get(), ModBlocks.BIG_LILY_PAD.get());
         event.register((state, level, pos, tint) -> {
             if (tint == 0) {
                 return -1;
@@ -308,7 +308,7 @@ public class ClientModEvents {
     }
 
     public static void registerItemColors(RegisterColorHandlersEvent.Item event) {
-        event.register((stack, tintIndex) -> event.getBlockColors().getColor(((net.minecraft.world.item.BlockItem)stack.getItem()).getBlock().defaultBlockState(), null, null, tintIndex), ModBlocks.BUSH.get(), ModBlocks.WILDFLOWERS.get(), ModBlocks.WEATHERING_STATION.get());
+        event.register((stack, tintIndex) -> event.getBlockColors().getColor(((net.minecraft.world.item.BlockItem)stack.getItem()).getBlock().defaultBlockState(), null, null, tintIndex), ModBlocks.BUSH.get(), ModBlocks.WILDFLOWERS.get(), ModBlocks.WEATHERING_STATION.get(), ModBlocks.BIG_LILY_PAD.get());
 
         ModBlocks.getAllGradientBlocks().forEach(deferredBlock -> {
             event.register((stack, tintIndex) -> {

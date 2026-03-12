@@ -202,6 +202,9 @@ public class ModBlocks {
     public static final DeferredBlock<Block> LAVA_LANTERN = BLOCKS.register("lava_lantern",
             () -> new FluidLanternBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.LANTERN), FluidLanternBlock.Type.LAVA));
 
+    public static final DeferredBlock<BigLilyPadBlock> BIG_LILY_PAD = BLOCKS.register("big_lily_pad",
+            () -> new BigLilyPadBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.LILY_PAD).noOcclusion()));
+
     public static final DeferredBlock<Block> SMITE_LANTERN = BLOCKS.register("smite_lantern",
             () -> new SmiteLanternBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.LANTERN)));
 

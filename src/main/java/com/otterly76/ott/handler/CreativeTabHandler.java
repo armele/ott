@@ -119,6 +119,7 @@ public class CreativeTabHandler {
             safeInsertAfter(event, Items.LARGE_FERN.getDefaultInstance(), new ItemStack(ModBlocks.TALL_DRY_GRASS.get()), visibility);
             safeInsertAfter(event, Items.SNIFFER_EGG.getDefaultInstance(), new ItemStack(ModBlocks.DRIED_GHAST.get()), visibility);
             safeInsertAfter(event, Items.HONEY_BLOCK.getDefaultInstance(), new ItemStack(ModBlocks.RESIN_BLOCK.get()), visibility);
+            safeInsertAfter(event, new ItemStack(Items.LILY_PAD), new ItemStack(ModBlocks.BIG_LILY_PAD.get()), visibility);
         }
 
         if (event.getTabKey() == CreativeModeTabs.BUILDING_BLOCKS) {
