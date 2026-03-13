@@ -23,7 +23,7 @@ public class ColorSetBlockRegistrar {
                 () -> new GlazedTerracottaBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.WHITE_GLAZED_TERRACOTTA)));
 
         DeferredBlock<ShulkerBoxBlock> shulkerBox = BLOCKS.register(color + "_shulker_box",
-                () -> new ColorSetShulkerBoxBlock(null, BlockBehaviour.Properties.ofFullCopy(Blocks.SHULKER_BOX)));
+                () -> new ColorSetShulkerBoxBlock(color, null, BlockBehaviour.Properties.ofFullCopy(Blocks.SHULKER_BOX)));
 
         DeferredBlock<StainedGlassBlock> stainedGlass = BLOCKS.register(color + "_stained_glass",
                 () -> new StainedGlassBlock(net.minecraft.world.item.DyeColor.WHITE, BlockBehaviour.Properties.ofFullCopy(Blocks.WHITE_STAINED_GLASS)));

@@ -217,7 +217,7 @@ public class ModItems {
             registerBlockItem(set.concrete());
             registerBlockItem(set.concretePowder());
             registerBlockItem(set.glazedTerracotta());
-            registerBlockItem(set.shulkerBox());
+            ITEMS.register(set.shulkerBox().getId().getPath(), () -> new com.otterly76.ott.item.custom.ColorSetShulkerBoxItem(set.shulkerBox().get(), new Item.Properties().stacksTo(1)));
             registerBlockItem(set.stainedGlass());
             registerBlockItem(set.stainedGlassPane());
             registerBlockItem(set.terracotta());

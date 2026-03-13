@@ -10,13 +10,19 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 public class ColorSetShulkerBoxBlock extends ShulkerBoxBlock {
-    public ColorSetShulkerBoxBlock(@Nullable DyeColor color, Properties properties) {
+    private final String colorName;
+    public ColorSetShulkerBoxBlock(String colorName, @Nullable DyeColor color, Properties properties) {
         super(color, properties);
+        this.colorName = colorName;
+    }
+
+    public String getColorName() {
+        return colorName;
     }
 
     @Override
     public @NotNull RenderShape getRenderShape(@NotNull BlockState state) {
-        return RenderShape.MODEL;
+        return RenderShape.ENTITYBLOCK_ANIMATED;
     }
 
     @Override

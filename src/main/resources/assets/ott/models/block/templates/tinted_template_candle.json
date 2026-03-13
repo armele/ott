@@ -1,0 +1,352 @@
+{
+    "render_type":  "minecraft:cutout",
+    "parent":  "block/block",
+    "elements":  [
+                     {
+                         "from":  [
+                                      7,
+                                      0,
+                                      7
+                                  ],
+                         "to":  [
+                                    9,
+                                    6,
+                                    9
+                                ],
+                         "rotation":  {
+                                          "angle":  0,
+                                          "axis":  "y",
+                                          "origin":  [
+                                                         8,
+                                                         3,
+                                                         8
+                                                     ]
+                                      },
+                         "faces":  {
+                                       "north":  {
+                                                     "uv":  [
+                                                                0,
+                                                                8,
+                                                                2,
+                                                                14
+                                                            ],
+                                                     "texture":  "#all",
+                                                     "tintindex":  0
+                                                 },
+                                       "east":  {
+                                                    "uv":  [
+                                                               0,
+                                                               8,
+                                                               2,
+                                                               14
+                                                           ],
+                                                    "texture":  "#all",
+                                                    "tintindex":  0
+                                                },
+                                       "south":  {
+                                                     "uv":  [
+                                                                0,
+                                                                8,
+                                                                2,
+                                                                14
+                                                            ],
+                                                     "texture":  "#all",
+                                                     "tintindex":  0
+                                                 },
+                                       "west":  {
+                                                    "uv":  [
+                                                               0,
+                                                               8,
+                                                               2,
+                                                               14
+                                                           ],
+                                                    "texture":  "#all",
+                                                    "tintindex":  0
+                                                },
+                                       "up":  {
+                                                  "uv":  [
+                                                             0,
+                                                             6,
+                                                             2,
+                                                             8
+                                                         ],
+                                                  "texture":  "#all",
+                                                  "tintindex":  0
+                                              },
+                                       "down":  {
+                                                    "uv":  [
+                                                               0,
+                                                               14,
+                                                               2,
+                                                               16
+                                                           ],
+                                                    "texture":  "#all",
+                                                    "cullface":  "down",
+                                                    "tintindex":  0
+                                                }
+                                   }
+                     },
+                     {
+                         "from":  [
+                                      7,
+                                      -0.03125,
+                                      7
+                                  ],
+                         "to":  [
+                                    9,
+                                    5.96875,
+                                    9
+                                ],
+                         "rotation":  {
+                                          "angle":  45,
+                                          "axis":  "y",
+                                          "origin":  [
+                                                         8,
+                                                         2.96875,
+                                                         8
+                                                     ]
+                                      },
+                         "faces":  {
+                                       "north":  {
+                                                     "uv":  [
+                                                                0,
+                                                                8,
+                                                                2,
+                                                                14
+                                                            ],
+                                                     "texture":  "#all",
+                                                     "tintindex":  0
+                                                 },
+                                       "east":  {
+                                                    "uv":  [
+                                                               0,
+                                                               8,
+                                                               2,
+                                                               14
+                                                           ],
+                                                    "texture":  "#all",
+                                                    "tintindex":  0
+                                                },
+                                       "south":  {
+                                                     "uv":  [
+                                                                0,
+                                                                8,
+                                                                2,
+                                                                14
+                                                            ],
+                                                     "texture":  "#all",
+                                                     "tintindex":  0
+                                                 },
+                                       "west":  {
+                                                    "uv":  [
+                                                               0,
+                                                               8,
+                                                               2,
+                                                               14
+                                                           ],
+                                                    "texture":  "#all",
+                                                    "tintindex":  0
+                                                },
+                                       "up":  {
+                                                  "uv":  [
+                                                             0,
+                                                             6,
+                                                             2,
+                                                             8
+                                                         ],
+                                                  "texture":  "#all",
+                                                  "tintindex":  0
+                                              },
+                                       "down":  {
+                                                    "uv":  [
+                                                               0,
+                                                               14,
+                                                               2,
+                                                               16
+                                                           ],
+                                                    "texture":  "#all",
+                                                    "cullface":  "down",
+                                                    "tintindex":  0
+                                                }
+                                   }
+                     },
+                     {
+                         "from":  [
+                                      7.50025,
+                                      6,
+                                      8.0001
+                                  ],
+                         "to":  [
+                                    8.50025,
+                                    7,
+                                    8.0011
+                                ],
+                         "rotation":  {
+                                          "angle":  45,
+                                          "axis":  "y",
+                                          "origin":  [
+                                                         8,
+                                                         6.5,
+                                                         8.00035
+                                                     ]
+                                      },
+                         "faces":  {
+                                       "north":  {
+                                                     "uv":  [
+                                                                0,
+                                                                5,
+                                                                1,
+                                                                6
+                                                            ],
+                                                     "texture":  "#all"
+                                                 },
+                                       "south":  {
+                                                     "uv":  [
+                                                                0,
+                                                                5,
+                                                                1,
+                                                                6
+                                                            ],
+                                                     "texture":  "#all"
+                                                 }
+                                   }
+                     },
+                     {
+                         "from":  [
+                                      7.49975,
+                                      6,
+                                      8.0001
+                                  ],
+                         "to":  [
+                                    8.49975,
+                                    7,
+                                    8.0011
+                                ],
+                         "rotation":  {
+                                          "angle":  -45,
+                                          "axis":  "y",
+                                          "origin":  [
+                                                         8,
+                                                         6.5,
+                                                         8.00035
+                                                     ]
+                                      },
+                         "faces":  {
+                                       "north":  {
+                                                     "uv":  [
+                                                                0,
+                                                                5,
+                                                                1,
+                                                                6
+                                                            ],
+                                                     "texture":  "#all"
+                                                 },
+                                       "south":  {
+                                                     "uv":  [
+                                                                0,
+                                                                5,
+                                                                1,
+                                                                6
+                                                            ],
+                                                     "texture":  "#all"
+                                                 }
+                                   }
+                     }
+                 ],
+    "display":  {
+                    "thirdperson_righthand":  {
+                                                  "translation":  [
+                                                                      0,
+                                                                      4,
+                                                                      1.5
+                                                                  ],
+                                                  "scale":  [
+                                                                0.75,
+                                                                0.75,
+                                                                0.75
+                                                            ]
+                                              },
+                    "thirdperson_lefthand":  {
+                                                 "translation":  [
+                                                                     0,
+                                                                     4,
+                                                                     1.5
+                                                                 ],
+                                                 "scale":  [
+                                                               0.75,
+                                                               0.75,
+                                                               0.75
+                                                           ]
+                                             },
+                    "firstperson_righthand":  {
+                                                  "rotation":  [
+                                                                   0,
+                                                                   45,
+                                                                   0
+                                                               ],
+                                                  "translation":  [
+                                                                      0,
+                                                                      3.75,
+                                                                      0
+                                                                  ],
+                                                  "scale":  [
+                                                                0.5,
+                                                                0.5,
+                                                                0.5
+                                                            ]
+                                              },
+                    "firstperson_lefthand":  {
+                                                 "rotation":  [
+                                                                  0,
+                                                                  45,
+                                                                  0
+                                                              ],
+                                                 "translation":  [
+                                                                     0,
+                                                                     3.75,
+                                                                     0
+                                                                 ],
+                                                 "scale":  [
+                                                               0.5,
+                                                               0.5,
+                                                               0.5
+                                                           ]
+                                             },
+                    "ground":  {
+                                   "translation":  [
+                                                       0,
+                                                       2,
+                                                       0
+                                                   ],
+                                   "scale":  [
+                                                 0.5,
+                                                 0.5,
+                                                 0.5
+                                             ]
+                               },
+                    "gui":  {
+                                "rotation":  [
+                                                 30,
+                                                 -135,
+                                                 0
+                                             ],
+                                "translation":  [
+                                                    0,
+                                                    6.5,
+                                                    0
+                                                ],
+                                "scale":  [
+                                              1.6,
+                                              1.6,
+                                              1.6
+                                          ]
+                            },
+                    "fixed":  {
+                                  "translation":  [
+                                                      0,
+                                                      5,
+                                                      0
+                                                  ]
+                              }
+                }
+}

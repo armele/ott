@@ -1,0 +1,17 @@
+{
+  "parent": "minecraft:item/glass_pane",
+  "elements": [
+    {
+      "from": [ 0, 0, 7 ],
+      "to": [ 16, 16, 9 ],
+      "faces": {
+        "down": { "uv": [ 7, 0, 9, 16 ], "texture": "#side", "rotation": 90, "tintindex": 0 },
+        "up": { "uv": [ 7, 0, 9, 16 ], "texture": "#side", "rotation": 270, "tintindex": 0 },
+        "north": { "uv": [ 0, 0, 16, 16 ], "texture": "#front", "tintindex": 0 },
+        "south": { "uv": [ 16, 0, 0, 16 ], "texture": "#front", "tintindex": 0 },
+        "west": { "uv": [ 9, 0, 7, 16 ], "texture": "#side", "tintindex": 0 },
+        "east": { "uv": [ 7, 0, 9, 16 ], "texture": "#side", "tintindex": 0 }
+      }
+    }
+  ]
+}

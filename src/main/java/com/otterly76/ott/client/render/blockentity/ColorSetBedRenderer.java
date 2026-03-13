@@ -3,7 +3,6 @@ package com.otterly76.ott.client.render.blockentity;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import com.mojang.math.Axis;
-import com.otterly76.ott.Constants;
 import com.otterly76.ott.block.color.ColorSetBedBlock;
 import com.otterly76.ott.block.color.ColorSetBedBlockEntity;
 import com.otterly76.ott.block.entity.ModBlockEntities;
@@ -41,7 +40,16 @@ public class ColorSetBedRenderer implements BlockEntityRenderer<ColorSetBedBlock
         if (!(blockState.getBlock() instanceof ColorSetBedBlock bedBlock)) return;
 
         String colorName = bedBlock.getColorName();
-        ResourceLocation texture = ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, "textures/block/color/" + colorName + "/" + colorName + "_bed.png");
+        ResourceLocation texture = ResourceLocation.fromNamespaceAndPath("minecraft", "textures/entity/bed/white.png");
+
+        int color = 0xFFFFFF;
+        for (com.otterly76.ott.color.ModColorSets.ColorSet set : com.otterly76.ott.color.ModColorSets.ALL) {
+            if (set.name().equals(colorName)) {
+                color = set.color();
+                break;
+            }
+        }
+        int colorWithAlpha = color | 0xFF000000;
 
         Level level = blockEntity.getLevel();
         if (level != null) {
@@ -49,14 +57,14 @@ public class ColorSetBedRenderer implements BlockEntityRenderer<ColorSetBedBlock
                     ModBlockEntities.COLOR_SET_BED.get(), BedBlock::getBlockType, BedBlock::getConnectedDirection, ChestBlock.FACING, blockState, level, blockEntity.getBlockPos(), (p_112202_, p_112203_) -> false
             );
             int light = neighborResult.apply(new BrightnessCombiner<>()).get(combinedLight);
-            this.renderPiece(poseStack, bufferSource, blockState.getValue(BedBlock.PART) == BedPart.HEAD ? this.headRoot : this.footRoot, blockState.getValue(BedBlock.FACING), texture, light, combinedOverlay, false);
+            this.renderPiece(poseStack, bufferSource, blockState.getValue(BedBlock.PART) == BedPart.HEAD ? this.headRoot : this.footRoot, blockState.getValue(BedBlock.FACING), texture, light, combinedOverlay, false, colorWithAlpha);
         } else {
-            this.renderPiece(poseStack, bufferSource, this.headRoot, Direction.SOUTH, texture, combinedLight, combinedOverlay, false);
-            this.renderPiece(poseStack, bufferSource, this.footRoot, Direction.SOUTH, texture, combinedLight, combinedOverlay, true);
+            this.renderPiece(poseStack, bufferSource, this.headRoot, Direction.SOUTH, texture, combinedLight, combinedOverlay, false, colorWithAlpha);
+            this.renderPiece(poseStack, bufferSource, this.footRoot, Direction.SOUTH, texture, combinedLight, combinedOverlay, true, colorWithAlpha);
         }
     }
 
-    private void renderPiece(PoseStack poseStack, MultiBufferSource bufferSource, ModelPart modelPart, Direction direction, ResourceLocation texture, int light, int combinedOverlay, boolean isFoot) {
+    private void renderPiece(PoseStack poseStack, MultiBufferSource bufferSource, ModelPart modelPart, Direction direction, ResourceLocation texture, int light, int combinedOverlay, boolean isFoot, int color) {
         poseStack.pushPose();
         poseStack.translate(0.0D, 0.5625D, isFoot ? -1.0D : 0.0D);
         poseStack.mulPose(Axis.XP.rotationDegrees(90.0F));
@@ -65,7 +73,7 @@ public class ColorSetBedRenderer implements BlockEntityRenderer<ColorSetBedBlock
         poseStack.translate(-0.5D, -0.5D, -0.5D);
 
         VertexConsumer vertexConsumer = bufferSource.getBuffer(RenderType.entitySolid(texture));
-        modelPart.render(poseStack, vertexConsumer, light, combinedOverlay);
+        modelPart.render(poseStack, vertexConsumer, light, combinedOverlay, color);
         poseStack.popPose();
     }
 }

@@ -265,6 +265,7 @@ public class ClientModEvents {
         event.registerBlockEntityRenderer(ModBlockEntities.WEATHERING_STATION.get(), com.otterly76.ott.client.render.blockentity.WeatheringStationRenderer::new);
         event.registerBlockEntityRenderer(ModBlockEntities.COLOR_SET_BED.get(), com.otterly76.ott.client.render.blockentity.ColorSetBedRenderer::new);
         event.registerBlockEntityRenderer(ModBlockEntities.COLOR_SET_BANNER.get(), com.otterly76.ott.client.render.blockentity.ColorSetBannerRenderer::new);
+        event.registerBlockEntityRenderer(ModBlockEntities.COLOR_SET_SHULKER_BOX.get(), com.otterly76.ott.client.render.blockentity.ColorSetShulkerBoxRenderer::new);
     }
 
     public static void registerLayerDefinitions(EntityRenderersEvent.RegisterLayerDefinitions event) {
@@ -307,10 +308,46 @@ public class ClientModEvents {
         });
 
         event.register((state, level, pos, tint) -> tint == 0 && level != null && pos != null ? BiomeColors.getAverageWaterColor(level, pos) : -1, ModBlocks.WEATHERING_STATION.get());
+
+        com.otterly76.ott.color.ModColorSets.ALL.forEach(set -> {
+            ModBlocks.ColorSetBlocks blocks = ModBlocks.COLOR_SETS.get(set.name());
+            if (blocks != null) {
+                event.register((state, level, pos, tint) -> tint == 0 ? set.color() : -1,
+                        blocks.candle().get(),
+                        blocks.concrete().get(),
+                        blocks.concretePowder().get(),
+                        blocks.terracotta().get(),
+                        blocks.wool().get(),
+                        blocks.stainedGlass().get(),
+                        blocks.stainedGlassPane().get(),
+                        blocks.carpet().get(),
+                        blocks.shulkerBox().get()
+                );
+            }
+        });
     }
 
     public static void registerItemColors(RegisterColorHandlersEvent.Item event) {
         event.register((stack, tintIndex) -> event.getBlockColors().getColor(((net.minecraft.world.item.BlockItem)stack.getItem()).getBlock().defaultBlockState(), null, null, tintIndex), ModBlocks.BUSH.get(), ModBlocks.WILDFLOWERS.get(), ModBlocks.WEATHERING_STATION.get(), ModBlocks.BIG_LILY_PAD.get());
+
+        com.otterly76.ott.color.ModColorSets.ALL.forEach(set -> {
+            ModBlocks.ColorSetBlocks blocks = ModBlocks.COLOR_SETS.get(set.name());
+            if (blocks != null) {
+                event.register((stack, tintIndex) -> tintIndex == 0 ? set.color() : -1,
+                        blocks.candle().get(),
+                        blocks.concrete().get(),
+                        blocks.concretePowder().get(),
+                        blocks.terracotta().get(),
+                        blocks.wool().get(),
+                        blocks.stainedGlass().get(),
+                        blocks.stainedGlassPane().get(),
+                        blocks.carpet().get(),
+                        blocks.shulkerBox().get(),
+                        blocks.banner().get(),
+                        blocks.bed().get()
+                );
+            }
+        });
 
         ModBlocks.getAllGradientBlocks().forEach(deferredBlock -> {
             event.register((stack, tintIndex) -> {
