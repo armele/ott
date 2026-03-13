@@ -18,7 +18,7 @@ public final class ModColorSets {
             new ColorSet("key_lime", 0xBFD02E),
             new ColorSet("goldenrod", 0xFCAC2D),
             new ColorSet("paprika", 0xD45722),
-            new ColorSet("jasper", 0x9A412C),
+            new ColorSet("sienna", 0x9A412C),
             new ColorSet("chocolate", 0x50392A),
             new ColorSet("charcoal", 0x32363A),
             new ColorSet("boulder", 0x727675),
