@@ -7,11 +7,11 @@ public final class ModColorSets {
 
     public static final List<ColorSet> ALL = List.of(
 
-            new ColorSet("amber", 0xab6015),
-            new ColorSet("aquamarine", 0x72A0C1),
-            new ColorSet("carnelian", 0xd04b15),
-            new ColorSet("honey", 0xf7a420),
-            new ColorSet("navy", 0x000080)
+            new ColorSet("amber", 0xac6115),
+            new ColorSet("aquamarine", 0x74c3d5),
+            new ColorSet("honey", 0xfcac2d),
+            new ColorSet("navy", 0x182665),
+            new ColorSet("persimmon", 0xaa3514)
     );
 
     public record ColorSet(String name, int color) {
