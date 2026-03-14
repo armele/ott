@@ -53,8 +53,8 @@ public class ColorSetTextureProvider implements DataProvider {
             processBlock(cache, mainPath.resolve("textures/block/color_set"), colorName, colorInt, "white_stained_glass_pane_top", "stained_glass_pane_top", 1.0f, 0.0f);
             
             // Entities
-            processBed(cache, mainPath.resolve("textures/entity/bed"), colorName, colorInt, 1.0f, 0.0f);
-            processGenericEntity(cache, mainPath.resolve("textures/entity/shulker"), colorName, colorInt, "shulker/shulker_white", colorName, 1.0f, 0.0f);
+            processMaskedEntity(cache, mainPath.resolve("textures/entity/bed"), colorName, colorInt, "bed/white", "bed/color_mask", 1.0f, 0.0f);
+            processMaskedEntity(cache, mainPath.resolve("textures/entity/shulker"), colorName, colorInt, "shulker/shulker_white", "shulker/color_mask", 1.0f, 0.0f);
             processGenericEntity(cache, mainPath.resolve("textures/entity/banner"), colorName, colorInt, "banner_base", colorName, 1.0f, 0.0f);
         }
 
@@ -77,13 +77,13 @@ public class ColorSetTextureProvider implements DataProvider {
     }
 
     @SuppressWarnings("SameParameterValue")
-    private void processBed(CachedOutput cache, java.nio.file.Path folder, String colorName, int colorInt, float saturationFactor, float brightnessOffset) {
+    private void processMaskedEntity(CachedOutput cache, java.nio.file.Path folder, String colorName, int colorInt, String sourcePath, String maskPath, float saturationFactor, float brightnessOffset) {
         try {
-            ResourceLocation baseLoc = ResourceLocation.withDefaultNamespace("textures/entity/bed/white.png");
+            ResourceLocation baseLoc = ResourceLocation.withDefaultNamespace("textures/entity/" + sourcePath + ".png");
             Resource baseResource = existingFileHelper.getResource(baseLoc, PackType.CLIENT_RESOURCES);
             BufferedImage base = ImageIO.read(baseResource.open());
 
-            ResourceLocation maskLoc = ResourceLocation.fromNamespaceAndPath("ott", "textures/entity/bed/color_mask.png");
+            ResourceLocation maskLoc = ResourceLocation.fromNamespaceAndPath("ott", "textures/entity/" + maskPath + ".png");
             Resource maskResource = existingFileHelper.getResource(maskLoc, PackType.CLIENT_RESOURCES);
             BufferedImage mask = ImageIO.read(maskResource.open());
 
@@ -101,7 +101,7 @@ public class ColorSetTextureProvider implements DataProvider {
             
             saveTexture(cache, folder.resolve(colorName + ".png"), result);
         } catch (IOException e) {
-             throw new RuntimeException("Failed to process bed texture for " + colorName, e);
+             throw new RuntimeException("Failed to process masked entity texture for " + colorName, e);
         }
     }
 
