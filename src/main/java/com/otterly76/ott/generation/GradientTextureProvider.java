@@ -105,12 +105,12 @@ public class GradientTextureProvider implements DataProvider {
             Resource firstImage =
                     existingFileHelper.getResource(ResourceLocation.withDefaultNamespace("textures/block/%s.png".formatted(gradientBlock.getTextureName(gradientBlock.getFirstColor()))),
                             PackType.CLIENT_RESOURCES);
-            BufferedImage firstColor = convertToARGB(ImageIO.read(firstImage.open()));
+            BufferedImage firstColor = ensure32x32(ImageIO.read(firstImage.open()));
 
             Resource secondImage =
                     existingFileHelper.getResource(ResourceLocation.withDefaultNamespace("textures/block/%s.png".formatted(gradientBlock.getTextureName(gradientBlock.getSecondColor()))),
                             PackType.CLIENT_RESOURCES);
-            BufferedImage secondColor = convertToARGB(ImageIO.read(secondImage.open()));
+            BufferedImage secondColor = ensure32x32(ImageIO.read(secondImage.open()));
 
             Graphics2D secondGraphics = secondColor.createGraphics();
             float[] fractions = {0.0f, 0.2f, 0.8f, 1.0f};
@@ -120,7 +120,7 @@ public class GradientTextureProvider implements DataProvider {
             secondGraphics.fillRect(0, 0, secondColor.getWidth(), secondColor.getHeight());
             secondGraphics.dispose();
 
-            BufferedImage newImage = new BufferedImage(firstColor.getWidth(), firstColor.getHeight(), BufferedImage.TYPE_INT_ARGB);
+            BufferedImage newImage = new BufferedImage(32, 32, BufferedImage.TYPE_INT_ARGB);
             final Graphics2D finalGraphics = newImage.createGraphics();
             finalGraphics.drawImage(firstColor, 0, 0, null);
             finalGraphics.drawImage(secondColor, 0, 0, null);
@@ -136,6 +136,18 @@ public class GradientTextureProvider implements DataProvider {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
+    }
+
+    private static BufferedImage ensure32x32(BufferedImage image) {
+        if (image.getWidth() == 32 && image.getHeight() == 32) {
+            return convertToARGB(image);
+        }
+        BufferedImage newImage = new BufferedImage(32, 32, BufferedImage.TYPE_INT_ARGB);
+        Graphics2D g = newImage.createGraphics();
+        g.setRenderingHint(RenderingHints.KEY_INTERPOLATION, RenderingHints.VALUE_INTERPOLATION_NEAREST_NEIGHBOR);
+        g.drawImage(image, 0, 0, 32, 32, null);
+        g.dispose();
+        return newImage;
     }
 
     private static BufferedImage convertToARGB(BufferedImage image) {

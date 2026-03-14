@@ -6,7 +6,6 @@ import com.mojang.math.Axis;
 import com.otterly76.ott.block.color.ColorSetBannerBlock;
 import com.otterly76.ott.block.color.ColorSetBannerBlockEntity;
 import com.otterly76.ott.block.color.ColorSetWallBannerBlock;
-import com.otterly76.ott.color.ModColorSets;
 import net.minecraft.client.model.geom.ModelLayers;
 import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.client.renderer.MultiBufferSource;
@@ -17,6 +16,7 @@ import net.minecraft.client.renderer.blockentity.BlockEntityRendererProvider;
 import net.minecraft.client.resources.model.Material;
 import net.minecraft.client.resources.model.ModelBakery;
 import net.minecraft.core.BlockPos;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.Mth;
 import net.minecraft.world.level.block.BannerBlock;
 import net.minecraft.world.level.block.WallBannerBlock;
@@ -45,14 +45,6 @@ public class ColorSetBannerRenderer implements BlockEntityRenderer<ColorSetBanne
             colorName = bannerBlock.getColorName();
         } else if (blockState.getBlock() instanceof ColorSetWallBannerBlock wallBannerBlock) {
             colorName = wallBannerBlock.getColorName();
-        }
-
-        int baseColor = 0xFFFFFF;
-        for (ModColorSets.ColorSet set : ModColorSets.ALL) {
-            if (set.name().equals(colorName)) {
-                baseColor = set.color();
-                break;
-            }
         }
 
         boolean isItem = blockEntity.getLevel() == null;
@@ -89,15 +81,15 @@ public class ColorSetBannerRenderer implements BlockEntityRenderer<ColorSetBanne
         this.flag.xRot = (-0.0125F + 0.01F * Mth.cos((float) (Math.PI * 2) * f2)) * (float) Math.PI;
         this.flag.y = -32.0F;
         
-        renderCustomPatterns(poseStack, bufferSource, combinedLight, combinedOverlay, this.flag, baseColor, blockEntity.getPatterns());
+        renderCustomPatterns(poseStack, bufferSource, combinedLight, combinedOverlay, this.flag, colorName, blockEntity.getPatterns());
 
         poseStack.popPose();
         poseStack.popPose();
     }
 
-    private static void renderCustomPatterns(PoseStack poseStack, MultiBufferSource bufferSource, int combinedLight, int combinedOverlay, ModelPart flagPart, int baseColor, BannerPatternLayers patterns) {
-        int colorWithAlpha = baseColor | 0xFF000000;
-        flagPart.render(poseStack, Sheets.BANNER_BASE.buffer(bufferSource, RenderType::entitySolid), combinedLight, combinedOverlay, colorWithAlpha);
+    private static void renderCustomPatterns(PoseStack poseStack, MultiBufferSource bufferSource, int combinedLight, int combinedOverlay, ModelPart flagPart, String colorName, BannerPatternLayers patterns) {
+        ResourceLocation texture = ResourceLocation.fromNamespaceAndPath("ott", "textures/entity/banner/" + colorName + ".png");
+        flagPart.render(poseStack, bufferSource.getBuffer(RenderType.entitySolid(texture)), combinedLight, combinedOverlay, 0xFFFFFFFF);
 
         for (int i = 0; i < 16 && i < patterns.layers().size(); i++) {
             BannerPatternLayers.Layer layer = patterns.layers().get(i);

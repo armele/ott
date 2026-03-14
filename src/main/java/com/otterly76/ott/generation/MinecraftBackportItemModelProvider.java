@@ -87,8 +87,9 @@ public class MinecraftBackportItemModelProvider extends ItemModelProvider {
 
             if (path.contains("copper_chain") && !path.contains("chainmail")) {
                 String textureName = path.replace("waxed_", "");
-                getBuilder(path).parent(getExistingFile(mcLoc("item/generated")))
-                        .texture("layer0", mcLoc("block/" + textureName));
+                getBuilder(path).parent(getExistingFile(mcLoc("item/chain")))
+                        .texture("1", mcLoc("block/" + textureName))
+                        .texture("particle", mcLoc("block/" + textureName));
                 return;
             }
 

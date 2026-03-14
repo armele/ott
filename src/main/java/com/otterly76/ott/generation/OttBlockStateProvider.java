@@ -116,25 +116,25 @@ public class OttBlockStateProvider extends ModBlockStateProvider {
 
     private void registerColorSet(String color, ModBlocks.ColorSetBlocks set) {
         // Concrete, Terracotta, Wool
-        tintedCubeAll(set.concrete().get(), mcLoc("block/white_concrete"));
-        tintedCubeAll(set.terracotta().get(), mcLoc("block/white_terracotta"));
-        tintedCubeAll(set.wool().get(), mcLoc("block/white_wool"));
+        colorSetCubeAll(set.concrete().get(), color, "concrete");
+        colorSetCubeAll(set.terracotta().get(), color, "terracotta");
+        colorSetCubeAll(set.wool().get(), color, "wool");
 
         // Concrete Powder
-        tintedCubeAll(set.concretePowder().get(), mcLoc("block/white_concrete_powder"));
+        colorSetCubeAll(set.concretePowder().get(), color, "concrete_powder");
 
         // Stained Glass
-        tintedCubeAll(set.stainedGlass().get(), mcLoc("block/white_stained_glass"), "translucent");
+        colorSetCubeAll(set.stainedGlass().get(), color, "stained_glass", "translucent");
 
         // Stained Glass Pane
-        tintedPaneBlock(set.stainedGlassPane().get(), mcLoc("block/white_stained_glass"), mcLoc("block/white_stained_glass_pane_top"));
+        colorSetPaneBlock(set.stainedGlassPane().get(), color);
 
         // Glazed Terracotta
         horizontalBlock(set.glazedTerracotta().get(), models().withExistingParent(color + "_glazed_terracotta", mcLoc("block/template_glazed_terracotta"))
                 .texture("pattern", modLoc("block/glazed_terracotta/" + color)));
 
         // Shulker Box
-        tintedCubeAll(set.shulkerBox().get(), mcLoc("block/white_shulker_box"));
+        colorSetCubeAll(set.shulkerBox().get(), color, "concrete");
 
         // Candle
         registerCandle(set.candle().get(), color);
@@ -143,49 +143,38 @@ public class OttBlockStateProvider extends ModBlockStateProvider {
         registerBed(set.bed().get(), color);
 
         // Carpet
-        tintedCarpet(set.carpet().get(), mcLoc("block/white_wool"));
+        colorSetCarpet(set.carpet().get(), color);
 
         // Banner
         registerBanner(set.banner().get(), set.wallBanner().get(), color);
     }
 
-    private void tintedCubeAll(Block block, ResourceLocation texture) {
-        tintedCubeAll(block, texture, "solid");
+    private void colorSetCubeAll(Block block, String color, String type) {
+        colorSetCubeAll(block, color, type, "solid");
     }
 
-    private void tintedCubeAll(Block block, ResourceLocation texture, String renderType) {
-        simpleBlock(block, models().withExistingParent(blockPath(block), mcLoc("block/block"))
+    @SuppressWarnings("SameParameterValue")
+    private void colorSetCubeAll(Block block, String color, String type, String renderType) {
+        String texture = modLoc("block/color_set/" + color + "/" + type).toString();
+        simpleBlock(block, models().withExistingParent(blockPath(block), mcLoc("block/cube_all"))
                 .texture("all", texture)
-                .texture("particle", texture)
-                .renderType(mcLoc(renderType))
-                .element()
-                .from(0, 0, 0)
-                .to(16, 16, 16)
-                .allFaces((dir, face) -> face.texture("#all").cullface(dir).tintindex(0))
-                .end());
+                .renderType(mcLoc(renderType)));
     }
 
-    private void tintedCarpet(Block block, ResourceLocation texture) {
-        simpleBlock(block, models().withExistingParent(blockPath(block), mcLoc("block/block"))
-                .texture("all", texture)
-                .texture("particle", texture)
-                .element()
-                .from(0, 0, 0)
-                .to(16, 1, 16)
-                .face(net.minecraft.core.Direction.UP).texture("#all").tintindex(0).end()
-                .face(net.minecraft.core.Direction.DOWN).texture("#all").cullface(net.minecraft.core.Direction.DOWN).tintindex(0).end()
-                .face(net.minecraft.core.Direction.NORTH).texture("#all").cullface(net.minecraft.core.Direction.NORTH).tintindex(0).end()
-                .face(net.minecraft.core.Direction.SOUTH).texture("#all").cullface(net.minecraft.core.Direction.SOUTH).tintindex(0).end()
-                .face(net.minecraft.core.Direction.WEST).texture("#all").cullface(net.minecraft.core.Direction.WEST).tintindex(0).end()
-                .face(net.minecraft.core.Direction.EAST).texture("#all").cullface(net.minecraft.core.Direction.EAST).tintindex(0).end()
-                .end());
+    private void colorSetCarpet(Block block, String color) {
+        ResourceLocation texture = modLoc("block/color_set/" + color + "/" + "wool");
+        simpleBlock(block, models().withExistingParent(blockPath(block), mcLoc("block/carpet"))
+                .texture("wool", texture.toString()));
     }
 
-    private void tintedPaneBlock(IronBarsBlock block, ResourceLocation side, ResourceLocation edge) {
+    private void colorSetPaneBlock(IronBarsBlock block, String color) {
         String baseName = blockPath(block);
-        ModelFile post = tintedPaneModel(baseName + "_post", side, edge, true, false, false);
-        ModelFile sideModel = tintedPaneModel(baseName + "_side", side, edge, false, true, false);
-        ModelFile sideAlt = tintedPaneModel(baseName + "_side_alt", side, edge, false, false, true);
+        String side = modLoc("block/color_set/" + color + "/stained_glass").toString();
+        String edge = modLoc("block/color_set/" + color + "/stained_glass_pane_top").toString();
+        
+        ModelFile post = colorSetPaneModel(baseName + "_post", side, edge, true, false, false);
+        ModelFile sideModel = colorSetPaneModel(baseName + "_side", side, edge, false, true, false);
+        ModelFile sideAlt = colorSetPaneModel(baseName + "_side_alt", side, edge, false, false, true);
 
         getMultipartBuilder(block)
                 .part().modelFile(post).addModel().end()
@@ -195,7 +184,7 @@ public class OttBlockStateProvider extends ModBlockStateProvider {
                 .part().modelFile(sideAlt).rotationY(180).addModel().condition(BlockStateProperties.WEST, true).end();
     }
 
-    private ModelFile tintedPaneModel(String name, ResourceLocation side, ResourceLocation edge, boolean post, boolean sideM, boolean sideAlt) {
+    private ModelFile colorSetPaneModel(String name, String side, String edge, boolean post, boolean sideM, boolean sideAlt) {
         var builder = models().withExistingParent(name, mcLoc("block/block"))
                 .texture("edge", edge)
                 .texture("pane", side)
@@ -204,30 +193,30 @@ public class OttBlockStateProvider extends ModBlockStateProvider {
 
         if (post) {
             builder.element().from(7, 0, 7).to(9, 16, 9)
-                    .face(net.minecraft.core.Direction.NORTH).uvs(7, 0, 9, 16).texture("#edge").tintindex(0).end()
-                    .face(net.minecraft.core.Direction.SOUTH).uvs(7, 0, 9, 16).texture("#edge").tintindex(0).end()
-                    .face(net.minecraft.core.Direction.WEST).uvs(7, 0, 9, 16).texture("#edge").tintindex(0).end()
-                    .face(net.minecraft.core.Direction.EAST).uvs(7, 0, 9, 16).texture("#edge").tintindex(0).end()
-                    .face(net.minecraft.core.Direction.UP).uvs(7, 7, 9, 9).texture("#edge").tintindex(0).end()
-                    .face(net.minecraft.core.Direction.DOWN).uvs(7, 7, 9, 9).texture("#edge").cullface(net.minecraft.core.Direction.DOWN).tintindex(0).end()
+                    .face(net.minecraft.core.Direction.NORTH).uvs(7, 0, 9, 16).texture("#edge").end()
+                    .face(net.minecraft.core.Direction.SOUTH).uvs(7, 0, 9, 16).texture("#edge").end()
+                    .face(net.minecraft.core.Direction.WEST).uvs(7, 0, 9, 16).texture("#edge").end()
+                    .face(net.minecraft.core.Direction.EAST).uvs(7, 0, 9, 16).texture("#edge").end()
+                    .face(net.minecraft.core.Direction.UP).uvs(7, 7, 9, 9).texture("#edge").end()
+                    .face(net.minecraft.core.Direction.DOWN).uvs(7, 7, 9, 9).texture("#edge").cullface(net.minecraft.core.Direction.DOWN).end()
                     .end();
         } else if (sideM) { // NORTH
             builder.element().from(7, 0, 0).to(9, 16, 7)
-                    .face(net.minecraft.core.Direction.NORTH).uvs(7, 0, 9, 16).texture("#edge").cullface(net.minecraft.core.Direction.NORTH).tintindex(0).end()
-                    .face(net.minecraft.core.Direction.SOUTH).uvs(7, 0, 9, 16).texture("#edge").tintindex(0).end()
-                    .face(net.minecraft.core.Direction.WEST).uvs(0, 0, 7, 16).texture("#pane").tintindex(0).end()
-                    .face(net.minecraft.core.Direction.EAST).uvs(7, 0, 0, 16).texture("#pane").tintindex(0).end()
-                    .face(net.minecraft.core.Direction.UP).uvs(7, 0, 9, 7).texture("#edge").tintindex(0).end()
-                    .face(net.minecraft.core.Direction.DOWN).uvs(7, 0, 9, 7).texture("#edge").cullface(net.minecraft.core.Direction.DOWN).tintindex(0).end()
+                    .face(net.minecraft.core.Direction.NORTH).uvs(7, 0, 9, 16).texture("#edge").cullface(net.minecraft.core.Direction.NORTH).end()
+                    .face(net.minecraft.core.Direction.SOUTH).uvs(7, 0, 9, 16).texture("#edge").end()
+                    .face(net.minecraft.core.Direction.WEST).uvs(0, 0, 7, 16).texture("#pane").end()
+                    .face(net.minecraft.core.Direction.EAST).uvs(7, 0, 0, 16).texture("#pane").end()
+                    .face(net.minecraft.core.Direction.UP).uvs(7, 0, 9, 7).texture("#edge").end()
+                    .face(net.minecraft.core.Direction.DOWN).uvs(7, 0, 9, 7).texture("#edge").cullface(net.minecraft.core.Direction.DOWN).end()
                     .end();
         } else if (sideAlt) { // EAST
             builder.element().from(9, 0, 7).to(16, 16, 9)
-                    .face(net.minecraft.core.Direction.NORTH).uvs(9, 0, 16, 16).texture("#pane").tintindex(0).end()
-                    .face(net.minecraft.core.Direction.SOUTH).uvs(16, 0, 9, 16).texture("#pane").tintindex(0).end()
-                    .face(net.minecraft.core.Direction.WEST).uvs(7, 0, 9, 16).texture("#edge").tintindex(0).end()
-                    .face(net.minecraft.core.Direction.EAST).uvs(7, 0, 9, 16).texture("#edge").cullface(net.minecraft.core.Direction.EAST).tintindex(0).end()
-                    .face(net.minecraft.core.Direction.UP).uvs(9, 7, 16, 9).texture("#edge").tintindex(0).end()
-                    .face(net.minecraft.core.Direction.DOWN).uvs(9, 7, 16, 9).texture("#edge").cullface(net.minecraft.core.Direction.DOWN).tintindex(0).end()
+                    .face(net.minecraft.core.Direction.NORTH).uvs(9, 0, 16, 16).texture("#pane").end()
+                    .face(net.minecraft.core.Direction.SOUTH).uvs(16, 0, 9, 16).texture("#pane").end()
+                    .face(net.minecraft.core.Direction.WEST).uvs(7, 0, 9, 16).texture("#edge").end()
+                    .face(net.minecraft.core.Direction.EAST).uvs(7, 0, 9, 16).texture("#edge").cullface(net.minecraft.core.Direction.EAST).end()
+                    .face(net.minecraft.core.Direction.UP).uvs(9, 7, 16, 9).texture("#edge").end()
+                    .face(net.minecraft.core.Direction.DOWN).uvs(9, 7, 16, 9).texture("#edge").cullface(net.minecraft.core.Direction.DOWN).end()
                     .end();
         }
 
@@ -235,11 +224,11 @@ public class OttBlockStateProvider extends ModBlockStateProvider {
     }
 
     private void registerBed(Block bed, String color) {
-        ResourceLocation woolTex = mcLoc("block/white_wool");
+        ResourceLocation woolTex = modLoc("block/color_set/" + color + "/wool");
         // For the dummy block models used for particles/items, we use the tinted wool
-        ModelFile head = models().withExistingParent(color + "_bed_head", modLoc("block/templates/tinted_cube_all"))
+        ModelFile head = models().withExistingParent(color + "_bed_head", mcLoc("block/cube_all"))
                 .texture("all", woolTex);
-        ModelFile foot = models().withExistingParent(color + "_bed_foot", modLoc("block/templates/tinted_cube_all"))
+        ModelFile foot = models().withExistingParent(color + "_bed_foot", mcLoc("block/cube_all"))
                 .texture("all", woolTex);
 
         getVariantBuilder(bed).forAllStates(state -> {
@@ -253,23 +242,23 @@ public class OttBlockStateProvider extends ModBlockStateProvider {
     }
 
     private void registerCandle(Block candle, String color) {
-        ResourceLocation candleTex = mcLoc("block/candle");
+        String candleTex = modLoc("block/color_set/" + color + "/candle").toString();
 
-        ModelFile one = models().withExistingParent(color + "_candle_one_candle", modLoc("block/templates/tinted_template_candle"))
+        ModelFile one = models().withExistingParent(color + "_candle_one_candle", mcLoc("block/template_candle"))
                 .texture("all", candleTex);
-        ModelFile oneLit = models().withExistingParent(color + "_candle_one_candle_lit", modLoc("block/templates/tinted_template_candle"))
+        ModelFile oneLit = models().withExistingParent(color + "_candle_one_candle_lit", mcLoc("block/template_candle"))
                 .texture("all", candleTex);
-        ModelFile two = models().withExistingParent(color + "_candle_two_candles", modLoc("block/templates/tinted_template_two_candles"))
+        ModelFile two = models().withExistingParent(color + "_candle_two_candles", mcLoc("block/template_two_candles"))
                 .texture("all", candleTex);
-        ModelFile twoLit = models().withExistingParent(color + "_candle_two_candles_lit", modLoc("block/templates/tinted_template_two_candles"))
+        ModelFile twoLit = models().withExistingParent(color + "_candle_two_candles_lit", mcLoc("block/template_two_candles"))
                 .texture("all", candleTex);
-        ModelFile three = models().withExistingParent(color + "_candle_three_candles", modLoc("block/templates/tinted_template_three_candles"))
+        ModelFile three = models().withExistingParent(color + "_candle_three_candles", mcLoc("block/template_three_candles"))
                 .texture("all", candleTex);
-        ModelFile threeLit = models().withExistingParent(color + "_candle_three_candles_lit", modLoc("block/templates/tinted_template_three_candles"))
+        ModelFile threeLit = models().withExistingParent(color + "_candle_three_candles_lit", mcLoc("block/template_three_candles"))
                 .texture("all", candleTex);
-        ModelFile four = models().withExistingParent(color + "_candle_four_candles", modLoc("block/templates/tinted_template_four_candles"))
+        ModelFile four = models().withExistingParent(color + "_candle_four_candles", mcLoc("block/template_four_candles"))
                 .texture("all", candleTex);
-        ModelFile fourLit = models().withExistingParent(color + "_candle_four_candles_lit", modLoc("block/templates/tinted_template_four_candles"))
+        ModelFile fourLit = models().withExistingParent(color + "_candle_four_candles_lit", mcLoc("block/template_four_candles"))
                 .texture("all", candleTex);
 
         getVariantBuilder(candle).forAllStates(state -> {

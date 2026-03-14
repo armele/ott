@@ -129,9 +129,9 @@ public class CopperGolem extends AbstractGolem implements ContainerUser, HasCust
         if (this.isAlive() && this.getWeatherState() != WeatheringCopper.WeatherState.OXIDIZED) {
             long gameTime = this.level().getGameTime();
             if (this.nextWeatheringTick == -1L) {
-                // 21-23 days = 420,000 - 460,000 ticks. Let's make it faster for testing or stick to Wiki?
-                // Wiki says 7 hours = 504,000 ticks.
-                this.nextWeatheringTick = gameTime + (long)(this.random.nextInt(40000) + 420000);
+                // Average time for copper to weather is 3.5 - 5 days.
+                // 3.5 days = 84,000 ticks. 5 days = 120,000 ticks.
+                this.nextWeatheringTick = gameTime + (long)(this.random.nextInt(40000) + 80000);
             }
 
             if (gameTime >= this.nextWeatheringTick) {
@@ -168,10 +168,10 @@ public class CopperGolem extends AbstractGolem implements ContainerUser, HasCust
 
     private Block getStatueBlock(WeatheringCopper.WeatherState state) {
         return switch (state) {
-            case UNAFFECTED -> ModBlocks.COPPER_GOLEM_STATUES.get(0).get();
-            case EXPOSED -> ModBlocks.COPPER_GOLEM_STATUES.get(2).get(); // list is normal, waxed, normal, waxed...
-            case WEATHERED -> ModBlocks.COPPER_GOLEM_STATUES.get(4).get();
-            case OXIDIZED -> ModBlocks.COPPER_GOLEM_STATUES.get(6).get();
+            case UNAFFECTED -> ModBlocks.COPPER_GOLEM_STATUES.get("").get();
+            case EXPOSED -> ModBlocks.COPPER_GOLEM_STATUES.get("exposed_").get();
+            case WEATHERED -> ModBlocks.COPPER_GOLEM_STATUES.get("weathered_").get();
+            case OXIDIZED -> ModBlocks.COPPER_GOLEM_STATUES.get("oxidized_").get();
         };
     }
 
@@ -182,6 +182,7 @@ public class CopperGolem extends AbstractGolem implements ContainerUser, HasCust
         tag.putInt("GolemState", this.getGolemState().id());
         tag.put("Inventory", this.inventory.createTag(this.registryAccess()));
         tag.putBoolean("HasPoppy", this.hasPoppy());
+        tag.putLong("NextWeatheringTick", this.nextWeatheringTick);
     }
 
     @Override
@@ -197,6 +198,9 @@ public class CopperGolem extends AbstractGolem implements ContainerUser, HasCust
             this.inventory.fromTag(tag.getList("Inventory", 10), this.registryAccess());
         }
         this.setHasPoppy(tag.getBoolean("HasPoppy"));
+        if (tag.contains("NextWeatheringTick")) {
+            this.nextWeatheringTick = tag.getLong("NextWeatheringTick");
+        }
     }
 
     @Override

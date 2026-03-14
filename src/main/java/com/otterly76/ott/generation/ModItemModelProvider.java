@@ -77,9 +77,9 @@ public class ModItemModelProvider extends ItemModelProvider {
             getBuilder(set.stainedGlass().getId().getPath())
                     .parent(new ModelFile.UncheckedModelFile(modLoc("block/" + set.stainedGlass().getId().getPath())))
                     .renderType("minecraft:translucent");
-            withExistingParent(set.stainedGlassPane().getId().getPath(), modLoc("item/templates/tinted_glass_pane"))
-                    .texture("front", mcLoc("block/white_stained_glass"))
-                    .texture("side", mcLoc("block/white_stained_glass_pane_top"))
+            withExistingParent(set.stainedGlassPane().getId().getPath(), mcLoc("item/glass_pane"))
+                    .texture("front", modLoc("block/color_set/" + color + "/stained_glass"))
+                    .texture("side", modLoc("block/color_set/" + color + "/stained_glass_pane_top"))
                     .renderType("minecraft:translucent");
             parentItemToBlockModel(set.glazedTerracotta().getId().getPath(), "block/" + set.glazedTerracotta().getId().getPath());
 

@@ -59,6 +59,7 @@
     "common.ItemInvoker",
     "common.ItemMixin",
     "common.LayeredCauldronBlockMixin",
+    "common.LightningRodBlockMixin",
     "common.JigsawStructureAccessor",
     "common.JukeboxSongPlayerMixin",
     "common.LeashableMixin",
