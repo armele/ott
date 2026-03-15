@@ -16,11 +16,30 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
+import java.util.Map;
 import java.util.concurrent.CompletableFuture;
 
 public class ColorSetTextureProvider implements DataProvider {
-    private static final float CONTRAST_FACTOR = 0.8f;
+    private static final float CONTRAST_FACTOR = 1.1f;
     private static final float BRIGHTNESS_FACTOR = 0.9f;
+
+    private static final Map<String, Integer> VANILLA_DYES = Map.ofEntries(
+            Map.entry("orange", 0xF9801D),
+            Map.entry("magenta", 0xC74EBD),
+            Map.entry("light_blue", 0x3AB3DA),
+            Map.entry("yellow", 0xFED83D),
+            Map.entry("lime", 0x80C71F),
+            Map.entry("pink", 0xF38BAA),
+            Map.entry("gray", 0x474F52),
+            Map.entry("light_gray", 0x9D9D97),
+            Map.entry("cyan", 0x169C9C),
+            Map.entry("purple", 0x8932B8),
+            Map.entry("blue", 0x3C44AA),
+            Map.entry("brown", 0x835432),
+            Map.entry("green", 0x5E7C16),
+            Map.entry("red", 0xB02E26),
+            Map.entry("black", 0x1D1D21)
+    );
 
     private final PackOutput packOutput;
     private final ExistingFileHelper existingFileHelper;
@@ -56,6 +75,14 @@ public class ColorSetTextureProvider implements DataProvider {
             processMaskedEntity(cache, mainPath.resolve("textures/entity/bed"), colorName, colorInt, "bed/white", "bed/color_mask", 1.0f, 0.0f);
             processMaskedEntity(cache, mainPath.resolve("textures/entity/shulker"), colorName, colorInt, "shulker/shulker_white", "shulker/color_mask", 1.0f, 0.0f);
             processGenericEntity(cache, mainPath.resolve("textures/entity/banner"), colorName, colorInt, "banner_base", colorName, 1.0f, 0.0f);
+
+            // Items
+            processMaskedItem(cache, mainPath.resolve("textures/item/color_set"), colorName, colorInt, "white_dye", "glass_bottle_mask", 1.0f, 0.0f);
+        }
+
+        // Vanilla Dyes
+        for (Map.Entry<String, Integer> entry : VANILLA_DYES.entrySet()) {
+            processMaskedItem(cache, mainPath.resolve("textures/item/color_set"), entry.getKey(), entry.getValue(), "white_dye", "glass_bottle_mask", 1.0f, 0.0f);
         }
 
         return CompletableFuture.completedFuture(null);
@@ -207,6 +234,35 @@ public class ColorSetTextureProvider implements DataProvider {
             }
         }
         return count > 0 ? totalL / count : 0.85f;
+    }
+
+    @SuppressWarnings("SameParameterValue")
+    private void processMaskedItem(CachedOutput cache, java.nio.file.Path folder, String colorName, int colorInt, String sourcePath, String maskPath, float saturationFactor, float brightnessOffset) {
+        try {
+            ResourceLocation baseLoc = ResourceLocation.withDefaultNamespace("textures/item/" + sourcePath + ".png");
+            Resource baseResource = existingFileHelper.getResource(baseLoc, PackType.CLIENT_RESOURCES);
+            BufferedImage base = ImageIO.read(baseResource.open());
+
+            ResourceLocation maskLoc = ResourceLocation.withDefaultNamespace("textures/item/" + maskPath + ".png");
+            Resource maskResource = existingFileHelper.getResource(maskLoc, PackType.CLIENT_RESOURCES);
+            BufferedImage mask = ImageIO.read(maskResource.open());
+
+            // Handle resolution mismatch - upscale base to mask size
+            if (base.getWidth() != mask.getWidth() || base.getHeight() != mask.getHeight()) {
+                BufferedImage upscaled = new BufferedImage(mask.getWidth(), mask.getHeight(), BufferedImage.TYPE_INT_ARGB);
+                Graphics2D g = upscaled.createGraphics();
+                g.setRenderingHint(RenderingHints.KEY_INTERPOLATION, RenderingHints.VALUE_INTERPOLATION_NEAREST_NEIGHBOR);
+                g.drawImage(base, 0, 0, mask.getWidth(), mask.getHeight(), null);
+                g.dispose();
+                base = upscaled;
+            }
+
+            BufferedImage result = applyMaskedTint(base, mask, colorInt, saturationFactor, brightnessOffset);
+
+            saveTexture(cache, folder.resolve(colorName + ".png"), result);
+        } catch (IOException e) {
+            throw new RuntimeException("Failed to process masked item texture for " + colorName, e);
+        }
     }
 
     @SuppressWarnings("SameParameterValue")

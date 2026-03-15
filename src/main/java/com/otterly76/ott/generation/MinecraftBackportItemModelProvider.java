@@ -294,6 +294,18 @@ public class MinecraftBackportItemModelProvider extends ItemModelProvider {
                 .texture("texture", mcLoc("item/entity/boat/pale_oak"));
         withExistingParent(ModItems.PALE_OAK_CHEST_BOAT.getId().getPath(), mcLoc("item/oak_chest_boat"))
                 .texture("texture", mcLoc("item/entity/chest_boat/pale_oak"));
+
+        String[] vanillaDyes = {
+                "black_dye", "blue_dye", "brown_dye", "cyan_dye", "gray_dye", "green_dye",
+                "light_blue_dye", "light_gray_dye", "lime_dye", "magenta_dye", "orange_dye",
+                "pink_dye", "purple_dye", "red_dye", "white_dye", "yellow_dye"
+        };
+        for (String dye : vanillaDyes) {
+            String color = dye.replace("_dye", "");
+            ResourceLocation texture = color.equals("white") ? mcLoc("item/white_dye") : ResourceLocation.fromNamespaceAndPath("ott", "item/color_set/" + color);
+            getBuilder(dye).parent(getExistingFile(mcLoc("item/glass_bottle")))
+                    .texture("0", texture);
+        }
     }
 
     private void statueItem(String name) {

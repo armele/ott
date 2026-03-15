@@ -95,6 +95,7 @@ public class ModLangMergeProvider implements DataProvider {
         json.addProperty("block.ott." + name + "_bed", capitalized + " Bed");
         json.addProperty("block.ott." + name + "_carpet", capitalized + " Carpet");
         json.addProperty("block.ott." + name + "_banner", capitalized + " Banner");
+        json.addProperty("item.ott." + name + "_dye", capitalized + " Dye");
     }
 
     @Override

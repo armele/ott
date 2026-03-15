@@ -1,6 +1,7 @@
 package com.otterly76.ott.generation;
 
 import com.otterly76.ott.block.ModBlocks;
+import com.otterly76.ott.color.ModColorSets;
 import com.otterly76.ott.item.ModItems;
 import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceLocation;
@@ -104,6 +105,13 @@ public class ModItemModelProvider extends ItemModelProvider {
         generatedItemFromTexture(ModItems.OTTER.getId().getPath(), modLoc("item/otter"));
         
         getBuilder(ModItems.TORCH_ARROW.getId().getPath()).parent(new ModelFile.UncheckedModelFile(mcLoc("item/tipped_arrow")));
+        
+        // Custom Dyes
+        ModColorSets.ALL.forEach(colorSet -> {
+            String color = colorSet.name();
+            getBuilder(color + "_dye").parent(getExistingFile(mcLoc("item/glass_bottle")))
+                    .texture("0", modLoc("item/color_set/" + color));
+        });
     }
 
     private void spawnEggItem(net.neoforged.neoforge.registries.DeferredItem<? extends Item> item) {

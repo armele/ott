@@ -2,6 +2,7 @@ package com.otterly76.ott.item;
 
 import com.otterly76.ott.Constants;
 import com.otterly76.ott.block.ModBlocks;
+import com.otterly76.ott.color.ModColorSets;
 import com.otterly76.ott.entity.ModEntities;
 import com.otterly76.ott.entity.variant.ChickenVariants;
 import com.otterly76.ott.registry.ModArmorMaterials;
@@ -37,6 +38,7 @@ public class ModItems {
     public static final Map<String, DeferredItem<ModBoatItem>> WOOD_SET_BOATS = new HashMap<>();
     public static final Map<String, DeferredItem<ModBoatItem>> WOOD_SET_CHEST_BOATS = new HashMap<>();
 
+    public static final Map<String, DeferredItem<Item>> CUSTOM_DYES = new HashMap<>();
     public static final Map<String, DeferredItem<Item>> HARNESSES = new HashMap<>();
     public static final Map<String, DeferredItem<Item>> BUNDLES = new HashMap<>();
 
@@ -225,6 +227,11 @@ public class ModItems {
             registerBlockItem(set.carpet());
             ITEMS.register(set.banner().getId().getPath(), () -> new com.otterly76.ott.item.custom.ColorSetBannerItem(set.banner().get(), set.wallBanner().get(), new Item.Properties().stacksTo(16)));
             ITEMS.register(set.bed().getId().getPath(), () -> new ColorSetBedItem(set.bed().get(), new Item.Properties()));
+        });
+
+        // REGISTRATION: Custom Dyes
+        ModColorSets.ALL.forEach(colorSet -> {
+            CUSTOM_DYES.put(colorSet.name(), ITEMS.register(colorSet.name() + "_dye", () -> new Item(new Item.Properties())));
         });
 
         // REGISTRATION: Static Minecraft Backports
