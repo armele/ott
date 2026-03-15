@@ -19,6 +19,8 @@ import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.recipes.*;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.tags.ItemTags;
+import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.DyeColor;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
@@ -299,6 +301,7 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
         }
     }
 
+
     private void mountsOfMayhemRecipes(RecipeOutput exporter) {
         {
             DeferredItem<AnimalArmorItem> i = ModItems.NETHERITE_HORSE_ARMOR;
@@ -341,74 +344,119 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
     }
 
     private void addDyeingRecipes(RecipeOutput exporter) {
+        // Vanilla Colors
         for (DyeColor color : DyeColor.values()) {
-            String colorName = color.getName();
-            Item dye = BuiltInRegistries.ITEM.get(ResourceLocation.withDefaultNamespace(colorName + "_dye"));
+            String name = color.getName();
+            Item dye = BuiltInRegistries.ITEM.get(ResourceLocation.withDefaultNamespace(name + "_dye"));
 
-            // Banner
-            Item banner = BuiltInRegistries.ITEM.get(ResourceLocation.withDefaultNamespace(colorName + "_banner"));
-            ShapelessRecipeBuilder.shapeless(RecipeCategory.DECORATIONS, banner)
-                    .requires(ModTags.ItemTags.DYEABLE_BANNERS)
-                    .requires(dye)
-                    .unlockedBy("has_any_banner", has(ModTags.ItemTags.DYEABLE_BANNERS))
-                    .save(exporter, getRecipePath("ott", colorName + "_banner_from_dyeing"));
-
-            // Candle
-            Item candle = BuiltInRegistries.ITEM.get(ResourceLocation.withDefaultNamespace(colorName + "_candle"));
-            ShapelessRecipeBuilder.shapeless(RecipeCategory.DECORATIONS, candle)
-                    .requires(ModTags.ItemTags.DYEABLE_CANDLES)
-                    .requires(dye)
-                    .unlockedBy("has_any_candle", has(ModTags.ItemTags.DYEABLE_CANDLES))
-                    .save(exporter, getRecipePath("ott", colorName + "_candle_from_dyeing"));
-
-            // Glass
-            Item glass = BuiltInRegistries.ITEM.get(ResourceLocation.withDefaultNamespace(colorName + "_stained_glass"));
-            ShapelessRecipeBuilder.shapeless(RecipeCategory.BUILDING_BLOCKS, glass)
-                    .requires(ModTags.ItemTags.DYEABLE_GLASS_BLOCKS)
-                    .requires(dye)
-                    .unlockedBy("has_any_glass", has(ModTags.ItemTags.DYEABLE_GLASS_BLOCKS))
-                    .save(exporter, getRecipePath("ott", colorName + "_glass_from_dyeing"));
-
-            // Pane
-            Item pane = BuiltInRegistries.ITEM.get(ResourceLocation.withDefaultNamespace(colorName + "_stained_glass_pane"));
-            ShapelessRecipeBuilder.shapeless(RecipeCategory.DECORATIONS, pane)
-                    .requires(ModTags.ItemTags.DYEABLE_GLASS_PANES)
-                    .requires(dye)
-                    .unlockedBy("has_any_pane", has(ModTags.ItemTags.DYEABLE_GLASS_PANES))
-                    .save(exporter, getRecipePath("ott", colorName + "_pane_from_dyeing"));
-
-            // Shulker Box
-            Item shulker = BuiltInRegistries.ITEM.get(ResourceLocation.withDefaultNamespace(colorName + "_shulker_box"));
-            ShapelessRecipeBuilder.shapeless(RecipeCategory.DECORATIONS, shulker)
-                    .requires(ModTags.ItemTags.DYEABLE_SHULKER_BOXES)
-                    .requires(dye)
-                    .unlockedBy("has_any_shulker", has(ModTags.ItemTags.DYEABLE_SHULKER_BOXES))
-                    .save(exporter, getRecipePath("ott", colorName + "_shulker_box_from_dyeing"));
-
-            // Concrete
-            Item concrete = BuiltInRegistries.ITEM.get(ResourceLocation.withDefaultNamespace(colorName + "_concrete"));
-            ShapelessRecipeBuilder.shapeless(RecipeCategory.BUILDING_BLOCKS, concrete)
-                    .requires(ModTags.ItemTags.DYEABLE_CONCRETE)
-                    .requires(dye)
-                    .unlockedBy("has_any_concrete", has(ModTags.ItemTags.DYEABLE_CONCRETE))
-                    .save(exporter, getRecipePath("ott", colorName + "_concrete_from_dyeing"));
-
-            // Concrete Powder
-            Item powder = BuiltInRegistries.ITEM.get(ResourceLocation.withDefaultNamespace(colorName + "_concrete_powder"));
-            ShapelessRecipeBuilder.shapeless(RecipeCategory.BUILDING_BLOCKS, powder)
-                    .requires(ModTags.ItemTags.DYEABLE_CONCRETE_POWDER)
-                    .requires(dye)
-                    .unlockedBy("has_any_powder", has(ModTags.ItemTags.DYEABLE_CONCRETE_POWDER))
-                    .save(exporter, getRecipePath("ott", colorName + "_concrete_powder_from_dyeing"));
-
-            // Terracotta
-            Item terracotta = BuiltInRegistries.ITEM.get(ResourceLocation.withDefaultNamespace(colorName + "_terracotta"));
-            ShapelessRecipeBuilder.shapeless(RecipeCategory.BUILDING_BLOCKS, terracotta)
-                    .requires(ModTags.ItemTags.DYEABLE_TERRACOTTA)
-                    .requires(dye)
-                    .unlockedBy("has_any_terracotta", has(ModTags.ItemTags.DYEABLE_TERRACOTTA))
-                    .save(exporter, getRecipePath("ott", colorName + "_terracotta_from_dyeing"));
+            registerDyeingGroup(exporter, dye, name,
+                    getItem(name + "_banner"),
+                    getItem(name + "_candle"),
+                    getItem(name + "_stained_glass"),
+                    getItem(name + "_stained_glass_pane"),
+                    getItem(name + "_shulker_box"),
+                    getItem(name + "_concrete"),
+                    getItem(name + "_concrete_powder"),
+                    getItem(name + "_terracotta"),
+                    getItem(name + "_wool"),
+                    getItem(name + "_bed"),
+                    getItem(name + "_carpet"),
+                    false
+            );
         }
+
+        // Custom Colors
+        for (ModColorSets.ColorSet colorSet : ModColorSets.ALL) {
+            String name = colorSet.name();
+            Item dye = ModItems.CUSTOM_DYES.get(name).get();
+            ModBlocks.ColorSetBlocks blocks = ModBlocks.COLOR_SETS.get(name);
+
+            registerDyeingGroup(exporter, dye, name,
+                    blocks.banner().get().asItem(),
+                    blocks.candle().get().asItem(),
+                    blocks.stainedGlass().get().asItem(),
+                    blocks.stainedGlassPane().get().asItem(),
+                    blocks.shulkerBox().get().asItem(),
+                    blocks.concrete().get().asItem(),
+                    blocks.concretePowder().get().asItem(),
+                    blocks.terracotta().get().asItem(),
+                    blocks.wool().get().asItem(),
+                    blocks.bed().get().asItem(),
+                    blocks.carpet().get().asItem(),
+                    true
+            );
+        }
+    }
+
+    private Item getItem(String name) {
+        return BuiltInRegistries.ITEM.get(ResourceLocation.withDefaultNamespace(name));
+    }
+
+    private void registerDyeingGroup(RecipeOutput exporter, Item dye, String colorName,
+                                     Item banner, Item candle, Item glass, Item pane, Item shulker,
+                                     Item concrete, Item powder, Item terracotta, Item wool, Item bed, Item carpet,
+                                     boolean isCustom) {
+        // 1:1 Shapeless
+        addDyeingRecipe(exporter, banner, ModTags.ItemTags.DYEABLE_BANNERS, dye, colorName + "_banner", "has_any_banner");
+        addDyeingRecipe(exporter, candle, ModTags.ItemTags.DYEABLE_CANDLES, dye, colorName + "_candle", "has_any_candle");
+        addDyeingRecipe(exporter, glass, ModTags.ItemTags.DYEABLE_GLASS_BLOCKS, dye, colorName + "_glass", "has_any_glass");
+        addDyeingRecipe(exporter, pane, ModTags.ItemTags.DYEABLE_GLASS_PANES, dye, colorName + "_pane", "has_any_pane");
+        addDyeingRecipe(exporter, shulker, ModTags.ItemTags.DYEABLE_SHULKER_BOXES, dye, colorName + "_shulker_box", "has_any_shulker");
+        addDyeingRecipe(exporter, concrete, ModTags.ItemTags.DYEABLE_CONCRETE, dye, colorName + "_concrete", "has_any_concrete");
+        addDyeingRecipe(exporter, powder, ModTags.ItemTags.DYEABLE_CONCRETE_POWDER, dye, colorName + "_concrete_powder", "has_any_powder");
+        addDyeingRecipe(exporter, terracotta, ModTags.ItemTags.DYEABLE_TERRACOTTA, dye, colorName + "_terracotta", "has_any_terracotta");
+
+        addDyeingRecipe(exporter, wool, ItemTags.WOOL, dye, colorName + "_wool", "has_any_wool");
+        addDyeingRecipe(exporter, bed, ItemTags.BEDS, dye, colorName + "_bed", "has_any_bed");
+        addDyeingRecipe(exporter, carpet, ItemTags.WOOL_CARPETS, dye, colorName + "_carpet", "has_any_carpet");
+
+        // 8:1 Shaped
+        addShapedDyeingRecipe8(exporter, wool, ItemTags.WOOL, dye, colorName + "_wool", "has_any_wool");
+        addShapedDyeingRecipe8(exporter, carpet, ItemTags.WOOL_CARPETS, dye, colorName + "_carpet", "has_any_carpet");
+        addShapedDyeingRecipe8(exporter, glass, ModTags.ItemTags.DYEABLE_GLASS_BLOCKS, dye, colorName + "_glass", "has_any_glass");
+        addShapedDyeingRecipe8(exporter, pane, ModTags.ItemTags.DYEABLE_GLASS_PANES, dye, colorName + "_pane", "has_any_pane");
+        addShapedDyeingRecipe8(exporter, terracotta, ModTags.ItemTags.DYEABLE_TERRACOTTA, dye, colorName + "_terracotta", "has_any_terracotta");
+        addShapedDyeingRecipe8(exporter, candle, ModTags.ItemTags.DYEABLE_CANDLES, dye, colorName + "_candle", "has_any_candle");
+        addShapedDyeingRecipe8(exporter, concrete, ModTags.ItemTags.DYEABLE_CONCRETE, dye, colorName + "_concrete", "has_any_concrete");
+        addShapedDyeingRecipe8(exporter, powder, ModTags.ItemTags.DYEABLE_CONCRETE_POWDER, dye, colorName + "_concrete_powder", "has_any_powder");
+
+        if (isCustom) {
+            addConcretePowderCrafting(exporter, powder, dye, colorName);
+        }
+    }
+
+    private void addConcretePowderCrafting(RecipeOutput exporter, Item result, Item dye, String colorName) {
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.BUILDING_BLOCKS, result, 8)
+                .requires(dye)
+                .requires(ItemTags.SAND)
+                .requires(ItemTags.SAND)
+                .requires(ItemTags.SAND)
+                .requires(ItemTags.SAND)
+                .requires(Items.GRAVEL)
+                .requires(Items.GRAVEL)
+                .requires(Items.GRAVEL)
+                .requires(Items.GRAVEL)
+                .unlockedBy("has_dye", has(dye))
+                .save(exporter, getRecipePath("ott", colorName + "_concrete_powder_crafting"));
+    }
+
+    private void addDyeingRecipe(RecipeOutput exporter, Item result, TagKey<Item> ingredientTag, Item dye, String recipeName, String criterionName) {
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.BUILDING_BLOCKS, result)
+                .requires(ingredientTag)
+                .requires(dye)
+                .unlockedBy(criterionName, has(ingredientTag))
+                .save(exporter, getRecipePath("ott", recipeName + "_from_dyeing"));
+    }
+
+    private void addShapedDyeingRecipe8(RecipeOutput exporter, Item result, TagKey<Item> ingredientTag, Item dye, String recipeName, String criterionName) {
+        ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, result, 8)
+                .define('#', ingredientTag)
+                .define('D', dye)
+                .pattern("###")
+                .pattern("#D#")
+                .pattern("###")
+                .unlockedBy(criterionName, has(ingredientTag))
+                .save(exporter, getRecipePath("ott", recipeName + "_from_dyeing_8"));
     }
 
     private void shelfRecipes(RecipeOutput noAdv) {

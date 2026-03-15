@@ -2,6 +2,7 @@ package com.otterly76.ott.generation;
 
 import com.otterly76.ott.Constants;
 import com.otterly76.ott.block.ModBlocks;
+import com.otterly76.ott.color.ModColorSets;
 import com.otterly76.ott.item.ModItems;
 import com.otterly76.ott.util.ModTags;
 import net.minecraft.core.HolderLookup;
@@ -210,6 +211,19 @@ public class ModItemTagProvider extends ItemTagsProvider {
             dyeableConcrete.addOptional(ResourceLocation.withDefaultNamespace(name + "_concrete"));
             dyeableConcretePowder.addOptional(ResourceLocation.withDefaultNamespace(name + "_concrete_powder"));
             dyeableTerracotta.addOptional(ResourceLocation.withDefaultNamespace(name + "_terracotta"));
+        }
+
+        for (ModColorSets.ColorSet colorSet : ModColorSets.ALL) {
+            String name = colorSet.name();
+            var blocks = ModBlocks.COLOR_SETS.get(name);
+            dyeableBanners.add(blocks.banner().get().asItem());
+            dyeableCandles.add(blocks.candle().get().asItem());
+            dyeableGlassBlocks.add(blocks.stainedGlass().get().asItem());
+            dyeableGlassPanes.add(blocks.stainedGlassPane().get().asItem());
+            dyeableShulkerBoxes.add(blocks.shulkerBox().get().asItem());
+            dyeableConcrete.add(blocks.concrete().get().asItem());
+            dyeableConcretePowder.add(blocks.concretePowder().get().asItem());
+            dyeableTerracotta.add(blocks.terracotta().get().asItem());
         }
         dyeableCandles.addOptional(ResourceLocation.withDefaultNamespace("candle"));
         dyeableGlassBlocks.addOptional(ResourceLocation.withDefaultNamespace("glass"));
