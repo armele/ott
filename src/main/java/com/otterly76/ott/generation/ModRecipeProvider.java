@@ -2,6 +2,8 @@ package com.otterly76.ott.generation;
 
 import net.minecraft.world.item.*;
 import net.neoforged.neoforge.registries.DeferredItem;
+import com.otterly76.ott.Constants;
+import com.otterly76.ott.color.ModColorSets;
 import com.otterly76.ott.block.IGradientBlock;
 import com.otterly76.ott.block.ModBlocks;
 import com.otterly76.ott.item.ModItems;
@@ -29,6 +31,7 @@ import net.neoforged.neoforge.common.conditions.IConditionBuilder;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
+import java.util.List;
 import java.util.concurrent.CompletableFuture;
 
 public class ModRecipeProvider extends RecipeProvider implements IConditionBuilder {
@@ -70,6 +73,9 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
 
         // Shelves
         this.shelfRecipes(noAdv);
+
+        // Custom Dyes
+        this.addCustomDyeRecipes(noAdv);
 
         ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, Items.GRAY_DYE)
                 .requires(ModBlocks.CLOSED_EYEBLOSSOM.get())
@@ -269,6 +275,28 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
         this.addMiscRecipes(noAdv);
 
         this.mountsOfMayhemRecipes(noAdv);
+    }
+
+    private void addCustomDyeRecipes(RecipeOutput exporter) {
+        List<Item> vanillaDyes = List.of(
+                Items.WHITE_DYE, Items.PINK_DYE, Items.MAGENTA_DYE, Items.PURPLE_DYE,
+                Items.BLUE_DYE, Items.LIGHT_BLUE_DYE, Items.CYAN_DYE, Items.GREEN_DYE,
+                Items.LIME_DYE, Items.YELLOW_DYE, Items.ORANGE_DYE, Items.RED_DYE,
+                Items.BROWN_DYE, Items.BLACK_DYE, Items.GRAY_DYE, Items.LIGHT_GRAY_DYE
+        );
+
+        for (int i = 0; i < ModColorSets.ALL.size(); i++) {
+            ModColorSets.ColorSet colorSet = ModColorSets.ALL.get(i);
+            Item result = ModItems.CUSTOM_DYES.get(colorSet.name()).get();
+            Item ingredient1 = vanillaDyes.get(i);
+            Item ingredient2 = vanillaDyes.get((i + 1) % vanillaDyes.size());
+
+            ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, result, 2)
+                    .requires(ingredient1)
+                    .requires(ingredient2)
+                    .unlockedBy("impossible", impossible())
+                    .save(exporter, getRecipePath(Constants.MOD_ID, colorSet.name() + "_dye"));
+        }
     }
 
     private void mountsOfMayhemRecipes(RecipeOutput exporter) {
