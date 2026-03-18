@@ -231,6 +231,37 @@ public class SaltPlacedBlock extends Block {
     }
 
     @Override
+    protected void onPlace(@NotNull BlockState pState, @NotNull Level pLevel, @NotNull BlockPos pPos, @NotNull BlockState pOldState, boolean pIsMoving) {
+        if (!pOldState.is(pState.getBlock()) && !pLevel.isClientSide) {
+            for (Direction direction : Direction.Plane.VERTICAL) {
+                pLevel.updateNeighborsAt(pPos.relative(direction), this);
+            }
+            this.updateNeighborsOfNeighboringWires(pLevel, pPos);
+        }
+    }
+
+    @Override
+    protected void onRemove(@NotNull BlockState state, @NotNull Level world, @NotNull BlockPos pos, @NotNull BlockState newState, boolean isMoving) {
+        if (!isMoving && !state.is(newState.getBlock())) {
+            super.onRemove(state, world, pos, newState, isMoving);
+            if (!world.isClientSide) {
+                for (Direction direction : Direction.values()) {
+                    world.updateNeighborsAt(pos.relative(direction), this);
+                }
+                this.updateNeighborsOfNeighboringWires(world, pos);
+            }
+        }
+    }
+
+    @Override
+    protected void neighborChanged(@NotNull BlockState pState, @NotNull Level pLevel, @NotNull BlockPos pPos, @NotNull Block pBlock, @NotNull BlockPos pFromPos, boolean pIsMoving) {
+        if (!pLevel.isClientSide && !pState.canSurvive(pLevel, pPos)) {
+            dropResources(pState, pLevel, pPos);
+            pLevel.removeBlock(pPos, false);
+        }
+    }
+
+    @Override
     protected @NotNull InteractionResult useWithoutItem(@NotNull BlockState pState, @NotNull Level pLevel, @NotNull BlockPos pPos, @NotNull Player pPlayer, @NotNull BlockHitResult pHit) {
         if (!pPlayer.getAbilities().mayBuild) {
             return InteractionResult.PASS;
@@ -241,10 +272,44 @@ public class SaltPlacedBlock extends Block {
                 blockstate = this.getConnectionState(pLevel, blockstate, pPos);
                 if (blockstate != pState) {
                     pLevel.setBlock(pPos, blockstate, 3);
+                    this.updatesOnShapeChange(pLevel, pPos, pState, blockstate);
                     return InteractionResult.SUCCESS;
                 }
             }
             return InteractionResult.PASS;
+        }
+    }
+
+    private void updatesOnShapeChange(Level pLevel, BlockPos pPos, BlockState pOldState, BlockState pNewState) {
+        for (Direction direction : Direction.Plane.HORIZONTAL) {
+            BlockPos blockpos = pPos.relative(direction);
+            if (pOldState.getValue(PROPERTY_BY_DIRECTION.get(direction)).isConnected() != pNewState.getValue(PROPERTY_BY_DIRECTION.get(direction)).isConnected() && pLevel.getBlockState(blockpos).isSolidRender(pLevel, blockpos)) {
+                pLevel.updateNeighborsAt(blockpos, pNewState.getBlock());
+            }
+        }
+    }
+
+    private void updateNeighborsOfNeighboringWires(Level world, BlockPos pos) {
+        for (Direction direction : Direction.Plane.HORIZONTAL) {
+            this.checkCornerChangeAt(world, pos.relative(direction));
+        }
+
+        for (Direction direction1 : Direction.Plane.HORIZONTAL) {
+            BlockPos blockpos = pos.relative(direction1);
+            if (world.getBlockState(blockpos).isSolidRender(world, blockpos)) {
+                this.checkCornerChangeAt(world, blockpos.above());
+            } else {
+                this.checkCornerChangeAt(world, blockpos.below());
+            }
+        }
+    }
+
+    private void checkCornerChangeAt(Level world, BlockPos pos) {
+        if (world.getBlockState(pos).is(this)) {
+            world.updateNeighborsAt(pos, this);
+            for (Direction direction : Direction.values()) {
+                world.updateNeighborsAt(pos.relative(direction), this);
+            }
         }
     }
 }

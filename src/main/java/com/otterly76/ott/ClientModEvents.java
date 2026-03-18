@@ -205,6 +205,10 @@ public class ClientModEvents {
         event.registerEntityRenderer(ModEntities.HOOPOE.get(), com.otterly76.ott.client.render.entity.HoopoeRenderer::new);
         event.registerEntityRenderer(ModEntities.PHEASANT.get(), com.otterly76.ott.client.render.entity.PheasantRenderer::new);
         event.registerEntityRenderer(ModEntities.TOUCAN.get(), com.otterly76.ott.client.render.entity.ToucanRenderer::new);
+        event.registerEntityRenderer(ModEntities.EMU_EGG.get(), ThrownItemRenderer::new);
+        event.registerEntityRenderer(ModEntities.HOOPOE_EGG.get(), ThrownItemRenderer::new);
+        event.registerEntityRenderer(ModEntities.PHEASANT_EGG.get(), ThrownItemRenderer::new);
+        event.registerEntityRenderer(ModEntities.TOUCAN_EGG.get(), ThrownItemRenderer::new);
         event.registerEntityRenderer(net.minecraft.world.entity.EntityType.SHEEP, (context) -> {
             net.minecraft.client.renderer.entity.EntityRenderer<?> renderer = new com.otterly76.ott.client.render.entity.SheepGeoRenderer<>(context);
             return (net.minecraft.client.renderer.entity.EntityRenderer<net.minecraft.world.entity.animal.Sheep>) renderer;

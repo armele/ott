@@ -51,7 +51,7 @@ public class SaltLampBlock extends Block {
     @Override
     protected @NotNull InteractionResult useWithoutItem(@NotNull BlockState pState, @NotNull Level pLevel, @NotNull BlockPos pPos, @NotNull Player pPlayer, @NotNull BlockHitResult pHit) {
         pLevel.setBlock(pPos, pState.cycle(LIT), 2);
-        pLevel.playSound(pPlayer, pPos, SoundEvents.LEVER_CLICK, SoundSource.BLOCKS, 0.3F, pState.getValue(LIT) ? 0.6F : 0.5F);
+        pLevel.playSound(pPlayer, pPos, SoundEvents.LEVER_CLICK, SoundSource.NEUTRAL, 0.3F, 0.6F);
         return InteractionResult.sidedSuccess(pLevel.isClientSide);
     }
 
@@ -91,14 +91,14 @@ public class SaltLampBlock extends Block {
             double d0 = (double)i + p_222506_.nextDouble();
             double d1 = (double)j + 0.7;
             double d2 = (double)k + p_222506_.nextDouble();
-            p_222504_.addParticle(ParticleTypes.ENCHANTED_HIT, d0, d1, d2, 0.0, 0.0, 0.0);
+            p_222504_.addParticle(ParticleTypes.WAX_ON, d0, d1, d2, 0.0, 0.0, 0.0);
             BlockPos.MutableBlockPos blockpos$mutableblockpos = new BlockPos.MutableBlockPos();
 
             for(int l = 0; l < 14; ++l) {
                 blockpos$mutableblockpos.set(i + Mth.nextInt(p_222506_, -10, 10), j - p_222506_.nextInt(10), k + Mth.nextInt(p_222506_, -10, 10));
                 BlockState blockstate = p_222504_.getBlockState(blockpos$mutableblockpos);
                 if (!blockstate.isCollisionShapeFullBlock(p_222504_, blockpos$mutableblockpos)) {
-                    p_222504_.addParticle(ParticleTypes.ENCHANTED_HIT, (double)blockpos$mutableblockpos.getX() + p_222506_.nextDouble(), (double)blockpos$mutableblockpos.getY() + p_222506_.nextDouble(), (double)blockpos$mutableblockpos.getZ() + p_222506_.nextDouble(), 0.0, 0.0, 0.0);
+                    p_222504_.addParticle(ParticleTypes.WAX_ON, (double)blockpos$mutableblockpos.getX() + p_222506_.nextDouble(), (double)blockpos$mutableblockpos.getY() + p_222506_.nextDouble(), (double)blockpos$mutableblockpos.getZ() + p_222506_.nextDouble(), 0.0, 0.0, 0.0);
                 }
             }
         }

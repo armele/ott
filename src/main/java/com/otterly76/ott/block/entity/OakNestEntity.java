@@ -27,9 +27,16 @@ import java.util.Iterator;
 import java.util.List;
 
 public class OakNestEntity extends BlockEntity {
+    public static final String MIN_OCCUPATION_TICKS_KEY = "MinOccupationTicks";
+    public static final String ENTITY_DATA_KEY = "EntityData";
+    public static final String TICKS_IN_NEST_KEY = "TicksInNest";
+    public static final String HOOPOES_KEY = "Hoopoes";
+    public static final String PACIFY_TICKS_KEY = "PacifyTicks";
+    public static final String TIME_UNTIL_NEXT_EGG_KEY = "TimeUntillNextEgg";
+
     private final List<HoopoeInNest> hoopoes = Lists.newArrayList();
     private int pacifyTicks = 0;
-    public static int timeUntilNextEgg = 6000;
+    private int timeUntilNextEgg = 6000;
 
     public OakNestEntity(BlockPos pos, BlockState state) {
         super(ModBlockEntities.OAK_NEST.get(), pos, state);
@@ -49,9 +56,9 @@ public class OakNestEntity extends BlockEntity {
             if (player != null) {
                 for (Entity entity : list) {
                     if (entity instanceof Hoopoe hoopoe) {
-                        if (player.distanceToSqr(entity) <= 256.0) {
+                        if (player.distanceToSqr(entity) <= 16.0) {
                             hoopoe.setTarget(player);
-                            // hoopoe.setCannotEnterNestTicks(400); // Need to add this to Hoopoe
+                            hoopoe.setCannotEnterNestTicks(400);
                         }
                     }
                 }
@@ -62,7 +69,7 @@ public class OakNestEntity extends BlockEntity {
     private List<Entity> tryReleaseHoopoe(BlockState state, NestState nestState) {
         List<Entity> list = new ArrayList<>();
         this.hoopoes.removeIf((hoopoe) -> {
-            return releaseHoopoe(this.level, this.worldPosition, state, hoopoe, list, nestState);
+            return releaseHoopoe(this.level, this.worldPosition, state, hoopoe, list, nestState, this.timeUntilNextEgg);
         });
         if (!list.isEmpty()) {
             setChanged();
@@ -70,13 +77,13 @@ public class OakNestEntity extends BlockEntity {
         return list;
     }
 
-    public void tryEnterNest(Entity entity) {
+    public void tryEnterNest(Entity entity, int ticksInNest) {
         if (this.hoopoes.size() < 3) {
             entity.stopRiding();
             entity.ejectPassengers();
             CompoundTag nbtCompound = new CompoundTag();
             entity.save(nbtCompound);
-            this.addHoopoe(nbtCompound, 0);
+            this.addHoopoe(nbtCompound, ticksInNest);
             if (this.level != null) {
                 this.level.playSound(null, this.worldPosition, SoundEvents.BEEHIVE_ENTER, SoundSource.BLOCKS, 1.0F, 1.0F);
                 this.level.gameEvent(GameEvent.BLOCK_CHANGE, this.worldPosition, GameEvent.Context.of(entity, this.getBlockState()));
@@ -86,30 +93,36 @@ public class OakNestEntity extends BlockEntity {
         }
     }
 
+    public void tryEnterNest(Entity entity) {
+        this.tryEnterNest(entity, 0);
+    }
+
     public void addHoopoe(CompoundTag nbtCompound, int ticksInNest) {
         this.hoopoes.add(new HoopoeInNest(nbtCompound, ticksInNest, 1200));
     }
 
-    private static boolean releaseHoopoe(Level world, BlockPos pos, BlockState state, HoopoeInNest hoopoe, @Nullable List<Entity> entities, NestState nestState) {
+    private static boolean releaseHoopoe(Level world, BlockPos pos, BlockState state, HoopoeInNest hoopoe, @Nullable List<Entity> entities, NestState nestState, int timeUntilNextEgg) {
         if (world == null) return false;
         if ((world.isNight() && nestState != NestState.EMERGENCY || world.isRaining() && nestState != NestState.EMERGENCY || timeUntilNextEgg > 0) && nestState != NestState.EMERGENCY) {
             return false;
         } else {
             CompoundTag nbtCompound = hoopoe.entityData.copy();
             nbtCompound.put("NestPos", NbtUtils.writeBlockPos(pos));
+            nbtCompound.remove("UUID");
             Direction direction = state.getValue(OakNestBlock.FACING);
             BlockPos blockPos = pos.relative(direction);
-            boolean isBlocked = world.getBlockState(blockPos).getCollisionShape(world, blockPos).isEmpty();
-            if (!isBlocked && nestState != NestState.EMERGENCY) {
+            boolean isNotBlocked = world.getBlockState(blockPos).getCollisionShape(world, blockPos).isEmpty();
+            if (!isNotBlocked && nestState != NestState.EMERGENCY) {
                 return false;
             } else {
                 Entity newEntity = EntityType.loadEntityRecursive(nbtCompound, world, (entity) -> entity);
                 if (newEntity instanceof Hoopoe hoopoeEntity) {
+                    ageHoopoe(hoopoe.ticksInNest, hoopoeEntity);
                     if (entities != null) {
                         entities.add(hoopoeEntity);
                     }
                     float f = newEntity.getBbWidth();
-                    double d = isBlocked ? 0.0 : 0.55 + (double) (f / 2.0F);
+                    double d = isNotBlocked ? 0.0 : 0.55 + (double) (f / 2.0F);
                     double x = (double) pos.getX() + 0.5 + d * (double) direction.getStepX();
                     double y = (double) pos.getY() + 0.5 - (double) (newEntity.getBbHeight() / 2.0F);
                     double z = (double) pos.getZ() + 0.5 + d * (double) direction.getStepZ();
@@ -124,41 +137,56 @@ public class OakNestEntity extends BlockEntity {
         }
     }
 
+    private static void ageHoopoe(int ticks, Hoopoe hoopoe) {
+        int i = hoopoe.getAge();
+        if (i < 0) {
+            hoopoe.setAge(Math.min(0, i + ticks));
+        } else if (i > 0) {
+            hoopoe.setAge(Math.max(0, i - ticks));
+        }
+    }
+
     public static void serverTick(Level world, BlockPos pos, BlockState state, OakNestEntity blockEntity) {
-        boolean released = false;
-        Iterator<HoopoeInNest> iterator = blockEntity.hoopoes.iterator();
-        while (iterator.hasNext()) {
-            HoopoeInNest hoopoe = iterator.next();
-            if (hoopoe.ticksInNest > hoopoe.minOccupationTicks) {
-                if (releaseHoopoe(world, pos, state, hoopoe, null, NestState.HOOPOES_RELEASED)) {
-                    released = true;
-                    iterator.remove();
-                }
-            }
-            hoopoe.ticksInNest++;
-        }
-
-        if (released) {
-            setChanged(world, pos, state);
-            world.setBlock(pos, state.setValue(ModBlockStateProperties.HOOPOES, blockEntity.hoopoes.size()), 3);
-        }
-
-        if (timeUntilNextEgg > 0) {
-            timeUntilNextEgg--;
-        } else if (!blockEntity.hoopoes.isEmpty()) {
-            int currentEggs = state.getValue(ModBlockStateProperties.HOOPOE_EGGS);
-            if (currentEggs < 4) {
-                world.setBlock(pos, state.setValue(ModBlockStateProperties.HOOPOE_EGGS, currentEggs + 1), 3);
-            }
-            timeUntilNextEgg = 6000;
-        }
-
+        tickHoopoes(world, pos, state, blockEntity);
+        tickLayEgg(blockEntity, world, pos, state);
         if (blockEntity.pacifyTicks > 0) {
             blockEntity.pacifyTicks--;
         }
 
         if (!blockEntity.hoopoes.isEmpty() && world.random.nextFloat() < 0.005F) {
-            world.playSound(null, pos, SoundEvents.CHICKEN_AMBIENT, SoundSource.BLOCKS, 1.0F, 1.0F);
+            double d = pos.getX() + 0.5;
+            double e = pos.getY();
+            double f = pos.getZ() + 0.5;
+            world.playSound(null, d, e, f, SoundEvents.BEEHIVE_WORK, SoundSource.BLOCKS, 1.0F, 1.0F);
+        }
+    }
+
+    private static void tickHoopoes(Level world, BlockPos pos, BlockState state, OakNestEntity blockEntity) {
+        boolean released = false;
+        Iterator<HoopoeInNest> iterator = blockEntity.hoopoes.iterator();
+        world.setBlock(pos, state.setValue(ModBlockStateProperties.HOOPOES, blockEntity.hoopoes.size()), 3);
+
+        while (iterator.hasNext()) {
+            HoopoeInNest hoopoe = iterator.next();
+            if (hoopoe.ticksInNest > hoopoe.minOccupationTicks && releaseHoopoe(world, pos, state, hoopoe, null, NestState.HOOPOES_RELEASED, blockEntity.timeUntilNextEgg)) {
+                released = true;
+                iterator.remove();
+            }
+            hoopoe.ticksInNest++;
+            if (blockEntity.timeUntilNextEgg > 0) {
+                blockEntity.timeUntilNextEgg--;
+            }
+        }
+
+        if (released) {
+            setChanged(world, pos, state);
+        }
+    }
+
+    public static void tickLayEgg(OakNestEntity oakNestEntity, Level world, BlockPos blockPos, BlockState state) {
+        if (oakNestEntity.timeUntilNextEgg == 0 && state.getValue(ModBlockStateProperties.HOOPOES) > 0) {
+            world.setBlock(blockPos, state.setValue(ModBlockStateProperties.HOOPOE_EGGS, Math.min(4, state.getValue(ModBlockStateProperties.HOOPOE_EGGS) + state.getValue(ModBlockStateProperties.HOOPOES))), 3);
+            oakNestEntity.timeUntilNextEgg = 6000;
         }
     }
 
@@ -166,30 +194,31 @@ public class OakNestEntity extends BlockEntity {
     protected void loadAdditional(@NotNull CompoundTag nbt, @NotNull HolderLookup.Provider registries) {
         super.loadAdditional(nbt, registries);
         this.hoopoes.clear();
-        ListTag nbtList = nbt.getList("Hoopoes", 10);
+        ListTag nbtList = nbt.getList(HOOPOES_KEY, 10);
         for (int i = 0; i < nbtList.size(); ++i) {
             CompoundTag compound = nbtList.getCompound(i);
-            this.hoopoes.add(new HoopoeInNest(compound.getCompound("EntityData"), compound.getInt("TicksInNest"), compound.getInt("MinOccupationTicks")));
+            this.hoopoes.add(new HoopoeInNest(compound.getCompound(ENTITY_DATA_KEY), compound.getInt(TICKS_IN_NEST_KEY), compound.getInt(MIN_OCCUPATION_TICKS_KEY)));
         }
-        this.pacifyTicks = nbt.getInt("PacifyTicks");
-        timeUntilNextEgg = nbt.getInt("TimeUntilNextEgg");
+        this.pacifyTicks = nbt.getInt(PACIFY_TICKS_KEY);
+        this.timeUntilNextEgg = nbt.getInt(TIME_UNTIL_NEXT_EGG_KEY);
     }
 
     @Override
     protected void saveAdditional(@NotNull CompoundTag nbt, @NotNull HolderLookup.Provider registries) {
         super.saveAdditional(nbt, registries);
-        nbt.put("Hoopoes", this.getHoopoes());
-        nbt.putInt("PacifyTicks", this.pacifyTicks);
-        nbt.putInt("TimeUntilNextEgg", timeUntilNextEgg);
+        nbt.put(HOOPOES_KEY, this.getHoopoes());
+        nbt.putInt(PACIFY_TICKS_KEY, this.pacifyTicks);
+        nbt.putInt(TIME_UNTIL_NEXT_EGG_KEY, this.timeUntilNextEgg);
     }
 
     public ListTag getHoopoes() {
         ListTag nbtList = new ListTag();
         for (HoopoeInNest hoopoe : this.hoopoes) {
+            CompoundTag entityData = hoopoe.entityData.copy();
+            entityData.remove("UUID");
             CompoundTag compound = new CompoundTag();
-            compound.put("EntityData", hoopoe.entityData);
-            compound.putInt("TicksInNest", hoopoe.ticksInNest);
-            compound.putInt("MinOccupationTicks", hoopoe.minOccupationTicks);
+            compound.put(ENTITY_DATA_KEY, entityData);
+            compound.putInt(MIN_OCCUPATION_TICKS_KEY, hoopoe.minOccupationTicks);
             nbtList.add(compound);
         }
         return nbtList;

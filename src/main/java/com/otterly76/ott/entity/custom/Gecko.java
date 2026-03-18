@@ -4,7 +4,6 @@ import com.otterly76.ott.entity.ModEntities;
 import com.otterly76.ott.entity.ai.navigation.SmartBodyHelper;
 import com.otterly76.ott.item.ModItems;
 import com.otterly76.ott.sound.ModSounds;
-import com.otterly76.ott.util.entity.Bagable;
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.syncher.EntityDataAccessor;
@@ -16,8 +15,6 @@ import net.minecraft.sounds.SoundEvents;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.DifficultyInstance;
-import net.minecraft.world.InteractionHand;
-import net.minecraft.world.InteractionResult;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
@@ -52,10 +49,9 @@ import software.bernie.geckolib.util.GeckoLibUtil;
 
 import java.util.List;
 
-public class Gecko extends Animal implements GeoEntity, Bagable {
+public class Gecko extends Animal implements GeoEntity {
     private final AnimatableInstanceCache cache = GeckoLibUtil.createInstanceCache(this);
     private static final EntityDataAccessor<Byte> DATA_FLAGS_ID = SynchedEntityData.defineId(Gecko.class, EntityDataSerializers.BYTE);
-    private static final EntityDataAccessor<Boolean> FROM_BAG = SynchedEntityData.defineId(Gecko.class, EntityDataSerializers.BOOLEAN);
     private static final EntityDataAccessor<Boolean> IS_WARNING = SynchedEntityData.defineId(Gecko.class, EntityDataSerializers.BOOLEAN);
     private static final EntityDataAccessor<Integer> VARIANT = SynchedEntityData.defineId(Gecko.class, EntityDataSerializers.INT);
     public static final Ingredient TEMPTATION_ITEM = Ingredient.of(Items.MELON_SLICE);
@@ -141,57 +137,12 @@ public class Gecko extends Animal implements GeoEntity, Bagable {
         };
     }
 
-    @Override
-    public boolean fromBag() {
-        return this.entityData.get(FROM_BAG);
-    }
-
-    @Override
-    public void setFromBag(boolean pFromBag) {
-        this.entityData.set(FROM_BAG, pFromBag);
-    }
-
-    @Override
-    public ItemStack getBagItemStack() {
-        return new ItemStack(ModItems.BAGGED_GECKO.get());
-    }
-
-    @Override
-    public void saveToBagTag(ItemStack stack) {
-        Bagable.saveDefaultDataToBagTag(this, stack);
-        CompoundTag tag = stack.getOrDefault(net.minecraft.core.component.DataComponents.BUCKET_ENTITY_DATA, net.minecraft.world.item.component.CustomData.EMPTY).copyTag();
-        tag.putInt("Age", this.getAge());
-        tag.putInt("BagVariantTag", this.getVariant());
-        stack.set(net.minecraft.core.component.DataComponents.BUCKET_ENTITY_DATA, net.minecraft.world.item.component.CustomData.of(tag));
-    }
-
-    @Override
-    public void loadFromBagTag(CompoundTag tag) {
-        Bagable.loadDefaultDataFromBagTag(this, tag);
-        if (tag.contains("Age")) {
-            this.setAge(tag.getInt("Age"));
-        }
-        if (tag.contains("BagVariantTag", 3)) {
-            this.setVariant(tag.getInt("BagVariantTag"));
-        }
-    }
-
-    @Override
-    public @NotNull InteractionResult mobInteract(@NotNull Player pPlayer, @NotNull InteractionHand pHand) {
-        return Bagable.bagMobPickup(pPlayer, pHand, this).orElse(super.mobInteract(pPlayer, pHand));
-    }
-
-    @Override
-    public SoundEvent getPickupSound() {
-        return SoundEvents.BUNDLE_INSERT;
-    }
 
     @Override
     protected void defineSynchedData(@NotNull SynchedEntityData.Builder builder) {
         super.defineSynchedData(builder);
         builder.define(VARIANT, 0);
         builder.define(DATA_FLAGS_ID, (byte) 0);
-        builder.define(FROM_BAG, false);
         builder.define(IS_WARNING, false);
     }
 
@@ -199,14 +150,12 @@ public class Gecko extends Animal implements GeoEntity, Bagable {
     public void addAdditionalSaveData(@NotNull CompoundTag compound) {
         super.addAdditionalSaveData(compound);
         compound.putInt("Variant", this.getVariant());
-        compound.putBoolean("FromBag", this.fromBag());
     }
 
     @Override
     public void readAdditionalSaveData(@NotNull CompoundTag compound) {
         super.readAdditionalSaveData(compound);
         this.setVariant(compound.getInt("Variant"));
-        this.setFromBag(compound.getBoolean("FromBag"));
     }
 
     @Override

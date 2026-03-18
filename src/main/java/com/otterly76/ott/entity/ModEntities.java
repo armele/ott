@@ -88,6 +88,18 @@ public class ModEntities {
     public static final Supplier<EntityType<com.otterly76.ott.entity.custom.Toucan>> TOUCAN = OTT_ENTITY_TYPES.register("toucan",
             () -> Builder.of(com.otterly76.ott.entity.custom.Toucan::new, MobCategory.CREATURE).sized(0.5F, 0.5F).eyeHeight(0.3F).clientTrackingRange(8).build("toucan"));
 
+    public static final Supplier<EntityType<com.otterly76.ott.entity.projectile.EmuEggEntity>> EMU_EGG = OTT_ENTITY_TYPES.register("emu_egg",
+            () -> Builder.<com.otterly76.ott.entity.projectile.EmuEggEntity>of(com.otterly76.ott.entity.projectile.EmuEggEntity::new, MobCategory.MISC).sized(0.25F, 0.25F).clientTrackingRange(4).updateInterval(10).build("emu_egg"));
+
+    public static final Supplier<EntityType<com.otterly76.ott.entity.projectile.HoopoeEggEntity>> HOOPOE_EGG = OTT_ENTITY_TYPES.register("hoopoe_egg",
+            () -> Builder.<com.otterly76.ott.entity.projectile.HoopoeEggEntity>of(com.otterly76.ott.entity.projectile.HoopoeEggEntity::new, MobCategory.MISC).sized(0.25F, 0.25F).clientTrackingRange(4).updateInterval(10).build("hoopoe_egg"));
+
+    public static final Supplier<EntityType<com.otterly76.ott.entity.projectile.PheasantEggEntity>> PHEASANT_EGG = OTT_ENTITY_TYPES.register("pheasant_egg",
+            () -> Builder.<com.otterly76.ott.entity.projectile.PheasantEggEntity>of(com.otterly76.ott.entity.projectile.PheasantEggEntity::new, MobCategory.MISC).sized(0.25F, 0.25F).clientTrackingRange(4).updateInterval(10).build("pheasant_egg"));
+
+    public static final Supplier<EntityType<com.otterly76.ott.entity.projectile.ToucanEggEntity>> TOUCAN_EGG = OTT_ENTITY_TYPES.register("toucan_egg",
+            () -> Builder.<com.otterly76.ott.entity.projectile.ToucanEggEntity>of(com.otterly76.ott.entity.projectile.ToucanEggEntity::new, MobCategory.MISC).sized(0.25F, 0.25F).clientTrackingRange(4).updateInterval(10).build("toucan_egg"));
+
     public static final Supplier<EntityType<PaleOakBoat>> PALE_OAK_BOAT = ENTITY_TYPES.register("pale_oak_boat",
             () -> Builder.<PaleOakBoat>of(PaleOakBoat::new, MobCategory.MISC).sized(1.375F, 0.5625F).clientTrackingRange(10).build("pale_oak_boat"));
 

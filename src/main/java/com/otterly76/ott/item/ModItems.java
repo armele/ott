@@ -79,8 +79,6 @@ public class ModItems {
             () -> new MobBucketItem(ModEntities.SUNFISH.get(), Fluids.WATER, SoundEvents.BUCKET_EMPTY_FISH, (new Item.Properties()).stacksTo(1)));
     public static final DeferredItem<Item> SUNFISH_SPAWN_EGG = ITEMS.register("sunfish_spawn_egg",
             () -> new DeferredSpawnEggItem(ModEntities.SUNFISH, 0xFF967E67, 0xFFD6C6B0, new Item.Properties()));
-    public static final DeferredItem<Item> SUNFISH_SUSHI = ITEMS.register("sunfish_sushi",
-            () -> new Item(new Item.Properties().food(new FoodProperties.Builder().nutrition(2).saturationModifier(0.1F).build())));
 
     public static final DeferredItem<Item> KRILL_BUCKET = ITEMS.register("krill_bucket",
             () -> new MobBucketItem(ModEntities.KRILL.get(), Fluids.WATER, SoundEvents.BUCKET_EMPTY_FISH, (new Item.Properties()).stacksTo(1)));
@@ -118,20 +116,26 @@ public class ModItems {
             () -> new DeferredSpawnEggItem(ModEntities.TOUCAN, 0xFF000000, 0xFFFFA500, new Item.Properties()));
     public static final DeferredItem<Item> SALT = ITEMS.register("salt", () -> new net.minecraft.world.item.BlockItem(ModBlocks.SALT_DUST.get(), new Item.Properties()));
     public static final DeferredItem<Item> SALT_BLOCK = ITEMS.register("salt_block", () -> new net.minecraft.world.item.BlockItem(ModBlocks.SALT_BLOCK.get(), new Item.Properties()));
+    public static final DeferredItem<Item> POLISHED_SALT_BLOCK = ITEMS.register("polished_salt_block", () -> new net.minecraft.world.item.BlockItem(ModBlocks.POLISHED_SALT_BLOCK.get(), new Item.Properties()));
     public static final DeferredItem<Item> SALT_LAMP = ITEMS.register("salt_lamp", () -> new net.minecraft.world.item.BlockItem(ModBlocks.SALT_LAMP.get(), new Item.Properties()));
     public static final DeferredItem<Item> SALTED_KELP = ITEMS.register("salted_kelp",
             () -> new Item(new Item.Properties().food(new FoodProperties.Builder().nutrition(3).saturationModifier(0.3F).build())));
     public static final DeferredItem<Item> SEAGRASS_BALL = ITEMS.register("seagrass_ball", () -> new net.minecraft.world.item.BlockItem(ModBlocks.SEAGRASS_BALL_BLOCK.get(), new Item.Properties()));
+    public static final DeferredItem<Item> DRIED_SEAGRASS_BALL = ITEMS.register("dried_seagrass_ball", () -> new Item(new Item.Properties()));
+    public static final DeferredItem<Item> DRIED_SEAGRASS_BALL_BLOCK = ITEMS.register("dried_seagrass_ball_block", () -> new net.minecraft.world.item.BlockItem(ModBlocks.DRIED_SEAGRASS_BALL_BLOCK.get(), new Item.Properties()));
+    public static final DeferredItem<Item> DRIED_SEAGRASS_BALL_CARPET = ITEMS.register("dried_seagrass_ball_carpet", () -> new net.minecraft.world.item.BlockItem(ModBlocks.DRIED_SEAGRASS_BALL_CARPET.get(), new Item.Properties()));
     public static final DeferredItem<Item> OAK_NEST = ITEMS.register("oak_nest", () -> new net.minecraft.world.item.BlockItem(ModBlocks.OAK_NEST.get(), new Item.Properties()));
-    public static final DeferredItem<Item> REPTILE_BAG = ITEMS.register("reptile_bag", () -> new Item(new Item.Properties().stacksTo(1)));
-    public static final DeferredItem<Item> BAGGED_GECKO = ITEMS.register("bagged_gecko", () -> new com.otterly76.ott.item.custom.BaggedMobItem(ModEntities.GECKO, () -> net.minecraft.sounds.SoundEvents.BUNDLE_REMOVE_ONE, new Item.Properties().stacksTo(1)));
-    public static final DeferredItem<Item> EMU_EGG = ITEMS.register("emu_egg", () -> new Item(new Item.Properties()));
-    public static final DeferredItem<Item> HOOPOE_EGG = ITEMS.register("hoopoe_egg", () -> new Item(new Item.Properties()));
-    public static final DeferredItem<Item> PHEASANT_EGG = ITEMS.register("pheasant_egg", () -> new Item(new Item.Properties()));
-    public static final DeferredItem<Item> TOUCAN_EGG = ITEMS.register("toucan_egg", () -> new Item(new Item.Properties()));
+    public static final DeferredItem<Item> EMU_EGG = ITEMS.register("emu_egg", () -> new EmuEggItem(new Item.Properties()));
+    public static final DeferredItem<Item> HOOPOE_EGG = ITEMS.register("hoopoe_egg", () -> new HoopoeEggItem(new Item.Properties()));
+    public static final DeferredItem<Item> PHEASANT_EGG = ITEMS.register("pheasant_egg", () -> new PheasantEggItem(new Item.Properties()));
+    public static final DeferredItem<Item> TOUCAN_EGG = ITEMS.register("toucan_egg", () -> new ToucanEggItem(new Item.Properties()));
 
     public static final DeferredItem<Item> RAW_FLOUNDER = ITEMS.register("raw_flounder",
             () -> new Item(new Item.Properties().food(new FoodProperties.Builder().nutrition(2).saturationModifier(0.1F).build())));
+    public static final DeferredItem<Item> PHEASANT = ITEMS.register("pheasant",
+            () -> new Item(new Item.Properties().food(new FoodProperties.Builder().nutrition(2).saturationModifier(0.1F).build())));
+    public static final DeferredItem<Item> COOKED_PHEASANT = ITEMS.register("cooked_pheasant",
+            () -> new Item(new Item.Properties().food(new FoodProperties.Builder().nutrition(6).saturationModifier(0.6F).build())));
     public static final DeferredItem<Item> RAW_ANGELFISH = ITEMS.register("raw_angelfish",
             () -> new Item(new Item.Properties().food(new FoodProperties.Builder().nutrition(2).saturationModifier(0.1F).build())));
     public static final DeferredItem<Item> RAW_BARRELEYE = ITEMS.register("raw_barreleye",
@@ -140,8 +144,6 @@ public class ModItems {
             () -> new Item(new Item.Properties().food(new FoodProperties.Builder().nutrition(1).saturationModifier(0.1F).build())));
     public static final DeferredItem<Item> FRIED_KRILL = ITEMS.register("fried_krill",
             () -> new Item(new Item.Properties().food(new FoodProperties.Builder().nutrition(3).saturationModifier(0.3F).build())));
-    public static final DeferredItem<Item> KRILL_COCKTAIL = ITEMS.register("krill_cocktail",
-            () -> new Item(new Item.Properties().food(new FoodProperties.Builder().nutrition(6).saturationModifier(0.6F).build())));
     public static final DeferredItem<Item> RAW_SUNFISH_MEAT = ITEMS.register("raw_sunfish_meat",
             () -> new Item(new Item.Properties().food(new FoodProperties.Builder().nutrition(2).saturationModifier(0.1F).build())));
     public static final DeferredItem<Item> COOKED_SUNFISH_MEAT = ITEMS.register("cooked_sunfish_meat",

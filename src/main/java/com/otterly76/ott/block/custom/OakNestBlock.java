@@ -8,15 +8,23 @@ import com.otterly76.ott.item.ModItems;
 import com.otterly76.ott.registry.ModBlockStateProperties;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.core.registries.Registries;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
-import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
+import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.entity.projectile.WitherSkull;
+import net.minecraft.world.entity.boss.wither.WitherBoss;
+import net.minecraft.world.entity.monster.Creeper;
+import net.minecraft.world.entity.item.PrimedTnt;
+import net.minecraft.world.entity.vehicle.MinecartTNT;
+import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.context.BlockPlaceContext;
+import net.minecraft.world.item.enchantment.Enchantments;
 import net.minecraft.world.level.GameRules;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.BaseEntityBlock;
@@ -31,6 +39,8 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.DirectionProperty;
 import net.minecraft.world.level.block.state.properties.IntegerProperty;
+import net.minecraft.world.level.storage.loot.LootParams;
+import net.minecraft.world.level.storage.loot.parameters.LootContextParams;
 import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.BlockHitResult;
 import org.jetbrains.annotations.NotNull;
@@ -56,7 +66,7 @@ public class OakNestBlock extends BaseEntityBlock {
 
     @Override
     protected @NotNull InteractionResult useWithoutItem(BlockState state, @NotNull Level world, @NotNull BlockPos pos, @NotNull Player player, @NotNull BlockHitResult hit) {
-        if (state.getValue(EGGS) > 0 && player.getItemInHand(InteractionHand.MAIN_HAND).isEmpty()) {
+        if (state.getValue(EGGS) > 0 && player.getMainHandItem().isEmpty()) {
             if (!world.isClientSide()) {
                 BlockEntity be = world.getBlockEntity(pos);
                 if (be instanceof OakNestEntity oakNestEntity) {
@@ -77,8 +87,8 @@ public class OakNestBlock extends BaseEntityBlock {
     public void playerDestroy(@NotNull Level level, @NotNull Player player, @NotNull BlockPos blockPos, @NotNull BlockState blockState, @Nullable BlockEntity blockEntity, @NotNull ItemStack itemStack) {
         super.playerDestroy(level, player, blockPos, blockState, blockEntity, itemStack);
         if (!level.isClientSide && blockEntity instanceof OakNestEntity oakNestEntity) {
-            // Simplified Silk Touch check for 1.21.1
-            if (!player.isCreative()) {
+            int silkTouchLevel = itemStack.getEnchantmentLevel(level.registryAccess().lookupOrThrow(Registries.ENCHANTMENT).getOrThrow(Enchantments.SILK_TOUCH));
+            if (silkTouchLevel == 0) {
                 oakNestEntity.angerHoopoes(player, blockState, OakNestEntity.NestState.EMERGENCY);
                 level.updateNeighborsAt(blockPos, this);
                 this.angerNearbyHoopoes(level, blockPos);
@@ -137,7 +147,7 @@ public class OakNestBlock extends BaseEntityBlock {
                     ItemStack itemStack = new ItemStack(this);
                     CompoundTag nbtCompound = new CompoundTag();
                     nbtCompound.put("Hoopoes", oakNestEntity.getHoopoes());
-                    // 1.21.1 component-based data logic would go here, using NBT for now
+                    BlockItem.setBlockEntityData(itemStack, ModBlockEntities.OAK_NEST.get(), nbtCompound);
                     ItemEntity itemEntity = new ItemEntity(world, pos.getX(), pos.getY(), pos.getZ(), itemStack);
                     itemEntity.setDefaultPickUpDelay();
                     world.addFreshEntity(itemEntity);
@@ -145,5 +155,17 @@ public class OakNestBlock extends BaseEntityBlock {
             }
         }
         return super.playerWillDestroy(world, pos, blockState, player);
+    }
+
+    @Override
+    public @NotNull List<ItemStack> getDrops(@NotNull BlockState state, LootParams.@NotNull Builder builder) {
+        Entity entity = builder.getOptionalParameter(LootContextParams.THIS_ENTITY);
+        if (entity instanceof PrimedTnt || entity instanceof Creeper || entity instanceof WitherSkull || entity instanceof WitherBoss || entity instanceof MinecartTNT) {
+            BlockEntity blockEntity = builder.getOptionalParameter(LootContextParams.BLOCK_ENTITY);
+            if (blockEntity instanceof OakNestEntity oakNestEntity) {
+                oakNestEntity.angerHoopoes(null, state, OakNestEntity.NestState.EMERGENCY);
+            }
+        }
+        return super.getDrops(state, builder);
     }
 }

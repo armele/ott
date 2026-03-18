@@ -117,6 +117,8 @@ Sand Sets:
 - sandstone pillar cap
 - quicksand
 
+Add additional salt block textures
+
 Do Aurora blocks the TF way
 
 diag gradients
