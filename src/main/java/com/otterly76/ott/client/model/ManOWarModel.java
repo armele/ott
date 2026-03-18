@@ -18,6 +18,6 @@ public class ManOWarModel<T extends ManOWar> extends GeoModel<T> {
 
     @Override
     public ResourceLocation getAnimationResource(T manOWar) {
-        return Constants.loc("animations/man_o_war.animation.json");
+        return Constants.loc("animations/entity/man_o_war.animation.json");
     }
 }

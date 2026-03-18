@@ -1,0 +1,8 @@
+{
+	"ambientocclusion": false,
+	"render_type": "cutout",
+	"parent": "ott:block/layer_block",
+	"textures": {
+		"all": "ott:block/seagrass_ball_placed"
+	}
+}

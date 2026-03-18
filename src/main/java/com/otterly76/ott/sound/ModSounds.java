@@ -1,5 +1,6 @@
 package com.otterly76.ott.sound;
 
+import com.otterly76.ott.Constants;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.sounds.Music;
@@ -53,92 +54,92 @@ public class ModSounds {
     public static final DeferredHolder<SoundEvent, SoundEvent> CREAKING_TWITCH = registerSoundEvent("entity.creaking.twitch");
     public static final DeferredHolder<SoundEvent, SoundEvent> PARROT_IMITATE_CREAKING = registerSoundEvent("entity.parrot.imitate.creaking");
 
-    public static final DeferredHolder<SoundEvent, SoundEvent> EYEBLOSSOM_OPEN_LONG = registerSoundEvent("block.eyeblossom.open_long");
-    public static final DeferredHolder<SoundEvent, SoundEvent> EYEBLOSSOM_OPEN = registerSoundEvent("block.eyeblossom.open");
-    public static final DeferredHolder<SoundEvent, SoundEvent> EYEBLOSSOM_CLOSE_LONG = registerSoundEvent("block.eyeblossom.close_long");
-    public static final DeferredHolder<SoundEvent, SoundEvent> EYEBLOSSOM_CLOSE = registerSoundEvent("block.eyeblossom.close");
-    public static final DeferredHolder<SoundEvent, SoundEvent> EYEBLOSSOM_IDLE = registerSoundEvent("block.eyeblossom.idle");
+    public static final DeferredHolder<SoundEvent, SoundEvent> EYEBLOSSOM_OPEN_LONG = registerOttSoundEvent("block.eyeblossom.open_long");
+    public static final DeferredHolder<SoundEvent, SoundEvent> EYEBLOSSOM_OPEN = registerOttSoundEvent("block.eyeblossom.open");
+    public static final DeferredHolder<SoundEvent, SoundEvent> EYEBLOSSOM_CLOSE_LONG = registerOttSoundEvent("block.eyeblossom.close_long");
+    public static final DeferredHolder<SoundEvent, SoundEvent> EYEBLOSSOM_CLOSE = registerOttSoundEvent("block.eyeblossom.close");
+    public static final DeferredHolder<SoundEvent, SoundEvent> EYEBLOSSOM_IDLE = registerOttSoundEvent("block.eyeblossom.idle");
 
-    public static final DeferredHolder<SoundEvent, SoundEvent> GHASTLING_AMBIENT = registerSoundEvent("entity.ghastling.ambient");
-    public static final DeferredHolder<SoundEvent, SoundEvent> GHASTLING_HURT = registerSoundEvent("entity.ghastling.hurt");
-    public static final DeferredHolder<SoundEvent, SoundEvent> GHASTLING_DEATH = registerSoundEvent("entity.ghastling.death");
-    public static final DeferredHolder<SoundEvent, SoundEvent> GHASTLING_SPAWN = registerSoundEvent("entity.ghastling.spawn");
+    public static final DeferredHolder<SoundEvent, SoundEvent> GHASTLING_AMBIENT = registerOttSoundEvent("entity.ghastling.ambient");
+    public static final DeferredHolder<SoundEvent, SoundEvent> GHASTLING_HURT = registerOttSoundEvent("entity.ghastling.hurt");
+    public static final DeferredHolder<SoundEvent, SoundEvent> GHASTLING_DEATH = registerOttSoundEvent("entity.ghastling.death");
+    public static final DeferredHolder<SoundEvent, SoundEvent> GHASTLING_SPAWN = registerOttSoundEvent("entity.ghastling.spawn");
 
-    public static final DeferredHolder<SoundEvent, SoundEvent> WOLF_PUGLIN_AMBIENT = registerSoundEvent("entity.wolf.puglin.ambient");
-    public static final DeferredHolder<SoundEvent, SoundEvent> WOLF_PUGLIN_DEATH = registerSoundEvent("entity.wolf.puglin.death");
-    public static final DeferredHolder<SoundEvent, SoundEvent> WOLF_PUGLIN_GROWL = registerSoundEvent("entity.wolf.puglin.growl");
-    public static final DeferredHolder<SoundEvent, SoundEvent> WOLF_PUGLIN_HURT = registerSoundEvent("entity.wolf.puglin.hurt");
-    public static final DeferredHolder<SoundEvent, SoundEvent> WOLF_PUGLIN_PANT = registerSoundEvent("entity.wolf.puglin.pant");
-    public static final DeferredHolder<SoundEvent, SoundEvent> WOLF_PUGLIN_WHINE = registerSoundEvent("entity.wolf.puglin.whine");
+    public static final DeferredHolder<SoundEvent, SoundEvent> WOLF_PUGLIN_AMBIENT = registerOttSoundEvent("entity.wolf.puglin.ambient");
+    public static final DeferredHolder<SoundEvent, SoundEvent> WOLF_PUGLIN_DEATH = registerOttSoundEvent("entity.wolf.puglin.death");
+    public static final DeferredHolder<SoundEvent, SoundEvent> WOLF_PUGLIN_GROWL = registerOttSoundEvent("entity.wolf.puglin.growl");
+    public static final DeferredHolder<SoundEvent, SoundEvent> WOLF_PUGLIN_HURT = registerOttSoundEvent("entity.wolf.puglin.hurt");
+    public static final DeferredHolder<SoundEvent, SoundEvent> WOLF_PUGLIN_PANT = registerOttSoundEvent("entity.wolf.puglin.pant");
+    public static final DeferredHolder<SoundEvent, SoundEvent> WOLF_PUGLIN_WHINE = registerOttSoundEvent("entity.wolf.puglin.whine");
 
-    public static final DeferredHolder<SoundEvent, SoundEvent> WOLF_SAD_AMBIENT = registerSoundEvent("entity.wolf.sad.ambient");
-    public static final DeferredHolder<SoundEvent, SoundEvent> WOLF_SAD_DEATH = registerSoundEvent("entity.wolf.sad.death");
-    public static final DeferredHolder<SoundEvent, SoundEvent> WOLF_SAD_GROWL = registerSoundEvent("entity.wolf.sad.growl");
-    public static final DeferredHolder<SoundEvent, SoundEvent> WOLF_SAD_HURT = registerSoundEvent("entity.wolf.sad.hurt");
-    public static final DeferredHolder<SoundEvent, SoundEvent> WOLF_SAD_PANT = registerSoundEvent("entity.wolf.sad.pant");
-    public static final DeferredHolder<SoundEvent, SoundEvent> WOLF_SAD_WHINE = registerSoundEvent("entity.wolf.sad.whine");
+    public static final DeferredHolder<SoundEvent, SoundEvent> WOLF_SAD_AMBIENT = registerOttSoundEvent("entity.wolf.sad.ambient");
+    public static final DeferredHolder<SoundEvent, SoundEvent> WOLF_SAD_DEATH = registerOttSoundEvent("entity.wolf.sad.death");
+    public static final DeferredHolder<SoundEvent, SoundEvent> WOLF_SAD_GROWL = registerOttSoundEvent("entity.wolf.sad.growl");
+    public static final DeferredHolder<SoundEvent, SoundEvent> WOLF_SAD_HURT = registerOttSoundEvent("entity.wolf.sad.hurt");
+    public static final DeferredHolder<SoundEvent, SoundEvent> WOLF_SAD_PANT = registerOttSoundEvent("entity.wolf.sad.pant");
+    public static final DeferredHolder<SoundEvent, SoundEvent> WOLF_SAD_WHINE = registerOttSoundEvent("entity.wolf.sad.whine");
 
-    public static final DeferredHolder<SoundEvent, SoundEvent> WOLF_ANGRY_AMBIENT = registerSoundEvent("entity.wolf.angry.ambient");
-    public static final DeferredHolder<SoundEvent, SoundEvent> WOLF_ANGRY_DEATH = registerSoundEvent("entity.wolf.angry.death");
-    public static final DeferredHolder<SoundEvent, SoundEvent> WOLF_ANGRY_GROWL = registerSoundEvent("entity.wolf.angry.growl");
-    public static final DeferredHolder<SoundEvent, SoundEvent> WOLF_ANGRY_HURT = registerSoundEvent("entity.wolf.angry.hurt");
-    public static final DeferredHolder<SoundEvent, SoundEvent> WOLF_ANGRY_PANT = registerSoundEvent("entity.wolf.angry.pant");
-    public static final DeferredHolder<SoundEvent, SoundEvent> WOLF_ANGRY_WHINE = registerSoundEvent("entity.wolf.angry.whine");
+    public static final DeferredHolder<SoundEvent, SoundEvent> WOLF_ANGRY_AMBIENT = registerOttSoundEvent("entity.wolf.angry.ambient");
+    public static final DeferredHolder<SoundEvent, SoundEvent> WOLF_ANGRY_DEATH = registerOttSoundEvent("entity.wolf.angry.death");
+    public static final DeferredHolder<SoundEvent, SoundEvent> WOLF_ANGRY_GROWL = registerOttSoundEvent("entity.wolf.angry.growl");
+    public static final DeferredHolder<SoundEvent, SoundEvent> WOLF_ANGRY_HURT = registerOttSoundEvent("entity.wolf.angry.hurt");
+    public static final DeferredHolder<SoundEvent, SoundEvent> WOLF_ANGRY_PANT = registerOttSoundEvent("entity.wolf.angry.pant");
+    public static final DeferredHolder<SoundEvent, SoundEvent> WOLF_ANGRY_WHINE = registerOttSoundEvent("entity.wolf.angry.whine");
 
-    public static final DeferredHolder<SoundEvent, SoundEvent> WOLF_GRUMPY_AMBIENT = registerSoundEvent("entity.wolf.grumpy.ambient");
-    public static final DeferredHolder<SoundEvent, SoundEvent> WOLF_GRUMPY_DEATH = registerSoundEvent("entity.wolf.grumpy.death");
-    public static final DeferredHolder<SoundEvent, SoundEvent> WOLF_GRUMPY_GROWL = registerSoundEvent("entity.wolf.grumpy.growl");
-    public static final DeferredHolder<SoundEvent, SoundEvent> WOLF_GRUMPY_HURT = registerSoundEvent("entity.wolf.grumpy.hurt");
-    public static final DeferredHolder<SoundEvent, SoundEvent> WOLF_GRUMPY_PANT = registerSoundEvent("entity.wolf.grumpy.pant");
-    public static final DeferredHolder<SoundEvent, SoundEvent> WOLF_GRUMPY_WHINE = registerSoundEvent("entity.wolf.grumpy.whine");
+    public static final DeferredHolder<SoundEvent, SoundEvent> WOLF_GRUMPY_AMBIENT = registerOttSoundEvent("entity.wolf.grumpy.ambient");
+    public static final DeferredHolder<SoundEvent, SoundEvent> WOLF_GRUMPY_DEATH = registerOttSoundEvent("entity.wolf.grumpy.death");
+    public static final DeferredHolder<SoundEvent, SoundEvent> WOLF_GRUMPY_GROWL = registerOttSoundEvent("entity.wolf.grumpy.growl");
+    public static final DeferredHolder<SoundEvent, SoundEvent> WOLF_GRUMPY_HURT = registerOttSoundEvent("entity.wolf.grumpy.hurt");
+    public static final DeferredHolder<SoundEvent, SoundEvent> WOLF_GRUMPY_PANT = registerOttSoundEvent("entity.wolf.grumpy.pant");
+    public static final DeferredHolder<SoundEvent, SoundEvent> WOLF_GRUMPY_WHINE = registerOttSoundEvent("entity.wolf.grumpy.whine");
 
-    public static final DeferredHolder<SoundEvent, SoundEvent> WOLF_BIG_AMBIENT = registerSoundEvent("entity.wolf.big.ambient");
-    public static final DeferredHolder<SoundEvent, SoundEvent> WOLF_BIG_DEATH = registerSoundEvent("entity.wolf.big.death");
-    public static final DeferredHolder<SoundEvent, SoundEvent> WOLF_BIG_GROWL = registerSoundEvent("entity.wolf.big.growl");
-    public static final DeferredHolder<SoundEvent, SoundEvent> WOLF_BIG_HURT = registerSoundEvent("entity.wolf.big.hurt");
-    public static final DeferredHolder<SoundEvent, SoundEvent> WOLF_BIG_PANT = registerSoundEvent("entity.wolf.big.pant");
-    public static final DeferredHolder<SoundEvent, SoundEvent> WOLF_BIG_WHINE = registerSoundEvent("entity.wolf.big.whine");
+    public static final DeferredHolder<SoundEvent, SoundEvent> WOLF_BIG_AMBIENT = registerOttSoundEvent("entity.wolf.big.ambient");
+    public static final DeferredHolder<SoundEvent, SoundEvent> WOLF_BIG_DEATH = registerOttSoundEvent("entity.wolf.big.death");
+    public static final DeferredHolder<SoundEvent, SoundEvent> WOLF_BIG_GROWL = registerOttSoundEvent("entity.wolf.big.growl");
+    public static final DeferredHolder<SoundEvent, SoundEvent> WOLF_BIG_HURT = registerOttSoundEvent("entity.wolf.big.hurt");
+    public static final DeferredHolder<SoundEvent, SoundEvent> WOLF_BIG_PANT = registerOttSoundEvent("entity.wolf.big.pant");
+    public static final DeferredHolder<SoundEvent, SoundEvent> WOLF_BIG_WHINE = registerOttSoundEvent("entity.wolf.big.whine");
 
-    public static final DeferredHolder<SoundEvent, SoundEvent> WOLF_CUTE_AMBIENT = registerSoundEvent("entity.wolf.cute.ambient");
-    public static final DeferredHolder<SoundEvent, SoundEvent> WOLF_CUTE_DEATH = registerSoundEvent("entity.wolf.cute.death");
-    public static final DeferredHolder<SoundEvent, SoundEvent> WOLF_CUTE_GROWL = registerSoundEvent("entity.wolf.cute.growl");
-    public static final DeferredHolder<SoundEvent, SoundEvent> WOLF_CUTE_HURT = registerSoundEvent("entity.wolf.cute.hurt");
-    public static final DeferredHolder<SoundEvent, SoundEvent> WOLF_CUTE_PANT = registerSoundEvent("entity.wolf.cute.pant");
-    public static final DeferredHolder<SoundEvent, SoundEvent> WOLF_CUTE_WHINE = registerSoundEvent("entity.wolf.cute.whine");
+    public static final DeferredHolder<SoundEvent, SoundEvent> WOLF_CUTE_AMBIENT = registerOttSoundEvent("entity.wolf.cute.ambient");
+    public static final DeferredHolder<SoundEvent, SoundEvent> WOLF_CUTE_DEATH = registerOttSoundEvent("entity.wolf.cute.death");
+    public static final DeferredHolder<SoundEvent, SoundEvent> WOLF_CUTE_GROWL = registerOttSoundEvent("entity.wolf.cute.growl");
+    public static final DeferredHolder<SoundEvent, SoundEvent> WOLF_CUTE_HURT = registerOttSoundEvent("entity.wolf.cute.hurt");
+    public static final DeferredHolder<SoundEvent, SoundEvent> WOLF_CUTE_PANT = registerOttSoundEvent("entity.wolf.cute.pant");
+    public static final DeferredHolder<SoundEvent, SoundEvent> WOLF_CUTE_WHINE = registerOttSoundEvent("entity.wolf.cute.whine");
 
-    public static final DeferredHolder<SoundEvent, SoundEvent> HAPPY_GHAST_AMBIENT = registerSoundEvent("entity.happy_ghast.ambient");
-    public static final DeferredHolder<SoundEvent, SoundEvent> HAPPY_GHAST_HURT = registerSoundEvent("entity.happy_ghast.hurt");
-    public static final DeferredHolder<SoundEvent, SoundEvent> HAPPY_GHAST_DEATH = registerSoundEvent("entity.happy_ghast.death");
-    public static final DeferredHolder<SoundEvent, SoundEvent> HAPPY_GHAST_RIDING = registerSoundEvent("entity.happy_ghast.riding");
-    public static final DeferredHolder<SoundEvent, SoundEvent> HARNESS_EQUIP = registerSoundEvent("entity.happy_ghast.equip");
-    public static final DeferredHolder<SoundEvent, SoundEvent> HARNESS_UNEQUIP = registerSoundEvent("entity.happy_ghast.unequip");
-    public static final DeferredHolder<SoundEvent, SoundEvent> HARNESS_GOGGLES_DOWN = registerSoundEvent("entity.happy_ghast.harness_goggles_down");
-    public static final DeferredHolder<SoundEvent, SoundEvent> HARNESS_GOGGLES_UP = registerSoundEvent("entity.happy_ghast.harness_goggles_up");
+    public static final DeferredHolder<SoundEvent, SoundEvent> HAPPY_GHAST_AMBIENT = registerOttSoundEvent("entity.happy_ghast.ambient");
+    public static final DeferredHolder<SoundEvent, SoundEvent> HAPPY_GHAST_HURT = registerOttSoundEvent("entity.happy_ghast.hurt");
+    public static final DeferredHolder<SoundEvent, SoundEvent> HAPPY_GHAST_DEATH = registerOttSoundEvent("entity.happy_ghast.death");
+    public static final DeferredHolder<SoundEvent, SoundEvent> HAPPY_GHAST_RIDING = registerOttSoundEvent("entity.happy_ghast.riding");
+    public static final DeferredHolder<SoundEvent, SoundEvent> HARNESS_EQUIP = registerOttSoundEvent("entity.happy_ghast.equip");
+    public static final DeferredHolder<SoundEvent, SoundEvent> HARNESS_UNEQUIP = registerOttSoundEvent("entity.happy_ghast.unequip");
+    public static final DeferredHolder<SoundEvent, SoundEvent> HARNESS_GOGGLES_DOWN = registerOttSoundEvent("entity.happy_ghast.harness_goggles_down");
+    public static final DeferredHolder<SoundEvent, SoundEvent> HARNESS_GOGGLES_UP = registerOttSoundEvent("entity.happy_ghast.harness_goggles_up");
 
-    public static final DeferredHolder<SoundEvent, SoundEvent> DRIED_GHAST_BREAK = registerSoundEvent("block.dried_ghast.break");
-    public static final DeferredHolder<SoundEvent, SoundEvent> DRIED_GHAST_STEP = registerSoundEvent("block.dried_ghast.step");
-    public static final DeferredHolder<SoundEvent, SoundEvent> DRIED_GHAST_FALL = registerSoundEvent("block.dried_ghast.fall");
-    public static final DeferredHolder<SoundEvent, SoundEvent> DRIED_GHAST_TRANSITION = registerSoundEvent("block.dried_ghast.transition");
-    public static final DeferredHolder<SoundEvent, SoundEvent> DRIED_GHAST_AMBIENT = registerSoundEvent("block.dried_ghast.ambient");
-    public static final DeferredHolder<SoundEvent, SoundEvent> DRIED_GHAST_AMBIENT_WATER = registerSoundEvent("block.dried_ghast.ambient_water");
-    public static final DeferredHolder<SoundEvent, SoundEvent> DRIED_GHAST_PLACE = registerSoundEvent("block.dried_ghast.place");
-    public static final DeferredHolder<SoundEvent, SoundEvent> DRIED_GHAST_PLACE_IN_WATER = registerSoundEvent("block.dried_ghast.place_in_water");
+    public static final DeferredHolder<SoundEvent, SoundEvent> DRIED_GHAST_BREAK = registerOttSoundEvent("block.dried_ghast.break");
+    public static final DeferredHolder<SoundEvent, SoundEvent> DRIED_GHAST_STEP = registerOttSoundEvent("block.dried_ghast.step");
+    public static final DeferredHolder<SoundEvent, SoundEvent> DRIED_GHAST_FALL = registerOttSoundEvent("block.dried_ghast.fall");
+    public static final DeferredHolder<SoundEvent, SoundEvent> DRIED_GHAST_TRANSITION = registerOttSoundEvent("block.dried_ghast.transition");
+    public static final DeferredHolder<SoundEvent, SoundEvent> DRIED_GHAST_AMBIENT = registerOttSoundEvent("block.dried_ghast.ambient");
+    public static final DeferredHolder<SoundEvent, SoundEvent> DRIED_GHAST_AMBIENT_WATER = registerOttSoundEvent("block.dried_ghast.ambient_water");
+    public static final DeferredHolder<SoundEvent, SoundEvent> DRIED_GHAST_PLACE = registerOttSoundEvent("block.dried_ghast.place");
+    public static final DeferredHolder<SoundEvent, SoundEvent> DRIED_GHAST_PLACE_IN_WATER = registerOttSoundEvent("block.dried_ghast.place_in_water");
     public static final DeferredSoundType DRIED_GHAST = new DeferredSoundType(1.0F, 1.0F, DRIED_GHAST_BREAK, DRIED_GHAST_STEP, () -> net.minecraft.sounds.SoundEvents.EMPTY, () -> net.minecraft.sounds.SoundEvents.EMPTY, DRIED_GHAST_FALL);
 
-    public static final DeferredHolder<SoundEvent, SoundEvent> FIREFLY_BUSH_IDLE = registerSoundEvent("block.firefly_bush.idle");
+    public static final DeferredHolder<SoundEvent, SoundEvent> FIREFLY_BUSH_IDLE = registerOttSoundEvent("block.firefly_bush.idle");
 
-    public static final DeferredHolder<SoundEvent, SoundEvent> LEAF_LITTER_BREAK = registerSoundEvent("block.leaf_litter.break");
-    public static final DeferredHolder<SoundEvent, SoundEvent> LEAF_LITTER_STEP = registerSoundEvent("block.leaf_litter.step");
-    public static final DeferredHolder<SoundEvent, SoundEvent> LEAF_LITTER_PLACE = registerSoundEvent("block.leaf_litter.place");
-    public static final DeferredHolder<SoundEvent, SoundEvent> LEAF_LITTER_HIT = registerSoundEvent("block.leaf_litter.hit");
-    public static final DeferredHolder<SoundEvent, SoundEvent> LEAF_LITTER_FALL = registerSoundEvent("block.leaf_litter.fall");
+    public static final DeferredHolder<SoundEvent, SoundEvent> LEAF_LITTER_BREAK = registerOttSoundEvent("block.leaf_litter.break");
+    public static final DeferredHolder<SoundEvent, SoundEvent> LEAF_LITTER_STEP = registerOttSoundEvent("block.leaf_litter.step");
+    public static final DeferredHolder<SoundEvent, SoundEvent> LEAF_LITTER_PLACE = registerOttSoundEvent("block.leaf_litter.place");
+    public static final DeferredHolder<SoundEvent, SoundEvent> LEAF_LITTER_HIT = registerOttSoundEvent("block.leaf_litter.hit");
+    public static final DeferredHolder<SoundEvent, SoundEvent> LEAF_LITTER_FALL = registerOttSoundEvent("block.leaf_litter.fall");
     public static final DeferredSoundType LEAF_LITTER = new DeferredSoundType(1.0F, 1.0F, LEAF_LITTER_BREAK, LEAF_LITTER_STEP, LEAF_LITTER_PLACE, LEAF_LITTER_HIT, LEAF_LITTER_FALL);
 
-    public static final DeferredHolder<SoundEvent, SoundEvent> CACTUS_FLOWER_BREAK = registerSoundEvent("block.cactus_flower.break");
-    public static final DeferredHolder<SoundEvent, SoundEvent> CACTUS_FLOWER_STEP = registerSoundEvent("block.cactus_flower.step");
-    public static final DeferredHolder<SoundEvent, SoundEvent> CACTUS_FLOWER_PLACE = registerSoundEvent("block.cactus_flower.place");
-    public static final DeferredHolder<SoundEvent, SoundEvent> CACTUS_FLOWER_HIT = registerSoundEvent("block.cactus_flower.hit");
-    public static final DeferredHolder<SoundEvent, SoundEvent> CACTUS_FLOWER_FALL = registerSoundEvent("block.cactus_flower.fall");
+    public static final DeferredHolder<SoundEvent, SoundEvent> CACTUS_FLOWER_BREAK = registerOttSoundEvent("block.cactus_flower.break");
+    public static final DeferredHolder<SoundEvent, SoundEvent> CACTUS_FLOWER_STEP = registerOttSoundEvent("block.cactus_flower.step");
+    public static final DeferredHolder<SoundEvent, SoundEvent> CACTUS_FLOWER_PLACE = registerOttSoundEvent("block.cactus_flower.place");
+    public static final DeferredHolder<SoundEvent, SoundEvent> CACTUS_FLOWER_HIT = registerOttSoundEvent("block.cactus_flower.hit");
+    public static final DeferredHolder<SoundEvent, SoundEvent> CACTUS_FLOWER_FALL = registerOttSoundEvent("block.cactus_flower.fall");
     public static final DeferredSoundType CACTUS_FLOWER = new DeferredSoundType(1.0F, 1.0F, CACTUS_FLOWER_BREAK, CACTUS_FLOWER_STEP, CACTUS_FLOWER_PLACE, CACTUS_FLOWER_HIT, CACTUS_FLOWER_FALL);
 
     public static final DeferredHolder<SoundEvent, SoundEvent> SAND_IDLE = registerSoundEvent("block.sand.idle");
@@ -183,6 +184,16 @@ public class ModSounds {
     public static final DeferredHolder<SoundEvent, SoundEvent> SHELF_SINGLE_SWAP = registerSoundEvent("block.shelf.single_swap");
     public static final DeferredHolder<SoundEvent, SoundEvent> SHELF_MULTI_SWAP = registerSoundEvent("block.shelf.multi_swap");
     public static final DeferredHolder<SoundEvent, SoundEvent> ARMOR_EQUIP_COPPER = registerSoundEvent("item.armor.equip_copper");
+    public static final DeferredHolder<SoundEvent, SoundEvent> EMU_AMBIENT = registerOttSoundEvent("entity.emu.ambient");
+    public static final DeferredHolder<SoundEvent, SoundEvent> EMU_HURT = registerOttSoundEvent("entity.emu.hurt");
+    public static final DeferredHolder<SoundEvent, SoundEvent> EMU_DEATH = registerOttSoundEvent("entity.emu.death");
+    public static final DeferredHolder<SoundEvent, SoundEvent> GECKO_AMBIENT = registerOttSoundEvent("entity.gecko.ambient");
+    public static final DeferredHolder<SoundEvent, SoundEvent> PHEASANT_AMBIENT = registerOttSoundEvent("entity.pheasant.ambient");
+    public static final DeferredHolder<SoundEvent, SoundEvent> PHEASANT_HURT = registerOttSoundEvent("entity.pheasant.hurt");
+    public static final DeferredHolder<SoundEvent, SoundEvent> TOUCAN_AMBIENT = registerOttSoundEvent("entity.toucan.ambient");
+    public static final DeferredHolder<SoundEvent, SoundEvent> TOUCAN_HURT = registerOttSoundEvent("entity.toucan.hurt");
+    public static final DeferredHolder<SoundEvent, SoundEvent> TOUCAN_DEATH = registerOttSoundEvent("entity.toucan.death");
+    public static final DeferredHolder<SoundEvent, SoundEvent> MARINE_IGUANA_SNEEZE = registerOttSoundEvent("entity.marine_iguana.sneeze");
 
     public static final DeferredHolder<SoundEvent, SoundEvent> NONE = registerSoundEvent("music.none");
     public static final DeferredHolder<SoundEvent, SoundEvent> BUNDLE_INSERT_FAIL = registerSoundEvent("item.bundle.insert_fail");
@@ -193,11 +204,23 @@ public class ModSounds {
 
 
     private static DeferredHolder<SoundEvent, SoundEvent> registerSoundEvent(String name) {
-        ResourceLocation id = ResourceLocation.fromNamespaceAndPath("minecraft", name);
+        return registerSoundEvent(name, "minecraft");
+    }
+
+    private static DeferredHolder<SoundEvent, SoundEvent> registerOttSoundEvent(String name) {
+        return registerSoundEvent(name, Constants.MOD_ID);
+    }
+
+    private static DeferredHolder<SoundEvent, SoundEvent> registerSoundEvent(String name, String namespace) {
+        ResourceLocation id = ResourceLocation.fromNamespaceAndPath(namespace, name);
+        if (namespace.equals(Constants.MOD_ID)) {
+            return OTT_SOUND_EVENTS.register(name, () -> SoundEvent.createVariableRangeEvent(id));
+        }
         return SOUND_EVENTS.register(name, () -> SoundEvent.createVariableRangeEvent(id));
     }
 
     public static void register(IEventBus eventBus) {
         SOUND_EVENTS.register(eventBus);
+        OTT_SOUND_EVENTS.register(eventBus);
     }
 }

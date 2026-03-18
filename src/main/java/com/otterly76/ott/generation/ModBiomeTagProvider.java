@@ -45,6 +45,7 @@ public class ModBiomeTagProvider extends BiomeTagsProvider {
         this.tag(ModTags.Biomes.SPAWNS_LEAF_LITTER_PATCHES).add(Biomes.JUNGLE, Biomes.BAMBOO_JUNGLE, Biomes.SPARSE_JUNGLE);
         this.tag(ModTags.Biomes.HAS_DARK_LEAF_LITTER).add(Biomes.DARK_FOREST, Biomes.SWAMP, Biomes.MANGROVE_SWAMP);
         this.tag(ModTags.Biomes.HAS_PALE_LEAF_LITTER).addOptional(ModBiomes.PALE_GARDEN.location());
+        this.tag(ModTags.Biomes.SPAWNS_OAK_NESTED_TREES).add(Biomes.FOREST, Biomes.FLOWER_FOREST);
 
         this.tag(ModTags.Biomes.IS_HUMID).add(Biomes.SWAMP, Biomes.MANGROVE_SWAMP, Biomes.JUNGLE, Biomes.BAMBOO_JUNGLE, Biomes.SPARSE_JUNGLE, Biomes.LUSH_CAVES);
         this.tag(ModTags.Biomes.IS_HUMID).addOptional(ModBiomes.VERDANT_FOREST.location());

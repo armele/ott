@@ -8,7 +8,7 @@ import software.bernie.geckolib.model.GeoModel;
 public class KrillModel extends GeoModel<Krill> {
     @Override
     public ResourceLocation getModelResource(Krill animatable) {
-        return ResourceLocation.fromNamespaceAndPath("ott", "geo/krill/krill.geo.json");
+        return ResourceLocation.fromNamespaceAndPath("ott", "geo/entity/krill/krill.geo.json");
     }
 
     @Override
@@ -18,7 +18,7 @@ public class KrillModel extends GeoModel<Krill> {
 
     @Override
     public ResourceLocation getAnimationResource(Krill animatable) {
-        return ResourceLocation.fromNamespaceAndPath("ott", "animations/krill/krill.animation.json");
+        return ResourceLocation.fromNamespaceAndPath("ott", "animations/entity/krill/krill.animation.json");
     }
 
     @Override

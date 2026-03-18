@@ -196,6 +196,15 @@ public class ClientModEvents {
         event.registerEntityRenderer(ModEntities.DUCK.get(), com.otterly76.ott.client.render.entity.DuckGeoRenderer::new);
         event.registerEntityRenderer(ModEntities.GOOSE.get(), com.otterly76.ott.client.render.entity.GooseGeoRenderer::new);
         event.registerEntityRenderer(ModEntities.KRILL.get(), com.otterly76.ott.client.render.entity.KrillRenderer::new);
+        event.registerEntityRenderer(ModEntities.ANGELFISH.get(), com.otterly76.ott.client.render.entity.AngelfishRenderer::new);
+        event.registerEntityRenderer(ModEntities.BARRELEYE.get(), com.otterly76.ott.client.render.entity.BarreleyeRenderer::new);
+        event.registerEntityRenderer(ModEntities.FLOUNDER.get(), com.otterly76.ott.client.render.entity.FlounderRenderer::new);
+        event.registerEntityRenderer(ModEntities.MARINE_IGUANA.get(), com.otterly76.ott.client.render.entity.MarineIguanaRenderer::new);
+        event.registerEntityRenderer(ModEntities.GECKO.get(), com.otterly76.ott.client.render.entity.GeckoRenderer::new);
+        event.registerEntityRenderer(ModEntities.EMU.get(), com.otterly76.ott.client.render.entity.EmuRenderer::new);
+        event.registerEntityRenderer(ModEntities.HOOPOE.get(), com.otterly76.ott.client.render.entity.HoopoeRenderer::new);
+        event.registerEntityRenderer(ModEntities.PHEASANT.get(), com.otterly76.ott.client.render.entity.PheasantRenderer::new);
+        event.registerEntityRenderer(ModEntities.TOUCAN.get(), com.otterly76.ott.client.render.entity.ToucanRenderer::new);
         event.registerEntityRenderer(net.minecraft.world.entity.EntityType.SHEEP, (context) -> {
             net.minecraft.client.renderer.entity.EntityRenderer<?> renderer = new com.otterly76.ott.client.render.entity.SheepGeoRenderer<>(context);
             return (net.minecraft.client.renderer.entity.EntityRenderer<net.minecraft.world.entity.animal.Sheep>) renderer;
@@ -341,7 +350,9 @@ public class ClientModEvents {
         }, ModItems.TORCH_ARROW.get());
 
         event.register((stack, tintIndex) -> ((DeferredSpawnEggItem)stack.getItem()).getColor(tintIndex),
-                ModItems.DUCK_SPAWN_EGG.get(), ModItems.GOOSE_SPAWN_EGG.get(), ModItems.MAN_O_WAR_SPAWN_EGG.get());
+                ModItems.DUCK_SPAWN_EGG.get(), ModItems.GOOSE_SPAWN_EGG.get(), ModItems.MAN_O_WAR_SPAWN_EGG.get(),
+                ModItems.STINGRAY_SPAWN_EGG.get(), ModItems.SUNFISH_SPAWN_EGG.get(), ModItems.KRILL_SPAWN_EGG.get(),
+                ModItems.ANGELFISH_SPAWN_EGG.get(), ModItems.BARRELEYE_SPAWN_EGG.get(), ModItems.FLOUNDER_SPAWN_EGG.get());
     }
 
     public static void onClientSetup(FMLClientSetupEvent event) {

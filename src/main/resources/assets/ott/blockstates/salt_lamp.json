@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "lit=false": {
+      "model": "ott:block/salt_lamp"
+    },
+    "lit=true": {
+      "model": "ott:block/salt_lamp_lit"
+    }
+  }
+}

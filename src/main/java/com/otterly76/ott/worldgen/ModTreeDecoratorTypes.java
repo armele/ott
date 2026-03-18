@@ -36,6 +36,9 @@ public class ModTreeDecoratorTypes {
     public static final DeferredHolder<TreeDecoratorType<?>, TreeDecoratorType<VerdantForestTrunkDecorator>> VERDANT_TRUNK =
             OTT_DECORATORS.register("verdant_forest_tree_trunk_decorator", () -> new TreeDecoratorType<>(VerdantForestTrunkDecorator.CODEC));
 
+    public static final DeferredHolder<TreeDecoratorType<?>, TreeDecoratorType<OakNestLogDecorator>> OAK_NEST =
+            OTT_DECORATORS.register("oak_nest", () -> new TreeDecoratorType<>(OakNestLogDecorator.CODEC));
+
     public static final DeferredHolder<TreeDecoratorType<?>, TreeDecoratorType<PlaceOnGroundDecorator>> PLACE_ON_GROUND =
             MINECRAFT_DECORATORS.register("place_on_ground", () -> new TreeDecoratorType<>(PlaceOnGroundDecorator.CODEC));
 

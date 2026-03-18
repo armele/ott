@@ -38,6 +38,10 @@ public class ModBlockEntities {
             BLOCK_ENTITIES.register("shelf", () -> BlockEntityType.Builder.of(ShelfBlockEntity::new,
                     ModBlocks.SHELVES.stream().map(net.neoforged.neoforge.registries.DeferredHolder::get).toArray(Block[]::new)).build(null));
 
+    public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<OakNestEntity>> OAK_NEST =
+            BLOCK_ENTITIES.register("oak_nest", () -> BlockEntityType.Builder.of(OakNestEntity::new,
+                    ModBlocks.OAK_NEST.get()).build(null));
+
     public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<CopperGolemStatueBlockEntity>> COPPER_GOLEM_STATUE =
             BLOCK_ENTITIES.register("copper_golem_statue", () -> BlockEntityType.Builder.of(CopperGolemStatueBlockEntity::new,
                     ModBlocks.COPPER_GOLEM_STATUES.values().stream().map(Supplier::get).toArray(Block[]::new)).build(null));

@@ -64,6 +64,7 @@ public class CreativeTabHandler {
                     ModBlocks.RESIN_BRICK_WALL,
                     ModBlocks.CHISELED_RESIN_BRICKS
             ), visibility);
+            safeInsertAfter(event, Items.REDSTONE_LAMP.getDefaultInstance(), new ItemStack(ModBlocks.SALT_LAMP.get()), visibility);
         }
 
         if (event.getTabKey() == CreativeModeTabs.NATURAL_BLOCKS) {
@@ -114,6 +115,7 @@ public class CreativeTabHandler {
             insertAllAfter(event, Items.FERN, List.of(ModBlocks.SHORT_DRY_GRASS, ModBlocks.BUSH), visibility);
             insertAllAfter(event, Items.TORCHFLOWER, List.of(ModBlocks.CACTUS_FLOWER, ModBlocks.CLOSED_EYEBLOSSOM, ModBlocks.OPEN_EYEBLOSSOM), visibility);
             insertAllAfter(event, Items.PINK_PETALS, List.of(ModBlocks.WILDFLOWERS, ModBlocks.LEAF_LITTER), visibility);
+            safeInsertAfter(event, Items.SAND.getDefaultInstance(), new ItemStack(ModBlocks.SALT_BLOCK.get()), visibility);
 
             safeInsertAfter(event, Items.SPORE_BLOSSOM.getDefaultInstance(), new ItemStack(ModBlocks.FIREFLY_BUSH.get()), visibility);
             safeInsertAfter(event, Items.LARGE_FERN.getDefaultInstance(), new ItemStack(ModBlocks.TALL_DRY_GRASS.get()), visibility);
@@ -445,7 +447,13 @@ public class CreativeTabHandler {
                     ModItems.MAN_O_WAR_BUCKET,
                     ModItems.STINGRAY_BUCKET,
                     ModItems.SUNFISH_BUCKET,
-                    ModItems.KRILL_BUCKET
+                    ModItems.KRILL_BUCKET,
+                    ModItems.ANGELFISH_BUCKET,
+                    ModItems.BARRELEYE_BUCKET,
+                    ModItems.FLOUNDER_BUCKET,
+                    ModItems.MARINE_IGUANA_BUCKET,
+                    ModItems.REPTILE_BAG,
+                    ModItems.BAGGED_GECKO
              ), visibility);
 
             insertAllAfter(event, Items.MUSIC_DISC_RELIC, List.of(
@@ -467,6 +475,20 @@ public class CreativeTabHandler {
         if (event.getTabKey() == CreativeModeTabs.FOOD_AND_DRINKS) {
             safeInsertAfter(event, new ItemStack(ModItems.COPPER_MILK_BUCKET.get()), visibility);
             safeInsertAfter(event, new ItemStack(Items.PUFFERFISH), new ItemStack(ModItems.SUNFISH_SUSHI.get()), visibility);
+
+            insertAllAfter(event, ModItems.SUNFISH_SUSHI.get(), List.of(
+                    ModItems.RAW_FLOUNDER,
+                    ModItems.RAW_ANGELFISH,
+                    ModItems.RAW_BARRELEYE,
+                    ModItems.RAW_KRILL,
+                    ModItems.FRIED_KRILL,
+                    ModItems.KRILL_COCKTAIL,
+                    ModItems.RAW_SUNFISH_MEAT,
+                    ModItems.COOKED_SUNFISH_MEAT,
+                    ModItems.RAW_GOLDEN_SUNFISH_MEAT,
+                    ModItems.COOKED_GOLDEN_SUNFISH_MEAT,
+                    ModItems.SALTED_KELP
+            ), visibility);
         }
 
         if (event.getTabKey() == CreativeModeTabs.REDSTONE_BLOCKS) {
@@ -606,7 +628,7 @@ public class CreativeTabHandler {
             safeAccept(event, Items.CHAIN, visibility);
             safeInsertAfter(event, Items.NETHER_BRICK.getDefaultInstance(), new ItemStack(ModItems.RESIN_BRICK.get()), visibility);
             safeInsertAfter(event, Items.HONEYCOMB.getDefaultInstance(), new ItemStack(ModBlocks.RESIN_CLUMP.get()), visibility);
-            insertAllAfter(event, Items.EGG, List.of(ModItems.BROWN_EGG, ModItems.BLUE_EGG), visibility);
+            insertAllAfter(event, Items.EGG, List.of(ModItems.BROWN_EGG, ModItems.BLUE_EGG, ModItems.EMU_EGG), visibility);
 
             safeInsertAfter(event, Items.COPPER_INGOT.getDefaultInstance(), new ItemStack(ModItems.COPPER_NUGGET.get()), visibility);
             safeInsertAfter(event, ModItems.COPPER_NUGGET.get().getDefaultInstance(), new ItemStack(ModBlocks.COPPER_CHAINS.get("").get()), visibility);
@@ -616,6 +638,8 @@ public class CreativeTabHandler {
 
             safeAccept(event, ModItems.TINY_COAL, visibility);
             safeAccept(event, ModItems.TINY_CHARCOAL, visibility);
+            safeAccept(event, ModItems.SALT, visibility);
+            safeAccept(event, ModItems.SEAGRASS_BALL, visibility);
         }
 
         if (event.getTabKey() == CreativeModeTabs.COMBAT) {
@@ -703,6 +727,26 @@ public class CreativeTabHandler {
 
             safeAccept(event, ModItems.KRILL_SPAWN_EGG, visibility);
             safeAccept(event, ModItems.KRILL_BUCKET, visibility);
+
+            safeAccept(event, ModItems.ANGELFISH_SPAWN_EGG, visibility);
+            safeAccept(event, ModItems.ANGELFISH_BUCKET, visibility);
+
+            safeAccept(event, ModItems.BARRELEYE_SPAWN_EGG, visibility);
+            safeAccept(event, ModItems.BARRELEYE_BUCKET, visibility);
+
+            safeAccept(event, ModItems.FLOUNDER_SPAWN_EGG, visibility);
+            safeAccept(event, ModItems.FLOUNDER_BUCKET, visibility);
+
+            safeAccept(event, ModItems.MARINE_IGUANA_SPAWN_EGG, visibility);
+            safeAccept(event, ModItems.MARINE_IGUANA_BUCKET, visibility);
+
+            safeAccept(event, ModItems.GECKO_SPAWN_EGG, visibility);
+            safeAccept(event, ModItems.BAGGED_GECKO, visibility);
+
+            safeAccept(event, ModItems.EMU_SPAWN_EGG, visibility);
+            safeAccept(event, ModItems.HOOPOE_SPAWN_EGG, visibility);
+            safeAccept(event, ModItems.PHEASANT_SPAWN_EGG, visibility);
+            safeAccept(event, ModItems.TOUCAN_SPAWN_EGG, visibility);
         }
     }
 

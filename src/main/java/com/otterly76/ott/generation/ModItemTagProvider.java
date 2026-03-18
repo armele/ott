@@ -130,6 +130,17 @@ public class ModItemTagProvider extends ItemTagsProvider {
         this.tag(net.minecraft.tags.ItemTags.STAIRS).add(ModBlocks.RESIN_BRICK_STAIRS.asItem());
         this.tag(net.minecraft.tags.ItemTags.WALLS).add(ModBlocks.RESIN_BRICK_WALL.asItem());
 
+        this.tag(net.minecraft.tags.ItemTags.FISHES).add(
+                ModItems.RAW_ANGELFISH.get(),
+                ModItems.RAW_BARRELEYE.get(),
+                ModItems.RAW_FLOUNDER.get(),
+                ModItems.RAW_SUNFISH_MEAT.get(),
+                ModItems.COOKED_SUNFISH_MEAT.get(),
+                ModItems.RAW_GOLDEN_SUNFISH_MEAT.get(),
+                ModItems.RAW_KRILL.get(),
+                ModItems.FRIED_KRILL.get()
+        );
+
         // --- 5. WOOD SETS ---
         ModBlocks.WOOD_SETS.forEach((setName, set) -> addWoodSetTags(
                 ModTags.ItemTags.woodSetLogs(setName),

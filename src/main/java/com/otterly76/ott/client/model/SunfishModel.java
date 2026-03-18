@@ -7,7 +7,7 @@ import software.bernie.geckolib.model.GeoModel;
 public class SunfishModel extends GeoModel<Sunfish> {
     @Override
     public ResourceLocation getModelResource(Sunfish animatable) {
-        return ResourceLocation.fromNamespaceAndPath("ott", "geo/sunfish/sunfish.geo.json");
+        return ResourceLocation.fromNamespaceAndPath("ott", "geo/entity/sunfish/sunfish.geo.json");
     }
 
     @Override
@@ -17,6 +17,6 @@ public class SunfishModel extends GeoModel<Sunfish> {
 
     @Override
     public ResourceLocation getAnimationResource(Sunfish animatable) {
-        return ResourceLocation.fromNamespaceAndPath("ott", "animations/sunfish/sunfish.animation.json");
+        return ResourceLocation.fromNamespaceAndPath("ott", "animations/entity/sunfish/sunfish.animation.json");
     }
 }

@@ -38,5 +38,64 @@
       "ott:weather/sandstormabove-05",
       "ott:weather/sandstormabove-06"
     ]
+  },
+  "entity.emu.ambient": {
+    "sounds": [
+      { "name": "ott:entity/emu_ambient0" },
+      { "name": "ott:entity/emu_ambient1" }
+    ]
+  },
+  "entity.emu.hurt": {
+    "sounds": [
+      { "name": "ott:entity/emu_hurt" },
+      { "name": "ott:entity/emu_hurt1" }
+    ]
+  },
+  "entity.emu.death": {
+    "sounds": [
+      { "name": "ott:entity/emu_death" }
+    ]
+  },
+  "entity.gecko.ambient": {
+    "sounds": [
+      { "name": "ott:entity/gecko_ambient1" },
+      { "name": "ott:entity/gecko_ambient2" },
+      { "name": "ott:entity/gecko_ambient3" }
+    ]
+  },
+  "entity.marine_iguana.sneeze": {
+    "sounds": [
+      { "name": "ott:entity/sneeze" }
+    ]
+  },
+  "entity.pheasant.ambient": {
+    "sounds": [
+      { "name": "ott:entity/pheasant_ambient1" },
+      { "name": "ott:entity/pheasant_ambient2" }
+    ]
+  },
+  "entity.pheasant.hurt": {
+    "sounds": [
+      { "name": "ott:entity/pheasant_hurt1" },
+      { "name": "ott:entity/pheasant_hurt2" }
+    ]
+  },
+  "entity.toucan.ambient": {
+    "sounds": [
+      { "name": "ott:entity/toucan_ambient1" },
+      { "name": "ott:entity/toucan_ambient2" },
+      { "name": "ott:entity/toucan_ambient3" }
+    ]
+  },
+  "entity.toucan.hurt": {
+    "sounds": [
+      { "name": "ott:entity/toucan_hurt1" },
+      { "name": "ott:entity/toucan_hurt2" }
+    ]
+  },
+  "entity.toucan.death": {
+    "sounds": [
+      { "name": "ott:entity/toucan_death" }
+    ]
   }
 }

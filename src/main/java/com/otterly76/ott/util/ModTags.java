@@ -131,6 +131,7 @@ public class ModTags {
         public static final TagKey<net.minecraft.world.level.biome.Biome> SPAWNS_LEAF_LITTER_PATCHES = createTag("spawns_leaf_litter_patches");
         public static final TagKey<net.minecraft.world.level.biome.Biome> HAS_DARK_LEAF_LITTER = createTag("has_dark_leaf_litter");
         public static final TagKey<net.minecraft.world.level.biome.Biome> HAS_PALE_LEAF_LITTER = createTag("has_pale_leaf_litter");
+        public static final TagKey<net.minecraft.world.level.biome.Biome> SPAWNS_OAK_NESTED_TREES = createTag("spawns_oak_nested_trees");
         public static final TagKey<net.minecraft.world.level.biome.Biome> IS_HUMID = commonTag("is_humid");
         public static final TagKey<net.minecraft.world.level.biome.Biome> IS_DRY = commonTag("is_dry");
 

@@ -61,6 +61,33 @@ public class ModEntities {
     public static final Supplier<EntityType<com.otterly76.ott.entity.custom.Krill>> KRILL = OTT_ENTITY_TYPES.register("krill",
             () -> Builder.of(com.otterly76.ott.entity.custom.Krill::new, MobCategory.WATER_AMBIENT).sized(0.4F, 0.4F).clientTrackingRange(8).build("krill"));
 
+    public static final Supplier<EntityType<com.otterly76.ott.entity.custom.Angelfish>> ANGELFISH = OTT_ENTITY_TYPES.register("angelfish",
+            () -> Builder.of(com.otterly76.ott.entity.custom.Angelfish::new, MobCategory.WATER_AMBIENT).sized(0.5F, 0.5F).clientTrackingRange(8).build("angelfish"));
+
+    public static final Supplier<EntityType<com.otterly76.ott.entity.custom.Barreleye>> BARRELEYE = OTT_ENTITY_TYPES.register("barreleye",
+            () -> Builder.of(com.otterly76.ott.entity.custom.Barreleye::new, MobCategory.WATER_AMBIENT).sized(0.5F, 0.5F).clientTrackingRange(8).build("barreleye"));
+
+    public static final Supplier<EntityType<com.otterly76.ott.entity.custom.Flounder>> FLOUNDER = OTT_ENTITY_TYPES.register("flounder",
+            () -> Builder.of(com.otterly76.ott.entity.custom.Flounder::new, MobCategory.WATER_AMBIENT).sized(0.6F, 0.3F).clientTrackingRange(8).build("flounder"));
+
+    public static final Supplier<EntityType<com.otterly76.ott.entity.custom.MarineIguana>> MARINE_IGUANA = OTT_ENTITY_TYPES.register("marine_iguana",
+            () -> Builder.of(com.otterly76.ott.entity.custom.MarineIguana::new, MobCategory.CREATURE).sized(0.8F, 0.4F).eyeHeight(0.3F).clientTrackingRange(8).build("marine_iguana"));
+
+    public static final Supplier<EntityType<com.otterly76.ott.entity.custom.Gecko>> GECKO = OTT_ENTITY_TYPES.register("gecko",
+            () -> Builder.of(com.otterly76.ott.entity.custom.Gecko::new, MobCategory.CREATURE).sized(0.5F, 0.3F).eyeHeight(0.2F).clientTrackingRange(8).build("gecko"));
+
+    public static final Supplier<EntityType<com.otterly76.ott.entity.custom.Emu>> EMU = OTT_ENTITY_TYPES.register("emu",
+            () -> Builder.of(com.otterly76.ott.entity.custom.Emu::new, MobCategory.CREATURE).sized(0.9F, 1.9F).eyeHeight(1.8F).clientTrackingRange(8).build("emu"));
+
+    public static final Supplier<EntityType<com.otterly76.ott.entity.custom.Hoopoe>> HOOPOE = OTT_ENTITY_TYPES.register("hoopoe",
+            () -> Builder.of(com.otterly76.ott.entity.custom.Hoopoe::new, MobCategory.CREATURE).sized(0.5F, 0.5F).eyeHeight(0.3F).clientTrackingRange(8).build("hoopoe"));
+    
+    public static final Supplier<EntityType<com.otterly76.ott.entity.custom.Pheasant>> PHEASANT = OTT_ENTITY_TYPES.register("pheasant",
+            () -> Builder.of(com.otterly76.ott.entity.custom.Pheasant::new, MobCategory.CREATURE).sized(0.6F, 0.8F).eyeHeight(0.6F).clientTrackingRange(8).build("pheasant"));
+
+    public static final Supplier<EntityType<com.otterly76.ott.entity.custom.Toucan>> TOUCAN = OTT_ENTITY_TYPES.register("toucan",
+            () -> Builder.of(com.otterly76.ott.entity.custom.Toucan::new, MobCategory.CREATURE).sized(0.5F, 0.5F).eyeHeight(0.3F).clientTrackingRange(8).build("toucan"));
+
     public static final Supplier<EntityType<PaleOakBoat>> PALE_OAK_BOAT = ENTITY_TYPES.register("pale_oak_boat",
             () -> Builder.<PaleOakBoat>of(PaleOakBoat::new, MobCategory.MISC).sized(1.375F, 0.5625F).clientTrackingRange(10).build("pale_oak_boat"));
 

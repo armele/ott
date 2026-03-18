@@ -11,7 +11,7 @@ import software.bernie.geckolib.model.data.EntityModelData;
 public class StingrayModel extends GeoModel<Stingray> {
     @Override
     public ResourceLocation getModelResource(Stingray animatable) {
-        return ResourceLocation.fromNamespaceAndPath("ott", "geo/stingray/stingray.geo.json");
+        return ResourceLocation.fromNamespaceAndPath("ott", "geo/entity/stingray/stingray.geo.json");
     }
 
     @Override
@@ -21,7 +21,7 @@ public class StingrayModel extends GeoModel<Stingray> {
 
     @Override
     public ResourceLocation getAnimationResource(Stingray animatable) {
-        return ResourceLocation.fromNamespaceAndPath("ott", "animations/stingray/stingray.animation.json");
+        return ResourceLocation.fromNamespaceAndPath("ott", "animations/entity/stingray/stingray.animation.json");
     }
 
     @Override
@@ -38,7 +38,3 @@ public class StingrayModel extends GeoModel<Stingray> {
         }
     }
 }
-
-
-
-

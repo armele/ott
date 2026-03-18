@@ -9,6 +9,7 @@ import com.otterly76.ott.item.ModItems;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.Mob;
 import net.minecraft.world.entity.SpawnPlacementTypes;
+import net.minecraft.world.entity.animal.Animal;
 import net.minecraft.world.level.levelgen.Heightmap;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.neoforge.capabilities.RegisterCapabilitiesEvent;
@@ -35,6 +36,15 @@ public class ModEventBusEvents {
         event.put(ModEntities.STINGRAY.get(), com.otterly76.ott.entity.custom.Stingray.setAttributes().build());
         event.put(ModEntities.SUNFISH.get(), com.otterly76.ott.entity.custom.Sunfish.setAttributes().build());
         event.put(ModEntities.KRILL.get(), com.otterly76.ott.entity.custom.Krill.setAttributes().build());
+        event.put(ModEntities.ANGELFISH.get(), com.otterly76.ott.entity.custom.Angelfish.setAttributes().build());
+        event.put(ModEntities.BARRELEYE.get(), com.otterly76.ott.entity.custom.Barreleye.setAttributes().build());
+        event.put(ModEntities.FLOUNDER.get(), com.otterly76.ott.entity.custom.Flounder.setAttributes().build());
+        event.put(ModEntities.MARINE_IGUANA.get(), com.otterly76.ott.entity.custom.MarineIguana.setAttributes().build());
+        event.put(ModEntities.GECKO.get(), com.otterly76.ott.entity.custom.Gecko.setAttributes().build());
+        event.put(ModEntities.EMU.get(), com.otterly76.ott.entity.custom.Emu.setAttributes().build());
+        event.put(ModEntities.HOOPOE.get(), com.otterly76.ott.entity.custom.Hoopoe.setAttributes().build());
+        event.put(ModEntities.PHEASANT.get(), com.otterly76.ott.entity.custom.Pheasant.setAttributes().build());
+        event.put(ModEntities.TOUCAN.get(), com.otterly76.ott.entity.custom.Toucan.setAttributes().build());
     }
 
     @SubscribeEvent
@@ -67,6 +77,62 @@ public class ModEventBusEvents {
                 SpawnPlacementTypes.IN_WATER,
                 Heightmap.Types.MOTION_BLOCKING_NO_LEAVES,
                 com.otterly76.ott.entity.custom.Krill::canSpawn,
+                RegisterSpawnPlacementsEvent.Operation.OR
+        );
+
+        event.register(
+                ModEntities.ANGELFISH.get(),
+                SpawnPlacementTypes.IN_WATER,
+                Heightmap.Types.MOTION_BLOCKING_NO_LEAVES,
+                com.otterly76.ott.entity.custom.Angelfish::canSpawn,
+                RegisterSpawnPlacementsEvent.Operation.OR
+        );
+
+        event.register(
+                ModEntities.BARRELEYE.get(),
+                SpawnPlacementTypes.IN_WATER,
+                Heightmap.Types.MOTION_BLOCKING_NO_LEAVES,
+                com.otterly76.ott.entity.custom.Barreleye::canSpawn,
+                RegisterSpawnPlacementsEvent.Operation.OR
+        );
+
+        event.register(
+                ModEntities.FLOUNDER.get(),
+                SpawnPlacementTypes.IN_WATER,
+                Heightmap.Types.MOTION_BLOCKING_NO_LEAVES,
+                com.otterly76.ott.entity.custom.Flounder::canSpawn,
+                RegisterSpawnPlacementsEvent.Operation.OR
+        );
+
+        event.register(
+                ModEntities.MARINE_IGUANA.get(),
+                SpawnPlacementTypes.ON_GROUND,
+                Heightmap.Types.MOTION_BLOCKING_NO_LEAVES,
+                com.otterly76.ott.entity.custom.MarineIguana::canSpawn,
+                RegisterSpawnPlacementsEvent.Operation.OR
+        );
+
+        event.register(
+                ModEntities.GECKO.get(),
+                SpawnPlacementTypes.ON_GROUND,
+                Heightmap.Types.MOTION_BLOCKING_NO_LEAVES,
+                com.otterly76.ott.entity.custom.Gecko::canSpawn,
+                RegisterSpawnPlacementsEvent.Operation.OR
+        );
+
+        event.register(
+                ModEntities.EMU.get(),
+                SpawnPlacementTypes.ON_GROUND,
+                Heightmap.Types.MOTION_BLOCKING_NO_LEAVES,
+                com.otterly76.ott.entity.custom.Emu::canSpawn,
+                RegisterSpawnPlacementsEvent.Operation.OR
+        );
+
+        event.register(
+                ModEntities.HOOPOE.get(),
+                SpawnPlacementTypes.ON_GROUND,
+                Heightmap.Types.MOTION_BLOCKING_NO_LEAVES,
+                Animal::checkAnimalSpawnRules,
                 RegisterSpawnPlacementsEvent.Operation.OR
         );
     }
