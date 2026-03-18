@@ -32,6 +32,7 @@ public class ModEventBusEvents {
         event.put(ModEntities.MAN_O_WAR.get(), com.otterly76.ott.entity.custom.ManOWar.createAttributes().build());
         event.put(ModEntities.DUCK.get(), net.minecraft.world.entity.animal.Chicken.createAttributes().build());
         event.put(ModEntities.GOOSE.get(), net.minecraft.world.entity.animal.Chicken.createAttributes().build());
+        event.put(ModEntities.STINGRAY.get(), com.otterly76.ott.entity.custom.Stingray.setAttributes().build());
     }
 
     @SubscribeEvent

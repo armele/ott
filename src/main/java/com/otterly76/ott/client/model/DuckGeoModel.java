@@ -7,3 +7,7 @@ public class DuckGeoModel extends BirdGeoModel<Duck> {
         super("duck");
     }
 }
+
+
+
+

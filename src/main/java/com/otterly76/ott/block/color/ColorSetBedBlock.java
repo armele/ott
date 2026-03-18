@@ -1,10 +1,14 @@
 package com.otterly76.ott.block.color;
 
 import net.minecraft.core.BlockPos;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.DyeColor;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.block.BedBlock;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.phys.HitResult;
 import org.jetbrains.annotations.NotNull;
 
 public class ColorSetBedBlock extends BedBlock {
@@ -17,6 +21,11 @@ public class ColorSetBedBlock extends BedBlock {
 
     public String getColorName() {
         return colorName;
+    }
+
+    @Override
+    public @NotNull ItemStack getCloneItemStack(@NotNull BlockState state, @NotNull HitResult target, @NotNull LevelReader level, @NotNull BlockPos pos, @NotNull Player player) {
+        return new ItemStack(this.asItem());
     }
 
     @Override

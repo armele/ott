@@ -54,6 +54,7 @@
     "block.ott.midnight_trapdoor":  "Midnight Trapdoor",
     "ott.configuration.lanterns.protectivelanternradius":  "Protective Lantern Radius",
     "item.ott.man_o_war_spawn_egg":  "Man-o-War Spawn Egg",
+    "item.ott.stingray_spawn_egg":  "Stingray Spawn Egg",
     "block.ott.orange_seaglass":  "Orange Seaglass",
     "tooltip.ott.saturation":  "Saturation: %s",
     "block.ott.limestone_20":  "Limestone 20",
@@ -174,6 +175,7 @@
     "block.ott.limestone_21":  "Limestone 21",
     "ott.configuration.harvest.hightierexpansionrange":  "Regular hoe (gold, wood, iron) expansion range.",
     "item.ott.man_o_war_bucket":  "Bucket of Man-o-War",
+    "item.ott.stingray_bucket":  "Stingray Bucket",
     "block.ott.starlight_fence_gate":  "Starlight Fence Gate",
     "block.ott.testblock_32":  "TestBlock 32",
     "block.ott.pink_seaglass":  "Pink Seaglass",
@@ -318,5 +320,6 @@
     "ott.configuration.harvest.maxhoeexpansionrange":  "Maximum range hoe can expand for harvesting.\nThis is the maximum of tier + efficiency enchantment.",
     "ott.configuration.visuals.doublepickerrange":  "Double Block Picker Range",
     "entity.ott.man_o_war":  "Man-o-War",
+    "entity.ott.stingray":  "Stingray",
     "ott.configuration.general.villagersfollowemerald":  "Villagers Follow Emeralds"
 }

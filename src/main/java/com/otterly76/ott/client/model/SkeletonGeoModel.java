@@ -54,3 +54,7 @@ public class SkeletonGeoModel<T extends Skeleton & SkeletonGeoEntity> extends Ge
         GeoModelUtils.applyLimbSwingHumanoid(animationState, leftArm, rightArm, leftLeg, rightLeg);
     }
 }
+
+
+
+

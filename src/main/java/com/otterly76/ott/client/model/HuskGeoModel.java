@@ -59,3 +59,7 @@ public class HuskGeoModel<T extends Husk & HuskGeoEntity> extends GeoModel<T> {
         if (leftArm != null) leftArm.setRotX(leftArm.getRotX() + (float)Math.PI / 2F);
     }
 }
+
+
+
+

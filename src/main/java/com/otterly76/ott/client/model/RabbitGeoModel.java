@@ -65,3 +65,7 @@ public class RabbitGeoModel<T extends Rabbit & RabbitGeoEntity> extends GeoModel
         if (body != null) body.setRotX(jumpFactor * -20.0F * Mth.DEG_TO_RAD);
     }
 }
+
+
+
+

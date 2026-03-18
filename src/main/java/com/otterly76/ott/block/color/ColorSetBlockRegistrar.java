@@ -47,7 +47,7 @@ public class ColorSetBlockRegistrar {
                 () -> new ColorSetBannerBlock(color, DyeColor.WHITE, BlockBehaviour.Properties.ofFullCopy(Blocks.WHITE_BANNER)));
 
         DeferredBlock<WallBannerBlock> wallBanner = BLOCKS.register(color + "_wall_banner",
-                () -> new ColorSetWallBannerBlock(color, DyeColor.WHITE, BlockBehaviour.Properties.ofFullCopy(Blocks.WHITE_WALL_BANNER)));
+                () -> new ColorSetWallBannerBlock(color, banner, DyeColor.WHITE, BlockBehaviour.Properties.ofFullCopy(Blocks.WHITE_WALL_BANNER)));
 
         return new ModBlocks.ColorSetBlocks(
                 candle, concrete, concretePowder, glazedTerracotta, shulkerBox, stainedGlass, stainedGlassPane, terracotta, wool, bed, carpet, banner, wallBanner

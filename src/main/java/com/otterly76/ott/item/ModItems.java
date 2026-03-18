@@ -69,6 +69,11 @@ public class ModItems {
     public static final DeferredItem<Item> GOOSE_SPAWN_EGG = ITEMS.register("goose_spawn_egg",
             () -> new DeferredSpawnEggItem(ModEntities.GOOSE, 0xFFFFFFFF, 0xFF808080, new Item.Properties()));
 
+    public static final DeferredItem<Item> STINGRAY_BUCKET = ITEMS.register("stingray_bucket",
+            () -> new MobBucketItem(ModEntities.STINGRAY.get(), Fluids.WATER, SoundEvents.BUCKET_EMPTY_FISH, (new Item.Properties()).stacksTo(1)));
+    public static final DeferredItem<Item> STINGRAY_SPAWN_EGG = ITEMS.register("stingray_spawn_egg",
+            () -> new DeferredSpawnEggItem(ModEntities.STINGRAY, 0xFF838788, 0xFF454748, new Item.Properties()));
+
     public static DeferredItem<Item> PALE_OAK_SAPLING;
 
     // Backport / Minecraft Namespace ItemTags

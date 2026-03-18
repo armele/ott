@@ -441,7 +441,9 @@ public class CreativeTabHandler {
                     ModItems.COPPER_WATER_BUCKET,
                     ModItems.COPPER_LAVA_BUCKET,
                     ModItems.COPPER_POWDER_SNOW_BUCKET,
-                    ModItems.COPPER_MILK_BUCKET
+                    ModItems.COPPER_MILK_BUCKET,
+                    ModItems.MAN_O_WAR_BUCKET,
+                    ModItems.STINGRAY_BUCKET
             ), visibility);
 
             insertAllAfter(event, Items.MUSIC_DISC_RELIC, List.of(
@@ -689,6 +691,9 @@ public class CreativeTabHandler {
 
             safeAccept(event, ModItems.MAN_O_WAR_SPAWN_EGG, visibility);
             safeAccept(event, ModItems.MAN_O_WAR_BUCKET, visibility);
+
+            safeAccept(event, ModItems.STINGRAY_SPAWN_EGG, visibility);
+            safeAccept(event, ModItems.STINGRAY_BUCKET, visibility);
         }
     }
 

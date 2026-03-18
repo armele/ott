@@ -54,3 +54,7 @@ public class StrayGeoModel<T extends Stray & StrayGeoEntity> extends GeoModel<T>
         GeoModelUtils.applyLimbSwingHumanoid(animationState, leftArm, rightArm, leftLeg, rightLeg);
     }
 }
+
+
+
+

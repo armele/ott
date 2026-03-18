@@ -37,3 +37,7 @@ public class SnowGolemGeoModel<T extends SnowGolem & SnowGolemGeoEntity> extends
         GeoModelUtils.applyHeadRotation(animationState, head);
     }
 }
+
+
+
+

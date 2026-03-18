@@ -62,3 +62,8 @@ public class CreakingModel<T extends Creaking> extends HierarchicalModel<T> {
         this.animate(entity.deathAnimationState, CreakingAnimation.CREAKING_DEATH, ageInTicks);
     }
 }
+
+
+
+
+

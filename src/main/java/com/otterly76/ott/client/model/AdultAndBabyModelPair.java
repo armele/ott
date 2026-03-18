@@ -10,3 +10,8 @@ public record AdultAndBabyModelPair<T extends EntityModel<?>>(T adultModel, T ba
         return isBaby ? this.babyModel : this.adultModel;
     }
 }
+
+
+
+
+

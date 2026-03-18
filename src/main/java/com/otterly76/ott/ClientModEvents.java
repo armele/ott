@@ -191,6 +191,7 @@ public class ClientModEvents {
         event.registerEntityRenderer(ModEntities.TORCH_ARROW.get(), TorchArrowRenderer::new);
         event.registerEntityRenderer(ModEntities.COPPER_GOLEM.get(), com.otterly76.ott.client.render.entity.CopperGolemRenderer::new);
         event.registerEntityRenderer(ModEntities.MAN_O_WAR.get(), com.otterly76.ott.client.render.entity.ManOWarRenderer::new);
+        event.registerEntityRenderer(ModEntities.STINGRAY.get(), com.otterly76.ott.client.render.entity.StingrayRenderer::new);
         event.registerEntityRenderer(ModEntities.DUCK.get(), com.otterly76.ott.client.render.entity.DuckGeoRenderer::new);
         event.registerEntityRenderer(ModEntities.GOOSE.get(), com.otterly76.ott.client.render.entity.GooseGeoRenderer::new);
         event.registerEntityRenderer(net.minecraft.world.entity.EntityType.SHEEP, (context) -> {

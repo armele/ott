@@ -2,8 +2,8 @@ package com.otterly76.ott.entity.custom;
 
 import com.otterly76.ott.entity.ModEntities;
 import com.otterly76.ott.item.ModItems;
+import com.otterly76.ott.util.entity.BucketableUtils;
 import net.minecraft.core.BlockPos;
-import net.minecraft.core.component.DataComponents;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.syncher.EntityDataAccessor;
@@ -33,7 +33,6 @@ import net.minecraft.world.entity.animal.Bucketable;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
-import net.minecraft.world.item.component.CustomData;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.LevelReader;
@@ -381,14 +380,7 @@ public class ManOWar extends Animal implements GeoEntity, Bucketable {
 
     @Override
     public void saveToBucketTag(@NotNull ItemStack stack) {
-        stack.set(DataComponents.CUSTOM_NAME, this.getCustomName());
-        CustomData.update(DataComponents.BUCKET_ENTITY_DATA, stack, (tag) -> {
-            if (this.isNoAi()) tag.putBoolean("NoAI", this.isNoAi());
-            if (this.isSilent()) tag.putBoolean("Silent", this.isSilent());
-            if (this.isNoGravity()) tag.putBoolean("NoGravity", this.isNoGravity());
-            if (this.hasGlowingTag()) tag.putBoolean("Glowing", true);
-            if (this.isInvulnerable()) tag.putBoolean("Invulnerable", this.isInvulnerable());
-            tag.putFloat("Health", this.getHealth());
+        BucketableUtils.saveCustomDataToBucketTag(this, stack, (tag) -> {
             tag.putInt("Variant", this.getRawColor());
             tag.putInt("Age", this.getAge());
         });
@@ -396,12 +388,7 @@ public class ManOWar extends Animal implements GeoEntity, Bucketable {
 
     @Override
     public void loadFromBucketTag(@NotNull CompoundTag tag) {
-        if (tag.contains("NoAI")) this.setNoAi(tag.getBoolean("NoAI"));
-        if (tag.contains("Silent")) this.setSilent(tag.getBoolean("Silent"));
-        if (tag.contains("NoGravity")) this.setNoGravity(tag.getBoolean("NoGravity"));
-        if (tag.contains("Glowing")) this.setGlowingTag(tag.getBoolean("Glowing"));
-        if (tag.contains("Invulnerable")) this.setInvulnerable(tag.getBoolean("Invulnerable"));
-        if (tag.contains("Health", 99)) this.setHealth(tag.getFloat("Health"));
+        BucketableUtils.loadDefaultDataFromBucketTag(this, tag);
         this.setColor(ManOWar.Colors.byIndex(tag.getInt("Variant")));
         if (tag.contains("Age")) {
             this.setAge(tag.getInt("Age"));

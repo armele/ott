@@ -57,3 +57,7 @@ public class ChickenGeoModel<T extends Chicken & ChickenGeoEntity> extends GeoMo
         GeoModelUtils.applyBirdFlap(animatable, animationState, leftWing, rightWing);
     }
 }
+
+
+
+

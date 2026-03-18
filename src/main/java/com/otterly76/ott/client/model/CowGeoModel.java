@@ -60,3 +60,7 @@ public class CowGeoModel<T extends Cow & CowGeoEntity> extends GeoModel<T> {
         GeoModelUtils.applyLimbSwing4Legs(animationState, leg1, leg2, leg3, leg4);
     }
 }
+
+
+
+

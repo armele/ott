@@ -88,3 +88,8 @@ public class CopperGolemModel extends HierarchicalModel<CopperGolem> implements 
         poseStack.translate(0.0D, -0.8125D, 0.0D);
     }
 }
+
+
+
+
+

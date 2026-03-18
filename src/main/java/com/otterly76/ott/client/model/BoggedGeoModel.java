@@ -54,3 +54,7 @@ public class BoggedGeoModel<T extends Bogged & BoggedGeoEntity> extends GeoModel
         GeoModelUtils.applyLimbSwingHumanoid(animationState, leftArm, rightArm, leftLeg, rightLeg);
     }
 }
+
+
+
+
