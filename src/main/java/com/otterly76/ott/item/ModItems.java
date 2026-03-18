@@ -14,6 +14,7 @@ import com.otterly76.ott.item.custom.*;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.world.level.material.Fluids;
 import net.minecraft.sounds.SoundEvents;
+import net.minecraft.world.food.FoodProperties;
 import net.minecraft.world.item.*;
 import net.minecraft.world.item.component.BundleContents;
 import net.minecraft.world.item.PlaceOnWaterBlockItem;
@@ -73,6 +74,13 @@ public class ModItems {
             () -> new MobBucketItem(ModEntities.STINGRAY.get(), Fluids.WATER, SoundEvents.BUCKET_EMPTY_FISH, (new Item.Properties()).stacksTo(1)));
     public static final DeferredItem<Item> STINGRAY_SPAWN_EGG = ITEMS.register("stingray_spawn_egg",
             () -> new DeferredSpawnEggItem(ModEntities.STINGRAY, 0xFF838788, 0xFF454748, new Item.Properties()));
+
+    public static final DeferredItem<Item> SUNFISH_BUCKET = ITEMS.register("sunfish_bucket",
+            () -> new MobBucketItem(ModEntities.SUNFISH.get(), Fluids.WATER, SoundEvents.BUCKET_EMPTY_FISH, (new Item.Properties()).stacksTo(1)));
+    public static final DeferredItem<Item> SUNFISH_SPAWN_EGG = ITEMS.register("sunfish_spawn_egg",
+            () -> new DeferredSpawnEggItem(ModEntities.SUNFISH, 0xFF967E67, 0xFFD6C6B0, new Item.Properties()));
+    public static final DeferredItem<Item> SUNFISH_SUSHI = ITEMS.register("sunfish_sushi",
+            () -> new Item(new Item.Properties().food(new FoodProperties.Builder().nutrition(2).saturationModifier(0.1F).build())));
 
     public static DeferredItem<Item> PALE_OAK_SAPLING;
 

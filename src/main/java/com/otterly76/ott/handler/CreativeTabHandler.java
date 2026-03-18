@@ -443,7 +443,8 @@ public class CreativeTabHandler {
                     ModItems.COPPER_POWDER_SNOW_BUCKET,
                     ModItems.COPPER_MILK_BUCKET,
                     ModItems.MAN_O_WAR_BUCKET,
-                    ModItems.STINGRAY_BUCKET
+                    ModItems.STINGRAY_BUCKET,
+                    ModItems.SUNFISH_BUCKET
             ), visibility);
 
             insertAllAfter(event, Items.MUSIC_DISC_RELIC, List.of(
@@ -464,6 +465,7 @@ public class CreativeTabHandler {
 
         if (event.getTabKey() == CreativeModeTabs.FOOD_AND_DRINKS) {
             safeInsertAfter(event, new ItemStack(ModItems.COPPER_MILK_BUCKET.get()), visibility);
+            safeInsertAfter(event, new ItemStack(Items.PUFFERFISH), new ItemStack(ModItems.SUNFISH_SUSHI.get()), visibility);
         }
 
         if (event.getTabKey() == CreativeModeTabs.REDSTONE_BLOCKS) {
@@ -694,6 +696,9 @@ public class CreativeTabHandler {
 
             safeAccept(event, ModItems.STINGRAY_SPAWN_EGG, visibility);
             safeAccept(event, ModItems.STINGRAY_BUCKET, visibility);
+
+            safeAccept(event, ModItems.SUNFISH_SPAWN_EGG, visibility);
+            safeAccept(event, ModItems.SUNFISH_BUCKET, visibility);
         }
     }
 
