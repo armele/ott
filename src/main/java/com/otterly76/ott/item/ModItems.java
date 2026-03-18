@@ -82,6 +82,11 @@ public class ModItems {
     public static final DeferredItem<Item> SUNFISH_SUSHI = ITEMS.register("sunfish_sushi",
             () -> new Item(new Item.Properties().food(new FoodProperties.Builder().nutrition(2).saturationModifier(0.1F).build())));
 
+    public static final DeferredItem<Item> KRILL_BUCKET = ITEMS.register("krill_bucket",
+            () -> new MobBucketItem(ModEntities.KRILL.get(), Fluids.WATER, SoundEvents.BUCKET_EMPTY_FISH, (new Item.Properties()).stacksTo(1)));
+    public static final DeferredItem<Item> KRILL_SPAWN_EGG = ITEMS.register("krill_spawn_egg",
+            () -> new DeferredSpawnEggItem(ModEntities.KRILL, 0xFFF09090, 0xFFD05050, new Item.Properties()));
+
     public static DeferredItem<Item> PALE_OAK_SAPLING;
 
     // Backport / Minecraft Namespace ItemTags

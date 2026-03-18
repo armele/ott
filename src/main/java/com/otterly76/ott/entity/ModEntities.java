@@ -58,6 +58,9 @@ public class ModEntities {
     public static final Supplier<EntityType<com.otterly76.ott.entity.custom.Sunfish>> SUNFISH = OTT_ENTITY_TYPES.register("sunfish",
             () -> Builder.of(com.otterly76.ott.entity.custom.Sunfish::new, MobCategory.WATER_CREATURE).sized(0.7F, 1.2F).clientTrackingRange(8).build("sunfish"));
 
+    public static final Supplier<EntityType<com.otterly76.ott.entity.custom.Krill>> KRILL = OTT_ENTITY_TYPES.register("krill",
+            () -> Builder.of(com.otterly76.ott.entity.custom.Krill::new, MobCategory.WATER_AMBIENT).sized(0.4F, 0.4F).clientTrackingRange(8).build("krill"));
+
     public static final Supplier<EntityType<PaleOakBoat>> PALE_OAK_BOAT = ENTITY_TYPES.register("pale_oak_boat",
             () -> Builder.<PaleOakBoat>of(PaleOakBoat::new, MobCategory.MISC).sized(1.375F, 0.5625F).clientTrackingRange(10).build("pale_oak_boat"));
 

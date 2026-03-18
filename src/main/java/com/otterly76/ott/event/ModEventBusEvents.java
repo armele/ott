@@ -34,6 +34,7 @@ public class ModEventBusEvents {
         event.put(ModEntities.GOOSE.get(), net.minecraft.world.entity.animal.Chicken.createAttributes().build());
         event.put(ModEntities.STINGRAY.get(), com.otterly76.ott.entity.custom.Stingray.setAttributes().build());
         event.put(ModEntities.SUNFISH.get(), com.otterly76.ott.entity.custom.Sunfish.setAttributes().build());
+        event.put(ModEntities.KRILL.get(), com.otterly76.ott.entity.custom.Krill.setAttributes().build());
     }
 
     @SubscribeEvent
@@ -58,6 +59,14 @@ public class ModEventBusEvents {
                 SpawnPlacementTypes.IN_WATER,
                 Heightmap.Types.MOTION_BLOCKING_NO_LEAVES,
                 com.otterly76.ott.entity.custom.ManOWar::checkManOWarSpawnRules,
+                RegisterSpawnPlacementsEvent.Operation.OR
+        );
+
+        event.register(
+                ModEntities.KRILL.get(),
+                SpawnPlacementTypes.IN_WATER,
+                Heightmap.Types.MOTION_BLOCKING_NO_LEAVES,
+                com.otterly76.ott.entity.custom.Krill::canSpawn,
                 RegisterSpawnPlacementsEvent.Operation.OR
         );
     }

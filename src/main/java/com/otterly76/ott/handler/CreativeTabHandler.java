@@ -444,8 +444,9 @@ public class CreativeTabHandler {
                     ModItems.COPPER_MILK_BUCKET,
                     ModItems.MAN_O_WAR_BUCKET,
                     ModItems.STINGRAY_BUCKET,
-                    ModItems.SUNFISH_BUCKET
-            ), visibility);
+                    ModItems.SUNFISH_BUCKET,
+                    ModItems.KRILL_BUCKET
+             ), visibility);
 
             insertAllAfter(event, Items.MUSIC_DISC_RELIC, List.of(
                     ModItems.MUSIC_DISC_TEARS,
@@ -699,6 +700,9 @@ public class CreativeTabHandler {
 
             safeAccept(event, ModItems.SUNFISH_SPAWN_EGG, visibility);
             safeAccept(event, ModItems.SUNFISH_BUCKET, visibility);
+
+            safeAccept(event, ModItems.KRILL_SPAWN_EGG, visibility);
+            safeAccept(event, ModItems.KRILL_BUCKET, visibility);
         }
     }
 
