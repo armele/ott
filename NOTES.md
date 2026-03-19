@@ -123,6 +123,8 @@ create crow, raven, pigeon to existing bird model
 
 create white-tailed deer, elk, caribou, mossbloom to deer model
 
+create textures for fennec fox, moose
+
 create timber wolf using vanilla wolf model
 
 create giant boar using vanilla boar model
