@@ -215,6 +215,24 @@ public class ModSounds {
     public static final DeferredHolder<SoundEvent, SoundEvent> BIRD_AMBIENT_SPARROW = registerOttSoundEvent("entity.bird.ambient_sparrow");
     public static final DeferredHolder<SoundEvent, SoundEvent> BIRD_AMBIENT_ROBIN = registerOttSoundEvent("entity.bird.ambient_robin");
 
+    public static final DeferredHolder<SoundEvent, SoundEvent> BEAR_AMBIENT = registerOttSoundEvent("entity.bear.ambient");
+    public static final DeferredHolder<SoundEvent, SoundEvent> BEAR_HURT = registerOttSoundEvent("entity.bear.hurt");
+    public static final DeferredHolder<SoundEvent, SoundEvent> BEAR_DEATH = registerOttSoundEvent("entity.bear.death");
+    public static final DeferredHolder<SoundEvent, SoundEvent> BEAR_AMBIENT_BABY = registerOttSoundEvent("entity.bear.ambient_baby");
+    public static final DeferredHolder<SoundEvent, SoundEvent> BEAR_HURT_BABY = registerOttSoundEvent("entity.bear.hurt_baby");
+    public static final DeferredHolder<SoundEvent, SoundEvent> BEAR_SLEEP = registerOttSoundEvent("entity.bear.sleep");
+    public static final DeferredHolder<SoundEvent, SoundEvent> BEAR_SNIFF = registerOttSoundEvent("entity.bear.sniff");
+    public static final DeferredHolder<SoundEvent, SoundEvent> BEAR_SPIT = registerOttSoundEvent("entity.bear.spit");
+    public static final DeferredHolder<SoundEvent, SoundEvent> BEAR_EAT = registerOttSoundEvent("entity.bear.eat");
+
+    public static final DeferredHolder<SoundEvent, SoundEvent> DEER_AMBIENT = registerOttSoundEvent("entity.deer.ambient");
+    public static final DeferredHolder<SoundEvent, SoundEvent> DEER_HURT = registerOttSoundEvent("entity.deer.hurt");
+    public static final DeferredHolder<SoundEvent, SoundEvent> DEER_AMBIENT_BABY = registerOttSoundEvent("entity.deer.ambient_baby");
+    public static final DeferredHolder<SoundEvent, SoundEvent> DEER_HURT_BABY = registerOttSoundEvent("entity.deer.hurt_baby");
+    public static final DeferredHolder<SoundEvent, SoundEvent> DEER_DEATH = registerOttSoundEvent("entity.deer.death");
+    public static final DeferredHolder<SoundEvent, SoundEvent> DEER_STEP = registerOttSoundEvent("entity.deer.step");
+    public static final DeferredHolder<SoundEvent, SoundEvent> DEER_EAT = registerOttSoundEvent("entity.deer.eat");
+
     public static final DeferredHolder<SoundEvent, SoundEvent> NONE = registerSoundEvent("music.none");
     public static final DeferredHolder<SoundEvent, SoundEvent> BUNDLE_INSERT_FAIL = registerSoundEvent("item.bundle.insert_fail");
     public static final DeferredHolder<SoundEvent, SoundEvent> MUSIC_DISC_TEARS = registerSoundEvent("music_disc.tears");

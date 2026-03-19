@@ -57,6 +57,11 @@ public class ModEventBusEvents {
         event.put(ModEntities.FINCH.get(), com.otterly76.ott.entity.custom.Bird.createAttributes().build());
         event.put(ModEntities.ROBIN.get(), com.otterly76.ott.entity.custom.Bird.createAttributes().build());
         event.put(ModEntities.SPARROW.get(), com.otterly76.ott.entity.custom.Bird.createAttributes().build());
+        event.put(ModEntities.BROWN_BEAR.get(), com.otterly76.ott.entity.custom.Bear.createAttributes().build());
+        event.put(ModEntities.BLACK_BEAR.get(), com.otterly76.ott.entity.custom.Bear.createAttributes().build());
+        event.put(ModEntities.DEER.get(), com.otterly76.ott.entity.custom.Deer.createAttributes().build());
+        event.put(ModEntities.REINDEER.get(), com.otterly76.ott.entity.custom.Deer.createAttributes().build());
+        event.put(ModEntities.WHITE_DEER.get(), com.otterly76.ott.entity.custom.Deer.createAttributes().build());
     }
 
     @SubscribeEvent
@@ -270,6 +275,41 @@ public class ModEventBusEvents {
                 SpawnPlacementTypes.ON_GROUND,
                 Heightmap.Types.MOTION_BLOCKING_NO_LEAVES,
                 com.otterly76.ott.entity.custom.Bird::checkBirdSpawnRules,
+                RegisterSpawnPlacementsEvent.Operation.OR
+        );
+        event.register(
+                ModEntities.BROWN_BEAR.get(),
+                SpawnPlacementTypes.ON_GROUND,
+                Heightmap.Types.MOTION_BLOCKING_NO_LEAVES,
+                Animal::checkAnimalSpawnRules,
+                RegisterSpawnPlacementsEvent.Operation.OR
+        );
+        event.register(
+                ModEntities.BLACK_BEAR.get(),
+                SpawnPlacementTypes.ON_GROUND,
+                Heightmap.Types.MOTION_BLOCKING_NO_LEAVES,
+                Animal::checkAnimalSpawnRules,
+                RegisterSpawnPlacementsEvent.Operation.OR
+        );
+        event.register(
+                ModEntities.DEER.get(),
+                SpawnPlacementTypes.ON_GROUND,
+                Heightmap.Types.MOTION_BLOCKING_NO_LEAVES,
+                Animal::checkAnimalSpawnRules,
+                RegisterSpawnPlacementsEvent.Operation.OR
+        );
+        event.register(
+                ModEntities.REINDEER.get(),
+                SpawnPlacementTypes.ON_GROUND,
+                Heightmap.Types.MOTION_BLOCKING_NO_LEAVES,
+                Animal::checkAnimalSpawnRules,
+                RegisterSpawnPlacementsEvent.Operation.OR
+        );
+        event.register(
+                ModEntities.WHITE_DEER.get(),
+                SpawnPlacementTypes.ON_GROUND,
+                Heightmap.Types.MOTION_BLOCKING_NO_LEAVES,
+                Animal::checkAnimalSpawnRules,
                 RegisterSpawnPlacementsEvent.Operation.OR
         );
     }

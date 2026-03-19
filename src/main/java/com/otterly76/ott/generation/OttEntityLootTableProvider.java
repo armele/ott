@@ -1,6 +1,7 @@
 package com.otterly76.ott.generation;
 
 import com.otterly76.ott.entity.ModEntities;
+import com.otterly76.ott.item.ModItems;
 import net.minecraft.advancements.critereon.EntityFlagsPredicate;
 import net.minecraft.advancements.critereon.EntityPredicate;
 import net.minecraft.core.HolderLookup;
@@ -36,6 +37,11 @@ public class OttEntityLootTableProvider extends EntityLootSubProvider {
         this.add(ModEntities.FINCH.get(), createBirdDrops());
         this.add(ModEntities.ROBIN.get(), createBirdDrops());
         this.add(ModEntities.SPARROW.get(), createBirdDrops());
+        this.add(ModEntities.BROWN_BEAR.get(), createBearDrops());
+        this.add(ModEntities.BLACK_BEAR.get(), createBearDrops());
+        this.add(ModEntities.DEER.get(), createDeerDrops());
+        this.add(ModEntities.REINDEER.get(), createDeerDrops());
+        this.add(ModEntities.WHITE_DEER.get(), createDeerDrops());
     }
 
     private LootTable.Builder createBirdDrops() {
@@ -59,6 +65,28 @@ public class OttEntityLootTableProvider extends EntityLootSubProvider {
                                 .apply(SetItemCountFunction.setCount(UniformGenerator.between(0.0F, 2.0F)))));
     }
 
+    private LootTable.Builder createBearDrops() {
+        return LootTable.lootTable()
+                .withPool(LootPool.lootPool()
+                        .setRolls(ConstantValue.exactly(1.0F))
+                        .add(LootItem.lootTableItem(ModItems.FUR.get())
+                                .apply(SetItemCountFunction.setCount(UniformGenerator.between(1.0F, 2.0F)))));
+    }
+
+    private LootTable.Builder createDeerDrops() {
+        return LootTable.lootTable()
+                .withPool(LootPool.lootPool()
+                        .setRolls(ConstantValue.exactly(1.0F))
+                        .add(LootItem.lootTableItem(ModItems.VENISON.get())
+                                .apply(SetItemCountFunction.setCount(UniformGenerator.between(1.0F, 3.0F)))
+                                .apply(SmeltItemFunction.smelted()
+                                        .when(LootItemEntityPropertyCondition.hasProperties(LootContext.EntityTarget.THIS, EntityPredicate.Builder.entity().flags(EntityFlagsPredicate.Builder.flags().setOnFire(true)))))))
+                .withPool(LootPool.lootPool()
+                        .setRolls(ConstantValue.exactly(1.0F))
+                        .add(LootItem.lootTableItem(ModItems.ANTLER.get())
+                                .apply(SetItemCountFunction.setCount(UniformGenerator.between(0.0F, 2.0F)))));
+    }
+
     @Override
     protected @NotNull Stream<EntityType<?>> getKnownEntityTypes() {
         return Stream.of(
@@ -69,7 +97,12 @@ public class OttEntityLootTableProvider extends EntityLootSubProvider {
                 ModEntities.CARDINAL.get(),
                 ModEntities.FINCH.get(),
                 ModEntities.ROBIN.get(),
-                ModEntities.SPARROW.get()
+                ModEntities.SPARROW.get(),
+                ModEntities.BROWN_BEAR.get(),
+                ModEntities.BLACK_BEAR.get(),
+                ModEntities.DEER.get(),
+                ModEntities.REINDEER.get(),
+                ModEntities.WHITE_DEER.get()
         );
     }
 }

@@ -494,6 +494,8 @@ public class CreativeTabHandler {
                     ModItems.COOKED_CATFISH,
                     ModItems.BASS,
                     ModItems.COOKED_BASS,
+                    ModItems.VENISON,
+                    ModItems.COOKED_VENISON,
                     ModItems.SALTED_KELP
             ), visibility);
         }
@@ -647,6 +649,8 @@ public class CreativeTabHandler {
             safeAccept(event, ModItems.TINY_CHARCOAL, visibility);
             safeAccept(event, ModItems.SALT, visibility);
             safeAccept(event, ModItems.SEAGRASS_BALL, visibility);
+            safeAccept(event, ModItems.FUR, visibility);
+            safeAccept(event, ModItems.ANTLER, visibility);
         }
 
         if (event.getTabKey() == CreativeModeTabs.COMBAT) {
@@ -763,6 +767,13 @@ public class CreativeTabHandler {
             safeAccept(event, ModItems.FINCH_SPAWN_EGG, visibility);
             safeAccept(event, ModItems.ROBIN_SPAWN_EGG, visibility);
             safeAccept(event, ModItems.SPARROW_SPAWN_EGG, visibility);
+
+            safeAccept(event, ModItems.BROWN_BEAR_SPAWN_EGG, visibility);
+            safeAccept(event, ModItems.BLACK_BEAR_SPAWN_EGG, visibility);
+
+            safeAccept(event, ModItems.DEER_SPAWN_EGG, visibility);
+            safeAccept(event, ModItems.REINDEER_SPAWN_EGG, visibility);
+            safeAccept(event, ModItems.WHITE_DEER_SPAWN_EGG, visibility);
 
             safeAccept(event, ModItems.BUTTERFLY_SPAWN_EGG, visibility);
             safeAccept(event, ModItems.CATERPILLAR_SPAWN_EGG, visibility);

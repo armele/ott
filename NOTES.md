@@ -119,8 +119,6 @@ Sand Sets:
 
 Add additional salt block textures
 
-create crow, raven, pigeon to existing bird model
-
 create white-tailed deer, elk, caribou, mossbloom to deer model
 
 create textures for fennec fox, moose
@@ -137,7 +135,7 @@ create wither skeleton wolf to skeleton wolf model
 
 create anaconda using snake model
 
-create tiger, white tiger, leopard, jaguar, cheetah using puma model
+create tiger, white tiger, leopard, jaguar, snow leopard, cheetah using cougar model
 
 Do Aurora blocks the TF way
 

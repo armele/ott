@@ -258,5 +258,141 @@
       "ott:entity/robin/idle3",
       "ott:entity/robin/song"
     ]
+  },
+  "entity.bear.hurt": {
+    "sounds": [
+      "minecraft:mob/polarbear/hurt1",
+      "minecraft:mob/polarbear/hurt2",
+      "minecraft:mob/polarbear/hurt3",
+      "minecraft:mob/polarbear/hurt4"
+    ],
+    "subtitle": "subtitles.ott.entity.bear.hurt"
+  },
+  "entity.bear.death": {
+    "sounds": [
+      "minecraft:mob/polarbear/death1",
+      "minecraft:mob/polarbear/death2",
+      "minecraft:mob/polarbear/death3"
+    ],
+    "subtitle": "subtitles.ott.entity.bear.death"
+  },
+  "entity.bear.ambient": {
+    "sounds": [
+      "minecraft:mob/polarbear/idle1",
+      "minecraft:mob/polarbear/idle2",
+      "minecraft:mob/polarbear/idle3",
+      "minecraft:mob/polarbear/idle4"
+    ],
+    "subtitle": "subtitles.ott.entity.bear.ambient"
+  },
+  "entity.bear.ambient_baby": {
+    "sounds": [
+      "minecraft:mob/panda/cant_breed1",
+      "minecraft:mob/panda/cant_breed2",
+      "minecraft:mob/panda/cant_breed3"
+    ],
+    "subtitle": "subtitles.ott.entity.bear.ambient_baby"
+  },
+  "entity.bear.hurt_baby": {
+    "sounds": [
+      "minecraft:mob/panda/hurt1",
+      "minecraft:mob/panda/hurt2",
+      "minecraft:mob/panda/hurt3"
+    ],
+    "subtitle": "subtitles.ott.entity.bear.hurt_baby"
+  },
+  "entity.bear.sleep": {
+    "sounds": [
+      "minecraft:mob/fox/sleep1",
+      "minecraft:mob/fox/sleep2",
+      "minecraft:mob/fox/sleep3",
+      "minecraft:mob/fox/sleep4",
+      "minecraft:mob/fox/sleep5"
+    ],
+    "subtitle": "subtitles.ott.entity.bear.sleep"
+  },
+  "entity.bear.sniff": {
+    "sounds": [
+      "minecraft:mob/fox/sniff1",
+      "minecraft:mob/fox/sniff2",
+      "minecraft:mob/fox/sniff3",
+      "minecraft:mob/fox/sniff4"
+    ],
+    "subtitle": "subtitles.ott.entity.bear.sniff"
+  },
+  "entity.bear.spit": {
+    "sounds": [
+      "minecraft:mob/fox/spit1",
+      "minecraft:mob/fox/spit2",
+      "minecraft:mob/fox/spit3"
+    ],
+    "subtitle": "subtitles.ott.entity.bear.spit"
+  },
+  "entity.bear.eat": {
+    "sounds": [
+      "minecraft:mob/panda/eat1",
+      "minecraft:mob/panda/eat2",
+      "minecraft:mob/panda/eat3",
+      "minecraft:mob/panda/eat4",
+      "minecraft:mob/panda/eat5",
+      "minecraft:mob/panda/eat6",
+      "minecraft:mob/panda/eat7",
+      "minecraft:mob/panda/eat8",
+      "minecraft:mob/panda/eat9",
+      "minecraft:mob/panda/eat10",
+      "minecraft:mob/panda/eat11",
+      "minecraft:mob/panda/eat12"
+    ],
+    "subtitle": "subtitles.ott.entity.bear.eat"
+  },
+  "entity.deer.ambient": {
+    "sounds": [
+      "ott:entity/deer/idle1",
+      "ott:entity/deer/idle2",
+      "ott:entity/deer/idle3"
+    ],
+    "subtitle": "subtitles.ott.entity.deer.ambient"
+  },
+  "entity.deer.hurt": {
+    "sounds": [
+      "ott:entity/deer/hurt"
+    ],
+    "subtitle": "subtitles.ott.entity.deer.hurt"
+  },
+  "entity.deer.ambient_baby": {
+    "sounds": [
+      "ott:entity/deer/fawn_idle"
+    ],
+    "subtitle": "subtitles.ott.entity.deer.ambient_baby"
+  },
+  "entity.deer.hurt_baby": {
+    "sounds": [
+      "ott:entity/deer/fawn_hurt"
+    ],
+    "subtitle": "subtitles.ott.entity.deer.hurt_baby"
+  },
+  "entity.deer.death": {
+    "sounds": [
+      "ott:entity/deer/death1",
+      "ott:entity/deer/death2"
+    ],
+    "subtitle": "subtitles.ott.entity.deer.death"
+  },
+  "entity.deer.step": {
+    "sounds": [
+      "minecraft:mob/cow/step1",
+      "minecraft:mob/cow/step2",
+      "minecraft:mob/cow/step3",
+      "minecraft:mob/cow/step4"
+    ],
+    "subtitle": "subtitles.block.generic.footsteps"
+  },
+  "entity.deer.eat": {
+    "sounds": [
+      "ott:entity/deer/eat1",
+      "ott:entity/deer/eat2",
+      "ott:entity/deer/eat3"
+    ],
+    "subtitle": "subtitles.ott.entity.deer.eat"
   }
 }

@@ -88,6 +88,22 @@ public class ModEntities {
     public static final Supplier<EntityType<com.otterly76.ott.entity.custom.Toucan>> TOUCAN = OTT_ENTITY_TYPES.register("toucan",
             () -> Builder.of(com.otterly76.ott.entity.custom.Toucan::new, MobCategory.CREATURE).sized(0.5F, 0.5F).eyeHeight(0.3F).clientTrackingRange(8).build("toucan"));
 
+
+    public static final Supplier<EntityType<com.otterly76.ott.entity.custom.BrownBearEntity>> BROWN_BEAR = OTT_ENTITY_TYPES.register("brown_bear",
+            () -> Builder.of(com.otterly76.ott.entity.custom.BrownBearEntity::new, MobCategory.CREATURE).sized(1.4F, 1.7F).clientTrackingRange(10).build("brown_bear"));
+
+    public static final Supplier<EntityType<com.otterly76.ott.entity.custom.BlackBearEntity>> BLACK_BEAR = OTT_ENTITY_TYPES.register("black_bear",
+            () -> Builder.of(com.otterly76.ott.entity.custom.BlackBearEntity::new, MobCategory.CREATURE).sized(1.4F, 1.7F).clientTrackingRange(10).build("black_bear"));
+
+    public static final Supplier<EntityType<com.otterly76.ott.entity.custom.DeerEntity>> DEER = OTT_ENTITY_TYPES.register("deer",
+            () -> Builder.of(com.otterly76.ott.entity.custom.DeerEntity::new, MobCategory.CREATURE).sized(1.3F, 1.6F).clientTrackingRange(10).build("deer"));
+
+    public static final Supplier<EntityType<com.otterly76.ott.entity.custom.ReindeerEntity>> REINDEER = OTT_ENTITY_TYPES.register("reindeer",
+            () -> Builder.of(com.otterly76.ott.entity.custom.ReindeerEntity::new, MobCategory.CREATURE).sized(1.3F, 1.6F).clientTrackingRange(10).build("reindeer"));
+
+    public static final Supplier<EntityType<com.otterly76.ott.entity.custom.WhiteDeerEntity>> WHITE_DEER = OTT_ENTITY_TYPES.register("white_deer",
+            () -> Builder.of(com.otterly76.ott.entity.custom.WhiteDeerEntity::new, MobCategory.CREATURE).sized(1.3F, 1.6F).clientTrackingRange(10).build("white_deer"));
+
     public static final Supplier<EntityType<com.otterly76.ott.entity.custom.Bird>> BLUEJAY = OTT_ENTITY_TYPES.register("bluejay",
             () -> Builder.of(com.otterly76.ott.entity.custom.Bird::new, MobCategory.CREATURE).sized(0.5F, 0.6F).eyeHeight(0.36F).clientTrackingRange(8).build("bluejay"));
 
