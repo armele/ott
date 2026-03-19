@@ -3,21 +3,35 @@ package com.otterly76.ott.client.model;
 import com.otterly76.ott.entity.custom.Toucan;
 import net.minecraft.resources.ResourceLocation;
 import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 import software.bernie.geckolib.cache.object.GeoBone;
 import software.bernie.geckolib.animation.AnimationState;
 import software.bernie.geckolib.model.GeoModel;
+import software.bernie.geckolib.renderer.GeoRenderer;
 
 public class ToucanModel extends GeoModel<Toucan> {
     @Override
-    public @NotNull ResourceLocation getModelResource(@NotNull Toucan animatable) {
+    public ResourceLocation getModelResource(Toucan animatable, @Nullable GeoRenderer<Toucan> renderer) {
         return ResourceLocation.fromNamespaceAndPath("ott", "geo/entity/toucan/toucan.geo.json");
     }
 
     @Override
-    public @NotNull ResourceLocation getTextureResource(@NotNull Toucan animatable) {
+    @Deprecated
+    public @NotNull ResourceLocation getModelResource(@NotNull Toucan animatable) {
+        return getModelResource(animatable, null);
+    }
+
+    @Override
+    public ResourceLocation getTextureResource(Toucan animatable, @Nullable GeoRenderer<Toucan> renderer) {
         return animatable.getVariant() == 1
                 ? ResourceLocation.fromNamespaceAndPath("ott", "textures/entity/toucan/toucan_red.png")
                 : ResourceLocation.fromNamespaceAndPath("ott", "textures/entity/toucan/toucan.png");
+    }
+
+    @Override
+    @Deprecated
+    public @NotNull ResourceLocation getTextureResource(@NotNull Toucan animatable) {
+        return getTextureResource(animatable, null);
     }
 
     @Override

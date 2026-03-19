@@ -74,22 +74,21 @@ Stone Sets:
 - cut/smooth
 - polished
 - chiseled
+- mossy chiseled
 - brick
-- cracked brick
 - mossy brick
+- cracked brick
 - mossy cracked brick
 - chiseled brick
 - mossy chiseled brick
-- large brick
-- mossy large brick
-- cracked large brick
-- mossy cracked large brick
 - tiles
 - mossy tiles
 - cracked tiles
 - mossy cracked tiles
 - pillar
+- mossy pillar
 - pillar cap
+- mossy pillar cap
 
 Wood Sets:
 - log
@@ -102,6 +101,7 @@ Wood Sets:
 Sand Sets:
 - sand
 - sandstone
+- cut sandstone
 - smooth sandstone
 - cracked sandstone
 - chiseled sandstone
@@ -118,6 +118,24 @@ Sand Sets:
 - quicksand
 
 Add additional salt block textures
+
+create crow, raven, pigeon to existing bird model
+
+create white-tailed deer, elk, caribou, mossbloom to deer model
+
+create timber wolf using vanilla wolf model
+
+create giant boar using vanilla boar model
+
+create grizzly bear using brown bear model
+
+remodel polar bear using brown bear model
+
+create wither skeleton wolf to skeleton wolf model
+
+create anaconda using snake model
+
+create tiger, white tiger, leopard, jaguar, cheetah using puma model
 
 Do Aurora blocks the TF way
 
@@ -381,12 +399,6 @@ look at goblin trader goblin tuned items
 Torn Ancient Tome
 - loot from custom dungeons
 - 3 combined to make Ancient Tome
-
-Highland
-- cows and sheep
-- fuzzy flop of bangs in face
-- shaggy
-- boar vs pig
 
 Structures Nonsense:
 =====

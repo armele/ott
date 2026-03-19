@@ -202,6 +202,19 @@ public class ModSounds {
     public static final DeferredHolder<SoundEvent, SoundEvent> CATERPILLAR_HURT = registerOttSoundEvent("entity.caterpillar.hurt");
     public static final DeferredHolder<SoundEvent, SoundEvent> CATERPILLAR_DEATH = registerOttSoundEvent("entity.caterpillar.death");
 
+    public static final DeferredHolder<SoundEvent, SoundEvent> BIRD_HURT = registerOttSoundEvent("entity.bird.hurt");
+    public static final DeferredHolder<SoundEvent, SoundEvent> BIRD_DEATH = registerOttSoundEvent("entity.bird.death");
+    public static final DeferredHolder<SoundEvent, SoundEvent> BIRD_FLY = registerOttSoundEvent("entity.bird.fly");
+    public static final DeferredHolder<SoundEvent, SoundEvent> BIRD_EAT = registerOttSoundEvent("entity.bird.eat");
+    public static final DeferredHolder<SoundEvent, SoundEvent> BIRD_PECK = registerOttSoundEvent("entity.bird.peck");
+    public static final DeferredHolder<SoundEvent, SoundEvent> BIRD_STEP = registerOttSoundEvent("entity.bird.step");
+    public static final DeferredHolder<SoundEvent, SoundEvent> BIRD_AMBIENT_BLUEJAY = registerOttSoundEvent("entity.bird.ambient_bluejay");
+    public static final DeferredHolder<SoundEvent, SoundEvent> BIRD_AMBIENT_CANARY = registerOttSoundEvent("entity.bird.ambient_canary");
+    public static final DeferredHolder<SoundEvent, SoundEvent> BIRD_AMBIENT_CARDINAL = registerOttSoundEvent("entity.bird.ambient_cardinal");
+    public static final DeferredHolder<SoundEvent, SoundEvent> BIRD_AMBIENT_FINCH = registerOttSoundEvent("entity.bird.ambient_finch");
+    public static final DeferredHolder<SoundEvent, SoundEvent> BIRD_AMBIENT_SPARROW = registerOttSoundEvent("entity.bird.ambient_sparrow");
+    public static final DeferredHolder<SoundEvent, SoundEvent> BIRD_AMBIENT_ROBIN = registerOttSoundEvent("entity.bird.ambient_robin");
+
     public static final DeferredHolder<SoundEvent, SoundEvent> NONE = registerSoundEvent("music.none");
     public static final DeferredHolder<SoundEvent, SoundEvent> BUNDLE_INSERT_FAIL = registerSoundEvent("item.bundle.insert_fail");
     public static final DeferredHolder<SoundEvent, SoundEvent> MUSIC_DISC_TEARS = registerSoundEvent("music_disc.tears");

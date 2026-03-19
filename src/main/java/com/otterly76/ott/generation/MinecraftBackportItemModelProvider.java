@@ -266,15 +266,16 @@ public class MinecraftBackportItemModelProvider extends ItemModelProvider {
             parentItemToBlockModel(state + "copper_grate", "block/" + state + "copper_grate");
             parentItemToBlockModel("waxed_" + state + "copper_grate", "block/waxed_" + state + "copper_grate");
 
-            getBuilder(state + "copper_hopper").parent(getExistingFile(mcLoc("item/hopper")))
+            getBuilder(state + "copper_hopper").parent(getExistingFile(modLoc("item/copper_hopper_item_base")))
                     .texture("top", mcLoc("block/" + state + "copper_hopper_top"))
                     .texture("inside", mcLoc("block/" + state + "copper_hopper_inside"))
-                    .texture("outside", mcLoc("block/" + state + "copper_hopper_outside"));
-
-            getBuilder("waxed_" + state + "copper_hopper").parent(getExistingFile(mcLoc("item/hopper")))
+                    .texture("outside", mcLoc("block/" + state + "copper_hopper_outside"))
+                    .texture("particle", mcLoc("block/" + state + "copper_hopper_outside"));
+            getBuilder("waxed_" + state + "copper_hopper").parent(getExistingFile(modLoc("item/copper_hopper_item_base")))
                     .texture("top", mcLoc("block/" + state + "copper_hopper_top"))
                     .texture("inside", mcLoc("block/" + state + "copper_hopper_inside"))
-                    .texture("outside", mcLoc("block/" + state + "copper_hopper_outside"));
+                    .texture("outside", mcLoc("block/" + state + "copper_hopper_outside"))
+                    .texture("particle", mcLoc("block/" + state + "copper_hopper_outside"));
 
             String ladderTextureName = "block/" + state + "copper_ladder";
             generatedItem(state + "copper_ladder", ladderTextureName);

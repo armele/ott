@@ -2,20 +2,28 @@ package com.otterly76.ott.client.model;
 
 import com.otterly76.ott.entity.custom.Gecko;
 import net.minecraft.resources.ResourceLocation;
+import org.jetbrains.annotations.Nullable;
 import software.bernie.geckolib.constant.DataTickets;
 import software.bernie.geckolib.cache.object.GeoBone;
 import software.bernie.geckolib.animation.AnimationState;
 import software.bernie.geckolib.model.GeoModel;
 import software.bernie.geckolib.model.data.EntityModelData;
+import software.bernie.geckolib.renderer.GeoRenderer;
 
 public class GeckoModel extends GeoModel<Gecko> {
     @Override
-    public ResourceLocation getModelResource(Gecko animatable) {
+    public ResourceLocation getModelResource(Gecko animatable, @Nullable GeoRenderer<Gecko> renderer) {
         return ResourceLocation.fromNamespaceAndPath("ott", "geo/entity/gecko/gecko.geo.json");
     }
 
     @Override
-    public ResourceLocation getTextureResource(Gecko animatable) {
+    @Deprecated
+    public ResourceLocation getModelResource(Gecko animatable) {
+        return getModelResource(animatable, null);
+    }
+
+    @Override
+    public ResourceLocation getTextureResource(Gecko animatable, @Nullable GeoRenderer<Gecko> renderer) {
         return switch (animatable.getVariant()) {
             case 1 -> ResourceLocation.fromNamespaceAndPath("ott", "textures/entity/gecko/green_gecko.png");
             case 2 -> ResourceLocation.fromNamespaceAndPath("ott", "textures/entity/gecko/tokay_gecko.png");
@@ -23,6 +31,12 @@ public class GeckoModel extends GeoModel<Gecko> {
             case 4 -> ResourceLocation.fromNamespaceAndPath("ott", "textures/entity/gecko/yellow_headed_gecko.png");
             default -> ResourceLocation.fromNamespaceAndPath("ott", "textures/entity/gecko/leopard_gecko.png");
         };
+    }
+
+    @Override
+    @Deprecated
+    public ResourceLocation getTextureResource(Gecko animatable) {
+        return getTextureResource(animatable, null);
     }
 
     @Override

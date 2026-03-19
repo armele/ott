@@ -30,6 +30,20 @@ public class OttEntityLootTableProvider extends EntityLootSubProvider {
     public void generate() {
         this.add(ModEntities.DUCK.get(), createChickenLikeDrops());
         this.add(ModEntities.GOOSE.get(), createChickenLikeDrops());
+        this.add(ModEntities.BLUEJAY.get(), createBirdDrops());
+        this.add(ModEntities.CANARY.get(), createBirdDrops());
+        this.add(ModEntities.CARDINAL.get(), createBirdDrops());
+        this.add(ModEntities.FINCH.get(), createBirdDrops());
+        this.add(ModEntities.ROBIN.get(), createBirdDrops());
+        this.add(ModEntities.SPARROW.get(), createBirdDrops());
+    }
+
+    private LootTable.Builder createBirdDrops() {
+        return LootTable.lootTable()
+                .withPool(LootPool.lootPool()
+                        .setRolls(ConstantValue.exactly(1.0F))
+                        .add(LootItem.lootTableItem(Items.FEATHER)
+                                .apply(SetItemCountFunction.setCount(UniformGenerator.between(1.0F, 2.0F)))));
     }
 
     private LootTable.Builder createChickenLikeDrops() {
@@ -47,6 +61,15 @@ public class OttEntityLootTableProvider extends EntityLootSubProvider {
 
     @Override
     protected @NotNull Stream<EntityType<?>> getKnownEntityTypes() {
-        return Stream.of(ModEntities.DUCK.get(), ModEntities.GOOSE.get());
+        return Stream.of(
+                ModEntities.DUCK.get(),
+                ModEntities.GOOSE.get(),
+                ModEntities.BLUEJAY.get(),
+                ModEntities.CANARY.get(),
+                ModEntities.CARDINAL.get(),
+                ModEntities.FINCH.get(),
+                ModEntities.ROBIN.get(),
+                ModEntities.SPARROW.get()
+        );
     }
 }

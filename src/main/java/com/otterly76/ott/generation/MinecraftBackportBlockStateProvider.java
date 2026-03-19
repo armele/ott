@@ -461,15 +461,17 @@ public class MinecraftBackportBlockStateProvider extends ModBlockStateProvider {
 
     protected void registerCopperHopper(Block block, String state) {
         String name = BuiltInRegistries.BLOCK.getKey(block).getPath();
-        ModelFile model = models().withExistingParent(name, mcLoc("block/hopper"))
+        ModelFile model = models().withExistingParent(name, modLoc("block/copper_hopper_base"))
                 .texture("top", mcLoc("block/" + state + "copper_hopper_top"))
                 .texture("inside", mcLoc("block/" + state + "copper_hopper_inside"))
                 .texture("outside", mcLoc("block/" + state + "copper_hopper_outside"))
+                .texture("particle", mcLoc("block/" + state + "copper_hopper_outside"))
                 .renderType("cutout");
-        ModelFile modelSide = models().withExistingParent(name + "_side", mcLoc("block/hopper_side"))
+        ModelFile modelSide = models().withExistingParent(name + "_side", modLoc("block/copper_hopper_side_base"))
                 .texture("top", mcLoc("block/" + state + "copper_hopper_top"))
                 .texture("inside", mcLoc("block/" + state + "copper_hopper_inside"))
-                .texture("side", mcLoc("block/" + state + "copper_hopper_outside"))
+                .texture("outside", mcLoc("block/" + state + "copper_hopper_outside"))
+                .texture("particle", mcLoc("block/" + state + "copper_hopper_outside"))
                 .renderType("cutout");
 
         getVariantBuilder(block).forAllStates(s -> {

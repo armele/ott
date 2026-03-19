@@ -1,0 +1,226 @@
+package com.otterly76.ott.entity.custom;
+
+import com.otterly76.ott.block.custom.ChrysalisBlock;
+import com.otterly76.ott.block.ModBlocks;
+import com.otterly76.ott.entity.ai.navigation.BetterWallClimberNavigation;
+import com.otterly76.ott.sound.ModSounds;
+import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
+import net.minecraft.core.particles.BlockParticleOption;
+import net.minecraft.core.particles.ParticleTypes;
+import net.minecraft.network.syncher.EntityDataAccessor;
+import net.minecraft.network.syncher.EntityDataSerializers;
+import net.minecraft.network.syncher.SynchedEntityData;
+import net.minecraft.server.level.ServerLevel;
+import net.minecraft.sounds.SoundEvent;
+import net.minecraft.sounds.SoundEvents;
+import net.minecraft.sounds.SoundSource;
+import net.minecraft.tags.BlockTags;
+import net.minecraft.tags.ItemTags;
+import net.minecraft.world.DifficultyInstance;
+import net.minecraft.world.damagesource.DamageSource;
+import net.minecraft.world.entity.*;
+import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
+import net.minecraft.world.entity.ai.attributes.Attributes;
+import net.minecraft.world.entity.ai.goal.FloatGoal;
+import net.minecraft.world.entity.ai.goal.MoveToBlockGoal;
+import net.minecraft.world.entity.ai.goal.WaterAvoidingRandomStrollGoal;
+import net.minecraft.world.entity.ai.navigation.PathNavigation;
+import net.minecraft.world.entity.animal.Animal;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.LevelReader;
+import net.minecraft.world.level.ServerLevelAccessor;
+import net.minecraft.world.level.block.state.BlockState;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
+import software.bernie.geckolib.animatable.GeoEntity;
+import software.bernie.geckolib.animatable.instance.AnimatableInstanceCache;
+import software.bernie.geckolib.animation.AnimatableManager;
+import software.bernie.geckolib.animation.AnimationController;
+import software.bernie.geckolib.animation.AnimationState;
+import software.bernie.geckolib.animation.RawAnimation;
+import software.bernie.geckolib.animation.PlayState;
+import software.bernie.geckolib.util.GeckoLibUtil;
+
+public class Caterpillar extends Animal implements GeoEntity {
+    protected static final RawAnimation IDLE = RawAnimation.begin().thenLoop("animation.sf_nba.caterpillar.idle");
+    protected static final RawAnimation CRAWL = RawAnimation.begin().thenLoop("animation.sf_nba.caterpillar.crawl");
+    private static final EntityDataAccessor<Byte> CLIMBING = SynchedEntityData.defineId(Caterpillar.class, EntityDataSerializers.BYTE);
+
+    private final AnimatableInstanceCache geoCache = GeckoLibUtil.createInstanceCache(this);
+
+    public Caterpillar(EntityType<? extends Animal> entityType, Level level) {
+        super(entityType, level);
+    }
+
+    public static AttributeSupplier.Builder createAttributes() {
+        return Mob.createMobAttributes().add(Attributes.MAX_HEALTH, 5.0D).add(Attributes.MOVEMENT_SPEED, 0.1F);
+    }
+
+    @Override
+    protected void registerGoals() {
+        this.goalSelector.addGoal(0, new FloatGoal(this));
+        this.goalSelector.addGoal(1, new CocoonGoal(this, 1.0F, 5, 2));
+        this.goalSelector.addGoal(2, new WaterAvoidingRandomStrollGoal(this, 1.0F));
+    }
+
+    @Override
+    protected @NotNull PathNavigation createNavigation(@NotNull Level level) {
+        return new BetterWallClimberNavigation(this, level);
+    }
+
+    @Override
+    public void tick() {
+        super.tick();
+        if (!this.level().isClientSide) {
+            this.setClimbing(this.horizontalCollision);
+        }
+    }
+
+    @Override
+    public boolean onClimbable() {
+        return this.isClimbing();
+    }
+
+    public boolean isClimbing() {
+        return (this.entityData.get(CLIMBING) & 1) != 0;
+    }
+
+    public void setClimbing(boolean climbing) {
+        byte b = this.entityData.get(CLIMBING);
+        if (climbing) {
+            b = (byte) (b | 1);
+        } else {
+            b = (byte) (b & -2);
+        }
+        this.entityData.set(CLIMBING, b);
+    }
+
+    @Override
+    protected void defineSynchedData(SynchedEntityData.@NotNull Builder builder) {
+        super.defineSynchedData(builder);
+        builder.define(CLIMBING, (byte) 0);
+    }
+
+    @Override
+    public @NotNull SpawnGroupData finalizeSpawn(@NotNull ServerLevelAccessor level, @NotNull DifficultyInstance difficulty, @NotNull MobSpawnType reason, @Nullable SpawnGroupData spawnData) {
+        this.setAge(0);
+        return super.finalizeSpawn(level, difficulty, reason, spawnData);
+    }
+
+    @Nullable
+    @Override
+    public AgeableMob getBreedOffspring(@NotNull ServerLevel level, @NotNull AgeableMob mob) {
+        return null;
+    }
+
+    @Override
+    public boolean isFood(@NotNull ItemStack stack) {
+        return this.isBaby() && stack.is(ItemTags.FLOWERS);
+    }
+
+    @Nullable
+    @Override
+    protected SoundEvent getHurtSound(@NotNull DamageSource damageSource) {
+        return ModSounds.CATERPILLAR_HURT.get();
+    }
+
+    @Nullable
+    @Override
+    protected SoundEvent getDeathSound() {
+        return ModSounds.CATERPILLAR_DEATH.get();
+    }
+
+    @Override
+    public boolean causeFallDamage(float fallDistance, float multiplier, @NotNull DamageSource source) {
+        return false;
+    }
+
+    @Override
+    protected void checkFallDamage(double y, boolean onGround, @NotNull BlockState state, @NotNull BlockPos pos) {
+    }
+
+    @Override
+    public AnimatableInstanceCache getAnimatableInstanceCache() {
+        return this.geoCache;
+    }
+
+    protected <E extends Caterpillar> PlayState predicate(final AnimationState<E> event) {
+        if (this.getDeltaMovement().horizontalDistanceSqr() > 1.0E-6) {
+            event.getController().setAnimation(CRAWL);
+            return PlayState.CONTINUE;
+        } else {
+            event.getController().setAnimation(IDLE);
+            return PlayState.CONTINUE;
+        }
+    }
+
+    @Override
+    public void registerControllers(final AnimatableManager.ControllerRegistrar controllers) {
+        controllers.add(new AnimationController<>(this, "controller", 5, this::predicate));
+    }
+
+    private static class CocoonGoal extends MoveToBlockGoal {
+        private final Caterpillar caterpillar;
+        private @NotNull Direction facing = Direction.NORTH;
+        private BlockPos logPos = BlockPos.ZERO;
+
+        public CocoonGoal(Caterpillar mob, double speedModifier, int searchRange, int verticalSearchRange) {
+            super(mob, speedModifier, searchRange, verticalSearchRange);
+            this.caterpillar = mob;
+        }
+
+        @Override
+        public boolean canUse() {
+            return !caterpillar.isBaby() && super.canUse();
+        }
+
+        @Override
+        protected boolean isValidTarget(LevelReader level, @NotNull BlockPos pos) {
+            if (level.getBlockState(pos).isAir()) {
+                for (Direction direction : Direction.Plane.HORIZONTAL) {
+                    if (level.getBlockState(pos.relative(direction)).is(BlockTags.LOGS) && level.getBlockState(pos.relative(direction).below()).is(BlockTags.LOGS)) {
+                        this.facing = direction;
+                        this.logPos = pos.relative(direction);
+                        return true;
+                    }
+                }
+            }
+            return false;
+        }
+
+        @Override
+        public void tick() {
+            BlockPos targetPos = this.getMoveToTarget();
+            if (!targetPos.closerToCenterThan(caterpillar.position(), this.acceptedDistance())) {
+                ++this.tryTicks;
+                if (this.shouldRecalculatePath()) {
+                    caterpillar.getNavigation().moveTo(targetPos.getX() + 0.5D, targetPos.getY(), targetPos.getZ() + 0.5D, this.speedModifier);
+                }
+            } else {
+                --this.tryTicks;
+            }
+            caterpillar.getLookControl().setLookAt(logPos.getX() + 0.5D, logPos.getY() + 1, logPos.getZ() + 0.5D, 10.0F, this.caterpillar.getMaxHeadXRot());
+            Level level = caterpillar.level();
+            if (this.isValidTarget(level, caterpillar.blockPosition())) {
+                if (!level.isClientSide) {
+                    ((ServerLevel) level).sendParticles(new BlockParticleOption(ParticleTypes.BLOCK, ModBlocks.CHRYSALIS.get().defaultBlockState()), caterpillar.getX(), caterpillar.getY(), caterpillar.getZ(), 50, caterpillar.getBbWidth() / 4.0F, caterpillar.getBbHeight() / 4.0F, caterpillar.getBbWidth() / 4.0F, 0.05D);
+                }
+                caterpillar.discard();
+                level.setBlockAndUpdate(caterpillar.blockPosition(), ModBlocks.CHRYSALIS.get().defaultBlockState().setValue(ChrysalisBlock.FACING, facing));
+                level.playSound(null, caterpillar.blockPosition(), SoundEvents.GRASS_PLACE, SoundSource.BLOCKS, 0.7F, 0.9F + level.random.nextFloat() * 0.2F);
+            }
+        }
+
+        @Override
+        protected void moveMobToBlock() {
+            caterpillar.getNavigation().moveTo(logPos.getX() + 0.5D, logPos.getY() + 1.0D, logPos.getZ() + 0.5D, this.speedModifier);
+        }
+
+        @Override
+        protected @NotNull BlockPos getMoveToTarget() {
+            return logPos.above();
+        }
+    }
+}

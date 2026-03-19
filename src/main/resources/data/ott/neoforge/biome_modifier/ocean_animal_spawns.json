@@ -1,0 +1,30 @@
+{
+  "type": "neoforge:add_spawns",
+  "biomes": "#minecraft:is_ocean",
+  "spawners": [
+    {
+      "type": "ott:sunfish",
+      "weight": 5,
+      "minCount": 1,
+      "maxCount": 2
+    },
+    {
+      "type": "ott:krill",
+      "weight": 20,
+      "minCount": 4,
+      "maxCount": 12
+    },
+    {
+      "type": "ott:angelfish",
+      "weight": 10,
+      "minCount": 2,
+      "maxCount": 6
+    },
+    {
+      "type": "ott:flounder",
+      "weight": 12,
+      "minCount": 1,
+      "maxCount": 3
+    }
+  ]
+}

@@ -757,6 +757,12 @@ public class CreativeTabHandler {
             safeAccept(event, ModItems.CATFISH_BUCKET, visibility);
             safeAccept(event, ModItems.BASS_SPAWN_EGG, visibility);
             safeAccept(event, ModItems.BASS_BUCKET, visibility);
+            safeAccept(event, ModItems.BLUEJAY_SPAWN_EGG, visibility);
+            safeAccept(event, ModItems.CANARY_SPAWN_EGG, visibility);
+            safeAccept(event, ModItems.CARDINAL_SPAWN_EGG, visibility);
+            safeAccept(event, ModItems.FINCH_SPAWN_EGG, visibility);
+            safeAccept(event, ModItems.ROBIN_SPAWN_EGG, visibility);
+            safeAccept(event, ModItems.SPARROW_SPAWN_EGG, visibility);
 
             safeAccept(event, ModItems.BUTTERFLY_SPAWN_EGG, visibility);
             safeAccept(event, ModItems.CATERPILLAR_SPAWN_EGG, visibility);

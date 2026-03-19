@@ -88,6 +88,24 @@ public class ModEntities {
     public static final Supplier<EntityType<com.otterly76.ott.entity.custom.Toucan>> TOUCAN = OTT_ENTITY_TYPES.register("toucan",
             () -> Builder.of(com.otterly76.ott.entity.custom.Toucan::new, MobCategory.CREATURE).sized(0.5F, 0.5F).eyeHeight(0.3F).clientTrackingRange(8).build("toucan"));
 
+    public static final Supplier<EntityType<com.otterly76.ott.entity.custom.Bird>> BLUEJAY = OTT_ENTITY_TYPES.register("bluejay",
+            () -> Builder.of(com.otterly76.ott.entity.custom.Bird::new, MobCategory.CREATURE).sized(0.5F, 0.6F).eyeHeight(0.36F).clientTrackingRange(8).build("bluejay"));
+
+    public static final Supplier<EntityType<com.otterly76.ott.entity.custom.Bird>> CANARY = OTT_ENTITY_TYPES.register("canary",
+            () -> Builder.of(com.otterly76.ott.entity.custom.Bird::new, MobCategory.CREATURE).sized(0.5F, 0.6F).eyeHeight(0.36F).clientTrackingRange(8).build("canary"));
+
+    public static final Supplier<EntityType<com.otterly76.ott.entity.custom.Bird>> CARDINAL = OTT_ENTITY_TYPES.register("cardinal",
+            () -> Builder.of(com.otterly76.ott.entity.custom.Bird::new, MobCategory.CREATURE).sized(0.5F, 0.6F).eyeHeight(0.36F).clientTrackingRange(8).build("cardinal"));
+
+    public static final Supplier<EntityType<com.otterly76.ott.entity.custom.Bird>> FINCH = OTT_ENTITY_TYPES.register("finch",
+            () -> Builder.of(com.otterly76.ott.entity.custom.Bird::new, MobCategory.CREATURE).sized(0.5F, 0.6F).eyeHeight(0.36F).clientTrackingRange(8).build("finch"));
+
+    public static final Supplier<EntityType<com.otterly76.ott.entity.custom.Bird>> ROBIN = OTT_ENTITY_TYPES.register("robin",
+            () -> Builder.of(com.otterly76.ott.entity.custom.Bird::new, MobCategory.CREATURE).sized(0.5F, 0.6F).eyeHeight(0.36F).clientTrackingRange(8).build("robin"));
+
+    public static final Supplier<EntityType<com.otterly76.ott.entity.custom.Bird>> SPARROW = OTT_ENTITY_TYPES.register("sparrow",
+            () -> Builder.of(com.otterly76.ott.entity.custom.Bird::new, MobCategory.CREATURE).sized(0.5F, 0.6F).eyeHeight(0.36F).clientTrackingRange(8).build("sparrow"));
+
     public static final Supplier<EntityType<com.otterly76.ott.entity.custom.Catfish>> CATFISH = OTT_ENTITY_TYPES.register("catfish",
             () -> Builder.of(com.otterly76.ott.entity.custom.Catfish::new, MobCategory.WATER_AMBIENT).sized(0.7F, 0.4F).clientTrackingRange(8).build("catfish"));
 

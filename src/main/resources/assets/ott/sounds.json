@@ -160,5 +160,103 @@
       "ott:entity/slug/death2",
       "ott:entity/slug/death3"
     ]
+  },
+  "entity.bird.hurt": {
+    "sounds": [
+      "ott:entity/bird/hurt1",
+      "ott:entity/bird/hurt2",
+      "ott:entity/bird/hurt3"
+    ]
+  },
+  "entity.bird.death": {
+    "sounds": [
+      "ott:entity/bird/death1",
+      "ott:entity/bird/death2",
+      "ott:entity/bird/death3"
+    ]
+  },
+  "entity.bird.fly": {
+    "sounds": [
+      "ott:entity/bird/fly1",
+      "ott:entity/bird/fly2",
+      "ott:entity/bird/fly3",
+      "ott:entity/bird/fly4"
+    ]
+  },
+  "entity.bird.eat": {
+    "sounds": [
+      "ott:entity/bird/eat1",
+      "ott:entity/bird/eat2",
+      "ott:entity/bird/eat3"
+    ]
+  },
+  "entity.bird.peck": {
+    "sounds": [
+      "ott:entity/bird/peck1",
+      "ott:entity/bird/peck2",
+      "ott:entity/bird/peck3"
+    ]
+  },
+  "entity.bird.step": {
+    "sounds": [
+      "ott:entity/bird/step1",
+      "ott:entity/bird/step2",
+      "ott:entity/bird/step3",
+      "ott:entity/bird/step4",
+      "ott:entity/bird/step5"
+    ]
+  },
+  "entity.bird.ambient_bluejay": {
+    "sounds": [
+      "ott:entity/bluejay/idle1",
+      "ott:entity/bluejay/idle2",
+      "ott:entity/bluejay/idle3"
+    ]
+  },
+  "entity.bird.ambient_canary": {
+    "sounds": [
+      "ott:entity/canary/idle",
+      "ott:entity/canary/idle1",
+      "ott:entity/canary/idle2",
+      "ott:entity/canary/idle4",
+      "ott:entity/canary/idle5",
+      "ott:entity/canary/song"
+    ]
+  },
+  "entity.bird.ambient_cardinal": {
+    "sounds": [
+      "ott:entity/cardinal/idle",
+      "ott:entity/cardinal/idle1",
+      "ott:entity/cardinal/idle2",
+      "ott:entity/cardinal/idle4",
+      "ott:entity/cardinal/song"
+    ]
+  },
+  "entity.bird.ambient_finch": {
+    "sounds": [
+      "ott:entity/finch/idle1",
+      "ott:entity/finch/idle2",
+      "ott:entity/finch/idle3",
+      "ott:entity/finch/song1",
+      "ott:entity/finch/song2",
+      "ott:entity/finch/song3"
+    ]
+  },
+  "entity.bird.ambient_sparrow": {
+    "sounds": [
+      "ott:entity/sparrow/idle1",
+      "ott:entity/sparrow/idle2",
+      "ott:entity/sparrow/idle3",
+      "ott:entity/sparrow/idle4"
+    ]
+  },
+  "entity.bird.ambient_robin": {
+    "sounds": [
+      "ott:entity/robin/idle",
+      "ott:entity/robin/idle1",
+      "ott:entity/robin/idle2",
+      "ott:entity/robin/idle3",
+      "ott:entity/robin/song"
+    ]
   }
 }
