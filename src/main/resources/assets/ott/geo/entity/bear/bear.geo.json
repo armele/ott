@@ -1,0 +1,135 @@
+{
+  "format_version": "1.12.0",
+  "minecraft:geometry": [
+    {
+      "description": {
+        "identifier": "geometry.sf_nba.bear",
+        "texture_width": 128,
+        "texture_height": 64,
+        "visible_bounds_width": 3,
+        "visible_bounds_height": 2.5,
+        "visible_bounds_offset": [0, 0.75, 0]
+      },
+      "bones": [
+        {
+          "name": "root",
+          "pivot": [-1, 0, 0]
+        },
+        {
+          "name": "butt",
+          "parent": "root",
+          "pivot": [0, 15, 11]
+        },
+        {
+          "name": "body",
+          "parent": "butt",
+          "pivot": [0, 15, -1],
+          "cubes": [
+            {
+              "origin": [-8.5, 18.5, -6.5],
+              "size": [17, 10, 15],
+              "pivot": [0, 15.5, 0],
+              "rotation": [90, 0, 0],
+              "uv": [0, 0]
+            },
+            {
+              "origin": [-7.5, 4.5, -6.5],
+              "size": [15, 14, 13],
+              "pivot": [0, 15.5, 0],
+              "rotation": [90, 0, 0],
+              "uv": [0, 25]
+            }
+          ]
+        },
+        {
+          "name": "tail",
+          "parent": "body",
+          "pivot": [0, 20, 11],
+          "cubes": [
+            {
+              "origin": [-1.5, 15.5, 16.5],
+              "size": [3, 3, 4],
+              "pivot": [0, 15.5, 14],
+              "rotation": [90, 0, 0],
+              "uv": [82, 40]
+            }
+          ]
+        },
+        {
+          "name": "skullRot",
+          "parent": "body",
+          "pivot": [0, 12.25, -13.375]
+        },
+        {
+          "name": "skull",
+          "parent": "skullRot",
+          "pivot": [0, 12.25, -13.375],
+          "cubes": [
+            { "origin": [-5.5, 9, -20], "size": [11, 10, 7], "uv": [66, 6] },
+            { "origin": [3.5, 18, -18], "size": [3, 3, 1], "uv": [82, 47] },
+            {
+              "origin": [-6.5, 18, -18],
+              "size": [3, 3, 1],
+              "uv": [82, 47],
+              "mirror": true
+            },
+            { "origin": [-3.5, 9, -24], "size": [7, 6, 4], "uv": [56, 25] }
+          ]
+        },
+        {
+          "name": "legs",
+          "parent": "root",
+          "pivot": [-4, 9, -9]
+        },
+        {
+          "name": "rightArm",
+          "parent": "legs",
+          "pivot": [-4, 9, -9],
+          "cubes": [
+            {
+              "origin": [-6.5, 0, -12],
+              "size": [5, 9, 6],
+              "uv": [60, 37],
+              "mirror": true
+            }
+          ]
+        },
+        {
+          "name": "rightHand",
+          "parent": "rightArm",
+          "pivot": [-4.5, 2, -12],
+          "rotation": [0, 90, 0]
+        },
+        {
+          "name": "leftLeg",
+          "parent": "legs",
+          "pivot": [4, 9, 7],
+          "cubes": [
+            { "origin": [1.5, 0, 4], "size": [5, 9, 6], "uv": [60, 37] }
+          ]
+        },
+        {
+          "name": "rightLeg",
+          "parent": "legs",
+          "pivot": [-4, 9, 7],
+          "cubes": [
+            {
+              "origin": [-6.5, 0, 4],
+              "size": [5, 9, 6],
+              "uv": [60, 37],
+              "mirror": true
+            }
+          ]
+        },
+        {
+          "name": "leftArm",
+          "parent": "legs",
+          "pivot": [4, 9, -9],
+          "cubes": [
+            { "origin": [1.5, 0, -12], "size": [5, 9, 6], "uv": [60, 37] }
+          ]
+        }
+      ]
+    }
+  ]
+}
