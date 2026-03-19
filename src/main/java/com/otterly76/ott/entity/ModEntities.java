@@ -88,6 +88,21 @@ public class ModEntities {
     public static final Supplier<EntityType<com.otterly76.ott.entity.custom.Toucan>> TOUCAN = OTT_ENTITY_TYPES.register("toucan",
             () -> Builder.of(com.otterly76.ott.entity.custom.Toucan::new, MobCategory.CREATURE).sized(0.5F, 0.5F).eyeHeight(0.3F).clientTrackingRange(8).build("toucan"));
 
+    public static final Supplier<EntityType<com.otterly76.ott.entity.custom.Catfish>> CATFISH = OTT_ENTITY_TYPES.register("catfish",
+            () -> Builder.of(com.otterly76.ott.entity.custom.Catfish::new, MobCategory.WATER_AMBIENT).sized(0.7F, 0.4F).clientTrackingRange(8).build("catfish"));
+
+    public static final Supplier<EntityType<com.otterly76.ott.entity.custom.Bass>> BASS = OTT_ENTITY_TYPES.register("bass",
+            () -> Builder.of(com.otterly76.ott.entity.custom.Bass::new, MobCategory.WATER_AMBIENT).sized(0.7F, 0.4F).clientTrackingRange(8).build("bass"));
+
+    public static final Supplier<EntityType<com.otterly76.ott.entity.custom.Butterfly>> BUTTERFLY = OTT_ENTITY_TYPES.register("butterfly",
+            () -> Builder.of(com.otterly76.ott.entity.custom.Butterfly::new, MobCategory.AMBIENT).sized(0.5F, 0.5F).clientTrackingRange(8).build("butterfly"));
+
+    public static final Supplier<EntityType<com.otterly76.ott.entity.custom.Caterpillar>> CATERPILLAR = OTT_ENTITY_TYPES.register("caterpillar",
+            () -> Builder.of(com.otterly76.ott.entity.custom.Caterpillar::new, MobCategory.AMBIENT).sized(0.4F, 0.3F).clientTrackingRange(8).build("caterpillar"));
+
+    public static final Supplier<EntityType<com.otterly76.ott.entity.custom.Firefly>> FIREFLY = OTT_ENTITY_TYPES.register("firefly",
+            () -> Builder.of(com.otterly76.ott.entity.custom.Firefly::new, MobCategory.AMBIENT).sized(0.25F, 0.25F).clientTrackingRange(8).build("firefly"));
+
     public static final Supplier<EntityType<com.otterly76.ott.entity.projectile.EmuEggEntity>> EMU_EGG = OTT_ENTITY_TYPES.register("emu_egg",
             () -> Builder.<com.otterly76.ott.entity.projectile.EmuEggEntity>of(com.otterly76.ott.entity.projectile.EmuEggEntity::new, MobCategory.MISC).sized(0.25F, 0.25F).clientTrackingRange(4).updateInterval(10).build("emu_egg"));
 

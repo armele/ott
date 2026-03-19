@@ -944,6 +944,11 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
                 .requires(ModItems.SALT.get())
                 .unlockedBy("has_salt", has(ModItems.SALT.get()))
                 .save(noAdv, getRecipePath("ott", "salted_kelp"));
+
+        // Catfish
+        cooking(noAdv, List.of(ModItems.CATFISH.get()), RecipeCategory.FOOD, ModItems.COOKED_CATFISH.get(), 0.35F, "cooked_catfish");
+        // Bass
+        cooking(noAdv, List.of(ModItems.BASS.get()), RecipeCategory.FOOD, ModItems.COOKED_BASS.get(), 0.35F, "cooked_bass");
     }
 
     private void cooking(RecipeOutput exporter, List<ItemLike> ingredients, RecipeCategory category, ItemLike result, float experience, String name) {

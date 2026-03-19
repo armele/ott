@@ -132,6 +132,7 @@ public class ModTags {
         public static final TagKey<net.minecraft.world.level.biome.Biome> HAS_DARK_LEAF_LITTER = createTag("has_dark_leaf_litter");
         public static final TagKey<net.minecraft.world.level.biome.Biome> HAS_PALE_LEAF_LITTER = createTag("has_pale_leaf_litter");
         public static final TagKey<net.minecraft.world.level.biome.Biome> SPAWNS_OAK_NESTED_TREES = createTag("spawns_oak_nested_trees");
+        public static final TagKey<net.minecraft.world.level.biome.Biome> IS_SNOWY = createTag("is_snowy");
         public static final TagKey<net.minecraft.world.level.biome.Biome> IS_HUMID = commonTag("is_humid");
         public static final TagKey<net.minecraft.world.level.biome.Biome> IS_DRY = commonTag("is_dry");
 
@@ -151,6 +152,7 @@ public class ModTags {
         public static final TagKey<net.minecraft.world.entity.EntityType<?>> ACCEPTS_IRON_GOLEM_GIFT = mcTag("accepts_iron_golem_gift");
         public static final TagKey<net.minecraft.world.entity.EntityType<?>> CANDIDATE_FOR_IRON_GOLEM_GIFT = mcTag("candidate_for_iron_golem_gift");
         public static final TagKey<net.minecraft.world.entity.EntityType<?>> SMART_ANIMALS = createTag("smart_animals");
+        public static final TagKey<net.minecraft.world.entity.EntityType<?>> CATFISH_HOSTILES = createTag("catfish_hostiles");
 
         @SuppressWarnings("SameParameterValue")
         private static TagKey<net.minecraft.world.entity.EntityType<?>> createTag(String name) {

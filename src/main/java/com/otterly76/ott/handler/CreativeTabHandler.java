@@ -124,6 +124,7 @@ public class CreativeTabHandler {
             safeInsertAfter(event, Items.SNIFFER_EGG.getDefaultInstance(), new ItemStack(ModBlocks.DRIED_GHAST.get()), visibility);
             safeInsertAfter(event, Items.HONEY_BLOCK.getDefaultInstance(), new ItemStack(ModBlocks.RESIN_BLOCK.get()), visibility);
             safeInsertAfter(event, new ItemStack(Items.LILY_PAD), new ItemStack(ModBlocks.BIG_LILY_PAD.get()), visibility);
+            safeInsertAfter(event, new ItemStack(ModBlocks.BIG_LILY_PAD.get()), new ItemStack(ModBlocks.CHRYSALIS.get()), visibility);
         }
 
         if (event.getTabKey() == CreativeModeTabs.COLORED_BLOCKS) {
@@ -453,8 +454,10 @@ public class CreativeTabHandler {
                     ModItems.ANGELFISH_BUCKET,
                     ModItems.BARRELEYE_BUCKET,
                     ModItems.FLOUNDER_BUCKET,
-                    ModItems.MARINE_IGUANA_BUCKET
-             ), visibility);
+                    ModItems.MARINE_IGUANA_BUCKET,
+                    ModItems.CATFISH_BUCKET,
+                    ModItems.BASS_BUCKET
+            ), visibility);
 
             insertAllAfter(event, Items.MUSIC_DISC_RELIC, List.of(
                     ModItems.MUSIC_DISC_TEARS,
@@ -487,6 +490,10 @@ public class CreativeTabHandler {
                     ModItems.COOKED_SUNFISH_MEAT,
                     ModItems.RAW_GOLDEN_SUNFISH_MEAT,
                     ModItems.COOKED_GOLDEN_SUNFISH_MEAT,
+                    ModItems.CATFISH,
+                    ModItems.COOKED_CATFISH,
+                    ModItems.BASS,
+                    ModItems.COOKED_BASS,
                     ModItems.SALTED_KELP
             ), visibility);
         }
@@ -746,6 +753,15 @@ public class CreativeTabHandler {
             safeAccept(event, ModItems.HOOPOE_SPAWN_EGG, visibility);
             safeAccept(event, ModItems.PHEASANT_SPAWN_EGG, visibility);
             safeAccept(event, ModItems.TOUCAN_SPAWN_EGG, visibility);
+            safeAccept(event, ModItems.CATFISH_SPAWN_EGG, visibility);
+            safeAccept(event, ModItems.CATFISH_BUCKET, visibility);
+            safeAccept(event, ModItems.BASS_SPAWN_EGG, visibility);
+            safeAccept(event, ModItems.BASS_BUCKET, visibility);
+
+            safeAccept(event, ModItems.BUTTERFLY_SPAWN_EGG, visibility);
+            safeAccept(event, ModItems.CATERPILLAR_SPAWN_EGG, visibility);
+            safeAccept(event, ModItems.FIREFLY_SPAWN_EGG, visibility);
+            safeAccept(event, ModItems.CHRYSALIS.get(), visibility);
         }
     }
 

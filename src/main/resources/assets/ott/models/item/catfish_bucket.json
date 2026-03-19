@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "ott:item/lower_bucket",
+    "layer1": "ott:item/catfish_bucket_content"
+  }
+}

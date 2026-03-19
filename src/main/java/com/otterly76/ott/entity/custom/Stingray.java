@@ -1,6 +1,6 @@
 package com.otterly76.ott.entity.custom;
 
-import com.otterly76.ott.entity.ai.goal.CustomRandomSwimGoal;
+import com.otterly76.ott.entity.ai.goal.BottomSwimGoal;
 import com.otterly76.ott.entity.ai.navigation.SmartBodyHelper;
 import com.otterly76.ott.entity.ai.navigation.SmoothSwimmingMoveControlButNotBad;
 import com.otterly76.ott.item.ModItems;
@@ -200,7 +200,7 @@ public class Stingray extends AbstractFish implements GeoEntity {
         this.goalSelector.addGoal(4, new RandomLookAroundGoal(this));
         this.goalSelector.addGoal(5, new LookAtPlayerGoal(this, Player.class, 6.0F));
         this.goalSelector.addGoal(0, new TryFindWaterGoal(this));
-        this.goalSelector.addGoal(1, new CustomRandomSwimGoal(this, 0.8, 1, 20, 20, 3));
+        this.goalSelector.addGoal(1, new BottomSwimGoal(this, 0.5, 10));
         this.goalSelector.addGoal(2, new RandomStrollGoal(this, 0.8, 15) {
             @Override
             public boolean canUse() {

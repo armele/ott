@@ -41,61 +41,124 @@
   },
   "entity.emu.ambient": {
     "sounds": [
-      { "name": "ott:entity/emu_ambient0" },
-      { "name": "ott:entity/emu_ambient1" }
+      { "name": "ott:entity/emu/emu_ambient0" },
+      { "name": "ott:entity/emu/emu_ambient1" }
     ]
   },
   "entity.emu.hurt": {
     "sounds": [
-      { "name": "ott:entity/emu_hurt" },
-      { "name": "ott:entity/emu_hurt1" }
+      { "name": "ott:entity/emu/emu_hurt" },
+      { "name": "ott:entity/emu/emu_hurt1" }
     ]
   },
   "entity.emu.death": {
     "sounds": [
-      { "name": "ott:entity/emu_death" }
+      { "name": "ott:entity/emu/emu_death" }
     ]
   },
   "entity.gecko.ambient": {
     "sounds": [
-      { "name": "ott:entity/gecko_ambient1" },
-      { "name": "ott:entity/gecko_ambient2" },
-      { "name": "ott:entity/gecko_ambient3" }
+      { "name": "ott:entity/gecko/gecko_ambient1" },
+      { "name": "ott:entity/gecko/gecko_ambient2" },
+      { "name": "ott:entity/gecko/gecko_ambient3" }
     ]
   },
   "entity.marine_iguana.sneeze": {
     "sounds": [
-      { "name": "ott:entity/sneeze" }
+      { "name": "ott:entity/marine_iguana/sneeze" }
     ]
   },
   "entity.pheasant.ambient": {
     "sounds": [
-      { "name": "ott:entity/pheasant_ambient1" },
-      { "name": "ott:entity/pheasant_ambient2" }
+      { "name": "ott:entity/pheasant/pheasant_ambient1" },
+      { "name": "ott:entity/pheasant/pheasant_ambient2" }
     ]
   },
   "entity.pheasant.hurt": {
     "sounds": [
-      { "name": "ott:entity/pheasant_hurt1" },
-      { "name": "ott:entity/pheasant_hurt2" }
+      { "name": "ott:entity/pheasant/pheasant_hurt1" },
+      { "name": "ott:entity/pheasant/pheasant_hurt2" }
     ]
   },
   "entity.toucan.ambient": {
     "sounds": [
-      { "name": "ott:entity/toucan_ambient1" },
-      { "name": "ott:entity/toucan_ambient2" },
-      { "name": "ott:entity/toucan_ambient3" }
+      { "name": "ott:entity/toucan/toucan_ambient1" },
+      { "name": "ott:entity/toucan/toucan_ambient2" },
+      { "name": "ott:entity/toucan/toucan_ambient3" }
     ]
   },
   "entity.toucan.hurt": {
     "sounds": [
-      { "name": "ott:entity/toucan_hurt1" },
-      { "name": "ott:entity/toucan_hurt2" }
+      { "name": "ott:entity/toucan/toucan_hurt1" },
+      { "name": "ott:entity/toucan/toucan_hurt2" }
     ]
   },
   "entity.toucan.death": {
     "sounds": [
-      { "name": "ott:entity/toucan_death" }
+      { "name": "ott:entity/toucan/toucan_death" }
+    ]
+  },
+  "entity.catfish.flop": {
+    "sounds": [
+      "ott:entity/catfish/flop1",
+      "ott:entity/catfish/flop2",
+      "ott:entity/catfish/flop3",
+      "ott:entity/catfish/flop4",
+      "ott:entity/catfish/flop5"
+    ]
+  },
+  "entity.bass.flop": {
+    "sounds": [
+      {
+        "name": "minecraft:entity/fish/flop1",
+        "pitch": 0.8,
+        "volume": 0.3
+      },
+      {
+        "name": "minecraft:entity/fish/flop2",
+        "pitch": 0.8,
+        "volume": 0.3
+      },
+      {
+        "name": "minecraft:entity/fish/flop3",
+        "pitch": 0.8,
+        "volume": 0.3
+      },
+      {
+        "name": "minecraft:entity/fish/flop4",
+        "pitch": 0.8,
+        "volume": 0.3
+      }
+    ]
+  },
+  "entity.firefly.ambient": {
+    "sounds": [
+      "ott:entity/firefly/idle1",
+      "ott:entity/firefly/idle2",
+      "ott:entity/firefly/idle3"
+    ]
+  },
+  "entity.firefly.hurt": {
+    "sounds": [
+      "ott:entity/firefly/hurt"
+    ]
+  },
+  "entity.firefly.death": {
+    "sounds": [
+      "ott:entity/firefly/death"
+    ]
+  },
+  "entity.caterpillar.hurt": {
+    "sounds": [
+      "ott:entity/snail/hurt1",
+      "ott:entity/snail/hurt2"
+    ]
+  },
+  "entity.caterpillar.death": {
+    "sounds": [
+      "ott:entity/slug/death1",
+      "ott:entity/slug/death2",
+      "ott:entity/slug/death3"
     ]
   }
 }
