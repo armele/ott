@@ -82,7 +82,7 @@ public class ServerGameEvents {
         ItemStack stack = event.getItemStack();
         Player player = event.getEntity();
 
-        if (stack.is(Items.IRON_BLOCK)) {
+        if (ItemInteractionHandler.isValidRepairItem(state, stack)) {
             if (state.is(net.minecraft.tags.BlockTags.ANVIL) && ItemInteractionHandler.tryRepairAnvil(level, pos, state)) {
                 event.setCancellationResult(InteractionResult.sidedSuccess(level.isClientSide));
                 event.setCanceled(true);

@@ -111,4 +111,6 @@ Features
 - Added new skybox textures ☀️🌙
 - Added new weather textures and expanded particle effects ⛅
 - Custom Biomes
+  - Verdant Forest
 - Custom Critters
+  - Man-O-War

@@ -4,6 +4,8 @@ package com.otterly76.ott.handler;
 import com.otterly76.ott.network.S2CAnvilRepairMessage;
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.AnvilBlock;
 import net.minecraft.world.level.block.Blocks;
@@ -11,7 +13,44 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.neoforged.neoforge.network.PacketDistributor;
 import org.jetbrains.annotations.Nullable;
 
+import java.util.Map;
+import java.util.function.Supplier;
+
 public class ItemInteractionHandler {
+
+    public static boolean isValidRepairItem(BlockState state, ItemStack stack) {
+        if (stack.is(Items.IRON_BLOCK)) {
+            return state.is(Blocks.DAMAGED_ANVIL) || state.is(Blocks.CHIPPED_ANVIL);
+        }
+
+        if (stack.is(Items.COPPER_BLOCK)) {
+            return isCopperAnvilOfState(state, "");
+        }
+        if (stack.is(Items.EXPOSED_COPPER)) {
+            return isCopperAnvilOfState(state, "exposed");
+        }
+        if (stack.is(Items.WEATHERED_COPPER)) {
+            return isCopperAnvilOfState(state, "weathered");
+        }
+        if (stack.is(Items.OXIDIZED_COPPER)) {
+            return isCopperAnvilOfState(state, "oxidized");
+        }
+
+        return false;
+    }
+
+    private static boolean isCopperAnvilOfState(BlockState state, String weatheringState) {
+        for (Map.Entry<String, Supplier<? extends net.minecraft.world.level.block.Block>> entry : com.otterly76.ott.block.ModBlocks.COPPER_ANVILS.entrySet()) {
+            if (state.is(entry.getValue().get())) {
+                String key = entry.getKey();
+                if (weatheringState.isEmpty()) {
+                    return !key.contains("exposed") && !key.contains("weathered") && !key.contains("oxidized");
+                }
+                return key.contains(weatheringState);
+            }
+        }
+        return false;
+    }
 
     public static boolean tryRepairAnvil(Level level, BlockPos pos, BlockState state) {
         BlockState repairedState = getRepairedState(state);
