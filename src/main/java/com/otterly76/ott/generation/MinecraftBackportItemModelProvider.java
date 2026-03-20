@@ -173,8 +173,6 @@ public class MinecraftBackportItemModelProvider extends ItemModelProvider {
         generatedItem(ModItems.BLUE_EGG.getId().getPath());
         generatedItem(ModItems.BROWN_EGG.getId().getPath());
 
-        spawnEggItem(ModItems.CREAKING_SPAWN_EGG.getId().getPath());
-        spawnEggItem(ModItems.HAPPY_GHAST_SPAWN_EGG.getId().getPath());
 
         ModItems.HARNESSES.values().forEach(item -> generatedItem(item.getId().getPath()));
 
@@ -289,7 +287,6 @@ public class MinecraftBackportItemModelProvider extends ItemModelProvider {
             generatedItem("waxed_" + state + "copper_rail", railTextureName);
         }
 
-        spawnEggItem(ModItems.COPPER_GOLEM_SPAWN_EGG.getId().getPath());
 
         withExistingParent(ModItems.PALE_OAK_BOAT.getId().getPath(), mcLoc("item/oak_boat"))
                 .texture("texture", mcLoc("item/entity/boat/pale_oak"));
@@ -340,9 +337,6 @@ public class MinecraftBackportItemModelProvider extends ItemModelProvider {
                 .end();
     }
 
-    private void spawnEggItem(String name) {
-        withExistingParent(name, mcLoc("item/template_spawn_egg"));
-    }
 
     private void doorItemFromTextures(String doorItemName) {
         // Expects minecraft textures:

@@ -5,7 +5,6 @@ import com.otterly76.ott.color.ModColorSets;
 import com.otterly76.ott.item.ModItems;
 import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.item.Item;
 import net.neoforged.neoforge.client.model.generators.ItemModelProvider;
 import net.neoforged.neoforge.client.model.generators.ModelFile;
 import net.neoforged.neoforge.common.data.ExistingFileHelper;
@@ -17,11 +16,6 @@ public class ModItemModelProvider extends ItemModelProvider {
 
     @Override
     protected void registerModels() {
-        spawnEggItem(ModItems.CREAKING_SPAWN_EGG);
-        spawnEggItem(ModItems.DUCK_SPAWN_EGG);
-        spawnEggItem(ModItems.GOOSE_SPAWN_EGG);
-        spawnEggItem(ModItems.MAN_O_WAR_SPAWN_EGG);
-
         // Use vanilla dragon_head as parent to inherit its display transforms (GUI, ground, hand, etc.)
         getBuilder(ModItems.DRAGON_SKULL.getId().getPath())
                 .parent(new ModelFile.UncheckedModelFile(mcLoc("item/dragon_head")));
@@ -112,20 +106,6 @@ public class ModItemModelProvider extends ItemModelProvider {
             getBuilder(color + "_dye").parent(getExistingFile(mcLoc("item/glass_bottle")))
                     .texture("0", modLoc("item/color_set/" + color));
         });
-    }
-
-    private void spawnEggItem(net.neoforged.neoforge.registries.DeferredItem<? extends Item> item) {
-        getBuilder(item.getId().getPath())
-                .parent(new ModelFile.UncheckedModelFile(mcLoc("item/template_spawn_egg")))
-                .texture("layer0", mcLoc("item/spawn_egg"))
-                .texture("layer1", mcLoc("item/spawn_egg_overlay"));
-    }
-
-    private void spawnEggItem(String name) {
-        getBuilder(name)
-                .parent(new ModelFile.UncheckedModelFile(mcLoc("item/template_spawn_egg")))
-                .texture("layer0", mcLoc("item/spawn_egg"))
-                .texture("layer1", mcLoc("item/spawn_egg_overlay"));
     }
 
     private void generatedItemFromTexture(String itemName, ResourceLocation texture) {

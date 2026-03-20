@@ -1,0 +1,1 @@
+{ "parent": "minecraft:item/generated", "textures": { "layer0": "ott:item/coral_snake_spawn_egg" } }
