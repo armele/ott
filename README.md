@@ -111,6 +111,25 @@ Features
 - Added new skybox textures ☀️🌙
 - Added new weather textures and expanded particle effects ⛅
 - Custom Biomes
-  - Verdant Forest
+
+  ||||
+  |:---------------|:--------------:|---------------:|
+  |  | Verdant Forest |  |
+  |  |  |  |
+
 - Custom Critters
-  - Man-O-War
+
+    |             |          |               |
+    |:------------|:--------:|--------------:|
+    | Alligator   |   Deer   |          Lion |
+    | Angelfish   | Elephant |     Man-O-War |
+    | Barreleye   |   Emu    | Marine Iguana |
+    | Bass        |  Finch   |      Pheasant |
+    | Black Bear  | Firefly  |      Reindeer |
+    | Brown Bear  | Flounder |         Rhino |
+    | Blue Jay    |  Gecko   |         Robin |
+    | Butterfly   | Giraffe  |      Stingray |
+    | Canary      |  Hippo   |       Sunfish |
+    | Cardinal    |  Hoopoe  |        Toucan |
+    | Caterpillar |  Krill   |    White Deer |
+    | Catfish     |          |               |
