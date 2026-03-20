@@ -137,6 +137,16 @@ public class ModEntities {
     public static final Supplier<EntityType<com.otterly76.ott.entity.custom.Firefly>> FIREFLY = OTT_ENTITY_TYPES.register("firefly",
             () -> Builder.of(com.otterly76.ott.entity.custom.Firefly::new, MobCategory.AMBIENT).sized(0.25F, 0.25F).clientTrackingRange(8).build("firefly"));
 
+    public static final Supplier<EntityType<com.otterly76.ott.entity.custom.Alligator>> ALLIGATOR = OTT_ENTITY_TYPES.register("alligator",
+            () -> Builder.of(com.otterly76.ott.entity.custom.Alligator::new, MobCategory.CREATURE).sized(1.8F, 0.8F).clientTrackingRange(10).build("alligator"));
+
+    public static final Supplier<EntityType<com.otterly76.ott.entity.custom.Elephant>> ELEPHANT = OTT_ENTITY_TYPES.register("elephant",
+            () -> Builder.of(com.otterly76.ott.entity.custom.Elephant::new, MobCategory.CREATURE).sized(2.5F, 3.5F).clientTrackingRange(10).build("elephant"));
+
+    public static final Supplier<EntityType<com.otterly76.ott.entity.custom.Giraffe>> GIRAFFE = OTT_ENTITY_TYPES.register("giraffe",
+            () -> Builder.of(com.otterly76.ott.entity.custom.Giraffe::new, MobCategory.CREATURE).sized(1.9F, 5.4F).clientTrackingRange(10).build("giraffe"));
+
+
     public static final Supplier<EntityType<com.otterly76.ott.entity.projectile.EmuEggEntity>> EMU_EGG = OTT_ENTITY_TYPES.register("emu_egg",
             () -> Builder.<com.otterly76.ott.entity.projectile.EmuEggEntity>of(com.otterly76.ott.entity.projectile.EmuEggEntity::new, MobCategory.MISC).sized(0.25F, 0.25F).clientTrackingRange(4).updateInterval(10).build("emu_egg"));
 

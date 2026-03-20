@@ -10,15 +10,29 @@ import software.bernie.geckolib.cache.object.GeoBone;
 import software.bernie.geckolib.constant.DataTickets;
 import software.bernie.geckolib.model.GeoModel;
 import software.bernie.geckolib.model.data.EntityModelData;
+import software.bernie.geckolib.renderer.GeoRenderer;
+import org.jetbrains.annotations.Nullable;
 
 public class BearModel extends GeoModel<Bear> {
     @Override
+    @Deprecated
     public ResourceLocation getModelResource(Bear bear) {
+        return getModelResource(bear, null);
+    }
+
+    @Override
+    public ResourceLocation getModelResource(Bear bear, @Nullable GeoRenderer<Bear> renderer) {
         return ResourceLocation.fromNamespaceAndPath("ott", "geo/entity/bear/bear.geo.json");
     }
 
     @Override
+    @Deprecated
     public ResourceLocation getTextureResource(Bear bear) {
+        return getTextureResource(bear, null);
+    }
+
+    @Override
+    public ResourceLocation getTextureResource(Bear bear, @Nullable GeoRenderer<Bear> renderer) {
         boolean isBlack = bear instanceof BlackBearEntity;
         String base = isBlack ? "black_bear" : "bear";
 
@@ -52,6 +66,7 @@ public class BearModel extends GeoModel<Bear> {
         if (animationState == null) return;
 
         EntityModelData extraDataOfType = animationState.getData(DataTickets.ENTITY_MODEL_DATA);
+        if (extraDataOfType == null) return;
         GeoBone head = this.getAnimationProcessor().getBone("head");
         if (head == null) head = this.getAnimationProcessor().getBone("skull");
 
@@ -66,7 +81,6 @@ public class BearModel extends GeoModel<Bear> {
                 head.setScaleZ(1.0F);
             }
             if (!entity.isSleeping() && !entity.isEating() && !entity.isSitting()) {
-                assert extraDataOfType != null;
                 head.setRotX(extraDataOfType.headPitch() * Mth.DEG_TO_RAD);
                 head.setRotY(extraDataOfType.netHeadYaw() * Mth.DEG_TO_RAD);
             }

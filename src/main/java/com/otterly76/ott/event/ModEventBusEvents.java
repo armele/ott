@@ -51,6 +51,9 @@ public class ModEventBusEvents {
         event.put(ModEntities.BUTTERFLY.get(), com.otterly76.ott.entity.custom.Butterfly.createAttributes().build());
         event.put(ModEntities.CATERPILLAR.get(), com.otterly76.ott.entity.custom.Caterpillar.createAttributes().build());
         event.put(ModEntities.FIREFLY.get(), com.otterly76.ott.entity.custom.Firefly.createAttributes().build());
+        event.put(ModEntities.ALLIGATOR.get(), com.otterly76.ott.entity.custom.Alligator.createAttributes().build());
+        event.put(ModEntities.ELEPHANT.get(), com.otterly76.ott.entity.custom.Elephant.createAttributes().build());
+        event.put(ModEntities.GIRAFFE.get(), com.otterly76.ott.entity.custom.Giraffe.createAttributes().build());
         event.put(ModEntities.BLUEJAY.get(), com.otterly76.ott.entity.custom.Bird.createAttributes().build());
         event.put(ModEntities.CANARY.get(), com.otterly76.ott.entity.custom.Bird.createAttributes().build());
         event.put(ModEntities.CARDINAL.get(), com.otterly76.ott.entity.custom.Bird.createAttributes().build());
@@ -236,6 +239,27 @@ public class ModEventBusEvents {
                 RegisterSpawnPlacementsEvent.Operation.OR
         );
         event.register(
+                ModEntities.ALLIGATOR.get(),
+                SpawnPlacementTypes.ON_GROUND,
+                Heightmap.Types.MOTION_BLOCKING_NO_LEAVES,
+                com.otterly76.ott.entity.custom.Alligator::canSpawn,
+                RegisterSpawnPlacementsEvent.Operation.OR
+        );
+        event.register(
+                ModEntities.ELEPHANT.get(),
+                SpawnPlacementTypes.ON_GROUND,
+                Heightmap.Types.MOTION_BLOCKING_NO_LEAVES,
+                com.otterly76.ott.entity.custom.Elephant::canSpawn,
+                RegisterSpawnPlacementsEvent.Operation.OR
+        );
+        event.register(
+                ModEntities.GIRAFFE.get(),
+                SpawnPlacementTypes.ON_GROUND,
+                Heightmap.Types.MOTION_BLOCKING_NO_LEAVES,
+                com.otterly76.ott.entity.custom.Giraffe::canSpawn,
+                RegisterSpawnPlacementsEvent.Operation.OR
+        );
+        event.register(
                 ModEntities.BLUEJAY.get(),
                 SpawnPlacementTypes.ON_GROUND,
                 Heightmap.Types.MOTION_BLOCKING_NO_LEAVES,
@@ -312,6 +336,7 @@ public class ModEventBusEvents {
                 Animal::checkAnimalSpawnRules,
                 RegisterSpawnPlacementsEvent.Operation.OR
         );
+
     }
 
     public static void registerCapabilities(RegisterCapabilitiesEvent event) {

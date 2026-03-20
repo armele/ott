@@ -394,5 +394,197 @@
       "ott:entity/deer/eat3"
     ],
     "subtitle": "subtitles.ott.entity.deer.eat"
+  },
+  "entity.alligator.ambient": {
+    "sounds": [
+      "ott:entity/alligator/idle1",
+      "ott:entity/alligator/idle2",
+      "ott:entity/alligator/idle3",
+      "ott:entity/alligator/idle4",
+      "ott:entity/alligator/idle5"
+    ],
+    "subtitle": "subtitles.ott.entity.alligator.ambient"
+  },
+  "entity.alligator.ambient_baby": {
+    "sounds": [
+      "ott:entity/alligator/baby/idle1",
+      "ott:entity/alligator/baby/idle2",
+      "ott:entity/alligator/baby/idle3",
+      "ott:entity/alligator/baby/idle4"
+    ],
+    "subtitle": "subtitles.ott.entity.alligator.ambient"
+  },
+  "entity.alligator.hurt": {
+    "sounds": [
+      "ott:entity/alligator/hurt1",
+      "ott:entity/alligator/hurt2",
+      "ott:entity/alligator/hurt3",
+      "ott:entity/alligator/hurt4",
+      "ott:entity/alligator/hurt5"
+    ],
+    "subtitle": "subtitles.ott.entity.alligator.hurt"
+  },
+  "entity.alligator.death": {
+    "sounds": [
+      "ott:entity/alligator/death1",
+      "ott:entity/alligator/death2"
+    ],
+    "subtitle": "subtitles.ott.entity.alligator.death"
+  },
+  "entity.alligator.bite": {
+    "sounds": [
+      "ott:entity/alligator/bite1",
+      "ott:entity/alligator/bite2",
+      "ott:entity/alligator/bite3",
+      "ott:entity/alligator/bite4"
+    ],
+    "subtitle": "subtitles.ott.entity.alligator.bite"
+  },
+  "entity.alligator.swim": {
+    "sounds": [
+      "ott:entity/alligator/swim1",
+      "ott:entity/alligator/swim2",
+      "ott:entity/alligator/swim3",
+      "ott:entity/alligator/swim4",
+      "ott:entity/alligator/swim5"
+    ],
+    "subtitle": "subtitles.ott.entity.alligator.swim"
+  },
+  "entity.alligator.step": {
+    "sounds": [
+      {
+        "name": "minecraft:entity.polar_bear.step",
+        "type": "event"
+      }
+    ],
+    "subtitle": "subtitles.block.generic.footsteps"
+  },
+  "entity.alligator.egg_break": {
+    "sounds": [
+      "minecraft:mob/turtle/egg/egg_break1",
+      "minecraft:mob/turtle/egg/egg_break2"
+    ],
+    "subtitle": "subtitles.ott.entity.alligator.egg_break"
+  },
+  "entity.alligator.egg_crack": {
+    "sounds": [
+      "minecraft:mob/turtle/egg/egg_crack1",
+      "minecraft:mob/turtle/egg/egg_crack2",
+      "minecraft:mob/turtle/egg/egg_crack3",
+      "minecraft:mob/turtle/egg/egg_crack4",
+      "minecraft:mob/turtle/egg/egg_crack5"
+    ],
+    "subtitle": "subtitles.ott.entity.alligator.egg_crack"
+  },
+  "entity.alligator.egg_hatch": {
+    "sounds": [
+      "minecraft:mob/turtle/baby/egg_hatched1",
+      "minecraft:mob/turtle/baby/egg_hatched2",
+      "minecraft:mob/turtle/baby/egg_hatched3"
+    ],
+    "subtitle": "subtitles.ott.entity.alligator.egg_hatch"
+  },
+  "entity.elephant.ambient": {
+    "sounds": [
+      "ott:entity/elephant/idle1",
+      "ott:entity/elephant/idle2",
+      "ott:entity/elephant/idle3",
+      "ott:entity/elephant/trumpet1",
+      "ott:entity/elephant/trumpet2",
+      "ott:entity/elephant/trumpet3"
+    ],
+    "subtitle": "subtitles.ott.entity.elephant.ambient"
+  },
+  "entity.elephant.hurt": {
+    "sounds": [
+      "ott:entity/elephant/hurt1",
+      "ott:entity/elephant/hurt2"
+    ],
+    "subtitle": "subtitles.ott.entity.elephant.hurt"
+  },
+  "entity.elephant.death": {
+    "sounds": [
+      "ott:entity/elephant/death1",
+      "ott:entity/elephant/death2"
+    ],
+    "subtitle": "subtitles.ott.entity.elephant.death"
+  },
+  "entity.elephant.step": {
+    "sounds": [
+      {
+        "name": "minecraft:entity.polar_bear.step",
+        "type": "event"
+      }
+    ],
+    "subtitle": "subtitles.block.generic.footsteps"
+  },
+  "entity.elephant.drink": {
+    "sounds": [
+      "ott:entity/elephant/drink1",
+      "ott:entity/elephant/drink2"
+    ],
+    "subtitle": "subtitles.entity.generic.drink"
+  },
+  "entity.elephant.trumpet": {
+    "sounds": [
+      "ott:entity/elephant/trumpet1",
+      "ott:entity/elephant/trumpet2",
+      "ott:entity/elephant/trumpet3"
+    ],
+    "subtitle": "subtitles.ott.entity.elephant.ambient"
+  },
+  "entity.elephant.water": {
+    "sounds": [
+      "ott:entity/elephant/water1",
+      "ott:entity/elephant/water2"
+    ],
+    "subtitle": "subtitles.entity.generic.swim"
+  },
+  "entity.giraffe.ambient": {
+    "sounds": [
+      "ott:entity/giraffe/giraffe_idle",
+      "ott:entity/giraffe/idle1",
+      "ott:entity/giraffe/idle2",
+      "ott:entity/giraffe/idle3"
+    ],
+    "subtitle": "subtitles.ott.entity.giraffe.ambient"
+  },
+  "entity.giraffe.hurt": {
+    "sounds": [
+      "ott:entity/giraffe/hurt1",
+      "ott:entity/giraffe/hurt2"
+    ],
+    "subtitle": "subtitles.ott.entity.giraffe.hurt"
+  },
+  "entity.giraffe.death": {
+    "sounds": [
+      "ott:entity/giraffe/death1",
+      "ott:entity/giraffe/death2"
+    ],
+    "subtitle": "subtitles.ott.entity.giraffe.death"
+  },
+  "entity.giraffe.eat": {
+    "sounds": [
+      "ott:entity/giraffe/eat1",
+      "ott:entity/giraffe/eat2"
+    ],
+    "subtitle": "subtitles.ott.entity.giraffe.eat"
+  },
+  "entity.giraffe.mad": {
+    "sounds": [
+      "ott:entity/giraffe/mad1"
+    ],
+    "subtitle": "subtitles.ott.entity.giraffe.mad"
+  },
+  "entity.giraffe.step": {
+    "sounds": [
+      "minecraft:mob/horse/soft1",
+      "minecraft:mob/horse/soft2",
+      "minecraft:mob/horse/soft3",
+      "minecraft:mob/horse/soft4",
+      "minecraft:mob/horse/soft5",
+      "minecraft:mob/horse/soft6"
+    ],
+    "subtitle": "subtitles.block.generic.footsteps"
   }
 }

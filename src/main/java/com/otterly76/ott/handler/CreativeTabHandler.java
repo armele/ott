@@ -778,6 +778,9 @@ public class CreativeTabHandler {
             safeAccept(event, ModItems.BUTTERFLY_SPAWN_EGG, visibility);
             safeAccept(event, ModItems.CATERPILLAR_SPAWN_EGG, visibility);
             safeAccept(event, ModItems.FIREFLY_SPAWN_EGG, visibility);
+            safeAccept(event, ModItems.ALLIGATOR_SPAWN_EGG, visibility);
+            safeAccept(event, ModItems.ELEPHANT_SPAWN_EGG, visibility);
+            safeAccept(event, ModItems.GIRAFFE_SPAWN_EGG, visibility);
             safeAccept(event, ModItems.CHRYSALIS.get(), visibility);
         }
     }

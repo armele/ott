@@ -233,6 +233,33 @@ public class ModSounds {
     public static final DeferredHolder<SoundEvent, SoundEvent> DEER_STEP = registerOttSoundEvent("entity.deer.step");
     public static final DeferredHolder<SoundEvent, SoundEvent> DEER_EAT = registerOttSoundEvent("entity.deer.eat");
 
+    public static final DeferredHolder<SoundEvent, SoundEvent> GATOR_AMBIENT = registerOttSoundEvent("entity.alligator.ambient");
+    public static final DeferredHolder<SoundEvent, SoundEvent> GATOR_AMBIENT_BABY = registerOttSoundEvent("entity.alligator.ambient_baby");
+    public static final DeferredHolder<SoundEvent, SoundEvent> GATOR_HURT = registerOttSoundEvent("entity.alligator.hurt");
+    public static final DeferredHolder<SoundEvent, SoundEvent> GATOR_DEATH = registerOttSoundEvent("entity.alligator.death");
+    public static final DeferredHolder<SoundEvent, SoundEvent> GATOR_BITE = registerOttSoundEvent("entity.alligator.bite");
+    public static final DeferredHolder<SoundEvent, SoundEvent> GATOR_SWIM = registerOttSoundEvent("entity.alligator.swim");
+    public static final DeferredHolder<SoundEvent, SoundEvent> GATOR_STEP = registerOttSoundEvent("entity.alligator.step");
+    public static final DeferredHolder<SoundEvent, SoundEvent> GATOR_EGG_BREAK = registerOttSoundEvent("entity.alligator.egg_break");
+    public static final DeferredHolder<SoundEvent, SoundEvent> GATOR_EGG_CRACK = registerOttSoundEvent("entity.alligator.egg_crack");
+    public static final DeferredHolder<SoundEvent, SoundEvent> GATOR_EGG_HATCH = registerOttSoundEvent("entity.alligator.egg_hatch");
+
+    public static final DeferredHolder<SoundEvent, SoundEvent> ELEPHANT_AMBIENT = registerOttSoundEvent("entity.elephant.ambient");
+    public static final DeferredHolder<SoundEvent, SoundEvent> ELEPHANT_HURT = registerOttSoundEvent("entity.elephant.hurt");
+    public static final DeferredHolder<SoundEvent, SoundEvent> ELEPHANT_DEATH = registerOttSoundEvent("entity.elephant.death");
+    public static final DeferredHolder<SoundEvent, SoundEvent> ELEPHANT_STEP = registerOttSoundEvent("entity.elephant.step");
+    public static final DeferredHolder<SoundEvent, SoundEvent> ELEPHANT_DRINK = registerOttSoundEvent("entity.elephant.drink");
+    public static final DeferredHolder<SoundEvent, SoundEvent> ELEPHANT_TRUMPET = registerOttSoundEvent("entity.elephant.trumpet");
+    public static final DeferredHolder<SoundEvent, SoundEvent> ELEPHANT_WATER = registerOttSoundEvent("entity.elephant.water");
+
+    public static final DeferredHolder<SoundEvent, SoundEvent> GIRAFFE_AMBIENT = registerOttSoundEvent("entity.giraffe.ambient");
+    public static final DeferredHolder<SoundEvent, SoundEvent> GIRAFFE_HURT = registerOttSoundEvent("entity.giraffe.hurt");
+    public static final DeferredHolder<SoundEvent, SoundEvent> GIRAFFE_DEATH = registerOttSoundEvent("entity.giraffe.death");
+    public static final DeferredHolder<SoundEvent, SoundEvent> GIRAFFE_EAT = registerOttSoundEvent("entity.giraffe.eat");
+    public static final DeferredHolder<SoundEvent, SoundEvent> GIRAFFE_MAD = registerOttSoundEvent("entity.giraffe.mad");
+    public static final DeferredHolder<SoundEvent, SoundEvent> GIRAFFE_STEP = registerOttSoundEvent("entity.giraffe.step");
+
+
     public static final DeferredHolder<SoundEvent, SoundEvent> NONE = registerSoundEvent("music.none");
     public static final DeferredHolder<SoundEvent, SoundEvent> BUNDLE_INSERT_FAIL = registerSoundEvent("item.bundle.insert_fail");
     public static final DeferredHolder<SoundEvent, SoundEvent> MUSIC_DISC_TEARS = registerSoundEvent("music_disc.tears");

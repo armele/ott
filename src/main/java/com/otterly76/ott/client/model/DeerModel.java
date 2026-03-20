@@ -10,10 +10,18 @@ import software.bernie.geckolib.cache.object.GeoBone;
 import software.bernie.geckolib.constant.DataTickets;
 import software.bernie.geckolib.model.GeoModel;
 import software.bernie.geckolib.model.data.EntityModelData;
+import software.bernie.geckolib.renderer.GeoRenderer;
+import org.jetbrains.annotations.Nullable;
 
 public class DeerModel extends GeoModel<Deer> {
     @Override
+    @Deprecated
     public ResourceLocation getModelResource(Deer deer) {
+        return getModelResource(deer, null);
+    }
+
+    @Override
+    public ResourceLocation getModelResource(Deer deer, @Nullable GeoRenderer<Deer> renderer) {
         if (deer.isBaby()) {
             return ResourceLocation.fromNamespaceAndPath("ott", "geo/entity/deer/fawn.geo.json");
         }
@@ -21,7 +29,13 @@ public class DeerModel extends GeoModel<Deer> {
     }
 
     @Override
+    @Deprecated
     public ResourceLocation getTextureResource(Deer deer) {
+        return getTextureResource(deer, null);
+    }
+
+    @Override
+    public ResourceLocation getTextureResource(Deer deer, @Nullable GeoRenderer<Deer> renderer) {
         if (deer.isBaby()) {
             return ResourceLocation.fromNamespaceAndPath("ott", "textures/entity/deer/deer_baby.png");
         }
@@ -44,11 +58,11 @@ public class DeerModel extends GeoModel<Deer> {
         if (animationState == null) return;
 
         EntityModelData extraDataOfType = animationState.getData(DataTickets.ENTITY_MODEL_DATA);
+        if (extraDataOfType == null) return;
         GeoBone head = this.getAnimationProcessor().getBone("head");
         if (head == null) head = this.getAnimationProcessor().getBone("skull");
 
         if (head != null && !entity.isEating()) {
-            assert extraDataOfType != null;
             head.setRotX(extraDataOfType.headPitch() * Mth.DEG_TO_RAD);
             head.setRotY(extraDataOfType.netHeadYaw() * Mth.DEG_TO_RAD);
         }

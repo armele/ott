@@ -19,6 +19,7 @@ public class ModTags {
         public static final TagKey<Block> SPAWN_FALLING_LEAVES = mcTag("spawn_falling_leaves");
         public static final TagKey<Block> SPAWN_FALLING_NEEDLES = mcTag("spawn_falling_needles");
         public static final TagKey<Block> CAMELS_SPAWNABLE_ON = mcTag("camel_spawnable_on");
+        public static final TagKey<Block> ALLIGATOR_EGG_LAYABLE_ON = createTag("alligator_egg_layable_on");
         public static final TagKey<Block> PORTAL_FRAME_BLOCKS = createTag("portal_frame_blocks");
         public static final TagKey<Block> C_OBSIDIAN = commonTag();
 
@@ -60,6 +61,8 @@ public class ModTags {
         public static final TagKey<Item> BUNDLES = mcTag("bundles");
         public static final TagKey<Item> EGGS = mcTag("eggs");
         public static final TagKey<Item> BIRD_FOOD_ITEMS = mcTag("bird_food_items");
+        public static final TagKey<Item> GIRAFFE_FOOD_ITEMS = createTag("giraffe_food_items");
+        public static final TagKey<Item> ELEPHANT_FOOD_ITEMS = createTag("elephant_food_items");
         public static final TagKey<Item> STRIPPED_PALE_OAK_LOG = mcTag("stripped_pale_oak_log");
         public static final TagKey<Item> LANTERNS = mcTag("lanterns");
         public static final TagKey<Item> LIGHTNING_RODS = mcTag("lightning_rods");
@@ -154,6 +157,8 @@ public class ModTags {
         public static final TagKey<net.minecraft.world.entity.EntityType<?>> CANDIDATE_FOR_IRON_GOLEM_GIFT = mcTag("candidate_for_iron_golem_gift");
         public static final TagKey<net.minecraft.world.entity.EntityType<?>> SMART_ANIMALS = createTag("smart_animals");
         public static final TagKey<net.minecraft.world.entity.EntityType<?>> CATFISH_HOSTILES = createTag("catfish_hostiles");
+        public static final TagKey<net.minecraft.world.entity.EntityType<?>> ALLIGATOR_HOSTILES = createTag("alligator_hostiles");
+        public static final TagKey<net.minecraft.world.entity.EntityType<?>> ELEPHANT_HOSTILES = createTag("elephant_hostiles");
 
         @SuppressWarnings("SameParameterValue")
         private static TagKey<net.minecraft.world.entity.EntityType<?>> createTag(String name) {

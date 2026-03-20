@@ -29,6 +29,7 @@ import software.bernie.geckolib.animatable.GeoEntity;
 import software.bernie.geckolib.animatable.instance.AnimatableInstanceCache;
 import software.bernie.geckolib.animation.AnimationState;
 import software.bernie.geckolib.animation.*;
+import software.bernie.geckolib.animation.keyframe.event.SoundKeyframeEvent;
 import software.bernie.geckolib.util.GeckoLibUtil;
 
 import java.util.List;
@@ -295,10 +296,21 @@ public abstract class Deer extends TamableAnimal implements GeoEntity, Saddleabl
         return PlayState.STOP;
     }
 
+    private void soundListener(SoundKeyframeEvent<Deer> event) {
+        if (this.level().isClientSide) {
+            String sound = event.getKeyframeData().getSound();
+            if (sound.contains("step")) {
+                this.playStepSound(this.blockPosition(), this.level().getBlockState(this.blockPosition()));
+            } else if (sound.equals("eat")) {
+                this.level().playLocalSound(this.getX(), this.getY(), this.getZ(), ModSounds.DEER_EAT.get(), this.getSoundSource(), 1.0F, 1.0F, false);
+            }
+        }
+    }
+
     @Override
     public void registerControllers(final AnimatableManager.ControllerRegistrar controllers) {
-        controllers.add(new AnimationController<>(this, "controller", 5, this::predicate));
-        controllers.add(new AnimationController<>(this, "eat_controller", 5, this::eatPredicate));
+        controllers.add(new AnimationController<>(this, "controller", 5, this::predicate).setSoundKeyframeHandler(this::soundListener));
+        controllers.add(new AnimationController<>(this, "eat_controller", 5, this::eatPredicate).setSoundKeyframeHandler(this::soundListener));
     }
 
     static class DeerEatBlockGoal extends EatBlockGoal {

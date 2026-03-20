@@ -121,7 +121,7 @@ Add additional salt block textures
 
 create white-tailed deer, elk, caribou, mossbloom to deer model
 
-create textures for fennec fox, moose
+create textures for fennec fox, moose & implement (from Naturalist)
 
 create timber wolf using vanilla wolf model
 
@@ -131,7 +131,7 @@ create grizzly bear using brown bear model
 
 remodel polar bear using brown bear model
 
-create wither skeleton wolf to skeleton wolf model
+create wither skeleton wolf using skeleton wolf model
 
 create anaconda using snake model
 

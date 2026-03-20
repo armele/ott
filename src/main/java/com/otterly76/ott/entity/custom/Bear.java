@@ -47,6 +47,7 @@ import software.bernie.geckolib.animatable.GeoEntity;
 import software.bernie.geckolib.animatable.instance.AnimatableInstanceCache;
 import software.bernie.geckolib.animation.AnimationState;
 import software.bernie.geckolib.animation.*;
+import software.bernie.geckolib.animation.keyframe.event.SoundKeyframeEvent;
 import software.bernie.geckolib.util.GeckoLibUtil;
 
 import java.util.EnumSet;
@@ -443,12 +444,29 @@ public abstract class Bear extends Animal implements NeutralMob, GeoEntity, Shea
         return PlayState.STOP;
     }
 
+    private void soundListener(SoundKeyframeEvent<Bear> event) {
+        if (this.level().isClientSide) {
+            String sound = event.getKeyframeData().getSound();
+            if (sound.contains("step")) {
+                this.playStepSound(this.blockPosition(), this.level().getBlockState(this.blockPosition()));
+            } else if (sound.equals("sniff")) {
+                this.level().playLocalSound(this.getX(), this.getY(), this.getZ(), ModSounds.BEAR_SNIFF.get(), this.getSoundSource(), 1.0F, 1.0F, false);
+            } else if (sound.equals("eat") || sound.contains("vanilla.eat")) {
+                this.level().playLocalSound(this.getX(), this.getY(), this.getZ(), ModSounds.BEAR_EAT.get(), this.getSoundSource(), 1.0F, 1.0F, false);
+            } else if (sound.equals("sleep")) {
+                this.level().playLocalSound(this.getX(), this.getY(), this.getZ(), ModSounds.BEAR_SLEEP.get(), this.getSoundSource(), 1.0F, 1.0F, false);
+            } else if (sound.equals("attack")) {
+                this.level().playLocalSound(this.getX(), this.getY(), this.getZ(), SoundEvents.POLAR_BEAR_WARNING, this.getSoundSource(), 1.0F, 1.0F, false);
+            }
+        }
+    }
+
     @Override
     public void registerControllers(final AnimatableManager.ControllerRegistrar controllers) {
-        controllers.add(new AnimationController<>(this, "controller", 10, this::predicate));
-        controllers.add(new AnimationController<>(this, "sniffController", 5, this::sniffPredicate));
-        controllers.add(new AnimationController<>(this, "swingController", 2, this::attackPredicate));
-        controllers.add(new AnimationController<>(this, "eatController", 10, this::eatPredicate));
+        controllers.add(new AnimationController<>(this, "controller", 10, this::predicate).setSoundKeyframeHandler(this::soundListener));
+        controllers.add(new AnimationController<>(this, "sniffController", 5, this::sniffPredicate).setSoundKeyframeHandler(this::soundListener));
+        controllers.add(new AnimationController<>(this, "swingController", 2, this::attackPredicate).setSoundKeyframeHandler(this::soundListener));
+        controllers.add(new AnimationController<>(this, "eatController", 10, this::eatPredicate).setSoundKeyframeHandler(this::soundListener));
     }
 
     // Goals

@@ -210,6 +210,9 @@ public class ClientModEvents {
         event.registerEntityRenderer(ModEntities.BUTTERFLY.get(), com.otterly76.ott.client.render.entity.ButterflyRenderer::new);
         event.registerEntityRenderer(ModEntities.CATERPILLAR.get(), com.otterly76.ott.client.render.entity.CaterpillarRenderer::new);
         event.registerEntityRenderer(ModEntities.FIREFLY.get(), com.otterly76.ott.client.render.entity.FireflyRenderer::new);
+        event.registerEntityRenderer(ModEntities.ALLIGATOR.get(), com.otterly76.ott.client.render.entity.AlligatorRenderer::new);
+        event.registerEntityRenderer(ModEntities.ELEPHANT.get(), com.otterly76.ott.client.render.entity.ElephantRenderer::new);
+        event.registerEntityRenderer(ModEntities.GIRAFFE.get(), com.otterly76.ott.client.render.entity.GiraffeRenderer::new);
         event.registerEntityRenderer(ModEntities.BROWN_BEAR.get(), com.otterly76.ott.client.render.entity.BearRenderer::new);
         event.registerEntityRenderer(ModEntities.BLACK_BEAR.get(), com.otterly76.ott.client.render.entity.BearRenderer::new);
         event.registerEntityRenderer(ModEntities.DEER.get(), com.otterly76.ott.client.render.entity.DeerRenderer::new);

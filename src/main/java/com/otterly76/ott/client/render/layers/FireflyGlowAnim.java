@@ -1,8 +1,11 @@
 package com.otterly76.ott.client.render.layers;
 
 import com.mojang.blaze3d.vertex.VertexConsumer;
+import net.neoforged.api.distmarker.Dist;
+import net.neoforged.api.distmarker.OnlyIn;
 import org.jetbrains.annotations.NotNull;
 
+@OnlyIn(Dist.CLIENT)
 public class FireflyGlowAnim implements VertexConsumer {
     private static final int FRAME_COUNT = 30;
 
