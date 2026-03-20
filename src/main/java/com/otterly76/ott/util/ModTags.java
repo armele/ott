@@ -20,6 +20,8 @@ public class ModTags {
         public static final TagKey<Block> SPAWN_FALLING_NEEDLES = mcTag("spawn_falling_needles");
         public static final TagKey<Block> CAMELS_SPAWNABLE_ON = mcTag("camel_spawnable_on");
         public static final TagKey<Block> ALLIGATOR_EGG_LAYABLE_ON = createTag("alligator_egg_layable_on");
+        public static final TagKey<Block> HIPPO_EGG_LAYABLE_ON = createTag("hippo_egg_layable_on");
+        public static final TagKey<Block> RHINO_CHARGE_BREAKABLE = createTag("rhino_charge_breakable");
         public static final TagKey<Block> PORTAL_FRAME_BLOCKS = createTag("portal_frame_blocks");
         public static final TagKey<Block> C_OBSIDIAN = commonTag();
 
@@ -159,6 +161,8 @@ public class ModTags {
         public static final TagKey<net.minecraft.world.entity.EntityType<?>> CATFISH_HOSTILES = createTag("catfish_hostiles");
         public static final TagKey<net.minecraft.world.entity.EntityType<?>> ALLIGATOR_HOSTILES = createTag("alligator_hostiles");
         public static final TagKey<net.minecraft.world.entity.EntityType<?>> ELEPHANT_HOSTILES = createTag("elephant_hostiles");
+        public static final TagKey<net.minecraft.world.entity.EntityType<?>> HIPPO_HOSTILES = createTag("hippo_hostiles");
+        public static final TagKey<net.minecraft.world.entity.EntityType<?>> LION_HOSTILES = createTag("lion_hostiles");
 
         @SuppressWarnings("SameParameterValue")
         private static TagKey<net.minecraft.world.entity.EntityType<?>> createTag(String name) {

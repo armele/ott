@@ -259,6 +259,27 @@ public class ModSounds {
     public static final DeferredHolder<SoundEvent, SoundEvent> GIRAFFE_MAD = registerOttSoundEvent("entity.giraffe.mad");
     public static final DeferredHolder<SoundEvent, SoundEvent> GIRAFFE_STEP = registerOttSoundEvent("entity.giraffe.step");
 
+    public static final DeferredHolder<SoundEvent, SoundEvent> HIPPO_AMBIENT = registerOttSoundEvent("entity.hippo.ambient");
+    public static final DeferredHolder<SoundEvent, SoundEvent> HIPPO_HURT = registerOttSoundEvent("entity.hippo.hurt");
+    public static final DeferredHolder<SoundEvent, SoundEvent> HIPPO_DEATH = registerOttSoundEvent("entity.hippo.death");
+    public static final DeferredHolder<SoundEvent, SoundEvent> HIPPO_STEP = registerOttSoundEvent("entity.hippo.step");
+    public static final DeferredHolder<SoundEvent, SoundEvent> HIPPO_OPEN_MOUTH = registerOttSoundEvent("entity.hippo.open_mouth");
+    public static final DeferredHolder<SoundEvent, SoundEvent> HIPPO_CLOSE_MOUTH = registerOttSoundEvent("entity.hippo.close_mouth");
+
+    public static final DeferredHolder<SoundEvent, SoundEvent> LION_AMBIENT = registerOttSoundEvent("entity.lion.ambient");
+    public static final DeferredHolder<SoundEvent, SoundEvent> LION_HURT = registerOttSoundEvent("entity.lion.hurt");
+    public static final DeferredHolder<SoundEvent, SoundEvent> LION_DEATH = registerOttSoundEvent("entity.lion.death");
+    public static final DeferredHolder<SoundEvent, SoundEvent> LION_STEP = registerOttSoundEvent("entity.lion.step");
+    public static final DeferredHolder<SoundEvent, SoundEvent> LION_SWING = registerOttSoundEvent("entity.lion.swing");
+    public static final DeferredHolder<SoundEvent, SoundEvent> LION_SLEEP = registerOttSoundEvent("entity.lion.sleep");
+    public static final DeferredHolder<SoundEvent, SoundEvent> LION_ATTACK = registerOttSoundEvent("entity.lion.attack");
+
+    public static final DeferredHolder<SoundEvent, SoundEvent> RHINO_AMBIENT = registerOttSoundEvent("entity.rhino.ambient");
+    public static final DeferredHolder<SoundEvent, SoundEvent> RHINO_AMBIENT_BABY = registerOttSoundEvent("entity.rhino.ambient_baby");
+    public static final DeferredHolder<SoundEvent, SoundEvent> RHINO_HURT = registerOttSoundEvent("entity.rhino.hurt");
+    public static final DeferredHolder<SoundEvent, SoundEvent> RHINO_DEATH = registerOttSoundEvent("entity.rhino.death");
+    public static final DeferredHolder<SoundEvent, SoundEvent> RHINO_SCRAPE = registerOttSoundEvent("entity.rhino.scrape");
+
 
     public static final DeferredHolder<SoundEvent, SoundEvent> NONE = registerSoundEvent("music.none");
     public static final DeferredHolder<SoundEvent, SoundEvent> BUNDLE_INSERT_FAIL = registerSoundEvent("item.bundle.insert_fail");

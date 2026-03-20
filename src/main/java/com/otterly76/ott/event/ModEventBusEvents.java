@@ -54,6 +54,9 @@ public class ModEventBusEvents {
         event.put(ModEntities.ALLIGATOR.get(), com.otterly76.ott.entity.custom.Alligator.createAttributes().build());
         event.put(ModEntities.ELEPHANT.get(), com.otterly76.ott.entity.custom.Elephant.createAttributes().build());
         event.put(ModEntities.GIRAFFE.get(), com.otterly76.ott.entity.custom.Giraffe.createAttributes().build());
+        event.put(ModEntities.HIPPO.get(), com.otterly76.ott.entity.custom.Hippo.createAttributes().build());
+        event.put(ModEntities.LION.get(), com.otterly76.ott.entity.custom.Lion.createAttributes().build());
+        event.put(ModEntities.RHINO.get(), com.otterly76.ott.entity.custom.Rhino.createAttributes().build());
         event.put(ModEntities.BLUEJAY.get(), com.otterly76.ott.entity.custom.Bird.createAttributes().build());
         event.put(ModEntities.CANARY.get(), com.otterly76.ott.entity.custom.Bird.createAttributes().build());
         event.put(ModEntities.CARDINAL.get(), com.otterly76.ott.entity.custom.Bird.createAttributes().build());
@@ -257,6 +260,30 @@ public class ModEventBusEvents {
                 SpawnPlacementTypes.ON_GROUND,
                 Heightmap.Types.MOTION_BLOCKING_NO_LEAVES,
                 com.otterly76.ott.entity.custom.Giraffe::canSpawn,
+                RegisterSpawnPlacementsEvent.Operation.OR
+        );
+
+        event.register(
+                ModEntities.HIPPO.get(),
+                SpawnPlacementTypes.ON_GROUND,
+                Heightmap.Types.MOTION_BLOCKING_NO_LEAVES,
+                com.otterly76.ott.entity.custom.Hippo::canSpawn,
+                RegisterSpawnPlacementsEvent.Operation.OR
+        );
+
+        event.register(
+                ModEntities.LION.get(),
+                SpawnPlacementTypes.ON_GROUND,
+                Heightmap.Types.MOTION_BLOCKING_NO_LEAVES,
+                com.otterly76.ott.entity.custom.Lion::canSpawn,
+                RegisterSpawnPlacementsEvent.Operation.OR
+        );
+
+        event.register(
+                ModEntities.RHINO.get(),
+                SpawnPlacementTypes.ON_GROUND,
+                Heightmap.Types.MOTION_BLOCKING_NO_LEAVES,
+                com.otterly76.ott.entity.custom.Rhino::canSpawn,
                 RegisterSpawnPlacementsEvent.Operation.OR
         );
         event.register(

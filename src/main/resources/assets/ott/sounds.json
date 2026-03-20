@@ -586,5 +586,150 @@
       "minecraft:mob/horse/soft6"
     ],
     "subtitle": "subtitles.block.generic.footsteps"
+  },
+  "entity.hippo.ambient": {
+    "sounds": [
+      "ott:entity/hippo/idle1",
+      "ott:entity/hippo/idle2",
+      "ott:entity/hippo/idle3"
+    ],
+    "subtitle": "subtitles.ott.entity.hippo.ambient"
+  },
+  "entity.hippo.hurt": {
+    "sounds": [
+      "ott:entity/hippo/hurt1",
+      "ott:entity/hippo/hurt2",
+      "ott:entity/hippo/hurt3"
+    ],
+    "subtitle": "subtitles.ott.entity.hippo.hurt"
+  },
+  "entity.hippo.death": {
+    "sounds": [
+      "ott:entity/hippo/death1",
+      "ott:entity/hippo/death2"
+    ],
+    "subtitle": "subtitles.ott.entity.hippo.death"
+  },
+  "entity.hippo.step": {
+    "sounds": [
+      {
+        "name": "minecraft:entity.polar_bear.step",
+        "type": "event"
+      }
+    ],
+    "subtitle": "subtitles.block.generic.footsteps"
+  },
+  "entity.hippo.open_mouth": {
+    "sounds": [
+      "ott:entity/hippo/idle1",
+      "ott:entity/hippo/idle2"
+    ],
+    "subtitle": "subtitles.ott.entity.hippo.ambient"
+  },
+  "entity.hippo.close_mouth": {
+    "sounds": [
+      {
+        "name": "minecraft:entity.polar_bear.step",
+        "type": "event"
+      }
+    ],
+    "subtitle": "subtitles.block.generic.footsteps"
+  },
+  "entity.lion.ambient": {
+    "sounds": [
+      "ott:entity/lion/idle1",
+      "ott:entity/lion/idle2",
+      "ott:entity/lion/idle3",
+      "ott:entity/lion/roar1",
+      "ott:entity/lion/roar2"
+    ],
+    "subtitle": "subtitles.ott.entity.lion.ambient"
+  },
+  "entity.lion.hurt": {
+    "sounds": [
+      "ott:entity/lion/hurt1",
+      "ott:entity/lion/hurt2",
+      "ott:entity/lion/hurt3"
+    ],
+    "subtitle": "subtitles.ott.entity.lion.hurt"
+  },
+  "entity.lion.death": {
+    "sounds": [
+      "ott:entity/lion/death1",
+      "ott:entity/lion/death2",
+      "ott:entity/lion/death3"
+    ],
+    "subtitle": "subtitles.ott.entity.lion.death"
+  },
+  "entity.lion.step": {
+    "sounds": [
+      {
+        "name": "minecraft:entity.polar_bear.step",
+        "type": "event"
+      }
+    ],
+    "subtitle": "subtitles.block.generic.footsteps"
+  },
+  "entity.lion.swing": {
+    "sounds": [
+      {
+        "name": "minecraft:entity.player.attack.sweep",
+        "type": "event"
+      }
+    ],
+    "subtitle": "subtitles.entity.player.attack.sweep"
+  },
+  "entity.lion.sleep": {
+    "sounds": [
+      {
+        "name": "minecraft:entity.fox.sleep",
+        "type": "event"
+      }
+    ],
+    "subtitle": "subtitles.entity.fox.sleep"
+  },
+  "entity.lion.attack": {
+    "sounds": [
+      "ott:entity/lion/roar1",
+      "ott:entity/lion/roar2"
+    ],
+    "subtitle": "subtitles.ott.entity.lion.ambient"
+  },
+  "entity.rhino.ambient": {
+    "sounds": [
+      "ott:entity/rhino/idle1",
+      "ott:entity/rhino/idle2",
+      "ott:entity/rhino/idle3"
+    ],
+    "subtitle": "subtitles.ott.entity.rhino.ambient"
+  },
+  "entity.rhino.ambient_baby": {
+    "sounds": [
+      "ott:entity/rhino/idle_baby"
+    ],
+    "subtitle": "subtitles.ott.entity.rhino.ambient"
+  },
+  "entity.rhino.hurt": {
+    "sounds": [
+      "ott:entity/rhino/hurt1",
+      "ott:entity/rhino/hurt2",
+      "ott:entity/rhino/hurt3"
+    ],
+    "subtitle": "subtitles.ott.entity.rhino.hurt"
+  },
+  "entity.rhino.death": {
+    "sounds": [
+      "ott:entity/rhino/death1",
+      "ott:entity/rhino/death2"
+    ],
+    "subtitle": "subtitles.ott.entity.rhino.death"
+  },
+  "entity.rhino.scrape": {
+    "sounds": [
+      "ott:entity/rhino/scrape",
+      "ott:entity/rhino/scrape1",
+      "ott:entity/rhino/scrape2"
+    ],
+    "subtitle": "subtitles.ott.entity.rhino.scrape"
   }
 }

@@ -213,6 +213,9 @@ public class ClientModEvents {
         event.registerEntityRenderer(ModEntities.ALLIGATOR.get(), com.otterly76.ott.client.render.entity.AlligatorRenderer::new);
         event.registerEntityRenderer(ModEntities.ELEPHANT.get(), com.otterly76.ott.client.render.entity.ElephantRenderer::new);
         event.registerEntityRenderer(ModEntities.GIRAFFE.get(), com.otterly76.ott.client.render.entity.GiraffeRenderer::new);
+        event.registerEntityRenderer(ModEntities.HIPPO.get(), com.otterly76.ott.client.render.entity.HippoRenderer::new);
+        event.registerEntityRenderer(ModEntities.LION.get(), com.otterly76.ott.client.render.entity.LionRenderer::new);
+        event.registerEntityRenderer(ModEntities.RHINO.get(), com.otterly76.ott.client.render.entity.RhinoRenderer::new);
         event.registerEntityRenderer(ModEntities.BROWN_BEAR.get(), com.otterly76.ott.client.render.entity.BearRenderer::new);
         event.registerEntityRenderer(ModEntities.BLACK_BEAR.get(), com.otterly76.ott.client.render.entity.BearRenderer::new);
         event.registerEntityRenderer(ModEntities.DEER.get(), com.otterly76.ott.client.render.entity.DeerRenderer::new);
@@ -375,7 +378,18 @@ public class ClientModEvents {
         event.register((stack, tintIndex) -> ((DeferredSpawnEggItem)stack.getItem()).getColor(tintIndex),
                 ModItems.DUCK_SPAWN_EGG.get(), ModItems.GOOSE_SPAWN_EGG.get(), ModItems.MAN_O_WAR_SPAWN_EGG.get(),
                 ModItems.STINGRAY_SPAWN_EGG.get(), ModItems.SUNFISH_SPAWN_EGG.get(), ModItems.KRILL_SPAWN_EGG.get(),
-                ModItems.ANGELFISH_SPAWN_EGG.get(), ModItems.BARRELEYE_SPAWN_EGG.get(), ModItems.FLOUNDER_SPAWN_EGG.get());
+                ModItems.ANGELFISH_SPAWN_EGG.get(), ModItems.BARRELEYE_SPAWN_EGG.get(), ModItems.FLOUNDER_SPAWN_EGG.get(),
+                ModItems.MARINE_IGUANA_SPAWN_EGG.get(), ModItems.GECKO_SPAWN_EGG.get(), ModItems.EMU_SPAWN_EGG.get(),
+                ModItems.HOOPOE_SPAWN_EGG.get(), ModItems.PHEASANT_SPAWN_EGG.get(), ModItems.TOUCAN_SPAWN_EGG.get(),
+                ModItems.CATFISH_SPAWN_EGG.get(), ModItems.BASS_SPAWN_EGG.get(), ModItems.BLUEJAY_SPAWN_EGG.get(),
+                ModItems.CANARY_SPAWN_EGG.get(), ModItems.CARDINAL_SPAWN_EGG.get(), ModItems.FINCH_SPAWN_EGG.get(),
+                ModItems.ROBIN_SPAWN_EGG.get(), ModItems.SPARROW_SPAWN_EGG.get(), ModItems.BROWN_BEAR_SPAWN_EGG.get(),
+                ModItems.BLACK_BEAR_SPAWN_EGG.get(), ModItems.DEER_SPAWN_EGG.get(), ModItems.REINDEER_SPAWN_EGG.get(),
+                ModItems.WHITE_DEER_SPAWN_EGG.get(), ModItems.BUTTERFLY_SPAWN_EGG.get(), ModItems.CATERPILLAR_SPAWN_EGG.get(),
+                ModItems.FIREFLY_SPAWN_EGG.get(), ModItems.ALLIGATOR_SPAWN_EGG.get(), ModItems.ELEPHANT_SPAWN_EGG.get(),
+                ModItems.GIRAFFE_SPAWN_EGG.get(), ModItems.HIPPO_SPAWN_EGG.get(), ModItems.LION_SPAWN_EGG.get(),
+                ModItems.RHINO_SPAWN_EGG.get(), ModItems.COPPER_GOLEM_SPAWN_EGG.get(),
+                ModItems.CREAKING_SPAWN_EGG.get(), ModItems.HAPPY_GHAST_SPAWN_EGG.get());
     }
 
     public static void onClientSetup(FMLClientSetupEvent event) {
