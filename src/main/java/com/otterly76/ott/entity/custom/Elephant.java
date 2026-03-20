@@ -331,9 +331,9 @@ public class Elephant extends TamableAnimal implements NeutralMob, NaturalistGeo
     protected <T extends Elephant> PlayState predicate(AnimationState<T> state) {
         if (state.isMoving()) {
             state.getController().setAnimation(WALK);
-            return PlayState.CONTINUE;
+        } else {
+            state.getController().setAnimation(IDLE);
         }
-        state.getController().setAnimation(IDLE);
         return PlayState.CONTINUE;
     }
 

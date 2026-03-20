@@ -407,13 +407,10 @@ public abstract class Bear extends Animal implements NeutralMob, GeoEntity, Shea
                 event.getController().setAnimation(WALK);
                 event.getController().setAnimationSpeed(1.4D);
             }
-            return PlayState.CONTINUE;
         } else if (this.isSleeping()) {
             event.getController().setAnimation(SLEEP);
-            return PlayState.CONTINUE;
         } else if (this.isSitting()) {
             event.getController().setAnimation(SIT);
-            return PlayState.CONTINUE;
         } else {
             event.getController().setAnimation(IDLE);
         }
@@ -423,9 +420,10 @@ public abstract class Bear extends Animal implements NeutralMob, GeoEntity, Shea
     protected <E extends Bear> PlayState sniffPredicate(final AnimationState<E> event) {
         if (this.isSniffing()) {
             event.getController().setAnimation(SNIFF);
-            return PlayState.CONTINUE;
+        } else {
+            return PlayState.STOP;
         }
-        return PlayState.STOP;
+        return PlayState.CONTINUE;
     }
 
     protected <E extends Bear> PlayState attackPredicate(final AnimationState<E> event) {
@@ -439,9 +437,10 @@ public abstract class Bear extends Animal implements NeutralMob, GeoEntity, Shea
     protected <E extends Bear> PlayState eatPredicate(final AnimationState<E> event) {
         if (this.isEating()) {
             event.getController().setAnimation(EAT);
-            return PlayState.CONTINUE;
+        } else {
+            return PlayState.STOP;
         }
-        return PlayState.STOP;
+        return PlayState.CONTINUE;
     }
 
     private void soundListener(SoundKeyframeEvent<Bear> event) {

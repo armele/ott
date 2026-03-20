@@ -261,9 +261,9 @@ public class Giraffe extends TamableAnimal implements NaturalistGeoEntity, Saddl
     protected <T extends Giraffe> PlayState predicate(AnimationState<T> state) {
         if (state.isMoving()) {
             state.getController().setAnimation(this.isSprinting() ? RUN : WALK);
-            return PlayState.CONTINUE;
+        } else {
+            state.getController().setAnimation(IDLE);
         }
-        state.getController().setAnimation(IDLE);
         return PlayState.CONTINUE;
     }
 

@@ -281,7 +281,6 @@ public abstract class Deer extends TamableAnimal implements GeoEntity, Saddleabl
                 event.getController().setAnimation(WALK);
                 event.getController().setAnimationSpeed(1.0D);
             }
-            return PlayState.CONTINUE;
         } else {
             event.getController().setAnimation(IDLE);
         }
@@ -291,9 +290,10 @@ public abstract class Deer extends TamableAnimal implements GeoEntity, Saddleabl
     protected <E extends Deer> PlayState eatPredicate(final AnimationState<E> event) {
         if (this.isEating()) {
             event.getController().setAnimation(EAT);
-            return PlayState.CONTINUE;
+        } else {
+            return PlayState.STOP;
         }
-        return PlayState.STOP;
+        return PlayState.CONTINUE;
     }
 
     private void soundListener(SoundKeyframeEvent<Deer> event) {

@@ -149,11 +149,10 @@ public class Caterpillar extends Animal implements GeoEntity {
     protected <E extends Caterpillar> PlayState predicate(final AnimationState<E> event) {
         if (this.getDeltaMovement().horizontalDistanceSqr() > 1.0E-6) {
             event.getController().setAnimation(CRAWL);
-            return PlayState.CONTINUE;
         } else {
             event.getController().setAnimation(IDLE);
-            return PlayState.CONTINUE;
         }
+        return PlayState.CONTINUE;
     }
 
     @Override
