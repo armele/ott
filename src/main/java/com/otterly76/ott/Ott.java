@@ -132,6 +132,7 @@ public class Ott {
     public Ott(IEventBus modEventBus) {
         OttBuiltInRegistries.init(modEventBus);
         OttBuiltInRegistries.bootstrap();
+        com.otterly76.ott.registry.ModEntityDataSerializers.register(modEventBus);
         setup();
 
 

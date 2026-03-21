@@ -42,6 +42,50 @@ public class OttEntityLootTableProvider extends EntityLootSubProvider {
         this.add(ModEntities.DEER.get(), createDeerDrops());
         this.add(ModEntities.REINDEER.get(), createDeerDrops());
         this.add(ModEntities.WHITE_DEER.get(), createDeerDrops());
+
+        this.add(ModEntities.CAPYBARA.get(), createMeatDrops(ModItems.RAW_CAPYBARA.get()));
+        this.add(ModEntities.HEDGEHOG.get(), createHedgehogDrops());
+        this.add(ModEntities.KIWI.get(), createMeatDrops(ModItems.RAW_KIWI.get()));
+        this.add(ModEntities.PENGUIN.get(), LootTable.lootTable());
+        this.add(ModEntities.SEAL.get(), createMeatDrops(ModItems.RAW_SEAL.get()));
+        this.add(ModEntities.JELLYFISH.get(), createJellyfishDrops());
+        this.add(ModEntities.SEA_URCHIN.get(), createSeaUrchinDrops());
+    }
+
+    private LootTable.Builder createMeatDrops(net.minecraft.world.item.Item meat) {
+        return LootTable.lootTable()
+                .withPool(LootPool.lootPool()
+                        .setRolls(ConstantValue.exactly(1.0F))
+                        .add(LootItem.lootTableItem(meat)
+                                .apply(SetItemCountFunction.setCount(UniformGenerator.between(1.0F, 3.0F)))
+                                .apply(SmeltItemFunction.smelted()
+                                        .when(LootItemEntityPropertyCondition.hasProperties(LootContext.EntityTarget.THIS, EntityPredicate.Builder.entity().flags(EntityFlagsPredicate.Builder.flags().setOnFire(true)))))));
+    }
+
+    private LootTable.Builder createHedgehogDrops() {
+        return createMeatDrops(ModItems.RAW_HEDGEHOG.get())
+                .withPool(LootPool.lootPool()
+                        .setRolls(ConstantValue.exactly(1.0F))
+                        .add(LootItem.lootTableItem(ModItems.QUILL.get())
+                                .apply(SetItemCountFunction.setCount(UniformGenerator.between(1.0F, 4.0F)))
+                                .when(net.minecraft.world.level.storage.loot.predicates.LootItemKilledByPlayerCondition.killedByPlayer()))
+                );
+    }
+
+    private LootTable.Builder createJellyfishDrops() {
+        return LootTable.lootTable()
+                .withPool(LootPool.lootPool()
+                        .setRolls(ConstantValue.exactly(1.0F))
+                        .add(LootItem.lootTableItem(ModItems.JELLYFISH_JELLY.get())
+                                .apply(SetItemCountFunction.setCount(UniformGenerator.between(0.0F, 2.0F)))));
+    }
+
+    private LootTable.Builder createSeaUrchinDrops() {
+        return LootTable.lootTable()
+                .withPool(LootPool.lootPool()
+                        .setRolls(ConstantValue.exactly(1.0F))
+                        .add(LootItem.lootTableItem(ModItems.SEA_URCHIN_CAVIAR.get())
+                                .apply(SetItemCountFunction.setCount(UniformGenerator.between(0.0F, 2.0F)))));
     }
 
     private LootTable.Builder createBirdDrops() {
@@ -102,7 +146,14 @@ public class OttEntityLootTableProvider extends EntityLootSubProvider {
                 ModEntities.BLACK_BEAR.get(),
                 ModEntities.DEER.get(),
                 ModEntities.REINDEER.get(),
-                ModEntities.WHITE_DEER.get()
+                ModEntities.WHITE_DEER.get(),
+                ModEntities.CAPYBARA.get(),
+                ModEntities.HEDGEHOG.get(),
+                ModEntities.KIWI.get(),
+                ModEntities.PENGUIN.get(),
+                ModEntities.SEAL.get(),
+                ModEntities.SEA_URCHIN.get(),
+                ModEntities.JELLYFISH.get()
         );
     }
 }

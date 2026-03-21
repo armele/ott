@@ -25,6 +25,18 @@
       "weight": 12,
       "minCount": 1,
       "maxCount": 3
+    },
+    {
+      "type": "ott:jellyfish",
+      "weight": 10,
+      "minCount": 3,
+      "maxCount": 8
+    },
+    {
+      "type": "ott:sea_urchin",
+      "weight": 12,
+      "minCount": 2,
+      "maxCount": 4
     }
   ]
 }

@@ -1,5 +1,5 @@
 package com.otterly76.ott;
-
+import org.jetbrains.annotations.NotNull;
 import com.otterly76.ott.block.ModBlocks;
 import com.otterly76.ott.client.NutritionHudOverlay;
 import com.otterly76.ott.client.gui.TrashScreen;
@@ -237,6 +237,23 @@ public class ClientModEvents {
         event.registerEntityRenderer(ModEntities.FINCH.get(), com.otterly76.ott.client.render.entity.BirdRenderer::new);
         event.registerEntityRenderer(ModEntities.ROBIN.get(), com.otterly76.ott.client.render.entity.BirdRenderer::new);
         event.registerEntityRenderer(ModEntities.SPARROW.get(), com.otterly76.ott.client.render.entity.BirdRenderer::new);
+        event.registerEntityRenderer(ModEntities.JELLYFISH.get(), com.otterly76.ott.client.render.entity.JellyfishRenderer::new);
+        event.registerEntityRenderer(ModEntities.KIWI.get(), com.otterly76.ott.client.render.entity.KiwiRenderer::new);
+        event.registerEntityRenderer(ModEntities.PENGUIN.get(), com.otterly76.ott.client.render.entity.PenguinRenderer::new);
+        event.registerEntityRenderer(ModEntities.SEAL.get(), com.otterly76.ott.client.render.entity.SealRenderer::new);
+        event.registerEntityRenderer(ModEntities.SEA_URCHIN.get(), com.otterly76.ott.client.render.entity.SeaUrchinRenderer::new);
+        event.registerEntityRenderer(ModEntities.CAPYBARA.get(), com.otterly76.ott.client.render.entity.CapybaraRenderer::new);
+        event.registerEntityRenderer(ModEntities.HEDGEHOG.get(), com.otterly76.ott.client.render.entity.HedgehogRenderer::new);
+
+        event.registerEntityRenderer(ModEntities.KIWI_EGG.get(), ThrownItemRenderer::new);
+        event.registerEntityRenderer(ModEntities.PENGUIN_EGG.get(), ThrownItemRenderer::new);
+        event.registerEntityRenderer(ModEntities.QUILL_ARROW.get(), context -> new net.minecraft.client.renderer.entity.ArrowRenderer<>(context) {
+            @Override
+            public @NotNull ResourceLocation getTextureLocation(@NotNull com.otterly76.ott.entity.projectile.QuillArrowEntity entity) {
+                return ResourceLocation.fromNamespaceAndPath(MOD_ID, "textures/entity/quill_arrow.png");
+            }
+        });
+
         event.registerEntityRenderer(ModEntities.EMU_EGG.get(), ThrownItemRenderer::new);
         event.registerEntityRenderer(ModEntities.HOOPOE_EGG.get(), ThrownItemRenderer::new);
         event.registerEntityRenderer(ModEntities.PHEASANT_EGG.get(), ThrownItemRenderer::new);
@@ -405,6 +422,9 @@ public class ClientModEvents {
                 ModItems.LIZARD_SPAWN_EGG.get(), ModItems.SNAIL_SPAWN_EGG.get(), ModItems.TORTOISE_SPAWN_EGG.get(),
                 ModItems.VULTURE_SPAWN_EGG.get(), ModItems.ZEBRA_SPAWN_EGG.get(), ModItems.MOOSE_SPAWN_EGG.get(),
                 ModItems.MAMMOTH_SPAWN_EGG.get(), ModItems.MYCELIUM_MAMMOTH_SPAWN_EGG.get(), ModItems.FENNEC_FOX_SPAWN_EGG.get(),
+                ModItems.CAPYBARA_SPAWN_EGG.get(), ModItems.HEDGEHOG_SPAWN_EGG.get(), ModItems.JELLYFISH_SPAWN_EGG.get(),
+                ModItems.KIWI_SPAWN_EGG.get(), ModItems.PENGUIN_SPAWN_EGG.get(), ModItems.SEAL_SPAWN_EGG.get(),
+                ModItems.SEA_URCHIN_SPAWN_EGG.get(),
                 ModItems.COPPER_GOLEM_SPAWN_EGG.get(),
                 ModItems.CREAKING_SPAWN_EGG.get(), ModItems.HAPPY_GHAST_SPAWN_EGG.get(),
                 net.minecraft.world.item.Items.ALLAY_SPAWN_EGG, net.minecraft.world.item.Items.ARMADILLO_SPAWN_EGG,

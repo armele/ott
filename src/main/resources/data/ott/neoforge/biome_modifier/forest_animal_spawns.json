@@ -49,6 +49,12 @@
       "weight": 10,
       "minCount": 1,
       "maxCount": 3
+    },
+    {
+      "type": "ott:hedgehog",
+      "weight": 10,
+      "minCount": 2,
+      "maxCount": 5
     }
   ]
 }

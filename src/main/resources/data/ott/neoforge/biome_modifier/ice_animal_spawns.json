@@ -6,5 +6,18 @@
     "minecraft:frozen_river",
     "minecraft:ice_spikes"
   ],
-  "spawners": []
+  "spawners": [
+    {
+      "type": "ott:penguin",
+      "weight": 10,
+      "minCount": 4,
+      "maxCount": 10
+    },
+    {
+      "type": "ott:seal",
+      "weight": 8,
+      "minCount": 2,
+      "maxCount": 5
+    }
+  ]
 }

@@ -69,6 +69,12 @@ public class ModTags {
         public static final TagKey<Item> GIRAFFE_FOOD_ITEMS = createTag("giraffe_food_items");
         public static final TagKey<Item> ELEPHANT_FOOD_ITEMS = createTag("elephant_food_items");
         public static final TagKey<Item> VULTURE_FOOD_ITEMS = createTag("vulture_food_items");
+        public static final TagKey<Item> CAPYBARA_FOOD = createTag("capybara_food");
+        public static final TagKey<Item> HEDGEHOG_FOOD = createTag("hedgehog_food");
+        public static final TagKey<Item> KIWI_FOOD = createTag("kiwi_food");
+        public static final TagKey<Item> PENGUIN_FOOD = createTag("penguin_food");
+        public static final TagKey<Item> SEAL_FOOD = createTag("seal_food");
+        public static final TagKey<Item> SEA_URCHIN_FOOD = createTag("sea_urchin_food");
         public static final TagKey<Item> STRIPPED_PALE_OAK_LOG = mcTag("stripped_pale_oak_log");
         public static final TagKey<Item> LANTERNS = mcTag("lanterns");
         public static final TagKey<Item> LIGHTNING_RODS = mcTag("lightning_rods");

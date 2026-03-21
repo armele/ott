@@ -312,6 +312,38 @@ public class ModSounds {
     public static final DeferredHolder<SoundEvent, SoundEvent> MOOSE_DEATH = registerOttSoundEvent("entity.moose.death");
     public static final DeferredHolder<SoundEvent, SoundEvent> MOOSE_DEATH_BABY = registerOttSoundEvent("entity.moose.death_baby");
 
+    public static final DeferredHolder<SoundEvent, SoundEvent> CAPYBARA_AMBIENT = registerOttSoundEvent("entity.capybara.idle");
+    public static final DeferredHolder<SoundEvent, SoundEvent> CAPYBARA_HURT = registerOttSoundEvent("entity.capybara.hurt");
+    public static final DeferredHolder<SoundEvent, SoundEvent> CAPYBARA_DEATH = registerOttSoundEvent("entity.capybara.death");
+
+    public static final DeferredHolder<SoundEvent, SoundEvent> HEDGEHOG_AMBIENT = registerOttSoundEvent("entity.hedgehog.idle");
+    public static final DeferredHolder<SoundEvent, SoundEvent> HEDGEHOG_HURT = registerOttSoundEvent("entity.hedgehog.hurt");
+    public static final DeferredHolder<SoundEvent, SoundEvent> HEDGEHOG_DEATH = registerOttSoundEvent("entity.hedgehog.death");
+    public static final DeferredHolder<SoundEvent, SoundEvent> HEDGEHOG_ROLL = registerOttSoundEvent("entity.hedgehog.roll");
+    public static final DeferredHolder<SoundEvent, SoundEvent> HEDGEHOG_UNROLL = registerOttSoundEvent("entity.hedgehog.unroll");
+
+    public static final DeferredHolder<SoundEvent, SoundEvent> JELLYFISH_AMBIENT = registerOttSoundEvent("entity.jellyfish.idle");
+    public static final DeferredHolder<SoundEvent, SoundEvent> JELLYFISH_HURT = registerOttSoundEvent("entity.jellyfish.hurt");
+    public static final DeferredHolder<SoundEvent, SoundEvent> JELLYFISH_DEATH = registerOttSoundEvent("entity.jellyfish.death");
+
+    public static final DeferredHolder<SoundEvent, SoundEvent> KIWI_AMBIENT = registerOttSoundEvent("entity.kiwi.idle");
+    public static final DeferredHolder<SoundEvent, SoundEvent> KIWI_HURT = registerOttSoundEvent("entity.kiwi.hurt");
+    public static final DeferredHolder<SoundEvent, SoundEvent> KIWI_DEATH = registerOttSoundEvent("entity.kiwi.death");
+
+    public static final DeferredHolder<SoundEvent, SoundEvent> PENGUIN_AMBIENT = registerOttSoundEvent("entity.penguin.idle_adult");
+    public static final DeferredHolder<SoundEvent, SoundEvent> PENGUIN_AMBIENT_BABY = registerOttSoundEvent("entity.penguin.idle_baby");
+    public static final DeferredHolder<SoundEvent, SoundEvent> PENGUIN_HURT = registerOttSoundEvent("entity.penguin.hurt_adult");
+    public static final DeferredHolder<SoundEvent, SoundEvent> PENGUIN_HURT_BABY = registerOttSoundEvent("entity.penguin.hurt_baby");
+    public static final DeferredHolder<SoundEvent, SoundEvent> PENGUIN_DEATH = registerOttSoundEvent("entity.penguin.death_adult");
+    public static final DeferredHolder<SoundEvent, SoundEvent> PENGUIN_DEATH_BABY = registerOttSoundEvent("entity.penguin.death_baby");
+
+    public static final DeferredHolder<SoundEvent, SoundEvent> SEAL_AMBIENT = registerOttSoundEvent("entity.seal.idle");
+    public static final DeferredHolder<SoundEvent, SoundEvent> SEAL_HURT = registerOttSoundEvent("entity.seal.hurt");
+    public static final DeferredHolder<SoundEvent, SoundEvent> SEAL_DEATH = registerOttSoundEvent("entity.seal.death");
+
+    public static final DeferredHolder<SoundEvent, SoundEvent> SEA_URCHIN_AMBIENT = registerOttSoundEvent("entity.sea_urchin.idle");
+    public static final DeferredHolder<SoundEvent, SoundEvent> SEA_URCHIN_HURT = registerOttSoundEvent("entity.sea_urchin.hurt");
+    public static final DeferredHolder<SoundEvent, SoundEvent> SEA_URCHIN_DEATH = registerOttSoundEvent("entity.sea_urchin.death");
 
     public static final DeferredHolder<SoundEvent, SoundEvent> NONE = registerSoundEvent("music.none");
     public static final DeferredHolder<SoundEvent, SoundEvent> BUNDLE_INSERT_FAIL = registerSoundEvent("item.bundle.insert_fail");

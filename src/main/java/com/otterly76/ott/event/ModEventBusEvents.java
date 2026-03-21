@@ -78,6 +78,14 @@ public class ModEventBusEvents {
         event.put(ModEntities.DEER.get(), com.otterly76.ott.entity.custom.Deer.createAttributes().build());
         event.put(ModEntities.REINDEER.get(), com.otterly76.ott.entity.custom.Deer.createAttributes().build());
         event.put(ModEntities.WHITE_DEER.get(), com.otterly76.ott.entity.custom.Deer.createAttributes().build());
+
+        event.put(ModEntities.CAPYBARA.get(), com.otterly76.ott.entity.custom.CapybaraEntity.createAttributes().build());
+        event.put(ModEntities.HEDGEHOG.get(), com.otterly76.ott.entity.custom.HedgehogEntity.createAttributes().build());
+        event.put(ModEntities.KIWI.get(), com.otterly76.ott.entity.custom.KiwiEntity.createAttributes().build());
+        event.put(ModEntities.PENGUIN.get(), com.otterly76.ott.entity.custom.PenguinEntity.createAttributes().build());
+        event.put(ModEntities.SEAL.get(), com.otterly76.ott.entity.custom.SealEntity.createAttributes().build());
+        event.put(ModEntities.SEA_URCHIN.get(), com.otterly76.ott.entity.custom.SeaUrchinEntity.createAttributes().build());
+        event.put(ModEntities.JELLYFISH.get(), com.otterly76.ott.entity.custom.JellyfishEntity.createAttributes().build());
     }
 
     @SubscribeEvent
@@ -439,6 +447,55 @@ public class ModEventBusEvents {
                 RegisterSpawnPlacementsEvent.Operation.OR
         );
 
+        event.register(
+                ModEntities.CAPYBARA.get(),
+                SpawnPlacementTypes.ON_GROUND,
+                Heightmap.Types.MOTION_BLOCKING_NO_LEAVES,
+                Animal::checkAnimalSpawnRules,
+                RegisterSpawnPlacementsEvent.Operation.OR
+        );
+        event.register(
+                ModEntities.HEDGEHOG.get(),
+                SpawnPlacementTypes.ON_GROUND,
+                Heightmap.Types.MOTION_BLOCKING_NO_LEAVES,
+                Animal::checkAnimalSpawnRules,
+                RegisterSpawnPlacementsEvent.Operation.OR
+        );
+        event.register(
+                ModEntities.KIWI.get(),
+                SpawnPlacementTypes.ON_GROUND,
+                Heightmap.Types.MOTION_BLOCKING_NO_LEAVES,
+                Animal::checkAnimalSpawnRules,
+                RegisterSpawnPlacementsEvent.Operation.OR
+        );
+        event.register(
+                ModEntities.PENGUIN.get(),
+                SpawnPlacementTypes.ON_GROUND,
+                Heightmap.Types.MOTION_BLOCKING_NO_LEAVES,
+                Animal::checkAnimalSpawnRules,
+                RegisterSpawnPlacementsEvent.Operation.OR
+        );
+        event.register(
+                ModEntities.SEAL.get(),
+                SpawnPlacementTypes.ON_GROUND,
+                Heightmap.Types.MOTION_BLOCKING_NO_LEAVES,
+                Animal::checkAnimalSpawnRules,
+                RegisterSpawnPlacementsEvent.Operation.OR
+        );
+        event.register(
+                ModEntities.JELLYFISH.get(),
+                SpawnPlacementTypes.IN_WATER,
+                Heightmap.Types.MOTION_BLOCKING_NO_LEAVES,
+                (type, level, spawnType, pos, random) -> true,
+                RegisterSpawnPlacementsEvent.Operation.OR
+        );
+        event.register(
+                ModEntities.SEA_URCHIN.get(),
+                SpawnPlacementTypes.IN_WATER,
+                Heightmap.Types.OCEAN_FLOOR,
+                com.otterly76.ott.entity.custom.SeaUrchinEntity::checkSpawnRules,
+                RegisterSpawnPlacementsEvent.Operation.OR
+        );
     }
 
     public static void registerCapabilities(RegisterCapabilitiesEvent event) {

@@ -184,12 +184,42 @@ public class ModEntities {
     public static final Supplier<EntityType<com.otterly76.ott.entity.custom.MyceliumMammoth>> MYCELIUM_MAMMOTH = OTT_ENTITY_TYPES.register("mycelium_mammoth",
             () -> Builder.of(com.otterly76.ott.entity.custom.MyceliumMammoth::new, MobCategory.CREATURE).sized(2.5F, 3.5F).clientTrackingRange(10).build("mycelium_mammoth"));
 
+    public static final Supplier<EntityType<com.otterly76.ott.entity.custom.HedgehogEntity>> HEDGEHOG = OTT_ENTITY_TYPES.register("hedgehog",
+            () -> Builder.of(com.otterly76.ott.entity.custom.HedgehogEntity::new, MobCategory.CREATURE).sized(0.6F, 0.5F).build("hedgehog"));
+
+    public static final Supplier<EntityType<com.otterly76.ott.entity.custom.KiwiEntity>> KIWI = OTT_ENTITY_TYPES.register("kiwi",
+            () -> Builder.of(com.otterly76.ott.entity.custom.KiwiEntity::new, MobCategory.CREATURE).sized(0.5F, 0.6F).build("kiwi"));
+
+    public static final Supplier<EntityType<com.otterly76.ott.entity.custom.CapybaraEntity>> CAPYBARA = OTT_ENTITY_TYPES.register("capybara",
+            () -> Builder.of(com.otterly76.ott.entity.custom.CapybaraEntity::new, MobCategory.CREATURE).sized(1.1F, 1.0F).build("capybara"));
+
+    public static final Supplier<EntityType<com.otterly76.ott.entity.custom.SealEntity>> SEAL = OTT_ENTITY_TYPES.register("seal",
+            () -> Builder.of(com.otterly76.ott.entity.custom.SealEntity::new, MobCategory.CREATURE).sized(1.1F, 0.9F).build("seal"));
+
+    public static final Supplier<EntityType<com.otterly76.ott.entity.custom.PenguinEntity>> PENGUIN = OTT_ENTITY_TYPES.register("penguin",
+            () -> Builder.of(com.otterly76.ott.entity.custom.PenguinEntity::new, MobCategory.CREATURE).sized(0.6F, 1.2F).build("penguin"));
+
+    public static final Supplier<EntityType<com.otterly76.ott.entity.custom.SeaUrchinEntity>> SEA_URCHIN = OTT_ENTITY_TYPES.register("sea_urchin",
+            () -> Builder.of(com.otterly76.ott.entity.custom.SeaUrchinEntity::new, MobCategory.CREATURE).sized(0.5F, 0.65F).build("sea_urchin"));
+
+    public static final Supplier<EntityType<com.otterly76.ott.entity.custom.JellyfishEntity>> JELLYFISH = OTT_ENTITY_TYPES.register("jellyfish",
+            () -> Builder.of(com.otterly76.ott.entity.custom.JellyfishEntity::new, MobCategory.WATER_CREATURE).sized(1.0F, 1.0F).eyeHeight(0.5F).build("jellyfish"));
+
     public static final Supplier<EntityType<com.otterly76.ott.entity.custom.FennecFox>> FENNEC_FOX = OTT_ENTITY_TYPES.register("fennec_fox",
             () -> Builder.of(com.otterly76.ott.entity.custom.FennecFox::new, MobCategory.CREATURE).sized(0.6F, 0.7F).clientTrackingRange(8).build("fennec_fox"));
 
 
     public static final Supplier<EntityType<com.otterly76.ott.entity.projectile.EmuEggEntity>> EMU_EGG = OTT_ENTITY_TYPES.register("emu_egg",
             () -> Builder.<com.otterly76.ott.entity.projectile.EmuEggEntity>of(com.otterly76.ott.entity.projectile.EmuEggEntity::new, MobCategory.MISC).sized(0.25F, 0.25F).clientTrackingRange(4).updateInterval(10).build("emu_egg"));
+
+    public static final Supplier<EntityType<com.otterly76.ott.entity.projectile.KiwiEggEntity>> KIWI_EGG = OTT_ENTITY_TYPES.register("kiwi_egg",
+            () -> Builder.<com.otterly76.ott.entity.projectile.KiwiEggEntity>of(com.otterly76.ott.entity.projectile.KiwiEggEntity::new, MobCategory.MISC).sized(0.25F, 0.25F).clientTrackingRange(4).updateInterval(10).build("kiwi_egg"));
+
+    public static final Supplier<EntityType<com.otterly76.ott.entity.projectile.PenguinEggEntity>> PENGUIN_EGG = OTT_ENTITY_TYPES.register("penguin_egg",
+            () -> Builder.<com.otterly76.ott.entity.projectile.PenguinEggEntity>of(com.otterly76.ott.entity.projectile.PenguinEggEntity::new, MobCategory.MISC).sized(0.25F, 0.25F).clientTrackingRange(4).updateInterval(10).build("penguin_egg"));
+
+    public static final Supplier<EntityType<com.otterly76.ott.entity.projectile.QuillArrowEntity>> QUILL_ARROW = OTT_ENTITY_TYPES.register("quill_arrow",
+            () -> Builder.<com.otterly76.ott.entity.projectile.QuillArrowEntity>of(com.otterly76.ott.entity.projectile.QuillArrowEntity::new, MobCategory.MISC).sized(0.5F, 0.5F).clientTrackingRange(4).updateInterval(20).build("quill_arrow"));
 
     public static final Supplier<EntityType<com.otterly76.ott.entity.projectile.HoopoeEggEntity>> HOOPOE_EGG = OTT_ENTITY_TYPES.register("hoopoe_egg",
             () -> Builder.<com.otterly76.ott.entity.projectile.HoopoeEggEntity>of(com.otterly76.ott.entity.projectile.HoopoeEggEntity::new, MobCategory.MISC).sized(0.25F, 0.25F).clientTrackingRange(4).updateInterval(10).build("hoopoe_egg"));

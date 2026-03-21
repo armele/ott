@@ -19,6 +19,21 @@ public class OttDamageTypes {
             ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, "lantern_damage")
     );
 
+    public static final ResourceKey<DamageType> HEDGEHOG_SPIKES = ResourceKey.create(
+            Registries.DAMAGE_TYPE,
+            ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, "hedgehog_spikes")
+    );
+
+    public static final ResourceKey<DamageType> SEA_URCHIN_SPIKES = ResourceKey.create(
+            Registries.DAMAGE_TYPE,
+            ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, "sea_urchin_spikes")
+    );
+
+    public static final ResourceKey<DamageType> JELLYFISH_STING = ResourceKey.create(
+            Registries.DAMAGE_TYPE,
+            ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, "jellyfish_sting")
+    );
+
     public static DamageSource of(Level level, ResourceKey<DamageType> key) {
         return new DamageSource(level.registryAccess().registryOrThrow(Registries.DAMAGE_TYPE).getHolderOrThrow(key));
     }

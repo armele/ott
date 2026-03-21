@@ -245,6 +245,21 @@ public class ModItems {
     public static final DeferredItem<Item> FENNEC_FOX_SPAWN_EGG = ITEMS.register("fennec_fox_spawn_egg",
             () -> new net.neoforged.neoforge.common.DeferredSpawnEggItem(ModEntities.FENNEC_FOX, 0xD3A66B, 0xF7E3B6, new Item.Properties()));
 
+    public static final DeferredItem<Item> CAPYBARA_SPAWN_EGG = ITEMS.register("capybara_spawn_egg",
+            () -> new net.neoforged.neoforge.common.DeferredSpawnEggItem(ModEntities.CAPYBARA, 0x8B5A2B, 0x5C4033, new Item.Properties()));
+    public static final DeferredItem<Item> HEDGEHOG_SPAWN_EGG = ITEMS.register("hedgehog_spawn_egg",
+            () -> new net.neoforged.neoforge.common.DeferredSpawnEggItem(ModEntities.HEDGEHOG, 0x5C4033, 0xD2B48C, new Item.Properties()));
+    public static final DeferredItem<Item> JELLYFISH_SPAWN_EGG = ITEMS.register("jellyfish_spawn_egg",
+            () -> new net.neoforged.neoforge.common.DeferredSpawnEggItem(ModEntities.JELLYFISH, 0xFFB6C1, 0xFF69B4, new Item.Properties()));
+    public static final DeferredItem<Item> KIWI_SPAWN_EGG = ITEMS.register("kiwi_spawn_egg",
+            () -> new net.neoforged.neoforge.common.DeferredSpawnEggItem(ModEntities.KIWI, 0x8B4513, 0xD2B48C, new Item.Properties()));
+    public static final DeferredItem<Item> PENGUIN_SPAWN_EGG = ITEMS.register("penguin_spawn_egg",
+            () -> new net.neoforged.neoforge.common.DeferredSpawnEggItem(ModEntities.PENGUIN, 0x2F4F4F, 0xFFFFFF, new Item.Properties()));
+    public static final DeferredItem<Item> SEAL_SPAWN_EGG = ITEMS.register("seal_spawn_egg",
+            () -> new net.neoforged.neoforge.common.DeferredSpawnEggItem(ModEntities.SEAL, 0x708090, 0xC0C0C0, new Item.Properties()));
+    public static final DeferredItem<Item> SEA_URCHIN_SPAWN_EGG = ITEMS.register("sea_urchin_spawn_egg",
+            () -> new net.neoforged.neoforge.common.DeferredSpawnEggItem(ModEntities.SEA_URCHIN, 0x4B0082, 0x000000, new Item.Properties()));
+
     public static final DeferredItem<Item> BUG_NET = ITEMS.register("bug_net",
             () -> new BugNetItem(new Item.Properties().durability(64)));
 
@@ -273,6 +288,35 @@ public class ModItems {
             () -> new Item(new Item.Properties()));
     public static final DeferredItem<Item> SNAIL_BUCKET = ITEMS.register("snail_bucket",
             () -> new SnailBucketItem(ModEntities.SNAIL, () -> net.minecraft.world.level.material.Fluids.EMPTY, () -> net.minecraft.sounds.SoundEvents.BUCKET_EMPTY_FISH, new Item.Properties().stacksTo(1)));
+
+    public static final DeferredItem<Item> RAW_CAPYBARA = ITEMS.register("raw_capybara",
+            () -> new Item(new Item.Properties().food(new FoodProperties.Builder().nutrition(3).saturationModifier(0.3F).build())));
+    public static final DeferredItem<Item> COOKED_CAPYBARA = ITEMS.register("cooked_capybara",
+            () -> new Item(new Item.Properties().food(new FoodProperties.Builder().nutrition(8).saturationModifier(0.8F).build())));
+    public static final DeferredItem<Item> RAW_HEDGEHOG = ITEMS.register("raw_hedgehog",
+            () -> new Item(new Item.Properties().food(new FoodProperties.Builder().nutrition(2).saturationModifier(0.3F).build())));
+    public static final DeferredItem<Item> COOKED_HEDGEHOG = ITEMS.register("cooked_hedgehog",
+            () -> new Item(new Item.Properties().food(new FoodProperties.Builder().nutrition(5).saturationModifier(0.6F).build())));
+    public static final DeferredItem<Item> RAW_SEAL = ITEMS.register("raw_seal",
+            () -> new Item(new Item.Properties().food(new FoodProperties.Builder().nutrition(3).saturationModifier(0.3F).build())));
+    public static final DeferredItem<Item> COOKED_SEAL = ITEMS.register("cooked_seal",
+            () -> new Item(new Item.Properties().food(new FoodProperties.Builder().nutrition(8).saturationModifier(0.8F).build())));
+    public static final DeferredItem<Item> RAW_KIWI = ITEMS.register("raw_kiwi",
+            () -> new Item(new Item.Properties().food(new FoodProperties.Builder().nutrition(3).saturationModifier(0.3F).build())));
+    public static final DeferredItem<Item> COOKED_KIWI = ITEMS.register("cooked_kiwi",
+            () -> new Item(new Item.Properties().food(new FoodProperties.Builder().nutrition(5).saturationModifier(0.6F).build())));
+    public static final DeferredItem<Item> JELLYFISH_JELLY = ITEMS.register("jellyfish_jelly",
+            () -> new Item(new Item.Properties().food(new FoodProperties.Builder().nutrition(2).saturationModifier(0.1F).build())));
+    public static final DeferredItem<Item> SEA_URCHIN_CAVIAR = ITEMS.register("sea_urchin_caviar",
+            () -> new Item(new Item.Properties().food(new FoodProperties.Builder().nutrition(3).saturationModifier(0.5F).build())));
+    public static final DeferredItem<Item> KIWI_EGG = ITEMS.register("kiwi_egg",
+            () -> new KiwiEggItem(new Item.Properties()));
+    public static final DeferredItem<Item> PENGUIN_EGG = ITEMS.register("penguin_egg",
+            () -> new PenguinEggItem(new Item.Properties()));
+    public static final DeferredItem<Item> QUILL = ITEMS.register("quill",
+            () -> new Item(new Item.Properties()));
+    public static final DeferredItem<Item> QUILL_ARROW = ITEMS.register("quill_arrow",
+            () -> new QuillArrowItem(new Item.Properties()));
 
     public static final DeferredHolder<Item, BlockItem> CHRYSALIS = registerBlockItem("chrysalis", ModBlocks.CHRYSALIS);
     public static final DeferredHolder<Item, BlockItem> TEDDY_BEAR = registerBlockItem("teddy_bear", ModBlocks.TEDDY_BEAR);

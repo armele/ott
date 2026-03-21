@@ -97,7 +97,22 @@ public class ModItemModelProvider extends ItemModelProvider {
         generatedItemFromTexture(ModItems.TINY_COAL.getId().getPath(), modLoc("item/tiny_coal"));
         generatedItemFromTexture(ModItems.TINY_CHARCOAL.getId().getPath(), modLoc("item/tiny_charcoal"));
         generatedItemFromTexture(ModItems.OTTER.getId().getPath(), modLoc("item/otter"));
-        
+
+        generatedItemFromTexture(ModItems.RAW_CAPYBARA.getId().getPath(), modLoc("item/raw_capybara_meat"));
+        generatedItemFromTexture(ModItems.COOKED_CAPYBARA.getId().getPath(), modLoc("item/cooked_capybara_meat"));
+        generatedItemFromTexture(ModItems.RAW_HEDGEHOG.getId().getPath(), modLoc("item/raw_hedgehog_meat"));
+        generatedItemFromTexture(ModItems.COOKED_HEDGEHOG.getId().getPath(), modLoc("item/cooked_hedgehog_meat"));
+        generatedItemFromTexture(ModItems.RAW_SEAL.getId().getPath(), modLoc("item/raw_seal_meat"));
+        generatedItemFromTexture(ModItems.COOKED_SEAL.getId().getPath(), modLoc("item/cooked_seal_meat"));
+        generatedItemFromTexture(ModItems.RAW_KIWI.getId().getPath(), modLoc("item/raw_kiwi_meat"));
+        generatedItemFromTexture(ModItems.COOKED_KIWI.getId().getPath(), modLoc("item/cooked_kiwi_meat"));
+        generatedItemFromTexture(ModItems.JELLYFISH_JELLY.getId().getPath(), modLoc("item/jellyfish_jelly"));
+        generatedItemFromTexture(ModItems.SEA_URCHIN_CAVIAR.getId().getPath(), modLoc("item/sea_urchin_caviar"));
+        generatedItemFromTexture(ModItems.KIWI_EGG.getId().getPath(), modLoc("item/kiwi_egg"));
+        generatedItemFromTexture(ModItems.PENGUIN_EGG.getId().getPath(), modLoc("item/penguin_egg"));
+        generatedItemFromTexture(ModItems.QUILL.getId().getPath(), modLoc("item/quill"));
+        generatedItemFromTexture(ModItems.QUILL_ARROW.getId().getPath(), modLoc("item/quill_arrow"));
+
         getBuilder(ModItems.TORCH_ARROW.getId().getPath()).parent(new ModelFile.UncheckedModelFile(mcLoc("item/tipped_arrow")));
         
         // Custom Dyes

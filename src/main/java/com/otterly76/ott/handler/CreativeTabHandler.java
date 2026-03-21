@@ -508,6 +508,18 @@ public class CreativeTabHandler {
                     ModItems.BUSHMEAT,
                     ModItems.COOKED_BUSHMEAT,
                     ModItems.LIZARD_TAIL,
+                    ModItems.RAW_CAPYBARA,
+                    ModItems.COOKED_CAPYBARA,
+                    ModItems.RAW_HEDGEHOG,
+                    ModItems.COOKED_HEDGEHOG,
+                    ModItems.RAW_SEAL,
+                    ModItems.COOKED_SEAL,
+                    ModItems.RAW_KIWI,
+                    ModItems.COOKED_KIWI,
+                    ModItems.JELLYFISH_JELLY,
+                    ModItems.SEA_URCHIN_CAVIAR,
+                    ModItems.KIWI_EGG,
+                    ModItems.PENGUIN_EGG,
                     ModItems.SALTED_KELP
             ), visibility);
         }
@@ -664,6 +676,7 @@ public class CreativeTabHandler {
             safeAccept(event, ModItems.FUR, visibility);
             safeAccept(event, ModItems.ANTLER, visibility);
             safeAccept(event, ModItems.SNAIL_SHELL, visibility);
+            safeAccept(event, ModItems.QUILL, visibility);
         }
 
         if (event.getTabKey() == CreativeModeTabs.COMBAT) {
@@ -725,6 +738,7 @@ public class CreativeTabHandler {
             safeInsertAfter(event, Items.DIAMOND_HORSE_ARMOR.getDefaultInstance(), new ItemStack(ModItems.NETHERITE_HORSE_ARMOR.get()), visibility);
 
             safeInsertAfter(event, Items.TIPPED_ARROW.getDefaultInstance(), new ItemStack(ModItems.TORCH_ARROW.get()), visibility);
+            safeInsertAfter(event, ModItems.TORCH_ARROW.get().getDefaultInstance(), new ItemStack(ModItems.QUILL_ARROW.get()), visibility);
 
             safeAccept(event, ModItems.BROWN_EGG, visibility);
             safeAccept(event, ModItems.BLUE_EGG, visibility);
@@ -807,6 +821,13 @@ public class CreativeTabHandler {
             safeAccept(event, ModItems.MAMMOTH_SPAWN_EGG, visibility);
             safeAccept(event, ModItems.MYCELIUM_MAMMOTH_SPAWN_EGG, visibility);
             safeAccept(event, ModItems.FENNEC_FOX_SPAWN_EGG, visibility);
+            safeAccept(event, ModItems.CAPYBARA_SPAWN_EGG, visibility);
+            safeAccept(event, ModItems.HEDGEHOG_SPAWN_EGG, visibility);
+            safeAccept(event, ModItems.JELLYFISH_SPAWN_EGG, visibility);
+            safeAccept(event, ModItems.KIWI_SPAWN_EGG, visibility);
+            safeAccept(event, ModItems.PENGUIN_SPAWN_EGG, visibility);
+            safeAccept(event, ModItems.SEAL_SPAWN_EGG, visibility);
+            safeAccept(event, ModItems.SEA_URCHIN_SPAWN_EGG, visibility);
             safeAccept(event, ModItems.CHRYSALIS.get(), visibility);
         }
     }
