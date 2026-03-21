@@ -205,6 +205,21 @@ public class ModEntities {
     public static final Supplier<EntityType<com.otterly76.ott.entity.custom.JellyfishEntity>> JELLYFISH = OTT_ENTITY_TYPES.register("jellyfish",
             () -> Builder.of(com.otterly76.ott.entity.custom.JellyfishEntity::new, MobCategory.WATER_CREATURE).sized(1.0F, 1.0F).eyeHeight(0.5F).build("jellyfish"));
 
+    public static final Supplier<EntityType<com.otterly76.ott.entity.custom.Seahorse1Entity>> SEAHORSE_1 = OTT_ENTITY_TYPES.register("seahorse_1",
+            () -> Builder.of(com.otterly76.ott.entity.custom.Seahorse1Entity::new, MobCategory.WATER_CREATURE).sized(0.4F, 1.5F).build("seahorse_1"));
+
+    public static final Supplier<EntityType<com.otterly76.ott.entity.custom.ShrimpEntity>> SHRIMP = OTT_ENTITY_TYPES.register("shrimp",
+            () -> Builder.of(com.otterly76.ott.entity.custom.ShrimpEntity::new, MobCategory.WATER_AMBIENT).sized(0.5F, 0.5F).build("shrimp"));
+
+    public static final Supplier<EntityType<com.otterly76.ott.entity.custom.Starfish1Entity>> STARFISH_1 = OTT_ENTITY_TYPES.register("starfish_1",
+            () -> Builder.of(com.otterly76.ott.entity.custom.Starfish1Entity::new, MobCategory.WATER_CREATURE).sized(1.5F, 0.7F).build("starfish_1"));
+
+    public static final Supplier<EntityType<com.otterly76.ott.entity.custom.Jellyfish2Entity>> JELLYFISH_2 = OTT_ENTITY_TYPES.register("jellyfish_2",
+            () -> Builder.of(com.otterly76.ott.entity.custom.Jellyfish2Entity::new, MobCategory.WATER_AMBIENT).sized(0.4F, 0.8F).build("jellyfish_2"));
+
+    public static final Supplier<EntityType<com.otterly76.ott.entity.custom.Jellyfish3Entity>> JELLYFISH_3 = OTT_ENTITY_TYPES.register("jellyfish_3",
+            () -> Builder.of(com.otterly76.ott.entity.custom.Jellyfish3Entity::new, MobCategory.WATER_AMBIENT).sized(0.4F, 0.8F).build("jellyfish_3"));
+
     public static final Supplier<EntityType<com.otterly76.ott.entity.custom.FennecFox>> FENNEC_FOX = OTT_ENTITY_TYPES.register("fennec_fox",
             () -> Builder.of(com.otterly76.ott.entity.custom.FennecFox::new, MobCategory.CREATURE).sized(0.6F, 0.7F).clientTrackingRange(8).build("fennec_fox"));
 

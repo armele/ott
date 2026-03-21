@@ -251,6 +251,16 @@ public class ModItems {
             () -> new net.neoforged.neoforge.common.DeferredSpawnEggItem(ModEntities.HEDGEHOG, 0x5C4033, 0xD2B48C, new Item.Properties()));
     public static final DeferredItem<Item> JELLYFISH_SPAWN_EGG = ITEMS.register("jellyfish_spawn_egg",
             () -> new net.neoforged.neoforge.common.DeferredSpawnEggItem(ModEntities.JELLYFISH, 0xFFB6C1, 0xFF69B4, new Item.Properties()));
+    public static final DeferredItem<Item> SEAHORSE_1_SPAWN_EGG = ITEMS.register("seahorse_1_spawn_egg",
+            () -> new net.neoforged.neoforge.common.DeferredSpawnEggItem(ModEntities.SEAHORSE_1, 0xFFD700, 0xFFA500, new Item.Properties()));
+    public static final DeferredItem<Item> SHRIMP_SPAWN_EGG = ITEMS.register("shrimp_spawn_egg",
+            () -> new net.neoforged.neoforge.common.DeferredSpawnEggItem(ModEntities.SHRIMP, 0xFFC0CB, 0xFF69B4, new Item.Properties()));
+    public static final DeferredItem<Item> STARFISH_1_SPAWN_EGG = ITEMS.register("starfish_1_spawn_egg",
+            () -> new net.neoforged.neoforge.common.DeferredSpawnEggItem(ModEntities.STARFISH_1, 0xFF4500, 0xFFFF00, new Item.Properties()));
+    public static final DeferredItem<Item> JELLYFISH_2_SPAWN_EGG = ITEMS.register("jellyfish_2_spawn_egg",
+            () -> new net.neoforged.neoforge.common.DeferredSpawnEggItem(ModEntities.JELLYFISH_2, 0x00FFFF, 0x0000FF, new Item.Properties()));
+    public static final DeferredItem<Item> JELLYFISH_3_SPAWN_EGG = ITEMS.register("jellyfish_3_spawn_egg",
+            () -> new net.neoforged.neoforge.common.DeferredSpawnEggItem(ModEntities.JELLYFISH_3, 0x800080, 0xFF00FF, new Item.Properties()));
     public static final DeferredItem<Item> KIWI_SPAWN_EGG = ITEMS.register("kiwi_spawn_egg",
             () -> new net.neoforged.neoforge.common.DeferredSpawnEggItem(ModEntities.KIWI, 0x8B4513, 0xD2B48C, new Item.Properties()));
     public static final DeferredItem<Item> PENGUIN_SPAWN_EGG = ITEMS.register("penguin_spawn_egg",
@@ -304,6 +314,10 @@ public class ModItems {
     public static final DeferredItem<Item> RAW_KIWI = ITEMS.register("raw_kiwi",
             () -> new Item(new Item.Properties().food(new FoodProperties.Builder().nutrition(3).saturationModifier(0.3F).build())));
     public static final DeferredItem<Item> COOKED_KIWI = ITEMS.register("cooked_kiwi",
+            () -> new Item(new Item.Properties().food(new FoodProperties.Builder().nutrition(5).saturationModifier(0.6F).build())));
+    public static final DeferredItem<Item> RAW_SHRIMP = ITEMS.register("raw_shrimp",
+            () -> new Item(new Item.Properties().food(new FoodProperties.Builder().nutrition(2).saturationModifier(0.1F).build())));
+    public static final DeferredItem<Item> COOKED_SHRIMP = ITEMS.register("cooked_shrimp",
             () -> new Item(new Item.Properties().food(new FoodProperties.Builder().nutrition(5).saturationModifier(0.6F).build())));
     public static final DeferredItem<Item> JELLYFISH_JELLY = ITEMS.register("jellyfish_jelly",
             () -> new Item(new Item.Properties().food(new FoodProperties.Builder().nutrition(2).saturationModifier(0.1F).build())));

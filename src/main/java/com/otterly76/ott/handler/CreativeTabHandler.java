@@ -516,6 +516,8 @@ public class CreativeTabHandler {
                     ModItems.COOKED_SEAL,
                     ModItems.RAW_KIWI,
                     ModItems.COOKED_KIWI,
+                    ModItems.RAW_SHRIMP,
+                    ModItems.COOKED_SHRIMP,
                     ModItems.JELLYFISH_JELLY,
                     ModItems.SEA_URCHIN_CAVIAR,
                     ModItems.KIWI_EGG,
@@ -824,6 +826,11 @@ public class CreativeTabHandler {
             safeAccept(event, ModItems.CAPYBARA_SPAWN_EGG, visibility);
             safeAccept(event, ModItems.HEDGEHOG_SPAWN_EGG, visibility);
             safeAccept(event, ModItems.JELLYFISH_SPAWN_EGG, visibility);
+            safeAccept(event, ModItems.SEAHORSE_1_SPAWN_EGG, visibility);
+            safeAccept(event, ModItems.SHRIMP_SPAWN_EGG, visibility);
+            safeAccept(event, ModItems.STARFISH_1_SPAWN_EGG, visibility);
+            safeAccept(event, ModItems.JELLYFISH_2_SPAWN_EGG, visibility);
+            safeAccept(event, ModItems.JELLYFISH_3_SPAWN_EGG, visibility);
             safeAccept(event, ModItems.KIWI_SPAWN_EGG, visibility);
             safeAccept(event, ModItems.PENGUIN_SPAWN_EGG, visibility);
             safeAccept(event, ModItems.SEAL_SPAWN_EGG, visibility);

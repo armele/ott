@@ -86,6 +86,11 @@ public class ModEventBusEvents {
         event.put(ModEntities.SEAL.get(), com.otterly76.ott.entity.custom.SealEntity.createAttributes().build());
         event.put(ModEntities.SEA_URCHIN.get(), com.otterly76.ott.entity.custom.SeaUrchinEntity.createAttributes().build());
         event.put(ModEntities.JELLYFISH.get(), com.otterly76.ott.entity.custom.JellyfishEntity.createAttributes().build());
+        event.put(ModEntities.SEAHORSE_1.get(), com.otterly76.ott.entity.custom.Seahorse1Entity.createAttributes().build());
+        event.put(ModEntities.SHRIMP.get(), com.otterly76.ott.entity.custom.ShrimpEntity.createAttributes().build());
+        event.put(ModEntities.STARFISH_1.get(), com.otterly76.ott.entity.custom.Starfish1Entity.createAttributes().build());
+        event.put(ModEntities.JELLYFISH_2.get(), com.otterly76.ott.entity.custom.Jellyfish2Entity.createAttributes().build());
+        event.put(ModEntities.JELLYFISH_3.get(), com.otterly76.ott.entity.custom.Jellyfish3Entity.createAttributes().build());
     }
 
     @SubscribeEvent
@@ -487,6 +492,41 @@ public class ModEventBusEvents {
                 SpawnPlacementTypes.IN_WATER,
                 Heightmap.Types.MOTION_BLOCKING_NO_LEAVES,
                 (type, level, spawnType, pos, random) -> true,
+                RegisterSpawnPlacementsEvent.Operation.OR
+        );
+        event.register(
+                ModEntities.SEAHORSE_1.get(),
+                SpawnPlacementTypes.IN_WATER,
+                Heightmap.Types.MOTION_BLOCKING_NO_LEAVES,
+                com.otterly76.ott.entity.custom.Seahorse1Entity::canSpawn,
+                RegisterSpawnPlacementsEvent.Operation.OR
+        );
+        event.register(
+                ModEntities.SHRIMP.get(),
+                SpawnPlacementTypes.IN_WATER,
+                Heightmap.Types.MOTION_BLOCKING_NO_LEAVES,
+                com.otterly76.ott.entity.custom.ShrimpEntity::canSpawn,
+                RegisterSpawnPlacementsEvent.Operation.OR
+        );
+        event.register(
+                ModEntities.STARFISH_1.get(),
+                SpawnPlacementTypes.IN_WATER,
+                Heightmap.Types.MOTION_BLOCKING_NO_LEAVES,
+                com.otterly76.ott.entity.custom.Starfish1Entity::canSpawn,
+                RegisterSpawnPlacementsEvent.Operation.OR
+        );
+        event.register(
+                ModEntities.JELLYFISH_2.get(),
+                SpawnPlacementTypes.IN_WATER,
+                Heightmap.Types.MOTION_BLOCKING_NO_LEAVES,
+                com.otterly76.ott.entity.custom.Jellyfish2Entity::canSpawn,
+                RegisterSpawnPlacementsEvent.Operation.OR
+        );
+        event.register(
+                ModEntities.JELLYFISH_3.get(),
+                SpawnPlacementTypes.IN_WATER,
+                Heightmap.Types.MOTION_BLOCKING_NO_LEAVES,
+                com.otterly76.ott.entity.custom.Jellyfish3Entity::canSpawn,
                 RegisterSpawnPlacementsEvent.Operation.OR
         );
         event.register(

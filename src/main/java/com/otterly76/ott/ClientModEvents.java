@@ -238,6 +238,11 @@ public class ClientModEvents {
         event.registerEntityRenderer(ModEntities.ROBIN.get(), com.otterly76.ott.client.render.entity.BirdRenderer::new);
         event.registerEntityRenderer(ModEntities.SPARROW.get(), com.otterly76.ott.client.render.entity.BirdRenderer::new);
         event.registerEntityRenderer(ModEntities.JELLYFISH.get(), com.otterly76.ott.client.render.entity.JellyfishRenderer::new);
+        event.registerEntityRenderer(ModEntities.SEAHORSE_1.get(), com.otterly76.ott.client.render.entity.Seahorse1Renderer::new);
+        event.registerEntityRenderer(ModEntities.SHRIMP.get(), com.otterly76.ott.client.render.entity.ShrimpRenderer::new);
+        event.registerEntityRenderer(ModEntities.STARFISH_1.get(), com.otterly76.ott.client.render.entity.Starfish1Renderer::new);
+        event.registerEntityRenderer(ModEntities.JELLYFISH_2.get(), com.otterly76.ott.client.render.entity.Jellyfish2Renderer::new);
+        event.registerEntityRenderer(ModEntities.JELLYFISH_3.get(), com.otterly76.ott.client.render.entity.Jellyfish3Renderer::new);
         event.registerEntityRenderer(ModEntities.KIWI.get(), com.otterly76.ott.client.render.entity.KiwiRenderer::new);
         event.registerEntityRenderer(ModEntities.PENGUIN.get(), com.otterly76.ott.client.render.entity.PenguinRenderer::new);
         event.registerEntityRenderer(ModEntities.SEAL.get(), com.otterly76.ott.client.render.entity.SealRenderer::new);
