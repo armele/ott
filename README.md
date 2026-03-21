@@ -113,23 +113,13 @@ Features
 - Custom Biomes
 
   ||||
-  |:---------------|:--------------:|---------------:|
-  |  | Verdant Forest |  |
+  |:--|:-:|--:|
+  |  |  |  |
   |  |  |  |
 
 - Custom Critters
 
-    |             |          |               |
-    |:------------|:--------:|--------------:|
-    | Alligator   |   Deer   |          Lion |
-    | Angelfish   | Elephant |     Man-O-War |
-    | Barreleye   |   Emu    | Marine Iguana |
-    | Bass        |  Finch   |      Pheasant |
-    | Black Bear  | Firefly  |      Reindeer |
-    | Brown Bear  | Flounder |         Rhino |
-    | Blue Jay    |  Gecko   |         Robin |
-    | Butterfly   | Giraffe  |      Stingray |
-    | Canary      |  Hippo   |       Sunfish |
-    | Cardinal    |  Hoopoe  |        Toucan |
-    | Caterpillar |  Krill   |    White Deer |
-    | Catfish     |          |               |
+  ||||
+  |:--|:-:|--:|
+  |  |  |  |
+  |  |  |  |
