@@ -1,5 +1,6 @@
 {
 	"parent": "block/block",
+	"render_type": "minecraft:cutout",
 	"ambientocclusion": false,
 	"textures": {
 		"particle": "ott:block/chrysalis_stage0",

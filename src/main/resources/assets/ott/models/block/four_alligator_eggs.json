@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/template_four_turtle_eggs",
+  "textures": {
+    "all": "ott:block/alligator_egg"
+  }
+}

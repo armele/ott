@@ -225,7 +225,57 @@ public class ModItems {
     public static final DeferredItem<Item> RHINO_SPAWN_EGG = ITEMS.register("rhino_spawn_egg",
             () -> new net.neoforged.neoforge.common.DeferredSpawnEggItem(ModEntities.RHINO, 0x74605A, 0xA79289, new Item.Properties()));
 
+    public static final DeferredItem<Item> LIZARD_SPAWN_EGG = ITEMS.register("lizard_spawn_egg",
+            () -> new net.neoforged.neoforge.common.DeferredSpawnEggItem(ModEntities.LIZARD, 10853166, 15724462, new Item.Properties()));
+    public static final DeferredItem<Item> SNAIL_SPAWN_EGG = ITEMS.register("snail_spawn_egg",
+            () -> new net.neoforged.neoforge.common.DeferredSpawnEggItem(ModEntities.SNAIL, 5457209, 8811878, new Item.Properties()));
+    public static final DeferredItem<Item> TORTOISE_SPAWN_EGG = ITEMS.register("tortoise_spawn_egg",
+            () -> new net.neoforged.neoforge.common.DeferredSpawnEggItem(ModEntities.TORTOISE, 15724462, 11765582, new Item.Properties()));
+    public static final DeferredItem<Item> VULTURE_SPAWN_EGG = ITEMS.register("vulture_spawn_egg",
+            () -> new net.neoforged.neoforge.common.DeferredSpawnEggItem(ModEntities.VULTURE, 4010022, 15325376, new Item.Properties()));
+    public static final DeferredItem<Item> ZEBRA_SPAWN_EGG = ITEMS.register("zebra_spawn_egg",
+            () -> new net.neoforged.neoforge.common.DeferredSpawnEggItem(ModEntities.ZEBRA, 15263457, 1710104, new Item.Properties()));
+    public static final DeferredItem<Item> MOOSE_SPAWN_EGG = ITEMS.register("moose_spawn_egg",
+            () -> new net.neoforged.neoforge.common.DeferredSpawnEggItem(ModEntities.MOOSE, 0x5C4033, 0x2E1D13, new Item.Properties()));
+    public static final DeferredItem<Item> MAMMOTH_SPAWN_EGG = ITEMS.register("mammoth_spawn_egg",
+            () -> new net.neoforged.neoforge.common.DeferredSpawnEggItem(ModEntities.MAMMOTH, 0x4B3621, 0x2A1B0E, new Item.Properties()));
+    public static final DeferredItem<Item> MYCELIUM_MAMMOTH_SPAWN_EGG = ITEMS.register("mycelium_mammoth_spawn_egg",
+            () -> new net.neoforged.neoforge.common.DeferredSpawnEggItem(ModEntities.MYCELIUM_MAMMOTH, 0x6E4E37, 0x93785D, new Item.Properties()));
+
+    public static final DeferredItem<Item> FENNEC_FOX_SPAWN_EGG = ITEMS.register("fennec_fox_spawn_egg",
+            () -> new net.neoforged.neoforge.common.DeferredSpawnEggItem(ModEntities.FENNEC_FOX, 0xD3A66B, 0xF7E3B6, new Item.Properties()));
+
+    public static final DeferredItem<Item> BUG_NET = ITEMS.register("bug_net",
+            () -> new BugNetItem(new Item.Properties().durability(64)));
+
+    public static final DeferredItem<Item> BUTTERFLY = ITEMS.register("butterfly",
+            () -> new CaughtMobItem(ModEntities.BUTTERFLY, () -> net.minecraft.world.level.material.Fluids.EMPTY, () -> net.minecraft.sounds.SoundEvents.BUCKET_EMPTY_FISH, new Item.Properties().stacksTo(1)));
+    public static final DeferredItem<Item> CATERPILLAR = ITEMS.register("caterpillar",
+            () -> new CaughtMobItem(ModEntities.CATERPILLAR, () -> net.minecraft.world.level.material.Fluids.EMPTY, () -> net.minecraft.sounds.SoundEvents.BUCKET_EMPTY_FISH, new Item.Properties().stacksTo(1)));
+
+    public static final DeferredItem<Item> BUSHMEAT = ITEMS.register("bushmeat",
+            () -> new Item(new Item.Properties().food(new FoodProperties.Builder().nutrition(3).saturationModifier(0.3F).build())));
+    public static final DeferredItem<Item> COOKED_BUSHMEAT = ITEMS.register("cooked_bushmeat",
+            () -> new Item(new Item.Properties().food(new FoodProperties.Builder().nutrition(8).saturationModifier(0.8F).build())));
+    public static final DeferredItem<Item> ALLIGATOR_EGG = ITEMS.register("alligator_egg",
+            () -> new BlockItem(ModBlocks.ALLIGATOR_EGG.get(), new Item.Properties()));
+    public static final DeferredItem<Item> DUCK_EGG = ITEMS.register("duck_egg",
+            () -> new DuckEggItem(new Item.Properties()));
+    public static final DeferredItem<Item> TORTOISE_EGG = ITEMS.register("tortoise_egg",
+            () -> new BlockItem(ModBlocks.TORTOISE_EGG.get(), new Item.Properties()));
+    public static final DeferredItem<Item> SNAIL_EGG = ITEMS.register("snail_egg",
+            () -> new BlockItem(ModBlocks.SNAIL_EGG.get(), new Item.Properties()));
+    public static final DeferredItem<Item> GLOW_GOOP = ITEMS.register("glow_goop",
+            () -> new GlowGoopItem(ModBlocks.GLOW_GOOP.get(), new Item.Properties()));
+    public static final DeferredItem<Item> LIZARD_TAIL = ITEMS.register("lizard_tail",
+            () -> new Item(new Item.Properties().food(new FoodProperties.Builder().nutrition(1).saturationModifier(0.1F).build())));
+    public static final DeferredItem<Item> SNAIL_SHELL = ITEMS.register("snail_shell",
+            () -> new Item(new Item.Properties()));
+    public static final DeferredItem<Item> SNAIL_BUCKET = ITEMS.register("snail_bucket",
+            () -> new SnailBucketItem(ModEntities.SNAIL, () -> net.minecraft.world.level.material.Fluids.EMPTY, () -> net.minecraft.sounds.SoundEvents.BUCKET_EMPTY_FISH, new Item.Properties().stacksTo(1)));
+
     public static final DeferredHolder<Item, BlockItem> CHRYSALIS = registerBlockItem("chrysalis", ModBlocks.CHRYSALIS);
+    public static final DeferredHolder<Item, BlockItem> TEDDY_BEAR = registerBlockItem("teddy_bear", ModBlocks.TEDDY_BEAR);
 
     public static final DeferredItem<Item> CATFISH_BUCKET = ITEMS.register("catfish_bucket",
             () -> new net.minecraft.world.item.MobBucketItem(ModEntities.CATFISH.get(), net.minecraft.world.level.material.Fluids.WATER, net.minecraft.sounds.SoundEvents.BUCKET_EMPTY_FISH, new Item.Properties().stacksTo(1)));

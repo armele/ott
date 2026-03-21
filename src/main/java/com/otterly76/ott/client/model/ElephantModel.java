@@ -5,7 +5,6 @@ import com.otterly76.ott.entity.custom.Elephant;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.Mth;
 import software.bernie.geckolib.animation.AnimationState;
-import software.bernie.geckolib.cache.object.GeoBone;
 import software.bernie.geckolib.constant.DataTickets;
 import software.bernie.geckolib.model.GeoModel;
 import software.bernie.geckolib.model.data.EntityModelData;
@@ -46,18 +45,18 @@ public class ElephantModel extends GeoModel<Elephant> {
         if (animationState == null) return;
 
         EntityModelData extraDataOfType = animationState.getData(DataTickets.ENTITY_MODEL_DATA);
-        if (extraDataOfType == null) return;
-        GeoBone head = this.getAnimationProcessor().getBone("head");
-        if (head == null) head = this.getAnimationProcessor().getBone("skull");
-
-        if (head != null) {
-            head.setRotX(extraDataOfType.headPitch() * Mth.DEG_TO_RAD);
-            head.setRotY(extraDataOfType.netHeadYaw() * Mth.DEG_TO_RAD);
+        if (extraDataOfType != null) {
+            this.getBone("skull").ifPresent(bone -> {
+                bone.setRotX(extraDataOfType.headPitch() * Mth.DEG_TO_RAD);
+                bone.setRotY(extraDataOfType.netHeadYaw() * Mth.DEG_TO_RAD);
+            });
+            this.getBone("head").ifPresent(bone -> {
+                bone.setRotX(extraDataOfType.headPitch() * Mth.DEG_TO_RAD);
+                bone.setRotY(extraDataOfType.netHeadYaw() * Mth.DEG_TO_RAD);
+            });
         }
 
-        GeoBone saddle = this.getAnimationProcessor().getBone("saddle");
-        if (saddle != null) {
-            saddle.setHidden(!entity.isSaddled());
-        }
+        this.getBone("saddle").ifPresent(bone -> bone.setHidden(!entity.isSaddled()));
+        this.getBone("chests").ifPresent(bone -> bone.setHidden(true)); // For now hide them
     }
 }

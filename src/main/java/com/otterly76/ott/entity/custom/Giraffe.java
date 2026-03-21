@@ -87,6 +87,7 @@ public class Giraffe extends TamableAnimal implements NaturalistGeoEntity, Saddl
     protected void registerGoals() {
         this.goalSelector.addGoal(0, new FloatGoal(this));
         this.goalSelector.addGoal(1, new BigPanicGoal(this, 1.4));
+        this.goalSelector.addGoal(1, new AvoidEntityGoal<>(this, net.minecraft.world.entity.animal.Bee.class, 8.0f, 1.3, 1.3));
         this.goalSelector.addGoal(2, new BreedGoal(this, 1.0));
         this.goalSelector.addGoal(3, new TemptGoal(this, 1.0, FOOD_ITEMS, false));
         this.goalSelector.addGoal(4, new FollowParentGoal(this, 1.0));

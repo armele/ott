@@ -101,6 +101,7 @@ public abstract class Bear extends Animal implements NeutralMob, GeoEntity, Shea
         this.goalSelector.addGoal(4, new BearTemptGoal(this, 1.0D, FOOD_ITEMS, false));
         this.goalSelector.addGoal(4, new PanicGoal(this, 2.0D));
         this.goalSelector.addGoal(5, new FollowParentGoal(this, 1.25D));
+        this.goalSelector.addGoal(5, new com.otterly76.ott.entity.ai.goal.SearchForItemsGoal(this, 1.2F, FOOD_ITEMS, 8, 2));
         this.goalSelector.addGoal(6, new BearHarvestFoodGoal(this, 1.2F, 12, 3));
         this.goalSelector.addGoal(7, new BearPickupFoodAndSitGoal(this));
         this.goalSelector.addGoal(8, new WaterAvoidingRandomStrollGoal(this, 1.0D));

@@ -216,6 +216,16 @@ public class ClientModEvents {
         event.registerEntityRenderer(ModEntities.HIPPO.get(), com.otterly76.ott.client.render.entity.HippoRenderer::new);
         event.registerEntityRenderer(ModEntities.LION.get(), com.otterly76.ott.client.render.entity.LionRenderer::new);
         event.registerEntityRenderer(ModEntities.RHINO.get(), com.otterly76.ott.client.render.entity.RhinoRenderer::new);
+        event.registerEntityRenderer(ModEntities.LIZARD.get(), com.otterly76.ott.client.render.entity.LizardRenderer::new);
+        event.registerEntityRenderer(ModEntities.LIZARD_TAIL.get(), com.otterly76.ott.client.render.entity.LizardTailRenderer::new);
+        event.registerEntityRenderer(ModEntities.SNAIL.get(), com.otterly76.ott.client.render.entity.SnailRenderer::new);
+        event.registerEntityRenderer(ModEntities.TORTOISE.get(), com.otterly76.ott.client.render.entity.TortoiseRenderer::new);
+        event.registerEntityRenderer(ModEntities.VULTURE.get(), com.otterly76.ott.client.render.entity.VultureRenderer::new);
+        event.registerEntityRenderer(ModEntities.ZEBRA.get(), com.otterly76.ott.client.render.entity.ZebraRenderer::new);
+        event.registerEntityRenderer(ModEntities.MOOSE.get(), com.otterly76.ott.client.render.entity.MooseRenderer::new);
+        event.registerEntityRenderer(ModEntities.MAMMOTH.get(), com.otterly76.ott.client.render.entity.MammothRenderer::new);
+        event.registerEntityRenderer(ModEntities.MYCELIUM_MAMMOTH.get(), com.otterly76.ott.client.render.entity.MammothRenderer::new);
+        event.registerEntityRenderer(ModEntities.FENNEC_FOX.get(), com.otterly76.ott.client.render.entity.FennecFoxRenderer::new);
         event.registerEntityRenderer(ModEntities.BROWN_BEAR.get(), com.otterly76.ott.client.render.entity.BearRenderer::new);
         event.registerEntityRenderer(ModEntities.BLACK_BEAR.get(), com.otterly76.ott.client.render.entity.BearRenderer::new);
         event.registerEntityRenderer(ModEntities.DEER.get(), com.otterly76.ott.client.render.entity.DeerRenderer::new);
@@ -380,7 +390,8 @@ public class ClientModEvents {
                 ModItems.STINGRAY_SPAWN_EGG.get(), ModItems.SUNFISH_SPAWN_EGG.get(), ModItems.KRILL_SPAWN_EGG.get(),
                 ModItems.ANGELFISH_SPAWN_EGG.get(), ModItems.BARRELEYE_SPAWN_EGG.get(), ModItems.FLOUNDER_SPAWN_EGG.get(),
                 ModItems.MARINE_IGUANA_SPAWN_EGG.get(), ModItems.GECKO_SPAWN_EGG.get(), ModItems.EMU_SPAWN_EGG.get(),
-                ModItems.HOOPOE_SPAWN_EGG.get(), ModItems.PHEASANT_SPAWN_EGG.get(), ModItems.TOUCAN_SPAWN_EGG.get());
+                ModItems.HOOPOE_SPAWN_EGG.get(), ModItems.PHEASANT_SPAWN_EGG.get(), ModItems.TOUCAN_SPAWN_EGG.get(),
+                ModItems.MOOSE_SPAWN_EGG.get(), ModItems.FENNEC_FOX_SPAWN_EGG.get());
 
         event.register((stack, tintIndex) -> -1,
                 ModItems.DUCK_SPAWN_EGG.get(), ModItems.CATFISH_SPAWN_EGG.get(), ModItems.BASS_SPAWN_EGG.get(),
@@ -390,7 +401,11 @@ public class ClientModEvents {
                 ModItems.REINDEER_SPAWN_EGG.get(), ModItems.WHITE_DEER_SPAWN_EGG.get(), ModItems.BUTTERFLY_SPAWN_EGG.get(),
                 ModItems.CATERPILLAR_SPAWN_EGG.get(), ModItems.FIREFLY_SPAWN_EGG.get(), ModItems.ALLIGATOR_SPAWN_EGG.get(),
                 ModItems.ELEPHANT_SPAWN_EGG.get(), ModItems.GIRAFFE_SPAWN_EGG.get(), ModItems.HIPPO_SPAWN_EGG.get(),
-                ModItems.LION_SPAWN_EGG.get(), ModItems.RHINO_SPAWN_EGG.get(), ModItems.COPPER_GOLEM_SPAWN_EGG.get(),
+                ModItems.LION_SPAWN_EGG.get(), ModItems.RHINO_SPAWN_EGG.get(),
+                ModItems.LIZARD_SPAWN_EGG.get(), ModItems.SNAIL_SPAWN_EGG.get(), ModItems.TORTOISE_SPAWN_EGG.get(),
+                ModItems.VULTURE_SPAWN_EGG.get(), ModItems.ZEBRA_SPAWN_EGG.get(), ModItems.MOOSE_SPAWN_EGG.get(),
+                ModItems.MAMMOTH_SPAWN_EGG.get(), ModItems.MYCELIUM_MAMMOTH_SPAWN_EGG.get(), ModItems.FENNEC_FOX_SPAWN_EGG.get(),
+                ModItems.COPPER_GOLEM_SPAWN_EGG.get(),
                 ModItems.CREAKING_SPAWN_EGG.get(), ModItems.HAPPY_GHAST_SPAWN_EGG.get(),
                 net.minecraft.world.item.Items.ALLAY_SPAWN_EGG, net.minecraft.world.item.Items.ARMADILLO_SPAWN_EGG,
                 net.minecraft.world.item.Items.AXOLOTL_SPAWN_EGG, net.minecraft.world.item.Items.BAT_SPAWN_EGG,

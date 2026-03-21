@@ -103,6 +103,7 @@ public class Hippo extends NaturalistAnimal implements NaturalistGeoEntity, EggL
     protected void registerGoals() {
         super.registerGoals();
         this.goalSelector.addGoal(0, new SmoothFloatGoal(this));
+        this.goalSelector.addGoal(1, new AvoidEntityGoal<>(this, net.minecraft.world.entity.animal.Bee.class, 8.0f, 1.3, 1.3));
         this.goalSelector.addGoal(1, new HippoAttackBoatsGoal(this));
         this.goalSelector.addGoal(2, new MeleeAttackGoal(this, 1.2D, true));
         this.goalSelector.addGoal(3, new LayEggGoal<>(this, 1.0D));

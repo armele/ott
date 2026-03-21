@@ -1,5 +1,7 @@
 package com.otterly76.ott.mixin.common;
 
+import com.otterly76.ott.entity.ai.goal.AttackAlligatorEggGoal;
+import com.otterly76.ott.entity.ai.goal.AttackTortoiseEggGoal;
 import com.otterly76.ott.entity.gecko.ZombieGeoEntity;
 import com.otterly76.ott.entity.variant.*;
 import com.otterly76.ott.registry.OttBuiltInRegistries;
@@ -12,7 +14,10 @@ import net.minecraft.world.entity.monster.Zombie;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.ServerLevelAccessor;
 import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.Unique;
+import org.spongepowered.asm.mixin.injection.At;
+import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 import software.bernie.geckolib.animatable.instance.AnimatableInstanceCache;
@@ -29,6 +34,16 @@ public abstract class ZombieMixin extends MobMixin implements VariantDataHolder<
 
     protected ZombieMixin(EntityType<? extends Zombie> entityType, Level level) {
         super(entityType, level);
+    }
+
+    @Shadow
+    protected abstract void registerGoals();
+
+    @Inject(at = @At("HEAD"), method = "registerGoals")
+    private void ott$registerGoals(CallbackInfo info) {
+        Zombie zombie = (Zombie) (Object) this;
+        zombie.goalSelector.addGoal(2, new AttackAlligatorEggGoal(zombie, 1.0D, 3));
+        zombie.goalSelector.addGoal(2, new AttackTortoiseEggGoal(zombie, 1.0D, 3));
     }
 
 

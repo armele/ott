@@ -1,8 +1,14 @@
 package com.otterly76.ott.entity.custom;
 
-import com.otterly76.ott.entity.ai.goal.FlyingWanderGoal;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.world.InteractionResult;
+import net.minecraft.world.entity.player.Player;
+import com.otterly76.ott.item.ModItems;
+import com.otterly76.ott.entity.core.Catchable;
 import com.otterly76.ott.entity.ai.navigation.SmartBodyHelper;
+import com.otterly76.ott.entity.ai.goal.FlyingWanderGoal;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.component.DataComponents;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
@@ -45,12 +51,13 @@ import software.bernie.geckolib.util.GeckoLibUtil;
 import java.util.Arrays;
 import java.util.Comparator;
 
-public class Butterfly extends Animal implements GeoEntity, FlyingAnimal {
+public class Butterfly extends Animal implements GeoEntity, FlyingAnimal, Catchable {
     private static final RawAnimation FLY = RawAnimation.begin().thenLoop("animation.sf_nba.butterfly.fly");
     private static final RawAnimation IDLE = RawAnimation.begin().thenLoop("animation.sf_nba.butterfly.idle");
     private static final EntityDataAccessor<Integer> DATA_VARIANT = SynchedEntityData.defineId(Butterfly.class, EntityDataSerializers.INT);
     private static final EntityDataAccessor<Boolean> HAS_NECTAR = SynchedEntityData.defineId(Butterfly.class, EntityDataSerializers.BOOLEAN);
     private static final EntityDataAccessor<Boolean> POLLINATING = SynchedEntityData.defineId(Butterfly.class, EntityDataSerializers.BOOLEAN);
+    private static final EntityDataAccessor<Boolean> FROM_HAND = SynchedEntityData.defineId(Butterfly.class, EntityDataSerializers.BOOLEAN);
     private final AnimatableInstanceCache geoCache = GeckoLibUtil.createInstanceCache(this);
 
     public Butterfly(EntityType<? extends Animal> entityType, Level level) {
@@ -104,6 +111,7 @@ public class Butterfly extends Animal implements GeoEntity, FlyingAnimal {
         builder.define(DATA_VARIANT, 0);
         builder.define(HAS_NECTAR, false);
         builder.define(POLLINATING, false);
+        builder.define(FROM_HAND, false);
     }
 
     @Override
@@ -111,6 +119,7 @@ public class Butterfly extends Animal implements GeoEntity, FlyingAnimal {
         super.addAdditionalSaveData(compound);
         compound.putInt("Variant", this.getVariant().getId());
         compound.putBoolean("HasNectar", this.hasNectar());
+        compound.putBoolean("FromHand", this.fromHand());
     }
 
     @Override
@@ -118,6 +127,7 @@ public class Butterfly extends Animal implements GeoEntity, FlyingAnimal {
         super.readAdditionalSaveData(compound);
         this.setVariant(Variant.getTypeById(compound.getInt("Variant")));
         this.setHasNectar(compound.getBoolean("HasNectar"));
+        this.setFromHand(compound.getBoolean("FromHand"));
     }
 
     public Variant getVariant() {
@@ -215,6 +225,57 @@ public class Butterfly extends Animal implements GeoEntity, FlyingAnimal {
     @Override
     public void registerControllers(final AnimatableManager.ControllerRegistrar controllers) {
         controllers.add(new AnimationController<>(this, "controller", 5, this::predicate));
+    }
+
+    @Override
+    public boolean fromHand() {
+        return this.entityData.get(FROM_HAND);
+    }
+
+    @Override
+    public void setFromHand(boolean fromHand) {
+        this.entityData.set(FROM_HAND, fromHand);
+    }
+
+    @Override
+    public void saveToHandTag(ItemStack stack) {
+        Catchable.saveDefaultDataToHandTag(this, stack);
+        CompoundTag tag = stack.getOrDefault(DataComponents.CUSTOM_DATA, net.minecraft.world.item.component.CustomData.EMPTY).copyTag();
+        tag.putInt("Variant", this.getVariant().getId());
+        stack.set(DataComponents.CUSTOM_DATA, net.minecraft.world.item.component.CustomData.of(tag));
+    }
+
+    @Override
+    public void loadFromHandTag(CompoundTag tag) {
+        Catchable.loadDefaultDataFromHandTag(this, tag);
+        if (tag.contains("Variant")) {
+            this.setVariant(Variant.getTypeById(tag.getInt("Variant")));
+        }
+    }
+
+    @Override
+    public ItemStack getCaughtItemStack() {
+        return new ItemStack(ModItems.BUTTERFLY.get());
+    }
+
+    @Override
+    public net.minecraft.sounds.@Nullable SoundEvent getPickupSound() {
+        return null;
+    }
+
+    @Override
+    public @NotNull InteractionResult mobInteract(@NotNull Player player, @NotNull InteractionHand hand) {
+        return Catchable.catchAnimal(player, hand, this, true).orElse(super.mobInteract(player, hand));
+    }
+
+    @Override
+    public boolean requiresCustomPersistence() {
+        return super.requiresCustomPersistence() || this.fromHand();
+    }
+
+    @Override
+    public boolean removeWhenFarAway(double distanceToClosestPlayer) {
+        return !this.fromHand() && !this.hasCustomName();
     }
 
     public enum Variant {

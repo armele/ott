@@ -105,13 +105,15 @@ public class Elephant extends TamableAnimal implements NeutralMob, NaturalistGeo
         ageableMobGroupData.increaseGroupSizeByOne();
         RandomSource random = level.getRandom();
         Objects.requireNonNull(this.getAttribute(Attributes.FOLLOW_RANGE)).addPermanentModifier(new AttributeModifier(ResourceLocation.fromNamespaceAndPath("naturalist", "random_spawn_bonus"), random.triangle(0.0, 0.11485000000000001), AttributeModifier.Operation.ADD_MULTIPLIED_BASE));
+        this.entityData.set(SADDLED, false);
         return spawnData;
     }
 
     @Override
     protected void registerGoals() {
         this.goalSelector.addGoal(0, new FloatGoal(this));
-        this.goalSelector.addGoal(1, new MeleeAttackGoal(this, 1.2, true));
+        this.goalSelector.addGoal(1, new AvoidEntityGoal<>(this, net.minecraft.world.entity.animal.Bee.class, 8.0f, 1.3, 1.3));
+        this.goalSelector.addGoal(2, new MeleeAttackGoal(this, 1.2, true));
         this.goalSelector.addGoal(2, new BabyPanicGoal(this, 1.25));
         this.goalSelector.addGoal(3, new DistancedFollowParentGoal(this, 1.25, 12.0, 5.0, 3.5));
         this.goalSelector.addGoal(4, new WaterAvoidingRandomStrollGoal(this, 1.0));

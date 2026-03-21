@@ -9,7 +9,6 @@ import net.neoforged.api.distmarker.OnlyIn;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import software.bernie.geckolib.animation.AnimationState;
-import software.bernie.geckolib.cache.object.GeoBone;
 import software.bernie.geckolib.constant.DataTickets;
 import software.bernie.geckolib.model.GeoModel;
 import software.bernie.geckolib.model.data.EntityModelData;
@@ -52,50 +51,43 @@ public class RhinoModel extends GeoModel<Rhino> {
 
         EntityModelData extraDataOfType = animationState.getData(DataTickets.ENTITY_MODEL_DATA);
         if (extraDataOfType == null) return;
-        GeoBone skull = this.getAnimationProcessor().getBone("skull");
-        GeoBone bigHorn = this.getAnimationProcessor().getBone("big_horn");
-        GeoBone smallHorn = this.getAnimationProcessor().getBone("small_horn");
-        GeoBone babyHorn = this.getAnimationProcessor().getBone("baby_horn");
-        GeoBone leftEar = this.getAnimationProcessor().getBone("left_ear");
-        GeoBone rightEar = this.getAnimationProcessor().getBone("right_ear");
-
-        if (skull != null) {
+        this.getBone("skull").ifPresent(skull -> {
             if (entity.isBaby()) {
                 skull.setScaleX(1.4F);
                 skull.setScaleY(1.4F);
                 skull.setScaleZ(1.4F);
-                if (leftEar != null) {
+                this.getBone("left_ear").ifPresent(leftEar -> {
                     leftEar.setScaleX(1.1F);
                     leftEar.setScaleY(1.1F);
                     leftEar.setScaleZ(1.1F);
-                }
-                if (rightEar != null) {
+                });
+                this.getBone("right_ear").ifPresent(rightEar -> {
                     rightEar.setScaleX(1.1F);
                     rightEar.setScaleY(1.1F);
                     rightEar.setScaleZ(1.1F);
-                }
+                });
             } else {
                 skull.setScaleX(1.0F);
                 skull.setScaleY(1.0F);
                 skull.setScaleZ(1.0F);
-                if (leftEar != null) {
+                this.getBone("left_ear").ifPresent(leftEar -> {
                     leftEar.setScaleX(1.0F);
                     leftEar.setScaleY(1.0F);
                     leftEar.setScaleZ(1.0F);
-                }
-                if (rightEar != null) {
+                });
+                this.getBone("right_ear").ifPresent(rightEar -> {
                     rightEar.setScaleX(1.0F);
                     rightEar.setScaleY(1.0F);
                     rightEar.setScaleZ(1.0F);
-                }
+                });
             }
             if (!entity.isSprinting()) {
                 skull.setRotY(extraDataOfType.netHeadYaw() * Mth.DEG_TO_RAD);
             }
-        }
+        });
 
-        if (bigHorn != null) bigHorn.setHidden(entity.isBaby());
-        if (smallHorn != null) smallHorn.setHidden(entity.isBaby());
-        if (babyHorn != null) babyHorn.setHidden(!entity.isBaby());
+        this.getBone("big_horn").ifPresent(bone -> bone.setHidden(entity.isBaby()));
+        this.getBone("small_horn").ifPresent(bone -> bone.setHidden(entity.isBaby()));
+        this.getBone("baby_horn").ifPresent(bone -> bone.setHidden(!entity.isBaby()));
     }
 }

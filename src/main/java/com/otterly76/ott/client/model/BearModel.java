@@ -33,18 +33,15 @@ public class BearModel extends GeoModel<Bear> {
 
     @Override
     public ResourceLocation getTextureResource(Bear bear, @Nullable GeoRenderer<Bear> renderer) {
-        boolean isBlack = bear instanceof BlackBearEntity;
-        String base = isBlack ? "black_bear" : "bear";
+        String base = bear instanceof BlackBearEntity ? "black_bear" : "brown_bear";
 
-        if (isBlack) {
-            if (bear.isAngry()) {
-                return ResourceLocation.fromNamespaceAndPath("ott", "textures/entity/bear/black_bear_angry.png");
-            } else if (bear.isEating()) {
-                if (bear.getMainHandItem().is(Items.SWEET_BERRIES)) {
-                    return ResourceLocation.fromNamespaceAndPath("ott", "textures/entity/bear/black_bear_berries.png");
-                } else if (bear.getMainHandItem().is(Items.HONEYCOMB)) {
-                    return ResourceLocation.fromNamespaceAndPath("ott", "textures/entity/bear/black_bear_honey.png");
-                }
+        if (bear.isAngry()) {
+            return ResourceLocation.fromNamespaceAndPath("ott", "textures/entity/bear/" + base + "_angry.png");
+        } else if (bear.isEating()) {
+            if (bear.getMainHandItem().is(Items.SWEET_BERRIES)) {
+                return ResourceLocation.fromNamespaceAndPath("ott", "textures/entity/bear/" + base + "_berries.png");
+            } else if (bear.getMainHandItem().is(Items.HONEYCOMB)) {
+                return ResourceLocation.fromNamespaceAndPath("ott", "textures/entity/bear/" + base + "_honey.png");
             }
         }
 

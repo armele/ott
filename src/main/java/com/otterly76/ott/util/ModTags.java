@@ -20,8 +20,11 @@ public class ModTags {
         public static final TagKey<Block> SPAWN_FALLING_NEEDLES = mcTag("spawn_falling_needles");
         public static final TagKey<Block> CAMELS_SPAWNABLE_ON = mcTag("camel_spawnable_on");
         public static final TagKey<Block> ALLIGATOR_EGG_LAYABLE_ON = createTag("alligator_egg_layable_on");
+        public static final TagKey<Block> TORTOISE_EGG_LAYABLE_ON = createTag("tortoise_egg_layable_on");
         public static final TagKey<Block> HIPPO_EGG_LAYABLE_ON = createTag("hippo_egg_layable_on");
+        public static final TagKey<Block> SNAIL_EGG_LAYABLE_ON = createTag("snail_egg_layable_on");
         public static final TagKey<Block> RHINO_CHARGE_BREAKABLE = createTag("rhino_charge_breakable");
+        public static final TagKey<Block> VULTURES_SPAWNABLE_ON = mcTag("vultures_spawnable_on");
         public static final TagKey<Block> PORTAL_FRAME_BLOCKS = createTag("portal_frame_blocks");
         public static final TagKey<Block> C_OBSIDIAN = commonTag();
 
@@ -65,6 +68,7 @@ public class ModTags {
         public static final TagKey<Item> BIRD_FOOD_ITEMS = mcTag("bird_food_items");
         public static final TagKey<Item> GIRAFFE_FOOD_ITEMS = createTag("giraffe_food_items");
         public static final TagKey<Item> ELEPHANT_FOOD_ITEMS = createTag("elephant_food_items");
+        public static final TagKey<Item> VULTURE_FOOD_ITEMS = createTag("vulture_food_items");
         public static final TagKey<Item> STRIPPED_PALE_OAK_LOG = mcTag("stripped_pale_oak_log");
         public static final TagKey<Item> LANTERNS = mcTag("lanterns");
         public static final TagKey<Item> LIGHTNING_RODS = mcTag("lightning_rods");
@@ -138,7 +142,10 @@ public class ModTags {
         public static final TagKey<net.minecraft.world.level.biome.Biome> HAS_DARK_LEAF_LITTER = createTag("has_dark_leaf_litter");
         public static final TagKey<net.minecraft.world.level.biome.Biome> HAS_PALE_LEAF_LITTER = createTag("has_pale_leaf_litter");
         public static final TagKey<net.minecraft.world.level.biome.Biome> SPAWNS_OAK_NESTED_TREES = createTag("spawns_oak_nested_trees");
+        public static final TagKey<net.minecraft.world.level.biome.Biome> IS_DESERT = createTag("is_desert");
         public static final TagKey<net.minecraft.world.level.biome.Biome> IS_SNOWY = createTag("is_snowy");
+        public static final TagKey<net.minecraft.world.level.biome.Biome> IS_BIRCH_FOREST = createTag("is_birch_forest");
+        public static final TagKey<net.minecraft.world.level.biome.Biome> IS_MEADOW = createTag("is_meadow");
         public static final TagKey<net.minecraft.world.level.biome.Biome> IS_HUMID = commonTag("is_humid");
         public static final TagKey<net.minecraft.world.level.biome.Biome> IS_DRY = commonTag("is_dry");
 
@@ -158,11 +165,14 @@ public class ModTags {
         public static final TagKey<net.minecraft.world.entity.EntityType<?>> ACCEPTS_IRON_GOLEM_GIFT = mcTag("accepts_iron_golem_gift");
         public static final TagKey<net.minecraft.world.entity.EntityType<?>> CANDIDATE_FOR_IRON_GOLEM_GIFT = mcTag("candidate_for_iron_golem_gift");
         public static final TagKey<net.minecraft.world.entity.EntityType<?>> SMART_ANIMALS = createTag("smart_animals");
+        public static final TagKey<net.minecraft.world.entity.EntityType<?>> SAFE_EGG_WALKERS = createTag("safe_egg_walkers");
         public static final TagKey<net.minecraft.world.entity.EntityType<?>> CATFISH_HOSTILES = createTag("catfish_hostiles");
         public static final TagKey<net.minecraft.world.entity.EntityType<?>> ALLIGATOR_HOSTILES = createTag("alligator_hostiles");
         public static final TagKey<net.minecraft.world.entity.EntityType<?>> ELEPHANT_HOSTILES = createTag("elephant_hostiles");
         public static final TagKey<net.minecraft.world.entity.EntityType<?>> HIPPO_HOSTILES = createTag("hippo_hostiles");
         public static final TagKey<net.minecraft.world.entity.EntityType<?>> LION_HOSTILES = createTag("lion_hostiles");
+        public static final TagKey<net.minecraft.world.entity.EntityType<?>> VULTURE_HOSTILES = createTag("vulture_hostiles");
+        public static final TagKey<net.minecraft.world.entity.EntityType<?>> BOAR_HOSTILES = createTag("boar_hostiles");
 
         @SuppressWarnings("SameParameterValue")
         private static TagKey<net.minecraft.world.entity.EntityType<?>> createTag(String name) {

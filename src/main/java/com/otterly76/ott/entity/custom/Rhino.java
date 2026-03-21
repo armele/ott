@@ -105,6 +105,7 @@ public class Rhino extends NaturalistAnimal implements NaturalistGeoEntity {
     protected void registerGoals() {
         super.registerGoals();
         this.goalSelector.addGoal(0, new FloatGoal(this));
+        this.goalSelector.addGoal(1, new AvoidEntityGoal<>(this, net.minecraft.world.entity.animal.Bee.class, 8.0f, 1.3, 1.3));
         this.goalSelector.addGoal(1, new RhinoMeleeAttackGoal(this, 1.2D, false));
         this.goalSelector.addGoal(2, new RhinoPrepareChargeGoal(this));
         this.goalSelector.addGoal(3, new RhinoChargeGoal(this, 2.5F));

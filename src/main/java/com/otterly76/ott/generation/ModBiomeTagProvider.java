@@ -46,6 +46,7 @@ public class ModBiomeTagProvider extends BiomeTagsProvider {
         this.tag(ModTags.Biomes.HAS_DARK_LEAF_LITTER).add(Biomes.DARK_FOREST, Biomes.SWAMP, Biomes.MANGROVE_SWAMP);
         this.tag(ModTags.Biomes.HAS_PALE_LEAF_LITTER).addOptional(ModBiomes.PALE_GARDEN.location());
         this.tag(ModTags.Biomes.SPAWNS_OAK_NESTED_TREES).add(Biomes.FOREST, Biomes.FLOWER_FOREST);
+        this.tag(ModTags.Biomes.IS_DESERT).add(Biomes.DESERT);
         this.tag(ModTags.Biomes.IS_SNOWY).add(Biomes.SNOWY_PLAINS, Biomes.SNOWY_TAIGA, Biomes.SNOWY_SLOPES, Biomes.SNOWY_BEACH, Biomes.FROZEN_RIVER, Biomes.ICE_SPIKES, Biomes.GROVE);
 
         this.tag(ModTags.Biomes.IS_HUMID).add(Biomes.SWAMP, Biomes.MANGROVE_SWAMP, Biomes.JUNGLE, Biomes.BAMBOO_JUNGLE, Biomes.SPARSE_JUNGLE, Biomes.LUSH_CAVES);
@@ -63,10 +64,8 @@ public class ModBiomeTagProvider extends BiomeTagsProvider {
         this.tag(BiomeTags.IS_FOREST).addOptional(ModBiomes.VERDANT_FOREST.location());
         this.tag(BiomeTags.IS_OVERWORLD).addOptional(ModBiomes.VERDANT_FOREST.location());
 
-        TagKey<Biome> isBirchForest = TagKey.create(Registries.BIOME, ResourceLocation.withDefaultNamespace("is_birch_forest"));
-        this.tag(isBirchForest).add(Biomes.BIRCH_FOREST, Biomes.OLD_GROWTH_BIRCH_FOREST);
+        this.tag(ModTags.Biomes.IS_BIRCH_FOREST).add(Biomes.BIRCH_FOREST, Biomes.OLD_GROWTH_BIRCH_FOREST);
 
-        TagKey<Biome> isMeadow = TagKey.create(Registries.BIOME, ResourceLocation.withDefaultNamespace("is_meadow"));
-        this.tag(isMeadow).add(Biomes.MEADOW);
+        this.tag(ModTags.Biomes.IS_MEADOW).add(Biomes.MEADOW);
     }
 }

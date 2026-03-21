@@ -244,6 +244,10 @@ public class ModSounds {
     public static final DeferredHolder<SoundEvent, SoundEvent> GATOR_EGG_CRACK = registerOttSoundEvent("entity.alligator.egg_crack");
     public static final DeferredHolder<SoundEvent, SoundEvent> GATOR_EGG_HATCH = registerOttSoundEvent("entity.alligator.egg_hatch");
 
+    public static final DeferredHolder<SoundEvent, SoundEvent> TORTOISE_EGG_BREAK = registerOttSoundEvent("entity.tortoise.egg_break");
+    public static final DeferredHolder<SoundEvent, SoundEvent> TORTOISE_EGG_CRACK = registerOttSoundEvent("entity.tortoise.egg_crack");
+    public static final DeferredHolder<SoundEvent, SoundEvent> TORTOISE_EGG_HATCH = registerOttSoundEvent("entity.tortoise.egg_hatch");
+
     public static final DeferredHolder<SoundEvent, SoundEvent> ELEPHANT_AMBIENT = registerOttSoundEvent("entity.elephant.ambient");
     public static final DeferredHolder<SoundEvent, SoundEvent> ELEPHANT_HURT = registerOttSoundEvent("entity.elephant.hurt");
     public static final DeferredHolder<SoundEvent, SoundEvent> ELEPHANT_DEATH = registerOttSoundEvent("entity.elephant.death");
@@ -279,6 +283,34 @@ public class ModSounds {
     public static final DeferredHolder<SoundEvent, SoundEvent> RHINO_HURT = registerOttSoundEvent("entity.rhino.hurt");
     public static final DeferredHolder<SoundEvent, SoundEvent> RHINO_DEATH = registerOttSoundEvent("entity.rhino.death");
     public static final DeferredHolder<SoundEvent, SoundEvent> RHINO_SCRAPE = registerOttSoundEvent("entity.rhino.scrape");
+
+    public static final DeferredHolder<SoundEvent, SoundEvent> LIZARD_AMBIENT = registerOttSoundEvent("entity.lizard.ambient");
+    public static final DeferredHolder<SoundEvent, SoundEvent> LIZARD_HURT = registerOttSoundEvent("entity.lizard.hurt");
+    public static final DeferredHolder<SoundEvent, SoundEvent> LIZARD_DEATH = registerOttSoundEvent("entity.lizard.death");
+
+    public static final DeferredHolder<SoundEvent, SoundEvent> SNAIL_AMBIENT = registerOttSoundEvent("entity.snail.ambient");
+    public static final DeferredHolder<SoundEvent, SoundEvent> SNAIL_HURT = registerOttSoundEvent("entity.snail.hurt");
+    public static final DeferredHolder<SoundEvent, SoundEvent> SNAIL_DEATH = registerOttSoundEvent("entity.snail.death");
+
+    public static final DeferredHolder<SoundEvent, SoundEvent> TORTOISE_AMBIENT = registerOttSoundEvent("entity.tortoise.ambient");
+    public static final DeferredHolder<SoundEvent, SoundEvent> TORTOISE_HURT = registerOttSoundEvent("entity.tortoise.hurt");
+    public static final DeferredHolder<SoundEvent, SoundEvent> TORTOISE_DEATH = registerOttSoundEvent("entity.tortoise.death");
+
+    public static final DeferredHolder<SoundEvent, SoundEvent> VULTURE_AMBIENT = registerOttSoundEvent("entity.vulture.ambient");
+    public static final DeferredHolder<SoundEvent, SoundEvent> VULTURE_HURT = registerOttSoundEvent("entity.vulture.hurt");
+    public static final DeferredHolder<SoundEvent, SoundEvent> VULTURE_DEATH = registerOttSoundEvent("entity.vulture.death");
+
+    public static final DeferredHolder<SoundEvent, SoundEvent> ZEBRA_AMBIENT = registerOttSoundEvent("entity.zebra.ambient");
+    public static final DeferredHolder<SoundEvent, SoundEvent> ZEBRA_HURT = registerOttSoundEvent("entity.zebra.hurt");
+    public static final DeferredHolder<SoundEvent, SoundEvent> ZEBRA_DEATH = registerOttSoundEvent("entity.zebra.death");
+    public static final DeferredHolder<SoundEvent, SoundEvent> ZEBRA_REAR = registerOttSoundEvent("entity.zebra.rear");
+
+    public static final DeferredHolder<SoundEvent, SoundEvent> MOOSE_AMBIENT = registerOttSoundEvent("entity.moose.ambient");
+    public static final DeferredHolder<SoundEvent, SoundEvent> MOOSE_AMBIENT_BABY = registerOttSoundEvent("entity.moose.ambient_baby");
+    public static final DeferredHolder<SoundEvent, SoundEvent> MOOSE_HURT = registerOttSoundEvent("entity.moose.hurt");
+    public static final DeferredHolder<SoundEvent, SoundEvent> MOOSE_HURT_BABY = registerOttSoundEvent("entity.moose.hurt_baby");
+    public static final DeferredHolder<SoundEvent, SoundEvent> MOOSE_DEATH = registerOttSoundEvent("entity.moose.death");
+    public static final DeferredHolder<SoundEvent, SoundEvent> MOOSE_DEATH_BABY = registerOttSoundEvent("entity.moose.death_baby");
 
 
     public static final DeferredHolder<SoundEvent, SoundEvent> NONE = registerSoundEvent("music.none");

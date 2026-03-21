@@ -125,6 +125,9 @@ public class CreativeTabHandler {
             safeInsertAfter(event, Items.HONEY_BLOCK.getDefaultInstance(), new ItemStack(ModBlocks.RESIN_BLOCK.get()), visibility);
             safeInsertAfter(event, new ItemStack(Items.LILY_PAD), new ItemStack(ModBlocks.BIG_LILY_PAD.get()), visibility);
             safeInsertAfter(event, new ItemStack(ModBlocks.BIG_LILY_PAD.get()), new ItemStack(ModBlocks.CHRYSALIS.get()), visibility);
+            safeInsertAfter(event, new ItemStack(ModBlocks.CHRYSALIS.get()), new ItemStack(ModBlocks.ALLIGATOR_EGG.get()), visibility);
+            safeInsertAfter(event, new ItemStack(ModBlocks.ALLIGATOR_EGG.get()), new ItemStack(ModBlocks.TORTOISE_EGG.get()), visibility);
+            safeInsertAfter(event, new ItemStack(ModBlocks.TORTOISE_EGG.get()), new ItemStack(ModBlocks.SNAIL_EGG.get()), visibility);
         }
 
         if (event.getTabKey() == CreativeModeTabs.COLORED_BLOCKS) {
@@ -359,6 +362,8 @@ public class CreativeTabHandler {
             }
 
             safeInsertAfter(event, new ItemStack(Items.DRAGON_HEAD), new ItemStack(ModItems.DRAGON_SKULL.get()), visibility);
+            safeInsertAfter(event, new ItemStack(ModItems.DRAGON_SKULL.get()), new ItemStack(ModBlocks.TEDDY_BEAR.get()), visibility);
+            safeInsertAfter(event, new ItemStack(Items.LANTERN), new ItemStack(ModBlocks.GLOW_GOOP.get()), visibility);
 
             lastTarget = Items.DAMAGED_ANVIL;
             for (Supplier<? extends Block> block : ModBlocks.COPPER_ANVILS.values()) {
@@ -440,6 +445,7 @@ public class CreativeTabHandler {
                     ModItems.WEATHERED_COPPER_SHEARS,
                     ModItems.OXIDIZED_COPPER_SHEARS
             ), visibility);
+            safeInsertAfter(event, new ItemStack(Items.SHEARS), new ItemStack(ModItems.BUG_NET.get()), visibility);
 
             insertAllAfter(event, Items.MILK_BUCKET, List.of(
                     ModItems.COPPER_BUCKET,
@@ -456,7 +462,10 @@ public class CreativeTabHandler {
                     ModItems.FLOUNDER_BUCKET,
                     ModItems.MARINE_IGUANA_BUCKET,
                     ModItems.CATFISH_BUCKET,
-                    ModItems.BASS_BUCKET
+                    ModItems.BASS_BUCKET,
+                    ModItems.SNAIL_BUCKET,
+                    ModItems.BUTTERFLY,
+                    ModItems.CATERPILLAR
             ), visibility);
 
             insertAllAfter(event, Items.MUSIC_DISC_RELIC, List.of(
@@ -496,6 +505,9 @@ public class CreativeTabHandler {
                     ModItems.COOKED_BASS,
                     ModItems.VENISON,
                     ModItems.COOKED_VENISON,
+                    ModItems.BUSHMEAT,
+                    ModItems.COOKED_BUSHMEAT,
+                    ModItems.LIZARD_TAIL,
                     ModItems.SALTED_KELP
             ), visibility);
         }
@@ -637,7 +649,7 @@ public class CreativeTabHandler {
             safeAccept(event, Items.CHAIN, visibility);
             safeInsertAfter(event, Items.NETHER_BRICK.getDefaultInstance(), new ItemStack(ModItems.RESIN_BRICK.get()), visibility);
             safeInsertAfter(event, Items.HONEYCOMB.getDefaultInstance(), new ItemStack(ModBlocks.RESIN_CLUMP.get()), visibility);
-            insertAllAfter(event, Items.EGG, List.of(ModItems.BROWN_EGG, ModItems.BLUE_EGG, ModItems.EMU_EGG, ModItems.HOOPOE_EGG, ModItems.PHEASANT_EGG, ModItems.TOUCAN_EGG), visibility);
+            insertAllAfter(event, Items.EGG, List.of(ModItems.BROWN_EGG, ModItems.BLUE_EGG, ModItems.EMU_EGG, ModItems.HOOPOE_EGG, ModItems.PHEASANT_EGG, ModItems.TOUCAN_EGG, ModItems.ALLIGATOR_EGG, ModItems.DUCK_EGG, ModItems.TORTOISE_EGG), visibility);
 
             safeInsertAfter(event, Items.COPPER_INGOT.getDefaultInstance(), new ItemStack(ModItems.COPPER_NUGGET.get()), visibility);
             safeInsertAfter(event, ModItems.COPPER_NUGGET.get().getDefaultInstance(), new ItemStack(ModBlocks.COPPER_CHAINS.get("").get()), visibility);
@@ -651,6 +663,7 @@ public class CreativeTabHandler {
             safeAccept(event, ModItems.SEAGRASS_BALL, visibility);
             safeAccept(event, ModItems.FUR, visibility);
             safeAccept(event, ModItems.ANTLER, visibility);
+            safeAccept(event, ModItems.SNAIL_SHELL, visibility);
         }
 
         if (event.getTabKey() == CreativeModeTabs.COMBAT) {
@@ -784,6 +797,16 @@ public class CreativeTabHandler {
             safeAccept(event, ModItems.HIPPO_SPAWN_EGG, visibility);
             safeAccept(event, ModItems.LION_SPAWN_EGG, visibility);
             safeAccept(event, ModItems.RHINO_SPAWN_EGG, visibility);
+            safeAccept(event, ModItems.LIZARD_SPAWN_EGG, visibility);
+            safeAccept(event, ModItems.SNAIL_SPAWN_EGG, visibility);
+            safeAccept(event, ModItems.SNAIL_BUCKET, visibility);
+            safeAccept(event, ModItems.TORTOISE_SPAWN_EGG, visibility);
+            safeAccept(event, ModItems.VULTURE_SPAWN_EGG, visibility);
+            safeAccept(event, ModItems.ZEBRA_SPAWN_EGG, visibility);
+            safeAccept(event, ModItems.MOOSE_SPAWN_EGG, visibility);
+            safeAccept(event, ModItems.MAMMOTH_SPAWN_EGG, visibility);
+            safeAccept(event, ModItems.MYCELIUM_MAMMOTH_SPAWN_EGG, visibility);
+            safeAccept(event, ModItems.FENNEC_FOX_SPAWN_EGG, visibility);
             safeAccept(event, ModItems.CHRYSALIS.get(), visibility);
         }
     }

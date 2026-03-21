@@ -1,13 +1,16 @@
 package com.otterly76.ott.entity.custom;
 
-import com.otterly76.ott.block.custom.ChrysalisBlock;
 import com.otterly76.ott.block.ModBlocks;
+import com.otterly76.ott.block.custom.ChrysalisBlock;
 import com.otterly76.ott.entity.ai.navigation.BetterWallClimberNavigation;
 import com.otterly76.ott.sound.ModSounds;
+import com.otterly76.ott.entity.core.Catchable;
+import com.otterly76.ott.item.ModItems;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.particles.BlockParticleOption;
 import net.minecraft.core.particles.ParticleTypes;
+import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
@@ -18,6 +21,8 @@ import net.minecraft.sounds.SoundSource;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.world.DifficultyInstance;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.world.InteractionResult;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
@@ -27,6 +32,7 @@ import net.minecraft.world.entity.ai.goal.MoveToBlockGoal;
 import net.minecraft.world.entity.ai.goal.WaterAvoidingRandomStrollGoal;
 import net.minecraft.world.entity.ai.navigation.PathNavigation;
 import net.minecraft.world.entity.animal.Animal;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelReader;
@@ -43,10 +49,11 @@ import software.bernie.geckolib.animation.RawAnimation;
 import software.bernie.geckolib.animation.PlayState;
 import software.bernie.geckolib.util.GeckoLibUtil;
 
-public class Caterpillar extends Animal implements GeoEntity {
+public class Caterpillar extends Animal implements GeoEntity, Catchable {
     protected static final RawAnimation IDLE = RawAnimation.begin().thenLoop("animation.sf_nba.caterpillar.idle");
     protected static final RawAnimation CRAWL = RawAnimation.begin().thenLoop("animation.sf_nba.caterpillar.crawl");
     private static final EntityDataAccessor<Byte> CLIMBING = SynchedEntityData.defineId(Caterpillar.class, EntityDataSerializers.BYTE);
+    private static final EntityDataAccessor<Boolean> FROM_HAND = SynchedEntityData.defineId(Caterpillar.class, EntityDataSerializers.BOOLEAN);
 
     private final AnimatableInstanceCache geoCache = GeckoLibUtil.createInstanceCache(this);
 
@@ -101,12 +108,76 @@ public class Caterpillar extends Animal implements GeoEntity {
     protected void defineSynchedData(SynchedEntityData.@NotNull Builder builder) {
         super.defineSynchedData(builder);
         builder.define(CLIMBING, (byte) 0);
+        builder.define(FROM_HAND, false);
     }
 
     @Override
     public @NotNull SpawnGroupData finalizeSpawn(@NotNull ServerLevelAccessor level, @NotNull DifficultyInstance difficulty, @NotNull MobSpawnType reason, @Nullable SpawnGroupData spawnData) {
         this.setAge(0);
         return super.finalizeSpawn(level, difficulty, reason, spawnData);
+    }
+
+    @Override
+    public void addAdditionalSaveData(@NotNull CompoundTag compound) {
+        super.addAdditionalSaveData(compound);
+        compound.putBoolean("FromHand", this.fromHand());
+    }
+
+    @Override
+    public void readAdditionalSaveData(@NotNull CompoundTag compound) {
+        super.readAdditionalSaveData(compound);
+        this.setFromHand(compound.getBoolean("FromHand"));
+    }
+
+    @Override
+    public boolean fromHand() {
+        return this.entityData.get(FROM_HAND);
+    }
+
+    @Override
+    public void setFromHand(boolean fromHand) {
+        this.entityData.set(FROM_HAND, fromHand);
+    }
+
+    @Override
+    public void saveToHandTag(ItemStack stack) {
+        Catchable.saveDefaultDataToHandTag(this, stack);
+        CompoundTag tag = stack.getOrDefault(net.minecraft.core.component.DataComponents.CUSTOM_DATA, net.minecraft.world.item.component.CustomData.EMPTY).copyTag();
+        tag.putInt("Age", this.getAge());
+        stack.set(net.minecraft.core.component.DataComponents.CUSTOM_DATA, net.minecraft.world.item.component.CustomData.of(tag));
+    }
+
+    @Override
+    public void loadFromHandTag(CompoundTag tag) {
+        Catchable.loadDefaultDataFromHandTag(this, tag);
+        if (tag.contains("Age")) {
+            this.setAge(tag.getInt("Age"));
+        }
+    }
+
+    @Override
+    public ItemStack getCaughtItemStack() {
+        return new ItemStack(ModItems.CATERPILLAR.get());
+    }
+
+    @Override
+    public net.minecraft.sounds.@Nullable SoundEvent getPickupSound() {
+        return null;
+    }
+
+    @Override
+    public @NotNull InteractionResult mobInteract(@NotNull Player player, @NotNull InteractionHand hand) {
+        return Catchable.catchAnimal(player, hand, this, true).orElse(super.mobInteract(player, hand));
+    }
+
+    @Override
+    public boolean requiresCustomPersistence() {
+        return super.requiresCustomPersistence() || this.fromHand();
+    }
+
+    @Override
+    public boolean removeWhenFarAway(double distanceToClosestPlayer) {
+        return !this.fromHand() && !this.hasCustomName();
     }
 
     @Nullable

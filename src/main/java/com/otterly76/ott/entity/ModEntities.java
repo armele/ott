@@ -48,6 +48,8 @@ public class ModEntities {
 
     public static final Supplier<EntityType<com.otterly76.ott.entity.custom.Duck>> DUCK = OTT_ENTITY_TYPES.register("duck",
             () -> Builder.of(com.otterly76.ott.entity.custom.Duck::new, MobCategory.CREATURE).sized(0.4F, 0.7F).clientTrackingRange(8).build("duck"));
+    public static final Supplier<EntityType<com.otterly76.ott.entity.projectile.ThrownDuckEgg>> THROWN_DUCK_EGG = OTT_ENTITY_TYPES.register("thrown_duck_egg",
+            () -> Builder.<com.otterly76.ott.entity.projectile.ThrownDuckEgg>of(com.otterly76.ott.entity.projectile.ThrownDuckEgg::new, MobCategory.MISC).sized(0.25F, 0.25F).clientTrackingRange(4).updateInterval(10).build("thrown_duck_egg"));
 
     public static final Supplier<EntityType<com.otterly76.ott.entity.custom.Goose>> GOOSE = OTT_ENTITY_TYPES.register("goose",
             () -> Builder.of(com.otterly76.ott.entity.custom.Goose::new, MobCategory.CREATURE).sized(0.4F, 0.7F).clientTrackingRange(8).build("goose"));
@@ -154,6 +156,36 @@ public class ModEntities {
 
     public static final Supplier<EntityType<com.otterly76.ott.entity.custom.Rhino>> RHINO = OTT_ENTITY_TYPES.register("rhino",
             () -> Builder.of(com.otterly76.ott.entity.custom.Rhino::new, MobCategory.CREATURE).sized(1.6F, 1.8F).clientTrackingRange(10).build("rhino"));
+
+    public static final Supplier<EntityType<com.otterly76.ott.entity.custom.Lizard>> LIZARD = OTT_ENTITY_TYPES.register("lizard",
+            () -> Builder.of(com.otterly76.ott.entity.custom.Lizard::new, MobCategory.CREATURE).sized(0.8F, 0.5F).clientTrackingRange(10).build("lizard"));
+
+    public static final Supplier<EntityType<com.otterly76.ott.entity.custom.LizardTail>> LIZARD_TAIL = OTT_ENTITY_TYPES.register("lizard_tail",
+            () -> Builder.of(com.otterly76.ott.entity.custom.LizardTail::new, MobCategory.CREATURE).sized(0.7F, 0.5F).clientTrackingRange(10).build("lizard_tail"));
+
+    public static final Supplier<EntityType<com.otterly76.ott.entity.custom.Snail>> SNAIL = OTT_ENTITY_TYPES.register("snail",
+            () -> Builder.of(com.otterly76.ott.entity.custom.Snail::new, MobCategory.CREATURE).sized(0.7F, 0.7F).eyeHeight(0.3F).clientTrackingRange(10).build("snail"));
+
+    public static final Supplier<EntityType<com.otterly76.ott.entity.custom.Tortoise>> TORTOISE = OTT_ENTITY_TYPES.register("tortoise",
+            () -> Builder.of(com.otterly76.ott.entity.custom.Tortoise::new, MobCategory.CREATURE).sized(1.2F, 0.875F).clientTrackingRange(10).build("tortoise"));
+
+    public static final Supplier<EntityType<com.otterly76.ott.entity.custom.Vulture>> VULTURE = OTT_ENTITY_TYPES.register("vulture",
+            () -> Builder.of(com.otterly76.ott.entity.custom.Vulture::new, MobCategory.CREATURE).sized(0.9F, 0.5F).clientTrackingRange(10).build("vulture"));
+
+    public static final Supplier<EntityType<com.otterly76.ott.entity.custom.Zebra>> ZEBRA = OTT_ENTITY_TYPES.register("zebra",
+            () -> Builder.of(com.otterly76.ott.entity.custom.Zebra::new, MobCategory.CREATURE).sized(1.3964844F, 1.5F).clientTrackingRange(10).build("zebra"));
+
+    public static final Supplier<EntityType<com.otterly76.ott.entity.custom.Moose>> MOOSE = OTT_ENTITY_TYPES.register("moose",
+            () -> Builder.of(com.otterly76.ott.entity.custom.Moose::new, MobCategory.CREATURE).sized(1.7F, 2.0F).clientTrackingRange(10).build("moose"));
+
+    public static final Supplier<EntityType<com.otterly76.ott.entity.custom.Mammoth>> MAMMOTH = OTT_ENTITY_TYPES.register("mammoth",
+            () -> Builder.of(com.otterly76.ott.entity.custom.Mammoth::new, MobCategory.CREATURE).sized(2.5F, 3.5F).clientTrackingRange(10).build("mammoth"));
+
+    public static final Supplier<EntityType<com.otterly76.ott.entity.custom.MyceliumMammoth>> MYCELIUM_MAMMOTH = OTT_ENTITY_TYPES.register("mycelium_mammoth",
+            () -> Builder.of(com.otterly76.ott.entity.custom.MyceliumMammoth::new, MobCategory.CREATURE).sized(2.5F, 3.5F).clientTrackingRange(10).build("mycelium_mammoth"));
+
+    public static final Supplier<EntityType<com.otterly76.ott.entity.custom.FennecFox>> FENNEC_FOX = OTT_ENTITY_TYPES.register("fennec_fox",
+            () -> Builder.of(com.otterly76.ott.entity.custom.FennecFox::new, MobCategory.CREATURE).sized(0.6F, 0.7F).clientTrackingRange(8).build("fennec_fox"));
 
 
     public static final Supplier<EntityType<com.otterly76.ott.entity.projectile.EmuEggEntity>> EMU_EGG = OTT_ENTITY_TYPES.register("emu_egg",

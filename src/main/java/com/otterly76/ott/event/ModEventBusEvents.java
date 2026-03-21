@@ -57,6 +57,16 @@ public class ModEventBusEvents {
         event.put(ModEntities.HIPPO.get(), com.otterly76.ott.entity.custom.Hippo.createAttributes().build());
         event.put(ModEntities.LION.get(), com.otterly76.ott.entity.custom.Lion.createAttributes().build());
         event.put(ModEntities.RHINO.get(), com.otterly76.ott.entity.custom.Rhino.createAttributes().build());
+        event.put(ModEntities.LIZARD.get(), com.otterly76.ott.entity.custom.Lizard.createAttributes().build());
+        event.put(ModEntities.LIZARD_TAIL.get(), com.otterly76.ott.entity.custom.LizardTail.createAttributes().build());
+        event.put(ModEntities.SNAIL.get(), com.otterly76.ott.entity.custom.Snail.createAttributes().build());
+        event.put(ModEntities.TORTOISE.get(), com.otterly76.ott.entity.custom.Tortoise.createAttributes().build());
+        event.put(ModEntities.VULTURE.get(), com.otterly76.ott.entity.custom.Vulture.createAttributes().build());
+        event.put(ModEntities.ZEBRA.get(), com.otterly76.ott.entity.custom.Zebra.createAttributes().build());
+        event.put(ModEntities.MOOSE.get(), com.otterly76.ott.entity.custom.Moose.createAttributes().build());
+        event.put(ModEntities.MAMMOTH.get(), com.otterly76.ott.entity.custom.Mammoth.createAttributes().build());
+        event.put(ModEntities.MYCELIUM_MAMMOTH.get(), com.otterly76.ott.entity.custom.MyceliumMammoth.createAttributes().build());
+        event.put(ModEntities.FENNEC_FOX.get(), com.otterly76.ott.entity.custom.FennecFox.createAttributes().build());
         event.put(ModEntities.BLUEJAY.get(), com.otterly76.ott.entity.custom.Bird.createAttributes().build());
         event.put(ModEntities.CANARY.get(), com.otterly76.ott.entity.custom.Bird.createAttributes().build());
         event.put(ModEntities.CARDINAL.get(), com.otterly76.ott.entity.custom.Bird.createAttributes().build());
@@ -284,6 +294,71 @@ public class ModEventBusEvents {
                 SpawnPlacementTypes.ON_GROUND,
                 Heightmap.Types.MOTION_BLOCKING_NO_LEAVES,
                 com.otterly76.ott.entity.custom.Rhino::canSpawn,
+                RegisterSpawnPlacementsEvent.Operation.OR
+        );
+        event.register(
+                ModEntities.LIZARD.get(),
+                SpawnPlacementTypes.ON_GROUND,
+                Heightmap.Types.MOTION_BLOCKING_NO_LEAVES,
+                Animal::checkAnimalSpawnRules,
+                RegisterSpawnPlacementsEvent.Operation.OR
+        );
+        event.register(
+                ModEntities.SNAIL.get(),
+                SpawnPlacementTypes.ON_GROUND,
+                Heightmap.Types.MOTION_BLOCKING_NO_LEAVES,
+                Animal::checkAnimalSpawnRules,
+                RegisterSpawnPlacementsEvent.Operation.OR
+        );
+        event.register(
+                ModEntities.TORTOISE.get(),
+                SpawnPlacementTypes.ON_GROUND,
+                Heightmap.Types.MOTION_BLOCKING_NO_LEAVES,
+                Animal::checkAnimalSpawnRules,
+                RegisterSpawnPlacementsEvent.Operation.OR
+        );
+        event.register(
+                ModEntities.VULTURE.get(),
+                SpawnPlacementTypes.ON_GROUND,
+                Heightmap.Types.MOTION_BLOCKING_NO_LEAVES,
+                com.otterly76.ott.entity.custom.Vulture::checkVultureSpawnRules,
+                RegisterSpawnPlacementsEvent.Operation.OR
+        );
+        event.register(
+                ModEntities.ZEBRA.get(),
+                SpawnPlacementTypes.ON_GROUND,
+                Heightmap.Types.MOTION_BLOCKING_NO_LEAVES,
+                Animal::checkAnimalSpawnRules,
+                RegisterSpawnPlacementsEvent.Operation.OR
+        );
+        event.register(
+                ModEntities.MOOSE.get(),
+                SpawnPlacementTypes.ON_GROUND,
+                Heightmap.Types.MOTION_BLOCKING_NO_LEAVES,
+                Animal::checkAnimalSpawnRules,
+                RegisterSpawnPlacementsEvent.Operation.OR
+        );
+
+        event.register(
+                ModEntities.FENNEC_FOX.get(),
+                SpawnPlacementTypes.ON_GROUND,
+                Heightmap.Types.MOTION_BLOCKING_NO_LEAVES,
+                Animal::checkAnimalSpawnRules,
+                RegisterSpawnPlacementsEvent.Operation.OR
+        );
+        event.register(
+                ModEntities.MAMMOTH.get(),
+                SpawnPlacementTypes.ON_GROUND,
+                Heightmap.Types.MOTION_BLOCKING_NO_LEAVES,
+                com.otterly76.ott.entity.custom.Elephant::canSpawn,
+                RegisterSpawnPlacementsEvent.Operation.OR
+        );
+
+        event.register(
+                ModEntities.MYCELIUM_MAMMOTH.get(),
+                SpawnPlacementTypes.ON_GROUND,
+                Heightmap.Types.MOTION_BLOCKING_NO_LEAVES,
+                com.otterly76.ott.entity.custom.MyceliumMammoth::checkMyceliumMammothSpawnRules,
                 RegisterSpawnPlacementsEvent.Operation.OR
         );
         event.register(

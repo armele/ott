@@ -25,6 +25,30 @@
       "weight": 8,
       "minCount": 2,
       "maxCount": 4
+    },
+    {
+      "type": "ott:black_bear",
+      "weight": 4,
+      "minCount": 1,
+      "maxCount": 2
+    },
+    {
+      "type": "ott:brown_bear",
+      "weight": 4,
+      "minCount": 1,
+      "maxCount": 2
+    },
+    {
+      "type": "ott:deer",
+      "weight": 10,
+      "minCount": 2,
+      "maxCount": 4
+    },
+    {
+      "type": "ott:snail",
+      "weight": 10,
+      "minCount": 1,
+      "maxCount": 3
     }
   ]
 }

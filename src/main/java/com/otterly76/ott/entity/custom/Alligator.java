@@ -1,5 +1,6 @@
 package com.otterly76.ott.entity.custom;
 
+import com.otterly76.ott.block.ModBlocks;
 import com.otterly76.ott.entity.ModEntities;
 import com.otterly76.ott.entity.ai.goal.*;
 import com.otterly76.ott.entity.ai.navigation.MMPathNavigatorGround;
@@ -35,7 +36,6 @@ import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.pathfinder.PathType;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
@@ -143,7 +143,7 @@ public class Alligator extends NaturalistAnimal implements NaturalistGeoEntity, 
 
     @Override
     public Block getEggBlock() {
-        return Blocks.TURTLE_EGG; // Placeholder
+        return ModBlocks.ALLIGATOR_EGG.get();
     }
 
     @Override
