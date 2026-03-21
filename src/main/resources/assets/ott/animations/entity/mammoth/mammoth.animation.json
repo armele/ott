@@ -1,7 +1,7 @@
 {
   "format_version": "1.8.0",
   "animations": {
-    "animation.sf_nba.mammoth.baby_transform": {
+    "animation.ott.mammoth.baby_transform": {
       "loop": true,
       "bones": {
         "skull": {
@@ -9,7 +9,7 @@
         }
       }
     },
-    "animation.sf_nba.mammoth.look_at_target": {
+    "animation.ott.mammoth.look_at_target": {
       "loop": true,
       "bones": {
         "skull": {
@@ -17,7 +17,7 @@
         }
       }
     },
-    "animation.sf_nba.mammoth.idle": {
+    "animation.ott.mammoth.idle": {
       "loop": true,
       "animation_length": 17.625,
       "bones": {
@@ -52,7 +52,7 @@
         }
       }
     },
-    "animation.sf_nba.mammoth.walk": {
+    "animation.ott.mammoth.walk": {
       "sound_effects": {
         "0.0": {
           "effect": "step_-6dB"
@@ -755,7 +755,7 @@
         }
       }
     },
-    "animation.sf_nba.mammoth.drink": {
+    "animation.ott.mammoth.drink": {
       "loop": "hold_on_last_frame",
       "animation_length": 2,
       "bones": {
@@ -813,7 +813,7 @@
         }
       }
     },
-    "animation.sf_nba.mammoth.swing": {
+    "animation.ott.mammoth.swing": {
       "sound_effects": {
         "0.0": {
           "effect": "attack"
@@ -876,7 +876,7 @@
         }
       }
     },
-    "animation.sf_nba.mammoth.water": {
+    "animation.ott.mammoth.water": {
       "loop": true,
       "animation_length": 1,
       "bones": {
@@ -960,7 +960,7 @@
         }
       }
     },
-    "animation.sf_nba.mammoth.run": {
+    "animation.ott.mammoth.run": {
       "sound_effects": {
         "0.0": {
           "effect": "step"
@@ -1190,7 +1190,7 @@
         }
       }
     },
-    "animation.sf_nba.mammoth.stunned": {
+    "animation.ott.mammoth.stunned": {
       "loop": true,
       "animation_length": 1,
       "bones": {

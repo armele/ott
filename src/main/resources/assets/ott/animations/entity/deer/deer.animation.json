@@ -1,7 +1,7 @@
 {
   "format_version": "1.8.0",
   "animations": {
-    "animation.sf_nba.deer.baby_transform": {
+    "animation.ott.deer.baby_transform": {
       "loop": true,
       "bones": {
         "skull": {
@@ -9,7 +9,7 @@
         }
       }
     },
-    "animation.sf_nba.deer.idle": {
+    "animation.ott.deer.idle": {
       "loop": true,
       "bones": {
         "tail": {
@@ -35,7 +35,7 @@
         }
       }
     },
-    "animation.sf_nba.deer.walk": {
+    "animation.ott.deer.walk": {
       "loop": true,
       "animation_length": 1,
       "anim_time_update": "query.anim_time + query.delta_time * v.anim_speed_multiplier * Math.min( 1, query.modified_move_speed / v.anim_speed_movement_max )",
@@ -238,7 +238,7 @@
         }
       }
     },
-    "animation.sf_nba.deer.eat": {
+    "animation.ott.deer.eat": {
       "sound_effects": {
         "0.0": {
           "effect": "eat"
@@ -260,7 +260,7 @@
         }
       }
     },
-    "animation.sf_nba.deer.ear_flick": {
+    "animation.ott.deer.ear_flick": {
       "animation_length": 0.5,
       "bones": {
         "right_ear": {
@@ -279,7 +279,7 @@
         }
       }
     },
-    "animation.sf_nba.deer.run": {
+    "animation.ott.deer.run": {
       "loop": true,
       "animation_length": 1,
       "anim_time_update": "query.anim_time + query.delta_time * v.anim_speed_multiplier * Math.min( 1, query.modified_move_speed / v.anim_speed_movement_max )",
@@ -618,7 +618,7 @@
         }
       }
     },
-    "animation.sf_nba.deer.rest": {
+    "animation.ott.deer.rest": {
       "animation_length": 2.4167,
       "bones": {
         "root": {
@@ -653,7 +653,7 @@
         }
       }
     },
-    "animation.sf_nba.deer.run_UB": {
+    "animation.ott.deer.run_UB": {
       "loop": true,
       "animation_length": 1.0417,
       "bones": {

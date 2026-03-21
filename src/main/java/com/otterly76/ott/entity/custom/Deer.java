@@ -35,11 +35,11 @@ import software.bernie.geckolib.util.GeckoLibUtil;
 import java.util.List;
 
 public abstract class Deer extends TamableAnimal implements GeoEntity, Saddleable {
-    protected static final RawAnimation IDLE = RawAnimation.begin().thenLoop("animation.sf_nba.deer.idle");
-    protected static final RawAnimation WALK = RawAnimation.begin().thenLoop("animation.sf_nba.deer.walk");
-    protected static final RawAnimation RUN = RawAnimation.begin().thenLoop("animation.sf_nba.deer.run");
-    protected static final RawAnimation BABY_RUN = RawAnimation.begin().thenLoop("animation.sf_nba.deer.baby_run");
-    protected static final RawAnimation EAT = RawAnimation.begin().thenLoop("animation.sf_nba.deer.eat");
+    protected static final RawAnimation IDLE = RawAnimation.begin().thenLoop("animation.ott.deer.idle");
+    protected static final RawAnimation WALK = RawAnimation.begin().thenLoop("animation.ott.deer.walk");
+    protected static final RawAnimation RUN = RawAnimation.begin().thenLoop("animation.ott.deer.run");
+    protected static final RawAnimation BABY_RUN = RawAnimation.begin().thenLoop("animation.ott.deer.baby_run");
+    protected static final RawAnimation EAT = RawAnimation.begin().thenLoop("animation.ott.deer.eat");
 
     private static final EntityDataAccessor<Boolean> SADDLED = SynchedEntityData.defineId(Deer.class, EntityDataSerializers.BOOLEAN);
 

@@ -1,7 +1,7 @@
 {
   "format_version": "1.8.0",
   "animations": {
-    "animation.sf_nba.alligator.idle": {
+    "animation.ott.alligator.idle": {
       "loop": true,
       "animation_length": 2,
       "bones": {
@@ -14,7 +14,7 @@
         }
       }
     },
-    "animation.sf_nba.alligator.walk": {
+    "animation.ott.alligator.walk": {
       "sound_effects": {
         "0.3": {
           "effect": "step"
@@ -146,7 +146,7 @@
         }
       }
     },
-    "animation.sf_nba.alligator.swim": {
+    "animation.ott.alligator.swim": {
       "sound_effects": {
         "0.0": {
           "effect": "swim"
@@ -211,7 +211,7 @@
         }
       }
     },
-    "animation.sf_nba.alligator.bite": {
+    "animation.ott.alligator.bite": {
       "sound_effects": {
         "0.0": {
           "effect": "bite"
@@ -234,7 +234,7 @@
         }
       }
     },
-    "animation.sf_nba.alligator.baby_transform": {
+    "animation.ott.alligator.baby_transform": {
       "loop": true,
       "bones": {
         "skull": {

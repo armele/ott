@@ -16,8 +16,8 @@ import software.bernie.geckolib.animation.*;
 import software.bernie.geckolib.util.GeckoLibUtil;
 
 public class Bass extends AbstractSchoolingFish implements GeoEntity {
-    protected static final RawAnimation SWIM = RawAnimation.begin().thenLoop("animation.sf_nba.bass.swim");
-    protected static final RawAnimation FLOP = RawAnimation.begin().thenLoop("animation.sf_nba.bass.flop");
+    protected static final RawAnimation SWIM = RawAnimation.begin().thenLoop("animation.ott.bass.swim");
+    protected static final RawAnimation FLOP = RawAnimation.begin().thenLoop("animation.ott.bass.flop");
     private final AnimatableInstanceCache geoCache = GeckoLibUtil.createInstanceCache(this);
 
     public Bass(EntityType<? extends AbstractSchoolingFish> entityType, Level level) {

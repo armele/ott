@@ -1,7 +1,7 @@
 {
   "format_version": "1.8.0",
   "animations": {
-    "animation.sf_nba.elephant.body_rotation": {
+    "animation.ott.elephant.body_rotation": {
       "loop": true,
       "bones": {
         "body": {
@@ -20,7 +20,7 @@
         }
       }
     },
-    "animation.sf_nba.elephant.baby_transform": {
+    "animation.ott.elephant.baby_transform": {
       "loop": true,
       "bones": {
         "skull": {
@@ -28,7 +28,7 @@
         }
       }
     },
-    "animation.sf_nba.elephant.idle": {
+    "animation.ott.elephant.idle": {
       "loop": true,
       "animation_length": 17.625,
       "bones": {
@@ -60,7 +60,7 @@
         }
       }
     },
-    "animation.sf_nba.elephant.walk": {
+    "animation.ott.elephant.walk": {
       "loop": true,
       "animation_length": 5.25,
       "anim_time_update": "query.anim_time + query.delta_time * v.anim_speed_multiplier * Math.min( 1, query.modified_move_speed / v.anim_speed_movement_max )",
@@ -1895,7 +1895,7 @@
         }
       }
     },
-    "animation.sf_nba.elephant.drink": {
+    "animation.ott.elephant.drink": {
       "loop": "hold_on_last_frame",
       "animation_length": 2,
       "bones": {
@@ -1949,7 +1949,7 @@
         }
       }
     },
-    "animation.sf_nba.elephant.swing": {
+    "animation.ott.elephant.swing": {
       "sound_effects": {
         "0.0": {
           "effect": "attack"
@@ -2012,7 +2012,7 @@
         }
       }
     },
-    "animation.sf_nba.elephant.water": {
+    "animation.ott.elephant.water": {
       "loop": true,
       "animation_length": 1,
       "bones": {
@@ -2096,7 +2096,7 @@
         }
       }
     },
-    "animation.sf_nba.elephant.walk2": {
+    "animation.ott.elephant.walk2": {
       "loop": true,
       "animation_length": 2,
       "anim_time_update": "query.anim_time + query.delta_time * 1.3 * v.anim_speed_multiplier * Math.min( 1, query.modified_move_speed / v.anim_speed_movement_max )",
@@ -3047,7 +3047,7 @@
         }
       }
     },
-    "animation.sf_nba.elephant.run": {
+    "animation.ott.elephant.run": {
       "sound_effects": {
         "0.0": {
           "effect": "step"
@@ -3277,7 +3277,7 @@
         }
       }
     },
-    "animation.sf_nba.elephant.stunned": {
+    "animation.ott.elephant.stunned": {
       "loop": true,
       "animation_length": 1,
       "bones": {
@@ -3325,7 +3325,7 @@
         }
       }
     },
-    "animation.sf_nba.elephant.walk2_UB": {
+    "animation.ott.elephant.walk2_UB": {
       "loop": true,
       "animation_length": 2,
       "bones": {
@@ -3439,7 +3439,7 @@
         }
       }
     },
-    "animation.sf_nba.elephant.look_at_target": {
+    "animation.ott.elephant.look_at_target": {
       "loop": true,
       "bones": {
         "skull": {

@@ -1,7 +1,7 @@
 {
   "format_version": "1.8.0",
   "animations": {
-    "animation.sf_nba.lizard.sleep": {
+    "animation.ott.lizard.sleep": {
       "sound_effects": {
         "0.0": {
           "effect": "sleep"
@@ -43,7 +43,7 @@
         }
       }
     },
-    "animation.sf_nba.lizard.sit": {
+    "animation.ott.lizard.sit": {
       "loop": true,
       "animation_length": 2,
       "bones": {
@@ -79,7 +79,7 @@
         }
       }
     },
-    "animation.sf_nba.lizard.idle": {
+    "animation.ott.lizard.idle": {
       "loop": true,
       "bones": {
         "tail": {
@@ -94,7 +94,7 @@
         }
       }
     },
-    "animation.sf_nba.lizard.walk": {
+    "animation.ott.lizard.walk": {
       "sound_effects": {
         "0.0": {
           "effect": "step_-6dB"

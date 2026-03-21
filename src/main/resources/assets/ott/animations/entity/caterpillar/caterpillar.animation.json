@@ -1,7 +1,7 @@
 {
   "format_version": "1.8.0",
   "animations": {
-    "animation.sf_nba.caterpillar.idle": {
+    "animation.ott.caterpillar.idle": {
       "loop": true,
       "bones": {
         "antennae": {
@@ -9,7 +9,7 @@
         }
       }
     },
-    "animation.sf_nba.caterpillar.crawl": {
+    "animation.ott.caterpillar.crawl": {
       "loop": true,
       "animation_length": 0.625,
       "bones": {

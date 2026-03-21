@@ -48,16 +48,16 @@ import software.bernie.geckolib.animation.PlayState;
 import software.bernie.geckolib.animation.RawAnimation;
 import software.bernie.geckolib.util.GeckoLibUtil;
 
-public class Tortoise extends TamableAnimal implements NaturalistGeoEntity, HidingAnimal, EggLayingAnimal {
+public class Tortoise extends TamableAnimal implements OttGeoEntity, HidingAnimal, EggLayingAnimal {
     private static final EntityDataAccessor<Integer> VARIANT = SynchedEntityData.defineId(Tortoise.class, EntityDataSerializers.INT);
     private static final EntityDataAccessor<Boolean> IS_HIDING = SynchedEntityData.defineId(Tortoise.class, EntityDataSerializers.BOOLEAN);
     private static final EntityDataAccessor<Boolean> HAS_EGG = SynchedEntityData.defineId(Tortoise.class, EntityDataSerializers.BOOLEAN);
     private static final EntityDataAccessor<Boolean> IS_LAYING_EGG = SynchedEntityData.defineId(Tortoise.class, EntityDataSerializers.BOOLEAN);
 
-    protected static final RawAnimation IDLE = RawAnimation.begin().thenLoop("animation.sf_nba.tortoise.idle");
-    protected static final RawAnimation WALK = RawAnimation.begin().thenLoop("animation.sf_nba.tortoise.walk");
-    protected static final RawAnimation HIDE = RawAnimation.begin().thenPlayAndHold("animation.sf_nba.tortoise.hide");
-    protected static final RawAnimation HURT = RawAnimation.begin().thenPlayAndHold("animation.sf_nba.tortoise.hurt");
+    protected static final RawAnimation IDLE = RawAnimation.begin().thenLoop("animation.ott.tortoise.idle");
+    protected static final RawAnimation WALK = RawAnimation.begin().thenLoop("animation.ott.tortoise.walk");
+    protected static final RawAnimation HIDE = RawAnimation.begin().thenPlayAndHold("animation.ott.tortoise.hide");
+    protected static final RawAnimation HURT = RawAnimation.begin().thenPlayAndHold("animation.ott.tortoise.hurt");
 
     private final AnimatableInstanceCache geoCache = GeckoLibUtil.createInstanceCache(this);
     private int layEggCounter;

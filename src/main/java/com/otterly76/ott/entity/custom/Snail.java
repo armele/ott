@@ -45,21 +45,21 @@ import software.bernie.geckolib.animatable.instance.AnimatableInstanceCache;
 import software.bernie.geckolib.animation.*;
 import software.bernie.geckolib.util.GeckoLibUtil;
 
-public class Snail extends ClimbingAnimal implements NaturalistGeoEntity, Bucketable, HidingAnimal, EggLayingAnimal {
+public class Snail extends ClimbingAnimal implements OttGeoEntity, Bucketable, HidingAnimal, EggLayingAnimal {
     private static final EntityDataAccessor<Boolean> FROM_BUCKET = SynchedEntityData.defineId(Snail.class, EntityDataSerializers.BOOLEAN);
     private static final EntityDataAccessor<Boolean> HAS_EGG = SynchedEntityData.defineId(Snail.class, EntityDataSerializers.BOOLEAN);
     private static final EntityDataAccessor<Boolean> IS_LAYING_EGG = SynchedEntityData.defineId(Snail.class, EntityDataSerializers.BOOLEAN);
     private static final EntityDataAccessor<Integer> COLOR = SynchedEntityData.defineId(Snail.class, EntityDataSerializers.INT);
     private static final EntityDataAccessor<Boolean> IS_HIDING = SynchedEntityData.defineId(Snail.class, EntityDataSerializers.BOOLEAN);
 
-    protected static final RawAnimation IDLE = RawAnimation.begin().thenLoop("animation.sf_nba.snail.idle");
-    protected static final RawAnimation WALK = RawAnimation.begin().thenLoop("animation.sf_nba.snail.walk");
-    protected static final RawAnimation HIDE = RawAnimation.begin().thenPlayAndHold("animation.sf_nba.snail.hide");
+    protected static final RawAnimation IDLE = RawAnimation.begin().thenLoop("animation.ott.snail.idle");
+    protected static final RawAnimation WALK = RawAnimation.begin().thenLoop("animation.ott.snail.walk");
+    protected static final RawAnimation HIDE = RawAnimation.begin().thenPlayAndHold("animation.ott.snail.hide");
 
     private final AnimatableInstanceCache geoCache = GeckoLibUtil.createInstanceCache(this);
     private int layEggCounter;
 
-    public Snail(EntityType<? extends NaturalistAnimal> type, Level level) {
+    public Snail(EntityType<? extends OttAnimal> type, Level level) {
         super(type, level);
     }
 

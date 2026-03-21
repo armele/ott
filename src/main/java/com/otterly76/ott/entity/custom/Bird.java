@@ -50,10 +50,10 @@ import java.util.EnumSet;
 import java.util.List;
 
 public class Bird extends ShoulderRidingEntity implements FlyingAnimal, GeoEntity {
-    protected static final RawAnimation PECK = RawAnimation.begin().thenLoop("animation.sf_nba.bird.peck");
-    protected static final RawAnimation FLY = RawAnimation.begin().thenLoop("animation.sf_nba.bird.fly");
-    protected static final RawAnimation SIT = RawAnimation.begin().thenLoop("animation.sf_nba.bird.sit");
-    protected static final RawAnimation WALK = RawAnimation.begin().thenLoop("animation.sf_nba.bird.walk");
+    protected static final RawAnimation PECK = RawAnimation.begin().thenLoop("animation.ott.bird.peck");
+    protected static final RawAnimation FLY = RawAnimation.begin().thenLoop("animation.ott.bird.fly");
+    protected static final RawAnimation SIT = RawAnimation.begin().thenLoop("animation.ott.bird.sit");
+    protected static final RawAnimation WALK = RawAnimation.begin().thenLoop("animation.ott.bird.walk");
     private static final Ingredient TAME_FOOD = Ingredient.of(ModTags.ItemTags.BIRD_FOOD_ITEMS);
     private final AnimatableInstanceCache geoCache = GeckoLibUtil.createInstanceCache(this);
     public float flap;

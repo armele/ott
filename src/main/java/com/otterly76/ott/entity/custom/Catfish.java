@@ -27,8 +27,8 @@ import software.bernie.geckolib.animation.*;
 import software.bernie.geckolib.util.GeckoLibUtil;
 
 public class Catfish extends AbstractFish implements GeoEntity {
-    protected static final RawAnimation SWIM = RawAnimation.begin().thenLoop("animation.sf_nba.catfish.swim");
-    protected static final RawAnimation FLOP = RawAnimation.begin().thenLoop("animation.sf_nba.catfish.flop");
+    protected static final RawAnimation SWIM = RawAnimation.begin().thenLoop("animation.ott.catfish.swim");
+    protected static final RawAnimation FLOP = RawAnimation.begin().thenLoop("animation.ott.catfish.flop");
     private static final EntityDataAccessor<Integer> KILL_COOLDOWN = SynchedEntityData.defineId(Catfish.class, EntityDataSerializers.INT);
     private final AnimatableInstanceCache geoCache = GeckoLibUtil.createInstanceCache(this);
 

@@ -4,7 +4,7 @@ import com.otterly76.ott.entity.ModEntities;
 import com.otterly76.ott.entity.ai.goal.BigPanicGoal;
 import com.otterly76.ott.entity.ai.navigation.MMPathNavigatorGround;
 import com.otterly76.ott.entity.ai.navigation.SmartBodyHelper;
-import com.otterly76.ott.entity.core.NaturalistGeoEntity;
+import com.otterly76.ott.entity.core.OttGeoEntity;
 import com.otterly76.ott.sound.ModSounds;
 import com.otterly76.ott.util.ModTags;
 import net.minecraft.core.BlockPos;
@@ -46,10 +46,10 @@ import software.bernie.geckolib.animation.RawAnimation;
 import software.bernie.geckolib.animation.keyframe.event.SoundKeyframeEvent;
 import software.bernie.geckolib.util.GeckoLibUtil;
 
-public class Giraffe extends TamableAnimal implements NaturalistGeoEntity, Saddleable {
-    protected static final RawAnimation IDLE = RawAnimation.begin().thenLoop("animation.sf_nba.giraffe.idle");
-    protected static final RawAnimation WALK = RawAnimation.begin().thenLoop("animation.sf_nba.giraffe.walk");
-    protected static final RawAnimation RUN = RawAnimation.begin().thenLoop("animation.sf_nba.giraffe.run");
+public class Giraffe extends TamableAnimal implements OttGeoEntity, Saddleable {
+    protected static final RawAnimation IDLE = RawAnimation.begin().thenLoop("animation.ott.giraffe.idle");
+    protected static final RawAnimation WALK = RawAnimation.begin().thenLoop("animation.ott.giraffe.walk");
+    protected static final RawAnimation RUN = RawAnimation.begin().thenLoop("animation.ott.giraffe.run");
     private static final Ingredient FOOD_ITEMS = Ingredient.of(ModTags.ItemTags.GIRAFFE_FOOD_ITEMS);
     private static final EntityDataAccessor<Boolean> SADDLED = SynchedEntityData.defineId(Giraffe.class, EntityDataSerializers.BOOLEAN);
     private final AnimatableInstanceCache geoCache = GeckoLibUtil.createInstanceCache(this);

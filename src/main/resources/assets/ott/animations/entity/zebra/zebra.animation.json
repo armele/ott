@@ -1,7 +1,7 @@
 {
   "format_version": "1.8.0",
   "animations": {
-    "animation.sf_nba.zebra.idle": {
+    "animation.ott.zebra.idle": {
       "loop": true,
       "animation_length": 2,
       "bones": {
@@ -39,7 +39,7 @@
         }
       }
     },
-    "animation.sf_nba.zebra.walk": {
+    "animation.ott.zebra.walk": {
       "loop": true,
       "animation_length": 1,
       "bones": {
@@ -247,7 +247,7 @@
         }
       }
     },
-    "animation.sf_nba.zebra.run": {
+    "animation.ott.zebra.run": {
       "loop": true,
       "animation_length": 0.9167,
       "bones": {

@@ -113,7 +113,7 @@ public abstract class MobMixin extends LivingEntity implements OttBabyMob {
     }
 
     @Inject(method = "doHurtTarget", at = @At("HEAD"))
-    private void naturalist$onDoHurtTarget(Entity entity, CallbackInfoReturnable<Boolean> cir) {
+    private void ott$onDoHurtTarget(Entity entity, CallbackInfoReturnable<Boolean> cir) {
         if (this.getType().equals(EntityType.FROG) && entity instanceof Firefly) {
             this.addEffect(new MobEffectInstance(MobEffects.GLOWING, 60));
         }

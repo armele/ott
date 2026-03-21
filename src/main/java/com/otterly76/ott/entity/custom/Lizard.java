@@ -2,7 +2,7 @@ package com.otterly76.ott.entity.custom;
 
 import com.otterly76.ott.entity.ModEntities;
 import com.otterly76.ott.entity.ai.navigation.SmartBodyHelper;
-import com.otterly76.ott.entity.core.NaturalistGeoEntity;
+import com.otterly76.ott.entity.core.OttGeoEntity;
 import com.otterly76.ott.sound.ModSounds;
 import net.minecraft.core.Holder;
 import net.minecraft.nbt.CompoundTag;
@@ -44,13 +44,13 @@ import software.bernie.geckolib.util.GeckoLibUtil;
 
 import java.util.Objects;
 
-public class Lizard extends TamableAnimal implements NaturalistGeoEntity {
+public class Lizard extends TamableAnimal implements OttGeoEntity {
     private static final EntityDataAccessor<Integer> VARIANT = SynchedEntityData.defineId(Lizard.class, EntityDataSerializers.INT);
     private static final EntityDataAccessor<Boolean> HAS_TAIL = SynchedEntityData.defineId(Lizard.class, EntityDataSerializers.BOOLEAN);
 
-    protected static final RawAnimation IDLE = RawAnimation.begin().thenLoop("animation.sf_nba.lizard.idle");
-    protected static final RawAnimation WALK = RawAnimation.begin().thenLoop("animation.sf_nba.lizard.walk");
-    protected static final RawAnimation RUN = RawAnimation.begin().thenLoop("animation.sf_nba.lizard.run");
+    protected static final RawAnimation IDLE = RawAnimation.begin().thenLoop("animation.ott.lizard.idle");
+    protected static final RawAnimation WALK = RawAnimation.begin().thenLoop("animation.ott.lizard.walk");
+    protected static final RawAnimation RUN = RawAnimation.begin().thenLoop("animation.ott.lizard.run");
 
     private final AnimatableInstanceCache geoCache = GeckoLibUtil.createInstanceCache(this);
 

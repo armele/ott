@@ -1,7 +1,7 @@
 {
   "format_version": "1.8.0",
   "animations": {
-    "animation.sf_nba.rhino.baby_transform": {
+    "animation.ott.rhino.baby_transform": {
       "loop": true,
       "bones": {
         "skull": {
@@ -9,7 +9,7 @@
         }
       }
     },
-    "animation.sf_nba.rhino.look_at_target": {
+    "animation.ott.rhino.look_at_target": {
       "loop": true,
       "bones": {
         "skull": {
@@ -17,7 +17,7 @@
         }
       }
     },
-    "animation.sf_nba.rhino.idle": {
+    "animation.ott.rhino.idle": {
       "loop": true,
       "bones": {
         "left_ear": {
@@ -28,7 +28,7 @@
         }
       }
     },
-    "animation.sf_nba.rhino.walk": {
+    "animation.ott.rhino.walk": {
       "sound_effects": {
         "0.0": {
           "effect": "step_-6dB"
@@ -306,7 +306,7 @@
         }
       }
     },
-    "animation.sf_nba.rhino.run": {
+    "animation.ott.rhino.run": {
       "sound_effects": {
         "0.17": {
           "effect": "step_-6dB"
@@ -614,7 +614,7 @@
         }
       }
     },
-    "animation.sf_nba.rhino.attack": {
+    "animation.ott.rhino.attack": {
       "sound_effects": {
         "0.0": {
           "effect": "attack"
@@ -651,7 +651,7 @@
         }
       }
     },
-    "animation.sf_nba.rhino.foot": {
+    "animation.ott.rhino.foot": {
       "animation_length": 2,
       "bones": {
         "skull": {
@@ -725,7 +725,7 @@
         }
       }
     },
-    "animation.sf_nba.rhino.stunned": {
+    "animation.ott.rhino.stunned": {
       "sound_effects": {
         "0.0": {
           "effect": "stun"
@@ -781,7 +781,7 @@
         }
       }
     },
-    "animation.sf_nba.rhino.stunned2": {
+    "animation.ott.rhino.stunned2": {
       "sound_effects": {
         "0.0": {
           "effect": "stun"
@@ -1125,7 +1125,7 @@
         }
       }
     },
-    "animation.sf_nba.rhino.charge": {
+    "animation.ott.rhino.charge": {
       "sound_effects": {
         "0.17": {
           "effect": "step_-6dB"
