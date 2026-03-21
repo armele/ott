@@ -6,8 +6,8 @@ import com.otterly76.ott.entity.ai.goal.*;
 import com.otterly76.ott.entity.ai.navigation.MMPathNavigatorGround;
 import com.otterly76.ott.entity.ai.navigation.SmartBodyHelper;
 import com.otterly76.ott.entity.core.EggLayingAnimal;
-import com.otterly76.ott.entity.core.NaturalistAnimal;
-import com.otterly76.ott.entity.core.NaturalistGeoEntity;
+import com.otterly76.ott.entity.core.OttAnimal;
+import com.otterly76.ott.entity.core.OttGeoEntity;
 import com.otterly76.ott.sound.ModSounds;
 import com.otterly76.ott.util.ModTags;
 import net.minecraft.core.BlockPos;
@@ -48,18 +48,18 @@ import software.bernie.geckolib.animation.RawAnimation;
 import software.bernie.geckolib.animation.keyframe.event.SoundKeyframeEvent;
 import software.bernie.geckolib.util.GeckoLibUtil;
 
-public class Alligator extends NaturalistAnimal implements NaturalistGeoEntity, EggLayingAnimal {
-    protected static final RawAnimation IDLE = RawAnimation.begin().thenLoop("animation.sf_nba.alligator.idle");
-    protected static final RawAnimation WALK = RawAnimation.begin().thenLoop("animation.sf_nba.alligator.walk");
-    protected static final RawAnimation SWIM = RawAnimation.begin().thenLoop("animation.sf_nba.alligator.swim");
-    protected static final RawAnimation ATTACK = RawAnimation.begin().thenPlay("animation.sf_nba.alligator.attack");
+public class Alligator extends OttAnimal implements OttGeoEntity, EggLayingAnimal {
+    protected static final RawAnimation IDLE = RawAnimation.begin().thenLoop("animation.ott.alligator.idle");
+    protected static final RawAnimation WALK = RawAnimation.begin().thenLoop("animation.ott.alligator.walk");
+    protected static final RawAnimation SWIM = RawAnimation.begin().thenLoop("animation.ott.alligator.swim");
+    protected static final RawAnimation ATTACK = RawAnimation.begin().thenPlay("animation.ott.alligator.attack");
     private static final Ingredient FOOD_ITEMS = Ingredient.of(Items.CHICKEN, Items.PORKCHOP, Items.BEEF, Items.MUTTON, Items.RABBIT);
     private static final EntityDataAccessor<Boolean> HAS_EGG = SynchedEntityData.defineId(Alligator.class, EntityDataSerializers.BOOLEAN);
     private static final EntityDataAccessor<Boolean> LAYING_EGG = SynchedEntityData.defineId(Alligator.class, EntityDataSerializers.BOOLEAN);
     private final AnimatableInstanceCache geoCache = GeckoLibUtil.createInstanceCache(this);
     private int layEggCounter;
 
-    public Alligator(EntityType<? extends NaturalistAnimal> entityType, Level level) {
+    public Alligator(EntityType<? extends OttAnimal> entityType, Level level) {
         super(entityType, level);
         this.setPathfindingMalus(PathType.WATER, 0.0F);
     }

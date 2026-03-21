@@ -1,7 +1,7 @@
 package com.otterly76.ott.entity.custom;
 
-import com.otterly76.ott.entity.core.NaturalistAnimal;
-import com.otterly76.ott.entity.core.NaturalistGeoEntity;
+import com.otterly76.ott.entity.core.OttAnimal;
+import com.otterly76.ott.entity.core.OttGeoEntity;
 import com.otterly76.ott.entity.core.SleepingAnimal;
 import com.otterly76.ott.entity.ai.goal.BabyHurtByTargetGoal;
 import com.otterly76.ott.entity.ai.goal.BabyPanicGoal;
@@ -48,18 +48,18 @@ import java.util.List;
 import java.util.Objects;
 import java.util.function.Predicate;
 
-public class Lion extends NaturalistAnimal implements NaturalistGeoEntity, SleepingAnimal {
-    protected static final RawAnimation IDLE = RawAnimation.begin().thenLoop("animation.sf_nba.lion.idle");
-    protected static final RawAnimation WALK = RawAnimation.begin().thenLoop("animation.sf_nba.lion.walk");
-    protected static final RawAnimation RUN = RawAnimation.begin().thenLoop("animation.sf_nba.lion.run");
-    protected static final RawAnimation PREY = RawAnimation.begin().thenLoop("animation.sf_nba.lion.prey");
-    protected static final RawAnimation SLEEP = RawAnimation.begin().thenLoop("animation.sf_nba.lion.sleep");
-    protected static final RawAnimation SLEEP2 = RawAnimation.begin().thenLoop("animation.sf_nba.lion.sleep2");
+public class Lion extends OttAnimal implements OttGeoEntity, SleepingAnimal {
+    protected static final RawAnimation IDLE = RawAnimation.begin().thenLoop("animation.ott.lion.idle");
+    protected static final RawAnimation WALK = RawAnimation.begin().thenLoop("animation.ott.lion.walk");
+    protected static final RawAnimation RUN = RawAnimation.begin().thenLoop("animation.ott.lion.run");
+    protected static final RawAnimation PREY = RawAnimation.begin().thenLoop("animation.ott.lion.prey");
+    protected static final RawAnimation SLEEP = RawAnimation.begin().thenLoop("animation.ott.lion.sleep");
+    protected static final RawAnimation SLEEP2 = RawAnimation.begin().thenLoop("animation.ott.lion.sleep2");
     private static final EntityDataAccessor<Boolean> SLEEPING = SynchedEntityData.defineId(Lion.class, EntityDataSerializers.BOOLEAN);
     private static final EntityDataAccessor<Boolean> HAS_MANE = SynchedEntityData.defineId(Lion.class, EntityDataSerializers.BOOLEAN);
     private final AnimatableInstanceCache geoCache = GeckoLibUtil.createInstanceCache(this);
 
-    public Lion(@NotNull EntityType<? extends NaturalistAnimal> entityType, Level level) {
+    public Lion(@NotNull EntityType<? extends OttAnimal> entityType, Level level) {
         super(entityType, level);
     }
 
@@ -270,7 +270,7 @@ public class Lion extends NaturalistAnimal implements NaturalistGeoEntity, Sleep
     private <E extends Lion> PlayState attackPredicate(final AnimationState<E> event) {
         if (this.swinging && event.getController().getAnimationState().equals(AnimationController.State.STOPPED)) {
             event.getController().forceAnimationReset();
-            event.getController().setAnimation(RawAnimation.begin().thenPlay("animation.sf_nba.lion.attack"));
+            event.getController().setAnimation(RawAnimation.begin().thenPlay("animation.ott.lion.attack"));
             this.swinging = false;
         }
         return PlayState.CONTINUE;

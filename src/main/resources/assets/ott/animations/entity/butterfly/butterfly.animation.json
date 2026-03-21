@@ -1,7 +1,7 @@
 {
   "format_version": "1.8.0",
   "animations": {
-    "animation.sf_nba.butterfly.idle": {
+    "animation.ott.butterfly.idle": {
       "loop": true,
       "animation_length": 1,
       "bones": {
@@ -13,7 +13,7 @@
         "leftWing": { "rotation": { "0.0": [8.21, 0, 0] } }
       }
     },
-    "animation.sf_nba.butterfly.tilt": {
+    "animation.ott.butterfly.tilt": {
       "loop": true,
       "bones": {
         "root": {
@@ -25,7 +25,7 @@
         }
       }
     },
-    "animation.sf_nba.butterfly.fly": {
+    "animation.ott.butterfly.fly": {
       "loop": true,
       "animation_length": 0.5,
       "bones": {
@@ -97,7 +97,7 @@
         }
       }
     },
-    "animation.sf_nba.butterfly.fly_UB": {
+    "animation.ott.butterfly.fly_UB": {
       "animation_length": 6.3333,
       "bones": {
         "body": {

@@ -1,8 +1,8 @@
 package com.otterly76.ott.entity.custom;
 
 import com.otterly76.ott.entity.core.EggLayingAnimal;
-import com.otterly76.ott.entity.core.NaturalistAnimal;
-import com.otterly76.ott.entity.core.NaturalistGeoEntity;
+import com.otterly76.ott.entity.core.OttAnimal;
+import com.otterly76.ott.entity.core.OttGeoEntity;
 import com.otterly76.ott.entity.ai.goal.BabyHurtByTargetGoal;
 import com.otterly76.ott.entity.ai.goal.BabyPanicGoal;
 import com.otterly76.ott.entity.ai.goal.LayEggGoal;
@@ -52,17 +52,17 @@ import software.bernie.geckolib.util.GeckoLibUtil;
 
 import java.util.EnumSet;
 
-public class Hippo extends NaturalistAnimal implements NaturalistGeoEntity, EggLayingAnimal {
-    protected static final RawAnimation IDLE = RawAnimation.begin().thenLoop("animation.sf_nba.hippo.idle");
-    protected static final RawAnimation WALK = RawAnimation.begin().thenLoop("animation.sf_nba.hippo.walk");
-    protected static final RawAnimation RUN = RawAnimation.begin().thenLoop("animation.sf_nba.hippo.run");
-    protected static final RawAnimation SWIM = RawAnimation.begin().thenLoop("animation.sf_nba.hippo.swim");
+public class Hippo extends OttAnimal implements OttGeoEntity, EggLayingAnimal {
+    protected static final RawAnimation IDLE = RawAnimation.begin().thenLoop("animation.ott.hippo.idle");
+    protected static final RawAnimation WALK = RawAnimation.begin().thenLoop("animation.ott.hippo.walk");
+    protected static final RawAnimation RUN = RawAnimation.begin().thenLoop("animation.ott.hippo.run");
+    protected static final RawAnimation SWIM = RawAnimation.begin().thenLoop("animation.ott.hippo.swim");
     private static final EntityDataAccessor<Boolean> HAS_EGG = SynchedEntityData.defineId(Hippo.class, EntityDataSerializers.BOOLEAN);
     private static final EntityDataAccessor<Boolean> IS_LAYING_EGG = SynchedEntityData.defineId(Hippo.class, EntityDataSerializers.BOOLEAN);
     private final AnimatableInstanceCache geoCache = GeckoLibUtil.createInstanceCache(this);
     private int layEggCounter;
 
-    public Hippo(EntityType<? extends NaturalistAnimal> entityType, Level level) {
+    public Hippo(EntityType<? extends OttAnimal> entityType, Level level) {
         super(entityType, level);
         this.setPathfindingMalus(PathType.WATER, 0.0F);
     }
@@ -260,7 +260,7 @@ public class Hippo extends NaturalistAnimal implements NaturalistGeoEntity, EggL
     private <E extends Hippo> PlayState attackPredicate(final AnimationState<E> event) {
         if (this.swinging && event.getController().getAnimationState().equals(AnimationController.State.STOPPED)) {
             event.getController().forceAnimationReset();
-            event.getController().setAnimation(RawAnimation.begin().thenPlay("animation.sf_nba.hippo.attack"));
+            event.getController().setAnimation(RawAnimation.begin().thenPlay("animation.ott.hippo.attack"));
             this.swinging = false;
         }
         return PlayState.CONTINUE;

@@ -1,7 +1,7 @@
 {
   "format_version": "1.8.0",
   "animations": {
-    "animation.sf_nba.bird.sit": {
+    "animation.ott.bird.sit": {
       "loop": true,
       "bones": {
         "body": {
@@ -26,7 +26,7 @@
         }
       }
     },
-    "animation.sf_nba.bird.fly": {
+    "animation.ott.bird.fly": {
       "loop": true,
       "animation_length": 1,
       "bones": {
@@ -94,7 +94,7 @@
         }
       }
     },
-    "animation.sf_nba.bird.walk": {
+    "animation.ott.bird.walk": {
       "sound_effects": {
         "0.33": {
           "effect": "step"
@@ -157,7 +157,7 @@
         }
       }
     },
-    "animation.sf_nba.bird.peck": {
+    "animation.ott.bird.peck": {
       "loop": true,
       "animation_length": 1,
       "bones": {
@@ -222,7 +222,7 @@
         }
       }
     },
-    "animation.sf_nba.bird.baby_transform": {
+    "animation.ott.bird.baby_transform": {
       "loop": true,
       "bones": {
         "skull": {

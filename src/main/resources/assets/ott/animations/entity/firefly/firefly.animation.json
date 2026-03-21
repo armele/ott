@@ -1,7 +1,7 @@
 {
   "format_version": "1.8.0",
   "animations": {
-    "animation.sf_nba.firefly.fly": {
+    "animation.ott.firefly.fly": {
       "loop": true,
       "animation_length": 2,
       "bones": {
@@ -29,7 +29,7 @@
         }
       }
     },
-    "animation.sf_nba.firefly.light_effect": {
+    "animation.ott.firefly.light_effect": {
       "loop": true,
       "animation_length": 2,
       "particle_effects": {
@@ -38,7 +38,7 @@
         }
       }
     },
-    "animation.sf_nba.firefly.rotation": {
+    "animation.ott.firefly.rotation": {
       "loop": true,
       "bones": {
         "body": {

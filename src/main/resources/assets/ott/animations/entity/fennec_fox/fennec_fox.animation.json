@@ -1,7 +1,7 @@
 {
   "format_version": "1.8.0",
   "animations": {
-    "animation.sf_nba.fennec_fox.idle": {
+    "animation.ott.fennec_fox.idle": {
       "loop": true,
       "animation_length": 3.5,
       "bones": {
@@ -46,7 +46,7 @@
         }
       }
     },
-    "animation.sf_nba.fennec_fox.walk": {
+    "animation.ott.fennec_fox.walk": {
       "sound_effects": {
         "0.0": {
           "effect": "step_-6dB"
@@ -260,7 +260,7 @@
         }
       }
     },
-    "animation.sf_nba.fennec_fox.run": {
+    "animation.ott.fennec_fox.run": {
       "sound_effects": {
         "0.08": {
           "effect": "step_-6dB"
@@ -547,7 +547,7 @@
         }
       }
     },
-    "animation.sf_nba.fennec_fox.sleep": {
+    "animation.ott.fennec_fox.sleep": {
       "loop": true,
       "bones": {
         "body": {
@@ -581,7 +581,7 @@
         }
       }
     },
-    "animation.sf_nba.fennec_fox.shake": {
+    "animation.ott.fennec_fox.shake": {
       "loop": true,
       "animation_length": 1,
       "bones": {
@@ -611,7 +611,7 @@
         }
       }
     },
-    "animation.sf_nba.fennec_fox.wiggle": {
+    "animation.ott.fennec_fox.wiggle": {
       "loop": true,
       "bones": {
         "body": {
@@ -651,7 +651,7 @@
         }
       }
     },
-    "animation.sf_nba.fennec_fox.pounce": {
+    "animation.ott.fennec_fox.pounce": {
       "loop": true,
       "bones": {
         "body": {
@@ -664,7 +664,7 @@
         }
       }
     },
-    "animation.sf_nba.fennec_fox.crouch": {
+    "animation.ott.fennec_fox.crouch": {
       "loop": true,
       "bones": {
         "body": {
@@ -689,7 +689,7 @@
         }
       }
     },
-    "animation.sf_nba.fennec_fox.stuck": {
+    "animation.ott.fennec_fox.stuck": {
       "sound_effects": {
         "0.04": {
           "effect": "dig"
@@ -818,7 +818,7 @@
         }
       }
     },
-    "animation.sf_nba.fennec_fox.item_adjust": {
+    "animation.ott.fennec_fox.item_adjust": {
       "loop": true,
       "bones": {
         "rightItem": {
@@ -828,7 +828,7 @@
         }
       }
     },
-    "animation.sf_nba.fennec_fox.baby_transform": {
+    "animation.ott.fennec_fox.baby_transform": {
       "loop": true,
       "bones": {
         "skull": {
@@ -836,7 +836,7 @@
         }
       }
     },
-    "animation.sf_nba.fennec_fox.sit": {
+    "animation.ott.fennec_fox.sit": {
       "loop": true,
       "bones": {
         "body": {

@@ -1,10 +1,10 @@
 {
   "format_version": "1.8.0",
   "animations": {
-    "animation.sf_nba.vulture.fly": {
+    "animation.ott.vulture.fly": {
       "sound_effects": {
         "0.75": {
-          "effect": "sf_nba.vulture.wing"
+          "effect": "ott.vulture.wing"
         }
       },
       "loop": true,
@@ -45,7 +45,7 @@
         }
       }
     },
-    "animation.sf_nba.vulture.glide": {
+    "animation.ott.vulture.glide": {
       "loop": true,
       "animation_length": 2,
       "bones": {
@@ -104,7 +104,7 @@
         }
       }
     },
-    "animation.sf_nba.vulture.idle": {
+    "animation.ott.vulture.idle": {
       "loop": true,
       "animation_length": 2,
       "bones": {
@@ -153,7 +153,7 @@
         }
       }
     },
-    "animation.sf_nba.vulture.carrying_block": {
+    "animation.ott.vulture.carrying_block": {
       "loop": true,
       "bones": {
         "rightItem": {
@@ -163,7 +163,7 @@
         }
       }
     },
-    "animation.sf_nba.vulture.baby_transform": {
+    "animation.ott.vulture.baby_transform": {
       "loop": true,
       "bones": {
         "skull": {
@@ -171,7 +171,7 @@
         }
       }
     },
-    "animation.sf_nba.vulture.sit": {
+    "animation.ott.vulture.sit": {
       "loop": true,
       "bones": {
         "body": {

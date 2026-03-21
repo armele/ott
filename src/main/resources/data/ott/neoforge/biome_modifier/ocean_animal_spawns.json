@@ -37,6 +37,36 @@
       "weight": 12,
       "minCount": 2,
       "maxCount": 4
+    },
+    {
+      "type": "ott:seahorse_1",
+      "weight": 8,
+      "minCount": 1,
+      "maxCount": 3
+    },
+    {
+      "type": "ott:shrimp",
+      "weight": 15,
+      "minCount": 2,
+      "maxCount": 6
+    },
+    {
+      "type": "ott:starfish_1",
+      "weight": 10,
+      "minCount": 1,
+      "maxCount": 4
+    },
+    {
+      "type": "ott:jellyfish_2",
+      "weight": 8,
+      "minCount": 2,
+      "maxCount": 5
+    },
+    {
+      "type": "ott:jellyfish_3",
+      "weight": 8,
+      "minCount": 2,
+      "maxCount": 5
     }
   ]
 }

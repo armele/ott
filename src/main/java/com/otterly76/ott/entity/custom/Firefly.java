@@ -40,7 +40,7 @@ import software.bernie.geckolib.animation.PlayState;
 import software.bernie.geckolib.util.GeckoLibUtil;
 
 public class Firefly extends Animal implements FlyingAnimal, GeoEntity {
-    private static final RawAnimation FLY = RawAnimation.begin().thenLoop("animation.sf_nba.firefly.fly");
+    private static final RawAnimation FLY = RawAnimation.begin().thenLoop("animation.ott.firefly.fly");
     private static final EntityDataAccessor<Integer> GLOW_TICKS = SynchedEntityData.defineId(Firefly.class, EntityDataSerializers.INT);
     private static final EntityDataAccessor<Integer> SUN_TICKS = SynchedEntityData.defineId(Firefly.class, EntityDataSerializers.INT);
     private final AnimatableInstanceCache geoCache = GeckoLibUtil.createInstanceCache(this);

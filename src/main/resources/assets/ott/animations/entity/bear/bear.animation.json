@@ -1,7 +1,7 @@
 {
   "format_version": "1.8.0",
   "animations": {
-    "animation.sf_nba.bear.baby_transform": {
+    "animation.ott.bear.baby_transform": {
       "loop": true,
       "bones": {
         "skullRot": {
@@ -9,7 +9,7 @@
         }
       }
     },
-    "animation.sf_nba.bear.idle": {
+    "animation.ott.bear.idle": {
       "loop": true,
       "animation_length": 2,
       "bones": {
@@ -33,7 +33,7 @@
         }
       }
     },
-    "animation.sf_nba.bear.walk": {
+    "animation.ott.bear.walk": {
       "loop": true,
       "animation_length": 1,
       "anim_time_update": "query.anim_time + query.delta_time * v.anim_speed_multiplier * Math.min( 1, query.modified_move_speed / v.anim_speed_movement_max )",
@@ -83,7 +83,7 @@
         }
       }
     },
-    "animation.sf_nba.bear.run": {
+    "animation.ott.bear.run": {
       "loop": true,
       "animation_length": 1,
       "anim_time_update": "query.anim_time + query.delta_time * v.anim_speed_multiplier * Math.min( 1, query.modified_move_speed / v.anim_speed_movement_max )",
@@ -136,7 +136,7 @@
         }
       }
     },
-    "animation.sf_nba.bear.sit": {
+    "animation.ott.bear.sit": {
       "loop": true,
       "bones": {
         "body": {
@@ -148,7 +148,7 @@
         }
       }
     },
-    "animation.sf_nba.bear.sleep": {
+    "animation.ott.bear.sleep": {
       "loop": true,
       "animation_length": 2,
       "bones": {
@@ -188,7 +188,7 @@
         }
       }
     },
-    "animation.sf_nba.bear.sniff": {
+    "animation.ott.bear.sniff": {
       "loop": true,
       "animation_length": 0.5,
       "override_previous_animation": true,
@@ -214,7 +214,7 @@
         }
       }
     },
-    "animation.sf_nba.bear.eat": {
+    "animation.ott.bear.eat": {
       "loop": true,
       "animation_length": 2,
       "bones": {
@@ -277,7 +277,7 @@
         }
       }
     },
-    "animation.sf_nba.bear.attack": {
+    "animation.ott.bear.attack": {
       "animation_length": 0.25,
       "bones": {
         "rightArm": {
@@ -294,7 +294,7 @@
         }
       }
     },
-    "animation.sf_nba.bear.new": {
+    "animation.ott.bear.new": {
       "loop": "hold_on_last_frame",
       "animation_length": 2.6667,
       "sound_effects": {

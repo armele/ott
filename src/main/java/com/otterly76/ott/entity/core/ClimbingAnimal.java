@@ -7,10 +7,10 @@ import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.level.Level;
 import org.jetbrains.annotations.NotNull;
 
-public abstract class ClimbingAnimal extends NaturalistAnimal {
+public abstract class ClimbingAnimal extends OttAnimal {
     private static final EntityDataAccessor<Byte> DATA_FLAGS_ID = SynchedEntityData.defineId(ClimbingAnimal.class, EntityDataSerializers.BYTE);
 
-    public ClimbingAnimal(EntityType<? extends NaturalistAnimal> type, Level world) {
+    public ClimbingAnimal(EntityType<? extends OttAnimal> type, Level world) {
         super(type, world);
     }
 

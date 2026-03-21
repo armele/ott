@@ -1,7 +1,7 @@
 package com.otterly76.ott.entity.custom;
 
-import com.otterly76.ott.entity.core.NaturalistAnimal;
-import com.otterly76.ott.entity.core.NaturalistGeoEntity;
+import com.otterly76.ott.entity.core.OttAnimal;
+import com.otterly76.ott.entity.core.OttGeoEntity;
 import com.otterly76.ott.entity.ai.goal.BabyHurtByTargetGoal;
 import com.otterly76.ott.entity.ai.goal.BabyPanicGoal;
 import com.otterly76.ott.entity.ai.navigation.MMPathNavigatorGround;
@@ -53,20 +53,20 @@ import java.util.EnumSet;
 import java.util.List;
 import java.util.Objects;
 
-public class Rhino extends NaturalistAnimal implements NaturalistGeoEntity {
-    protected static final RawAnimation IDLE = RawAnimation.begin().thenLoop("animation.sf_nba.rhino.idle");
-    protected static final RawAnimation WALK = RawAnimation.begin().thenLoop("animation.sf_nba.rhino.walk");
-    protected static final RawAnimation RUN = RawAnimation.begin().thenLoop("animation.sf_nba.rhino.run");
-    protected static final RawAnimation ATTACK = RawAnimation.begin().thenPlay("animation.sf_nba.rhino.attack");
-    protected static final RawAnimation FOOT = RawAnimation.begin().thenPlay("animation.sf_nba.rhino.foot");
-    protected static final RawAnimation STUNNED = RawAnimation.begin().thenLoop("animation.sf_nba.rhino.stunned");
+public class Rhino extends OttAnimal implements OttGeoEntity {
+    protected static final RawAnimation IDLE = RawAnimation.begin().thenLoop("animation.ott.rhino.idle");
+    protected static final RawAnimation WALK = RawAnimation.begin().thenLoop("animation.ott.rhino.walk");
+    protected static final RawAnimation RUN = RawAnimation.begin().thenLoop("animation.ott.rhino.run");
+    protected static final RawAnimation ATTACK = RawAnimation.begin().thenPlay("animation.ott.rhino.attack");
+    protected static final RawAnimation FOOT = RawAnimation.begin().thenPlay("animation.ott.rhino.foot");
+    protected static final RawAnimation STUNNED = RawAnimation.begin().thenLoop("animation.ott.rhino.stunned");
     private static final EntityDataAccessor<Integer> CHARGE_COOLDOWN_TICKS = SynchedEntityData.defineId(Rhino.class, EntityDataSerializers.INT);
     private static final EntityDataAccessor<Boolean> HAS_TARGET = SynchedEntityData.defineId(Rhino.class, EntityDataSerializers.BOOLEAN);
     private final AnimatableInstanceCache geoCache = GeckoLibUtil.createInstanceCache(this);
     private int stunnedTick;
     private boolean canBePushed = true;
 
-    public Rhino(EntityType<? extends NaturalistAnimal> entityType, Level level) {
+    public Rhino(EntityType<? extends OttAnimal> entityType, Level level) {
         super(entityType, level);
     }
 

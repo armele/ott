@@ -50,8 +50,8 @@ import software.bernie.geckolib.animation.PlayState;
 import software.bernie.geckolib.util.GeckoLibUtil;
 
 public class Caterpillar extends Animal implements GeoEntity, Catchable {
-    protected static final RawAnimation IDLE = RawAnimation.begin().thenLoop("animation.sf_nba.caterpillar.idle");
-    protected static final RawAnimation CRAWL = RawAnimation.begin().thenLoop("animation.sf_nba.caterpillar.crawl");
+    protected static final RawAnimation IDLE = RawAnimation.begin().thenLoop("animation.ott.caterpillar.idle");
+    protected static final RawAnimation CRAWL = RawAnimation.begin().thenLoop("animation.ott.caterpillar.crawl");
     private static final EntityDataAccessor<Byte> CLIMBING = SynchedEntityData.defineId(Caterpillar.class, EntityDataSerializers.BYTE);
     private static final EntityDataAccessor<Boolean> FROM_HAND = SynchedEntityData.defineId(Caterpillar.class, EntityDataSerializers.BOOLEAN);
 

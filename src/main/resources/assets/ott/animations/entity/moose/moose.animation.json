@@ -1,7 +1,7 @@
 {
   "format_version": "1.8.0",
   "animations": {
-    "animation.sf_nba.moose.idle": {
+    "animation.ott.moose.idle": {
       "animation_length": 4.29167,
       "bones": {
         "body": {
@@ -13,7 +13,7 @@
         }
       }
     },
-    "animation.sf_nba.moose.sit": {
+    "animation.ott.moose.sit": {
       "loop": "hold_on_last_frame",
       "animation_length": 2.4167,
       "bones": {
@@ -49,7 +49,7 @@
         }
       }
     },
-    "animation.sf_nba.moose.walk": {
+    "animation.ott.moose.walk": {
       "loop": true,
       "animation_length": 1.0833,
       "anim_time_update": "query.anim_time + query.delta_time * v.anim_speed_multiplier * Math.min( 1, query.modified_move_speed / v.anim_speed_movement_max )",
@@ -297,7 +297,7 @@
         }
       }
     },
-    "animation.sf_nba.moose.attack": {
+    "animation.ott.moose.attack": {
       "animation_length": 0.8333,
       "bones": {
         "body": {
@@ -620,7 +620,7 @@
         }
       }
     },
-    "animation.sf_nba.moose.belling": {
+    "animation.ott.moose.belling": {
       "loop": "hold_on_last_frame",
       "animation_length": 2.5,
       "bones": {
@@ -1464,7 +1464,7 @@
         }
       }
     },
-    "animation.sf_nba.moose.run": {
+    "animation.ott.moose.run": {
       "loop": true,
       "animation_length": 1,
       "anim_time_update": "query.anim_time + query.delta_time * 0.8 * v.anim_speed_multiplier * Math.min( 1, query.modified_move_speed / v.anim_speed_movement_max )",

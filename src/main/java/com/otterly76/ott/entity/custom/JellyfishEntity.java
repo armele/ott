@@ -2,6 +2,7 @@ package com.otterly76.ott.entity.custom;
 
 import com.otterly76.ott.OttDamageTypes;
 import com.otterly76.ott.sound.ModSounds;
+import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
@@ -272,6 +273,10 @@ public class JellyfishEntity extends WaterAnimal implements GeoEntity {
         return Mob.createMobAttributes()
                 .add(Attributes.MAX_HEALTH, 4.0D)
                 .add(Attributes.MOVEMENT_SPEED, 0.1D);
+    }
+
+    public static boolean canSpawn(EntityType<? extends WaterAnimal> type, net.minecraft.world.level.LevelAccessor level, MobSpawnType spawnType, BlockPos pos, net.minecraft.util.RandomSource random) {
+        return WaterAnimal.checkSurfaceWaterAnimalSpawnRules(type, level, spawnType, pos, random);
     }
 
     @Override

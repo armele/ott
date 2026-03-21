@@ -56,14 +56,14 @@ import java.util.function.Predicate;
 
 @SuppressWarnings("deprecation")
 public abstract class Bear extends Animal implements NeutralMob, GeoEntity, Shearable {
-    protected static final RawAnimation IDLE = RawAnimation.begin().thenLoop("animation.sf_nba.bear.idle");
-    protected static final RawAnimation WALK = RawAnimation.begin().thenLoop("animation.sf_nba.bear.walk");
-    protected static final RawAnimation RUN = RawAnimation.begin().thenLoop("animation.sf_nba.bear.run");
-    protected static final RawAnimation SIT = RawAnimation.begin().thenLoop("animation.sf_nba.bear.sit");
-    protected static final RawAnimation SLEEP = RawAnimation.begin().thenLoop("animation.sf_nba.bear.sleep");
-    protected static final RawAnimation SNIFF = RawAnimation.begin().thenLoop("animation.sf_nba.bear.sniff");
-    protected static final RawAnimation EAT = RawAnimation.begin().thenLoop("animation.sf_nba.bear.eat");
-    protected static final RawAnimation ATTACK = RawAnimation.begin().thenPlay("animation.sf_nba.bear.attack");
+    protected static final RawAnimation IDLE = RawAnimation.begin().thenLoop("animation.ott.bear.idle");
+    protected static final RawAnimation WALK = RawAnimation.begin().thenLoop("animation.ott.bear.walk");
+    protected static final RawAnimation RUN = RawAnimation.begin().thenLoop("animation.ott.bear.run");
+    protected static final RawAnimation SIT = RawAnimation.begin().thenLoop("animation.ott.bear.sit");
+    protected static final RawAnimation SLEEP = RawAnimation.begin().thenLoop("animation.ott.bear.sleep");
+    protected static final RawAnimation SNIFF = RawAnimation.begin().thenLoop("animation.ott.bear.sniff");
+    protected static final RawAnimation EAT = RawAnimation.begin().thenLoop("animation.ott.bear.eat");
+    protected static final RawAnimation ATTACK = RawAnimation.begin().thenPlay("animation.ott.bear.attack");
 
     private static final Ingredient FOOD_ITEMS = Ingredient.of(Items.SWEET_BERRIES, Items.HONEYCOMB, Items.HONEY_BOTTLE, Items.SALMON, Items.COD);
     

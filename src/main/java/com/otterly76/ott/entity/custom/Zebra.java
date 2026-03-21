@@ -2,7 +2,7 @@ package com.otterly76.ott.entity.custom;
 
 import com.otterly76.ott.entity.ModEntities;
 import com.otterly76.ott.entity.ai.navigation.SmartBodyHelper;
-import com.otterly76.ott.entity.core.NaturalistGeoEntity;
+import com.otterly76.ott.entity.core.OttGeoEntity;
 import com.otterly76.ott.sound.ModSounds;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.syncher.EntityDataAccessor;
@@ -39,11 +39,11 @@ import software.bernie.geckolib.animation.RawAnimation;
 import software.bernie.geckolib.animation.keyframe.event.SoundKeyframeEvent;
 import software.bernie.geckolib.util.GeckoLibUtil;
 
-public class Zebra extends AbstractChestedHorse implements NaturalistGeoEntity, Saddleable {
-    protected static final RawAnimation IDLE = RawAnimation.begin().thenLoop("animation.sf_nba.zebra.idle");
-    protected static final RawAnimation WALK = RawAnimation.begin().thenLoop("animation.sf_nba.zebra.walk");
-    protected static final RawAnimation RUN = RawAnimation.begin().thenLoop("animation.sf_nba.zebra.run");
-    protected static final RawAnimation REAR = RawAnimation.begin().thenPlay("animation.sf_nba.zebra.rear");
+public class Zebra extends AbstractChestedHorse implements OttGeoEntity, Saddleable {
+    protected static final RawAnimation IDLE = RawAnimation.begin().thenLoop("animation.ott.zebra.idle");
+    protected static final RawAnimation WALK = RawAnimation.begin().thenLoop("animation.ott.zebra.walk");
+    protected static final RawAnimation RUN = RawAnimation.begin().thenLoop("animation.ott.zebra.run");
+    protected static final RawAnimation REAR = RawAnimation.begin().thenPlay("animation.ott.zebra.rear");
 
     private static final EntityDataAccessor<Boolean> SADDLED = SynchedEntityData.defineId(Zebra.class, EntityDataSerializers.BOOLEAN);
 

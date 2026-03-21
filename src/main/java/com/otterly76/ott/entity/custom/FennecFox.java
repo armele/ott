@@ -1,8 +1,8 @@
 package com.otterly76.ott.entity.custom;
 
 import com.otterly76.ott.entity.ModEntities;
-import com.otterly76.ott.entity.core.NaturalistAnimal;
-import com.otterly76.ott.entity.core.NaturalistGeoEntity;
+import com.otterly76.ott.entity.core.OttAnimal;
+import com.otterly76.ott.entity.core.OttGeoEntity;
 import com.otterly76.ott.entity.core.SleepingAnimal;
 import com.otterly76.ott.entity.ai.goal.SleepGoal;
 import com.otterly76.ott.entity.ai.navigation.MMPathNavigatorGround;
@@ -36,20 +36,20 @@ import software.bernie.geckolib.animation.*;
 import software.bernie.geckolib.animation.keyframe.event.SoundKeyframeEvent;
 import software.bernie.geckolib.util.GeckoLibUtil;
 
-public class FennecFox extends NaturalistAnimal implements NaturalistGeoEntity, SleepingAnimal {
+public class FennecFox extends OttAnimal implements OttGeoEntity, SleepingAnimal {
     private static final EntityDataAccessor<Integer> VARIANT = SynchedEntityData.defineId(FennecFox.class, EntityDataSerializers.INT);
     private static final EntityDataAccessor<Boolean> SLEEPING = SynchedEntityData.defineId(FennecFox.class, EntityDataSerializers.BOOLEAN);
     private static final EntityDataAccessor<Boolean> SITTING = SynchedEntityData.defineId(FennecFox.class, EntityDataSerializers.BOOLEAN);
 
-    protected static final RawAnimation IDLE = RawAnimation.begin().thenLoop("animation.sf_nba.fennec_fox.idle");
-    protected static final RawAnimation WALK = RawAnimation.begin().thenLoop("animation.sf_nba.fennec_fox.walk");
-    protected static final RawAnimation RUN = RawAnimation.begin().thenLoop("animation.sf_nba.fennec_fox.run");
-    protected static final RawAnimation SLEEP = RawAnimation.begin().thenLoop("animation.sf_nba.fennec_fox.sleep");
-    protected static final RawAnimation SIT = RawAnimation.begin().thenLoop("animation.sf_nba.fennec_fox.sit");
+    protected static final RawAnimation IDLE = RawAnimation.begin().thenLoop("animation.ott.fennec_fox.idle");
+    protected static final RawAnimation WALK = RawAnimation.begin().thenLoop("animation.ott.fennec_fox.walk");
+    protected static final RawAnimation RUN = RawAnimation.begin().thenLoop("animation.ott.fennec_fox.run");
+    protected static final RawAnimation SLEEP = RawAnimation.begin().thenLoop("animation.ott.fennec_fox.sleep");
+    protected static final RawAnimation SIT = RawAnimation.begin().thenLoop("animation.ott.fennec_fox.sit");
 
     private final AnimatableInstanceCache geoCache = GeckoLibUtil.createInstanceCache(this);
 
-    public FennecFox(EntityType<? extends NaturalistAnimal> type, Level world) {
+    public FennecFox(EntityType<? extends OttAnimal> type, Level world) {
         super(type, world);
     }
 

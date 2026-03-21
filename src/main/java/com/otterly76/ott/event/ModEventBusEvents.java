@@ -491,7 +491,7 @@ public class ModEventBusEvents {
                 ModEntities.JELLYFISH.get(),
                 SpawnPlacementTypes.IN_WATER,
                 Heightmap.Types.MOTION_BLOCKING_NO_LEAVES,
-                (type, level, spawnType, pos, random) -> true,
+                com.otterly76.ott.entity.custom.JellyfishEntity::canSpawn,
                 RegisterSpawnPlacementsEvent.Operation.OR
         );
         event.register(

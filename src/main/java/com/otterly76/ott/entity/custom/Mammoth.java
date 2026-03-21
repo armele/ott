@@ -16,8 +16,8 @@ import software.bernie.geckolib.animation.RawAnimation;
 import software.bernie.geckolib.animation.keyframe.event.SoundKeyframeEvent;
 
 public class Mammoth extends Elephant {
-    protected static final RawAnimation MAMMOTH_IDLE = RawAnimation.begin().thenLoop("animation.sf_nba.mammoth.idle");
-    protected static final RawAnimation MAMMOTH_WALK = RawAnimation.begin().thenLoop("animation.sf_nba.mammoth.walk");
+    protected static final RawAnimation MAMMOTH_IDLE = RawAnimation.begin().thenLoop("animation.ott.mammoth.idle");
+    protected static final RawAnimation MAMMOTH_WALK = RawAnimation.begin().thenLoop("animation.ott.mammoth.walk");
 
     public Mammoth(EntityType<? extends Elephant> entityType, Level level) {
         super(entityType, level);

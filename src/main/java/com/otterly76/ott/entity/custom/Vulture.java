@@ -1,7 +1,7 @@
 package com.otterly76.ott.entity.custom;
 
 import com.otterly76.ott.entity.ai.goal.FlyingWanderGoal;
-import com.otterly76.ott.entity.core.NaturalistGeoEntity;
+import com.otterly76.ott.entity.core.OttGeoEntity;
 import com.otterly76.ott.entity.ai.navigation.SmartBodyHelper;
 import com.otterly76.ott.sound.ModSounds;
 import com.otterly76.ott.util.ModTags;
@@ -48,8 +48,8 @@ import software.bernie.geckolib.util.GeckoLibUtil;
 import java.util.EnumSet;
 import java.util.List;
 
-public class Vulture extends PathfinderMob implements NaturalistGeoEntity, FlyingAnimal {
-    protected static final RawAnimation FLY = RawAnimation.begin().thenLoop("animation.sf_nba.vulture.fly");
+public class Vulture extends PathfinderMob implements OttGeoEntity, FlyingAnimal {
+    protected static final RawAnimation FLY = RawAnimation.begin().thenLoop("animation.ott.vulture.fly");
     private static final Ingredient FOOD_ITEMS = Ingredient.of(ModTags.ItemTags.VULTURE_FOOD_ITEMS);
     private final AnimatableInstanceCache geoCache = GeckoLibUtil.createInstanceCache(this);
     private int ticksSinceEaten;

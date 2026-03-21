@@ -65,7 +65,20 @@ public class ModTags {
         public static final TagKey<Item> HARNESSES = mcTag("harnesses");
         public static final TagKey<Item> BUNDLES = mcTag("bundles");
         public static final TagKey<Item> EGGS = mcTag("eggs");
-        public static final TagKey<Item> BIRD_FOOD_ITEMS = mcTag("bird_food_items");
+        public static final TagKey<Item> BIRD_FOOD_ITEMS = createTag("bird_food_items");
+        public static final TagKey<Item> ALLIGATOR_FOOD_ITEMS = createTag("alligator_food_items");
+        public static final TagKey<Item> CATFISH_FOOD_ITEMS = createTag("catfish_food_items");
+        public static final TagKey<Item> BEAR_FOOD_ITEMS = createTag("bear_food_items");
+        public static final TagKey<Item> BOAR_FOOD_ITEMS = createTag("boar_food_items");
+        public static final TagKey<Item> DEER_FOOD_ITEMS = createTag("deer_food_items");
+        public static final TagKey<Item> DUCK_FOOD_ITEMS = createTag("duck_food_items");
+        public static final TagKey<Item> FIREFLY_TEMPT_ITEMS = createTag("firefly_tempt_items");
+        public static final TagKey<Item> LIZARD_FOOD_ITEMS = createTag("lizard_food_items");
+        public static final TagKey<Item> MOOSE_FOOD_ITEMS = createTag("moose_food_items");
+        public static final TagKey<Item> RHINO_FOOD_ITEMS = createTag("rhino_food_items");
+        public static final TagKey<Item> SNAIL_FOOD_ITEMS = createTag("snail_food_items");
+        public static final TagKey<Item> TORTOISE_FOOD_ITEMS = createTag("tortoise_food_items");
+        public static final TagKey<Item> ZEBRA_FOOD_ITEMS = createTag("zebra_food_items");
         public static final TagKey<Item> GIRAFFE_FOOD_ITEMS = createTag("giraffe_food_items");
         public static final TagKey<Item> ELEPHANT_FOOD_ITEMS = createTag("elephant_food_items");
         public static final TagKey<Item> VULTURE_FOOD_ITEMS = createTag("vulture_food_items");
@@ -171,14 +184,18 @@ public class ModTags {
         public static final TagKey<net.minecraft.world.entity.EntityType<?>> ACCEPTS_IRON_GOLEM_GIFT = mcTag("accepts_iron_golem_gift");
         public static final TagKey<net.minecraft.world.entity.EntityType<?>> CANDIDATE_FOR_IRON_GOLEM_GIFT = mcTag("candidate_for_iron_golem_gift");
         public static final TagKey<net.minecraft.world.entity.EntityType<?>> SMART_ANIMALS = createTag("smart_animals");
+        public static final TagKey<net.minecraft.world.entity.EntityType<?>> OTT_ENTITIES = createTag("ott_entities");
         public static final TagKey<net.minecraft.world.entity.EntityType<?>> SAFE_EGG_WALKERS = createTag("safe_egg_walkers");
         public static final TagKey<net.minecraft.world.entity.EntityType<?>> CATFISH_HOSTILES = createTag("catfish_hostiles");
         public static final TagKey<net.minecraft.world.entity.EntityType<?>> ALLIGATOR_HOSTILES = createTag("alligator_hostiles");
         public static final TagKey<net.minecraft.world.entity.EntityType<?>> ELEPHANT_HOSTILES = createTag("elephant_hostiles");
         public static final TagKey<net.minecraft.world.entity.EntityType<?>> HIPPO_HOSTILES = createTag("hippo_hostiles");
         public static final TagKey<net.minecraft.world.entity.EntityType<?>> LION_HOSTILES = createTag("lion_hostiles");
+        public static final TagKey<net.minecraft.world.entity.EntityType<?>> BEAR_HOSTILES = createTag("bear_hostiles");
         public static final TagKey<net.minecraft.world.entity.EntityType<?>> VULTURE_HOSTILES = createTag("vulture_hostiles");
         public static final TagKey<net.minecraft.world.entity.EntityType<?>> BOAR_HOSTILES = createTag("boar_hostiles");
+        public static final TagKey<net.minecraft.world.entity.EntityType<?>> DEER_PREDATORS = createTag("deer_predators");
+        public static final TagKey<net.minecraft.world.entity.EntityType<?>> SNAKE_HOSTILES = createTag("snake_hostiles");
 
         @SuppressWarnings("SameParameterValue")
         private static TagKey<net.minecraft.world.entity.EntityType<?>> createTag(String name) {

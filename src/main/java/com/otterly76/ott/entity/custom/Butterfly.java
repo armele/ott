@@ -52,8 +52,8 @@ import java.util.Arrays;
 import java.util.Comparator;
 
 public class Butterfly extends Animal implements GeoEntity, FlyingAnimal, Catchable {
-    private static final RawAnimation FLY = RawAnimation.begin().thenLoop("animation.sf_nba.butterfly.fly");
-    private static final RawAnimation IDLE = RawAnimation.begin().thenLoop("animation.sf_nba.butterfly.idle");
+    private static final RawAnimation FLY = RawAnimation.begin().thenLoop("animation.ott.butterfly.fly");
+    private static final RawAnimation IDLE = RawAnimation.begin().thenLoop("animation.ott.butterfly.idle");
     private static final EntityDataAccessor<Integer> DATA_VARIANT = SynchedEntityData.defineId(Butterfly.class, EntityDataSerializers.INT);
     private static final EntityDataAccessor<Boolean> HAS_NECTAR = SynchedEntityData.defineId(Butterfly.class, EntityDataSerializers.BOOLEAN);
     private static final EntityDataAccessor<Boolean> POLLINATING = SynchedEntityData.defineId(Butterfly.class, EntityDataSerializers.BOOLEAN);

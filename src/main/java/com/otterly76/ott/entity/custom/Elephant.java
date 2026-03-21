@@ -6,7 +6,7 @@ import com.otterly76.ott.entity.ai.goal.BabyPanicGoal;
 import com.otterly76.ott.entity.ai.goal.DistancedFollowParentGoal;
 import com.otterly76.ott.entity.ai.navigation.MMPathNavigatorGround;
 import com.otterly76.ott.entity.ai.navigation.SmartBodyHelper;
-import com.otterly76.ott.entity.core.NaturalistGeoEntity;
+import com.otterly76.ott.entity.core.OttGeoEntity;
 import com.otterly76.ott.sound.ModSounds;
 import com.otterly76.ott.util.ModTags;
 import net.minecraft.core.BlockPos;
@@ -59,9 +59,9 @@ import software.bernie.geckolib.util.GeckoLibUtil;
 import java.util.Objects;
 import java.util.UUID;
 
-public class Elephant extends TamableAnimal implements NeutralMob, NaturalistGeoEntity, Saddleable {
-    protected static final RawAnimation IDLE = RawAnimation.begin().thenLoop("animation.sf_nba.elephant.idle");
-    protected static final RawAnimation WALK = RawAnimation.begin().thenLoop("animation.sf_nba.elephant.walk2");
+public class Elephant extends TamableAnimal implements NeutralMob, OttGeoEntity, Saddleable {
+    protected static final RawAnimation IDLE = RawAnimation.begin().thenLoop("animation.ott.elephant.idle");
+    protected static final RawAnimation WALK = RawAnimation.begin().thenLoop("animation.ott.elephant.walk2");
     private static final UniformInt PERSISTENT_ANGER_TIME = TimeUtil.rangeOfSeconds(20, 39);
     private static final EntityDataAccessor<Integer> REMAINING_ANGER_TIME = SynchedEntityData.defineId(Elephant.class, EntityDataSerializers.INT);
     private static final EntityDataAccessor<Boolean> SADDLED = SynchedEntityData.defineId(Elephant.class, EntityDataSerializers.BOOLEAN);
@@ -104,7 +104,7 @@ public class Elephant extends TamableAnimal implements NeutralMob, NaturalistGeo
         }
         ageableMobGroupData.increaseGroupSizeByOne();
         RandomSource random = level.getRandom();
-        Objects.requireNonNull(this.getAttribute(Attributes.FOLLOW_RANGE)).addPermanentModifier(new AttributeModifier(ResourceLocation.fromNamespaceAndPath("naturalist", "random_spawn_bonus"), random.triangle(0.0, 0.11485000000000001), AttributeModifier.Operation.ADD_MULTIPLIED_BASE));
+        Objects.requireNonNull(this.getAttribute(Attributes.FOLLOW_RANGE)).addPermanentModifier(new AttributeModifier(ResourceLocation.fromNamespaceAndPath("ott", "random_spawn_bonus"), random.triangle(0.0, 0.11485000000000001), AttributeModifier.Operation.ADD_MULTIPLIED_BASE));
         this.entityData.set(SADDLED, false);
         return spawnData;
     }

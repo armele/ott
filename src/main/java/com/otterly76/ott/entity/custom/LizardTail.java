@@ -1,6 +1,6 @@
 package com.otterly76.ott.entity.custom;
 
-import com.otterly76.ott.entity.core.NaturalistGeoEntity;
+import com.otterly76.ott.entity.core.OttGeoEntity;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
@@ -17,8 +17,8 @@ import software.bernie.geckolib.animatable.instance.AnimatableInstanceCache;
 import software.bernie.geckolib.animation.*;
 import software.bernie.geckolib.util.GeckoLibUtil;
 
-public class LizardTail extends Mob implements NaturalistGeoEntity {
-    protected static final RawAnimation FLOP = RawAnimation.begin().thenLoop("animation.sf_nba.lizard_tail.flop");
+public class LizardTail extends Mob implements OttGeoEntity {
+    protected static final RawAnimation FLOP = RawAnimation.begin().thenLoop("animation.ott.lizard_tail.flop");
     private static final EntityDataAccessor<Integer> VARIANT_ID = SynchedEntityData.defineId(LizardTail.class, EntityDataSerializers.INT);
     private static final int MAX_LIFETIME_TICKS = 200;
     private final AnimatableInstanceCache geoCache = GeckoLibUtil.createInstanceCache(this);

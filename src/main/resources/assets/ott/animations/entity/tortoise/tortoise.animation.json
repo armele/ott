@@ -1,7 +1,7 @@
 {
   "format_version": "1.8.0",
   "animations": {
-    "animation.sf_nba.tortoise.sit": {
+    "animation.ott.tortoise.sit": {
       "loop": true,
       "animation_length": 2,
       "bones": {
@@ -29,7 +29,7 @@
         }
       }
     },
-    "animation.sf_nba.tortoise.walk": {
+    "animation.ott.tortoise.walk": {
       "sound_effects": {
         "0.0": {
           "effect": "step"
@@ -205,7 +205,7 @@
         }
       }
     },
-    "animation.sf_nba.tortoise.dig": {
+    "animation.ott.tortoise.dig": {
       "sound_effects": {
         "0.0": {
           "effect": "dig"
@@ -294,10 +294,10 @@
         }
       }
     },
-    "animation.sf_nba.tortoise.idle": {
+    "animation.ott.tortoise.idle": {
       "loop": true
     },
-    "animation.sf_nba.tortoise.hurt": {
+    "animation.ott.tortoise.hurt": {
       "animation_length": 0.25,
       "bones": {
         "body": {
@@ -308,7 +308,7 @@
         }
       }
     },
-    "animation.sf_nba.tortoise.dinnerbone": {
+    "animation.ott.tortoise.dinnerbone": {
       "sound_effects": {
         "0.0": {
           "effect": "hurt"
@@ -342,7 +342,7 @@
         }
       }
     },
-    "animation.sf_nba.tortoise.walk_UB": {
+    "animation.ott.tortoise.walk_UB": {
       "loop": true,
       "animation_length": 1.83333,
       "bones": {
@@ -458,7 +458,7 @@
         }
       }
     },
-    "animation.sf_nba.tortoise.hide": {
+    "animation.ott.tortoise.hide": {
       "sound_effects": {
         "0.0833": {
           "effect": "hide"
@@ -669,7 +669,7 @@
         }
       }
     },
-    "animation.sf_nba.tortoise.hide_idle": {
+    "animation.ott.tortoise.hide_idle": {
       "loop": true,
       "bones": {
         "root": {

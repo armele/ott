@@ -5,9 +5,11 @@ import com.otterly76.ott.color.ModColorSets;
 import com.otterly76.ott.item.ModItems;
 import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.item.Item;
 import net.neoforged.neoforge.client.model.generators.ItemModelProvider;
 import net.neoforged.neoforge.client.model.generators.ModelFile;
 import net.neoforged.neoforge.common.data.ExistingFileHelper;
+import net.neoforged.neoforge.registries.DeferredItem;
 
 public class ModItemModelProvider extends ItemModelProvider {
     public ModItemModelProvider(PackOutput output, ExistingFileHelper existingFileHelper) {
@@ -106,6 +108,8 @@ public class ModItemModelProvider extends ItemModelProvider {
         generatedItemFromTexture(ModItems.COOKED_SEAL.getId().getPath(), modLoc("item/cooked_seal_meat"));
         generatedItemFromTexture(ModItems.RAW_KIWI.getId().getPath(), modLoc("item/raw_kiwi_meat"));
         generatedItemFromTexture(ModItems.COOKED_KIWI.getId().getPath(), modLoc("item/cooked_kiwi_meat"));
+        generatedItemFromTexture(ModItems.RAW_SHRIMP.getId().getPath(), modLoc("item/raw_shrimp"));
+        generatedItemFromTexture(ModItems.COOKED_SHRIMP.getId().getPath(), modLoc("item/cooked_shrimp"));
         generatedItemFromTexture(ModItems.JELLYFISH_JELLY.getId().getPath(), modLoc("item/jellyfish_jelly"));
         generatedItemFromTexture(ModItems.SEA_URCHIN_CAVIAR.getId().getPath(), modLoc("item/sea_urchin_caviar"));
         generatedItemFromTexture(ModItems.KIWI_EGG.getId().getPath(), modLoc("item/kiwi_egg"));
@@ -115,6 +119,38 @@ public class ModItemModelProvider extends ItemModelProvider {
 
         getBuilder(ModItems.TORCH_ARROW.getId().getPath()).parent(new ModelFile.UncheckedModelFile(mcLoc("item/tipped_arrow")));
         
+        generatedItemFromTexture(ModItems.CAPYBARA_SPAWN_EGG.getId().getPath(), modLoc("item/capybara_spawn_egg"));
+        generatedItemFromTexture(ModItems.HEDGEHOG_SPAWN_EGG.getId().getPath(), modLoc("item/hedgehog_spawn_egg"));
+        generatedItemFromTexture(ModItems.JELLYFISH_SPAWN_EGG.getId().getPath(), modLoc("item/jellyfish_spawn_egg"));
+        generatedItemFromTexture(ModItems.KIWI_SPAWN_EGG.getId().getPath(), modLoc("item/kiwi_spawn_egg"));
+        generatedItemFromTexture(ModItems.PENGUIN_SPAWN_EGG.getId().getPath(), modLoc("item/penguin_spawn_egg"));
+        generatedItemFromTexture(ModItems.SEAL_SPAWN_EGG.getId().getPath(), modLoc("item/seal_spawn_egg"));
+        generatedItemFromTexture(ModItems.SEA_URCHIN_SPAWN_EGG.getId().getPath(), modLoc("item/sea_urchin_spawn_egg"));
+
+        spawnEggItem(ModItems.SEAHORSE_1_SPAWN_EGG);
+        spawnEggItem(ModItems.SHRIMP_SPAWN_EGG);
+        spawnEggItem(ModItems.STARFISH_1_SPAWN_EGG);
+        spawnEggItem(ModItems.JELLYFISH_2_SPAWN_EGG);
+        spawnEggItem(ModItems.JELLYFISH_3_SPAWN_EGG);
+
+        spawnEggItem(ModItems.ANGELFISH_SPAWN_EGG);
+        spawnEggItem(ModItems.BARRELEYE_SPAWN_EGG);
+        spawnEggItem(ModItems.EMU_SPAWN_EGG);
+        spawnEggItem(ModItems.FLOUNDER_SPAWN_EGG);
+        spawnEggItem(ModItems.GECKO_SPAWN_EGG);
+        spawnEggItem(ModItems.GOOSE_SPAWN_EGG);
+        spawnEggItem(ModItems.HOOPOE_SPAWN_EGG);
+        spawnEggItem(ModItems.KRILL_SPAWN_EGG);
+        spawnEggItem(ModItems.MAMMOTH_SPAWN_EGG);
+        spawnEggItem(ModItems.MAN_O_WAR_SPAWN_EGG);
+        spawnEggItem(ModItems.MARINE_IGUANA_SPAWN_EGG);
+        spawnEggItem(ModItems.MOOSE_SPAWN_EGG);
+        spawnEggItem(ModItems.PHEASANT_SPAWN_EGG);
+        spawnEggItem(ModItems.STINGRAY_SPAWN_EGG);
+        spawnEggItem(ModItems.SUNFISH_SPAWN_EGG);
+        spawnEggItem(ModItems.TOUCAN_SPAWN_EGG);
+        spawnEggItem(ModItems.MYCELIUM_MAMMOTH_SPAWN_EGG);
+
         // Custom Dyes
         ModColorSets.ALL.forEach(colorSet -> {
             String color = colorSet.name();
@@ -126,6 +162,10 @@ public class ModItemModelProvider extends ItemModelProvider {
     private void generatedItemFromTexture(String itemName, ResourceLocation texture) {
         withExistingParent(itemName, mcLoc("item/generated"))
                 .texture("layer0", texture);
+    }
+
+    private void spawnEggItem(DeferredItem<Item> item) {
+        withExistingParent(item.getId().getPath(), mcLoc("item/template_spawn_egg"));
     }
 
     private void parentItemToBlockModel(String itemName, String blockModelPath) {
