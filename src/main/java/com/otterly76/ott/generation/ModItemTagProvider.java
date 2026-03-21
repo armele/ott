@@ -138,7 +138,113 @@ public class ModItemTagProvider extends ItemTagsProvider {
                 ModItems.COOKED_SUNFISH_MEAT.get(),
                 ModItems.RAW_GOLDEN_SUNFISH_MEAT.get(),
                 ModItems.RAW_KRILL.get(),
-                ModItems.FRIED_KRILL.get()
+                ModItems.FRIED_KRILL.get(),
+                ModItems.RAW_SHRIMP.get(),
+                ModItems.COOKED_SHRIMP.get()
+        );
+
+        this.tag(ModTags.ItemTags.EGGS).add(
+                ModItems.DUCK_EGG.get(),
+                ModItems.ALLIGATOR_EGG.get(),
+                ModItems.TORTOISE_EGG.get(),
+                ModItems.SNAIL_EGG.get(),
+                ModItems.KIWI_EGG.get(),
+                ModItems.PENGUIN_EGG.get()
+        );
+
+        this.tag(ModTags.ItemTags.BIRD_FOOD_ITEMS).add(
+                Items.WHEAT_SEEDS, Items.PUMPKIN_SEEDS, Items.MELON_SEEDS, Items.BEETROOT_SEEDS,
+                ModItems.RAW_SHRIMP.get()
+        );
+
+        this.tag(ModTags.ItemTags.ALLIGATOR_FOOD_ITEMS).add(
+                Items.BEEF, Items.PORKCHOP, Items.CHICKEN, Items.RABBIT,
+                ModItems.RAW_CAPYBARA.get(),
+                ModItems.RAW_KIWI.get(),
+                ModItems.RAW_SEAL.get(),
+                ModItems.RAW_SHRIMP.get()
+        );
+
+        this.tag(ModTags.ItemTags.CATFISH_FOOD_ITEMS).add(
+                Items.TROPICAL_FISH, Items.COD, Items.TADPOLE_BUCKET,
+                ModItems.RAW_ANGELFISH.get(),
+                ModItems.RAW_SHRIMP.get()
+        );
+
+        this.tag(ModTags.ItemTags.VULTURE_FOOD_ITEMS).add(
+                Items.ROTTEN_FLESH,
+                ModItems.RAW_CAPYBARA.get(),
+                ModItems.RAW_KIWI.get(),
+                ModItems.RAW_SEAL.get(),
+                ModItems.RAW_SHRIMP.get()
+        );
+
+        this.tag(ModTags.ItemTags.BEAR_FOOD_ITEMS).add(
+                Items.SALMON, Items.HONEY_BOTTLE, Items.SWEET_BERRIES, Items.BEEF, Items.PORKCHOP, Items.CHICKEN
+        );
+
+        this.tag(ModTags.ItemTags.BOAR_FOOD_ITEMS).add(
+                Items.WHEAT, Items.CARROT, Items.POTATO, Items.BEETROOT
+        );
+
+        this.tag(ModTags.ItemTags.DEER_FOOD_ITEMS).add(
+                Items.APPLE, Items.WHEAT, Items.CARROT
+        );
+
+        this.tag(ModTags.ItemTags.DUCK_FOOD_ITEMS).add(
+                Items.WHEAT_SEEDS, Items.PUMPKIN_SEEDS, Items.MELON_SEEDS, Items.BEETROOT_SEEDS
+        );
+
+        this.tag(ModTags.ItemTags.FIREFLY_TEMPT_ITEMS).add(
+                Items.GLASS_BOTTLE
+        );
+
+        this.tag(ModTags.ItemTags.LIZARD_FOOD_ITEMS).add(
+                Items.SPIDER_EYE, Items.MELON_SEEDS
+        );
+
+        this.tag(ModTags.ItemTags.MOOSE_FOOD_ITEMS).add(
+                Items.APPLE, Items.WHEAT
+        );
+
+        this.tag(ModTags.ItemTags.RHINO_FOOD_ITEMS).add(
+                Items.WHEAT, Items.MELON_SLICE
+        );
+
+        this.tag(ModTags.ItemTags.SNAIL_FOOD_ITEMS).add(
+                Items.MUSHROOM_STEW, Items.BROWN_MUSHROOM, Items.RED_MUSHROOM
+        );
+
+        this.tag(ModTags.ItemTags.TORTOISE_FOOD_ITEMS).add(
+                Items.CACTUS, Items.MELON_SLICE
+        );
+
+        this.tag(ModTags.ItemTags.ZEBRA_FOOD_ITEMS).add(
+                Items.APPLE, Items.WHEAT
+        );
+
+        this.tag(ModTags.ItemTags.CAPYBARA_FOOD).add(
+                Items.MELON_SLICE, Items.APPLE, Items.SUGAR_CANE
+        );
+
+        this.tag(ModTags.ItemTags.HEDGEHOG_FOOD).add(
+                Items.SWEET_BERRIES, Items.APPLE
+        );
+
+        this.tag(ModTags.ItemTags.KIWI_FOOD).add(
+                Items.SWEET_BERRIES, Items.MELON_SLICE
+        );
+
+        this.tag(ModTags.ItemTags.PENGUIN_FOOD).add(
+                Items.SALMON, Items.COD, ModItems.RAW_KRILL.get()
+        );
+
+        this.tag(ModTags.ItemTags.SEAL_FOOD).add(
+                Items.SALMON, Items.COD, ModItems.RAW_KRILL.get()
+        );
+
+        this.tag(ModTags.ItemTags.SEA_URCHIN_FOOD).add(
+                Items.KELP, Items.SEAGRASS
         );
 
         // --- 5. WOOD SETS ---

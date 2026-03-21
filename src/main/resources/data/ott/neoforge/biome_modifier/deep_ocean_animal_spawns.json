@@ -1,10 +1,30 @@
 {
   "type": "neoforge:add_spawns",
   "biomes": "#minecraft:is_deep_ocean",
-  "spawners": {
-    "type": "ott:barreleye",
-    "weight": 10,
-    "minCount": 1,
-    "maxCount": 3
-  }
+  "spawners": [
+    {
+      "type": "ott:barreleye",
+      "weight": 10,
+      "minCount": 1,
+      "maxCount": 3
+    },
+    {
+      "type": "ott:jellyfish",
+      "weight": 5,
+      "minCount": 1,
+      "maxCount": 3
+    },
+    {
+      "type": "ott:jellyfish_2",
+      "weight": 5,
+      "minCount": 1,
+      "maxCount": 3
+    },
+    {
+      "type": "ott:jellyfish_3",
+      "weight": 5,
+      "minCount": 1,
+      "maxCount": 3
+    }
+  ]
 }

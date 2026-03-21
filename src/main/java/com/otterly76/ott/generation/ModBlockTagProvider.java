@@ -80,6 +80,8 @@ public class ModBlockTagProvider extends BlockTagsProvider {
         this.tag(ModTags.Blocks.ALLOWS_LEAF_LITTER).add(ModBlocks.PALE_OAK_LEAVES.get());
         this.tag(ModTags.Blocks.SPAWN_FALLING_LEAVES).add(ModBlocks.PALE_OAK_LEAVES.get());
         this.tag(ModTags.Blocks.CAMELS_SPAWNABLE_ON).add(Blocks.SAND, Blocks.RED_SAND);
+        this.tag(ModTags.Blocks.ALLIGATOR_EGG_LAYABLE_ON).add(Blocks.GRASS_BLOCK, Blocks.DIRT, Blocks.SAND, Blocks.MUD);
+        this.tag(ModTags.Blocks.TORTOISE_EGG_LAYABLE_ON).add(Blocks.GRASS_BLOCK, Blocks.DIRT, Blocks.SAND, Blocks.MUD);
         this.tag(ModTags.Blocks.PORTAL_FRAME_BLOCKS).add(Blocks.OBSIDIAN, Blocks.CRYING_OBSIDIAN).addTag(ModTags.Blocks.C_OBSIDIAN);
         this.tag(ModTags.Blocks.C_OBSIDIAN).add(Blocks.OBSIDIAN, Blocks.CRYING_OBSIDIAN);
         this.tag(ModTags.Blocks.INCORRECT_FOR_COPPER_TOOL).addTag(BlockTags.INCORRECT_FOR_IRON_TOOL);

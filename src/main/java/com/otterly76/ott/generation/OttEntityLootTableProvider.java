@@ -49,7 +49,12 @@ public class OttEntityLootTableProvider extends EntityLootSubProvider {
         this.add(ModEntities.PENGUIN.get(), LootTable.lootTable());
         this.add(ModEntities.SEAL.get(), createMeatDrops(ModItems.RAW_SEAL.get()));
         this.add(ModEntities.JELLYFISH.get(), createJellyfishDrops());
+        this.add(ModEntities.JELLYFISH_2.get(), createJellyfishDrops());
+        this.add(ModEntities.JELLYFISH_3.get(), createJellyfishDrops());
         this.add(ModEntities.SEA_URCHIN.get(), createSeaUrchinDrops());
+        this.add(ModEntities.SHRIMP.get(), createMeatDrops(ModItems.RAW_SHRIMP.get()));
+        this.add(ModEntities.SEAHORSE_1.get(), LootTable.lootTable());
+        this.add(ModEntities.STARFISH_1.get(), LootTable.lootTable());
     }
 
     private LootTable.Builder createMeatDrops(net.minecraft.world.item.Item meat) {
@@ -153,7 +158,12 @@ public class OttEntityLootTableProvider extends EntityLootSubProvider {
                 ModEntities.PENGUIN.get(),
                 ModEntities.SEAL.get(),
                 ModEntities.SEA_URCHIN.get(),
-                ModEntities.JELLYFISH.get()
+                ModEntities.JELLYFISH.get(),
+                ModEntities.JELLYFISH_2.get(),
+                ModEntities.JELLYFISH_3.get(),
+                ModEntities.SEAHORSE_1.get(),
+                ModEntities.SHRIMP.get(),
+                ModEntities.STARFISH_1.get()
         );
     }
 }
