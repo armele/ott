@@ -70,8 +70,16 @@ public class ModEntityTypeTagProvider extends EntityTypeTagsProvider {
                 ModEntities.SEA_URCHIN.get(),
                 ModEntities.SEAL.get(),
                 ModEntities.SEAHORSE_1.get(),
-                ModEntities.SHRIMP.get(),
-                ModEntities.STARFISH_1.get()
+                ModEntities.SHRIMP_1.get(),
+                ModEntities.STARFISH_1.get(),
+                ModEntities.DRAGONFLY.get(),
+                ModEntities.DUMBO_OCTOPUS.get(),
+                ModEntities.FERRET.get(),
+                ModEntities.JUMPING_SPIDER.get(),
+                ModEntities.KOI_FISH.get(),
+                ModEntities.OTTER.get(),
+                ModEntities.RED_PANDA.get(),
+                ModEntities.SEA_BUNNY.get()
         );
 
         this.tag(ModTags.EntityTypes.SMART_ANIMALS).add(
@@ -86,8 +94,16 @@ public class ModEntityTypeTagProvider extends EntityTypeTagsProvider {
                 ModEntities.SEA_URCHIN.get(),
                 ModEntities.SEAL.get(),
                 ModEntities.SEAHORSE_1.get(),
-                ModEntities.SHRIMP.get(),
-                ModEntities.STARFISH_1.get()
+                ModEntities.SHRIMP_1.get(),
+                ModEntities.STARFISH_1.get(),
+                ModEntities.DRAGONFLY.get(),
+                ModEntities.DUMBO_OCTOPUS.get(),
+                ModEntities.FERRET.get(),
+                ModEntities.JUMPING_SPIDER.get(),
+                ModEntities.KOI_FISH.get(),
+                ModEntities.OTTER.get(),
+                ModEntities.RED_PANDA.get(),
+                ModEntities.SEA_BUNNY.get()
         );
 
         this.tag(ModTags.EntityTypes.SAFE_EGG_WALKERS).add(
@@ -101,11 +117,45 @@ public class ModEntityTypeTagProvider extends EntityTypeTagsProvider {
                 ModEntities.SEA_URCHIN.get(),
                 ModEntities.SEAL.get(),
                 ModEntities.SEAHORSE_1.get(),
-                ModEntities.SHRIMP.get(),
-                ModEntities.STARFISH_1.get()
+                ModEntities.SHRIMP_1.get(),
+                ModEntities.STARFISH_1.get(),
+                ModEntities.DRAGONFLY.get(),
+                ModEntities.DUMBO_OCTOPUS.get(),
+                ModEntities.FERRET.get(),
+                ModEntities.JUMPING_SPIDER.get(),
+                ModEntities.KOI_FISH.get(),
+                ModEntities.OTTER.get(),
+                ModEntities.RED_PANDA.get(),
+                ModEntities.SEA_BUNNY.get()
         );
 
-        this.tag(ModTags.EntityTypes.CATFISH_HOSTILES).add(ModEntities.SHRIMP.get());
+        this.tag(net.minecraft.tags.EntityTypeTags.CAN_BREATHE_UNDER_WATER).add(
+                ModEntities.DUMBO_OCTOPUS.get(),
+                ModEntities.KOI_FISH.get(),
+                ModEntities.OTTER.get(),
+                ModEntities.SEA_BUNNY.get(),
+                ModEntities.SHRIMP_1.get(),
+                ModEntities.SEAHORSE_1.get(),
+                ModEntities.JELLYFISH.get(),
+                ModEntities.JELLYFISH_2.get(),
+                ModEntities.JELLYFISH_3.get(),
+                ModEntities.STARFISH_1.get(),
+                ModEntities.SEA_URCHIN.get(),
+                ModEntities.MAN_O_WAR.get(),
+                ModEntities.STINGRAY.get(),
+                ModEntities.SUNFISH.get(),
+                ModEntities.KRILL.get(),
+                ModEntities.ANGELFISH.get(),
+                ModEntities.BARRELEYE.get(),
+                ModEntities.FLOUNDER.get()
+        );
+
+        this.tag(ModTags.EntityTypes.FROG_FOOD).add(
+                ModEntities.DRAGONFLY.get(),
+                ModEntities.BUTTERFLY.get()
+        );
+
+        this.tag(ModTags.EntityTypes.CATFISH_HOSTILES).add(ModEntities.SHRIMP_1.get());
 
         this.tag(ModTags.EntityTypes.ALLIGATOR_HOSTILES).add(
                 ModEntities.CAPYBARA.get(),
@@ -124,7 +174,7 @@ public class ModEntityTypeTagProvider extends EntityTypeTagsProvider {
 
         this.tag(ModTags.EntityTypes.VULTURE_HOSTILES).add(
                 ModEntities.HEDGEHOG.get(),
-                ModEntities.SHRIMP.get(),
+                ModEntities.SHRIMP_1.get(),
                 ModEntities.STARFISH_1.get()
         );
 

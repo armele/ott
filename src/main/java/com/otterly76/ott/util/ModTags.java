@@ -39,6 +39,7 @@ public class ModTags {
         public static final TagKey<Block> STONE = mcTag("stone");
         public static final TagKey<Block> PATHS = createTag("paths");
         public static final TagKey<Block> HARVEST_BLACKLIST = createTag("harvest_blacklist");
+        public static final TagKey<Block> FERRET_DIG_GROUNDS = createTag("ferret_dig_grounds");
 
         public static TagKey<Block> woodSetLogs(String setName) {
             return createTag(setName + "_logs");
@@ -88,11 +89,32 @@ public class ModTags {
         public static final TagKey<Item> PENGUIN_FOOD = createTag("penguin_food");
         public static final TagKey<Item> SEAL_FOOD = createTag("seal_food");
         public static final TagKey<Item> SEA_URCHIN_FOOD = createTag("sea_urchin_food");
+        public static final TagKey<Item> FERRET_FOOD = createTag("ferret_food");
+        public static final TagKey<Item> FERRET_TEMPT_ITEMS = createTag("ferret_tempt_items");
+        public static final TagKey<Item> DRAGONFLY_FOOD = createTag("dragonfly_food");
+        public static final TagKey<Item> JUMPING_SPIDER_FOOD = createTag("jumping_spider_food");
+        public static final TagKey<Item> OTTER_FOOD = createTag("otter_food");
+        public static final TagKey<Item> RED_PANDA_FOOD = createTag("red_panda_food");
+        public static final TagKey<Item> RED_PANDA_TEMPT_ITEMS = createTag("red_panda_tempt_items");
         public static final TagKey<Item> STRIPPED_PALE_OAK_LOG = mcTag("stripped_pale_oak_log");
         public static final TagKey<Item> LANTERNS = mcTag("lanterns");
         public static final TagKey<Item> LIGHTNING_RODS = mcTag("lightning_rods");
         public static final TagKey<Item> RAILS = mcTag("rails");
         public static final TagKey<Item> ANVIL = mcTag("anvil");
+        public static final TagKey<Item> FISHES = mcTag("fishes");
+        public static final TagKey<Item> IS_MEAT = mcTag("is_meat");
+
+        public static final TagKey<Item> C_COOKED_EGGS = commonTag("cooked_eggs");
+        public static final TagKey<Item> C_COOKED_FISH = commonTag("cooked_fish");
+        public static final TagKey<Item> C_COOKED_MEAT = commonTag("cooked_meat");
+        public static final TagKey<Item> C_EGGS = commonTag("eggs");
+        public static final TagKey<Item> C_RAW_FISH = commonTag("raw_fish");
+        public static final TagKey<Item> C_RAW_MEAT = commonTag("raw_meat");
+
+        public static final TagKey<Item> NF_COOKED_EGGS = nfTag("cooked_eggs");
+        public static final TagKey<Item> NF_COOKED_FISHES = nfTag("cooked_fishes");
+        public static final TagKey<Item> NF_EGGS = nfTag("eggs");
+        public static final TagKey<Item> NF_RAW_FISHES = nfTag("raw_fishes");
 
         public static final TagKey<Item> C_CHAINS = commonTag("chains");
         public static final TagKey<Item> C_NUGGETS = commonTag("nuggets");
@@ -122,6 +144,10 @@ public class ModTags {
         @SuppressWarnings("SameParameterValue")
         private static TagKey<Item> createTag(String name) {
             return net.minecraft.tags.ItemTags.create(ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, name));
+        }
+
+        private static TagKey<Item> nfTag(String name) {
+            return net.minecraft.tags.ItemTags.create(ResourceLocation.fromNamespaceAndPath("neoforge", name));
         }
 
         @SuppressWarnings("SameParameterValue")
@@ -196,6 +222,7 @@ public class ModTags {
         public static final TagKey<net.minecraft.world.entity.EntityType<?>> BOAR_HOSTILES = createTag("boar_hostiles");
         public static final TagKey<net.minecraft.world.entity.EntityType<?>> DEER_PREDATORS = createTag("deer_predators");
         public static final TagKey<net.minecraft.world.entity.EntityType<?>> SNAKE_HOSTILES = createTag("snake_hostiles");
+        public static final TagKey<net.minecraft.world.entity.EntityType<?>> FROG_FOOD = mcTag("frog_food");
 
         @SuppressWarnings("SameParameterValue")
         private static TagKey<net.minecraft.world.entity.EntityType<?>> createTag(String name) {

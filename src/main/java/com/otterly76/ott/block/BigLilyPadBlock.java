@@ -65,7 +65,10 @@ public class BigLilyPadBlock extends WaterlilyBlock {
     }
 
     private boolean canSurviveAt(Level level, BlockPos pos) {
-        return super.canSurvive(this.defaultBlockState(), level, pos);
+        BlockState stateBelow = level.getBlockState(pos.below());
+        net.minecraft.world.level.material.FluidState fluidState = level.getFluidState(pos);
+        net.minecraft.world.level.material.FluidState fluidStateBelow = level.getFluidState(pos.below());
+        return (fluidStateBelow.is(net.minecraft.tags.FluidTags.WATER) || stateBelow.getBlock() instanceof net.minecraft.world.level.block.IceBlock) && fluidState.isEmpty();
     }
 
     @Override

@@ -1,0 +1,352 @@
+package com.otterly76.ott.entity.custom;
+
+import com.otterly76.ott.entity.core.OttGeoEntity;
+import com.otterly76.ott.item.ModItems;
+import com.otterly76.ott.sound.ModSounds;
+import com.otterly76.ott.util.entity.BucketableUtils;
+import net.minecraft.core.component.DataComponents;
+import net.minecraft.nbt.CompoundTag;
+import net.minecraft.network.syncher.EntityDataAccessor;
+import net.minecraft.network.syncher.EntityDataSerializers;
+import net.minecraft.network.syncher.SynchedEntityData;
+import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.sounds.SoundEvent;
+import net.minecraft.sounds.SoundEvents;
+import net.minecraft.util.Mth;
+import net.minecraft.world.DifficultyInstance;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.world.InteractionResult;
+import net.minecraft.world.damagesource.DamageSource;
+import net.minecraft.world.entity.*;
+import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
+import net.minecraft.world.entity.ai.attributes.Attributes;
+import net.minecraft.world.entity.ai.control.SmoothSwimmingLookControl;
+import net.minecraft.world.entity.ai.control.SmoothSwimmingMoveControl;
+import net.minecraft.world.entity.ai.goal.Goal;
+import net.minecraft.world.entity.ai.navigation.PathNavigation;
+import net.minecraft.world.entity.ai.navigation.WaterBoundPathNavigation;
+import net.minecraft.world.entity.animal.Bucketable;
+import net.minecraft.world.entity.animal.WaterAnimal;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.component.CustomData;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.ServerLevelAccessor;
+import net.minecraft.world.phys.Vec3;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
+import software.bernie.geckolib.animatable.instance.AnimatableInstanceCache;
+import software.bernie.geckolib.animation.*;
+import software.bernie.geckolib.util.GeckoLibUtil;
+
+import java.util.EnumSet;
+
+public class DumboOctopusEntity extends WaterAnimal implements OttGeoEntity, Bucketable {
+    private static final EntityDataAccessor<Boolean> RESTING = SynchedEntityData.defineId(DumboOctopusEntity.class, EntityDataSerializers.BOOLEAN);
+    private static final EntityDataAccessor<Integer> VARIANT = SynchedEntityData.defineId(DumboOctopusEntity.class, EntityDataSerializers.INT);
+    private static final EntityDataAccessor<Boolean> FROM_BUCKET = SynchedEntityData.defineId(DumboOctopusEntity.class, EntityDataSerializers.BOOLEAN);
+    private final AnimatableInstanceCache cache = GeckoLibUtil.createInstanceCache(this);
+
+    private static final RawAnimation IDLE = RawAnimation.begin().thenLoop("dumbo_octopus_idle");
+    private static final RawAnimation SWIM = RawAnimation.begin().thenLoop("dumbo_octopus_swim");
+    private static final RawAnimation ON_LAND = RawAnimation.begin().thenLoop("dumbo_octopus_on_land");
+
+    public int restTimer;
+    protected boolean bubblingPlayer;
+    protected ServerPlayer bubbledPlayer;
+
+    public DumboOctopusEntity(EntityType<? extends DumboOctopusEntity> entityType, Level level) {
+        super(entityType, level);
+        this.moveControl = new DumboOctopusMoveControl(90, 90, 1.0F, 1.0F, false);
+        this.lookControl = new SmoothSwimmingLookControl(this, 180);
+    }
+
+    public static AttributeSupplier.Builder createAttributes() {
+        return Mob.createMobAttributes()
+                .add(Attributes.MAX_HEALTH, 14.0D)
+                .add(Attributes.MOVEMENT_SPEED, 0.06D);
+    }
+
+    @Override
+    public boolean requiresCustomPersistence() {
+        return super.requiresCustomPersistence() || this.fromBucket();
+    }
+
+    @Override
+    public boolean removeWhenFarAway(double distance) {
+        return !this.fromBucket() && !this.hasCustomName();
+    }
+
+    @Override
+    protected void defineSynchedData(@NotNull SynchedEntityData.Builder builder) {
+        super.defineSynchedData(builder);
+        builder.define(RESTING, false);
+        builder.define(VARIANT, 0);
+        builder.define(FROM_BUCKET, false);
+    }
+
+    @Override
+    protected void registerGoals() {
+        this.goalSelector.addGoal(0, new BubblePlayerGoal());
+        this.goalSelector.addGoal(1, new RandomSwimmingGoal(this, 1.0D, 40));
+    }
+
+    @Override
+    public void addAdditionalSaveData(@NotNull CompoundTag compound) {
+        super.addAdditionalSaveData(compound);
+        compound.putBoolean("Resting", this.isResting());
+        compound.putInt("Variant", this.getVariant());
+        compound.putBoolean("FromBucket", this.fromBucket());
+    }
+
+    @Override
+    public void readAdditionalSaveData(@NotNull CompoundTag compound) {
+        super.readAdditionalSaveData(compound);
+        this.setResting(compound.getBoolean("Resting"));
+        this.setVariant(compound.getInt("Variant"));
+        this.setFromBucket(compound.getBoolean("FromBucket"));
+    }
+
+    @Override
+    public boolean fromBucket() {
+        return this.entityData.get(FROM_BUCKET);
+    }
+
+    @Override
+    public void setFromBucket(boolean fromBucket) {
+        this.entityData.set(FROM_BUCKET, fromBucket);
+    }
+
+    @Override
+    public void saveToBucketTag(@NotNull ItemStack bucketStack) {
+        BucketableUtils.saveDefaultDataToBucketTag(this, bucketStack);
+        CustomData.update(DataComponents.BUCKET_ENTITY_DATA, bucketStack, nbt -> {
+            nbt.putInt("Variant", this.getVariant());
+        });
+    }
+
+    @Override
+    public void loadFromBucketTag(@NotNull CompoundTag bucketCompound) {
+        BucketableUtils.loadDefaultDataFromBucketTag(this, bucketCompound);
+        setVariant(bucketCompound.getInt("Variant"));
+    }
+
+    @NotNull
+    @Override
+    public ItemStack getBucketItemStack() {
+        return new ItemStack(ModItems.DUMBO_OCTOPUS_BUCKET.get());
+    }
+
+    @NotNull
+    @Override
+    public SoundEvent getPickupSound() {
+        return SoundEvents.BUCKET_FILL_AXOLOTL;
+    }
+
+    @Override
+    public void aiStep() {
+        super.aiStep();
+        if (!level().isClientSide() && !this.bubblingPlayer && this.isEffectiveAi()) {
+            if (this.isInWater()) {
+                if (this.isResting()) {
+                    if (--this.restTimer <= 0) {
+                        this.setResting(false);
+                    }
+                    this.setDeltaMovement(this.getDeltaMovement().subtract(0.0D, 0.01D, 0.0D));
+                } else if (this.random.nextFloat() <= 0.001F) {
+                    this.restTimer = this.random.nextInt(200, 601);
+                    this.setResting(true);
+                }
+            } else {
+                this.setResting(false);
+            }
+        }
+    }
+
+    @NotNull
+    @Override
+    protected PathNavigation createNavigation(@NotNull Level level) {
+        return new WaterBoundPathNavigation(this, level);
+    }
+
+    @Override
+    public void travel(@NotNull Vec3 speed) {
+        if (this.isEffectiveAi() && this.isInWater()) {
+            this.moveRelative(this.getSpeed(), speed);
+            this.move(MoverType.SELF, this.getDeltaMovement());
+            this.setDeltaMovement(this.getDeltaMovement().scale(0.9D));
+        } else {
+            super.travel(speed);
+        }
+    }
+
+    @NotNull
+    @Override
+    protected InteractionResult mobInteract(@NotNull Player player, @NotNull InteractionHand interactionHand) {
+        return Bucketable.bucketMobPickup(player, interactionHand, this).orElse(super.mobInteract(player, interactionHand));
+    }
+
+    @Override
+    @SuppressWarnings("deprecation")
+    public SpawnGroupData finalizeSpawn(@NotNull ServerLevelAccessor levelAccessor, @NotNull DifficultyInstance difficultyInstance, @NotNull MobSpawnType mobSpawnType, @Nullable SpawnGroupData spawnGroupData) {
+        if (mobSpawnType == MobSpawnType.BUCKET) return spawnGroupData;
+        this.setVariant(this.random.nextInt(0, 4));
+        return super.finalizeSpawn(levelAccessor, difficultyInstance, mobSpawnType, spawnGroupData);
+    }
+
+    @Override
+    public void registerControllers(AnimatableManager.ControllerRegistrar controllers) {
+        controllers.add(new AnimationController<>(this, "controller", 4, this::predicate));
+    }
+
+    protected <T extends DumboOctopusEntity> PlayState predicate(software.bernie.geckolib.animation.AnimationState<T> event) {
+        if (this.isResting()) {
+            event.getController().setAnimation(IDLE);
+        } else if (this.isInWater()) {
+            event.getController().setAnimation(SWIM);
+        } else {
+            event.getController().setAnimation(ON_LAND);
+        }
+        return PlayState.CONTINUE;
+    }
+
+    @Override
+    public AnimatableInstanceCache getAnimatableInstanceCache() {
+        return cache;
+    }
+
+    @Override
+    protected SoundEvent getAmbientSound() {
+        return ModSounds.BUBBLE_POP.get();
+    }
+
+    @NotNull
+    @Override
+    protected SoundEvent getHurtSound(@NotNull DamageSource damageSource) {
+        return SoundEvents.AXOLOTL_HURT;
+    }
+
+    @NotNull
+    @Override
+    protected SoundEvent getDeathSound() {
+        return SoundEvents.AXOLOTL_DEATH;
+    }
+
+    @Override
+    protected float getSoundVolume() {
+        return 0.8F;
+    }
+
+    public boolean isResting() {
+        return this.entityData.get(RESTING);
+    }
+
+    public void setResting(boolean resting) {
+        this.entityData.set(RESTING, resting);
+    }
+
+    public int getVariant() {
+        return this.entityData.get(VARIANT);
+    }
+
+    public void setVariant(int variant) {
+        this.entityData.set(VARIANT, Mth.clamp(variant, 0, 3));
+    }
+
+    static class RandomSwimmingGoal extends net.minecraft.world.entity.ai.goal.RandomSwimmingGoal {
+        private final DumboOctopusEntity dumboOctopus;
+
+        public RandomSwimmingGoal(DumboOctopusEntity dumboOctopus, double speedModifier, int interval) {
+            super(dumboOctopus, speedModifier, interval);
+            this.dumboOctopus = dumboOctopus;
+        }
+
+        @Override
+        public boolean canUse() {
+            return !this.dumboOctopus.isResting() && super.canUse();
+        }
+    }
+
+    class BubblePlayerGoal extends Goal {
+        private final Level level;
+        private final PathNavigation navigation;
+        private int timeToRecalcPath;
+        private boolean bubbleSent;
+
+        public BubblePlayerGoal() {
+            this.level = DumboOctopusEntity.this.level();
+            this.navigation = DumboOctopusEntity.this.getNavigation();
+            this.setFlags(EnumSet.of(Flag.MOVE, Flag.LOOK));
+        }
+
+        @Override
+        public boolean canUse() {
+            ServerPlayer player = (ServerPlayer) level.getNearestPlayer(DumboOctopusEntity.this, 6.0D);
+            if (player != null && player.getAirSupply() < 150) {
+                DumboOctopusEntity.this.bubbledPlayer = player;
+                return true;
+            } else {
+                return false;
+            }
+        }
+
+        @Override
+        public boolean canContinueToUse() {
+            return DumboOctopusEntity.this.bubbledPlayer != null && DumboOctopusEntity.this.bubbledPlayer.isAlive() && DumboOctopusEntity.this.bubbledPlayer.getAirSupply() <= 150;
+        }
+
+        @Override
+        public void start() {
+            DumboOctopusEntity.this.bubblingPlayer = true;
+            this.timeToRecalcPath = 0;
+        }
+
+        @Override
+        public void tick() {
+            DumboOctopusEntity.this.getLookControl().setLookAt(DumboOctopusEntity.this.bubbledPlayer, 10.0F, (float) DumboOctopusEntity.this.getMaxHeadXRot());
+
+            if (DumboOctopusEntity.this.distanceToSqr(DumboOctopusEntity.this.bubbledPlayer) > 2.0D) {
+                this.timeToRecalcPath--;
+
+                if (this.timeToRecalcPath <= 0) {
+                    this.timeToRecalcPath = this.adjustedTickDelay(10);
+                    if (!DumboOctopusEntity.this.isLeashed() && !DumboOctopusEntity.this.isPassenger()) {
+                        this.navigation.moveTo(DumboOctopusEntity.this.bubbledPlayer, 2.0D);
+                    }
+                }
+            } else {
+                if (!this.bubbleSent) {
+                    this.bubbleSent = true;
+                }
+            }
+
+            if (this.bubbleSent) {
+                DumboOctopusEntity.this.bubbledPlayer.setAirSupply(150);
+            }
+        }
+
+        @Override
+        public void stop() {
+            DumboOctopusEntity.this.bubblingPlayer = false;
+            if (this.bubbleSent) {
+                DumboOctopusEntity.this.bubbledPlayer.playSound(ModSounds.BUBBLE_POP.get());
+            }
+            this.bubbleSent = false;
+            DumboOctopusEntity.this.bubbledPlayer = null;
+            this.navigation.stop();
+        }
+    }
+
+    class DumboOctopusMoveControl extends SmoothSwimmingMoveControl {
+        public DumboOctopusMoveControl(int maxTurnX, int maxTurnY, float inWaterSpeedModifier, float outsideWaterSpeedModifier, boolean applyGravity) {
+            super(DumboOctopusEntity.this, maxTurnX, maxTurnY, inWaterSpeedModifier, outsideWaterSpeedModifier, applyGravity);
+        }
+
+        @Override
+        public void tick() {
+            if (!DumboOctopusEntity.this.isResting()) {
+                super.tick();
+            }
+        }
+    }
+}

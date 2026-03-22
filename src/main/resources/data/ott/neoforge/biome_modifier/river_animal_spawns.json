@@ -43,6 +43,24 @@
       "weight": 8,
       "minCount": 2,
       "maxCount": 4
+    },
+    {
+      "type": "ott:otter",
+      "weight": 10,
+      "minCount": 1,
+      "maxCount": 3
+    },
+    {
+      "type": "ott:koi_fish",
+      "weight": 10,
+      "minCount": 2,
+      "maxCount": 5
+    },
+    {
+      "type": "ott:dragonfly",
+      "weight": 8,
+      "minCount": 1,
+      "maxCount": 3
     }
   ]
 }

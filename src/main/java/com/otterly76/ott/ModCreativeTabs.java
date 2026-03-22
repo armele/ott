@@ -37,7 +37,7 @@ public final class ModCreativeTabs {
         return CreativeModeTab.builder()
                 .title(Component.translatable(createTranslationKey("ott_blocks")))
                 .withTabsBefore(GRADIENTS.getKey())
-                .icon(() -> new ItemStack(ModItems.OTTER.get()))
+                .icon(() -> new ItemStack(ModBlocks.LIMESTONE.getFirst()))
                 .displayItems((config, output) -> {
                     ModBlocks.TESTBLOCK.forEach(output::accept);
                     ModBlocks.LIMESTONE.forEach(output::accept);
@@ -128,7 +128,7 @@ public final class ModCreativeTabs {
                     output.accept(ModItems.HEDGEHOG_SPAWN_EGG);
                     output.accept(ModItems.JELLYFISH_SPAWN_EGG);
                     output.accept(ModItems.SEAHORSE_1_SPAWN_EGG);
-                    output.accept(ModItems.SHRIMP_SPAWN_EGG);
+                    output.accept(ModItems.SHRIMP_1_SPAWN_EGG);
                     output.accept(ModItems.STARFISH_1_SPAWN_EGG);
                     output.accept(ModItems.JELLYFISH_2_SPAWN_EGG);
                     output.accept(ModItems.JELLYFISH_3_SPAWN_EGG);
@@ -136,6 +136,14 @@ public final class ModCreativeTabs {
                     output.accept(ModItems.PENGUIN_SPAWN_EGG);
                     output.accept(ModItems.SEAL_SPAWN_EGG);
                     output.accept(ModItems.SEA_URCHIN_SPAWN_EGG);
+                    output.accept(ModItems.DRAGONFLY_SPAWN_EGG);
+                    output.accept(ModItems.DUMBO_OCTOPUS_SPAWN_EGG);
+                    output.accept(ModItems.FERRET_SPAWN_EGG);
+                    output.accept(ModItems.JUMPING_SPIDER_SPAWN_EGG);
+                    output.accept(ModItems.KOI_FISH_SPAWN_EGG);
+                    output.accept(ModItems.OTTER_SPAWN_EGG);
+                    output.accept(ModItems.RED_PANDA_SPAWN_EGG);
+                    output.accept(ModItems.SEA_BUNNY_SPAWN_EGG);
                 }).build();
     }
 
@@ -143,9 +151,35 @@ public final class ModCreativeTabs {
         return CreativeModeTab.builder()
                 .title(Component.translatable(createTranslationKey("misc")))
                 .withTabsBefore(OTT_EGGS.getKey())
-                .icon(() -> new ItemStack(ModItems.OTTER.get()))
+                .icon(() -> new ItemStack(ModItems.OTTER_SPAWN_EGG.get()))
                 .displayItems((config, output) -> {
-                    output.accept(ModItems.OTTER);
+                    output.accept(ModItems.CLAM);
+                    output.accept(ModItems.DRAGONFLY_WING);
+                    output.accept(ModItems.KOI_FISH);
+                    output.accept(ModItems.SILK);
+                    output.accept(ModItems.SEA_BUNNY_SLIME_BOTTLE);
+                    output.accept(ModItems.MAN_O_WAR_BUCKET);
+                    output.accept(ModItems.STINGRAY_BUCKET);
+                    output.accept(ModItems.SUNFISH_BUCKET);
+                    output.accept(ModItems.KRILL_BUCKET);
+                    output.accept(ModItems.ANGELFISH_BUCKET);
+                    output.accept(ModItems.BARRELEYE_BUCKET);
+                    output.accept(ModItems.FLOUNDER_BUCKET);
+                    output.accept(ModItems.MARINE_IGUANA_BUCKET);
+                    output.accept(ModItems.SNAIL_BUCKET);
+                    output.accept(ModItems.CATFISH_BUCKET);
+                    output.accept(ModItems.BASS_BUCKET);
+                    output.accept(ModItems.DUMBO_OCTOPUS_BUCKET);
+                    output.accept(ModItems.KOI_FISH_BUCKET);
+                    output.accept(ModItems.SEA_BUNNY_BUCKET);
+                    output.accept(ModItems.SILK_COCOON.get());
+                    output.accept(ModItems.SEA_BUNNY_SLIME_BLOCK.get());
+                    output.accept(ModItems.CHRYSALIS.get());
+                    output.accept(ModItems.SNAIL_SHELL);
+                    output.accept(ModItems.QUILL);
+                    output.accept(ModItems.QUILL_ARROW);
+                    output.accept(ModItems.ANTLER);
+                    output.accept(ModItems.FUR);
 
                     // Protective Lanterns
                     output.accept(ModBlocks.PROTECTIVE_LANTERN);
@@ -158,6 +192,53 @@ public final class ModCreativeTabs {
                     output.accept(ModBlocks.SMITE_LANTERN);
 
                     output.accept(ModBlocks.WEATHERING_STATION);
+
+                    // Food and Drops
+                    output.accept(ModItems.BASS);
+                    output.accept(ModItems.COOKED_BASS);
+                    output.accept(ModItems.CATFISH);
+                    output.accept(ModItems.COOKED_CATFISH);
+                    output.accept(ModItems.VENISON);
+                    output.accept(ModItems.COOKED_VENISON);
+                    output.accept(ModItems.PHEASANT);
+                    output.accept(ModItems.COOKED_PHEASANT);
+                    output.accept(ModItems.BUSHMEAT);
+                    output.accept(ModItems.COOKED_BUSHMEAT);
+                    output.accept(ModItems.LIZARD_TAIL);
+                    output.accept(ModItems.COOKED_LIZARD_TAIL);
+                    output.accept(ModItems.COOKED_EGG);
+                    output.accept(ModItems.RAW_CAPYBARA);
+                    output.accept(ModItems.COOKED_CAPYBARA);
+                    output.accept(ModItems.RAW_HEDGEHOG);
+                    output.accept(ModItems.COOKED_HEDGEHOG);
+                    output.accept(ModItems.RAW_SEAL);
+                    output.accept(ModItems.COOKED_SEAL);
+                    output.accept(ModItems.RAW_KIWI);
+                    output.accept(ModItems.COOKED_KIWI);
+                    output.accept(ModItems.RAW_SHRIMP_1);
+                    output.accept(ModItems.COOKED_SHRIMP_1);
+                    output.accept(ModItems.RAW_SUNFISH_MEAT);
+                    output.accept(ModItems.COOKED_SUNFISH_MEAT);
+                    output.accept(ModItems.RAW_GOLDEN_SUNFISH_MEAT);
+                    output.accept(ModItems.COOKED_GOLDEN_SUNFISH_MEAT);
+                    output.accept(ModItems.RAW_KRILL);
+                    output.accept(ModItems.FRIED_KRILL);
+                    output.accept(ModItems.JELLYFISH_JELLY);
+                    output.accept(ModItems.SEA_URCHIN_CAVIAR);
+
+                    // Eggs
+                    output.accept(ModItems.BLUE_EGG);
+                    output.accept(ModItems.BROWN_EGG);
+                    output.accept(ModItems.DUCK_EGG);
+                    output.accept(ModItems.PHEASANT_EGG);
+                    output.accept(ModItems.ALLIGATOR_EGG);
+                    output.accept(ModItems.TORTOISE_EGG);
+                    output.accept(ModItems.SNAIL_EGG);
+                    output.accept(ModItems.KIWI_EGG);
+                    output.accept(ModItems.PENGUIN_EGG);
+                    output.accept(ModItems.EMU_EGG);
+                    output.accept(ModItems.HOOPOE_EGG);
+                    output.accept(ModItems.TOUCAN_EGG);
                 }).build();
     }
 

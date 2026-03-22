@@ -45,7 +45,7 @@
       "maxCount": 3
     },
     {
-      "type": "ott:shrimp",
+      "type": "ott:shrimp_1",
       "weight": 15,
       "minCount": 2,
       "maxCount": 6
@@ -67,6 +67,18 @@
       "weight": 8,
       "minCount": 2,
       "maxCount": 5
+    },
+    {
+      "type": "ott:dumbo_octopus",
+      "weight": 10,
+      "minCount": 1,
+      "maxCount": 3
+    },
+    {
+      "type": "ott:sea_bunny",
+      "weight": 10,
+      "minCount": 2,
+      "maxCount": 6
     }
   ]
 }

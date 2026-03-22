@@ -1,0 +1,9 @@
+{
+  "type": "neoforge:add_features",
+  "biomes": "#minecraft:is_forest",
+  "features": [
+    "ott:silk_cocoon_hanging_leaves",
+    "ott:silk_cocoon_ground"
+  ],
+  "step": "vegetal_decoration"
+}

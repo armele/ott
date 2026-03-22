@@ -124,8 +124,7 @@ public class CreativeTabHandler {
             safeInsertAfter(event, Items.SNIFFER_EGG.getDefaultInstance(), new ItemStack(ModBlocks.DRIED_GHAST.get()), visibility);
             safeInsertAfter(event, Items.HONEY_BLOCK.getDefaultInstance(), new ItemStack(ModBlocks.RESIN_BLOCK.get()), visibility);
             safeInsertAfter(event, new ItemStack(Items.LILY_PAD), new ItemStack(ModBlocks.BIG_LILY_PAD.get()), visibility);
-            safeInsertAfter(event, new ItemStack(ModBlocks.BIG_LILY_PAD.get()), new ItemStack(ModBlocks.CHRYSALIS.get()), visibility);
-            safeInsertAfter(event, new ItemStack(ModBlocks.CHRYSALIS.get()), new ItemStack(ModBlocks.ALLIGATOR_EGG.get()), visibility);
+            safeInsertAfter(event, new ItemStack(ModBlocks.BIG_LILY_PAD.get()), new ItemStack(ModBlocks.ALLIGATOR_EGG.get()), visibility);
             safeInsertAfter(event, new ItemStack(ModBlocks.ALLIGATOR_EGG.get()), new ItemStack(ModBlocks.TORTOISE_EGG.get()), visibility);
             safeInsertAfter(event, new ItemStack(ModBlocks.TORTOISE_EGG.get()), new ItemStack(ModBlocks.SNAIL_EGG.get()), visibility);
         }
@@ -516,8 +515,8 @@ public class CreativeTabHandler {
                     ModItems.COOKED_SEAL,
                     ModItems.RAW_KIWI,
                     ModItems.COOKED_KIWI,
-                    ModItems.RAW_SHRIMP,
-                    ModItems.COOKED_SHRIMP,
+                    ModItems.RAW_SHRIMP_1,
+                    ModItems.COOKED_SHRIMP_1,
                     ModItems.JELLYFISH_JELLY,
                     ModItems.SEA_URCHIN_CAVIAR,
                     ModItems.KIWI_EGG,
@@ -753,7 +752,6 @@ public class CreativeTabHandler {
 
             safeAccept(event, ModItems.COPPER_GOLEM_SPAWN_EGG, visibility);
             
-            safeAccept(event, ModItems.CHRYSALIS.get(), visibility);
         }
     }
 

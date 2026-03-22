@@ -1,0 +1,8 @@
+{
+  "type": "neoforge:add_features",
+  "biomes": "#minecraft:is_overworld",
+  "features": [
+    "ott:silk_cocoon_hanging_stone"
+  ],
+  "step": "underground_decoration"
+}

@@ -129,6 +129,8 @@ Sand Sets:
 - sandstone pillar cap
 - quicksand
 
+add pearl blocks from otter pearls (9) and dye them
+
 add custom elytra models/textrues: butterflies
 
 Add additional salt block textures

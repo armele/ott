@@ -52,9 +52,45 @@ public class OttEntityLootTableProvider extends EntityLootSubProvider {
         this.add(ModEntities.JELLYFISH_2.get(), createJellyfishDrops());
         this.add(ModEntities.JELLYFISH_3.get(), createJellyfishDrops());
         this.add(ModEntities.SEA_URCHIN.get(), createSeaUrchinDrops());
-        this.add(ModEntities.SHRIMP.get(), createMeatDrops(ModItems.RAW_SHRIMP.get()));
+        this.add(ModEntities.SHRIMP_1.get(), createMeatDrops(ModItems.RAW_SHRIMP_1.get()));
         this.add(ModEntities.SEAHORSE_1.get(), LootTable.lootTable());
         this.add(ModEntities.STARFISH_1.get(), LootTable.lootTable());
+
+        this.add(ModEntities.DRAGONFLY.get(), createDragonflyDrops());
+        this.add(ModEntities.DUMBO_OCTOPUS.get(), LootTable.lootTable());
+        this.add(ModEntities.FERRET.get(), LootTable.lootTable());
+        this.add(ModEntities.JUMPING_SPIDER.get(), createJumpingSpiderDrops());
+        this.add(ModEntities.KOI_FISH.get(), createKoiFishDrops());
+        this.add(ModEntities.OTTER.get(), LootTable.lootTable());
+        this.add(ModEntities.RED_PANDA.get(), LootTable.lootTable());
+        this.add(ModEntities.SEA_BUNNY.get(), LootTable.lootTable());
+    }
+
+    private LootTable.Builder createDragonflyDrops() {
+        return LootTable.lootTable()
+                .withPool(LootPool.lootPool()
+                        .setRolls(ConstantValue.exactly(1.0F))
+                        .add(LootItem.lootTableItem(ModItems.DRAGONFLY_WING.get())
+                                .apply(SetItemCountFunction.setCount(UniformGenerator.between(0.0F, 2.0F)))));
+    }
+
+    private LootTable.Builder createJumpingSpiderDrops() {
+        return LootTable.lootTable()
+                .withPool(LootPool.lootPool()
+                        .setRolls(ConstantValue.exactly(1.0F))
+                        .add(LootItem.lootTableItem(ModItems.SILK.get())
+                                .apply(SetItemCountFunction.setCount(UniformGenerator.between(0.0F, 2.0F)))));
+    }
+
+    private LootTable.Builder createKoiFishDrops() {
+        return LootTable.lootTable()
+                .withPool(LootPool.lootPool()
+                        .setRolls(ConstantValue.exactly(1.0F))
+                        .add(LootItem.lootTableItem(ModItems.KOI_FISH.get())))
+                .withPool(LootPool.lootPool()
+                        .setRolls(ConstantValue.exactly(1.0F))
+                        .add(LootItem.lootTableItem(Items.BONE_MEAL))
+                        .when(net.minecraft.world.level.storage.loot.predicates.LootItemRandomChanceCondition.randomChance(0.05F)));
     }
 
     private LootTable.Builder createMeatDrops(net.minecraft.world.item.Item meat) {
@@ -162,8 +198,16 @@ public class OttEntityLootTableProvider extends EntityLootSubProvider {
                 ModEntities.JELLYFISH_2.get(),
                 ModEntities.JELLYFISH_3.get(),
                 ModEntities.SEAHORSE_1.get(),
-                ModEntities.SHRIMP.get(),
-                ModEntities.STARFISH_1.get()
+                ModEntities.SHRIMP_1.get(),
+                ModEntities.STARFISH_1.get(),
+                ModEntities.DRAGONFLY.get(),
+                ModEntities.DUMBO_OCTOPUS.get(),
+                ModEntities.FERRET.get(),
+                ModEntities.JUMPING_SPIDER.get(),
+                ModEntities.KOI_FISH.get(),
+                ModEntities.OTTER.get(),
+                ModEntities.RED_PANDA.get(),
+                ModEntities.SEA_BUNNY.get()
         );
     }
 }

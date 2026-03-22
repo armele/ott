@@ -295,6 +295,8 @@ public class ModBlockTagProvider extends BlockTagsProvider {
         this.tag(BlockTags.SMALL_FLOWERS).add(ModBlocks.CLOSED_EYEBLOSSOM.value(), ModBlocks.OPEN_EYEBLOSSOM.value(), ModBlocks.WILDFLOWERS.value(), ModBlocks.BUSH.value(), ModBlocks.FIREFLY_BUSH.value(), ModBlocks.CACTUS_FLOWER.value());
         this.tag(BlockTags.REPLACEABLE).add(ModBlocks.WILDFLOWERS.value(), ModBlocks.BUSH.value(), ModBlocks.SHORT_DRY_GRASS.value(), ModBlocks.TALL_DRY_GRASS.value(), ModBlocks.LEAF_LITTER.value());
 
+        this.tag(BlockTags.MINEABLE_WITH_HOE).add(ModBlocks.SILK_COCOON.get());
+        this.tag(ModTags.Blocks.FERRET_DIG_GROUNDS).add(Blocks.DIRT, Blocks.GRASS_BLOCK, Blocks.PODZOL, Blocks.COARSE_DIRT, Blocks.ROOTED_DIRT, Blocks.MOSS_BLOCK, Blocks.SAND, Blocks.RED_SAND);
     }
 
     @SafeVarargs

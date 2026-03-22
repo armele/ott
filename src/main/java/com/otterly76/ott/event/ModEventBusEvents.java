@@ -5,6 +5,7 @@ import com.otterly76.ott.entity.ModEntities;
 import com.otterly76.ott.client.model.CreakingModel;
 import com.otterly76.ott.client.registries.ModModelLayers;
 import com.otterly76.ott.entity.custom.HappyGhast;
+import com.otterly76.ott.entity.custom.Shrimp1Entity;
 import com.otterly76.ott.item.ModItems;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.Mob;
@@ -87,10 +88,19 @@ public class ModEventBusEvents {
         event.put(ModEntities.SEA_URCHIN.get(), com.otterly76.ott.entity.custom.SeaUrchinEntity.createAttributes().build());
         event.put(ModEntities.JELLYFISH.get(), com.otterly76.ott.entity.custom.JellyfishEntity.createAttributes().build());
         event.put(ModEntities.SEAHORSE_1.get(), com.otterly76.ott.entity.custom.Seahorse1Entity.createAttributes().build());
-        event.put(ModEntities.SHRIMP.get(), com.otterly76.ott.entity.custom.ShrimpEntity.createAttributes().build());
+        event.put(ModEntities.SHRIMP_1.get(), Shrimp1Entity.createAttributes().build());
         event.put(ModEntities.STARFISH_1.get(), com.otterly76.ott.entity.custom.Starfish1Entity.createAttributes().build());
         event.put(ModEntities.JELLYFISH_2.get(), com.otterly76.ott.entity.custom.Jellyfish2Entity.createAttributes().build());
         event.put(ModEntities.JELLYFISH_3.get(), com.otterly76.ott.entity.custom.Jellyfish3Entity.createAttributes().build());
+
+        event.put(ModEntities.DRAGONFLY.get(), com.otterly76.ott.entity.custom.DragonflyEntity.createAttributes().build());
+        event.put(ModEntities.DUMBO_OCTOPUS.get(), com.otterly76.ott.entity.custom.DumboOctopusEntity.createAttributes().build());
+        event.put(ModEntities.FERRET.get(), com.otterly76.ott.entity.custom.FerretEntity.createAttributes().build());
+        event.put(ModEntities.JUMPING_SPIDER.get(), com.otterly76.ott.entity.custom.JumpingSpiderEntity.createAttributes().build());
+        event.put(ModEntities.KOI_FISH.get(), com.otterly76.ott.entity.custom.KoiFishEntity.createAttributes().build());
+        event.put(ModEntities.OTTER.get(), com.otterly76.ott.entity.custom.OtterEntity.createAttributes().build());
+        event.put(ModEntities.RED_PANDA.get(), com.otterly76.ott.entity.custom.RedPandaEntity.createAttributes().build());
+        event.put(ModEntities.SEA_BUNNY.get(), com.otterly76.ott.entity.custom.SeaBunnyEntity.createAttributes().build());
     }
 
     @SubscribeEvent
@@ -502,10 +512,10 @@ public class ModEventBusEvents {
                 RegisterSpawnPlacementsEvent.Operation.OR
         );
         event.register(
-                ModEntities.SHRIMP.get(),
+                ModEntities.SHRIMP_1.get(),
                 SpawnPlacementTypes.IN_WATER,
                 Heightmap.Types.MOTION_BLOCKING_NO_LEAVES,
-                com.otterly76.ott.entity.custom.ShrimpEntity::canSpawn,
+                Shrimp1Entity::canSpawn,
                 RegisterSpawnPlacementsEvent.Operation.OR
         );
         event.register(
@@ -534,6 +544,63 @@ public class ModEventBusEvents {
                 SpawnPlacementTypes.IN_WATER,
                 Heightmap.Types.OCEAN_FLOOR,
                 com.otterly76.ott.entity.custom.SeaUrchinEntity::checkSpawnRules,
+                RegisterSpawnPlacementsEvent.Operation.OR
+        );
+
+        event.register(
+                ModEntities.DRAGONFLY.get(),
+                SpawnPlacementTypes.ON_GROUND,
+                Heightmap.Types.MOTION_BLOCKING_NO_LEAVES,
+                com.otterly76.ott.entity.custom.DragonflyEntity::checkDragonflySpawnRules,
+                RegisterSpawnPlacementsEvent.Operation.OR
+        );
+        event.register(
+                ModEntities.DUMBO_OCTOPUS.get(),
+                SpawnPlacementTypes.IN_WATER,
+                Heightmap.Types.MOTION_BLOCKING_NO_LEAVES,
+                net.minecraft.world.entity.animal.WaterAnimal::checkSurfaceWaterAnimalSpawnRules,
+                RegisterSpawnPlacementsEvent.Operation.OR
+        );
+        event.register(
+                ModEntities.FERRET.get(),
+                SpawnPlacementTypes.ON_GROUND,
+                Heightmap.Types.MOTION_BLOCKING_NO_LEAVES,
+                net.minecraft.world.entity.animal.Animal::checkAnimalSpawnRules,
+                RegisterSpawnPlacementsEvent.Operation.OR
+        );
+        event.register(
+                ModEntities.JUMPING_SPIDER.get(),
+                SpawnPlacementTypes.ON_GROUND,
+                Heightmap.Types.MOTION_BLOCKING_NO_LEAVES,
+                net.minecraft.world.entity.animal.Animal::checkAnimalSpawnRules,
+                RegisterSpawnPlacementsEvent.Operation.OR
+        );
+        event.register(
+                ModEntities.KOI_FISH.get(),
+                SpawnPlacementTypes.IN_WATER,
+                Heightmap.Types.MOTION_BLOCKING_NO_LEAVES,
+                net.minecraft.world.entity.animal.WaterAnimal::checkSurfaceWaterAnimalSpawnRules,
+                RegisterSpawnPlacementsEvent.Operation.OR
+        );
+        event.register(
+                ModEntities.OTTER.get(),
+                SpawnPlacementTypes.ON_GROUND,
+                Heightmap.Types.MOTION_BLOCKING_NO_LEAVES,
+                com.otterly76.ott.entity.custom.OtterEntity::checkOtterSpawnRules,
+                RegisterSpawnPlacementsEvent.Operation.OR
+        );
+        event.register(
+                ModEntities.RED_PANDA.get(),
+                SpawnPlacementTypes.ON_GROUND,
+                Heightmap.Types.MOTION_BLOCKING_NO_LEAVES,
+                net.minecraft.world.entity.animal.Animal::checkAnimalSpawnRules,
+                RegisterSpawnPlacementsEvent.Operation.OR
+        );
+        event.register(
+                ModEntities.SEA_BUNNY.get(),
+                SpawnPlacementTypes.IN_WATER,
+                Heightmap.Types.MOTION_BLOCKING_NO_LEAVES,
+                net.minecraft.world.entity.animal.WaterAnimal::checkSurfaceWaterAnimalSpawnRules,
                 RegisterSpawnPlacementsEvent.Operation.OR
         );
     }

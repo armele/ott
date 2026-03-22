@@ -1,5 +1,6 @@
 package com.otterly76.ott.entity;
 
+import com.otterly76.ott.entity.custom.Shrimp1Entity;
 import com.otterly76.ott.entity.vehicle.PaleOakBoat;
 import com.otterly76.ott.entity.vehicle.PaleOakChestBoat;
 import com.otterly76.ott.entity.vehicle.OttWoodSetBoatEntity;
@@ -208,8 +209,8 @@ public class ModEntities {
     public static final Supplier<EntityType<com.otterly76.ott.entity.custom.Seahorse1Entity>> SEAHORSE_1 = OTT_ENTITY_TYPES.register("seahorse_1",
             () -> Builder.of(com.otterly76.ott.entity.custom.Seahorse1Entity::new, MobCategory.WATER_CREATURE).sized(0.4F, 1.5F).build("seahorse_1"));
 
-    public static final Supplier<EntityType<com.otterly76.ott.entity.custom.ShrimpEntity>> SHRIMP = OTT_ENTITY_TYPES.register("shrimp",
-            () -> Builder.of(com.otterly76.ott.entity.custom.ShrimpEntity::new, MobCategory.WATER_AMBIENT).sized(0.5F, 0.5F).build("shrimp"));
+    public static final Supplier<EntityType<Shrimp1Entity>> SHRIMP_1 = OTT_ENTITY_TYPES.register("shrimp_1",
+            () -> Builder.of(Shrimp1Entity::new, MobCategory.WATER_AMBIENT).sized(0.5F, 0.5F).build("shrimp_1"));
 
     public static final Supplier<EntityType<com.otterly76.ott.entity.custom.Starfish1Entity>> STARFISH_1 = OTT_ENTITY_TYPES.register("starfish_1",
             () -> Builder.of(com.otterly76.ott.entity.custom.Starfish1Entity::new, MobCategory.WATER_CREATURE).sized(1.5F, 0.7F).build("starfish_1"));
@@ -219,6 +220,30 @@ public class ModEntities {
 
     public static final Supplier<EntityType<com.otterly76.ott.entity.custom.Jellyfish3Entity>> JELLYFISH_3 = OTT_ENTITY_TYPES.register("jellyfish_3",
             () -> Builder.of(com.otterly76.ott.entity.custom.Jellyfish3Entity::new, MobCategory.WATER_AMBIENT).sized(0.4F, 0.8F).build("jellyfish_3"));
+
+    public static final Supplier<EntityType<com.otterly76.ott.entity.custom.DragonflyEntity>> DRAGONFLY = OTT_ENTITY_TYPES.register("dragonfly",
+            () -> Builder.of(com.otterly76.ott.entity.custom.DragonflyEntity::new, MobCategory.AMBIENT).sized(0.9F, 0.4F).build("dragonfly"));
+
+    public static final Supplier<EntityType<com.otterly76.ott.entity.custom.DumboOctopusEntity>> DUMBO_OCTOPUS = OTT_ENTITY_TYPES.register("dumbo_octopus",
+            () -> Builder.of(com.otterly76.ott.entity.custom.DumboOctopusEntity::new, MobCategory.WATER_AMBIENT).sized(0.4F, 0.4F).build("dumbo_octopus"));
+
+    public static final Supplier<EntityType<com.otterly76.ott.entity.custom.FerretEntity>> FERRET = OTT_ENTITY_TYPES.register("ferret",
+            () -> Builder.of(com.otterly76.ott.entity.custom.FerretEntity::new, MobCategory.CREATURE).sized(0.8F, 0.7F).build("ferret"));
+
+    public static final Supplier<EntityType<com.otterly76.ott.entity.custom.JumpingSpiderEntity>> JUMPING_SPIDER = OTT_ENTITY_TYPES.register("jumping_spider",
+            () -> Builder.of(com.otterly76.ott.entity.custom.JumpingSpiderEntity::new, MobCategory.CREATURE).sized(0.5F, 0.4F).build("jumping_spider"));
+
+    public static final Supplier<EntityType<com.otterly76.ott.entity.custom.KoiFishEntity>> KOI_FISH = OTT_ENTITY_TYPES.register("koi_fish",
+            () -> Builder.of(com.otterly76.ott.entity.custom.KoiFishEntity::new, MobCategory.WATER_AMBIENT).sized(0.6F, 0.3F).build("koi_fish"));
+
+    public static final Supplier<EntityType<com.otterly76.ott.entity.custom.OtterEntity>> OTTER = OTT_ENTITY_TYPES.register("otter",
+            () -> Builder.of(com.otterly76.ott.entity.custom.OtterEntity::new, MobCategory.CREATURE).sized(0.8F, 0.6F).build("otter"));
+
+    public static final Supplier<EntityType<com.otterly76.ott.entity.custom.RedPandaEntity>> RED_PANDA = OTT_ENTITY_TYPES.register("red_panda",
+            () -> Builder.of(com.otterly76.ott.entity.custom.RedPandaEntity::new, MobCategory.CREATURE).sized(0.75F, 0.65F).build("red_panda"));
+
+    public static final Supplier<EntityType<com.otterly76.ott.entity.custom.SeaBunnyEntity>> SEA_BUNNY = OTT_ENTITY_TYPES.register("sea_bunny",
+            () -> Builder.of(com.otterly76.ott.entity.custom.SeaBunnyEntity::new, MobCategory.WATER_AMBIENT).sized(0.45F, 0.3F).build("sea_bunny"));
 
     public static final Supplier<EntityType<com.otterly76.ott.entity.custom.FennecFox>> FENNEC_FOX = OTT_ENTITY_TYPES.register("fennec_fox",
             () -> Builder.of(com.otterly76.ott.entity.custom.FennecFox::new, MobCategory.CREATURE).sized(0.6F, 0.7F).clientTrackingRange(8).build("fennec_fox"));

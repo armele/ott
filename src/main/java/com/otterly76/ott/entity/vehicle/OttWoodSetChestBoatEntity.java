@@ -39,7 +39,7 @@ public class OttWoodSetChestBoatEntity extends ChestBoat {
     public @NotNull Item getDropItem() {
         var setName = getWoodSetName();
         var item = ModItems.WOOD_SET_CHEST_BOATS.get(setName);
-        return item != null ? item.get() : ModItems.OTTER.get(); // fallback: should never happen
+        return item != null ? item.get() : net.minecraft.world.item.Items.OAK_CHEST_BOAT; // fallback: should never happen
     }
 
     @Override

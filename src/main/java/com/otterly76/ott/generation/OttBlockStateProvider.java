@@ -3,6 +3,7 @@ package com.otterly76.ott.generation;
 import com.otterly76.ott.Constants;
 import com.otterly76.ott.block.IGradientBlock;
 import com.otterly76.ott.block.ModBlocks;
+import com.otterly76.ott.block.custom.SilkCocoonBlock;
 import com.otterly76.ott.crop.ThornyHedgeSprouts;
 import com.otterly76.ott.hedge.ModHedgeVariants;
 import net.minecraft.data.PackOutput;
@@ -81,6 +82,15 @@ public class OttBlockStateProvider extends ModBlockStateProvider {
                     .modelFile(models().cross("thorny_hedge_sprouts_stage" + age, modLoc("block/thorny_hedge")).renderType("cutout"))
                     .build();
         });
+
+        getVariantBuilder(ModBlocks.SILK_COCOON.get()).forAllStates(state -> {
+            boolean hanging = state.getValue(SilkCocoonBlock.HANGING);
+            return ConfiguredModel.builder()
+                    .modelFile(models().getExistingFile(modLoc(hanging ? "block/hanging_silk_cocoon" : "block/silk_cocoon")))
+                    .build();
+        });
+
+        simpleBlock(ModBlocks.SEA_BUNNY_SLIME_BLOCK.get(), models().getExistingFile(modLoc("block/sea_bunny_slime_block")));
     }
 
     private void registerSapling(Block sapling, Block potted, String name) {

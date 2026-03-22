@@ -34,11 +34,6 @@ public class HippoRenderer extends GeoEntityRenderer<Hippo> {
 
     @Override
     public void preRender(@NotNull PoseStack poseStack, @NotNull Hippo animatable, @NotNull BakedGeoModel model, @Nullable MultiBufferSource bufferSource, @Nullable VertexConsumer buffer, boolean isReRender, float partialTick, int packedLight, int packedOverlay, int colour) {
-        if (animatable.isBaby()) {
-            poseStack.scale(0.5F, 0.5F, 0.5F);
-        } else {
-            poseStack.scale(1.0F, 1.0F, 1.0F);
-        }
         super.preRender(poseStack, animatable, model, bufferSource, buffer, isReRender, partialTick, packedLight, packedOverlay, colour);
     }
 

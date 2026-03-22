@@ -1,4 +1,5 @@
 package com.otterly76.ott;
+import com.otterly76.ott.client.render.entity.*;
 import org.jetbrains.annotations.NotNull;
 import com.otterly76.ott.block.ModBlocks;
 import com.otterly76.ott.client.NutritionHudOverlay;
@@ -9,10 +10,6 @@ import com.otterly76.ott.client.render.texture.FXAtlasSpriteSource;
 import com.otterly76.ott.entity.ModEntities;
 import com.otterly76.ott.client.model.chicken.ColdChickenModel;
 import com.otterly76.ott.client.model.pig.ColdPigModel;
-import com.otterly76.ott.client.render.entity.CreakingRenderer;
-import com.otterly76.ott.client.render.entity.HappyGhastRenderer;
-import com.otterly76.ott.client.render.entity.ModBoatRenderer;
-import com.otterly76.ott.client.render.entity.TorchArrowRenderer;
 import com.otterly76.ott.client.model.CreakingModel;
 import com.otterly76.ott.client.model.HappyGhastModel;
 import com.otterly76.ott.client.model.HappyGhastHarnessModel;
@@ -239,7 +236,7 @@ public class ClientModEvents {
         event.registerEntityRenderer(ModEntities.SPARROW.get(), com.otterly76.ott.client.render.entity.BirdRenderer::new);
         event.registerEntityRenderer(ModEntities.JELLYFISH.get(), com.otterly76.ott.client.render.entity.JellyfishRenderer::new);
         event.registerEntityRenderer(ModEntities.SEAHORSE_1.get(), com.otterly76.ott.client.render.entity.Seahorse1Renderer::new);
-        event.registerEntityRenderer(ModEntities.SHRIMP.get(), com.otterly76.ott.client.render.entity.ShrimpRenderer::new);
+        event.registerEntityRenderer(ModEntities.SHRIMP_1.get(), Shrimp1Renderer::new);
         event.registerEntityRenderer(ModEntities.STARFISH_1.get(), com.otterly76.ott.client.render.entity.Starfish1Renderer::new);
         event.registerEntityRenderer(ModEntities.JELLYFISH_2.get(), com.otterly76.ott.client.render.entity.Jellyfish2Renderer::new);
         event.registerEntityRenderer(ModEntities.JELLYFISH_3.get(), com.otterly76.ott.client.render.entity.Jellyfish3Renderer::new);
@@ -249,6 +246,15 @@ public class ClientModEvents {
         event.registerEntityRenderer(ModEntities.SEA_URCHIN.get(), com.otterly76.ott.client.render.entity.SeaUrchinRenderer::new);
         event.registerEntityRenderer(ModEntities.CAPYBARA.get(), com.otterly76.ott.client.render.entity.CapybaraRenderer::new);
         event.registerEntityRenderer(ModEntities.HEDGEHOG.get(), com.otterly76.ott.client.render.entity.HedgehogRenderer::new);
+
+        event.registerEntityRenderer(ModEntities.DRAGONFLY.get(), com.otterly76.ott.client.render.entity.DragonflyRenderer::new);
+        event.registerEntityRenderer(ModEntities.DUMBO_OCTOPUS.get(), com.otterly76.ott.client.render.entity.DumboOctopusRenderer::new);
+        event.registerEntityRenderer(ModEntities.FERRET.get(), com.otterly76.ott.client.render.entity.FerretRenderer::new);
+        event.registerEntityRenderer(ModEntities.JUMPING_SPIDER.get(), com.otterly76.ott.client.render.entity.JumpingSpiderRenderer::new);
+        event.registerEntityRenderer(ModEntities.KOI_FISH.get(), com.otterly76.ott.client.render.entity.KoiFishRenderer::new);
+        event.registerEntityRenderer(ModEntities.OTTER.get(), com.otterly76.ott.client.render.entity.OtterRenderer::new);
+        event.registerEntityRenderer(ModEntities.RED_PANDA.get(), com.otterly76.ott.client.render.entity.RedPandaRenderer::new);
+        event.registerEntityRenderer(ModEntities.SEA_BUNNY.get(), com.otterly76.ott.client.render.entity.SeaBunnyRenderer::new);
 
         event.registerEntityRenderer(ModEntities.KIWI_EGG.get(), ThrownItemRenderer::new);
         event.registerEntityRenderer(ModEntities.PENGUIN_EGG.get(), ThrownItemRenderer::new);
@@ -263,6 +269,7 @@ public class ClientModEvents {
         event.registerEntityRenderer(ModEntities.HOOPOE_EGG.get(), ThrownItemRenderer::new);
         event.registerEntityRenderer(ModEntities.PHEASANT_EGG.get(), ThrownItemRenderer::new);
         event.registerEntityRenderer(ModEntities.TOUCAN_EGG.get(), ThrownItemRenderer::new);
+        event.registerEntityRenderer(ModEntities.THROWN_DUCK_EGG.get(), ThrownItemRenderer::new);
         event.registerEntityRenderer(net.minecraft.world.entity.EntityType.SHEEP, (context) -> {
             net.minecraft.client.renderer.entity.EntityRenderer<?> renderer = new com.otterly76.ott.client.render.entity.SheepGeoRenderer<>(context);
             return (net.minecraft.client.renderer.entity.EntityRenderer<net.minecraft.world.entity.animal.Sheep>) renderer;
