@@ -6,9 +6,11 @@ import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
+import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.damagesource.DamageSource;
@@ -21,6 +23,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.ServerLevelAccessor;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.Vec3;
 import org.jetbrains.annotations.NotNull;
@@ -42,6 +45,7 @@ public abstract class Deer extends TamableAnimal implements GeoEntity, Saddleabl
     protected static final RawAnimation EAT = RawAnimation.begin().thenLoop("animation.ott.deer.eat");
 
     private static final EntityDataAccessor<Boolean> SADDLED = SynchedEntityData.defineId(Deer.class, EntityDataSerializers.BOOLEAN);
+    private static final EntityDataAccessor<Boolean> IS_DOE = SynchedEntityData.defineId(Deer.class, EntityDataSerializers.BOOLEAN);
 
     private final AnimatableInstanceCache geoCache = GeckoLibUtil.createInstanceCache(this);
     private int eatAnimationTick;
@@ -59,6 +63,7 @@ public abstract class Deer extends TamableAnimal implements GeoEntity, Saddleabl
     protected void defineSynchedData(SynchedEntityData.@NotNull Builder builder) {
         super.defineSynchedData(builder);
         builder.define(SADDLED, false);
+        builder.define(IS_DOE, false);
     }
 
     @Override
@@ -86,21 +91,19 @@ public abstract class Deer extends TamableAnimal implements GeoEntity, Saddleabl
     public @NotNull InteractionResult mobInteract(@NotNull Player player, @NotNull InteractionHand hand) {
         ItemStack itemstack = player.getItemInHand(hand);
         if (this.isTame()) {
-            if (this.isFood(itemstack) && this.getHealth() < this.getMaxHealth()) {
-                if (!player.getAbilities().instabuild) {
-                    itemstack.shrink(1);
+            if (this.isFood(itemstack)) {
+                if (this.getHealth() < this.getMaxHealth()) {
+                    itemstack.consume(1, player);
+                    var foodProperties = itemstack.getFoodProperties(this);
+                    if (foodProperties != null) {
+                        this.heal((float) foodProperties.nutrition());
+                    }
+                    return InteractionResult.sidedSuccess(this.level().isClientSide);
                 }
-                var foodProperties = itemstack.getFoodProperties(this);
-                if (foodProperties != null) {
-                    this.heal((float)foodProperties.nutrition());
-                }
-                return InteractionResult.sidedSuccess(this.level().isClientSide);
             }
             if (itemstack.is(Items.SADDLE) && !this.isSaddled()) {
                 this.equipSaddle(itemstack, SoundSource.NEUTRAL);
-                if (!player.getAbilities().instabuild) {
-                    itemstack.shrink(1);
-                }
+                itemstack.consume(1, player);
                 return InteractionResult.sidedSuccess(this.level().isClientSide);
             }
             if (!this.isBaby() && this.isSaddled() && !player.isSecondaryUseActive()) {
@@ -114,16 +117,14 @@ public abstract class Deer extends TamableAnimal implements GeoEntity, Saddleabl
                 return InteractionResult.sidedSuccess(this.level().isClientSide);
             }
         } else if (itemstack.is(Items.APPLE)) {
-            if (!player.getAbilities().instabuild) {
-                itemstack.shrink(1);
-            }
+            itemstack.consume(1, player);
             if (this.random.nextInt(3) == 0 && !net.neoforged.neoforge.event.EventHooks.onAnimalTame(this, player)) {
                 this.tame(player);
                 this.navigation.stop();
                 this.setTarget(null);
-                this.level().broadcastEntityEvent(this, (byte)7);
+                this.level().broadcastEntityEvent(this, (byte) 7);
             } else {
-                this.level().broadcastEntityEvent(this, (byte)6);
+                this.level().broadcastEntityEvent(this, (byte) 6);
             }
             return InteractionResult.sidedSuccess(this.level().isClientSide);
         }
@@ -152,12 +153,14 @@ public abstract class Deer extends TamableAnimal implements GeoEntity, Saddleabl
     public void addAdditionalSaveData(@NotNull CompoundTag tag) {
         super.addAdditionalSaveData(tag);
         tag.putBoolean("Saddled", this.isSaddled());
+        tag.putBoolean("IsDoe", this.isDoe());
     }
 
     @Override
     public void readAdditionalSaveData(@NotNull CompoundTag tag) {
         super.readAdditionalSaveData(tag);
         this.entityData.set(SADDLED, tag.getBoolean("Saddled"));
+        this.setDoe(tag.getBoolean("IsDoe"));
     }
 
     @Override
@@ -208,6 +211,28 @@ public abstract class Deer extends TamableAnimal implements GeoEntity, Saddleabl
 
     public boolean isEating() {
         return this.eatAnimationTick > 0;
+    }
+
+    public boolean isDoe() {
+        return this.entityData.get(IS_DOE);
+    }
+
+    public void setDoe(boolean doe) {
+        this.entityData.set(IS_DOE, doe);
+    }
+
+    @NotNull
+    @Override
+    public SpawnGroupData finalizeSpawn(@NotNull ServerLevelAccessor levelAccessor, @NotNull DifficultyInstance difficultyInstance, @NotNull MobSpawnType mobSpawnType, @Nullable SpawnGroupData spawnGroupData) {
+        this.setDoe(this.random.nextBoolean());
+        return super.finalizeSpawn(levelAccessor, difficultyInstance, mobSpawnType, spawnGroupData);
+    }
+
+    protected abstract EntityType<? extends AgeableMob> getBreedOffspringType();
+
+    @Override
+    public @Nullable AgeableMob getBreedOffspring(@NotNull ServerLevel level, @NotNull AgeableMob mob) {
+        return this.getBreedOffspringType().create(level);
     }
 
     @Override

@@ -7,7 +7,6 @@ import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.entity.MobSpawnType;
 import net.minecraft.world.entity.SpawnGroupData;
 import net.minecraft.world.level.ServerLevelAccessor;
-import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.entity.AgeableMob;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.level.Level;
@@ -49,16 +48,15 @@ public class ReindeerEntity extends Deer {
         this.entityData.set(IS_RED_NOSE, redNose);
     }
 
-    @Nullable
+    @NotNull
     @Override
     public SpawnGroupData finalizeSpawn(@NotNull ServerLevelAccessor levelAccessor, @NotNull DifficultyInstance difficultyInstance, @NotNull MobSpawnType mobSpawnType, @Nullable SpawnGroupData spawnGroupData) {
         this.setRedNose(this.random.nextFloat() < 0.1F); // 10% chance for red nose?
         return super.finalizeSpawn(levelAccessor, difficultyInstance, mobSpawnType, spawnGroupData);
     }
 
-    @Nullable
     @Override
-    public AgeableMob getBreedOffspring(@NotNull ServerLevel level, @NotNull AgeableMob mob) {
-        return ModEntities.REINDEER.get().create(level);
+    protected EntityType<? extends AgeableMob> getBreedOffspringType() {
+        return ModEntities.REINDEER.get();
     }
 }
