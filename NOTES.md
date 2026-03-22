@@ -64,6 +64,14 @@ GAG
 LUMINOUS: Monsters
 - biome specific zombie & skeleton skins
 
+Opalescence
+- make opal ore to spawn instead of full opal blocks
+- smelt to produce opals
+- 9 opals to make opal block
+- regular opal in overworld
+- moonlit opal in end
+- unpleasent (rename) in nether
+
 Add To Datagen:
 =====
 Add barrels, chests, trapped chests, ladders, bookshelves, shelves, chiseled bookshelves, to wood set process
