@@ -222,6 +222,7 @@ public class ModTags {
         public static final TagKey<net.minecraft.world.entity.EntityType<?>> BOAR_HOSTILES = createTag("boar_hostiles");
         public static final TagKey<net.minecraft.world.entity.EntityType<?>> DEER_PREDATORS = createTag("deer_predators");
         public static final TagKey<net.minecraft.world.entity.EntityType<?>> SNAKE_HOSTILES = createTag("snake_hostiles");
+        public static final TagKey<net.minecraft.world.entity.EntityType<?>> FISH = createTag("fish");
         public static final TagKey<net.minecraft.world.entity.EntityType<?>> FROG_FOOD = mcTag("frog_food");
 
         @SuppressWarnings("SameParameterValue")

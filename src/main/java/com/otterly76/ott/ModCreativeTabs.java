@@ -156,6 +156,7 @@ public final class ModCreativeTabs {
                     output.accept(ModItems.CLAM);
                     output.accept(ModItems.DRAGONFLY_WING);
                     output.accept(ModItems.KOI_FISH);
+                    output.accept(ModItems.PEARL);
                     output.accept(ModItems.SILK);
                     output.accept(ModItems.SEA_BUNNY_SLIME_BOTTLE);
                     output.accept(ModItems.MAN_O_WAR_BUCKET);

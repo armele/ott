@@ -101,6 +101,7 @@ public class ModItemModelProvider extends ItemModelProvider {
         generatedItemFromTexture(ModItems.CLAM.getId().getPath(), modLoc("item/clam"));
         generatedItemFromTexture(ModItems.DRAGONFLY_WING.getId().getPath(), modLoc("item/dragonfly_wing"));
         generatedItemFromTexture(ModItems.KOI_FISH.getId().getPath(), modLoc("item/koi_fish"));
+        generatedItemFromTexture(ModItems.PEARL.getId().getPath(), modLoc("item/pearl"));
         generatedItemFromTexture(ModItems.SILK.getId().getPath(), modLoc("item/silk"));
         generatedItemFromTexture(ModItems.SEA_BUNNY_SLIME_BOTTLE.getId().getPath(), modLoc("item/sea_bunny_slime_bottle"));
         

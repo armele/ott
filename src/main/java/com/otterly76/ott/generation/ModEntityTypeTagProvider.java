@@ -204,6 +204,19 @@ public class ModEntityTypeTagProvider extends EntityTypeTagsProvider {
                 ModEntities.LION.get(),
                 ModEntities.ALLIGATOR.get()
         );
+        this.tag(ModTags.EntityTypes.FISH).add(
+                ModEntities.BASS.get(),
+                ModEntities.CATFISH.get(),
+                ModEntities.KOI_FISH.get(),
+                ModEntities.SHRIMP_1.get(),
+                ModEntities.SEAHORSE_1.get(),
+                ModEntities.STINGRAY.get(),
+                ModEntities.SUNFISH.get(),
+                ModEntities.KRILL.get(),
+                ModEntities.ANGELFISH.get(),
+                ModEntities.BARRELEYE.get(),
+                ModEntities.FLOUNDER.get()
+        );
 
         this.tag(ModTags.EntityTypes.ELEPHANT_HOSTILES).add(
                 ModEntities.LION.get()

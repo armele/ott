@@ -137,20 +137,32 @@ public class ModItemTagProvider extends ItemTagsProvider {
                 ModItems.RAW_SUNFISH_MEAT.get(),
                 ModItems.COOKED_SUNFISH_MEAT.get(),
                 ModItems.RAW_GOLDEN_SUNFISH_MEAT.get(),
+                ModItems.COOKED_GOLDEN_SUNFISH_MEAT.get(),
                 ModItems.RAW_KRILL.get(),
                 ModItems.FRIED_KRILL.get(),
                 ModItems.RAW_SHRIMP_1.get(),
                 ModItems.COOKED_SHRIMP_1.get(),
-                ModItems.KOI_FISH.get()
+                ModItems.KOI_FISH.get(),
+                ModItems.CATFISH.get(),
+                ModItems.COOKED_CATFISH.get(),
+                ModItems.BASS.get(),
+                ModItems.COOKED_BASS.get()
         );
 
         this.tag(ModTags.ItemTags.EGGS).add(
+                Items.EGG,
+                ModItems.BLUE_EGG.get(),
+                ModItems.BROWN_EGG.get(),
                 ModItems.DUCK_EGG.get(),
+                ModItems.PHEASANT_EGG.get(),
                 ModItems.ALLIGATOR_EGG.get(),
                 ModItems.TORTOISE_EGG.get(),
                 ModItems.SNAIL_EGG.get(),
                 ModItems.KIWI_EGG.get(),
-                ModItems.PENGUIN_EGG.get()
+                ModItems.PENGUIN_EGG.get(),
+                ModItems.EMU_EGG.get(),
+                ModItems.HOOPOE_EGG.get(),
+                ModItems.TOUCAN_EGG.get()
         );
 
         this.tag(ModTags.ItemTags.FERRET_FOOD).add(
@@ -177,9 +189,25 @@ public class ModItemTagProvider extends ItemTagsProvider {
                 ModItems.CLAM.get(),
                 ModItems.RAW_SHRIMP_1.get(),
                 ModItems.KOI_FISH.get(),
+                ModItems.RAW_ANGELFISH.get(),
+                ModItems.RAW_BARRELEYE.get(),
+                ModItems.RAW_FLOUNDER.get(),
+                ModItems.RAW_SUNFISH_MEAT.get(),
+                ModItems.RAW_GOLDEN_SUNFISH_MEAT.get(),
+                ModItems.CATFISH.get(),
+                ModItems.BASS.get(),
+                ModItems.RAW_KRILL.get(),
                 Items.COD,
                 Items.SALMON,
-                Items.TROPICAL_FISH
+                Items.TROPICAL_FISH,
+                ModItems.COOKED_SHRIMP_1.get(),
+                ModItems.FRIED_KRILL.get(),
+                ModItems.COOKED_SUNFISH_MEAT.get(),
+                ModItems.COOKED_GOLDEN_SUNFISH_MEAT.get(),
+                ModItems.COOKED_CATFISH.get(),
+                ModItems.COOKED_BASS.get(),
+                Items.COOKED_COD,
+                Items.COOKED_SALMON
         );
 
         this.tag(ModTags.ItemTags.RED_PANDA_FOOD).add(
@@ -391,7 +419,6 @@ public class ModItemTagProvider extends ItemTagsProvider {
         this.tag(ModTags.ItemTags.HAPPY_GHAST_FOOD).add(Items.CHERRY_SAPLING, Items.MANGROVE_PROPAGULE, Items.SNOWBALL);
         this.tag(ModTags.ItemTags.HARNESSES).add(ModItems.HARNESSES.values().stream().map(DeferredItem::get).toArray(Item[]::new));
         this.tag(ModTags.ItemTags.BUNDLES).add(Items.BUNDLE).add(ModItems.BUNDLES.values().stream().map(DeferredItem::get).toArray(Item[]::new));
-        this.tag(ModTags.ItemTags.EGGS).add(Items.EGG, ModItems.BLUE_EGG.get(), ModItems.BROWN_EGG.get());
 
         this.tag(ModTags.ItemTags.INVENTORY_OPENABLE)
                 .addTag(ModTags.ItemTags.DYEABLE_SHULKER_BOXES)
@@ -456,9 +483,6 @@ public class ModItemTagProvider extends ItemTagsProvider {
                 .addOptional(ResourceLocation.fromNamespaceAndPath("vanillabackport", "stripped_pale_oak_log"));
 
         // Fish Tags
-        this.tag(ModTags.ItemTags.FISHES)
-                .add(ModItems.BASS.get(), ModItems.CATFISH.get(), ModItems.KOI_FISH.get(), ModItems.RAW_ANGELFISH.get(), ModItems.RAW_BARRELEYE.get(), ModItems.RAW_FLOUNDER.get(), ModItems.RAW_KRILL.get(), ModItems.RAW_SHRIMP_1.get(), ModItems.RAW_SUNFISH_MEAT.get(), ModItems.RAW_GOLDEN_SUNFISH_MEAT.get());
-
         this.tag(ModTags.ItemTags.C_RAW_FISH)
                 .add(ModItems.BASS.get(), ModItems.CATFISH.get(), ModItems.KOI_FISH.get(), ModItems.RAW_ANGELFISH.get(), ModItems.RAW_BARRELEYE.get(), ModItems.RAW_FLOUNDER.get(), ModItems.RAW_KRILL.get(), ModItems.RAW_SHRIMP_1.get(), ModItems.RAW_SUNFISH_MEAT.get(), ModItems.RAW_GOLDEN_SUNFISH_MEAT.get());
 
@@ -494,10 +518,6 @@ public class ModItemTagProvider extends ItemTagsProvider {
 
         this.tag(ModTags.ItemTags.NF_COOKED_EGGS)
                 .add(ModItems.COOKED_EGG.get());
-
-        // Update existing EGGS tag to include all eggs
-        this.tag(ModTags.ItemTags.EGGS)
-                .add(ModItems.DUCK_EGG.get(), ModItems.PHEASANT_EGG.get(), ModItems.ALLIGATOR_EGG.get(), ModItems.TORTOISE_EGG.get(), ModItems.SNAIL_EGG.get(), ModItems.KIWI_EGG.get(), ModItems.PENGUIN_EGG.get(), ModItems.EMU_EGG.get(), ModItems.HOOPOE_EGG.get(), ModItems.TOUCAN_EGG.get());
     }
 
     @SafeVarargs

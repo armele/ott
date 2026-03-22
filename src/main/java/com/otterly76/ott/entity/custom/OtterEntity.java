@@ -251,6 +251,13 @@ public class OtterEntity extends OttAnimal implements OttGeoEntity {
 
     public void eatOrOpen(Level level, ItemStack itemStack) {
         if (itemStack.is(ModItems.CLAM.get())) {
+            if (this.random.nextFloat() <= 0.07F) {
+                Vec3 mouthPos = this.calculateMouthPos();
+                ItemEntity pearl = new ItemEntity(level, mouthPos.x(), mouthPos.y(), mouthPos.z(), new ItemStack(ModItems.PEARL.get()));
+
+                pearl.setDeltaMovement(this.getRandom().nextGaussian() * 0.05D, this.getRandom().nextGaussian() * 0.05D + 0.2D, this.getRandom().nextGaussian() * 0.05D);
+                level.addFreshEntity(pearl);
+            }
             level.playSound(null, this.getX(), this.getY(), this.getZ(), SoundEvents.TURTLE_EGG_BREAK, SoundSource.NEUTRAL, 0.8F, 1.5F);
             itemStack.shrink(1);
         } else {
