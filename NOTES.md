@@ -188,6 +188,10 @@ animate the ethereal sea glass
 
 Models Nonsense:
 =====
+fat dragon stupidity
+
+mickey joe's spiders implementation
+
 tree/plant/bush parts/shapes
 
 particles? bubbles etc

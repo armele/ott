@@ -76,7 +76,7 @@ public final class ModCreativeTabs {
         return CreativeModeTab.builder()
                 .title(Component.translatable(createTranslationKey("ott_eggs")))
                 .withTabsBefore(DYES.getKey())
-                .icon(() -> new ItemStack(ModItems.CAPYBARA_SPAWN_EGG.get()))
+                .icon(() -> new ItemStack(ModItems.OTTER_SPAWN_EGG.get()))
                 .displayItems((params, output) -> {
                     output.accept(ModItems.DUCK_SPAWN_EGG);
                     output.accept(ModItems.GOOSE_SPAWN_EGG);
@@ -151,7 +151,7 @@ public final class ModCreativeTabs {
         return CreativeModeTab.builder()
                 .title(Component.translatable(createTranslationKey("misc")))
                 .withTabsBefore(OTT_EGGS.getKey())
-                .icon(() -> new ItemStack(ModItems.OTTER_SPAWN_EGG.get()))
+                .icon(() -> new ItemStack(ModBlocks.WATER_LANTERN.get()))
                 .displayItems((config, output) -> {
                     output.accept(ModItems.CLAM);
                     output.accept(ModItems.DRAGONFLY_WING);
