@@ -41,8 +41,19 @@ public class DeerModel extends GeoModel<Deer> {
         }
         
         String base = "deer";
-        if (deer instanceof ReindeerEntity) base = "reindeer";
-        else if (deer instanceof WhiteDeerEntity) base = "white_deer";
+        if (deer instanceof ReindeerEntity reindeer) {
+            if (reindeer.isRedNose()) {
+                base = "reindeer_red_nose";
+            } else {
+                base = "reindeer";
+            }
+        } else if (deer instanceof WhiteDeerEntity) {
+            base = "white_deer";
+        }
+
+        if (deer.isDoe()) {
+            base += "_doe";
+        }
         
         return ResourceLocation.fromNamespaceAndPath("ott", "textures/entity/deer/" + base + ".png");
     }
@@ -70,6 +81,11 @@ public class DeerModel extends GeoModel<Deer> {
         GeoBone saddle = this.getAnimationProcessor().getBone("saddle");
         if (saddle != null) {
             saddle.setHidden(!entity.isSaddled());
+        }
+
+        GeoBone antlers = this.getAnimationProcessor().getBone("antlers");
+        if (antlers != null) {
+            antlers.setHidden(entity.isDoe());
         }
     }
 }

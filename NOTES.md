@@ -137,8 +137,6 @@ Add additional salt block textures
 
 create white-tailed deer, elk, caribou, mossbloom to deer model
 
-create textures for fennec fox, moose & implement (from Naturalist)
-
 create timber wolf using vanilla wolf model
 
 create giant boar using vanilla boar model
@@ -148,8 +146,6 @@ create grizzly bear using brown bear model
 remodel polar bear using brown bear model
 
 create wither skeleton wolf using skeleton wolf model
-
-create anaconda using snake model
 
 create tiger, white tiger, leopard, jaguar, snow leopard, cheetah using cougar model
 
@@ -197,6 +193,7 @@ hyacinth lamp → Blossom Bulb
 
 teas & herbs
 - snatch mint model + textures
+- go update butchercraft and swipe the new herbs
 
 color glow
 - check texture of wisp flower
