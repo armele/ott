@@ -220,9 +220,6 @@ public class ModSounds {
     public static final DeferredHolder<SoundEvent, SoundEvent> RED_PANDA_HURT = registerOttSoundEvent("entity.red_panda.hurt");
     public static final DeferredHolder<SoundEvent, SoundEvent> SEA_BUNNY_DEATH = registerOttSoundEvent("entity.sea_bunny.death");
     public static final DeferredHolder<SoundEvent, SoundEvent> SEA_BUNNY_HURT = registerOttSoundEvent("entity.sea_bunny.hurt");
-    public static final DeferredHolder<SoundEvent, SoundEvent> SHIMA_ENAGA_AMBIENT = registerOttSoundEvent("entity.shima_enaga.ambient");
-    public static final DeferredHolder<SoundEvent, SoundEvent> LEAF_INSECT_HURT = registerOttSoundEvent("entity.leaf_insect.hurt");
-    public static final DeferredHolder<SoundEvent, SoundEvent> LEAF_INSECT_DEATH = registerOttSoundEvent("entity.leaf_insect.death");
 
     public static final DeferredHolder<SoundEvent, SoundEvent> BIRD_HURT = registerOttSoundEvent("entity.bird.hurt");
     public static final DeferredHolder<SoundEvent, SoundEvent> BIRD_DEATH = registerOttSoundEvent("entity.bird.death");

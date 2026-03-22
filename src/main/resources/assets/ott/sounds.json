@@ -1183,17 +1183,5 @@
   "entity.sea_bunny.hurt": {
     "sounds": [ "ott:entity/sea_bunny/hurt_1", "ott:entity/sea_bunny/hurt_2", "ott:entity/sea_bunny/hurt_3" ],
     "subtitle": "subtitles.ott.entity.sea_bunny.hurt"
-  },
-  "entity.shima_enaga.ambient": {
-    "sounds": [ "ott:entity/shima_enaga/ambient_1", "ott:entity/shima_enaga/ambient_2", "ott:entity/shima_enaga/ambient_3", "ott:entity/shima_enaga/ambient_4" ],
-    "subtitle": "subtitles.ott.entity.shima_enaga.ambient"
-  },
-  "entity.leaf_insect.hurt": {
-    "sounds": [ "ott:entity/leaf_insect/hurt_1", "ott:entity/leaf_insect/hurt_2", "ott:entity/leaf_insect/hurt_3", "ott:entity/leaf_insect/hurt_4" ],
-    "subtitle": "subtitles.ott.entity.leaf_insect.hurt"
-  },
-  "entity.leaf_insect.death": {
-    "sounds": [ "ott:entity/leaf_insect/death" ],
-    "subtitle": "subtitles.ott.entity.leaf_insect.death"
   }
 }
