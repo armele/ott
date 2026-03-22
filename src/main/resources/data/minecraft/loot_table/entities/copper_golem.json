@@ -26,7 +26,7 @@
               "function": "minecraft:enchanted_count_increase"
             }
           ],
-          "name": "minecraft:copper_ingot"
+          "id": "minecraft:copper_ingot"
         }
       ],
       "rolls": 1.0
