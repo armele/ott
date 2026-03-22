@@ -66,7 +66,8 @@ LUMINOUS: Monsters
 
 Add To Datagen:
 =====
-Add barrels, chests, trapped chests, ladders, bookshelves, shelves, chiseled bookshelves to wood set process
+Add barrels, chests, trapped chests, ladders, bookshelves, shelves, chiseled bookshelves, to wood set process
+Add bundles, happy ghast harness, llama swag, map decor banner to custom color set process
 
 Textures Nonsense:
 =====
@@ -119,6 +120,8 @@ Sand Sets:
 - sandstone pillar
 - sandstone pillar cap
 - quicksand
+
+add custom elytra models/textrues: butterflies
 
 Add additional salt block textures
 
