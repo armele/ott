@@ -2,17 +2,18 @@ package com.otterly76.ott.client.model;
 
 import com.otterly76.ott.entity.custom.Snail;
 import net.minecraft.resources.ResourceLocation;
+import org.jetbrains.annotations.Nullable;
 import software.bernie.geckolib.model.GeoModel;
 import software.bernie.geckolib.renderer.GeoRenderer;
 
 public class SnailModel extends GeoModel<Snail> {
     @Override
-    public ResourceLocation getModelResource(Snail animatable, GeoRenderer<Snail> renderer) {
+    public ResourceLocation getModelResource(Snail animatable, @Nullable GeoRenderer<Snail> renderer) {
         return ResourceLocation.fromNamespaceAndPath("ott", "geo/entity/snail/snail.geo.json");
     }
 
     @Override
-    public ResourceLocation getTextureResource(Snail animatable, GeoRenderer<Snail> renderer) {
+    public ResourceLocation getTextureResource(Snail animatable, @Nullable GeoRenderer<Snail> renderer) {
         return ResourceLocation.fromNamespaceAndPath("ott", "textures/entity/snail/" + animatable.getSnailColor().getName() + ".png");
     }
 

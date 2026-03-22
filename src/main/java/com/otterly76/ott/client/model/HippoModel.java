@@ -22,7 +22,6 @@ public class HippoModel extends GeoModel<Hippo> {
     }
 
     @Override
-    @Deprecated
     public ResourceLocation getModelResource(Hippo hippo) {
         return this.getModelResource(hippo, null);
     }
@@ -33,7 +32,6 @@ public class HippoModel extends GeoModel<Hippo> {
     }
 
     @Override
-    @Deprecated
     public ResourceLocation getTextureResource(Hippo hippo) {
         return this.getTextureResource(hippo, null);
     }

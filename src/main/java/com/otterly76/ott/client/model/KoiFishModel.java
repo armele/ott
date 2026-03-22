@@ -5,17 +5,29 @@ import com.otterly76.ott.entity.custom.KoiFishEntity;
 import net.minecraft.resources.ResourceLocation;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
+import org.jetbrains.annotations.Nullable;
 import software.bernie.geckolib.model.GeoModel;
+import software.bernie.geckolib.renderer.GeoRenderer;
 
 @OnlyIn(Dist.CLIENT)
 public class KoiFishModel extends GeoModel<KoiFishEntity> {
     @Override
     public ResourceLocation getModelResource(KoiFishEntity entity) {
+        return getModelResource(entity, null);
+    }
+
+    @Override
+    public ResourceLocation getModelResource(KoiFishEntity entity, @Nullable GeoRenderer<KoiFishEntity> renderer) {
         return ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, "geo/entity/koi_fish/koi_fish.geo.json");
     }
 
     @Override
     public ResourceLocation getTextureResource(KoiFishEntity entity) {
+        return getTextureResource(entity, null);
+    }
+
+    @Override
+    public ResourceLocation getTextureResource(KoiFishEntity entity, @Nullable GeoRenderer<KoiFishEntity> renderer) {
         return ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, "textures/entity/koi_fish/koi_fish_" + entity.getVariant() + ".png");
     }
 

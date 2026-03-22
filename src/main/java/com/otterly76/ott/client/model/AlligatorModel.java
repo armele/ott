@@ -15,7 +15,6 @@ import org.jetbrains.annotations.Nullable;
 
 public class AlligatorModel extends GeoModel<Alligator> {
     @Override
-    @Deprecated
     public ResourceLocation getModelResource(Alligator animatable) {
         return getModelResource(animatable, null);
     }
@@ -26,7 +25,6 @@ public class AlligatorModel extends GeoModel<Alligator> {
     }
 
     @Override
-    @Deprecated
     public ResourceLocation getTextureResource(Alligator animatable) {
         return getTextureResource(animatable, null);
     }

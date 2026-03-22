@@ -15,7 +15,6 @@ import org.jetbrains.annotations.Nullable;
 
 public class BearModel extends GeoModel<Bear> {
     @Override
-    @Deprecated
     public ResourceLocation getModelResource(Bear bear) {
         return getModelResource(bear, null);
     }
@@ -26,7 +25,6 @@ public class BearModel extends GeoModel<Bear> {
     }
 
     @Override
-    @Deprecated
     public ResourceLocation getTextureResource(Bear bear) {
         return getTextureResource(bear, null);
     }

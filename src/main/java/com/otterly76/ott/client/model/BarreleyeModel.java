@@ -3,20 +3,32 @@ package com.otterly76.ott.client.model;
 import com.otterly76.ott.entity.custom.Barreleye;
 import net.minecraft.resources.ResourceLocation;
 import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 import software.bernie.geckolib.constant.DataTickets;
 import software.bernie.geckolib.cache.object.GeoBone;
 import software.bernie.geckolib.animation.AnimationState;
 import software.bernie.geckolib.model.GeoModel;
 import software.bernie.geckolib.model.data.EntityModelData;
+import software.bernie.geckolib.renderer.GeoRenderer;
 
 public class BarreleyeModel extends GeoModel<Barreleye> {
     @Override
     public @NotNull ResourceLocation getModelResource(@NotNull Barreleye animatable) {
+        return getModelResource(animatable, null);
+    }
+
+    @Override
+    public @NotNull ResourceLocation getModelResource(@NotNull Barreleye animatable, @Nullable GeoRenderer<Barreleye> renderer) {
         return ResourceLocation.fromNamespaceAndPath("ott", "geo/entity/barreleye/barreleye_fish.geo.json");
     }
 
     @Override
     public @NotNull ResourceLocation getTextureResource(@NotNull Barreleye animatable) {
+        return getTextureResource(animatable, null);
+    }
+
+    @Override
+    public @NotNull ResourceLocation getTextureResource(@NotNull Barreleye animatable, @Nullable GeoRenderer<Barreleye> renderer) {
         return ResourceLocation.fromNamespaceAndPath("ott", "textures/entity/barreleye/barreleye_fish.png");
     }
 

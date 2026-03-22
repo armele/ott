@@ -10,6 +10,7 @@ import software.bernie.geckolib.animation.AnimationState;
 import software.bernie.geckolib.cache.object.GeoBone;
 import software.bernie.geckolib.constant.DataTickets;
 import software.bernie.geckolib.model.GeoModel;
+import software.bernie.geckolib.renderer.GeoRenderer;
 import software.bernie.geckolib.model.data.EntityModelData;
 
 /**
@@ -25,11 +26,21 @@ public abstract class BirdGeoModel<T extends Chicken & BirdGeoEntity> extends Ge
 
     @Override
     public ResourceLocation getModelResource(T animatable) {
+        return getModelResource(animatable, null);
+    }
+
+    @Override
+    public ResourceLocation getModelResource(T animatable, @Nullable GeoRenderer<T> renderer) {
         return Ott.resource("geo/entity/" + name + "/" + name + ".geo.json");
     }
 
     @Override
     public ResourceLocation getTextureResource(T animatable) {
+        return getTextureResource(animatable, null);
+    }
+
+    @Override
+    public ResourceLocation getTextureResource(T animatable, @Nullable GeoRenderer<T> renderer) {
         int variant = animatable.getVariant() + 1; // variant 0 -> name_1, 1 -> name_2
         return Ott.resource("textures/entity/" + name + "/" + name + "_" + variant + ".png");
     }

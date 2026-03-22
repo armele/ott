@@ -14,7 +14,6 @@ public class BassModel extends GeoModel<Bass> {
     }
 
     @Override
-    @Deprecated
     public ResourceLocation getModelResource(Bass animatable) {
         return getModelResource(animatable, null);
     }
@@ -25,7 +24,6 @@ public class BassModel extends GeoModel<Bass> {
     }
 
     @Override
-    @Deprecated
     public ResourceLocation getTextureResource(Bass animatable) {
         return getTextureResource(animatable, null);
     }

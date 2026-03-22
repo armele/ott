@@ -5,17 +5,29 @@ import com.otterly76.ott.entity.custom.RedPandaEntity;
 import net.minecraft.resources.ResourceLocation;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
+import org.jetbrains.annotations.Nullable;
 import software.bernie.geckolib.model.GeoModel;
+import software.bernie.geckolib.renderer.GeoRenderer;
 
 @OnlyIn(Dist.CLIENT)
 public class RedPandaModel extends GeoModel<RedPandaEntity> {
     @Override
-    public ResourceLocation getModelResource(RedPandaEntity entity) {
+    public ResourceLocation getModelResource(RedPandaEntity animatable) {
+        return getModelResource(animatable, null);
+    }
+
+    @Override
+    public ResourceLocation getModelResource(RedPandaEntity entity, @Nullable GeoRenderer<RedPandaEntity> renderer) {
         return ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, entity.isBaby() ? "geo/entity/red_panda/baby_red_panda.geo.json" : "geo/entity/red_panda/red_panda.geo.json");
     }
 
     @Override
-    public ResourceLocation getTextureResource(RedPandaEntity entity) {
+    public ResourceLocation getTextureResource(RedPandaEntity animatable) {
+        return getTextureResource(animatable, null);
+    }
+
+    @Override
+    public ResourceLocation getTextureResource(RedPandaEntity entity, @Nullable GeoRenderer<RedPandaEntity> renderer) {
         return ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, entity.isBaby() ? "textures/entity/red_panda/baby_red_panda.png" : "textures/entity/red_panda/red_panda.png");
     }
 

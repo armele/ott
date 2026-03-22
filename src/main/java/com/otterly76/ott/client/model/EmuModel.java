@@ -2,11 +2,13 @@ package com.otterly76.ott.client.model;
 
 import com.otterly76.ott.entity.custom.Emu;
 import net.minecraft.resources.ResourceLocation;
+import org.jetbrains.annotations.Nullable;
 import software.bernie.geckolib.constant.DataTickets;
 import software.bernie.geckolib.cache.object.GeoBone;
 import software.bernie.geckolib.animation.AnimationState;
 import software.bernie.geckolib.model.GeoModel;
 import software.bernie.geckolib.model.data.EntityModelData;
+import software.bernie.geckolib.renderer.GeoRenderer;
 
 public class EmuModel extends GeoModel<Emu> {
     private static final ResourceLocation ADULT_MODEL = ResourceLocation.fromNamespaceAndPath("ott", "geo/entity/emu/emu.geo.json");
@@ -16,11 +18,21 @@ public class EmuModel extends GeoModel<Emu> {
 
     @Override
     public ResourceLocation getModelResource(Emu animatable) {
+        return getModelResource(animatable, null);
+    }
+
+    @Override
+    public ResourceLocation getModelResource(Emu animatable, @Nullable GeoRenderer<Emu> renderer) {
         return animatable.isBaby() ? BABY_MODEL : ADULT_MODEL;
     }
 
     @Override
     public ResourceLocation getTextureResource(Emu animatable) {
+        return getTextureResource(animatable, null);
+    }
+
+    @Override
+    public ResourceLocation getTextureResource(Emu animatable, @Nullable GeoRenderer<Emu> renderer) {
         return animatable.isBaby() ? ResourceLocation.fromNamespaceAndPath("ott", "textures/entity/emu/baby_emu.png") : ResourceLocation.fromNamespaceAndPath("ott", "textures/entity/emu/emu.png");
     }
 

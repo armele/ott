@@ -12,17 +12,28 @@ import org.jetbrains.annotations.Nullable;
 import software.bernie.geckolib.animation.AnimationState;
 import software.bernie.geckolib.cache.object.GeoBone;
 import software.bernie.geckolib.model.GeoModel;
+import software.bernie.geckolib.renderer.GeoRenderer;
 
 import java.util.Optional;
 
 public class AllayGeoModel<T extends Allay & AllayGeoEntity> extends GeoModel<T> {
     @Override
     public ResourceLocation getModelResource(T animatable) {
+        return getModelResource(animatable, null);
+    }
+
+    @Override
+    public ResourceLocation getModelResource(T animatable, @Nullable GeoRenderer<T> renderer) {
         return Ott.resource("geo/entity/allay/allay.geo.json");
     }
 
     @Override
     public ResourceLocation getTextureResource(T animatable) {
+        return getTextureResource(animatable, null);
+    }
+
+    @Override
+    public ResourceLocation getTextureResource(T animatable, @Nullable GeoRenderer<T> renderer) {
         VariantDataHolder<Object> holder = VariantDataHolder.getHolder(animatable);
         if (holder != null) {
             Optional<Object> variant = holder.ott$getVariantData();

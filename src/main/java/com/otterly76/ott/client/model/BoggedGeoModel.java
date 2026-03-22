@@ -11,17 +11,28 @@ import org.jetbrains.annotations.Nullable;
 import software.bernie.geckolib.animation.AnimationState;
 import software.bernie.geckolib.cache.object.GeoBone;
 import software.bernie.geckolib.model.GeoModel;
+import software.bernie.geckolib.renderer.GeoRenderer;
 
 import java.util.Optional;
 
 public class BoggedGeoModel<T extends Bogged & BoggedGeoEntity> extends GeoModel<T> {
     @Override
     public ResourceLocation getModelResource(T animatable) {
+        return getModelResource(animatable, null);
+    }
+
+    @Override
+    public ResourceLocation getModelResource(T animatable, @Nullable GeoRenderer<T> renderer) {
         return Ott.resource("geo/entity/skeleton/bogged.geo.json");
     }
 
     @Override
     public ResourceLocation getTextureResource(T animatable) {
+        return getTextureResource(animatable, null);
+    }
+
+    @Override
+    public ResourceLocation getTextureResource(T animatable, @Nullable GeoRenderer<T> renderer) {
         VariantDataHolder<BoggedVariant> holder = VariantDataHolder.getHolder(animatable);
         if (holder != null) {
             Optional<BoggedVariant> variant = holder.ott$getVariantData();
@@ -54,7 +65,3 @@ public class BoggedGeoModel<T extends Bogged & BoggedGeoEntity> extends GeoModel
         GeoModelUtils.applyLimbSwingHumanoid(animationState, leftArm, rightArm, leftLeg, rightLeg);
     }
 }
-
-
-
-
