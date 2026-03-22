@@ -61,9 +61,12 @@ Utilitarian
 GAG
 - No Soliciting Sign
 
+LUMINOUS: Monsters
+- biome specific zombie & skeleton skins
+
 Add To Datagen:
 =====
-Add barrels, chests, trapped chests, ladders, bookshelves to wood set process
+Add barrels, chests, trapped chests, ladders, bookshelves, shelves, chiseled bookshelves to wood set process
 
 Textures Nonsense:
 =====
