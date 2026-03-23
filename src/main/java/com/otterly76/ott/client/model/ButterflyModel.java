@@ -8,7 +8,7 @@ import software.bernie.geckolib.model.GeoModel;
 public class ButterflyModel<T extends Butterfly> extends GeoModel<T> {
     @Override
     public ResourceLocation getModelResource(T animatable, @org.jetbrains.annotations.Nullable software.bernie.geckolib.renderer.GeoRenderer<T> renderer) {
-        return Constants.loc("geo/entity/butterfly/butterfly.geo.json");
+        return Constants.loc("geo/entity/butterfly/" + animatable.getVariant().getGeoName() + ".geo.json");
     }
 
     @Override
@@ -19,7 +19,7 @@ public class ButterflyModel<T extends Butterfly> extends GeoModel<T> {
 
     @Override
     public ResourceLocation getTextureResource(T animatable, @org.jetbrains.annotations.Nullable software.bernie.geckolib.renderer.GeoRenderer<T> renderer) {
-        return Constants.loc("textures/entity/butterfly/" + animatable.getVariant().getName() + ".png");
+        return Constants.loc("textures/entity/butterfly/" + animatable.getVariant().getTextureName() + ".png");
     }
 
     @Override
@@ -30,6 +30,6 @@ public class ButterflyModel<T extends Butterfly> extends GeoModel<T> {
 
     @Override
     public ResourceLocation getAnimationResource(T butterfly) {
-        return Constants.loc("animations/entity/butterfly/butterfly.animation.json");
+        return Constants.loc("animations/entity/butterfly/" + butterfly.getVariant().getAnimationName() + ".animation.json");
     }
 }

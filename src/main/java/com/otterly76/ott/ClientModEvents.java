@@ -345,6 +345,8 @@ public class ClientModEvents {
         event.registerBlockEntityRenderer(ModBlockEntities.COLOR_SET_BANNER.get(), com.otterly76.ott.client.render.blockentity.ColorSetBannerRenderer::new);
         event.registerBlockEntityRenderer(ModBlockEntities.COLOR_SET_SHULKER_BOX.get(), com.otterly76.ott.client.render.blockentity.ColorSetShulkerBoxRenderer::new);
         event.registerBlockEntityRenderer(ModBlockEntities.FIREFLY_JAR.get(), com.otterly76.ott.client.render.blockentity.FireflyJarRenderer::new);
+        event.registerBlockEntityRenderer(ModBlockEntities.BUTTERFLY_JAR.get(), com.otterly76.ott.client.renderer.block.ButterflyJarRenderer::new);
+        event.registerBlockEntityRenderer(ModBlockEntities.CATERPILLAR_JAR.get(), com.otterly76.ott.client.renderer.block.CaterpillarJarRenderer::new);
     }
 
     public static void registerLayerDefinitions(EntityRenderersEvent.RegisterLayerDefinitions event) {

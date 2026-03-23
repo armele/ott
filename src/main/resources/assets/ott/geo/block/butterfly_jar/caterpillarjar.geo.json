@@ -1,0 +1,98 @@
+{
+	"format_version": "1.12.0",
+	"minecraft:geometry": [
+		{
+			"description": {
+				"identifier": "geometry.jar",
+				"texture_width": 64,
+				"texture_height": 64,
+				"visible_bounds_width": 2,
+				"visible_bounds_height": 2.5,
+				"visible_bounds_offset": [0, 0.75, 0]
+			},
+			"bones": [
+				{
+					"name": "bone",
+					"pivot": [8, 0, -8],
+					"cubes": [
+						{
+							"origin": [-5, 0.1, -5],
+							"size": [10, 14, 10],
+							"uv": {
+								"north": {"uv": [0, 0], "uv_size": [10, 14]},
+								"east": {"uv": [0, 0], "uv_size": [10, 14]},
+								"south": {"uv": [0, 0], "uv_size": [10, 14]},
+								"west": {"uv": [0, 0], "uv_size": [10, 14]},
+								"up": {"uv": [20, 0], "uv_size": [10, 10]},
+								"down": {"uv": [20, 20], "uv_size": [10, -10]}
+							}
+						},
+						{
+							"origin": [-3, 14.02, -3],
+							"size": [6, 2, 6],
+							"uv": {
+								"north": {"uv": [26, 20], "uv_size": [6, 2]},
+								"east": {"uv": [26, 26], "uv_size": [6, 2]},
+								"south": {"uv": [26, 24], "uv_size": [6, 2]},
+								"west": {"uv": [26, 22], "uv_size": [6, 2]},
+								"up": {"uv": [20, 20], "uv_size": [6, 6]},
+								"down": {"uv": [20, 32], "uv_size": [6, -6]}
+							}
+						}
+					]
+				},
+				{
+					"name": "caterpillar",
+					"pivot": [0, 2.5, -1.5]
+				},
+				{
+					"name": "body",
+					"parent": "caterpillar",
+					"pivot": [0, 2.5, -4.5]
+				},
+				{
+					"name": "skull",
+					"parent": "body",
+					"pivot": [0, 2.5, -5.5],
+					"cubes": [
+						{"origin": [-1.5, 3.625, -5.25], "size": [3, 3, 2], "inflate": 0.03, "pivot": [0, 3.625, 0.75], "rotation": [-25, 0, 0], "uv": [5, 38]}
+					],
+					"locators": {
+						"lead": [0, 3, -5.5]
+					}
+				},
+				{
+					"name": "antennae",
+					"parent": "skull",
+					"pivot": [0, 4, -7.5],
+					"cubes": [
+						{"origin": [-1.5, 5.625, -7.25], "size": [3, 2, 3], "inflate": 0.03, "pivot": [0, 2.625, 1.75], "rotation": [-25, 0, 0], "uv": [4, 44]}
+					]
+				},
+				{
+					"name": "extended",
+					"parent": "body",
+					"pivot": [0, 2.5, -2]
+				},
+				{
+					"name": "chest",
+					"parent": "extended",
+					"pivot": [0, 3.25, -0.5],
+					"rotation": [-12.5, 0, 0],
+					"cubes": [
+						{"origin": [-1.5, 2.875, -5.5], "size": [3, 3, 5], "inflate": 0.02, "pivot": [0, 2.875, -1.5], "rotation": [-37.5, 0, 0], "uv": [2, 29]}
+					]
+				},
+				{
+					"name": "butt",
+					"parent": "extended",
+					"pivot": [0, 3.25, -0.5],
+					"rotation": [-12.5, 0, 0],
+					"cubes": [
+						{"origin": [-1.5, 2.5, -0.75], "size": [3, 3, 5], "pivot": [0, 2.5, -1.75], "rotation": [-12.5, 0, 0], "uv": [2, 29]}
+					]
+				}
+			]
+		}
+	]
+}

@@ -167,6 +167,17 @@ public class Caterpillar extends Animal implements GeoEntity, Catchable {
 
     @Override
     public @NotNull InteractionResult mobInteract(@NotNull Player player, @NotNull InteractionHand hand) {
+        ItemStack itemStack = player.getItemInHand(hand);
+        if (itemStack.is(ModItems.GLASS_JAR.get())) {
+            player.playSound(net.minecraft.sounds.SoundEvents.BOTTLE_FILL, 1.0F, 1.0F);
+            ItemStack caterpillarJar = new ItemStack(ModItems.CATERPILLAR_JAR.get());
+            itemStack.consume(1, player);
+            if (!player.getInventory().add(caterpillarJar)) {
+                player.drop(caterpillarJar, false);
+            }
+            this.discard();
+            return InteractionResult.sidedSuccess(this.level().isClientSide);
+        }
         return Catchable.catchAnimal(player, hand, this, true).orElse(super.mobInteract(player, hand));
     }
 

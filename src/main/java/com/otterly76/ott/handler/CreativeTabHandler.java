@@ -463,7 +463,6 @@ public class CreativeTabHandler {
                     ModItems.CATFISH_BUCKET,
                     ModItems.BASS_BUCKET,
                     ModItems.SNAIL_BUCKET,
-                    ModItems.BUTTERFLY,
                     ModItems.CATERPILLAR
             ), visibility);
 

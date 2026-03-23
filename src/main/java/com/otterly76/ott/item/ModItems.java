@@ -10,6 +10,7 @@ import com.otterly76.ott.registry.ModDataComponents;
 import com.otterly76.ott.registry.ModJukeboxSongs;
 import com.otterly76.ott.entity.vehicle.OttWoodSetBoatEntity;
 import com.otterly76.ott.entity.vehicle.OttWoodSetChestBoatEntity;
+import com.otterly76.ott.entity.custom.Butterfly;
 import com.otterly76.ott.item.custom.*;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.world.level.material.Fluids;
@@ -298,10 +299,17 @@ public class ModItems {
     public static final DeferredItem<Item> BUG_NET = ITEMS.register("bug_net",
             () -> new BugNetItem(new Item.Properties().durability(64)));
 
-    public static final DeferredItem<Item> BUTTERFLY = ITEMS.register("butterfly",
-            () -> new CaughtMobItem(ModEntities.BUTTERFLY, () -> net.minecraft.world.level.material.Fluids.EMPTY, () -> net.minecraft.sounds.SoundEvents.BUCKET_EMPTY_FISH, new Item.Properties().stacksTo(1)));
     public static final DeferredItem<Item> CATERPILLAR = ITEMS.register("caterpillar",
             () -> new CaughtMobItem(ModEntities.CATERPILLAR, () -> net.minecraft.world.level.material.Fluids.EMPTY, () -> net.minecraft.sounds.SoundEvents.BUCKET_EMPTY_FISH, new Item.Properties().stacksTo(1)));
+
+    public static final Map<Butterfly.Variant, DeferredItem<Item>> BUTTERFLIES = new HashMap<>();
+
+    static {
+        for (Butterfly.Variant variant : Butterfly.Variant.values()) {
+            BUTTERFLIES.put(variant, ITEMS.register("butterfly_" + variant.getName(),
+                    () -> new ButterflyItem(variant, new Item.Properties().stacksTo(1))));
+        }
+    }
 
     public static final DeferredItem<Item> BUSHMEAT = ITEMS.register("bushmeat",
             () -> new Item(new Item.Properties().food(new FoodProperties.Builder().nutrition(3).saturationModifier(0.3F).build())));
@@ -471,6 +479,12 @@ public class ModItems {
     public static final DeferredHolder<Item, BlockItem> FIREFLY_IN_A_JAR = ITEMS.register("firefly_in_a_jar", () -> new FireflyJarItem(ModBlocks.FIREFLY_IN_A_JAR.get(), new Item.Properties()));
     public static final DeferredHolder<Item, BlockItem> FIREFLIES_IN_A_JAR = ITEMS.register("fireflies_in_a_jar", () -> new FireflyJarItem(ModBlocks.FIREFLIES_IN_A_JAR.get(), new Item.Properties()));
     public static final DeferredHolder<Item, BlockItem> FIREFLY_JAR = ITEMS.register("firefly_jar", () -> new FireflyJarItem(ModBlocks.FIREFLY_JAR.get(), new Item.Properties()));
+
+    public static final DeferredHolder<Item, com.otterly76.ott.item.custom.ButterflyJarItem> BUTTERFLY_JAR = ITEMS.register("butterfly_jar",
+            () -> new com.otterly76.ott.item.custom.ButterflyJarItem(ModBlocks.BUTTERFLY_JAR.get(), new Item.Properties().stacksTo(1)));
+
+    public static final DeferredHolder<Item, com.otterly76.ott.item.custom.CaterpillarJarItem> CATERPILLAR_JAR = ITEMS.register("caterpillar_jar",
+            () -> new com.otterly76.ott.item.custom.CaterpillarJarItem(ModBlocks.CATERPILLAR_JAR.get(), new Item.Properties().stacksTo(1)));
 
     public static final DeferredItem<Item> SMALL_FIREFLY_SPAWN_EGG = ITEMS.register("small_firefly_spawn_egg",
             () -> new DeferredSpawnEggItem(ModEntities.SMALL_FIREFLY, 0x1E1E1E, 0xFFFF00, new Item.Properties()));

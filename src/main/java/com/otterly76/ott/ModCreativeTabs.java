@@ -1,6 +1,7 @@
 package com.otterly76.ott;
 
 import com.otterly76.ott.block.ModBlocks;
+import com.otterly76.ott.entity.custom.Butterfly;
 import com.otterly76.ott.item.ModItems;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
@@ -220,6 +221,21 @@ public final class ModCreativeTabs {
                     output.accept(ModBlocks.FIREFLY_IN_A_JAR);
                     output.accept(ModBlocks.FIREFLIES_IN_A_JAR);
                     output.accept(ModBlocks.FIREFLY_JAR);
+
+                    // Butterfly Jars
+                    for (Butterfly.Variant variant : Butterfly.Variant.values()) {
+                        ItemStack stack = new ItemStack(ModItems.BUTTERFLY_JAR.get());
+                        Butterfly.setVariant(stack, variant);
+                        output.accept(stack);
+                    }
+                    output.accept(ModItems.CATERPILLAR_JAR.get());
+
+                    // Caught Butterflies
+                    for (Butterfly.Variant variant : Butterfly.Variant.values()) {
+                        output.accept(ModItems.BUTTERFLIES.get(variant).get());
+                    }
+                    output.accept(ModItems.CATERPILLAR.get());
+
 
                     output.accept(ModBlocks.WEATHERING_STATION);
 

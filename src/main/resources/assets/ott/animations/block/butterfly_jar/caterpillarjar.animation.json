@@ -1,0 +1,13 @@
+{
+  "format_version": "1.8.0",
+  "animations": {
+    "idle": {
+      "loop": true,
+      "bones": {
+        "antennae": {
+          "rotation": ["Math.cos(( query.anim_time - 0.5 ) * 180 ) * -2", 0, 0]
+        }
+      }
+    }
+  }
+}

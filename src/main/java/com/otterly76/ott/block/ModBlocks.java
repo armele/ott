@@ -602,6 +602,12 @@ public class ModBlocks {
     public static final DeferredBlock<Block> FIREFLY_JAR = BLOCKS.register("firefly_jar",
             () -> new com.otterly76.ott.block.custom.FireflyJarBlock(BlockBehaviour.Properties.of().mapColor(MapColor.NONE).strength(0.3F).sound(SoundType.GLASS).noOcclusion().lightLevel((state) -> 15)));
 
+    public static final DeferredBlock<Block> BUTTERFLY_JAR = BLOCKS.register("butterfly_jar",
+            () -> new com.otterly76.ott.block.custom.ButterflyJarBlock(BlockBehaviour.Properties.of().mapColor(MapColor.NONE).strength(0.3F).sound(SoundType.GLASS).noOcclusion()));
+
+    public static final DeferredBlock<Block> CATERPILLAR_JAR = BLOCKS.register("caterpillar_jar",
+            () -> new com.otterly76.ott.block.custom.CaterpillarJarBlock(BlockBehaviour.Properties.of().mapColor(MapColor.NONE).strength(0.3F).sound(SoundType.GLASS).noOcclusion()));
+
     public static void register(IEventBus eventBus) {
         registerDynamicBlocks();
         BLOCKS.register(eventBus);
