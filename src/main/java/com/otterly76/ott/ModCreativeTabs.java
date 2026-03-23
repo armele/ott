@@ -109,6 +109,7 @@ public final class ModCreativeTabs {
                     output.accept(ModItems.BUTTERFLY_SPAWN_EGG);
                     output.accept(ModItems.CATERPILLAR_SPAWN_EGG);
                     output.accept(ModItems.FIREFLY_SPAWN_EGG);
+                    output.accept(ModItems.SMALL_FIREFLY_SPAWN_EGG);
                     output.accept(ModItems.ALLIGATOR_SPAWN_EGG);
                     output.accept(ModItems.ELEPHANT_SPAWN_EGG);
                     output.accept(ModItems.GIRAFFE_SPAWN_EGG);
@@ -182,6 +183,29 @@ public final class ModCreativeTabs {
                     output.accept(ModItems.ANTLER);
                     output.accept(ModItems.FUR);
 
+                    // Nature
+                    output.accept(ModItems.THORNY_HEDGE.get());
+                    output.accept(ModItems.THORNY_HEDGE_SPROUTS);
+                    ModBlocks.PARTICLE_HEDGES.values().forEach(output::accept);
+                    ModBlocks.CREEPING_HEDGES.values().forEach(output::accept);
+                    output.accept(ModItems.BIG_LILY_PAD);
+                    output.accept(ModItems.SEAGRASS_BALL);
+                    output.accept(ModItems.DRIED_SEAGRASS_BALL);
+                    output.accept(ModItems.DRIED_SEAGRASS_BALL_BLOCK);
+                    output.accept(ModItems.DRIED_SEAGRASS_BALL_CARPET);
+                    output.accept(ModItems.OAK_NEST);
+                    output.accept(ModItems.GLOW_GOOP);
+
+                    // Salt
+                    output.accept(ModItems.SALT);
+                    output.accept(ModItems.SALT_BLOCK);
+                    output.accept(ModItems.POLISHED_SALT_BLOCK);
+                    output.accept(ModItems.SALT_LAMP);
+
+                    // Decorative
+                    output.accept(ModItems.TEDDY_BEAR.get());
+                    output.accept(ModItems.DRAGON_SKULL);
+
                     // Protective Lanterns
                     output.accept(ModBlocks.PROTECTIVE_LANTERN);
 
@@ -191,6 +215,11 @@ public final class ModCreativeTabs {
 
                     // Damage Lantern
                     output.accept(ModBlocks.SMITE_LANTERN);
+
+                    output.accept(ModBlocks.GLASS_JAR);
+                    output.accept(ModBlocks.FIREFLY_IN_A_JAR);
+                    output.accept(ModBlocks.FIREFLIES_IN_A_JAR);
+                    output.accept(ModBlocks.FIREFLY_JAR);
 
                     output.accept(ModBlocks.WEATHERING_STATION);
 

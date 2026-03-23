@@ -101,6 +101,7 @@ public class ModEventBusEvents {
         event.put(ModEntities.OTTER.get(), com.otterly76.ott.entity.custom.OtterEntity.createAttributes().build());
         event.put(ModEntities.RED_PANDA.get(), com.otterly76.ott.entity.custom.RedPandaEntity.createAttributes().build());
         event.put(ModEntities.SEA_BUNNY.get(), com.otterly76.ott.entity.custom.SeaBunnyEntity.createAttributes().build());
+        event.put(ModEntities.SMALL_FIREFLY.get(), com.otterly76.ott.entity.custom.SmallFirefly.createAttributes().build());
     }
 
     @SubscribeEvent
@@ -269,6 +270,13 @@ public class ModEventBusEvents {
         );
         event.register(
                 ModEntities.FIREFLY.get(),
+                SpawnPlacementTypes.ON_GROUND,
+                Heightmap.Types.MOTION_BLOCKING_NO_LEAVES,
+                Animal::checkAnimalSpawnRules,
+                RegisterSpawnPlacementsEvent.Operation.OR
+        );
+        event.register(
+                ModEntities.SMALL_FIREFLY.get(),
                 SpawnPlacementTypes.ON_GROUND,
                 Heightmap.Types.MOTION_BLOCKING_NO_LEAVES,
                 Animal::checkAnimalSpawnRules,

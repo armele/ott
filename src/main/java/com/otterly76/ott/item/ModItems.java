@@ -467,6 +467,14 @@ public class ModItems {
     public static DeferredItem<PaleOakBoatItem> PALE_OAK_BOAT;
     public static DeferredItem<PaleOakBoatItem> PALE_OAK_CHEST_BOAT;
 
+    public static final DeferredHolder<Item, BlockItem> GLASS_JAR = ITEMS.register("glass_jar", () -> new FireflyJarItem(ModBlocks.GLASS_JAR.get(), new Item.Properties()));
+    public static final DeferredHolder<Item, BlockItem> FIREFLY_IN_A_JAR = ITEMS.register("firefly_in_a_jar", () -> new FireflyJarItem(ModBlocks.FIREFLY_IN_A_JAR.get(), new Item.Properties()));
+    public static final DeferredHolder<Item, BlockItem> FIREFLIES_IN_A_JAR = ITEMS.register("fireflies_in_a_jar", () -> new FireflyJarItem(ModBlocks.FIREFLIES_IN_A_JAR.get(), new Item.Properties()));
+    public static final DeferredHolder<Item, BlockItem> FIREFLY_JAR = ITEMS.register("firefly_jar", () -> new FireflyJarItem(ModBlocks.FIREFLY_JAR.get(), new Item.Properties()));
+
+    public static final DeferredItem<Item> SMALL_FIREFLY_SPAWN_EGG = ITEMS.register("small_firefly_spawn_egg",
+            () -> new DeferredSpawnEggItem(ModEntities.SMALL_FIREFLY, 0x1E1E1E, 0xFFFF00, new Item.Properties()));
+
     public static void register(IEventBus eventBus) {
         // 1. Run dynamic logic to set up the registration entries
         initializeDynamicItems();

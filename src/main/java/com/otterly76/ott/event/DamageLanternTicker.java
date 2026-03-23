@@ -3,6 +3,7 @@ package com.otterly76.ott.event;
 import com.otterly76.ott.Constants;
 import com.otterly76.ott.OttDamageTypes;
 import com.otterly76.ott.util.lantern.DamageLanternManager;
+import com.otterly76.ott.entity.ModEntities;
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.entity.Mob;
@@ -29,7 +30,7 @@ public class DamageLanternTicker {
             BlockPos pos = e.getKey();
             int r = e.getValue();
             AABB box = new AABB(pos).inflate(r);
-            level.getEntitiesOfClass(Mob.class, box, mob -> mob.getType().getCategory() == MobCategory.MONSTER)
+            level.getEntitiesOfClass(Mob.class, box, mob -> mob.getType().getCategory() == MobCategory.MONSTER && mob.getType() != ModEntities.FIREFLY.get() && mob.getType() != ModEntities.SMALL_FIREFLY.get())
                     .forEach(mob -> mob.hurt(OttDamageTypes.of(level, OttDamageTypes.LANTERN_DAMAGE), DAMAGE_PER_PULSE));
         }
     }

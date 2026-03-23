@@ -119,14 +119,15 @@ public class GlowGoopBlock extends Block implements SimpleWaterloggedBlock {
         builder.add(GOOP, WATERLOGGED);
     }
 
-    @Override
-    public @NotNull RenderShape getRenderShape(@NotNull BlockState state) {
-        return RenderShape.INVISIBLE;
-    }
 
     @Override
     protected boolean isPathfindable(@NotNull BlockState state, @NotNull PathComputationType type) {
         return true;
+    }
+
+    @Override
+    public @NotNull RenderShape getRenderShape(@NotNull BlockState state) {
+        return RenderShape.INVISIBLE;
     }
 
     @Override

@@ -133,9 +133,11 @@
   },
   "entity.firefly.ambient": {
     "sounds": [
-      "ott:entity/firefly/idle1",
-      "ott:entity/firefly/idle2",
-      "ott:entity/firefly/idle3"
+      {
+        "name": "ott:entity/firefly/ambient",
+        "stream": true,
+        "volume": 0.4
+      }
     ]
   },
   "entity.firefly.hurt": {

@@ -185,6 +185,16 @@ public class Firefly extends Animal implements FlyingAnimal, GeoEntity {
         return true;
     }
 
+    @Override
+    public int getAmbientSoundInterval() {
+        return 480;
+    }
+
+    @Override
+    protected float getSoundVolume() {
+        return 0.3F;
+    }
+
     @Nullable
     @Override
     protected SoundEvent getAmbientSound() {

@@ -76,6 +76,14 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
         // Shelves
         this.shelfRecipes(noAdv);
 
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModBlocks.GLASS_JAR.get())
+                .define('G', Items.GLASS_PANE)
+                .pattern("G G")
+                .pattern("G G")
+                .pattern("GGG")
+                .unlockedBy("impossible", impossible())
+                .save(noAdv, getRecipePath(Constants.MOD_ID, "glass_jar"));
+
         // Ott Critters
         this.ottCrittersRecipes(noAdv);
 
@@ -344,6 +352,16 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
                 .unlockedBy("has_arrow", has(Items.ARROW))
                 .unlockedBy("has_torch", has(Items.TORCH))
                 .save(exporter, getRecipePath("ott", "torch_arrow"));
+
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.COMBAT, Items.SPECTRAL_ARROW, 2)
+                .requires(Items.ARROW)
+                .requires(ModItems.GLOW_GOOP.get(), 8)
+                .unlockedBy("has_glow_goop", has(ModItems.GLOW_GOOP.get()))
+                .save(exporter, getRecipePath("ott", "spectral_arrow_from_glow_goop"));
+
+        SimpleCookingRecipeBuilder.smelting(Ingredient.of(Items.GLOW_BERRIES), RecipeCategory.MISC, ModItems.GLOW_GOOP.get(), 0.1F, 200)
+                .unlockedBy("has_glow_berries", has(Items.GLOW_BERRIES))
+                .save(exporter, getRecipePath("ott", "glow_goop_from_smelting"));
     }
 
     private void addDyeingRecipes(RecipeOutput exporter) {

@@ -71,9 +71,9 @@ Opalescence
 - make opal ore to spawn instead of full opal blocks
 - smelt to produce opals
 - 9 opals to make opal block
-- regular opal in overworld
-- moonlit opal in end
-- unpleasent (rename) in nether
+- white opal in overworld
+- black opal in end
+- fire opal in nether
 
 Add To Datagen:
 =====

@@ -63,6 +63,10 @@ public class ModBlockEntities {
                     ModBlocks.COLOR_SETS.values().stream().flatMap(set -> java.util.stream.Stream.of(set.banner().get(), set.wallBanner().get())).toArray(Block[]::new)).build(null));
 
 
+    public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<com.otterly76.ott.block.entity.FireflyJarBlockEntity>> FIREFLY_JAR =
+            BLOCK_ENTITIES.register("firefly_jar", () -> BlockEntityType.Builder.of(com.otterly76.ott.block.entity.FireflyJarBlockEntity::new,
+                    ModBlocks.FIREFLY_IN_A_JAR.get(), ModBlocks.FIREFLIES_IN_A_JAR.get(), ModBlocks.FIREFLY_JAR.get()).build(null));
+
     public static void register(IEventBus eventBus) {
         BLOCK_ENTITIES.register(eventBus);
         MINECRAFT_BLOCK_ENTITIES.register(eventBus);

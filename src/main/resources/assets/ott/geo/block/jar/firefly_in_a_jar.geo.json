@@ -1,0 +1,90 @@
+{
+	"format_version": "1.12.0",
+	"minecraft:geometry": [
+		{
+			"description": {
+				"identifier": "geometry.jar",
+				"texture_width": 64,
+				"texture_height": 64,
+				"visible_bounds_width": 2,
+				"visible_bounds_height": 2.5,
+				"visible_bounds_offset": [0, 0.75, 0]
+			},
+			"bones": [
+				{
+					"name": "bone",
+					"pivot": [0, 11.0625, 0],
+					"cubes": [
+						{
+							"origin": [-5, 0.1, -5],
+							"size": [10, 14, 10],
+							"uv": {
+								"north": {"uv": [0, 0], "uv_size": [10, 14]},
+								"east": {"uv": [0, 14], "uv_size": [10, 14]},
+								"south": {"uv": [10, 14], "uv_size": [10, 14]},
+								"west": {"uv": [10, 0], "uv_size": [10, 14]},
+								"up": {"uv": [20, 10], "uv_size": [10, 10]},
+								"down": {"uv": [21, 10], "uv_size": [9, -10]}
+							}
+						},
+						{
+							"origin": [-3, 14.025, -3],
+							"size": [6, 2, 6],
+							"uv": {
+								"north": {"uv": [26, 22], "uv_size": [6, 2]},
+								"east": {"uv": [26, 26], "uv_size": [6, 2]},
+								"south": {"uv": [26, 20], "uv_size": [6, 2]},
+								"west": {"uv": [26, 24], "uv_size": [6, 2]},
+								"up": {"uv": [20, 20], "uv_size": [6, 6]},
+								"down": {"uv": [20, 32], "uv_size": [6, -6]}
+							}
+						}
+					]
+				},
+				{
+					"name": "bone13",
+					"pivot": [-2.7, -10.8, 0.925]
+				},
+				{
+					"name": "bone12",
+					"parent": "bone13",
+					"pivot": [0.075, 6.2, -0.075]
+				},
+				{
+					"name": "firefly_root",
+					"parent": "bone12",
+					"pivot": [0.075, 6.2, -0.075],
+					"rotation": [0, 150, 0]
+				},
+				{
+					"name": "body",
+					"parent": "firefly_root",
+					"pivot": [0.075, 6.2, -0.075],
+					"cubes": [
+						{"origin": [-1.425, 4.7, -2.575], "size": [3, 3, 5], "uv": [2, 37]},
+						{"origin": [-1.425, 4.7, -2.575], "size": [3, 3, 5], "inflate": 0.5, "uv": [2, 37]},
+						{"origin": [-1.425, 7.7, -3.575], "size": [3, 1, 1], "uv": [6, 34]}
+					]
+				},
+				{
+					"name": "rightWing",
+					"parent": "body",
+					"pivot": [-0.425, 7.95, -0.575],
+					"rotation": [0, 0, 60],
+					"cubes": [
+						{"origin": [-5.425, 7.95, -1.575], "size": [5, 0, 4], "uv": [1, 29]}
+					]
+				},
+				{
+					"name": "leftWing",
+					"parent": "body",
+					"pivot": [0.575, 7.95, -0.575],
+					"rotation": [0, 0, -60],
+					"cubes": [
+						{"origin": [0.575, 7.95, -1.575], "size": [5, 0, 4], "uv": [1, 29], "mirror": true}
+					]
+				}
+			]
+		}
+	]
+}

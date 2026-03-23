@@ -255,6 +255,7 @@ public class ClientModEvents {
         event.registerEntityRenderer(ModEntities.OTTER.get(), com.otterly76.ott.client.render.entity.OtterRenderer::new);
         event.registerEntityRenderer(ModEntities.RED_PANDA.get(), com.otterly76.ott.client.render.entity.RedPandaRenderer::new);
         event.registerEntityRenderer(ModEntities.SEA_BUNNY.get(), com.otterly76.ott.client.render.entity.SeaBunnyRenderer::new);
+        event.registerEntityRenderer(ModEntities.SMALL_FIREFLY.get(), com.otterly76.ott.client.render.entity.SmallFireflyRenderer::new);
 
         event.registerEntityRenderer(ModEntities.KIWI_EGG.get(), ThrownItemRenderer::new);
         event.registerEntityRenderer(ModEntities.PENGUIN_EGG.get(), ThrownItemRenderer::new);
@@ -343,6 +344,7 @@ public class ClientModEvents {
         event.registerBlockEntityRenderer(ModBlockEntities.COLOR_SET_BED.get(), com.otterly76.ott.client.render.blockentity.ColorSetBedRenderer::new);
         event.registerBlockEntityRenderer(ModBlockEntities.COLOR_SET_BANNER.get(), com.otterly76.ott.client.render.blockentity.ColorSetBannerRenderer::new);
         event.registerBlockEntityRenderer(ModBlockEntities.COLOR_SET_SHULKER_BOX.get(), com.otterly76.ott.client.render.blockentity.ColorSetShulkerBoxRenderer::new);
+        event.registerBlockEntityRenderer(ModBlockEntities.FIREFLY_JAR.get(), com.otterly76.ott.client.render.blockentity.FireflyJarRenderer::new);
     }
 
     public static void registerLayerDefinitions(EntityRenderersEvent.RegisterLayerDefinitions event) {
@@ -428,7 +430,7 @@ public class ClientModEvents {
                 ModItems.FINCH_SPAWN_EGG.get(), ModItems.ROBIN_SPAWN_EGG.get(), ModItems.SPARROW_SPAWN_EGG.get(),
                 ModItems.BROWN_BEAR_SPAWN_EGG.get(), ModItems.BLACK_BEAR_SPAWN_EGG.get(), ModItems.DEER_SPAWN_EGG.get(),
                 ModItems.REINDEER_SPAWN_EGG.get(), ModItems.WHITE_DEER_SPAWN_EGG.get(), ModItems.BUTTERFLY_SPAWN_EGG.get(),
-                ModItems.CATERPILLAR_SPAWN_EGG.get(), ModItems.FIREFLY_SPAWN_EGG.get(), ModItems.ALLIGATOR_SPAWN_EGG.get(),
+                ModItems.CATERPILLAR_SPAWN_EGG.get(), ModItems.FIREFLY_SPAWN_EGG.get(), ModItems.SMALL_FIREFLY_SPAWN_EGG.get(), ModItems.DRAGONFLY_SPAWN_EGG.get(), ModItems.ALLIGATOR_SPAWN_EGG.get(),
                 ModItems.ELEPHANT_SPAWN_EGG.get(), ModItems.GIRAFFE_SPAWN_EGG.get(), ModItems.HIPPO_SPAWN_EGG.get(),
                 ModItems.LION_SPAWN_EGG.get(), ModItems.RHINO_SPAWN_EGG.get(),
                 ModItems.LIZARD_SPAWN_EGG.get(), ModItems.SNAIL_SPAWN_EGG.get(), ModItems.TORTOISE_SPAWN_EGG.get(),

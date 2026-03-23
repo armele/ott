@@ -297,6 +297,9 @@ public class ModEntities {
         });
     }
 
+    public static final Supplier<EntityType<com.otterly76.ott.entity.custom.SmallFirefly>> SMALL_FIREFLY = OTT_ENTITY_TYPES.register("small_firefly",
+            () -> Builder.of(com.otterly76.ott.entity.custom.SmallFirefly::new, MobCategory.AMBIENT).sized(0.1F, 0.1F).clientTrackingRange(8).build("small_firefly"));
+
     public static void register(IEventBus eventBus) {
         ENTITY_TYPES.register(eventBus);
         OTT_ENTITY_TYPES.register(eventBus);

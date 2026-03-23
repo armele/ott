@@ -18,7 +18,7 @@
                   }
                 }
               ],
-              "id": "minecraft:egg"
+              "name": "minecraft:egg"
             },
             {
               "type": "minecraft:item",
@@ -31,7 +31,7 @@
                   }
                 }
               ],
-              "id": "minecraft:brown_egg"
+              "name": "minecraft:brown_egg"
             },
             {
               "type": "minecraft:item",
@@ -44,7 +44,7 @@
                   }
                 }
               ],
-              "id": "minecraft:blue_egg"
+              "name": "minecraft:blue_egg"
             }
           ]
         }

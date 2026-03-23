@@ -64,6 +64,17 @@ public class OttEntityLootTableProvider extends EntityLootSubProvider {
         this.add(ModEntities.OTTER.get(), LootTable.lootTable());
         this.add(ModEntities.RED_PANDA.get(), LootTable.lootTable());
         this.add(ModEntities.SEA_BUNNY.get(), LootTable.lootTable());
+        this.add(ModEntities.FIREFLY.get(), createFireflyDrops());
+        this.add(ModEntities.SMALL_FIREFLY.get(), createFireflyDrops());
+    }
+
+    private LootTable.Builder createFireflyDrops() {
+        return LootTable.lootTable()
+                .withPool(LootPool.lootPool()
+                        .setRolls(ConstantValue.exactly(1.0F))
+                        .add(LootItem.lootTableItem(ModItems.GLOW_GOOP.get())
+                                .apply(SetItemCountFunction.setCount(ConstantValue.exactly(1.0F)))
+                                .apply(net.minecraft.world.level.storage.loot.functions.EnchantedCountIncreaseFunction.lootingMultiplier(this.registries, UniformGenerator.between(0.0F, 1.0F)))));
     }
 
     private LootTable.Builder createDragonflyDrops() {
@@ -207,7 +218,9 @@ public class OttEntityLootTableProvider extends EntityLootSubProvider {
                 ModEntities.KOI_FISH.get(),
                 ModEntities.OTTER.get(),
                 ModEntities.RED_PANDA.get(),
-                ModEntities.SEA_BUNNY.get()
+                ModEntities.SEA_BUNNY.get(),
+                ModEntities.FIREFLY.get(),
+                ModEntities.SMALL_FIREFLY.get()
         );
     }
 }

@@ -388,6 +388,7 @@ public class ModSounds {
         return SOUND_EVENTS.register(name, () -> SoundEvent.createVariableRangeEvent(id));
     }
 
+
     public static void register(IEventBus eventBus) {
         SOUND_EVENTS.register(eventBus);
         OTT_SOUND_EVENTS.register(eventBus);

@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:item/generated",
   "textures": {
-    "layer0": "ott:block/big_lily_pad_0"
+    "layer0": "ott:item/big_lily_pad"
   }
 }

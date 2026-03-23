@@ -15,7 +15,7 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "id": "ott:big_lily_pad"
+          "name": "ott:big_lily_pad"
         }
       ],
       "rolls": 1.0

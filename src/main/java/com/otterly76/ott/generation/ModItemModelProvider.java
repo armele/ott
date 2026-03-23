@@ -201,6 +201,10 @@ public class ModItemModelProvider extends ItemModelProvider {
 
         parentItemToBlockModel(ModItems.SILK_COCOON.getId().getPath(), "block/silk_cocoon");
         parentItemToBlockModel(ModItems.SEA_BUNNY_SLIME_BLOCK.getId().getPath(), "block/sea_bunny_slime_block");
+        parentItemToBlockModel(ModItems.GLASS_JAR.getId().getPath(), "block/glass_jar");
+        getBuilder(ModItems.FIREFLY_IN_A_JAR.getId().getPath()).parent(new ModelFile.UncheckedModelFile(modLoc("item/firefly_jar_item_base")));
+        getBuilder(ModItems.FIREFLIES_IN_A_JAR.getId().getPath()).parent(new ModelFile.UncheckedModelFile(modLoc("item/firefly_jar_item_base")));
+        getBuilder(ModItems.FIREFLY_JAR.getId().getPath()).parent(new ModelFile.UncheckedModelFile(modLoc("item/firefly_jar_item_base")));
 
         // Custom Dyes
         ModColorSets.ALL.forEach(colorSet -> {
@@ -209,6 +213,7 @@ public class ModItemModelProvider extends ItemModelProvider {
                     .texture("0", modLoc("item/color_set/" + color));
         });
     }
+
 
     private void generatedItemFromTexture(String itemName, ResourceLocation texture) {
         withExistingParent(itemName, mcLoc("item/generated"))
