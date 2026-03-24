@@ -816,5 +816,10 @@
     "block.ott.butterfly_jar.green_swallowtail": "Green Swallowtail Jar",
     "block.ott.butterfly_jar.jade_green_swallowtail": "Jade Green Swallowtail Jar",
     "block.ott.butterfly_jar.purple_emperor": "Purple Emperor Jar",
-    "block.ott.butterfly_jar.red_admiral": "Red Admiral Jar"
+    "block.ott.butterfly_jar.red_admiral": "Red Admiral Jar",
+    "item.ott.quill_arrow": "Quill Arrow",
+    "block.ott.dried_seagrass_ball_block": "Dried Seagrass Ball Block",
+    "block.ott.dried_seagrass_ball_carpet": "Dried Seagrass Ball Carpet",
+    "item.ott.cooked_lizard_tail": "Cooked Lizard Tail",
+    "item.ott.cooked_egg": "Cooked Egg"
 }
