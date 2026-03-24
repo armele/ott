@@ -1,6 +1,0 @@
-{
-  "parent": "ott:block/jar/firefly_jar_base",
-  "textures": {
-    "particle": "ott:block/jar/firefly_jar"
-  }
-}

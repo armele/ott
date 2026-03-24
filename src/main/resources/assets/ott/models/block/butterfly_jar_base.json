@@ -1,0 +1,98 @@
+{
+        "credit": "Throttled by Otterly76",
+        "ambientocclusion": false,
+        "render_type": "translucent",
+        "textures": {
+                "particle": "#jar"
+        },
+        "elements": [
+                {
+                        "from": [3, 0, 3],
+                        "to": [13, 14, 13],
+                        "faces": {
+                                "north": {"uv": [0, 0, 2.5, 3.5], "texture": "#jar"},
+                                "east": {"uv": [0, 0, 2.5, 3.5], "texture": "#jar"},
+                                "south": {"uv": [0, 0, 2.5, 3.5], "texture": "#jar"},
+                                "west": {"uv": [0, 0, 2.5, 3.5], "texture": "#jar"},
+                                "up": {"uv": [5, 0, 7.5, 2.5], "texture": "#jar"},
+                                "down": {"uv": [5, 2.5, 7.5, 5], "texture": "#jar"}
+                        }
+                },
+                {
+                        "from": [5, 14, 5],
+                        "to": [11, 16, 11],
+                        "faces": {
+                                "north": {"uv": [6.5, 5, 8, 5.5], "texture": "#jar"},
+                                "east": {"uv": [6.5, 6.5, 8, 7], "texture": "#jar"},
+                                "south": {"uv": [6.5, 6, 8, 6.5], "texture": "#jar"},
+                                "west": {"uv": [6.5, 5.5, 8, 6], "texture": "#jar"},
+                                "up": {"uv": [5, 5, 6.5, 6.5], "texture": "#jar"},
+                                "down": {"uv": [5, 6.5, 6.5, 8], "texture": "#jar"}
+                        }
+                },
+                {
+                        "name": "body",
+                        "from": [7.5, 4, 10.5],
+                        "to": [8.5, 9, 11.5],
+                        "faces": {
+                                "north": {"uv": [11.25, 7.5, 11.5, 8.75], "texture": "#wing"},
+                                "east": {"uv": [11.25, 7.5, 11.5, 8.75], "texture": "#wing"},
+                                "south": {"uv": [11.25, 7.5, 11.5, 8.75], "texture": "#wing"},
+                                "west": {"uv": [11.25, 7.5, 11.5, 8.75], "texture": "#wing"},
+                                "up": {"uv": [9.5, 5, 9.75, 5.25], "texture": "#wing"},
+                                "down": {"uv": [9.5, 5, 9.75, 5.25], "texture": "#wing"}
+                        }
+                },
+                {
+                        "name": "left_wing",
+                        "from": [8, 3, 11],
+                        "to": [17, 11, 11],
+                        "rotation": {"axis": "y", "angle": 22.5, "origin": [8, 3, 11]},
+                        "faces": {
+                                "north": {"uv": [9.5, 0.5, 11.75, 2.5], "texture": "#wing"},
+                                "south": {"uv": [9.5, 0.5, 11.75, 2.5], "texture": "#wing"}
+                        }
+                },
+                {
+                        "name": "right_wing",
+                        "from": [-1, 3, 11],
+                        "to": [8, 11, 11],
+                        "rotation": {"axis": "y", "angle": -22.5, "origin": [8, 3, 11]},
+                        "faces": {
+                                "north": {"uv": [9.75, 3.25, 12, 5.25], "texture": "#wing"},
+                                "south": {"uv": [9.75, 3.25, 12, 5.25], "texture": "#wing"}
+                        }
+                }
+        ],
+	"display": {
+		"thirdperson_righthand": {
+			"rotation": [75, 45, 0],
+			"translation": [0, 2.5, 0],
+			"scale": [0.375, 0.375, 0.375]
+		},
+		"thirdperson_lefthand": {
+			"rotation": [75, 45, 0],
+			"translation": [0, 2.5, 0],
+			"scale": [0.375, 0.375, 0.375]
+		},
+		"firstperson_righthand": {
+			"rotation": [0, 45, 0],
+			"scale": [0.4, 0.4, 0.4]
+		},
+		"firstperson_lefthand": {
+			"rotation": [0, -135, 0],
+			"scale": [0.4, 0.4, 0.4]
+		},
+		"ground": {
+			"translation": [0, 3, 0],
+			"scale": [0.25, 0.25, 0.25]
+		},
+		"gui": {
+			"rotation": [30, -135, 0],
+			"scale": [0.625, 0.625, 0.625]
+		},
+		"fixed": {
+			"scale": [0.5, 0.5, 0.5]
+		}
+	}
+}

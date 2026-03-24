@@ -8,7 +8,7 @@ import software.bernie.geckolib.model.GeoModel;
 public class ButterflyJarModel extends GeoModel<ButterflyJarBlockEntity> {
     @Override
     public ResourceLocation getModelResource(ButterflyJarBlockEntity animatable, @org.jetbrains.annotations.Nullable software.bernie.geckolib.renderer.GeoRenderer<ButterflyJarBlockEntity> renderer) {
-        return Constants.loc("geo/block/butterfly_jar/" + animatable.getVariant().getName() + "jar.geo.json");
+        return Constants.loc("geo/block/butterfly_jar/" + animatable.getVariant().getGeoName() + "jar.geo.json");
     }
 
     @Override
@@ -30,6 +30,6 @@ public class ButterflyJarModel extends GeoModel<ButterflyJarBlockEntity> {
 
     @Override
     public ResourceLocation getAnimationResource(ButterflyJarBlockEntity animatable) {
-        return Constants.loc("animations/block/butterfly_jar/" + animatable.getVariant().getName() + "jar.animation.json");
+        return Constants.loc("animations/block/butterfly_jar/" + animatable.getVariant().getAnimationName() + "jar.animation.json");
     }
 }

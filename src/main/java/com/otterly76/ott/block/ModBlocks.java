@@ -1,5 +1,6 @@
 package com.otterly76.ott.block;
 
+import com.otterly76.ott.entity.custom.Butterfly;
 import com.otterly76.ott.block.custom.*;
 import com.otterly76.ott.particle.ModParticle;
 import net.minecraft.world.level.biome.Biome;
@@ -341,6 +342,11 @@ public class ModBlocks {
     }
 
     private static void registerDynamicBlocks() {
+        for (Butterfly.Variant variant : Butterfly.Variant.values()) {
+            BUTTERFLY_JARS.put(variant, BLOCKS.register("butterfly_jar_" + variant.getName(),
+                    () -> new com.otterly76.ott.block.custom.ButterflyJarBlock(variant, BlockBehaviour.Properties.of().mapColor(MapColor.NONE).strength(0.3F).sound(SoundType.GLASS).noOcclusion())));
+        }
+
         register3DBlockItem(COPPER_CHEST);
         register3DBlockItem(EXPOSED_COPPER_CHEST);
         register3DBlockItem(WEATHERED_COPPER_CHEST);
@@ -602,9 +608,7 @@ public class ModBlocks {
     public static final DeferredBlock<Block> FIREFLY_JAR = BLOCKS.register("firefly_jar",
             () -> new com.otterly76.ott.block.custom.FireflyJarBlock(BlockBehaviour.Properties.of().mapColor(MapColor.NONE).strength(0.3F).sound(SoundType.GLASS).noOcclusion().lightLevel((state) -> 15)));
 
-    public static final DeferredBlock<Block> BUTTERFLY_JAR = BLOCKS.register("butterfly_jar",
-            () -> new com.otterly76.ott.block.custom.ButterflyJarBlock(BlockBehaviour.Properties.of().mapColor(MapColor.NONE).strength(0.3F).sound(SoundType.GLASS).noOcclusion()));
-
+    public static final Map<Butterfly.Variant, DeferredBlock<Block>> BUTTERFLY_JARS = new HashMap<>();
     public static final DeferredBlock<Block> CATERPILLAR_JAR = BLOCKS.register("caterpillar_jar",
             () -> new com.otterly76.ott.block.custom.CaterpillarJarBlock(BlockBehaviour.Properties.of().mapColor(MapColor.NONE).strength(0.3F).sound(SoundType.GLASS).noOcclusion()));
 

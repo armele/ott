@@ -224,9 +224,7 @@ public final class ModCreativeTabs {
 
                     // Butterfly Jars
                     for (Butterfly.Variant variant : Butterfly.Variant.values()) {
-                        ItemStack stack = new ItemStack(ModItems.BUTTERFLY_JAR.get());
-                        Butterfly.setVariant(stack, variant);
-                        output.accept(stack);
+                        output.accept(ModItems.BUTTERFLY_JAR_ITEMS.get(variant).get());
                     }
                     output.accept(ModItems.CATERPILLAR_JAR.get());
 

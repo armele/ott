@@ -1,6 +1,7 @@
 package com.otterly76.ott.block.custom;
 
 import com.mojang.serialization.MapCodec;
+import com.mojang.serialization.codecs.RecordCodecBuilder;
 import com.otterly76.ott.block.ModBlocks;
 import com.otterly76.ott.block.entity.ButterflyJarBlockEntity;
 import com.otterly76.ott.entity.ModEntities;
@@ -27,10 +28,21 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 public class ButterflyJarBlock extends BaseEntityBlock {
-    public static final MapCodec<ButterflyJarBlock> CODEC = simpleCodec(ButterflyJarBlock::new);
+    private final Butterfly.Variant variant;
+    public static final MapCodec<ButterflyJarBlock> CODEC = RecordCodecBuilder.mapCodec(instance ->
+            instance.group(
+                    Butterfly.Variant.CODEC.fieldOf("variant").forGetter(ButterflyJarBlock::getVariant),
+                    propertiesCodec()
+            ).apply(instance, ButterflyJarBlock::new)
+    );
 
-    public ButterflyJarBlock(Properties properties) {
+    public ButterflyJarBlock(Butterfly.Variant variant, Properties properties) {
         super(properties);
+        this.variant = variant;
+    }
+
+    public Butterfly.Variant getVariant() {
+        return variant;
     }
 
     @Override
@@ -51,7 +63,9 @@ public class ButterflyJarBlock extends BaseEntityBlock {
     @Nullable
     @Override
     public BlockEntity newBlockEntity(@NotNull BlockPos pos, @NotNull BlockState state) {
-        return new ButterflyJarBlockEntity(pos, state);
+        ButterflyJarBlockEntity be = new ButterflyJarBlockEntity(pos, state);
+        be.setVariant(this.variant);
+        return be;
     }
 
     @Override
@@ -97,7 +111,9 @@ public class ButterflyJarBlock extends BaseEntityBlock {
         super.setPlacedBy(level, pos, state, placer, stack);
         BlockEntity be = level.getBlockEntity(pos);
         if (be instanceof ButterflyJarBlockEntity jarBE) {
-            jarBE.setVariant(com.otterly76.ott.item.custom.ButterflyJarItem.getVariant(stack));
+            if (stack.getItem() instanceof com.otterly76.ott.item.custom.ButterflyJarItem jarItem) {
+                jarBE.setVariant(jarItem.getVariant());
+            }
         }
     }
 }

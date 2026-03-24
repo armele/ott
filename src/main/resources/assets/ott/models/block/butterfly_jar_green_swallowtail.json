@@ -1,0 +1,1 @@
+﻿{ "parent": "ott:block/butterfly_jar_base", "textures": { "jar": "ott:block/butterfly_jar/green_swallowtailjar", "wing": "ott:block/butterfly_jar/green_swallowtailjar" } }

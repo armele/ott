@@ -28,11 +28,14 @@ public class ButterflyJarBlockEntity extends BlockEntity implements GeoBlockEnti
 
     public ButterflyJarBlockEntity(BlockPos pos, BlockState state) {
         super(ModBlockEntities.BUTTERFLY_JAR.get(), pos, state);
+        if (state.getBlock() instanceof com.otterly76.ott.block.custom.ButterflyJarBlock jarBlock) {
+            this.variant = jarBlock.getVariant();
+        }
     }
 
     @Override
     public @NotNull Component getName() {
-        return Component.translatable("block.ott.butterfly_jar." + this.variant.getName());
+        return Component.translatable("block.ott.butterfly_jar_" + this.variant.getName());
     }
 
     @Override

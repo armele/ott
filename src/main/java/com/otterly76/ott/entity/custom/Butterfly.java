@@ -277,8 +277,7 @@ public class Butterfly extends Animal implements GeoEntity, FlyingAnimal, Catcha
     public @NotNull InteractionResult mobInteract(@NotNull Player player, @NotNull InteractionHand hand) {
         ItemStack stack = player.getItemInHand(hand);
         if (stack.is(ModItems.GLASS_JAR.get())) {
-            ItemStack caughtStack = new ItemStack(ModItems.BUTTERFLY_JAR.get());
-            com.otterly76.ott.item.custom.ButterflyJarItem.setVariant(caughtStack, this.getVariant());
+            ItemStack caughtStack = new ItemStack(ModItems.BUTTERFLY_JAR_ITEMS.get(this.getVariant()).get());
             this.saveToHandTag(caughtStack);
 
             if (!player.getAbilities().instabuild) {
@@ -320,7 +319,7 @@ public class Butterfly extends Animal implements GeoEntity, FlyingAnimal, Catcha
         return Variant.MONARCH;
     }
 
-    public enum Variant {
+    public enum Variant implements net.minecraft.util.StringRepresentable {
         BIRDWING(0, "birdwing"),
         BLUEMONARCH(1, "bluemonarch"),
         BUCKEYE(2, "buckeye"),
@@ -352,6 +351,8 @@ public class Butterfly extends Animal implements GeoEntity, FlyingAnimal, Catcha
         PURPLE_EMPEROR(28, "purple_emperor"),
         RED_ADMIRAL(29, "red_admiral");
 
+        public static final com.mojang.serialization.Codec<Variant> CODEC = net.minecraft.util.StringRepresentable.fromValues(Variant::values);
+
         private static final Variant[] BY_ID = Arrays.stream(values()).sorted(Comparator.comparingInt(Variant::getId)).toArray(Variant[]::new);
         private final int id;
         private final String name;
@@ -359,6 +360,11 @@ public class Butterfly extends Animal implements GeoEntity, FlyingAnimal, Catcha
         Variant(int id, String name) {
             this.id = id;
             this.name = name;
+        }
+
+        @Override
+        public @NotNull String getSerializedName() {
+            return this.name;
         }
 
         public int getId() {
@@ -392,21 +398,11 @@ public class Butterfly extends Animal implements GeoEntity, FlyingAnimal, Catcha
         }
 
         public String getGeoName() {
-            return switch (this) {
-                case BLUE_MORPHO -> "chorusmorpho";
-                case GREEN_SWALLOWTAIL, JADE_GREEN_SWALLOWTAIL -> "swallowtail";
-                case CABBAGE_WHITE, CLOUDED_YELLOW, PURPLE_EMPEROR, RED_ADMIRAL -> "monarch";
-                default -> this.name;
-            };
+            return this.name;
         }
 
         public String getAnimationName() {
-            return switch (this) {
-                case BLUE_MORPHO -> "chorusmorpho";
-                case GREEN_SWALLOWTAIL, JADE_GREEN_SWALLOWTAIL -> "swallowtail";
-                case CABBAGE_WHITE, CLOUDED_YELLOW, PURPLE_EMPEROR, RED_ADMIRAL -> "monarch";
-                default -> this.name;
-            };
+            return this.name;
         }
 
         public String getJarTextureName() {
@@ -420,10 +416,6 @@ public class Butterfly extends Animal implements GeoEntity, FlyingAnimal, Catcha
                 case MOURNINGCLOAK -> "mourningjar";
                 case RINGLET -> "ringletjar";
                 case RUSTYPAGE -> "rustypagejar";
-                case BLUE_MORPHO -> "chorusjar";
-                case GREEN_SWALLOWTAIL -> "emeraldjar";
-                case JADE_GREEN_SWALLOWTAIL -> "swallowtailjar";
-                case CABBAGE_WHITE, CLOUDED_YELLOW, PURPLE_EMPEROR, RED_ADMIRAL -> "monarchjar";
                 default -> this.name + "jar";
             };
         }

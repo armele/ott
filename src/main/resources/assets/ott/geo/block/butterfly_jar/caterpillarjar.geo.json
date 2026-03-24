@@ -43,53 +43,53 @@
 				},
 				{
 					"name": "caterpillar",
-					"pivot": [0, 2.5, -1.5]
+					"pivot": [0, 2.5, -1.65]
 				},
 				{
 					"name": "body",
 					"parent": "caterpillar",
-					"pivot": [0, 2.5, -4.5]
+					"pivot": [0, 2.5, -4.65]
 				},
 				{
 					"name": "skull",
 					"parent": "body",
-					"pivot": [0, 2.5, -5.5],
+					"pivot": [0, 2.5, -5.65],
 					"cubes": [
-						{"origin": [-1.5, 3.625, -5.25], "size": [3, 3, 2], "inflate": 0.03, "pivot": [0, 3.625, 0.75], "rotation": [-25, 0, 0], "uv": [5, 38]}
+						{"origin": [-1.5, 3.625, -5.4], "size": [3, 3, 2], "inflate": 0.03, "pivot": [0, 3.625, 0.6], "rotation": [-25, 0, 0], "uv": [5, 38]}
 					],
 					"locators": {
-						"lead": [0, 3, -5.5]
+						"lead": [0, 3, -7.25]
 					}
 				},
 				{
 					"name": "antennae",
 					"parent": "skull",
-					"pivot": [0, 4, -7.5],
+					"pivot": [0, 4, -7.65],
 					"cubes": [
-						{"origin": [-1.5, 5.625, -7.25], "size": [3, 2, 3], "inflate": 0.03, "pivot": [0, 2.625, 1.75], "rotation": [-25, 0, 0], "uv": [4, 44]}
+						{"origin": [-1.5, 5.625, -7.4], "size": [3, 2, 3], "inflate": 0.03, "pivot": [0, 2.625, 1.6], "rotation": [-25, 0, 0], "uv": [4, 44]}
 					]
 				},
 				{
 					"name": "extended",
 					"parent": "body",
-					"pivot": [0, 2.5, -2]
+					"pivot": [0, 2.5, -2.15]
 				},
 				{
 					"name": "chest",
 					"parent": "extended",
-					"pivot": [0, 3.25, -0.5],
+					"pivot": [0, 3.25, -0.65],
 					"rotation": [-12.5, 0, 0],
 					"cubes": [
-						{"origin": [-1.5, 2.875, -5.5], "size": [3, 3, 5], "inflate": 0.02, "pivot": [0, 2.875, -1.5], "rotation": [-37.5, 0, 0], "uv": [2, 29]}
+						{"origin": [-1.5, 2.875, -5.65], "size": [3, 3, 5], "inflate": 0.02, "pivot": [0, 2.875, -1.65], "rotation": [-37.5, 0, 0], "uv": [2, 29]}
 					]
 				},
 				{
 					"name": "butt",
 					"parent": "extended",
-					"pivot": [0, 3.25, -0.5],
+					"pivot": [0, 3.25, -0.65],
 					"rotation": [-12.5, 0, 0],
 					"cubes": [
-						{"origin": [-1.5, 2.5, -0.75], "size": [3, 3, 5], "pivot": [0, 2.5, -1.75], "rotation": [-12.5, 0, 0], "uv": [2, 29]}
+						{"origin": [-1.5, 2.5, -0.9], "size": [3, 3, 5], "pivot": [0, 2.5, -1.9], "rotation": [-12.5, 0, 0], "uv": [2, 29]}
 					]
 				}
 			]

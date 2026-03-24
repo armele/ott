@@ -480,9 +480,7 @@ public class ModItems {
     public static final DeferredHolder<Item, BlockItem> FIREFLIES_IN_A_JAR = ITEMS.register("fireflies_in_a_jar", () -> new FireflyJarItem(ModBlocks.FIREFLIES_IN_A_JAR.get(), new Item.Properties()));
     public static final DeferredHolder<Item, BlockItem> FIREFLY_JAR = ITEMS.register("firefly_jar", () -> new FireflyJarItem(ModBlocks.FIREFLY_JAR.get(), new Item.Properties()));
 
-    public static final DeferredHolder<Item, com.otterly76.ott.item.custom.ButterflyJarItem> BUTTERFLY_JAR = ITEMS.register("butterfly_jar",
-            () -> new com.otterly76.ott.item.custom.ButterflyJarItem(ModBlocks.BUTTERFLY_JAR.get(), new Item.Properties().stacksTo(1)));
-
+    public static final Map<Butterfly.Variant, DeferredItem<Item>> BUTTERFLY_JAR_ITEMS = new HashMap<>();
     public static final DeferredHolder<Item, com.otterly76.ott.item.custom.CaterpillarJarItem> CATERPILLAR_JAR = ITEMS.register("caterpillar_jar",
             () -> new com.otterly76.ott.item.custom.CaterpillarJarItem(ModBlocks.CATERPILLAR_JAR.get(), new Item.Properties().stacksTo(1)));
 
@@ -498,6 +496,11 @@ public class ModItems {
     }
 
     private static void initializeDynamicItems() {
+        for (Butterfly.Variant variant : Butterfly.Variant.values()) {
+            BUTTERFLY_JAR_ITEMS.put(variant, ITEMS.register("butterfly_jar_" + variant.getName(),
+                    () -> new com.otterly76.ott.item.custom.ButterflyJarItem(ModBlocks.BUTTERFLY_JARS.get(variant).get(), variant, new Item.Properties().stacksTo(1))));
+        }
+
         // REGISTRATION: Gradients
         ModBlocks.getAllGradientBlocks().forEach(block ->
                 ITEMS.register(block.getId().getPath(), () -> new GradientItem<>(new Item.Properties(), block.get())));

@@ -69,7 +69,7 @@ public class ModBlockEntities {
 
     public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<com.otterly76.ott.block.entity.ButterflyJarBlockEntity>> BUTTERFLY_JAR =
             BLOCK_ENTITIES.register("butterfly_jar", () -> BlockEntityType.Builder.of(com.otterly76.ott.block.entity.ButterflyJarBlockEntity::new,
-                    ModBlocks.BUTTERFLY_JAR.get()).build(null));
+                    ModBlocks.BUTTERFLY_JARS.values().stream().map(Supplier::get).toArray(Block[]::new)).build(null));
 
     public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<com.otterly76.ott.block.entity.CaterpillarJarBlockEntity>> CATERPILLAR_JAR =
             BLOCK_ENTITIES.register("caterpillar_jar", () -> BlockEntityType.Builder.of(com.otterly76.ott.block.entity.CaterpillarJarBlockEntity::new,

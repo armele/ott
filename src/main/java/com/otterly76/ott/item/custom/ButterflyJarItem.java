@@ -1,12 +1,9 @@
 package com.otterly76.ott.item.custom;
 
-import com.otterly76.ott.client.renderer.item.ButterflyJarItemRenderer;
 import com.otterly76.ott.entity.ModEntities;
 import com.otterly76.ott.entity.custom.Butterfly;
 import com.otterly76.ott.item.ModItems;
-import net.minecraft.client.renderer.BlockEntityWithoutLevelRenderer;
 import net.minecraft.core.BlockPos;
-import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
@@ -19,45 +16,18 @@ import net.minecraft.world.item.ItemUtils;
 import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
-import net.neoforged.neoforge.client.extensions.common.IClientItemExtensions;
 import org.jetbrains.annotations.NotNull;
-import software.bernie.geckolib.animatable.GeoItem;
-import software.bernie.geckolib.animatable.instance.AnimatableInstanceCache;
-import software.bernie.geckolib.animation.AnimatableManager;
-import software.bernie.geckolib.util.GeckoLibUtil;
 
-import java.util.function.Consumer;
+public class ButterflyJarItem extends BlockItem {
+    private final Butterfly.Variant variant;
 
-public class ButterflyJarItem extends BlockItem implements GeoItem {
-    private final AnimatableInstanceCache cache = GeckoLibUtil.createInstanceCache(this);
-
-    public ButterflyJarItem(Block block, Properties properties) {
+    public ButterflyJarItem(Block block, Butterfly.Variant variant, Properties properties) {
         super(block, properties);
+        this.variant = variant;
     }
 
-    @Override
-    public void registerControllers(AnimatableManager.ControllerRegistrar controllers) {
-    }
-
-    @Override
-    public AnimatableInstanceCache getAnimatableInstanceCache() {
-        return this.cache;
-    }
-
-    @Override
-    @SuppressWarnings("removal")
-    public void initializeClient(Consumer<IClientItemExtensions> consumer) {
-        consumer.accept(new IClientItemExtensions() {
-            private ButterflyJarItemRenderer renderer;
-
-            @Override
-            public @NotNull BlockEntityWithoutLevelRenderer getCustomRenderer() {
-                if (this.renderer == null) {
-                    this.renderer = new ButterflyJarItemRenderer();
-                }
-                return this.renderer;
-            }
-        });
+    public Butterfly.Variant getVariant() {
+        return variant;
     }
 
     @Override
@@ -86,10 +56,6 @@ public class ButterflyJarItem extends BlockItem implements GeoItem {
         return super.use(level, player, hand);
     }
 
-    @Override
-    public @NotNull Component getName(@NotNull ItemStack stack) {
-        return Component.translatable(this.getDescriptionId() + "." + getVariant(stack).getName());
-    }
 
     public static Butterfly.Variant getVariant(ItemStack stack) {
         return Butterfly.getVariant(stack);
