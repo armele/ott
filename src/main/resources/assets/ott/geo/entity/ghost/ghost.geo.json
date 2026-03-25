@@ -1,0 +1,67 @@
+{
+	"format_version": "1.12.0",
+	"minecraft:geometry": [
+		{
+			"description": {
+				"identifier": "geometry.piglinghost",
+				"texture_width": 128,
+				"texture_height": 128,
+				"visible_bounds_width": 3,
+				"visible_bounds_height": 4,
+				"visible_bounds_offset": [0, 1, 0]
+			},
+			"bones": [
+				{
+					"name": "head",
+					"pivot": [0, 17, 0],
+					"cubes": [
+						{"origin": [-5, 5, -5], "size": [10, 21, 10], "uv": [0, 0]},
+						{"origin": [-5, 0, -5], "size": [10, 5, 10], "uv": [30, 21]}
+					]
+				},
+				{
+					"name": "eyes",
+					"parent": "head",
+					"pivot": [0, 19.5, -5.025],
+					"cubes": [
+						{"origin": [1, 17, -5.025], "size": [2, 6, 0], "uv": [39, 43]},
+						{"origin": [-3, 17, -5.025], "size": [2, 6, 0], "uv": [44, 43]}
+					]
+				},
+				{
+					"name": "body",
+					"parent": "head",
+					"pivot": [0, 17, 0]
+				},
+				{
+					"name": "jacket",
+					"parent": "body",
+					"pivot": [0, 17, 0]
+				},
+				{
+					"name": "right_arm",
+					"parent": "body",
+					"pivot": [-5, 17, 0],
+					"rotation": [0, 0, 5],
+					"cubes": [
+						{"origin": [-8, 3, -2], "size": [3, 16, 4], "uv": [17, 32]}
+					]
+				},
+				{
+					"name": "left_arm",
+					"parent": "body",
+					"pivot": [5, 18, 0],
+					"rotation": [0, 0, -5],
+					"cubes": [
+						{"origin": [5, 3, -2], "size": [3, 16, 4], "uv": [0, 31]}
+					]
+				},
+				{
+					"name": "tail",
+					"parent": "body",
+					"pivot": [0, 5, 0]
+				}
+			]
+		}
+	]
+}

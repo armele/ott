@@ -110,6 +110,9 @@ public class ModSounds {
     public static final DeferredHolder<SoundEvent, SoundEvent> HAPPY_GHAST_AMBIENT = registerSoundEvent("entity.happy_ghast.ambient");
     public static final DeferredHolder<SoundEvent, SoundEvent> HAPPY_GHAST_HURT = registerSoundEvent("entity.happy_ghast.hurt");
     public static final DeferredHolder<SoundEvent, SoundEvent> HAPPY_GHAST_DEATH = registerSoundEvent("entity.happy_ghast.death");
+
+    public static final DeferredHolder<SoundEvent, SoundEvent> VILE_GATOR_AMBIENT = registerOttSoundEvent("entity.vile_gator.ambient");
+    public static final DeferredHolder<SoundEvent, SoundEvent> PHOENIX_AMBIENT = registerOttSoundEvent("entity.phoenix.ambient");
     public static final DeferredHolder<SoundEvent, SoundEvent> HAPPY_GHAST_RIDING = registerSoundEvent("entity.happy_ghast.riding");
     public static final DeferredHolder<SoundEvent, SoundEvent> HARNESS_EQUIP = registerSoundEvent("entity.happy_ghast.equip");
     public static final DeferredHolder<SoundEvent, SoundEvent> HARNESS_UNEQUIP = registerSoundEvent("entity.happy_ghast.unequip");
@@ -363,6 +366,22 @@ public class ModSounds {
     public static final DeferredHolder<SoundEvent, SoundEvent> SEA_URCHIN_AMBIENT = registerOttSoundEvent("entity.sea_urchin.idle");
     public static final DeferredHolder<SoundEvent, SoundEvent> SEA_URCHIN_HURT = registerOttSoundEvent("entity.sea_urchin.hurt");
     public static final DeferredHolder<SoundEvent, SoundEvent> SEA_URCHIN_DEATH = registerOttSoundEvent("entity.sea_urchin.death");
+
+    public static final DeferredHolder<SoundEvent, SoundEvent> GHOST_AMBIENT = registerOttSoundEvent("entity.ghost.ambient");
+    public static final DeferredHolder<SoundEvent, SoundEvent> GHOST_BREATH = registerOttSoundEvent("entity.ghost.breath");
+    public static final DeferredHolder<SoundEvent, SoundEvent> GHOST_HURT = registerOttSoundEvent("entity.ghost.hurt");
+    public static final DeferredHolder<SoundEvent, SoundEvent> GHOST_DEATH = registerOttSoundEvent("entity.ghost.death");
+    public static final DeferredHolder<SoundEvent, SoundEvent> SPECTRE_AMBIENT = registerOttSoundEvent("entity.spectre.ambient");
+    public static final DeferredHolder<SoundEvent, SoundEvent> SPECTRE_WAIL = registerOttSoundEvent("entity.spectre.wail");
+    public static final DeferredHolder<SoundEvent, SoundEvent> SPECTRE_HURT = registerOttSoundEvent("entity.spectre.hurt");
+    public static final DeferredHolder<SoundEvent, SoundEvent> SPECTRE_DEATH = registerOttSoundEvent("entity.spectre.death");
+    public static final DeferredHolder<SoundEvent, SoundEvent> GEIST_AMBIENT = registerOttSoundEvent("entity.geist.ambient");
+    public static final DeferredHolder<SoundEvent, SoundEvent> GEIST_HURT = registerOttSoundEvent("entity.geist.hurt");
+    public static final DeferredHolder<SoundEvent, SoundEvent> GEIST_DEATH = registerOttSoundEvent("entity.geist.death");
+    public static final DeferredHolder<SoundEvent, SoundEvent> HAUNT_AMBIENT = registerOttSoundEvent("entity.haunt.ambient");
+    public static final DeferredHolder<SoundEvent, SoundEvent> HAUNT_HURT = registerOttSoundEvent("entity.haunt.hurt");
+    public static final DeferredHolder<SoundEvent, SoundEvent> HAUNT_DEATH = registerOttSoundEvent("entity.haunt.death");
+    public static final DeferredHolder<SoundEvent, SoundEvent> NULL_AUDIO = registerOttSoundEvent("entity.misc.null_audio");
 
     public static final DeferredHolder<SoundEvent, SoundEvent> NONE = registerSoundEvent("music.none");
     public static final DeferredHolder<SoundEvent, SoundEvent> BUNDLE_INSERT_FAIL = registerSoundEvent("item.bundle.insert_fail");

@@ -146,6 +146,29 @@ public final class ModCreativeTabs {
                     output.accept(ModItems.OTTER_SPAWN_EGG);
                     output.accept(ModItems.RED_PANDA_SPAWN_EGG);
                     output.accept(ModItems.SEA_BUNNY_SPAWN_EGG);
+                    output.accept(ModItems.GHOST_SPAWN_EGG);
+                    output.accept(ModItems.SPECTRE_SPAWN_EGG);
+                    output.accept(ModItems.HAUNT_SPAWN_EGG);
+                    output.accept(ModItems.GEIST_SPAWN_EGG);
+                    output.accept(ModItems.TREE_ENT_SPAWN_EGG);
+                    output.accept(ModItems.HERMIT_KING_SPAWN_EGG);
+                    output.accept(ModItems.SAND_HERMIT_SPAWN_EGG);
+                    output.accept(ModItems.SEA_VIPER_SPAWN_EGG);
+                    output.accept(ModItems.YETI_SPAWN_EGG);
+                    output.accept(ModItems.VILE_GATOR_SPAWN_EGG);
+                    output.accept(ModItems.PHOENIX_SPAWN_EGG);
+                    output.accept(ModItems.BABY_PHOENIX_SPAWN_EGG);
+                    output.accept(ModItems.BONE_STALKER_SPAWN_EGG);
+                    output.accept(ModItems.SHADOW_SPAWN_EGG);
+                    output.accept(ModItems.CHERRY_TREE_ENT_SPAWN_EGG);
+                    output.accept(ModItems.GOLDEN_HERMIT_KING_SPAWN_EGG);
+                    output.accept(ModItems.CORAL_SEA_VIPER_SPAWN_EGG);
+                    output.accept(ModItems.ARID_YETI_SPAWN_EGG);
+                    output.accept(ModItems.WIND_PHOENIX_SPAWN_EGG);
+                    output.accept(ModItems.BABY_WIND_PHOENIX_SPAWN_EGG);
+                    output.accept(ModItems.BOGGED_BONE_STALKER_SPAWN_EGG);
+                    output.accept(ModItems.BOGGED_SHADOW_SPAWN_EGG);
+                    output.accept(ModItems.GILDED_TREE_ENT_SPAWN_EGG);
                 }).build();
     }
 

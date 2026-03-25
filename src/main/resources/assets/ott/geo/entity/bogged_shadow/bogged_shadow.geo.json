@@ -1,0 +1,52 @@
+{
+	"format_version": "1.12.0",
+	"minecraft:geometry": [
+		{
+			"description": {
+				"identifier": "geometry.unknown",
+				"texture_width": 128,
+				"texture_height": 128,
+				"visible_bounds_width": 9,
+				"visible_bounds_height": 6,
+				"visible_bounds_offset": [0, 2, 0]
+			},
+			"bones": [
+				{
+					"name": "Head",
+					"pivot": [-0.93329, 10.33333, -0.26837],
+					"cubes": [
+						{
+							"origin": [-8.875, 6, -10],
+							"size": [16, 10, 20],
+							"uv": {
+								"north": {"uv": [20, 50], "uv_size": [16, 10]},
+								"east": {"uv": [0, 50], "uv_size": [20, 10]},
+								"south": {"uv": [56, 50], "uv_size": [16, 10]},
+								"west": {"uv": [36, 50], "uv_size": [20, 10]},
+								"up": {"uv": [20, 30], "uv_size": [16, 20]},
+								"down": {"uv": [79, 51], "uv_size": [16, -20]}
+							}
+						}
+					]
+				},
+				{
+					"name": "eyes",
+					"parent": "Head",
+					"pivot": [0.0125, 12.5, 3.5],
+					"cubes": [
+						{"origin": [7.225, 11, 1], "size": [0, 8, 5], "uv": [36, 37]},
+						{"origin": [-8.925, 11, 1], "size": [0, 8, 5], "uv": [5, 37]}
+					]
+				},
+				{
+					"name": "Jaw2",
+					"parent": "Head",
+					"pivot": [0, 10, 10],
+					"cubes": [
+						{"origin": [-8.875, 1, -10], "size": [16, 10, 20], "inflate": -0.025, "uv": [0, 0]}
+					]
+				}
+			]
+		}
+	]
+}

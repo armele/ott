@@ -1,0 +1,44 @@
+{
+	"format_version": "1.12.0",
+	"minecraft:geometry": [
+		{
+			"description": {
+				"identifier": "geometry.poltergeist",
+				"texture_width": 128,
+				"texture_height": 128,
+				"visible_bounds_width": 3,
+				"visible_bounds_height": 3,
+				"visible_bounds_offset": [0, 0.5, 0]
+			},
+			"bones": [
+				{
+					"name": "bone",
+					"pivot": [0, 5.8, -0.01]
+				},
+				{
+					"name": "eyes",
+					"parent": "bone",
+					"pivot": [0, 8, -5]
+				},
+				{
+					"name": "left_eye",
+					"parent": "eyes",
+					"pivot": [2.5, 8.5, -5.05],
+					"cubes": [
+						{"origin": [2, 9, -0.025], "size": [1, 1, 0], "uv": [20, 24]},
+						{"origin": [2, 9, 0], "size": [1, 1, 0], "uv": [20, 25]}
+					]
+				},
+				{
+					"name": "right_eye",
+					"parent": "eyes",
+					"pivot": [-2.5, 8.5, -5.05],
+					"cubes": [
+						{"origin": [-3, 9, -0.025], "size": [1, 1, 0], "uv": [20, 24]},
+						{"origin": [-3, 9, 0], "size": [1, 1, 0], "uv": [20, 25]}
+					]
+				}
+			]
+		}
+	]
+}

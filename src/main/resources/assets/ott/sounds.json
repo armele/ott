@@ -9,6 +9,88 @@
       "ott:weather/snow-06"
     ]
   },
+  "entity.ghost.ambient": {
+    "sounds": [
+      { "name": "ott:entity/ghost/ghost1" },
+      { "name": "ott:entity/ghost/ghost2" }
+    ]
+  },
+  "entity.ghost.breath": {
+    "sounds": [
+      { "name": "ott:entity/ghost/ghostbreath" }
+    ]
+  },
+  "entity.ghost.hurt": {
+    "sounds": [
+      { "name": "ott:entity/geist/geist_hurt" }
+    ]
+  },
+  "entity.ghost.death": {
+    "sounds": [
+      { "name": "ott:entity/geist/geist_hurt" }
+    ]
+  },
+  "entity.spectre.ambient": {
+    "sounds": [
+      { "name": "ott:entity/spectre/spectre1" },
+      { "name": "ott:entity/spectre/spectre2" },
+      { "name": "ott:entity/spectre/spectre3" }
+    ]
+  },
+  "entity.spectre.wail": {
+    "sounds": [
+      { "name": "ott:entity/spectre/spectre1" },
+      { "name": "ott:entity/spectre/spectre2" },
+      { "name": "ott:entity/spectre/spectre3" }
+    ]
+  },
+  "entity.spectre.hurt": {
+    "sounds": [
+      { "name": "ott:entity/spectre/spectre1" }
+    ]
+  },
+  "entity.spectre.death": {
+    "sounds": [
+      { "name": "ott:entity/spectre/spectre2" }
+    ]
+  },
+  "entity.geist.ambient": {
+    "sounds": [
+      { "name": "ott:entity/geist/geist1" },
+      { "name": "ott:entity/geist/geist2" }
+    ]
+  },
+  "entity.geist.hurt": {
+    "sounds": [
+      { "name": "ott:entity/geist/geist_hurt" }
+    ]
+  },
+  "entity.geist.death": {
+    "sounds": [
+      { "name": "ott:entity/geist/geist_hurt" }
+    ]
+  },
+  "entity.haunt.ambient": {
+    "sounds": [
+      { "name": "ott:entity/ghost/ghost1" },
+      { "name": "ott:entity/ghost/ghost2" }
+    ]
+  },
+  "entity.haunt.hurt": {
+    "sounds": [
+      { "name": "ott:entity/geist/geist_hurt" }
+    ]
+  },
+  "entity.haunt.death": {
+    "sounds": [
+      { "name": "ott:entity/geist/geist_hurt" }
+    ]
+  },
+  "entity.misc.null_audio": {
+    "sounds": [
+      { "name": "ott:entity/misc/null_audio" }
+    ]
+  },
   "weather.snow.above": {
     "sounds": [
       "ott:weather/snow-01",
@@ -78,6 +160,17 @@
     "sounds": [
       { "name": "ott:entity/pheasant/pheasant_hurt1" },
       { "name": "ott:entity/pheasant/pheasant_hurt2" }
+    ]
+  },
+  "entity.vile_gator.ambient": {
+    "sounds": [
+      { "name": "ott:entity/vile_gator/vile_gator_1" },
+      { "name": "ott:entity/vile_gator/vile_gator_2" }
+    ]
+  },
+  "entity.phoenix.ambient": {
+    "sounds": [
+      { "name": "ott:entity/phoenix/phoenix_1" }
     ]
   },
   "entity.toucan.ambient": {

@@ -1,1 +1,1 @@
-﻿{ "parent": "minecraft:item/generated", "textures": { "layer0": "ott:item/ringletbf" } }
+{ "parent": "minecraft:item/generated", "textures": { "layer0": "ott:item/ringletbf" } }

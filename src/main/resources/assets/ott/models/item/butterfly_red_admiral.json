@@ -1,1 +1,1 @@
-﻿{ "parent": "minecraft:item/generated", "textures": { "layer0": "ott:item/red_admiral" } }
+{ "parent": "minecraft:item/generated", "textures": { "layer0": "ott:item/red_admiral" } }

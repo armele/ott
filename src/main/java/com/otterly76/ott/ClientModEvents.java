@@ -155,6 +155,8 @@ public class ClientModEvents {
         event.registerSpriteSet(ModParticle.SHRUB.get(), ShrubParticle.DefaultFactory::new);
         event.registerSpriteSet(ModParticle.RIPPLE.get(), RippleParticle.DefaultFactory::new);
         event.registerSpriteSet(ModParticle.STREAK.get(), StreakParticle.DefaultFactory::new);
+        event.registerSpriteSet(ModParticle.GHOST.get(), GeistParticle.GhostProvider::new);
+        event.registerSpriteSet(ModParticle.GEIST_DARK.get(), GeistParticle.GeistDarkProvider::new);
 
         event.registerSpriteSet(ModParticle.STARLIGHT_LEAF.get(), HedgeLeafParticle.Provider::new);
         event.registerSpriteSet(ModParticle.MIDNIGHT_LEAF.get(), HedgeLeafParticle.Provider::new);
@@ -256,6 +258,31 @@ public class ClientModEvents {
         event.registerEntityRenderer(ModEntities.RED_PANDA.get(), com.otterly76.ott.client.render.entity.RedPandaRenderer::new);
         event.registerEntityRenderer(ModEntities.SEA_BUNNY.get(), com.otterly76.ott.client.render.entity.SeaBunnyRenderer::new);
         event.registerEntityRenderer(ModEntities.SMALL_FIREFLY.get(), com.otterly76.ott.client.render.entity.SmallFireflyRenderer::new);
+
+        event.registerEntityRenderer(ModEntities.GHOST.get(), com.otterly76.ott.client.render.entity.GhostRenderer::new);
+        event.registerEntityRenderer(ModEntities.SPECTRE.get(), com.otterly76.ott.client.render.entity.SpectreRenderer::new);
+        event.registerEntityRenderer(ModEntities.HAUNT.get(), com.otterly76.ott.client.render.entity.HauntRenderer::new);
+        event.registerEntityRenderer(ModEntities.GEIST.get(), com.otterly76.ott.client.render.entity.GeistRenderer::new);
+
+        event.registerEntityRenderer(ModEntities.TREE_ENT.get(), com.otterly76.ott.client.render.entity.TreeEntRenderer::new);
+        event.registerEntityRenderer(ModEntities.HERMIT_KING.get(), com.otterly76.ott.client.render.entity.HermitKingRenderer::new);
+        event.registerEntityRenderer(ModEntities.SAND_HERMIT.get(), com.otterly76.ott.client.render.entity.SandHermitRenderer::new);
+        event.registerEntityRenderer(ModEntities.SEA_VIPER.get(), com.otterly76.ott.client.render.entity.SeaViperRenderer::new);
+        event.registerEntityRenderer(ModEntities.YETI.get(), com.otterly76.ott.client.render.entity.YetiRenderer::new);
+        event.registerEntityRenderer(ModEntities.VILE_GATOR.get(), com.otterly76.ott.client.render.entity.VileGatorRenderer::new);
+        event.registerEntityRenderer(ModEntities.PHOENIX.get(), com.otterly76.ott.client.render.entity.PhoenixRenderer::new);
+        event.registerEntityRenderer(ModEntities.BABY_PHOENIX.get(), com.otterly76.ott.client.render.entity.BabyPhoenixRenderer::new);
+        event.registerEntityRenderer(ModEntities.BONE_STALKER.get(), com.otterly76.ott.client.render.entity.BoneStalkerRenderer::new);
+        event.registerEntityRenderer(ModEntities.SHADOW.get(), com.otterly76.ott.client.render.entity.ShadowRenderer::new);
+        event.registerEntityRenderer(ModEntities.CHERRY_TREE_ENT.get(), com.otterly76.ott.client.render.entity.CherryTreeEntRenderer::new);
+        event.registerEntityRenderer(ModEntities.GOLDEN_HERMIT_KING.get(), com.otterly76.ott.client.render.entity.GoldenHermitKingRenderer::new);
+        event.registerEntityRenderer(ModEntities.CORAL_SEA_VIPER.get(), com.otterly76.ott.client.render.entity.CoralSeaViperRenderer::new);
+        event.registerEntityRenderer(ModEntities.ARID_YETI.get(), com.otterly76.ott.client.render.entity.AridYetiRenderer::new);
+        event.registerEntityRenderer(ModEntities.WIND_PHOENIX.get(), com.otterly76.ott.client.render.entity.WindPhoenixRenderer::new);
+        event.registerEntityRenderer(ModEntities.BABY_WIND_PHOENIX.get(), com.otterly76.ott.client.render.entity.BabyWindPhoenixRenderer::new);
+        event.registerEntityRenderer(ModEntities.BOGGED_BONE_STALKER.get(), com.otterly76.ott.client.render.entity.BoggedBoneStalkerRenderer::new);
+        event.registerEntityRenderer(ModEntities.BOGGED_SHADOW.get(), com.otterly76.ott.client.render.entity.BoggedShadowRenderer::new);
+        event.registerEntityRenderer(ModEntities.GILDED_TREE_ENT.get(), com.otterly76.ott.client.render.entity.GildedTreeEntRenderer::new);
 
         event.registerEntityRenderer(ModEntities.KIWI_EGG.get(), ThrownItemRenderer::new);
         event.registerEntityRenderer(ModEntities.PENGUIN_EGG.get(), ThrownItemRenderer::new);

@@ -300,6 +300,75 @@ public class ModEntities {
     public static final Supplier<EntityType<com.otterly76.ott.entity.custom.SmallFirefly>> SMALL_FIREFLY = OTT_ENTITY_TYPES.register("small_firefly",
             () -> Builder.of(com.otterly76.ott.entity.custom.SmallFirefly::new, MobCategory.AMBIENT).sized(0.1F, 0.1F).clientTrackingRange(8).build("small_firefly"));
 
+    public static final Supplier<EntityType<com.otterly76.ott.entity.custom.Ghost>> GHOST = OTT_ENTITY_TYPES.register("ghost",
+            () -> Builder.of(com.otterly76.ott.entity.custom.Ghost::new, MobCategory.MONSTER).sized(0.6F, 1.8F).clientTrackingRange(8).build("ghost"));
+
+    public static final Supplier<EntityType<com.otterly76.ott.entity.custom.Spectre>> SPECTRE = OTT_ENTITY_TYPES.register("spectre",
+            () -> Builder.of(com.otterly76.ott.entity.custom.Spectre::new, MobCategory.MONSTER).sized(1.5F, 2.5F).clientTrackingRange(8).build("spectre"));
+
+    public static final Supplier<EntityType<com.otterly76.ott.entity.custom.Haunt>> HAUNT = OTT_ENTITY_TYPES.register("haunt",
+            () -> Builder.of(com.otterly76.ott.entity.custom.Haunt::new, MobCategory.MONSTER).sized(0.6F, 1.8F).clientTrackingRange(8).build("haunt"));
+
+    public static final Supplier<EntityType<com.otterly76.ott.entity.custom.Geist>> GEIST = OTT_ENTITY_TYPES.register("geist",
+            () -> Builder.of(com.otterly76.ott.entity.custom.Geist::new, MobCategory.MONSTER).sized(0.6F, 0.6F).clientTrackingRange(8).build("geist"));
+
+    public static final Supplier<EntityType<com.otterly76.ott.entity.custom.TreeEnt>> TREE_ENT = OTT_ENTITY_TYPES.register("tree_ent",
+            () -> Builder.of(com.otterly76.ott.entity.custom.TreeEnt::new, MobCategory.MONSTER).sized(1.2F, 3.5F).clientTrackingRange(8).build("tree_ent"));
+
+    public static final Supplier<EntityType<com.otterly76.ott.entity.custom.HermitKing>> HERMIT_KING = OTT_ENTITY_TYPES.register("hermit_king",
+            () -> Builder.of(com.otterly76.ott.entity.custom.HermitKing::new, MobCategory.MONSTER).sized(2.0F, 1.5F).clientTrackingRange(8).build("hermit_king"));
+
+    public static final Supplier<EntityType<com.otterly76.ott.entity.custom.SandHermit>> SAND_HERMIT = OTT_ENTITY_TYPES.register("sand_hermit",
+            () -> Builder.of(com.otterly76.ott.entity.custom.SandHermit::new, MobCategory.MONSTER).sized(0.8F, 0.6F).clientTrackingRange(8).build("sand_hermit"));
+
+    public static final Supplier<EntityType<com.otterly76.ott.entity.custom.SeaViper>> SEA_VIPER = OTT_ENTITY_TYPES.register("sea_viper",
+            () -> Builder.of(com.otterly76.ott.entity.custom.SeaViper::new, MobCategory.MONSTER).sized(0.8F, 0.8F).clientTrackingRange(8).build("sea_viper"));
+
+    public static final Supplier<EntityType<com.otterly76.ott.entity.custom.Yeti>> YETI = OTT_ENTITY_TYPES.register("yeti",
+            () -> Builder.of(com.otterly76.ott.entity.custom.Yeti::new, MobCategory.MONSTER).sized(1.2F, 2.5F).clientTrackingRange(8).build("yeti"));
+
+    public static final Supplier<EntityType<com.otterly76.ott.entity.custom.VileGator>> VILE_GATOR = OTT_ENTITY_TYPES.register("vile_gator",
+            () -> Builder.of(com.otterly76.ott.entity.custom.VileGator::new, MobCategory.MONSTER).sized(1.2F, 0.8F).clientTrackingRange(8).build("vile_gator"));
+
+    public static final Supplier<EntityType<com.otterly76.ott.entity.custom.Phoenix>> PHOENIX = OTT_ENTITY_TYPES.register("phoenix",
+            () -> Builder.of(com.otterly76.ott.entity.custom.Phoenix::new, MobCategory.MONSTER).sized(1.0F, 1.5F).clientTrackingRange(8).build("phoenix"));
+
+    public static final Supplier<EntityType<com.otterly76.ott.entity.custom.BabyPhoenix>> BABY_PHOENIX = OTT_ENTITY_TYPES.register("baby_phoenix",
+            () -> Builder.of(com.otterly76.ott.entity.custom.BabyPhoenix::new, MobCategory.MONSTER).sized(0.5F, 0.7F).clientTrackingRange(8).build("baby_phoenix"));
+
+    public static final Supplier<EntityType<com.otterly76.ott.entity.custom.BoneStalker>> BONE_STALKER = OTT_ENTITY_TYPES.register("bone_stalker",
+            () -> Builder.of(com.otterly76.ott.entity.custom.BoneStalker::new, MobCategory.MONSTER).sized(0.6F, 1.9F).clientTrackingRange(8).build("bone_stalker"));
+
+    public static final Supplier<EntityType<com.otterly76.ott.entity.custom.Shadow>> SHADOW = OTT_ENTITY_TYPES.register("shadow",
+            () -> Builder.of(com.otterly76.ott.entity.custom.Shadow::new, MobCategory.MONSTER).sized(0.6F, 1.8F).clientTrackingRange(8).build("shadow"));
+
+    public static final Supplier<EntityType<com.otterly76.ott.entity.custom.CherryTreeEnt>> CHERRY_TREE_ENT = OTT_ENTITY_TYPES.register("cherry_tree_ent",
+            () -> Builder.of(com.otterly76.ott.entity.custom.CherryTreeEnt::new, MobCategory.MONSTER).sized(1.2F, 3.5F).clientTrackingRange(8).build("cherry_tree_ent"));
+
+    public static final Supplier<EntityType<com.otterly76.ott.entity.custom.GoldenHermitKing>> GOLDEN_HERMIT_KING = OTT_ENTITY_TYPES.register("golden_hermit_king",
+            () -> Builder.of(com.otterly76.ott.entity.custom.GoldenHermitKing::new, MobCategory.MONSTER).sized(2.0F, 1.5F).clientTrackingRange(8).build("golden_hermit_king"));
+
+    public static final Supplier<EntityType<com.otterly76.ott.entity.custom.CoralSeaViper>> CORAL_SEA_VIPER = OTT_ENTITY_TYPES.register("coral_sea_viper",
+            () -> Builder.of(com.otterly76.ott.entity.custom.CoralSeaViper::new, MobCategory.MONSTER).sized(0.8F, 0.8F).clientTrackingRange(8).build("coral_sea_viper"));
+
+    public static final Supplier<EntityType<com.otterly76.ott.entity.custom.AridYeti>> ARID_YETI = OTT_ENTITY_TYPES.register("arid_yeti",
+            () -> Builder.of(com.otterly76.ott.entity.custom.AridYeti::new, MobCategory.MONSTER).sized(1.2F, 2.5F).clientTrackingRange(8).build("arid_yeti"));
+
+    public static final Supplier<EntityType<com.otterly76.ott.entity.custom.WindPhoenix>> WIND_PHOENIX = OTT_ENTITY_TYPES.register("wind_phoenix",
+            () -> Builder.of(com.otterly76.ott.entity.custom.WindPhoenix::new, MobCategory.MONSTER).sized(1.0F, 1.5F).clientTrackingRange(8).build("wind_phoenix"));
+
+    public static final Supplier<EntityType<com.otterly76.ott.entity.custom.BabyWindPhoenix>> BABY_WIND_PHOENIX = OTT_ENTITY_TYPES.register("baby_wind_phoenix",
+            () -> Builder.of(com.otterly76.ott.entity.custom.BabyWindPhoenix::new, MobCategory.MONSTER).sized(0.5F, 0.7F).clientTrackingRange(8).build("baby_wind_phoenix"));
+
+    public static final Supplier<EntityType<com.otterly76.ott.entity.custom.BoggedBoneStalker>> BOGGED_BONE_STALKER = OTT_ENTITY_TYPES.register("bogged_bone_stalker",
+            () -> Builder.of(com.otterly76.ott.entity.custom.BoggedBoneStalker::new, MobCategory.MONSTER).sized(0.6F, 1.9F).clientTrackingRange(8).build("bogged_bone_stalker"));
+
+    public static final Supplier<EntityType<com.otterly76.ott.entity.custom.BoggedShadow>> BOGGED_SHADOW = OTT_ENTITY_TYPES.register("bogged_shadow",
+            () -> Builder.of(com.otterly76.ott.entity.custom.BoggedShadow::new, MobCategory.MONSTER).sized(0.6F, 1.8F).clientTrackingRange(8).build("bogged_shadow"));
+
+    public static final Supplier<EntityType<com.otterly76.ott.entity.custom.GildedTreeEnt>> GILDED_TREE_ENT = OTT_ENTITY_TYPES.register("gilded_tree_ent",
+            () -> Builder.of(com.otterly76.ott.entity.custom.GildedTreeEnt::new, MobCategory.MONSTER).sized(1.2F, 3.5F).clientTrackingRange(8).build("gilded_tree_ent"));
+
     public static void register(IEventBus eventBus) {
         ENTITY_TYPES.register(eventBus);
         OTT_ENTITY_TYPES.register(eventBus);

@@ -1,1 +1,1 @@
-﻿{ "parent": "minecraft:item/generated", "textures": { "layer0": "ott:item/soulbutterfly" } }
+{ "parent": "minecraft:item/generated", "textures": { "layer0": "ott:item/soulbutterfly" } }

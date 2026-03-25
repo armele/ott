@@ -1,1 +1,1 @@
-﻿{ "parent": "minecraft:item/generated", "textures": { "layer0": "ott:item/emeraldbf" } }
+{ "parent": "minecraft:item/generated", "textures": { "layer0": "ott:item/emeraldbf" } }

@@ -1,0 +1,80 @@
+{
+	"format_version": "1.12.0",
+	"minecraft:geometry": [
+		{
+			"description": {
+				"identifier": "geometry.guzzleghast",
+				"texture_width": 128,
+				"texture_height": 128,
+				"visible_bounds_width": 3,
+				"visible_bounds_height": 4,
+				"visible_bounds_offset": [0, 1, 0]
+			},
+			"bones": [
+				{
+					"name": "head",
+					"pivot": [0, 17, 0],
+					"cubes": [
+						{"origin": [-7, 5, -5], "size": [14, 21, 10], "uv": [0, 5]},
+						{"origin": [-7, 0, -5], "size": [14, 5, 10], "uv": [54, 14]}
+					]
+				},
+				{
+					"name": "eyes",
+					"parent": "head",
+					"pivot": [0, 21.5, -5.025],
+					"cubes": [
+						{"origin": [3, 20, -5.025], "size": [3, 3, 0], "uv": [49, 43]},
+						{"origin": [-6, 20, -5.025], "size": [3, 3, 0], "uv": [49, 46]}
+					]
+				},
+				{
+					"name": "left_eye",
+					"parent": "eyes",
+					"pivot": [4.5, 21.5, -5.075],
+					"cubes": [
+						{"origin": [4, 21, -5.075], "size": [1, 1, 0], "uv": [49, 51]},
+						{"origin": [4, 21, -5.075], "size": [1, 1, 0], "uv": [52, 51]}
+					]
+				},
+				{
+					"name": "right_eye",
+					"parent": "eyes",
+					"pivot": [-4.5, 21.5, -5.05],
+					"cubes": [
+						{"origin": [-5, 21, -5.05], "size": [1, 1, 0], "uv": [49, 51]},
+						{"origin": [-5, 21, -5.05], "size": [1, 1, 0], "uv": [52, 51]}
+					]
+				},
+				{
+					"name": "body",
+					"parent": "head",
+					"pivot": [0, 17, 0]
+				},
+				{
+					"name": "right_arm",
+					"parent": "body",
+					"pivot": [-7, 17, 0],
+					"rotation": [0, 0, 5],
+					"cubes": [
+						{"origin": [-10, 3, -2], "size": [3, 16, 4], "uv": [1, 58]}
+					]
+				},
+				{
+					"name": "left_arm",
+					"parent": "body",
+					"pivot": [7, 18, 0],
+					"rotation": [0, 0, -5],
+					"cubes": [
+						{"origin": [7, 3, -2], "size": [3, 16, 4], "uv": [18, 59]}
+					]
+				},
+				{
+					"name": "tail",
+					"parent": "body",
+					"pivot": [0, 5, 0]
+				}
+			]
+		}
+	]
+}

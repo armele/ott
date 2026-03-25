@@ -102,6 +102,31 @@ public class ModEventBusEvents {
         event.put(ModEntities.RED_PANDA.get(), com.otterly76.ott.entity.custom.RedPandaEntity.createAttributes().build());
         event.put(ModEntities.SEA_BUNNY.get(), com.otterly76.ott.entity.custom.SeaBunnyEntity.createAttributes().build());
         event.put(ModEntities.SMALL_FIREFLY.get(), com.otterly76.ott.entity.custom.SmallFirefly.createAttributes().build());
+
+        event.put(ModEntities.GHOST.get(), com.otterly76.ott.entity.custom.Ghost.createAttributes().build());
+        event.put(ModEntities.SPECTRE.get(), com.otterly76.ott.entity.custom.Spectre.createAttributes().build());
+        event.put(ModEntities.HAUNT.get(), com.otterly76.ott.entity.custom.Haunt.createAttributes().build());
+        event.put(ModEntities.GEIST.get(), com.otterly76.ott.entity.custom.Geist.createAttributes().build());
+
+        event.put(ModEntities.TREE_ENT.get(), com.otterly76.ott.entity.custom.TreeEnt.createAttributes().build());
+        event.put(ModEntities.HERMIT_KING.get(), com.otterly76.ott.entity.custom.HermitKing.createAttributes().build());
+        event.put(ModEntities.SAND_HERMIT.get(), com.otterly76.ott.entity.custom.SandHermit.createAttributes().build());
+        event.put(ModEntities.SEA_VIPER.get(), com.otterly76.ott.entity.custom.SeaViper.createAttributes().build());
+        event.put(ModEntities.YETI.get(), com.otterly76.ott.entity.custom.Yeti.createAttributes().build());
+        event.put(ModEntities.VILE_GATOR.get(), com.otterly76.ott.entity.custom.VileGator.createAttributes().build());
+        event.put(ModEntities.PHOENIX.get(), com.otterly76.ott.entity.custom.Phoenix.createAttributes().build());
+        event.put(ModEntities.BABY_PHOENIX.get(), com.otterly76.ott.entity.custom.BabyPhoenix.createAttributes().build());
+        event.put(ModEntities.BONE_STALKER.get(), com.otterly76.ott.entity.custom.BoneStalker.createAttributes().build());
+        event.put(ModEntities.SHADOW.get(), com.otterly76.ott.entity.custom.Shadow.createAttributes().build());
+        event.put(ModEntities.CHERRY_TREE_ENT.get(), com.otterly76.ott.entity.custom.CherryTreeEnt.createAttributes().build());
+        event.put(ModEntities.GOLDEN_HERMIT_KING.get(), com.otterly76.ott.entity.custom.GoldenHermitKing.createAttributes().build());
+        event.put(ModEntities.CORAL_SEA_VIPER.get(), com.otterly76.ott.entity.custom.CoralSeaViper.createAttributes().build());
+        event.put(ModEntities.ARID_YETI.get(), com.otterly76.ott.entity.custom.AridYeti.createAttributes().build());
+        event.put(ModEntities.WIND_PHOENIX.get(), com.otterly76.ott.entity.custom.WindPhoenix.createAttributes().build());
+        event.put(ModEntities.BABY_WIND_PHOENIX.get(), com.otterly76.ott.entity.custom.BabyWindPhoenix.createAttributes().build());
+        event.put(ModEntities.BOGGED_BONE_STALKER.get(), com.otterly76.ott.entity.custom.BoggedBoneStalker.createAttributes().build());
+        event.put(ModEntities.BOGGED_SHADOW.get(), com.otterly76.ott.entity.custom.BoggedShadow.createAttributes().build());
+        event.put(ModEntities.GILDED_TREE_ENT.get(), com.otterly76.ott.entity.custom.GildedTreeEnt.createAttributes().build());
     }
 
     @SubscribeEvent

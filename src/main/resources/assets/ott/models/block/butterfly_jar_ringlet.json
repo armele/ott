@@ -1,1 +1,1 @@
-﻿{ "parent": "ott:block/butterfly_jar_base", "textures": { "jar": "ott:block/butterfly_jar/ringletjar", "wing": "ott:block/butterfly_jar/ringletjar" } }
+{ "parent": "ott:block/butterfly_jar_base", "textures": { "jar": "ott:block/butterfly_jar/ringletjar", "wing": "ott:block/butterfly_jar/ringletjar" } }
