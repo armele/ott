@@ -150,6 +150,7 @@ public class ModEventBusEvents {
 
         event.put(ModEntities.CICHLID.get(), com.otterly76.ott.entity.custom.CichlidEntity.createAttributes().build());
         event.put(ModEntities.LEOPARD_CAT.get(), com.otterly76.ott.entity.custom.LeopardCatEntity.createAttributes().build());
+        event.put(ModEntities.WATER_BUFFALO.get(), net.minecraft.world.entity.animal.Cow.createAttributes().build());
         event.put(ModEntities.ECHIDNA.get(), com.otterly76.ott.entity.custom.EchidnaEntity.createAttributes().build());
         event.put(ModEntities.GUITARFISH.get(), com.otterly76.ott.entity.custom.GuitarfishEntity.createAttributes().build());
         event.put(ModEntities.BONNETHEAD_SHARK.get(), com.otterly76.ott.entity.custom.BonnetheadSharkEntity.createAttributes().build());
@@ -286,6 +287,14 @@ public class ModEventBusEvents {
         );
         event.register(
                 ModEntities.GOOSE.get(),
+                SpawnPlacementTypes.ON_GROUND,
+                Heightmap.Types.MOTION_BLOCKING_NO_LEAVES,
+                Animal::checkAnimalSpawnRules,
+                RegisterSpawnPlacementsEvent.Operation.OR
+        );
+
+        event.register(
+                ModEntities.WATER_BUFFALO.get(),
                 SpawnPlacementTypes.ON_GROUND,
                 Heightmap.Types.MOTION_BLOCKING_NO_LEAVES,
                 Animal::checkAnimalSpawnRules,

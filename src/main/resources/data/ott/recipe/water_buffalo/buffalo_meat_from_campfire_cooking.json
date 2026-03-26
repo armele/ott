@@ -1,0 +1,11 @@
+{
+  "type": "minecraft:campfire_cooking",
+  "cookingtime": 600,
+  "experience": 0.35,
+  "ingredient": {
+    "item": "ott:raw_buffalo_meat"
+  },
+  "result": {
+    "id": "ott:cooked_buffalo_meat"
+  }
+}

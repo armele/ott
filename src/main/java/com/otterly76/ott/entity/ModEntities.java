@@ -242,6 +242,9 @@ public class ModEntities {
     public static final Supplier<EntityType<com.otterly76.ott.entity.custom.RedPandaEntity>> RED_PANDA = OTT_ENTITY_TYPES.register("red_panda",
             () -> Builder.of(com.otterly76.ott.entity.custom.RedPandaEntity::new, MobCategory.CREATURE).sized(0.75F, 0.65F).build("red_panda"));
 
+    public static final Supplier<EntityType<com.otterly76.ott.entity.custom.WaterBuffaloEntity>> WATER_BUFFALO = OTT_ENTITY_TYPES.register("water_buffalo",
+            () -> Builder.of(com.otterly76.ott.entity.custom.WaterBuffaloEntity::new, MobCategory.CREATURE).sized(0.9F, 1.4F).build("water_buffalo"));
+
     public static final Supplier<EntityType<com.otterly76.ott.entity.custom.SeaBunnyEntity>> SEA_BUNNY = OTT_ENTITY_TYPES.register("sea_bunny",
             () -> Builder.of(com.otterly76.ott.entity.custom.SeaBunnyEntity::new, MobCategory.WATER_AMBIENT).sized(0.45F, 0.3F).build("sea_bunny"));
 

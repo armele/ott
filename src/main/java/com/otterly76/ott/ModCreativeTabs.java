@@ -147,6 +147,7 @@ public final class ModCreativeTabs {
                     output.accept(ModItems.RED_PANDA_SPAWN_EGG);
                     output.accept(ModItems.SEA_BUNNY_SPAWN_EGG);
                     output.accept(ModItems.CICHLID_SPAWN_EGG);
+                    output.accept(ModItems.WATER_BUFFALO_SPAWN_EGG);
                     output.accept(ModItems.LEOPARD_CAT_SPAWN_EGG);
                     output.accept(ModItems.ECHIDNA_SPAWN_EGG);
                     output.accept(ModItems.GUITARFISH_SPAWN_EGG);
@@ -312,7 +313,9 @@ public final class ModCreativeTabs {
                     output.accept(ModItems.COOKED_LIZARD_TAIL);
                     output.accept(ModItems.COOKED_EGG);
                     output.accept(ModItems.RAW_CAPYBARA);
+                    output.accept(ModItems.RAW_BUFFALO_MEAT);
                     output.accept(ModItems.COOKED_CAPYBARA);
+                    output.accept(ModItems.COOKED_BUFFALO_MEAT);
                     output.accept(ModItems.RAW_HEDGEHOG);
                     output.accept(ModItems.COOKED_HEDGEHOG);
                     output.accept(ModItems.RAW_SEAL);

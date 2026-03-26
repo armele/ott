@@ -1086,5 +1086,12 @@
   "subtitles.ott.entity.stork.death": "Stork dies",
   "subtitles.ott.entity.spoonbill.ambient": "Spoonbill clatters",
   "subtitles.ott.entity.spoonbill.hurt": "Spoonbill croaks",
-  "subtitles.ott.entity.spoonbill.death": "Spoonbill dies"
+  "subtitles.ott.entity.spoonbill.death": "Spoonbill dies",
+  "entity.ott.water_buffalo": "Water Buffalo",
+  "item.ott.water_buffalo_spawn_egg": "Water Buffalo Spawn Egg",
+  "item.ott.raw_buffalo_meat": "Raw Buffalo Meat",
+  "item.ott.cooked_buffalo_meat": "Cooked Buffalo Meat",
+  "subtitles.ott.entity.water_buffalo.ambient": "Water Buffalo bellows",
+  "subtitles.ott.entity.water_buffalo.hurt": "Water Buffalo hurts",
+  "subtitles.ott.entity.water_buffalo.death": "Water Buffalo dies"
 }

@@ -307,6 +307,7 @@ public class ClientModEvents {
 
         event.registerEntityRenderer(ModEntities.CICHLID.get(), com.otterly76.ott.client.render.entity.CichlidRenderer::new);
         event.registerEntityRenderer(ModEntities.LEOPARD_CAT.get(), com.otterly76.ott.client.render.entity.LeopardCatRenderer::new);
+        event.registerEntityRenderer(ModEntities.WATER_BUFFALO.get(), com.otterly76.ott.client.render.entity.WaterBuffaloGeoRenderer::new);
         event.registerEntityRenderer(ModEntities.ECHIDNA.get(), com.otterly76.ott.client.render.entity.EchidnaRenderer::new);
         event.registerEntityRenderer(ModEntities.GUITARFISH.get(), com.otterly76.ott.client.render.entity.GuitarfishRenderer::new);
         event.registerEntityRenderer(ModEntities.BONNETHEAD_SHARK.get(), com.otterly76.ott.client.render.entity.BonnetheadSharkRenderer::new);

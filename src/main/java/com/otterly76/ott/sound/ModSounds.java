@@ -218,6 +218,9 @@ public class ModSounds {
     public static final DeferredHolder<SoundEvent, SoundEvent> OTTER_CLAM_BREAK_LAND = registerOttSoundEvent("entity.otter.clam_break_land");
     public static final DeferredHolder<SoundEvent, SoundEvent> OTTER_HURT = registerOttSoundEvent("entity.otter.hurt");
     public static final DeferredHolder<SoundEvent, SoundEvent> OTTER_SWIM = registerOttSoundEvent("entity.otter.swim");
+    public static final DeferredHolder<SoundEvent, SoundEvent> WATER_BUFFALO_AMBIENT = registerOttSoundEvent("entity.water_buffalo.ambient");
+    public static final DeferredHolder<SoundEvent, SoundEvent> WATER_BUFFALO_HURT = registerOttSoundEvent("entity.water_buffalo.hurt");
+    public static final DeferredHolder<SoundEvent, SoundEvent> WATER_BUFFALO_DEATH = registerOttSoundEvent("entity.water_buffalo.death");
     public static final DeferredHolder<SoundEvent, SoundEvent> RED_PANDA_AMBIENT = registerOttSoundEvent("entity.red_panda.ambient");
     public static final DeferredHolder<SoundEvent, SoundEvent> RED_PANDA_DEATH = registerOttSoundEvent("entity.red_panda.death");
     public static final DeferredHolder<SoundEvent, SoundEvent> RED_PANDA_HURT = registerOttSoundEvent("entity.red_panda.hurt");

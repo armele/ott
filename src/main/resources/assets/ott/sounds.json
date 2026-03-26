@@ -1852,6 +1852,33 @@
     ],
     "subtitle": "subtitles.ott.entity.otter.swim"
   },
+  "entity.water_buffalo.ambient": {
+    "sounds": [
+      {
+        "name": "ott:entity/water_buffalo/water_buffalo_ambient1"
+      },
+      {
+        "name": "ott:entity/water_buffalo/water_buffalo_ambient2"
+      }
+    ],
+    "subtitle": "subtitles.ott.entity.water_buffalo.ambient"
+  },
+  "entity.water_buffalo.hurt": {
+    "sounds": [
+      {
+        "name": "ott:entity/water_buffalo/water_buffalo_hurt"
+      }
+    ],
+    "subtitle": "subtitles.ott.entity.water_buffalo.hurt"
+  },
+  "entity.water_buffalo.death": {
+    "sounds": [
+      {
+        "name": "ott:entity/water_buffalo/water_buffalo_death"
+      }
+    ],
+    "subtitle": "subtitles.ott.entity.water_buffalo.death"
+  },
   "entity.red_panda.ambient": {
     "sounds": [
       "ott:entity/red_panda/ambient_1",

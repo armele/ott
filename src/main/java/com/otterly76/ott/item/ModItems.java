@@ -211,6 +211,8 @@ public class ModItems {
 
     public static final DeferredItem<Item> CATFISH_SPAWN_EGG = ITEMS.register("catfish_spawn_egg",
             () -> new net.neoforged.neoforge.common.DeferredSpawnEggItem(ModEntities.CATFISH, 8416033, 12233092, new Item.Properties()));
+    public static final DeferredItem<Item> WATER_BUFFALO_SPAWN_EGG = ITEMS.register("water_buffalo_spawn_egg",
+            () -> new net.neoforged.neoforge.common.DeferredSpawnEggItem(ModEntities.WATER_BUFFALO, 0x4B3621, 0x2A1B0E, new Item.Properties()));
     public static final DeferredItem<Item> BASS_SPAWN_EGG = ITEMS.register("bass_spawn_egg",
             () -> new net.neoforged.neoforge.common.DeferredSpawnEggItem(ModEntities.BASS, 8159273, 14729339, new Item.Properties()));
 
@@ -372,7 +374,11 @@ public class ModItems {
 
     public static final DeferredItem<Item> RAW_CAPYBARA = ITEMS.register("raw_capybara",
             () -> new Item(new Item.Properties().food(new FoodProperties.Builder().nutrition(3).saturationModifier(0.3F).build())));
+    public static final DeferredItem<Item> RAW_BUFFALO_MEAT = ITEMS.register("raw_buffalo_meat",
+            () -> new Item(new Item.Properties().food(new FoodProperties.Builder().nutrition(3).saturationModifier(0.3F).build())));
     public static final DeferredItem<Item> COOKED_CAPYBARA = ITEMS.register("cooked_capybara",
+            () -> new Item(new Item.Properties().food(new FoodProperties.Builder().nutrition(8).saturationModifier(0.8F).build())));
+    public static final DeferredItem<Item> COOKED_BUFFALO_MEAT = ITEMS.register("cooked_buffalo_meat",
             () -> new Item(new Item.Properties().food(new FoodProperties.Builder().nutrition(8).saturationModifier(0.8F).build())));
     public static final DeferredItem<Item> RAW_HEDGEHOG = ITEMS.register("raw_hedgehog",
             () -> new Item(new Item.Properties().food(new FoodProperties.Builder().nutrition(2).saturationModifier(0.3F).build())));

@@ -1,0 +1,82 @@
+{
+	"format_version": "1.12.0",
+	"minecraft:geometry": [
+		{
+			"description": {
+				"identifier": "geometry.water_buffalo",
+				"texture_width": 128,
+				"texture_height": 128,
+				"visible_bounds_width": 5,
+				"visible_bounds_height": 4.25,
+				"visible_bounds_offset": [0, 1.875, 0]
+			},
+			"bones": [
+				{
+					"name": "body",
+					"pivot": [0, 19, 2],
+					"rotation": [-90, 0, 0],
+					"cubes": [
+						{"origin": [-7, 10, -6], "size": [14, 12, 13], "uv": [0, 0]},
+						{"origin": [-7, 22, -3], "size": [14, 12, 10], "uv": [0, 25]}
+					]
+				},
+				{
+					"name": "head",
+					"pivot": [0, 17.33333, -8.125],
+					"cubes": [
+						{"origin": [-2.5, 15, -17.75], "size": [5, 4, 4], "uv": [41, 0]},
+						{"origin": [-4, 15, -14], "size": [8, 8, 8], "uv": [40, 39]},
+						{"origin": [-5, 15, -12.5], "size": [1, 6, 4], "uv": [0, 0]},
+						{"origin": [4, 15, -12.5], "size": [1, 6, 4], "uv": [0, 25]}
+					]
+				},
+				{
+					"name": "horn_r1",
+					"parent": "head",
+					"pivot": [0, 16, -10],
+					"cubes": [
+						{"origin": [-9.25, 19.5, -11.5], "size": [8, 4, 4], "uv": [38, 25]},
+						{"origin": [-9.25, 23.5, -11], "size": [2, 3, 3], "uv": [20, 47], "mirror": true}
+					]
+				},
+				{
+					"name": "horn_r2",
+					"parent": "head",
+					"pivot": [0, 16, -10],
+					"cubes": [
+						{"origin": [1.25, 19.5, -11.5], "size": [8, 4, 4], "uv": [38, 25], "mirror": true},
+						{"origin": [7.25, 23.5, -11], "size": [2, 3, 3], "uv": [20, 47]}
+					]
+				},
+				{
+					"name": "leg1",
+					"pivot": [-4.5, 14, 14.5],
+					"cubes": [
+						{"origin": [-7, 0, 12], "size": [5, 14, 5], "uv": [0, 47]}
+					]
+				},
+				{
+					"name": "leg2",
+					"pivot": [4.5, 14, 14.25],
+					"cubes": [
+						{"origin": [2, 0, 11.75], "size": [5, 14, 5], "uv": [0, 47]}
+					]
+				},
+				{
+					"name": "leg3",
+					"pivot": [-4.5, 14, -4.5],
+					"cubes": [
+						{"origin": [-7, 0, -7], "size": [5, 14, 5], "uv": [0, 47]}
+					]
+				},
+				{
+					"name": "leg4",
+					"pivot": [4.5, 14, -4.5],
+					"cubes": [
+						{"origin": [2, 0, -7], "size": [5, 14, 5], "uv": [0, 47]}
+					]
+				}
+			]
+		}
+	]
+}
