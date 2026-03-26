@@ -79,7 +79,49 @@ public class ModEntityTypeTagProvider extends EntityTypeTagsProvider {
                 ModEntities.KOI_FISH.get(),
                 ModEntities.OTTER.get(),
                 ModEntities.RED_PANDA.get(),
-                ModEntities.SEA_BUNNY.get()
+                ModEntities.SEA_BUNNY.get(),
+                ModEntities.BEAVER.get(),
+                ModEntities.CHUPACABRA.get(),
+                ModEntities.COUGAR.get(),
+                ModEntities.COYOTE.get(),
+                ModEntities.HOWLER.get(),
+                ModEntities.MARMOT.get(),
+                ModEntities.MOUSE.get(),
+                ModEntities.PIT_VIPER.get(),
+                ModEntities.RATTLESNAKE.get(),
+                ModEntities.RINGTAIL.get(),
+                ModEntities.SASQUATCH.get(),
+                ModEntities.SKINWALKER.get(),
+                ModEntities.SNAKE.get(),
+                ModEntities.SQUONK.get(),
+                ModEntities.TURKEY.get(),
+                ModEntities.WECHUGE.get(),
+                ModEntities.WENDIGO.get(),
+                ModEntities.WOLVERINE.get(),
+                ModEntities.CICHLID.get(),
+                ModEntities.LEOPARD_CAT.get(),
+                ModEntities.ECHIDNA.get(),
+                ModEntities.GUITARFISH.get(),
+                ModEntities.BONNETHEAD_SHARK.get(),
+                ModEntities.BURROWING_OWL.get(),
+                ModEntities.BUSHDOG.get(),
+                ModEntities.QUAIL.get(),
+                ModEntities.CANDYCANE_SNAIL.get(),
+                ModEntities.FIRE_SALAMANDER.get(),
+                ModEntities.RIVER_TURTLE.get(),
+                ModEntities.GOBLIN_SHARK.get(),
+                ModEntities.GUINEA_FOWL.get(),
+                ModEntities.IMPALA.get(),
+                ModEntities.MANTA_RAY.get(),
+                ModEntities.STORK.get(),
+                ModEntities.MOLE.get(),
+                ModEntities.TREE_KANGAROO.get(),
+                ModEntities.STINGRAY.get(),
+                ModEntities.PALLAS_CAT.get(),
+                ModEntities.PINK_LAND_IGUANA.get(),
+                ModEntities.PSYCHO_JELLY.get(),
+                ModEntities.SPOONBILL.get(),
+                ModEntities.GIANT_SOFTSHELL_TURTLE.get()
         );
 
         this.tag(ModTags.EntityTypes.SMART_ANIMALS).add(
@@ -103,7 +145,19 @@ public class ModEntityTypeTagProvider extends EntityTypeTagsProvider {
                 ModEntities.KOI_FISH.get(),
                 ModEntities.OTTER.get(),
                 ModEntities.RED_PANDA.get(),
-                ModEntities.SEA_BUNNY.get()
+                ModEntities.SEA_BUNNY.get(),
+                ModEntities.BEAVER.get(),
+                ModEntities.COUGAR.get(),
+                ModEntities.COYOTE.get(),
+                ModEntities.MARMOT.get(),
+                ModEntities.MOUSE.get(),
+                ModEntities.PIT_VIPER.get(),
+                ModEntities.RATTLESNAKE.get(),
+                ModEntities.RINGTAIL.get(),
+                ModEntities.SASQUATCH.get(),
+                ModEntities.SNAKE.get(),
+                ModEntities.TURKEY.get(),
+                ModEntities.WOLVERINE.get()
         );
 
         this.tag(ModTags.EntityTypes.SAFE_EGG_WALKERS).add(
@@ -147,7 +201,21 @@ public class ModEntityTypeTagProvider extends EntityTypeTagsProvider {
                 ModEntities.KRILL.get(),
                 ModEntities.ANGELFISH.get(),
                 ModEntities.BARRELEYE.get(),
-                ModEntities.FLOUNDER.get()
+                ModEntities.FLOUNDER.get(),
+                ModEntities.CICHLID.get(),
+                ModEntities.GUITARFISH.get(),
+                ModEntities.BONNETHEAD_SHARK.get(),
+                ModEntities.GOBLIN_SHARK.get(),
+                ModEntities.MANTA_RAY.get(),
+                ModEntities.PSYCHO_JELLY.get(),
+                ModEntities.RIVER_TURTLE.get(),
+                ModEntities.GIANT_SOFTSHELL_TURTLE.get()
+        );
+
+        this.tag(net.minecraft.tags.EntityTypeTags.UNDEAD).add(
+                ModEntities.SKINWALKER.get(),
+                ModEntities.WENDIGO.get(),
+                ModEntities.WECHUGE.get()
         );
 
         this.tag(ModTags.EntityTypes.FROG_FOOD).add(
@@ -215,7 +283,12 @@ public class ModEntityTypeTagProvider extends EntityTypeTagsProvider {
                 ModEntities.KRILL.get(),
                 ModEntities.ANGELFISH.get(),
                 ModEntities.BARRELEYE.get(),
-                ModEntities.FLOUNDER.get()
+                ModEntities.FLOUNDER.get(),
+                ModEntities.CICHLID.get(),
+                ModEntities.GUITARFISH.get(),
+                ModEntities.BONNETHEAD_SHARK.get(),
+                ModEntities.GOBLIN_SHARK.get(),
+                ModEntities.MANTA_RAY.get()
         );
 
         this.tag(ModTags.EntityTypes.ELEPHANT_HOSTILES).add(

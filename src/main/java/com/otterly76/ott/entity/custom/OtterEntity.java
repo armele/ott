@@ -327,7 +327,7 @@ public class OtterEntity extends OttAnimal implements OttGeoEntity {
     }
 
     @Override
-    public boolean isFood(ItemStack stack) {
+    public boolean isFood(@NotNull ItemStack stack) {
         return stack.is(ModTags.ItemTags.OTTER_FOOD) || stack.is(net.minecraft.tags.ItemTags.FISHES);
     }
 

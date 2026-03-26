@@ -1,0 +1,90 @@
+{
+	"format_version": "1.12.0",
+	"minecraft:geometry": [
+		{
+			"description": {
+				"identifier": "geometry.guineafowl",
+				"texture_width": 64,
+				"texture_height": 64,
+				"visible_bounds_width": 2,
+				"visible_bounds_height": 2.5,
+				"visible_bounds_offset": [0, 0.75, 0]
+			},
+			"bones": [
+				{
+					"name": "root",
+					"pivot": [0, 24, 0]
+				},
+				{
+					"name": "RightLeg",
+					"parent": "root",
+					"pivot": [-1, 5, 1],
+					"cubes": [
+						{"origin": [-3, 0, -2], "size": [3, 5, 3], "uv": [0, 25]}
+					]
+				},
+				{
+					"name": "Body",
+					"parent": "root",
+					"pivot": [0, 9, 0],
+					"cubes": [
+						{"origin": [-3, 5, -3], "size": [6, 6, 8], "uv": [0, 0]}
+					]
+				},
+				{
+					"name": "RightWing",
+					"parent": "Body",
+					"pivot": [-4, 11, 0],
+					"cubes": [
+						{"origin": [-4, 7, -2.95], "size": [1, 4, 6], "uv": [14, 24]}
+					]
+				},
+				{
+					"name": "LeftWing",
+					"parent": "Body",
+					"pivot": [4, 11, 0],
+					"cubes": [
+						{"origin": [3, 7, -2.95], "size": [1, 4, 6], "uv": [14, 24]}
+					]
+				},
+				{
+					"name": "Neck",
+					"parent": "Body",
+					"pivot": [0, 8, -4]
+				},
+				{
+					"name": "Head",
+					"parent": "Neck",
+					"pivot": [0, 8, -4],
+					"cubes": [
+						{"origin": [-2, 8, -6], "size": [4, 8, 3], "uv": [0, 14]}
+					]
+				},
+				{
+					"name": "Beak",
+					"parent": "Head",
+					"pivot": [0, 8, -4],
+					"cubes": [
+						{"origin": [-1, 12, -8], "size": [2, 2, 2], "uv": [28, 8]}
+					]
+				},
+				{
+					"name": "Crest",
+					"parent": "Head",
+					"pivot": [0, 14, -2],
+					"cubes": [
+						{"origin": [-0.5, 16, -6], "size": [1, 2, 2], "uv": [28, 12]}
+					]
+				},
+				{
+					"name": "LeftLeg",
+					"parent": "root",
+					"pivot": [2, 5, 1],
+					"cubes": [
+						{"origin": [0, 0, -2], "size": [3, 5, 3], "uv": [0, 25]}
+					]
+				}
+			]
+		}
+	]
+}

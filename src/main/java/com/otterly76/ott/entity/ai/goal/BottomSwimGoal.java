@@ -14,7 +14,7 @@ public class BottomSwimGoal extends RandomStrollGoal {
     private final int range;
 
     public BottomSwimGoal(PathfinderMob creature, double speed, int waterChance) {
-        this(creature, speed, waterChance, 5);
+        this(creature, speed, waterChance, 12);
     }
 
     public BottomSwimGoal(PathfinderMob creature, double speed, int waterChance, int range) {
@@ -42,7 +42,7 @@ public class BottomSwimGoal extends RandomStrollGoal {
             RandomSource random = this.mob.getRandom();
 
             for (int i = 0; i < 15; ++i) {
-                BlockPos blockPos = this.mob.blockPosition().offset(random.nextInt(this.range) - this.range / 2, 3, random.nextInt(this.range) - this.range / 2);
+                BlockPos blockPos = this.mob.blockPosition().offset(random.nextInt(this.range * 2) - this.range, 3, random.nextInt(this.range * 2) - this.range);
                 while ((this.mob.level().isEmptyBlock(blockPos) || this.mob.level().getFluidState(blockPos).is(FluidTags.WATER)) && blockPos.getY() > this.mob.level().getMinBuildHeight()) {
                     blockPos = blockPos.below();
                 }
@@ -52,7 +52,7 @@ public class BottomSwimGoal extends RandomStrollGoal {
                 }
             }
 
-            return blockpos != null ? new Vec3(blockpos.getX() + 0.5, blockpos.getY() + 0.5, blockpos.getZ() + 0.5) : null;
+            return blockpos != null ? new Vec3(blockpos.getX() + 0.5, blockpos.getY() + 1.5, blockpos.getZ() + 0.5) : null;
         }
     }
 

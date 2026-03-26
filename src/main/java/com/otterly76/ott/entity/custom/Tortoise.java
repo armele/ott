@@ -150,7 +150,7 @@ public class Tortoise extends TamableAnimal implements OttGeoEntity, HidingAnima
     }
 
     @Override
-    public boolean isFood(ItemStack stack) {
+    public boolean isFood(@NotNull ItemStack stack) {
         return stack.is(Items.CACTUS);
     }
 
@@ -349,3 +349,4 @@ public class Tortoise extends TamableAnimal implements OttGeoEntity, HidingAnima
         }
     }
 }
+

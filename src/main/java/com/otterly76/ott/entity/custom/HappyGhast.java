@@ -99,7 +99,7 @@ public class HappyGhast extends Animal implements LeashExtension, PlayerRideable
     }
 
     @Override
-    public boolean isFood(ItemStack stack) {
+    public boolean isFood(@NotNull ItemStack stack) {
         return stack.is(ModTags.ItemTags.HAPPY_GHAST_FOOD);
     }
 
@@ -818,3 +818,4 @@ public class HappyGhast extends Animal implements LeashExtension, PlayerRideable
         }
     }
 }
+

@@ -66,6 +66,49 @@ public class OttEntityLootTableProvider extends EntityLootSubProvider {
         this.add(ModEntities.SEA_BUNNY.get(), LootTable.lootTable());
         this.add(ModEntities.FIREFLY.get(), createFireflyDrops());
         this.add(ModEntities.SMALL_FIREFLY.get(), createFireflyDrops());
+
+        this.add(ModEntities.BEAVER.get(), createMeatDrops(ModItems.RAW_GAME.get(), 1, 2));
+        this.add(ModEntities.CHUPACABRA.get(), createDrops(Items.BONE, 1, 3));
+        this.add(ModEntities.COUGAR.get(), createMeatDrops(ModItems.RAW_GAME.get(), 1, 2));
+        this.add(ModEntities.COYOTE.get(), createMeatDrops(ModItems.RAW_GAME.get(), 1, 2));
+        this.add(ModEntities.HOWLER.get(), createDrops(Items.ROTTEN_FLESH, 1, 3));
+        this.add(ModEntities.MARMOT.get(), createMeatDrops(ModItems.RAW_GAME.get(), 1, 1));
+        this.add(ModEntities.MOUSE.get(), createMeatDrops(ModItems.RAW_GAME.get(), 1, 1));
+        this.add(ModEntities.PIT_VIPER.get(), createDrops(Items.BONE, 1, 1));
+        this.add(ModEntities.RATTLESNAKE.get(), createDrops(Items.BONE, 1, 1));
+        this.add(ModEntities.RINGTAIL.get(), createMeatDrops(ModItems.RAW_GAME.get(), 1, 1));
+        this.add(ModEntities.SASQUATCH.get(), createMeatDrops(ModItems.RAW_GAME.get(), 2, 4));
+        this.add(ModEntities.SKINWALKER.get(), createDrops(Items.ROTTEN_FLESH, 1, 3));
+        this.add(ModEntities.SNAKE.get(), createMeatDrops(ModItems.RAW_GAME.get(), 1, 1));
+        this.add(ModEntities.SQUONK.get(), createDrops(Items.GHAST_TEAR, 1, 2));
+        this.add(ModEntities.TURKEY.get(), createTurkeyDrops());
+        this.add(ModEntities.WECHUGE.get(), createDrops(Items.ROTTEN_FLESH, 1, 3));
+        this.add(ModEntities.WENDIGO.get(), createDrops(Items.ROTTEN_FLESH, 2, 5));
+        this.add(ModEntities.WOLVERINE.get(), createMeatDrops(ModItems.RAW_GAME.get(), 1, 2));
+
+        this.add(ModEntities.CICHLID.get(), createMeatDrops(ModItems.RAW_CICHLID.get(), 1, 1));
+        this.add(ModEntities.LEOPARD_CAT.get(), createMeatDrops(ModItems.RAW_GAME.get(), 1, 2));
+        this.add(ModEntities.ECHIDNA.get(), createMeatDrops(ModItems.RAW_GAME.get(), 1, 1));
+        this.add(ModEntities.GUITARFISH.get(), createMeatDrops(ModItems.RAW_GUITARFISH.get(), 1, 2));
+        this.add(ModEntities.BONNETHEAD_SHARK.get(), createMeatDrops(ModItems.RAW_BONNETHEAD.get(), 1, 3));
+        this.add(ModEntities.BURROWING_OWL.get(), createBirdDrops());
+        this.add(ModEntities.BUSHDOG.get(), createMeatDrops(ModItems.RAW_GAME.get(), 1, 2));
+        this.add(ModEntities.QUAIL.get(), createMeatDrops(ModItems.WILD_BIRD_MEAT.get(), 1, 1));
+        this.add(ModEntities.CANDYCANE_SNAIL.get(), createMeatDrops(ModItems.RAW_SNAIL_MEAT.get(), 1, 1));
+        this.add(ModEntities.FIRE_SALAMANDER.get(), createDrops(Items.SLIME_BALL, 0, 1));
+        this.add(ModEntities.RIVER_TURTLE.get(), createDrops(Items.TURTLE_SCUTE, 0, 1));
+        this.add(ModEntities.GOBLIN_SHARK.get(), createMeatDrops(ModItems.RAW_GOBLIN_SHARK.get(), 1, 4));
+        this.add(ModEntities.GUINEA_FOWL.get(), createMeatDrops(ModItems.WILD_BIRD_MEAT.get(), 1, 2));
+        this.add(ModEntities.IMPALA.get(), createMeatDrops(ModItems.RAW_GAME.get(), 2, 4));
+        this.add(ModEntities.MANTA_RAY.get(), createMeatDrops(ModItems.RAW_BONNETHEAD.get(), 2, 5));
+        this.add(ModEntities.STORK.get(), createMeatDrops(ModItems.WILD_BIRD_MEAT.get(), 1, 3));
+        this.add(ModEntities.MOLE.get(), createDrops(Items.DIRT, 0, 1));
+        this.add(ModEntities.TREE_KANGAROO.get(), createMeatDrops(ModItems.RAW_GAME.get(), 1, 3));
+        this.add(ModEntities.PALLAS_CAT.get(), createMeatDrops(ModItems.RAW_GAME.get(), 1, 2));
+        this.add(ModEntities.PINK_LAND_IGUANA.get(), createMeatDrops(ModItems.RAW_GAME.get(), 1, 2));
+        this.add(ModEntities.PSYCHO_JELLY.get(), createJellyfishDrops());
+        this.add(ModEntities.SPOONBILL.get(), createMeatDrops(ModItems.WILD_BIRD_MEAT.get(), 1, 2));
+        this.add(ModEntities.GIANT_SOFTSHELL_TURTLE.get(), createDrops(Items.TURTLE_SCUTE, 1, 2));
     }
 
     private LootTable.Builder createFireflyDrops() {
@@ -78,11 +121,7 @@ public class OttEntityLootTableProvider extends EntityLootSubProvider {
     }
 
     private LootTable.Builder createDragonflyDrops() {
-        return LootTable.lootTable()
-                .withPool(LootPool.lootPool()
-                        .setRolls(ConstantValue.exactly(1.0F))
-                        .add(LootItem.lootTableItem(ModItems.DRAGONFLY_WING.get())
-                                .apply(SetItemCountFunction.setCount(UniformGenerator.between(0.0F, 2.0F)))));
+        return LootTable.lootTable();
     }
 
     private LootTable.Builder createJumpingSpiderDrops() {
@@ -105,20 +144,44 @@ public class OttEntityLootTableProvider extends EntityLootSubProvider {
     }
 
     private LootTable.Builder createMeatDrops(net.minecraft.world.item.Item meat) {
+        return createMeatDrops(meat, 1.0F, 3.0F);
+    }
+
+    private LootTable.Builder createMeatDrops(net.minecraft.world.item.Item meat, float min, float max) {
         return LootTable.lootTable()
                 .withPool(LootPool.lootPool()
                         .setRolls(ConstantValue.exactly(1.0F))
                         .add(LootItem.lootTableItem(meat)
-                                .apply(SetItemCountFunction.setCount(UniformGenerator.between(1.0F, 3.0F)))
+                                .apply(SetItemCountFunction.setCount(UniformGenerator.between(min, max)))
                                 .apply(SmeltItemFunction.smelted()
                                         .when(LootItemEntityPropertyCondition.hasProperties(LootContext.EntityTarget.THIS, EntityPredicate.Builder.entity().flags(EntityFlagsPredicate.Builder.flags().setOnFire(true)))))));
+    }
+
+    private LootTable.Builder createDrops(net.minecraft.world.item.Item item, float min, float max) {
+        return LootTable.lootTable()
+                .withPool(LootPool.lootPool()
+                        .setRolls(ConstantValue.exactly(1.0F))
+                        .add(LootItem.lootTableItem(item)
+                                .apply(SetItemCountFunction.setCount(UniformGenerator.between(min, max)))));
+    }
+
+    private LootTable.Builder createTurkeyDrops() {
+        return LootTable.lootTable()
+                .withPool(LootPool.lootPool()
+                        .setRolls(ConstantValue.exactly(1.0F))
+                        .add(LootItem.lootTableItem(ModItems.RAW_TURKEY.get())
+                                .apply(SetItemCountFunction.setCount(UniformGenerator.between(1.0F, 2.0F)))))
+                .withPool(LootPool.lootPool()
+                        .setRolls(ConstantValue.exactly(1.0F))
+                        .add(LootItem.lootTableItem(Items.FEATHER)
+                                .apply(SetItemCountFunction.setCount(UniformGenerator.between(1.0F, 3.0F)))));
     }
 
     private LootTable.Builder createHedgehogDrops() {
         return createMeatDrops(ModItems.RAW_HEDGEHOG.get())
                 .withPool(LootPool.lootPool()
                         .setRolls(ConstantValue.exactly(1.0F))
-                        .add(LootItem.lootTableItem(ModItems.QUILL.get())
+                        .add(LootItem.lootTableItem(net.minecraft.world.item.Items.FEATHER)
                                 .apply(SetItemCountFunction.setCount(UniformGenerator.between(1.0F, 4.0F)))
                                 .when(net.minecraft.world.level.storage.loot.predicates.LootItemKilledByPlayerCondition.killedByPlayer()))
                 );
@@ -165,7 +228,7 @@ public class OttEntityLootTableProvider extends EntityLootSubProvider {
         return LootTable.lootTable()
                 .withPool(LootPool.lootPool()
                         .setRolls(ConstantValue.exactly(1.0F))
-                        .add(LootItem.lootTableItem(ModItems.FUR.get())
+                        .add(LootItem.lootTableItem(net.minecraft.world.item.Items.RABBIT_HIDE)
                                 .apply(SetItemCountFunction.setCount(UniformGenerator.between(1.0F, 2.0F)))));
     }
 
@@ -179,7 +242,7 @@ public class OttEntityLootTableProvider extends EntityLootSubProvider {
                                         .when(LootItemEntityPropertyCondition.hasProperties(LootContext.EntityTarget.THIS, EntityPredicate.Builder.entity().flags(EntityFlagsPredicate.Builder.flags().setOnFire(true)))))))
                 .withPool(LootPool.lootPool()
                         .setRolls(ConstantValue.exactly(1.0F))
-                        .add(LootItem.lootTableItem(ModItems.ANTLER.get())
+                        .add(LootItem.lootTableItem(net.minecraft.world.item.Items.BONE)
                                 .apply(SetItemCountFunction.setCount(UniformGenerator.between(0.0F, 2.0F)))));
     }
 
@@ -220,7 +283,48 @@ public class OttEntityLootTableProvider extends EntityLootSubProvider {
                 ModEntities.RED_PANDA.get(),
                 ModEntities.SEA_BUNNY.get(),
                 ModEntities.FIREFLY.get(),
-                ModEntities.SMALL_FIREFLY.get()
+                ModEntities.SMALL_FIREFLY.get(),
+                ModEntities.BEAVER.get(),
+                ModEntities.CHUPACABRA.get(),
+                ModEntities.COUGAR.get(),
+                ModEntities.COYOTE.get(),
+                ModEntities.HOWLER.get(),
+                ModEntities.MARMOT.get(),
+                ModEntities.MOUSE.get(),
+                ModEntities.PIT_VIPER.get(),
+                ModEntities.RATTLESNAKE.get(),
+                ModEntities.RINGTAIL.get(),
+                ModEntities.SASQUATCH.get(),
+                ModEntities.SKINWALKER.get(),
+                ModEntities.SNAKE.get(),
+                ModEntities.SQUONK.get(),
+                ModEntities.TURKEY.get(),
+                ModEntities.WECHUGE.get(),
+                ModEntities.WENDIGO.get(),
+                ModEntities.WOLVERINE.get(),
+                ModEntities.CICHLID.get(),
+                ModEntities.LEOPARD_CAT.get(),
+                ModEntities.ECHIDNA.get(),
+                ModEntities.GUITARFISH.get(),
+                ModEntities.BONNETHEAD_SHARK.get(),
+                ModEntities.BURROWING_OWL.get(),
+                ModEntities.BUSHDOG.get(),
+                ModEntities.QUAIL.get(),
+                ModEntities.CANDYCANE_SNAIL.get(),
+                ModEntities.FIRE_SALAMANDER.get(),
+                ModEntities.RIVER_TURTLE.get(),
+                ModEntities.GOBLIN_SHARK.get(),
+                ModEntities.GUINEA_FOWL.get(),
+                ModEntities.IMPALA.get(),
+                ModEntities.MANTA_RAY.get(),
+                ModEntities.STORK.get(),
+                ModEntities.MOLE.get(),
+                ModEntities.TREE_KANGAROO.get(),
+                ModEntities.PALLAS_CAT.get(),
+                ModEntities.PINK_LAND_IGUANA.get(),
+                ModEntities.PSYCHO_JELLY.get(),
+                ModEntities.SPOONBILL.get(),
+                ModEntities.GIANT_SOFTSHELL_TURTLE.get()
         );
     }
 }

@@ -1,0 +1,212 @@
+{
+	"format_version": "1.8.0",
+	"animations": {
+		"animation.marmot.walk": {
+			"loop": true,
+			"animation_length": 1,
+			"bones": {
+				"bone2": {
+					"rotation": {
+						"0.0": {
+							"vector": [-30, 0, 0],
+							"easing": "linear"
+						},
+						"0.5": {
+							"vector": [25, 0, 0],
+							"easing": "easeInSine"
+						},
+						"1.0": {
+							"vector": [-30, 0, 0],
+							"easing": "easeInSine"
+						}
+					},
+					"position": {
+						"0.0": {
+							"vector": [0, 1, 0],
+							"easing": "easeInElastic",
+							"easingArgs": []
+						},
+						"0.5": {
+							"vector": [0, -1, 0],
+							"easing": "easeInElastic",
+							"easingArgs": []
+						},
+						"1.0": {
+							"vector": [0, 1, 0],
+							"easing": "easeInElastic",
+							"easingArgs": []
+						}
+					}
+				},
+				"bone3": {
+					"rotation": {
+						"0.0": {
+							"vector": [25, 0, 0],
+							"easing": "linear"
+						},
+						"0.5": {
+							"vector": [-30, 0, 0],
+							"easing": "easeInSine"
+						},
+						"1.0": {
+							"vector": [25, 0, 0],
+							"easing": "easeInSine"
+						}
+					},
+					"position": {
+						"0.0": {
+							"vector": [0, -1, 0],
+							"easing": "linear"
+						},
+						"0.5": {
+							"vector": [0, 1, 0],
+							"easing": "easeInElastic",
+							"easingArgs": []
+						},
+						"1.0": {
+							"vector": [0, -1, 0],
+							"easing": "easeInElastic",
+							"easingArgs": []
+						}
+					}
+				},
+				"bone4": {
+					"rotation": {
+						"0.0": {
+							"vector": [25, 0, 0],
+							"easing": "linear"
+						},
+						"0.5": {
+							"vector": [-30, 0, 0],
+							"easing": "easeInSine"
+						},
+						"1.0": {
+							"vector": [25, 0, 0],
+							"easing": "easeInSine"
+						}
+					},
+					"position": {
+						"0.0": {
+							"vector": [0, -1, 0],
+							"easing": "linear"
+						},
+						"0.5": {
+							"vector": [0, 1, 0],
+							"easing": "easeInElastic",
+							"easingArgs": []
+						},
+						"1.0": {
+							"vector": [0, -1, 0],
+							"easing": "easeInElastic",
+							"easingArgs": []
+						}
+					}
+				},
+				"bone5": {
+					"rotation": {
+						"0.0": {
+							"vector": [-30, 0, 0],
+							"easing": "linear"
+						},
+						"0.5": {
+							"vector": [25, 0, 0],
+							"easing": "easeInSine"
+						},
+						"1.0": {
+							"vector": [-30, 0, 0],
+							"easing": "easeInSine"
+						}
+					},
+					"position": {
+						"0.0": {
+							"vector": [0, 1, 0],
+							"easing": "easeInElastic",
+							"easingArgs": []
+						},
+						"0.5": {
+							"vector": [0, -1, 0],
+							"easing": "easeInElastic",
+							"easingArgs": []
+						},
+						"1.0": {
+							"vector": [0, 1, 0],
+							"easing": "easeInElastic",
+							"easingArgs": []
+						}
+					}
+				},
+				"body": {
+					"rotation": {
+						"0.0": {
+							"vector": [0, 0, 7.5],
+							"easing": "linear"
+						},
+						"0.5": {
+							"vector": [0, 0, -7.5],
+							"easing": "linear"
+						},
+						"1.0": {
+							"vector": [0, 0, 7.5],
+							"easing": "linear"
+						}
+					}
+				},
+				"head": {
+					"rotation": {
+						"0.0": {
+							"vector": [0, 0, 0],
+							"easing": "linear"
+						},
+						"0.5": {
+							"vector": [10, 0, 0],
+							"easing": "linear"
+						},
+						"1.0": {
+							"vector": [0, 0, 0],
+							"easing": "linear"
+						}
+					}
+				},
+				"bone": {
+					"rotation": {
+						"0.0": {
+							"vector": [0, -20, 0],
+							"easing": "linear"
+						},
+						"0.5": {
+							"vector": [0, 15, 0],
+							"easing": "easeInCubic"
+						},
+						"1.0": {
+							"vector": [0, -20, 0],
+							"easing": "easeInCubic"
+						}
+					}
+				}
+			}
+		},
+		"animation.marmot.idle": {
+			"loop": true,
+			"animation_length": 1,
+			"bones": {
+				"bone": {
+					"rotation": {
+						"0.0": {
+							"vector": [0, -20, 0],
+							"easing": "linear"
+						},
+						"0.5": {
+							"vector": [0, 20, 0],
+							"easing": "easeInQuad"
+						},
+						"1.0": {
+							"vector": [0, -20, 0],
+							"easing": "easeInQuad"
+						}
+					}
+				}
+			}
+		}
+	},
+	"geckolib_format_version": 2
+}

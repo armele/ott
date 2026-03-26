@@ -1,0 +1,135 @@
+{
+	"format_version": "1.12.0",
+	"minecraft:geometry": [
+		{
+			"description": {
+				"identifier": "geometry.unknown",
+				"texture_width": 64,
+				"texture_height": 64,
+				"visible_bounds_width": 4,
+				"visible_bounds_height": 2.5,
+				"visible_bounds_offset": [0, 0.75, 0]
+			},
+			"bones": [
+				{
+					"name": "root",
+					"pivot": [0, 1, 0]
+				},
+				{
+					"name": "Body",
+					"parent": "root",
+					"pivot": [0, 5, 1],
+					"cubes": [
+						{"origin": [-4.5, 0, -8], "size": [9, 5, 12], "uv": [0, 0]}
+					]
+				},
+				{
+					"name": "Mouth",
+					"parent": "Body",
+					"pivot": [0, 2, -8],
+					"cubes": [
+						{"origin": [-3.5, 0, -10], "size": [7, 2, 2], "uv": [0, 19]}
+					]
+				},
+				{
+					"name": "Body2",
+					"parent": "Body",
+					"pivot": [0, 2.5, 4],
+					"cubes": [
+						{"origin": [-3.5, 0, 4], "size": [7, 5, 2], "uv": [20, 19]}
+					]
+				},
+				{
+					"name": "Tail",
+					"parent": "Body2",
+					"pivot": [0, 3.5, 6],
+					"cubes": [
+						{"origin": [-1.5, 2, 6], "size": [3, 3, 9], "uv": [31, 0]}
+					]
+				},
+				{
+					"name": "TailTip",
+					"parent": "Tail",
+					"pivot": [0, 4, 15],
+					"cubes": [
+						{"origin": [-1, 3, 15], "size": [2, 2, 4], "uv": [0, 25]}
+					]
+				},
+				{
+					"name": "TailFin",
+					"parent": "TailTip",
+					"pivot": [0, 5, 19],
+					"cubes": [
+						{"origin": [-0.5, 0, 19], "size": [1, 5, 3], "uv": [0, 0]}
+					]
+				},
+				{
+					"name": "TailFin2",
+					"parent": "TailFin",
+					"pivot": [0, 9, 18],
+					"cubes": [
+						{"origin": [-0.5, 5, 18], "size": [1, 4, 5], "uv": [0, 34]}
+					]
+				},
+				{
+					"name": "LeftAnalFin",
+					"parent": "Tail",
+					"pivot": [-1.5, 3, 7],
+					"rotation": [0, 0, -20],
+					"cubes": [
+						{"origin": [-5.5, 2, 7], "size": [4, 1, 5], "uv": [25, 45], "mirror": true}
+					]
+				},
+				{
+					"name": "RightAnalFin",
+					"parent": "Tail",
+					"pivot": [1.5, 3, 7],
+					"rotation": [0, 0, 20],
+					"cubes": [
+						{"origin": [1.5, 2, 7], "size": [4, 1, 5], "uv": [25, 45]}
+					]
+				},
+				{
+					"name": "DorsalFin1",
+					"parent": "Tail",
+					"pivot": [0, 4.5, 6],
+					"cubes": [
+						{"origin": [-0.5, 4.5, 6], "size": [1, 6, 4], "uv": [15, 29]}
+					]
+				},
+				{
+					"name": "DorsalFin2",
+					"parent": "Tail",
+					"pivot": [0, 4.5, 11],
+					"cubes": [
+						{"origin": [-0.5, 4.5, 11], "size": [1, 4, 4], "uv": [30, 29]}
+					]
+				},
+				{
+					"name": "LeftWing",
+					"parent": "Body",
+					"pivot": [-4.5, 1, -5],
+					"cubes": [
+						{"origin": [-11.5, 0, -5], "size": [7, 1, 8], "uv": [0, 45], "mirror": true}
+					]
+				},
+				{
+					"name": "RightWing",
+					"parent": "Body",
+					"pivot": [4.5, 1, -5],
+					"cubes": [
+						{"origin": [4.5, 0, -5], "size": [7, 1, 8], "uv": [0, 45]}
+					]
+				},
+				{
+					"name": "DorsalRidge",
+					"parent": "Body",
+					"pivot": [0, 6, -5],
+					"cubes": [
+						{"origin": [-0.5, 5, -5], "size": [1, 1, 9], "uv": [40, 50]}
+					]
+				}
+			]
+		}
+	]
+}

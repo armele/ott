@@ -361,7 +361,6 @@ public class CreativeTabHandler {
             }
 
             safeInsertAfter(event, new ItemStack(Items.DRAGON_HEAD), new ItemStack(ModItems.DRAGON_SKULL.get()), visibility);
-            safeInsertAfter(event, new ItemStack(ModItems.DRAGON_SKULL.get()), new ItemStack(ModBlocks.TEDDY_BEAR.get()), visibility);
             safeInsertAfter(event, new ItemStack(Items.LANTERN), new ItemStack(ModBlocks.GLOW_GOOP.get()), visibility);
 
             lastTarget = Items.DAMAGED_ANVIL;
@@ -519,8 +518,7 @@ public class CreativeTabHandler {
                     ModItems.JELLYFISH_JELLY,
                     ModItems.SEA_URCHIN_CAVIAR,
                     ModItems.KIWI_EGG,
-                    ModItems.PENGUIN_EGG,
-                    ModItems.SALTED_KELP
+                    ModItems.PENGUIN_EGG
             ), visibility);
         }
 
@@ -672,11 +670,7 @@ public class CreativeTabHandler {
             safeAccept(event, ModItems.TINY_COAL, visibility);
             safeAccept(event, ModItems.TINY_CHARCOAL, visibility);
             safeAccept(event, ModItems.SALT, visibility);
-            safeAccept(event, ModItems.SEAGRASS_BALL, visibility);
-            safeAccept(event, ModItems.FUR, visibility);
-            safeAccept(event, ModItems.ANTLER, visibility);
             safeAccept(event, ModItems.SNAIL_SHELL, visibility);
-            safeAccept(event, ModItems.QUILL, visibility);
         }
 
         if (event.getTabKey() == CreativeModeTabs.COMBAT) {
@@ -738,7 +732,6 @@ public class CreativeTabHandler {
             safeInsertAfter(event, Items.DIAMOND_HORSE_ARMOR.getDefaultInstance(), new ItemStack(ModItems.NETHERITE_HORSE_ARMOR.get()), visibility);
 
             safeInsertAfter(event, Items.TIPPED_ARROW.getDefaultInstance(), new ItemStack(ModItems.TORCH_ARROW.get()), visibility);
-            safeInsertAfter(event, ModItems.TORCH_ARROW.get().getDefaultInstance(), new ItemStack(ModItems.QUILL_ARROW.get()), visibility);
 
             safeAccept(event, ModItems.BROWN_EGG, visibility);
             safeAccept(event, ModItems.BLUE_EGG, visibility);

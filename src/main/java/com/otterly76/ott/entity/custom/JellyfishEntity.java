@@ -35,7 +35,7 @@ import software.bernie.geckolib.util.GeckoLibUtil;
 
 public class JellyfishEntity extends WaterAnimal implements GeoEntity {
     private static final RawAnimation IDLE = RawAnimation.begin().thenLoop("animation.jellyfish.idle");
-    private static final RawAnimation SWIM = RawAnimation.begin().thenLoop("animation.jellyfish.swim");
+    private static final RawAnimation SWIM = RawAnimation.begin().thenLoop("animation.jellyfish.hover");
 
     private static final EntityDataAccessor<Integer> VARIANT = SynchedEntityData.defineId(JellyfishEntity.class, EntityDataSerializers.INT);
 

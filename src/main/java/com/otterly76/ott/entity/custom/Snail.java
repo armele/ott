@@ -163,7 +163,7 @@ public class Snail extends ClimbingAnimal implements OttGeoEntity, Bucketable, H
     }
 
     @Override
-    public boolean isFood(ItemStack stack) {
+    public boolean isFood(@NotNull ItemStack stack) {
         return stack.is(Items.BROWN_MUSHROOM) || stack.is(Items.RED_MUSHROOM);
     }
 
@@ -384,3 +384,4 @@ public class Snail extends ClimbingAnimal implements OttGeoEntity, Bucketable, H
         }
     }
 }
+

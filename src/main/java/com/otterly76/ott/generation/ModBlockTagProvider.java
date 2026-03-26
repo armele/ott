@@ -223,7 +223,6 @@ public class ModBlockTagProvider extends BlockTagsProvider {
 
         hoeTag.add(ModBlocks.PALE_MOSS_BLOCK.value(), ModBlocks.PALE_MOSS_CARPET.value(), ModBlocks.THORNY_HEDGE.value());
         hoeTag.add(ModBlocks.PALE_OAK_LEAVES.value());
-        hoeTag.add(ModBlocks.SEAGRASS_BALL_BLOCK.value());
         pickaxeTag.add(ModBlocks.RESIN_BRICKS.value(), ModBlocks.CHISELED_RESIN_BRICKS.value(), ModBlocks.RESIN_BRICK_SLAB.value(), ModBlocks.RESIN_BLOCK.value(), ModBlocks.RESIN_BRICK_STAIRS.value(), ModBlocks.RESIN_BRICK_WALL.value());
         pickaxeTag.add(ModBlocks.SALT_BLOCK.value(), ModBlocks.SALT_LAMP.value());
 

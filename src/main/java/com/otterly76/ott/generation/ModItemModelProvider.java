@@ -99,11 +99,9 @@ public class ModItemModelProvider extends ItemModelProvider {
         generatedItemFromTexture(ModItems.TINY_COAL.getId().getPath(), modLoc("item/tiny_coal"));
         generatedItemFromTexture(ModItems.TINY_CHARCOAL.getId().getPath(), modLoc("item/tiny_charcoal"));
         generatedItemFromTexture(ModItems.CLAM.getId().getPath(), modLoc("item/clam"));
-        generatedItemFromTexture(ModItems.DRAGONFLY_WING.getId().getPath(), modLoc("item/dragonfly_wing"));
         generatedItemFromTexture(ModItems.KOI_FISH.getId().getPath(), modLoc("item/koi_fish"));
         generatedItemFromTexture(ModItems.PEARL.getId().getPath(), modLoc("item/pearl"));
         generatedItemFromTexture(ModItems.SILK.getId().getPath(), modLoc("item/silk"));
-        generatedItemFromTexture(ModItems.SEA_BUNNY_SLIME_BOTTLE.getId().getPath(), modLoc("item/sea_bunny_slime_bottle"));
         
         generatedItemFromTexture(ModItems.RAW_CAPYBARA.getId().getPath(), modLoc("item/raw_capybara_meat"));
         generatedItemFromTexture(ModItems.COOKED_CAPYBARA.getId().getPath(), modLoc("item/cooked_capybara_meat"));
@@ -118,8 +116,6 @@ public class ModItemModelProvider extends ItemModelProvider {
         generatedItemFromTexture(ModItems.JELLYFISH_JELLY.getId().getPath(), modLoc("item/jellyfish_jelly"));
         generatedItemFromTexture(ModItems.SEA_URCHIN_CAVIAR.getId().getPath(), modLoc("item/sea_urchin_caviar"));
         generatedItemFromTexture(ModItems.KIWI_EGG.getId().getPath(), modLoc("item/kiwi_egg"));
-        generatedItemFromTexture(ModItems.QUILL.getId().getPath(), modLoc("item/quill"));
-        generatedItemFromTexture(ModItems.QUILL_ARROW.getId().getPath(), modLoc("item/quill_arrow"));
 
         // Fish and Meat
         generatedItemFromTexture(ModItems.BASS.getId().getPath(), modLoc("item/bass"));
@@ -195,12 +191,100 @@ public class ModItemModelProvider extends ItemModelProvider {
         spawnEggItem(ModItems.RED_PANDA_SPAWN_EGG);
         spawnEggItem(ModItems.SEA_BUNNY_SPAWN_EGG);
 
+        spawnEggItem(ModItems.GHOST_SPAWN_EGG);
+        spawnEggItem(ModItems.SPECTRE_SPAWN_EGG);
+        spawnEggItem(ModItems.HAUNT_SPAWN_EGG);
+        spawnEggItem(ModItems.GEIST_SPAWN_EGG);
+        spawnEggItem(ModItems.TREE_ENT_SPAWN_EGG);
+        spawnEggItem(ModItems.HERMIT_KING_SPAWN_EGG);
+        spawnEggItem(ModItems.SAND_HERMIT_SPAWN_EGG);
+        spawnEggItem(ModItems.SEA_VIPER_SPAWN_EGG);
+        spawnEggItem(ModItems.YETI_SPAWN_EGG);
+        spawnEggItem(ModItems.VILE_GATOR_SPAWN_EGG);
+        spawnEggItem(ModItems.PHOENIX_SPAWN_EGG);
+        spawnEggItem(ModItems.BABY_PHOENIX_SPAWN_EGG);
+        spawnEggItem(ModItems.BONE_STALKER_SPAWN_EGG);
+        spawnEggItem(ModItems.SHADOW_SPAWN_EGG);
+        spawnEggItem(ModItems.CHERRY_TREE_ENT_SPAWN_EGG);
+        spawnEggItem(ModItems.GOLDEN_HERMIT_KING_SPAWN_EGG);
+        spawnEggItem(ModItems.CORAL_SEA_VIPER_SPAWN_EGG);
+        spawnEggItem(ModItems.ARID_YETI_SPAWN_EGG);
+        spawnEggItem(ModItems.WIND_PHOENIX_SPAWN_EGG);
+        spawnEggItem(ModItems.BABY_WIND_PHOENIX_SPAWN_EGG);
+        spawnEggItem(ModItems.BOGGED_BONE_STALKER_SPAWN_EGG);
+        spawnEggItem(ModItems.BOGGED_SHADOW_SPAWN_EGG);
+        spawnEggItem(ModItems.GILDED_TREE_ENT_SPAWN_EGG);
+
+        generatedItemFromTexture(ModItems.RAW_GAME.getId().getPath(), modLoc("item/raw_game"));
+        generatedItemFromTexture(ModItems.COOKED_GAME.getId().getPath(), modLoc("item/cooked_game"));
+        generatedItemFromTexture(ModItems.RAW_TURKEY.getId().getPath(), modLoc("item/raw_turkey"));
+
+        spawnEggItem(ModItems.BEAVER_SPAWN_EGG);
+        spawnEggItem(ModItems.CHUPACABRA_SPAWN_EGG);
+        spawnEggItem(ModItems.COUGAR_SPAWN_EGG);
+        spawnEggItem(ModItems.COYOTE_SPAWN_EGG);
+        spawnEggItem(ModItems.HOWLER_SPAWN_EGG);
+        spawnEggItem(ModItems.MARMOT_SPAWN_EGG);
+        spawnEggItem(ModItems.MOUSE_SPAWN_EGG);
+        spawnEggItem(ModItems.PIT_VIPER_SPAWN_EGG);
+        spawnEggItem(ModItems.RATTLESNAKE_SPAWN_EGG);
+        spawnEggItem(ModItems.RINGTAIL_SPAWN_EGG);
+        spawnEggItem(ModItems.SASQUATCH_SPAWN_EGG);
+        spawnEggItem(ModItems.SKINWALKER_SPAWN_EGG);
+        spawnEggItem(ModItems.SNAKE_SPAWN_EGG);
+        spawnEggItem(ModItems.SQUONK_SPAWN_EGG);
+        spawnEggItem(ModItems.TURKEY_SPAWN_EGG);
+        spawnEggItem(ModItems.WECHUGE_SPAWN_EGG);
+        spawnEggItem(ModItems.WENDIGO_SPAWN_EGG);
+        spawnEggItem(ModItems.WOLVERINE_SPAWN_EGG);
+        spawnEggItem(ModItems.CICHLID_SPAWN_EGG);
+        spawnEggItem(ModItems.LEOPARD_CAT_SPAWN_EGG);
+        spawnEggItem(ModItems.ECHIDNA_SPAWN_EGG);
+        spawnEggItem(ModItems.GUITARFISH_SPAWN_EGG);
+        spawnEggItem(ModItems.BONNETHEAD_SHARK_SPAWN_EGG);
+        spawnEggItem(ModItems.BURROWING_OWL_SPAWN_EGG);
+        spawnEggItem(ModItems.BUSHDOG_SPAWN_EGG);
+        spawnEggItem(ModItems.QUAIL_SPAWN_EGG);
+        spawnEggItem(ModItems.CANDYCANE_SNAIL_SPAWN_EGG);
+        spawnEggItem(ModItems.FIRE_SALAMANDER_SPAWN_EGG);
+        spawnEggItem(ModItems.RIVER_TURTLE_SPAWN_EGG);
+        spawnEggItem(ModItems.GOBLIN_SHARK_SPAWN_EGG);
+        spawnEggItem(ModItems.GUINEA_FOWL_SPAWN_EGG);
+        spawnEggItem(ModItems.IMPALA_SPAWN_EGG);
+        spawnEggItem(ModItems.MANTA_RAY_SPAWN_EGG);
+        spawnEggItem(ModItems.STORK_SPAWN_EGG);
+        spawnEggItem(ModItems.MOLE_SPAWN_EGG);
+        spawnEggItem(ModItems.TREE_KANGAROO_SPAWN_EGG);
+        spawnEggItem(ModItems.PALLAS_CAT_SPAWN_EGG);
+        spawnEggItem(ModItems.PINK_LAND_IGUANA_SPAWN_EGG);
+        spawnEggItem(ModItems.PSYCHO_JELLY_SPAWN_EGG);
+        spawnEggItem(ModItems.SPOONBILL_SPAWN_EGG);
+        spawnEggItem(ModItems.GIANT_SOFTSHELL_TURTLE_SPAWN_EGG);
+
         generatedItemFromTexture(ModItems.DUMBO_OCTOPUS_BUCKET.getId().getPath(), modLoc("item/dumbo_octopus_bucket"));
         generatedItemFromTexture(ModItems.KOI_FISH_BUCKET.getId().getPath(), modLoc("item/koi_fish_bucket"));
+        generatedItemFromTexture(ModItems.STINGRAY_BUCKET.getId().getPath(), modLoc("item/stingray_bucket"));
         generatedItemFromTexture(ModItems.SEA_BUNNY_BUCKET.getId().getPath(), modLoc("item/sea_bunny_bucket"));
+        generatedItemFromTexture(ModItems.CICHLID_BUCKET.getId().getPath(), modLoc("item/cichlid_bucket"));
+        generatedItemFromTexture(ModItems.GUITARFISH_BUCKET.getId().getPath(), modLoc("item/guitarfish_bucket"));
+        generatedItemFromTexture(ModItems.BONNETHEAD_SHARK_BUCKET.getId().getPath(), modLoc("item/bonnethead_shark_bucket"));
+        generatedItemFromTexture(ModItems.GOBLIN_SHARK_BUCKET.getId().getPath(), modLoc("item/goblin_shark_bucket"));
+        generatedItemFromTexture(ModItems.PSYCHO_JELLY_BUCKET.getId().getPath(), modLoc("item/psycho_jelly_bucket"));
+
+        generatedItemFromTexture(ModItems.RAW_CICHLID.getId().getPath(), modLoc("item/raw_cichlid"));
+        generatedItemFromTexture(ModItems.COOKED_CICHLID.getId().getPath(), modLoc("item/raw_cichlid"));
+        generatedItemFromTexture(ModItems.RAW_BONNETHEAD.getId().getPath(), modLoc("item/raw_bonnethead"));
+        generatedItemFromTexture(ModItems.COOKED_BONNETHEAD.getId().getPath(), modLoc("item/raw_bonnethead"));
+        generatedItemFromTexture(ModItems.RAW_GUITARFISH.getId().getPath(), modLoc("item/raw_guitarfish"));
+        generatedItemFromTexture(ModItems.COOKED_GUITARFISH.getId().getPath(), modLoc("item/raw_guitarfish"));
+        generatedItemFromTexture(ModItems.RAW_GOBLIN_SHARK.getId().getPath(), modLoc("item/raw_goblin_shark"));
+        generatedItemFromTexture(ModItems.COOKED_GOBLIN_SHARK.getId().getPath(), modLoc("item/raw_goblin_shark"));
+        generatedItemFromTexture(ModItems.RAW_SNAIL_MEAT.getId().getPath(), modLoc("item/raw_snail_meat"));
+        generatedItemFromTexture(ModItems.COOKED_SNAIL_MEAT.getId().getPath(), modLoc("item/raw_snail_meat"));
+        generatedItemFromTexture(ModItems.WILD_BIRD_MEAT.getId().getPath(), modLoc("item/wild_bird_meat"));
+        generatedItemFromTexture(ModItems.COOKED_WILD_BIRD_MEAT.getId().getPath(), modLoc("item/cooked_wild_bird_meat"));
 
         parentItemToBlockModel(ModItems.SILK_COCOON.getId().getPath(), "block/silk_cocoon");
-        parentItemToBlockModel(ModItems.SEA_BUNNY_SLIME_BLOCK.getId().getPath(), "block/sea_bunny_slime_block");
         parentItemToBlockModel(ModItems.GLASS_JAR.getId().getPath(), "block/glass_jar");
         getBuilder(ModItems.FIREFLY_IN_A_JAR.getId().getPath()).parent(new ModelFile.UncheckedModelFile(modLoc("item/firefly_jar_item_base")));
         getBuilder(ModItems.FIREFLIES_IN_A_JAR.getId().getPath()).parent(new ModelFile.UncheckedModelFile(modLoc("item/firefly_jar_item_base")));

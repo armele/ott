@@ -90,7 +90,6 @@ public class OttBlockStateProvider extends ModBlockStateProvider {
                     .build();
         });
 
-        simpleBlock(ModBlocks.SEA_BUNNY_SLIME_BLOCK.get(), models().getExistingFile(modLoc("block/sea_bunny_slime_block")));
     }
 
     private void registerSapling(Block sapling, Block potted, String name) {

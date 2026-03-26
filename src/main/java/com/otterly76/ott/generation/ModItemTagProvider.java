@@ -181,9 +181,7 @@ public class ModItemTagProvider extends ItemTagsProvider {
                 Items.SPIDER_EYE
         );
 
-        this.tag(ModTags.ItemTags.JUMPING_SPIDER_FOOD).add(
-                ModItems.DRAGONFLY_WING.get()
-        );
+        this.tag(ModTags.ItemTags.JUMPING_SPIDER_FOOD);
 
         this.tag(ModTags.ItemTags.OTTER_FOOD).add(
                 ModItems.CLAM.get(),

@@ -1,6 +1,0 @@
-{
-  "parent": "minecraft:block/carpet",
-  "textures": {
-    "wool":  "ott:block/dried_seagrass_ball_block"
-  }
-}

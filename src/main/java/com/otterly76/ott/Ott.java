@@ -27,6 +27,7 @@ import com.otterly76.ott.network.NetworkHandler;
 import com.otterly76.ott.particle.ModParticle;
 import com.otterly76.ott.registry.ModArmorMaterials;
 import com.otterly76.ott.registry.ModDataComponents;
+import com.otterly76.ott.registry.ModEffects;
 import com.otterly76.ott.registry.ModJukeboxSongs;
 import com.otterly76.ott.registry.ModRecipeSerializers;
 import com.otterly76.ott.registry.ModSensorTypes;
@@ -153,6 +154,7 @@ public class Ott {
         SpawnConditions.register(modEventBus);
         ModSounds.register(modEventBus);
         ModParticle.register(modEventBus);
+        ModEffects.register(modEventBus);
         ModEntities.register(modEventBus);
         ModSensorTypes.register(modEventBus);
         ModRecipeSerializers.register(modEventBus);

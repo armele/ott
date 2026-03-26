@@ -149,7 +149,7 @@ public class Lizard extends TamableAnimal implements OttGeoEntity {
     }
 
     @Override
-    public boolean isFood(ItemStack stack) {
+    public boolean isFood(@NotNull ItemStack stack) {
         return stack.is(Items.SPIDER_EYE);
     }
 
@@ -306,3 +306,4 @@ public class Lizard extends TamableAnimal implements OttGeoEntity {
         }
     }
 }
+

@@ -99,7 +99,7 @@ public class ManOWar extends Animal implements GeoEntity, Bucketable {
     }
 
     @Override
-    public boolean isFood(ItemStack stack) {
+    public boolean isFood(@NotNull ItemStack stack) {
         return stack.is(Items.TROPICAL_FISH);
     }
 
@@ -458,3 +458,4 @@ public class ManOWar extends Animal implements GeoEntity, Bucketable {
         }
     }
 }
+

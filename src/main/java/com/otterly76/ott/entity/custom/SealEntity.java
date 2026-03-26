@@ -44,9 +44,9 @@ public class SealEntity extends Animal implements GeoEntity {
     private static final RawAnimation IDLE = RawAnimation.begin().thenLoop("animation.seal.idle");
     private static final RawAnimation WALK = RawAnimation.begin().thenLoop("animation.seal.walk");
     private static final RawAnimation SWIM = RawAnimation.begin().thenLoop("animation.seal.swim");
-    private static final RawAnimation LAY_DOWN = RawAnimation.begin().then("animation.seal.lay_down", Animation.LoopType.PLAY_ONCE);
-    private static final RawAnimation LAY_IDLE = RawAnimation.begin().thenLoop("animation.seal.lay_idle");
-    private static final RawAnimation GET_UP = RawAnimation.begin().then("animation.seal.get_up", Animation.LoopType.PLAY_ONCE);
+    private static final RawAnimation LAY_DOWN = RawAnimation.begin().then("animation.seal.laying", Animation.LoopType.PLAY_ONCE);
+    private static final RawAnimation LAY_IDLE = RawAnimation.begin().thenLoop("animation.seal.lay");
+    private static final RawAnimation GET_UP = RawAnimation.begin().then("animation.seal.getting_up", Animation.LoopType.PLAY_ONCE);
 
     private static final EntityDataAccessor<Optional<BlockPos>> ENVIRONMENT_TARGET = SynchedEntityData.defineId(SealEntity.class, EntityDataSerializers.OPTIONAL_BLOCK_POS);
     private static final EntityDataAccessor<Integer> LAY_STATE = SynchedEntityData.defineId(SealEntity.class, EntityDataSerializers.INT);
@@ -131,7 +131,7 @@ public class SealEntity extends Animal implements GeoEntity {
     }
 
     @Override
-    public boolean isFood(ItemStack stack) {
+    public boolean isFood(@NotNull ItemStack stack) {
         return stack.is(ModTags.ItemTags.SEAL_FOOD);
     }
 

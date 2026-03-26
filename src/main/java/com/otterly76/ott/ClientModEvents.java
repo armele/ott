@@ -1,6 +1,5 @@
 package com.otterly76.ott;
 import com.otterly76.ott.client.render.entity.*;
-import org.jetbrains.annotations.NotNull;
 import com.otterly76.ott.block.ModBlocks;
 import com.otterly76.ott.client.NutritionHudOverlay;
 import com.otterly76.ott.client.gui.TrashScreen;
@@ -157,6 +156,7 @@ public class ClientModEvents {
         event.registerSpriteSet(ModParticle.STREAK.get(), StreakParticle.DefaultFactory::new);
         event.registerSpriteSet(ModParticle.GHOST.get(), GeistParticle.GhostProvider::new);
         event.registerSpriteSet(ModParticle.GEIST_DARK.get(), GeistParticle.GeistDarkProvider::new);
+        event.registerSpriteSet(ModParticle.POISON_SPIT.get(), com.otterly76.ott.particle.PoisonSpitParticle.Provider::new);
 
         event.registerSpriteSet(ModParticle.STARLIGHT_LEAF.get(), HedgeLeafParticle.Provider::new);
         event.registerSpriteSet(ModParticle.MIDNIGHT_LEAF.get(), HedgeLeafParticle.Provider::new);
@@ -284,14 +284,53 @@ public class ClientModEvents {
         event.registerEntityRenderer(ModEntities.BOGGED_SHADOW.get(), com.otterly76.ott.client.render.entity.BoggedShadowRenderer::new);
         event.registerEntityRenderer(ModEntities.GILDED_TREE_ENT.get(), com.otterly76.ott.client.render.entity.GildedTreeEntRenderer::new);
 
+        event.registerEntityRenderer(ModEntities.BEAVER.get(), com.otterly76.ott.client.render.entity.BeaverRenderer::new);
+        event.registerEntityRenderer(ModEntities.CHUPACABRA.get(), com.otterly76.ott.client.render.entity.ChupacabraRenderer::new);
+        event.registerEntityRenderer(ModEntities.CHUPACABRA_SPIT.get(), ThrownItemRenderer::new);
+        event.registerEntityRenderer(ModEntities.COUGAR.get(), com.otterly76.ott.client.render.entity.CougarRenderer::new);
+        event.registerEntityRenderer(ModEntities.COYOTE.get(), com.otterly76.ott.client.render.entity.CoyoteRenderer::new);
+        event.registerEntityRenderer(ModEntities.HOWLER.get(), com.otterly76.ott.client.render.entity.HowlerRenderer::new);
+        event.registerEntityRenderer(ModEntities.BEWITCHED_TIMBER_WOLF.get(), com.otterly76.ott.client.render.entity.BewitchedGreywolfRenderer::new);
+        event.registerEntityRenderer(ModEntities.MARMOT.get(), com.otterly76.ott.client.render.entity.MarmotRenderer::new);
+        event.registerEntityRenderer(ModEntities.MOUSE.get(), com.otterly76.ott.client.render.entity.MouseRenderer::new);
+        event.registerEntityRenderer(ModEntities.PIT_VIPER.get(), com.otterly76.ott.client.render.entity.PitViperRenderer::new);
+        event.registerEntityRenderer(ModEntities.RATTLESNAKE.get(), com.otterly76.ott.client.render.entity.RattlesnakeRenderer::new);
+        event.registerEntityRenderer(ModEntities.RINGTAIL.get(), com.otterly76.ott.client.render.entity.RingtailRenderer::new);
+        event.registerEntityRenderer(ModEntities.SASQUATCH.get(), com.otterly76.ott.client.render.entity.SasquatchRenderer::new);
+        event.registerEntityRenderer(ModEntities.SKINWALKER.get(), com.otterly76.ott.client.render.entity.SkinwalkerRenderer::new);
+        event.registerEntityRenderer(ModEntities.SNAKE.get(), com.otterly76.ott.client.render.entity.SnakeRenderer::new);
+        event.registerEntityRenderer(ModEntities.SQUONK.get(), com.otterly76.ott.client.render.entity.SquonkRenderer::new);
+        event.registerEntityRenderer(ModEntities.TURKEY.get(), com.otterly76.ott.client.render.entity.TurkeyRenderer::new);
+        event.registerEntityRenderer(ModEntities.WECHUGE.get(), com.otterly76.ott.client.render.entity.WechugeRenderer::new);
+        event.registerEntityRenderer(ModEntities.WENDIGO.get(), com.otterly76.ott.client.render.entity.WendigoRenderer::new);
+        event.registerEntityRenderer(ModEntities.WOLVERINE.get(), com.otterly76.ott.client.render.entity.WolverineRenderer::new);
+
+        event.registerEntityRenderer(ModEntities.CICHLID.get(), com.otterly76.ott.client.render.entity.CichlidRenderer::new);
+        event.registerEntityRenderer(ModEntities.LEOPARD_CAT.get(), com.otterly76.ott.client.render.entity.LeopardCatRenderer::new);
+        event.registerEntityRenderer(ModEntities.ECHIDNA.get(), com.otterly76.ott.client.render.entity.EchidnaRenderer::new);
+        event.registerEntityRenderer(ModEntities.GUITARFISH.get(), com.otterly76.ott.client.render.entity.GuitarfishRenderer::new);
+        event.registerEntityRenderer(ModEntities.BONNETHEAD_SHARK.get(), com.otterly76.ott.client.render.entity.BonnetheadSharkRenderer::new);
+        event.registerEntityRenderer(ModEntities.BURROWING_OWL.get(), com.otterly76.ott.client.render.entity.BurrowingOwlRenderer::new);
+        event.registerEntityRenderer(ModEntities.BUSHDOG.get(), com.otterly76.ott.client.render.entity.BushdogRenderer::new);
+        event.registerEntityRenderer(ModEntities.QUAIL.get(), com.otterly76.ott.client.render.entity.QuailRenderer::new);
+        event.registerEntityRenderer(ModEntities.CANDYCANE_SNAIL.get(), com.otterly76.ott.client.render.entity.CandycaneSnailRenderer::new);
+        event.registerEntityRenderer(ModEntities.FIRE_SALAMANDER.get(), com.otterly76.ott.client.render.entity.FireSalamanderRenderer::new);
+        event.registerEntityRenderer(ModEntities.RIVER_TURTLE.get(), com.otterly76.ott.client.render.entity.RiverTurtleRenderer::new);
+        event.registerEntityRenderer(ModEntities.GOBLIN_SHARK.get(), com.otterly76.ott.client.render.entity.GoblinSharkRenderer::new);
+        event.registerEntityRenderer(ModEntities.GUINEA_FOWL.get(), com.otterly76.ott.client.render.entity.GuineaFowlRenderer::new);
+        event.registerEntityRenderer(ModEntities.IMPALA.get(), com.otterly76.ott.client.render.entity.ImpalaRenderer::new);
+        event.registerEntityRenderer(ModEntities.MANTA_RAY.get(), com.otterly76.ott.client.render.entity.MantaRayRenderer::new);
+        event.registerEntityRenderer(ModEntities.STORK.get(), com.otterly76.ott.client.render.entity.StorkRenderer::new);
+        event.registerEntityRenderer(ModEntities.MOLE.get(), com.otterly76.ott.client.render.entity.MoleRenderer::new);
+        event.registerEntityRenderer(ModEntities.TREE_KANGAROO.get(), com.otterly76.ott.client.render.entity.TreeKangarooRenderer::new);
+        event.registerEntityRenderer(ModEntities.PALLAS_CAT.get(), com.otterly76.ott.client.render.entity.PallasCatRenderer::new);
+        event.registerEntityRenderer(ModEntities.PINK_LAND_IGUANA.get(), com.otterly76.ott.client.render.entity.PinkLandIguanaRenderer::new);
+        event.registerEntityRenderer(ModEntities.PSYCHO_JELLY.get(), com.otterly76.ott.client.render.entity.PsychoJellyRenderer::new);
+        event.registerEntityRenderer(ModEntities.SPOONBILL.get(), com.otterly76.ott.client.render.entity.SpoonbillRenderer::new);
+        event.registerEntityRenderer(ModEntities.GIANT_SOFTSHELL_TURTLE.get(), com.otterly76.ott.client.render.entity.GiantSoftshellTurtleRenderer::new);
+
         event.registerEntityRenderer(ModEntities.KIWI_EGG.get(), ThrownItemRenderer::new);
         event.registerEntityRenderer(ModEntities.PENGUIN_EGG.get(), ThrownItemRenderer::new);
-        event.registerEntityRenderer(ModEntities.QUILL_ARROW.get(), context -> new net.minecraft.client.renderer.entity.ArrowRenderer<>(context) {
-            @Override
-            public @NotNull ResourceLocation getTextureLocation(@NotNull com.otterly76.ott.entity.projectile.QuillArrowEntity entity) {
-                return ResourceLocation.fromNamespaceAndPath(MOD_ID, "textures/entity/quill_arrow.png");
-            }
-        });
 
         event.registerEntityRenderer(ModEntities.EMU_EGG.get(), ThrownItemRenderer::new);
         event.registerEntityRenderer(ModEntities.HOOPOE_EGG.get(), ThrownItemRenderer::new);

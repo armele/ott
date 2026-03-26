@@ -116,7 +116,7 @@ public class SeaUrchinEntity extends Animal implements GeoEntity {
     }
 
     @Override
-    public boolean isFood(ItemStack stack) {
+    public boolean isFood(@NotNull ItemStack stack) {
         return stack.is(ModTags.ItemTags.SEA_URCHIN_FOOD);
     }
 
@@ -171,3 +171,4 @@ public class SeaUrchinEntity extends Animal implements GeoEntity {
                 .add(Attributes.FOLLOW_RANGE, 4.0D);
     }
 }
+

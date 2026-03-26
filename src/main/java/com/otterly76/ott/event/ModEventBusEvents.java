@@ -35,7 +35,7 @@ public class ModEventBusEvents {
         event.put(ModEntities.MAN_O_WAR.get(), com.otterly76.ott.entity.custom.ManOWar.createAttributes().build());
         event.put(ModEntities.DUCK.get(), net.minecraft.world.entity.animal.Chicken.createAttributes().build());
         event.put(ModEntities.GOOSE.get(), net.minecraft.world.entity.animal.Chicken.createAttributes().build());
-        event.put(ModEntities.STINGRAY.get(), com.otterly76.ott.entity.custom.Stingray.setAttributes().build());
+        event.put(ModEntities.STINGRAY.get(), com.otterly76.ott.entity.custom.StingrayEntity.createAttributes().build());
         event.put(ModEntities.SUNFISH.get(), com.otterly76.ott.entity.custom.Sunfish.setAttributes().build());
         event.put(ModEntities.KRILL.get(), com.otterly76.ott.entity.custom.Krill.setAttributes().build());
         event.put(ModEntities.ANGELFISH.get(), com.otterly76.ott.entity.custom.Angelfish.setAttributes().build());
@@ -127,6 +127,50 @@ public class ModEventBusEvents {
         event.put(ModEntities.BOGGED_BONE_STALKER.get(), com.otterly76.ott.entity.custom.BoggedBoneStalker.createAttributes().build());
         event.put(ModEntities.BOGGED_SHADOW.get(), com.otterly76.ott.entity.custom.BoggedShadow.createAttributes().build());
         event.put(ModEntities.GILDED_TREE_ENT.get(), com.otterly76.ott.entity.custom.GildedTreeEnt.createAttributes().build());
+
+        event.put(ModEntities.BEAVER.get(), com.otterly76.ott.entity.custom.BeaverEntity.createAttributes().build());
+        event.put(ModEntities.CHUPACABRA.get(), com.otterly76.ott.entity.custom.ChupacabraEntity.createAttributes().build());
+        event.put(ModEntities.COUGAR.get(), com.otterly76.ott.entity.custom.CougarEntity.createAttributes().build());
+        event.put(ModEntities.COYOTE.get(), com.otterly76.ott.entity.custom.CoyoteEntity.createAttributes().build());
+        event.put(ModEntities.HOWLER.get(), com.otterly76.ott.entity.custom.HowlerEntity.createAttributes().build());
+        event.put(ModEntities.BEWITCHED_TIMBER_WOLF.get(), com.otterly76.ott.entity.custom.BewitchedGreywolfEntity.createAttributes().build());
+        event.put(ModEntities.MARMOT.get(), com.otterly76.ott.entity.custom.MarmotEntity.createAttributes().build());
+        event.put(ModEntities.MOUSE.get(), com.otterly76.ott.entity.custom.MouseEntity.createAttributes().build());
+        event.put(ModEntities.PIT_VIPER.get(), com.otterly76.ott.entity.custom.PitViperEntity.createAttributes().build());
+        event.put(ModEntities.RATTLESNAKE.get(), com.otterly76.ott.entity.custom.RattlesnakeEntity.createAttributes().build());
+        event.put(ModEntities.RINGTAIL.get(), com.otterly76.ott.entity.custom.RingtailEntity.createAttributes().build());
+        event.put(ModEntities.SASQUATCH.get(), com.otterly76.ott.entity.custom.SasquatchEntity.createAttributes().build());
+        event.put(ModEntities.SKINWALKER.get(), com.otterly76.ott.entity.custom.SkinwalkerEntity.createAttributes().build());
+        event.put(ModEntities.SNAKE.get(), com.otterly76.ott.entity.custom.SnakeEntity.createAttributes().build());
+        event.put(ModEntities.SQUONK.get(), com.otterly76.ott.entity.custom.SquonkEntity.createAttributes().build());
+        event.put(ModEntities.TURKEY.get(), com.otterly76.ott.entity.custom.TurkeyEntity.createAttributes().build());
+        event.put(ModEntities.WECHUGE.get(), com.otterly76.ott.entity.custom.WechugeEntity.createAttributes().build());
+        event.put(ModEntities.WENDIGO.get(), com.otterly76.ott.entity.custom.WendigoEntity.createAttributes().build());
+        event.put(ModEntities.WOLVERINE.get(), com.otterly76.ott.entity.custom.WolverineEntity.createAttributes().build());
+
+        event.put(ModEntities.CICHLID.get(), com.otterly76.ott.entity.custom.CichlidEntity.createAttributes().build());
+        event.put(ModEntities.LEOPARD_CAT.get(), com.otterly76.ott.entity.custom.LeopardCatEntity.createAttributes().build());
+        event.put(ModEntities.ECHIDNA.get(), com.otterly76.ott.entity.custom.EchidnaEntity.createAttributes().build());
+        event.put(ModEntities.GUITARFISH.get(), com.otterly76.ott.entity.custom.GuitarfishEntity.createAttributes().build());
+        event.put(ModEntities.BONNETHEAD_SHARK.get(), com.otterly76.ott.entity.custom.BonnetheadSharkEntity.createAttributes().build());
+        event.put(ModEntities.BURROWING_OWL.get(), com.otterly76.ott.entity.custom.BurrowingOwlEntity.createAttributes().build());
+        event.put(ModEntities.BUSHDOG.get(), com.otterly76.ott.entity.custom.BushdogEntity.createAttributes().build());
+        event.put(ModEntities.QUAIL.get(), com.otterly76.ott.entity.custom.QuailEntity.createAttributes().build());
+        event.put(ModEntities.CANDYCANE_SNAIL.get(), com.otterly76.ott.entity.custom.CandycaneSnailEntity.createAttributes().build());
+        event.put(ModEntities.FIRE_SALAMANDER.get(), com.otterly76.ott.entity.custom.FireSalamanderEntity.createAttributes().build());
+        event.put(ModEntities.RIVER_TURTLE.get(), com.otterly76.ott.entity.custom.RiverTurtleEntity.createAttributes().build());
+        event.put(ModEntities.GOBLIN_SHARK.get(), com.otterly76.ott.entity.custom.GoblinSharkEntity.createAttributes().build());
+        event.put(ModEntities.GUINEA_FOWL.get(), com.otterly76.ott.entity.custom.GuineaFowlEntity.createAttributes().build());
+        event.put(ModEntities.IMPALA.get(), com.otterly76.ott.entity.custom.ImpalaEntity.createAttributes().build());
+        event.put(ModEntities.MANTA_RAY.get(), com.otterly76.ott.entity.custom.MantaRayEntity.createAttributes().build());
+        event.put(ModEntities.STORK.get(), com.otterly76.ott.entity.custom.StorkEntity.createAttributes().build());
+        event.put(ModEntities.MOLE.get(), com.otterly76.ott.entity.custom.MoleEntity.createAttributes().build());
+        event.put(ModEntities.TREE_KANGAROO.get(), com.otterly76.ott.entity.custom.TreeKangarooEntity.createAttributes().build());
+        event.put(ModEntities.PALLAS_CAT.get(), com.otterly76.ott.entity.custom.PallasCatEntity.createAttributes().build());
+        event.put(ModEntities.PINK_LAND_IGUANA.get(), com.otterly76.ott.entity.custom.PinkLandIguanaEntity.createAttributes().build());
+        event.put(ModEntities.PSYCHO_JELLY.get(), com.otterly76.ott.entity.custom.PsychoJellyEntity.createAttributes().build());
+        event.put(ModEntities.SPOONBILL.get(), com.otterly76.ott.entity.custom.SpoonbillEntity.createAttributes().build());
+        event.put(ModEntities.GIANT_SOFTSHELL_TURTLE.get(), com.otterly76.ott.entity.custom.GiantSoftshellTurtleEntity.createAttributes().build());
     }
 
     @SubscribeEvent
@@ -252,7 +296,7 @@ public class ModEventBusEvents {
                 ModEntities.STINGRAY.get(),
                 SpawnPlacementTypes.IN_WATER,
                 Heightmap.Types.MOTION_BLOCKING_NO_LEAVES,
-                com.otterly76.ott.entity.custom.Stingray::canSpawn,
+                com.otterly76.ott.entity.custom.StingrayEntity::canSpawn,
                 RegisterSpawnPlacementsEvent.Operation.OR
         );
 

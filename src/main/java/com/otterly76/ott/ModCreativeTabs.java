@@ -146,6 +146,29 @@ public final class ModCreativeTabs {
                     output.accept(ModItems.OTTER_SPAWN_EGG);
                     output.accept(ModItems.RED_PANDA_SPAWN_EGG);
                     output.accept(ModItems.SEA_BUNNY_SPAWN_EGG);
+                    output.accept(ModItems.CICHLID_SPAWN_EGG);
+                    output.accept(ModItems.LEOPARD_CAT_SPAWN_EGG);
+                    output.accept(ModItems.ECHIDNA_SPAWN_EGG);
+                    output.accept(ModItems.GUITARFISH_SPAWN_EGG);
+                    output.accept(ModItems.BONNETHEAD_SHARK_SPAWN_EGG);
+                    output.accept(ModItems.BURROWING_OWL_SPAWN_EGG);
+                    output.accept(ModItems.BUSHDOG_SPAWN_EGG);
+                    output.accept(ModItems.QUAIL_SPAWN_EGG);
+                    output.accept(ModItems.CANDYCANE_SNAIL_SPAWN_EGG);
+                    output.accept(ModItems.FIRE_SALAMANDER_SPAWN_EGG);
+                    output.accept(ModItems.RIVER_TURTLE_SPAWN_EGG);
+                    output.accept(ModItems.GOBLIN_SHARK_SPAWN_EGG);
+                    output.accept(ModItems.GUINEA_FOWL_SPAWN_EGG);
+                    output.accept(ModItems.IMPALA_SPAWN_EGG);
+                    output.accept(ModItems.MANTA_RAY_SPAWN_EGG);
+                    output.accept(ModItems.STORK_SPAWN_EGG);
+                    output.accept(ModItems.MOLE_SPAWN_EGG);
+                    output.accept(ModItems.TREE_KANGAROO_SPAWN_EGG);
+                    output.accept(ModItems.PALLAS_CAT_SPAWN_EGG);
+                    output.accept(ModItems.PINK_LAND_IGUANA_SPAWN_EGG);
+                    output.accept(ModItems.PSYCHO_JELLY_SPAWN_EGG);
+                    output.accept(ModItems.SPOONBILL_SPAWN_EGG);
+                    output.accept(ModItems.GIANT_SOFTSHELL_TURTLE_SPAWN_EGG);
                     output.accept(ModItems.GHOST_SPAWN_EGG);
                     output.accept(ModItems.SPECTRE_SPAWN_EGG);
                     output.accept(ModItems.HAUNT_SPAWN_EGG);
@@ -169,6 +192,24 @@ public final class ModCreativeTabs {
                     output.accept(ModItems.BOGGED_BONE_STALKER_SPAWN_EGG);
                     output.accept(ModItems.BOGGED_SHADOW_SPAWN_EGG);
                     output.accept(ModItems.GILDED_TREE_ENT_SPAWN_EGG);
+                    output.accept(ModItems.BEAVER_SPAWN_EGG);
+                    output.accept(ModItems.CHUPACABRA_SPAWN_EGG);
+                    output.accept(ModItems.COUGAR_SPAWN_EGG);
+                    output.accept(ModItems.COYOTE_SPAWN_EGG);
+                    output.accept(ModItems.HOWLER_SPAWN_EGG);
+                    output.accept(ModItems.MARMOT_SPAWN_EGG);
+                    output.accept(ModItems.MOUSE_SPAWN_EGG);
+                    output.accept(ModItems.PIT_VIPER_SPAWN_EGG);
+                    output.accept(ModItems.RATTLESNAKE_SPAWN_EGG);
+                    output.accept(ModItems.RINGTAIL_SPAWN_EGG);
+                    output.accept(ModItems.SASQUATCH_SPAWN_EGG);
+                    output.accept(ModItems.SKINWALKER_SPAWN_EGG);
+                    output.accept(ModItems.SNAKE_SPAWN_EGG);
+                    output.accept(ModItems.SQUONK_SPAWN_EGG);
+                    output.accept(ModItems.TURKEY_SPAWN_EGG);
+                    output.accept(ModItems.WECHUGE_SPAWN_EGG);
+                    output.accept(ModItems.WENDIGO_SPAWN_EGG);
+                    output.accept(ModItems.WOLVERINE_SPAWN_EGG);
                 }).build();
     }
 
@@ -179,11 +220,9 @@ public final class ModCreativeTabs {
                 .icon(() -> new ItemStack(ModBlocks.WATER_LANTERN.get()))
                 .displayItems((config, output) -> {
                     output.accept(ModItems.CLAM);
-                    output.accept(ModItems.DRAGONFLY_WING);
                     output.accept(ModItems.KOI_FISH);
                     output.accept(ModItems.PEARL);
                     output.accept(ModItems.SILK);
-                    output.accept(ModItems.SEA_BUNNY_SLIME_BOTTLE);
                     output.accept(ModItems.MAN_O_WAR_BUCKET);
                     output.accept(ModItems.STINGRAY_BUCKET);
                     output.accept(ModItems.SUNFISH_BUCKET);
@@ -198,14 +237,14 @@ public final class ModCreativeTabs {
                     output.accept(ModItems.DUMBO_OCTOPUS_BUCKET);
                     output.accept(ModItems.KOI_FISH_BUCKET);
                     output.accept(ModItems.SEA_BUNNY_BUCKET);
+                    output.accept(ModItems.CICHLID_BUCKET);
+                    output.accept(ModItems.GUITARFISH_BUCKET);
+                    output.accept(ModItems.BONNETHEAD_SHARK_BUCKET);
+                    output.accept(ModItems.GOBLIN_SHARK_BUCKET);
+                    output.accept(ModItems.PSYCHO_JELLY_BUCKET);
                     output.accept(ModItems.SILK_COCOON.get());
-                    output.accept(ModItems.SEA_BUNNY_SLIME_BLOCK.get());
                     output.accept(ModItems.CHRYSALIS.get());
                     output.accept(ModItems.SNAIL_SHELL);
-                    output.accept(ModItems.QUILL);
-                    output.accept(ModItems.QUILL_ARROW);
-                    output.accept(ModItems.ANTLER);
-                    output.accept(ModItems.FUR);
 
                     // Nature
                     output.accept(ModItems.THORNY_HEDGE.get());
@@ -213,10 +252,6 @@ public final class ModCreativeTabs {
                     ModBlocks.PARTICLE_HEDGES.values().forEach(output::accept);
                     ModBlocks.CREEPING_HEDGES.values().forEach(output::accept);
                     output.accept(ModItems.BIG_LILY_PAD);
-                    output.accept(ModItems.SEAGRASS_BALL);
-                    output.accept(ModItems.DRIED_SEAGRASS_BALL);
-                    output.accept(ModItems.DRIED_SEAGRASS_BALL_BLOCK);
-                    output.accept(ModItems.DRIED_SEAGRASS_BALL_CARPET);
                     output.accept(ModItems.OAK_NEST);
                     output.accept(ModItems.GLOW_GOOP);
 
@@ -227,7 +262,6 @@ public final class ModCreativeTabs {
                     output.accept(ModItems.SALT_LAMP);
 
                     // Decorative
-                    output.accept(ModItems.TEDDY_BEAR.get());
                     output.accept(ModItems.DRAGON_SKULL);
 
                     // Protective Lanterns
@@ -271,6 +305,9 @@ public final class ModCreativeTabs {
                     output.accept(ModItems.COOKED_PHEASANT);
                     output.accept(ModItems.BUSHMEAT);
                     output.accept(ModItems.COOKED_BUSHMEAT);
+                    output.accept(ModItems.RAW_GAME);
+                    output.accept(ModItems.COOKED_GAME);
+                    output.accept(ModItems.RAW_TURKEY);
                     output.accept(ModItems.LIZARD_TAIL);
                     output.accept(ModItems.COOKED_LIZARD_TAIL);
                     output.accept(ModItems.COOKED_EGG);
@@ -292,6 +329,18 @@ public final class ModCreativeTabs {
                     output.accept(ModItems.FRIED_KRILL);
                     output.accept(ModItems.JELLYFISH_JELLY);
                     output.accept(ModItems.SEA_URCHIN_CAVIAR);
+                    output.accept(ModItems.RAW_CICHLID);
+                    output.accept(ModItems.COOKED_CICHLID);
+                    output.accept(ModItems.RAW_BONNETHEAD);
+                    output.accept(ModItems.COOKED_BONNETHEAD);
+                    output.accept(ModItems.RAW_GUITARFISH);
+                    output.accept(ModItems.COOKED_GUITARFISH);
+                    output.accept(ModItems.RAW_GOBLIN_SHARK);
+                    output.accept(ModItems.COOKED_GOBLIN_SHARK);
+                    output.accept(ModItems.RAW_SNAIL_MEAT);
+                    output.accept(ModItems.COOKED_SNAIL_MEAT);
+                    output.accept(ModItems.WILD_BIRD_MEAT);
+                    output.accept(ModItems.COOKED_WILD_BIRD_MEAT);
 
                     // Eggs
                     output.accept(ModItems.BLUE_EGG);

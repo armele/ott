@@ -3,50 +3,72 @@
 	"minecraft:geometry": [
 		{
 			"description": {
-				"identifier": "geometry.stingray",
-				"texture_width": 128,
-				"texture_height": 128,
-				"visible_bounds_width": 5,
+				"identifier": "geometry.unknown",
+				"texture_width": 64,
+				"texture_height": 32,
+				"visible_bounds_width": 3,
 				"visible_bounds_height": 1.5,
 				"visible_bounds_offset": [0, 0.25, 0]
 			},
 			"bones": [
 				{
 					"name": "root",
-					"pivot": [0, 1, 1]
+					"pivot": [0, 1, 0]
 				},
 				{
-					"name": "body",
+					"name": "Tail",
 					"parent": "root",
-					"pivot": [0, 0.75, 0.5],
+					"pivot": [0, 1, 4],
 					"cubes": [
-						{"origin": [-6, 0, -9], "size": [12, 3, 19], "uv": [36, 0]},
-						{"origin": [-6, 0, -14], "size": [12, 1, 5], "uv": [36, 43]}
+						{"origin": [-0.5, 0.5, 4], "size": [1, 1, 9], "uv": [29, 5]}
 					]
 				},
 				{
-					"name": "r_wing",
+					"name": "Body",
 					"parent": "root",
-					"pivot": [-6, 0.5, -2],
+					"pivot": [0, 2, -5],
 					"cubes": [
-						{"origin": [-12, 0, -14], "size": [6, 1, 24], "uv": [0, 0], "mirror": true}
+						{"origin": [-4, 0, -5], "size": [8, 2, 9], "uv": [0, 0]}
 					]
 				},
 				{
-					"name": "l_fin",
-					"parent": "root",
-					"pivot": [6, 0.5, -2],
+					"name": "Head",
+					"parent": "Body",
+					"pivot": [0, 1, -5],
 					"cubes": [
-						{"origin": [6, 0, -14], "size": [6, 1, 24], "uv": [0, 0]}
+						{"origin": [-4, 0, -7], "size": [8, 1, 2], "uv": [0, 13]}
 					]
 				},
 				{
-					"name": "tail",
-					"parent": "root",
-					"pivot": [0, 0.5, 9.75],
+					"name": "WingLeft",
+					"parent": "Body",
+					"pivot": [-4, 0.5, -5],
 					"cubes": [
-						{"origin": [-1, 0, 10], "size": [2, 1, 17], "uv": [36, 25]},
-						{"origin": [0, 0, 21], "size": [0, 3, 8], "uv": [0, 0]}
+						{"origin": [-6, 0, -6], "size": [2, 1, 11], "uv": [0, 19]}
+					]
+				},
+				{
+					"name": "WingRight",
+					"parent": "Body",
+					"pivot": [4, 0.5, -5],
+					"cubes": [
+						{"origin": [4, 0, -6], "size": [2, 1, 11], "uv": [16, 16]}
+					]
+				},
+				{
+					"name": "AnalFinLeft",
+					"parent": "Body",
+					"pivot": [-1, 1, 4],
+					"cubes": [
+						{"origin": [-4, 0, 4], "size": [3, 1, 2], "uv": [26, 0]}
+					]
+				},
+				{
+					"name": "AnalFinRight",
+					"parent": "Body",
+					"pivot": [1, 1, 4],
+					"cubes": [
+						{"origin": [1, 0, 4], "size": [3, 1, 2], "uv": [26, 4]}
 					]
 				}
 			]

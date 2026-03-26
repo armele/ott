@@ -11,84 +11,583 @@
   },
   "entity.ghost.ambient": {
     "sounds": [
-      { "name": "ott:entity/ghost/ghost1" },
-      { "name": "ott:entity/ghost/ghost2" }
+      {
+        "name": "ott:entity/ghost/ghost1"
+      },
+      {
+        "name": "ott:entity/ghost/ghost2"
+      }
     ]
   },
   "entity.ghost.breath": {
     "sounds": [
-      { "name": "ott:entity/ghost/ghostbreath" }
+      {
+        "name": "ott:entity/ghost/ghostbreath"
+      }
     ]
   },
   "entity.ghost.hurt": {
     "sounds": [
-      { "name": "ott:entity/geist/geist_hurt" }
+      {
+        "name": "ott:entity/geist/geist_hurt"
+      }
     ]
   },
   "entity.ghost.death": {
     "sounds": [
-      { "name": "ott:entity/geist/geist_hurt" }
+      {
+        "name": "ott:entity/geist/geist_hurt"
+      }
     ]
   },
   "entity.spectre.ambient": {
     "sounds": [
-      { "name": "ott:entity/spectre/spectre1" },
-      { "name": "ott:entity/spectre/spectre2" },
-      { "name": "ott:entity/spectre/spectre3" }
+      {
+        "name": "ott:entity/spectre/spectre1"
+      },
+      {
+        "name": "ott:entity/spectre/spectre2"
+      },
+      {
+        "name": "ott:entity/spectre/spectre3"
+      }
     ]
   },
   "entity.spectre.wail": {
     "sounds": [
-      { "name": "ott:entity/spectre/spectre1" },
-      { "name": "ott:entity/spectre/spectre2" },
-      { "name": "ott:entity/spectre/spectre3" }
+      {
+        "name": "ott:entity/spectre/spectre1"
+      },
+      {
+        "name": "ott:entity/spectre/spectre2"
+      },
+      {
+        "name": "ott:entity/spectre/spectre3"
+      }
     ]
   },
   "entity.spectre.hurt": {
     "sounds": [
-      { "name": "ott:entity/spectre/spectre1" }
+      {
+        "name": "ott:entity/spectre/spectre1"
+      }
     ]
   },
   "entity.spectre.death": {
     "sounds": [
-      { "name": "ott:entity/spectre/spectre2" }
+      {
+        "name": "ott:entity/spectre/spectre2"
+      }
     ]
   },
   "entity.geist.ambient": {
     "sounds": [
-      { "name": "ott:entity/geist/geist1" },
-      { "name": "ott:entity/geist/geist2" }
+      {
+        "name": "ott:entity/geist/geist1"
+      },
+      {
+        "name": "ott:entity/geist/geist2"
+      }
     ]
   },
   "entity.geist.hurt": {
     "sounds": [
-      { "name": "ott:entity/geist/geist_hurt" }
+      {
+        "name": "ott:entity/geist/geist_hurt"
+      }
     ]
   },
   "entity.geist.death": {
     "sounds": [
-      { "name": "ott:entity/geist/geist_hurt" }
+      {
+        "name": "ott:entity/geist/geist_hurt"
+      }
     ]
   },
   "entity.haunt.ambient": {
     "sounds": [
-      { "name": "ott:entity/ghost/ghost1" },
-      { "name": "ott:entity/ghost/ghost2" }
+      {
+        "name": "ott:entity/ghost/ghost1"
+      },
+      {
+        "name": "ott:entity/ghost/ghost2"
+      }
     ]
   },
   "entity.haunt.hurt": {
     "sounds": [
-      { "name": "ott:entity/geist/geist_hurt" }
+      {
+        "name": "ott:entity/geist/geist_hurt"
+      }
     ]
   },
   "entity.haunt.death": {
     "sounds": [
-      { "name": "ott:entity/geist/geist_hurt" }
+      {
+        "name": "ott:entity/geist/geist_hurt"
+      }
     ]
+  },
+  "entity.beaver.idle": {
+    "sounds": [
+      {
+        "name": "ott:entity/beaver/idle1"
+      },
+      {
+        "name": "ott:entity/beaver/idle2"
+      },
+      {
+        "name": "ott:entity/beaver/idle3"
+      }
+    ]
+  },
+  "entity.beaver.hurt": {
+    "sounds": [
+      {
+        "name": "ott:entity/beaver/hurt"
+      }
+    ]
+  },
+  "entity.beaver.death": {
+    "sounds": [
+      {
+        "name": "ott:entity/beaver/death"
+      }
+    ]
+  },
+  "entity.coyote.idle": {
+    "sounds": [
+      {
+        "name": "ott:entity/coyote/idle1"
+      },
+      {
+        "name": "ott:entity/coyote/idle2"
+      },
+      {
+        "name": "ott:entity/coyote/idle3"
+      }
+    ]
+  },
+  "entity.wolverine.idle": {
+    "sounds": [
+      {
+        "name": "ott:entity/wolverine/idle1"
+      },
+      {
+        "name": "ott:entity/wolverine/idle2"
+      }
+    ]
+  },
+  "entity.wolverine.hurt": {
+    "sounds": [
+      {
+        "name": "ott:entity/wolverine/hurt"
+      }
+    ]
+  },
+  "entity.skinwalker.idle": {
+    "sounds": [
+      {
+        "name": "ott:entity/skinwalker/idle1"
+      },
+      {
+        "name": "ott:entity/skinwalker/idle2"
+      }
+    ]
+  },
+  "entity.skinwalker.hurt": {
+    "sounds": [
+      {
+        "name": "ott:entity/skinwalker/hurt"
+      }
+    ]
+  },
+  "entity.cougar.idle": {
+    "sounds": [
+      {
+        "name": "ott:entity/cougar/idle1"
+      },
+      {
+        "name": "ott:entity/cougar/idle2"
+      },
+      {
+        "name": "ott:entity/cougar/idle3"
+      },
+      {
+        "name": "ott:entity/cougar/idle4"
+      }
+    ]
+  },
+  "entity.cougar.hurt": {
+    "sounds": [
+      {
+        "name": "ott:entity/cougar/hurt1"
+      },
+      {
+        "name": "ott:entity/cougar/hurt2"
+      },
+      {
+        "name": "ott:entity/cougar/hurt3"
+      }
+    ]
+  },
+  "entity.cougar.death": {
+    "sounds": [
+      {
+        "name": "ott:entity/cougar/death"
+      }
+    ]
+  },
+  "entity.cougar.purr": {
+    "sounds": [
+      {
+        "name": "ott:entity/cougar/purr"
+      }
+    ]
+  },
+  "entity.cougar.bite": {
+    "sounds": [
+      {
+        "name": "ott:entity/cougar/bite"
+      }
+    ]
+  },
+  "entity.howler.idle": {
+    "sounds": [
+      {
+        "name": "ott:entity/howler/idle1"
+      },
+      {
+        "name": "ott:entity/howler/idle2"
+      }
+    ]
+  },
+  "entity.howler.hurt": {
+    "sounds": [
+      {
+        "name": "ott:entity/howler/hurt"
+      }
+    ]
+  },
+  "entity.sasquatch.hurt": {
+    "sounds": [
+      {
+        "name": "ott:entity/sasquatch/hurt1"
+      },
+      {
+        "name": "ott:entity/sasquatch/hurt2"
+      },
+      {
+        "name": "ott:entity/sasquatch/hurt3"
+      }
+    ]
+  },
+  "entity.sasquatch.death": {
+    "sounds": [
+      {
+        "name": "ott:entity/sasquatch/death"
+      }
+    ]
+  },
+  "entity.sasquatch.knock": {
+    "sounds": [
+      {
+        "name": "ott:entity/sasquatch/knock"
+      }
+    ]
+  },
+  "entity.snake.hurt": {
+    "sounds": [
+      {
+        "name": "ott:entity/snake/hurt"
+      }
+    ]
+  },
+  "entity.snake.death": {
+    "sounds": [
+      {
+        "name": "ott:entity/snake/death"
+      }
+    ]
+  },
+  "entity.squonk.idle": {
+    "sounds": [
+      {
+        "name": "ott:entity/squonk/idle1"
+      },
+      {
+        "name": "ott:entity/squonk/idle2"
+      },
+      {
+        "name": "ott:entity/squonk/idle3"
+      }
+    ]
+  },
+  "entity.squonk.hurt": {
+    "sounds": [
+      {
+        "name": "ott:entity/squonk/hurt"
+      }
+    ]
+  },
+  "entity.squonk.death": {
+    "sounds": [
+      {
+        "name": "ott:entity/squonk/death"
+      }
+    ]
+  },
+  "entity.turkey.idle": {
+    "sounds": [
+      {
+        "name": "ott:entity/turkey/idle1"
+      },
+      {
+        "name": "ott:entity/turkey/idle2"
+      },
+      {
+        "name": "ott:entity/turkey/idle3"
+      },
+      {
+        "name": "ott:entity/turkey/idle4"
+      }
+    ]
+  },
+  "entity.turkey.hurt": {
+    "sounds": [
+      {
+        "name": "ott:entity/turkey/hurt1"
+      },
+      {
+        "name": "ott:entity/turkey/hurt2"
+      }
+    ]
+  },
+  "entity.turkey.death": {
+    "sounds": [
+      {
+        "name": "ott:entity/turkey/death"
+      }
+    ]
+  },
+  "entity.marmot.idle": {
+    "sounds": [
+      {
+        "name": "ott:entity/marmot/idle1"
+      },
+      {
+        "name": "ott:entity/marmot/idle2"
+      }
+    ]
+  },
+  "entity.marmot.hurt": {
+    "sounds": [
+      {
+        "name": "ott:entity/marmot/hurt"
+      }
+    ]
+  },
+  "entity.marmot.whistle": {
+    "sounds": [
+      {
+        "name": "ott:entity/marmot/whistle"
+      }
+    ]
+  },
+  "entity.wendigo.idle": {
+    "sounds": [
+      {
+        "name": "ott:entity/wendigo/idle1"
+      },
+      {
+        "name": "ott:entity/wendigo/idle2"
+      },
+      {
+        "name": "ott:entity/wendigo/idle3"
+      }
+    ]
+  },
+  "entity.wendigo.hurt": {
+    "sounds": [
+      {
+        "name": "ott:entity/wendigo/hurt"
+      }
+    ]
+  },
+  "entity.wendigo.death": {
+    "sounds": [
+      {
+        "name": "ott:entity/wendigo/death"
+      }
+    ]
+  },
+  "entity.wendigo.step": {
+    "sounds": [
+      {
+        "name": "ott:entity/wendigo/step"
+      }
+    ]
+  },
+  "entity.wendigo.eat": {
+    "sounds": [
+      {
+        "name": "ott:entity/wendigo/eat"
+      }
+    ]
+  },
+  "entity.wechuge.idle": {
+    "sounds": [
+      {
+        "name": "ott:entity/wechuge/idle1"
+      },
+      {
+        "name": "ott:entity/wechuge/idle2"
+      },
+      {
+        "name": "ott:entity/wechuge/idle3"
+      }
+    ]
+  },
+  "entity.wechuge.growl": {
+    "sounds": [
+      {
+        "name": "ott:entity/wechuge/growl"
+      }
+    ]
+  },
+  "entity.wechuge.death": {
+    "sounds": [
+      {
+        "name": "ott:entity/wechuge/death"
+      }
+    ]
+  },
+  "entity.wechuge.step": {
+    "sounds": [
+      {
+        "name": "ott:entity/wechuge/step"
+      }
+    ]
+  },
+  "entity.wechuge.bite": {
+    "sounds": [
+      {
+        "name": "ott:entity/wechuge/bite"
+      }
+    ]
+  },
+  "entity.wechuge.stun": {
+    "sounds": [
+      {
+        "name": "ott:entity/wechuge/stun"
+      }
+    ]
+  },
+  "entity.poison_spit.hit": {
+    "sounds": [
+      "ott:entity/poison_spit/sizzle1",
+      "ott:entity/poison_spit/sizzle2",
+      "ott:entity/poison_spit/sizzle3"
+    ]
+  },
+  "entity.player.cry": {
+    "subtitle": "subtitles.entity.player.cry",
+    "sounds": [
+      "ott:entity/player/cry1",
+      "ott:entity/player/cry2",
+      "ott:entity/player/cry3",
+      "ott:entity/player/cry4"
+    ]
+  },
+  "entity.quail.ambient": {
+    "subtitle": "subtitles.ott.entity.quail.ambient",
+    "sounds": [ "ott:entity/quail/ambient" ]
+  },
+  "entity.quail.hurt": {
+    "subtitle": "subtitles.ott.entity.quail.hurt",
+    "sounds": [ "ott:entity/quail/hurt" ]
+  },
+  "entity.quail.death": {
+    "subtitle": "subtitles.ott.entity.quail.death",
+    "sounds": [ "ott:entity/quail/death" ]
+  },
+  "entity.pallas_cat.ambient": {
+    "subtitle": "subtitles.ott.entity.pallas_cat.ambient",
+    "sounds": [ "ott:entity/pallas_cat/ambient" ]
+  },
+  "entity.leopard_cat.ambient": {
+    "subtitle": "subtitles.ott.entity.leopard_cat.ambient",
+    "sounds": [ "ott:entity/leopard_cat/ambient" ]
+  },
+  "entity.echidna.ambient": {
+    "subtitle": "subtitles.ott.entity.echidna.ambient",
+    "sounds": [ "ott:entity/echidna/ambient" ]
+  },
+  "entity.burrowing_owl.ambient": {
+    "subtitle": "subtitles.ott.entity.burrowing_owl.ambient",
+    "sounds": [ "ott:entity/burrowing_owl/ambient" ]
+  },
+  "entity.burrowing_owl.hurt": {
+    "subtitle": "subtitles.ott.entity.burrowing_owl.hurt",
+    "sounds": [ "ott:entity/burrowing_owl/hurt" ]
+  },
+  "entity.guinea_fowl.ambient": {
+    "subtitle": "subtitles.ott.entity.guinea_fowl.ambient",
+    "sounds": [ "ott:entity/guinea_fowl/ambient" ]
+  },
+  "entity.guinea_fowl.hurt": {
+    "subtitle": "subtitles.ott.entity.guinea_fowl.hurt",
+    "sounds": [ "ott:entity/guinea_fowl/hurt" ]
+  },
+  "entity.guinea_fowl.death": {
+    "subtitle": "subtitles.ott.entity.guinea_fowl.death",
+    "sounds": [ "ott:entity/guinea_fowl/death" ]
+  },
+  "entity.guinea_fowl.alarm": {
+    "subtitle": "subtitles.ott.entity.guinea_fowl.alarm",
+    "sounds": [ "ott:entity/guinea_fowl/danger_call" ]
+  },
+  "entity.impala.ambient": {
+    "subtitle": "subtitles.ott.entity.impala.ambient",
+    "sounds": [ "ott:entity/impala/ambient1", "ott:entity/impala/ambient2" ]
+  },
+  "entity.impala.hurt": {
+    "subtitle": "subtitles.ott.entity.impala.hurt",
+    "sounds": [ "ott:entity/impala/hurt" ]
+  },
+  "entity.impala.death": {
+    "subtitle": "subtitles.ott.entity.impala.death",
+    "sounds": [ "ott:entity/impala/death" ]
+  },
+  "entity.stork.ambient": {
+    "subtitle": "subtitles.ott.entity.stork.ambient",
+    "sounds": [ "ott:entity/stork/ambient1", "ott:entity/stork/ambient2" ]
+  },
+  "entity.stork.hurt": {
+    "subtitle": "subtitles.ott.entity.stork.hurt",
+    "sounds": [ "ott:entity/stork/hurt" ]
+  },
+  "entity.stork.death": {
+    "subtitle": "subtitles.ott.entity.stork.death",
+    "sounds": [ "ott:entity/stork/death" ]
+  },
+  "entity.spoonbill.ambient": {
+    "subtitle": "subtitles.ott.entity.spoonbill.ambient",
+    "sounds": [ "ott:entity/spoonbill/ambient1", "ott:entity/spoonbill/ambient2" ]
+  },
+  "entity.spoonbill.hurt": {
+    "subtitle": "subtitles.ott.entity.spoonbill.hurt",
+    "sounds": [ "ott:entity/spoonbill/hurt" ]
+  },
+  "entity.spoonbill.death": {
+    "subtitle": "subtitles.ott.entity.spoonbill.death",
+    "sounds": [ "ott:entity/spoonbill/death" ]
   },
   "entity.misc.null_audio": {
     "sounds": [
-      { "name": "ott:entity/misc/null_audio" }
+      {
+        "name": "ott:entity/misc/null_audio"
+      }
     ]
   },
   "weather.snow.above": {
@@ -123,72 +622,116 @@
   },
   "entity.emu.ambient": {
     "sounds": [
-      { "name": "ott:entity/emu/emu_ambient0" },
-      { "name": "ott:entity/emu/emu_ambient1" }
+      {
+        "name": "ott:entity/emu/emu_ambient0"
+      },
+      {
+        "name": "ott:entity/emu/emu_ambient1"
+      }
     ]
   },
   "entity.emu.hurt": {
     "sounds": [
-      { "name": "ott:entity/emu/emu_hurt" },
-      { "name": "ott:entity/emu/emu_hurt1" }
+      {
+        "name": "ott:entity/emu/emu_hurt"
+      },
+      {
+        "name": "ott:entity/emu/emu_hurt1"
+      }
     ]
   },
   "entity.emu.death": {
     "sounds": [
-      { "name": "ott:entity/emu/emu_death" }
+      {
+        "name": "ott:entity/emu/emu_death"
+      }
     ]
   },
   "entity.gecko.ambient": {
     "sounds": [
-      { "name": "ott:entity/gecko/gecko_ambient1" },
-      { "name": "ott:entity/gecko/gecko_ambient2" },
-      { "name": "ott:entity/gecko/gecko_ambient3" }
+      {
+        "name": "ott:entity/gecko/gecko_ambient1"
+      },
+      {
+        "name": "ott:entity/gecko/gecko_ambient2"
+      },
+      {
+        "name": "ott:entity/gecko/gecko_ambient3"
+      }
     ]
   },
   "entity.marine_iguana.sneeze": {
     "sounds": [
-      { "name": "ott:entity/marine_iguana/sneeze" }
+      {
+        "name": "ott:entity/marine_iguana/sneeze"
+      }
     ]
   },
   "entity.pheasant.ambient": {
     "sounds": [
-      { "name": "ott:entity/pheasant/pheasant_ambient1" },
-      { "name": "ott:entity/pheasant/pheasant_ambient2" }
+      {
+        "name": "ott:entity/pheasant/pheasant_ambient1"
+      },
+      {
+        "name": "ott:entity/pheasant/pheasant_ambient2"
+      }
     ]
   },
   "entity.pheasant.hurt": {
     "sounds": [
-      { "name": "ott:entity/pheasant/pheasant_hurt1" },
-      { "name": "ott:entity/pheasant/pheasant_hurt2" }
+      {
+        "name": "ott:entity/pheasant/pheasant_hurt1"
+      },
+      {
+        "name": "ott:entity/pheasant/pheasant_hurt2"
+      }
     ]
   },
   "entity.vile_gator.ambient": {
     "sounds": [
-      { "name": "ott:entity/vile_gator/vile_gator_1" },
-      { "name": "ott:entity/vile_gator/vile_gator_2" }
+      {
+        "name": "ott:entity/vile_gator/vile_gator_1"
+      },
+      {
+        "name": "ott:entity/vile_gator/vile_gator_2"
+      }
     ]
   },
   "entity.phoenix.ambient": {
     "sounds": [
-      { "name": "ott:entity/phoenix/phoenix_1" }
+      {
+        "name": "ott:entity/phoenix/phoenix_1"
+      }
     ]
   },
   "entity.toucan.ambient": {
     "sounds": [
-      { "name": "ott:entity/toucan/toucan_ambient1" },
-      { "name": "ott:entity/toucan/toucan_ambient2" },
-      { "name": "ott:entity/toucan/toucan_ambient3" }
+      {
+        "name": "ott:entity/toucan/toucan_ambient1"
+      },
+      {
+        "name": "ott:entity/toucan/toucan_ambient2"
+      },
+      {
+        "name": "ott:entity/toucan/toucan_ambient3"
+      }
     ]
   },
   "entity.toucan.hurt": {
     "sounds": [
-      { "name": "ott:entity/toucan/toucan_hurt1" },
-      { "name": "ott:entity/toucan/toucan_hurt2" }
+      {
+        "name": "ott:entity/toucan/toucan_hurt1"
+      },
+      {
+        "name": "ott:entity/toucan/toucan_hurt2"
+      }
     ]
   },
   "entity.toucan.death": {
     "sounds": [
-      { "name": "ott:entity/toucan/toucan_death" }
+      {
+        "name": "ott:entity/toucan/toucan_death"
+      }
     ]
   },
   "entity.catfish.flop": {
@@ -1208,75 +1751,143 @@
     "subtitle": "subtitles.ott.entity.seal.ambient"
   },
   "entity.bite_attack": {
-    "sounds": [ "ott:entity/bite_attack_1", "ott:entity/bite_attack_2", "ott:entity/bite_attack_3" ],
+    "sounds": [
+      "ott:entity/bite_attack/1",
+      "ott:entity/bite_attack/2",
+      "ott:entity/bite_attack/3"
+    ],
     "subtitle": "subtitles.ott.entity.bite_attack"
   },
   "entity.bubble_pop": {
-    "sounds": [ "ott:entity/bubble_pop" ],
+    "sounds": [
+      "ott:entity/dumbo_octopus/bubble_pop"
+    ],
     "subtitle": "subtitles.ott.entity.bubble_pop"
   },
   "entity.dragonfly.ambient": {
-    "sounds": [ "ott:entity/dragonfly/ambient" ],
+    "sounds": [
+      "ott:entity/dragonfly/ambient"
+    ],
     "subtitle": "subtitles.ott.entity.dragonfly.ambient"
   },
   "entity.ferret.ambient": {
-    "sounds": [ "ott:entity/ferret/ambient_1", "ott:entity/ferret/ambient_2", "ott:entity/ferret/ambient_3", "ott:entity/ferret/ambient_4", "ott:entity/ferret/ambient_5", "ott:entity/ferret/ambient_6" ],
+    "sounds": [
+      "ott:entity/ferret/ambient_1",
+      "ott:entity/ferret/ambient_2",
+      "ott:entity/ferret/ambient_3",
+      "ott:entity/ferret/ambient_4",
+      "ott:entity/ferret/ambient_5",
+      "ott:entity/ferret/ambient_6"
+    ],
     "subtitle": "subtitles.ott.entity.ferret.ambient"
   },
   "entity.ferret.death": {
-    "sounds": [ "ott:entity/ferret/death_1", "ott:entity/ferret/death_2", "ott:entity/ferret/death_3" ],
+    "sounds": [
+      "ott:entity/ferret/death_1",
+      "ott:entity/ferret/death_2",
+      "ott:entity/ferret/death_3"
+    ],
     "subtitle": "subtitles.ott.entity.ferret.death"
   },
   "entity.ferret.hurt": {
-    "sounds": [ "ott:entity/ferret/hurt_1", "ott:entity/ferret/hurt_2" ],
+    "sounds": [
+      "ott:entity/ferret/hurt_1",
+      "ott:entity/ferret/hurt_2"
+    ],
     "subtitle": "subtitles.ott.entity.ferret.hurt"
   },
   "entity.otter.ambient": {
-    "sounds": [ "ott:entity/otter/ambient_1", "ott:entity/otter/ambient_2", "ott:entity/otter/ambient_3", "ott:entity/otter/ambient_4", "ott:entity/otter/ambient_5" ],
+    "sounds": [
+      "ott:entity/otter/ambient_1",
+      "ott:entity/otter/ambient_2",
+      "ott:entity/otter/ambient_3",
+      "ott:entity/otter/ambient_4",
+      "ott:entity/otter/ambient_5"
+    ],
     "subtitle": "subtitles.ott.entity.otter.ambient"
   },
   "entity.otter.death": {
-    "sounds": [ "ott:entity/otter/death_1", "ott:entity/otter/death_2" ],
+    "sounds": [
+      "ott:entity/otter/death_1",
+      "ott:entity/otter/death_2"
+    ],
     "subtitle": "subtitles.ott.entity.otter.death"
   },
   "entity.otter.eat": {
-    "sounds": [ "ott:entity/otter/eat_1", "ott:entity/otter/eat_2", "ott:entity/otter/eat_3" ],
+    "sounds": [
+      "ott:entity/otter/eat_1",
+      "ott:entity/otter/eat_2",
+      "ott:entity/otter/eat_3"
+    ],
     "subtitle": "subtitles.ott.entity.otter.eat"
   },
   "entity.otter.clam_break": {
-    "sounds": [ "ott:entity/otter/clam_break_land_1", "ott:entity/otter/clam_break_land_2", "ott:entity/otter/clam_break_land_3" ],
+    "sounds": [
+      "ott:entity/otter/clam_break_land_1",
+      "ott:entity/otter/clam_break_land_2",
+      "ott:entity/otter/clam_break_land_3"
+    ],
     "subtitle": "subtitles.ott.entity.otter.clam_break"
   },
   "entity.otter.clam_break_land": {
-    "sounds": [ "ott:entity/otter/clam_break_land_1", "ott:entity/otter/clam_break_land_2", "ott:entity/otter/clam_break_land_3" ],
+    "sounds": [
+      "ott:entity/otter/clam_break_land_1",
+      "ott:entity/otter/clam_break_land_2",
+      "ott:entity/otter/clam_break_land_3"
+    ],
     "subtitle": "subtitles.ott.entity.otter.clam_break_land"
   },
   "entity.otter.hurt": {
-    "sounds": [ "ott:entity/otter/hurt_1", "ott:entity/otter/hurt_2" ],
+    "sounds": [
+      "ott:entity/otter/hurt_1",
+      "ott:entity/otter/hurt_2"
+    ],
     "subtitle": "subtitles.ott.entity.otter.hurt"
   },
   "entity.otter.swim": {
-    "sounds": [ "ott:entity/otter/swim_1", "ott:entity/otter/swim_2", "ott:entity/otter/swim_3" ],
+    "sounds": [
+      "ott:entity/otter/swim_1",
+      "ott:entity/otter/swim_2",
+      "ott:entity/otter/swim_3"
+    ],
     "subtitle": "subtitles.ott.entity.otter.swim"
   },
   "entity.red_panda.ambient": {
-    "sounds": [ "ott:entity/red_panda/ambient_1", "ott:entity/red_panda/ambient_2", "ott:entity/red_panda/ambient_3", "ott:entity/red_panda/ambient_4" ],
+    "sounds": [
+      "ott:entity/red_panda/ambient_1",
+      "ott:entity/red_panda/ambient_2",
+      "ott:entity/red_panda/ambient_3",
+      "ott:entity/red_panda/ambient_4"
+    ],
     "subtitle": "subtitles.ott.entity.red_panda.ambient"
   },
   "entity.red_panda.death": {
-    "sounds": [ "ott:entity/red_panda/death_1", "ott:entity/red_panda/death_2" ],
+    "sounds": [
+      "ott:entity/red_panda/death_1",
+      "ott:entity/red_panda/death_2"
+    ],
     "subtitle": "subtitles.ott.entity.red_panda.death"
   },
   "entity.red_panda.hurt": {
-    "sounds": [ "ott:entity/red_panda/hurt_1", "ott:entity/red_panda/hurt_2" ],
+    "sounds": [
+      "ott:entity/red_panda/hurt_1",
+      "ott:entity/red_panda/hurt_2"
+    ],
     "subtitle": "subtitles.ott.entity.red_panda.hurt"
   },
   "entity.sea_bunny.death": {
-    "sounds": [ "ott:entity/sea_bunny/death_1", "ott:entity/sea_bunny/death_2" ],
+    "sounds": [
+      "ott:entity/sea_bunny/death_1",
+      "ott:entity/sea_bunny/death_2"
+    ],
     "subtitle": "subtitles.ott.entity.sea_bunny.death"
   },
   "entity.sea_bunny.hurt": {
-    "sounds": [ "ott:entity/sea_bunny/hurt_1", "ott:entity/sea_bunny/hurt_2", "ott:entity/sea_bunny/hurt_3" ],
+    "sounds": [
+      "ott:entity/sea_bunny/hurt_1",
+      "ott:entity/sea_bunny/hurt_2",
+      "ott:entity/sea_bunny/hurt_3"
+    ],
     "subtitle": "subtitles.ott.entity.sea_bunny.hurt"
   }
 }

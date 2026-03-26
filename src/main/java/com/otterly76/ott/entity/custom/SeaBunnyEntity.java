@@ -12,7 +12,6 @@ import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
-import net.minecraft.sounds.SoundSource;
 import net.minecraft.util.Mth;
 import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.InteractionHand;
@@ -214,21 +213,6 @@ public class SeaBunnyEntity extends WaterAnimal implements Bucketable, OttGeoEnt
         ItemStack handStack = player.getItemInHand(interactionHand);
         if (handStack.is(Items.BUCKET) || handStack.is(Items.WATER_BUCKET)) {
             return Bucketable.bucketMobPickup(player, interactionHand, this).orElse(super.mobInteract(player, interactionHand));
-        } else if (handStack.is(Items.GLASS_BOTTLE)) {
-            if (this.harvestCooldown <= 0) {
-                if (!player.getAbilities().instabuild) {
-                    handStack.shrink(1);
-                }
-                this.level().playSound(player, player.getX(), player.getY(), player.getZ(), SoundEvents.BOTTLE_FILL, SoundSource.NEUTRAL, 1.0F, 1.8F);
-                ItemStack slimeBottle = new ItemStack(ModItems.SEA_BUNNY_SLIME_BOTTLE.get());
-                if (handStack.isEmpty()) {
-                    player.setItemInHand(interactionHand, slimeBottle);
-                } else if (!player.getInventory().add(slimeBottle)) {
-                    player.drop(slimeBottle, false);
-                }
-                this.harvestCooldown = 6000;
-                return InteractionResult.sidedSuccess(this.level().isClientSide());
-            }
         }
         return super.mobInteract(player, interactionHand);
     }

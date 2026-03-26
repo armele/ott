@@ -231,7 +231,7 @@ public class HedgehogEntity extends Animal implements GeoEntity {
     }
 
     @Override
-    public boolean isFood(ItemStack stack) {
+    public boolean isFood(@NotNull ItemStack stack) {
         return stack.is(ModTags.ItemTags.HEDGEHOG_FOOD);
     }
 
@@ -367,3 +367,4 @@ public class HedgehogEntity extends Animal implements GeoEntity {
         }
     }
 }
+

@@ -1,0 +1,107 @@
+{
+	"format_version": "1.12.0",
+	"minecraft:geometry": [
+		{
+			"description": {
+				"identifier": "geometry.unknown",
+				"texture_width": 64,
+				"texture_height": 64,
+				"visible_bounds_width": 3,
+				"visible_bounds_height": 2.5,
+				"visible_bounds_offset": [0, 0.75, 0]
+			},
+			"bones": [
+				{
+					"name": "root",
+					"pivot": [0, 24, 0]
+				},
+				{
+					"name": "LeftLeg",
+					"parent": "root",
+					"pivot": [-1.99, 4, 5],
+					"cubes": [
+						{"origin": [-2.99, 0, 4], "size": [2, 4, 2], "uv": [0, 40], "mirror": true}
+					]
+				},
+				{
+					"name": "RightLeg",
+					"parent": "root",
+					"pivot": [1.99, 4, 5],
+					"cubes": [
+						{"origin": [0.99, 0, 4], "size": [2, 4, 2], "uv": [0, 40], "mirror": true}
+					]
+				},
+				{
+					"name": "RightArm",
+					"parent": "root",
+					"pivot": [1.99, 4, -3],
+					"cubes": [
+						{"origin": [0.99, 0, -4], "size": [2, 4, 2], "uv": [0, 40], "mirror": true}
+					]
+				},
+				{
+					"name": "LeftArm",
+					"parent": "root",
+					"pivot": [-1.99, 4, -3],
+					"cubes": [
+						{"origin": [-2.99, 0, -4], "size": [2, 4, 2], "uv": [0, 40]}
+					]
+				},
+				{
+					"name": "Body",
+					"parent": "root",
+					"pivot": [0, 11, -5],
+					"cubes": [
+						{"origin": [-3, 4, -5], "size": [6, 7, 12], "uv": [0, 0]}
+					]
+				},
+				{
+					"name": "Tail",
+					"parent": "Body",
+					"pivot": [0, 8, 6],
+					"rotation": [-23.48, 0, 0],
+					"cubes": [
+						{"origin": [-2, 7.5, 6], "size": [4, 3, 5], "uv": [38, 10]}
+					]
+				},
+				{
+					"name": "Neck",
+					"parent": "Body",
+					"pivot": [0, 8.5, -5]
+				},
+				{
+					"name": "Head",
+					"parent": "Neck",
+					"pivot": [0, 8.5, -5],
+					"cubes": [
+						{"origin": [-3.5, 5, -10], "size": [7, 7, 5], "uv": [0, 22]}
+					]
+				},
+				{
+					"name": "Snout",
+					"parent": "Head",
+					"pivot": [0, 8, -10],
+					"cubes": [
+						{"origin": [-1.5, 5, -12], "size": [3, 3, 2], "uv": [30, 0]}
+					]
+				},
+				{
+					"name": "EarOne",
+					"parent": "Head",
+					"pivot": [-3, 11, -7],
+					"cubes": [
+						{"origin": [-4, 10, -7.5], "size": [2, 3, 1], "uv": [0, 0]}
+					]
+				},
+				{
+					"name": "EarTwo",
+					"parent": "Head",
+					"pivot": [3, 11, -7],
+					"cubes": [
+						{"origin": [2, 10, -7.5], "size": [2, 3, 1], "uv": [0, 0], "mirror": true}
+					]
+				}
+			]
+		}
+	]
+}

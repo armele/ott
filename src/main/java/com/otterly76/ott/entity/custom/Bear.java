@@ -1,6 +1,5 @@
 package com.otterly76.ott.entity.custom;
 
-import com.otterly76.ott.item.ModItems;
 import com.otterly76.ott.sound.ModSounds;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ItemParticleOption;
@@ -359,7 +358,7 @@ public abstract class Bear extends Animal implements NeutralMob, GeoEntity, Shea
         this.setSheared(true);
         int amount = 1 + this.random.nextInt(2);
         for (int j = 0; j < amount; ++j) {
-            ItemEntity itemEntity = this.spawnAtLocation(ModItems.FUR.get(), 1);
+            ItemEntity itemEntity = this.spawnAtLocation(Items.RABBIT_HIDE, 1);
             if (itemEntity != null) {
                 itemEntity.setDeltaMovement(itemEntity.getDeltaMovement().add((this.random.nextFloat() - this.random.nextFloat()) * 0.1F, this.random.nextFloat() * 0.05F, (this.random.nextFloat() - this.random.nextFloat()) * 0.1F));
             }

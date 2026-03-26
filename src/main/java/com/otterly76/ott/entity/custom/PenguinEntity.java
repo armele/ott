@@ -81,7 +81,7 @@ public class PenguinEntity extends Animal implements GeoEntity {
     }
 
     @Override
-    public boolean isFood(ItemStack stack) {
+    public boolean isFood(@NotNull ItemStack stack) {
         return stack.is(ModTags.ItemTags.PENGUIN_FOOD);
     }
 
@@ -169,3 +169,4 @@ public class PenguinEntity extends Animal implements GeoEntity {
                 .add(Attributes.FOLLOW_RANGE, 8.0D);
     }
 }
+

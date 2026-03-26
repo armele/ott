@@ -32,6 +32,9 @@ public class ModParticle {
     public static final DeferredHolder<ParticleType<?>, SimpleParticleType> STREAK = PARTICLE_TYPES.register("streak", () -> new SimpleParticleType(true));
     public static final DeferredHolder<ParticleType<?>, SimpleParticleType> GHOST = PARTICLE_TYPES.register("ghost", () -> new SimpleParticleType(true));
     public static final DeferredHolder<ParticleType<?>, SimpleParticleType> GEIST_DARK = PARTICLE_TYPES.register("geist_dark", () -> new SimpleParticleType(true));
+    public static final DeferredHolder<ParticleType<?>, SimpleParticleType> POISON_SPIT = PARTICLE_TYPES.register("poison_spit", () -> new SimpleParticleType(true));
+    public static final DeferredHolder<ParticleType<?>, SimpleParticleType> TEAR = PARTICLE_TYPES.register("tear", () -> new SimpleParticleType(true));
+    public static final DeferredHolder<ParticleType<?>, SimpleParticleType> STUN = PARTICLE_TYPES.register("stun", () -> new SimpleParticleType(true));
 
     public static final DeferredHolder<ParticleType<?>, SimpleParticleType> WILL_O_WISP = PARTICLE_TYPES.register("will_o_wisp", () -> new SimpleParticleType(true));
     public static final DeferredHolder<ParticleType<?>, SimpleParticleType> FIREFLY = MINECRAFT_PARTICLE_TYPES.register("firefly", () -> new SimpleParticleType(true));

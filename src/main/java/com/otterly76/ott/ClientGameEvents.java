@@ -5,11 +5,14 @@ import com.otterly76.ott.mixin.client.GuiAccessor;
 import com.otterly76.ott.particle.AmbientParticleSpawner;
 import com.otterly76.ott.particle.WeatherParticleSpawner;
 import com.otterly76.ott.config.OttConfig;
+import com.otterly76.ott.registry.ModEffects;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.commands.Commands;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
+
+import java.lang.reflect.Method;
 
 import static com.otterly76.ott.ClientModEvents.fogCount;
 import static com.otterly76.ott.ClientModEvents.particleCount;
@@ -76,17 +79,70 @@ public class ClientGameEvents {
         }
     }
 
+    private static boolean wasSobbing = false;
+
     @SubscribeEvent
     public static void onClientTick(ClientTickEvent.Pre event) {
         Minecraft mc = Minecraft.getInstance();
-        if (mc.level != null && mc.player != null && !mc.isPaused() && mc.screen == null) {
-            try {
-                AmbientParticleSpawner.update(mc.level, mc.player);
-                float partialTicks = mc.getTimer().getGameTimeDeltaPartialTick(true);
-                WeatherParticleSpawner.update(mc.level, mc.cameraEntity, partialTicks);
-            } catch (Throwable t) {
-                // Safeguard against unexpected errors in weather spawning to prevent client freeze
+        if (mc.level != null && mc.player != null) {
+            if (!mc.isPaused()) {
+                if (mc.screen == null) {
+                    try {
+                        AmbientParticleSpawner.update(mc.level, mc.player);
+                        float partialTicks = mc.getTimer().getGameTimeDeltaPartialTick(true);
+                        WeatherParticleSpawner.update(mc.level, mc.cameraEntity, partialTicks);
+                    } catch (Throwable t) {
+                        // ignore
+                    }
+                }
             }
+
+            // Sobbing Shader Logic
+            boolean isSobbing = mc.player.hasEffect(ModEffects.SOBBING);
+            if (isSobbing != wasSobbing) {
+                if (isSobbing) {
+                    loadShaderReflection(mc, ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, "shaders/post/cry.json"));
+                } else {
+                    shutdownShaderReflection(mc);
+                }
+                wasSobbing = isSobbing;
+            }
+        } else if (wasSobbing) {
+            wasSobbing = false;
+        }
+    }
+
+    private static void loadShaderReflection(Minecraft mc, ResourceLocation location) {
+        try {
+            for (Method m : mc.gameRenderer.getClass().getDeclaredMethods()) {
+                String name = m.getName();
+                if (name.equals("loadPostChain") || name.equals("m_109128_") || name.equals("loadEffect") || name.equals("m_110920_")) {
+                    if (m.getParameterCount() == 1 && m.getParameterTypes()[0] == ResourceLocation.class) {
+                        m.setAccessible(true);
+                        m.invoke(mc.gameRenderer, location);
+                        return;
+                    }
+                }
+            }
+        } catch (Exception e) {
+            // ignore
+        }
+    }
+
+    private static void shutdownShaderReflection(Minecraft mc) {
+        try {
+            for (Method m : mc.gameRenderer.getClass().getDeclaredMethods()) {
+                String name = m.getName();
+                if (name.equals("shutdownPostChain") || name.equals("m_109149_") || name.equals("shutdownEffect") || name.equals("m_110931_")) {
+                    if (m.getParameterCount() == 0 && m.getReturnType() == void.class) {
+                        m.setAccessible(true);
+                        m.invoke(mc.gameRenderer);
+                        return;
+                    }
+                }
+            }
+        } catch (Exception e) {
+            // ignore
         }
     }
 
@@ -94,6 +150,7 @@ public class ClientGameEvents {
     public static void onPlayerJoin(ClientPlayerNetworkEvent.LoggingIn event) {
         particleCount = 0;
         fogCount = 0;
+        wasSobbing = false;
     }
 
     @SubscribeEvent

@@ -156,7 +156,7 @@ public class FennecFox extends OttAnimal implements OttGeoEntity, SleepingAnimal
     }
 
     @Override
-    public boolean isFood(ItemStack stack) {
+    public boolean isFood(@NotNull ItemStack stack) {
         return stack.is(Items.SWEET_BERRIES);
     }
 
@@ -217,3 +217,4 @@ public class FennecFox extends OttAnimal implements OttGeoEntity, SleepingAnimal
         }
     }
 }
+

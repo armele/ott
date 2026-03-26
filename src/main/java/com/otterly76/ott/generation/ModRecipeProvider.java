@@ -898,13 +898,10 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
 
     private void ottCrittersRecipes(RecipeOutput noAdv) {
         // Smelting
-        this.cooking(noAdv, List.of(ModItems.PHEASANT.get()), RecipeCategory.FOOD, ModItems.COOKED_PHEASANT.get(), 0.35F, "pheasant");
-        this.cooking(noAdv, List.of(ModItems.RAW_GOLDEN_SUNFISH_MEAT.get()), RecipeCategory.FOOD, ModItems.COOKED_GOLDEN_SUNFISH_MEAT.get(), 0.35F, "cooked_golden_sunfish_meat");
-        this.cooking(noAdv, List.of(ModItems.RAW_KRILL.get()), RecipeCategory.FOOD, ModItems.FRIED_KRILL.get(), 0.35F, "fried_krill");
-        this.cooking(noAdv, List.of(ModItems.RAW_SUNFISH_MEAT.get()), RecipeCategory.FOOD, ModItems.COOKED_SUNFISH_MEAT.get(), 0.35F, "cooked_sunfish_meat");
-
-        // Smelting seagrass ball to dried seagrass ball
-        this.cooking(noAdv, List.of(ModItems.SEAGRASS_BALL.get()), RecipeCategory.MISC, ModItems.DRIED_SEAGRASS_BALL.get(), 0.1F, "dried_seagrass_ball");
+        this.cooking(noAdv, List.of(ModItems.PHEASANT.get()), ModItems.COOKED_PHEASANT.get(), "pheasant");
+        this.cooking(noAdv, List.of(ModItems.RAW_GOLDEN_SUNFISH_MEAT.get()), ModItems.COOKED_GOLDEN_SUNFISH_MEAT.get(), "cooked_golden_sunfish_meat");
+        this.cooking(noAdv, List.of(ModItems.RAW_KRILL.get()), ModItems.FRIED_KRILL.get(), "fried_krill");
+        this.cooking(noAdv, List.of(ModItems.RAW_SUNFISH_MEAT.get()), ModItems.COOKED_SUNFISH_MEAT.get(), "cooked_sunfish_meat");
 
         // Crafting
         // Salt
@@ -931,46 +928,17 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
                 .unlockedBy("has_polished_salt_block", has(ModBlocks.POLISHED_SALT_BLOCK.get()))
                 .save(noAdv, getRecipePath("ott", "salt_lamp"));
 
-        // Seagrass Ball
-        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModItems.SEAGRASS_BALL.get())
-                .define('#', Items.SEAGRASS)
-                .pattern("###")
-                .pattern("###")
-                .pattern("###")
-                .unlockedBy("has_seagrass", has(Items.SEAGRASS))
-                .save(noAdv, getRecipePath("ott", "seagrass_ball"));
-
-        // Dried Seagrass Ball Block
-        ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, ModBlocks.DRIED_SEAGRASS_BALL_BLOCK.get())
-                .define('#', ModItems.DRIED_SEAGRASS_BALL.get())
-                .pattern("###")
-                .pattern("###")
-                .pattern("###")
-                .unlockedBy("has_dried_seagrass_ball", has(ModItems.DRIED_SEAGRASS_BALL.get()))
-                .save(noAdv, getRecipePath("ott", "dried_seagrass_ball_block"));
-
-        // Dried Seagrass Ball Carpet
-        ShapedRecipeBuilder.shaped(RecipeCategory.DECORATIONS, ModBlocks.DRIED_SEAGRASS_BALL_CARPET.get(), 3)
-                .define('#', ModBlocks.DRIED_SEAGRASS_BALL_BLOCK.get())
-                .pattern("##")
-                .unlockedBy("has_dried_seagrass_ball_block", has(ModBlocks.DRIED_SEAGRASS_BALL_BLOCK.get()))
-                .save(noAdv, getRecipePath("ott", "dried_seagrass_ball_carpet"));
-
         // Salted Kelp
-        ShapelessRecipeBuilder.shapeless(RecipeCategory.FOOD, ModItems.SALTED_KELP.get())
-                .requires(Items.DRIED_KELP)
-                .requires(ModItems.SALT.get())
-                .unlockedBy("has_salt", has(ModItems.SALT.get()))
-                .save(noAdv, getRecipePath("ott", "salted_kelp"));
-
         // Catfish
-        cooking(noAdv, List.of(ModItems.CATFISH.get()), RecipeCategory.FOOD, ModItems.COOKED_CATFISH.get(), 0.35F, "cooked_catfish");
+        cooking(noAdv, List.of(ModItems.CATFISH.get()), ModItems.COOKED_CATFISH.get(), "cooked_catfish");
         // Bass
-        cooking(noAdv, List.of(ModItems.BASS.get()), RecipeCategory.FOOD, ModItems.COOKED_BASS.get(), 0.35F, "cooked_bass");
+        cooking(noAdv, List.of(ModItems.BASS.get()), ModItems.COOKED_BASS.get(), "cooked_bass");
     }
 
-    private void cooking(RecipeOutput exporter, List<ItemLike> ingredients, RecipeCategory category, ItemLike result, float experience, String name) {
+    private void cooking(RecipeOutput exporter, List<ItemLike> ingredients, ItemLike result, String name) {
         int cookingTime = 200;
+        float experience = 0.35F;
+        RecipeCategory category = RecipeCategory.FOOD;
         oreSmelting(exporter, ingredients, category, result, experience, cookingTime, name);
         SimpleCookingRecipeBuilder.smoking(Ingredient.of(ingredients.toArray(new ItemLike[0])), category, result, experience, cookingTime / 2)
                 .unlockedBy("has_" + name, has(ingredients.getFirst()))

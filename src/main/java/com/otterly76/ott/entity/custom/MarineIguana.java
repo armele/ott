@@ -219,7 +219,7 @@ public class MarineIguana extends Animal implements GeoEntity, Bucketable {
         }
 
         ItemStack itemstack = player.getItemInHand(hand);
-        if (itemstack.is(ModItems.SALTED_KELP.get()) && !this.passive) {
+        if (itemstack.is(Items.DRIED_KELP) && !this.passive) {
             if (!this.level().isClientSide) {
                 if (!player.getAbilities().instabuild) {
                     itemstack.shrink(1);
@@ -547,7 +547,7 @@ public class MarineIguana extends Animal implements GeoEntity, Bucketable {
                 if (!this.iguana.level().isEmptyBlock(this.destinationBlock) && CommonHooks.canEntityDestroy(this.iguana.level(), this.destinationBlock, this.iguana) && state.getDestroySpeed(this.iguana.level(), this.destinationBlock) >= 0.0F) {
                     this.iguana.level().destroyBlock(this.destinationBlock, false);
                     this.iguana.playSound(SoundEvents.GRASS_BREAK, 1.0F, 1.0F);
-                    this.iguana.spawnAtLocation(ModItems.SEAGRASS_BALL.get());
+                    this.iguana.spawnAtLocation(Items.SEAGRASS);
                 }
             }
         }
