@@ -89,6 +89,8 @@
     "common.SheepMixin",
     "common.SimpleBlockFeatureMixin",
     "common.SkeletonMixin",
+    "common.SkullBlockMixin",
+    "common.WallSkullBlockMixin",
     "common.SimpleContainerAccessor",
     "common.SinglePoolElementAccessor",
     "common.SnowGolemMixin",

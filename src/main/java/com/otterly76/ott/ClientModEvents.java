@@ -22,6 +22,7 @@ import com.otterly76.ott.client.handler.LeafColorReloadListener;
 import com.otterly76.ott.client.util.LeafColors;
 import com.otterly76.ott.particle.*;
 import com.otterly76.ott.block.entity.ModBlockEntities;
+import net.minecraft.client.particle.FlameParticle;
 import net.minecraft.client.model.BoatModel;
 import net.minecraft.client.model.ChestBoatModel;
 import net.minecraft.client.model.geom.builders.CubeDeformation;
@@ -162,6 +163,7 @@ public class ClientModEvents {
         event.registerSpriteSet(ModParticle.MIDNIGHT_LEAF.get(), HedgeLeafParticle.Provider::new);
         event.registerSpriteSet(ModParticle.BLOOMING_STARLIGHT_LEAF.get(), HedgeLeafParticle.Provider::new);
         event.registerSpriteSet(ModParticle.BLOOMING_MIDNIGHT_LEAF.get(), HedgeLeafParticle.Provider::new);
+        event.registerSpriteSet(ModParticle.COPPER_FIRE_FLAME.get(), FlameParticle.Provider::new);
         event.registerSpriteSet(ModParticle.PALE_OAK_LEAVES.get(), FallingLeavesParticle.PaleOakProvider::new);
         event.registerSpriteSet(ModParticle.TINTED_LEAVES.get(), FallingLeavesParticle.TintedLeavesProvider::new);
         event.registerSpriteSet(ModParticle.TINTED_NEEDLES.get(), FallingLeavesParticle.TintedLeavesProvider::new);
