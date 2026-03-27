@@ -172,6 +172,14 @@ public class ModEventBusEvents {
         event.put(ModEntities.PSYCHO_JELLY.get(), com.otterly76.ott.entity.custom.PsychoJellyEntity.createAttributes().build());
         event.put(ModEntities.SPOONBILL.get(), com.otterly76.ott.entity.custom.SpoonbillEntity.createAttributes().build());
         event.put(ModEntities.GIANT_SOFTSHELL_TURTLE.get(), com.otterly76.ott.entity.custom.GiantSoftshellTurtleEntity.createAttributes().build());
+        // --- Friends and Foes ---
+        event.put(ModEntities.FIDDLER_CRAB.get(), com.otterly76.ott.entity.custom.FiddlerCrabEntity.createAttributes().build());
+        event.put(ModEntities.GLARE.get(), com.otterly76.ott.entity.custom.GlareEntity.createAttributes().build());
+        event.put(ModEntities.ICEOLOGER.get(), com.otterly76.ott.entity.custom.IceologerEntity.createAttributes().build());
+        event.put(ModEntities.MAULER.get(), com.otterly76.ott.entity.custom.MaulerEntity.createAttributes().build());
+        event.put(ModEntities.RASCAL.get(), com.otterly76.ott.entity.custom.RascalEntity.createAttributes().build());
+        event.put(ModEntities.TUFF_GOLEM.get(), com.otterly76.ott.entity.custom.TuffGolemEntity.createAttributes().build());
+        event.put(ModEntities.WILDFIRE.get(), com.otterly76.ott.entity.custom.WildfireEntity.createAttributes().build());
     }
 
     @SubscribeEvent

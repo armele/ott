@@ -498,6 +498,24 @@ public class ModEntities {
     public static final Supplier<EntityType<com.otterly76.ott.entity.custom.GiantSoftshellTurtleEntity>> GIANT_SOFTSHELL_TURTLE = OTT_ENTITY_TYPES.register("giant_softshell_turtle",
             () -> Builder.of(com.otterly76.ott.entity.custom.GiantSoftshellTurtleEntity::new, MobCategory.CREATURE).sized(1.2F, 0.5F).clientTrackingRange(8).build("giant_softshell_turtle"));
 
+    // --- Friends and Foes ---
+    public static final Supplier<EntityType<com.otterly76.ott.entity.custom.FiddlerCrabEntity>> FIDDLER_CRAB = OTT_ENTITY_TYPES.register("fiddler_crab",
+            () -> Builder.of(com.otterly76.ott.entity.custom.FiddlerCrabEntity::new, MobCategory.CREATURE).sized(0.875F, 0.5625F).clientTrackingRange(10).build("fiddler_crab"));
+    public static final Supplier<EntityType<com.otterly76.ott.entity.custom.GlareEntity>> GLARE = OTT_ENTITY_TYPES.register("glare",
+            () -> Builder.of(com.otterly76.ott.entity.custom.GlareEntity::new, MobCategory.AMBIENT).sized(0.875F, 1.1875F).clientTrackingRange(8).build("glare"));
+    public static final Supplier<EntityType<com.otterly76.ott.entity.custom.IceologerEntity>> ICEOLOGER = OTT_ENTITY_TYPES.register("iceologer",
+            () -> Builder.of(com.otterly76.ott.entity.custom.IceologerEntity::new, MobCategory.MONSTER).sized(0.6F, 1.95F).clientTrackingRange(10).build("iceologer"));
+    public static final Supplier<EntityType<com.otterly76.ott.entity.custom.IceologerIceChunkEntity>> ICE_CHUNK = OTT_ENTITY_TYPES.register("ice_chunk",
+            () -> Builder.of(com.otterly76.ott.entity.custom.IceologerIceChunkEntity::new, MobCategory.MISC).fireImmune().sized(2.5F, 1.0F).clientTrackingRange(6).build("ice_chunk"));
+    public static final Supplier<EntityType<com.otterly76.ott.entity.custom.MaulerEntity>> MAULER = OTT_ENTITY_TYPES.register("mauler",
+            () -> Builder.of(com.otterly76.ott.entity.custom.MaulerEntity::new, MobCategory.CREATURE).sized(0.5625F, 0.5625F).clientTrackingRange(10).build("mauler"));
+    public static final Supplier<EntityType<com.otterly76.ott.entity.custom.RascalEntity>> RASCAL = OTT_ENTITY_TYPES.register("rascal",
+            () -> Builder.of(com.otterly76.ott.entity.custom.RascalEntity::new, MobCategory.CREATURE).sized(0.9F, 1.25F).clientTrackingRange(10).build("rascal"));
+    public static final Supplier<EntityType<com.otterly76.ott.entity.custom.TuffGolemEntity>> TUFF_GOLEM = OTT_ENTITY_TYPES.register("tuff_golem",
+            () -> Builder.of(com.otterly76.ott.entity.custom.TuffGolemEntity::new, MobCategory.MISC).sized(0.75F, 1.0625F).clientTrackingRange(10).build("tuff_golem"));
+    public static final Supplier<EntityType<com.otterly76.ott.entity.custom.WildfireEntity>> WILDFIRE = OTT_ENTITY_TYPES.register("wildfire",
+            () -> Builder.of(com.otterly76.ott.entity.custom.WildfireEntity::new, MobCategory.MONSTER).fireImmune().sized(1.12F, 3.0F).clientTrackingRange(10).build("wildfire"));
+
     public static void register(IEventBus eventBus) {
         ENTITY_TYPES.register(eventBus);
         OTT_ENTITY_TYPES.register(eventBus);

@@ -211,6 +211,15 @@ public final class ModCreativeTabs {
                     output.accept(ModItems.WECHUGE_SPAWN_EGG);
                     output.accept(ModItems.WENDIGO_SPAWN_EGG);
                     output.accept(ModItems.WOLVERINE_SPAWN_EGG);
+                    // --- Friends and Foes ---
+                    output.accept(ModItems.FIDDLER_CRAB_SPAWN_EGG);
+                    output.accept(ModItems.GLARE_SPAWN_EGG);
+                    output.accept(ModItems.ICEOLOGER_SPAWN_EGG);
+                    output.accept(ModItems.ILLUSIONER_SPAWN_EGG);
+                    output.accept(ModItems.MAULER_SPAWN_EGG);
+                    output.accept(ModItems.RASCAL_SPAWN_EGG);
+                    output.accept(ModItems.TUFF_GOLEM_SPAWN_EGG);
+                    output.accept(ModItems.WILDFIRE_SPAWN_EGG);
                 }).build();
     }
 
@@ -358,6 +367,11 @@ public final class ModCreativeTabs {
                     output.accept(ModItems.EMU_EGG);
                     output.accept(ModItems.HOOPOE_EGG);
                     output.accept(ModItems.TOUCAN_EGG);
+                    // --- Friends and Foes ---
+                    output.accept(ModItems.CRAB_CLAW);
+                    output.accept(ModItems.CRAB_EGG);
+                    output.accept(ModItems.WILDFIRE_CROWN);
+                    output.accept(ModItems.WILDFIRE_CROWN_FRAGMENT);
                 }).build();
     }
 

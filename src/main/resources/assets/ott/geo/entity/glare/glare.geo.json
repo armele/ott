@@ -1,0 +1,79 @@
+{
+	"format_version": "1.12.0",
+	"minecraft:geometry": [
+		{
+			"description": {
+				"identifier": "geometry.glare",
+				"texture_width": 64,
+				"texture_height": 128,
+				"visible_bounds_width": 2,
+				"visible_bounds_height": 3,
+				"visible_bounds_offset": [0, 0.5, 0]
+			},
+			"bones": [
+				{
+					"name": "body",
+					"pivot": [0, 0, 0]
+				},
+				{
+					"name": "head",
+					"parent": "body",
+					"pivot": [0, 23, 0],
+					"cubes": [
+						{"origin": [-6, 14, -3], "size": [12, 9, 9], "inflate": -0.02, "uv": [0, 0]}
+					]
+				},
+				{
+					"name": "eyes",
+					"parent": "head",
+					"pivot": [0, 18, -3],
+					"cubes": [
+						{"origin": [2, 17, -3.3], "size": [2, 2, 1], "inflate": -0.2, "uv": [33, 0]},
+						{"origin": [-4, 17, -3.3], "size": [2, 2, 1], "inflate": -0.2, "uv": [33, 0]}
+					]
+				},
+				{
+					"name": "topAzalea",
+					"parent": "head",
+					"pivot": [0, 23, 0],
+					"cubes": [
+						{"origin": [-7, 15, -7], "size": [14, 8, 14], "inflate": 0.01, "uv": [0, 18]}
+					]
+				},
+				{
+					"name": "bottomAzalea",
+					"parent": "head",
+					"pivot": [0, 15, 0],
+					"cubes": [
+						{"origin": [-7, 14.25, -7], "size": [14, 0, 14], "inflate": -0.01, "uv": [18, 101], "mirror": true},
+						{"origin": [-7, 9, -7], "size": [14, 10, 14], "inflate": 0.01, "uv": [0, 40]}
+					]
+				},
+				{
+					"name": "secondLayer",
+					"parent": "bottomAzalea",
+					"pivot": [0, 14, 0],
+					"cubes": [
+						{"origin": [-6, 7, -6], "size": [12, 7, 12], "inflate": 0.01, "uv": [0, 64]}
+					]
+				},
+				{
+					"name": "thirdLayer",
+					"parent": "secondLayer",
+					"pivot": [0, 12, 0],
+					"cubes": [
+						{"origin": [-5, 5, -5], "size": [10, 7, 10], "uv": [0, 83]}
+					]
+				},
+				{
+					"name": "fourthLayer",
+					"parent": "thirdLayer",
+					"pivot": [0, 10, 0],
+					"cubes": [
+						{"origin": [-4, 3, -4], "size": [8, 7, 8], "uv": [0, 100]}
+					]
+				}
+			]
+		}
+	]
+}

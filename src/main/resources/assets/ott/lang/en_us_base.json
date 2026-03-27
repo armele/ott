@@ -1093,5 +1093,62 @@
   "item.ott.cooked_buffalo_meat": "Cooked Buffalo Meat",
   "subtitles.ott.entity.water_buffalo.ambient": "Water Buffalo bellows",
   "subtitles.ott.entity.water_buffalo.hurt": "Water Buffalo hurts",
-  "subtitles.ott.entity.water_buffalo.death": "Water Buffalo dies"
+  "subtitles.ott.entity.water_buffalo.death": "Water Buffalo dies",
+
+  "entity.ott.fiddler_crab": "Fiddler Crab",
+  "item.ott.fiddler_crab_spawn_egg": "Fiddler Crab Spawn Egg",
+  "subtitles.ott.entity.fiddler_crab.hurt": "Fiddler Crab clicks",
+  "subtitles.ott.entity.fiddler_crab.death": "Fiddler Crab dies",
+
+  "entity.ott.glare": "Glare",
+  "item.ott.glare_spawn_egg": "Glare Spawn Egg",
+  "subtitles.ott.entity.glare.ambient": "Glare grumbles",
+  "subtitles.ott.entity.glare.hurt": "Glare shrieks",
+  "subtitles.ott.entity.glare.death": "Glare dies",
+
+  "entity.ott.iceologer": "Iceologer",
+  "item.ott.iceologer_spawn_egg": "Iceologer Spawn Egg",
+  "subtitles.ott.entity.iceologer.ambient": "Iceologer mutters",
+  "subtitles.ott.entity.iceologer.hurt": "Iceologer grunts",
+  "subtitles.ott.entity.iceologer.death": "Iceologer dies",
+  "subtitles.ott.entity.iceologer.prepare_summon": "Iceologer prepares",
+
+  "entity.ott.ice_chunk": "Ice Chunk",
+  "item.ott.ice_chunk_spawn_egg": "Ice Chunk Spawn Egg",
+  "subtitles.ott.entity.ice_chunk.land": "Ice Chunk lands",
+
+  "entity.ott.mauler": "Mauler",
+  "item.ott.mauler_spawn_egg": "Mauler Spawn Egg",
+  "subtitles.ott.entity.mauler.ambient": "Mauler grumbles",
+  "subtitles.ott.entity.mauler.hurt": "Mauler squeals",
+  "subtitles.ott.entity.mauler.death": "Mauler dies",
+
+  "entity.ott.rascal": "Rascal",
+  "item.ott.rascal_spawn_egg": "Rascal Spawn Egg",
+  "subtitles.ott.entity.rascal.ambient": "Rascal chuckles",
+  "subtitles.ott.entity.rascal.hurt": "Rascal yelps",
+  "subtitles.ott.entity.rascal.death": "Rascal dies",
+
+  "entity.ott.tuff_golem": "Tuff Golem",
+  "item.ott.tuff_golem_spawn_egg": "Tuff Golem Spawn Egg",
+  "subtitles.ott.entity.tuff_golem.step": "Tuff Golem thumps",
+  "subtitles.ott.entity.tuff_golem.hurt": "Tuff Golem cracks",
+
+  "entity.ott.wildfire": "Wildfire",
+  "item.ott.wildfire_spawn_egg": "Wildfire Spawn Egg",
+  "subtitles.ott.entity.wildfire.ambient": "Wildfire roars",
+  "subtitles.ott.entity.wildfire.hurt": "Wildfire shudders",
+  "subtitles.ott.entity.wildfire.death": "Wildfire extinguishes",
+  "subtitles.ott.entity.wildfire.shield_break": "Wildfire shield shatters",
+
+  "item.ott.illusioner_spawn_egg": "Illusioner Spawn Egg",
+
+  "item.ott.crab_claw": "Crab Claw",
+  "block.ott.crab_egg": "Crab Egg",
+  "item.ott.crab_egg": "Crab Egg",
+
+  "item.ott.wildfire_crown": "Wildfire Crown",
+  "item.ott.wildfire_crown_fragment": "Wildfire Crown Fragment",
+
+  "effect.ott.reach": "Reach"
 }

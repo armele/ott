@@ -332,6 +332,16 @@ public class ClientModEvents {
         event.registerEntityRenderer(ModEntities.SPOONBILL.get(), com.otterly76.ott.client.render.entity.SpoonbillRenderer::new);
         event.registerEntityRenderer(ModEntities.GIANT_SOFTSHELL_TURTLE.get(), com.otterly76.ott.client.render.entity.GiantSoftshellTurtleRenderer::new);
 
+        // --- Friends and Foes ---
+        event.registerEntityRenderer(ModEntities.FIDDLER_CRAB.get(), com.otterly76.ott.client.render.entity.FiddlerCrabRenderer::new);
+        event.registerEntityRenderer(ModEntities.GLARE.get(), com.otterly76.ott.client.render.entity.GlareRenderer::new);
+        event.registerEntityRenderer(ModEntities.ICEOLOGER.get(), com.otterly76.ott.client.render.entity.IceologerRenderer::new);
+        event.registerEntityRenderer(ModEntities.ICE_CHUNK.get(), com.otterly76.ott.client.render.entity.IceChunkRenderer::new);
+        event.registerEntityRenderer(ModEntities.MAULER.get(), com.otterly76.ott.client.render.entity.MaulerRenderer::new);
+        event.registerEntityRenderer(ModEntities.RASCAL.get(), com.otterly76.ott.client.render.entity.RascalRenderer::new);
+        event.registerEntityRenderer(ModEntities.TUFF_GOLEM.get(), com.otterly76.ott.client.render.entity.TuffGolemRenderer::new);
+        event.registerEntityRenderer(ModEntities.WILDFIRE.get(), com.otterly76.ott.client.render.entity.WildfireRenderer::new);
+
         event.registerEntityRenderer(ModEntities.KIWI_EGG.get(), ThrownItemRenderer::new);
         event.registerEntityRenderer(ModEntities.PENGUIN_EGG.get(), ThrownItemRenderer::new);
 

@@ -1,5 +1,6 @@
 package com.otterly76.ott.registry;
 
+import com.otterly76.ott.Constants;
 import net.minecraft.Util;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceLocation;
@@ -17,6 +18,7 @@ import java.util.List;
 
 public class ModArmorMaterials {
     public static final DeferredRegister<ArmorMaterial> ARMOR_MATERIALS = DeferredRegister.create(Registries.ARMOR_MATERIAL, "minecraft");
+    public static final DeferredRegister<ArmorMaterial> OTT_ARMOR_MATERIALS = DeferredRegister.create(Registries.ARMOR_MATERIAL, Constants.MOD_ID);
 
     public static final DeferredHolder<ArmorMaterial, ArmorMaterial> COPPER = ARMOR_MATERIALS.register("copper", () -> new ArmorMaterial(
             Util.make(new EnumMap<>(ArmorItem.Type.class), map -> {
@@ -146,7 +148,24 @@ public class ModArmorMaterials {
             0.0F
     ));
 
+    public static final DeferredHolder<ArmorMaterial, ArmorMaterial> WILDFIRE_CROWN = OTT_ARMOR_MATERIALS.register("wildfire_crown", () -> new ArmorMaterial(
+            Util.make(new EnumMap<>(ArmorItem.Type.class), map -> {
+                map.put(ArmorItem.Type.BOOTS, 3);
+                map.put(ArmorItem.Type.LEGGINGS, 6);
+                map.put(ArmorItem.Type.CHESTPLATE, 8);
+                map.put(ArmorItem.Type.HELMET, 3);
+                map.put(ArmorItem.Type.BODY, 6);
+            }),
+            15,
+            SoundEvents.ARMOR_EQUIP_NETHERITE,
+            () -> Ingredient.of(Items.BLAZE_ROD),
+            List.of(new ArmorMaterial.Layer(ResourceLocation.fromNamespaceAndPath("ott", "wildfire_crown"))),
+            1.0F,
+            0.0F
+    ));
+
     public static void register(IEventBus eventBus) {
         ARMOR_MATERIALS.register(eventBus);
+        OTT_ARMOR_MATERIALS.register(eventBus);
     }
 }
