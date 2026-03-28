@@ -10,10 +10,15 @@ import net.minecraft.client.renderer.texture.atlas.SpriteSource;
 import net.minecraft.client.renderer.texture.atlas.SpriteSourceType;
 import net.minecraft.client.resources.metadata.animation.FrameSize;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.server.packs.resources.Resource;
 import net.minecraft.server.packs.resources.ResourceManager;
 import net.minecraft.server.packs.resources.ResourceMetadata;
 import net.minecraft.util.ExtraCodecs;
 import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
+
+import java.io.IOException;
+import java.io.InputStream;
 
 public class FXAtlasSpriteSource implements SpriteSource {
     private static final MapCodec<FXAtlasSpriteSource> CODEC = RecordCodecBuilder.mapCodec((builder) -> builder.group(
@@ -21,8 +26,9 @@ public class FXAtlasSpriteSource implements SpriteSource {
             ExtraCodecs.POSITIVE_INT.fieldOf("width").forGetter((src) -> src._width),
             ExtraCodecs.POSITIVE_INT.fieldOf("height").forGetter((src) -> src._height),
             Codec.INT.fieldOf("alpha").forGetter((src) -> src._alpha),
-            Codec.FLOAT.fieldOf("min_intensity").forGetter((src) -> src._minIntensity)
-    ).apply(builder, FXAtlasSpriteSource::new));
+            Codec.FLOAT.fieldOf("min_intensity").forGetter((src) -> src._minIntensity),
+            ResourceLocation.CODEC.optionalFieldOf("mask").forGetter((src) -> java.util.Optional.ofNullable(src._maskId))
+    ).apply(builder, (id, w, h, alpha, minIntensity, maskOpt) -> new FXAtlasSpriteSource(id, w, h, alpha, minIntensity, maskOpt.orElse(null))));
 
     public static final SpriteSourceType TYPE;
     private final ResourceLocation _id;
@@ -30,17 +36,41 @@ public class FXAtlasSpriteSource implements SpriteSource {
     private final int _height;
     private final int _alpha;
     private final float _minIntensity;
+    @Nullable private final ResourceLocation _maskId;
 
-    public FXAtlasSpriteSource(ResourceLocation resourceId, int width, int height, int alpha, float minIntensity) {
+    public FXAtlasSpriteSource(ResourceLocation resourceId, int width, int height, int alpha, float minIntensity, @Nullable ResourceLocation maskId) {
         this._id = resourceId;
         this._width = width;
         this._height = height;
         this._alpha = alpha;
         this._minIntensity = minIntensity;
+        this._maskId = maskId;
     }
 
     public void run(@NotNull ResourceManager manager, SpriteSource.@NotNull Output output) {
-        output.add(this._id, new FXAtlasSpriteSupplier(this._id, this._width, this._height, this._alpha, this._minIntensity));
+        boolean[] mask = loadMask(manager);
+        output.add(this._id, new FXAtlasSpriteSupplier(this._id, this._width, this._height, this._alpha, this._minIntensity, mask));
+    }
+
+    private boolean @Nullable [] loadMask(ResourceManager manager) {
+        if (this._maskId == null) return null;
+        ResourceLocation textureLoc = this._maskId.withPath(p -> "textures/" + p + ".png");
+        java.util.Optional<Resource> resource = manager.getResource(textureLoc);
+        if (resource.isEmpty()) return null;
+        try (InputStream stream = resource.get().open();
+             NativeImage img = NativeImage.read(stream)) {
+            boolean[] mask = new boolean[this._width * this._height];
+            for (int y = 0; y < this._height; y++) {
+                for (int x = 0; x < this._width; x++) {
+                    int mx = x * img.getWidth() / this._width;
+                    int my = y * img.getHeight() / this._height;
+                    mask[y * this._width + x] = (img.getPixelRGBA(mx, my) >>> 24) != 0;
+                }
+            }
+            return mask;
+        } catch (IOException e) {
+            return null;
+        }
     }
 
     public @NotNull SpriteSourceType type() {
@@ -57,17 +87,19 @@ public class FXAtlasSpriteSource implements SpriteSource {
         private final int _height;
         private final int _alpha;
         private final float _minIntensity;
+        private final boolean @Nullable [] _mask;
 
-        public FXAtlasSpriteSupplier(ResourceLocation id, int width, int height, int alpha, float minIntensity) {
+        public FXAtlasSpriteSupplier(ResourceLocation id, int width, int height, int alpha, float minIntensity, boolean @Nullable [] mask) {
             this._id = id;
             this._width = width;
             this._height = height;
             this._alpha = alpha;
             this._minIntensity = minIntensity;
+            this._mask = mask;
         }
 
         public SpriteContents apply(SpriteResourceLoader spriteResourceLoader) {
-            return new CloudFX(this._id, new FrameSize(this._width, this._height), new NativeImage(NativeImage.Format.RGBA, this._width, this._height, false), ResourceMetadata.EMPTY, this._alpha, this._minIntensity);
+            return new CloudFX(this._id, new FrameSize(this._width, this._height), new NativeImage(NativeImage.Format.RGBA, this._width, this._height, false), ResourceMetadata.EMPTY, this._alpha, this._minIntensity, this._mask);
         }
     }
 }

@@ -13,9 +13,9 @@ import org.joml.Random;
 public class CloudFX extends SpriteContents {
     final Ticker _ticker;
 
-    protected CloudFX(ResourceLocation loc, FrameSize frameSize, NativeImage image, ResourceMetadata metadata, int alpha, float minIntensity) {
+    protected CloudFX(ResourceLocation loc, FrameSize frameSize, NativeImage image, ResourceMetadata metadata, int alpha, float minIntensity, boolean @Nullable [] mask) {
         super(loc, frameSize, image, metadata);
-        this._ticker = new Ticker(this, (alpha & 255) << 24, minIntensity);
+        this._ticker = new Ticker(this, (alpha & 255) << 24, minIntensity, mask);
     }
 
     public @Nullable Ticker createTicker() {
@@ -40,9 +40,10 @@ public class CloudFX extends SpriteContents {
         final float[] alpha;
         final int _alpha;
         final float _minIntensity;
+        final boolean @Nullable [] _mask;
         private final SpriteContents _contents;
 
-        public Ticker(SpriteContents contents, int alphaAmount, float minIntensity) {
+        public Ticker(SpriteContents contents, int alphaAmount, float minIntensity, boolean @Nullable [] mask) {
             this._contents = contents;
             int squaredSize = this._contents.width() * this._contents.height();
             this.red = new float[squaredSize];
@@ -51,6 +52,7 @@ public class CloudFX extends SpriteContents {
             this.alpha = new float[squaredSize];
             this._alpha = alphaAmount;
             this._minIntensity = minIntensity;
+            this._mask = mask;
         }
 
         public void tickAndUpload(int jim, int bob) {
@@ -81,10 +83,14 @@ public class CloudFX extends SpriteContents {
 
             for(int x = 0; x < tileSizeBase; ++x) {
                 for(int y = 0; y < tileSizeBase; ++y) {
-                    float v = this.red[x + tileSizeBase * y];
-                    int intensity = (int)(Mth.clamp(v * 1.5F, 0.1F, 1.0F) * 255.0F) & 255;
-                    int rgba = 65793 * intensity | this._alpha;
-                    image.setPixelRGBA(x, y, rgba);
+                    if (this._mask != null && !this._mask[x + tileSizeBase * y]) {
+                        image.setPixelRGBA(x, y, 0);
+                    } else {
+                        float v = this.red[x + tileSizeBase * y];
+                        int intensity = (int)(Mth.clamp(v * 1.5F, 0.1F, 1.0F) * 255.0F) & 255;
+                        int rgba = 65793 * intensity | this._alpha;
+                        image.setPixelRGBA(x, y, rgba);
+                    }
                 }
             }
 

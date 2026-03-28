@@ -78,6 +78,51 @@
       "height": 64,
       "alpha": 255,
       "min_intensity": 0.009
+    },
+    {
+      "type": "ott:fxsprite",
+      "id": "ott:block/cloudfx_lichen_1",
+      "width": 64,
+      "height": 64,
+      "alpha": 255,
+      "min_intensity": 0.0065,
+      "mask": "minecraft:block/glow_lichen_1_spores"
+    },
+    {
+      "type": "ott:fxsprite",
+      "id": "ott:block/cloudfx_lichen_2",
+      "width": 64,
+      "height": 64,
+      "alpha": 255,
+      "min_intensity": 0.0065,
+      "mask": "minecraft:block/glow_lichen_2_spores"
+    },
+    {
+      "type": "ott:fxsprite",
+      "id": "ott:block/cloudfx_lichen_3",
+      "width": 64,
+      "height": 64,
+      "alpha": 255,
+      "min_intensity": 0.0065,
+      "mask": "minecraft:block/glow_lichen_3_spores"
+    },
+    {
+      "type": "ott:fxsprite",
+      "id": "ott:block/cloudfx_lichen_4",
+      "width": 64,
+      "height": 64,
+      "alpha": 255,
+      "min_intensity": 0.0065,
+      "mask": "minecraft:block/glow_lichen_4_spores"
+    },
+    {
+      "type": "ott:fxsprite",
+      "id": "ott:block/cloudfx_lichen_5",
+      "width": 64,
+      "height": 64,
+      "alpha": 255,
+      "min_intensity": 0.0065,
+      "mask": "minecraft:block/glow_lichen_5_spores"
     }
   ]
 }
