@@ -334,6 +334,7 @@ public class ClientModEvents {
 
         // --- Ecologics ---
         event.registerEntityRenderer(ModEntities.COCONUT_CRAB.get(), com.otterly76.ott.client.render.entity.CoconutCrabRenderer::new);
+        event.registerEntityRenderer(ModEntities.SAND_CRAB.get(), com.otterly76.ott.client.render.entity.SandCrabRenderer::new);
         // --- Friends and Foes ---
         event.registerEntityRenderer(ModEntities.FIDDLER_CRAB.get(), com.otterly76.ott.client.render.entity.FiddlerCrabRenderer::new);
         event.registerEntityRenderer(ModEntities.GLARE.get(), com.otterly76.ott.client.render.entity.GlareRenderer::new);

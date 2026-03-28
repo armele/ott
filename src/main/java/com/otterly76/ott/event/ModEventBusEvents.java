@@ -174,6 +174,7 @@ public class ModEventBusEvents {
         event.put(ModEntities.GIANT_SOFTSHELL_TURTLE.get(), com.otterly76.ott.entity.custom.GiantSoftshellTurtleEntity.createAttributes().build());
         // --- Ecologics ---
         event.put(ModEntities.COCONUT_CRAB.get(), com.otterly76.ott.entity.custom.CoconutCrabEntity.createAttributes().build());
+        event.put(ModEntities.SAND_CRAB.get(), com.otterly76.ott.entity.custom.SandCrabEntity.createAttributes().build());
         // --- Friends and Foes ---
         event.put(ModEntities.FIDDLER_CRAB.get(), com.otterly76.ott.entity.custom.FiddlerCrabEntity.createAttributes().build());
         event.put(ModEntities.GLARE.get(), com.otterly76.ott.entity.custom.GlareEntity.createAttributes().build());

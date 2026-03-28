@@ -2243,5 +2243,20 @@
     "sounds": [
       "ott:block/coconut/smash"
     ]
+  },
+  "entity.sand_crab.ambient": {
+    "sounds": [
+      "ott:entity/sand_crab/ambient"
+    ]
+  },
+  "entity.sand_crab.death": {
+    "sounds": [
+      "ott:entity/sand_crab/death"
+    ]
+  },
+  "entity.sand_crab.hurt": {
+    "sounds": [
+      "ott:entity/sand_crab/hurt"
+    ]
   }
 }

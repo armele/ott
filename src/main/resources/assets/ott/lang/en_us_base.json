@@ -1102,6 +1102,12 @@
   "subtitles.ott.entity.coconut_crab.death": "Coconut Crab dies",
   "subtitles.ott.block.coconut.smash": "Coconut smashes",
 
+  "entity.ott.sand_crab": "Sand Crab",
+  "item.ott.sand_crab_spawn_egg": "Sand Crab Spawn Egg",
+  "subtitles.ott.entity.sand_crab.ambient": "Sand Crab rattles",
+  "subtitles.ott.entity.sand_crab.hurt": "Sand Crab clicks",
+  "subtitles.ott.entity.sand_crab.death": "Sand Crab dies",
+
   "entity.ott.fiddler_crab": "Fiddler Crab",
   "item.ott.fiddler_crab_spawn_egg": "Fiddler Crab Spawn Egg",
   "subtitles.ott.entity.fiddler_crab.hurt": "Fiddler Crab clicks",

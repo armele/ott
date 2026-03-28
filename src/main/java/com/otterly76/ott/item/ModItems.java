@@ -697,6 +697,8 @@ public class ModItems {
                     .nutrition(6).saturationModifier(0.6F).build())));
     public static final DeferredItem<Item> COCONUT_CRAB_SPAWN_EGG = ITEMS.register("coconut_crab_spawn_egg",
             () -> new DeferredSpawnEggItem(ModEntities.COCONUT_CRAB, 0xEEC97C, 0x8B4513, new Item.Properties()));
+    public static final DeferredItem<Item> SAND_CRAB_SPAWN_EGG = ITEMS.register("sand_crab_spawn_egg",
+            () -> new DeferredSpawnEggItem(ModEntities.SAND_CRAB, 0xD2B48C, 0xA0522D, new Item.Properties()));
 
     public static final DeferredItem<Item> CRAB_CLAW = ITEMS.register("crab_claw",
             () -> new Item(new Item.Properties()));

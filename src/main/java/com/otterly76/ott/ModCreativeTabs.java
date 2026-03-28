@@ -213,6 +213,7 @@ public final class ModCreativeTabs {
                     output.accept(ModItems.WOLVERINE_SPAWN_EGG);
                     // --- Ecologics ---
                     output.accept(ModItems.COCONUT_CRAB_SPAWN_EGG);
+                    output.accept(ModItems.SAND_CRAB_SPAWN_EGG);
                     // --- Friends and Foes ---
                     output.accept(ModItems.FIDDLER_CRAB_SPAWN_EGG);
                     output.accept(ModItems.GLARE_SPAWN_EGG);
