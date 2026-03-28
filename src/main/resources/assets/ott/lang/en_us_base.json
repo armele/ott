@@ -1095,6 +1095,13 @@
   "subtitles.ott.entity.water_buffalo.hurt": "Water Buffalo hurts",
   "subtitles.ott.entity.water_buffalo.death": "Water Buffalo dies",
 
+  "entity.ott.coconut_crab": "Coconut Crab",
+  "item.ott.coconut_crab_spawn_egg": "Coconut Crab Spawn Egg",
+  "subtitles.ott.entity.coconut_crab.ambient": "Coconut Crab rattles",
+  "subtitles.ott.entity.coconut_crab.hurt": "Coconut Crab clicks",
+  "subtitles.ott.entity.coconut_crab.death": "Coconut Crab dies",
+  "subtitles.ott.block.coconut.smash": "Coconut smashes",
+
   "entity.ott.fiddler_crab": "Fiddler Crab",
   "item.ott.fiddler_crab_spawn_egg": "Fiddler Crab Spawn Egg",
   "subtitles.ott.entity.fiddler_crab.hurt": "Fiddler Crab clicks",
@@ -1143,6 +1150,9 @@
 
   "item.ott.illusioner_spawn_egg": "Illusioner Spawn Egg",
 
+  "block.ott.coconut": "Coconut",
+  "item.ott.coconut": "Coconut",
+  "item.ott.crab_meat": "Crab Meat",
   "item.ott.crab_claw": "Crab Claw",
   "block.ott.crab_egg": "Crab Egg",
   "item.ott.crab_egg": "Crab Egg",

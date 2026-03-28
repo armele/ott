@@ -498,6 +498,10 @@ public class ModEntities {
     public static final Supplier<EntityType<com.otterly76.ott.entity.custom.GiantSoftshellTurtleEntity>> GIANT_SOFTSHELL_TURTLE = OTT_ENTITY_TYPES.register("giant_softshell_turtle",
             () -> Builder.of(com.otterly76.ott.entity.custom.GiantSoftshellTurtleEntity::new, MobCategory.CREATURE).sized(1.2F, 0.5F).clientTrackingRange(8).build("giant_softshell_turtle"));
 
+    // --- Ecologics ---
+    public static final Supplier<EntityType<com.otterly76.ott.entity.custom.CoconutCrabEntity>> COCONUT_CRAB = OTT_ENTITY_TYPES.register("coconut_crab",
+            () -> Builder.of(com.otterly76.ott.entity.custom.CoconutCrabEntity::new, MobCategory.CREATURE).sized(1.2F, 1.2F).clientTrackingRange(10).build("coconut_crab"));
+
     // --- Friends and Foes ---
     public static final Supplier<EntityType<com.otterly76.ott.entity.custom.FiddlerCrabEntity>> FIDDLER_CRAB = OTT_ENTITY_TYPES.register("fiddler_crab",
             () -> Builder.of(com.otterly76.ott.entity.custom.FiddlerCrabEntity::new, MobCategory.CREATURE).sized(0.875F, 0.5625F).clientTrackingRange(10).build("fiddler_crab"));

@@ -500,6 +500,10 @@ public class ModSounds {
     public static final DeferredHolder<SoundEvent, SoundEvent> WILDFIRE_STEP = registerOttSoundEvent("entity.wildfire.step");
     public static final DeferredHolder<SoundEvent, SoundEvent> WILDFIRE_SUMMON_BLAZE = registerOttSoundEvent("entity.wildfire.summon_blaze");
     public static final DeferredHolder<SoundEvent, SoundEvent> SHIELD_DEBRIS_IMPACT = registerOttSoundEvent("entity.shield_debris.impact");
+    public static final DeferredHolder<SoundEvent, SoundEvent> COCONUT_CRAB_AMBIENT = registerOttSoundEvent("entity.coconut_crab.ambient");
+    public static final DeferredHolder<SoundEvent, SoundEvent> COCONUT_CRAB_DEATH = registerOttSoundEvent("entity.coconut_crab.death");
+    public static final DeferredHolder<SoundEvent, SoundEvent> COCONUT_CRAB_HURT = registerOttSoundEvent("entity.coconut_crab.hurt");
+    public static final DeferredHolder<SoundEvent, SoundEvent> COCONUT_SMASH = registerOttSoundEvent("block.coconut.smash");
 
     public static final DeferredHolder<SoundEvent, SoundEvent> NONE = registerSoundEvent("music.none");
     public static final DeferredHolder<SoundEvent, SoundEvent> BUNDLE_INSERT_FAIL = registerSoundEvent("item.bundle.insert_fail");

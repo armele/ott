@@ -689,6 +689,15 @@ public class ModItems {
             () -> new DeferredSpawnEggItem(ModEntities.TUFF_GOLEM, 0xA0A297, 0x5D5D52, new Item.Properties()));
     public static final DeferredItem<Item> WILDFIRE_SPAWN_EGG = ITEMS.register("wildfire_spawn_egg",
             () -> new DeferredSpawnEggItem(ModEntities.WILDFIRE, 0x6C3100, 0xFFD528, new Item.Properties()));
+    // --- Ecologics ---
+    public static final DeferredItem<BlockItem> COCONUT = ITEMS.register("coconut",
+            () -> new BlockItem(ModBlocks.COCONUT.get(), new Item.Properties()));
+    public static final DeferredItem<Item> CRAB_MEAT = ITEMS.register("crab_meat",
+            () -> new Item(new Item.Properties().food(new net.minecraft.world.food.FoodProperties.Builder()
+                    .nutrition(6).saturationModifier(0.6F).build())));
+    public static final DeferredItem<Item> COCONUT_CRAB_SPAWN_EGG = ITEMS.register("coconut_crab_spawn_egg",
+            () -> new DeferredSpawnEggItem(ModEntities.COCONUT_CRAB, 0xEEC97C, 0x8B4513, new Item.Properties()));
+
     public static final DeferredItem<Item> CRAB_CLAW = ITEMS.register("crab_claw",
             () -> new Item(new Item.Properties()));
     public static final DeferredItem<BlockItem> CRAB_EGG = ITEMS.register("crab_egg",

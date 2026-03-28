@@ -332,6 +332,8 @@ public class ClientModEvents {
         event.registerEntityRenderer(ModEntities.SPOONBILL.get(), com.otterly76.ott.client.render.entity.SpoonbillRenderer::new);
         event.registerEntityRenderer(ModEntities.GIANT_SOFTSHELL_TURTLE.get(), com.otterly76.ott.client.render.entity.GiantSoftshellTurtleRenderer::new);
 
+        // --- Ecologics ---
+        event.registerEntityRenderer(ModEntities.COCONUT_CRAB.get(), com.otterly76.ott.client.render.entity.CoconutCrabRenderer::new);
         // --- Friends and Foes ---
         event.registerEntityRenderer(ModEntities.FIDDLER_CRAB.get(), com.otterly76.ott.client.render.entity.FiddlerCrabRenderer::new);
         event.registerEntityRenderer(ModEntities.GLARE.get(), com.otterly76.ott.client.render.entity.GlareRenderer::new);

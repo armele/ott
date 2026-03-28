@@ -211,6 +211,8 @@ public final class ModCreativeTabs {
                     output.accept(ModItems.WECHUGE_SPAWN_EGG);
                     output.accept(ModItems.WENDIGO_SPAWN_EGG);
                     output.accept(ModItems.WOLVERINE_SPAWN_EGG);
+                    // --- Ecologics ---
+                    output.accept(ModItems.COCONUT_CRAB_SPAWN_EGG);
                     // --- Friends and Foes ---
                     output.accept(ModItems.FIDDLER_CRAB_SPAWN_EGG);
                     output.accept(ModItems.GLARE_SPAWN_EGG);
@@ -367,6 +369,9 @@ public final class ModCreativeTabs {
                     output.accept(ModItems.EMU_EGG);
                     output.accept(ModItems.HOOPOE_EGG);
                     output.accept(ModItems.TOUCAN_EGG);
+                    // --- Ecologics ---
+                    output.accept(ModItems.COCONUT);
+                    output.accept(ModItems.CRAB_MEAT);
                     // --- Friends and Foes ---
                     output.accept(ModItems.CRAB_CLAW);
                     output.accept(ModItems.CRAB_EGG);

@@ -1,0 +1,25 @@
+{
+	"credit": "Throttled by Otterly76",
+	"render_type": "minecraft:cutout",
+	"ambientocclusion": false,
+	"parent": "block/block",
+	"texture_size": [32, 32],
+	"textures": {
+		"particle": "ott:block/coconut",
+		"1": "ott:block/coconut"
+	},
+	"elements": [
+		{
+			"from": [2, 0, 2],
+			"to": [14, 12, 14],
+			"faces": {
+				"north": {"uv": [9, 1, 15, 7], "texture": "#1", "cullface": "north"},
+				"east":  {"uv": [9, 1, 15, 7], "texture": "#1", "cullface": "east"},
+				"south": {"uv": [9, 1, 15, 7], "texture": "#1", "cullface": "south"},
+				"west":  {"uv": [9, 1, 15, 7], "texture": "#1", "cullface": "west"},
+				"up":    {"uv": [1, 9, 7, 15], "texture": "#1", "cullface": "up"},
+				"down":  {"uv": [7, 1, 1, 7],  "texture": "#1", "cullface": "down"}
+			}
+		}
+	]
+}

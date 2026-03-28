@@ -2223,5 +2223,25 @@
       "ott:entity/shield_debris/impact3",
       "ott:entity/shield_debris/impact4"
     ]
+  },
+  "entity.coconut_crab.ambient": {
+    "sounds": [
+      "ott:entity/coconut_crab/ambient"
+    ]
+  },
+  "entity.coconut_crab.death": {
+    "sounds": [
+      "ott:entity/coconut_crab/death"
+    ]
+  },
+  "entity.coconut_crab.hurt": {
+    "sounds": [
+      "ott:entity/coconut_crab/hurt"
+    ]
+  },
+  "block.coconut.smash": {
+    "sounds": [
+      "ott:block/coconut/smash"
+    ]
   }
 }
