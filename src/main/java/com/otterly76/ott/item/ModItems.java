@@ -359,6 +359,7 @@ public class ModItems {
             () -> new BlockItem(ModBlocks.TORTOISE_EGG.get(), new Item.Properties()));
     public static final DeferredItem<Item> SNAIL_EGG = ITEMS.register("snail_egg",
             () -> new BlockItem(ModBlocks.SNAIL_EGG.get(), new Item.Properties()));
+    public static final DeferredHolder<Item, BlockItem> SMOOTH_GLOWSTONE = registerBlockItem("smooth_glowstone", ModBlocks.SMOOTH_GLOWSTONE);
     public static final DeferredItem<Item> GLOW_GOOP = ITEMS.register("glow_goop",
             () -> new GlowGoopItem(ModBlocks.GLOW_GOOP.get(), new Item.Properties()));
     public static final DeferredItem<Item> LIZARD_TAIL = ITEMS.register("lizard_tail",

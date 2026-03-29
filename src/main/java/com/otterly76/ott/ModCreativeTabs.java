@@ -267,6 +267,7 @@ public final class ModCreativeTabs {
                     output.accept(ModItems.BIG_LILY_PAD);
                     output.accept(ModItems.OAK_NEST);
                     output.accept(ModItems.GLOW_GOOP);
+                    output.accept(ModItems.SMOOTH_GLOWSTONE.get());
 
                     // Salt
                     output.accept(ModItems.SALT);

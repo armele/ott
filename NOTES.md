@@ -132,6 +132,10 @@ Sand Sets:
 - sandstone pillar cap
 - quicksand
 
+PR DO make pillars multiface
+
+add "bound" wood sets to make things like panels that look like spruce trapdoors
+
 add pearl blocks from otter pearls (9) and dye them
 
 add custom elytra models/textrues: butterflies
