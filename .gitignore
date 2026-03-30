@@ -28,3 +28,4 @@ run-data
 
 repo
 /.output.txt
+/.claude/settings.local.json
