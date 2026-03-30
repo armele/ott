@@ -1,6 +1,7 @@
 package com.otterly76.ott.generation;
 
 import net.minecraft.world.item.*;
+import net.neoforged.neoforge.registries.DeferredBlock;
 import net.neoforged.neoforge.registries.DeferredItem;
 import com.otterly76.ott.Constants;
 import com.otterly76.ott.color.ModColorSets;
@@ -34,6 +35,7 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
+import java.util.Map;
 import java.util.concurrent.CompletableFuture;
 
 public class ModRecipeProvider extends RecipeProvider implements IConditionBuilder {
@@ -293,6 +295,7 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
                 .save(noAdv);
 
         this.addDyeingRecipes(noAdv);
+        this.addPatternBlockRecipes(noAdv);
         this.addSlabToBlockRecipes(noAdv);
         this.addMiscRecipes(noAdv);
 
@@ -420,6 +423,44 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
                     true
             );
         }
+    }
+
+    private void addPatternBlockRecipes(RecipeOutput exporter) {
+        for (Map.Entry<String, Map<String, DeferredBlock<Block>>> patternEntry : ModBlocks.PATTERN_BLOCKS.entrySet()) {
+            String pattern = patternEntry.getKey();
+            Map<String, DeferredBlock<Block>> colorMap = patternEntry.getValue();
+
+            for (DyeColor color : DyeColor.values()) {
+                String name = color.getName();
+                DeferredBlock<Block> block = colorMap.get(name);
+                if (block == null) continue;
+                Item dye = BuiltInRegistries.ITEM.get(ResourceLocation.withDefaultNamespace(name + "_dye"));
+                addDyedPatternRecipe(exporter, block.get(), dye, name + "_" + pattern);
+            }
+
+            for (ModColorSets.ColorSet colorSet : ModColorSets.ALL) {
+                String name = colorSet.name();
+                DeferredBlock<Block> block = colorMap.get(name);
+                if (block == null) continue;
+                Item dye = ModItems.CUSTOM_DYES.get(name).get();
+                addDyedPatternRecipe(exporter, block.get(), dye, name + "_" + pattern);
+            }
+        }
+    }
+
+    private void addDyedPatternRecipe(RecipeOutput exporter, Block result, Item dye, String recipeName) {
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.BUILDING_BLOCKS, result, 8)
+                .requires(Items.COBBLESTONE)
+                .requires(Items.COBBLESTONE)
+                .requires(Items.COBBLESTONE)
+                .requires(Items.COBBLESTONE)
+                .requires(Items.COBBLESTONE)
+                .requires(Items.COBBLESTONE)
+                .requires(Items.COBBLESTONE)
+                .requires(Items.COBBLESTONE)
+                .requires(dye)
+                .unlockedBy("has_dye", has(dye))
+                .save(exporter, getRecipePath("ott", recipeName + "_from_dyeing"));
     }
 
     private Item getItem(String name) {

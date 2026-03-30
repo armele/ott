@@ -22,6 +22,7 @@ public class OttConfig {
     public static final Anvils ANVILS;
     public static final AFK afk;
     public static final Weather WEATHER;
+    public static final FriendlyFire FRIENDLY_FIRE;
 
     static {
         ModConfigSpec.Builder builder = new ModConfigSpec.Builder();
@@ -42,6 +43,7 @@ public class OttConfig {
         ANVILS = new Anvils(builder);
         WEATHER = new Weather(builder);
         afk = new AFK(builder);
+        FRIENDLY_FIRE = new FriendlyFire(builder);
 
         builder.pop();
         SPEC = builder.build();
@@ -745,6 +747,19 @@ public class OttConfig {
                 SIZE = builder.defineInRange("size", 8.0, 0.0, Double.MAX_VALUE);
                 builder.pop();
             }
+        }
+    }
+
+    public static class FriendlyFire {
+        public final ModConfigSpec.BooleanValue LIMIT_ALL_PLAYER_ATTACKS;
+
+        public FriendlyFire(ModConfigSpec.Builder builder) {
+            builder.push("friendlyFire");
+            LIMIT_ALL_PLAYER_ATTACKS = builder
+                    .comment("Set to true to disable all players from attacking tamed pets, even if not tamed by that player. Players can still damage their own pets by sneaking+hitting.")
+                    .translation("ott.configuration.friendlyfire.limitallplayerattacks")
+                    .define("limitAllPlayerAttacks", false);
+            builder.pop();
         }
     }
 }
