@@ -140,8 +140,8 @@ public class ModItemTagProvider extends ItemTagsProvider {
                 ModItems.COOKED_GOLDEN_SUNFISH_MEAT.get(),
                 ModItems.RAW_KRILL.get(),
                 ModItems.FRIED_KRILL.get(),
-                ModItems.RAW_SHRIMP_1.get(),
-                ModItems.COOKED_SHRIMP_1.get(),
+                ModItems.RAW_SHRIMP.get(),
+                ModItems.STEAMED_SHRIMP.get(),
                 ModItems.KOI_FISH.get(),
                 ModItems.CATFISH.get(),
                 ModItems.COOKED_CATFISH.get(),
@@ -166,10 +166,7 @@ public class ModItemTagProvider extends ItemTagsProvider {
         );
 
         this.tag(ModTags.ItemTags.FERRET_FOOD).add(
-                ModItems.RAW_CAPYBARA.get(),
-                ModItems.RAW_KIWI.get(),
-                ModItems.RAW_SEAL.get(),
-                ModItems.RAW_SHRIMP_1.get()
+                ModItems.RAW_SHRIMP.get()
         );
 
         this.tag(ModTags.ItemTags.FERRET_TEMPT_ITEMS).add(
@@ -185,7 +182,7 @@ public class ModItemTagProvider extends ItemTagsProvider {
 
         this.tag(ModTags.ItemTags.OTTER_FOOD).add(
                 ModItems.CLAM.get(),
-                ModItems.RAW_SHRIMP_1.get(),
+                ModItems.RAW_SHRIMP.get(),
                 ModItems.KOI_FISH.get(),
                 ModItems.RAW_ANGELFISH.get(),
                 ModItems.RAW_BARRELEYE.get(),
@@ -198,7 +195,7 @@ public class ModItemTagProvider extends ItemTagsProvider {
                 Items.COD,
                 Items.SALMON,
                 Items.TROPICAL_FISH,
-                ModItems.COOKED_SHRIMP_1.get(),
+                ModItems.STEAMED_SHRIMP.get(),
                 ModItems.FRIED_KRILL.get(),
                 ModItems.COOKED_SUNFISH_MEAT.get(),
                 ModItems.COOKED_GOLDEN_SUNFISH_MEAT.get(),
@@ -219,29 +216,23 @@ public class ModItemTagProvider extends ItemTagsProvider {
 
         this.tag(ModTags.ItemTags.BIRD_FOOD_ITEMS).add(
                 Items.WHEAT_SEEDS, Items.PUMPKIN_SEEDS, Items.MELON_SEEDS, Items.BEETROOT_SEEDS,
-                ModItems.RAW_SHRIMP_1.get()
+                ModItems.RAW_SHRIMP.get()
         );
 
         this.tag(ModTags.ItemTags.ALLIGATOR_FOOD_ITEMS).add(
                 Items.BEEF, Items.PORKCHOP, Items.CHICKEN, Items.RABBIT,
-                ModItems.RAW_CAPYBARA.get(),
-                ModItems.RAW_KIWI.get(),
-                ModItems.RAW_SEAL.get(),
-                ModItems.RAW_SHRIMP_1.get()
+                ModItems.RAW_SHRIMP.get()
         );
 
         this.tag(ModTags.ItemTags.CATFISH_FOOD_ITEMS).add(
                 Items.TROPICAL_FISH, Items.COD, Items.TADPOLE_BUCKET,
                 ModItems.RAW_ANGELFISH.get(),
-                ModItems.RAW_SHRIMP_1.get()
+                ModItems.RAW_SHRIMP.get()
         );
 
         this.tag(ModTags.ItemTags.VULTURE_FOOD_ITEMS).add(
                 Items.ROTTEN_FLESH,
-                ModItems.RAW_CAPYBARA.get(),
-                ModItems.RAW_KIWI.get(),
-                ModItems.RAW_SEAL.get(),
-                ModItems.RAW_SHRIMP_1.get()
+                ModItems.RAW_SHRIMP.get()
         );
 
         this.tag(ModTags.ItemTags.BEAR_FOOD_ITEMS).add(
@@ -482,23 +473,23 @@ public class ModItemTagProvider extends ItemTagsProvider {
 
         // Fish Tags
         this.tag(ModTags.ItemTags.C_RAW_FISH)
-                .add(ModItems.BASS.get(), ModItems.CATFISH.get(), ModItems.KOI_FISH.get(), ModItems.RAW_ANGELFISH.get(), ModItems.RAW_BARRELEYE.get(), ModItems.RAW_FLOUNDER.get(), ModItems.RAW_KRILL.get(), ModItems.RAW_SHRIMP_1.get(), ModItems.RAW_SUNFISH_MEAT.get(), ModItems.RAW_GOLDEN_SUNFISH_MEAT.get());
+                .add(ModItems.BASS.get(), ModItems.CATFISH.get(), ModItems.KOI_FISH.get(), ModItems.RAW_ANGELFISH.get(), ModItems.RAW_BARRELEYE.get(), ModItems.RAW_FLOUNDER.get(), ModItems.RAW_KRILL.get(), ModItems.RAW_SHRIMP.get(), ModItems.RAW_SUNFISH_MEAT.get(), ModItems.RAW_GOLDEN_SUNFISH_MEAT.get());
 
         this.tag(ModTags.ItemTags.NF_RAW_FISHES)
-                .add(ModItems.BASS.get(), ModItems.CATFISH.get(), ModItems.KOI_FISH.get(), ModItems.RAW_ANGELFISH.get(), ModItems.RAW_BARRELEYE.get(), ModItems.RAW_FLOUNDER.get(), ModItems.RAW_KRILL.get(), ModItems.RAW_SHRIMP_1.get(), ModItems.RAW_SUNFISH_MEAT.get(), ModItems.RAW_GOLDEN_SUNFISH_MEAT.get());
+                .add(ModItems.BASS.get(), ModItems.CATFISH.get(), ModItems.KOI_FISH.get(), ModItems.RAW_ANGELFISH.get(), ModItems.RAW_BARRELEYE.get(), ModItems.RAW_FLOUNDER.get(), ModItems.RAW_KRILL.get(), ModItems.RAW_SHRIMP.get(), ModItems.RAW_SUNFISH_MEAT.get(), ModItems.RAW_GOLDEN_SUNFISH_MEAT.get());
 
         this.tag(ModTags.ItemTags.C_COOKED_FISH)
-                .add(ModItems.COOKED_BASS.get(), ModItems.COOKED_CATFISH.get(), ModItems.FRIED_KRILL.get(), ModItems.COOKED_SHRIMP_1.get(), ModItems.COOKED_SUNFISH_MEAT.get(), ModItems.COOKED_GOLDEN_SUNFISH_MEAT.get());
+                .add(ModItems.COOKED_BASS.get(), ModItems.COOKED_CATFISH.get(), ModItems.FRIED_KRILL.get(), ModItems.STEAMED_SHRIMP.get(), ModItems.COOKED_SUNFISH_MEAT.get(), ModItems.COOKED_GOLDEN_SUNFISH_MEAT.get());
 
         this.tag(ModTags.ItemTags.NF_COOKED_FISHES)
-                .add(ModItems.COOKED_BASS.get(), ModItems.COOKED_CATFISH.get(), ModItems.FRIED_KRILL.get(), ModItems.COOKED_SHRIMP_1.get(), ModItems.COOKED_SUNFISH_MEAT.get(), ModItems.COOKED_GOLDEN_SUNFISH_MEAT.get());
+                .add(ModItems.COOKED_BASS.get(), ModItems.COOKED_CATFISH.get(), ModItems.FRIED_KRILL.get(), ModItems.STEAMED_SHRIMP.get(), ModItems.COOKED_SUNFISH_MEAT.get(), ModItems.COOKED_GOLDEN_SUNFISH_MEAT.get());
 
         // Meat Tags
         this.tag(ModTags.ItemTags.C_RAW_MEAT)
-                .add(ModItems.VENISON.get(), ModItems.PHEASANT.get(), ModItems.BUSHMEAT.get(), ModItems.LIZARD_TAIL.get(), ModItems.RAW_CAPYBARA.get(), ModItems.RAW_HEDGEHOG.get(), ModItems.RAW_SEAL.get(), ModItems.RAW_KIWI.get());
+                .add(ModItems.LIZARD_TAIL.get());
 
         this.tag(ModTags.ItemTags.C_COOKED_MEAT)
-                .add(ModItems.COOKED_VENISON.get(), ModItems.COOKED_PHEASANT.get(), ModItems.COOKED_BUSHMEAT.get(), ModItems.COOKED_LIZARD_TAIL.get(), ModItems.COOKED_CAPYBARA.get(), ModItems.COOKED_HEDGEHOG.get(), ModItems.COOKED_SEAL.get(), ModItems.COOKED_KIWI.get());
+                .add(ModItems.COOKED_LIZARD_TAIL.get());
 
         this.tag(ModTags.ItemTags.IS_MEAT)
                 .addTag(ModTags.ItemTags.C_RAW_MEAT)

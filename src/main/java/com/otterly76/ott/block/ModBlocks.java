@@ -476,6 +476,8 @@ public class ModBlocks {
         // Register all ott color sets
         com.otterly76.ott.color.ModColorSets.ALL.forEach(set -> COLOR_SETS.put(set.name(), com.otterly76.ott.block.color.ColorSetBlockRegistrar.registerOttColorSet(set.name())));
 
+        registerPatternBlocks();
+
         // Register all particle hedges
         ModHedgeVariants.ALL.forEach(variant -> {
             PARTICLE_HEDGES.put(variant.name(), BLOCKS.register(
@@ -495,6 +497,18 @@ public class ModBlocks {
                     )
             ));
         });
+    }
+
+    private static void registerPatternBlocks() {
+        for (String pattern : com.otterly76.ott.color.ModPatterns.PATTERNS) {
+            Map<String, DeferredBlock<Block>> colorMap = new LinkedHashMap<>();
+            for (com.otterly76.ott.color.ModPatterns.ColorInfo color : com.otterly76.ott.color.ModPatterns.ALL_COLORS) {
+                String name = color.name() + "_" + pattern;
+                DeferredBlock<Block> block = register(name, () -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.COBBLESTONE)));
+                colorMap.put(color.name(), block);
+            }
+            PATTERN_BLOCKS.put(pattern, colorMap);
+        }
     }
 
     private static <T extends Block & IGradientBlock> void registerGradientBlocks(Block block, GradientBlockBuilder<T> builder, Consumer<DeferredBlock<? extends IGradientBlock>> adder) {
@@ -552,6 +566,11 @@ public class ModBlocks {
      * ott color sets (ott namespace). Key = color name (e.g. "aquamarine").
      */
     public static final Map<String, ColorSetBlocks> COLOR_SETS = new LinkedHashMap<>();
+
+    /**
+     * ott pattern blocks (ott namespace). Key1 = pattern name, Key2 = color name.
+     */
+    public static final Map<String, Map<String, DeferredBlock<Block>>> PATTERN_BLOCKS = new LinkedHashMap<>();
 
     public record ColorSetBlocks(
             DeferredBlock<CandleBlock> candle,

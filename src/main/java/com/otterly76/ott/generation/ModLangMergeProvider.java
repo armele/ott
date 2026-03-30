@@ -45,6 +45,18 @@ public class ModLangMergeProvider implements DataProvider {
             addColorSetEntries(ottBase, set.name());
         }
 
+        // Add auto-generated pattern block entries to OTT base
+        for (String pattern : com.otterly76.ott.color.ModPatterns.PATTERNS) {
+            for (com.otterly76.ott.color.ModPatterns.ColorInfo color : com.otterly76.ott.color.ModPatterns.ALL_COLORS) {
+                addPatternBlockEntries(ottBase, pattern, color.name());
+            }
+        }
+
+        // Add creative tab titles
+        ottBase.addProperty("itemGroup.ott.blocks", "New Otterhome Blocks");
+        ottBase.addProperty("itemGroup.ott.color_sets", "New Otterhome Color Sets");
+        ottBase.addProperty("itemGroup.ott.wood_sets", "New Otterhome Wood Sets");
+
         Path mcOut = output.getOutputFolder(PackOutput.Target.RESOURCE_PACK)
                 .resolve("minecraft/lang/en_us.json");
         Path ottOut = output.getOutputFolder(PackOutput.Target.RESOURCE_PACK)
@@ -96,6 +108,17 @@ public class ModLangMergeProvider implements DataProvider {
         json.addProperty("block.ott." + name + "_carpet", capitalized + " Carpet");
         json.addProperty("block.ott." + name + "_banner", capitalized + " Banner");
         json.addProperty("item.ott." + name + "_dye", capitalized + " Dye");
+    }
+
+    private void addPatternBlockEntries(JsonObject json, String pattern, String colorName) {
+        String colorCap = Arrays.stream(colorName.split("_"))
+                .map(s -> s.substring(0, 1).toUpperCase() + s.substring(1))
+                .collect(Collectors.joining(" "));
+        String patternCap = Arrays.stream(pattern.split("_"))
+                .map(s -> s.substring(0, 1).toUpperCase() + s.substring(1))
+                .collect(Collectors.joining(" "));
+
+        json.addProperty("block.ott." + colorName + "_" + pattern, colorCap + " " + patternCap);
     }
 
     @Override

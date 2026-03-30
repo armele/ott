@@ -1,6 +1,7 @@
 package com.otterly76.ott.generation;
 
 import com.otterly76.ott.Constants;
+import com.otterly76.ott.registry.ModDamageTypes;
 import com.otterly76.ott.worldgen.ModConfiguredFeatures;
 import com.otterly76.ott.worldgen.ModPlacedFeatures;
 import com.otterly76.ott.worldgen.biome.ModBiomes;
@@ -30,7 +31,8 @@ public class OttWorldGenProvider extends DatapackBuiltinEntriesProvider {
                 TheGardenAwakensPlacements.bootstrap(context);
             })
             .add(Registries.BIOME, ModBiomes::bootstrap)
-            .add(Registries.TRIM_MATERIAL, com.otterly76.ott.trim.ModTrimMaterials::bootstrap);
+            .add(Registries.TRIM_MATERIAL, com.otterly76.ott.trim.ModTrimMaterials::bootstrap)
+            .add(Registries.DAMAGE_TYPE, ModDamageTypes::bootstrap);
 
     public OttWorldGenProvider(PackOutput output, CompletableFuture<HolderLookup.Provider> registries) {
         super(output, registries, BUILDER, Set.of(Constants.MOD_ID, "minecraft"));

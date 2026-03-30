@@ -39,20 +39,20 @@ public class OttEntityLootTableProvider extends EntityLootSubProvider {
         this.add(ModEntities.SPARROW.get(), createBirdDrops());
         this.add(ModEntities.BROWN_BEAR.get(), createBearDrops());
         this.add(ModEntities.BLACK_BEAR.get(), createBearDrops());
-        this.add(ModEntities.DEER.get(), createDeerDrops());
-        this.add(ModEntities.REINDEER.get(), createDeerDrops());
-        this.add(ModEntities.WHITE_DEER.get(), createDeerDrops());
+        this.add(ModEntities.DEER.get(), LootTable.lootTable());
+        this.add(ModEntities.REINDEER.get(), LootTable.lootTable());
+        this.add(ModEntities.WHITE_DEER.get(), LootTable.lootTable());
 
-        this.add(ModEntities.CAPYBARA.get(), createMeatDrops(ModItems.RAW_CAPYBARA.get()));
-        this.add(ModEntities.HEDGEHOG.get(), createHedgehogDrops());
-        this.add(ModEntities.KIWI.get(), createMeatDrops(ModItems.RAW_KIWI.get()));
+        this.add(ModEntities.CAPYBARA.get(), LootTable.lootTable());
+        this.add(ModEntities.HEDGEHOG.get(), LootTable.lootTable());
+        this.add(ModEntities.KIWI.get(), LootTable.lootTable());
         this.add(ModEntities.PENGUIN.get(), LootTable.lootTable());
-        this.add(ModEntities.SEAL.get(), createMeatDrops(ModItems.RAW_SEAL.get()));
+        this.add(ModEntities.SEAL.get(), LootTable.lootTable());
         this.add(ModEntities.JELLYFISH.get(), createJellyfishDrops());
         this.add(ModEntities.JELLYFISH_2.get(), createJellyfishDrops());
         this.add(ModEntities.JELLYFISH_3.get(), createJellyfishDrops());
         this.add(ModEntities.SEA_URCHIN.get(), createSeaUrchinDrops());
-        this.add(ModEntities.SHRIMP_1.get(), createMeatDrops(ModItems.RAW_SHRIMP_1.get()));
+        this.add(ModEntities.SHRIMP_1.get(), createMeatDrops(ModItems.RAW_SHRIMP.get()));
         this.add(ModEntities.SEAHORSE_1.get(), LootTable.lootTable());
         this.add(ModEntities.STARFISH_1.get(), LootTable.lootTable());
 
@@ -67,48 +67,55 @@ public class OttEntityLootTableProvider extends EntityLootSubProvider {
         this.add(ModEntities.FIREFLY.get(), createFireflyDrops());
         this.add(ModEntities.SMALL_FIREFLY.get(), createFireflyDrops());
 
-        this.add(ModEntities.BEAVER.get(), createMeatDrops(ModItems.RAW_GAME.get(), 1, 2));
+        this.add(ModEntities.BEAVER.get(), LootTable.lootTable());
         this.add(ModEntities.CHUPACABRA.get(), createDrops(Items.BONE, 1, 3));
-        this.add(ModEntities.COUGAR.get(), createMeatDrops(ModItems.RAW_GAME.get(), 1, 2));
-        this.add(ModEntities.COYOTE.get(), createMeatDrops(ModItems.RAW_GAME.get(), 1, 2));
+        this.add(ModEntities.COUGAR.get(), LootTable.lootTable());
+        this.add(ModEntities.COYOTE.get(), LootTable.lootTable());
         this.add(ModEntities.HOWLER.get(), createDrops(Items.ROTTEN_FLESH, 1, 3));
-        this.add(ModEntities.MARMOT.get(), createMeatDrops(ModItems.RAW_GAME.get(), 1, 1));
-        this.add(ModEntities.MOUSE.get(), createMeatDrops(ModItems.RAW_GAME.get(), 1, 1));
+        this.add(ModEntities.MARMOT.get(), LootTable.lootTable());
+        this.add(ModEntities.MOUSE.get(), LootTable.lootTable());
         this.add(ModEntities.PIT_VIPER.get(), createDrops(Items.BONE, 1, 1));
         this.add(ModEntities.RATTLESNAKE.get(), createDrops(Items.BONE, 1, 1));
-        this.add(ModEntities.RINGTAIL.get(), createMeatDrops(ModItems.RAW_GAME.get(), 1, 1));
-        this.add(ModEntities.SASQUATCH.get(), createMeatDrops(ModItems.RAW_GAME.get(), 2, 4));
+        this.add(ModEntities.RINGTAIL.get(), LootTable.lootTable());
+        this.add(ModEntities.SASQUATCH.get(), LootTable.lootTable());
         this.add(ModEntities.SKINWALKER.get(), createDrops(Items.ROTTEN_FLESH, 1, 3));
-        this.add(ModEntities.SNAKE.get(), createMeatDrops(ModItems.RAW_GAME.get(), 1, 1));
+        this.add(ModEntities.SNAKE.get(), LootTable.lootTable());
         this.add(ModEntities.SQUONK.get(), createDrops(Items.GHAST_TEAR, 1, 2));
         this.add(ModEntities.TURKEY.get(), createTurkeyDrops());
         this.add(ModEntities.WECHUGE.get(), createDrops(Items.ROTTEN_FLESH, 1, 3));
         this.add(ModEntities.WENDIGO.get(), createDrops(Items.ROTTEN_FLESH, 2, 5));
-        this.add(ModEntities.WOLVERINE.get(), createMeatDrops(ModItems.RAW_GAME.get(), 1, 2));
+        this.add(ModEntities.WOLVERINE.get(), LootTable.lootTable());
 
         this.add(ModEntities.CICHLID.get(), createMeatDrops(ModItems.RAW_CICHLID.get(), 1, 1));
-        this.add(ModEntities.LEOPARD_CAT.get(), createMeatDrops(ModItems.RAW_GAME.get(), 1, 2));
-        this.add(ModEntities.ECHIDNA.get(), createMeatDrops(ModItems.RAW_GAME.get(), 1, 1));
+        this.add(ModEntities.LEOPARD_CAT.get(), LootTable.lootTable());
+        this.add(ModEntities.ECHIDNA.get(), LootTable.lootTable());
         this.add(ModEntities.GUITARFISH.get(), createMeatDrops(ModItems.RAW_GUITARFISH.get(), 1, 2));
         this.add(ModEntities.BONNETHEAD_SHARK.get(), createMeatDrops(ModItems.RAW_BONNETHEAD.get(), 1, 3));
         this.add(ModEntities.BURROWING_OWL.get(), createBirdDrops());
-        this.add(ModEntities.BUSHDOG.get(), createMeatDrops(ModItems.RAW_GAME.get(), 1, 2));
-        this.add(ModEntities.QUAIL.get(), createMeatDrops(ModItems.WILD_BIRD_MEAT.get(), 1, 1));
-        this.add(ModEntities.CANDYCANE_SNAIL.get(), createMeatDrops(ModItems.RAW_SNAIL_MEAT.get(), 1, 1));
+        this.add(ModEntities.BUSHDOG.get(), LootTable.lootTable());
+        this.add(ModEntities.QUAIL.get(), LootTable.lootTable());
+        this.add(ModEntities.CANDYCANE_SNAIL.get(), createMeatDrops(ModItems.RAW_SNAIL.get(), 1, 1));
         this.add(ModEntities.FIRE_SALAMANDER.get(), createDrops(Items.SLIME_BALL, 0, 1));
         this.add(ModEntities.RIVER_TURTLE.get(), createDrops(Items.TURTLE_SCUTE, 0, 1));
         this.add(ModEntities.GOBLIN_SHARK.get(), createMeatDrops(ModItems.RAW_GOBLIN_SHARK.get(), 1, 4));
-        this.add(ModEntities.GUINEA_FOWL.get(), createMeatDrops(ModItems.WILD_BIRD_MEAT.get(), 1, 2));
-        this.add(ModEntities.IMPALA.get(), createMeatDrops(ModItems.RAW_GAME.get(), 2, 4));
+        this.add(ModEntities.GUINEA_FOWL.get(), LootTable.lootTable());
+        this.add(ModEntities.IMPALA.get(), LootTable.lootTable());
         this.add(ModEntities.MANTA_RAY.get(), createMeatDrops(ModItems.RAW_BONNETHEAD.get(), 2, 5));
-        this.add(ModEntities.STORK.get(), createMeatDrops(ModItems.WILD_BIRD_MEAT.get(), 1, 3));
+        this.add(ModEntities.STORK.get(), LootTable.lootTable());
         this.add(ModEntities.MOLE.get(), createDrops(Items.DIRT, 0, 1));
-        this.add(ModEntities.TREE_KANGAROO.get(), createMeatDrops(ModItems.RAW_GAME.get(), 1, 3));
-        this.add(ModEntities.PALLAS_CAT.get(), createMeatDrops(ModItems.RAW_GAME.get(), 1, 2));
-        this.add(ModEntities.PINK_LAND_IGUANA.get(), createMeatDrops(ModItems.RAW_GAME.get(), 1, 2));
+        this.add(ModEntities.TREE_KANGAROO.get(), LootTable.lootTable());
+        this.add(ModEntities.PALLAS_CAT.get(), LootTable.lootTable());
+        this.add(ModEntities.PINK_LAND_IGUANA.get(), LootTable.lootTable());
         this.add(ModEntities.PSYCHO_JELLY.get(), createJellyfishDrops());
-        this.add(ModEntities.SPOONBILL.get(), createMeatDrops(ModItems.WILD_BIRD_MEAT.get(), 1, 2));
+        this.add(ModEntities.SPOONBILL.get(), LootTable.lootTable());
         this.add(ModEntities.GIANT_SOFTSHELL_TURTLE.get(), createDrops(Items.TURTLE_SCUTE, 1, 2));
+
+        this.add(ModEntities.BASS.get(), createFishDrops(ModItems.BASS.get()));
+        this.add(ModEntities.CATFISH.get(), createFishDrops(ModItems.CATFISH.get()));
+        this.add(ModEntities.WATER_BUFFALO.get(), createWaterBuffaloDrops());
+        this.add(ModEntities.COCONUT_CRAB.get(), createCrabDrops(3.0F, 2.0F));
+        this.add(ModEntities.SAND_CRAB.get(), createCrabDrops(3.0F, 2.0F));
+        this.add(ModEntities.FIDDLER_CRAB.get(), createCrabDrops(2.0F, 1.0F));
     }
 
     private LootTable.Builder createFireflyDrops() {
@@ -133,14 +140,43 @@ public class OttEntityLootTableProvider extends EntityLootSubProvider {
     }
 
     private LootTable.Builder createKoiFishDrops() {
+        return createFishDrops(ModItems.KOI_FISH.get());
+    }
+
+    private LootTable.Builder createFishDrops(net.minecraft.world.item.Item fish) {
         return LootTable.lootTable()
                 .withPool(LootPool.lootPool()
                         .setRolls(ConstantValue.exactly(1.0F))
-                        .add(LootItem.lootTableItem(ModItems.KOI_FISH.get())))
+                        .add(LootItem.lootTableItem(fish)))
                 .withPool(LootPool.lootPool()
                         .setRolls(ConstantValue.exactly(1.0F))
                         .add(LootItem.lootTableItem(Items.BONE_MEAL))
                         .when(net.minecraft.world.level.storage.loot.predicates.LootItemRandomChanceCondition.randomChance(0.05F)));
+    }
+
+    private LootTable.Builder createWaterBuffaloDrops() {
+        return LootTable.lootTable()
+                .withPool(LootPool.lootPool()
+                        .setRolls(ConstantValue.exactly(1.0F))
+                        .add(LootItem.lootTableItem(Items.LEATHER)
+                                .apply(SetItemCountFunction.setCount(UniformGenerator.between(0.0F, 3.0F)))
+                                .apply(net.minecraft.world.level.storage.loot.functions.EnchantedCountIncreaseFunction.lootingMultiplier(this.registries, UniformGenerator.between(0.0F, 2.0F)))));
+    }
+
+    private LootTable.Builder createCrabDrops(float meatMax, float meatLootingMax) {
+        return LootTable.lootTable()
+                .withPool(LootPool.lootPool()
+                        .setRolls(ConstantValue.exactly(1.0F))
+                        .add(LootItem.lootTableItem(ModItems.CRAB_CLAW.get())
+                                .apply(SetItemCountFunction.setCount(UniformGenerator.between(0.0F, 2.0F)))
+                                .apply(net.minecraft.world.level.storage.loot.functions.EnchantedCountIncreaseFunction.lootingMultiplier(this.registries, UniformGenerator.between(0.0F, 1.0F)))))
+                .withPool(LootPool.lootPool()
+                        .setRolls(ConstantValue.exactly(1.0F))
+                        .add(LootItem.lootTableItem(ModItems.CRAB_MEAT.get())
+                                .apply(SetItemCountFunction.setCount(UniformGenerator.between(1.0F, meatMax)))
+                                .apply(net.minecraft.world.level.storage.loot.functions.EnchantedCountIncreaseFunction.lootingMultiplier(this.registries, UniformGenerator.between(0.0F, meatLootingMax)))
+                                .apply(SmeltItemFunction.smelted()
+                                        .when(LootItemEntityPropertyCondition.hasProperties(LootContext.EntityTarget.THIS, EntityPredicate.Builder.entity().flags(EntityFlagsPredicate.Builder.flags().setOnFire(true)))))));
     }
 
     private LootTable.Builder createMeatDrops(net.minecraft.world.item.Item meat) {
@@ -177,15 +213,6 @@ public class OttEntityLootTableProvider extends EntityLootSubProvider {
                                 .apply(SetItemCountFunction.setCount(UniformGenerator.between(1.0F, 3.0F)))));
     }
 
-    private LootTable.Builder createHedgehogDrops() {
-        return createMeatDrops(ModItems.RAW_HEDGEHOG.get())
-                .withPool(LootPool.lootPool()
-                        .setRolls(ConstantValue.exactly(1.0F))
-                        .add(LootItem.lootTableItem(net.minecraft.world.item.Items.FEATHER)
-                                .apply(SetItemCountFunction.setCount(UniformGenerator.between(1.0F, 4.0F)))
-                                .when(net.minecraft.world.level.storage.loot.predicates.LootItemKilledByPlayerCondition.killedByPlayer()))
-                );
-    }
 
     private LootTable.Builder createJellyfishDrops() {
         return LootTable.lootTable()
@@ -232,19 +259,6 @@ public class OttEntityLootTableProvider extends EntityLootSubProvider {
                                 .apply(SetItemCountFunction.setCount(UniformGenerator.between(1.0F, 2.0F)))));
     }
 
-    private LootTable.Builder createDeerDrops() {
-        return LootTable.lootTable()
-                .withPool(LootPool.lootPool()
-                        .setRolls(ConstantValue.exactly(1.0F))
-                        .add(LootItem.lootTableItem(ModItems.VENISON.get())
-                                .apply(SetItemCountFunction.setCount(UniformGenerator.between(1.0F, 3.0F)))
-                                .apply(SmeltItemFunction.smelted()
-                                        .when(LootItemEntityPropertyCondition.hasProperties(LootContext.EntityTarget.THIS, EntityPredicate.Builder.entity().flags(EntityFlagsPredicate.Builder.flags().setOnFire(true)))))))
-                .withPool(LootPool.lootPool()
-                        .setRolls(ConstantValue.exactly(1.0F))
-                        .add(LootItem.lootTableItem(net.minecraft.world.item.Items.BONE)
-                                .apply(SetItemCountFunction.setCount(UniformGenerator.between(0.0F, 2.0F)))));
-    }
 
     @Override
     protected @NotNull Stream<EntityType<?>> getKnownEntityTypes() {
@@ -324,7 +338,13 @@ public class OttEntityLootTableProvider extends EntityLootSubProvider {
                 ModEntities.PINK_LAND_IGUANA.get(),
                 ModEntities.PSYCHO_JELLY.get(),
                 ModEntities.SPOONBILL.get(),
-                ModEntities.GIANT_SOFTSHELL_TURTLE.get()
+                ModEntities.GIANT_SOFTSHELL_TURTLE.get(),
+                ModEntities.BASS.get(),
+                ModEntities.CATFISH.get(),
+                ModEntities.WATER_BUFFALO.get(),
+                ModEntities.COCONUT_CRAB.get(),
+                ModEntities.SAND_CRAB.get(),
+                ModEntities.FIDDLER_CRAB.get()
         );
     }
 }

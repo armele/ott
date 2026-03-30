@@ -66,7 +66,7 @@ public class Starfish1Entity extends Animal implements GeoEntity {
         this.goalSelector.addGoal(0, new TryFindWaterGoal(this));
         this.goalSelector.addGoal(1, new NearestAttackableTargetGoal<>(this, Shrimp1Entity.class, true));
         this.goalSelector.addGoal(2, new WaterAvoidingRandomStrollGoal(this, 1.0));
-        this.goalSelector.addGoal(3, new TemptGoal(this, 1.25, Ingredient.of(ModItems.RAW_SHRIMP_1.get()), false));
+        this.goalSelector.addGoal(3, new TemptGoal(this, 1.25, Ingredient.of(ModItems.RAW_SHRIMP.get()), false));
         this.goalSelector.addGoal(4, new BreedGoal(this, 1.0));
         this.goalSelector.addGoal(5, new RandomLookAroundGoal(this));
         this.goalSelector.addGoal(6, new HurtByTargetGoal(this).setAlertOthers(Starfish1Entity.class));
@@ -118,7 +118,7 @@ public class Starfish1Entity extends Animal implements GeoEntity {
     @Override
     public @NotNull InteractionResult mobInteract(@NotNull Player player, @NotNull InteractionHand hand) {
         ItemStack itemstack = player.getItemInHand(hand);
-        if (itemstack.is(ModItems.RAW_SHRIMP_1.get())) {
+        if (itemstack.is(ModItems.RAW_SHRIMP.get())) {
             if (!this.level().isClientSide && this.canFallInLove()) {
                 this.usePlayerItem(player, hand, itemstack);
                 this.setInLove(player);
@@ -132,7 +132,7 @@ public class Starfish1Entity extends Animal implements GeoEntity {
 
     @Override
     public boolean isFood(@NotNull ItemStack stack) {
-        return stack.is(ModItems.RAW_SHRIMP_1.get());
+        return stack.is(ModItems.RAW_SHRIMP.get());
     }
 
     @Nullable

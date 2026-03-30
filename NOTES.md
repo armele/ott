@@ -138,23 +138,23 @@ add "bound" wood sets to make things like panels that look like spruce trapdoors
 
 add pearl blocks from otter pearls (9) and dye them
 
-add custom elytra models/textrues: butterflies
+add custom elytra models/textures: butterflies
 
 Add additional salt block textures
 
 create white-tailed deer, elk, caribou, mossbloom to deer model
 
-create timber wolf using vanilla wolf model
+create timber wolf using vanilla wolf model as base
 
-create giant boar using vanilla boar model
+create giant boar using vanilla boar model as base
 
-create grizzly bear using brown bear model
+create grizzly bear using brown bear model as base
 
-remodel polar bear using brown bear model
+remodel polar bear using brown bear model as base
 
-create wither skeleton wolf using skeleton wolf model
+create skeleton wolf and wither skeleton wolf using wolf model as base
 
-create tiger, white tiger, leopard, jaguar, snow leopard, cheetah using cougar model
+create tiger, white tiger, leopard, jaguar, snow leopard, cheetah using cougar model as base
 
 Do Aurora blocks the TF way
 

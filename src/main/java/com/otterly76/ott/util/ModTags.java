@@ -193,6 +193,7 @@ public class ModTags {
         public static final TagKey<net.minecraft.world.level.biome.Biome> IS_MEADOW = createTag("is_meadow");
         public static final TagKey<net.minecraft.world.level.biome.Biome> IS_HUMID = commonTag("is_humid");
         public static final TagKey<net.minecraft.world.level.biome.Biome> IS_DRY = commonTag("is_dry");
+        public static final TagKey<net.minecraft.world.level.biome.Biome> SILK_COCOON_SPAWNS = modTag("silk_cocoon_spawns");
 
         private static TagKey<net.minecraft.world.level.biome.Biome> commonTag(String name) {
             return TagKey.create(net.minecraft.core.registries.Registries.BIOME, ResourceLocation.fromNamespaceAndPath("c", name));
@@ -200,6 +201,11 @@ public class ModTags {
 
         private static TagKey<net.minecraft.world.level.biome.Biome> createTag(String name) {
             return TagKey.create(net.minecraft.core.registries.Registries.BIOME, ResourceLocation.fromNamespaceAndPath("minecraft", name));
+        }
+
+        @SuppressWarnings("SameParameterValue")
+        private static TagKey<net.minecraft.world.level.biome.Biome> modTag(String name) {
+            return TagKey.create(net.minecraft.core.registries.Registries.BIOME, ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, name));
         }
     }
 

@@ -1,6 +1,0 @@
-{
-  "parent": "item/generated",
-  "textures": {
-    "layer0": "ott:item/water_buffalo/raw_buffalo_meat"
-  }
-}

@@ -6,6 +6,7 @@ import com.otterly76.ott.block.ModBlocks;
 import com.otterly76.ott.block.custom.SilkCocoonBlock;
 import com.otterly76.ott.crop.ThornyHedgeSprouts;
 import com.otterly76.ott.hedge.ModHedgeVariants;
+import net.minecraft.core.Direction;
 import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.block.BedBlock;
@@ -64,6 +65,8 @@ public class OttBlockStateProvider extends ModBlockStateProvider {
 
         ModBlocks.COLOR_SETS.forEach(this::registerColorSet);
 
+        registerPatternBlocks();
+
         registerLantern(ModBlocks.PROTECTIVE_LANTERN.get(), "protective");
         registerLantern(ModBlocks.WATER_LANTERN.get(), "water");
         registerLantern(ModBlocks.LAVA_LANTERN.get(), "lava");
@@ -90,6 +93,31 @@ public class OttBlockStateProvider extends ModBlockStateProvider {
                     .build();
         });
 
+    }
+
+    private void registerPatternBlocks() {
+        ModBlocks.PATTERN_BLOCKS.forEach((pattern, colorMap) -> {
+            ResourceLocation patternTexture = modLoc("block/patterns/" + pattern);
+
+            // Create a single model for the pattern that uses tinting
+            // We put it in block/patterns/ directory to keep things organized
+            ModelFile model = models().withExistingParent("block/patterns/" + pattern + "_model", mcLoc("block/block"))
+                    .texture("particle", patternTexture)
+                    .texture("all", patternTexture)
+                    .element().from(0, 0, 0).to(16, 16, 16)
+                    .face(Direction.DOWN).uvs(0, 0, 16, 16).texture("#all").cullface(Direction.DOWN).tintindex(0).end()
+                    .face(Direction.UP).uvs(0, 0, 16, 16).texture("#all").cullface(Direction.UP).tintindex(0).end()
+                    .face(Direction.NORTH).uvs(0, 0, 16, 16).texture("#all").cullface(Direction.NORTH).tintindex(0).end()
+                    .face(Direction.SOUTH).uvs(0, 0, 16, 16).texture("#all").cullface(Direction.SOUTH).tintindex(0).end()
+                    .face(Direction.WEST).uvs(0, 0, 16, 16).texture("#all").cullface(Direction.WEST).tintindex(0).end()
+                    .face(Direction.EAST).uvs(0, 0, 16, 16).texture("#all").cullface(Direction.EAST).tintindex(0).end()
+                    .end();
+
+            colorMap.values().forEach(block -> {
+                simpleBlock(block.get(), model);
+                itemModels().withExistingParent(block.getId().getPath(), model.getLocation());
+            });
+        });
     }
 
     private void registerSapling(Block sapling, Block potted, String name) {

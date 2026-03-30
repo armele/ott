@@ -179,10 +179,6 @@ public class ModItems {
 
     public static final DeferredItem<Item> RAW_FLOUNDER = ITEMS.register("raw_flounder",
             () -> new Item(new Item.Properties().food(new FoodProperties.Builder().nutrition(2).saturationModifier(0.1F).build())));
-    public static final DeferredItem<Item> PHEASANT = ITEMS.register("pheasant",
-            () -> new Item(new Item.Properties().food(new FoodProperties.Builder().nutrition(2).saturationModifier(0.1F).build())));
-    public static final DeferredItem<Item> COOKED_PHEASANT = ITEMS.register("cooked_pheasant",
-            () -> new Item(new Item.Properties().food(new FoodProperties.Builder().nutrition(6).saturationModifier(0.6F).build())));
     public static final DeferredItem<Item> RAW_ANGELFISH = ITEMS.register("raw_angelfish",
             () -> new Item(new Item.Properties().food(new FoodProperties.Builder().nutrition(2).saturationModifier(0.1F).build())));
     public static final DeferredItem<Item> RAW_BARRELEYE = ITEMS.register("raw_barreleye",
@@ -240,10 +236,6 @@ public class ModItems {
     public static final DeferredItem<Item> WHITE_DEER_SPAWN_EGG = ITEMS.register("white_deer_spawn_egg",
             () -> new net.neoforged.neoforge.common.DeferredSpawnEggItem(ModEntities.WHITE_DEER, 0xFFFFFF, 0xE0E0E0, new Item.Properties()));
 
-    public static final DeferredItem<Item> VENISON = ITEMS.register("venison",
-            () -> new Item(new Item.Properties().food(new FoodProperties.Builder().nutrition(3).saturationModifier(0.3F).build())));
-    public static final DeferredItem<Item> COOKED_VENISON = ITEMS.register("cooked_venison",
-            () -> new Item(new Item.Properties().food(new FoodProperties.Builder().nutrition(8).saturationModifier(0.8F).build())));
 
     public static final DeferredItem<Item> BUTTERFLY_SPAWN_EGG = ITEMS.register("butterfly_spawn_egg",
             () -> new net.neoforged.neoforge.common.DeferredSpawnEggItem(ModEntities.BUTTERFLY, 0x3d352e, 0xef9b13, new Item.Properties()));
@@ -347,10 +339,6 @@ public class ModItems {
         }
     }
 
-    public static final DeferredItem<Item> BUSHMEAT = ITEMS.register("bushmeat",
-            () -> new Item(new Item.Properties().food(new FoodProperties.Builder().nutrition(3).saturationModifier(0.3F).build())));
-    public static final DeferredItem<Item> COOKED_BUSHMEAT = ITEMS.register("cooked_bushmeat",
-            () -> new Item(new Item.Properties().food(new FoodProperties.Builder().nutrition(8).saturationModifier(0.8F).build())));
     public static final DeferredItem<Item> ALLIGATOR_EGG = ITEMS.register("alligator_egg",
             () -> new BlockItem(ModBlocks.ALLIGATOR_EGG.get(), new Item.Properties()));
     public static final DeferredItem<Item> DUCK_EGG = ITEMS.register("duck_egg",
@@ -373,30 +361,6 @@ public class ModItems {
     public static final DeferredItem<Item> SNAIL_BUCKET = ITEMS.register("snail_bucket",
             () -> new SnailBucketItem(ModEntities.SNAIL, () -> net.minecraft.world.level.material.Fluids.EMPTY, () -> net.minecraft.sounds.SoundEvents.BUCKET_EMPTY_FISH, new Item.Properties().stacksTo(1)));
 
-    public static final DeferredItem<Item> RAW_CAPYBARA = ITEMS.register("raw_capybara",
-            () -> new Item(new Item.Properties().food(new FoodProperties.Builder().nutrition(3).saturationModifier(0.3F).build())));
-    public static final DeferredItem<Item> RAW_BUFFALO_MEAT = ITEMS.register("raw_buffalo_meat",
-            () -> new Item(new Item.Properties().food(new FoodProperties.Builder().nutrition(3).saturationModifier(0.3F).build())));
-    public static final DeferredItem<Item> COOKED_CAPYBARA = ITEMS.register("cooked_capybara",
-            () -> new Item(new Item.Properties().food(new FoodProperties.Builder().nutrition(8).saturationModifier(0.8F).build())));
-    public static final DeferredItem<Item> COOKED_BUFFALO_MEAT = ITEMS.register("cooked_buffalo_meat",
-            () -> new Item(new Item.Properties().food(new FoodProperties.Builder().nutrition(8).saturationModifier(0.8F).build())));
-    public static final DeferredItem<Item> RAW_HEDGEHOG = ITEMS.register("raw_hedgehog",
-            () -> new Item(new Item.Properties().food(new FoodProperties.Builder().nutrition(2).saturationModifier(0.3F).build())));
-    public static final DeferredItem<Item> COOKED_HEDGEHOG = ITEMS.register("cooked_hedgehog",
-            () -> new Item(new Item.Properties().food(new FoodProperties.Builder().nutrition(5).saturationModifier(0.6F).build())));
-    public static final DeferredItem<Item> RAW_SEAL = ITEMS.register("raw_seal",
-            () -> new Item(new Item.Properties().food(new FoodProperties.Builder().nutrition(3).saturationModifier(0.3F).build())));
-    public static final DeferredItem<Item> COOKED_SEAL = ITEMS.register("cooked_seal",
-            () -> new Item(new Item.Properties().food(new FoodProperties.Builder().nutrition(8).saturationModifier(0.8F).build())));
-    public static final DeferredItem<Item> RAW_KIWI = ITEMS.register("raw_kiwi",
-            () -> new Item(new Item.Properties().food(new FoodProperties.Builder().nutrition(3).saturationModifier(0.3F).build())));
-    public static final DeferredItem<Item> COOKED_KIWI = ITEMS.register("cooked_kiwi",
-            () -> new Item(new Item.Properties().food(new FoodProperties.Builder().nutrition(5).saturationModifier(0.6F).build())));
-    public static final DeferredItem<Item> RAW_SHRIMP_1 = ITEMS.register("raw_shrimp_1",
-            () -> new Item(new Item.Properties().food(new FoodProperties.Builder().nutrition(2).saturationModifier(0.1F).build())));
-    public static final DeferredItem<Item> COOKED_SHRIMP_1 = ITEMS.register("cooked_shrimp_1",
-            () -> new Item(new Item.Properties().food(new FoodProperties.Builder().nutrition(5).saturationModifier(0.6F).build())));
     public static final DeferredItem<Item> JELLYFISH_JELLY = ITEMS.register("jellyfish_jelly",
             () -> new Item(new Item.Properties().food(new FoodProperties.Builder().nutrition(2).saturationModifier(0.1F).build())));
     public static final DeferredItem<Item> SEA_URCHIN_CAVIAR = ITEMS.register("sea_urchin_caviar",
@@ -422,13 +386,25 @@ public class ModItems {
             () -> new Item(new Item.Properties().food(new FoodProperties.Builder().nutrition(2).saturationModifier(0.1F).build())));
     public static final DeferredItem<Item> COOKED_GOBLIN_SHARK = ITEMS.register("cooked_goblin_shark",
             () -> new Item(new Item.Properties().food(new FoodProperties.Builder().nutrition(6).saturationModifier(0.6F).build())));
-    public static final DeferredItem<Item> RAW_SNAIL_MEAT = ITEMS.register("raw_snail_meat",
-            () -> new Item(new Item.Properties().food(new FoodProperties.Builder().nutrition(1).saturationModifier(0.1F).build())));
-    public static final DeferredItem<Item> COOKED_SNAIL_MEAT = ITEMS.register("cooked_snail_meat",
-            () -> new Item(new Item.Properties().food(new FoodProperties.Builder().nutrition(4).saturationModifier(0.4F).build())));
-    public static final DeferredItem<Item> WILD_BIRD_MEAT = ITEMS.register("wild_bird_meat",
+    public static final DeferredItem<Item> RAW_SNAIL = ITEMS.register("raw_snail",
             () -> new Item(new Item.Properties().food(new FoodProperties.Builder().nutrition(2).saturationModifier(0.1F).build())));
+    public static final DeferredItem<Item> COOKED_SNAIL = ITEMS.register("cooked_snail",
+            () -> new Item(new Item.Properties().food(new FoodProperties.Builder().nutrition(5).saturationModifier(0.6F).build())));
+    public static final DeferredItem<Item> RAW_SHRIMP = ITEMS.register("raw_shrimp",
+            () -> new Item(new Item.Properties().food(new FoodProperties.Builder().nutrition(2).saturationModifier(0.1F).build())));
+    public static final DeferredItem<Item> STEAMED_SHRIMP = ITEMS.register("steamed_shrimp",
+            () -> new Item(new Item.Properties().food(new FoodProperties.Builder().nutrition(5).saturationModifier(0.6F).build())));
+    public static final DeferredItem<Item> RAW_WILD_BIRD_MEAT = ITEMS.register("raw_wild_bird_meat",
+            () -> new Item(new Item.Properties().food(new FoodProperties.Builder().nutrition(2).saturationModifier(0.3F).build())));
     public static final DeferredItem<Item> COOKED_WILD_BIRD_MEAT = ITEMS.register("cooked_wild_bird_meat",
+            () -> new Item(new Item.Properties().food(new FoodProperties.Builder().nutrition(6).saturationModifier(0.6F).build())));
+    public static final DeferredItem<Item> RAW_WILD_GAME_MEAT = ITEMS.register("raw_wild_game_meat",
+            () -> new Item(new Item.Properties().food(new FoodProperties.Builder().nutrition(3).saturationModifier(0.3F).build())));
+    public static final DeferredItem<Item> COOKED_WILD_GAME_MEAT = ITEMS.register("cooked_wild_game_meat",
+            () -> new Item(new Item.Properties().food(new FoodProperties.Builder().nutrition(8).saturationModifier(0.8F).build())));
+    public static final DeferredItem<Item> RAW_CRAB_MEAT = ITEMS.register("raw_crab_meat",
+            () -> new Item(new Item.Properties().food(new FoodProperties.Builder().nutrition(2).saturationModifier(0.1F).build())));
+    public static final DeferredItem<Item> STEAMED_CRAB_MEAT = ITEMS.register("steamed_crab_meat",
             () -> new Item(new Item.Properties().food(new FoodProperties.Builder().nutrition(6).saturationModifier(0.6F).build())));
 
     public static final DeferredHolder<Item, BlockItem> CHRYSALIS = registerBlockItem("chrysalis", ModBlocks.CHRYSALIS);
@@ -628,10 +604,6 @@ public class ModItems {
     public static final DeferredItem<Item> GILDED_TREE_ENT_SPAWN_EGG = ITEMS.register("gilded_tree_ent_spawn_egg",
             () -> new DeferredSpawnEggItem(ModEntities.GILDED_TREE_ENT, 0xFFD700, 0xDAA520, new Item.Properties()));
 
-    public static final DeferredItem<Item> RAW_GAME = ITEMS.register("raw_game",
-            com.otterly76.ott.item.custom.RawGameItem::new);
-    public static final DeferredItem<Item> COOKED_GAME = ITEMS.register("cooked_game",
-            com.otterly76.ott.item.custom.CookedGameItem::new);
     public static final DeferredItem<Item> RAW_TURKEY = ITEMS.register("raw_turkey",
             () -> new Item(new Item.Properties()));
 
@@ -782,6 +754,11 @@ public class ModItems {
             registerBlockItem(set.carpet());
             ITEMS.register(set.banner().getId().getPath(), () -> new com.otterly76.ott.item.custom.ColorSetBannerItem(set.banner().get(), set.wallBanner().get(), new Item.Properties().stacksTo(16)));
             ITEMS.register(set.bed().getId().getPath(), () -> new ColorSetBedItem(set.bed().get(), new Item.Properties()));
+        });
+
+        // REGISTRATION: Pattern Blocks
+        ModBlocks.PATTERN_BLOCKS.forEach((pattern, colorMap) -> {
+            colorMap.values().forEach(ModItems::registerBlockItem);
         });
 
         // REGISTRATION: Custom Dyes

@@ -483,10 +483,8 @@ public class CreativeTabHandler {
 
         if (event.getTabKey() == CreativeModeTabs.FOOD_AND_DRINKS) {
             safeInsertAfter(event, new ItemStack(ModItems.COPPER_MILK_BUCKET.get()), visibility);
-            safeInsertAfter(event, new ItemStack(Items.PUFFERFISH), new ItemStack(ModItems.PHEASANT.get()), visibility);
-            safeInsertAfter(event, new ItemStack(ModItems.PHEASANT.get()), new ItemStack(ModItems.COOKED_PHEASANT.get()), visibility);
 
-            insertAllAfter(event, ModItems.COOKED_PHEASANT.get(), List.of(
+            insertAllAfter(event, Items.PUFFERFISH, List.of(
                     ModItems.RAW_FLOUNDER,
                     ModItems.RAW_ANGELFISH,
                     ModItems.RAW_BARRELEYE,
@@ -500,21 +498,17 @@ public class CreativeTabHandler {
                     ModItems.COOKED_CATFISH,
                     ModItems.BASS,
                     ModItems.COOKED_BASS,
-                    ModItems.VENISON,
-                    ModItems.COOKED_VENISON,
-                    ModItems.BUSHMEAT,
-                    ModItems.COOKED_BUSHMEAT,
                     ModItems.LIZARD_TAIL,
-                    ModItems.RAW_CAPYBARA,
-                    ModItems.COOKED_CAPYBARA,
-                    ModItems.RAW_HEDGEHOG,
-                    ModItems.COOKED_HEDGEHOG,
-                    ModItems.RAW_SEAL,
-                    ModItems.COOKED_SEAL,
-                    ModItems.RAW_KIWI,
-                    ModItems.COOKED_KIWI,
-                    ModItems.RAW_SHRIMP_1,
-                    ModItems.COOKED_SHRIMP_1,
+                    ModItems.RAW_SNAIL,
+                    ModItems.COOKED_SNAIL,
+                    ModItems.RAW_SHRIMP,
+                    ModItems.STEAMED_SHRIMP,
+                    ModItems.RAW_WILD_BIRD_MEAT,
+                    ModItems.COOKED_WILD_BIRD_MEAT,
+                    ModItems.RAW_WILD_GAME_MEAT,
+                    ModItems.COOKED_WILD_GAME_MEAT,
+                    ModItems.RAW_CRAB_MEAT,
+                    ModItems.STEAMED_CRAB_MEAT,
                     ModItems.JELLYFISH_JELLY,
                     ModItems.SEA_URCHIN_CAVIAR,
                     ModItems.KIWI_EGG,

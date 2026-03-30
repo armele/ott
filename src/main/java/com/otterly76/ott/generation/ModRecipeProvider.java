@@ -76,6 +76,15 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
         // Shelves
         this.shelfRecipes(noAdv);
 
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, Items.NAME_TAG)
+                .define('P', Items.PAPER)
+                .define('S', Items.STRING)
+                .pattern("P")
+                .pattern("P")
+                .pattern("S")
+                .unlockedBy("has_paper", has(Items.PAPER))
+                .save(noAdv, getRecipePath(Constants.MOD_ID, "nametag"));
+
         ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModBlocks.GLASS_JAR.get())
                 .define('G', Items.GLASS_PANE)
                 .pattern("G G")
@@ -902,7 +911,6 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
 
     private void ottCrittersRecipes(RecipeOutput noAdv) {
         // Smelting
-        this.cooking(noAdv, List.of(ModItems.PHEASANT.get()), ModItems.COOKED_PHEASANT.get(), "pheasant");
         this.cooking(noAdv, List.of(ModItems.RAW_GOLDEN_SUNFISH_MEAT.get()), ModItems.COOKED_GOLDEN_SUNFISH_MEAT.get(), "cooked_golden_sunfish_meat");
         this.cooking(noAdv, List.of(ModItems.RAW_KRILL.get()), ModItems.FRIED_KRILL.get(), "fried_krill");
         this.cooking(noAdv, List.of(ModItems.RAW_SUNFISH_MEAT.get()), ModItems.COOKED_SUNFISH_MEAT.get(), "cooked_sunfish_meat");
@@ -937,6 +945,8 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
         cooking(noAdv, List.of(ModItems.CATFISH.get()), ModItems.COOKED_CATFISH.get(), "cooked_catfish");
         // Bass
         cooking(noAdv, List.of(ModItems.BASS.get()), ModItems.COOKED_BASS.get(), "cooked_bass");
+
+        // Buffalo
     }
 
     private void cooking(RecipeOutput exporter, List<ItemLike> ingredients, ItemLike result, String name) {

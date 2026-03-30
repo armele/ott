@@ -67,5 +67,7 @@ public class ModBiomeTagProvider extends BiomeTagsProvider {
         this.tag(ModTags.Biomes.IS_BIRCH_FOREST).add(Biomes.BIRCH_FOREST, Biomes.OLD_GROWTH_BIRCH_FOREST);
 
         this.tag(ModTags.Biomes.IS_MEADOW).add(Biomes.MEADOW);
+
+        this.tag(ModTags.Biomes.SILK_COCOON_SPAWNS).addTag(BiomeTags.IS_FOREST).addTag(BiomeTags.IS_JUNGLE);
     }
 }

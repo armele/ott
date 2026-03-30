@@ -19,7 +19,9 @@ public final class ModCreativeTabs {
 
     public static final DeferredRegister<CreativeModeTab> OTTER_TABS = DeferredRegister.create(Registries.CREATIVE_MODE_TAB, Constants.MOD_ID);
     public static final DeferredHolder<CreativeModeTab, CreativeModeTab> GRADIENTS = OTTER_TABS.register("gradients", ModCreativeTabs::createGradientsTab);
-    public static final DeferredHolder<CreativeModeTab, CreativeModeTab> OTT_BLOCKS = OTTER_TABS.register("ott_blocks", ModCreativeTabs::createOttBlocksTab);
+    public static final DeferredHolder<CreativeModeTab, CreativeModeTab> BLOCKS = OTTER_TABS.register("blocks", ModCreativeTabs::createBlocksTab);
+    public static final DeferredHolder<CreativeModeTab, CreativeModeTab> COLOR_SETS = OTTER_TABS.register("color_sets", ModCreativeTabs::createColorSetsTab);
+    public static final DeferredHolder<CreativeModeTab, CreativeModeTab> WOOD_SETS = OTTER_TABS.register("wood_sets", ModCreativeTabs::createWoodSetsTab);
     public static final DeferredHolder<CreativeModeTab, CreativeModeTab> DYES = OTTER_TABS.register("dyes", ModCreativeTabs::createDyesTab);
     public static final DeferredHolder<CreativeModeTab, CreativeModeTab> OTT_EGGS = OTTER_TABS.register("ott_eggs", ModCreativeTabs::createOttEggsTab);
     public static final DeferredHolder<CreativeModeTab, CreativeModeTab> MISC = OTTER_TABS.register("misc", ModCreativeTabs::createMiscTab);
@@ -34,22 +36,67 @@ public final class ModCreativeTabs {
                 .build();
     }
 
-    private static CreativeModeTab createOttBlocksTab() {
+    private static CreativeModeTab createBlocksTab() {
         return CreativeModeTab.builder()
-                .title(Component.translatable(createTranslationKey("ott_blocks")))
+                .title(Component.translatable(createTranslationKey("blocks")))
                 .withTabsBefore(GRADIENTS.getKey())
-                .icon(() -> new ItemStack(ModBlocks.LIMESTONE.getFirst()))
+                .icon(() -> new ItemStack(ModBlocks.LIMESTONE_00.get()))
                 .displayItems((config, output) -> {
-                    ModBlocks.TESTBLOCK.forEach(output::accept);
+                    // Limestone
                     ModBlocks.LIMESTONE.forEach(output::accept);
+                    // Seaglass
                     ModBlocks.SEAGLASS.forEach(output::accept);
+                    // Smooth Glowstone
+                    output.accept(ModBlocks.SMOOTH_GLOWSTONE);
+                    // Testblocks
+                    ModBlocks.TESTBLOCK.forEach(output::accept);
+                    // Salt
+                    output.accept(ModBlocks.SALT_BLOCK);
+                    output.accept(ModBlocks.POLISHED_SALT_BLOCK);
+
+                    // Resin
+                    output.accept(ModBlocks.RESIN_BLOCK);
+                    output.accept(ModBlocks.RESIN_BRICKS);
+                    output.accept(ModBlocks.RESIN_BRICK_STAIRS);
+                    output.accept(ModBlocks.RESIN_BRICK_SLAB);
+                    output.accept(ModBlocks.RESIN_BRICK_WALL);
+                    output.accept(ModBlocks.CHISELED_RESIN_BRICKS);
+                }).build();
+    }
+
+    private static CreativeModeTab createColorSetsTab() {
+        return CreativeModeTab.builder()
+                .title(Component.translatable(createTranslationKey("color_sets")))
+                .withTabsBefore(BLOCKS.getKey())
+                .icon(() -> new ItemStack(ModBlocks.COLOR_SETS.get("amethyst").wool().get()))
+                .displayItems((config, output) -> {
+                    // Color Sets
+                    ModBlocks.COLOR_SETS.forEach((name, set) -> {
+                        output.accept(set.wool());
+                        output.accept(set.carpet());
+                        output.accept(set.terracotta());
+                        output.accept(set.glazedTerracotta());
+                        output.accept(set.concrete());
+                        output.accept(set.concretePowder());
+                        output.accept(set.stainedGlass());
+                        output.accept(set.stainedGlassPane());
+                        output.accept(set.shulkerBox());
+                        output.accept(set.bed());
+                        output.accept(set.candle());
+                        output.accept(set.banner());
+                    });
+
+                    // Patterns
+                    ModBlocks.PATTERN_BLOCKS.forEach((pattern, colorMap) -> {
+                        colorMap.values().forEach(output::accept);
+                    });
                 }).build();
     }
 
     private static CreativeModeTab createDyesTab() {
         return CreativeModeTab.builder()
                 .title(Component.translatable(createTranslationKey("dyes")))
-                .withTabsBefore(OTT_BLOCKS.getKey())
+                .withTabsBefore(WOOD_SETS.getKey())
                 .icon(() -> new ItemStack(net.minecraft.world.item.Items.CYAN_DYE))
                 .displayItems((params, output) -> {
                     output.accept(net.minecraft.world.item.Items.WHITE_DYE);
@@ -226,6 +273,58 @@ public final class ModCreativeTabs {
                 }).build();
     }
 
+    private static CreativeModeTab createWoodSetsTab() {
+        return CreativeModeTab.builder()
+                .title(Component.translatable(createTranslationKey("wood_sets")))
+                .withTabsBefore(COLOR_SETS.getKey())
+                .icon(() -> new ItemStack(ModBlocks.WOOD_SETS.get("starlight").log().get()))
+                .displayItems((config, output) -> {
+                    // Starlight, Midnight, etc.
+                    ModBlocks.WOOD_SETS.forEach((name, set) -> {
+                        output.accept(set.log());
+                        output.accept(set.wood());
+                        output.accept(set.strippedLog());
+                        output.accept(set.strippedWood());
+                        output.accept(set.planks());
+                        output.accept(set.stairs());
+                        output.accept(set.slab());
+                        output.accept(set.fence());
+                        output.accept(set.fenceGate());
+                        output.accept(set.door());
+                        output.accept(set.trapdoor());
+                        output.accept(set.button());
+                        output.accept(set.pressurePlate());
+                        output.accept(set.leaves());
+                        output.accept(set.sapling());
+                        output.accept(ModItems.WOOD_SET_SIGNS.get(name));
+                        output.accept(ModItems.WOOD_SET_HANGING_SIGNS.get(name));
+                        output.accept(ModItems.WOOD_SET_BOATS.get(name));
+                        output.accept(ModItems.WOOD_SET_CHEST_BOATS.get(name));
+                    });
+
+                    // Pale Oak (Backported)
+                    output.accept(ModBlocks.PALE_OAK_LOG);
+                    output.accept(ModBlocks.PALE_OAK_WOOD);
+                    output.accept(ModBlocks.STRIPPED_PALE_OAK_LOG);
+                    output.accept(ModBlocks.STRIPPED_PALE_OAK_WOOD);
+                    output.accept(ModBlocks.PALE_OAK_PLANKS);
+                    output.accept(ModBlocks.PALE_OAK_STAIRS);
+                    output.accept(ModBlocks.PALE_OAK_SLAB);
+                    output.accept(ModBlocks.PALE_OAK_FENCE);
+                    output.accept(ModBlocks.PALE_OAK_FENCE_GATE);
+                    output.accept(ModBlocks.PALE_OAK_DOOR);
+                    output.accept(ModBlocks.PALE_OAK_TRAPDOOR);
+                    output.accept(ModBlocks.PALE_OAK_PRESSURE_PLATE);
+                    output.accept(ModBlocks.PALE_OAK_BUTTON);
+                    output.accept(ModItems.PALE_OAK_SIGN);
+                    output.accept(ModItems.PALE_OAK_HANGING_SIGN);
+                    output.accept(ModBlocks.PALE_OAK_LEAVES);
+                    output.accept(ModBlocks.PALE_OAK_SAPLING);
+                    output.accept(ModItems.PALE_OAK_BOAT);
+                    output.accept(ModItems.PALE_OAK_CHEST_BOAT);
+                }).build();
+    }
+
     private static CreativeModeTab createMiscTab() {
         return CreativeModeTab.builder()
                 .title(Component.translatable(createTranslationKey("misc")))
@@ -255,49 +354,60 @@ public final class ModCreativeTabs {
                     output.accept(ModItems.BONNETHEAD_SHARK_BUCKET);
                     output.accept(ModItems.GOBLIN_SHARK_BUCKET);
                     output.accept(ModItems.PSYCHO_JELLY_BUCKET);
-                    output.accept(ModItems.SILK_COCOON.get());
-                    output.accept(ModItems.CHRYSALIS.get());
                     output.accept(ModItems.SNAIL_SHELL);
-
-                    // Nature
-                    output.accept(ModItems.THORNY_HEDGE.get());
-                    output.accept(ModItems.THORNY_HEDGE_SPROUTS);
-                    ModBlocks.PARTICLE_HEDGES.values().forEach(output::accept);
-                    ModBlocks.CREEPING_HEDGES.values().forEach(output::accept);
-                    output.accept(ModItems.BIG_LILY_PAD);
-                    output.accept(ModItems.OAK_NEST);
-                    output.accept(ModItems.GLOW_GOOP);
-                    output.accept(ModItems.SMOOTH_GLOWSTONE.get());
 
                     // Salt
                     output.accept(ModItems.SALT);
-                    output.accept(ModItems.SALT_BLOCK);
-                    output.accept(ModItems.POLISHED_SALT_BLOCK);
-                    output.accept(ModItems.SALT_LAMP);
+                    output.accept(ModBlocks.SALT_LAMP);
 
-                    // Decorative
-                    output.accept(ModItems.DRAGON_SKULL);
+                    // Glow Goop
+                    output.accept(ModBlocks.GLOW_GOOP);
 
-                    // Protective Lanterns
+                    // Lanterns
                     output.accept(ModBlocks.PROTECTIVE_LANTERN);
-
-                    // Fluid Lanterns
                     output.accept(ModBlocks.WATER_LANTERN);
                     output.accept(ModBlocks.LAVA_LANTERN);
-
-                    // Damage Lantern
                     output.accept(ModBlocks.SMITE_LANTERN);
 
+                    // Nature/Misc
+                    output.accept(ModBlocks.PALE_MOSS_BLOCK);
+                    output.accept(ModBlocks.PALE_MOSS_CARPET);
+                    output.accept(ModBlocks.PALE_HANGING_MOSS);
+                    output.accept(ModBlocks.CREAKING_HEART);
+                    output.accept(ModBlocks.OPEN_EYEBLOSSOM);
+                    output.accept(ModBlocks.CLOSED_EYEBLOSSOM);
+                    output.accept(ModBlocks.BUSH);
+                    output.accept(ModBlocks.FIREFLY_BUSH);
+                    output.accept(ModBlocks.WILDFLOWERS);
+                    output.accept(ModBlocks.LEAF_LITTER);
+                    output.accept(ModBlocks.CACTUS_FLOWER);
+                    output.accept(ModBlocks.SHORT_DRY_GRASS);
+                    output.accept(ModBlocks.TALL_DRY_GRASS);
+                    output.accept(ModBlocks.DRIED_GHAST);
+                    output.accept(ModBlocks.WEATHERING_STATION);
+                    output.accept(ModBlocks.DRAGON_SKULL);
+                    output.accept(ModBlocks.SILK_COCOON);
+                    output.accept(ModBlocks.CHRYSALIS);
+                    output.accept(ModBlocks.THORNY_HEDGE);
+                    output.accept(ModItems.THORNY_HEDGE_SPROUTS);
+                    ModBlocks.PARTICLE_HEDGES.values().forEach(output::accept);
+                    ModBlocks.CREEPING_HEDGES.values().forEach(output::accept);
+
+                    output.accept(ModItems.BIG_LILY_PAD);
+                    output.accept(ModItems.OAK_NEST);
+                    output.accept(ModBlocks.COCONUT);
+                    output.accept(ModBlocks.RESIN_CLUMP);
+
+                    // Jars
                     output.accept(ModBlocks.GLASS_JAR);
                     output.accept(ModBlocks.FIREFLY_IN_A_JAR);
                     output.accept(ModBlocks.FIREFLIES_IN_A_JAR);
                     output.accept(ModBlocks.FIREFLY_JAR);
+                    ModBlocks.BUTTERFLY_JARS.values().forEach(output::accept);
+                    output.accept(ModBlocks.CATERPILLAR_JAR);
 
-                    // Butterfly Jars
-                    for (Butterfly.Variant variant : Butterfly.Variant.values()) {
-                        output.accept(ModItems.BUTTERFLY_JAR_ITEMS.get(variant).get());
-                    }
-                    output.accept(ModItems.CATERPILLAR_JAR.get());
+                    // Shelves
+                    ModBlocks.SHELVES.forEach(output::accept);
 
                     // Caught Butterflies
                     for (Butterfly.Variant variant : Butterfly.Variant.values()) {
@@ -305,38 +415,25 @@ public final class ModCreativeTabs {
                     }
                     output.accept(ModItems.CATERPILLAR.get());
 
-
-                    output.accept(ModBlocks.WEATHERING_STATION);
-
                     // Food and Drops
                     output.accept(ModItems.BASS);
                     output.accept(ModItems.COOKED_BASS);
+                    output.accept(ModItems.RAW_SNAIL);
+                    output.accept(ModItems.COOKED_SNAIL);
+                    output.accept(ModItems.RAW_SHRIMP);
+                    output.accept(ModItems.STEAMED_SHRIMP);
+                    output.accept(ModItems.RAW_WILD_BIRD_MEAT);
+                    output.accept(ModItems.COOKED_WILD_BIRD_MEAT);
+                    output.accept(ModItems.RAW_WILD_GAME_MEAT);
+                    output.accept(ModItems.COOKED_WILD_GAME_MEAT);
+                    output.accept(ModItems.RAW_CRAB_MEAT);
+                    output.accept(ModItems.STEAMED_CRAB_MEAT);
                     output.accept(ModItems.CATFISH);
                     output.accept(ModItems.COOKED_CATFISH);
-                    output.accept(ModItems.VENISON);
-                    output.accept(ModItems.COOKED_VENISON);
-                    output.accept(ModItems.PHEASANT);
-                    output.accept(ModItems.COOKED_PHEASANT);
-                    output.accept(ModItems.BUSHMEAT);
-                    output.accept(ModItems.COOKED_BUSHMEAT);
-                    output.accept(ModItems.RAW_GAME);
-                    output.accept(ModItems.COOKED_GAME);
                     output.accept(ModItems.RAW_TURKEY);
                     output.accept(ModItems.LIZARD_TAIL);
                     output.accept(ModItems.COOKED_LIZARD_TAIL);
                     output.accept(ModItems.COOKED_EGG);
-                    output.accept(ModItems.RAW_CAPYBARA);
-                    output.accept(ModItems.RAW_BUFFALO_MEAT);
-                    output.accept(ModItems.COOKED_CAPYBARA);
-                    output.accept(ModItems.COOKED_BUFFALO_MEAT);
-                    output.accept(ModItems.RAW_HEDGEHOG);
-                    output.accept(ModItems.COOKED_HEDGEHOG);
-                    output.accept(ModItems.RAW_SEAL);
-                    output.accept(ModItems.COOKED_SEAL);
-                    output.accept(ModItems.RAW_KIWI);
-                    output.accept(ModItems.COOKED_KIWI);
-                    output.accept(ModItems.RAW_SHRIMP_1);
-                    output.accept(ModItems.COOKED_SHRIMP_1);
                     output.accept(ModItems.RAW_SUNFISH_MEAT);
                     output.accept(ModItems.COOKED_SUNFISH_MEAT);
                     output.accept(ModItems.RAW_GOLDEN_SUNFISH_MEAT);
@@ -353,10 +450,6 @@ public final class ModCreativeTabs {
                     output.accept(ModItems.COOKED_GUITARFISH);
                     output.accept(ModItems.RAW_GOBLIN_SHARK);
                     output.accept(ModItems.COOKED_GOBLIN_SHARK);
-                    output.accept(ModItems.RAW_SNAIL_MEAT);
-                    output.accept(ModItems.COOKED_SNAIL_MEAT);
-                    output.accept(ModItems.WILD_BIRD_MEAT);
-                    output.accept(ModItems.COOKED_WILD_BIRD_MEAT);
 
                     // Eggs
                     output.accept(ModItems.BLUE_EGG);

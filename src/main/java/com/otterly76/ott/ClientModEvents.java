@@ -471,6 +471,15 @@ public class ClientModEvents {
         });
 
         event.register((state, level, pos, tint) -> tint == 0 && level != null && pos != null ? BiomeColors.getAverageWaterColor(level, pos) : -1, ModBlocks.WEATHERING_STATION.get());
+
+        ModBlocks.PATTERN_BLOCKS.forEach((pattern, colorMap) -> {
+            colorMap.forEach((colorName, block) -> {
+                com.otterly76.ott.color.ModPatterns.ALL_COLORS.stream()
+                        .filter(c -> c.name().equals(colorName))
+                        .findFirst()
+                        .ifPresent(info -> event.register((state, level, pos, tint) -> info.color(), block.get()));
+            });
+        });
     }
 
     public static void registerItemColors(RegisterColorHandlersEvent.Item event) {
@@ -494,6 +503,15 @@ public class ClientModEvents {
                     return -1;
                 },
                 ModBlocks.TESTBLOCK_02.get(), ModBlocks.TESTBLOCK_03.get(), ModBlocks.TESTBLOCK_10.get());
+
+        ModBlocks.PATTERN_BLOCKS.forEach((pattern, colorMap) -> {
+            colorMap.forEach((colorName, block) -> {
+                com.otterly76.ott.color.ModPatterns.ALL_COLORS.stream()
+                        .filter(c -> c.name().equals(colorName))
+                        .findFirst()
+                        .ifPresent(info -> event.register((stack, tintIndex) -> tintIndex == 0 ? info.color() : -1, block.get()));
+            });
+        });
 
         event.register((stack, tintIndex) -> {
             if (tintIndex == 0) return 0xFFFFC400;

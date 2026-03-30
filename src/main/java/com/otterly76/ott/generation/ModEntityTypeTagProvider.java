@@ -223,7 +223,13 @@ public class ModEntityTypeTagProvider extends EntityTypeTagsProvider {
                 ModEntities.BUTTERFLY.get()
         );
 
-        this.tag(ModTags.EntityTypes.CATFISH_HOSTILES).add(ModEntities.SHRIMP_1.get());
+        this.tag(ModTags.EntityTypes.CATFISH_HOSTILES).add(
+                EntityType.TROPICAL_FISH,
+                EntityType.COD,
+                EntityType.TADPOLE,
+                ModEntities.BASS.get(),
+                ModEntities.SHRIMP_1.get()
+        );
 
         this.tag(ModTags.EntityTypes.ALLIGATOR_HOSTILES).add(
                 ModEntities.CAPYBARA.get(),

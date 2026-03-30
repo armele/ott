@@ -103,31 +103,14 @@ public class ModItemModelProvider extends ItemModelProvider {
         generatedItemFromTexture(ModItems.PEARL.getId().getPath(), modLoc("item/pearl"));
         generatedItemFromTexture(ModItems.SILK.getId().getPath(), modLoc("item/silk"));
         
-        generatedItemFromTexture(ModItems.RAW_CAPYBARA.getId().getPath(), modLoc("item/raw_capybara_meat"));
-        generatedItemFromTexture(ModItems.COOKED_CAPYBARA.getId().getPath(), modLoc("item/cooked_capybara_meat"));
-        generatedItemFromTexture(ModItems.RAW_HEDGEHOG.getId().getPath(), modLoc("item/raw_hedgehog_meat"));
-        generatedItemFromTexture(ModItems.COOKED_HEDGEHOG.getId().getPath(), modLoc("item/cooked_hedgehog_meat"));
-        generatedItemFromTexture(ModItems.RAW_SEAL.getId().getPath(), modLoc("item/raw_seal_meat"));
-        generatedItemFromTexture(ModItems.COOKED_SEAL.getId().getPath(), modLoc("item/cooked_seal_meat"));
-        generatedItemFromTexture(ModItems.RAW_KIWI.getId().getPath(), modLoc("item/raw_kiwi_meat"));
-        generatedItemFromTexture(ModItems.COOKED_KIWI.getId().getPath(), modLoc("item/cooked_kiwi_meat"));
-        generatedItemFromTexture(ModItems.RAW_SHRIMP_1.getId().getPath(), modLoc("item/raw_shrimp_1"));
-        generatedItemFromTexture(ModItems.COOKED_SHRIMP_1.getId().getPath(), modLoc("item/cooked_shrimp_1"));
         generatedItemFromTexture(ModItems.JELLYFISH_JELLY.getId().getPath(), modLoc("item/jellyfish_jelly"));
         generatedItemFromTexture(ModItems.SEA_URCHIN_CAVIAR.getId().getPath(), modLoc("item/sea_urchin_caviar"));
         generatedItemFromTexture(ModItems.KIWI_EGG.getId().getPath(), modLoc("item/kiwi_egg"));
 
-        // Fish and Meat
         generatedItemFromTexture(ModItems.BASS.getId().getPath(), modLoc("item/bass"));
         generatedItemFromTexture(ModItems.COOKED_BASS.getId().getPath(), modLoc("item/cooked_bass"));
         generatedItemFromTexture(ModItems.CATFISH.getId().getPath(), modLoc("item/catfish"));
         generatedItemFromTexture(ModItems.COOKED_CATFISH.getId().getPath(), modLoc("item/cooked_catfish"));
-        generatedItemFromTexture(ModItems.VENISON.getId().getPath(), modLoc("item/venison"));
-        generatedItemFromTexture(ModItems.COOKED_VENISON.getId().getPath(), modLoc("item/cooked_venison"));
-        generatedItemFromTexture(ModItems.PHEASANT.getId().getPath(), modLoc("item/pheasant"));
-        generatedItemFromTexture(ModItems.COOKED_PHEASANT.getId().getPath(), modLoc("item/cooked_pheasant"));
-        generatedItemFromTexture(ModItems.BUSHMEAT.getId().getPath(), modLoc("item/bushmeat"));
-        generatedItemFromTexture(ModItems.COOKED_BUSHMEAT.getId().getPath(), modLoc("item/cooked_bushmeat"));
         generatedItemFromTexture(ModItems.LIZARD_TAIL.getId().getPath(), modLoc("item/lizard_tail"));
         generatedItemFromTexture(ModItems.COOKED_LIZARD_TAIL.getId().getPath(), modLoc("item/lizard_tail")); // Use placeholder
         generatedItemFromTexture(ModItems.COOKED_EGG.getId().getPath(), mcLoc("item/egg")); // Use placeholder
@@ -137,6 +120,17 @@ public class ModItemModelProvider extends ItemModelProvider {
         generatedItemFromTexture(ModItems.COOKED_GOLDEN_SUNFISH_MEAT.getId().getPath(), modLoc("item/cooked_golden_sunfish_meat"));
         generatedItemFromTexture(ModItems.RAW_KRILL.getId().getPath(), modLoc("item/raw_krill"));
         generatedItemFromTexture(ModItems.FRIED_KRILL.getId().getPath(), modLoc("item/fried_krill"));
+
+        generatedItemFromTexture(ModItems.RAW_SNAIL.getId().getPath(), modLoc("item/raw_snail"));
+        generatedItemFromTexture(ModItems.COOKED_SNAIL.getId().getPath(), modLoc("item/cooked_snail"));
+        generatedItemFromTexture(ModItems.RAW_SHRIMP.getId().getPath(), modLoc("item/raw_shrimp_1"));
+        generatedItemFromTexture(ModItems.STEAMED_SHRIMP.getId().getPath(), modLoc("item/steamed_shrimp"));
+        generatedItemFromTexture(ModItems.RAW_WILD_BIRD_MEAT.getId().getPath(), modLoc("item/wild_bird_meat"));
+        generatedItemFromTexture(ModItems.COOKED_WILD_BIRD_MEAT.getId().getPath(), modLoc("item/cooked_wild_bird_meat"));
+        generatedItemFromTexture(ModItems.RAW_WILD_GAME_MEAT.getId().getPath(), modLoc("item/raw_wild_game_meat"));
+        generatedItemFromTexture(ModItems.COOKED_WILD_GAME_MEAT.getId().getPath(), modLoc("item/cooked_wild_game_meat"));
+        generatedItemFromTexture(ModItems.RAW_CRAB_MEAT.getId().getPath(), modLoc("item/raw_crab_meat"));
+        generatedItemFromTexture(ModItems.STEAMED_CRAB_MEAT.getId().getPath(), modLoc("item/steamed_crab_meat"));
 
         // More Eggs
         // generatedItemFromTexture(ModItems.BLUE_EGG.getId().getPath(), modLoc("item/blue_egg"));
@@ -215,9 +209,6 @@ public class ModItemModelProvider extends ItemModelProvider {
         spawnEggItem(ModItems.BOGGED_SHADOW_SPAWN_EGG);
         spawnEggItem(ModItems.GILDED_TREE_ENT_SPAWN_EGG);
 
-        generatedItemFromTexture(ModItems.RAW_GAME.getId().getPath(), modLoc("item/raw_game"));
-        generatedItemFromTexture(ModItems.COOKED_GAME.getId().getPath(), modLoc("item/cooked_game"));
-        generatedItemFromTexture(ModItems.RAW_TURKEY.getId().getPath(), modLoc("item/raw_turkey"));
 
         spawnEggItem(ModItems.BEAVER_SPAWN_EGG);
         spawnEggItem(ModItems.CHUPACABRA_SPAWN_EGG);
@@ -263,6 +254,8 @@ public class ModItemModelProvider extends ItemModelProvider {
 
         generatedItemFromTexture(ModItems.DUMBO_OCTOPUS_BUCKET.getId().getPath(), modLoc("item/dumbo_octopus_bucket"));
         generatedItemFromTexture(ModItems.KOI_FISH_BUCKET.getId().getPath(), modLoc("item/koi_fish_bucket"));
+        generatedItemFromTexture(ModItems.BASS_BUCKET.getId().getPath(), modLoc("item/bass_bucket"));
+        generatedItemFromTexture(ModItems.CATFISH_BUCKET.getId().getPath(), modLoc("item/catfish_bucket"));
         generatedItemFromTexture(ModItems.STINGRAY_BUCKET.getId().getPath(), modLoc("item/stingray_bucket"));
         generatedItemFromTexture(ModItems.SEA_BUNNY_BUCKET.getId().getPath(), modLoc("item/sea_bunny_bucket"));
         generatedItemFromTexture(ModItems.CICHLID_BUCKET.getId().getPath(), modLoc("item/cichlid_bucket"));
@@ -279,11 +272,7 @@ public class ModItemModelProvider extends ItemModelProvider {
         generatedItemFromTexture(ModItems.COOKED_GUITARFISH.getId().getPath(), modLoc("item/raw_guitarfish"));
         generatedItemFromTexture(ModItems.RAW_GOBLIN_SHARK.getId().getPath(), modLoc("item/raw_goblin_shark"));
         generatedItemFromTexture(ModItems.COOKED_GOBLIN_SHARK.getId().getPath(), modLoc("item/raw_goblin_shark"));
-        generatedItemFromTexture(ModItems.RAW_SNAIL_MEAT.getId().getPath(), modLoc("item/raw_snail_meat"));
-        generatedItemFromTexture(ModItems.COOKED_SNAIL_MEAT.getId().getPath(), modLoc("item/raw_snail_meat"));
-        generatedItemFromTexture(ModItems.WILD_BIRD_MEAT.getId().getPath(), modLoc("item/wild_bird_meat"));
-        generatedItemFromTexture(ModItems.COOKED_WILD_BIRD_MEAT.getId().getPath(), modLoc("item/cooked_wild_bird_meat"));
-
+        
         parentItemToBlockModel(ModItems.SILK_COCOON.getId().getPath(), "block/silk_cocoon");
         parentItemToBlockModel(ModItems.GLASS_JAR.getId().getPath(), "block/glass_jar");
         getBuilder(ModItems.FIREFLY_IN_A_JAR.getId().getPath()).parent(new ModelFile.UncheckedModelFile(modLoc("item/firefly_jar_item_base")));

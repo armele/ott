@@ -1,5 +1,6 @@
 package com.otterly76.ott.generation;
 
+import com.otterly76.ott.block.BigLilyPadBlock;
 import com.otterly76.ott.block.GradientStainedGlassBlock;
 import com.otterly76.ott.block.ModBlocks;
 import com.otterly76.ott.block.custom.CopperChestBlock;
@@ -50,6 +51,8 @@ public class OttLootTableProvider extends BlockLootSubProvider {
                 ));
             } else if (block instanceof DoorBlock) {
                 this.add(block, this::createDoorTable);
+            } else if (block instanceof BigLilyPadBlock) {
+                this.add(block, (b) -> LootTable.lootTable().withPool(this.applyExplosionCondition(b, LootPool.lootPool().setRolls(ConstantValue.exactly(1.0f)).add(LootItem.lootTableItem(b).when(LootItemBlockStatePropertyCondition.hasBlockStateProperties(b).setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(BigLilyPadBlock.POSITION, com.otterly76.ott.block.properties.QuadDirection.BOTTOM_LEFT)))))));
             } else if (block instanceof CopperChestBlock) {
                 this.add(block, (b) -> LootTable.lootTable().withPool(this.applyExplosionCondition(b, LootPool.lootPool().setRolls(ConstantValue.exactly(1.0f)).add(LootItem.lootTableItem(b).apply(CopyComponentsFunction.copyComponents(CopyComponentsFunction.Source.BLOCK_ENTITY).include(DataComponents.CUSTOM_NAME))))));
             } else if (block instanceof CopperGolemStatueBlock) {
