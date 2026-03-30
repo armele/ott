@@ -52,6 +52,11 @@ public class ModLangMergeProvider implements DataProvider {
             }
         }
 
+        // Add auto-generated elevator block entries to OTT base
+        for (com.otterly76.ott.color.ModPatterns.ColorInfo color : com.otterly76.ott.color.ModPatterns.ALL_COLORS) {
+            addElevatorBlockEntries(ottBase, color.name());
+        }
+
         // Add creative tab titles
         ottBase.addProperty("itemGroup.ott.blocks", "New Otterhome Blocks");
         ottBase.addProperty("itemGroup.ott.color_sets", "New Otterhome Color Sets");
@@ -108,6 +113,13 @@ public class ModLangMergeProvider implements DataProvider {
         json.addProperty("block.ott." + name + "_carpet", capitalized + " Carpet");
         json.addProperty("block.ott." + name + "_banner", capitalized + " Banner");
         json.addProperty("item.ott." + name + "_dye", capitalized + " Dye");
+    }
+
+    private void addElevatorBlockEntries(JsonObject json, String colorName) {
+        String colorCap = Arrays.stream(colorName.split("_"))
+                .map(s -> s.substring(0, 1).toUpperCase() + s.substring(1))
+                .collect(Collectors.joining(" "));
+        json.addProperty("block.ott." + colorName + "_elevator", colorCap + " Elevator");
     }
 
     private void addPatternBlockEntries(JsonObject json, String pattern, String colorName) {

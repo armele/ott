@@ -364,6 +364,11 @@ public class ModItemTagProvider extends ItemTagsProvider {
 
         this.tag(net.minecraft.tags.ItemTags.COALS).add(ModItems.TINY_COAL.get(), ModItems.TINY_CHARCOAL.get());
 
+        // Elevators tag (used by re-dye recipes)
+        var elevatorTag = this.tag(net.minecraft.tags.ItemTags.create(
+                net.minecraft.resources.ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, "elevators")));
+        ModBlocks.ELEVATORS.values().forEach(supplier -> elevatorTag.add(supplier.get().asItem()));
+
         // --- 7. DYEABLE ITEMS ---
         var dyeableBanners = this.tag(ModTags.ItemTags.DYEABLE_BANNERS);
         var dyeableCandles = this.tag(ModTags.ItemTags.DYEABLE_CANDLES);

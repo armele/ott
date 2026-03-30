@@ -1,6 +1,10 @@
 package com.otterly76.ott.network;
 
 import com.otterly76.ott.Constants;
+import com.otterly76.ott.network.elevator.ElevatorRemoveCamoPacket;
+import com.otterly76.ott.network.elevator.ElevatorSetArrowPacket;
+import com.otterly76.ott.network.elevator.ElevatorSetDirectionalPacket;
+import com.otterly76.ott.network.elevator.ElevatorSetFacingPacket;
 import net.neoforged.neoforge.network.event.RegisterPayloadHandlersEvent;
 import net.neoforged.neoforge.network.registration.PayloadRegistrar;
 
@@ -84,6 +88,28 @@ public class NetworkHandler {
                 C2SNotifyActionPacket.TYPE,
                 C2SNotifyActionPacket.STREAM_CODEC,
                 C2SNotifyActionPacket::handle
+        );
+
+        // Elevator GUI packets
+        registrar.playToServer(
+                ElevatorSetArrowPacket.TYPE,
+                ElevatorSetArrowPacket.STREAM_CODEC,
+                ElevatorSetArrowPacket::handle
+        );
+        registrar.playToServer(
+                ElevatorSetDirectionalPacket.TYPE,
+                ElevatorSetDirectionalPacket.STREAM_CODEC,
+                ElevatorSetDirectionalPacket::handle
+        );
+        registrar.playToServer(
+                ElevatorSetFacingPacket.TYPE,
+                ElevatorSetFacingPacket.STREAM_CODEC,
+                ElevatorSetFacingPacket::handle
+        );
+        registrar.playToServer(
+                ElevatorRemoveCamoPacket.TYPE,
+                ElevatorRemoveCamoPacket.STREAM_CODEC,
+                ElevatorRemoveCamoPacket::handle
         );
     }
 }

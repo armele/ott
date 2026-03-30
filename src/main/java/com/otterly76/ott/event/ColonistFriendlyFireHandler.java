@@ -18,14 +18,23 @@ public class ColonistFriendlyFireHandler {
         if (!OttConfig.FRIENDLY_FIRE.PROTECT_COLONISTS.get()) return;
 
         Entity entity = event.getEntity();
-        Entity attacker = event.getSource().getEntity();
+        // Check both the responsible entity and the direct damage dealer so that
+        // indirect player-sourced damage (e.g. armor AOE buffs) is also caught.
+        Entity responsible = event.getSource().getEntity();
+        Entity direct = event.getSource().getDirectEntity();
 
         if (!(entity instanceof AbstractCivilianEntity)) return;
-        if (!(attacker instanceof Player player)) return;
+
+        Player player = responsible instanceof Player p ? p
+                : direct instanceof Player p ? p
+                : null;
+        if (player == null) return;
         if (player.level().isClientSide()) return;
 
-        // Allow empty-hand hits so players can bonk stuck colonists to reset them
-        if (player.getMainHandItem().isEmpty()) return;
+        // Allow empty-hand hits so players can bonk stuck colonists to reset them.
+        // For indirect sources (AOE, etc.) we can't check the hand, so only apply
+        // the empty-hand exception when the player is the direct attacker.
+        if (direct == player && player.getMainHandItem().isEmpty()) return;
 
         // Allow intentional damage via sneak+hit
         if (player.isShiftKeyDown()) return;

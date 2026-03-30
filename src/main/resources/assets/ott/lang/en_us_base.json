@@ -1152,5 +1152,17 @@
   "item.ott.wildfire_crown": "Wildfire Crown",
   "item.ott.wildfire_crown_fragment": "Wildfire Crown Fragment",
 
-  "effect.ott.reach": "Reach"
+  "effect.ott.reach": "Reach",
+
+  "block.ott.elevator": "Elevator",
+  "gui.ott.elevator.arrow": "Arrow: %s",
+  "gui.ott.elevator.directional": "Directional: %s",
+  "gui.ott.elevator.facing": "Facing: %s",
+  "gui.ott.elevator.remove_camo": "Remove Disguise",
+  "gui.ott.elevator.on": "ON",
+  "gui.ott.elevator.off": "OFF",
+  "gui.ott.elevator.facing.north": "North",
+  "gui.ott.elevator.facing.south": "South",
+  "gui.ott.elevator.facing.east": "East",
+  "gui.ott.elevator.facing.west": "West"
 }

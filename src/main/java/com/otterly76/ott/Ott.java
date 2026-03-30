@@ -8,6 +8,7 @@ import com.otterly76.ott.config.ConfigHandler;
 import com.otterly76.ott.config.OttConfig;
 import com.otterly76.ott.entity.ModEntities;
 import com.otterly76.ott.event.ColonistFriendlyFireHandler;
+import com.otterly76.ott.event.ElevatorHandler;
 import com.otterly76.ott.event.FriendlyFireEventHandler;
 import com.otterly76.ott.event.HarvestEventHandler;
 import com.otterly76.ott.event.LoadCompleteCallback;
@@ -212,6 +213,7 @@ public class Ott {
         NeoForge.EVENT_BUS.register(HarvestEventHandler.class);
         NeoForge.EVENT_BUS.register(ToolEventHandler.class);
         NeoForge.EVENT_BUS.register(FriendlyFireEventHandler.class);
+        NeoForge.EVENT_BUS.register(ElevatorHandler.class);
         if (ModList.get().isLoaded("minecolonies")) {
             NeoForge.EVENT_BUS.register(ColonistFriendlyFireHandler.class);
         }

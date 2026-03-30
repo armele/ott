@@ -17,6 +17,9 @@ public class ModMenuTypes {
     public static final DeferredHolder<MenuType<?>, MenuType<ModAnvilMenu>> ANVIL_MENU_TYPE =
             MENUS.register("repair", () -> new MenuType<>(ModAnvilMenu::new, net.minecraft.world.flag.FeatureFlags.DEFAULT_FLAGS));
 
+    public static final DeferredHolder<MenuType<?>, MenuType<ElevatorMenu>> ELEVATOR_MENU =
+            MENUS.register("elevator", () -> IMenuTypeExtension.create(ElevatorMenu::new));
+
 
     public static void register(IEventBus eventBus) {
         MENUS.register(eventBus);

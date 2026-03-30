@@ -755,6 +755,9 @@ public class ModItems {
             colorMap.values().forEach(ModItems::registerBlockItem);
         });
 
+        // REGISTRATION: Elevators
+        ModBlocks.ELEVATORS.values().forEach(ModItems::registerBlockItem);
+
         // REGISTRATION: Custom Dyes
         ModColorSets.ALL.forEach(colorSet -> {
             CUSTOM_DYES.put(colorSet.name(), ITEMS.register(colorSet.name() + "_dye", () -> new Item(new Item.Properties())));

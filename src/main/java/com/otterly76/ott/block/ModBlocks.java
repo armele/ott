@@ -2,6 +2,7 @@ package com.otterly76.ott.block;
 
 import com.otterly76.ott.entity.custom.Butterfly;
 import com.otterly76.ott.block.custom.*;
+import com.otterly76.ott.color.ModPatterns;
 import com.otterly76.ott.particle.ModParticle;
 import net.minecraft.world.level.biome.Biome;
 import com.otterly76.ott.crop.ThornyHedgeSprouts;
@@ -50,6 +51,9 @@ public class ModBlocks {
     public static final List<DeferredBlock<? extends Block>> SEAGLASS = new ArrayList<>();
     public static final List<DeferredBlock<? extends Block>> LIMESTONE = new ArrayList<>();
     public static final List<DeferredBlock<? extends Block>> TESTBLOCK = new ArrayList<>();
+
+    /** All 32 elevator blocks (16 vanilla + 16 custom colors). Key = color name. */
+    public static final Map<String, DeferredBlock<ElevatorBlock>> ELEVATORS = new LinkedHashMap<>();
 
 
     private static <T extends Block> DeferredBlock<T> register(String name, java.util.function.Supplier<T> block) {
@@ -497,6 +501,21 @@ public class ModBlocks {
                     )
             ));
         });
+
+        registerElevators();
+    }
+
+    private static void registerElevators() {
+        for (ModPatterns.ColorInfo color : ModPatterns.ALL_COLORS) {
+            final String colorName = color.name();
+            ELEVATORS.put(colorName, BLOCKS.register(
+                    colorName + "_elevator",
+                    () -> new ElevatorBlock(colorName,
+                            BlockBehaviour.Properties.of()
+                                    .strength(0.8f)
+                                    .sound(SoundType.WOOL))
+            ));
+        }
     }
 
     private static void registerPatternBlocks() {

@@ -296,6 +296,7 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
 
         this.addDyeingRecipes(noAdv);
         this.addPatternBlockRecipes(noAdv);
+        this.addElevatorRecipes(noAdv);
         this.addSlabToBlockRecipes(noAdv);
         this.addMiscRecipes(noAdv);
 
@@ -461,6 +462,47 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
                 .requires(dye)
                 .unlockedBy("has_dye", has(dye))
                 .save(exporter, getRecipePath("ott", recipeName + "_from_dyeing"));
+    }
+
+    private void addElevatorRecipes(RecipeOutput exporter) {
+        // Craft: 8 matching wool + 1 ender pearl (3x3, pearl in center) → 8 elevators
+        for (DyeColor color : DyeColor.values()) {
+            String name = color.getName();
+            com.otterly76.ott.block.custom.ElevatorBlock elevator = ModBlocks.ELEVATORS.get(name).get();
+            Block woolBlock = BuiltInRegistries.BLOCK.get(ResourceLocation.withDefaultNamespace(name + "_wool"));
+            ShapedRecipeBuilder.shaped(RecipeCategory.TRANSPORTATION, elevator, 8)
+                    .define('W', woolBlock)
+                    .define('E', Items.ENDER_PEARL)
+                    .pattern("WWW")
+                    .pattern("WEW")
+                    .pattern("WWW")
+                    .unlockedBy("has_ender_pearl", has(Items.ENDER_PEARL))
+                    .save(exporter, getRecipePath("ott", name + "_elevator"));
+        }
+
+        // Vanilla-color redye: any elevator + vanilla dye → vanilla-colored elevator
+        for (DyeColor color : DyeColor.values()) {
+            String name = color.getName();
+            Item dye = BuiltInRegistries.ITEM.get(ResourceLocation.withDefaultNamespace(name + "_dye"));
+            Block result = ModBlocks.ELEVATORS.get(name).get();
+            ShapelessRecipeBuilder.shapeless(RecipeCategory.TRANSPORTATION, result)
+                    .requires(net.minecraft.tags.ItemTags.create(ResourceLocation.fromNamespaceAndPath("ott", "elevators")))
+                    .requires(dye)
+                    .unlockedBy("has_elevator", has(net.minecraft.tags.ItemTags.create(ResourceLocation.fromNamespaceAndPath("ott", "elevators"))))
+                    .save(exporter, getRecipePath("ott", name + "_elevator_from_dyeing"));
+        }
+
+        // Custom-color redye: any elevator + custom dye → custom-colored elevator
+        for (ModColorSets.ColorSet colorSet : ModColorSets.ALL) {
+            String name = colorSet.name();
+            Item dye = ModItems.CUSTOM_DYES.get(name).get();
+            Block result = ModBlocks.ELEVATORS.get(name).get();
+            ShapelessRecipeBuilder.shapeless(RecipeCategory.TRANSPORTATION, result)
+                    .requires(net.minecraft.tags.ItemTags.create(ResourceLocation.fromNamespaceAndPath("ott", "elevators")))
+                    .requires(dye)
+                    .unlockedBy("has_elevator", has(net.minecraft.tags.ItemTags.create(ResourceLocation.fromNamespaceAndPath("ott", "elevators"))))
+                    .save(exporter, getRecipePath("ott", name + "_elevator_from_dyeing"));
+        }
     }
 
     private Item getItem(String name) {

@@ -68,6 +68,9 @@ public final class ModCreativeTabs {
                     ModBlocks.PATTERN_BLOCKS.forEach((pattern, colorMap) -> {
                         colorMap.values().forEach(output::accept);
                     });
+
+                    // Elevators
+                    ModBlocks.ELEVATORS.values().forEach(output::accept);
                 }).build();
     }
 

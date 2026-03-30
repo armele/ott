@@ -23,6 +23,7 @@ public class OttConfig {
     public static final AFK afk;
     public static final Weather WEATHER;
     public static final FriendlyFire FRIENDLY_FIRE;
+    public static final Elevator ELEVATOR;
 
     static {
         ModConfigSpec.Builder builder = new ModConfigSpec.Builder();
@@ -44,6 +45,7 @@ public class OttConfig {
         WEATHER = new Weather(builder);
         afk = new AFK(builder);
         FRIENDLY_FIRE = new FriendlyFire(builder);
+        ELEVATOR = new Elevator(builder);
 
         builder.pop();
         SPEC = builder.build();
@@ -764,6 +766,49 @@ public class OttConfig {
                     .comment("Prevent players from accidentally damaging MineColonies colonists and visitors with weapons. Empty-hand hits (bonk to unstick) are always allowed. Sneak+hit bypasses this protection.")
                     .translation("ott.configuration.friendlyfire.protectcolonists")
                     .define("protectColonists", true);
+            builder.pop();
+        }
+    }
+
+    public static class Elevator {
+        public final ModConfigSpec.BooleanValue SAME_COLOR;
+        public final ModConfigSpec.IntValue RANGE;
+        public final ModConfigSpec.IntValue ACTIVATION_RANGE;
+        public final ModConfigSpec.BooleanValue RESET_PITCH_NORMAL;
+        public final ModConfigSpec.BooleanValue RESET_PITCH_DIRECTIONAL;
+        public final ModConfigSpec.BooleanValue USE_XP;
+        public final ModConfigSpec.IntValue XP_AMOUNT;
+
+        public Elevator(ModConfigSpec.Builder builder) {
+            builder.push("elevator");
+            SAME_COLOR = builder
+                    .comment("If true, elevators only teleport to another elevator of the same color.")
+                    .translation("ott.configuration.elevator.sameColor")
+                    .define("sameColor", true);
+            RANGE = builder
+                    .comment("Maximum number of blocks to search up or down for a target elevator.")
+                    .translation("ott.configuration.elevator.range")
+                    .defineInRange("range", 10, 1, 256);
+            ACTIVATION_RANGE = builder
+                    .comment("Minimum number of clear (air) blocks required above the target elevator for it to be usable.")
+                    .translation("ott.configuration.elevator.activationRange")
+                    .defineInRange("activationRange", 2, 1, 10);
+            RESET_PITCH_NORMAL = builder
+                    .comment("Reset the player's vertical look angle (pitch) when using a non-directional elevator.")
+                    .translation("ott.configuration.elevator.resetPitchNormal")
+                    .define("resetPitchNormal", false);
+            RESET_PITCH_DIRECTIONAL = builder
+                    .comment("Reset the player's vertical look angle (pitch) when using a directional elevator.")
+                    .translation("ott.configuration.elevator.resetPitchDirectional")
+                    .define("resetPitchDirectional", true);
+            USE_XP = builder
+                    .comment("If true, using an elevator costs experience points.")
+                    .translation("ott.configuration.elevator.useXP")
+                    .define("useXP", false);
+            XP_AMOUNT = builder
+                    .comment("Amount of experience points consumed per elevator use (only relevant when useXP is true).")
+                    .translation("ott.configuration.elevator.xpAmount")
+                    .defineInRange("xpAmount", 1, 0, Integer.MAX_VALUE);
             builder.pop();
         }
     }

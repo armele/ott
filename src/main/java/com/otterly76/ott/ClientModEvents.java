@@ -79,6 +79,7 @@ public class ClientModEvents {
         modBus.addListener(ClientModEvents::registerBlockColors);
         modBus.addListener(ClientModEvents::registerItemColors);
         modBus.addListener(ClientModEvents::registerMenuScreens);
+        modBus.addListener(ClientModEvents::registerElevatorModelBaking);
         modBus.addListener(ClientModEvents::registerRenderers);
         modBus.addListener(ClientModEvents::registerLayerDefinitions);
         modBus.addListener(ClientModEvents::onRegisterAdditional);
@@ -172,8 +173,8 @@ public class ClientModEvents {
 
     public static void registerMenuScreens(RegisterMenuScreensEvent event) {
         event.register(ModMenuTypes.TRASH_MENU.get(), TrashScreen::new);
-
         event.register(ModMenuTypes.ANVIL_MENU_TYPE.get(), com.otterly76.ott.client.gui.ModAnvilScreen::new);
+        event.register(ModMenuTypes.ELEVATOR_MENU.get(), com.otterly76.ott.client.gui.ElevatorScreen::new);
     }
 
     @SuppressWarnings("unchecked")
@@ -480,6 +481,13 @@ public class ClientModEvents {
                         .ifPresent(info -> event.register((state, level, pos, tint) -> info.color(), block.get()));
             });
         });
+
+        ModBlocks.ELEVATORS.forEach((colorName, block) -> {
+            com.otterly76.ott.color.ModPatterns.ALL_COLORS.stream()
+                    .filter(c -> c.name().equals(colorName))
+                    .findFirst()
+                    .ifPresent(info -> event.register((state, level, pos, tint) -> info.color(), block.get()));
+        });
     }
 
     public static void registerItemColors(RegisterColorHandlersEvent.Item event) {
@@ -511,6 +519,13 @@ public class ClientModEvents {
                         .findFirst()
                         .ifPresent(info -> event.register((stack, tintIndex) -> tintIndex == 0 ? info.color() : -1, block.get()));
             });
+        });
+
+        ModBlocks.ELEVATORS.forEach((colorName, block) -> {
+            com.otterly76.ott.color.ModPatterns.ALL_COLORS.stream()
+                    .filter(c -> c.name().equals(colorName))
+                    .findFirst()
+                    .ifPresent(info -> event.register((stack, tintIndex) -> tintIndex == 0 ? info.color() : -1, block.get()));
         });
 
         event.register((stack, tintIndex) -> {
@@ -680,5 +695,20 @@ public class ClientModEvents {
         image.setPixelRGBA(xc - y, yc + x, color);
         image.setPixelRGBA(xc + y, yc - x, color);
         image.setPixelRGBA(xc - y, yc - x, color);
+    }
+
+    /** Wraps every registered elevator block model with ElevatorBakedModel for camo support. */
+    public static void registerElevatorModelBaking(ModelEvent.ModifyBakingResult event) {
+        for (ModelResourceLocation mrl : new java.util.ArrayList<>(event.getModels().keySet())) {
+            ResourceLocation id = mrl.id();
+            if (!id.getNamespace().equals(MOD_ID)) continue;
+            String path = id.getPath();
+            if (!path.endsWith("_elevator")) continue;
+
+            BakedModel original = event.getModels().get(mrl);
+            if (original != null) {
+                event.getModels().put(mrl, new com.otterly76.ott.client.model.ElevatorBakedModel(original));
+            }
+        }
     }
 }

@@ -66,6 +66,7 @@ public class OttBlockStateProvider extends ModBlockStateProvider {
         ModBlocks.COLOR_SETS.forEach(this::registerColorSet);
 
         registerPatternBlocks();
+        registerElevators();
 
         registerLantern(ModBlocks.PROTECTIVE_LANTERN.get(), "protective");
         registerLantern(ModBlocks.WATER_LANTERN.get(), "water");
@@ -397,5 +398,27 @@ public class OttBlockStateProvider extends ModBlockStateProvider {
                 new ConfiguredModel(l3, 0, 0, false, 1),
                 new ConfiguredModel(l4, 0, 0, false, 1)
         );
+    }
+
+    private void registerElevators() {
+        ResourceLocation elevatorTexture = modLoc("block/elevator");
+
+        // Single shared model with tintindex:0 — all 32 elevators point to this one model.
+        ModelFile elevatorModel = models().withExistingParent("block/elevator_model", mcLoc("block/block"))
+                .texture("particle", elevatorTexture)
+                .texture("all", elevatorTexture)
+                .element().from(0, 0, 0).to(16, 16, 16)
+                .face(Direction.DOWN).uvs(0, 0, 16, 16).texture("#all").cullface(Direction.DOWN).tintindex(0).end()
+                .face(Direction.UP).uvs(0, 0, 16, 16).texture("#all").cullface(Direction.UP).tintindex(0).end()
+                .face(Direction.NORTH).uvs(0, 0, 16, 16).texture("#all").cullface(Direction.NORTH).tintindex(0).end()
+                .face(Direction.SOUTH).uvs(0, 0, 16, 16).texture("#all").cullface(Direction.SOUTH).tintindex(0).end()
+                .face(Direction.WEST).uvs(0, 0, 16, 16).texture("#all").cullface(Direction.WEST).tintindex(0).end()
+                .face(Direction.EAST).uvs(0, 0, 16, 16).texture("#all").cullface(Direction.EAST).tintindex(0).end()
+                .end();
+
+        ModBlocks.ELEVATORS.forEach((colorName, block) -> {
+            simpleBlock(block.get(), elevatorModel);
+            itemModels().withExistingParent(block.getId().getPath(), elevatorModel.getLocation());
+        });
     }
 }

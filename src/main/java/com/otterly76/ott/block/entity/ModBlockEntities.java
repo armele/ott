@@ -75,6 +75,10 @@ public class ModBlockEntities {
             BLOCK_ENTITIES.register("caterpillar_jar", () -> BlockEntityType.Builder.of(com.otterly76.ott.block.entity.CaterpillarJarBlockEntity::new,
                     ModBlocks.CATERPILLAR_JAR.get()).build(null));
 
+    public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<ElevatorBlockEntity>> ELEVATOR =
+            BLOCK_ENTITIES.register("elevator", () -> BlockEntityType.Builder.of(ElevatorBlockEntity::new,
+                    ModBlocks.ELEVATORS.values().stream().map(java.util.function.Supplier::get).toArray(Block[]::new)).build(null));
+
     public static void register(IEventBus eventBus) {
         BLOCK_ENTITIES.register(eventBus);
         MINECRAFT_BLOCK_ENTITIES.register(eventBus);
