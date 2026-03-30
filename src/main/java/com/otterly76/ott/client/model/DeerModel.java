@@ -70,7 +70,7 @@ public class DeerModel extends GeoModel<Deer> {
 
         EntityModelData extraDataOfType = animationState.getData(DataTickets.ENTITY_MODEL_DATA);
         if (extraDataOfType == null) return;
-        GeoBone head = this.getAnimationProcessor().getBone("head");
+        GeoBone head = this.getAnimationProcessor().getBone("skullRot");
         if (head == null) head = this.getAnimationProcessor().getBone("skull");
 
         if (head != null && !entity.isEating()) {

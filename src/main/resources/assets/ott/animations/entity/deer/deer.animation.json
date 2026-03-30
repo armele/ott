@@ -1,11 +1,11 @@
 {
 	"format_version": "1.8.0",
 	"animations": {
-		"animation.odocelius.idle": {
+		"animation.ott.deer.idle": {
 			"loop": true,
 			"animation_length": 17.0833,
 			"bones": {
-				"neck": {
+				"skullRot": {
 					"rotation": {
 						"0.0": {
 							"vector": [7.5, 0, 0]
@@ -66,70 +66,9 @@
 							"vector": [7.5, 0, 0],
 							"easing": "easeInOutSine"
 						}
-					},
-					"position": {
-						"0.0": {
-							"vector": [0, -0.25, 0]
-						},
-						"1.25": {
-							"vector": [0, 0.5, 0],
-							"easing": "easeInOutSine"
-						},
-						"2.5": {
-							"vector": [0, -0.25, 0],
-							"easing": "easeInOutSine"
-						},
-						"3.75": {
-							"vector": [0, 0.5, 0],
-							"easing": "easeInOutSine"
-						},
-						"5.0": {
-							"vector": [0, -0.25, 0],
-							"easing": "easeInOutSine"
-						},
-						"5.9375": {
-							"vector": [0, 0.5, 0],
-							"easing": "easeInOutSine"
-						},
-						"7.1354": {
-							"vector": [0, -0.25, 0],
-							"easing": "easeInOutSine"
-						},
-						"8.3854": {
-							"vector": [0, 0.5, 0],
-							"easing": "easeInOutSine"
-						},
-						"9.6354": {
-							"vector": [0, -0.25, 0],
-							"easing": "easeInOutSine"
-						},
-						"10.8854": {
-							"vector": [0, 0.5, 0],
-							"easing": "easeInOutSine"
-						},
-						"12.1354": {
-							"vector": [0, -0.25, 0],
-							"easing": "easeInOutSine"
-						},
-						"13.3333": {
-							"vector": [0, 0.5, 0],
-							"easing": "easeInOutSine"
-						},
-						"14.5833": {
-							"vector": [0, -0.25, 0],
-							"easing": "easeInOutSine"
-						},
-						"15.8333": {
-							"vector": [0, 0.5, 0],
-							"easing": "easeInOutSine"
-						},
-						"17.0833": {
-							"vector": [0, -0.25, 0],
-							"easing": "easeInOutSine"
-						}
 					}
 				},
-				"ear1": {
+				"left_ear": {
 					"rotation": {
 						"0.0": {
 							"vector": [0, 0, -45]
@@ -160,7 +99,7 @@
 						}
 					}
 				},
-				"ear2": {
+				"right_ear": {
 					"rotation": {
 						"0.0": {
 							"vector": [0, 0, 45]
@@ -328,11 +267,11 @@
 				}
 			}
 		},
-		"animation.odocoileus.walk": {
+		"animation.ott.deer.walk": {
 			"loop": true,
 			"animation_length": 1,
 			"bones": {
-				"neck": {
+				"skullRot": {
 					"rotation": {
 						"0.0": {
 							"vector": [7.5, 0, 0]
@@ -345,22 +284,9 @@
 							"vector": [7.5, 0, 0],
 							"easing": "easeInOutSine"
 						}
-					},
-					"position": {
-						"0.0": {
-							"vector": [0, -0.5, 0]
-						},
-						"0.5": {
-							"vector": [0, 1, 0],
-							"easing": "easeInOutSine"
-						},
-						"1.0": {
-							"vector": [0, -0.5, 0],
-							"easing": "easeInOutSine"
-						}
 					}
 				},
-				"leg1": {
+				"leftArm": {
 					"rotation": {
 						"0.0": {
 							"vector": [-20, 0, 0]
@@ -373,26 +299,9 @@
 							"vector": [-20, 0, 0],
 							"easing": "easeInOutSine"
 						}
-					},
-					"position": {
-						"0.0": {
-							"vector": [0, 0, 0]
-						},
-						"0.5": {
-							"vector": [0, 3, 0],
-							"easing": "linear"
-						},
-						"0.75": {
-							"vector": [0, 2, -3],
-							"easing": "linear"
-						},
-						"1.0": {
-							"vector": [0, 0, 0],
-							"easing": "linear"
-						}
 					}
 				},
-				"leg2": {
+				"rightArm": {
 					"rotation": {
 						"0.0": {
 							"vector": [25, 0, 0]
@@ -405,26 +314,9 @@
 							"vector": [25, 0, 0],
 							"easing": "easeInOutQuad"
 						}
-					},
-					"position": {
-						"0.0": {
-							"vector": [0, 2, 0]
-						},
-						"0.25": {
-							"vector": [0, 2, -3],
-							"easing": "linear"
-						},
-						"0.5": {
-							"vector": [0, 1, 0],
-							"easing": "linear"
-						},
-						"1.0": {
-							"vector": [0, 2, 0],
-							"easing": "linear"
-						}
 					}
 				},
-				"leg3": {
+				"leftLeg": {
 					"rotation": {
 						"0.0": {
 							"vector": [-20, 0, 0]
@@ -437,26 +329,9 @@
 							"vector": [-20, 0, 0],
 							"easing": "easeInOutSine"
 						}
-					},
-					"position": {
-						"0.0": {
-							"vector": [0, 0, 0]
-						},
-						"0.5": {
-							"vector": [0, 2, 0],
-							"easing": "linear"
-						},
-						"0.75": {
-							"vector": [0, 2, -3],
-							"easing": "linear"
-						},
-						"1.0": {
-							"vector": [0, 0, 0],
-							"easing": "linear"
-						}
 					}
 				},
-				"leg4": {
+				"rightLeg": {
 					"rotation": {
 						"0.0": {
 							"vector": [25, 0, 0]
@@ -469,26 +344,9 @@
 							"vector": [25, 0, 0],
 							"easing": "easeInOutSine"
 						}
-					},
-					"position": {
-						"0.0": {
-							"vector": [0, 2, 0]
-						},
-						"0.25": {
-							"vector": [0, 2, -3],
-							"easing": "linear"
-						},
-						"0.5": {
-							"vector": [0, 0, 0],
-							"easing": "linear"
-						},
-						"1.0": {
-							"vector": [0, 2, 0],
-							"easing": "linear"
-						}
 					}
 				},
-				"upper": {
+				"frontLegs": {
 					"position": {
 						"0.0": {
 							"vector": [0, 0, 0]
@@ -516,23 +374,23 @@
 						"vector": [-42.5, 0, 0]
 					}
 				},
-				"ear1": {
+				"left_ear": {
 					"rotation": {
 						"vector": [0, 0, -37.5]
 					}
 				},
-				"ear2": {
+				"right_ear": {
 					"rotation": {
 						"vector": [0, 0, 37.5]
 					}
 				}
 			}
 		},
-		"animation.odocoileus.run": {
+		"animation.ott.deer.run": {
 			"loop": true,
 			"animation_length": 1,
 			"bones": {
-				"neck": {
+				"skullRot": {
 					"rotation": {
 						"0.0": {
 							"vector": [7.5, 0, 0]
@@ -555,17 +413,17 @@
 						}
 					}
 				},
-				"ear1": {
+				"left_ear": {
 					"rotation": {
 						"vector": [0, -47.5, 0]
 					}
 				},
-				"ear2": {
+				"right_ear": {
 					"rotation": {
 						"vector": [0, 47.5, 0]
 					}
 				},
-				"leg1": {
+				"leftArm": {
 					"rotation": {
 						"0.0": {
 							"vector": [25, 0, 0]
@@ -617,7 +475,7 @@
 						}
 					}
 				},
-				"leg2": {
+				"rightArm": {
 					"rotation": {
 						"0.0": {
 							"vector": [25, 0, 0]
@@ -638,38 +496,9 @@
 							"vector": [25, 0, 0],
 							"easing": "easeInOutSine"
 						}
-					},
-					"position": {
-						"0.0": {
-							"vector": [0, 2, 0]
-						},
-						"0.125": {
-							"vector": [0, 2, -3],
-							"easing": "easeInOutSine"
-						},
-						"0.25": {
-							"vector": [0, 0, 0],
-							"easing": "easeInOutSine"
-						},
-						"0.5": {
-							"vector": [0, 2, 0],
-							"easing": "easeInOutSine"
-						},
-						"0.625": {
-							"vector": [0, 2, -3],
-							"easing": "easeInOutSine"
-						},
-						"0.75": {
-							"vector": [0, 0, 0],
-							"easing": "easeInOutSine"
-						},
-						"1.0": {
-							"vector": [0, 2, 0],
-							"easing": "easeInOutSine"
-						}
 					}
 				},
-				"leg3": {
+				"leftLeg": {
 					"rotation": {
 						"0.0": {
 							"vector": [-19.37006, -5.07855, -14.13272]
@@ -690,38 +519,9 @@
 							"vector": [-19.37006, -5.07855, -14.13272],
 							"easing": "easeInOutSine"
 						}
-					},
-					"position": {
-						"0.0": {
-							"vector": [0, 0, 0]
-						},
-						"0.25": {
-							"vector": [0, 2, 0],
-							"easing": "easeInOutSine"
-						},
-						"0.375": {
-							"vector": [0, 2, -3],
-							"easing": "easeInOutSine"
-						},
-						"0.5": {
-							"vector": [0, 0, 0],
-							"easing": "easeInOutSine"
-						},
-						"0.75": {
-							"vector": [0, 2, 0],
-							"easing": "easeInOutSine"
-						},
-						"0.875": {
-							"vector": [0, 2, -3],
-							"easing": "easeInOutSine"
-						},
-						"1.0": {
-							"vector": [0, 0, 0],
-							"easing": "easeInOutSine"
-						}
 					}
 				},
-				"leg4": {
+				"rightLeg": {
 					"rotation": {
 						"0.0": {
 							"vector": [-19.5623, 4.2453, 11.76782]
@@ -740,38 +540,9 @@
 						"1.0": {
 							"vector": [-19.5623, 4.2453, 11.76782]
 						}
-					},
-					"position": {
-						"0.0": {
-							"vector": [0, 0, -2]
-						},
-						"0.25": {
-							"vector": [0, 2, 0],
-							"easing": "easeInOutSine"
-						},
-						"0.375": {
-							"vector": [0, 2, -3],
-							"easing": "easeInOutSine"
-						},
-						"0.5": {
-							"vector": [0, 0, -2],
-							"easing": "easeInOutSine"
-						},
-						"0.75": {
-							"vector": [0, 2, 0],
-							"easing": "easeInOutSine"
-						},
-						"0.875": {
-							"vector": [0, 2, -3],
-							"easing": "easeInOutSine"
-						},
-						"1.0": {
-							"vector": [0, 0, -2],
-							"easing": "easeInOutSine"
-						}
 					}
 				},
-				"upper": {
+				"frontLegs": {
 					"rotation": {
 						"0.0": {
 							"vector": [-7.5, 0, 0]
@@ -841,11 +612,11 @@
 				}
 			}
 		},
-		"animation.odocoileus.mulerun": {
+		"animation.ott.deer.baby_run": {
 			"loop": true,
 			"animation_length": 0.5076,
 			"bones": {
-				"neck": {
+				"skullRot": {
 					"rotation": {
 						"0.0": {
 							"vector": [7.5, 0, 0]
@@ -860,17 +631,17 @@
 						}
 					}
 				},
-				"ear1": {
+				"left_ear": {
 					"rotation": {
 						"vector": [0, -47.5, 0]
 					}
 				},
-				"ear2": {
+				"right_ear": {
 					"rotation": {
 						"vector": [0, 47.5, 0]
 					}
 				},
-				"leg1": {
+				"leftArm": {
 					"rotation": {
 						"0.0": {
 							"vector": [25, 0, 0]
@@ -883,26 +654,9 @@
 							"vector": [25, 0, 0],
 							"easing": "easeInOutSine"
 						}
-					},
-					"position": {
-						"0.0": {
-							"vector": [0, 2, 0]
-						},
-						"0.125": {
-							"vector": [0, 2, -3],
-							"easing": "easeInOutSine"
-						},
-						"0.25": {
-							"vector": [0, 0, 0],
-							"easing": "easeInOutSine"
-						},
-						"0.5": {
-							"vector": [0, 2, 0],
-							"easing": "easeInOutSine"
-						}
 					}
 				},
-				"leg2": {
+				"rightArm": {
 					"rotation": {
 						"0.0": {
 							"vector": [25, 0, 0]
@@ -915,26 +669,9 @@
 							"vector": [25, 0, 0],
 							"easing": "easeInOutSine"
 						}
-					},
-					"position": {
-						"0.0": {
-							"vector": [0, 2, 0]
-						},
-						"0.125": {
-							"vector": [0, 2, -3],
-							"easing": "easeInOutSine"
-						},
-						"0.25": {
-							"vector": [0, 0, 0],
-							"easing": "easeInOutSine"
-						},
-						"0.5": {
-							"vector": [0, 2, 0],
-							"easing": "easeInOutSine"
-						}
 					}
 				},
-				"leg3": {
+				"leftLeg": {
 					"rotation": {
 						"0.0": {
 							"vector": [-19.37006, -5.07855, -14.13272]
@@ -947,26 +684,9 @@
 							"vector": [-19.37006, -5.07855, -14.13272],
 							"easing": "easeInOutSine"
 						}
-					},
-					"position": {
-						"0.0": {
-							"vector": [0, 0, 0]
-						},
-						"0.25": {
-							"vector": [0, 2, 0],
-							"easing": "easeInOutSine"
-						},
-						"0.375": {
-							"vector": [0, 2, -3],
-							"easing": "easeInOutSine"
-						},
-						"0.5": {
-							"vector": [0, 0, 0],
-							"easing": "easeInOutSine"
-						}
 					}
 				},
-				"leg4": {
+				"rightLeg": {
 					"rotation": {
 						"0.0": {
 							"vector": [-19.5623, 4.2453, 11.76782]
@@ -979,26 +699,9 @@
 							"vector": [-19.5623, 4.2453, 11.76782],
 							"easing": "easeInOutSine"
 						}
-					},
-					"position": {
-						"0.0": {
-							"vector": [0, 0, 0]
-						},
-						"0.25": {
-							"vector": [0, 2, 0],
-							"easing": "easeInOutSine"
-						},
-						"0.375": {
-							"vector": [0, 2, -3],
-							"easing": "easeInOutSine"
-						},
-						"0.5": {
-							"vector": [0, 0, 0],
-							"easing": "easeInOutSine"
-						}
 					}
 				},
-				"upper": {
+				"frontLegs": {
 					"position": {
 						"0.0": {
 							"vector": [0, -2, 0]
@@ -1030,7 +733,7 @@
 				}
 			}
 		},
-		"animation.odocoileus.attack": {
+		"animation.ott.deer.attack": {
 			"animation_length": 0.6667,
 			"bones": {
 				"body": {
@@ -1059,7 +762,7 @@
 						}
 					}
 				},
-				"neck": {
+				"skullRot": {
 					"rotation": {
 						"0.0": {
 							"vector": [0, 0, 0]
@@ -1090,7 +793,7 @@
 						}
 					}
 				},
-				"upper": {
+				"frontLegs": {
 					"rotation": {
 						"0.0": {
 							"vector": [0, 0, 0]
@@ -1109,7 +812,7 @@
 						}
 					}
 				},
-				"leg1": {
+				"leftArm": {
 					"rotation": {
 						"0.0": {
 							"vector": [0, 0, 0]
@@ -1141,7 +844,7 @@
 						}
 					}
 				},
-				"leg2": {
+				"rightArm": {
 					"rotation": {
 						"0.0": {
 							"vector": [0, 0, 0]
@@ -1175,10 +878,10 @@
 				}
 			}
 		},
-		"animation.odocoileus.eat": {
+		"animation.ott.deer.eat": {
 			"animation_length": 1.75,
 			"bones": {
-				"upper": {
+				"frontLegs": {
 					"rotation": {
 						"0.0": {
 							"vector": [0, 0, 0]
@@ -1202,7 +905,7 @@
 						"vector": [-57.5, 0, 0]
 					}
 				},
-				"leg1": {
+				"leftArm": {
 					"rotation": {
 						"0.0": {
 							"vector": [0, 0, 0]
@@ -1236,7 +939,7 @@
 						}
 					}
 				},
-				"leg2": {
+				"rightArm": {
 					"rotation": {
 						"0.0": {
 							"vector": [0, 0, 0]
@@ -1270,7 +973,7 @@
 						}
 					}
 				},
-				"neck": {
+				"skullRot": {
 					"rotation": {
 						"0.0": {
 							"vector": [0, 0, 0]
@@ -1297,12 +1000,12 @@
 						}
 					}
 				},
-				"ear1": {
+				"left_ear": {
 					"rotation": {
 						"vector": [0, 0, -45]
 					}
 				},
-				"ear2": {
+				"right_ear": {
 					"rotation": {
 						"vector": [0, 0, 45]
 					}

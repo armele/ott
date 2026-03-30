@@ -43,6 +43,7 @@ public abstract class Deer extends TamableAnimal implements GeoEntity, Saddleabl
     protected static final RawAnimation RUN = RawAnimation.begin().thenLoop("animation.ott.deer.run");
     protected static final RawAnimation BABY_RUN = RawAnimation.begin().thenLoop("animation.ott.deer.baby_run");
     protected static final RawAnimation EAT = RawAnimation.begin().thenLoop("animation.ott.deer.eat");
+    protected static final RawAnimation ATTACK = RawAnimation.begin().thenPlay("animation.ott.deer.attack");
 
     private static final EntityDataAccessor<Boolean> SADDLED = SynchedEntityData.defineId(Deer.class, EntityDataSerializers.BOOLEAN);
     private static final EntityDataAccessor<Boolean> IS_DOE = SynchedEntityData.defineId(Deer.class, EntityDataSerializers.BOOLEAN);
@@ -312,6 +313,14 @@ public abstract class Deer extends TamableAnimal implements GeoEntity, Saddleabl
         return PlayState.CONTINUE;
     }
 
+    protected <E extends Deer> PlayState attackPredicate(final AnimationState<E> event) {
+        if (this.swinging) {
+            event.getController().setAnimation(ATTACK);
+            return PlayState.CONTINUE;
+        }
+        return PlayState.STOP;
+    }
+
     protected <E extends Deer> PlayState eatPredicate(final AnimationState<E> event) {
         if (this.isEating()) {
             event.getController().setAnimation(EAT);
@@ -335,6 +344,7 @@ public abstract class Deer extends TamableAnimal implements GeoEntity, Saddleabl
     @Override
     public void registerControllers(final AnimatableManager.ControllerRegistrar controllers) {
         controllers.add(new AnimationController<>(this, "controller", 5, this::predicate).setSoundKeyframeHandler(this::soundListener));
+        controllers.add(new AnimationController<>(this, "attack_controller", 0, this::attackPredicate));
         controllers.add(new AnimationController<>(this, "eat_controller", 5, this::eatPredicate).setSoundKeyframeHandler(this::soundListener));
     }
 
