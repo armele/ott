@@ -69,6 +69,7 @@ Mods, Resourcepacks, and Datapacks You Will Not Need:
 - No Friendly Fire (includes pets, colonists, and visitors)
 - No Ruined Nether Portals
 - Not Enough Recipe Book
+- OpenBlocks Elevators (vanilla and custom colors)
 - Overloaded Armor Bar
 - Permanent Sponges
 - Pretty Beaches 🏖️
