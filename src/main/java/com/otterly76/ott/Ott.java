@@ -7,6 +7,7 @@ import com.otterly76.ott.block.wood.ModBlockFamilies;
 import com.otterly76.ott.config.ConfigHandler;
 import com.otterly76.ott.config.OttConfig;
 import com.otterly76.ott.entity.ModEntities;
+import com.otterly76.ott.event.ColonistFriendlyFireHandler;
 import com.otterly76.ott.event.FriendlyFireEventHandler;
 import com.otterly76.ott.event.HarvestEventHandler;
 import com.otterly76.ott.event.LoadCompleteCallback;
@@ -211,6 +212,9 @@ public class Ott {
         NeoForge.EVENT_BUS.register(HarvestEventHandler.class);
         NeoForge.EVENT_BUS.register(ToolEventHandler.class);
         NeoForge.EVENT_BUS.register(FriendlyFireEventHandler.class);
+        if (ModList.get().isLoaded("minecolonies")) {
+            NeoForge.EVENT_BUS.register(ColonistFriendlyFireHandler.class);
+        }
     }
 
     public static <T> ResourceKey<T> key(ResourceKey<? extends Registry<T>> resourceKey, String name) {

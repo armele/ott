@@ -752,6 +752,7 @@ public class OttConfig {
 
     public static class FriendlyFire {
         public final ModConfigSpec.BooleanValue LIMIT_ALL_PLAYER_ATTACKS;
+        public final ModConfigSpec.BooleanValue PROTECT_COLONISTS;
 
         public FriendlyFire(ModConfigSpec.Builder builder) {
             builder.push("friendlyFire");
@@ -759,6 +760,10 @@ public class OttConfig {
                     .comment("Set to true to disable all players from attacking tamed pets, even if not tamed by that player. Players can still damage their own pets by sneaking+hitting.")
                     .translation("ott.configuration.friendlyfire.limitallplayerattacks")
                     .define("limitAllPlayerAttacks", false);
+            PROTECT_COLONISTS = builder
+                    .comment("Prevent players from accidentally damaging MineColonies colonists and visitors with weapons. Empty-hand hits (bonk to unstick) are always allowed. Sneak+hit bypasses this protection.")
+                    .translation("ott.configuration.friendlyfire.protectcolonists")
+                    .define("protectColonists", true);
             builder.pop();
         }
     }
