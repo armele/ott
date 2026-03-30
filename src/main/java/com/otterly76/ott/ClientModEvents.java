@@ -581,7 +581,13 @@ public class ClientModEvents {
                 net.minecraft.world.item.Items.WITHER_SKELETON_SPAWN_EGG, net.minecraft.world.item.Items.WITHER_SPAWN_EGG,
                 net.minecraft.world.item.Items.WOLF_SPAWN_EGG, net.minecraft.world.item.Items.ZOGLIN_SPAWN_EGG,
                 net.minecraft.world.item.Items.ZOMBIE_HORSE_SPAWN_EGG, net.minecraft.world.item.Items.ZOMBIE_SPAWN_EGG,
-                net.minecraft.world.item.Items.ZOMBIE_VILLAGER_SPAWN_EGG, net.minecraft.world.item.Items.ZOMBIFIED_PIGLIN_SPAWN_EGG);
+                net.minecraft.world.item.Items.ZOMBIE_VILLAGER_SPAWN_EGG, net.minecraft.world.item.Items.ZOMBIFIED_PIGLIN_SPAWN_EGG,
+                ModItems.GLARE_SPAWN_EGG.get(), ModItems.ICEOLOGER_SPAWN_EGG.get(), ModItems.ILLUSIONER_SPAWN_EGG.get(),
+                ModItems.MAULER_SPAWN_EGG.get(), ModItems.RASCAL_SPAWN_EGG.get(), ModItems.TUFF_GOLEM_SPAWN_EGG.get(),
+                ModItems.WILDFIRE_SPAWN_EGG.get(), ModItems.COCONUT_CRAB_SPAWN_EGG.get(), ModItems.DUMBO_OCTOPUS_SPAWN_EGG.get(),
+                ModItems.FERRET_SPAWN_EGG.get(), ModItems.JUMPING_SPIDER_SPAWN_EGG.get(), ModItems.KOI_FISH_SPAWN_EGG.get(),
+                ModItems.OTTER_SPAWN_EGG.get(), ModItems.RED_PANDA_SPAWN_EGG.get(), ModItems.SEA_BUNNY_SPAWN_EGG.get(),
+                ModItems.WATER_BUFFALO_SPAWN_EGG.get());
     }
 
     public static void onClientSetup(FMLClientSetupEvent event) {

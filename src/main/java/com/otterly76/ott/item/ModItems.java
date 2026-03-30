@@ -604,9 +604,6 @@ public class ModItems {
     public static final DeferredItem<Item> GILDED_TREE_ENT_SPAWN_EGG = ITEMS.register("gilded_tree_ent_spawn_egg",
             () -> new DeferredSpawnEggItem(ModEntities.GILDED_TREE_ENT, 0xFFD700, 0xDAA520, new Item.Properties()));
 
-    public static final DeferredItem<Item> RAW_TURKEY = ITEMS.register("raw_turkey",
-            () -> new Item(new Item.Properties()));
-
     public static final DeferredItem<Item> BEAVER_SPAWN_EGG = ITEMS.register("beaver_spawn_egg",
             () -> new DeferredSpawnEggItem(ModEntities.BEAVER, -11324642, -2528223, new Item.Properties()));
     public static final DeferredItem<Item> CHUPACABRA_SPAWN_EGG = ITEMS.register("chupacabra_spawn_egg",
@@ -665,9 +662,6 @@ public class ModItems {
     // --- Ecologics ---
     public static final DeferredItem<BlockItem> COCONUT = ITEMS.register("coconut",
             () -> new BlockItem(ModBlocks.COCONUT.get(), new Item.Properties()));
-    public static final DeferredItem<Item> CRAB_MEAT = ITEMS.register("crab_meat",
-            () -> new Item(new Item.Properties().food(new net.minecraft.world.food.FoodProperties.Builder()
-                    .nutrition(6).saturationModifier(0.6F).build())));
     public static final DeferredItem<Item> COCONUT_CRAB_SPAWN_EGG = ITEMS.register("coconut_crab_spawn_egg",
             () -> new DeferredSpawnEggItem(ModEntities.COCONUT_CRAB, 0xEEC97C, 0x8B4513, new Item.Properties()));
     public static final DeferredItem<Item> SAND_CRAB_SPAWN_EGG = ITEMS.register("sand_crab_spawn_egg",

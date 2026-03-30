@@ -40,7 +40,7 @@ public class ColorSetShulkerBoxRenderer implements BlockEntityRenderer<ColorSetS
             colorName = shulkerBlock.getColorName();
         }
 
-        ResourceLocation texture = ResourceLocation.fromNamespaceAndPath("ott", "textures/entity/shulker/" + colorName + ".png");
+        ResourceLocation texture = ResourceLocation.fromNamespaceAndPath("ott", "textures/block/color_set/" + colorName + "/shulker.png");
 
         poseStack.pushPose();
         poseStack.translate(0.5D, 0.5D, 0.5D);

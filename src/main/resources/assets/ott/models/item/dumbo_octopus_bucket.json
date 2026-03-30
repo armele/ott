@@ -1,0 +1,11 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "ott:item/dumbo_octopus_bucket"
+  },
+  "overrides": [
+    { "predicate": { "ott:variant": 1.0 }, "model": "ott:item/dumbo_octopus_bucket_1" },
+    { "predicate": { "ott:variant": 2.0 }, "model": "ott:item/dumbo_octopus_bucket_2" },
+    { "predicate": { "ott:variant": 3.0 }, "model": "ott:item/dumbo_octopus_bucket_3" }
+  ]
+}

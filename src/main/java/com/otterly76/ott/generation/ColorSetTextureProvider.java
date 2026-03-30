@@ -71,10 +71,10 @@ public class ColorSetTextureProvider implements DataProvider {
             processBlock(cache, mainPath.resolve("textures/block/color_set"), colorName, colorInt, "white_stained_glass", "stained_glass", 1.0f, 0.0f);
             processBlock(cache, mainPath.resolve("textures/block/color_set"), colorName, colorInt, "white_stained_glass_pane_top", "stained_glass_pane_top", 1.0f, 0.0f);
             
-            // Entities
-            processMaskedEntity(cache, mainPath.resolve("textures/entity/bed"), colorName, colorInt, "bed/white", "bed/color_mask", 1.0f, 0.0f);
-            processMaskedEntity(cache, mainPath.resolve("textures/entity/shulker"), colorName, colorInt, "shulker/shulker_white", "shulker/color_mask", 1.0f, 0.0f);
-            processGenericEntity(cache, mainPath.resolve("textures/entity/banner"), colorName, colorInt, "banner_base", colorName, 1.0f, 0.0f);
+            // Entities (saved alongside block textures in the per-color directory)
+            processMaskedEntity(cache, mainPath.resolve("textures/block/color_set"), colorName, colorInt, "bed/white", "bed/color_mask", "bed", 1.0f, 0.0f);
+            processMaskedEntity(cache, mainPath.resolve("textures/block/color_set"), colorName, colorInt, "shulker/shulker_white", "shulker/color_mask", "shulker", 1.0f, 0.0f);
+            processGenericEntity(cache, mainPath.resolve("textures/block/color_set"), colorName, colorInt, "banner_base", "banner", 1.0f, 0.0f);
 
             // Items
             processMaskedItem(cache, mainPath.resolve("textures/item/color_set"), colorName, colorInt, "white_dye", "glass_bottle_mask", 1.0f, 0.0f);
@@ -104,7 +104,7 @@ public class ColorSetTextureProvider implements DataProvider {
     }
 
     @SuppressWarnings("SameParameterValue")
-    private void processMaskedEntity(CachedOutput cache, java.nio.file.Path folder, String colorName, int colorInt, String sourcePath, String maskPath, float saturationFactor, float brightnessOffset) {
+    private void processMaskedEntity(CachedOutput cache, java.nio.file.Path folder, String colorName, int colorInt, String sourcePath, String maskPath, String targetSubdir, float saturationFactor, float brightnessOffset) {
         try {
             ResourceLocation baseLoc = ResourceLocation.withDefaultNamespace("textures/entity/" + sourcePath + ".png");
             Resource baseResource = existingFileHelper.getResource(baseLoc, PackType.CLIENT_RESOURCES);
@@ -126,7 +126,7 @@ public class ColorSetTextureProvider implements DataProvider {
 
             BufferedImage result = applyMaskedTint(base, mask, colorInt, saturationFactor, brightnessOffset);
             
-            saveTexture(cache, folder.resolve(colorName + ".png"), result);
+            saveTexture(cache, folder.resolve(colorName).resolve(targetSubdir + ".png"), result);
         } catch (IOException e) {
              throw new RuntimeException("Failed to process masked entity texture for " + colorName, e);
         }
@@ -154,11 +154,11 @@ public class ColorSetTextureProvider implements DataProvider {
                 // Keep tint's Hue
                 // Adjust Saturation: multiply tint's saturation by base luminosity to keep highlights/shadows desaturated if needed
                 float resultS = (tintHsl[1] * saturationFactor) * (baseHsl[2] * 0.5f + 0.5f); // Soften saturation reduction in highlights
-                resultS = Math.max(0, Math.min(1, resultS));
-                
+                resultS = Math.clamp(resultS, 0, 1);
+
                 // Adjust Luminosity: centered on tint's Luminosity with base's variation
                 float resultL = (tintHsl[2] * BRIGHTNESS_FACTOR + brightnessOffset) + (baseHsl[2] - averageBaseL) * CONTRAST_FACTOR;
-                resultL = Math.max(0, Math.min(1, resultL));
+                resultL = Math.clamp(resultL, 0, 1);
 
                 float[] resultHsl = new float[] { tintHsl[0], resultS, resultL };
                 
@@ -192,11 +192,11 @@ public class ColorSetTextureProvider implements DataProvider {
                 float[] baseHsl = rgbToHsl(baseRgb);
                 
                 // Adjust Saturation and Luminosity for beds/masked areas
-                float resultS = (tintHsl[1] * saturationFactor) * (baseHsl[2] * 0.7f + 0.3f); 
-                resultS = Math.max(0, Math.min(1, resultS));
+                float resultS = (tintHsl[1] * saturationFactor) * (baseHsl[2] * 0.7f + 0.3f);
+                resultS = Math.clamp(resultS, 0, 1);
 
                 float resultL = (tintHsl[2] * BRIGHTNESS_FACTOR + brightnessOffset) + (baseHsl[2] - averageBaseL) * CONTRAST_FACTOR;
-                resultL = Math.max(0, Math.min(1, resultL));
+                resultL = Math.clamp(resultL, 0, 1);
                 
                 float[] resultHsl = new float[] { tintHsl[0], resultS, resultL };
                 int tintedRgb = hslToRgb(resultHsl);
@@ -277,7 +277,7 @@ public class ColorSetTextureProvider implements DataProvider {
             
             BufferedImage tinted = applyTint(base, colorInt, saturationFactor, brightnessOffset);
             
-            saveTexture(cache, folder.resolve(targetName + ".png"), tinted);
+            saveTexture(cache, folder.resolve(colorName).resolve(targetName + ".png"), tinted);
         } catch (IOException e) {
             throw new RuntimeException("Failed to process entity texture: " + sourceName, e);
         }

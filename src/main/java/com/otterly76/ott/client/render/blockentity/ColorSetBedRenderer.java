@@ -40,7 +40,7 @@ public class ColorSetBedRenderer implements BlockEntityRenderer<ColorSetBedBlock
         if (!(blockState.getBlock() instanceof ColorSetBedBlock bedBlock)) return;
 
         String colorName = bedBlock.getColorName();
-        ResourceLocation texture = ResourceLocation.fromNamespaceAndPath("ott", "textures/entity/bed/" + colorName + ".png");
+        ResourceLocation texture = ResourceLocation.fromNamespaceAndPath("ott", "textures/block/color_set/" + colorName + "/bed.png");
 
         Level level = blockEntity.getLevel();
         if (level != null) {

@@ -88,7 +88,7 @@ public class ColorSetBannerRenderer implements BlockEntityRenderer<ColorSetBanne
     }
 
     private static void renderCustomPatterns(PoseStack poseStack, MultiBufferSource bufferSource, int combinedLight, int combinedOverlay, ModelPart flagPart, String colorName, BannerPatternLayers patterns) {
-        ResourceLocation texture = ResourceLocation.fromNamespaceAndPath("ott", "textures/entity/banner/" + colorName + ".png");
+        ResourceLocation texture = ResourceLocation.fromNamespaceAndPath("ott", "textures/block/color_set/" + colorName + "/banner.png");
         flagPart.render(poseStack, bufferSource.getBuffer(RenderType.entitySolid(texture)), combinedLight, combinedOverlay, 0xFFFFFFFF);
 
         for (int i = 0; i < 16 && i < patterns.layers().size(); i++) {

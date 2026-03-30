@@ -1,6 +1,6 @@
 {
-  "parent": "item/generated",
+  "parent": "minecraft:item/generated",
   "textures": {
-    "layer0": "ott:item/water_buffalo/water_buffalo_spawn_egg"
+    "layer0": "ott:item/water_buffalo_spawn_egg"
   }
 }

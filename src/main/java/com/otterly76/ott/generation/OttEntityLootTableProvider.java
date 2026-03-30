@@ -113,9 +113,9 @@ public class OttEntityLootTableProvider extends EntityLootSubProvider {
         this.add(ModEntities.BASS.get(), createFishDrops(ModItems.BASS.get()));
         this.add(ModEntities.CATFISH.get(), createFishDrops(ModItems.CATFISH.get()));
         this.add(ModEntities.WATER_BUFFALO.get(), createWaterBuffaloDrops());
-        this.add(ModEntities.COCONUT_CRAB.get(), createCrabDrops(3.0F, 2.0F));
-        this.add(ModEntities.SAND_CRAB.get(), createCrabDrops(3.0F, 2.0F));
-        this.add(ModEntities.FIDDLER_CRAB.get(), createCrabDrops(2.0F, 1.0F));
+        this.add(ModEntities.COCONUT_CRAB.get(), createCrabDrops());
+        this.add(ModEntities.SAND_CRAB.get(), createCrabDrops());
+        this.add(ModEntities.FIDDLER_CRAB.get(), createCrabDrops());
     }
 
     private LootTable.Builder createFireflyDrops() {
@@ -163,20 +163,13 @@ public class OttEntityLootTableProvider extends EntityLootSubProvider {
                                 .apply(net.minecraft.world.level.storage.loot.functions.EnchantedCountIncreaseFunction.lootingMultiplier(this.registries, UniformGenerator.between(0.0F, 2.0F)))));
     }
 
-    private LootTable.Builder createCrabDrops(float meatMax, float meatLootingMax) {
+    private LootTable.Builder createCrabDrops() {
         return LootTable.lootTable()
                 .withPool(LootPool.lootPool()
                         .setRolls(ConstantValue.exactly(1.0F))
                         .add(LootItem.lootTableItem(ModItems.CRAB_CLAW.get())
                                 .apply(SetItemCountFunction.setCount(UniformGenerator.between(0.0F, 2.0F)))
-                                .apply(net.minecraft.world.level.storage.loot.functions.EnchantedCountIncreaseFunction.lootingMultiplier(this.registries, UniformGenerator.between(0.0F, 1.0F)))))
-                .withPool(LootPool.lootPool()
-                        .setRolls(ConstantValue.exactly(1.0F))
-                        .add(LootItem.lootTableItem(ModItems.CRAB_MEAT.get())
-                                .apply(SetItemCountFunction.setCount(UniformGenerator.between(1.0F, meatMax)))
-                                .apply(net.minecraft.world.level.storage.loot.functions.EnchantedCountIncreaseFunction.lootingMultiplier(this.registries, UniformGenerator.between(0.0F, meatLootingMax)))
-                                .apply(SmeltItemFunction.smelted()
-                                        .when(LootItemEntityPropertyCondition.hasProperties(LootContext.EntityTarget.THIS, EntityPredicate.Builder.entity().flags(EntityFlagsPredicate.Builder.flags().setOnFire(true)))))));
+                                .apply(net.minecraft.world.level.storage.loot.functions.EnchantedCountIncreaseFunction.lootingMultiplier(this.registries, UniformGenerator.between(0.0F, 1.0F)))));
     }
 
     private LootTable.Builder createMeatDrops(net.minecraft.world.item.Item meat) {
@@ -203,10 +196,6 @@ public class OttEntityLootTableProvider extends EntityLootSubProvider {
 
     private LootTable.Builder createTurkeyDrops() {
         return LootTable.lootTable()
-                .withPool(LootPool.lootPool()
-                        .setRolls(ConstantValue.exactly(1.0F))
-                        .add(LootItem.lootTableItem(ModItems.RAW_TURKEY.get())
-                                .apply(SetItemCountFunction.setCount(UniformGenerator.between(1.0F, 2.0F)))))
                 .withPool(LootPool.lootPool()
                         .setRolls(ConstantValue.exactly(1.0F))
                         .add(LootItem.lootTableItem(Items.FEATHER)

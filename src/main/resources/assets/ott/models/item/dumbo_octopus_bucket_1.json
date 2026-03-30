@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:item/generated",
   "textures": {
-    "layer0": "ott:item/wildfire_spawn_egg"
+    "layer0": "ott:item/dumbo_octopus_bucket_1"
   }
 }
