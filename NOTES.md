@@ -443,26 +443,24 @@ underground labyrinth
 dark woods
 - gothy village
 
-Checks:
-=====
-check for unused item textures
-
 Dimension Nonsense:
 =====
 
 	the end
 	---
 	the ethereal
+    ---
+	fae
 	---
 	the overworld
-		— mainland: stone/deepslate/ancient_limestone instead of stone/deepslate/bedrock, bottom layer deep_shale, break through bottom
-		— oceans: sand/sandstone/ancient_sandstone instead of stone/deepslate/bedrock, bottom layer hardened_calcite, break through bottom
-	the underworld
+    ---
+    the underworld
 	---
 	the nether
 
-separate dim for spirit world, name?
-separate dim for fae world, name?
+make geode type structures that portal to ethereal, use ethereal crystal
+make ruined burial mound type structures that portal to underworld
+make mushroom ring structures that portal to fae
 
 MCOl Style Ideas:
 =====
