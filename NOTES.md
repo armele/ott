@@ -16,7 +16,6 @@ Glassential Renewed
 Loot Beams
 Mouse Tweaks
 No Mob Farms
-Open Blocks Elevator
 Polymorph
 Project: Vibrant Journeys
 Redstone Pen
