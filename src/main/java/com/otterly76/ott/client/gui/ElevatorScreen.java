@@ -24,6 +24,10 @@ public class ElevatorScreen extends AbstractContainerScreen<ElevatorMenu> {
     private static final int GUI_WIDTH = 176;
     private static final int GUI_HEIGHT = 120;
 
+    private Button arrowButton;
+    private Button directionalButton;
+    private Button facingButton;
+
     public ElevatorScreen(ElevatorMenu menu, Inventory inv, Component title) {
         super(menu, inv, title);
         this.imageWidth = GUI_WIDTH;
@@ -37,40 +41,48 @@ public class ElevatorScreen extends AbstractContainerScreen<ElevatorMenu> {
         int y = (this.height - GUI_HEIGHT) / 2;
 
         // Toggle Show Arrow button
-        addRenderableWidget(Button.builder(
+        arrowButton = Button.builder(
                 getArrowButtonLabel(),
                 btn -> {
                     boolean newVal = !menu.isShowArrow();
                     PacketDistributor.sendToServer(new ElevatorSetArrowPacket(menu.getBlockPos(), newVal));
-                    btn.setMessage(arrowLabel(newVal));
                 }
-        ).bounds(x + 8, y + 20, 160, 20).build());
+        ).bounds(x + 8, y + 20, 160, 20).build();
+        addRenderableWidget(arrowButton);
 
         // Toggle Directional button
-        addRenderableWidget(Button.builder(
+        directionalButton = Button.builder(
                 getDirectionalButtonLabel(),
                 btn -> {
                     boolean newVal = !menu.isDirectional();
                     PacketDistributor.sendToServer(new ElevatorSetDirectionalPacket(menu.getBlockPos(), newVal));
-                    btn.setMessage(directionalLabel(newVal));
                 }
-        ).bounds(x + 8, y + 45, 160, 20).build());
+        ).bounds(x + 8, y + 45, 160, 20).build();
+        addRenderableWidget(directionalButton);
 
         // Cycle Facing button (only matters when directional)
-        addRenderableWidget(Button.builder(
+        facingButton = Button.builder(
                 getFacingButtonLabel(),
                 btn -> {
                     Direction next = cycleFacing(menu.getFacing());
                     PacketDistributor.sendToServer(new ElevatorSetFacingPacket(menu.getBlockPos(), next));
-                    btn.setMessage(facingLabel(next));
                 }
-        ).bounds(x + 8, y + 70, 160, 20).build());
+        ).bounds(x + 8, y + 70, 160, 20).build();
+        addRenderableWidget(facingButton);
 
         // Remove Camo button
         addRenderableWidget(Button.builder(
                 Component.translatable("gui.ott.elevator.remove_camo"),
                 btn -> PacketDistributor.sendToServer(new ElevatorRemoveCamoPacket(menu.getBlockPos()))
         ).bounds(x + 8, y + 95, 160, 20).build());
+    }
+
+    @Override
+    protected void containerTick() {
+        super.containerTick();
+        if (arrowButton != null) arrowButton.setMessage(getArrowButtonLabel());
+        if (directionalButton != null) directionalButton.setMessage(getDirectionalButtonLabel());
+        if (facingButton != null) facingButton.setMessage(getFacingButtonLabel());
     }
 
     private Component getArrowButtonLabel() {
