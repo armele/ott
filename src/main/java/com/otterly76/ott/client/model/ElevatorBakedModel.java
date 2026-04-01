@@ -3,10 +3,12 @@ package com.otterly76.ott.client.model;
 import com.otterly76.ott.block.entity.ElevatorBlockEntity;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.RenderType;
+import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.client.resources.model.BakedModel;
 import net.minecraft.core.Direction;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.block.state.BlockState;
+import net.neoforged.neoforge.client.ChunkRenderTypeSet;
 import net.neoforged.neoforge.client.model.BakedModelWrapper;
 import net.neoforged.neoforge.client.model.data.ModelData;
 import org.jetbrains.annotations.NotNull;
@@ -29,9 +31,33 @@ public class ElevatorBakedModel extends BakedModelWrapper<BakedModel> {
         BlockState camo = data.get(ElevatorBlockEntity.CAMO_STATE);
         if (camo != null && !camo.isAir()) {
             BakedModel camoModel = Minecraft.getInstance().getBlockRenderer().getBlockModel(camo);
-            return camoModel.getQuads(camo, side, rand, ModelData.EMPTY, renderType);
+            ChunkRenderTypeSet camoTypes = camoModel.getRenderTypes(camo, rand, ModelData.EMPTY);
+            if (renderType == null || camoTypes.contains(renderType)) {
+                return camoModel.getQuads(camo, side, rand, ModelData.EMPTY, renderType);
+            }
+            return List.of();
         }
         return super.getQuads(state, side, rand, data, renderType);
+    }
+
+    @Override
+    public @NotNull ChunkRenderTypeSet getRenderTypes(@NotNull BlockState state, @NotNull RandomSource rand, @NotNull ModelData data) {
+        BlockState camo = data.get(ElevatorBlockEntity.CAMO_STATE);
+        if (camo != null && !camo.isAir()) {
+            BakedModel camoModel = Minecraft.getInstance().getBlockRenderer().getBlockModel(camo);
+            return camoModel.getRenderTypes(camo, rand, ModelData.EMPTY);
+        }
+        return super.getRenderTypes(state, rand, data);
+    }
+
+    @Override
+    public @NotNull TextureAtlasSprite getParticleIcon(@NotNull ModelData data) {
+        BlockState camo = data.get(ElevatorBlockEntity.CAMO_STATE);
+        if (camo != null && !camo.isAir()) {
+            BakedModel camoModel = Minecraft.getInstance().getBlockRenderer().getBlockModel(camo);
+            return camoModel.getParticleIcon(ModelData.EMPTY);
+        }
+        return super.getParticleIcon(data);
     }
 
     @Override

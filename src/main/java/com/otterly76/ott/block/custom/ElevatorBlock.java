@@ -3,12 +3,14 @@ package com.otterly76.ott.block.custom;
 import com.mojang.serialization.MapCodec;
 import com.otterly76.ott.block.entity.ElevatorBlockEntity;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.ItemInteractionResult;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.BlockAndTintGetter;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.BaseEntityBlock;
 import net.minecraft.world.level.block.RenderShape;
@@ -48,21 +50,38 @@ public class ElevatorBlock extends BaseEntityBlock {
         return RenderShape.MODEL;
     }
 
+    @Override
+    public @NotNull BlockState getAppearance(@NotNull BlockState state, @NotNull BlockAndTintGetter level,
+            @NotNull BlockPos pos, @NotNull Direction side,
+            @Nullable BlockState queryState, @Nullable BlockPos queryPos) {
+        BlockEntity be = level.getBlockEntity(pos);
+        if (be instanceof ElevatorBlockEntity elevator) {
+            BlockState camo = elevator.getCamoState();
+            if (camo != null && !camo.isAir()) {
+                return camo.getAppearance(level, pos, side, queryState, queryPos);
+            }
+        }
+        return super.getAppearance(state, level, pos, side, queryState, queryPos);
+    }
+
     // Right-click with a block item → set camo
     @Override
     protected @NotNull ItemInteractionResult useItemOn(@NotNull ItemStack stack, @NotNull BlockState state,
                                                        @NotNull Level level, @NotNull BlockPos pos, @NotNull Player player,
                                                        net.minecraft.world.@NotNull InteractionHand hand, @NotNull BlockHitResult hit) {
+        // Return SUCCESS immediately on client to prevent any block placement prediction
+        if (level.isClientSide) {
+            return ItemInteractionResult.SUCCESS;
+        }
+        // Server-side: apply camo if holding a non-elevator block and not sneaking
         if (!player.isShiftKeyDown() && stack.getItem() instanceof BlockItem blockItem
                 && blockItem.getBlock() != this) {
-            if (!level.isClientSide) {
-                BlockEntity be = level.getBlockEntity(pos);
-                if (be instanceof ElevatorBlockEntity elevator) {
-                    elevator.setCamo(blockItem.getBlock().defaultBlockState());
-                    level.sendBlockUpdated(pos, state, state, 3);
-                }
+            BlockEntity be = level.getBlockEntity(pos);
+            if (be instanceof ElevatorBlockEntity elevator) {
+                elevator.setCamo(blockItem.getBlock().defaultBlockState());
+                level.sendBlockUpdated(pos, state, state, 3);
             }
-            return ItemInteractionResult.sidedSuccess(level.isClientSide);
+            return ItemInteractionResult.CONSUME;
         }
         return ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;
     }

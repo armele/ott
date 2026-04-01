@@ -492,7 +492,18 @@ public class ClientModEvents {
             com.otterly76.ott.color.ModPatterns.ALL_COLORS.stream()
                     .filter(c -> c.name().equals(colorName))
                     .findFirst()
-                    .ifPresent(info -> event.register((state, level, pos, tint) -> info.color(), block.get()));
+                    .ifPresent(info -> event.register((state, level, pos, tint) -> {
+                        if (level != null && pos != null) {
+                            net.minecraft.world.level.block.entity.BlockEntity be = level.getBlockEntity(pos);
+                            if (be instanceof com.otterly76.ott.block.entity.ElevatorBlockEntity elevator) {
+                                net.minecraft.world.level.block.state.BlockState camo = elevator.getCamoState();
+                                if (camo != null && !camo.isAir()) {
+                                    return net.minecraft.client.Minecraft.getInstance().getBlockColors().getColor(camo, level, pos, tint);
+                                }
+                            }
+                        }
+                        return info.color();
+                    }, block.get()));
         });
     }
 

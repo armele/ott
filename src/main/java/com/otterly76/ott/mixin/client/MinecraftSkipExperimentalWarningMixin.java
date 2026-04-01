@@ -12,7 +12,7 @@ import java.lang.reflect.Field;
 import java.util.function.Consumer;
 
 @Mixin(Minecraft.class)
-public abstract class MinecraftSkipExperimentalWarningMixin {
+public abstract class MinecraftSkipExperimentalWarningMixin { //TODO not working, troubleshoot
 
     @Inject(method = "setScreen", at = @At("TAIL"))
     private void ott$skipExperimentalWarning(Screen screen, CallbackInfo ci) {

@@ -3,6 +3,7 @@ Notes:
 big lily pads
 custom entity spawns
 terrain too stretched out
+CTM mosaics: need to flip horizontal N/S/D
 
 Mods to Implement:
 =====

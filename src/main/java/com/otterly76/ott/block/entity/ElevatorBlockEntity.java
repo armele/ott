@@ -7,6 +7,7 @@ import net.minecraft.core.HolderLookup;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.NbtUtils;
+import net.minecraft.network.Connection;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.protocol.Packet;
 import net.minecraft.network.protocol.game.ClientGamePacketListener;
@@ -127,6 +128,17 @@ public class ElevatorBlockEntity extends BlockEntity implements MenuProvider {
     public void handleUpdateTag(@NotNull CompoundTag tag, @NotNull HolderLookup.Provider registries) {
         super.handleUpdateTag(tag, registries);
         requestModelDataUpdate();
+    }
+
+    @Override
+    public void onDataPacket(@NotNull Connection net, @NotNull ClientboundBlockEntityDataPacket pkt,
+                             @NotNull HolderLookup.Provider registries) {
+        super.onDataPacket(net, pkt, registries);
+        requestModelDataUpdate();
+        // Force section recompile so the queued model data refresh is picked up
+        if (level != null && level.isClientSide) {
+            level.sendBlockUpdated(worldPosition, getBlockState(), getBlockState(), 3);
+        }
     }
 
     // ----- Model data (for camo rendering) -----
