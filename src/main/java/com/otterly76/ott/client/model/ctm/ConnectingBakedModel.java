@@ -174,6 +174,33 @@ public class ConnectingBakedModel extends BakedModelWrapper<net.minecraft.client
         return result;
     }
 
+    /**
+     * Faces whose Minecraft UV U-axis runs opposite to our neighbor-offset "right" convention.
+     * For these faces, swap the L/R bits (and their diagonal pairs) before the tile lookup.
+     */
+    private static final boolean[] FLIP_H = new boolean[6];
+    static {
+        FLIP_H[Direction.NORTH.ordinal()] = true;
+        FLIP_H[Direction.SOUTH.ordinal()] = true;
+        FLIP_H[Direction.DOWN.ordinal()]  = true;
+    }
+
+    /**
+     * Mirrors a CTM mask horizontally: swaps L↔R, TR↔TL, BR↔BL; T and B stay.
+     * Bit layout: T=0, TR=1, R=2, BR=3, B=4, BL=5, L=6, TL=7
+     */
+    private static int flipMaskH(int m) {
+        int t  = m & 1;
+        int tr = (m >> 1) & 1;
+        int r  = (m >> 2) & 1;
+        int br = (m >> 3) & 1;
+        int b  = (m >> 4) & 1;
+        int bl = (m >> 5) & 1;
+        int l  = (m >> 6) & 1;
+        int tl = (m >> 7) & 1;
+        return t | (tl << 1) | (l << 2) | (bl << 3) | (b << 4) | (br << 5) | (r << 6) | (tr << 7);
+    }
+
     private BakedQuad remapQuad(BakedQuad quad, int[][] masks, int faceOrdinal) {
         TextureAtlasSprite sprite = quad.getSprite();
 
@@ -182,6 +209,7 @@ public class ConnectingBakedModel extends BakedModelWrapper<net.minecraft.client
         if (ruleIdx < 0 || ruleIdx >= masks.length) return quad;
 
         int mask = masks[ruleIdx][faceOrdinal];
+        if (FLIP_H[faceOrdinal]) mask = flipMaskH(mask);
         int tileX = FullLayoutLookup.TILE_X[mask & 0xFF];
         int tileY = FullLayoutLookup.TILE_Y[mask & 0xFF];
 
