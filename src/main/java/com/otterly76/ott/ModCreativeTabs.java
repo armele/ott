@@ -71,6 +71,32 @@ public final class ModCreativeTabs {
 
                     // Elevators
                     ModBlocks.ELEVATORS.values().forEach(output::accept);
+
+                    // Mosaic / Fresco
+                    output.accept(ModBlocks.MORAQ_MOSAIC_BORDER);
+                    output.accept(ModBlocks.MORAQ_MOSAIC_GEOMETRIC);
+                    output.accept(ModBlocks.MORAQ_MOSAIC_PATTERN);
+                    output.accept(ModBlocks.MORAQ_MOSAIC_DELICATE);
+                    output.accept(ModBlocks.MORAQ_MOSAIC_TRADITIONAL);
+                    output.accept(ModBlocks.MORAQ_MOSAIC_RECESS);
+                    output.accept(ModBlocks.MOSAIC_FLOOR);
+                    output.accept(ModBlocks.MOSAIC_FLOOR_DELICATE);
+                    output.accept(ModBlocks.MOSAIC_FLOOR_ROSETTE);
+                    output.accept(ModBlocks.ROMAN_FRESCO_RED);
+                    output.accept(ModBlocks.ROMAN_FRESCO_BLACK);
+
+                    // Stone Brick Functional
+                    output.accept(ModBlocks.STONE_BRICKS_ARROWSLIT);
+                    output.accept(ModBlocks.STONE_BRICKS_MACHICOLATION);
+
+                    // Oak Structural
+                    output.accept(ModBlocks.OAK_PERGOLA);
+                    output.accept(ModBlocks.OAK_BEAM);
+                    output.accept(ModBlocks.OAK_PLANKS_PLATE);
+                    output.accept(ModBlocks.OAK_PLANKS_EDGE);
+                    output.accept(ModBlocks.OAK_BALUSTER);
+                    output.accept(ModBlocks.OAK_SUPPORT_SLAB);
+                    output.accept(ModBlocks.OAK_SUPPORT_BEAM);
                 }).build();
     }
 
@@ -201,9 +227,9 @@ public final class ModCreativeTabs {
                     output.accept(ModItems.ICEOLOGER_SPAWN_EGG);
                     output.accept(ModItems.ILLUSIONER_SPAWN_EGG);
                     output.accept(ModItems.IMPALA_SPAWN_EGG);
+                    output.accept(ModItems.JELLYFISH_3_SPAWN_EGG); //TODO rename Small
                     output.accept(ModItems.JELLYFISH_2_SPAWN_EGG);
-                    output.accept(ModItems.JELLYFISH_3_SPAWN_EGG);
-                    output.accept(ModItems.JELLYFISH_SPAWN_EGG);
+                    output.accept(ModItems.JELLYFISH_SPAWN_EGG); //TODO rename Large
                     output.accept(ModItems.JUMPING_SPIDER_SPAWN_EGG);
                     output.accept(ModItems.KIWI_SPAWN_EGG);
                     output.accept(ModItems.KOI_FISH_SPAWN_EGG);
@@ -239,7 +265,7 @@ public final class ModCreativeTabs {
                     output.accept(ModItems.RIVER_TURTLE_SPAWN_EGG);
                     output.accept(ModItems.ROBIN_SPAWN_EGG);
                     output.accept(ModItems.SAND_CRAB_SPAWN_EGG);
-                    output.accept(ModItems.SAND_HERMIT_SPAWN_EGG);
+                    output.accept(ModItems.SAND_HERMIT_SPAWN_EGG); //TODO remove all sand_hermit
                     output.accept(ModItems.SASQUATCH_SPAWN_EGG);
                     output.accept(ModItems.SEAHORSE_1_SPAWN_EGG);
                     output.accept(ModItems.SEAL_SPAWN_EGG);
@@ -247,7 +273,7 @@ public final class ModCreativeTabs {
                     output.accept(ModItems.SEA_URCHIN_SPAWN_EGG);
                     output.accept(ModItems.SEA_VIPER_SPAWN_EGG);
                     output.accept(ModItems.SHADOW_SPAWN_EGG);
-                    output.accept(ModItems.SHRIMP_1_SPAWN_EGG);
+                    output.accept(ModItems.SHRIMP_1_SPAWN_EGG); //TODO rename all shrimp_1 to shrimp
                     output.accept(ModItems.SKINWALKER_SPAWN_EGG);
                     output.accept(ModItems.SMALL_FIREFLY_SPAWN_EGG);
                     output.accept(ModItems.SNAIL_SPAWN_EGG);
@@ -343,26 +369,27 @@ public final class ModCreativeTabs {
                     output.accept(ModItems.KOI_FISH);
                     output.accept(ModItems.PEARL);
                     output.accept(ModItems.SILK);
-                    output.accept(ModItems.MAN_O_WAR_BUCKET);
-                    output.accept(ModItems.STINGRAY_BUCKET);
-                    output.accept(ModItems.SUNFISH_BUCKET);
-                    output.accept(ModItems.KRILL_BUCKET);
+                    output.accept(ModItems.SNAIL_SHELL);
+
                     output.accept(ModItems.ANGELFISH_BUCKET);
                     output.accept(ModItems.BARRELEYE_BUCKET);
-                    output.accept(ModItems.FLOUNDER_BUCKET);
-                    output.accept(ModItems.MARINE_IGUANA_BUCKET);
-                    output.accept(ModItems.SNAIL_BUCKET);
-                    output.accept(ModItems.CATFISH_BUCKET);
                     output.accept(ModItems.BASS_BUCKET);
-                    output.accept(ModItems.DUMBO_OCTOPUS_BUCKET);
-                    output.accept(ModItems.KOI_FISH_BUCKET);
-                    output.accept(ModItems.SEA_BUNNY_BUCKET);
-                    output.accept(ModItems.CICHLID_BUCKET);
-                    output.accept(ModItems.GUITARFISH_BUCKET);
                     output.accept(ModItems.BONNETHEAD_SHARK_BUCKET);
+                    output.accept(ModItems.CATFISH_BUCKET);
+                    output.accept(ModItems.CICHLID_BUCKET);
+                    output.accept(ModItems.DUMBO_OCTOPUS_BUCKET);
+                    output.accept(ModItems.FLOUNDER_BUCKET);
                     output.accept(ModItems.GOBLIN_SHARK_BUCKET);
+                    output.accept(ModItems.GUITARFISH_BUCKET);
+                    output.accept(ModItems.KOI_FISH_BUCKET);
+                    output.accept(ModItems.KRILL_BUCKET);
+                    output.accept(ModItems.MAN_O_WAR_BUCKET);
+                    output.accept(ModItems.MARINE_IGUANA_BUCKET);
                     output.accept(ModItems.PSYCHO_JELLY_BUCKET);
-                    output.accept(ModItems.SNAIL_SHELL);
+                    output.accept(ModItems.SEA_BUNNY_BUCKET);
+                    output.accept(ModItems.SNAIL_BUCKET);
+                    output.accept(ModItems.STINGRAY_BUCKET);
+                    output.accept(ModItems.SUNFISH_BUCKET);
 
                     // Salt
                     output.accept(ModItems.SALT);
@@ -372,10 +399,13 @@ public final class ModCreativeTabs {
                     output.accept(ModBlocks.GLOW_GOOP);
 
                     // Lanterns
-                    output.accept(ModBlocks.PROTECTIVE_LANTERN);
                     output.accept(ModBlocks.WATER_LANTERN);
                     output.accept(ModBlocks.LAVA_LANTERN);
+                    output.accept(ModBlocks.PROTECTIVE_LANTERN);
                     output.accept(ModBlocks.SMITE_LANTERN);
+
+                    // Shelves
+                    ModBlocks.SHELVES.forEach(output::accept);
 
                     // Nature/Misc
                     output.accept(ModBlocks.PALE_MOSS_BLOCK);
@@ -414,9 +444,6 @@ public final class ModCreativeTabs {
                     ModBlocks.BUTTERFLY_JARS.values().forEach(output::accept);
                     output.accept(ModBlocks.CATERPILLAR_JAR);
 
-                    // Shelves
-                    ModBlocks.SHELVES.forEach(output::accept);
-
                     // Caught Butterflies
                     for (Butterfly.Variant variant : Butterfly.Variant.values()) {
                         output.accept(ModItems.BUTTERFLIES.get(variant).get());
@@ -426,56 +453,66 @@ public final class ModCreativeTabs {
                     // Food and Drops
                     output.accept(ModItems.BASS);
                     output.accept(ModItems.COOKED_BASS);
-                    output.accept(ModItems.RAW_SNAIL);
-                    output.accept(ModItems.COOKED_SNAIL);
-                    output.accept(ModItems.RAW_SHRIMP);
-                    output.accept(ModItems.STEAMED_SHRIMP);
-                    output.accept(ModItems.RAW_WILD_BIRD_MEAT);
-                    output.accept(ModItems.COOKED_WILD_BIRD_MEAT);
-                    output.accept(ModItems.RAW_WILD_GAME_MEAT);
-                    output.accept(ModItems.COOKED_WILD_GAME_MEAT);
-                    output.accept(ModItems.RAW_CRAB_MEAT);
-                    output.accept(ModItems.STEAMED_CRAB_MEAT);
+                    output.accept(ModItems.RAW_BONNETHEAD);
+                    output.accept(ModItems.COOKED_BONNETHEAD);
                     output.accept(ModItems.CATFISH);
                     output.accept(ModItems.COOKED_CATFISH);
-                    output.accept(ModItems.LIZARD_TAIL);
-                    output.accept(ModItems.COOKED_LIZARD_TAIL);
-                    output.accept(ModItems.COOKED_EGG);
+                    output.accept(ModItems.RAW_CICHLID);
+                    output.accept(ModItems.COOKED_CICHLID);
+                    output.accept(ModItems.RAW_GOBLIN_SHARK);
+                    output.accept(ModItems.COOKED_GOBLIN_SHARK);
+                    output.accept(ModItems.RAW_GUITARFISH);
+                    output.accept(ModItems.COOKED_GUITARFISH);
                     output.accept(ModItems.RAW_SUNFISH_MEAT);
                     output.accept(ModItems.COOKED_SUNFISH_MEAT);
                     output.accept(ModItems.RAW_GOLDEN_SUNFISH_MEAT);
                     output.accept(ModItems.COOKED_GOLDEN_SUNFISH_MEAT);
+                    output.accept(ModItems.RAW_CRAB_MEAT);
+                    output.accept(ModItems.STEAMED_CRAB_MEAT);
                     output.accept(ModItems.RAW_KRILL);
                     output.accept(ModItems.FRIED_KRILL);
+                    output.accept(ModItems.RAW_SHRIMP);
+                    output.accept(ModItems.STEAMED_SHRIMP);
+                    output.accept(ModItems.RAW_SNAIL);
+                    output.accept(ModItems.COOKED_SNAIL);
                     output.accept(ModItems.JELLYFISH_JELLY);
                     output.accept(ModItems.SEA_URCHIN_CAVIAR);
-                    output.accept(ModItems.RAW_CICHLID);
-                    output.accept(ModItems.COOKED_CICHLID);
-                    output.accept(ModItems.RAW_BONNETHEAD);
-                    output.accept(ModItems.COOKED_BONNETHEAD);
-                    output.accept(ModItems.RAW_GUITARFISH);
-                    output.accept(ModItems.COOKED_GUITARFISH);
-                    output.accept(ModItems.RAW_GOBLIN_SHARK);
-                    output.accept(ModItems.COOKED_GOBLIN_SHARK);
+                    output.accept(ModItems.RAW_WILD_GAME_MEAT);
+                    output.accept(ModItems.COOKED_WILD_GAME_MEAT);
+                    output.accept(ModItems.RAW_WILD_BIRD_MEAT);
+                    output.accept(ModItems.COOKED_WILD_BIRD_MEAT);
+                    output.accept(ModItems.LIZARD_TAIL);
+                    output.accept(ModItems.COOKED_LIZARD_TAIL);
+                    output.accept(ModItems.COOKED_EGG);
 
                     // Eggs
                     output.accept(ModItems.BLUE_EGG);
                     output.accept(ModItems.BROWN_EGG);
                     output.accept(ModItems.DUCK_EGG);
-                    output.accept(ModItems.PHEASANT_EGG);
-                    output.accept(ModItems.ALLIGATOR_EGG);
-                    output.accept(ModItems.TORTOISE_EGG);
-                    output.accept(ModItems.SNAIL_EGG);
-                    output.accept(ModItems.KIWI_EGG);
-                    output.accept(ModItems.PENGUIN_EGG);
                     output.accept(ModItems.EMU_EGG);
                     output.accept(ModItems.HOOPOE_EGG);
+                    output.accept(ModItems.KIWI_EGG);
+                    output.accept(ModItems.PENGUIN_EGG);
+                    output.accept(ModItems.PHEASANT_EGG);
                     output.accept(ModItems.TOUCAN_EGG);
-                    output.accept(ModItems.COCONUT);
+                    output.accept(ModItems.ALLIGATOR_EGG);
                     output.accept(ModItems.CRAB_CLAW);
                     output.accept(ModItems.CRAB_EGG);
+                    output.accept(ModItems.SNAIL_EGG);
+                    output.accept(ModItems.TORTOISE_EGG);
+
+                    // Water Stuffs
+                    output.accept(ModBlocks.WATER_SOURCE_TRICKLE);
+                    output.accept(ModBlocks.STONE_BRICKS_FAUCET);
+                    output.accept(ModBlocks.STONE_BRICKS_WATER_JET);
+                    output.accept(ModBlocks.STONE_BRICKS_POOL);
+                    output.accept(ModBlocks.STONE_BRICKS_SMALL_POOL);
+
+                    // Very Random
+                    output.accept(ModItems.COCONUT);
                     output.accept(ModItems.WILDFIRE_CROWN);
                     output.accept(ModItems.WILDFIRE_CROWN_FRAGMENT);
+
                 }).build();
     }
 
