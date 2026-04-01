@@ -436,6 +436,7 @@ public class ClientModEvents {
         event.registerBlockEntityRenderer(ModBlockEntities.FIREFLY_JAR.get(), com.otterly76.ott.client.render.blockentity.FireflyJarRenderer::new);
         event.registerBlockEntityRenderer(ModBlockEntities.BUTTERFLY_JAR.get(), com.otterly76.ott.client.renderer.block.ButterflyJarRenderer::new);
         event.registerBlockEntityRenderer(ModBlockEntities.CATERPILLAR_JAR.get(), com.otterly76.ott.client.renderer.block.CaterpillarJarRenderer::new);
+        event.registerBlockEntityRenderer(ModBlockEntities.ELEVATOR.get(), com.otterly76.ott.client.render.blockentity.ElevatorArrowRenderer::new);
     }
 
     public static void registerLayerDefinitions(EntityRenderersEvent.RegisterLayerDefinitions event) {
