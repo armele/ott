@@ -1,8 +1,5 @@
 Notes:
 =====
-big lily pads
-custom entity spawns
-terrain too stretched out
 
 Mods to Implement:
 =====
