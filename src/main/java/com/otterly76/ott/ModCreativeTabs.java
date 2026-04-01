@@ -227,9 +227,9 @@ public final class ModCreativeTabs {
                     output.accept(ModItems.ICEOLOGER_SPAWN_EGG);
                     output.accept(ModItems.ILLUSIONER_SPAWN_EGG);
                     output.accept(ModItems.IMPALA_SPAWN_EGG);
-                    output.accept(ModItems.JELLYFISH_3_SPAWN_EGG);
-                    output.accept(ModItems.JELLYFISH_2_SPAWN_EGG);
-                    output.accept(ModItems.JELLYFISH_SPAWN_EGG);
+                    output.accept(ModItems.JELLYFISH_3_SPAWN_EGG); //TODO rename Medium_Jellyfish
+                    output.accept(ModItems.JELLYFISH_2_SPAWN_EGG); //TODO rename Small_Jellyfish
+                    output.accept(ModItems.JELLYFISH_SPAWN_EGG); //TODO rename Large_Jellyfish
                     output.accept(ModItems.JUMPING_SPIDER_SPAWN_EGG);
                     output.accept(ModItems.KIWI_SPAWN_EGG);
                     output.accept(ModItems.KOI_FISH_SPAWN_EGG);
@@ -267,13 +267,13 @@ public final class ModCreativeTabs {
                     output.accept(ModItems.SAND_CRAB_SPAWN_EGG);
                     output.accept(ModItems.SAND_HERMIT_SPAWN_EGG); //TODO remove all sand_hermit
                     output.accept(ModItems.SASQUATCH_SPAWN_EGG);
-                    output.accept(ModItems.SEAHORSE_1_SPAWN_EGG);
+                    output.accept(ModItems.SEAHORSE_1_SPAWN_EGG); //TODO rename all seahorse_1 to seahorse
                     output.accept(ModItems.SEAL_SPAWN_EGG);
                     output.accept(ModItems.SEA_BUNNY_SPAWN_EGG);
                     output.accept(ModItems.SEA_URCHIN_SPAWN_EGG);
                     output.accept(ModItems.SEA_VIPER_SPAWN_EGG);
                     output.accept(ModItems.SHADOW_SPAWN_EGG);
-                    output.accept(ModItems.SHRIMP_1_SPAWN_EGG); //TODO rename all shrimp_1 to shrimp
+                    output.accept(ModItems.SHRIMP_1_SPAWN_EGG); //TODO rename all shrimp_1 to ethereal_shrimp
                     output.accept(ModItems.SKINWALKER_SPAWN_EGG);
                     output.accept(ModItems.SMALL_FIREFLY_SPAWN_EGG);
                     output.accept(ModItems.SNAIL_SPAWN_EGG);
@@ -282,7 +282,7 @@ public final class ModCreativeTabs {
                     output.accept(ModItems.SPECTRE_SPAWN_EGG);
                     output.accept(ModItems.SPOONBILL_SPAWN_EGG);
                     output.accept(ModItems.SQUONK_SPAWN_EGG);
-                    output.accept(ModItems.STARFISH_1_SPAWN_EGG);
+                    output.accept(ModItems.STARFISH_1_SPAWN_EGG); //TODO rename all starfish_1 to starfish
                     output.accept(ModItems.STINGRAY_SPAWN_EGG);
                     output.accept(ModItems.STORK_SPAWN_EGG);
                     output.accept(ModItems.SUNFISH_SPAWN_EGG);
