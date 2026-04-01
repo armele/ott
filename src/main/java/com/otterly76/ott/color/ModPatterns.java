@@ -30,9 +30,12 @@ public final class ModPatterns {
 
     private static List<String> findPatterns() {
         List<String> patterns = new ArrayList<>();
-        // In IDE, we can check the physical path
         try {
-            Path assetsPath = Paths.get("src", "main", "resources", "assets", Constants.MOD_ID, "textures", "block", "patterns");
+            // Use the system property set by Gradle for all run configs (client, data, server)
+            String sourceResources = System.getProperty("ott.sourceResources");
+            Path assetsPath = sourceResources != null
+                    ? Paths.get(sourceResources, "assets", Constants.MOD_ID, "textures", "block", "patterns")
+                    : Paths.get("src", "main", "resources", "assets", Constants.MOD_ID, "textures", "block", "patterns");
             if (Files.exists(assetsPath) && Files.isDirectory(assetsPath)) {
                 try (Stream<Path> files = Files.list(assetsPath)) {
                     files.filter(f -> f.toString().endsWith(".png"))
@@ -43,7 +46,7 @@ public final class ModPatterns {
         } catch (Exception ignored) {
         }
 
-        // Fallback for when running in production/JAR if no patterns were found
+        // Fallback for production JAR
         if (patterns.isEmpty()) {
             patterns.add("dyed_cobblestone");
         }

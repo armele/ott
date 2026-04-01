@@ -1,0 +1,21 @@
+{
+    "render_type": "minecraft:translucent",
+    "textures": {
+        "water": "minecraft:block/water_flow",
+        "particle": "minecraft:block/stone_bricks"
+    },
+    "elements": [
+        {
+            "from": [6, -1, 6],
+            "to": [10, 15, 10],
+            "faces": {
+                "north": {"uv": [0, 0, 4, 16], "texture": "#water", "tintindex": 0},
+                "east":  {"uv": [0, 0, 4, 16], "texture": "#water", "tintindex": 0},
+                "south": {"uv": [0, 0, 4, 16], "texture": "#water", "tintindex": 0},
+                "west":  {"uv": [0, 0, 4, 16], "texture": "#water", "tintindex": 0},
+                "up":    {"uv": [0, 0, 4,  4], "texture": "#water", "tintindex": 0},
+                "down":  {"uv": [0, 0, 4,  4], "texture": "#water", "tintindex": 0}
+            }
+        }
+    ]
+}

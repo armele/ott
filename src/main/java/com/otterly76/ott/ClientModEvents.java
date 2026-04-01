@@ -87,6 +87,7 @@ public class ClientModEvents {
         modBus.addListener(com.otterly76.ott.client.handler.BlockModelHandler::onModelBaking);
         modBus.addListener(com.otterly76.ott.client.handler.EmissiveModelHandler::onModelBake);
         modBus.addListener(com.otterly76.ott.client.handler.EmissiveModelHandler::onRegisterAdditionalModels);
+        modBus.addListener(ClientModEvents::onRegisterGeometryLoaders);
         modBus.addListener(ClientModEvents::onRegisterReloadListeners);
         modBus.addListener(ClientModEvents::onRegisterTooltipComponents);
     }
@@ -98,6 +99,11 @@ public class ClientModEvents {
 
     public static void onRegisterTooltipComponents(RegisterClientTooltipComponentFactoriesEvent event) {
         event.register(FoodTooltipComponent.class, ClientFoodTooltipComponent::new);
+    }
+
+    public static void onRegisterGeometryLoaders(ModelEvent.RegisterGeometryLoaders event) {
+        event.register(ResourceLocation.fromNamespaceAndPath(MOD_ID, "connecting"),
+                com.otterly76.ott.client.model.ctm.ConnectingModelLoader.INSTANCE);
     }
 
     public static void onRegisterAdditional(ModelEvent.RegisterAdditional event) {
