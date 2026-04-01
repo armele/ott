@@ -12,10 +12,6 @@ import static com.otterly76.ott.Constants.MOD_ID;
 public class FireflyJarModel extends GeoModel<FireflyJarBlockEntity> {
     @Override
     public ResourceLocation getModelResource(FireflyJarBlockEntity animatable) {
-        return getModelResource(animatable, null);
-    }
-
-    public ResourceLocation getModelResource(FireflyJarBlockEntity animatable, @org.jetbrains.annotations.Nullable software.bernie.geckolib.renderer.GeoRenderer<FireflyJarBlockEntity> renderer) {
         if (animatable.getBlockState().is(ModBlocks.FIREFLY_IN_A_JAR.get())) {
             return ResourceLocation.fromNamespaceAndPath(MOD_ID, "geo/block/jar/firefly_in_a_jar.geo.json");
         } else if (animatable.getBlockState().is(ModBlocks.FIREFLIES_IN_A_JAR.get())) {
@@ -27,10 +23,6 @@ public class FireflyJarModel extends GeoModel<FireflyJarBlockEntity> {
 
     @Override
     public ResourceLocation getTextureResource(FireflyJarBlockEntity animatable) {
-        return getTextureResource(animatable, null);
-    }
-
-    public ResourceLocation getTextureResource(FireflyJarBlockEntity animatable, @org.jetbrains.annotations.Nullable software.bernie.geckolib.renderer.GeoRenderer<FireflyJarBlockEntity> renderer) {
         return ResourceLocation.fromNamespaceAndPath(MOD_ID, "textures/block/jar/firefly_jar.png");
     }
 
