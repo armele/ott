@@ -29,3 +29,6 @@ run-data
 repo
 /.output.txt
 /.claude/settings.local.json
+/config/ott.json
+/logs/debug.log
+/logs/latest.log
