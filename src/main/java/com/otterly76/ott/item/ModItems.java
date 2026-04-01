@@ -676,6 +676,43 @@ public class ModItems {
     public static final DeferredItem<Item> WILDFIRE_CROWN_FRAGMENT = ITEMS.register("wildfire_crown_fragment",
             () -> new Item(new Item.Properties().fireResistant()));
 
+    // -------------------------------------------------------------------------
+    // --- Mosaic / Fresco decorative block items ---
+    // -------------------------------------------------------------------------
+    public static final DeferredHolder<Item, BlockItem> MORAQ_MOSAIC_BORDER      = registerBlockItem("moraq_mosaic_border",      ModBlocks.MORAQ_MOSAIC_BORDER);
+    public static final DeferredHolder<Item, BlockItem> MORAQ_MOSAIC_GEOMETRIC   = registerBlockItem("moraq_mosaic_geometric",   ModBlocks.MORAQ_MOSAIC_GEOMETRIC);
+    public static final DeferredHolder<Item, BlockItem> MORAQ_MOSAIC_PATTERN     = registerBlockItem("moraq_mosaic_pattern",     ModBlocks.MORAQ_MOSAIC_PATTERN);
+    public static final DeferredHolder<Item, BlockItem> MORAQ_MOSAIC_DELICATE    = registerBlockItem("moraq_mosaic_delicate",    ModBlocks.MORAQ_MOSAIC_DELICATE);
+    public static final DeferredHolder<Item, BlockItem> MORAQ_MOSAIC_TRADITIONAL = registerBlockItem("moraq_mosaic_traditional", ModBlocks.MORAQ_MOSAIC_TRADITIONAL);
+    public static final DeferredHolder<Item, BlockItem> MORAQ_MOSAIC_RECESS      = registerBlockItem("moraq_mosaic_recess",      ModBlocks.MORAQ_MOSAIC_RECESS);
+    public static final DeferredHolder<Item, BlockItem> MOSAIC_FLOOR             = registerBlockItem("mosaic_floor",             ModBlocks.MOSAIC_FLOOR);
+    public static final DeferredHolder<Item, BlockItem> MOSAIC_FLOOR_DELICATE    = registerBlockItem("mosaic_floor_delicate",    ModBlocks.MOSAIC_FLOOR_DELICATE);
+    public static final DeferredHolder<Item, BlockItem> MOSAIC_FLOOR_ROSETTE     = registerBlockItem("mosaic_floor_rosette",     ModBlocks.MOSAIC_FLOOR_ROSETTE);
+    public static final DeferredHolder<Item, BlockItem> ROMAN_FRESCO_RED         = registerBlockItem("roman_fresco_red",         ModBlocks.ROMAN_FRESCO_RED);
+    public static final DeferredHolder<Item, BlockItem> ROMAN_FRESCO_BLACK       = registerBlockItem("roman_fresco_black",       ModBlocks.ROMAN_FRESCO_BLACK);
+
+    // -------------------------------------------------------------------------
+    // --- Stone brick functional block items ---
+    // -------------------------------------------------------------------------
+    public static final DeferredHolder<Item, BlockItem> STONE_BRICKS_ARROWSLIT     = registerBlockItem("stone_bricks_arrowslit",     ModBlocks.STONE_BRICKS_ARROWSLIT);
+    public static final DeferredHolder<Item, BlockItem> STONE_BRICKS_MACHICOLATION = registerBlockItem("stone_bricks_machicolation",  ModBlocks.STONE_BRICKS_MACHICOLATION);
+    public static final DeferredHolder<Item, BlockItem> WATER_SOURCE_TRICKLE       = registerBlockItem("water_source_trickle",        ModBlocks.WATER_SOURCE_TRICKLE);
+    public static final DeferredHolder<Item, BlockItem> STONE_BRICKS_FAUCET        = registerBlockItem("stone_bricks_faucet",         ModBlocks.STONE_BRICKS_FAUCET);
+    public static final DeferredHolder<Item, BlockItem> STONE_BRICKS_POOL          = registerBlockItem("stone_bricks_pool",           ModBlocks.STONE_BRICKS_POOL);
+    public static final DeferredHolder<Item, BlockItem> STONE_BRICKS_SMALL_POOL    = registerBlockItem("stone_bricks_small_pool",     ModBlocks.STONE_BRICKS_SMALL_POOL);
+    public static final DeferredHolder<Item, BlockItem> STONE_BRICKS_WATER_JET     = registerBlockItem("stone_bricks_water_jet",      ModBlocks.STONE_BRICKS_WATER_JET);
+
+    // -------------------------------------------------------------------------
+    // --- Oak structural block items ---
+    // -------------------------------------------------------------------------
+    public static final DeferredHolder<Item, BlockItem> OAK_PERGOLA       = registerBlockItem("oak_pergola",       ModBlocks.OAK_PERGOLA);
+    public static final DeferredHolder<Item, BlockItem> OAK_BEAM          = registerBlockItem("oak_beam",          ModBlocks.OAK_BEAM);
+    public static final DeferredHolder<Item, BlockItem> OAK_PLANKS_PLATE  = registerBlockItem("oak_planks_plate",  ModBlocks.OAK_PLANKS_PLATE);
+    public static final DeferredHolder<Item, BlockItem> OAK_PLANKS_EDGE   = registerBlockItem("oak_planks_edge",   ModBlocks.OAK_PLANKS_EDGE);
+    public static final DeferredHolder<Item, BlockItem> OAK_BALUSTER      = registerBlockItem("oak_baluster",      ModBlocks.OAK_BALUSTER);
+    public static final DeferredHolder<Item, BlockItem> OAK_SUPPORT_SLAB  = registerBlockItem("oak_support_slab",  ModBlocks.OAK_SUPPORT_SLAB);
+    public static final DeferredHolder<Item, BlockItem> OAK_SUPPORT_BEAM  = registerBlockItem("oak_support_beam",  ModBlocks.OAK_SUPPORT_BEAM);
+
     public static void register(IEventBus eventBus) {
         // 1. Run dynamic logic to set up the registration entries
         initializeDynamicItems();
