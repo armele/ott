@@ -11,7 +11,7 @@
     {
       "type": "ott:river_lichen_filter",
       "min_y": 58,
-      "max_y": 72,
+      "max_y": 192,
       "river_parameters": "ott:underground_river/parameters"
     },
     {

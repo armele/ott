@@ -2,8 +2,8 @@
 {
   "type": "minecraft:flat_cache",
   "argument": {
-	  
-	  "type": "cache_2d",
-	  "argument": "ott:topography_swamps"
+    
+    "type": "minecraft:cache_2d",
+    "argument": "ott:topography_swamps"
   }
 }

@@ -1,16 +1,16 @@
 
 {
   
-  "type": "flat_cache",
+  "type": "minecraft:flat_cache",
   "argument": {
   
-  "type": "cache_2d",
+  "type": "minecraft:cache_2d",
   "argument": {
     
-    "type": "add",
+    "type": "minecraft:add",
     "argument1": {
       
-      "type": "add",
+      "type": "minecraft:add",
       "argument1": "ott:coastal_cliffs",
       "argument2": "ott:topography_mountains"
     },

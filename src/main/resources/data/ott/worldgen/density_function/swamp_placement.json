@@ -1,27 +1,27 @@
 
 {
   
-  "type": "flat_cache",
+  "type": "minecraft:flat_cache",
   "argument": {
   
-  "type": "cache_2d",
+  "type": "minecraft:cache_2d",
   "argument": {
     
     "type": "minecraft:spline",
     "spline": {
       "coordinate": {
         
-        "type": "add",
+        "type": "minecraft:add",
         "argument1": {
           
-          "type": "add",
+          "type": "minecraft:add",
           "argument1": {
             
             "type": "minecraft:spline",
             "spline": {
               "coordinate": {
                 
-                "type": "noise",
+                "type": "minecraft:noise",
                 "noise": "ott:mesa_placement",
                 "xz_scale": 0.1,
                 "y_scale": 0
@@ -42,16 +42,16 @@
           },
           "argument2": {
             
-            "type": "add",
+            "type": "minecraft:add",
             "argument1": {
               
-              "type": "add",
+              "type": "minecraft:add",
               "argument1": {
                 
-                "type": "abs",
+                "type": "minecraft:abs",
                 "argument": {
                   
-                  "type": "noise",
+                  "type": "minecraft:noise",
                   "noise": "ott:humidity",
                   "xz_scale": 0.15,
                   "y_scale": 0
@@ -64,17 +64,17 @@
         },
         "argument2": {
           
-          "type": "add",
+          "type": "minecraft:add",
           "argument1": {
             
             "type": "minecraft:spline",
             "spline": {
               "coordinate": {
                 
-                "type": "add",
+                "type": "minecraft:add",
                 "argument1": {
                   
-                  "type": "mul",
+                  "type": "minecraft:mul",
                   "argument1": "ott:erosion_detail",
                   "argument2": 3 
                 },

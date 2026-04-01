@@ -1,29 +1,29 @@
 
 {
   
-  "type": "flat_cache",
+  "type": "minecraft:flat_cache",
   "argument": {
     
-    "type": "cache_2d",
+    "type": "minecraft:cache_2d",
     "argument": {
       
-      "type": "mul",
+      "type": "minecraft:mul",
       "argument1": {
         
         "type": "minecraft:spline",
         "spline": {
           "coordinate": {
             
-            "type": "add",
+            "type": "minecraft:add",
             "argument1": {
               
-              "type": "mul",
+              "type": "minecraft:mul",
               "argument1": {
                 
-                "type": "abs",
+                "type": "minecraft:abs",
                 "argument": {
                   
-                  "type": "noise",
+                  "type": "minecraft:noise",
                   "noise": "minecraft:erosion",
                   "xz_scale": 1.25,
                   "y_scale": 0
@@ -59,7 +59,7 @@
       },
       "argument2": {
         
-        "type": "mul",
+        "type": "minecraft:mul",
         "argument1": 0.5, 
         "argument2": {
           
@@ -67,14 +67,14 @@
           "spline": {
             "coordinate": {
               
-              "type": "mul",
+              "type": "minecraft:mul",
               "argument1": 1.2, 
               "argument2": {
                 
-                "type": "abs",
+                "type": "minecraft:abs",
                 "argument": {
                   
-                  "type": "noise",
+                  "type": "minecraft:noise",
                   "noise": "ott:mountains_shape",
                   "xz_scale": 79.1,
                   "y_scale": 0

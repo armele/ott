@@ -5,7 +5,7 @@
     "argument1": 1,
     "argument2": {
       "type": "minecraft:mul",
-      "argument1": 0.35,
+      "argument1": -0.018,
       "argument2": {
         "type": "minecraft:abs",
         "argument": {

@@ -1,7 +1,9 @@
 package com.otterly76.ott.worldgen;
 
+import com.otterly76.ott.worldgen.feature.BigLilyPadFeature;
 import com.otterly76.ott.worldgen.feature.CactusFlowerFeature;
 import com.otterly76.ott.worldgen.feature.FallenTreeFeature;
+import com.otterly76.ott.worldgen.feature.GravitySettleFeature;
 import com.otterly76.ott.worldgen.feature.HollowRootFeature;
 import com.otterly76.ott.worldgen.feature.LeafLitterFeature;
 import com.otterly76.ott.worldgen.feature.config.FallenTreeConfiguration;
@@ -43,9 +45,14 @@ public class ModFeatures {
             () -> new CactusFlowerFeature(NoneFeatureConfiguration.CODEC)
     );
 
-    public static final DeferredHolder<Feature<?>, com.otterly76.ott.worldgen.feature.BigLilyPadFeature> BIG_LILY_PAD = FEATURES.register(
+    public static final DeferredHolder<Feature<?>, BigLilyPadFeature> BIG_LILY_PAD = FEATURES.register(
             "big_lily_pad",
-            () -> new com.otterly76.ott.worldgen.feature.BigLilyPadFeature(NoneFeatureConfiguration.CODEC)
+            () -> new BigLilyPadFeature(NoneFeatureConfiguration.CODEC)
+    );
+
+    public static final DeferredHolder<Feature<?>, GravitySettleFeature> GRAVITY_SETTLE = FEATURES.register(
+            "gravity_settle",
+            () -> new GravitySettleFeature(NoneFeatureConfiguration.CODEC)
     );
 
     public static void register(IEventBus eventBus) {

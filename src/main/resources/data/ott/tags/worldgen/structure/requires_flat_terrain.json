@@ -1,0 +1,9 @@
+{
+  "values": [
+    "minecraft:village/plains",
+    "minecraft:village/desert",
+    "minecraft:village/savanna",
+    "minecraft:village/snowy",
+    "minecraft:village/taiga"
+  ]
+}

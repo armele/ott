@@ -1,17 +1,17 @@
 
 {
   
-  "type": "flat_cache",
+  "type": "minecraft:flat_cache",
   "argument": {
   
-  "type": "cache_2d",
+  "type": "minecraft:cache_2d",
   "argument": {
     
     "type": "minecraft:spline",
     "spline": {
       "coordinate": {
         
-        "type": "max",
+        "type": "minecraft:max",
         "argument1": "ott:continents",
         "argument2": {
           
@@ -22,7 +22,7 @@
               {
                 "location": 0.14360335362930743,
                 "value": -0.1310218390591008,
-                "derivative": 18.0000000000004
+                "derivative": 18
               },
               {
                 "location": 0.14880633072371618,

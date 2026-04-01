@@ -1,18 +1,18 @@
 {
-  "type": "cache_once",
+  "type": "minecraft:cache_once",
   "argument": {
-    "type": "add",
+    "type": "minecraft:add",
     "argument1": {
       "type": "minecraft:spline",
       "spline": {
         "coordinate": {
-          "type": "add",
+          "type": "minecraft:add",
           "argument1": {
-            "type": "add",
+            "type": "minecraft:add",
             "argument1": {
-              "type": "abs",
+              "type": "minecraft:abs",
               "argument": {
-                "type": "noise",
+                "type": "minecraft:noise",
                 "noise": "minecraft:noodle",
                 "xz_scale": 1.25,
                 "y_scale": 5.0
@@ -21,11 +21,11 @@
             "argument2": -0.05
           },
           "argument2": {
-            "type": "add",
+            "type": "minecraft:add",
             "argument1": {
-              "type": "abs",
+              "type": "minecraft:abs",
               "argument": {
-                "type": "noise",
+                "type": "minecraft:noise",
                 "noise": "ott:orogeny",
                 "xz_scale": 4,
                 "y_scale": 13.0
@@ -49,13 +49,13 @@
       }
     },
     "argument2": {
-      "type": "mul",
+      "type": "minecraft:mul",
       "argument1": {
-        "type": "clamp",
-        "min": -9.71445146547012e-16,
-        "max": 4.000000000000002,
+        "type": "minecraft:clamp",
+        "min": 0.0,
+        "max": 4.0,
         "input": {
-          "type": "noise",
+          "type": "minecraft:noise",
           "noise": "minecraft:pillar",
           "xz_scale": 6.5,
           "y_scale": 0.25
