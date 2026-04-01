@@ -47,7 +47,7 @@ public class ConnectingBakedModel extends BakedModelWrapper<net.minecraft.client
         BlockPos[][] offsets = new BlockPos[6][8];
         // Horizontal faces
         buildOffsets(offsets, Direction.UP,    Direction.NORTH, Direction.EAST);
-        buildOffsets(offsets, Direction.DOWN,  Direction.NORTH, Direction.WEST);
+        buildOffsets(offsets, Direction.DOWN,  Direction.SOUTH, Direction.EAST);
         // Vertical faces — "top" = UP; "right" defined by which side is rightward when
         // viewed from outside the block
         buildOffsets(offsets, Direction.NORTH, Direction.UP, Direction.EAST);
@@ -182,7 +182,6 @@ public class ConnectingBakedModel extends BakedModelWrapper<net.minecraft.client
     static {
         FLIP_H[Direction.NORTH.ordinal()] = true;
         FLIP_H[Direction.SOUTH.ordinal()] = true;
-        FLIP_H[Direction.DOWN.ordinal()]  = true;
     }
 
     /**
