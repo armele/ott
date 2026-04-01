@@ -227,9 +227,9 @@ public final class ModCreativeTabs {
                     output.accept(ModItems.ICEOLOGER_SPAWN_EGG);
                     output.accept(ModItems.ILLUSIONER_SPAWN_EGG);
                     output.accept(ModItems.IMPALA_SPAWN_EGG);
-                    output.accept(ModItems.JELLYFISH_3_SPAWN_EGG); //TODO rename Small
+                    output.accept(ModItems.JELLYFISH_3_SPAWN_EGG);
                     output.accept(ModItems.JELLYFISH_2_SPAWN_EGG);
-                    output.accept(ModItems.JELLYFISH_SPAWN_EGG); //TODO rename Large
+                    output.accept(ModItems.JELLYFISH_SPAWN_EGG);
                     output.accept(ModItems.JUMPING_SPIDER_SPAWN_EGG);
                     output.accept(ModItems.KIWI_SPAWN_EGG);
                     output.accept(ModItems.KOI_FISH_SPAWN_EGG);
