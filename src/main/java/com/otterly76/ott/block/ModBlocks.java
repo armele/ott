@@ -656,6 +656,84 @@ public class ModBlocks {
     public static final DeferredBlock<CrabEggBlock> CRAB_EGG = BLOCKS.register("crab_egg",
             () -> new CrabEggBlock(BlockBehaviour.Properties.of().mapColor(MapColor.SAND).strength(0.5F).sound(SoundType.METAL).noOcclusion().randomTicks()));
 
+    // -------------------------------------------------------------------------
+    // --- Mosaic / Fresco decorative blocks ---
+    // -------------------------------------------------------------------------
+    public static final DeferredBlock<Block> MORAQ_MOSAIC_BORDER = register("moraq_mosaic_border",
+            () -> new Block(Properties.of().strength(1.5f).requiresCorrectToolForDrops().sound(SoundType.STONE)));
+    public static final DeferredBlock<Block> MORAQ_MOSAIC_GEOMETRIC = register("moraq_mosaic_geometric",
+            () -> new Block(Properties.of().strength(1.5f).requiresCorrectToolForDrops().sound(SoundType.STONE)));
+    public static final DeferredBlock<Block> MORAQ_MOSAIC_PATTERN = register("moraq_mosaic_pattern",
+            () -> new Block(Properties.of().strength(1.5f).requiresCorrectToolForDrops().sound(SoundType.STONE)));
+    public static final DeferredBlock<Block> MORAQ_MOSAIC_DELICATE = register("moraq_mosaic_delicate",
+            () -> new Block(Properties.of().strength(1.5f).requiresCorrectToolForDrops().sound(SoundType.STONE)));
+    public static final DeferredBlock<Block> MORAQ_MOSAIC_TRADITIONAL = register("moraq_mosaic_traditional",
+            () -> new Block(Properties.of().strength(1.5f).requiresCorrectToolForDrops().sound(SoundType.STONE)));
+    public static final DeferredBlock<com.otterly76.ott.block.custom.MoraqMosaicRecessBlock> MORAQ_MOSAIC_RECESS = register("moraq_mosaic_recess",
+            () -> new com.otterly76.ott.block.custom.MoraqMosaicRecessBlock(
+                    net.minecraft.world.level.block.Blocks.STONE_BRICKS.defaultBlockState(),
+                    Properties.of().strength(1.5f).requiresCorrectToolForDrops().sound(SoundType.STONE).noOcclusion()));
+    public static final DeferredBlock<Block> MOSAIC_FLOOR = register("mosaic_floor",
+            () -> new Block(Properties.of().strength(1.5f).requiresCorrectToolForDrops().sound(SoundType.STONE)));
+    public static final DeferredBlock<Block> MOSAIC_FLOOR_DELICATE = register("mosaic_floor_delicate",
+            () -> new Block(Properties.of().strength(1.5f).requiresCorrectToolForDrops().sound(SoundType.STONE)));
+    public static final DeferredBlock<Block> MOSAIC_FLOOR_ROSETTE = register("mosaic_floor_rosette",
+            () -> new Block(Properties.of().strength(1.5f).requiresCorrectToolForDrops().sound(SoundType.STONE)));
+    public static final DeferredBlock<Block> ROMAN_FRESCO_RED = register("roman_fresco_red",
+            () -> new Block(Properties.of().strength(1.5f).requiresCorrectToolForDrops().sound(SoundType.STONE)));
+    public static final DeferredBlock<Block> ROMAN_FRESCO_BLACK = register("roman_fresco_black",
+            () -> new Block(Properties.of().strength(1.5f).requiresCorrectToolForDrops().sound(SoundType.STONE)));
+
+    // -------------------------------------------------------------------------
+    // --- Stone brick functional blocks ---
+    // -------------------------------------------------------------------------
+    public static final DeferredBlock<com.otterly76.ott.block.custom.ArrowslitBlock> STONE_BRICKS_ARROWSLIT = register("stone_bricks_arrowslit",
+            () -> new com.otterly76.ott.block.custom.ArrowslitBlock(
+                    Properties.of().strength(1.5f).requiresCorrectToolForDrops().sound(SoundType.STONE).noOcclusion()));
+    public static final DeferredBlock<com.otterly76.ott.block.custom.MachincolationBlock> STONE_BRICKS_MACHICOLATION = register("stone_bricks_machicolation",
+            () -> new com.otterly76.ott.block.custom.MachincolationBlock(
+                    Properties.of().strength(1.5f).requiresCorrectToolForDrops().sound(SoundType.STONE).noOcclusion()));
+    public static final DeferredBlock<com.otterly76.ott.block.custom.WaterTrickleSourceBlock> WATER_SOURCE_TRICKLE = register("water_source_trickle",
+            () -> new com.otterly76.ott.block.custom.WaterTrickleSourceBlock(
+                    Properties.of().strength(1.5f).requiresCorrectToolForDrops().sound(SoundType.STONE).noOcclusion()));
+    public static final DeferredBlock<com.otterly76.ott.block.custom.FaucetBlock> STONE_BRICKS_FAUCET = register("stone_bricks_faucet",
+            () -> new com.otterly76.ott.block.custom.FaucetBlock(
+                    Properties.of().strength(1.5f).requiresCorrectToolForDrops().sound(SoundType.STONE).noOcclusion()));
+    public static final DeferredBlock<com.otterly76.ott.block.custom.PoolBlock> STONE_BRICKS_POOL = register("stone_bricks_pool",
+            () -> new com.otterly76.ott.block.custom.PoolBlock(
+                    Properties.of().strength(1.5f).requiresCorrectToolForDrops().sound(SoundType.STONE).noOcclusion()));
+    public static final DeferredBlock<com.otterly76.ott.block.custom.SmallPoolBlock> STONE_BRICKS_SMALL_POOL = register("stone_bricks_small_pool",
+            () -> new com.otterly76.ott.block.custom.SmallPoolBlock(
+                    Properties.of().strength(1.5f).requiresCorrectToolForDrops().sound(SoundType.STONE).noOcclusion()));
+    public static final DeferredBlock<com.otterly76.ott.block.custom.WaterJetBlock> STONE_BRICKS_WATER_JET = register("stone_bricks_water_jet",
+            () -> new com.otterly76.ott.block.custom.WaterJetBlock(
+                    Properties.of().strength(1.5f).requiresCorrectToolForDrops().sound(SoundType.STONE).noOcclusion()));
+
+    // -------------------------------------------------------------------------
+    // --- Oak structural blocks ---
+    // -------------------------------------------------------------------------
+    public static final DeferredBlock<com.otterly76.ott.block.custom.PergolaBlock> OAK_PERGOLA = register("oak_pergola",
+            () -> new com.otterly76.ott.block.custom.PergolaBlock(
+                    Properties.of().strength(2.0f).sound(SoundType.WOOD).noOcclusion()));
+    public static final DeferredBlock<com.otterly76.ott.block.custom.BeamBlock> OAK_BEAM = register("oak_beam",
+            () -> new com.otterly76.ott.block.custom.BeamBlock(
+                    Properties.of().strength(2.0f).sound(SoundType.WOOD).noOcclusion()));
+    public static final DeferredBlock<com.otterly76.ott.block.custom.PlateBlock> OAK_PLANKS_PLATE = register("oak_planks_plate",
+            () -> new com.otterly76.ott.block.custom.PlateBlock(
+                    Properties.of().strength(2.0f).sound(SoundType.WOOD).noOcclusion()));
+    public static final DeferredBlock<com.otterly76.ott.block.custom.EdgeBlock> OAK_PLANKS_EDGE = register("oak_planks_edge",
+            () -> new com.otterly76.ott.block.custom.EdgeBlock(
+                    Properties.of().strength(2.0f).sound(SoundType.WOOD).noOcclusion()));
+    public static final DeferredBlock<com.otterly76.ott.block.custom.BalusterBlock> OAK_BALUSTER = register("oak_baluster",
+            () -> new com.otterly76.ott.block.custom.BalusterBlock(
+                    Properties.of().strength(2.0f).sound(SoundType.WOOD).noOcclusion()));
+    public static final DeferredBlock<com.otterly76.ott.block.custom.SupportSlabBlock> OAK_SUPPORT_SLAB = register("oak_support_slab",
+            () -> new com.otterly76.ott.block.custom.SupportSlabBlock(
+                    Properties.of().strength(2.0f).sound(SoundType.WOOD).noOcclusion()));
+    public static final DeferredBlock<com.otterly76.ott.block.custom.SupportBeamBlock> OAK_SUPPORT_BEAM = register("oak_support_beam",
+            () -> new com.otterly76.ott.block.custom.SupportBeamBlock(
+                    Properties.of().strength(2.0f).sound(SoundType.WOOD).noOcclusion()));
+
     public static void register(IEventBus eventBus) {
         registerDynamicBlocks();
         BLOCKS.register(eventBus);
