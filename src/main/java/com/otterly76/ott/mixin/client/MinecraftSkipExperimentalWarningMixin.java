@@ -12,7 +12,7 @@ import java.lang.reflect.Field;
 import java.util.function.Consumer;
 
 @Mixin(Minecraft.class)
-public abstract class MinecraftSkipExperimentalWarningMixin { //TODO not working, troubleshoot
+public abstract class MinecraftSkipExperimentalWarningMixin {
 
     @Inject(method = "setScreen", at = @At("TAIL"))
     private void ott$skipExperimentalWarning(Screen screen, CallbackInfo ci) {
@@ -45,6 +45,11 @@ public abstract class MinecraftSkipExperimentalWarningMixin { //TODO not working
                     cb.accept(true);
                     return;
                 }
+                // Handle primitive-specialised consumers (e.g. fastutil BooleanConsumer)
+                try {
+                    v.getClass().getMethod("accept", boolean.class).invoke(v, true);
+                    return;
+                } catch (NoSuchMethodException ignored) {}
             } catch (Throwable ignored) {
             }
         }
