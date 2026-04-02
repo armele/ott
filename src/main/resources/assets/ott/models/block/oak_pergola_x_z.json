@@ -1,8 +1,8 @@
 {
 	"render_type": "minecraft:cutout",
 	"textures": {
-		"0": "ott:block/oak_pergola",
-		"particle": "ott:block/oak_pergola"
+		"0": "ott:block/pergola/oak_pergola",
+		"particle": "ott:block/pergola/oak_pergola"
 	},
 	"elements": [
 		{

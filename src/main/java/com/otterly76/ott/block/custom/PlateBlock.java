@@ -70,25 +70,39 @@ public class PlateBlock extends Block implements SimpleWaterloggedBlock {
 
     private StairsShape computeShape(BlockState state, BlockGetter level, BlockPos pos) {
         Direction facing = state.getValue(FACING);
-        BlockState right = level.getBlockState(pos.relative(facing.getClockWise()));
-        BlockState left  = level.getBlockState(pos.relative(facing.getCounterClockWise()));
 
-        boolean rightIsPlate = right.getBlock() instanceof PlateBlock
-                && right.getValue(FACING) != facing.getOpposite();
-        boolean leftIsPlate  = left.getBlock() instanceof PlateBlock
-                && left.getValue(FACING) != facing.getOpposite();
+        // Outer corners: check the block in the facing direction
+        BlockState front = level.getBlockState(pos.relative(facing));
+        if (front.getBlock() instanceof PlateBlock) {
+            Direction frontFacing = front.getValue(FACING);
+            if (frontFacing.getAxis() != facing.getAxis()) {
+                if (isDifferentPlate(state, level, pos, frontFacing.getOpposite())) {
+                    return frontFacing == facing.getCounterClockWise()
+                            ? StairsShape.OUTER_LEFT : StairsShape.OUTER_RIGHT;
+                }
+            }
+        }
 
-        if (rightIsPlate) {
-            Direction rightFacing = right.getValue(FACING);
-            if (rightFacing == facing.getCounterClockWise()) return StairsShape.OUTER_RIGHT;
-            if (rightFacing != facing) return StairsShape.INNER_RIGHT;
+        // Inner corners: check the block opposite the facing direction
+        BlockState back = level.getBlockState(pos.relative(facing.getOpposite()));
+        if (back.getBlock() instanceof PlateBlock) {
+            Direction backFacing = back.getValue(FACING);
+            if (backFacing.getAxis() != facing.getAxis()) {
+                if (isDifferentPlate(state, level, pos, backFacing)) {
+                    return backFacing == facing.getCounterClockWise()
+                            ? StairsShape.INNER_LEFT : StairsShape.INNER_RIGHT;
+                }
+            }
         }
-        if (leftIsPlate) {
-            Direction leftFacing = left.getValue(FACING);
-            if (leftFacing == facing.getClockWise()) return StairsShape.OUTER_LEFT;
-            if (leftFacing != facing) return StairsShape.INNER_LEFT;
-        }
+
         return StairsShape.STRAIGHT;
+    }
+
+    /** Returns true if the block at pos+dir is NOT a same-facing plate (i.e. it won't continue our wall). */
+    private boolean isDifferentPlate(BlockState state, BlockGetter level, BlockPos pos, Direction dir) {
+        BlockState neighbor = level.getBlockState(pos.relative(dir));
+        if (!(neighbor.getBlock() instanceof PlateBlock)) return true;
+        return neighbor.getValue(FACING) != state.getValue(FACING);
     }
 
     @Override

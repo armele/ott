@@ -764,6 +764,13 @@ public class ModItems {
             registerBlockItem(setBlocks.pressurePlate());
             registerBlockItem(setBlocks.leaves());
             registerBlockItem(setBlocks.sapling());
+            registerBlockItem(setBlocks.pergola());
+            registerBlockItem(setBlocks.beam());
+            registerBlockItem(setBlocks.planksPlate());
+            registerBlockItem(setBlocks.planksEdge());
+            registerBlockItem(setBlocks.baluster());
+            registerBlockItem(setBlocks.supportSlab());
+            registerBlockItem(setBlocks.supportBeam());
 
             WOOD_SET_SIGNS.put(setName, registerSign(setName + "_sign", setBlocks.sign(), setBlocks.wallSign()));
 
@@ -776,6 +783,19 @@ public class ModItems {
             WOOD_SET_CHEST_BOATS.put(setName, ITEMS.register(setName + "_chest_boat",
                     () -> new ModBoatItem(ModEntities.WOOD_SET_CHEST_BOATS.get(setName), new Item.Properties().stacksTo(1),
                             boat -> { if (boat instanceof OttWoodSetChestBoatEntity b) b.setWoodSetName(setName); })));
+        });
+
+        // REGISTRATION: Vanilla Wood Structural Blocks
+        // Oak structural items are already registered as static fields above; skip them here.
+        ModBlocks.VANILLA_STRUCTURAL_SETS.forEach((name, set) -> {
+            if (name.equals("oak")) return;
+            registerBlockItem(set.pergola());
+            registerBlockItem(set.beam());
+            registerBlockItem(set.planksPlate());
+            registerBlockItem(set.planksEdge());
+            registerBlockItem(set.baluster());
+            registerBlockItem(set.supportSlab());
+            registerBlockItem(set.supportBeam());
         });
 
         // REGISTRATION: Color Sets

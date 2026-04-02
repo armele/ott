@@ -1,0 +1,7 @@
+{
+	"parent": "ott:block/general/plate_outer",
+	"textures": {
+		"top": "minecraft:block/bamboo_planks",
+		"frieze": "minecraft:block/bamboo_planks"
+	}
+}

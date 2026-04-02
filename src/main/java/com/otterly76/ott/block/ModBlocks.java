@@ -477,6 +477,16 @@ public class ModBlocks {
         // Register all ott wood sets
         ModWoodSets.ALL.forEach(set -> WOOD_SETS.put(set.name(), com.otterly76.ott.block.wood.WoodSetBlockRegistrar.registerOttWoodSet(set.name())));
 
+        // Register vanilla wood structural blocks
+        // Oak already has dedicated static block fields; wrap them rather than re-registering.
+        VANILLA_STRUCTURAL_SETS.put("oak", new WoodStructuralBlocks(
+                OAK_PERGOLA, OAK_BEAM, OAK_PLANKS_PLATE, OAK_PLANKS_EDGE,
+                OAK_BALUSTER, OAK_SUPPORT_SLAB, OAK_SUPPORT_BEAM));
+        for (String name : List.of("spruce", "birch", "jungle", "acacia", "dark_oak",
+                "mangrove", "cherry", "bamboo", "crimson", "warped", "pale_oak")) {
+            VANILLA_STRUCTURAL_SETS.put(name, com.otterly76.ott.block.wood.WoodSetBlockRegistrar.registerVanillaStructural(name));
+        }
+
         // Register all ott color sets
         com.otterly76.ott.color.ModColorSets.ALL.forEach(set -> COLOR_SETS.put(set.name(), com.otterly76.ott.block.color.ColorSetBlockRegistrar.registerOttColorSet(set.name())));
 
@@ -627,10 +637,32 @@ public class ModBlocks {
             DeferredBlock<StandingSignBlock> sign,
             DeferredBlock<WallSignBlock> wallSign,
             DeferredBlock<CeilingHangingSignBlock> hangingSign,
-            DeferredBlock<WallHangingSignBlock> wallHangingSign
+            DeferredBlock<WallHangingSignBlock> wallHangingSign,
+            DeferredBlock<com.otterly76.ott.block.custom.PergolaBlock> pergola,
+            DeferredBlock<com.otterly76.ott.block.custom.BeamBlock> beam,
+            DeferredBlock<com.otterly76.ott.block.custom.PlateBlock> planksPlate,
+            DeferredBlock<com.otterly76.ott.block.custom.EdgeBlock> planksEdge,
+            DeferredBlock<com.otterly76.ott.block.custom.BalusterBlock> baluster,
+            DeferredBlock<com.otterly76.ott.block.custom.SupportSlabBlock> supportSlab,
+            DeferredBlock<com.otterly76.ott.block.custom.SupportBeamBlock> supportBeam
     )
     {
     }
+
+    /**
+     * Vanilla wood structural blocks (ott namespace). Key = vanilla set name (e.g. "oak").
+     */
+    public static final Map<String, WoodStructuralBlocks> VANILLA_STRUCTURAL_SETS = new LinkedHashMap<>();
+
+    public record WoodStructuralBlocks(
+            DeferredBlock<com.otterly76.ott.block.custom.PergolaBlock> pergola,
+            DeferredBlock<com.otterly76.ott.block.custom.BeamBlock> beam,
+            DeferredBlock<com.otterly76.ott.block.custom.PlateBlock> planksPlate,
+            DeferredBlock<com.otterly76.ott.block.custom.EdgeBlock> planksEdge,
+            DeferredBlock<com.otterly76.ott.block.custom.BalusterBlock> baluster,
+            DeferredBlock<com.otterly76.ott.block.custom.SupportSlabBlock> supportSlab,
+            DeferredBlock<com.otterly76.ott.block.custom.SupportBeamBlock> supportBeam
+    ) {}
 
     public static final DeferredBlock<Block> GLASS_JAR = BLOCKS.register("glass_jar",
             () -> new com.otterly76.ott.block.custom.GlassJarBlock(BlockBehaviour.Properties.of().mapColor(MapColor.NONE).strength(0.3F).sound(SoundType.GLASS).noOcclusion()));

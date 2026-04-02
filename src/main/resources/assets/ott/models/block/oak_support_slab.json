@@ -1,4 +1,5 @@
 {
+	"parent": "minecraft:block/block",
 	"textures": {
         "slab": "minecraft:block/oak_planks",
 		"particle": "minecraft:block/oak_planks"

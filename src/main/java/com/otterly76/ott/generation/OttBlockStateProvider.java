@@ -3,10 +3,17 @@ package com.otterly76.ott.generation;
 import com.otterly76.ott.Constants;
 import com.otterly76.ott.block.IGradientBlock;
 import com.otterly76.ott.block.ModBlocks;
+import com.otterly76.ott.block.custom.BeamBlock;
+import com.otterly76.ott.block.custom.PergolaBlock;
 import com.otterly76.ott.block.custom.SilkCocoonBlock;
+import com.otterly76.ott.block.custom.SupportBeamBlock;
+import com.otterly76.ott.block.custom.SupportSlabBlock;
+import com.otterly76.ott.block.properties.PillarConnection;
 import com.otterly76.ott.crop.ThornyHedgeSprouts;
 import com.otterly76.ott.hedge.ModHedgeVariants;
 import net.minecraft.core.Direction;
+import net.minecraft.world.level.block.state.properties.Half;
+import net.minecraft.world.level.block.state.properties.StairsShape;
 import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.block.BedBlock;
@@ -30,7 +37,11 @@ public class OttBlockStateProvider extends ModBlockStateProvider {
     @Override
     protected void registerStatesAndModels() {
         ModBlocks.WOOD_SETS.forEach(this::registerWoodSet);
-        
+        // Oak structural blocks already have pre-existing resource files; skip to avoid duplicate registration.
+        ModBlocks.VANILLA_STRUCTURAL_SETS.forEach((name, set) -> {
+            if (!name.equals("oak")) registerVanillaWoodStructural(name, set);
+        });
+
         ModBlocks.SEAGLASS.forEach(block -> simpleBlockWithItem(block.get(), cubeAll(block.get())));
         ModBlocks.LIMESTONE.forEach(block -> simpleBlockWithItem(block.get(), cubeAll(block.get())));
         
@@ -367,6 +378,278 @@ public class OttBlockStateProvider extends ModBlockStateProvider {
 
         registerFluffyLeaves(setName, set.leaves().get());
         registerSapling(set.sapling().get(), set.pottedSapling().get(), setName);
+
+        registerWoodSetStructural(setName, set);
+    }
+
+    private void registerWoodSetStructural(String setName, ModBlocks.WoodSetBlocks set) {
+        ResourceLocation planks  = modLoc("block/wood/" + setName + "/planks");
+        ResourceLocation stripped = modLoc("block/wood/" + setName + "/stripped_log");
+
+        // ── Beam ─────────────────────────────────────────────────────────────
+        ModelFile beamY = models().withExistingParent(setName + "_beam_y",      modLoc("block/oak_beam_y"))
+                .renderType("minecraft:cutout").texture("1", stripped).texture("particle", stripped);
+        ModelFile beamX = models().withExistingParent(setName + "_beam_x",      modLoc("block/oak_beam_x"))
+                .renderType("minecraft:cutout").texture("1", stripped).texture("particle", stripped);
+        ModelFile beamXZ = models().withExistingParent(setName + "_beam_x_z",   modLoc("block/oak_beam_x_z"))
+                .renderType("minecraft:cutout").texture("1", stripped).texture("particle", stripped);
+        ModelFile beamBot = models().withExistingParent(setName + "_beam_bottom", modLoc("block/oak_beam_bottom"))
+                .renderType("minecraft:cutout").texture("texture", stripped).texture("particle", stripped);
+
+        getMultipartBuilder(set.beam().get())
+                .part().modelFile(beamY).addModel()  .condition(BeamBlock.AXIS_Y, true).end()
+                .part().modelFile(beamX).addModel()  .condition(BeamBlock.AXIS_X, true).condition(BeamBlock.AXIS_Z, false).end()
+                .part().modelFile(beamX).rotationY(90).addModel().condition(BeamBlock.AXIS_X, false).condition(BeamBlock.AXIS_Z, true).end()
+                .part().modelFile(beamXZ).addModel() .condition(BeamBlock.AXIS_X, true).condition(BeamBlock.AXIS_Z, true).end()
+                .part().modelFile(beamBot).addModel().condition(BeamBlock.BOTTOM, true).end();
+
+        // ── Pergola ───────────────────────────────────────────────────────────
+        ModelFile pergolaY  = models().withExistingParent(setName + "_pergola_y",   modLoc("block/oak_pergola_y"))
+                .renderType("minecraft:cutout").texture("0", planks).texture("particle", planks);
+        ModelFile pergolaX  = models().withExistingParent(setName + "_pergola_x",   modLoc("block/oak_pergola_x"))
+                .renderType("minecraft:cutout").texture("0", planks).texture("particle", planks);
+        ModelFile pergolaXZ = models().withExistingParent(setName + "_pergola_x_z", modLoc("block/oak_pergola_x_z"))
+                .renderType("minecraft:cutout").texture("0", planks).texture("particle", planks);
+
+        getMultipartBuilder(set.pergola().get())
+                .part().modelFile(pergolaY).addModel() .condition(PergolaBlock.AXIS_Y, true).end()
+                .part().modelFile(pergolaX).addModel() .condition(PergolaBlock.AXIS_X, true).condition(PergolaBlock.AXIS_Z, false).end()
+                .part().modelFile(pergolaX).rotationY(90).addModel().condition(PergolaBlock.AXIS_X, false).condition(PergolaBlock.AXIS_Z, true).end()
+                .part().modelFile(pergolaXZ).addModel().condition(PergolaBlock.AXIS_X, true).condition(PergolaBlock.AXIS_Z, true).end();
+
+        // ── Support shared models ─────────────────────────────────────────────
+        ModelFile sup4   = models().withExistingParent(setName + "_support_4_pixels",  modLoc("block/oak_support_4_pixels"))
+                .texture("slab", planks).texture("particle", planks);
+        ModelFile sup6   = models().withExistingParent(setName + "_support_6_pixels",  modLoc("block/oak_support_6_pixels"))
+                .texture("slab", planks).texture("particle", planks);
+        ModelFile sup8   = models().withExistingParent(setName + "_support_8_pixels",  modLoc("block/oak_support_8_pixels"))
+                .texture("slab", stripped).texture("particle", stripped);
+        ModelFile sup10  = models().withExistingParent(setName + "_support_10_pixels", modLoc("block/oak_support_10_pixels"))
+                .texture("slab", stripped).texture("particle", stripped);
+        ModelFile supSlab = models().withExistingParent(setName + "_support_slab",     modLoc("block/oak_support_slab"))
+                .texture("slab", planks).texture("particle", planks);
+
+        // ── Support Slab ──────────────────────────────────────────────────────
+        getMultipartBuilder(set.supportSlab().get())
+                .part().modelFile(supSlab).addModel().end()
+                .part().modelFile(sup4).addModel() .condition(SupportSlabBlock.PILLAR_CONNECTION, PillarConnection.FOUR).end()
+                .part().modelFile(sup6).addModel() .condition(SupportSlabBlock.PILLAR_CONNECTION, PillarConnection.SIX).end()
+                .part().modelFile(sup8).addModel() .condition(SupportSlabBlock.PILLAR_CONNECTION, PillarConnection.EIGHT).end()
+                .part().modelFile(sup10).addModel().condition(SupportSlabBlock.PILLAR_CONNECTION, PillarConnection.TEN).end();
+
+        // ── Support Beam ──────────────────────────────────────────────────────
+        getMultipartBuilder(set.supportBeam().get())
+                .part().modelFile(supSlab).addModel().end()
+                .part().modelFile(beamX).addModel()         .condition(SupportBeamBlock.HORIZONTAL_AXIS, Direction.Axis.X).condition(SupportBeamBlock.SUBAXIS, false).end()
+                .part().modelFile(beamX).rotationY(90).addModel().condition(SupportBeamBlock.HORIZONTAL_AXIS, Direction.Axis.Z).condition(SupportBeamBlock.SUBAXIS, false).end()
+                .part().modelFile(beamXZ).addModel()        .condition(SupportBeamBlock.HORIZONTAL_AXIS, Direction.Axis.X).condition(SupportBeamBlock.SUBAXIS, true).end()
+                .part().modelFile(beamXZ).rotationY(90).addModel().condition(SupportBeamBlock.HORIZONTAL_AXIS, Direction.Axis.Z).condition(SupportBeamBlock.SUBAXIS, true).end()
+                .part().modelFile(sup4).addModel() .condition(SupportBeamBlock.PILLAR_CONNECTION, PillarConnection.FOUR).end()
+                .part().modelFile(sup6).addModel() .condition(SupportBeamBlock.PILLAR_CONNECTION, PillarConnection.SIX).end()
+                .part().modelFile(sup8).addModel() .condition(SupportBeamBlock.PILLAR_CONNECTION, PillarConnection.EIGHT).end()
+                .part().modelFile(sup10).addModel().condition(SupportBeamBlock.PILLAR_CONNECTION, PillarConnection.TEN).end();
+
+        // ── Planks Plate ──────────────────────────────────────────────────────
+        ModelFile plate      = models().withExistingParent(setName + "_planks_plate",       modLoc("block/general/plate"))
+                .texture("side", planks).texture("top", planks).texture("frieze", planks);
+        ModelFile plateOuter = models().withExistingParent(setName + "_planks_plate_outer", modLoc("block/general/plate_outer"))
+                .texture("top", planks).texture("frieze", planks);
+        ModelFile plateInner = models().withExistingParent(setName + "_planks_plate_inner", modLoc("block/general/plate_inner"))
+                .texture("side", planks).texture("top", planks).texture("frieze", planks);
+        registerFacingShapeBlock(set.planksPlate().get(), plate, plateOuter, plateInner);
+
+        // ── Planks Edge ───────────────────────────────────────────────────────
+        ModelFile edge      = models().withExistingParent(setName + "_planks_edge",       modLoc("block/general/small_plate"))
+                .texture("side", planks).texture("frieze", planks);
+        ModelFile edgeOuter = models().withExistingParent(setName + "_planks_edge_outer", modLoc("block/general/small_plate_outer"))
+                .texture("top", planks).texture("frieze", planks);
+        ModelFile edgeInner = models().withExistingParent(setName + "_planks_edge_inner", modLoc("block/general/small_plate_inner"))
+                .texture("side", planks).texture("top", planks).texture("frieze", planks);
+        registerFacingShapeHalfBlock(set.planksEdge().get(), edge, edgeOuter, edgeInner);
+
+        // ── Baluster ──────────────────────────────────────────────────────────
+        ModelFile baluster      = models().withExistingParent(setName + "_baluster",       modLoc("block/oak_baluster"))
+                .texture("0", planks).texture("particle", planks);
+        ModelFile balusterOuter = models().withExistingParent(setName + "_baluster_outer", modLoc("block/oak_baluster_outer"))
+                .texture("0", planks).texture("particle", planks);
+        ModelFile balusterInner = models().withExistingParent(setName + "_baluster_inner", modLoc("block/oak_baluster_inner"))
+                .texture("0", planks).texture("particle", planks);
+        registerFacingShapeBlock(set.baluster().get(), baluster, balusterOuter, balusterInner);
+    }
+
+    private ResourceLocation vanillaPlanks(String setName) {
+        if (setName.equals("bamboo")) {
+            return ResourceLocation.fromNamespaceAndPath("minecraft", "block/bamboo_planks");
+        }
+        return ResourceLocation.fromNamespaceAndPath("minecraft", "block/" + setName + "_planks");
+    }
+
+    private ResourceLocation vanillaStripped(String setName) {
+        return switch (setName) {
+            case "bamboo" -> ResourceLocation.fromNamespaceAndPath("minecraft", "block/stripped_bamboo_block");
+            case "crimson" -> ResourceLocation.fromNamespaceAndPath("minecraft", "block/stripped_crimson_stem");
+            case "warped" -> ResourceLocation.fromNamespaceAndPath("minecraft", "block/stripped_warped_stem");
+            default -> ResourceLocation.fromNamespaceAndPath("minecraft", "block/stripped_" + setName + "_log");
+        };
+    }
+
+    private void registerVanillaWoodStructural(String setName, ModBlocks.WoodStructuralBlocks set) {
+        ResourceLocation planks  = vanillaPlanks(setName);
+        ResourceLocation stripped = vanillaStripped(setName);
+
+        // ── Beam ─────────────────────────────────────────────────────────────
+        ModelFile beamY = models().withExistingParent(setName + "_beam_y",      modLoc("block/oak_beam_y"))
+                .renderType("minecraft:cutout").texture("1", stripped).texture("particle", stripped);
+        ModelFile beamX = models().withExistingParent(setName + "_beam_x",      modLoc("block/oak_beam_x"))
+                .renderType("minecraft:cutout").texture("1", stripped).texture("particle", stripped);
+        ModelFile beamXZ = models().withExistingParent(setName + "_beam_x_z",   modLoc("block/oak_beam_x_z"))
+                .renderType("minecraft:cutout").texture("1", stripped).texture("particle", stripped);
+        ModelFile beamBot = models().withExistingParent(setName + "_beam_bottom", modLoc("block/oak_beam_bottom"))
+                .renderType("minecraft:cutout").texture("texture", stripped).texture("particle", stripped);
+
+        getMultipartBuilder(set.beam().get())
+                .part().modelFile(beamY).addModel()  .condition(BeamBlock.AXIS_Y, true).end()
+                .part().modelFile(beamX).addModel()  .condition(BeamBlock.AXIS_X, true).condition(BeamBlock.AXIS_Z, false).end()
+                .part().modelFile(beamX).rotationY(90).addModel().condition(BeamBlock.AXIS_X, false).condition(BeamBlock.AXIS_Z, true).end()
+                .part().modelFile(beamXZ).addModel() .condition(BeamBlock.AXIS_X, true).condition(BeamBlock.AXIS_Z, true).end()
+                .part().modelFile(beamBot).addModel().condition(BeamBlock.BOTTOM, true).end();
+
+        // ── Pergola ───────────────────────────────────────────────────────────
+        ModelFile pergolaY  = models().withExistingParent(setName + "_pergola_y",   modLoc("block/oak_pergola_y"))
+                .renderType("minecraft:cutout").texture("0", planks).texture("particle", planks);
+        ModelFile pergolaX  = models().withExistingParent(setName + "_pergola_x",   modLoc("block/oak_pergola_x"))
+                .renderType("minecraft:cutout").texture("0", planks).texture("particle", planks);
+        ModelFile pergolaXZ = models().withExistingParent(setName + "_pergola_x_z", modLoc("block/oak_pergola_x_z"))
+                .renderType("minecraft:cutout").texture("0", planks).texture("particle", planks);
+
+        getMultipartBuilder(set.pergola().get())
+                .part().modelFile(pergolaY).addModel() .condition(PergolaBlock.AXIS_Y, true).end()
+                .part().modelFile(pergolaX).addModel() .condition(PergolaBlock.AXIS_X, true).condition(PergolaBlock.AXIS_Z, false).end()
+                .part().modelFile(pergolaX).rotationY(90).addModel().condition(PergolaBlock.AXIS_X, false).condition(PergolaBlock.AXIS_Z, true).end()
+                .part().modelFile(pergolaXZ).addModel().condition(PergolaBlock.AXIS_X, true).condition(PergolaBlock.AXIS_Z, true).end();
+
+        // ── Support shared models ─────────────────────────────────────────────
+        ModelFile sup4   = models().withExistingParent(setName + "_support_4_pixels",  modLoc("block/oak_support_4_pixels"))
+                .texture("slab", planks).texture("particle", planks);
+        ModelFile sup6   = models().withExistingParent(setName + "_support_6_pixels",  modLoc("block/oak_support_6_pixels"))
+                .texture("slab", planks).texture("particle", planks);
+        ModelFile sup8   = models().withExistingParent(setName + "_support_8_pixels",  modLoc("block/oak_support_8_pixels"))
+                .texture("slab", stripped).texture("particle", stripped);
+        ModelFile sup10  = models().withExistingParent(setName + "_support_10_pixels", modLoc("block/oak_support_10_pixels"))
+                .texture("slab", stripped).texture("particle", stripped);
+        ModelFile supSlab = models().withExistingParent(setName + "_support_slab",     modLoc("block/oak_support_slab"))
+                .texture("slab", planks).texture("particle", planks);
+
+        // ── Support Slab ──────────────────────────────────────────────────────
+        getMultipartBuilder(set.supportSlab().get())
+                .part().modelFile(supSlab).addModel().end()
+                .part().modelFile(sup4).addModel() .condition(SupportSlabBlock.PILLAR_CONNECTION, PillarConnection.FOUR).end()
+                .part().modelFile(sup6).addModel() .condition(SupportSlabBlock.PILLAR_CONNECTION, PillarConnection.SIX).end()
+                .part().modelFile(sup8).addModel() .condition(SupportSlabBlock.PILLAR_CONNECTION, PillarConnection.EIGHT).end()
+                .part().modelFile(sup10).addModel().condition(SupportSlabBlock.PILLAR_CONNECTION, PillarConnection.TEN).end();
+
+        // ── Support Beam ──────────────────────────────────────────────────────
+        getMultipartBuilder(set.supportBeam().get())
+                .part().modelFile(supSlab).addModel().end()
+                .part().modelFile(beamX).addModel()         .condition(SupportBeamBlock.HORIZONTAL_AXIS, Direction.Axis.X).condition(SupportBeamBlock.SUBAXIS, false).end()
+                .part().modelFile(beamX).rotationY(90).addModel().condition(SupportBeamBlock.HORIZONTAL_AXIS, Direction.Axis.Z).condition(SupportBeamBlock.SUBAXIS, false).end()
+                .part().modelFile(beamXZ).addModel()        .condition(SupportBeamBlock.HORIZONTAL_AXIS, Direction.Axis.X).condition(SupportBeamBlock.SUBAXIS, true).end()
+                .part().modelFile(beamXZ).rotationY(90).addModel().condition(SupportBeamBlock.HORIZONTAL_AXIS, Direction.Axis.Z).condition(SupportBeamBlock.SUBAXIS, true).end()
+                .part().modelFile(sup4).addModel() .condition(SupportBeamBlock.PILLAR_CONNECTION, PillarConnection.FOUR).end()
+                .part().modelFile(sup6).addModel() .condition(SupportBeamBlock.PILLAR_CONNECTION, PillarConnection.SIX).end()
+                .part().modelFile(sup8).addModel() .condition(SupportBeamBlock.PILLAR_CONNECTION, PillarConnection.EIGHT).end()
+                .part().modelFile(sup10).addModel().condition(SupportBeamBlock.PILLAR_CONNECTION, PillarConnection.TEN).end();
+
+        // ── Planks Plate ──────────────────────────────────────────────────────
+        ModelFile plate      = models().withExistingParent(setName + "_planks_plate",       modLoc("block/general/plate"))
+                .texture("side", planks).texture("top", planks).texture("frieze", planks);
+        ModelFile plateOuter = models().withExistingParent(setName + "_planks_plate_outer", modLoc("block/general/plate_outer"))
+                .texture("top", planks).texture("frieze", planks);
+        ModelFile plateInner = models().withExistingParent(setName + "_planks_plate_inner", modLoc("block/general/plate_inner"))
+                .texture("side", planks).texture("top", planks).texture("frieze", planks);
+        registerFacingShapeBlock(set.planksPlate().get(), plate, plateOuter, plateInner);
+
+        // ── Planks Edge ───────────────────────────────────────────────────────
+        ModelFile edge      = models().withExistingParent(setName + "_planks_edge",       modLoc("block/general/small_plate"))
+                .texture("side", planks).texture("frieze", planks);
+        ModelFile edgeOuter = models().withExistingParent(setName + "_planks_edge_outer", modLoc("block/general/small_plate_outer"))
+                .texture("top", planks).texture("frieze", planks);
+        ModelFile edgeInner = models().withExistingParent(setName + "_planks_edge_inner", modLoc("block/general/small_plate_inner"))
+                .texture("side", planks).texture("top", planks).texture("frieze", planks);
+        registerFacingShapeHalfBlock(set.planksEdge().get(), edge, edgeOuter, edgeInner);
+
+        // ── Baluster ──────────────────────────────────────────────────────────
+        ModelFile baluster      = models().withExistingParent(setName + "_baluster",       modLoc("block/oak_baluster"))
+                .texture("0", planks).texture("particle", planks);
+        ModelFile balusterOuter = models().withExistingParent(setName + "_baluster_outer", modLoc("block/oak_baluster_outer"))
+                .texture("0", planks).texture("particle", planks);
+        ModelFile balusterInner = models().withExistingParent(setName + "_baluster_inner", modLoc("block/oak_baluster_inner"))
+                .texture("0", planks).texture("particle", planks);
+        registerFacingShapeBlock(set.baluster().get(), baluster, balusterOuter, balusterInner);
+    }
+
+    /** Variant block with HORIZONTAL_FACING × STAIRS_SHAPE (no half). Used for plate and baluster. */
+    private void registerFacingShapeBlock(net.minecraft.world.level.block.Block block,
+                                          ModelFile straight, ModelFile outer, ModelFile inner) {
+        getVariantBuilder(block).forAllStatesExcept(state -> {
+            Direction facing = state.getValue(BlockStateProperties.HORIZONTAL_FACING);
+            StairsShape shape = state.getValue(BlockStateProperties.STAIRS_SHAPE);
+
+            int yRot = switch (facing) {
+                case SOUTH -> 0;
+                case WEST  -> 90;
+                case NORTH -> 180;
+                case EAST  -> 270;
+                default    -> 0;
+            };
+            boolean isLeft = shape == StairsShape.OUTER_LEFT || shape == StairsShape.INNER_LEFT;
+            if (isLeft) yRot = (yRot + 270) % 360;
+
+            ModelFile model = switch (shape) {
+                case STRAIGHT                     -> straight;
+                case OUTER_LEFT, OUTER_RIGHT      -> outer;
+                case INNER_LEFT, INNER_RIGHT      -> inner;
+            };
+            return ConfiguredModel.builder().modelFile(model).rotationY(yRot).uvLock(true).build();
+        }, BlockStateProperties.WATERLOGGED);
+    }
+
+    /** Variant block with HORIZONTAL_FACING × STAIRS_SHAPE × HALF. Used for edge. */
+    private void registerFacingShapeHalfBlock(net.minecraft.world.level.block.Block block,
+                                              ModelFile straight, ModelFile outer, ModelFile inner) {
+        getVariantBuilder(block).forAllStatesExcept(state -> {
+            Direction facing = state.getValue(BlockStateProperties.HORIZONTAL_FACING);
+            StairsShape shape = state.getValue(BlockStateProperties.STAIRS_SHAPE);
+            Half half = state.getValue(BlockStateProperties.HALF);
+
+            int baseY = switch (facing) {
+                case SOUTH -> 0;
+                case WEST  -> 90;
+                case NORTH -> 180;
+                case EAST  -> 270;
+                default    -> 0;
+            };
+
+            int xRot;
+            int yRot;
+            if (half == Half.BOTTOM) {
+                xRot = 0;
+                boolean isLeft = shape == StairsShape.OUTER_LEFT || shape == StairsShape.INNER_LEFT;
+                yRot = isLeft ? (baseY + 270) % 360 : baseY;
+            } else {
+                xRot = 180;
+                int topBase = (baseY + 180) % 360;
+                boolean isRight = shape == StairsShape.OUTER_RIGHT || shape == StairsShape.INNER_RIGHT;
+                yRot = isRight ? (topBase + 90) % 360 : topBase;
+            }
+
+            ModelFile model = switch (shape) {
+                case STRAIGHT                     -> straight;
+                case OUTER_LEFT, OUTER_RIGHT      -> outer;
+                case INNER_LEFT, INNER_RIGHT      -> inner;
+            };
+            return ConfiguredModel.builder().modelFile(model).rotationX(xRot).rotationY(yRot).uvLock(true).build();
+        }, BlockStateProperties.WATERLOGGED);
     }
 
     private void registerPlanksSlab(String setName, SlabBlock slab, ResourceLocation planksTex, ResourceLocation doubleModelLoc) {

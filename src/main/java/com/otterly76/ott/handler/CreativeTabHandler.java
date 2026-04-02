@@ -51,10 +51,26 @@ public class CreativeTabHandler {
                         set.planks(), set.stairs(), set.slab(),
                         set.fence(), set.fenceGate(),
                         set.door(), set.trapdoor(),
-                        set.pressurePlate(), set.button()
+                        set.pressurePlate(), set.button(),
+                        set.beam(), set.pergola(),
+                        set.planksPlate(), set.planksEdge(),
+                        set.baluster(),
+                        set.supportSlab(), set.supportBeam()
                 );
                 insertAllAfter(event, lastTarget, setBuilding, visibility);
-                lastTarget = set.button().get();
+                lastTarget = set.supportBeam().get();
+            }
+
+            // Add vanilla wood structural blocks
+            for (ModBlocks.WoodStructuralBlocks set : ModBlocks.VANILLA_STRUCTURAL_SETS.values()) {
+                List<ItemLike> structuralItems = List.of(
+                        set.beam(), set.pergola(),
+                        set.planksPlate(), set.planksEdge(),
+                        set.baluster(),
+                        set.supportSlab(), set.supportBeam()
+                );
+                insertAllAfter(event, lastTarget, structuralItems, visibility);
+                lastTarget = set.supportBeam().get();
             }
 
             insertAllAfter(event, Items.MUD_BRICK_WALL, List.of(

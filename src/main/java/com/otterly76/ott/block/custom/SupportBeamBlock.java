@@ -82,18 +82,37 @@ public class SupportBeamBlock extends Block implements SimpleWaterloggedBlock {
     private boolean hasBeamAlongAxis(BlockGetter level, BlockPos pos, Direction.Axis axis) {
         Direction pos1 = axis == Direction.Axis.X ? Direction.EAST : Direction.NORTH;
         Direction pos2 = axis == Direction.Axis.X ? Direction.WEST : Direction.SOUTH;
-        return level.getBlockState(pos.relative(pos1)).getBlock() instanceof SupportBeamBlock
-                || level.getBlockState(pos.relative(pos2)).getBlock() instanceof SupportBeamBlock;
+        return isConnectibleForSubaxis(level.getBlockState(pos.relative(pos1)), axis)
+                || isConnectibleForSubaxis(level.getBlockState(pos.relative(pos2)), axis);
+    }
+
+    /** A neighbor qualifies as a subaxis connection if it's a beam with the right axis, or a support beam with the right axis. */
+    private boolean isConnectibleForSubaxis(BlockState state, Direction.Axis axis) {
+        if (state.getBlock() instanceof BeamBlock) {
+            return axis == Direction.Axis.X
+                    ? state.getValue(PergolaBlock.AXIS_X)
+                    : state.getValue(PergolaBlock.AXIS_Z);
+        }
+        if (state.getBlock() instanceof SupportBeamBlock) {
+            return state.getValue(HORIZONTAL_AXIS) == axis;
+        }
+        return false;
     }
 
     private PillarConnection getPillarConnection(BlockGetter level, BlockPos pos) {
         BlockState below = level.getBlockState(pos.below());
         Block block = below.getBlock();
-        if (block instanceof FenceBlock || block instanceof net.minecraft.world.level.block.IronBarsBlock) {
+        if (block instanceof BeamBlock) {
+            // Only connect vertically to a beam that has the Y axis set
+            return below.getValue(PergolaBlock.AXIS_Y) ? PillarConnection.TEN : PillarConnection.NONE;
+        } else if (block instanceof PergolaBlock) {
+            // PergolaBlock (not BeamBlock): vertical pergola post connects as six pixels
+            return below.getValue(PergolaBlock.AXIS_Y) ? PillarConnection.SIX : PillarConnection.NONE;
+        } else if (block instanceof FenceBlock || block instanceof net.minecraft.world.level.block.IronBarsBlock) {
             return PillarConnection.FOUR;
         } else if (block instanceof WallBlock) {
             return PillarConnection.SIX;
-        } else if (block instanceof SupportBeamBlock || block instanceof PergolaBlock) {
+        } else if (block instanceof SupportBeamBlock) {
             return PillarConnection.EIGHT;
         }
         return PillarConnection.NONE;

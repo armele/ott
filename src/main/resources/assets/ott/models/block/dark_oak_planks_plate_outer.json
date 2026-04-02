@@ -1,0 +1,7 @@
+{
+	"parent": "ott:block/general/plate_outer",
+	"textures": {
+		"top": "minecraft:block/dark_oak_planks",
+		"frieze": "minecraft:block/dark_oak_planks"
+	}
+}

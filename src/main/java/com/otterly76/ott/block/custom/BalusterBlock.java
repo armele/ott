@@ -70,25 +70,39 @@ public class BalusterBlock extends Block implements SimpleWaterloggedBlock {
 
     private StairsShape computeShape(BlockState state, BlockGetter level, BlockPos pos) {
         Direction facing = state.getValue(FACING);
-        BlockState right = level.getBlockState(pos.relative(facing.getClockWise()));
-        BlockState left  = level.getBlockState(pos.relative(facing.getCounterClockWise()));
 
-        boolean rightIsBal = right.getBlock() instanceof BalusterBlock
-                && right.getValue(FACING) != facing.getOpposite();
-        boolean leftIsBal  = left.getBlock() instanceof BalusterBlock
-                && left.getValue(FACING) != facing.getOpposite();
+        // Outer corners: check the block in the facing direction
+        BlockState front = level.getBlockState(pos.relative(facing));
+        if (front.getBlock() instanceof BalusterBlock) {
+            Direction frontFacing = front.getValue(FACING);
+            if (frontFacing.getAxis() != facing.getAxis()) {
+                if (isDifferentBaluster(state, level, pos, frontFacing.getOpposite())) {
+                    return frontFacing == facing.getCounterClockWise()
+                            ? StairsShape.OUTER_LEFT : StairsShape.OUTER_RIGHT;
+                }
+            }
+        }
 
-        if (rightIsBal) {
-            Direction rf = right.getValue(FACING);
-            if (rf == facing.getCounterClockWise()) return StairsShape.OUTER_RIGHT;
-            if (rf != facing) return StairsShape.INNER_RIGHT;
+        // Inner corners: check the block opposite the facing direction
+        BlockState back = level.getBlockState(pos.relative(facing.getOpposite()));
+        if (back.getBlock() instanceof BalusterBlock) {
+            Direction backFacing = back.getValue(FACING);
+            if (backFacing.getAxis() != facing.getAxis()) {
+                if (isDifferentBaluster(state, level, pos, backFacing)) {
+                    return backFacing == facing.getCounterClockWise()
+                            ? StairsShape.INNER_LEFT : StairsShape.INNER_RIGHT;
+                }
+            }
         }
-        if (leftIsBal) {
-            Direction lf = left.getValue(FACING);
-            if (lf == facing.getClockWise()) return StairsShape.OUTER_LEFT;
-            if (lf != facing) return StairsShape.INNER_LEFT;
-        }
+
         return StairsShape.STRAIGHT;
+    }
+
+    /** Returns true if the block at pos+dir is NOT a same-facing baluster (i.e. it won't continue our wall). */
+    private boolean isDifferentBaluster(BlockState state, BlockGetter level, BlockPos pos, Direction dir) {
+        BlockState neighbor = level.getBlockState(pos.relative(dir));
+        if (!(neighbor.getBlock() instanceof BalusterBlock)) return true;
+        return neighbor.getValue(FACING) != state.getValue(FACING);
     }
 
     @Override

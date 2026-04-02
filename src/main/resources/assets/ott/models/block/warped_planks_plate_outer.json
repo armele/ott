@@ -1,0 +1,7 @@
+{
+	"parent": "ott:block/general/plate_outer",
+	"textures": {
+		"top": "minecraft:block/warped_planks",
+		"frieze": "minecraft:block/warped_planks"
+	}
+}

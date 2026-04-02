@@ -40,6 +40,9 @@ public class ModLangMergeProvider implements DataProvider {
             addWoodSetEntries(ottBase, set.name());
         }
 
+        // Add auto-generated vanilla structural entries to OTT base
+        addVanillaStructuralEntries(ottBase);
+
         // Add auto-generated color set entries to OTT base
         for (ModColorSets.ColorSet set : ModColorSets.ALL) {
             addColorSetEntries(ottBase, set.name());
@@ -93,6 +96,28 @@ public class ModLangMergeProvider implements DataProvider {
         json.addProperty("block.ott.stripped_" + name + "_log", "Stripped " + capitalized + " Log");
         json.addProperty("block.ott.stripped_" + name + "_wood", "Stripped " + capitalized + " Wood");
         json.addProperty("block.ott.potted_" + name + "_sapling", "Potted " + capitalized + " Sapling");
+        json.addProperty("block.ott." + name + "_beam",         capitalized + " Beam");
+        json.addProperty("block.ott." + name + "_pergola",      capitalized + " Pergola");
+        json.addProperty("block.ott." + name + "_planks_plate", capitalized + " Planks Plate");
+        json.addProperty("block.ott." + name + "_planks_edge",  capitalized + " Planks Edge");
+        json.addProperty("block.ott." + name + "_baluster",     capitalized + " Baluster");
+        json.addProperty("block.ott." + name + "_support_slab", capitalized + " Support Slab");
+        json.addProperty("block.ott." + name + "_support_beam", capitalized + " Support Beam");
+    }
+
+    private void addVanillaStructuralEntries(JsonObject json) {
+        com.otterly76.ott.block.ModBlocks.VANILLA_STRUCTURAL_SETS.forEach((name, set) -> {
+            String capitalized = Arrays.stream(name.split("_"))
+                    .map(w -> Character.toUpperCase(w.charAt(0)) + w.substring(1))
+                    .collect(Collectors.joining(" "));
+            json.addProperty("block.ott." + name + "_beam",         capitalized + " Beam");
+            json.addProperty("block.ott." + name + "_pergola",      capitalized + " Pergola");
+            json.addProperty("block.ott." + name + "_planks_plate", capitalized + " Planks Plate");
+            json.addProperty("block.ott." + name + "_planks_edge",  capitalized + " Planks Edge");
+            json.addProperty("block.ott." + name + "_baluster",     capitalized + " Baluster");
+            json.addProperty("block.ott." + name + "_support_slab", capitalized + " Support Slab");
+            json.addProperty("block.ott." + name + "_support_beam", capitalized + " Support Beam");
+        });
     }
 
     private void addColorSetEntries(JsonObject json, String name) {

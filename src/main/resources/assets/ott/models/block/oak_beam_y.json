@@ -1,8 +1,8 @@
 {
 	"render_type": "minecraft:cutout",
 	"textures": {
-		"1": "ott:block/oak_beam",
-		"particle": "ott:block/oak_beam"
+		"1": "ott:block/beam/oak_beam",
+		"particle": "ott:block/beam/oak_beam"
 	},
 	"elements": [
 		{

@@ -1,0 +1,8 @@
+{
+	"parent": "ott:block/general/plate_inner",
+	"textures": {
+		"side": "minecraft:block/cherry_planks",
+		"top": "minecraft:block/cherry_planks",
+		"frieze": "minecraft:block/cherry_planks"
+	}
+}

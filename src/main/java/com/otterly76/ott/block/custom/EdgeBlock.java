@@ -89,13 +89,13 @@ public class EdgeBlock extends Block implements SimpleWaterloggedBlock {
 
         if (rightIsEdge) {
             Direction rightFacing = right.getValue(FACING);
-            if (rightFacing == facing.getCounterClockWise()) return StairsShape.OUTER_RIGHT;
-            if (rightFacing != facing) return StairsShape.INNER_RIGHT;
+            if (rightFacing == facing.getClockWise()) return StairsShape.OUTER_RIGHT;
+            if (rightFacing == facing.getCounterClockWise()) return StairsShape.INNER_RIGHT;
         }
         if (leftIsEdge) {
             Direction leftFacing = left.getValue(FACING);
-            if (leftFacing == facing.getClockWise()) return StairsShape.OUTER_LEFT;
-            if (leftFacing != facing) return StairsShape.INNER_LEFT;
+            if (leftFacing == facing.getCounterClockWise()) return StairsShape.OUTER_LEFT;
+            if (leftFacing == facing.getClockWise()) return StairsShape.INNER_LEFT;
         }
         return StairsShape.STRAIGHT;
     }

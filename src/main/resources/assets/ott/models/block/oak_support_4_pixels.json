@@ -1,7 +1,7 @@
 {
 	"textures": {
-		"particle": "ott:block/oak_pergola",
-		"slab": "ott:block/oak_pergola"
+		"particle": "ott:block/beam/oak_beam",
+		"slab": "ott:block/beam/oak_beam"
 	},
 	"elements": [
 		{

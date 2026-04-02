@@ -73,7 +73,6 @@ public class PergolaBlock extends Block implements SimpleWaterloggedBlock {
     public boolean canBeReplaced(@NotNull BlockState state, @NotNull BlockPlaceContext ctx) {
         if (ctx.getPlayer() != null && ctx.getPlayer().isCrouching()) return false;
         if (!ctx.getItemInHand().is(this.asItem())) return false;
-        if (!ctx.replacingClickedOnBlock()) return false;
 
         return switch (ctx.getClickedFace().getAxis()) {
             case X -> !state.getValue(AXIS_X);

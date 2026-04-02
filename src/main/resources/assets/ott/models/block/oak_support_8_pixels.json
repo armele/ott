@@ -1,11 +1,11 @@
 {
 	"textures": {
-		"particle": "ott:block/oak_beam",
-		"slab": "ott:block/oak_beam"
+		"particle": "ott:block/beam/oak_beam",
+		"slab": "ott:block/beam/oak_beam"
 	},
 	"elements": [
 		{
-			"from": [4.01, 0, 4.01],
+			"from": [4.01, -4, 4.01],
 			"to": [11.99, 12, 11.99],
 			"faces": {
 				"north": {"uv": [0, 4, 6, 8], "rotation": 90, "texture": "#slab"},
