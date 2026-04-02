@@ -286,18 +286,28 @@ public class ModItems {
             () -> new net.neoforged.neoforge.common.DeferredSpawnEggItem(ModEntities.CAPYBARA, 0x8B5A2B, 0x5C4033, new Item.Properties()));
     public static final DeferredItem<Item> HEDGEHOG_SPAWN_EGG = ITEMS.register("hedgehog_spawn_egg",
             () -> new net.neoforged.neoforge.common.DeferredSpawnEggItem(ModEntities.HEDGEHOG, 0x5C4033, 0xD2B48C, new Item.Properties()));
-    public static final DeferredItem<Item> JELLYFISH_SPAWN_EGG = ITEMS.register("jellyfish_spawn_egg",
-            () -> new net.neoforged.neoforge.common.DeferredSpawnEggItem(ModEntities.JELLYFISH, 0xFFB6C1, 0xFF69B4, new Item.Properties()));
-    public static final DeferredItem<Item> SEAHORSE_1_SPAWN_EGG = ITEMS.register("seahorse_1_spawn_egg",
-            () -> new net.neoforged.neoforge.common.DeferredSpawnEggItem(ModEntities.SEAHORSE_1, 0xFFD700, 0xFFA500, new Item.Properties()));
-    public static final DeferredItem<Item> SHRIMP_1_SPAWN_EGG = ITEMS.register("shrimp_1_spawn_egg",
-            () -> new net.neoforged.neoforge.common.DeferredSpawnEggItem(ModEntities.SHRIMP_1, 0xFFC0CB, 0xFF69B4, new Item.Properties()));
-    public static final DeferredItem<Item> STARFISH_1_SPAWN_EGG = ITEMS.register("starfish_1_spawn_egg",
-            () -> new net.neoforged.neoforge.common.DeferredSpawnEggItem(ModEntities.STARFISH_1, 0xFF4500, 0xFFFF00, new Item.Properties()));
-    public static final DeferredItem<Item> JELLYFISH_2_SPAWN_EGG = ITEMS.register("jellyfish_2_spawn_egg",
-            () -> new net.neoforged.neoforge.common.DeferredSpawnEggItem(ModEntities.JELLYFISH_2, 0x00FFFF, 0x0000FF, new Item.Properties()));
-    public static final DeferredItem<Item> JELLYFISH_3_SPAWN_EGG = ITEMS.register("jellyfish_3_spawn_egg",
-            () -> new net.neoforged.neoforge.common.DeferredSpawnEggItem(ModEntities.JELLYFISH_3, 0x800080, 0xFF00FF, new Item.Properties()));
+    public static final DeferredItem<Item> LARGE_JELLYFISH_SPAWN_EGG = ITEMS.register("large_jellyfish_spawn_egg",
+            () -> new net.neoforged.neoforge.common.DeferredSpawnEggItem(ModEntities.LARGE_JELLYFISH, 0xFFB6C1, 0xFF69B4, new Item.Properties()));
+    public static final DeferredItem<Item> SEAHORSE_SPAWN_EGG = ITEMS.register("seahorse_spawn_egg",
+            () -> new net.neoforged.neoforge.common.DeferredSpawnEggItem(ModEntities.SEAHORSE, 0xFFD700, 0xFFA500, new Item.Properties()));
+    public static final DeferredItem<Item> ETHEREAL_SHRIMP_SPAWN_EGG = ITEMS.register("ethereal_shrimp_spawn_egg",
+            () -> new net.neoforged.neoforge.common.DeferredSpawnEggItem(ModEntities.ETHEREAL_SHRIMP, 0xFFC0CB, 0xFF69B4, new Item.Properties()));
+    public static final DeferredItem<Item> STARFISH_SPAWN_EGG = ITEMS.register("starfish_spawn_egg",
+            () -> new net.neoforged.neoforge.common.DeferredSpawnEggItem(ModEntities.STARFISH, 0xFF4500, 0xFFFF00, new Item.Properties()));
+    public static final DeferredItem<Item> SMALL_JELLYFISH_SPAWN_EGG = ITEMS.register("small_jellyfish_spawn_egg",
+            () -> new net.neoforged.neoforge.common.DeferredSpawnEggItem(ModEntities.SMALL_JELLYFISH, 0x00FFFF, 0x0000FF, new Item.Properties()));
+    public static final DeferredItem<Item> MEDIUM_JELLYFISH_SPAWN_EGG = ITEMS.register("medium_jellyfish_spawn_egg",
+            () -> new net.neoforged.neoforge.common.DeferredSpawnEggItem(ModEntities.MEDIUM_JELLYFISH, 0x800080, 0xFF00FF, new Item.Properties()));
+    public static final DeferredItem<Item> LARGE_JELLYFISH_BUCKET = ITEMS.register("large_jellyfish_bucket",
+            () -> new MobBucketItem(ModEntities.LARGE_JELLYFISH.get(), Fluids.WATER, SoundEvents.BUCKET_EMPTY_FISH, new Item.Properties().stacksTo(1)));
+    public static final DeferredItem<Item> SMALL_JELLYFISH_BUCKET = ITEMS.register("small_jellyfish_bucket",
+            () -> new MobBucketItem(ModEntities.SMALL_JELLYFISH.get(), Fluids.WATER, SoundEvents.BUCKET_EMPTY_FISH, new Item.Properties().stacksTo(1)));
+    public static final DeferredItem<Item> MEDIUM_JELLYFISH_BUCKET = ITEMS.register("medium_jellyfish_bucket",
+            () -> new MobBucketItem(ModEntities.MEDIUM_JELLYFISH.get(), Fluids.WATER, SoundEvents.BUCKET_EMPTY_FISH, new Item.Properties().stacksTo(1)));
+    public static final DeferredItem<Item> SEAHORSE_BUCKET = ITEMS.register("seahorse_bucket",
+            () -> new MobBucketItem(ModEntities.SEAHORSE.get(), Fluids.WATER, SoundEvents.BUCKET_EMPTY_FISH, new Item.Properties().stacksTo(1)));
+    public static final DeferredItem<Item> ETHEREAL_SHRIMP_BUCKET = ITEMS.register("ethereal_shrimp_bucket",
+            () -> new MobBucketItem(ModEntities.ETHEREAL_SHRIMP.get(), Fluids.WATER, SoundEvents.BUCKET_EMPTY_FISH, new Item.Properties().stacksTo(1)));
     public static final DeferredItem<Item> KIWI_SPAWN_EGG = ITEMS.register("kiwi_spawn_egg",
             () -> new net.neoforged.neoforge.common.DeferredSpawnEggItem(ModEntities.KIWI, 0x8B4513, 0xD2B48C, new Item.Properties()));
     public static final DeferredItem<Item> PENGUIN_SPAWN_EGG = ITEMS.register("penguin_spawn_egg",
@@ -552,9 +562,6 @@ public class ModItems {
 
     public static final DeferredItem<Item> HERMIT_KING_SPAWN_EGG = ITEMS.register("hermit_king_spawn_egg",
             () -> new DeferredSpawnEggItem(ModEntities.HERMIT_KING, 0x8B4513, 0xD2B48C, new Item.Properties()));
-
-    public static final DeferredItem<Item> SAND_HERMIT_SPAWN_EGG = ITEMS.register("sand_hermit_spawn_egg",
-            () -> new DeferredSpawnEggItem(ModEntities.SAND_HERMIT, 0xD2B48C, 0xF5F5DC, new Item.Properties()));
 
     public static final DeferredItem<Item> SEA_VIPER_SPAWN_EGG = ITEMS.register("sea_viper_spawn_egg",
             () -> new DeferredSpawnEggItem(ModEntities.SEA_VIPER, 0x008B8B, 0x20B2AA, new Item.Properties()));

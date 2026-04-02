@@ -26,7 +26,7 @@ import org.jetbrains.annotations.NotNull;
 import java.util.Set;
 
 public class JellyfishAI {
-    private static final ImmutableList<SensorType<? extends Sensor<? super JellyfishEntity>>> SENSOR_TYPES =
+    private static final ImmutableList<SensorType<? extends Sensor<? super LargeJellyfishEntity>>> SENSOR_TYPES =
              ImmutableList.of(
                     SensorType.NEAREST_LIVING_ENTITIES,
                     SensorType.HURT_BY
@@ -43,11 +43,11 @@ public class JellyfishAI {
             MemoryModuleType.DANGER_DETECTED_RECENTLY
     );
 
-    public static Brain.Provider<JellyfishEntity> brainProvider() {
+    public static Brain.Provider<LargeJellyfishEntity> brainProvider() {
         return Brain.provider(MEMORY_TYPES, SENSOR_TYPES);
     }
 
-    public static Brain<?> makeBrain(Brain<JellyfishEntity> brain) {
+    public static Brain<?> makeBrain(Brain<LargeJellyfishEntity> brain) {
         initCoreActivity(brain);
         initIdleActivity(brain);
 
@@ -58,7 +58,7 @@ public class JellyfishAI {
         return brain;
     }
 
-    private static void initCoreActivity(Brain<JellyfishEntity> brain) {
+    private static void initCoreActivity(Brain<LargeJellyfishEntity> brain) {
         brain.addActivity(
                 Activity.CORE,
                 0,
@@ -69,7 +69,7 @@ public class JellyfishAI {
         );
     }
 
-    private static void initIdleActivity(Brain<JellyfishEntity> brain) {
+    private static void initIdleActivity(Brain<LargeJellyfishEntity> brain) {
         brain.addActivity(
                 Activity.IDLE,
                 ImmutableList.of(
@@ -80,22 +80,22 @@ public class JellyfishAI {
         );
     }
 
-    public static void updateActivity(JellyfishEntity entity) {
+    public static void updateActivity(LargeJellyfishEntity entity) {
         entity.getBrain().setActiveActivityToFirstValid(ImmutableList.of(Activity.IDLE));
     }
 
-    private static class JellyfishWander extends Behavior<JellyfishEntity> {
+    private static class JellyfishWander extends Behavior<LargeJellyfishEntity> {
         public JellyfishWander() {
             super(ImmutableMap.of());
         }
 
         @Override
-        protected boolean canStillUse(@NotNull ServerLevel level, @NotNull JellyfishEntity entity, long gameTime) {
+        protected boolean canStillUse(@NotNull ServerLevel level, @NotNull LargeJellyfishEntity entity, long gameTime) {
             return true;
         }
 
         @Override
-        protected void tick(@NotNull ServerLevel level, @NotNull JellyfishEntity jellyfish, long gameTime) {
+        protected void tick(@NotNull ServerLevel level, @NotNull LargeJellyfishEntity jellyfish, long gameTime) {
             int idleTicks = jellyfish.getNoActionTime();
 
             if (idleTicks > 160) {
@@ -111,18 +111,18 @@ public class JellyfishAI {
         }
     }
 
-    private static class JellyfishFlee extends Behavior<JellyfishEntity> {
+    private static class JellyfishFlee extends Behavior<LargeJellyfishEntity> {
         public JellyfishFlee() {
             super(ImmutableMap.of(MemoryModuleType.HURT_BY_ENTITY, MemoryStatus.VALUE_PRESENT));
         }
 
         @Override
-        protected boolean canStillUse(@NotNull ServerLevel level, @NotNull JellyfishEntity jellyfish, long gameTime) {
+        protected boolean canStillUse(@NotNull ServerLevel level, @NotNull LargeJellyfishEntity jellyfish, long gameTime) {
             return jellyfish.getBrain().hasMemoryValue(MemoryModuleType.HURT_BY_ENTITY);
         }
 
         @Override
-        protected void tick(@NotNull ServerLevel level, @NotNull JellyfishEntity jellyfish, long gameTime) {
+        protected void tick(@NotNull ServerLevel level, @NotNull LargeJellyfishEntity jellyfish, long gameTime) {
             var attacker = jellyfish.getBrain().getMemory(MemoryModuleType.HURT_BY_ENTITY).orElse(null);
 
             if (attacker == null)

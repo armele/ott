@@ -245,12 +245,12 @@ public class ClientModEvents {
         event.registerEntityRenderer(ModEntities.FINCH.get(), com.otterly76.ott.client.render.entity.BirdRenderer::new);
         event.registerEntityRenderer(ModEntities.ROBIN.get(), com.otterly76.ott.client.render.entity.BirdRenderer::new);
         event.registerEntityRenderer(ModEntities.SPARROW.get(), com.otterly76.ott.client.render.entity.BirdRenderer::new);
-        event.registerEntityRenderer(ModEntities.JELLYFISH.get(), com.otterly76.ott.client.render.entity.JellyfishRenderer::new);
-        event.registerEntityRenderer(ModEntities.SEAHORSE_1.get(), com.otterly76.ott.client.render.entity.Seahorse1Renderer::new);
-        event.registerEntityRenderer(ModEntities.SHRIMP_1.get(), Shrimp1Renderer::new);
-        event.registerEntityRenderer(ModEntities.STARFISH_1.get(), com.otterly76.ott.client.render.entity.Starfish1Renderer::new);
-        event.registerEntityRenderer(ModEntities.JELLYFISH_2.get(), com.otterly76.ott.client.render.entity.Jellyfish2Renderer::new);
-        event.registerEntityRenderer(ModEntities.JELLYFISH_3.get(), com.otterly76.ott.client.render.entity.Jellyfish3Renderer::new);
+        event.registerEntityRenderer(ModEntities.LARGE_JELLYFISH.get(), LargeJellyfishRenderer::new);
+        event.registerEntityRenderer(ModEntities.SEAHORSE.get(), SeahorseRenderer::new);
+        event.registerEntityRenderer(ModEntities.ETHEREAL_SHRIMP.get(), EtherealShrimpRenderer::new);
+        event.registerEntityRenderer(ModEntities.STARFISH.get(), StarfishRenderer::new);
+        event.registerEntityRenderer(ModEntities.SMALL_JELLYFISH.get(), SmallJellyfishRenderer::new);
+        event.registerEntityRenderer(ModEntities.MEDIUM_JELLYFISH.get(), MediumJellyfishRenderer::new);
         event.registerEntityRenderer(ModEntities.KIWI.get(), com.otterly76.ott.client.render.entity.KiwiRenderer::new);
         event.registerEntityRenderer(ModEntities.PENGUIN.get(), com.otterly76.ott.client.render.entity.PenguinRenderer::new);
         event.registerEntityRenderer(ModEntities.SEAL.get(), com.otterly76.ott.client.render.entity.SealRenderer::new);
@@ -275,7 +275,6 @@ public class ClientModEvents {
 
         event.registerEntityRenderer(ModEntities.TREE_ENT.get(), com.otterly76.ott.client.render.entity.TreeEntRenderer::new);
         event.registerEntityRenderer(ModEntities.HERMIT_KING.get(), com.otterly76.ott.client.render.entity.HermitKingRenderer::new);
-        event.registerEntityRenderer(ModEntities.SAND_HERMIT.get(), com.otterly76.ott.client.render.entity.SandHermitRenderer::new);
         event.registerEntityRenderer(ModEntities.SEA_VIPER.get(), com.otterly76.ott.client.render.entity.SeaViperRenderer::new);
         event.registerEntityRenderer(ModEntities.YETI.get(), com.otterly76.ott.client.render.entity.YetiRenderer::new);
         event.registerEntityRenderer(ModEntities.VILE_GATOR.get(), com.otterly76.ott.client.render.entity.VileGatorRenderer::new);
@@ -571,7 +570,7 @@ public class ClientModEvents {
                 ModItems.LIZARD_SPAWN_EGG.get(), ModItems.SNAIL_SPAWN_EGG.get(), ModItems.TORTOISE_SPAWN_EGG.get(),
                 ModItems.VULTURE_SPAWN_EGG.get(), ModItems.ZEBRA_SPAWN_EGG.get(), ModItems.MOOSE_SPAWN_EGG.get(),
                 ModItems.MAMMOTH_SPAWN_EGG.get(), ModItems.MYCELIUM_MAMMOTH_SPAWN_EGG.get(), ModItems.FENNEC_FOX_SPAWN_EGG.get(),
-                ModItems.CAPYBARA_SPAWN_EGG.get(), ModItems.HEDGEHOG_SPAWN_EGG.get(), ModItems.JELLYFISH_SPAWN_EGG.get(),
+                ModItems.CAPYBARA_SPAWN_EGG.get(), ModItems.HEDGEHOG_SPAWN_EGG.get(), ModItems.LARGE_JELLYFISH_SPAWN_EGG.get(),
                 ModItems.KIWI_SPAWN_EGG.get(), ModItems.PENGUIN_SPAWN_EGG.get(), ModItems.SEAL_SPAWN_EGG.get(),
                 ModItems.SEA_URCHIN_SPAWN_EGG.get(),
                 ModItems.COPPER_GOLEM_SPAWN_EGG.get(),

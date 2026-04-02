@@ -48,13 +48,13 @@ public class OttEntityLootTableProvider extends EntityLootSubProvider {
         this.add(ModEntities.KIWI.get(), LootTable.lootTable());
         this.add(ModEntities.PENGUIN.get(), LootTable.lootTable());
         this.add(ModEntities.SEAL.get(), LootTable.lootTable());
-        this.add(ModEntities.JELLYFISH.get(), createJellyfishDrops());
-        this.add(ModEntities.JELLYFISH_2.get(), createJellyfishDrops());
-        this.add(ModEntities.JELLYFISH_3.get(), createJellyfishDrops());
+        this.add(ModEntities.LARGE_JELLYFISH.get(), createJellyfishDrops());
+        this.add(ModEntities.SMALL_JELLYFISH.get(), createJellyfishDrops());
+        this.add(ModEntities.MEDIUM_JELLYFISH.get(), createJellyfishDrops());
         this.add(ModEntities.SEA_URCHIN.get(), createSeaUrchinDrops());
-        this.add(ModEntities.SHRIMP_1.get(), createMeatDrops(ModItems.RAW_SHRIMP.get()));
-        this.add(ModEntities.SEAHORSE_1.get(), LootTable.lootTable());
-        this.add(ModEntities.STARFISH_1.get(), LootTable.lootTable());
+        this.add(ModEntities.ETHEREAL_SHRIMP.get(), createMeatDrops(ModItems.RAW_SHRIMP.get()));
+        this.add(ModEntities.SEAHORSE.get(), LootTable.lootTable());
+        this.add(ModEntities.STARFISH.get(), LootTable.lootTable());
 
         this.add(ModEntities.DRAGONFLY.get(), createDragonflyDrops());
         this.add(ModEntities.DUMBO_OCTOPUS.get(), LootTable.lootTable());
@@ -271,12 +271,12 @@ public class OttEntityLootTableProvider extends EntityLootSubProvider {
                 ModEntities.PENGUIN.get(),
                 ModEntities.SEAL.get(),
                 ModEntities.SEA_URCHIN.get(),
-                ModEntities.JELLYFISH.get(),
-                ModEntities.JELLYFISH_2.get(),
-                ModEntities.JELLYFISH_3.get(),
-                ModEntities.SEAHORSE_1.get(),
-                ModEntities.SHRIMP_1.get(),
-                ModEntities.STARFISH_1.get(),
+                ModEntities.LARGE_JELLYFISH.get(),
+                ModEntities.SMALL_JELLYFISH.get(),
+                ModEntities.MEDIUM_JELLYFISH.get(),
+                ModEntities.SEAHORSE.get(),
+                ModEntities.ETHEREAL_SHRIMP.get(),
+                ModEntities.STARFISH.get(),
                 ModEntities.DRAGONFLY.get(),
                 ModEntities.DUMBO_OCTOPUS.get(),
                 ModEntities.FERRET.get(),

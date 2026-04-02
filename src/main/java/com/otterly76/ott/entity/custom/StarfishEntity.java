@@ -35,7 +35,7 @@ import software.bernie.geckolib.animation.PlayState;
 import software.bernie.geckolib.animation.RawAnimation;
 import software.bernie.geckolib.util.GeckoLibUtil;
 
-public class Starfish1Entity extends Animal implements GeoEntity {
+public class StarfishEntity extends Animal implements GeoEntity {
     private static final RawAnimation WALK_ANIMATION = RawAnimation.begin().thenLoop("animation.starfish.walk");
     private static final RawAnimation IDLE_ANIMATION = RawAnimation.begin().thenLoop("animation.starfish.idle");
     private static final RawAnimation EAT_ANIMATION = RawAnimation.begin().thenLoop("animation.starfish.eat");
@@ -43,7 +43,7 @@ public class Starfish1Entity extends Animal implements GeoEntity {
 
     private final AnimatableInstanceCache factory = GeckoLibUtil.createInstanceCache(this);
 
-    public Starfish1Entity(EntityType<? extends Animal> entityType, Level world) {
+    public StarfishEntity(EntityType<? extends Animal> entityType, Level world) {
         super(entityType, world);
     }
 
@@ -64,12 +64,12 @@ public class Starfish1Entity extends Animal implements GeoEntity {
     @Override
     protected void registerGoals() {
         this.goalSelector.addGoal(0, new TryFindWaterGoal(this));
-        this.goalSelector.addGoal(1, new NearestAttackableTargetGoal<>(this, Shrimp1Entity.class, true));
+        this.goalSelector.addGoal(1, new NearestAttackableTargetGoal<>(this, EtherealShrimpEntity.class, true));
         this.goalSelector.addGoal(2, new WaterAvoidingRandomStrollGoal(this, 1.0));
         this.goalSelector.addGoal(3, new TemptGoal(this, 1.25, Ingredient.of(ModItems.RAW_SHRIMP.get()), false));
         this.goalSelector.addGoal(4, new BreedGoal(this, 1.0));
         this.goalSelector.addGoal(5, new RandomLookAroundGoal(this));
-        this.goalSelector.addGoal(6, new HurtByTargetGoal(this).setAlertOthers(Starfish1Entity.class));
+        this.goalSelector.addGoal(6, new HurtByTargetGoal(this).setAlertOthers(StarfishEntity.class));
         this.goalSelector.addGoal(7, new LookAtPlayerGoal(this, Player.class, 10.0F));
     }
 
@@ -83,7 +83,7 @@ public class Starfish1Entity extends Animal implements GeoEntity {
                 }
             }
 
-            if (!entity.isAlive() || (!(entity instanceof Shrimp1Entity) && !(entity instanceof Player))) {
+            if (!entity.isAlive() || (!(entity instanceof EtherealShrimpEntity) && !(entity instanceof Player))) {
                 this.stopRiding();
             } else {
                 this.setDeltaMovement(0, 0, 0);
@@ -97,7 +97,7 @@ public class Starfish1Entity extends Animal implements GeoEntity {
                     if (!player.isAlive()) {
                         this.removeVehicle();
                     }
-                } else if (entity instanceof Shrimp1Entity shrimp) {
+                } else if (entity instanceof EtherealShrimpEntity shrimp) {
                     this.setPos(shrimp.getX(), Math.max(shrimp.getY() + shrimp.getEyeHeight(), shrimp.getY()), shrimp.getZ());
                     shrimp.addEffect(new MobEffectInstance(MobEffects.BLINDNESS, 20, 0));
                     shrimp.hurt(this.damageSources().mobAttack(this), 1.0f);
@@ -111,7 +111,7 @@ public class Starfish1Entity extends Animal implements GeoEntity {
         }
     }
 
-    public static boolean canSpawn(EntityType<Starfish1Entity> type, ServerLevelAccessor world, MobSpawnType reason, BlockPos pos, RandomSource random) {
+    public static boolean canSpawn(EntityType<StarfishEntity> type, ServerLevelAccessor world, MobSpawnType reason, BlockPos pos, RandomSource random) {
         return pos.getY() >= 45 && pos.getY() <= 64 && world.getBlockState(pos).is(Blocks.WATER);
     }
 
@@ -138,7 +138,7 @@ public class Starfish1Entity extends Animal implements GeoEntity {
     @Nullable
     @Override
     public AgeableMob getBreedOffspring(@NotNull ServerLevel world, @NotNull AgeableMob partner) {
-        return ModEntities.STARFISH_1.get().create(world);
+        return ModEntities.STARFISH.get().create(world);
     }
 
     @Override
@@ -147,7 +147,7 @@ public class Starfish1Entity extends Animal implements GeoEntity {
     }
 
     @Override
-    public void registerControllers(AnimatableManager.ControllerRegistrar controllers) {
+    public void registerControllers(AnimatableManager.@NotNull ControllerRegistrar controllers) {
         controllers.add(new AnimationController<>(this, "controller", 0, this::predicate));
     }
 
@@ -156,7 +156,7 @@ public class Starfish1Entity extends Animal implements GeoEntity {
         return this.factory;
     }
 
-    private PlayState predicate(AnimationState<Starfish1Entity> event) {
+    private PlayState predicate(AnimationState<StarfishEntity> event) {
         if (this.isPassenger()) {
             return event.setAndContinue(EAT_ANIMATION);
         } else if (event.isMoving()) {

@@ -5,7 +5,7 @@ import com.otterly76.ott.entity.ModEntities;
 import com.otterly76.ott.client.model.CreakingModel;
 import com.otterly76.ott.client.registries.ModModelLayers;
 import com.otterly76.ott.entity.custom.HappyGhast;
-import com.otterly76.ott.entity.custom.Shrimp1Entity;
+import com.otterly76.ott.entity.custom.EtherealShrimpEntity;
 import com.otterly76.ott.item.ModItems;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.Mob;
@@ -86,12 +86,12 @@ public class ModEventBusEvents {
         event.put(ModEntities.PENGUIN.get(), com.otterly76.ott.entity.custom.PenguinEntity.createAttributes().build());
         event.put(ModEntities.SEAL.get(), com.otterly76.ott.entity.custom.SealEntity.createAttributes().build());
         event.put(ModEntities.SEA_URCHIN.get(), com.otterly76.ott.entity.custom.SeaUrchinEntity.createAttributes().build());
-        event.put(ModEntities.JELLYFISH.get(), com.otterly76.ott.entity.custom.JellyfishEntity.createAttributes().build());
-        event.put(ModEntities.SEAHORSE_1.get(), com.otterly76.ott.entity.custom.Seahorse1Entity.createAttributes().build());
-        event.put(ModEntities.SHRIMP_1.get(), Shrimp1Entity.createAttributes().build());
-        event.put(ModEntities.STARFISH_1.get(), com.otterly76.ott.entity.custom.Starfish1Entity.createAttributes().build());
-        event.put(ModEntities.JELLYFISH_2.get(), com.otterly76.ott.entity.custom.Jellyfish2Entity.createAttributes().build());
-        event.put(ModEntities.JELLYFISH_3.get(), com.otterly76.ott.entity.custom.Jellyfish3Entity.createAttributes().build());
+        event.put(ModEntities.LARGE_JELLYFISH.get(), com.otterly76.ott.entity.custom.LargeJellyfishEntity.createAttributes().build());
+        event.put(ModEntities.SEAHORSE.get(), com.otterly76.ott.entity.custom.SeahorseEntity.createAttributes().build());
+        event.put(ModEntities.ETHEREAL_SHRIMP.get(), EtherealShrimpEntity.createAttributes().build());
+        event.put(ModEntities.STARFISH.get(), com.otterly76.ott.entity.custom.StarfishEntity.createAttributes().build());
+        event.put(ModEntities.SMALL_JELLYFISH.get(), com.otterly76.ott.entity.custom.SmallJellyfishEntity.createAttributes().build());
+        event.put(ModEntities.MEDIUM_JELLYFISH.get(), com.otterly76.ott.entity.custom.MediumJellyfishEntity.createAttributes().build());
 
         event.put(ModEntities.DRAGONFLY.get(), com.otterly76.ott.entity.custom.DragonflyEntity.createAttributes().build());
         event.put(ModEntities.DUMBO_OCTOPUS.get(), com.otterly76.ott.entity.custom.DumboOctopusEntity.createAttributes().build());
@@ -110,7 +110,6 @@ public class ModEventBusEvents {
 
         event.put(ModEntities.TREE_ENT.get(), com.otterly76.ott.entity.custom.TreeEnt.createAttributes().build());
         event.put(ModEntities.HERMIT_KING.get(), com.otterly76.ott.entity.custom.HermitKing.createAttributes().build());
-        event.put(ModEntities.SAND_HERMIT.get(), com.otterly76.ott.entity.custom.SandHermit.createAttributes().build());
         event.put(ModEntities.SEA_VIPER.get(), com.otterly76.ott.entity.custom.SeaViper.createAttributes().build());
         event.put(ModEntities.YETI.get(), com.otterly76.ott.entity.custom.Yeti.createAttributes().build());
         event.put(ModEntities.VILE_GATOR.get(), com.otterly76.ott.entity.custom.VileGator.createAttributes().build());
@@ -595,45 +594,45 @@ public class ModEventBusEvents {
                 RegisterSpawnPlacementsEvent.Operation.OR
         );
         event.register(
-                ModEntities.JELLYFISH.get(),
+                ModEntities.LARGE_JELLYFISH.get(),
                 SpawnPlacementTypes.IN_WATER,
                 Heightmap.Types.MOTION_BLOCKING_NO_LEAVES,
-                com.otterly76.ott.entity.custom.JellyfishEntity::canSpawn,
+                com.otterly76.ott.entity.custom.LargeJellyfishEntity::canSpawn,
                 RegisterSpawnPlacementsEvent.Operation.OR
         );
         event.register(
-                ModEntities.SEAHORSE_1.get(),
+                ModEntities.SEAHORSE.get(),
                 SpawnPlacementTypes.IN_WATER,
                 Heightmap.Types.MOTION_BLOCKING_NO_LEAVES,
-                com.otterly76.ott.entity.custom.Seahorse1Entity::canSpawn,
+                com.otterly76.ott.entity.custom.SeahorseEntity::canSpawn,
                 RegisterSpawnPlacementsEvent.Operation.OR
         );
         event.register(
-                ModEntities.SHRIMP_1.get(),
+                ModEntities.ETHEREAL_SHRIMP.get(),
                 SpawnPlacementTypes.IN_WATER,
                 Heightmap.Types.MOTION_BLOCKING_NO_LEAVES,
-                Shrimp1Entity::canSpawn,
+                EtherealShrimpEntity::canSpawn,
                 RegisterSpawnPlacementsEvent.Operation.OR
         );
         event.register(
-                ModEntities.STARFISH_1.get(),
+                ModEntities.STARFISH.get(),
                 SpawnPlacementTypes.IN_WATER,
                 Heightmap.Types.MOTION_BLOCKING_NO_LEAVES,
-                com.otterly76.ott.entity.custom.Starfish1Entity::canSpawn,
+                com.otterly76.ott.entity.custom.StarfishEntity::canSpawn,
                 RegisterSpawnPlacementsEvent.Operation.OR
         );
         event.register(
-                ModEntities.JELLYFISH_2.get(),
+                ModEntities.SMALL_JELLYFISH.get(),
                 SpawnPlacementTypes.IN_WATER,
                 Heightmap.Types.MOTION_BLOCKING_NO_LEAVES,
-                com.otterly76.ott.entity.custom.Jellyfish2Entity::canSpawn,
+                com.otterly76.ott.entity.custom.SmallJellyfishEntity::canSpawn,
                 RegisterSpawnPlacementsEvent.Operation.OR
         );
         event.register(
-                ModEntities.JELLYFISH_3.get(),
+                ModEntities.MEDIUM_JELLYFISH.get(),
                 SpawnPlacementTypes.IN_WATER,
                 Heightmap.Types.MOTION_BLOCKING_NO_LEAVES,
-                com.otterly76.ott.entity.custom.Jellyfish3Entity::canSpawn,
+                com.otterly76.ott.entity.custom.MediumJellyfishEntity::canSpawn,
                 RegisterSpawnPlacementsEvent.Operation.OR
         );
         event.register(

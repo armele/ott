@@ -146,17 +146,17 @@ public class ModItemModelProvider extends ItemModelProvider {
         
         generatedItemFromTexture(ModItems.CAPYBARA_SPAWN_EGG.getId().getPath(), modLoc("item/capybara_spawn_egg"));
         generatedItemFromTexture(ModItems.HEDGEHOG_SPAWN_EGG.getId().getPath(), modLoc("item/hedgehog_spawn_egg"));
-        generatedItemFromTexture(ModItems.JELLYFISH_SPAWN_EGG.getId().getPath(), modLoc("item/jellyfish_spawn_egg"));
+        generatedItemFromTexture(ModItems.LARGE_JELLYFISH_SPAWN_EGG.getId().getPath(), modLoc("item/jellyfish_spawn_egg"));
         generatedItemFromTexture(ModItems.KIWI_SPAWN_EGG.getId().getPath(), modLoc("item/kiwi_spawn_egg"));
         generatedItemFromTexture(ModItems.PENGUIN_SPAWN_EGG.getId().getPath(), modLoc("item/penguin_spawn_egg"));
         generatedItemFromTexture(ModItems.SEAL_SPAWN_EGG.getId().getPath(), modLoc("item/seal_spawn_egg"));
         generatedItemFromTexture(ModItems.SEA_URCHIN_SPAWN_EGG.getId().getPath(), modLoc("item/sea_urchin_spawn_egg"));
 
-        spawnEggItem(ModItems.SEAHORSE_1_SPAWN_EGG);
-        spawnEggItem(ModItems.SHRIMP_1_SPAWN_EGG);
-        spawnEggItem(ModItems.STARFISH_1_SPAWN_EGG);
-        spawnEggItem(ModItems.JELLYFISH_2_SPAWN_EGG);
-        spawnEggItem(ModItems.JELLYFISH_3_SPAWN_EGG);
+        spawnEggItem(ModItems.SEAHORSE_SPAWN_EGG);
+        spawnEggItem(ModItems.ETHEREAL_SHRIMP_SPAWN_EGG);
+        spawnEggItem(ModItems.STARFISH_SPAWN_EGG);
+        spawnEggItem(ModItems.SMALL_JELLYFISH_SPAWN_EGG);
+        spawnEggItem(ModItems.MEDIUM_JELLYFISH_SPAWN_EGG);
 
         spawnEggItem(ModItems.ANGELFISH_SPAWN_EGG);
         spawnEggItem(ModItems.BARRELEYE_SPAWN_EGG);
@@ -191,7 +191,6 @@ public class ModItemModelProvider extends ItemModelProvider {
         spawnEggItem(ModItems.GEIST_SPAWN_EGG);
         spawnEggItem(ModItems.TREE_ENT_SPAWN_EGG);
         spawnEggItem(ModItems.HERMIT_KING_SPAWN_EGG);
-        spawnEggItem(ModItems.SAND_HERMIT_SPAWN_EGG);
         spawnEggItem(ModItems.SEA_VIPER_SPAWN_EGG);
         spawnEggItem(ModItems.YETI_SPAWN_EGG);
         spawnEggItem(ModItems.VILE_GATOR_SPAWN_EGG);
@@ -263,6 +262,11 @@ public class ModItemModelProvider extends ItemModelProvider {
         generatedItemFromTexture(ModItems.BONNETHEAD_SHARK_BUCKET.getId().getPath(), modLoc("item/bonnethead_shark_bucket"));
         generatedItemFromTexture(ModItems.GOBLIN_SHARK_BUCKET.getId().getPath(), modLoc("item/goblin_shark_bucket"));
         generatedItemFromTexture(ModItems.PSYCHO_JELLY_BUCKET.getId().getPath(), modLoc("item/psycho_jelly_bucket"));
+        withExistingParent(ModItems.LARGE_JELLYFISH_BUCKET.getId().getPath(), mcLoc("item/water_bucket"));
+        withExistingParent(ModItems.SMALL_JELLYFISH_BUCKET.getId().getPath(), mcLoc("item/water_bucket"));
+        withExistingParent(ModItems.MEDIUM_JELLYFISH_BUCKET.getId().getPath(), mcLoc("item/water_bucket"));
+        withExistingParent(ModItems.SEAHORSE_BUCKET.getId().getPath(), mcLoc("item/water_bucket"));
+        withExistingParent(ModItems.ETHEREAL_SHRIMP_BUCKET.getId().getPath(), mcLoc("item/water_bucket"));
 
         generatedItemFromTexture(ModItems.RAW_CICHLID.getId().getPath(), modLoc("item/raw_cichlid"));
         generatedItemFromTexture(ModItems.COOKED_CICHLID.getId().getPath(), modLoc("item/raw_cichlid"));

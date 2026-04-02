@@ -33,12 +33,12 @@ import software.bernie.geckolib.animation.PlayState;
 import software.bernie.geckolib.animation.RawAnimation;
 import software.bernie.geckolib.util.GeckoLibUtil;
 
-public class Shrimp1Entity extends AbstractSchoolingFish implements GeoEntity {
+public class EtherealShrimpEntity extends AbstractSchoolingFish implements GeoEntity {
     private static final RawAnimation IDLE_ANIMATION = RawAnimation.begin().thenLoop("animation.shrimp_1.idle");
 
     private final AnimatableInstanceCache factory = GeckoLibUtil.createInstanceCache(this);
 
-    public Shrimp1Entity(EntityType<? extends AbstractSchoolingFish> entityType, Level world) {
+    public EtherealShrimpEntity(EntityType<? extends AbstractSchoolingFish> entityType, Level world) {
         super(entityType, world);
     }
 
@@ -46,7 +46,7 @@ public class Shrimp1Entity extends AbstractSchoolingFish implements GeoEntity {
         return AbstractSchoolingFish.createAttributes().add(Attributes.MOVEMENT_SPEED, 2.0d).add(Attributes.MAX_HEALTH, 2.0d);
     }
 
-    public static boolean canSpawn(EntityType<Shrimp1Entity> type, ServerLevelAccessor world, MobSpawnType reason, BlockPos pos, RandomSource random) {
+    public static boolean canSpawn(EntityType<EtherealShrimpEntity> type, ServerLevelAccessor world, MobSpawnType reason, BlockPos pos, RandomSource random) {
         return pos.getY() >= 45 && pos.getY() <= 64 && world.getBlockState(pos).is(Blocks.WATER);
     }
 
@@ -105,11 +105,11 @@ public class Shrimp1Entity extends AbstractSchoolingFish implements GeoEntity {
 
     @Override
     public @NotNull ItemStack getBucketItemStack() {
-        return new ItemStack(ModItems.SHRIMP_1_SPAWN_EGG.get()); // FIXME: Should be a bucket if we add it
+        return new ItemStack(ModItems.ETHEREAL_SHRIMP_BUCKET.get());
     }
 
     public void createChild(ServerLevel world) {
-        Shrimp1Entity child = (Shrimp1Entity) getType().create(world);
+        EtherealShrimpEntity child = (EtherealShrimpEntity) getType().create(world);
         if (child != null) {
             child.setPosRaw(this.getX(), this.getY(), this.getZ());
             world.addFreshEntity(child);
@@ -117,7 +117,7 @@ public class Shrimp1Entity extends AbstractSchoolingFish implements GeoEntity {
     }
 
     @Override
-    public void registerControllers(AnimatableManager.ControllerRegistrar controllers) {
+    public void registerControllers(AnimatableManager.@NotNull ControllerRegistrar controllers) {
         controllers.add(new AnimationController<>(this, "controller", 0, this::predicate));
     }
 
@@ -126,7 +126,7 @@ public class Shrimp1Entity extends AbstractSchoolingFish implements GeoEntity {
         return this.factory;
     }
 
-    private PlayState predicate(AnimationState<Shrimp1Entity> event) {
+    private PlayState predicate(AnimationState<EtherealShrimpEntity> event) {
         return event.setAndContinue(IDLE_ANIMATION);
     }
 }

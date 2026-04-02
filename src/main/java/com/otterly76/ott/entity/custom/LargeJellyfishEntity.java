@@ -1,7 +1,9 @@
 package com.otterly76.ott.entity.custom;
 
 import com.otterly76.ott.OttDamageTypes;
+import com.otterly76.ott.item.ModItems;
 import com.otterly76.ott.sound.ModSounds;
+import com.otterly76.ott.util.entity.BucketableUtils;
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.syncher.EntityDataAccessor;
@@ -9,10 +11,16 @@ import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvent;
+import net.minecraft.sounds.SoundEvents;
 import net.minecraft.tags.FluidTags;
 import net.minecraft.util.Mth;
 import net.minecraft.world.DifficultyInstance;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.world.InteractionResult;
 import net.minecraft.world.damagesource.DamageSource;
+import net.minecraft.world.entity.animal.Bucketable;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.ai.Brain;
@@ -33,11 +41,12 @@ import software.bernie.geckolib.animation.PlayState;
 import software.bernie.geckolib.animation.RawAnimation;
 import software.bernie.geckolib.util.GeckoLibUtil;
 
-public class JellyfishEntity extends WaterAnimal implements GeoEntity {
+public class LargeJellyfishEntity extends WaterAnimal implements GeoEntity, Bucketable {
     private static final RawAnimation IDLE = RawAnimation.begin().thenLoop("animation.jellyfish.idle");
     private static final RawAnimation SWIM = RawAnimation.begin().thenLoop("animation.jellyfish.hover");
 
-    private static final EntityDataAccessor<Integer> VARIANT = SynchedEntityData.defineId(JellyfishEntity.class, EntityDataSerializers.INT);
+    private static final EntityDataAccessor<Boolean> FROM_BUCKET = SynchedEntityData.defineId(LargeJellyfishEntity.class, EntityDataSerializers.BOOLEAN);
+    private static final EntityDataAccessor<Integer> VARIANT = SynchedEntityData.defineId(LargeJellyfishEntity.class, EntityDataSerializers.INT);
 
     private final AnimatableInstanceCache cache = GeckoLibUtil.createInstanceCache(this);
 
@@ -50,7 +59,7 @@ public class JellyfishEntity extends WaterAnimal implements GeoEntity {
     private float ty;
     private float tz;
 
-    public JellyfishEntity(EntityType<? extends WaterAnimal> entityType, Level level) {
+    public LargeJellyfishEntity(EntityType<? extends WaterAnimal> entityType, Level level) {
         super(entityType, level);
         this.random.setSeed(this.getId());
         this.tentacleSpeed = 1.0F / (this.random.nextFloat() + 1.0F) * 0.15F;
@@ -67,24 +76,62 @@ public class JellyfishEntity extends WaterAnimal implements GeoEntity {
     @Override
     protected void defineSynchedData(@NotNull SynchedEntityData.Builder builder) {
         super.defineSynchedData(builder);
+        builder.define(FROM_BUCKET, false);
         builder.define(VARIANT, 0);
     }
 
     @Override
     public void addAdditionalSaveData(@NotNull CompoundTag tag) {
         super.addAdditionalSaveData(tag);
+        tag.putBoolean("FromBucket", this.fromBucket());
         tag.putInt("Variant", this.getVariant());
     }
 
     @Override
     public void readAdditionalSaveData(@NotNull CompoundTag tag) {
         super.readAdditionalSaveData(tag);
+        this.setFromBucket(tag.getBoolean("FromBucket"));
         this.setVariant(tag.getInt("Variant"));
+    }
+
+    @Override
+    public @NotNull InteractionResult mobInteract(@NotNull Player player, @NotNull InteractionHand hand) {
+        return Bucketable.bucketMobPickup(player, hand, this).orElse(super.mobInteract(player, hand));
+    }
+
+    @Override
+    public boolean fromBucket() {
+        return this.entityData.get(FROM_BUCKET);
+    }
+
+    @Override
+    public void setFromBucket(boolean fromBucket) {
+        this.entityData.set(FROM_BUCKET, fromBucket);
+    }
+
+    @Override
+    public void loadFromBucketTag(@NotNull CompoundTag tag) {
+        BucketableUtils.loadDefaultDataFromBucketTag(this, tag);
+    }
+
+    @Override
+    public void saveToBucketTag(@NotNull ItemStack stack) {
+        BucketableUtils.saveDefaultDataToBucketTag(this, stack);
+    }
+
+    @Override
+    public @NotNull SoundEvent getPickupSound() {
+        return SoundEvents.BUCKET_FILL_FISH;
+    }
+
+    @Override
+    public @NotNull ItemStack getBucketItemStack() {
+        return new ItemStack(ModItems.LARGE_JELLYFISH_BUCKET.get());
     }
 
     @NotNull
     @Override
-    protected Brain.Provider<JellyfishEntity> brainProvider() {
+    protected Brain.Provider<LargeJellyfishEntity> brainProvider() {
         return JellyfishAI.brainProvider();
     }
 
@@ -96,8 +143,8 @@ public class JellyfishEntity extends WaterAnimal implements GeoEntity {
 
     @SuppressWarnings("unchecked")
     @Override
-    public @NotNull Brain<JellyfishEntity> getBrain() {
-        return (Brain<JellyfishEntity>) super.getBrain();
+    public @NotNull Brain<LargeJellyfishEntity> getBrain() {
+        return (Brain<LargeJellyfishEntity>) super.getBrain();
     }
 
     @Override
@@ -285,11 +332,11 @@ public class JellyfishEntity extends WaterAnimal implements GeoEntity {
     }
 
     @Override
-    public void registerControllers(AnimatableManager.ControllerRegistrar controllers) {
+    public void registerControllers(AnimatableManager.@NotNull ControllerRegistrar controllers) {
         controllers.add(new AnimationController<>(this, "main", 5, this::mainPredicate));
     }
 
-    private PlayState mainPredicate(AnimationState<JellyfishEntity> state) {
+    private PlayState mainPredicate(AnimationState<LargeJellyfishEntity> state) {
         if (state.isMoving()) {
             return state.setAndContinue(SWIM);
         } else {

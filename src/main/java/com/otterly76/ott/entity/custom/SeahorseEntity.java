@@ -45,16 +45,16 @@ import software.bernie.geckolib.util.GeckoLibUtil;
 
 import java.util.concurrent.ThreadLocalRandom;
 
-public class Seahorse1Entity extends WaterAnimal implements GeoEntity, Bucketable {
-    private static final EntityDataAccessor<Boolean> FROM_BUCKET = SynchedEntityData.defineId(Seahorse1Entity.class, EntityDataSerializers.BOOLEAN);
-    private static final EntityDataAccessor<Integer> COLOR = SynchedEntityData.defineId(Seahorse1Entity.class, EntityDataSerializers.INT);
-    
+public class SeahorseEntity extends WaterAnimal implements GeoEntity, Bucketable {
+    private static final EntityDataAccessor<Boolean> FROM_BUCKET = SynchedEntityData.defineId(SeahorseEntity.class, EntityDataSerializers.BOOLEAN);
+    private static final EntityDataAccessor<Integer> COLOR = SynchedEntityData.defineId(SeahorseEntity.class, EntityDataSerializers.INT);
+
     private static final RawAnimation IDLE_ANIMATION = RawAnimation.begin().thenLoop("animation.seahorse.idle");
     private static final RawAnimation SWIM_ANIMATION = RawAnimation.begin().thenLoop("animation.seahorse.swim");
 
     private final AnimatableInstanceCache factory = GeckoLibUtil.createInstanceCache(this);
 
-    public Seahorse1Entity(EntityType<? extends WaterAnimal> entityType, Level world) {
+    public SeahorseEntity(EntityType<? extends WaterAnimal> entityType, Level world) {
         super(entityType, world);
     }
 
@@ -62,7 +62,7 @@ public class Seahorse1Entity extends WaterAnimal implements GeoEntity, Bucketabl
         return createMobAttributes().add(Attributes.MOVEMENT_SPEED, 0.25d).add(Attributes.MAX_HEALTH, 4.0d);
     }
 
-    public static boolean canSpawn(EntityType<Seahorse1Entity> type, ServerLevelAccessor world, MobSpawnType reason, BlockPos pos, RandomSource random) {
+    public static boolean canSpawn(EntityType<SeahorseEntity> type, ServerLevelAccessor world, MobSpawnType reason, BlockPos pos, RandomSource random) {
         return pos.getY() >= 45 && pos.getY() <= 64 && world.getBlockState(pos).is(Blocks.WATER);
     }
 
@@ -115,7 +115,7 @@ public class Seahorse1Entity extends WaterAnimal implements GeoEntity, Bucketabl
     }
 
     public void createChild(ServerLevel world) {
-        Seahorse1Entity child = (Seahorse1Entity) getType().create(world);
+        SeahorseEntity child = (SeahorseEntity) getType().create(world);
         if (child != null) {
             child.setPosRaw(this.getX(), this.getY(), this.getZ());
             world.addFreshEntity(child);
@@ -169,11 +169,11 @@ public class Seahorse1Entity extends WaterAnimal implements GeoEntity, Bucketabl
 
     @Override
     public @NotNull ItemStack getBucketItemStack() {
-        return new ItemStack(ModItems.SEAHORSE_1_SPAWN_EGG.get()); // FIXME: Should be a bucket if we add it
+        return new ItemStack(ModItems.SEAHORSE_BUCKET.get());
     }
 
     @Override
-    public void registerControllers(AnimatableManager.ControllerRegistrar controllers) {
+    public void registerControllers(AnimatableManager.@NotNull ControllerRegistrar controllers) {
         controllers.add(new AnimationController<>(this, "controller", 0, this::predicate));
     }
 
@@ -199,7 +199,7 @@ public class Seahorse1Entity extends WaterAnimal implements GeoEntity, Bucketabl
         super.aiStep();
     }
 
-    private PlayState predicate(AnimationState<? extends Seahorse1Entity> event) {
+    private PlayState predicate(AnimationState<? extends SeahorseEntity> event) {
         if (event.isMoving()) {
             return event.setAndContinue(SWIM_ANIMATION);
         } else {
