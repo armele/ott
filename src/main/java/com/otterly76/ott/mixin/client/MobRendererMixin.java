@@ -14,9 +14,9 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 @Mixin(MobRenderer.class)
 public abstract class MobRendererMixin<T extends Mob, M extends EntityModel<T>> extends LivingEntityRenderer<T, M> {
     @Unique
-    protected M defaultModel;
+    protected M ott$defaultModel;
     @Unique
-    protected EntityRendererProvider.Context context;
+    protected EntityRendererProvider.Context ott$context;
 
     public MobRendererMixin(EntityRendererProvider.Context context, M model, float shadowRadius) {
         super(context, model, shadowRadius);
@@ -27,7 +27,7 @@ public abstract class MobRendererMixin<T extends Mob, M extends EntityModel<T>> 
             at = @At("TAIL")
     )
     private void vb$init(EntityRendererProvider.Context context, M model, float shadowRadius, CallbackInfo ci) {
-        this.context = context;
-        this.defaultModel = model;
+        this.ott$context = context;
+        this.ott$defaultModel = model;
     }
 }

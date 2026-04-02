@@ -686,12 +686,12 @@ public class ModItems {
     // -------------------------------------------------------------------------
     // --- Mosaic / Fresco decorative block items ---
     // -------------------------------------------------------------------------
-    public static final DeferredHolder<Item, BlockItem> MORAQ_MOSAIC_BORDER      = registerBlockItem("moraq_mosaic_border",      ModBlocks.MORAQ_MOSAIC_BORDER);
-    public static final DeferredHolder<Item, BlockItem> MORAQ_MOSAIC_GEOMETRIC   = registerBlockItem("moraq_mosaic_geometric",   ModBlocks.MORAQ_MOSAIC_GEOMETRIC);
-    public static final DeferredHolder<Item, BlockItem> MORAQ_MOSAIC_PATTERN     = registerBlockItem("moraq_mosaic_pattern",     ModBlocks.MORAQ_MOSAIC_PATTERN);
-    public static final DeferredHolder<Item, BlockItem> MORAQ_MOSAIC_DELICATE    = registerBlockItem("moraq_mosaic_delicate",    ModBlocks.MORAQ_MOSAIC_DELICATE);
-    public static final DeferredHolder<Item, BlockItem> MORAQ_MOSAIC_TRADITIONAL = registerBlockItem("moraq_mosaic_traditional", ModBlocks.MORAQ_MOSAIC_TRADITIONAL);
-    public static final DeferredHolder<Item, BlockItem> MORAQ_MOSAIC_RECESS      = registerBlockItem("moraq_mosaic_recess",      ModBlocks.MORAQ_MOSAIC_RECESS);
+    public static final DeferredHolder<Item, BlockItem> WATER_MOSAIC_BORDER      = registerBlockItem("water_mosaic_border",      ModBlocks.WATER_MOSAIC_BORDER);
+    public static final DeferredHolder<Item, BlockItem> WATER_MOSAIC_GEOMETRIC   = registerBlockItem("water_mosaic_geometric",   ModBlocks.WATER_MOSAIC_GEOMETRIC);
+    public static final DeferredHolder<Item, BlockItem> WATER_MOSAIC_PATTERN     = registerBlockItem("water_mosaic_pattern",     ModBlocks.WATER_MOSAIC_PATTERN);
+    public static final DeferredHolder<Item, BlockItem> WATER_MOSAIC_DELICATE    = registerBlockItem("water_mosaic_delicate",    ModBlocks.WATER_MOSAIC_DELICATE);
+    public static final DeferredHolder<Item, BlockItem> WATER_MOSAIC_TRADITIONAL = registerBlockItem("water_mosaic_traditional", ModBlocks.WATER_MOSAIC_TRADITIONAL);
+    public static final DeferredHolder<Item, BlockItem> WATER_MOSAIC_RECESS      = registerBlockItem("water_mosaic_recess",      ModBlocks.WATER_MOSAIC_RECESS);
     public static final DeferredHolder<Item, BlockItem> MOSAIC_FLOOR             = registerBlockItem("mosaic_floor",             ModBlocks.MOSAIC_FLOOR);
     public static final DeferredHolder<Item, BlockItem> MOSAIC_FLOOR_DELICATE    = registerBlockItem("mosaic_floor_delicate",    ModBlocks.MOSAIC_FLOOR_DELICATE);
     public static final DeferredHolder<Item, BlockItem> MOSAIC_FLOOR_ROSETTE     = registerBlockItem("mosaic_floor_rosette",     ModBlocks.MOSAIC_FLOOR_ROSETTE);
@@ -716,7 +716,7 @@ public class ModItems {
     public static final DeferredHolder<Item, BlockItem> OAK_BEAM          = registerBlockItem("oak_beam",          ModBlocks.OAK_BEAM);
     public static final DeferredHolder<Item, BlockItem> OAK_PLANKS_PLATE  = registerBlockItem("oak_planks_plate",  ModBlocks.OAK_PLANKS_PLATE);
     public static final DeferredHolder<Item, BlockItem> OAK_PLANKS_EDGE   = registerBlockItem("oak_planks_edge",   ModBlocks.OAK_PLANKS_EDGE);
-    public static final DeferredHolder<Item, BlockItem> OAK_BALUSTER      = registerBlockItem("oak_baluster",      ModBlocks.OAK_BALUSTER);
+    public static final DeferredHolder<Item, BlockItem> OAK_BANNISTER      = registerBlockItem("oak_bannister",      ModBlocks.OAK_BANNISTER);
     public static final DeferredHolder<Item, BlockItem> OAK_SUPPORT_SLAB  = registerBlockItem("oak_support_slab",  ModBlocks.OAK_SUPPORT_SLAB);
     public static final DeferredHolder<Item, BlockItem> OAK_SUPPORT_BEAM  = registerBlockItem("oak_support_beam",  ModBlocks.OAK_SUPPORT_BEAM);
 
@@ -768,7 +768,7 @@ public class ModItems {
             registerBlockItem(setBlocks.beam());
             registerBlockItem(setBlocks.planksPlate());
             registerBlockItem(setBlocks.planksEdge());
-            registerBlockItem(setBlocks.baluster());
+            registerBlockItem(setBlocks.bannister());
             registerBlockItem(setBlocks.supportSlab());
             registerBlockItem(setBlocks.supportBeam());
 
@@ -793,7 +793,7 @@ public class ModItems {
             registerBlockItem(set.beam());
             registerBlockItem(set.planksPlate());
             registerBlockItem(set.planksEdge());
-            registerBlockItem(set.baluster());
+            registerBlockItem(set.bannister());
             registerBlockItem(set.supportSlab());
             registerBlockItem(set.supportBeam());
         });

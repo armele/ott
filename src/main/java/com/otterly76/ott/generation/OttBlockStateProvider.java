@@ -467,14 +467,14 @@ public class OttBlockStateProvider extends ModBlockStateProvider {
                 .texture("side", planks).texture("top", planks).texture("frieze", planks);
         registerFacingShapeHalfBlock(set.planksEdge().get(), edge, edgeOuter, edgeInner);
 
-        // ── Baluster ──────────────────────────────────────────────────────────
-        ModelFile baluster      = models().withExistingParent(setName + "_baluster",       modLoc("block/oak_baluster"))
+        // ── Bannister ──────────────────────────────────────────────────────────
+        ModelFile bannister      = models().withExistingParent(setName + "_bannister",       modLoc("block/oak_bannister"))
                 .texture("0", planks).texture("particle", planks);
-        ModelFile balusterOuter = models().withExistingParent(setName + "_baluster_outer", modLoc("block/oak_baluster_outer"))
+        ModelFile bannisterOuter = models().withExistingParent(setName + "_bannister_outer", modLoc("block/oak_bannister_outer"))
                 .texture("0", planks).texture("particle", planks);
-        ModelFile balusterInner = models().withExistingParent(setName + "_baluster_inner", modLoc("block/oak_baluster_inner"))
+        ModelFile bannisterInner = models().withExistingParent(setName + "_bannister_inner", modLoc("block/oak_bannister_inner"))
                 .texture("0", planks).texture("particle", planks);
-        registerFacingShapeBlock(set.baluster().get(), baluster, balusterOuter, balusterInner);
+        registerFacingShapeBlock(set.bannister().get(), bannister, bannisterOuter, bannisterInner);
     }
 
     private ResourceLocation vanillaPlanks(String setName) {
@@ -578,17 +578,17 @@ public class OttBlockStateProvider extends ModBlockStateProvider {
                 .texture("side", planks).texture("top", planks).texture("frieze", planks);
         registerFacingShapeHalfBlock(set.planksEdge().get(), edge, edgeOuter, edgeInner);
 
-        // ── Baluster ──────────────────────────────────────────────────────────
-        ModelFile baluster      = models().withExistingParent(setName + "_baluster",       modLoc("block/oak_baluster"))
+        // ── Bannister ──────────────────────────────────────────────────────────
+        ModelFile bannister      = models().withExistingParent(setName + "_bannister",       modLoc("block/oak_bannister"))
                 .texture("0", planks).texture("particle", planks);
-        ModelFile balusterOuter = models().withExistingParent(setName + "_baluster_outer", modLoc("block/oak_baluster_outer"))
+        ModelFile bannisterOuter = models().withExistingParent(setName + "_bannister_outer", modLoc("block/oak_bannister_outer"))
                 .texture("0", planks).texture("particle", planks);
-        ModelFile balusterInner = models().withExistingParent(setName + "_baluster_inner", modLoc("block/oak_baluster_inner"))
+        ModelFile bannisterInner = models().withExistingParent(setName + "_bannister_inner", modLoc("block/oak_bannister_inner"))
                 .texture("0", planks).texture("particle", planks);
-        registerFacingShapeBlock(set.baluster().get(), baluster, balusterOuter, balusterInner);
+        registerFacingShapeBlock(set.bannister().get(), bannister, bannisterOuter, bannisterInner);
     }
 
-    /** Variant block with HORIZONTAL_FACING × STAIRS_SHAPE (no half). Used for plate and baluster. */
+    /** Variant block with HORIZONTAL_FACING × STAIRS_SHAPE (no half). Used for plate and bannister. */
     private void registerFacingShapeBlock(net.minecraft.world.level.block.Block block,
                                           ModelFile straight, ModelFile outer, ModelFile inner) {
         getVariantBuilder(block).forAllStatesExcept(state -> {

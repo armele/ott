@@ -14,7 +14,7 @@ public class FireflyGlowAnim implements VertexConsumer {
 
     public FireflyGlowAnim(VertexConsumer vertexConsumer, int frameIndex) {
         this.vertexConsumer = vertexConsumer;
-        this.frameIndex = Math.max(0, Math.min(frameIndex, FRAME_COUNT - 1));
+        this.frameIndex = Math.clamp(frameIndex, 0, FRAME_COUNT - 1);
     }
 
     @Override

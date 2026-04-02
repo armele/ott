@@ -89,7 +89,7 @@ public class NutritionHudOverlay implements LayeredDraw.Layer {
         int drawWidth = (int) (ratio * barWidth);
 
         for (int i = 0; i < 10; ++i) {
-            int visibleWidth = Math.max(0, Math.min(9, drawWidth - i * 8));
+            int visibleWidth = Math.clamp(drawWidth - i * 8, 0, 9);
 
             if (visibleWidth > 0) {
                 int x = left - i * 8 - 9;

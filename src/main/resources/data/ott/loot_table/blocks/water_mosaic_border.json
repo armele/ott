@@ -1,0 +1,1 @@
+{"type":"minecraft:block","pools":[{"bonus_rolls":0.0,"conditions":[{"condition":"minecraft:survives_explosion"}],"entries":[{"type":"minecraft:item","name":"ott:water_mosaic_border"}],"rolls":1.0}],"random_sequence":"ott:blocks/water_mosaic_border"}

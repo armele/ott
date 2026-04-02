@@ -53,7 +53,7 @@ public class ModItemModelProvider extends ItemModelProvider {
             parentItemToBlockModel(set.pergola().getId().getPath(),     "block/" + set.pergola().getId().getPath() + "_x");
             parentItemToBlockModel(set.planksPlate().getId().getPath(), "block/" + set.planksPlate().getId().getPath());
             parentItemToBlockModel(set.planksEdge().getId().getPath(),  "block/" + set.planksEdge().getId().getPath());
-            parentItemToBlockModel(set.baluster().getId().getPath(),    "block/" + set.baluster().getId().getPath());
+            parentItemToBlockModel(set.bannister().getId().getPath(),    "block/" + set.bannister().getId().getPath());
             parentItemToBlockModel(set.supportSlab().getId().getPath(), "block/" + set.supportSlab().getId().getPath());
             parentItemToBlockModel(set.supportBeam().getId().getPath(), "block/" + set.supportSlab().getId().getPath());
 
@@ -81,7 +81,7 @@ public class ModItemModelProvider extends ItemModelProvider {
             parentItemToBlockModel(set.pergola().getId().getPath(),     "block/" + set.pergola().getId().getPath() + "_x");
             parentItemToBlockModel(set.planksPlate().getId().getPath(), "block/" + set.planksPlate().getId().getPath());
             parentItemToBlockModel(set.planksEdge().getId().getPath(),  "block/" + set.planksEdge().getId().getPath());
-            parentItemToBlockModel(set.baluster().getId().getPath(),    "block/" + set.baluster().getId().getPath());
+            parentItemToBlockModel(set.bannister().getId().getPath(),    "block/" + set.bannister().getId().getPath());
             parentItemToBlockModel(set.supportSlab().getId().getPath(), "block/" + set.supportSlab().getId().getPath());
             parentItemToBlockModel(set.supportBeam().getId().getPath(), "block/" + set.supportSlab().getId().getPath());
         });

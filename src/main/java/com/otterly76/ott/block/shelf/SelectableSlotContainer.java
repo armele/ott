@@ -28,6 +28,6 @@ public interface SelectableSlotContainer {
 
     private static int getSection(float p_262047_, int p_262100_) {
         int i = (int)(p_262047_ * (float)p_262100_);
-        return Math.max(0, Math.min(i, p_262100_ - 1));
+        return Math.clamp(i, 0, p_262100_ - 1);
     }
 }

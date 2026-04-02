@@ -122,7 +122,7 @@ public class ShelfBlock extends BaseEntityBlock implements SelectableSlotContain
         }
         
         int slot = (int)(horizontalPos * 3);
-        return OptionalInt.of(Math.max(0, Math.min(2, slot)));
+        return OptionalInt.of(Math.clamp(slot, 0, 2));
     }
 
     @Override

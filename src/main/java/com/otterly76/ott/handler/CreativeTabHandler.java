@@ -54,7 +54,7 @@ public class CreativeTabHandler {
                         set.pressurePlate(), set.button(),
                         set.beam(), set.pergola(),
                         set.planksPlate(), set.planksEdge(),
-                        set.baluster(),
+                        set.bannister(),
                         set.supportSlab(), set.supportBeam()
                 );
                 insertAllAfter(event, lastTarget, setBuilding, visibility);
@@ -66,7 +66,7 @@ public class CreativeTabHandler {
                 List<ItemLike> structuralItems = List.of(
                         set.beam(), set.pergola(),
                         set.planksPlate(), set.planksEdge(),
-                        set.baluster(),
+                        set.bannister(),
                         set.supportSlab(), set.supportBeam()
                 );
                 insertAllAfter(event, lastTarget, structuralItems, visibility);

@@ -114,8 +114,8 @@ public class WoodSetBlockRegistrar {
                 () -> new com.otterly76.ott.block.custom.EdgeBlock(
                         BlockBehaviour.Properties.of().strength(2.0f).sound(SoundType.WOOD).noOcclusion()));
 
-        DeferredBlock<com.otterly76.ott.block.custom.BalusterBlock> baluster = BLOCKS.register(set + "_baluster",
-                () -> new com.otterly76.ott.block.custom.BalusterBlock(
+        DeferredBlock<com.otterly76.ott.block.custom.BannisterBlock> bannister = BLOCKS.register(set + "_bannister",
+                () -> new com.otterly76.ott.block.custom.BannisterBlock(
                         BlockBehaviour.Properties.of().strength(2.0f).sound(SoundType.WOOD).noOcclusion()));
 
         DeferredBlock<com.otterly76.ott.block.custom.SupportSlabBlock> supportSlab = BLOCKS.register(set + "_support_slab",
@@ -136,7 +136,7 @@ public class WoodSetBlockRegistrar {
                 sapling,
                 pottedSapling,
                 sign, wallSign, hangingSign, wallHangingSign,
-                pergola, beam, planksPlate, planksEdge, baluster, supportSlab, supportBeam
+                pergola, beam, planksPlate, planksEdge, bannister, supportSlab, supportBeam
         );
     }
 
@@ -153,8 +153,8 @@ public class WoodSetBlockRegistrar {
         DeferredBlock<com.otterly76.ott.block.custom.EdgeBlock> planksEdge = BLOCKS.register(
                 set + "_planks_edge", () -> new com.otterly76.ott.block.custom.EdgeBlock(
                         BlockBehaviour.Properties.of().strength(2.0f).sound(SoundType.WOOD).noOcclusion()));
-        DeferredBlock<com.otterly76.ott.block.custom.BalusterBlock> baluster = BLOCKS.register(
-                set + "_baluster", () -> new com.otterly76.ott.block.custom.BalusterBlock(
+        DeferredBlock<com.otterly76.ott.block.custom.BannisterBlock> bannister = BLOCKS.register(
+                set + "_bannister", () -> new com.otterly76.ott.block.custom.BannisterBlock(
                         BlockBehaviour.Properties.of().strength(2.0f).sound(SoundType.WOOD).noOcclusion()));
         DeferredBlock<com.otterly76.ott.block.custom.SupportSlabBlock> supportSlab = BLOCKS.register(
                 set + "_support_slab", () -> new com.otterly76.ott.block.custom.SupportSlabBlock(
@@ -163,6 +163,6 @@ public class WoodSetBlockRegistrar {
                 set + "_support_beam", () -> new com.otterly76.ott.block.custom.SupportBeamBlock(
                         BlockBehaviour.Properties.of().strength(2.0f).sound(SoundType.WOOD).noOcclusion()));
 
-        return new ModBlocks.WoodStructuralBlocks(pergola, beam, planksPlate, planksEdge, baluster, supportSlab, supportBeam);
+        return new ModBlocks.WoodStructuralBlocks(pergola, beam, planksPlate, planksEdge, bannister, supportSlab, supportBeam);
     }
 }

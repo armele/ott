@@ -481,7 +481,7 @@ public class ModBlocks {
         // Oak already has dedicated static block fields; wrap them rather than re-registering.
         VANILLA_STRUCTURAL_SETS.put("oak", new WoodStructuralBlocks(
                 OAK_PERGOLA, OAK_BEAM, OAK_PLANKS_PLATE, OAK_PLANKS_EDGE,
-                OAK_BALUSTER, OAK_SUPPORT_SLAB, OAK_SUPPORT_BEAM));
+                OAK_BANNISTER, OAK_SUPPORT_SLAB, OAK_SUPPORT_BEAM));
         for (String name : List.of("spruce", "birch", "jungle", "acacia", "dark_oak",
                 "mangrove", "cherry", "bamboo", "crimson", "warped", "pale_oak")) {
             VANILLA_STRUCTURAL_SETS.put(name, com.otterly76.ott.block.wood.WoodSetBlockRegistrar.registerVanillaStructural(name));
@@ -642,7 +642,7 @@ public class ModBlocks {
             DeferredBlock<com.otterly76.ott.block.custom.BeamBlock> beam,
             DeferredBlock<com.otterly76.ott.block.custom.PlateBlock> planksPlate,
             DeferredBlock<com.otterly76.ott.block.custom.EdgeBlock> planksEdge,
-            DeferredBlock<com.otterly76.ott.block.custom.BalusterBlock> baluster,
+            DeferredBlock<com.otterly76.ott.block.custom.BannisterBlock> bannister,
             DeferredBlock<com.otterly76.ott.block.custom.SupportSlabBlock> supportSlab,
             DeferredBlock<com.otterly76.ott.block.custom.SupportBeamBlock> supportBeam
     )
@@ -659,7 +659,7 @@ public class ModBlocks {
             DeferredBlock<com.otterly76.ott.block.custom.BeamBlock> beam,
             DeferredBlock<com.otterly76.ott.block.custom.PlateBlock> planksPlate,
             DeferredBlock<com.otterly76.ott.block.custom.EdgeBlock> planksEdge,
-            DeferredBlock<com.otterly76.ott.block.custom.BalusterBlock> baluster,
+            DeferredBlock<com.otterly76.ott.block.custom.BannisterBlock> bannister,
             DeferredBlock<com.otterly76.ott.block.custom.SupportSlabBlock> supportSlab,
             DeferredBlock<com.otterly76.ott.block.custom.SupportBeamBlock> supportBeam
     ) {}
@@ -691,18 +691,18 @@ public class ModBlocks {
     // -------------------------------------------------------------------------
     // --- Mosaic / Fresco decorative blocks ---
     // -------------------------------------------------------------------------
-    public static final DeferredBlock<Block> MORAQ_MOSAIC_BORDER = register("moraq_mosaic_border",
+    public static final DeferredBlock<Block> WATER_MOSAIC_BORDER = register("water_mosaic_border",
             () -> new Block(Properties.of().strength(1.5f).requiresCorrectToolForDrops().sound(SoundType.STONE)));
-    public static final DeferredBlock<Block> MORAQ_MOSAIC_GEOMETRIC = register("moraq_mosaic_geometric",
+    public static final DeferredBlock<Block> WATER_MOSAIC_GEOMETRIC = register("water_mosaic_geometric",
             () -> new Block(Properties.of().strength(1.5f).requiresCorrectToolForDrops().sound(SoundType.STONE)));
-    public static final DeferredBlock<Block> MORAQ_MOSAIC_PATTERN = register("moraq_mosaic_pattern",
+    public static final DeferredBlock<Block> WATER_MOSAIC_PATTERN = register("water_mosaic_pattern",
             () -> new Block(Properties.of().strength(1.5f).requiresCorrectToolForDrops().sound(SoundType.STONE)));
-    public static final DeferredBlock<Block> MORAQ_MOSAIC_DELICATE = register("moraq_mosaic_delicate",
+    public static final DeferredBlock<Block> WATER_MOSAIC_DELICATE = register("water_mosaic_delicate",
             () -> new Block(Properties.of().strength(1.5f).requiresCorrectToolForDrops().sound(SoundType.STONE)));
-    public static final DeferredBlock<Block> MORAQ_MOSAIC_TRADITIONAL = register("moraq_mosaic_traditional",
+    public static final DeferredBlock<Block> WATER_MOSAIC_TRADITIONAL = register("water_mosaic_traditional",
             () -> new Block(Properties.of().strength(1.5f).requiresCorrectToolForDrops().sound(SoundType.STONE)));
-    public static final DeferredBlock<com.otterly76.ott.block.custom.MoraqMosaicRecessBlock> MORAQ_MOSAIC_RECESS = register("moraq_mosaic_recess",
-            () -> new com.otterly76.ott.block.custom.MoraqMosaicRecessBlock(
+    public static final DeferredBlock<com.otterly76.ott.block.custom.WaterMosaicRecessBlock> WATER_MOSAIC_RECESS = register("water_mosaic_recess",
+            () -> new com.otterly76.ott.block.custom.WaterMosaicRecessBlock(
                     net.minecraft.world.level.block.Blocks.STONE_BRICKS.defaultBlockState(),
                     Properties.of().strength(1.5f).requiresCorrectToolForDrops().sound(SoundType.STONE).noOcclusion()));
     public static final DeferredBlock<Block> MOSAIC_FLOOR = register("mosaic_floor",
@@ -756,8 +756,8 @@ public class ModBlocks {
     public static final DeferredBlock<com.otterly76.ott.block.custom.EdgeBlock> OAK_PLANKS_EDGE = register("oak_planks_edge",
             () -> new com.otterly76.ott.block.custom.EdgeBlock(
                     Properties.of().strength(2.0f).sound(SoundType.WOOD).noOcclusion()));
-    public static final DeferredBlock<com.otterly76.ott.block.custom.BalusterBlock> OAK_BALUSTER = register("oak_baluster",
-            () -> new com.otterly76.ott.block.custom.BalusterBlock(
+    public static final DeferredBlock<com.otterly76.ott.block.custom.BannisterBlock> OAK_BANNISTER = register("oak_bannister",
+            () -> new com.otterly76.ott.block.custom.BannisterBlock(
                     Properties.of().strength(2.0f).sound(SoundType.WOOD).noOcclusion()));
     public static final DeferredBlock<com.otterly76.ott.block.custom.SupportSlabBlock> OAK_SUPPORT_SLAB = register("oak_support_slab",
             () -> new com.otterly76.ott.block.custom.SupportSlabBlock(

@@ -73,12 +73,12 @@ public final class ModCreativeTabs {
                     ModBlocks.ELEVATORS.values().forEach(output::accept);
 
                     // Mosaic / Fresco
-                    output.accept(ModBlocks.MORAQ_MOSAIC_BORDER);
-                    output.accept(ModBlocks.MORAQ_MOSAIC_GEOMETRIC);
-                    output.accept(ModBlocks.MORAQ_MOSAIC_PATTERN);
-                    output.accept(ModBlocks.MORAQ_MOSAIC_DELICATE);
-                    output.accept(ModBlocks.MORAQ_MOSAIC_TRADITIONAL);
-                    output.accept(ModBlocks.MORAQ_MOSAIC_RECESS);
+                    output.accept(ModBlocks.WATER_MOSAIC_BORDER);
+                    output.accept(ModBlocks.WATER_MOSAIC_GEOMETRIC);
+                    output.accept(ModBlocks.WATER_MOSAIC_PATTERN);
+                    output.accept(ModBlocks.WATER_MOSAIC_DELICATE);
+                    output.accept(ModBlocks.WATER_MOSAIC_TRADITIONAL);
+                    output.accept(ModBlocks.WATER_MOSAIC_RECESS);
                     output.accept(ModBlocks.MOSAIC_FLOOR);
                     output.accept(ModBlocks.MOSAIC_FLOOR_DELICATE);
                     output.accept(ModBlocks.MOSAIC_FLOOR_ROSETTE);
@@ -94,7 +94,7 @@ public final class ModCreativeTabs {
                     output.accept(ModBlocks.OAK_BEAM);
                     output.accept(ModBlocks.OAK_PLANKS_PLATE);
                     output.accept(ModBlocks.OAK_PLANKS_EDGE);
-                    output.accept(ModBlocks.OAK_BALUSTER);
+                    output.accept(ModBlocks.OAK_BANNISTER);
                     output.accept(ModBlocks.OAK_SUPPORT_SLAB);
                     output.accept(ModBlocks.OAK_SUPPORT_BEAM);
                 }).build();

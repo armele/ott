@@ -100,7 +100,7 @@ public class ModLangMergeProvider implements DataProvider {
         json.addProperty("block.ott." + name + "_pergola",      capitalized + " Pergola");
         json.addProperty("block.ott." + name + "_planks_plate", capitalized + " Planks Plate");
         json.addProperty("block.ott." + name + "_planks_edge",  capitalized + " Planks Edge");
-        json.addProperty("block.ott." + name + "_baluster",     capitalized + " Baluster");
+        json.addProperty("block.ott." + name + "_bannister",     capitalized + " Bannister");
         json.addProperty("block.ott." + name + "_support_slab", capitalized + " Support Slab");
         json.addProperty("block.ott." + name + "_support_beam", capitalized + " Support Beam");
     }
@@ -114,7 +114,7 @@ public class ModLangMergeProvider implements DataProvider {
             json.addProperty("block.ott." + name + "_pergola",      capitalized + " Pergola");
             json.addProperty("block.ott." + name + "_planks_plate", capitalized + " Planks Plate");
             json.addProperty("block.ott." + name + "_planks_edge",  capitalized + " Planks Edge");
-            json.addProperty("block.ott." + name + "_baluster",     capitalized + " Baluster");
+            json.addProperty("block.ott." + name + "_bannister",     capitalized + " Bannister");
             json.addProperty("block.ott." + name + "_support_slab", capitalized + " Support Slab");
             json.addProperty("block.ott." + name + "_support_beam", capitalized + " Support Beam");
         });

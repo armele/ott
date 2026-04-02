@@ -1,1 +1,0 @@
-{"type":"minecraft:block","pools":[{"bonus_rolls":0.0,"conditions":[{"condition":"minecraft:survives_explosion"}],"entries":[{"type":"minecraft:item","name":"ott:moraq_mosaic_border"}],"rolls":1.0}],"random_sequence":"ott:blocks/moraq_mosaic_border"}
