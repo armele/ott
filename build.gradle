@@ -160,9 +160,6 @@ dependencies {
     // We add the full version to localRuntime, not runtimeOnly, so that we do not publish a dependency on it
     runtimeOnly ("mezz.jei:jei-${minecraft_version}-neoforge:${jei_version}")
 
-    localRuntime files("C:/Users/was/Dropbox/Games/Minecraft/7.2 ZIP Storage/fusion-1.2.12-neoforge-mc1.21.1.jar")
-    compileOnly files("C:/Users/was/Dropbox/Games/Minecraft/7.2 ZIP Storage/fusion-1.2.12-neoforge-mc1.21.1.jar")
-
     // Example mod dependency using a mod jar from ./libs with a flat dir repository
     // This maps to ./libs/coolmod-${mc_version}-${coolmod_version}.jar
     // The group id is ignored when searching -- in this case, it is "blank"
