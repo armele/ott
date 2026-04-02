@@ -26,7 +26,7 @@ public abstract class AnvilMenuMixin {
 
     @Shadow
     @Final
-    private DataSlot cost;
+    public DataSlot cost;
 
     @Shadow
     private String itemName;
@@ -40,10 +40,9 @@ public abstract class AnvilMenuMixin {
 
     @Inject(method = "createResult", at = @At("TAIL"))
     private void ott$onCreateResult(CallbackInfo ci) {
-        if (OttConfig.ANVILS.COSTS.TOO_EXPENSIVE_LIMIT.get() == 30) { // Mapping the old "lower costs" to this
-            if (this.cost.get() > 30) {
-                this.cost.set(30);
-            }
+        int limit = OttConfig.ANVILS.COSTS.TOO_EXPENSIVE_LIMIT.get();
+        if (limit >= 0 && this.cost.get() > limit) {
+            this.cost.set(limit);
         }
 
         if (OttConfig.ANVILS.COSTS.FREE_RENAMES.get() == FreeRenames.NEVER) return;
@@ -58,7 +57,7 @@ public abstract class AnvilMenuMixin {
 
     @Redirect(method = "createResult", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/inventory/ResultContainer;setItem(ILnet/minecraft/world/item/ItemStack;)V"))
     private void ott$onSetResultItem(ResultContainer instance, int slot, ItemStack stack) {
-        if (OttConfig.ANVILS.COSTS.TOO_EXPENSIVE_LIMIT.get() == 30 && slot == 0 && stack.isEmpty() && this.cost.get() >= 40) {
+        if (OttConfig.ANVILS.COSTS.TOO_EXPENSIVE_LIMIT.get() >= 0 && slot == 0 && stack.isEmpty() && this.cost.get() >= 40) {
             if (!instance.getItem(0).isEmpty()) {
                 return;
             }

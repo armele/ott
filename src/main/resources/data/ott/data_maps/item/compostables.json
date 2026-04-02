@@ -1,0 +1,30 @@
+{
+  "values": {
+    "minecraft:closed_eyeblossom": {"chance": 0.65},
+    "minecraft:open_eyeblossom": {"chance": 0.3},
+    "minecraft:pale_moss_block": {"chance": 0.65},
+    "minecraft:pale_hanging_moss": {"chance": 0.3},
+    "minecraft:pale_moss_carpet": {"chance": 0.3},
+    "minecraft:pale_oak_leaves": {"chance": 0.3},
+    "ott:starlight_leaves": {"chance": 0.3},
+    "ott:starlight_log": {"chance": 0.3},
+    "ott:starlight_wood": {"chance": 0.3},
+    "ott:stripped_starlight_log": {"chance": 0.3},
+    "ott:stripped_starlight_wood": {"chance": 0.3},
+    "ott:starlight_planks": {"chance": 0.3},
+    "ott:starlight_slab": {"chance": 0.3},
+    "ott:starlight_stairs": {"chance": 0.3},
+    "ott:starlight_fence": {"chance": 0.3},
+    "ott:starlight_fence_gate": {"chance": 0.3},
+    "ott:midnight_leaves": {"chance": 0.3},
+    "ott:midnight_log": {"chance": 0.3},
+    "ott:midnight_wood": {"chance": 0.3},
+    "ott:stripped_midnight_log": {"chance": 0.3},
+    "ott:stripped_midnight_wood": {"chance": 0.3},
+    "ott:midnight_planks": {"chance": 0.3},
+    "ott:midnight_slab": {"chance": 0.3},
+    "ott:midnight_stairs": {"chance": 0.3},
+    "ott:midnight_fence": {"chance": 0.3},
+    "ott:midnight_fence_gate": {"chance": 0.3}
+  }
+}

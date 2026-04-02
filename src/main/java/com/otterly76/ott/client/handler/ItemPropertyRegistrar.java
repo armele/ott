@@ -3,7 +3,7 @@ package com.otterly76.ott.client.handler;
 import com.otterly76.ott.item.ModItems;
 import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.client.renderer.item.ItemProperties;
-import net.minecraft.client.renderer.item.ItemPropertyFunction;
+import net.minecraft.client.renderer.item.ClampedItemPropertyFunction;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.LivingEntity;
@@ -20,14 +20,12 @@ public class ItemPropertyRegistrar {
     }
 
     private static void registerBundle(Item item) {
-        @SuppressWarnings("deprecation")
-        ItemPropertyFunction function = ItemPropertyRegistrar::bundleDisplay;
+        ClampedItemPropertyFunction function = ItemPropertyRegistrar::bundleDisplay;
         ItemProperties.register(item, ResourceLocation.withDefaultNamespace("filled"), function);
     }
 
     private static void registerBucketVariant(Item item) {
-        @SuppressWarnings("deprecation")
-        ItemPropertyFunction function = ItemPropertyRegistrar::bucketVariant;
+        ClampedItemPropertyFunction function = ItemPropertyRegistrar::bucketVariant;
         ItemProperties.register(item, ResourceLocation.fromNamespaceAndPath("ott", "variant"), function);
     }
 

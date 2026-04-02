@@ -366,7 +366,6 @@ public class Ott {
 
     private void commonSetup(FMLCommonSetupEvent event) {
         event.enqueueWork(() -> {
-            registerCompostables();
             registerFlammables();
             com.otterly76.ott.handler.WeatheringHandler.registerTransitions();
             com.otterly76.ott.handler.CauldronInteractionHandler.bootstrap();
@@ -402,29 +401,6 @@ public class Ott {
                     }
                 }
             });
-        });
-    }
-
-    @SuppressWarnings("deprecation")
-    public void registerCompostables() {
-        ComposterBlock.COMPOSTABLES.put(ModBlocks.CLOSED_EYEBLOSSOM.get().asItem(), 0.65F);
-        ComposterBlock.COMPOSTABLES.put(ModBlocks.OPEN_EYEBLOSSOM.get().asItem(), 0.3F);
-        ComposterBlock.COMPOSTABLES.put(ModBlocks.PALE_MOSS_BLOCK.get().asItem(), 0.65F);
-        ComposterBlock.COMPOSTABLES.put(ModBlocks.PALE_HANGING_MOSS.get().asItem(), 0.3F);
-        ComposterBlock.COMPOSTABLES.put(ModBlocks.PALE_MOSS_CARPET.get().asItem(), 0.3F);
-        ComposterBlock.COMPOSTABLES.put(ModBlocks.PALE_OAK_LEAVES.get().asItem(), 0.3F);
-
-        ModBlocks.WOOD_SETS.values().forEach(set -> {
-            ComposterBlock.COMPOSTABLES.put(set.leaves().get().asItem(), 0.3F);
-            ComposterBlock.COMPOSTABLES.put(set.log().get().asItem(), 0.3F);
-            ComposterBlock.COMPOSTABLES.put(set.wood().get().asItem(), 0.3F);
-            ComposterBlock.COMPOSTABLES.put(set.strippedLog().get().asItem(), 0.3F);
-            ComposterBlock.COMPOSTABLES.put(set.strippedWood().get().asItem(), 0.3F);
-            ComposterBlock.COMPOSTABLES.put(set.planks().get().asItem(), 0.3F);
-            ComposterBlock.COMPOSTABLES.put(set.slab().get().asItem(), 0.3F);
-            ComposterBlock.COMPOSTABLES.put(set.stairs().get().asItem(), 0.3F);
-            ComposterBlock.COMPOSTABLES.put(set.fence().get().asItem(), 0.3F);
-            ComposterBlock.COMPOSTABLES.put(set.fenceGate().get().asItem(), 0.3F);
         });
     }
 

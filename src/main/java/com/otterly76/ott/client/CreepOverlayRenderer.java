@@ -12,7 +12,7 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.Sheets;
 import net.minecraft.client.renderer.texture.OverlayTexture;
-import net.minecraft.client.renderer.texture.TextureAtlas;
+import net.minecraft.world.inventory.InventoryMenu;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -93,20 +93,18 @@ public final class CreepOverlayRenderer {
                     alpha = 1.0f;
                 } else {
                     double t = (distSq - FADE_START_SQ) / (FADE_END_SQ - FADE_START_SQ);
-                    alpha = (float) (1.0 - Math.max(0.0, Math.min(1.0, t)));
+                    alpha = (float) (1.0 - Math.clamp(t, 0.0, 1.0));
                 }
 
                 if (alpha <= 0.01f) continue;
 
-                @SuppressWarnings("deprecation")
-                TextureAtlasSprite creepSprite = mc.getTextureAtlas(TextureAtlas.LOCATION_BLOCKS)
+                TextureAtlasSprite creepSprite = mc.getTextureAtlas(InventoryMenu.BLOCK_ATLAS)
                         .apply(phb.getOverlayTexture());
 
                 renderOverlayOnCandidate(level, poseStack, vc, creepSprite, hedgePos.below(), camX, camY, camZ, alpha);
                 renderOverlayOnCandidate(level, poseStack, vc, creepSprite, hedgePos.above(), camX, camY, camZ, alpha);
 
-                @SuppressWarnings("deprecation")
-                TextureAtlasSprite hedgeSprite = mc.getTextureAtlas(TextureAtlas.LOCATION_BLOCKS)
+                TextureAtlasSprite hedgeSprite = mc.getTextureAtlas(InventoryMenu.BLOCK_ATLAS)
                         .apply(hedgeSpriteIdFromCreepId(phb.getOverlayTexture()));
 
                 renderGlowOnBlock(level, poseStack, vc, hedgeSprite, hedgePos, camX, camY, camZ, alpha * 0.35f);
@@ -309,7 +307,7 @@ public final class CreepOverlayRenderer {
                              float x3, float y3, float z3, float u3, float v3) {
 
         int overlay = OverlayTexture.NO_OVERLAY;
-        int a = (int) (255.0f * Math.max(0.0f, Math.min(1.0f, alpha)));
+        int a = (int) (255.0f * Math.clamp(alpha, 0.0f, 1.0f));
 
         vc.addVertex(pose, x0, y0, z0).setColor(255, 255, 255, a).setUv(u0, v0).setOverlay(overlay).setLight(light).setNormal(pose, nx, ny, nz);
         vc.addVertex(pose, x1, y1, z1).setColor(255, 255, 255, a).setUv(u1, v1).setOverlay(overlay).setLight(light).setNormal(pose, nx, ny, nz);
