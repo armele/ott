@@ -138,6 +138,7 @@
     "client.EditBoxMixin",
     "client.EntityRendererMixin",
     "client.FrogRendererMixin",
+    "client.GameNarratorMixin",
     "client.GameRendererMixin",
     "client.GuiAccessor",
     "client.HeadItemMixin",
