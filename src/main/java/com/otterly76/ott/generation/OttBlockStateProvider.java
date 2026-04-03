@@ -385,16 +385,18 @@ public class OttBlockStateProvider extends ModBlockStateProvider {
     private void registerWoodSetStructural(String setName, ModBlocks.WoodSetBlocks set) {
         ResourceLocation planks  = modLoc("block/wood/" + setName + "/planks");
         ResourceLocation stripped = modLoc("block/wood/" + setName + "/stripped_log");
+        ResourceLocation beamTex    = modLoc("block/beam/" + setName + "_beam");
+        ResourceLocation pergolaTex = modLoc("block/pergola/" + setName + "_pergola");
 
         // ── Beam ─────────────────────────────────────────────────────────────
         ModelFile beamY = models().withExistingParent(setName + "_beam_y",      modLoc("block/oak_beam_y"))
-                .renderType("minecraft:cutout").texture("1", stripped).texture("particle", stripped);
+                .renderType("minecraft:cutout").texture("1", beamTex).texture("particle", beamTex);
         ModelFile beamX = models().withExistingParent(setName + "_beam_x",      modLoc("block/oak_beam_x"))
-                .renderType("minecraft:cutout").texture("1", stripped).texture("particle", stripped);
+                .renderType("minecraft:cutout").texture("1", beamTex).texture("particle", beamTex);
         ModelFile beamXZ = models().withExistingParent(setName + "_beam_x_z",   modLoc("block/oak_beam_x_z"))
-                .renderType("minecraft:cutout").texture("1", stripped).texture("particle", stripped);
+                .renderType("minecraft:cutout").texture("1", beamTex).texture("particle", beamTex);
         ModelFile beamBot = models().withExistingParent(setName + "_beam_bottom", modLoc("block/oak_beam_bottom"))
-                .renderType("minecraft:cutout").texture("texture", stripped).texture("particle", stripped);
+                .renderType("minecraft:cutout").texture("texture", beamTex).texture("particle", beamTex);
 
         getMultipartBuilder(set.beam().get())
                 .part().modelFile(beamY).addModel()  .condition(BeamBlock.AXIS_Y, true).end()
@@ -405,11 +407,11 @@ public class OttBlockStateProvider extends ModBlockStateProvider {
 
         // ── Pergola ───────────────────────────────────────────────────────────
         ModelFile pergolaY  = models().withExistingParent(setName + "_pergola_y",   modLoc("block/oak_pergola_y"))
-                .renderType("minecraft:cutout").texture("0", planks).texture("particle", planks);
+                .renderType("minecraft:cutout").texture("0", pergolaTex).texture("particle", pergolaTex);
         ModelFile pergolaX  = models().withExistingParent(setName + "_pergola_x",   modLoc("block/oak_pergola_x"))
-                .renderType("minecraft:cutout").texture("0", planks).texture("particle", planks);
+                .renderType("minecraft:cutout").texture("0", pergolaTex).texture("particle", pergolaTex);
         ModelFile pergolaXZ = models().withExistingParent(setName + "_pergola_x_z", modLoc("block/oak_pergola_x_z"))
-                .renderType("minecraft:cutout").texture("0", planks).texture("particle", planks);
+                .renderType("minecraft:cutout").texture("0", pergolaTex).texture("particle", pergolaTex);
 
         getMultipartBuilder(set.pergola().get())
                 .part().modelFile(pergolaY).addModel() .condition(PergolaBlock.AXIS_Y, true).end()
@@ -423,9 +425,9 @@ public class OttBlockStateProvider extends ModBlockStateProvider {
         ModelFile sup6   = models().withExistingParent(setName + "_support_6_pixels",  modLoc("block/oak_support_6_pixels"))
                 .texture("slab", planks).texture("particle", planks);
         ModelFile sup8   = models().withExistingParent(setName + "_support_8_pixels",  modLoc("block/oak_support_8_pixels"))
-                .texture("slab", stripped).texture("particle", stripped);
+                .texture("slab", beamTex).texture("particle", beamTex);
         ModelFile sup10  = models().withExistingParent(setName + "_support_10_pixels", modLoc("block/oak_support_10_pixels"))
-                .texture("slab", stripped).texture("particle", stripped);
+                .texture("slab", beamTex).texture("particle", beamTex);
         ModelFile supSlab = models().withExistingParent(setName + "_support_slab",     modLoc("block/oak_support_slab"))
                 .texture("slab", planks).texture("particle", planks);
 
