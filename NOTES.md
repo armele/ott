@@ -1,5 +1,7 @@
 Notes:
 =====
+fix stone bricks masonry
+fix persian rug x2
 
 Mods to Implement:
 =====
