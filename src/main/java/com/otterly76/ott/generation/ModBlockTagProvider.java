@@ -101,29 +101,33 @@ public class ModBlockTagProvider extends BlockTagsProvider {
         // --- 3. REGISTRY LOOP (Populate ott: and behavior tags) ---
         ModBlocks.BLOCKS.getEntries().forEach(deferredBlock -> {
             Block block = deferredBlock.value();
-            this.tag(doDefaultKey).add(block); // Everything goes to DO
 
             switch (block) {
                 case GradientConcreteBlock concrete -> {
+                    this.tag(doDefaultKey).add(concrete);
                     ottConcrete.add(concrete);
                     mcConcrete.add(concrete);
                     pickaxeTag.add(concrete);
                 }
                 case GradientConcretePowderBlock powder -> {
+                    this.tag(doDefaultKey).add(powder);
                     ottConcretePowder.add(powder);
                     mcConcretePowder.add(powder);
                     shovelTag.add(powder);
                 }
                 case GradientWoolBlock wool -> {
+                    this.tag(doDefaultKey).add(wool);
                     ottWool.add(wool);
                     this.tag(BlockTags.WOOL).add(wool);
                 }
                 case GradientTerracottaBlock terracotta -> {
+                    this.tag(doDefaultKey).add(terracotta);
                     ottTerracotta.add(terracotta);
                     this.tag(BlockTags.TERRACOTTA).add(terracotta);
                     pickaxeTag.add(terracotta);
                 }
                 case GradientStainedGlassBlock glass -> {
+                    this.tag(doDefaultKey).add(glass);
                     ottStainedGlass.add(glass);
                     mcStainedGlass.add(glass);
                     this.tag(BlockTags.IMPERMEABLE).add(glass);
