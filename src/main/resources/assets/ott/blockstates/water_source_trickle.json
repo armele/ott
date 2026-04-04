@@ -1,17 +1,21 @@
 {
-    "multipart": [
-        { "when": {"facing": "north"}, "apply": {"model": "ott:block/water/water_trickle_north_angle"} },
-        { "when": {"facing": "east"},  "apply": {"model": "ott:block/water/water_trickle_north_angle", "y": 90} },
-        { "when": {"facing": "south"}, "apply": {"model": "ott:block/water/water_trickle_north_angle", "y": 180} },
-        { "when": {"facing": "west"},  "apply": {"model": "ott:block/water/water_trickle_north_angle", "y": 270} },
-        { "when": {"facing": "north"}, "apply": {"model": "ott:block/water/water_trickle_north_head"} },
-        { "when": {"facing": "east"},  "apply": {"model": "ott:block/water/water_trickle_north_head", "y": 90} },
-        { "when": {"facing": "south"}, "apply": {"model": "ott:block/water/water_trickle_north_head", "y": 180} },
-        { "when": {"facing": "west"},  "apply": {"model": "ott:block/water/water_trickle_north_head", "y": 270} },
-        { "when": {"facing": "north"}, "apply": {"model": "ott:block/water/water_trickle_north_tail"} },
-        { "when": {"facing": "east"},  "apply": {"model": "ott:block/water/water_trickle_north_tail", "y": 90} },
-        { "when": {"facing": "south"}, "apply": {"model": "ott:block/water/water_trickle_north_tail", "y": 180} },
-        { "when": {"facing": "west"},  "apply": {"model": "ott:block/water/water_trickle_north_tail", "y": 270} },
-        { "when": {"facing": "down"},  "apply": {"model": "ott:block/water/water_trickle_center"} }
-    ]
+  "multipart": [
+    { "when": {"facing": "north", "connected_above": "false"}, "apply": {"model": "ott:block/water/water_trickle_north_angle"} },
+    { "when": {"facing": "east",  "connected_above": "false"}, "apply": {"model": "ott:block/water/water_trickle_north_angle", "y": 90} },
+    { "when": {"facing": "south", "connected_above": "false"}, "apply": {"model": "ott:block/water/water_trickle_north_angle", "y": 180} },
+    { "when": {"facing": "west",  "connected_above": "false"}, "apply": {"model": "ott:block/water/water_trickle_north_angle", "y": 270} },
+    { "when": {"facing": "north", "connected_above": "false"}, "apply": {"model": "ott:block/water/water_trickle_north_head"} },
+    { "when": {"facing": "east",  "connected_above": "false"}, "apply": {"model": "ott:block/water/water_trickle_north_head", "y": 90} },
+    { "when": {"facing": "south", "connected_above": "false"}, "apply": {"model": "ott:block/water/water_trickle_north_head", "y": 180} },
+    { "when": {"facing": "west",  "connected_above": "false"}, "apply": {"model": "ott:block/water/water_trickle_north_head", "y": 270} },
+    { "when": {"facing": "north", "connected_above": "false"}, "apply": {"model": "ott:block/water/water_trickle_north_tail"} },
+    { "when": {"facing": "east",  "connected_above": "false"}, "apply": {"model": "ott:block/water/water_trickle_north_tail", "y": 90} },
+    { "when": {"facing": "south", "connected_above": "false"}, "apply": {"model": "ott:block/water/water_trickle_north_tail", "y": 180} },
+    { "when": {"facing": "west",  "connected_above": "false"}, "apply": {"model": "ott:block/water/water_trickle_north_tail", "y": 270} },
+    { "when": {"facing": "north", "connected_above": "true"},  "apply": {"model": "ott:block/water/water_trickle_north"} },
+    { "when": {"facing": "east",  "connected_above": "true"},  "apply": {"model": "ott:block/water/water_trickle_north", "y": 90} },
+    { "when": {"facing": "south", "connected_above": "true"},  "apply": {"model": "ott:block/water/water_trickle_north", "y": 180} },
+    { "when": {"facing": "west",  "connected_above": "true"},  "apply": {"model": "ott:block/water/water_trickle_north", "y": 270} },
+    { "when": {"facing": "down"},  "apply": {"model": "ott:block/water/water_trickle_center"} }
+  ]
 }

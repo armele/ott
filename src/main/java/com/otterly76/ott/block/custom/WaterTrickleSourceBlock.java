@@ -25,6 +25,7 @@ public class WaterTrickleSourceBlock extends DirectionalBlock implements SimpleW
 
     public static final MapCodec<WaterTrickleSourceBlock> CODEC = simpleCodec(WaterTrickleSourceBlock::new);
     public static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
+    public static final BooleanProperty CONNECTED_ABOVE = BooleanProperty.create("connected_above");
 
     private static final VoxelShape SHAPE_NORTH = Block.box(6, 0,  0, 10, 16,  5);
     private static final VoxelShape SHAPE_SOUTH = Block.box(6, 0, 11, 10, 16, 16);
@@ -36,7 +37,8 @@ public class WaterTrickleSourceBlock extends DirectionalBlock implements SimpleW
         super(properties);
         this.registerDefaultState(this.stateDefinition.any()
                 .setValue(FACING, Direction.NORTH)
-                .setValue(WATERLOGGED, false));
+                .setValue(WATERLOGGED, false)
+                .setValue(CONNECTED_ABOVE, false));
     }
 
     @Override
@@ -60,13 +62,26 @@ public class WaterTrickleSourceBlock extends DirectionalBlock implements SimpleW
     public BlockState getStateForPlacement(@NotNull BlockPlaceContext ctx) {
         FluidState fluid = ctx.getLevel().getFluidState(ctx.getClickedPos());
         Direction face = ctx.getClickedFace();
-        // For horizontal wall attachment, invert: clicking the north face of a wall places the block
-        // to the north of it, so the spout should face south (toward the wall).
-        // For vertical (DOWN = ceiling underside), keep as-is — facing=DOWN means drip straight down.
-        Direction facing = face.getAxis().isHorizontal() ? face.getOpposite() : face;
+        Direction facing;
+        if (face == Direction.DOWN) {
+            // Check if the block directly above is a horizontal trickle — extend it downward.
+            BlockState above = ctx.getLevel().getBlockState(ctx.getClickedPos().above());
+            if (above.getBlock() instanceof WaterTrickleSourceBlock
+                    && above.getValue(FACING).getAxis().isHorizontal()) {
+                facing = above.getValue(FACING);
+            } else {
+                facing = Direction.DOWN;
+            }
+        } else {
+            // For horizontal wall attachment, invert: clicking the north face places the block
+            // to the north of it, so the spout faces south (toward the wall).
+            facing = face.getAxis().isHorizontal() ? face.getOpposite() : face;
+        }
+        boolean connectedAbove = isTrickleAbove(ctx.getLevel(), ctx.getClickedPos(), facing);
         return this.defaultBlockState()
                 .setValue(FACING, facing)
-                .setValue(WATERLOGGED, fluid.getType() == Fluids.WATER);
+                .setValue(WATERLOGGED, fluid.getType() == Fluids.WATER)
+                .setValue(CONNECTED_ABOVE, connectedAbove);
     }
 
     @Override
@@ -75,6 +90,10 @@ public class WaterTrickleSourceBlock extends DirectionalBlock implements SimpleW
                                            @NotNull BlockPos pos, @NotNull BlockPos neighborPos) {
         if (state.getValue(WATERLOGGED)) {
             level.scheduleTick(pos, Fluids.WATER, Fluids.WATER.getTickDelay(level));
+        }
+        // Recheck connected_above whenever the block above changes.
+        if (direction == Direction.UP) {
+            state = state.setValue(CONNECTED_ABOVE, isTrickleAbove(level, pos, state.getValue(FACING)));
         }
         return super.updateShape(state, direction, neighborState, level, pos, neighborPos);
     }
@@ -86,6 +105,14 @@ public class WaterTrickleSourceBlock extends DirectionalBlock implements SimpleW
 
     @Override
     protected void createBlockStateDefinition(StateDefinition.@NotNull Builder<Block, BlockState> builder) {
-        builder.add(FACING, WATERLOGGED);
+        builder.add(FACING, WATERLOGGED, CONNECTED_ABOVE);
+    }
+
+    /** Returns true if the block directly above is a trickle source facing the same wall direction. */
+    private static boolean isTrickleAbove(@NotNull BlockGetter level, @NotNull BlockPos pos, @NotNull Direction facing) {
+        if (!facing.getAxis().isHorizontal()) return false;
+        BlockState above = level.getBlockState(pos.above());
+        return above.getBlock() instanceof WaterTrickleSourceBlock
+                && above.getValue(FACING) == facing;
     }
 }

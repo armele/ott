@@ -146,6 +146,11 @@ public class PlateBlock extends Block implements SimpleWaterloggedBlock {
     }
 
     @Override
+    public boolean propagatesSkylightDown(@NotNull BlockState state, @NotNull BlockGetter level, @NotNull BlockPos pos) {
+        return !state.getValue(WATERLOGGED);
+    }
+
+    @Override
     public @NotNull VoxelShape getOcclusionShape(@NotNull BlockState state, @NotNull BlockGetter level, @NotNull BlockPos pos) {
         return Shapes.empty();
     }
