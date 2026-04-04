@@ -478,6 +478,7 @@ public class ClientModEvents {
         });
 
         event.register((state, level, pos, tint) -> tint == 0 && level != null && pos != null ? BiomeColors.getAverageWaterColor(level, pos) : -1, ModBlocks.WEATHERING_STATION.get());
+        event.register((state, level, pos, tint) -> tint == 0 && level != null && pos != null ? BiomeColors.getAverageWaterColor(level, pos) : -1, ModBlocks.STONE_BRICKS_POOL.get(), ModBlocks.STONE_BRICKS_SMALL_POOL.get());
 
         ModBlocks.PATTERN_BLOCKS.forEach((pattern, colorMap) -> {
             colorMap.forEach((colorName, block) -> {
