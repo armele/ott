@@ -21,6 +21,8 @@ import net.minecraft.world.level.block.state.properties.Half;
 import net.minecraft.world.level.block.state.properties.StairsShape;
 import net.minecraft.world.level.material.FluidState;
 import net.minecraft.world.level.material.Fluids;
+import net.minecraft.world.phys.shapes.Shapes;
+import net.minecraft.world.phys.shapes.VoxelShape;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
@@ -77,27 +79,39 @@ public class EdgeBlock extends Block implements SimpleWaterloggedBlock {
     private StairsShape computeShape(BlockState state, BlockGetter level, BlockPos pos) {
         Direction facing = state.getValue(FACING);
         Half half = state.getValue(HALF);
-        BlockState right = level.getBlockState(pos.relative(facing.getClockWise()));
-        BlockState left  = level.getBlockState(pos.relative(facing.getCounterClockWise()));
 
-        boolean rightIsEdge = right.getBlock() instanceof EdgeBlock
-                && right.getValue(HALF) == half
-                && right.getValue(FACING) != facing.getOpposite();
-        boolean leftIsEdge  = left.getBlock() instanceof EdgeBlock
-                && left.getValue(HALF) == half
-                && left.getValue(FACING) != facing.getOpposite();
+        // Outer corners: check the block in the facing direction
+        BlockState front = level.getBlockState(pos.relative(facing));
+        if (front.getBlock() instanceof EdgeBlock && front.getValue(HALF) == half) {
+            Direction frontFacing = front.getValue(FACING);
+            if (frontFacing.getAxis() != facing.getAxis()) {
+                if (isDifferentEdge(state, level, pos, frontFacing.getOpposite(), half)) {
+                    return frontFacing == facing.getCounterClockWise()
+                            ? StairsShape.OUTER_LEFT : StairsShape.OUTER_RIGHT;
+                }
+            }
+        }
 
-        if (rightIsEdge) {
-            Direction rightFacing = right.getValue(FACING);
-            if (rightFacing == facing.getClockWise()) return StairsShape.OUTER_RIGHT;
-            if (rightFacing == facing.getCounterClockWise()) return StairsShape.INNER_RIGHT;
+        // Inner corners: check the block opposite the facing direction
+        BlockState back = level.getBlockState(pos.relative(facing.getOpposite()));
+        if (back.getBlock() instanceof EdgeBlock && back.getValue(HALF) == half) {
+            Direction backFacing = back.getValue(FACING);
+            if (backFacing.getAxis() != facing.getAxis()) {
+                if (isDifferentEdge(state, level, pos, backFacing, half)) {
+                    return backFacing == facing.getCounterClockWise()
+                            ? StairsShape.INNER_LEFT : StairsShape.INNER_RIGHT;
+                }
+            }
         }
-        if (leftIsEdge) {
-            Direction leftFacing = left.getValue(FACING);
-            if (leftFacing == facing.getCounterClockWise()) return StairsShape.OUTER_LEFT;
-            if (leftFacing == facing.getClockWise()) return StairsShape.INNER_LEFT;
-        }
+
         return StairsShape.STRAIGHT;
+    }
+
+    private boolean isDifferentEdge(BlockState state, BlockGetter level, BlockPos pos, Direction dir, Half half) {
+        BlockState neighbor = level.getBlockState(pos.relative(dir));
+        if (!(neighbor.getBlock() instanceof EdgeBlock)) return true;
+        if (neighbor.getValue(HALF) != half) return true;
+        return neighbor.getValue(FACING) != state.getValue(FACING);
     }
 
     @Override
@@ -136,6 +150,11 @@ public class EdgeBlock extends Block implements SimpleWaterloggedBlock {
             case OUTER_RIGHT -> StairsShape.OUTER_LEFT;
             default          -> shape;
         };
+    }
+
+    @Override
+    public @NotNull VoxelShape getOcclusionShape(@NotNull BlockState state, @NotNull BlockGetter level, @NotNull BlockPos pos) {
+        return Shapes.empty();
     }
 
     @Override
