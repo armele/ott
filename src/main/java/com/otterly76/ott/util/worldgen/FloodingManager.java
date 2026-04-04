@@ -28,16 +28,18 @@ public class FloodingManager {
     public static void tick(ServerLevel level) {
         long currentTime = level.getGameTime();
         ResourceKey<Level> dimension = level.dimension();
+        List<ScheduledFlood> pending = new ArrayList<>();
         scheduledFloods.removeIf(entry -> {
             if (entry.dimension().equals(dimension) && currentTime >= entry.targetTick()) {
-                executeFlood(level, entry);
+                executeFlood(level, entry, pending);
                 return true;
             }
             return false;
         });
+        scheduledFloods.addAll(pending);
     }
 
-    private static void executeFlood(ServerLevel level, ScheduledFlood entry) {
+    private static void executeFlood(ServerLevel level, ScheduledFlood entry, List<ScheduledFlood> pending) {
         BlockPos pos = entry.pos();
         FluidState fluidState = level.getFluidState(pos);
 
@@ -50,7 +52,7 @@ public class FloodingManager {
                 for (Direction direction : Direction.Plane.HORIZONTAL) {
                     BlockPos neighbor = pos.relative(direction);
                     if (level.getBlockState(neighbor).isAir()) {
-                        scheduleFlooding(level, neighbor, entry.depth() + 1);
+                        pending.add(new ScheduledFlood(level.dimension(), neighbor.immutable(), entry.depth() + 1, level.getGameTime() + FLOOD_DELAY_TICKS));
                     }
                 }
             }
