@@ -52,6 +52,9 @@ public class ModBlockTagProvider extends BlockTagsProvider {
 
         TagKey<Block> doDefaultKey = TagKey.create(Registries.BLOCK, ResourceLocation.fromNamespaceAndPath("domum_ornamentum", "default"));
         TagKey<Block> doConcreteKey = TagKey.create(Registries.BLOCK, ResourceLocation.fromNamespaceAndPath("domum_ornamentum", "concrete"));
+        TagKey<Block> doCopperKey = TagKey.create(Registries.BLOCK, ResourceLocation.fromNamespaceAndPath("domum_ornamentum", "copper"));
+        TagKey<Block> doGlacedTerracottaKey = TagKey.create(Registries.BLOCK, ResourceLocation.fromNamespaceAndPath("domum_ornamentum", "glaced_terracotta"));
+        TagKey<Block> doFramedLightCenterKey = TagKey.create(Registries.BLOCK, ResourceLocation.fromNamespaceAndPath("domum_ornamentum", "framed_light_center"));
 
 
         // --- 2. INITIALIZE BUILDERS (The "Appenders") ---
@@ -211,8 +214,18 @@ public class ModBlockTagProvider extends BlockTagsProvider {
         this.tag(TagKey.create(Registries.BLOCK, ResourceLocation.fromNamespaceAndPath("c", "logs"))).addTag(BlockTags.LOGS);
 
         // --- 5. STATIC & INDIVIDUAL ADDITIONS ---
-        ModBlocks.LIMESTONE.forEach(d -> pickaxeTag.add(d.value()));
-        ModBlocks.SEAGLASS.forEach(d -> this.tag(BlockTags.IMPERMEABLE).add(d.value()));
+        ModBlocks.LIMESTONE.forEach(d -> { pickaxeTag.add(d.value()); this.tag(doDefaultKey).add(d.value()); });
+        ModBlocks.SEAGLASS.forEach(d -> { this.tag(BlockTags.IMPERMEABLE).add(d.value()); this.tag(doDefaultKey).add(d.value()); });
+        ModBlocks.TESTBLOCK.forEach(d -> this.tag(doDefaultKey).add(d.value()));
+        this.tag(doDefaultKey).add(ModBlocks.SALT_BLOCK.get(), ModBlocks.POLISHED_SALT_BLOCK.get());
+        this.tag(doDefaultKey).add(ModBlocks.WATER_MOSAIC_TRADITIONAL.get());
+        ModBlocks.PARTICLE_HEDGES.values().forEach(h -> this.tag(doDefaultKey).add(h.value()));
+        ModBlocks.PATTERN_BLOCKS.values().forEach(colorMap -> colorMap.values().forEach(d -> this.tag(doDefaultKey).add(d.value())));
+
+        // Domum Ornamentum material tags
+        this.tag(doCopperKey).addTag(ModTags.Blocks.COPPER);
+        this.tag(doFramedLightCenterKey).add(ModBlocks.SMOOTH_GLOWSTONE.get());
+        ModBlocks.COLOR_SETS.values().forEach(set -> this.tag(doGlacedTerracottaKey).add(set.glazedTerracotta().get()));
 
         var ottHedges = this.tag(ottHedgesKey);
         ottHedges.add(ModBlocks.THORNY_HEDGE.value());
@@ -378,13 +391,12 @@ public class ModBlockTagProvider extends BlockTagsProvider {
         this.tag(TagKey.create(Registries.BLOCK, ResourceLocation.withDefaultNamespace("concrete_powder"))).add(set.concretePowder().get());
         this.tag(TagKey.create(Registries.BLOCK, ResourceLocation.withDefaultNamespace("stained_glass"))).add(set.stainedGlass().get());
 
-        // Add to Domum Ornamentum default
+        // Add to Domum Ornamentum default (building materials only)
         TagKey<Block> doDefaultKey = TagKey.create(Registries.BLOCK, ResourceLocation.fromNamespaceAndPath("domum_ornamentum", "default"));
         this.tag(doDefaultKey).add(
-                set.candle().get(), set.concrete().get(), set.concretePowder().get(),
-                set.glazedTerracotta().get(), set.shulkerBox().get(), set.stainedGlass().get(),
-                set.stainedGlassPane().get(), set.terracotta().get(), set.wool().get(),
-                set.bed().get(), set.carpet().get(), set.banner().get(), set.wallBanner().get()
+                set.concrete().get(), set.concretePowder().get(),
+                set.glazedTerracotta().get(), set.stainedGlass().get(),
+                set.terracotta().get(), set.wool().get()
         );
     }
 
