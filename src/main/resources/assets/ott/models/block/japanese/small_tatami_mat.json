@@ -1,8 +1,0 @@
-{
-    "render_type": "minecraft:cutout",
-    "parent": "block/carpet",
-    "textures": {
-        "particle": "ott:block/small_tatami_mat",
-        "wool": "ott:block/small_tatami_mat"
-    }
-}

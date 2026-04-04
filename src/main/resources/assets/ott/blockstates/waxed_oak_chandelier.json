@@ -1,6 +1,0 @@
-{
-    "variants": {
-        "lit=false":  { "model": "ott:block/german/waxed_oak_chandelier_off" },
-        "lit=true":  { "model": "ott:block/german/waxed_oak_chandelier_on" }
-    }
-}

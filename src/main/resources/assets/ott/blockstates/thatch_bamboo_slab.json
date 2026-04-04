@@ -1,7 +1,0 @@
-{
-    "variants": {
-        "type=bottom": { "model": "ott:block/general/thatch_bamboo_slab_bottom" },
-        "type=top": { "model": "ott:block/general/thatch_bamboo_slab_top" },
-        "type=double": { "model": "ott:block/general/thatch_bamboo" }
-    }
-}

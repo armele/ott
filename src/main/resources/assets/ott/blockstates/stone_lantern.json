@@ -1,10 +1,8 @@
 {
     "variants": {
-        "facing=down":  { "model": "ott:block/japanese/stone_lantern_up" },
-        "facing=up":  { "model": "ott:block/japanese/stone_lantern_down" },
-        "facing=west":  { "model": "ott:block/japanese/stone_lantern_side" },
-        "facing=north":  { "model": "ott:block/japanese/stone_lantern_side", "y": 90 },
-        "facing=south":  { "model": "ott:block/japanese/stone_lantern_side", "y": 270 },
-        "facing=east":  { "model": "ott:block/japanese/stone_lantern_side", "y" : 180 }
+        "vertical_connection=none":  { "model": "ott:block/japanese/stone_lantern_up" },
+        "vertical_connection=above": { "model": "ott:block/japanese/stone_lantern_up" },
+        "vertical_connection=under": { "model": "ott:block/japanese/stone_lantern_down" },
+        "vertical_connection=both":  { "model": "ott:block/japanese/stone_lantern_down" }
     }
 }

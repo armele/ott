@@ -1,7 +1,0 @@
-{
-    "render_type": "minecraft:cutout",
-    "parent": "block/template_orientable_trapdoor_open",
-    "textures": {
-        "texture": "ott:block/charred_spruce_trapdoor"
-    }
-}

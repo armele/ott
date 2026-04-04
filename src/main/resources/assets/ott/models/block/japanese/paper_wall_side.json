@@ -1,7 +1,0 @@
-{
-    "parent": "ott:block/general/template_dot_pane_side",
-    "textures": {
-        "edge": "ott:block/paper_wall",
-        "pane": "ott:block/paper_wall"
-    }
-}

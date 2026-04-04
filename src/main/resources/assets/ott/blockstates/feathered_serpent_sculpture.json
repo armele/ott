@@ -1,8 +1,0 @@
-{
-    "variants": {
-        "facing=east": { "model": "ott:block/precolumbian/feathered_serpent_sculpture", "y" : 270},
-        "facing=south": { "model": "ott:block/precolumbian/feathered_serpent_sculpture" },
-        "facing=west": { "model": "ott:block/precolumbian/feathered_serpent_sculpture", "y": 90 },
-        "facing=north": { "model": "ott:block/precolumbian/feathered_serpent_sculpture", "y": 180 }
-    }
-}

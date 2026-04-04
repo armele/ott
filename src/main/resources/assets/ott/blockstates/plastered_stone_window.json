@@ -1,6 +1,5 @@
 {
     "variants": {
-        "axis=x": { "model": "ott:block/precolumbian/plastered_stone_window" },
-        "axis=z": { "model": "ott:block/precolumbian/plastered_stone_window", "y": 90 }
+        "": { "model": "ott:block/precolumbian/plastered_stone_window" }
     }
 }

@@ -1,8 +1,0 @@
-{
-    "parent": "block/slab",
-    "textures": {
-        "bottom": "ott:block/sandstone_bricks",
-        "top": "ott:block/sandstone_bricks",
-        "side": "ott:block/sandstone_bricks"
-    }
-}

@@ -1,15 +1,11 @@
 {
   "replace": false,
   "values": [
-    "ott:thatch_wheat",
-    "ott:thatch_wheat_edge",
-    "ott:thatch_wheat_plate",
-    "ott:thatch_wheat_slab",
-    "ott:thatch_wheat_stairs",
-    "ott:thatch_bamboo",
-    "ott:thatch_bamboo_edge",
-    "ott:thatch_bamboo_plate",
-    "ott:thatch_bamboo_slab",
-    "ott:thatch_bamboo_stairs"
+    "ott:wheat_thatch",
+    "ott:wheat_thatch_edge",
+    "ott:wheat_thatch_plate",
+    "ott:bamboo_thatch",
+    "ott:bamboo_thatch_edge",
+    "ott:bamboo_thatch_plate"
   ]
 }

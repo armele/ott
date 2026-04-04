@@ -1,6 +1,0 @@
-{
-	"variants": {
-		"lit=true": { "model": "ott:block/japanese/irori_fireplace_on" },
-		"lit=false": { "model": "ott:block/japanese/irori_fireplace_off" }
-	}
-}

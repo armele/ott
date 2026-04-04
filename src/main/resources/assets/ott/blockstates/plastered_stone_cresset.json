@@ -1,6 +1,0 @@
-{
-    "variants": {
-        "lit=true":  { "model": "ott:block/precolumbian/plastered_stone_cresset_on" },
-        "lit=false":  { "model": "ott:block/precolumbian/plastered_stone_cresset_off" }
-    }
-}

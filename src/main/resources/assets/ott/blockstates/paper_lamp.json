@@ -1,8 +1,0 @@
-{
-    "variants": {
-        "vertical_connection=under": { "model": "ott:block/japanese/paper_lamp_top" },
-        "vertical_connection=both": { "model": "ott:block/japanese/paper_lamp_middle" },
-        "vertical_connection=above": { "model": "ott:block/japanese/paper_lamp_bottom" },
-        "vertical_connection=none": { "model": "ott:block/japanese/paper_lamp_lone" }
-    }
-}

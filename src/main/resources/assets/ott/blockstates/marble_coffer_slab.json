@@ -1,8 +1,0 @@
-
-{
-    "variants": {
-        "type=bottom": { "model": "ott:block/roman/marble_coffer_slab_bottom" },
-        "type=top": { "model": "ott:block/roman/marble_coffer_slab_top" },
-        "type=double": { "model": "ott:block/roman/marble_coffer" }
-    }
-}

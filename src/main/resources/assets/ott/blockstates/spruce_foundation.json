@@ -1,5 +1,5 @@
 {
     "variants": {
-        "normal": { "model": "ott:block/japanese/spruce_foundation" }
+        "": { "model": "ott:block/japanese/spruce_foundation" }
     }
 }

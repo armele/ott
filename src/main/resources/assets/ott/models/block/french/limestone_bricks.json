@@ -1,6 +1,10 @@
 {
-    "parent": "block/cube_all",
+    "parent": "ott:block/ctm_cube_all",
     "textures": {
-        "all": "ott:block/limestone_bricks"
+        "all": "ott:block/limestone_bricks-ctm"
+    },
+    "loader": "ott:connecting",
+    "connections": {
+        "all": [{"type": "is_same_block"}]
     }
 }

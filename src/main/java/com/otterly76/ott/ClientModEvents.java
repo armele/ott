@@ -478,7 +478,9 @@ public class ClientModEvents {
         });
 
         event.register((state, level, pos, tint) -> tint == 0 && level != null && pos != null ? BiomeColors.getAverageWaterColor(level, pos) : -1, ModBlocks.WEATHERING_STATION.get());
-        event.register((state, level, pos, tint) -> tint == 0 && level != null && pos != null ? BiomeColors.getAverageWaterColor(level, pos) : -1, ModBlocks.STONE_BRICKS_POOL.get(), ModBlocks.STONE_BRICKS_SMALL_POOL.get());
+        event.register((state, level, pos, tint) -> tint == 0 && level != null && pos != null ? BiomeColors.getAverageWaterColor(level, pos) : -1,
+                ModBlocks.STONE_BRICKS_POOL.get(), ModBlocks.STONE_BRICKS_SMALL_POOL.get(),
+                ModBlocks.STONE_BRICKS_FAUCET.get(), ModBlocks.STONE_BRICKS_WATER_JET.get(), ModBlocks.WATER_SOURCE_TRICKLE.get());
 
         ModBlocks.PATTERN_BLOCKS.forEach((pattern, colorMap) -> {
             colorMap.forEach((colorName, block) -> {
@@ -621,6 +623,10 @@ public class ClientModEvents {
                 ModItems.FERRET_SPAWN_EGG.get(), ModItems.JUMPING_SPIDER_SPAWN_EGG.get(), ModItems.KOI_FISH_SPAWN_EGG.get(),
                 ModItems.OTTER_SPAWN_EGG.get(), ModItems.RED_PANDA_SPAWN_EGG.get(), ModItems.SEA_BUNNY_SPAWN_EGG.get(),
                 ModItems.WATER_BUFFALO_SPAWN_EGG.get());
+
+        // Water tinting for water-feature item models
+        event.register((stack, tintIndex) -> tintIndex == 0 ? 0x3F76E4 : -1,
+                ModBlocks.STONE_BRICKS_FAUCET.get(), ModBlocks.STONE_BRICKS_WATER_JET.get(), ModBlocks.WATER_SOURCE_TRICKLE.get());
     }
 
     public static void onClientSetup(FMLClientSetupEvent event) {

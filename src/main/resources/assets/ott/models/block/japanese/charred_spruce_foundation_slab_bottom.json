@@ -1,8 +1,0 @@
-{
-    "parent": "block/slab",
-    "textures": {
-        "bottom": "ott:block/charred_spruce_foundation_top",
-        "top": "ott:block/charred_spruce_foundation_top",
-        "side": "ott:block/charred_spruce_foundation"
-    }
-}

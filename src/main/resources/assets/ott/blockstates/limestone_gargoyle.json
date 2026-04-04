@@ -1,8 +1,0 @@
-{
-    "variants": {
-        "facing=north":  { "model": "ott:block/french/limestone_gargoyle", "y": 180  },
-        "facing=west":  { "model": "ott:block/french/limestone_gargoyle", "y": 90 },
-        "facing=south":  { "model": "ott:block/french/limestone_gargoyle" },
-        "facing=east":  { "model": "ott:block/french/limestone_gargoyle", "y" : 270 }
-    }
-}

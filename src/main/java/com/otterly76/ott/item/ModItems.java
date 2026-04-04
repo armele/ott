@@ -713,12 +713,9 @@ public class ModItems {
     // --- DoTB Phase 2: Limestone (French) ---
     // -------------------------------------------------------------------------
     public static final DeferredHolder<Item, BlockItem> LIMESTONE_BRICKS          = registerBlockItem("limestone_bricks",          ModBlocks.LIMESTONE_BRICKS);
-    public static final DeferredHolder<Item, BlockItem> LIMESTONE_BRICKS_SLAB     = registerBlockItem("limestone_bricks_slab",     ModBlocks.LIMESTONE_BRICKS_SLAB);
-    public static final DeferredHolder<Item, BlockItem> LIMESTONE_BRICKS_STAIRS   = registerBlockItem("limestone_bricks_stairs",   ModBlocks.LIMESTONE_BRICKS_STAIRS);
-    public static final DeferredHolder<Item, BlockItem> LIMESTONE_BRICKS_WALL     = registerBlockItem("limestone_bricks_wall",     ModBlocks.LIMESTONE_BRICKS_WALL);
     public static final DeferredHolder<Item, BlockItem> LIMESTONE_BRICKS_EDGE     = registerBlockItem("limestone_bricks_edge",     ModBlocks.LIMESTONE_BRICKS_EDGE);
     public static final DeferredHolder<Item, BlockItem> LIMESTONE_BRICKS_PLATE    = registerBlockItem("limestone_bricks_plate",    ModBlocks.LIMESTONE_BRICKS_PLATE);
-    public static final DeferredHolder<Item, BlockItem> LIMESTONE_BALUSTER        = registerBlockItem("limestone_baluster",        ModBlocks.LIMESTONE_BALUSTER);
+    public static final DeferredHolder<Item, BlockItem> LIMESTONE_BANNISTER       = registerBlockItem("limestone_bannister",       ModBlocks.LIMESTONE_BANNISTER);
     public static final DeferredHolder<Item, BlockItem> COBBLED_LIMESTONE         = registerBlockItem("cobbled_limestone",         ModBlocks.COBBLED_LIMESTONE);
 
     // -------------------------------------------------------------------------
@@ -726,8 +723,6 @@ public class ModItems {
     // -------------------------------------------------------------------------
     public static final DeferredHolder<Item, BlockItem> MARBLE                    = registerBlockItem("marble",                    ModBlocks.MARBLE);
     public static final DeferredHolder<Item, BlockItem> MARBLE_PILLAR             = registerBlockItem("marble_pillar",             ModBlocks.MARBLE_PILLAR);
-    public static final DeferredHolder<Item, BlockItem> MARBLE_COFFER             = registerBlockItem("marble_coffer",             ModBlocks.MARBLE_COFFER);
-    public static final DeferredHolder<Item, BlockItem> MARBLE_COFFER_SLAB        = registerBlockItem("marble_coffer_slab",        ModBlocks.MARBLE_COFFER_SLAB);
     public static final DeferredHolder<Item, BlockItem> MARBLE_FANCY_FENCE        = registerBlockItem("marble_fancy_fence",        ModBlocks.MARBLE_FANCY_FENCE);
 
     // -------------------------------------------------------------------------
@@ -736,21 +731,15 @@ public class ModItems {
     public static final DeferredHolder<Item, BlockItem> SANDSTONE_PLATE                         = registerBlockItem("sandstone_plate",                         ModBlocks.SANDSTONE_PLATE);
     public static final DeferredHolder<Item, BlockItem> SANDSTONE_EDGE                          = registerBlockItem("sandstone_edge",                          ModBlocks.SANDSTONE_EDGE);
     public static final DeferredHolder<Item, BlockItem> SANDSTONE_CRENELATION                   = registerBlockItem("sandstone_crenelation",                   ModBlocks.SANDSTONE_CRENELATION);
-    public static final DeferredHolder<Item, BlockItem> CUT_SANDSTONE_STAIRS                    = registerBlockItem("cut_sandstone_stairs",                    ModBlocks.CUT_SANDSTONE_STAIRS);
     public static final DeferredHolder<Item, BlockItem> CUT_SANDSTONE_PLATE                     = registerBlockItem("cut_sandstone_plate",                     ModBlocks.CUT_SANDSTONE_PLATE);
     public static final DeferredHolder<Item, BlockItem> CUT_SANDSTONE_EDGE                      = registerBlockItem("cut_sandstone_edge",                      ModBlocks.CUT_SANDSTONE_EDGE);
     public static final DeferredHolder<Item, BlockItem> SMOOTH_SANDSTONE_PLATE                  = registerBlockItem("smooth_sandstone_plate",                  ModBlocks.SMOOTH_SANDSTONE_PLATE);
     public static final DeferredHolder<Item, BlockItem> SMOOTH_SANDSTONE_EDGE                   = registerBlockItem("smooth_sandstone_edge",                   ModBlocks.SMOOTH_SANDSTONE_EDGE);
-    public static final DeferredHolder<Item, BlockItem> SANDSTONE_BOT_OCHRE_ROOF_TILES_TOP      = registerBlockItem("sandstone_bot_ochre_roof_tiles_top",      ModBlocks.SANDSTONE_BOT_OCHRE_ROOF_TILES_TOP);
-    public static final DeferredHolder<Item, BlockItem> CUT_SANDSTONE_BOT_OCHRE_ROOF_TILES_TOP  = registerBlockItem("cut_sandstone_bot_ochre_roof_tiles_top",  ModBlocks.CUT_SANDSTONE_BOT_OCHRE_ROOF_TILES_TOP);
-    public static final DeferredHolder<Item, BlockItem> SMOOTH_SANDSTONE_BOT_OCHRE_ROOF_TILES_TOP = registerBlockItem("smooth_sandstone_bot_ochre_roof_tiles_top", ModBlocks.SMOOTH_SANDSTONE_BOT_OCHRE_ROOF_TILES_TOP);
 
     // -------------------------------------------------------------------------
     // --- DoTB Phase 2: Ochre Roof Tiles (Roman) ---
     // -------------------------------------------------------------------------
     public static final DeferredHolder<Item, BlockItem> OCHRE_ROOF_TILES          = registerBlockItem("ochre_roof_tiles",          ModBlocks.OCHRE_ROOF_TILES);
-    public static final DeferredHolder<Item, BlockItem> OCHRE_ROOF_TILES_STAIRS   = registerBlockItem("ochre_roof_tiles_stairs",   ModBlocks.OCHRE_ROOF_TILES_STAIRS);
-    public static final DeferredHolder<Item, BlockItem> OCHRE_ROOF_TILES_WALL     = registerBlockItem("ochre_roof_tiles_wall",     ModBlocks.OCHRE_ROOF_TILES_WALL);
     public static final DeferredHolder<Item, BlockItem> OCHRE_ROOF_TILES_EDGE     = registerBlockItem("ochre_roof_tiles_edge",     ModBlocks.OCHRE_ROOF_TILES_EDGE);
     public static final DeferredHolder<Item, BlockItem> OCHRE_ROOF_TILES_PLATE    = registerBlockItem("ochre_roof_tiles_plate",    ModBlocks.OCHRE_ROOF_TILES_PLATE);
 
@@ -758,15 +747,9 @@ public class ModItems {
     // --- DoTB Phase 2: Flat/Gray Roof Tiles (General) ---
     // -------------------------------------------------------------------------
     public static final DeferredHolder<Item, BlockItem> FLAT_ROOF_TILES           = registerBlockItem("flat_roof_tiles",           ModBlocks.FLAT_ROOF_TILES);
-    public static final DeferredHolder<Item, BlockItem> FLAT_ROOF_TILES_SLAB      = registerBlockItem("flat_roof_tiles_slab",      ModBlocks.FLAT_ROOF_TILES_SLAB);
-    public static final DeferredHolder<Item, BlockItem> FLAT_ROOF_TILES_STAIRS    = registerBlockItem("flat_roof_tiles_stairs",    ModBlocks.FLAT_ROOF_TILES_STAIRS);
-    public static final DeferredHolder<Item, BlockItem> FLAT_ROOF_TILES_WALL      = registerBlockItem("flat_roof_tiles_wall",      ModBlocks.FLAT_ROOF_TILES_WALL);
     public static final DeferredHolder<Item, BlockItem> FLAT_ROOF_TILES_EDGE      = registerBlockItem("flat_roof_tiles_edge",      ModBlocks.FLAT_ROOF_TILES_EDGE);
     public static final DeferredHolder<Item, BlockItem> FLAT_ROOF_TILES_PLATE     = registerBlockItem("flat_roof_tiles_plate",     ModBlocks.FLAT_ROOF_TILES_PLATE);
     public static final DeferredHolder<Item, BlockItem> GRAY_ROOF_TILES           = registerBlockItem("gray_roof_tiles",           ModBlocks.GRAY_ROOF_TILES);
-    public static final DeferredHolder<Item, BlockItem> GRAY_ROOF_TILES_SLAB      = registerBlockItem("gray_roof_tiles_slab",      ModBlocks.GRAY_ROOF_TILES_SLAB);
-    public static final DeferredHolder<Item, BlockItem> GRAY_ROOF_TILES_STAIRS    = registerBlockItem("gray_roof_tiles_stairs",    ModBlocks.GRAY_ROOF_TILES_STAIRS);
-    public static final DeferredHolder<Item, BlockItem> GRAY_ROOF_TILES_WALL      = registerBlockItem("gray_roof_tiles_wall",      ModBlocks.GRAY_ROOF_TILES_WALL);
     public static final DeferredHolder<Item, BlockItem> GRAY_ROOF_TILES_EDGE      = registerBlockItem("gray_roof_tiles_edge",      ModBlocks.GRAY_ROOF_TILES_EDGE);
     public static final DeferredHolder<Item, BlockItem> GRAY_ROOF_TILES_PLATE     = registerBlockItem("gray_roof_tiles_plate",     ModBlocks.GRAY_ROOF_TILES_PLATE);
 
@@ -774,69 +757,41 @@ public class ModItems {
     // --- DoTB Phase 2: Roofing Slates (General) ---
     // -------------------------------------------------------------------------
     public static final DeferredHolder<Item, BlockItem> ROOFING_SLATES            = registerBlockItem("roofing_slates",            ModBlocks.ROOFING_SLATES);
-    public static final DeferredHolder<Item, BlockItem> ROOFING_SLATES_SLAB       = registerBlockItem("roofing_slates_slab",       ModBlocks.ROOFING_SLATES_SLAB);
-    public static final DeferredHolder<Item, BlockItem> ROOFING_SLATES_STAIRS     = registerBlockItem("roofing_slates_stairs",     ModBlocks.ROOFING_SLATES_STAIRS);
-    public static final DeferredHolder<Item, BlockItem> ROOFING_SLATES_WALL       = registerBlockItem("roofing_slates_wall",       ModBlocks.ROOFING_SLATES_WALL);
     public static final DeferredHolder<Item, BlockItem> ROOFING_SLATES_EDGE       = registerBlockItem("roofing_slates_edge",       ModBlocks.ROOFING_SLATES_EDGE);
     public static final DeferredHolder<Item, BlockItem> ROOFING_SLATES_PLATE      = registerBlockItem("roofing_slates_plate",      ModBlocks.ROOFING_SLATES_PLATE);
 
     // -------------------------------------------------------------------------
     // --- DoTB Phase 2: Rammed Dirt, Stepping Stones (General) ---
     // -------------------------------------------------------------------------
-    public static final DeferredHolder<Item, BlockItem> RAMMED_DIRT               = registerBlockItem("rammed_dirt",               ModBlocks.RAMMED_DIRT);
-    public static final DeferredHolder<Item, BlockItem> STEPPING_STONES           = registerBlockItem("stepping_stones",           ModBlocks.STEPPING_STONES);
-    public static final DeferredHolder<Item, BlockItem> STEPPING_STONES_SLAB      = registerBlockItem("stepping_stones_slab",      ModBlocks.STEPPING_STONES_SLAB);
-
     // -------------------------------------------------------------------------
     // --- DoTB Phase 2: Thatch (General) ---
     // -------------------------------------------------------------------------
-    public static final DeferredHolder<Item, BlockItem> THATCH_WHEAT              = registerBlockItem("thatch_wheat",              ModBlocks.THATCH_WHEAT);
-    public static final DeferredHolder<Item, BlockItem> THATCH_WHEAT_EDGE         = registerBlockItem("thatch_wheat_edge",         ModBlocks.THATCH_WHEAT_EDGE);
-    public static final DeferredHolder<Item, BlockItem> THATCH_WHEAT_PLATE        = registerBlockItem("thatch_wheat_plate",        ModBlocks.THATCH_WHEAT_PLATE);
-    public static final DeferredHolder<Item, BlockItem> THATCH_WHEAT_SLAB         = registerBlockItem("thatch_wheat_slab",         ModBlocks.THATCH_WHEAT_SLAB);
-    public static final DeferredHolder<Item, BlockItem> THATCH_WHEAT_STAIRS       = registerBlockItem("thatch_wheat_stairs",       ModBlocks.THATCH_WHEAT_STAIRS);
-    public static final DeferredHolder<Item, BlockItem> THATCH_BAMBOO             = registerBlockItem("thatch_bamboo",             ModBlocks.THATCH_BAMBOO);
-    public static final DeferredHolder<Item, BlockItem> THATCH_BAMBOO_EDGE        = registerBlockItem("thatch_bamboo_edge",        ModBlocks.THATCH_BAMBOO_EDGE);
-    public static final DeferredHolder<Item, BlockItem> THATCH_BAMBOO_PLATE       = registerBlockItem("thatch_bamboo_plate",       ModBlocks.THATCH_BAMBOO_PLATE);
-    public static final DeferredHolder<Item, BlockItem> THATCH_BAMBOO_SLAB        = registerBlockItem("thatch_bamboo_slab",        ModBlocks.THATCH_BAMBOO_SLAB);
-    public static final DeferredHolder<Item, BlockItem> THATCH_BAMBOO_STAIRS      = registerBlockItem("thatch_bamboo_stairs",      ModBlocks.THATCH_BAMBOO_STAIRS);
+    public static final DeferredHolder<Item, BlockItem> WHEAT_THATCH              = registerBlockItem("wheat_thatch",              ModBlocks.WHEAT_THATCH);
+    public static final DeferredHolder<Item, BlockItem> WHEAT_THATCH_EDGE         = registerBlockItem("wheat_thatch_edge",         ModBlocks.WHEAT_THATCH_EDGE);
+    public static final DeferredHolder<Item, BlockItem> WHEAT_THATCH_PLATE        = registerBlockItem("wheat_thatch_plate",        ModBlocks.WHEAT_THATCH_PLATE);
+    public static final DeferredHolder<Item, BlockItem> BAMBOO_THATCH             = registerBlockItem("bamboo_thatch",             ModBlocks.BAMBOO_THATCH);
+    public static final DeferredHolder<Item, BlockItem> BAMBOO_THATCH_EDGE        = registerBlockItem("bamboo_thatch_edge",        ModBlocks.BAMBOO_THATCH_EDGE);
+    public static final DeferredHolder<Item, BlockItem> BAMBOO_THATCH_PLATE       = registerBlockItem("bamboo_thatch_plate",       ModBlocks.BAMBOO_THATCH_PLATE);
 
     // -------------------------------------------------------------------------
     // --- DoTB Phase 3: Waxed Oak (German) ---
     // -------------------------------------------------------------------------
     public static final DeferredHolder<Item, BlockItem> WAXED_OAK_PLANKS                   = registerBlockItem("waxed_oak_planks",                   ModBlocks.WAXED_OAK_PLANKS);
-    public static final DeferredHolder<Item, BlockItem> WAXED_OAK_PLANKS_SLAB              = registerBlockItem("waxed_oak_planks_slab",              ModBlocks.WAXED_OAK_PLANKS_SLAB);
-    public static final DeferredHolder<Item, BlockItem> WAXED_OAK_PLANKS_STAIRS            = registerBlockItem("waxed_oak_planks_stairs",            ModBlocks.WAXED_OAK_PLANKS_STAIRS);
     public static final DeferredHolder<Item, BlockItem> WAXED_OAK_LOG_STRIPPED             = registerBlockItem("waxed_oak_log_stripped",             ModBlocks.WAXED_OAK_LOG_STRIPPED);
-    public static final DeferredHolder<Item, BlockItem> WAXED_OAK_FENCE                    = registerBlockItem("waxed_oak_fence",                    ModBlocks.WAXED_OAK_FENCE);
-    public static final DeferredHolder<Item, BlockItem> WAXED_OAK_FENCE_GATE               = registerBlockItem("waxed_oak_fence_gate",               ModBlocks.WAXED_OAK_FENCE_GATE);
-    public static final DeferredHolder<Item, BlockItem> WAXED_OAK_DOOR                     = registerBlockItem("waxed_oak_door",                     ModBlocks.WAXED_OAK_DOOR);
-    public static final DeferredHolder<Item, BlockItem> WAXED_OAK_TRAPDOOR                 = registerBlockItem("waxed_oak_trapdoor",                 ModBlocks.WAXED_OAK_TRAPDOOR);
     public static final DeferredHolder<Item, BlockItem> WAXED_OAK_BEAM                     = registerBlockItem("waxed_oak_beam",                     ModBlocks.WAXED_OAK_BEAM);
     public static final DeferredHolder<Item, BlockItem> WAXED_OAK_PERGOLA                  = registerBlockItem("waxed_oak_pergola",                  ModBlocks.WAXED_OAK_PERGOLA);
     public static final DeferredHolder<Item, BlockItem> WAXED_OAK_PLANKS_PLATE             = registerBlockItem("waxed_oak_planks_plate",             ModBlocks.WAXED_OAK_PLANKS_PLATE);
     public static final DeferredHolder<Item, BlockItem> WAXED_OAK_PLANKS_EDGE              = registerBlockItem("waxed_oak_planks_edge",              ModBlocks.WAXED_OAK_PLANKS_EDGE);
     public static final DeferredHolder<Item, BlockItem> WAXED_OAK_SUPPORT_BEAM             = registerBlockItem("waxed_oak_support_beam",             ModBlocks.WAXED_OAK_SUPPORT_BEAM);
     public static final DeferredHolder<Item, BlockItem> WAXED_OAK_SUPPORT_SLAB             = registerBlockItem("waxed_oak_support_slab",             ModBlocks.WAXED_OAK_SUPPORT_SLAB);
-    public static final DeferredHolder<Item, BlockItem> WAXED_OAK_BALUSTER                 = registerBlockItem("waxed_oak_baluster",                 ModBlocks.WAXED_OAK_BALUSTER);
-    public static final DeferredHolder<Item, BlockItem> WAXED_OAK_FRAMED_RAMMED_DIRT       = registerBlockItem("waxed_oak_framed_rammed_dirt",       ModBlocks.WAXED_OAK_FRAMED_RAMMED_DIRT);
-    public static final DeferredHolder<Item, BlockItem> WAXED_OAK_FRAMED_RAMMED_DIRT_PILLAR= registerBlockItem("waxed_oak_framed_rammed_dirt_pillar", ModBlocks.WAXED_OAK_FRAMED_RAMMED_DIRT_PILLAR);
-    public static final DeferredHolder<Item, BlockItem> WAXED_OAK_TIMBER_FRAME             = registerBlockItem("waxed_oak_timber_frame",             ModBlocks.WAXED_OAK_TIMBER_FRAME);
-    public static final DeferredHolder<Item, BlockItem> WAXED_OAK_TIMBER_FRAME_CORNER      = registerBlockItem("waxed_oak_timber_frame_corner",      ModBlocks.WAXED_OAK_TIMBER_FRAME_CORNER);
-    public static final DeferredHolder<Item, BlockItem> WAXED_OAK_TIMBER_FRAME_CROSSED     = registerBlockItem("waxed_oak_timber_frame_crossed",     ModBlocks.WAXED_OAK_TIMBER_FRAME_CROSSED);
-    public static final DeferredHolder<Item, BlockItem> WAXED_OAK_TIMBER_FRAME_PILLAR      = registerBlockItem("waxed_oak_timber_frame_pillar",      ModBlocks.WAXED_OAK_TIMBER_FRAME_PILLAR);
-    public static final DeferredHolder<Item, BlockItem> WAXED_OAK_TIMBER_FRAME_SQUARED     = registerBlockItem("waxed_oak_timber_frame_squared",     ModBlocks.WAXED_OAK_TIMBER_FRAME_SQUARED);
+    public static final DeferredHolder<Item, BlockItem> WAXED_OAK_BANNISTER                = registerBlockItem("waxed_oak_bannister",                ModBlocks.WAXED_OAK_BANNISTER);
 
     // -------------------------------------------------------------------------
     // --- DoTB Phase 3: Stone Bricks Masonry + German misc ---
     // -------------------------------------------------------------------------
     public static final DeferredHolder<Item, BlockItem> STONE_BRICKS_MASONRY         = registerBlockItem("stone_bricks_masonry",         ModBlocks.STONE_BRICKS_MASONRY);
-    public static final DeferredHolder<Item, BlockItem> STONE_BRICKS_MASONRY_SLAB    = registerBlockItem("stone_bricks_masonry_slab",    ModBlocks.STONE_BRICKS_MASONRY_SLAB);
-    public static final DeferredHolder<Item, BlockItem> STONE_BRICKS_MASONRY_STAIRS  = registerBlockItem("stone_bricks_masonry_stairs",  ModBlocks.STONE_BRICKS_MASONRY_STAIRS);
-    public static final DeferredHolder<Item, BlockItem> STONE_BRICKS_MASONRY_WALL    = registerBlockItem("stone_bricks_masonry_wall",    ModBlocks.STONE_BRICKS_MASONRY_WALL);
     public static final DeferredHolder<Item, BlockItem> STONE_BRICKS_MASONRY_EDGE    = registerBlockItem("stone_bricks_masonry_edge",    ModBlocks.STONE_BRICKS_MASONRY_EDGE);
     public static final DeferredHolder<Item, BlockItem> STONE_BRICKS_MASONRY_PLATE   = registerBlockItem("stone_bricks_masonry_plate",   ModBlocks.STONE_BRICKS_MASONRY_PLATE);
-    public static final DeferredHolder<Item, BlockItem> LATTICE_GLASS                = registerBlockItem("lattice_glass",                ModBlocks.LATTICE_GLASS);
     public static final DeferredHolder<Item, BlockItem> CURVED_RAKED_GRAVEL          = registerBlockItem("curved_raked_gravel",          ModBlocks.CURVED_RAKED_GRAVEL);
     public static final DeferredHolder<Item, BlockItem> STRAIGHT_RAKED_GRAVEL        = registerBlockItem("straight_raked_gravel",        ModBlocks.STRAIGHT_RAKED_GRAVEL);
 
@@ -844,37 +799,24 @@ public class ModItems {
     // --- DoTB Phase 3: Charred Spruce (Japanese) ---
     // -------------------------------------------------------------------------
     public static final DeferredHolder<Item, BlockItem> CHARRED_SPRUCE_PLANKS               = registerBlockItem("charred_spruce_planks",               ModBlocks.CHARRED_SPRUCE_PLANKS);
-    public static final DeferredHolder<Item, BlockItem> CHARRED_SPRUCE_PLANKS_SLAB          = registerBlockItem("charred_spruce_planks_slab",          ModBlocks.CHARRED_SPRUCE_PLANKS_SLAB);
-    public static final DeferredHolder<Item, BlockItem> CHARRED_SPRUCE_PLANKS_STAIRS        = registerBlockItem("charred_spruce_planks_stairs",        ModBlocks.CHARRED_SPRUCE_PLANKS_STAIRS);
     public static final DeferredHolder<Item, BlockItem> CHARRED_SPRUCE_LOG_STRIPPED         = registerBlockItem("charred_spruce_log_stripped",         ModBlocks.CHARRED_SPRUCE_LOG_STRIPPED);
-    public static final DeferredHolder<Item, BlockItem> CHARRED_SPRUCE_FENCE                = registerBlockItem("charred_spruce_fence",                ModBlocks.CHARRED_SPRUCE_FENCE);
-    public static final DeferredHolder<Item, BlockItem> CHARRED_SPRUCE_FENCE_GATE           = registerBlockItem("charred_spruce_fence_gate",           ModBlocks.CHARRED_SPRUCE_FENCE_GATE);
-    public static final DeferredHolder<Item, BlockItem> CHARRED_SPRUCE_DOOR                 = registerBlockItem("charred_spruce_door",                 ModBlocks.CHARRED_SPRUCE_DOOR);
-    public static final DeferredHolder<Item, BlockItem> CHARRED_SPRUCE_TRAPDOOR             = registerBlockItem("charred_spruce_trapdoor",             ModBlocks.CHARRED_SPRUCE_TRAPDOOR);
     public static final DeferredHolder<Item, BlockItem> CHARRED_SPRUCE_BOARDS               = registerBlockItem("charred_spruce_boards",               ModBlocks.CHARRED_SPRUCE_BOARDS);
     public static final DeferredHolder<Item, BlockItem> CHARRED_SPRUCE_FOUNDATION           = registerBlockItem("charred_spruce_foundation",           ModBlocks.CHARRED_SPRUCE_FOUNDATION);
-    public static final DeferredHolder<Item, BlockItem> CHARRED_SPRUCE_FOUNDATION_SLAB      = registerBlockItem("charred_spruce_foundation_slab",      ModBlocks.CHARRED_SPRUCE_FOUNDATION_SLAB);
     public static final DeferredHolder<Item, BlockItem> CHARRED_SPRUCE_BEAM                 = registerBlockItem("charred_spruce_beam",                 ModBlocks.CHARRED_SPRUCE_BEAM);
     public static final DeferredHolder<Item, BlockItem> CHARRED_SPRUCE_PERGOLA              = registerBlockItem("charred_spruce_pergola",              ModBlocks.CHARRED_SPRUCE_PERGOLA);
     public static final DeferredHolder<Item, BlockItem> CHARRED_SPRUCE_PLANKS_PLATE         = registerBlockItem("charred_spruce_planks_plate",         ModBlocks.CHARRED_SPRUCE_PLANKS_PLATE);
     public static final DeferredHolder<Item, BlockItem> CHARRED_SPRUCE_PLANKS_EDGE          = registerBlockItem("charred_spruce_planks_edge",          ModBlocks.CHARRED_SPRUCE_PLANKS_EDGE);
     public static final DeferredHolder<Item, BlockItem> CHARRED_SPRUCE_SUPPORT_BEAM         = registerBlockItem("charred_spruce_support_beam",         ModBlocks.CHARRED_SPRUCE_SUPPORT_BEAM);
     public static final DeferredHolder<Item, BlockItem> CHARRED_SPRUCE_SUPPORT_SLAB         = registerBlockItem("charred_spruce_support_slab",         ModBlocks.CHARRED_SPRUCE_SUPPORT_SLAB);
-    public static final DeferredHolder<Item, BlockItem> CHARRED_SPRUCE_TIMBER_FRAME         = registerBlockItem("charred_spruce_timber_frame",         ModBlocks.CHARRED_SPRUCE_TIMBER_FRAME);
-    public static final DeferredHolder<Item, BlockItem> CHARRED_SPRUCE_TIMBER_FRAME_PILLAR  = registerBlockItem("charred_spruce_timber_frame_pillar",  ModBlocks.CHARRED_SPRUCE_TIMBER_FRAME_PILLAR);
 
     // -------------------------------------------------------------------------
     // --- DoTB Phase 4: Persian Sandstone Bricks ---
     // -------------------------------------------------------------------------
     public static final DeferredHolder<Item, BlockItem> SANDSTONE_BRICKS                          = registerBlockItem("sandstone_bricks",                          ModBlocks.SANDSTONE_BRICKS);
-    public static final DeferredHolder<Item, BlockItem> SANDSTONE_BRICKS_SLAB                     = registerBlockItem("sandstone_bricks_slab",                     ModBlocks.SANDSTONE_BRICKS_SLAB);
-    public static final DeferredHolder<Item, BlockItem> SANDSTONE_BRICKS_STAIRS                   = registerBlockItem("sandstone_bricks_stairs",                   ModBlocks.SANDSTONE_BRICKS_STAIRS);
     public static final DeferredHolder<Item, BlockItem> SANDSTONE_BRICKS_WALL                     = registerBlockItem("sandstone_bricks_wall",                     ModBlocks.SANDSTONE_BRICKS_WALL);
     public static final DeferredHolder<Item, BlockItem> SANDSTONE_BRICKS_EDGE                     = registerBlockItem("sandstone_bricks_edge",                     ModBlocks.SANDSTONE_BRICKS_EDGE);
     public static final DeferredHolder<Item, BlockItem> SANDSTONE_BRICKS_PLATE                    = registerBlockItem("sandstone_bricks_plate",                    ModBlocks.SANDSTONE_BRICKS_PLATE);
     public static final DeferredHolder<Item, BlockItem> SANDSTONE_BRICKS_TURQUOISE_PATTERN        = registerBlockItem("sandstone_bricks_turquoise_pattern",        ModBlocks.SANDSTONE_BRICKS_TURQUOISE_PATTERN);
-    public static final DeferredHolder<Item, BlockItem> SANDSTONE_BRICKS_TURQUOISE_PATTERN_SLAB   = registerBlockItem("sandstone_bricks_turquoise_pattern_slab",   ModBlocks.SANDSTONE_BRICKS_TURQUOISE_PATTERN_SLAB);
-    public static final DeferredHolder<Item, BlockItem> SANDSTONE_BRICKS_TURQUOISE_PATTERN_STAIRS = registerBlockItem("sandstone_bricks_turquoise_pattern_stairs", ModBlocks.SANDSTONE_BRICKS_TURQUOISE_PATTERN_STAIRS);
     public static final DeferredHolder<Item, BlockItem> SANDSTONE_BRICKS_TURQUOISE_PATTERN_WALL   = registerBlockItem("sandstone_bricks_turquoise_pattern_wall",   ModBlocks.SANDSTONE_BRICKS_TURQUOISE_PATTERN_WALL);
     public static final DeferredHolder<Item, BlockItem> SANDSTONE_BRICKS_TURQUOISE_PATTERN_EDGE   = registerBlockItem("sandstone_bricks_turquoise_pattern_edge",   ModBlocks.SANDSTONE_BRICKS_TURQUOISE_PATTERN_EDGE);
     public static final DeferredHolder<Item, BlockItem> SANDSTONE_BRICKS_TURQUOISE_PATTERN_PLATE  = registerBlockItem("sandstone_bricks_turquoise_pattern_plate",  ModBlocks.SANDSTONE_BRICKS_TURQUOISE_PATTERN_PLATE);
@@ -883,14 +825,10 @@ public class ModItems {
     // -------------------------------------------------------------------------
     public static final DeferredHolder<Item, BlockItem> PERSIAN_CARPET_RED          = registerBlockItem("persian_carpet_red",          ModBlocks.PERSIAN_CARPET_RED);
     public static final DeferredHolder<Item, BlockItem> PERSIAN_CARPET_DELICATE_RED = registerBlockItem("persian_carpet_delicate_red", ModBlocks.PERSIAN_CARPET_DELICATE_RED);
-    public static final DeferredHolder<Item, BlockItem> SANDSTONE_SCULPTED_RELIEF   = registerBlockItem("sandstone_sculpted_relief",   ModBlocks.SANDSTONE_SCULPTED_RELIEF);
     // -------------------------------------------------------------------------
     // --- DoTB Phase 4: Gold Plated Smooth (Persian) ---
     // -------------------------------------------------------------------------
     public static final DeferredHolder<Item, BlockItem> GOLD_PLATED_SMOOTH_BLOCK   = registerBlockItem("gold_plated_smooth_block",   ModBlocks.GOLD_PLATED_SMOOTH_BLOCK);
-    public static final DeferredHolder<Item, BlockItem> GOLD_PLATED_SMOOTH_SLAB    = registerBlockItem("gold_plated_smooth_slab",    ModBlocks.GOLD_PLATED_SMOOTH_SLAB);
-    public static final DeferredHolder<Item, BlockItem> GOLD_PLATED_SMOOTH_STAIRS  = registerBlockItem("gold_plated_smooth_stairs",  ModBlocks.GOLD_PLATED_SMOOTH_STAIRS);
-    public static final DeferredHolder<Item, BlockItem> GOLD_PLATED_SMOOTH_WALL    = registerBlockItem("gold_plated_smooth_wall",    ModBlocks.GOLD_PLATED_SMOOTH_WALL);
     public static final DeferredHolder<Item, BlockItem> GOLD_PLATED_SMOOTH_EDGE    = registerBlockItem("gold_plated_smooth_edge",    ModBlocks.GOLD_PLATED_SMOOTH_EDGE);
     public static final DeferredHolder<Item, BlockItem> GOLD_PLATED_SMOOTH_PLATE   = registerBlockItem("gold_plated_smooth_plate",   ModBlocks.GOLD_PLATED_SMOOTH_PLATE);
 
@@ -1119,6 +1057,64 @@ public class ModItems {
         PALE_OAK_BOAT = MINECRAFT_ITEMS.register("pale_oak_boat", () -> new PaleOakBoatItem(false, new Item.Properties().stacksTo(1)));
         PALE_OAK_CHEST_BOAT = MINECRAFT_ITEMS.register("pale_oak_chest_boat", () -> new PaleOakBoatItem(true, new Item.Properties().stacksTo(1)));
         PALE_OAK_SAPLING = registerMinecraftBlockItem();
+
+        // -----------------------------------------------------------------------
+        // DoTB Phase 5: General Decorative & Functional
+        // -----------------------------------------------------------------------
+        registerBlockItem(ModBlocks.STONE_LANTERN);
+        registerBlockItem(ModBlocks.IRON_FANCY_LANTERN);
+        // -----------------------------------------------------------------------
+        // DoTB Phase 2: French Limestone extras
+        // -----------------------------------------------------------------------
+        // -----------------------------------------------------------------------
+        // DoTB Phase 2: Roman Marble extras
+        // -----------------------------------------------------------------------
+        // -----------------------------------------------------------------------
+        // DoTB Phase 2: Roman Sandstone extras (unique — not in static fields above)
+        // -----------------------------------------------------------------------
+        // Note: SANDSTONE_PLATE/EDGE/CRENELATION, CUT_SANDSTONE_*, SMOOTH_SANDSTONE_*
+        //       are registered as static fields above.
+        // -----------------------------------------------------------------------
+        // DoTB Phase 2: Roman Birch Furniture
+        // -----------------------------------------------------------------------
+        // -----------------------------------------------------------------------
+        // DoTB Phase 3: German Waxed Oak extras
+        // -----------------------------------------------------------------------
+        // -----------------------------------------------------------------------
+        // DoTB Phase 3: Japanese Charred Spruce extras
+        // -----------------------------------------------------------------------
+        // -----------------------------------------------------------------------
+        // DoTB Phase 3: Japanese Spruce extras
+        // -----------------------------------------------------------------------
+        registerBlockItem(ModBlocks.SPRUCE_FOUNDATION);
+        registerBlockItem(ModBlocks.SPRUCE_LOG_FENCE);
+        // -----------------------------------------------------------------------
+        // DoTB Phase 3: Japanese Bamboo extras
+        // -----------------------------------------------------------------------
+        // -----------------------------------------------------------------------
+        // DoTB Phase 3: Japanese Furniture & Decor
+        // -----------------------------------------------------------------------
+        registerBlockItem(ModBlocks.LIGHT_GRAY_FUTON);
+        // -----------------------------------------------------------------------
+        // DoTB Phase 4: Persian Moraq Mosaic
+        // -----------------------------------------------------------------------
+        registerBlockItem(ModBlocks.MORAQ_MOSAIC_BORDER);
+        registerBlockItem(ModBlocks.MORAQ_MOSAIC_DELICATE);
+        registerBlockItem(ModBlocks.MORAQ_MOSAIC_GEOMETRIC);
+        registerBlockItem(ModBlocks.MORAQ_MOSAIC_PATTERN);
+        registerBlockItem(ModBlocks.MORAQ_MOSAIC_RECESS);
+        registerBlockItem(ModBlocks.MORAQ_MOSAIC_TRADITIONAL);
+        // -----------------------------------------------------------------------
+        // DoTB Phase 4: Pre-Columbian Plastered Stone
+        // -----------------------------------------------------------------------
+        registerBlockItem(ModBlocks.PLASTERED_STONE);
+        registerBlockItem(ModBlocks.PLASTERED_STONE_EDGE);
+        registerBlockItem(ModBlocks.PLASTERED_STONE_PLATE);
+        registerBlockItem(ModBlocks.PLASTERED_STONE_WINDOW);
+        registerBlockItem(ModBlocks.CHISELED_PLASTERED_STONE);
+        registerBlockItem(ModBlocks.CHISELED_PLASTERED_STONE_FRIEZE);
+        registerBlockItem(ModBlocks.ORNAMENTED_CHISELED_PLASTERED_STONE);
+        registerBlockItem(ModBlocks.GOLDEN_STONE_FRIEZE);
 
     }
 

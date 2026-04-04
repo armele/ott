@@ -77,6 +77,120 @@ public final class ModCreativeTabs {
                     output.accept(ModBlocks.ROMAN_FRESCO_RED);
                     output.accept(ModBlocks.ROMAN_FRESCO_BLACK);
 
+                    // --- DoTB: General ---
+                    output.accept(ModBlocks.STONE_LANTERN);
+                    output.accept(ModBlocks.IRON_FANCY_LANTERN);
+                    output.accept(ModBlocks.WHEAT_THATCH);
+                    output.accept(ModBlocks.WHEAT_THATCH_EDGE);
+                    output.accept(ModBlocks.WHEAT_THATCH_PLATE);
+                    output.accept(ModBlocks.BAMBOO_THATCH);
+                    output.accept(ModBlocks.BAMBOO_THATCH_EDGE);
+                    output.accept(ModBlocks.BAMBOO_THATCH_PLATE);
+                    output.accept(ModBlocks.FLAT_ROOF_TILES);
+                    output.accept(ModBlocks.FLAT_ROOF_TILES_EDGE);
+                    output.accept(ModBlocks.FLAT_ROOF_TILES_PLATE);
+                    output.accept(ModBlocks.GRAY_ROOF_TILES);
+                    output.accept(ModBlocks.GRAY_ROOF_TILES_EDGE);
+                    output.accept(ModBlocks.GRAY_ROOF_TILES_PLATE);
+                    output.accept(ModBlocks.ROOFING_SLATES);
+                    output.accept(ModBlocks.ROOFING_SLATES_EDGE);
+                    output.accept(ModBlocks.ROOFING_SLATES_PLATE);
+                    // Vanilla wall + lattice sets
+                    ModBlocks.VANILLA_WALLS.values().forEach(output::accept);
+                    ModBlocks.VANILLA_LATTICES.values().forEach(output::accept);
+
+                    // --- DoTB: French (Limestone) ---
+                    output.accept(ModBlocks.LIMESTONE_BRICKS);
+                    output.accept(ModBlocks.LIMESTONE_BRICKS_EDGE);
+                    output.accept(ModBlocks.LIMESTONE_BRICKS_PLATE);
+                    output.accept(ModBlocks.LIMESTONE_BANNISTER);
+
+                    // --- DoTB: Roman (Marble) ---
+                    output.accept(ModBlocks.MARBLE);
+                    output.accept(ModBlocks.MARBLE_PILLAR);
+                    output.accept(ModBlocks.MARBLE_FANCY_FENCE);
+                    // Roman Sandstone
+                    output.accept(ModBlocks.SANDSTONE_PLATE);
+                    output.accept(ModBlocks.SANDSTONE_EDGE);
+                    output.accept(ModBlocks.SANDSTONE_CRENELATION);
+                    output.accept(ModBlocks.CUT_SANDSTONE_PLATE);
+                    output.accept(ModBlocks.CUT_SANDSTONE_EDGE);
+                    output.accept(ModBlocks.SMOOTH_SANDSTONE_PLATE);
+                    output.accept(ModBlocks.SMOOTH_SANDSTONE_EDGE);
+                    // Ochre Roof Tiles
+                    output.accept(ModBlocks.OCHRE_ROOF_TILES);
+                    output.accept(ModBlocks.OCHRE_ROOF_TILES_EDGE);
+                    output.accept(ModBlocks.OCHRE_ROOF_TILES_PLATE);
+                    // --- DoTB: German (Waxed Oak) ---
+                    output.accept(ModBlocks.WAXED_OAK_PLANKS);
+                    output.accept(ModBlocks.WAXED_OAK_LOG_STRIPPED);
+                    output.accept(ModBlocks.WAXED_OAK_BEAM);
+                    output.accept(ModBlocks.WAXED_OAK_PERGOLA);
+                    output.accept(ModBlocks.WAXED_OAK_PLANKS_PLATE);
+                    output.accept(ModBlocks.WAXED_OAK_PLANKS_EDGE);
+                    output.accept(ModBlocks.WAXED_OAK_SUPPORT_BEAM);
+                    output.accept(ModBlocks.WAXED_OAK_SUPPORT_SLAB);
+                    output.accept(ModBlocks.WAXED_OAK_BANNISTER);
+                    // German stone/glass
+                    output.accept(ModBlocks.STONE_BRICKS_MASONRY);
+                    output.accept(ModBlocks.STONE_BRICKS_MASONRY_EDGE);
+                    output.accept(ModBlocks.STONE_BRICKS_MASONRY_PLATE);
+                    output.accept(ModBlocks.CURVED_RAKED_GRAVEL);
+                    output.accept(ModBlocks.STRAIGHT_RAKED_GRAVEL);
+
+                    // --- DoTB: Japanese (Charred Spruce) ---
+                    output.accept(ModBlocks.CHARRED_SPRUCE_PLANKS);
+                    output.accept(ModBlocks.CHARRED_SPRUCE_LOG_STRIPPED);
+                    output.accept(ModBlocks.CHARRED_SPRUCE_BOARDS);
+                    output.accept(ModBlocks.CHARRED_SPRUCE_FOUNDATION);
+                    output.accept(ModBlocks.CHARRED_SPRUCE_BEAM);
+                    output.accept(ModBlocks.CHARRED_SPRUCE_PERGOLA);
+                    output.accept(ModBlocks.CHARRED_SPRUCE_PLANKS_PLATE);
+                    output.accept(ModBlocks.CHARRED_SPRUCE_PLANKS_EDGE);
+                    output.accept(ModBlocks.CHARRED_SPRUCE_SUPPORT_BEAM);
+                    output.accept(ModBlocks.CHARRED_SPRUCE_SUPPORT_SLAB);
+                    output.accept(ModBlocks.LIGHT_GRAY_FUTON);
+
+                    // --- DoTB: Persian ---
+                    output.accept(ModBlocks.MORAQ_MOSAIC_BORDER);
+                    output.accept(ModBlocks.MORAQ_MOSAIC_DELICATE);
+                    output.accept(ModBlocks.MORAQ_MOSAIC_GEOMETRIC);
+                    output.accept(ModBlocks.MORAQ_MOSAIC_PATTERN);
+                    output.accept(ModBlocks.MORAQ_MOSAIC_RECESS);
+                    output.accept(ModBlocks.MORAQ_MOSAIC_TRADITIONAL);
+                    output.accept(ModBlocks.PERSIAN_CARPET_RED);
+                    output.accept(ModBlocks.PERSIAN_CARPET_DELICATE_RED);
+                    output.accept(ModBlocks.SANDSTONE_BRICKS);
+                    output.accept(ModBlocks.SANDSTONE_BRICKS_WALL);
+                    output.accept(ModBlocks.SANDSTONE_BRICKS_EDGE);
+                    output.accept(ModBlocks.SANDSTONE_BRICKS_PLATE);
+                    output.accept(ModBlocks.SANDSTONE_BRICKS_TURQUOISE_PATTERN);
+                    output.accept(ModBlocks.SANDSTONE_BRICKS_TURQUOISE_PATTERN_WALL);
+                    output.accept(ModBlocks.SANDSTONE_BRICKS_TURQUOISE_PATTERN_EDGE);
+                    output.accept(ModBlocks.SANDSTONE_BRICKS_TURQUOISE_PATTERN_PLATE);
+                    output.accept(ModBlocks.GOLD_PLATED_SMOOTH_BLOCK);
+                    output.accept(ModBlocks.GOLD_PLATED_SMOOTH_EDGE);
+                    output.accept(ModBlocks.GOLD_PLATED_SMOOTH_PLATE);
+
+                    // --- DoTB: Pre-Columbian ---
+                    output.accept(ModBlocks.PLASTERED_STONE);
+                    output.accept(ModBlocks.PLASTERED_STONE_EDGE);
+                    output.accept(ModBlocks.PLASTERED_STONE_PLATE);
+                    output.accept(ModBlocks.PLASTERED_STONE_WINDOW);
+                    output.accept(ModBlocks.CHISELED_PLASTERED_STONE);
+                    output.accept(ModBlocks.CHISELED_PLASTERED_STONE_FRIEZE);
+                    output.accept(ModBlocks.ORNAMENTED_CHISELED_PLASTERED_STONE);
+                    output.accept(ModBlocks.GOLDEN_STONE_FRIEZE);
+
+                    // --- DoTB: Stone Brick Water Features ---
+                    output.accept(ModBlocks.STONE_BRICKS_ARROWSLIT);
+                    output.accept(ModBlocks.STONE_BRICKS_MACHICOLATION);
+                    output.accept(ModBlocks.STONE_BRICKS_FAUCET);
+                    output.accept(ModBlocks.STONE_BRICKS_POOL);
+                    output.accept(ModBlocks.STONE_BRICKS_SMALL_POOL);
+                    output.accept(ModBlocks.STONE_BRICKS_WATER_JET);
+                    output.accept(ModBlocks.WATER_SOURCE_TRICKLE);
+
                 }).build();
     }
 
@@ -526,146 +640,87 @@ public final class ModCreativeTabs {
 
                     // DoTB Phase 2: Limestone
                     output.accept(ModBlocks.LIMESTONE_BRICKS);
-                    output.accept(ModBlocks.LIMESTONE_BRICKS_SLAB);
-                    output.accept(ModBlocks.LIMESTONE_BRICKS_STAIRS);
-                    output.accept(ModBlocks.LIMESTONE_BRICKS_WALL);
                     output.accept(ModBlocks.LIMESTONE_BRICKS_EDGE);
                     output.accept(ModBlocks.LIMESTONE_BRICKS_PLATE);
-                    output.accept(ModBlocks.LIMESTONE_BALUSTER);
+                    output.accept(ModBlocks.LIMESTONE_BANNISTER);
                     output.accept(ModBlocks.COBBLED_LIMESTONE);
 
                     // DoTB Phase 2: Marble
                     output.accept(ModBlocks.MARBLE);
                     output.accept(ModBlocks.MARBLE_PILLAR);
-                    output.accept(ModBlocks.MARBLE_COFFER);
-                    output.accept(ModBlocks.MARBLE_COFFER_SLAB);
                     output.accept(ModBlocks.MARBLE_FANCY_FENCE);
 
                     // DoTB Phase 2: Sandstone decorative
                     output.accept(ModBlocks.SANDSTONE_PLATE);
                     output.accept(ModBlocks.SANDSTONE_EDGE);
                     output.accept(ModBlocks.SANDSTONE_CRENELATION);
-                    output.accept(ModBlocks.CUT_SANDSTONE_STAIRS);
                     output.accept(ModBlocks.CUT_SANDSTONE_PLATE);
                     output.accept(ModBlocks.CUT_SANDSTONE_EDGE);
                     output.accept(ModBlocks.SMOOTH_SANDSTONE_PLATE);
                     output.accept(ModBlocks.SMOOTH_SANDSTONE_EDGE);
-                    output.accept(ModBlocks.SANDSTONE_BOT_OCHRE_ROOF_TILES_TOP);
-                    output.accept(ModBlocks.CUT_SANDSTONE_BOT_OCHRE_ROOF_TILES_TOP);
-                    output.accept(ModBlocks.SMOOTH_SANDSTONE_BOT_OCHRE_ROOF_TILES_TOP);
 
                     // DoTB Phase 2: Ochre Roof Tiles
                     output.accept(ModBlocks.OCHRE_ROOF_TILES);
-                    output.accept(ModBlocks.OCHRE_ROOF_TILES_STAIRS);
-                    output.accept(ModBlocks.OCHRE_ROOF_TILES_WALL);
                     output.accept(ModBlocks.OCHRE_ROOF_TILES_EDGE);
                     output.accept(ModBlocks.OCHRE_ROOF_TILES_PLATE);
 
                     // DoTB Phase 2: Flat/Gray Roof Tiles
                     output.accept(ModBlocks.FLAT_ROOF_TILES);
-                    output.accept(ModBlocks.FLAT_ROOF_TILES_SLAB);
-                    output.accept(ModBlocks.FLAT_ROOF_TILES_STAIRS);
-                    output.accept(ModBlocks.FLAT_ROOF_TILES_WALL);
                     output.accept(ModBlocks.FLAT_ROOF_TILES_EDGE);
                     output.accept(ModBlocks.FLAT_ROOF_TILES_PLATE);
                     output.accept(ModBlocks.GRAY_ROOF_TILES);
-                    output.accept(ModBlocks.GRAY_ROOF_TILES_SLAB);
-                    output.accept(ModBlocks.GRAY_ROOF_TILES_STAIRS);
-                    output.accept(ModBlocks.GRAY_ROOF_TILES_WALL);
                     output.accept(ModBlocks.GRAY_ROOF_TILES_EDGE);
                     output.accept(ModBlocks.GRAY_ROOF_TILES_PLATE);
 
                     // DoTB Phase 2: Roofing Slates
                     output.accept(ModBlocks.ROOFING_SLATES);
-                    output.accept(ModBlocks.ROOFING_SLATES_SLAB);
-                    output.accept(ModBlocks.ROOFING_SLATES_STAIRS);
-                    output.accept(ModBlocks.ROOFING_SLATES_WALL);
                     output.accept(ModBlocks.ROOFING_SLATES_EDGE);
                     output.accept(ModBlocks.ROOFING_SLATES_PLATE);
 
-                    // DoTB Phase 2: Rammed Dirt + Stepping Stones
-                    output.accept(ModBlocks.RAMMED_DIRT);
-                    output.accept(ModBlocks.STEPPING_STONES);
-                    output.accept(ModBlocks.STEPPING_STONES_SLAB);
-
                     // DoTB Phase 2: Thatch
-                    output.accept(ModBlocks.THATCH_WHEAT);
-                    output.accept(ModBlocks.THATCH_WHEAT_EDGE);
-                    output.accept(ModBlocks.THATCH_WHEAT_PLATE);
-                    output.accept(ModBlocks.THATCH_WHEAT_SLAB);
-                    output.accept(ModBlocks.THATCH_WHEAT_STAIRS);
-                    output.accept(ModBlocks.THATCH_BAMBOO);
-                    output.accept(ModBlocks.THATCH_BAMBOO_EDGE);
-                    output.accept(ModBlocks.THATCH_BAMBOO_PLATE);
-                    output.accept(ModBlocks.THATCH_BAMBOO_SLAB);
-                    output.accept(ModBlocks.THATCH_BAMBOO_STAIRS);
+                    output.accept(ModBlocks.WHEAT_THATCH);
+                    output.accept(ModBlocks.WHEAT_THATCH_EDGE);
+                    output.accept(ModBlocks.WHEAT_THATCH_PLATE);
+                    output.accept(ModBlocks.BAMBOO_THATCH);
+                    output.accept(ModBlocks.BAMBOO_THATCH_EDGE);
+                    output.accept(ModBlocks.BAMBOO_THATCH_PLATE);
 
                     // DoTB Phase 3: Waxed Oak (German)
                     output.accept(ModBlocks.WAXED_OAK_PLANKS);
-                    output.accept(ModBlocks.WAXED_OAK_PLANKS_SLAB);
-                    output.accept(ModBlocks.WAXED_OAK_PLANKS_STAIRS);
                     output.accept(ModBlocks.WAXED_OAK_LOG_STRIPPED);
-                    output.accept(ModBlocks.WAXED_OAK_FENCE);
-                    output.accept(ModBlocks.WAXED_OAK_FENCE_GATE);
-                    output.accept(ModBlocks.WAXED_OAK_DOOR);
-                    output.accept(ModBlocks.WAXED_OAK_TRAPDOOR);
                     output.accept(ModBlocks.WAXED_OAK_BEAM);
                     output.accept(ModBlocks.WAXED_OAK_PERGOLA);
                     output.accept(ModBlocks.WAXED_OAK_PLANKS_PLATE);
                     output.accept(ModBlocks.WAXED_OAK_PLANKS_EDGE);
                     output.accept(ModBlocks.WAXED_OAK_SUPPORT_BEAM);
                     output.accept(ModBlocks.WAXED_OAK_SUPPORT_SLAB);
-                    output.accept(ModBlocks.WAXED_OAK_BALUSTER);
-                    output.accept(ModBlocks.WAXED_OAK_FRAMED_RAMMED_DIRT);
-                    output.accept(ModBlocks.WAXED_OAK_FRAMED_RAMMED_DIRT_PILLAR);
-                    output.accept(ModBlocks.WAXED_OAK_TIMBER_FRAME);
-                    output.accept(ModBlocks.WAXED_OAK_TIMBER_FRAME_CORNER);
-                    output.accept(ModBlocks.WAXED_OAK_TIMBER_FRAME_CROSSED);
-                    output.accept(ModBlocks.WAXED_OAK_TIMBER_FRAME_PILLAR);
-                    output.accept(ModBlocks.WAXED_OAK_TIMBER_FRAME_SQUARED);
+                    output.accept(ModBlocks.WAXED_OAK_BANNISTER);
 
                     // DoTB Phase 3: Stone Bricks Masonry + German misc
                     output.accept(ModBlocks.STONE_BRICKS_MASONRY);
-                    output.accept(ModBlocks.STONE_BRICKS_MASONRY_SLAB);
-                    output.accept(ModBlocks.STONE_BRICKS_MASONRY_STAIRS);
-                    output.accept(ModBlocks.STONE_BRICKS_MASONRY_WALL);
                     output.accept(ModBlocks.STONE_BRICKS_MASONRY_EDGE);
                     output.accept(ModBlocks.STONE_BRICKS_MASONRY_PLATE);
-                    output.accept(ModBlocks.LATTICE_GLASS);
                     output.accept(ModBlocks.CURVED_RAKED_GRAVEL);
                     output.accept(ModBlocks.STRAIGHT_RAKED_GRAVEL);
 
                     // DoTB Phase 3: Charred Spruce (Japanese)
                     output.accept(ModBlocks.CHARRED_SPRUCE_PLANKS);
-                    output.accept(ModBlocks.CHARRED_SPRUCE_PLANKS_SLAB);
-                    output.accept(ModBlocks.CHARRED_SPRUCE_PLANKS_STAIRS);
                     output.accept(ModBlocks.CHARRED_SPRUCE_LOG_STRIPPED);
-                    output.accept(ModBlocks.CHARRED_SPRUCE_FENCE);
-                    output.accept(ModBlocks.CHARRED_SPRUCE_FENCE_GATE);
-                    output.accept(ModBlocks.CHARRED_SPRUCE_DOOR);
-                    output.accept(ModBlocks.CHARRED_SPRUCE_TRAPDOOR);
                     output.accept(ModBlocks.CHARRED_SPRUCE_BOARDS);
                     output.accept(ModBlocks.CHARRED_SPRUCE_FOUNDATION);
-                    output.accept(ModBlocks.CHARRED_SPRUCE_FOUNDATION_SLAB);
                     output.accept(ModBlocks.CHARRED_SPRUCE_BEAM);
                     output.accept(ModBlocks.CHARRED_SPRUCE_PERGOLA);
                     output.accept(ModBlocks.CHARRED_SPRUCE_PLANKS_PLATE);
                     output.accept(ModBlocks.CHARRED_SPRUCE_PLANKS_EDGE);
                     output.accept(ModBlocks.CHARRED_SPRUCE_SUPPORT_BEAM);
                     output.accept(ModBlocks.CHARRED_SPRUCE_SUPPORT_SLAB);
-                    output.accept(ModBlocks.CHARRED_SPRUCE_TIMBER_FRAME);
-                    output.accept(ModBlocks.CHARRED_SPRUCE_TIMBER_FRAME_PILLAR);
 
                     // DoTB Phase 4: Persian Sandstone Bricks
                     output.accept(ModBlocks.SANDSTONE_BRICKS);
-                    output.accept(ModBlocks.SANDSTONE_BRICKS_SLAB);
-                    output.accept(ModBlocks.SANDSTONE_BRICKS_STAIRS);
                     output.accept(ModBlocks.SANDSTONE_BRICKS_WALL);
                     output.accept(ModBlocks.SANDSTONE_BRICKS_EDGE);
                     output.accept(ModBlocks.SANDSTONE_BRICKS_PLATE);
                     output.accept(ModBlocks.SANDSTONE_BRICKS_TURQUOISE_PATTERN);
-                    output.accept(ModBlocks.SANDSTONE_BRICKS_TURQUOISE_PATTERN_SLAB);
-                    output.accept(ModBlocks.SANDSTONE_BRICKS_TURQUOISE_PATTERN_STAIRS);
                     output.accept(ModBlocks.SANDSTONE_BRICKS_TURQUOISE_PATTERN_WALL);
                     output.accept(ModBlocks.SANDSTONE_BRICKS_TURQUOISE_PATTERN_EDGE);
                     output.accept(ModBlocks.SANDSTONE_BRICKS_TURQUOISE_PATTERN_PLATE);
@@ -673,13 +728,9 @@ public final class ModCreativeTabs {
                     // DoTB Phase 4: Persian Carpets
                     output.accept(ModBlocks.PERSIAN_CARPET_RED);
                     output.accept(ModBlocks.PERSIAN_CARPET_DELICATE_RED);
-                    output.accept(ModBlocks.SANDSTONE_SCULPTED_RELIEF);
 
                     // DoTB Phase 4: Gold Plated Smooth (Persian)
                     output.accept(ModBlocks.GOLD_PLATED_SMOOTH_BLOCK);
-                    output.accept(ModBlocks.GOLD_PLATED_SMOOTH_SLAB);
-                    output.accept(ModBlocks.GOLD_PLATED_SMOOTH_STAIRS);
-                    output.accept(ModBlocks.GOLD_PLATED_SMOOTH_WALL);
                     output.accept(ModBlocks.GOLD_PLATED_SMOOTH_EDGE);
                     output.accept(ModBlocks.GOLD_PLATED_SMOOTH_PLATE);
 

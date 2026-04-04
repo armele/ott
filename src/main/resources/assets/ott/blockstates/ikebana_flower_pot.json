@@ -1,8 +1,0 @@
-{
-    "variants": {
-        "facing=east": { "model": "ott:block/japanese/ikebana_flower_pot", "y" : 90},
-        "facing=south": { "model": "ott:block/japanese/ikebana_flower_pot", "y": 180 },
-        "facing=west": { "model": "ott:block/japanese/ikebana_flower_pot", "y": 270 },
-        "facing=north": { "model": "ott:block/japanese/ikebana_flower_pot"}
-    }
-}
