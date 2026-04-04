@@ -3,15 +3,18 @@ package com.otterly76.ott.client.model;
 import com.otterly76.ott.block.ModBlocks;
 import com.otterly76.ott.block.entity.FireflyJarBlockEntity;
 import net.minecraft.resources.ResourceLocation;
+import org.jetbrains.annotations.Nullable;
 import software.bernie.geckolib.animation.AnimationState;
 import software.bernie.geckolib.cache.object.GeoBone;
 import software.bernie.geckolib.model.GeoModel;
+import software.bernie.geckolib.renderer.GeoRenderer;
 
 import static com.otterly76.ott.Constants.MOD_ID;
 
+@SuppressWarnings("deprecation")
 public class FireflyJarModel extends GeoModel<FireflyJarBlockEntity> {
     @Override
-    public ResourceLocation getModelResource(FireflyJarBlockEntity animatable) {
+    public ResourceLocation getModelResource(FireflyJarBlockEntity animatable, @Nullable GeoRenderer<FireflyJarBlockEntity> renderer) {
         if (animatable.getBlockState().is(ModBlocks.FIREFLY_IN_A_JAR.get())) {
             return ResourceLocation.fromNamespaceAndPath(MOD_ID, "geo/block/jar/firefly_in_a_jar.geo.json");
         } else if (animatable.getBlockState().is(ModBlocks.FIREFLIES_IN_A_JAR.get())) {
@@ -22,8 +25,18 @@ public class FireflyJarModel extends GeoModel<FireflyJarBlockEntity> {
     }
 
     @Override
-    public ResourceLocation getTextureResource(FireflyJarBlockEntity animatable) {
+    public ResourceLocation getModelResource(FireflyJarBlockEntity animatable) {
+        return getModelResource(animatable, null);
+    }
+
+    @Override
+    public ResourceLocation getTextureResource(FireflyJarBlockEntity animatable, @Nullable GeoRenderer<FireflyJarBlockEntity> renderer) {
         return ResourceLocation.fromNamespaceAndPath(MOD_ID, "textures/block/jar/firefly_jar.png");
+    }
+
+    @Override
+    public ResourceLocation getTextureResource(FireflyJarBlockEntity animatable) {
+        return getTextureResource(animatable, null);
     }
 
     @Override
