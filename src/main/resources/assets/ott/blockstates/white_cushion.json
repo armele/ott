@@ -1,0 +1,8 @@
+{
+    "variants": {
+        "facing=north": { "model": "ott:block/japanese/white_cushion" },
+        "facing=west": { "model": "ott:block/japanese/white_cushion", "y": 270 },
+        "facing=south": { "model": "ott:block/japanese/white_cushion", "y": 180 },
+        "facing=east": { "model": "ott:block/japanese/white_cushion", "y": 90 }
+    }
+}

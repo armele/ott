@@ -1,0 +1,7 @@
+{
+    "parent": "block/cube_column",
+    "textures": {
+        "end": "ott:block/waxed_oak_timber_frame_pillar_top",
+        "side": "ott:block/waxed_oak_timber_frame_pillar_vertical"
+    }
+}

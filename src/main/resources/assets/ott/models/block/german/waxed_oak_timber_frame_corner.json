@@ -1,0 +1,10 @@
+{
+    "parent": "ott:block/ctm_cube_all",
+    "textures": {
+        "all": "ott:block/waxed_oak_timber_frame_corner"
+    },
+    "loader": "ott:connecting",
+    "connections": {
+        "all": [{"type": "is_same_block"}]
+    }
+}

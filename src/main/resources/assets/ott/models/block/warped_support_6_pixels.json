@@ -1,7 +1,7 @@
 {
 	"textures": {
-		"particle": "ott:block/beam/warped_beam",
-		"slab": "ott:block/beam/warped_beam"
+		"particle": "minecraft:block/warped_planks",
+		"slab": "minecraft:block/warped_planks"
 	},
 	"elements": [
 		{

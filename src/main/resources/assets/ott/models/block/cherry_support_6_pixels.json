@@ -1,7 +1,7 @@
 {
 	"textures": {
-		"particle": "ott:block/beam/cherry_beam",
-		"slab": "ott:block/beam/cherry_beam"
+		"particle": "minecraft:block/cherry_planks",
+		"slab": "minecraft:block/cherry_planks"
 	},
 	"elements": [
 		{

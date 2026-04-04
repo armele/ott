@@ -1,0 +1,8 @@
+{
+    "parent": "block/stairs",
+    "textures": {
+        "bottom": "ott:block/green_plastered_stone",
+        "top": "ott:block/green_plastered_stone",
+        "side": "ott:block/green_plastered_stone"
+    }
+}

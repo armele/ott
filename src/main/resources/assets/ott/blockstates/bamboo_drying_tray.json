@@ -1,0 +1,7 @@
+{
+    "variants": {
+        "size=0": { "model": "ott:block/japanese/bamboo_drying_tray_simple"},
+        "size=1": { "model": "ott:block/japanese/bamboo_drying_tray_double"},
+        "size=2": { "model": "ott:block/japanese/bamboo_drying_tray_connected"}
+    }
+}

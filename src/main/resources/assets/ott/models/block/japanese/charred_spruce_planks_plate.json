@@ -1,0 +1,8 @@
+{
+	"parent": "ott:block/general/plate",
+	"textures": {
+		"side": "ott:block/charred_spruce_planks",
+		"top": "ott:block/charred_spruce_planks",
+		"frieze": "ott:block/charred_spruce_planks"
+	}
+}

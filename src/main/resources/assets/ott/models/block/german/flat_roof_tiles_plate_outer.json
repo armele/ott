@@ -1,0 +1,7 @@
+{
+	"parent": "ott:block/general/plate_outer",
+	"textures": {
+		"top": "ott:block/flat_roof_tiles",
+		"frieze": "ott:block/flat_roof_tiles"
+	}
+}

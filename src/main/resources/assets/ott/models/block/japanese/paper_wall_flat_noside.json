@@ -1,0 +1,6 @@
+{
+    "parent": "ott:block/general/template_dot_pane_noside",
+    "textures": {
+        "pane": "ott:block/paper_wall_flat"
+    }
+}

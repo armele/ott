@@ -1,0 +1,7 @@
+{
+    "variants": {
+        "type=bottom": { "model": "ott:block/persian/sandstone_bricks_turquoise_pattern_slab_bottom" },
+        "type=top": { "model": "ott:block/persian/sandstone_bricks_turquoise_pattern_slab_top" },
+        "type=double": { "model": "ott:block/persian/sandstone_bricks_turquoise_pattern" }
+    }
+}

@@ -1,0 +1,6 @@
+{
+    "variants": {
+        "axis=x": { "model": "ott:block/japanese/spruce_low_table" },
+        "axis=z": { "model": "ott:block/japanese/spruce_low_table", "y": 90 }
+    }
+}

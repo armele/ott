@@ -1,0 +1,8 @@
+{
+	"variants": {
+		"facing=north": { "model": "ott:block/roman/birch_couch" },
+		"facing=west": { "model": "ott:block/roman/birch_couch", "y": 270 },
+		"facing=south": { "model": "ott:block/roman/birch_couch", "y": 180 },
+		"facing=east": { "model": "ott:block/roman/birch_couch", "y": 90 }
+	}
+}

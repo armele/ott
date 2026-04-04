@@ -1,0 +1,7 @@
+{
+    "variants": {
+        "type=bottom": { "model": "ott:block/german/waxed_oak_planks_slab_bottom" },
+        "type=top": { "model": "ott:block/german/waxed_oak_planks_slab_top" },
+        "type=double": { "model": "ott:block/german/waxed_oak_planks" }
+    }
+}

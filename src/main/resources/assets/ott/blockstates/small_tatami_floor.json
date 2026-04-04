@@ -1,0 +1,6 @@
+{
+    "variants": {
+        "axis=x": { "model": "ott:block/japanese/small_tatami_floor", "y": 90 },
+        "axis=z": { "model": "ott:block/japanese/small_tatami_floor" }
+    }
+}

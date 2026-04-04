@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "": [
+      { "model": "ott:block/japanese/cast_iron_teapot_green" },
+      { "model": "ott:block/japanese/cast_iron_teapot_green", "y": 90},
+      { "model": "ott:block/japanese/cast_iron_teapot_green", "y": 180},
+      { "model": "ott:block/japanese/cast_iron_teapot_green", "y": 270}
+    ]
+  }
+}

@@ -1,0 +1,10 @@
+{
+	"variants": {
+		"": [
+			{"model": "ott:block/japanese/sake_bottle"},
+			{"model": "ott:block/japanese/sake_bottle", "y": 90},
+			{"model": "ott:block/japanese/sake_bottle", "y": 180},
+			{"model": "ott:block/japanese/sake_bottle", "y": 270}
+		]
+	}
+}

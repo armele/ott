@@ -1,6 +1,7 @@
 {
 	"credit": "mr_ch0c0late",
 	"parent": "block/block",
+	"ambientocclusion": false,
 	"textures": {
 		"particle": "#frieze"
 	},

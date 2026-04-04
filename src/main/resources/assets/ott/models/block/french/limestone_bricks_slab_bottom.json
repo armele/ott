@@ -1,0 +1,8 @@
+{
+    "parent": "block/slab",
+    "textures": {
+        "bottom": "ott:block/limestone_bricks",
+        "top": "ott:block/limestone_bricks",
+        "side": "ott:block/limestone_bricks"
+    }
+}

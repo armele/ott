@@ -1,0 +1,6 @@
+{
+    "parent": "block/template_wall_side",
+    "textures": {
+        "wall": "ott:block/sandstone_bricks_turquoise_pattern"
+    }
+}

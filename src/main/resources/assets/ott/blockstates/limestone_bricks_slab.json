@@ -1,0 +1,7 @@
+{
+    "variants": {
+        "type=bottom": { "model": "ott:block/french/limestone_bricks_slab_bottom" },
+        "type=top": { "model": "ott:block/french/limestone_bricks_slab_top" },
+        "type=double": { "model": "ott:block/french/limestone_bricks" }
+    }
+}

@@ -1,7 +1,7 @@
 {
 	"textures": {
-		"particle": "ott:block/beam/mangrove_beam",
-		"slab": "ott:block/beam/mangrove_beam"
+		"particle": "minecraft:block/mangrove_planks",
+		"slab": "minecraft:block/mangrove_planks"
 	},
 	"elements": [
 		{

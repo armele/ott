@@ -1154,6 +1154,26 @@
 
   "effect.ott.reach": "Reach",
 
+  "block.ott.mosaic_floor": "Mosaic Floor",
+  "block.ott.mosaic_floor_delicate": "Mosaic Floor Delicate",
+  "block.ott.mosaic_floor_rosette": "Mosaic Floor Rosette",
+  "block.ott.roman_fresco_red": "Roman Fresco Red",
+  "block.ott.roman_fresco_black": "Roman Fresco Black",
+  "block.ott.stone_bricks_arrowslit": "Stone Bricks Arrowslit",
+  "block.ott.stone_bricks_machicolation": "Stone Bricks Machicolation",
+  "block.ott.stone_bricks_pool": "Stone Bricks Pool",
+  "block.ott.stone_bricks_small_pool": "Stone Bricks Small Pool",
+  "block.ott.water_source_trickle": "Water Source Trickle",
+  "block.ott.stone_bricks_faucet": "Stone Bricks Faucet",
+  "block.ott.stone_bricks_water_jet": "Stone Bricks Water Jet",
+
+  "block.ott.water_mosaic_border": "Water Mosaic Border",
+  "block.ott.water_mosaic_geometric": "Water Mosaic Geometric",
+  "block.ott.water_mosaic_pattern": "Water Mosaic Pattern",
+  "block.ott.water_mosaic_delicate": "Water Mosaic Delicate",
+  "block.ott.water_mosaic_traditional": "Water Mosaic Traditional",
+  "block.ott.water_mosaic_recess": "Water Mosaic Recess",
+
   "block.ott.elevator": "Elevator",
   "gui.ott.elevator.arrow": "Arrow: %s",
   "gui.ott.elevator.directional": "Directional: %s",

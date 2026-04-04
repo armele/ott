@@ -1,0 +1,1 @@
+{ "parent": "block/outer_stairs", "textures": { "bottom": "ott:block/gold_plated_smooth_block", "top": "ott:block/gold_plated_smooth_block", "side": "ott:block/gold_plated_smooth_block" } }

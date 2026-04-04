@@ -1,0 +1,7 @@
+{
+	"parent": "ott:block/general/relief_vertical",
+	"textures": {
+		"side": "ott:block/moraq_mosaic_relief_side",
+		"face": "ott:block/moraq_mosaic_relief_face"
+	}
+}

@@ -1,0 +1,7 @@
+{
+    "parent": "block/cube_column",
+    "textures": {
+        "end": "ott:block/charred_spruce_foundation_top",
+        "side": "ott:block/charred_spruce_foundation"
+    }
+}

@@ -1,0 +1,6 @@
+{
+    "variants": {
+        "variant=wheat": { "model": "ott:block/general/thatch_wheat" },
+        "variant=bamboo": { "model": "ott:block/general/thatch_bamboo" }
+    }
+}

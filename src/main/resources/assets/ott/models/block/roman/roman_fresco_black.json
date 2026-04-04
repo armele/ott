@@ -1,0 +1,7 @@
+{
+    "parent": "block/cube_column",
+    "textures": {
+        "end": "ott:block/roman_fresco_black_top",
+        "side": "ott:block/roman_fresco_black"
+    }
+}

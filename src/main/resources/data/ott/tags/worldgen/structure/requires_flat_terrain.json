@@ -1,9 +1,9 @@
 {
   "values": [
-    "minecraft:village/plains",
-    "minecraft:village/desert",
-    "minecraft:village/savanna",
-    "minecraft:village/snowy",
-    "minecraft:village/taiga"
+    { "id": "minecraft:village/plains",  "required": false },
+    { "id": "minecraft:village/desert",  "required": false },
+    { "id": "minecraft:village/savanna", "required": false },
+    { "id": "minecraft:village/snowy",   "required": false },
+    { "id": "minecraft:village/taiga",   "required": false }
   ]
 }

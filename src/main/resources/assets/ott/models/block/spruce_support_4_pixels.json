@@ -1,7 +1,7 @@
 {
 	"textures": {
-		"particle": "ott:block/beam/spruce_beam",
-		"slab": "ott:block/beam/spruce_beam"
+		"particle": "minecraft:block/spruce_planks",
+		"slab": "minecraft:block/spruce_planks"
 	},
 	"elements": [
 		{

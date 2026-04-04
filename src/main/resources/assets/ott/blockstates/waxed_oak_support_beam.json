@@ -1,0 +1,27 @@
+{
+    "multipart": [
+        {   "apply": { "model": "ott:block/german/waxed_oak_support_slab" }
+        },
+        {   "when": { "axis": "x", "subaxis": "false"},
+            "apply": { "model": "ott:block/german/waxed_oak_beam_x" }
+        },
+        {   "when": { "axis": "z", "subaxis": "false"},
+            "apply": { "model": "ott:block/german/waxed_oak_beam_x", "y": 90 }
+        },
+        {   "when": { "subaxis": "true" },
+            "apply": { "model": "ott:block/german/waxed_oak_beam_x_z" }
+        },
+        {   "when": { "pillar_connection": "four_pixels" },
+            "apply": { "model": "ott:block/german/waxed_oak_support_4_pixels" }
+        },
+        {   "when": { "pillar_connection": "six_pixels" },
+            "apply": { "model": "ott:block/german/waxed_oak_support_6_pixels" }
+        },
+        {   "when": { "pillar_connection": "eight_pixels" },
+            "apply": { "model": "ott:block/german/waxed_oak_support_8_pixels" }
+        },
+        {   "when": { "pillar_connection": "ten_pixels" },
+            "apply": { "model": "ott:block/german/waxed_oak_support_10_pixels" }
+        }
+    ]
+}

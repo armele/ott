@@ -1,0 +1,6 @@
+{
+	"variants": {
+		"half=bottom,variant=normal": {"model": "ott:block/roman/ochre_roof_tiles_slab_bottom"},
+		"half=top,variant=normal": {"model": "ott:block/roman/ochre_roof_tiles_slab_top"}
+	}
+}

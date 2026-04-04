@@ -1,0 +1,7 @@
+{
+    "variants": {
+        "type=bottom": { "model": "ott:block/japanese/gray_roof_tiles_slab_bottom" },
+        "type=top": { "model": "ott:block/japanese/gray_roof_tiles_slab_top" },
+        "type=double": { "model": "ott:block/japanese/gray_roof_tiles" }
+    }
+}

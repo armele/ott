@@ -1,9 +1,10 @@
 {
 	"parent": "block/block",
+	"ambientocclusion": false,
 	"textures": {
 		"particle": "#frieze"
 	},
-	"elements": [ 	 
+	"elements": [
 		{	"from": [ 0, 0, 8 ],
 			"to": [ 16, 16, 16 ],
 			"faces": {
