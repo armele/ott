@@ -487,6 +487,24 @@ public class ModBlocks {
             VANILLA_STRUCTURAL_SETS.put(name, com.otterly76.ott.block.wood.WoodSetBlockRegistrar.registerVanillaStructural(name));
         }
 
+        // Register wood wall + lattice blocks
+        // Matches DoTB wood set: all vanilla woods + waxed_oak + charred_spruce (no pale_oak in DoTB)
+        for (String name : List.of("oak", "spruce", "birch", "jungle", "acacia", "dark_oak",
+                "mangrove", "cherry", "bamboo", "crimson", "warped")) {
+            VANILLA_WALLS.put(name, BLOCKS.register(name + "_wall",
+                    () -> new WallBlock(Properties.of().strength(2.0f).sound(SoundType.WOOD))));
+            VANILLA_LATTICES.put(name, BLOCKS.register(name + "_lattice",
+                    () -> new LatticeBlock(Properties.of().strength(2.0f).sound(SoundType.WOOD).noOcclusion())));
+        }
+        VANILLA_WALLS.put("waxed_oak", BLOCKS.register("waxed_oak_wall",
+                () -> new WallBlock(Properties.of().strength(3.0f, 5.0f).sound(SoundType.WOOD))));
+        VANILLA_LATTICES.put("waxed_oak", BLOCKS.register("waxed_oak_lattice",
+                () -> new LatticeBlock(Properties.of().strength(3.0f, 5.0f).sound(SoundType.WOOD).noOcclusion())));
+        VANILLA_WALLS.put("charred_spruce", BLOCKS.register("charred_spruce_wall",
+                () -> new WallBlock(Properties.of().mapColor(MapColor.COLOR_BLACK).strength(2.0f, 6.0f).sound(SoundType.WOOD))));
+        VANILLA_LATTICES.put("charred_spruce", BLOCKS.register("charred_spruce_lattice",
+                () -> new LatticeBlock(Properties.of().mapColor(MapColor.COLOR_BLACK).strength(2.0f, 6.0f).sound(SoundType.WOOD).noOcclusion())));
+
         // Register all ott color sets
         com.otterly76.ott.color.ModColorSets.ALL.forEach(set -> COLOR_SETS.put(set.name(), com.otterly76.ott.block.color.ColorSetBlockRegistrar.registerOttColorSet(set.name())));
 
@@ -590,6 +608,12 @@ public class ModBlocks {
      * ott wood sets (ott namespace). Key = set name (e.g. "starlight").
      */
     public static final Map<String, WoodSetBlocks> WOOD_SETS = new LinkedHashMap<>();
+
+    /** Wood wall blocks (ott namespace). Key = wood name (e.g. "oak", "waxed_oak"). */
+    public static final Map<String, DeferredBlock<WallBlock>> VANILLA_WALLS = new LinkedHashMap<>();
+
+    /** Wood lattice blocks (ott namespace). Key = wood name (e.g. "oak", "charred_spruce"). */
+    public static final Map<String, DeferredBlock<LatticeBlock>> VANILLA_LATTICES = new LinkedHashMap<>();
 
     /**
      * ott color sets (ott namespace). Key = color name (e.g. "aquamarine").
@@ -740,6 +764,256 @@ public class ModBlocks {
     public static final DeferredBlock<com.otterly76.ott.block.custom.WaterJetBlock> STONE_BRICKS_WATER_JET = register("stone_bricks_water_jet",
             () -> new com.otterly76.ott.block.custom.WaterJetBlock(
                     Properties.of().strength(1.5f).requiresCorrectToolForDrops().sound(SoundType.STONE).noOcclusion()));
+
+    // -------------------------------------------------------------------------
+    // --- DoTB Phase 2: Limestone ---
+    // -------------------------------------------------------------------------
+    public static final DeferredBlock<Block> LIMESTONE_BRICKS = register("limestone_bricks",
+            () -> new Block(Properties.ofFullCopy(Blocks.STONE_BRICKS)));
+    public static final DeferredBlock<SlabBlock> LIMESTONE_BRICKS_SLAB = register("limestone_bricks_slab",
+            () -> new SlabBlock(Properties.ofFullCopy(Blocks.STONE_BRICKS)));
+    public static final DeferredBlock<StairBlock> LIMESTONE_BRICKS_STAIRS = register("limestone_bricks_stairs",
+            () -> new StairBlock(LIMESTONE_BRICKS.get().defaultBlockState(), Properties.ofFullCopy(Blocks.STONE_BRICKS)));
+    public static final DeferredBlock<WallBlock> LIMESTONE_BRICKS_WALL = register("limestone_bricks_wall",
+            () -> new WallBlock(Properties.ofFullCopy(Blocks.STONE_BRICKS)));
+    public static final DeferredBlock<EdgeBlock> LIMESTONE_BRICKS_EDGE = register("limestone_bricks_edge",
+            () -> new EdgeBlock(Properties.ofFullCopy(Blocks.STONE_BRICKS)));
+    public static final DeferredBlock<PlateBlock> LIMESTONE_BRICKS_PLATE = register("limestone_bricks_plate",
+            () -> new PlateBlock(Properties.ofFullCopy(Blocks.STONE_BRICKS)));
+    public static final DeferredBlock<PlateBlock> LIMESTONE_BALUSTER = register("limestone_baluster",
+            () -> new PlateBlock(Properties.ofFullCopy(Blocks.STONE_BRICKS).noOcclusion()));
+    public static final DeferredBlock<Block> COBBLED_LIMESTONE = register("cobbled_limestone",
+            () -> new Block(Properties.ofFullCopy(Blocks.STONE_BRICKS)));
+
+    // -------------------------------------------------------------------------
+    // --- DoTB Phase 2: Marble (Roman) ---
+    // -------------------------------------------------------------------------
+    public static final DeferredBlock<Block> MARBLE = register("marble",
+            () -> new Block(Properties.ofFullCopy(Blocks.STONE)));
+    public static final DeferredBlock<Block> MARBLE_PILLAR = register("marble_pillar",
+            () -> new Block(Properties.ofFullCopy(Blocks.STONE)));
+    public static final DeferredBlock<Block> MARBLE_COFFER = register("marble_coffer",
+            () -> new Block(Properties.ofFullCopy(Blocks.STONE)));
+    public static final DeferredBlock<SlabBlock> MARBLE_COFFER_SLAB = register("marble_coffer_slab",
+            () -> new SlabBlock(Properties.ofFullCopy(Blocks.STONE)));
+    public static final DeferredBlock<PlateBlock> MARBLE_FANCY_FENCE = register("marble_fancy_fence",
+            () -> new PlateBlock(Properties.ofFullCopy(Blocks.STONE).strength(3.0f, 5.0f).noOcclusion()));
+
+    // -------------------------------------------------------------------------
+    // --- DoTB Phase 2: Sandstone decorative (Roman) ---
+    // -------------------------------------------------------------------------
+    public static final DeferredBlock<PlateBlock> SANDSTONE_PLATE = register("sandstone_plate",
+            () -> new PlateBlock(Properties.ofFullCopy(Blocks.SANDSTONE)));
+    public static final DeferredBlock<EdgeBlock> SANDSTONE_EDGE = register("sandstone_edge",
+            () -> new EdgeBlock(Properties.ofFullCopy(Blocks.SANDSTONE)));
+    public static final DeferredBlock<PlateBlock> SANDSTONE_CRENELATION = register("sandstone_crenelation",
+            () -> new PlateBlock(Properties.ofFullCopy(Blocks.CUT_SANDSTONE)));
+    public static final DeferredBlock<StairBlock> CUT_SANDSTONE_STAIRS = register("cut_sandstone_stairs",
+            () -> new StairBlock(Blocks.CUT_SANDSTONE.defaultBlockState(), Properties.ofFullCopy(Blocks.CUT_SANDSTONE)));
+    public static final DeferredBlock<PlateBlock> CUT_SANDSTONE_PLATE = register("cut_sandstone_plate",
+            () -> new PlateBlock(Properties.ofFullCopy(Blocks.CUT_SANDSTONE)));
+    public static final DeferredBlock<EdgeBlock> CUT_SANDSTONE_EDGE = register("cut_sandstone_edge",
+            () -> new EdgeBlock(Properties.ofFullCopy(Blocks.CUT_SANDSTONE)));
+    public static final DeferredBlock<PlateBlock> SMOOTH_SANDSTONE_PLATE = register("smooth_sandstone_plate",
+            () -> new PlateBlock(Properties.ofFullCopy(Blocks.SMOOTH_SANDSTONE)));
+    public static final DeferredBlock<EdgeBlock> SMOOTH_SANDSTONE_EDGE = register("smooth_sandstone_edge",
+            () -> new EdgeBlock(Properties.ofFullCopy(Blocks.SMOOTH_SANDSTONE)));
+    public static final DeferredBlock<Block> SANDSTONE_BOT_OCHRE_ROOF_TILES_TOP = register("sandstone_bot_ochre_roof_tiles_top",
+            () -> new Block(Properties.ofFullCopy(Blocks.BRICKS)));
+    public static final DeferredBlock<Block> CUT_SANDSTONE_BOT_OCHRE_ROOF_TILES_TOP = register("cut_sandstone_bot_ochre_roof_tiles_top",
+            () -> new Block(Properties.ofFullCopy(Blocks.BRICKS)));
+    public static final DeferredBlock<Block> SMOOTH_SANDSTONE_BOT_OCHRE_ROOF_TILES_TOP = register("smooth_sandstone_bot_ochre_roof_tiles_top",
+            () -> new Block(Properties.ofFullCopy(Blocks.BRICKS)));
+
+    // -------------------------------------------------------------------------
+    // --- DoTB Phase 2: Ochre Roof Tiles (Roman) ---
+    // -------------------------------------------------------------------------
+    public static final DeferredBlock<Block> OCHRE_ROOF_TILES = register("ochre_roof_tiles",
+            () -> new Block(Properties.ofFullCopy(Blocks.BRICKS)));
+    public static final DeferredBlock<StairBlock> OCHRE_ROOF_TILES_STAIRS = register("ochre_roof_tiles_stairs",
+            () -> new StairBlock(OCHRE_ROOF_TILES.get().defaultBlockState(), Properties.ofFullCopy(Blocks.BRICKS)));
+    public static final DeferredBlock<WallBlock> OCHRE_ROOF_TILES_WALL = register("ochre_roof_tiles_wall",
+            () -> new WallBlock(Properties.ofFullCopy(Blocks.BRICKS)));
+    public static final DeferredBlock<EdgeBlock> OCHRE_ROOF_TILES_EDGE = register("ochre_roof_tiles_edge",
+            () -> new EdgeBlock(Properties.ofFullCopy(Blocks.BRICKS)));
+    public static final DeferredBlock<PlateBlock> OCHRE_ROOF_TILES_PLATE = register("ochre_roof_tiles_plate",
+            () -> new PlateBlock(Properties.ofFullCopy(Blocks.BRICKS)));
+
+    // -------------------------------------------------------------------------
+    // --- DoTB Phase 2: Flat/Gray Roof Tiles + Roofing Slates (General) ---
+    // -------------------------------------------------------------------------
+    public static final DeferredBlock<Block> FLAT_ROOF_TILES = register("flat_roof_tiles",
+            () -> new Block(Properties.ofFullCopy(Blocks.STONE_BRICKS)));
+    public static final DeferredBlock<SlabBlock> FLAT_ROOF_TILES_SLAB = register("flat_roof_tiles_slab",
+            () -> new SlabBlock(Properties.ofFullCopy(Blocks.STONE_BRICKS)));
+    public static final DeferredBlock<StairBlock> FLAT_ROOF_TILES_STAIRS = register("flat_roof_tiles_stairs",
+            () -> new StairBlock(FLAT_ROOF_TILES.get().defaultBlockState(), Properties.ofFullCopy(Blocks.STONE_BRICKS)));
+    public static final DeferredBlock<WallBlock> FLAT_ROOF_TILES_WALL = register("flat_roof_tiles_wall",
+            () -> new WallBlock(Properties.ofFullCopy(Blocks.STONE_BRICKS)));
+    public static final DeferredBlock<EdgeBlock> FLAT_ROOF_TILES_EDGE = register("flat_roof_tiles_edge",
+            () -> new EdgeBlock(Properties.ofFullCopy(Blocks.STONE_BRICKS)));
+    public static final DeferredBlock<PlateBlock> FLAT_ROOF_TILES_PLATE = register("flat_roof_tiles_plate",
+            () -> new PlateBlock(Properties.ofFullCopy(Blocks.STONE_BRICKS)));
+
+    public static final DeferredBlock<Block> GRAY_ROOF_TILES = register("gray_roof_tiles",
+            () -> new Block(Properties.ofFullCopy(Blocks.STONE_BRICKS)));
+    public static final DeferredBlock<SlabBlock> GRAY_ROOF_TILES_SLAB = register("gray_roof_tiles_slab",
+            () -> new SlabBlock(Properties.ofFullCopy(Blocks.STONE_BRICKS)));
+    public static final DeferredBlock<StairBlock> GRAY_ROOF_TILES_STAIRS = register("gray_roof_tiles_stairs",
+            () -> new StairBlock(GRAY_ROOF_TILES.get().defaultBlockState(), Properties.ofFullCopy(Blocks.STONE_BRICKS)));
+    public static final DeferredBlock<WallBlock> GRAY_ROOF_TILES_WALL = register("gray_roof_tiles_wall",
+            () -> new WallBlock(Properties.ofFullCopy(Blocks.STONE_BRICKS)));
+    public static final DeferredBlock<EdgeBlock> GRAY_ROOF_TILES_EDGE = register("gray_roof_tiles_edge",
+            () -> new EdgeBlock(Properties.ofFullCopy(Blocks.STONE_BRICKS)));
+    public static final DeferredBlock<PlateBlock> GRAY_ROOF_TILES_PLATE = register("gray_roof_tiles_plate",
+            () -> new PlateBlock(Properties.ofFullCopy(Blocks.STONE_BRICKS)));
+
+    public static final DeferredBlock<Block> ROOFING_SLATES = register("roofing_slates",
+            () -> new Block(Properties.ofFullCopy(Blocks.STONE_BRICKS)));
+    public static final DeferredBlock<SlabBlock> ROOFING_SLATES_SLAB = register("roofing_slates_slab",
+            () -> new SlabBlock(Properties.ofFullCopy(Blocks.STONE_BRICKS)));
+    public static final DeferredBlock<StairBlock> ROOFING_SLATES_STAIRS = register("roofing_slates_stairs",
+            () -> new StairBlock(ROOFING_SLATES.get().defaultBlockState(), Properties.ofFullCopy(Blocks.STONE_BRICKS)));
+    public static final DeferredBlock<WallBlock> ROOFING_SLATES_WALL = register("roofing_slates_wall",
+            () -> new WallBlock(Properties.ofFullCopy(Blocks.STONE_BRICKS)));
+    public static final DeferredBlock<EdgeBlock> ROOFING_SLATES_EDGE = register("roofing_slates_edge",
+            () -> new EdgeBlock(Properties.ofFullCopy(Blocks.STONE_BRICKS)));
+    public static final DeferredBlock<PlateBlock> ROOFING_SLATES_PLATE = register("roofing_slates_plate",
+            () -> new PlateBlock(Properties.ofFullCopy(Blocks.STONE_BRICKS)));
+
+    // -------------------------------------------------------------------------
+    // --- DoTB Phase 2: Rammed Dirt, Stepping Stones (General) ---
+    // -------------------------------------------------------------------------
+    public static final DeferredBlock<Block> RAMMED_DIRT = register("rammed_dirt",
+            () -> new Block(Properties.ofFullCopy(Blocks.TERRACOTTA)));
+    public static final DeferredBlock<Block> STEPPING_STONES = register("stepping_stones",
+            () -> new Block(Properties.ofFullCopy(Blocks.SAND).mapColor(MapColor.STONE).strength(1.2f).sound(SoundType.GRAVEL)));
+    public static final DeferredBlock<SlabBlock> STEPPING_STONES_SLAB = register("stepping_stones_slab",
+            () -> new SlabBlock(Properties.ofFullCopy(Blocks.SAND).mapColor(MapColor.STONE).strength(1.2f).sound(SoundType.GRAVEL)));
+
+    // -------------------------------------------------------------------------
+    // --- DoTB Phase 2: Thatch (General) ---
+    // -------------------------------------------------------------------------
+    public static final DeferredBlock<Block> THATCH_WHEAT = register("thatch_wheat",
+            () -> new Block(Properties.ofFullCopy(Blocks.GRASS_BLOCK).mapColor(MapColor.COLOR_YELLOW).strength(1.0f).sound(SoundType.GRASS)));
+    public static final DeferredBlock<EdgeBlock> THATCH_WHEAT_EDGE = register("thatch_wheat_edge",
+            () -> new EdgeBlock(Properties.ofFullCopy(Blocks.GRASS_BLOCK).mapColor(MapColor.COLOR_YELLOW).strength(1.0f).sound(SoundType.GRASS)));
+    public static final DeferredBlock<PlateBlock> THATCH_WHEAT_PLATE = register("thatch_wheat_plate",
+            () -> new PlateBlock(Properties.ofFullCopy(Blocks.GRASS_BLOCK).mapColor(MapColor.COLOR_YELLOW).strength(1.0f).sound(SoundType.GRASS)));
+    public static final DeferredBlock<SlabBlock> THATCH_WHEAT_SLAB = register("thatch_wheat_slab",
+            () -> new SlabBlock(Properties.ofFullCopy(Blocks.GRASS_BLOCK).mapColor(MapColor.COLOR_YELLOW).strength(1.0f).sound(SoundType.GRASS)));
+    public static final DeferredBlock<StairBlock> THATCH_WHEAT_STAIRS = register("thatch_wheat_stairs",
+            () -> new StairBlock(THATCH_WHEAT.get().defaultBlockState(), Properties.ofFullCopy(Blocks.GRASS_BLOCK).mapColor(MapColor.COLOR_YELLOW).strength(1.0f).sound(SoundType.GRASS)));
+    public static final DeferredBlock<Block> THATCH_BAMBOO = register("thatch_bamboo",
+            () -> new Block(Properties.ofFullCopy(Blocks.GRASS_BLOCK).mapColor(MapColor.COLOR_YELLOW).strength(1.0f).sound(SoundType.GRASS)));
+    public static final DeferredBlock<EdgeBlock> THATCH_BAMBOO_EDGE = register("thatch_bamboo_edge",
+            () -> new EdgeBlock(Properties.ofFullCopy(Blocks.GRASS_BLOCK).mapColor(MapColor.COLOR_YELLOW).strength(1.0f).sound(SoundType.GRASS)));
+    public static final DeferredBlock<PlateBlock> THATCH_BAMBOO_PLATE = register("thatch_bamboo_plate",
+            () -> new PlateBlock(Properties.ofFullCopy(Blocks.GRASS_BLOCK).mapColor(MapColor.COLOR_YELLOW).strength(1.0f).sound(SoundType.GRASS)));
+    public static final DeferredBlock<SlabBlock> THATCH_BAMBOO_SLAB = register("thatch_bamboo_slab",
+            () -> new SlabBlock(Properties.ofFullCopy(Blocks.GRASS_BLOCK).mapColor(MapColor.COLOR_YELLOW).strength(1.0f).sound(SoundType.GRASS)));
+    public static final DeferredBlock<StairBlock> THATCH_BAMBOO_STAIRS = register("thatch_bamboo_stairs",
+            () -> new StairBlock(THATCH_BAMBOO.get().defaultBlockState(), Properties.ofFullCopy(Blocks.GRASS_BLOCK).mapColor(MapColor.COLOR_YELLOW).strength(1.0f).sound(SoundType.GRASS)));
+
+    // -------------------------------------------------------------------------
+    // --- DoTB Phase 3: Waxed Oak (German) ---
+    // -------------------------------------------------------------------------
+    private static final Properties WO = Properties.of().mapColor(MapColor.COLOR_BROWN).strength(3.0f, 5.0f).sound(SoundType.WOOD);
+    public static final DeferredBlock<Block>              WAXED_OAK_PLANKS                  = register("waxed_oak_planks",                  () -> new Block(WO));
+    public static final DeferredBlock<SlabBlock>          WAXED_OAK_PLANKS_SLAB             = register("waxed_oak_planks_slab",             () -> new SlabBlock(WO));
+    public static final DeferredBlock<StairBlock>         WAXED_OAK_PLANKS_STAIRS           = register("waxed_oak_planks_stairs",           () -> new StairBlock(WAXED_OAK_PLANKS.get().defaultBlockState(), WO));
+    public static final DeferredBlock<RotatedPillarBlock> WAXED_OAK_LOG_STRIPPED            = register("waxed_oak_log_stripped",            () -> new RotatedPillarBlock(WO));
+    public static final DeferredBlock<FenceBlock>         WAXED_OAK_FENCE                   = register("waxed_oak_fence",                   () -> new FenceBlock(WO));
+    public static final DeferredBlock<FenceGateBlock>     WAXED_OAK_FENCE_GATE              = register("waxed_oak_fence_gate",              () -> new FenceGateBlock(WoodTypeVariant.ott("waxed_oak"), WO));
+    public static final DeferredBlock<DoorBlock>          WAXED_OAK_DOOR                    = register("waxed_oak_door",                    () -> new DoorBlock(BlockSetTypeVariant.ott("waxed_oak"), Properties.of().mapColor(MapColor.COLOR_BROWN).strength(3.0f, 5.0f).sound(SoundType.WOOD).noOcclusion()));
+    public static final DeferredBlock<TrapDoorBlock>      WAXED_OAK_TRAPDOOR                = register("waxed_oak_trapdoor",                () -> new TrapDoorBlock(BlockSetTypeVariant.ott("waxed_oak"), Properties.of().mapColor(MapColor.COLOR_BROWN).strength(3.0f, 5.0f).sound(SoundType.WOOD).noOcclusion()));
+    public static final DeferredBlock<com.otterly76.ott.block.custom.BeamBlock>        WAXED_OAK_BEAM          = register("waxed_oak_beam",          () -> new com.otterly76.ott.block.custom.BeamBlock(Properties.of().mapColor(MapColor.COLOR_BROWN).strength(3.0f, 5.0f).sound(SoundType.WOOD).noOcclusion()));
+    public static final DeferredBlock<com.otterly76.ott.block.custom.PergolaBlock>     WAXED_OAK_PERGOLA       = register("waxed_oak_pergola",       () -> new com.otterly76.ott.block.custom.PergolaBlock(Properties.of().mapColor(MapColor.COLOR_BROWN).strength(3.0f, 5.0f).sound(SoundType.WOOD).noOcclusion()));
+    public static final DeferredBlock<com.otterly76.ott.block.custom.PlateBlock>       WAXED_OAK_PLANKS_PLATE  = register("waxed_oak_planks_plate",  () -> new com.otterly76.ott.block.custom.PlateBlock(Properties.of().mapColor(MapColor.COLOR_BROWN).strength(3.0f, 5.0f).sound(SoundType.WOOD).noOcclusion()));
+    public static final DeferredBlock<com.otterly76.ott.block.custom.EdgeBlock>        WAXED_OAK_PLANKS_EDGE   = register("waxed_oak_planks_edge",   () -> new com.otterly76.ott.block.custom.EdgeBlock(Properties.of().mapColor(MapColor.COLOR_BROWN).strength(3.0f, 5.0f).sound(SoundType.WOOD).noOcclusion()));
+    public static final DeferredBlock<com.otterly76.ott.block.custom.SupportBeamBlock> WAXED_OAK_SUPPORT_BEAM  = register("waxed_oak_support_beam",  () -> new com.otterly76.ott.block.custom.SupportBeamBlock(Properties.of().mapColor(MapColor.COLOR_BROWN).strength(3.0f, 5.0f).sound(SoundType.WOOD).noOcclusion()));
+    public static final DeferredBlock<com.otterly76.ott.block.custom.SupportSlabBlock> WAXED_OAK_SUPPORT_SLAB  = register("waxed_oak_support_slab",  () -> new com.otterly76.ott.block.custom.SupportSlabBlock(Properties.of().mapColor(MapColor.COLOR_BROWN).strength(3.0f, 5.0f).sound(SoundType.WOOD).noOcclusion()));
+    public static final DeferredBlock<com.otterly76.ott.block.custom.PlateBlock>       WAXED_OAK_BALUSTER      = register("waxed_oak_baluster",      () -> new com.otterly76.ott.block.custom.PlateBlock(Properties.of().mapColor(MapColor.COLOR_BROWN).strength(3.0f, 5.0f).sound(SoundType.WOOD).noOcclusion()));
+    public static final DeferredBlock<Block>              WAXED_OAK_FRAMED_RAMMED_DIRT       = register("waxed_oak_framed_rammed_dirt",       () -> new Block(WO));
+    public static final DeferredBlock<RotatedPillarBlock> WAXED_OAK_FRAMED_RAMMED_DIRT_PILLAR= register("waxed_oak_framed_rammed_dirt_pillar", () -> new RotatedPillarBlock(WO));
+    public static final DeferredBlock<Block>              WAXED_OAK_TIMBER_FRAME             = register("waxed_oak_timber_frame",             () -> new Block(WO));
+    public static final DeferredBlock<Block>              WAXED_OAK_TIMBER_FRAME_CORNER      = register("waxed_oak_timber_frame_corner",      () -> new Block(WO));
+    public static final DeferredBlock<Block>              WAXED_OAK_TIMBER_FRAME_CROSSED     = register("waxed_oak_timber_frame_crossed",     () -> new Block(WO));
+    public static final DeferredBlock<RotatedPillarBlock> WAXED_OAK_TIMBER_FRAME_PILLAR      = register("waxed_oak_timber_frame_pillar",      () -> new RotatedPillarBlock(WO));
+    public static final DeferredBlock<Block>              WAXED_OAK_TIMBER_FRAME_SQUARED     = register("waxed_oak_timber_frame_squared",     () -> new Block(WO));
+
+    // -------------------------------------------------------------------------
+    // --- DoTB Phase 3: Stone Bricks Masonry + German misc (German) ---
+    // -------------------------------------------------------------------------
+    public static final DeferredBlock<Block>      STONE_BRICKS_MASONRY        = register("stone_bricks_masonry",        () -> new Block(Properties.ofFullCopy(Blocks.STONE_BRICKS)));
+    public static final DeferredBlock<SlabBlock>  STONE_BRICKS_MASONRY_SLAB   = register("stone_bricks_masonry_slab",   () -> new SlabBlock(Properties.ofFullCopy(Blocks.STONE_BRICKS)));
+    public static final DeferredBlock<StairBlock> STONE_BRICKS_MASONRY_STAIRS = register("stone_bricks_masonry_stairs", () -> new StairBlock(STONE_BRICKS_MASONRY.get().defaultBlockState(), Properties.ofFullCopy(Blocks.STONE_BRICKS)));
+    public static final DeferredBlock<WallBlock>  STONE_BRICKS_MASONRY_WALL   = register("stone_bricks_masonry_wall",   () -> new WallBlock(Properties.ofFullCopy(Blocks.STONE_BRICKS)));
+    public static final DeferredBlock<com.otterly76.ott.block.custom.EdgeBlock>  STONE_BRICKS_MASONRY_EDGE  = register("stone_bricks_masonry_edge",  () -> new com.otterly76.ott.block.custom.EdgeBlock(Properties.ofFullCopy(Blocks.STONE_BRICKS)));
+    public static final DeferredBlock<com.otterly76.ott.block.custom.PlateBlock> STONE_BRICKS_MASONRY_PLATE = register("stone_bricks_masonry_plate", () -> new com.otterly76.ott.block.custom.PlateBlock(Properties.ofFullCopy(Blocks.STONE_BRICKS)));
+    public static final DeferredBlock<Block>      LATTICE_GLASS               = register("lattice_glass",               () -> new Block(Properties.ofFullCopy(Blocks.GLASS).noOcclusion()));
+    public static final DeferredBlock<HorizontalBlock> CURVED_RAKED_GRAVEL   = register("curved_raked_gravel",   () -> new HorizontalBlock(Properties.ofFullCopy(Blocks.GRAVEL)));
+    public static final DeferredBlock<HorizontalBlock> STRAIGHT_RAKED_GRAVEL = register("straight_raked_gravel", () -> new HorizontalBlock(Properties.ofFullCopy(Blocks.GRAVEL)));
+
+    // -------------------------------------------------------------------------
+    // --- DoTB Phase 3: Charred Spruce (Japanese) ---
+    // -------------------------------------------------------------------------
+    private static final Properties CS = Properties.of().mapColor(MapColor.COLOR_BLACK).strength(2.0f, 6.0f).sound(SoundType.WOOD);
+    public static final DeferredBlock<Block>              CHARRED_SPRUCE_PLANKS                = register("charred_spruce_planks",                () -> new Block(CS));
+    public static final DeferredBlock<SlabBlock>          CHARRED_SPRUCE_PLANKS_SLAB           = register("charred_spruce_planks_slab",           () -> new SlabBlock(CS));
+    public static final DeferredBlock<StairBlock>         CHARRED_SPRUCE_PLANKS_STAIRS         = register("charred_spruce_planks_stairs",         () -> new StairBlock(CHARRED_SPRUCE_PLANKS.get().defaultBlockState(), CS));
+    public static final DeferredBlock<RotatedPillarBlock> CHARRED_SPRUCE_LOG_STRIPPED          = register("charred_spruce_log_stripped",          () -> new RotatedPillarBlock(CS));
+    public static final DeferredBlock<FenceBlock>         CHARRED_SPRUCE_FENCE                 = register("charred_spruce_fence",                 () -> new FenceBlock(CS));
+    public static final DeferredBlock<FenceGateBlock>     CHARRED_SPRUCE_FENCE_GATE            = register("charred_spruce_fence_gate",            () -> new FenceGateBlock(WoodTypeVariant.ott("charred_spruce"), CS));
+    public static final DeferredBlock<DoorBlock>          CHARRED_SPRUCE_DOOR                  = register("charred_spruce_door",                  () -> new DoorBlock(BlockSetTypeVariant.ott("charred_spruce"), Properties.of().mapColor(MapColor.COLOR_BLACK).strength(2.0f, 6.0f).sound(SoundType.WOOD).noOcclusion()));
+    public static final DeferredBlock<TrapDoorBlock>      CHARRED_SPRUCE_TRAPDOOR              = register("charred_spruce_trapdoor",              () -> new TrapDoorBlock(BlockSetTypeVariant.ott("charred_spruce"), Properties.of().mapColor(MapColor.COLOR_BLACK).strength(2.0f, 6.0f).sound(SoundType.WOOD).noOcclusion()));
+    public static final DeferredBlock<Block>              CHARRED_SPRUCE_BOARDS                = register("charred_spruce_boards",                () -> new Block(CS));
+    public static final DeferredBlock<Block>              CHARRED_SPRUCE_FOUNDATION            = register("charred_spruce_foundation",            () -> new Block(Properties.of().mapColor(MapColor.STONE).strength(3.0f, 5.0f).sound(SoundType.STONE).requiresCorrectToolForDrops()));
+    public static final DeferredBlock<SlabBlock>          CHARRED_SPRUCE_FOUNDATION_SLAB       = register("charred_spruce_foundation_slab",       () -> new SlabBlock(Properties.of().mapColor(MapColor.STONE).strength(3.0f, 5.0f).sound(SoundType.STONE).requiresCorrectToolForDrops()));
+    public static final DeferredBlock<com.otterly76.ott.block.custom.BeamBlock>        CHARRED_SPRUCE_BEAM         = register("charred_spruce_beam",         () -> new com.otterly76.ott.block.custom.BeamBlock(Properties.of().mapColor(MapColor.COLOR_BLACK).strength(2.0f, 6.0f).sound(SoundType.WOOD).noOcclusion()));
+    public static final DeferredBlock<com.otterly76.ott.block.custom.PergolaBlock>     CHARRED_SPRUCE_PERGOLA      = register("charred_spruce_pergola",      () -> new com.otterly76.ott.block.custom.PergolaBlock(Properties.of().mapColor(MapColor.COLOR_BLACK).strength(2.0f, 6.0f).sound(SoundType.WOOD).noOcclusion()));
+    public static final DeferredBlock<com.otterly76.ott.block.custom.PlateBlock>       CHARRED_SPRUCE_PLANKS_PLATE = register("charred_spruce_planks_plate", () -> new com.otterly76.ott.block.custom.PlateBlock(Properties.of().mapColor(MapColor.COLOR_BLACK).strength(2.0f, 6.0f).sound(SoundType.WOOD).noOcclusion()));
+    public static final DeferredBlock<com.otterly76.ott.block.custom.EdgeBlock>        CHARRED_SPRUCE_PLANKS_EDGE  = register("charred_spruce_planks_edge",  () -> new com.otterly76.ott.block.custom.EdgeBlock(Properties.of().mapColor(MapColor.COLOR_BLACK).strength(2.0f, 6.0f).sound(SoundType.WOOD).noOcclusion()));
+    public static final DeferredBlock<com.otterly76.ott.block.custom.SupportBeamBlock> CHARRED_SPRUCE_SUPPORT_BEAM = register("charred_spruce_support_beam", () -> new com.otterly76.ott.block.custom.SupportBeamBlock(Properties.of().mapColor(MapColor.COLOR_BLACK).strength(2.0f, 6.0f).sound(SoundType.WOOD).noOcclusion()));
+    public static final DeferredBlock<com.otterly76.ott.block.custom.SupportSlabBlock> CHARRED_SPRUCE_SUPPORT_SLAB = register("charred_spruce_support_slab", () -> new com.otterly76.ott.block.custom.SupportSlabBlock(Properties.of().mapColor(MapColor.COLOR_BLACK).strength(2.0f, 6.0f).sound(SoundType.WOOD).noOcclusion()));
+    public static final DeferredBlock<Block>              CHARRED_SPRUCE_TIMBER_FRAME          = register("charred_spruce_timber_frame",          () -> new Block(CS));
+    public static final DeferredBlock<RotatedPillarBlock> CHARRED_SPRUCE_TIMBER_FRAME_PILLAR   = register("charred_spruce_timber_frame_pillar",   () -> new RotatedPillarBlock(CS));
+
+    // -------------------------------------------------------------------------
+    // --- DoTB Phase 4: Persian Sandstone Bricks ---
+    // -------------------------------------------------------------------------
+    public static final DeferredBlock<Block>      SANDSTONE_BRICKS                              = register("sandstone_bricks",                              () -> new Block(Properties.ofFullCopy(Blocks.SANDSTONE)));
+    public static final DeferredBlock<SlabBlock>  SANDSTONE_BRICKS_SLAB                         = register("sandstone_bricks_slab",                         () -> new SlabBlock(Properties.ofFullCopy(Blocks.SANDSTONE)));
+    public static final DeferredBlock<StairBlock> SANDSTONE_BRICKS_STAIRS                       = register("sandstone_bricks_stairs",                       () -> new StairBlock(SANDSTONE_BRICKS.get().defaultBlockState(), Properties.ofFullCopy(Blocks.SANDSTONE)));
+    public static final DeferredBlock<WallBlock>  SANDSTONE_BRICKS_WALL                         = register("sandstone_bricks_wall",                         () -> new WallBlock(Properties.ofFullCopy(Blocks.SANDSTONE)));
+    public static final DeferredBlock<EdgeBlock>  SANDSTONE_BRICKS_EDGE                         = register("sandstone_bricks_edge",                         () -> new EdgeBlock(Properties.ofFullCopy(Blocks.SANDSTONE)));
+    public static final DeferredBlock<PlateBlock> SANDSTONE_BRICKS_PLATE                        = register("sandstone_bricks_plate",                        () -> new PlateBlock(Properties.ofFullCopy(Blocks.SANDSTONE)));
+
+    public static final DeferredBlock<Block>      SANDSTONE_BRICKS_TURQUOISE_PATTERN            = register("sandstone_bricks_turquoise_pattern",            () -> new Block(Properties.ofFullCopy(Blocks.SANDSTONE)));
+    public static final DeferredBlock<SlabBlock>  SANDSTONE_BRICKS_TURQUOISE_PATTERN_SLAB       = register("sandstone_bricks_turquoise_pattern_slab",       () -> new SlabBlock(Properties.ofFullCopy(Blocks.SANDSTONE)));
+    public static final DeferredBlock<StairBlock> SANDSTONE_BRICKS_TURQUOISE_PATTERN_STAIRS     = register("sandstone_bricks_turquoise_pattern_stairs",     () -> new StairBlock(SANDSTONE_BRICKS_TURQUOISE_PATTERN.get().defaultBlockState(), Properties.ofFullCopy(Blocks.SANDSTONE)));
+    public static final DeferredBlock<WallBlock>  SANDSTONE_BRICKS_TURQUOISE_PATTERN_WALL       = register("sandstone_bricks_turquoise_pattern_wall",       () -> new WallBlock(Properties.ofFullCopy(Blocks.SANDSTONE)));
+    public static final DeferredBlock<EdgeBlock>  SANDSTONE_BRICKS_TURQUOISE_PATTERN_EDGE       = register("sandstone_bricks_turquoise_pattern_edge",       () -> new EdgeBlock(Properties.ofFullCopy(Blocks.SANDSTONE)));
+    public static final DeferredBlock<PlateBlock> SANDSTONE_BRICKS_TURQUOISE_PATTERN_PLATE      = register("sandstone_bricks_turquoise_pattern_plate",      () -> new PlateBlock(Properties.ofFullCopy(Blocks.SANDSTONE)));
+
+    // -------------------------------------------------------------------------
+    // --- DoTB Phase 4: Persian Carpets ---
+    // -------------------------------------------------------------------------
+    public static final DeferredBlock<CarpetBlock> PERSIAN_CARPET_RED                           = register("persian_carpet_red",         () -> new CarpetBlock(Properties.of().strength(0.1F).sound(SoundType.WOOL)));
+    public static final DeferredBlock<CarpetBlock> PERSIAN_CARPET_DELICATE_RED                  = register("persian_carpet_delicate_red", () -> new CarpetBlock(Properties.of().strength(0.1F).sound(SoundType.WOOL)));
+
+    // Sandstone sculpted relief — plain Block for now (ConnectedVerticalSidedPlanBlock deferred to Phase 5)
+    public static final DeferredBlock<Block>      SANDSTONE_SCULPTED_RELIEF                     = register("sandstone_sculpted_relief",                     () -> new Block(Properties.ofFullCopy(Blocks.SANDSTONE).noOcclusion()));
+
+    // -------------------------------------------------------------------------
+    // --- DoTB Phase 4: Gold Plated Smooth (Persian) ---
+    // -------------------------------------------------------------------------
+    public static final DeferredBlock<Block>      GOLD_PLATED_SMOOTH_BLOCK   = register("gold_plated_smooth_block",   () -> new Block(Properties.ofFullCopy(Blocks.GOLD_BLOCK)));
+    public static final DeferredBlock<SlabBlock>  GOLD_PLATED_SMOOTH_SLAB    = register("gold_plated_smooth_slab",    () -> new SlabBlock(Properties.ofFullCopy(Blocks.GOLD_BLOCK)));
+    public static final DeferredBlock<StairBlock> GOLD_PLATED_SMOOTH_STAIRS  = register("gold_plated_smooth_stairs",  () -> new StairBlock(GOLD_PLATED_SMOOTH_BLOCK.get().defaultBlockState(), Properties.ofFullCopy(Blocks.GOLD_BLOCK)));
+    public static final DeferredBlock<WallBlock>  GOLD_PLATED_SMOOTH_WALL    = register("gold_plated_smooth_wall",    () -> new WallBlock(Properties.ofFullCopy(Blocks.GOLD_BLOCK)));
+    public static final DeferredBlock<EdgeBlock>  GOLD_PLATED_SMOOTH_EDGE    = register("gold_plated_smooth_edge",    () -> new EdgeBlock(Properties.ofFullCopy(Blocks.GOLD_BLOCK)));
+    public static final DeferredBlock<PlateBlock> GOLD_PLATED_SMOOTH_PLATE   = register("gold_plated_smooth_plate",   () -> new PlateBlock(Properties.ofFullCopy(Blocks.GOLD_BLOCK)));
 
     // -------------------------------------------------------------------------
     // --- Oak structural blocks ---
