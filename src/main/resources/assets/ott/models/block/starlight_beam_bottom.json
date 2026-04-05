@@ -1,8 +1,0 @@
-{
-	"parent": "ott:block/oak_beam_bottom",
-	"render_type": "minecraft:cutout",
-	"textures": {
-		"texture": "ott:block/wood/starlight/stripped_log",
-		"particle": "ott:block/wood/starlight/stripped_log"
-	}
-}

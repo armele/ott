@@ -1,7 +1,0 @@
-{
-	"parent": "ott:block/oak_support_8_pixels",
-	"textures": {
-		"slab": "ott:block/wood/midnight/stripped_log",
-		"particle": "ott:block/wood/midnight/stripped_log"
-	}
-}

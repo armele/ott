@@ -1,8 +1,0 @@
-{
-	"parent": "ott:block/oak_beam_x_z",
-	"render_type": "minecraft:cutout",
-	"textures": {
-		"1": "ott:block/wood/midnight/stripped_log",
-		"particle": "ott:block/wood/midnight/stripped_log"
-	}
-}

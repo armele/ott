@@ -1,5 +1,8 @@
 {
-    "variants": {
-        "": { "model": "ott:block/geometric_window" }
-    }
+  "variants": {
+    "facing=north": { "model": "ott:block/geometric_window" },
+    "facing=south": { "model": "ott:block/geometric_window", "y": 180 },
+    "facing=west":  { "model": "ott:block/geometric_window", "y": 270 },
+    "facing=east":  { "model": "ott:block/geometric_window", "y": 90 }
+  }
 }

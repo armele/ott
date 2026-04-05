@@ -16,8 +16,34 @@ import java.util.function.Supplier;
 public enum OttCreativeCategories {
 
     CREATURES("creatures",
-            () -> ModItems.OTTER_SPAWN_EGG.get(),
+            ModItems.OTTER_SPAWN_EGG,
             (params, output) -> {
+                // Buckets
+                output.accept(ModItems.ANGELFISH_BUCKET);
+                output.accept(ModItems.BARRELEYE_BUCKET);
+                output.accept(ModItems.BASS_BUCKET);
+                output.accept(ModItems.BONNETHEAD_SHARK_BUCKET);
+                output.accept(ModItems.CATFISH_BUCKET);
+                output.accept(ModItems.CICHLID_BUCKET);
+                output.accept(ModItems.DUMBO_OCTOPUS_BUCKET);
+                output.accept(ModItems.FLOUNDER_BUCKET);
+                output.accept(ModItems.GOBLIN_SHARK_BUCKET);
+                output.accept(ModItems.GUITARFISH_BUCKET);
+                output.accept(ModItems.SMALL_JELLYFISH_BUCKET);
+                output.accept(ModItems.MEDIUM_JELLYFISH_BUCKET);
+                output.accept(ModItems.LARGE_JELLYFISH_BUCKET);
+                output.accept(ModItems.KOI_FISH_BUCKET);
+                output.accept(ModItems.KRILL_BUCKET);
+                output.accept(ModItems.MAN_O_WAR_BUCKET);
+                output.accept(ModItems.MARINE_IGUANA_BUCKET);
+                output.accept(ModItems.PSYCHO_JELLY_BUCKET);
+                output.accept(ModItems.SEA_BUNNY_BUCKET);
+                output.accept(ModItems.SEAHORSE_BUCKET);
+                output.accept(ModItems.ETHEREAL_SHRIMP_BUCKET);
+                output.accept(ModItems.SNAIL_BUCKET);
+                output.accept(ModItems.STINGRAY_BUCKET);
+                output.accept(ModItems.SUNFISH_BUCKET);
+                // Eggs
                 output.accept(ModItems.ALLIGATOR_SPAWN_EGG);
                 output.accept(ModItems.ANGELFISH_SPAWN_EGG);
                 output.accept(ModItems.ARID_YETI_SPAWN_EGG);
@@ -84,8 +110,8 @@ public enum OttCreativeCategories {
                 output.accept(ModItems.ICEOLOGER_SPAWN_EGG);
                 output.accept(ModItems.ILLUSIONER_SPAWN_EGG);
                 output.accept(ModItems.IMPALA_SPAWN_EGG);
-                output.accept(ModItems.MEDIUM_JELLYFISH_SPAWN_EGG);
                 output.accept(ModItems.SMALL_JELLYFISH_SPAWN_EGG);
+                output.accept(ModItems.MEDIUM_JELLYFISH_SPAWN_EGG);
                 output.accept(ModItems.LARGE_JELLYFISH_SPAWN_EGG);
                 output.accept(ModItems.JUMPING_SPIDER_SPAWN_EGG);
                 output.accept(ModItems.KIWI_SPAWN_EGG);
@@ -177,8 +203,18 @@ public enum OttCreativeCategories {
                     output.accept(set.bed());
                     output.accept(set.candle());
                     output.accept(set.banner());
+                    output.accept(set.plate());
+                    output.accept(set.edge());
+                    output.accept(set.beam());
+                    output.accept(set.pergola());
+                    output.accept(set.geometricWindow());
                 });
-                ModBlocks.PATTERN_BLOCKS.forEach((pattern, colorMap) -> colorMap.values().forEach(output::accept));
+                ModBlocks.PATTERN_BLOCKS.values().forEach(colorMap -> colorMap.values().forEach(output::accept));
+                ModBlocks.PATTERN_PLATES.values().forEach(colorMap -> colorMap.values().forEach(output::accept));
+                ModBlocks.PATTERN_EDGES.values().forEach(colorMap -> colorMap.values().forEach(output::accept));
+                ModBlocks.PATTERN_BEAMS.values().forEach(colorMap -> colorMap.values().forEach(output::accept));
+                ModBlocks.PATTERN_PERGOLAS.values().forEach(colorMap -> colorMap.values().forEach(output::accept));
+                ModBlocks.PATTERN_WINDOWS.values().forEach(colorMap -> colorMap.values().forEach(output::accept));
                 ModBlocks.ELEVATORS.values().forEach(output::accept);
                 // Dyes
                 output.accept(Items.WHITE_DYE);
@@ -253,8 +289,8 @@ public enum OttCreativeCategories {
                 // Limestone, Seaglass, etc.
                 ModBlocks.LIMESTONE.forEach(output::accept);
                 ModBlocks.SEAGLASS.forEach(output::accept);
-                output.accept(ModBlocks.SMOOTH_GLOWSTONE);
                 ModBlocks.TESTBLOCK.forEach(output::accept);
+                output.accept(ModBlocks.SMOOTH_GLOWSTONE);
                 output.accept(ModBlocks.SALT_BLOCK);
                 output.accept(ModBlocks.POLISHED_SALT_BLOCK);
                 output.accept(ModBlocks.RESIN_BLOCK);
@@ -275,7 +311,7 @@ public enum OttCreativeCategories {
                 output.accept(ModBlocks.MOSAIC_FLOOR_ROSETTE);
                 output.accept(ModBlocks.ROMAN_FRESCO_RED);
                 output.accept(ModBlocks.ROMAN_FRESCO_BLACK);
-                // DoTB General
+                // Deco
                 output.accept(ModBlocks.STONE_LANTERN);
                 output.accept(ModBlocks.IRON_FANCY_LANTERN);
                 output.accept(ModBlocks.WHEAT_THATCH);
@@ -294,7 +330,6 @@ public enum OttCreativeCategories {
                 output.accept(ModBlocks.ROOFING_SLATES_EDGE);
                 output.accept(ModBlocks.ROOFING_SLATES_PLATE);
                 ModBlocks.VANILLA_WALLS.values().forEach(output::accept);
-                ModBlocks.VANILLA_LATTICES.values().forEach(output::accept);
                 // French
                 output.accept(ModBlocks.LIMESTONE_BRICKS);
                 output.accept(ModBlocks.LIMESTONE_BRICKS_EDGE);
@@ -303,7 +338,6 @@ public enum OttCreativeCategories {
                 output.accept(ModBlocks.COBBLED_LIMESTONE);
                 // Roman
                 output.accept(ModBlocks.MARBLE);
-                output.accept(ModBlocks.MARBLE_PILLAR);
                 output.accept(ModBlocks.MARBLE_FANCY_FENCE);
                 output.accept(ModBlocks.SANDSTONE_PLATE);
                 output.accept(ModBlocks.SANDSTONE_EDGE);
@@ -315,40 +349,13 @@ public enum OttCreativeCategories {
                 output.accept(ModBlocks.OCHRE_ROOF_TILES);
                 output.accept(ModBlocks.OCHRE_ROOF_TILES_EDGE);
                 output.accept(ModBlocks.OCHRE_ROOF_TILES_PLATE);
-                // German
-                output.accept(ModBlocks.WAXED_OAK_PLANKS);
-                output.accept(ModBlocks.WAXED_OAK_LOG_STRIPPED);
-                output.accept(ModBlocks.WAXED_OAK_BEAM);
-                output.accept(ModBlocks.WAXED_OAK_PERGOLA);
-                output.accept(ModBlocks.WAXED_OAK_PLANKS_PLATE);
-                output.accept(ModBlocks.WAXED_OAK_PLANKS_EDGE);
-                output.accept(ModBlocks.WAXED_OAK_SUPPORT_BEAM);
-                output.accept(ModBlocks.WAXED_OAK_SUPPORT_SLAB);
-                output.accept(ModBlocks.WAXED_OAK_BANNISTER);
                 output.accept(ModBlocks.STONE_BRICKS_MASONRY);
                 output.accept(ModBlocks.STONE_BRICKS_MASONRY_EDGE);
                 output.accept(ModBlocks.STONE_BRICKS_MASONRY_PLATE);
                 output.accept(ModBlocks.CURVED_RAKED_GRAVEL);
                 output.accept(ModBlocks.STRAIGHT_RAKED_GRAVEL);
-                // Japanese
-                output.accept(ModBlocks.CHARRED_SPRUCE_PLANKS);
-                output.accept(ModBlocks.CHARRED_SPRUCE_LOG_STRIPPED);
-                output.accept(ModBlocks.CHARRED_SPRUCE_BOARDS);
-                output.accept(ModBlocks.CHARRED_SPRUCE_FOUNDATION);
-                output.accept(ModBlocks.CHARRED_SPRUCE_BEAM);
-                output.accept(ModBlocks.CHARRED_SPRUCE_PERGOLA);
-                output.accept(ModBlocks.CHARRED_SPRUCE_PLANKS_PLATE);
-                output.accept(ModBlocks.CHARRED_SPRUCE_PLANKS_EDGE);
-                output.accept(ModBlocks.CHARRED_SPRUCE_SUPPORT_BEAM);
-                output.accept(ModBlocks.CHARRED_SPRUCE_SUPPORT_SLAB);
                 output.accept(ModBlocks.LIGHT_GRAY_FUTON);
                 // Persian
-                output.accept(ModBlocks.MORAQ_MOSAIC_BORDER);
-                output.accept(ModBlocks.MORAQ_MOSAIC_DELICATE);
-                output.accept(ModBlocks.MORAQ_MOSAIC_GEOMETRIC);
-                output.accept(ModBlocks.MORAQ_MOSAIC_PATTERN);
-                output.accept(ModBlocks.MORAQ_MOSAIC_RECESS);
-                output.accept(ModBlocks.MORAQ_MOSAIC_TRADITIONAL);
                 output.accept(ModBlocks.PERSIAN_CARPET_RED);
                 output.accept(ModBlocks.PERSIAN_CARPET_DELICATE_RED);
                 output.accept(ModBlocks.SANDSTONE_BRICKS);
@@ -366,11 +373,10 @@ public enum OttCreativeCategories {
                 output.accept(ModBlocks.PLASTERED_STONE);
                 output.accept(ModBlocks.PLASTERED_STONE_EDGE);
                 output.accept(ModBlocks.PLASTERED_STONE_PLATE);
-                output.accept(ModBlocks.PLASTERED_STONE_WINDOW);
-                output.accept(ModBlocks.CHISELED_PLASTERED_STONE);
-                output.accept(ModBlocks.CHISELED_PLASTERED_STONE_FRIEZE);
+                output.accept(ModBlocks.GEOMETRIC_WINDOW);
                 output.accept(ModBlocks.ORNAMENTED_CHISELED_PLASTERED_STONE);
-                output.accept(ModBlocks.GOLDEN_STONE_FRIEZE);
+                output.accept(ModBlocks.GREEN_ORNAMENTED_PLASTERED_STONE);
+                output.accept(ModBlocks.RED_ORNAMENTED_PLASTERED_STONE);
                 // Stone Brick Water Features
                 output.accept(ModBlocks.STONE_BRICKS_ARROWSLIT);
                 output.accept(ModBlocks.STONE_BRICKS_MACHICOLATION);
@@ -388,6 +394,7 @@ public enum OttCreativeCategories {
                     output.accept(set.bannister());
                     output.accept(set.supportSlab());
                     output.accept(set.supportBeam());
+                    output.accept(set.geometricWindow());
                 });
                 ModBlocks.WOOD_SETS.values().forEach(set -> {
                     output.accept(set.beam());
@@ -397,6 +404,7 @@ public enum OttCreativeCategories {
                     output.accept(set.bannister());
                     output.accept(set.supportSlab());
                     output.accept(set.supportBeam());
+                    output.accept(set.geometricWindow());
                 });
             }),
 
@@ -408,30 +416,6 @@ public enum OttCreativeCategories {
                 output.accept(ModItems.PEARL);
                 output.accept(ModItems.SILK);
                 output.accept(ModItems.SNAIL_SHELL);
-                output.accept(ModItems.ANGELFISH_BUCKET);
-                output.accept(ModItems.BARRELEYE_BUCKET);
-                output.accept(ModItems.BASS_BUCKET);
-                output.accept(ModItems.BONNETHEAD_SHARK_BUCKET);
-                output.accept(ModItems.CATFISH_BUCKET);
-                output.accept(ModItems.CICHLID_BUCKET);
-                output.accept(ModItems.DUMBO_OCTOPUS_BUCKET);
-                output.accept(ModItems.FLOUNDER_BUCKET);
-                output.accept(ModItems.GOBLIN_SHARK_BUCKET);
-                output.accept(ModItems.GUITARFISH_BUCKET);
-                output.accept(ModItems.KOI_FISH_BUCKET);
-                output.accept(ModItems.KRILL_BUCKET);
-                output.accept(ModItems.MAN_O_WAR_BUCKET);
-                output.accept(ModItems.MARINE_IGUANA_BUCKET);
-                output.accept(ModItems.PSYCHO_JELLY_BUCKET);
-                output.accept(ModItems.SEA_BUNNY_BUCKET);
-                output.accept(ModItems.SNAIL_BUCKET);
-                output.accept(ModItems.STINGRAY_BUCKET);
-                output.accept(ModItems.SUNFISH_BUCKET);
-                output.accept(ModItems.LARGE_JELLYFISH_BUCKET);
-                output.accept(ModItems.SMALL_JELLYFISH_BUCKET);
-                output.accept(ModItems.MEDIUM_JELLYFISH_BUCKET);
-                output.accept(ModItems.SEAHORSE_BUCKET);
-                output.accept(ModItems.ETHEREAL_SHRIMP_BUCKET);
                 output.accept(ModItems.SALT);
                 output.accept(ModBlocks.SALT_LAMP);
                 output.accept(ModBlocks.GLOW_GOOP);
@@ -528,9 +512,13 @@ public enum OttCreativeCategories {
                 output.accept(ModItems.WILDFIRE_CROWN_FRAGMENT);
             });
 
+    // --- Display order (top to bottom in the button list) ---
+    public static final java.util.List<OttCreativeCategories> DISPLAY_ORDER =
+            java.util.List.of(MISC, BLOCKS, COLORS, WOOD_SETS, CREATURES);
+
     // --- State ---
     @Nullable
-    private static OttCreativeCategories selected = null;
+    private static OttCreativeCategories selected = MISC;
 
     public static @Nullable OttCreativeCategories getSelected() { return selected; }
     public static void setSelected(@Nullable OttCreativeCategories cat) { selected = cat; }
@@ -556,7 +544,8 @@ public enum OttCreativeCategories {
         return iconItem.get();
     }
 
-    public void populateItems(@NotNull CreativeModeTab.ItemDisplayParameters params,
+    /** Populate items into output. Accepts null params — none of the current populators use them. */
+    public void populateItems(@Nullable CreativeModeTab.ItemDisplayParameters params,
                               @NotNull CreativeModeTab.Output output) {
         populator.accept(params, output);
     }

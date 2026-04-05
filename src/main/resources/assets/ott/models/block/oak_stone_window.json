@@ -1,8 +1,0 @@
-{
-  "parent": "ott:block/precolumbian/plastered_stone_window",
-  "render_type": "minecraft:cutout",
-  "textures": {
-    "texture": "minecraft:block/oak_planks",
-    "particle": "minecraft:block/oak_planks"
-  }
-}

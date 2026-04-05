@@ -27,9 +27,9 @@ public class OttCategoryButton extends Button {
         // Background — slightly lighter on hover
         graphics.fill(x, y, x + w, y + h, this.isHovered() ? 0xC0303030 : 0xC0101010);
 
-        // 2-pixel amber border when this category is selected
+        // 2-pixel pale navy border when this category is selected
         if (OttCreativeCategories.getSelected() == this.category) {
-            int c = 0xFFFFAA00;
+            int c = 0xFF8BAAC4;
             graphics.fill(x,         y,         x + w,     y + 2,     c); // top
             graphics.fill(x,         y + h - 2, x + w,     y + h,     c); // bottom
             graphics.fill(x,         y + 2,     x + 2,     y + h - 2, c); // left

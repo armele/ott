@@ -1,7 +1,0 @@
-{
-    "parent": "block/cube_column",
-    "textures": {
-        "end": "ott:block/patterns/plastered_stone",
-        "side": "ott:block/patterns/chiseled_plastered_stone"
-    }
-}

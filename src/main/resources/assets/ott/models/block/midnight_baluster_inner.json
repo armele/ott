@@ -1,7 +1,0 @@
-{
-	"parent": "ott:block/oak_baluster_inner",
-	"textures": {
-		"0": "ott:block/wood/midnight/planks",
-		"particle": "ott:block/wood/midnight/planks"
-	}
-}

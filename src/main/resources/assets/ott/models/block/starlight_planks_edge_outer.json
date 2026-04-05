@@ -1,7 +1,0 @@
-{
-	"parent": "ott:block/general/small_plate_outer",
-	"textures": {
-		"top": "ott:block/wood/starlight/planks",
-		"frieze": "ott:block/wood/starlight/planks"
-	}
-}
