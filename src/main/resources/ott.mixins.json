@@ -167,7 +167,8 @@
     "client.TextureSheetParticleMixin",
     "client.TinyMobRenderMixin",
     "client.WaterDropParticleMixin",
-    "client.WolfRendererMixin"
+    "client.WolfRendererMixin",
+    "client.CreativeModeInventoryScreenMixin"
   ],
   "injectors": {
     "defaultRequire": 1
