@@ -1,0 +1,7 @@
+{
+	"parent": "ott:block/oak_support_slab",
+	"textures": {
+		"slab": "ott:block/wood/midnight/planks",
+		"particle": "ott:block/wood/midnight/planks"
+	}
+}

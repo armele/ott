@@ -1,0 +1,7 @@
+{
+	"parent": "ott:block/small_plate",
+	"textures": {
+		"side": "ott:block/thatch_wheat",
+		"frieze": "ott:block/thatch_wheat"
+	}
+}

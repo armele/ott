@@ -1,0 +1,7 @@
+{
+	"parent": "ott:block/plate_outer",
+	"textures": {
+		"top": "ott:block/thatch_bamboo",
+		"frieze": "ott:block/thatch_bamboo"
+	}
+}

@@ -1,0 +1,5 @@
+{
+    "variants": {
+        "": { "model": "ott:block/geometric_window" }
+    }
+}

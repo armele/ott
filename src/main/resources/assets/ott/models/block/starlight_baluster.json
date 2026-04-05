@@ -1,0 +1,7 @@
+{
+	"parent": "ott:block/oak_baluster",
+	"textures": {
+		"0": "ott:block/wood/starlight/planks",
+		"particle": "ott:block/wood/starlight/planks"
+	}
+}

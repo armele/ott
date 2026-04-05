@@ -1,0 +1,7 @@
+{
+	"parent": "ott:block/plate_outer",
+	"textures": {
+		"top": "ott:block/stone_bricks_masonry",
+		"frieze": "ott:block/stone_bricks_masonry"
+	}
+}

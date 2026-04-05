@@ -1,0 +1,7 @@
+{
+	"parent": "ott:block/oak_support_8_pixels",
+	"textures": {
+		"slab": "ott:block/wood/starlight/stripped_log",
+		"particle": "ott:block/wood/starlight/stripped_log"
+	}
+}

@@ -1,0 +1,7 @@
+{
+	"parent": "ott:block/small_plate",
+	"textures": {
+		"side": "ott:block/ochre_roof_tiles",
+		"frieze": "ott:block/ochre_roof_tiles"
+	}
+}

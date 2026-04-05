@@ -1,0 +1,7 @@
+{
+	"parent": "ott:block/general/plate_outer",
+	"textures": {
+		"top": "ott:block/wood/midnight/planks",
+		"frieze": "ott:block/wood/midnight/planks"
+	}
+}

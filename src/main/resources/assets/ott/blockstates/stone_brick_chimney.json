@@ -1,0 +1,8 @@
+{
+    "variants": {
+        "vertical_connection=under": { "model": "ott:block/german/stone_bricks_chimney_top" },
+        "vertical_connection=both": { "model": "ott:block/german/stone_bricks_chimney_middle" },
+        "vertical_connection=above": { "model": "ott:block/german/stone_bricks_chimney_bottom" },
+        "vertical_connection=none": { "model": "ott:block/german/stone_bricks_chimney_top" }
+    }
+}
