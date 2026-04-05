@@ -1,8 +1,0 @@
-{
-    "render_type": "minecraft:cutout",
-    "parent": "block/template_glass_pane_side",
-    "textures": {
-        "edge": "ott:block/lattice_glass",
-        "pane": "ott:block/lattice_glass"
-    }
-}

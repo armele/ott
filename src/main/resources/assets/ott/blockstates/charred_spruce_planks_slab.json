@@ -1,7 +1,0 @@
-{
-    "variants": {
-        "type=bottom": { "model": "ott:block/japanese/charred_spruce_planks_slab_bottom" },
-        "type=top": { "model": "ott:block/japanese/charred_spruce_planks_slab_top" },
-        "type=double": { "model": "ott:block/japanese/charred_spruce_planks" }
-    }
-}

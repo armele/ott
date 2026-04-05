@@ -1,8 +1,0 @@
-{
-    "parent": "block/slab_top",
-    "textures": {
-        "bottom": "ott:block/blue_plastered_stone",
-        "top": "ott:block/blue_plastered_stone",
-        "side": "ott:block/blue_plastered_stone"
-    }
-}

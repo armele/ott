@@ -1,8 +1,8 @@
 {
 	"credit": "Made with Blockbench",
 	"textures": {
-		"0": "ott:block/mangrove_pergola",
-		"particle": "ott:block/mangrove_pergola"
+		"0": "ott:block/pergola/mangrove_pergola",
+		"particle": "ott:block/pergola/mangrove_pergola"
 	},
 	"elements": [
 		{

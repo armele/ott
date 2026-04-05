@@ -1,5 +1,5 @@
 {
     "variants": {
-        "": { "model": "ott:block/precolumbian/ornamented_chiseled_plastered_stone" }
+        "": { "model": "ott:block/ornamented_chiseled_plastered_stone" }
     }
 }

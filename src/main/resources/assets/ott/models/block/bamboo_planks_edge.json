@@ -1,5 +1,5 @@
 {
-	"parent": "ott:block/general/small_plate",
+	"parent": "ott:block/small_plate",
 	"textures": {
 		"side": "minecraft:block/bamboo_planks",
 		"frieze": "minecraft:block/bamboo_planks"

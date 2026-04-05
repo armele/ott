@@ -1,6 +1,10 @@
 package com.otterly76.ott.block.color;
 
 import com.otterly76.ott.block.ModBlocks;
+import com.otterly76.ott.block.custom.BeamBlock;
+import com.otterly76.ott.block.custom.EdgeBlock;
+import com.otterly76.ott.block.custom.PergolaBlock;
+import com.otterly76.ott.block.custom.PlateBlock;
 import net.minecraft.world.item.DyeColor;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.BlockBehaviour;
@@ -49,8 +53,24 @@ public class ColorSetBlockRegistrar {
         DeferredBlock<WallBannerBlock> wallBanner = BLOCKS.register(color + "_wall_banner",
                 () -> new ColorSetWallBannerBlock(color, banner, DyeColor.WHITE, BlockBehaviour.Properties.ofFullCopy(Blocks.WHITE_WALL_BANNER)));
 
+        DeferredBlock<PlateBlock> plate = BLOCKS.register(color + "_plate",
+                () -> new PlateBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.WHITE_CONCRETE).noOcclusion()));
+
+        DeferredBlock<EdgeBlock> edge = BLOCKS.register(color + "_edge",
+                () -> new EdgeBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.WHITE_CONCRETE).noOcclusion()));
+
+        DeferredBlock<BeamBlock> beam = BLOCKS.register(color + "_beam",
+                () -> new BeamBlock(BlockBehaviour.Properties.of().strength(2.0f).sound(SoundType.WOOD).noOcclusion()));
+
+        DeferredBlock<PergolaBlock> pergola = BLOCKS.register(color + "_pergola",
+                () -> new PergolaBlock(BlockBehaviour.Properties.of().strength(2.0f).sound(SoundType.WOOD).noOcclusion()));
+
+        DeferredBlock<Block> geometricWindow = BLOCKS.register(color + "_geometric_window",
+                () -> new com.otterly76.ott.block.custom.GeometricWindowBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.WHITE_CONCRETE).noOcclusion()));
+
         return new ModBlocks.ColorSetBlocks(
-                candle, concrete, concretePowder, glazedTerracotta, shulkerBox, stainedGlass, stainedGlassPane, terracotta, wool, bed, carpet, banner, wallBanner
+                candle, concrete, concretePowder, glazedTerracotta, shulkerBox, stainedGlass, stainedGlassPane, terracotta, wool, bed, carpet, banner, wallBanner,
+                plate, edge, beam, pergola, geometricWindow
         );
     }
 }

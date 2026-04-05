@@ -126,6 +126,9 @@ public class WoodSetBlockRegistrar {
                 () -> new com.otterly76.ott.block.custom.SupportBeamBlock(
                         BlockBehaviour.Properties.of().strength(2.0f).sound(SoundType.WOOD).noOcclusion()));
 
+        DeferredBlock<Block> geometricWindow = BLOCKS.register(set + "_geometric_window",
+                () -> new com.otterly76.ott.block.custom.GeometricWindowBlock(BlockBehaviour.Properties.of().strength(1.5f).sound(SoundType.WOOD).noOcclusion()));
+
         return new ModBlocks.WoodSetBlocks(
                 log, wood, strippedLog, strippedWood,
                 planks, stairs, slab,
@@ -136,7 +139,8 @@ public class WoodSetBlockRegistrar {
                 sapling,
                 pottedSapling,
                 sign, wallSign, hangingSign, wallHangingSign,
-                pergola, beam, planksPlate, planksEdge, bannister, supportSlab, supportBeam
+                pergola, beam, planksPlate, planksEdge, bannister, supportSlab, supportBeam,
+                geometricWindow
         );
     }
 
@@ -163,6 +167,10 @@ public class WoodSetBlockRegistrar {
                 set + "_support_beam", () -> new com.otterly76.ott.block.custom.SupportBeamBlock(
                         BlockBehaviour.Properties.of().strength(2.0f).sound(SoundType.WOOD).noOcclusion()));
 
-        return new ModBlocks.WoodStructuralBlocks(pergola, beam, planksPlate, planksEdge, bannister, supportSlab, supportBeam);
+        DeferredBlock<Block> geometricWindow = BLOCKS.register(
+                set + "_geometric_window", () -> new com.otterly76.ott.block.custom.GeometricWindowBlock(
+                        BlockBehaviour.Properties.of().strength(1.5f).sound(SoundType.WOOD).noOcclusion()));
+
+        return new ModBlocks.WoodStructuralBlocks(pergola, beam, planksPlate, planksEdge, bannister, supportSlab, supportBeam, geometricWindow);
     }
 }

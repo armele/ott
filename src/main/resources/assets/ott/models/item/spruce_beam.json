@@ -1,7 +1,7 @@
 {
 	"textures": {
-		"0": "ott:block/spruce_beam",
-		"particle": "ott:block/spruce_beam"
+		"0": "ott:block/beam/spruce_beam",
+		"particle": "ott:block/beam/spruce_beam"
 	},
 	"elements": [
 		{

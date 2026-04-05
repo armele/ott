@@ -1,7 +1,0 @@
-{
-	"parent": "ott:block/general/small_plate_outer",
-	"textures": {
-		"top": "ott:block/plastered_stone_corner",
-		"frieze": "ott:block/red_small_plastered_stone_frieze"
-	}
-}

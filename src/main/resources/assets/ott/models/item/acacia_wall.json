@@ -1,8 +1,8 @@
 {
     "parent": "block/block",
     "textures": {
-        "particle": "ott:block/acacia_beam",
-        "wall": "ott:block/acacia_beam",
+        "particle": "ott:block/beam/acacia_beam",
+        "wall": "ott:block/beam/acacia_beam",
         "side": "block/acacia_planks"
     },
     "elements": [

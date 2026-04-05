@@ -1,8 +1,0 @@
-{
-	"parent": "ott:block/general/small_plate_inner",
-	"textures": {
-		"side": "ott:block/limestone_bricks",
-		"top": "ott:block/limestone_bricks",
-		"frieze": "ott:block/limestone_bricks"
-	}
-}

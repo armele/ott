@@ -1,8 +1,0 @@
-{
-    "parent": "block/slab_top",
-    "textures": {
-        "bottom": "ott:block/thatch_bamboo",
-        "top": "ott:block/thatch_bamboo",
-        "side": "ott:block/thatch_bamboo"
-    }
-}

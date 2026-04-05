@@ -1,8 +1,0 @@
-{
-	"parent": "ott:block/general/plate",
-	"textures": {
-		"side": "block/cut_sandstone",
-		"top": "block/sandstone_top",
-		"frieze": "block/cut_sandstone"
-	}
-}

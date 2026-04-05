@@ -1,8 +1,0 @@
-{
-    "parent": "block/inner_stairs",
-    "textures": {
-        "bottom": "ott:block/sandstone_bricks_turquoise_pattern",
-        "top": "ott:block/sandstone_bricks_turquoise_pattern",
-        "side": "ott:block/sandstone_bricks_turquoise_pattern"
-    }
-}

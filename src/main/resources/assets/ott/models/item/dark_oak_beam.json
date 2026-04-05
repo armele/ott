@@ -1,7 +1,7 @@
 {
 	"textures": {
-		"0": "ott:block/dark_oak_beam",
-		"particle": "ott:block/dark_oak_beam"
+		"0": "ott:block/beam/dark_oak_beam",
+		"particle": "ott:block/beam/dark_oak_beam"
 	},
 	"elements": [
 		{

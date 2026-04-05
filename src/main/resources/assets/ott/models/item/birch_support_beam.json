@@ -1,7 +1,7 @@
 {
 	"textures": {
 		"slab": "minecraft:block/birch_planks",
-		"texture": "ott:block/birch_beam"
+		"texture": "ott:block/beam/birch_beam"
 	},
 	"elements": [
 		{

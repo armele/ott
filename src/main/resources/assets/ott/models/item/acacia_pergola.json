@@ -1,8 +1,8 @@
 {
 	"credit": "Made with Blockbench",
 	"textures": {
-		"0": "ott:block/acacia_pergola",
-		"particle": "ott:block/acacia_pergola"
+		"0": "ott:block/pergola/acacia_pergola",
+		"particle": "ott:block/pergola/acacia_pergola"
 	},
 	"elements": [
 		{

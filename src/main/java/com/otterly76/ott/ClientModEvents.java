@@ -482,14 +482,15 @@ public class ClientModEvents {
                 ModBlocks.STONE_BRICKS_POOL.get(), ModBlocks.STONE_BRICKS_SMALL_POOL.get(),
                 ModBlocks.STONE_BRICKS_FAUCET.get(), ModBlocks.STONE_BRICKS_WATER_JET.get(), ModBlocks.WATER_SOURCE_TRICKLE.get());
 
-        ModBlocks.PATTERN_BLOCKS.forEach((pattern, colorMap) -> {
-            colorMap.forEach((colorName, block) -> {
-                com.otterly76.ott.color.ModPatterns.ALL_COLORS.stream()
-                        .filter(c -> c.name().equals(colorName))
-                        .findFirst()
-                        .ifPresent(info -> event.register((state, level, pos, tint) -> info.color(), block.get()));
-            });
-        });
+        for (var patternMap : java.util.List.of(
+                ModBlocks.PATTERN_BLOCKS, ModBlocks.PATTERN_PLATES, ModBlocks.PATTERN_EDGES,
+                ModBlocks.PATTERN_BEAMS, ModBlocks.PATTERN_PERGOLAS, ModBlocks.PATTERN_WINDOWS)) {
+            patternMap.forEach((pattern, colorMap) -> colorMap.forEach((colorName, block) ->
+                    com.otterly76.ott.color.ModPatterns.ALL_COLORS.stream()
+                            .filter(c -> c.name().equals(colorName))
+                            .findFirst()
+                            .ifPresent(info -> event.register((state, level, pos, tint) -> info.color(), block.get()))));
+        }
 
         ModBlocks.ELEVATORS.forEach((colorName, block) -> {
             com.otterly76.ott.color.ModPatterns.ALL_COLORS.stream()
@@ -532,14 +533,15 @@ public class ClientModEvents {
                 },
                 ModBlocks.TESTBLOCK_02.get(), ModBlocks.TESTBLOCK_03.get(), ModBlocks.TESTBLOCK_10.get());
 
-        ModBlocks.PATTERN_BLOCKS.forEach((pattern, colorMap) -> {
-            colorMap.forEach((colorName, block) -> {
-                com.otterly76.ott.color.ModPatterns.ALL_COLORS.stream()
-                        .filter(c -> c.name().equals(colorName))
-                        .findFirst()
-                        .ifPresent(info -> event.register((stack, tintIndex) -> tintIndex == 0 ? info.color() : -1, block.get()));
-            });
-        });
+        for (var patternMap : java.util.List.of(
+                ModBlocks.PATTERN_BLOCKS, ModBlocks.PATTERN_PLATES, ModBlocks.PATTERN_EDGES,
+                ModBlocks.PATTERN_BEAMS, ModBlocks.PATTERN_PERGOLAS, ModBlocks.PATTERN_WINDOWS)) {
+            patternMap.forEach((pattern, colorMap) -> colorMap.forEach((colorName, block) ->
+                    com.otterly76.ott.color.ModPatterns.ALL_COLORS.stream()
+                            .filter(c -> c.name().equals(colorName))
+                            .findFirst()
+                            .ifPresent(info -> event.register((stack, tintIndex) -> tintIndex == 0 ? info.color() : -1, block.get()))));
+        }
 
         ModBlocks.ELEVATORS.forEach((colorName, block) -> {
             com.otterly76.ott.color.ModPatterns.ALL_COLORS.stream()

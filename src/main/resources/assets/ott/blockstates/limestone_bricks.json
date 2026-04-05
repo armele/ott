@@ -1,5 +1,5 @@
 {
     "variants": {
-        "": { "model": "ott:block/french/limestone_bricks" }
+        "": { "model": "ott:block/limestone_bricks" }
     }
 }

@@ -1,8 +1,8 @@
 {
 	"credit": "Made with Blockbench",
 	"textures": {
-		"0": "ott:block/dark_oak_pergola",
-		"particle": "ott:block/dark_oak_pergola"
+		"0": "ott:block/pergola/dark_oak_pergola",
+		"particle": "ott:block/pergola/dark_oak_pergola"
 	},
 	"elements": [
 		{

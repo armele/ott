@@ -1,7 +1,0 @@
-{
-    "variants": {
-        "type=bottom": { "model": "ott:block/precolumbian/green_plastered_stone_slab_bottom" },
-        "type=top": { "model": "ott:block/precolumbian/green_plastered_stone_slab_top" },
-        "type=double": { "model": "ott:block/precolumbian/green_plastered_stone_slab_double" }
-    }
-}

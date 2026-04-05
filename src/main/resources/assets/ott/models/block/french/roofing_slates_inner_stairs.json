@@ -1,8 +1,0 @@
-{
-    "parent": "block/inner_stairs",
-    "textures": {
-        "bottom": "ott:block/roofing_slates",
-        "top": "ott:block/roofing_slates",
-        "side": "ott:block/roofing_slates"
-    }
-}

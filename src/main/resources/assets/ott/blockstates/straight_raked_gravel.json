@@ -1,8 +1,8 @@
 {
     "variants": {
-        "facing=north": { "model": "ott:block/japanese/straight_raked_gravel" },
-        "facing=east":  { "model": "ott:block/japanese/straight_raked_gravel", "y": 90 },
-        "facing=south": { "model": "ott:block/japanese/straight_raked_gravel", "y": 180 },
-        "facing=west":  { "model": "ott:block/japanese/straight_raked_gravel", "y": 270 }
+        "facing=north": { "model": "ott:block/straight_raked_gravel" },
+        "facing=east":  { "model": "ott:block/straight_raked_gravel", "y": 90 },
+        "facing=south": { "model": "ott:block/straight_raked_gravel", "y": 180 },
+        "facing=west":  { "model": "ott:block/straight_raked_gravel", "y": 270 }
     }
 }

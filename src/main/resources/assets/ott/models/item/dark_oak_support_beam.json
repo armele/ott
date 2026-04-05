@@ -1,7 +1,7 @@
 {
 	"textures": {
 		"slab": "minecraft:block/dark_oak_planks",
-		"texture": "ott:block/dark_oak_beam"
+		"texture": "ott:block/beam/dark_oak_beam"
 	},
 	"elements": [
 		{

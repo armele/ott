@@ -1,6 +1,6 @@
 {
     "variants": {
-        "lit=false": { "model": "ott:block/general/iron_fancy_lantern_down" },
-        "lit=true":  { "model": "ott:block/general/iron_fancy_lantern_down" }
+        "lit=false": { "model": "ott:block/iron_fancy_lantern_down" },
+        "lit=true":  { "model": "ott:block/iron_fancy_lantern_down" }
     }
 }

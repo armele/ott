@@ -1,8 +1,0 @@
-{
-    "variants": {
-        "vertical_connection=under": { "model": "ott:block/precolumbian/plastered_stone_column_top" },
-        "vertical_connection=both": { "model": "ott:block/precolumbian/plastered_stone_column_middle" },
-        "vertical_connection=above": { "model": "ott:block/precolumbian/plastered_stone_column_bottom" },
-        "vertical_connection=none": { "model": "ott:block/precolumbian/plastered_stone_column_lone" }
-    }
-}

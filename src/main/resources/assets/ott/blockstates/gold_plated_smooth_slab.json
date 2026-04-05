@@ -1,7 +1,0 @@
-{
-    "variants": {
-        "type=bottom": { "model": "ott:block/general/gold_plated_smooth_slab_bottom" },
-        "type=top": { "model": "ott:block/general/gold_plated_smooth_slab_top" },
-        "type=double": { "model": "ott:block/general/gold_plated_smooth_block" }
-    }
-}

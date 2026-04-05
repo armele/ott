@@ -1,8 +1,8 @@
 {
     "parent": "block/block",
     "textures": {
-        "particle": "ott:block/oak_beam",
-        "wall": "ott:block/oak_beam",
+        "particle": "ott:block/beam/oak_beam",
+        "wall": "ott:block/beam/oak_beam",
         "side": "block/oak_planks"
     },
     "elements": [

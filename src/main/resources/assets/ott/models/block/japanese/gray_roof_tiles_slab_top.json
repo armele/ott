@@ -1,8 +1,0 @@
-{
-    "parent": "block/slab_top",
-    "textures": {
-        "bottom": "ott:block/gray_roof_tiles",
-        "top": "ott:block/gray_roof_tiles",
-        "side": "ott:block/gray_roof_tiles"
-    }
-}

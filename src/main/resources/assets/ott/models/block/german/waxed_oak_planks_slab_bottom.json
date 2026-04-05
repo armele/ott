@@ -1,8 +1,0 @@
-{
-    "parent": "block/slab",
-    "textures": {
-        "bottom": "ott:block/waxed_oak_planks",
-        "top": "ott:block/waxed_oak_planks",
-        "side": "ott:block/waxed_oak_planks"
-    }
-}

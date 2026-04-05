@@ -1,5 +1,5 @@
 {
     "variants": {
-        "": { "model": "ott:block/persian/sandstone_bricks_turquoise_pattern" }
+        "": { "model": "ott:block/sandstone_bricks_turquoise_pattern" }
     }
 }

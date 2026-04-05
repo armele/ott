@@ -1,8 +1,0 @@
-{
-    "parent": "block/cube_bottom_top",
-    "textures": {
-        "bottom": "block/sandstone_top",
-        "top": "ott:block/ochre_roof_tiles",
-        "side": "ott:block/smooth_sandstone_bot_ochre_roof_tiles_top"
-    }
-}

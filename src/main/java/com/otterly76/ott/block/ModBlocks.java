@@ -481,29 +481,18 @@ public class ModBlocks {
         // Oak already has dedicated static block fields; wrap them rather than re-registering.
         VANILLA_STRUCTURAL_SETS.put("oak", new WoodStructuralBlocks(
                 OAK_PERGOLA, OAK_BEAM, OAK_PLANKS_PLATE, OAK_PLANKS_EDGE,
-                OAK_BANNISTER, OAK_SUPPORT_SLAB, OAK_SUPPORT_BEAM));
+                OAK_BANNISTER, OAK_SUPPORT_SLAB, OAK_SUPPORT_BEAM, OAK_GEOMETRIC_WINDOW));
         for (String name : List.of("spruce", "birch", "jungle", "acacia", "dark_oak",
                 "mangrove", "cherry", "bamboo", "crimson", "warped", "pale_oak")) {
             VANILLA_STRUCTURAL_SETS.put(name, com.otterly76.ott.block.wood.WoodSetBlockRegistrar.registerVanillaStructural(name));
         }
 
-        // Register wood wall + lattice blocks
-        // Matches DoTB wood set: all vanilla woods + waxed_oak + charred_spruce (no pale_oak in DoTB)
+        // Register wood wall blocks
         for (String name : List.of("oak", "spruce", "birch", "jungle", "acacia", "dark_oak",
                 "mangrove", "cherry", "bamboo", "crimson", "warped")) {
             VANILLA_WALLS.put(name, BLOCKS.register(name + "_wall",
                     () -> new WallBlock(Properties.of().strength(2.0f).sound(SoundType.WOOD))));
-            VANILLA_LATTICES.put(name, BLOCKS.register(name + "_lattice",
-                    () -> new LatticeBlock(Properties.of().strength(2.0f).sound(SoundType.WOOD).noOcclusion())));
         }
-        VANILLA_WALLS.put("waxed_oak", BLOCKS.register("waxed_oak_wall",
-                () -> new WallBlock(Properties.of().strength(3.0f, 5.0f).sound(SoundType.WOOD))));
-        VANILLA_LATTICES.put("waxed_oak", BLOCKS.register("waxed_oak_lattice",
-                () -> new LatticeBlock(Properties.of().strength(3.0f, 5.0f).sound(SoundType.WOOD).noOcclusion())));
-        VANILLA_WALLS.put("charred_spruce", BLOCKS.register("charred_spruce_wall",
-                () -> new WallBlock(Properties.of().mapColor(MapColor.COLOR_BLACK).strength(2.0f, 6.0f).sound(SoundType.WOOD))));
-        VANILLA_LATTICES.put("charred_spruce", BLOCKS.register("charred_spruce_lattice",
-                () -> new LatticeBlock(Properties.of().mapColor(MapColor.COLOR_BLACK).strength(2.0f, 6.0f).sound(SoundType.WOOD).noOcclusion())));
 
         // Register all ott color sets
         com.otterly76.ott.color.ModColorSets.ALL.forEach(set -> COLOR_SETS.put(set.name(), com.otterly76.ott.block.color.ColorSetBlockRegistrar.registerOttColorSet(set.name())));
@@ -548,13 +537,27 @@ public class ModBlocks {
 
     private static void registerPatternBlocks() {
         for (String pattern : com.otterly76.ott.color.ModPatterns.PATTERNS) {
-            Map<String, DeferredBlock<Block>> colorMap = new LinkedHashMap<>();
+            Map<String, DeferredBlock<Block>>        colorMap   = new LinkedHashMap<>();
+            Map<String, DeferredBlock<PlateBlock>>   plateMap   = new LinkedHashMap<>();
+            Map<String, DeferredBlock<EdgeBlock>>    edgeMap    = new LinkedHashMap<>();
+            Map<String, DeferredBlock<BeamBlock>>    beamMap    = new LinkedHashMap<>();
+            Map<String, DeferredBlock<PergolaBlock>> pergolaMap = new LinkedHashMap<>();
+            Map<String, DeferredBlock<Block>>        windowMap  = new LinkedHashMap<>();
             for (com.otterly76.ott.color.ModPatterns.ColorInfo color : com.otterly76.ott.color.ModPatterns.ALL_COLORS) {
-                String name = color.name() + "_" + pattern;
-                DeferredBlock<Block> block = register(name, () -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.COBBLESTONE)));
-                colorMap.put(color.name(), block);
+                String base = color.name() + "_" + pattern;
+                colorMap.put(color.name(),   register(base,                      () -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.COBBLESTONE))));
+                plateMap.put(color.name(),   register(base + "_plate",           () -> new PlateBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.COBBLESTONE).noOcclusion())));
+                edgeMap.put(color.name(),    register(base + "_edge",            () -> new EdgeBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.COBBLESTONE).noOcclusion())));
+                beamMap.put(color.name(),    register(base + "_beam",            () -> new BeamBlock(BlockBehaviour.Properties.of().strength(2.0f).sound(SoundType.STONE).noOcclusion())));
+                pergolaMap.put(color.name(), register(base + "_pergola",         () -> new PergolaBlock(BlockBehaviour.Properties.of().strength(2.0f).sound(SoundType.STONE).noOcclusion())));
+                windowMap.put(color.name(),  register(base + "_geometric_window", () -> new com.otterly76.ott.block.custom.GeometricWindowBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.COBBLESTONE).noOcclusion())));
             }
-            PATTERN_BLOCKS.put(pattern, colorMap);
+            PATTERN_BLOCKS.put(pattern,   colorMap);
+            PATTERN_PLATES.put(pattern,   plateMap);
+            PATTERN_EDGES.put(pattern,    edgeMap);
+            PATTERN_BEAMS.put(pattern,    beamMap);
+            PATTERN_PERGOLAS.put(pattern, pergolaMap);
+            PATTERN_WINDOWS.put(pattern,  windowMap);
         }
     }
 
@@ -609,11 +612,8 @@ public class ModBlocks {
      */
     public static final Map<String, WoodSetBlocks> WOOD_SETS = new LinkedHashMap<>();
 
-    /** Wood wall blocks (ott namespace). Key = wood name (e.g. "oak", "waxed_oak"). */
+    /** Wood wall blocks (ott namespace). Key = wood name (e.g. "oak", "spruce"). */
     public static final Map<String, DeferredBlock<WallBlock>> VANILLA_WALLS = new LinkedHashMap<>();
-
-    /** Wood lattice blocks (ott namespace). Key = wood name (e.g. "oak", "charred_spruce"). */
-    public static final Map<String, DeferredBlock<LatticeBlock>> VANILLA_LATTICES = new LinkedHashMap<>();
 
     /**
      * ott color sets (ott namespace). Key = color name (e.g. "aquamarine").
@@ -623,7 +623,12 @@ public class ModBlocks {
     /**
      * ott pattern blocks (ott namespace). Key1 = pattern name, Key2 = color name.
      */
-    public static final Map<String, Map<String, DeferredBlock<Block>>> PATTERN_BLOCKS = new LinkedHashMap<>();
+    public static final Map<String, Map<String, DeferredBlock<Block>>>        PATTERN_BLOCKS   = new LinkedHashMap<>();
+    public static final Map<String, Map<String, DeferredBlock<PlateBlock>>>   PATTERN_PLATES   = new LinkedHashMap<>();
+    public static final Map<String, Map<String, DeferredBlock<EdgeBlock>>>    PATTERN_EDGES    = new LinkedHashMap<>();
+    public static final Map<String, Map<String, DeferredBlock<BeamBlock>>>    PATTERN_BEAMS    = new LinkedHashMap<>();
+    public static final Map<String, Map<String, DeferredBlock<PergolaBlock>>> PATTERN_PERGOLAS = new LinkedHashMap<>();
+    public static final Map<String, Map<String, DeferredBlock<Block>>>        PATTERN_WINDOWS  = new LinkedHashMap<>();
 
     public record ColorSetBlocks(
             DeferredBlock<CandleBlock> candle,
@@ -638,7 +643,12 @@ public class ModBlocks {
             DeferredBlock<BedBlock> bed,
             DeferredBlock<CarpetBlock> carpet,
             DeferredBlock<BannerBlock> banner,
-            DeferredBlock<WallBannerBlock> wallBanner
+            DeferredBlock<WallBannerBlock> wallBanner,
+            DeferredBlock<PlateBlock> plate,
+            DeferredBlock<EdgeBlock> edge,
+            DeferredBlock<BeamBlock> beam,
+            DeferredBlock<PergolaBlock> pergola,
+            DeferredBlock<Block> geometricWindow
     ) {}
 
     public record WoodSetBlocks(
@@ -668,7 +678,8 @@ public class ModBlocks {
             DeferredBlock<com.otterly76.ott.block.custom.EdgeBlock> planksEdge,
             DeferredBlock<com.otterly76.ott.block.custom.BannisterBlock> bannister,
             DeferredBlock<com.otterly76.ott.block.custom.SupportSlabBlock> supportSlab,
-            DeferredBlock<com.otterly76.ott.block.custom.SupportBeamBlock> supportBeam
+            DeferredBlock<com.otterly76.ott.block.custom.SupportBeamBlock> supportBeam,
+            DeferredBlock<Block> geometricWindow
     )
     {
     }
@@ -685,7 +696,8 @@ public class ModBlocks {
             DeferredBlock<com.otterly76.ott.block.custom.EdgeBlock> planksEdge,
             DeferredBlock<com.otterly76.ott.block.custom.BannisterBlock> bannister,
             DeferredBlock<com.otterly76.ott.block.custom.SupportSlabBlock> supportSlab,
-            DeferredBlock<com.otterly76.ott.block.custom.SupportBeamBlock> supportBeam
+            DeferredBlock<com.otterly76.ott.block.custom.SupportBeamBlock> supportBeam,
+            DeferredBlock<Block> geometricWindow
     ) {}
 
     public static final DeferredBlock<Block> GLASS_JAR = BLOCKS.register("glass_jar",
@@ -784,8 +796,6 @@ public class ModBlocks {
     // -------------------------------------------------------------------------
     public static final DeferredBlock<Block> MARBLE = register("marble",
             () -> new Block(Properties.ofFullCopy(Blocks.STONE)));
-    public static final DeferredBlock<Block> MARBLE_PILLAR = register("marble_pillar",
-            () -> new Block(Properties.ofFullCopy(Blocks.STONE)));
     public static final DeferredBlock<PlateBlock> MARBLE_FANCY_FENCE = register("marble_fancy_fence",
             () -> new PlateBlock(Properties.ofFullCopy(Blocks.STONE).strength(3.0f, 5.0f).noOcclusion()));
 
@@ -859,19 +869,6 @@ public class ModBlocks {
     public static final DeferredBlock<PlateBlock> BAMBOO_THATCH_PLATE = register("bamboo_thatch_plate",
             () -> new PlateBlock(Properties.ofFullCopy(Blocks.GRASS_BLOCK).mapColor(MapColor.COLOR_YELLOW).strength(1.0f).sound(SoundType.GRASS)));
 
-    // -------------------------------------------------------------------------
-    // --- DoTB Phase 3: Waxed Oak (German) ---
-    // -------------------------------------------------------------------------
-    private static final Properties WO = Properties.of().mapColor(MapColor.COLOR_BROWN).strength(3.0f, 5.0f).sound(SoundType.WOOD);
-    public static final DeferredBlock<Block>              WAXED_OAK_PLANKS                  = register("waxed_oak_planks",                  () -> new Block(WO));
-    public static final DeferredBlock<RotatedPillarBlock> WAXED_OAK_LOG_STRIPPED            = register("waxed_oak_log_stripped",            () -> new RotatedPillarBlock(WO));
-    public static final DeferredBlock<com.otterly76.ott.block.custom.BeamBlock>        WAXED_OAK_BEAM          = register("waxed_oak_beam",          () -> new com.otterly76.ott.block.custom.BeamBlock(Properties.of().mapColor(MapColor.COLOR_BROWN).strength(3.0f, 5.0f).sound(SoundType.WOOD).noOcclusion()));
-    public static final DeferredBlock<com.otterly76.ott.block.custom.PergolaBlock>     WAXED_OAK_PERGOLA       = register("waxed_oak_pergola",       () -> new com.otterly76.ott.block.custom.PergolaBlock(Properties.of().mapColor(MapColor.COLOR_BROWN).strength(3.0f, 5.0f).sound(SoundType.WOOD).noOcclusion()));
-    public static final DeferredBlock<com.otterly76.ott.block.custom.PlateBlock>       WAXED_OAK_PLANKS_PLATE  = register("waxed_oak_planks_plate",  () -> new com.otterly76.ott.block.custom.PlateBlock(Properties.of().mapColor(MapColor.COLOR_BROWN).strength(3.0f, 5.0f).sound(SoundType.WOOD).noOcclusion()));
-    public static final DeferredBlock<com.otterly76.ott.block.custom.EdgeBlock>        WAXED_OAK_PLANKS_EDGE   = register("waxed_oak_planks_edge",   () -> new com.otterly76.ott.block.custom.EdgeBlock(Properties.of().mapColor(MapColor.COLOR_BROWN).strength(3.0f, 5.0f).sound(SoundType.WOOD).noOcclusion()));
-    public static final DeferredBlock<com.otterly76.ott.block.custom.SupportBeamBlock> WAXED_OAK_SUPPORT_BEAM  = register("waxed_oak_support_beam",  () -> new com.otterly76.ott.block.custom.SupportBeamBlock(Properties.of().mapColor(MapColor.COLOR_BROWN).strength(3.0f, 5.0f).sound(SoundType.WOOD).noOcclusion()));
-    public static final DeferredBlock<com.otterly76.ott.block.custom.SupportSlabBlock> WAXED_OAK_SUPPORT_SLAB  = register("waxed_oak_support_slab",  () -> new com.otterly76.ott.block.custom.SupportSlabBlock(Properties.of().mapColor(MapColor.COLOR_BROWN).strength(3.0f, 5.0f).sound(SoundType.WOOD).noOcclusion()));
-    public static final DeferredBlock<com.otterly76.ott.block.custom.PlateBlock>       WAXED_OAK_BANNISTER     = register("waxed_oak_bannister",     () -> new com.otterly76.ott.block.custom.PlateBlock(Properties.of().mapColor(MapColor.COLOR_BROWN).strength(3.0f, 5.0f).sound(SoundType.WOOD).noOcclusion()));
 
     // -------------------------------------------------------------------------
     // --- DoTB Phase 3: Stone Bricks Masonry + German misc (German) ---
@@ -882,20 +879,6 @@ public class ModBlocks {
     public static final DeferredBlock<HorizontalBlock> CURVED_RAKED_GRAVEL   = register("curved_raked_gravel",   () -> new HorizontalBlock(Properties.ofFullCopy(Blocks.GRAVEL)));
     public static final DeferredBlock<HorizontalBlock> STRAIGHT_RAKED_GRAVEL = register("straight_raked_gravel", () -> new HorizontalBlock(Properties.ofFullCopy(Blocks.GRAVEL)));
 
-    // -------------------------------------------------------------------------
-    // --- DoTB Phase 3: Charred Spruce (Japanese) ---
-    // -------------------------------------------------------------------------
-    private static final Properties CS = Properties.of().mapColor(MapColor.COLOR_BLACK).strength(2.0f, 6.0f).sound(SoundType.WOOD);
-    public static final DeferredBlock<Block>              CHARRED_SPRUCE_PLANKS                = register("charred_spruce_planks",                () -> new Block(CS));
-    public static final DeferredBlock<RotatedPillarBlock> CHARRED_SPRUCE_LOG_STRIPPED          = register("charred_spruce_log_stripped",          () -> new RotatedPillarBlock(CS));
-    public static final DeferredBlock<Block>              CHARRED_SPRUCE_BOARDS                = register("charred_spruce_boards",                () -> new Block(CS));
-    public static final DeferredBlock<Block>              CHARRED_SPRUCE_FOUNDATION            = register("charred_spruce_foundation",            () -> new Block(Properties.of().mapColor(MapColor.STONE).strength(3.0f, 5.0f).sound(SoundType.STONE).requiresCorrectToolForDrops()));
-    public static final DeferredBlock<com.otterly76.ott.block.custom.BeamBlock>        CHARRED_SPRUCE_BEAM         = register("charred_spruce_beam",         () -> new com.otterly76.ott.block.custom.BeamBlock(Properties.of().mapColor(MapColor.COLOR_BLACK).strength(2.0f, 6.0f).sound(SoundType.WOOD).noOcclusion()));
-    public static final DeferredBlock<com.otterly76.ott.block.custom.PergolaBlock>     CHARRED_SPRUCE_PERGOLA      = register("charred_spruce_pergola",      () -> new com.otterly76.ott.block.custom.PergolaBlock(Properties.of().mapColor(MapColor.COLOR_BLACK).strength(2.0f, 6.0f).sound(SoundType.WOOD).noOcclusion()));
-    public static final DeferredBlock<com.otterly76.ott.block.custom.PlateBlock>       CHARRED_SPRUCE_PLANKS_PLATE = register("charred_spruce_planks_plate", () -> new com.otterly76.ott.block.custom.PlateBlock(Properties.of().mapColor(MapColor.COLOR_BLACK).strength(2.0f, 6.0f).sound(SoundType.WOOD).noOcclusion()));
-    public static final DeferredBlock<com.otterly76.ott.block.custom.EdgeBlock>        CHARRED_SPRUCE_PLANKS_EDGE  = register("charred_spruce_planks_edge",  () -> new com.otterly76.ott.block.custom.EdgeBlock(Properties.of().mapColor(MapColor.COLOR_BLACK).strength(2.0f, 6.0f).sound(SoundType.WOOD).noOcclusion()));
-    public static final DeferredBlock<com.otterly76.ott.block.custom.SupportBeamBlock> CHARRED_SPRUCE_SUPPORT_BEAM = register("charred_spruce_support_beam", () -> new com.otterly76.ott.block.custom.SupportBeamBlock(Properties.of().mapColor(MapColor.COLOR_BLACK).strength(2.0f, 6.0f).sound(SoundType.WOOD).noOcclusion()));
-    public static final DeferredBlock<com.otterly76.ott.block.custom.SupportSlabBlock> CHARRED_SPRUCE_SUPPORT_SLAB = register("charred_spruce_support_slab", () -> new com.otterly76.ott.block.custom.SupportSlabBlock(Properties.of().mapColor(MapColor.COLOR_BLACK).strength(2.0f, 6.0f).sound(SoundType.WOOD).noOcclusion()));
 
     // -------------------------------------------------------------------------
     // --- DoTB Phase 4: Persian Sandstone Bricks ---
@@ -947,7 +930,8 @@ public class ModBlocks {
     public static final DeferredBlock<com.otterly76.ott.block.custom.SupportBeamBlock> OAK_SUPPORT_BEAM = register("oak_support_beam",
             () -> new com.otterly76.ott.block.custom.SupportBeamBlock(
                     Properties.of().strength(2.0f).sound(SoundType.WOOD).noOcclusion()));
-
+    public static final DeferredBlock<Block> OAK_GEOMETRIC_WINDOW = register("oak_geometric_window",
+            () -> new com.otterly76.ott.block.custom.GeometricWindowBlock(Properties.of().strength(1.5f).sound(SoundType.WOOD).noOcclusion()));
     // =========================================================================
     // === DoTB Phase 5: General Decorative & Functional ===
     // =========================================================================
@@ -969,7 +953,6 @@ public class ModBlocks {
     // =========================================================================
     // === DoTB Phase 3: Japanese Spruce extras ===
     // =========================================================================
-    public static final DeferredBlock<Block>                 SPRUCE_FOUNDATION               = register("spruce_foundation",               () -> new Block(Properties.of().mapColor(MapColor.STONE).strength(3.0f, 5.0f).sound(SoundType.STONE).requiresCorrectToolForDrops()));
     public static final DeferredBlock<FenceBlock>            SPRUCE_LOG_FENCE                = register("spruce_log_fence",                () -> new FenceBlock(Properties.ofFullCopy(Blocks.SPRUCE_PLANKS)));
 
     // =========================================================================
@@ -981,16 +964,6 @@ public class ModBlocks {
     // =========================================================================
     public static final DeferredBlock<FutonBlock>            LIGHT_GRAY_FUTON                = register("light_gray_futon",                () -> new FutonBlock(net.minecraft.world.item.DyeColor.LIGHT_GRAY, Properties.of().strength(0.5f).sound(SoundType.WOOL).noOcclusion()));
 
-    // =========================================================================
-    // === DoTB Phase 4: Persian Moraq Mosaic ===
-    // =========================================================================
-    private static final Properties MORAQ = Properties.of().strength(1.5f, 6.0f).sound(SoundType.STONE).requiresCorrectToolForDrops();
-    public static final DeferredBlock<Block> MORAQ_MOSAIC_BORDER      = register("moraq_mosaic_border",      () -> new Block(MORAQ));
-    public static final DeferredBlock<Block> MORAQ_MOSAIC_DELICATE    = register("moraq_mosaic_delicate",    () -> new Block(MORAQ));
-    public static final DeferredBlock<Block> MORAQ_MOSAIC_GEOMETRIC   = register("moraq_mosaic_geometric",   () -> new Block(MORAQ));
-    public static final DeferredBlock<Block> MORAQ_MOSAIC_PATTERN     = register("moraq_mosaic_pattern",     () -> new Block(MORAQ));
-    public static final DeferredBlock<Block> MORAQ_MOSAIC_RECESS      = register("moraq_mosaic_recess",      () -> new Block(MORAQ));
-    public static final DeferredBlock<Block> MORAQ_MOSAIC_TRADITIONAL = register("moraq_mosaic_traditional", () -> new Block(MORAQ));
 
     // =========================================================================
     // === DoTB Phase 4: Pre-Columbian Plastered Stone ===
@@ -1000,12 +973,11 @@ public class ModBlocks {
     public static final DeferredBlock<Block>       PLASTERED_STONE              = register("plastered_stone",              () -> new Block(PS));
     public static final DeferredBlock<EdgeBlock>   PLASTERED_STONE_EDGE         = register("plastered_stone_edge",         () -> new EdgeBlock(PS));
     public static final DeferredBlock<PlateBlock>  PLASTERED_STONE_PLATE        = register("plastered_stone_plate",        () -> new PlateBlock(PS));
-    public static final DeferredBlock<Block>       PLASTERED_STONE_WINDOW       = register("plastered_stone_window",       () -> new Block(PS.noOcclusion()));
+    public static final DeferredBlock<Block>       GEOMETRIC_WINDOW             = register("geometric_window",             () -> new com.otterly76.ott.block.custom.GeometricWindowBlock(PS.noOcclusion()));
     // Shared pre-columbian misc
-    public static final DeferredBlock<Block>                  CHISELED_PLASTERED_STONE             = register("chiseled_plastered_stone",             () -> new Block(PS));
-    public static final DeferredBlock<Block>                  CHISELED_PLASTERED_STONE_FRIEZE      = register("chiseled_plastered_stone_frieze",      () -> new Block(PS.noOcclusion()));
-    public static final DeferredBlock<Block>                  ORNAMENTED_CHISELED_PLASTERED_STONE  = register("ornamented_chiseled_plastered_stone",  () -> new Block(PS));
-    public static final DeferredBlock<Block>                  GOLDEN_STONE_FRIEZE                  = register("golden_stone_frieze",                  () -> new Block(PS.noOcclusion()));
+    public static final DeferredBlock<Block>  ORNAMENTED_CHISELED_PLASTERED_STONE  = register("ornamented_chiseled_plastered_stone",  () -> new Block(PS));
+    public static final DeferredBlock<Block>  GREEN_ORNAMENTED_PLASTERED_STONE     = register("green_ornamented_plastered_stone",     () -> new Block(PS));
+    public static final DeferredBlock<Block>  RED_ORNAMENTED_PLASTERED_STONE       = register("red_ornamented_plastered_stone",       () -> new Block(PS));
 
     public static void register(IEventBus eventBus) {
         registerDynamicBlocks();

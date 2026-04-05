@@ -1,7 +1,7 @@
 {
 	"textures": {
 		"slab": "minecraft:block/bamboo_planks",
-		"texture": "ott:block/bamboo_beam"
+		"texture": "ott:block/beam/bamboo_beam"
 	},
 	"elements": [
 		{

@@ -1,8 +1,0 @@
-{
-	"parent": "ott:block/general/small_plate_inner",
-	"textures": {
-		"side": "block/acacia_planks",
-		"top": "block/acacia_planks",
-		"frieze": "block/acacia_planks"
-	}
-}

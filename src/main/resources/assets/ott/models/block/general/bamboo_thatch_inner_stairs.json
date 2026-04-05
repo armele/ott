@@ -1,8 +1,0 @@
-{
-    "parent": "block/inner_stairs",
-    "textures": {
-        "bottom": "ott:block/thatch_bamboo",
-        "top": "ott:block/thatch_bamboo",
-        "side": "ott:block/thatch_bamboo"
-    }
-}

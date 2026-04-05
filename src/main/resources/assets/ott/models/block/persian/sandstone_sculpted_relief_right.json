@@ -1,7 +1,0 @@
-{
-	"parent": "ott:block/general/relief_right",
-	"textures": {
-		"side": "ott:block/sandstone_sculpted_relief_side",
-		"face": "ott:block/sandstone_sculpted_relief_face"
-	}
-}

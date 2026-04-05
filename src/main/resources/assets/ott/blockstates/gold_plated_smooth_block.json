@@ -1,5 +1,5 @@
 {
     "variants": {
-        "": { "model": "ott:block/general/gold_plated_smooth_block" }
+        "": { "model": "ott:block/gold_plated_smooth_block" }
     }
 }

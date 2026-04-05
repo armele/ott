@@ -1,8 +1,8 @@
 {
     "parent": "block/block",
     "textures": {
-        "particle": "ott:block/warped_beam",
-        "wall": "ott:block/warped_beam",
+        "particle": "ott:block/beam/warped_beam",
+        "wall": "ott:block/beam/warped_beam",
         "side": "block/warped_planks"
     },
     "elements": [

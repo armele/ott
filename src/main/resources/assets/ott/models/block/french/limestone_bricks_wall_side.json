@@ -1,6 +1,0 @@
-{
-    "parent": "block/template_wall_side",
-    "textures": {
-        "wall": "ott:block/limestone_bricks_wall_side"
-    }
-}

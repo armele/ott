@@ -1,7 +1,7 @@
 {
 	"textures": {
-		"0": "ott:block/cherry_beam",
-		"particle": "ott:block/cherry_beam"
+		"0": "ott:block/beam/cherry_beam",
+		"particle": "ott:block/beam/cherry_beam"
 	},
 	"elements": [
 		{

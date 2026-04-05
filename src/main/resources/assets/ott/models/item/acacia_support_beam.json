@@ -1,7 +1,7 @@
 {
 	"textures": {
 		"slab": "minecraft:block/acacia_planks",
-		"texture": "ott:block/acacia_beam"
+		"texture": "ott:block/beam/acacia_beam"
 	},
 	"elements": [
 		{

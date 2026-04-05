@@ -1,5 +1,5 @@
 {
-	"parent": "ott:block/general/plate_inner",
+	"parent": "ott:block/plate_inner",
 	"textures": {
 		"side": "minecraft:block/cherry_planks",
 		"top": "minecraft:block/cherry_planks",

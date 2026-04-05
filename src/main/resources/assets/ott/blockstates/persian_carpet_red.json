@@ -1,5 +1,5 @@
 {
     "variants": {
-        "": { "model": "ott:block/persian/persian_carpet_red" }
+        "": { "model": "ott:block/persian_carpet_red" }
     }
 }

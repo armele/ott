@@ -1,5 +1,5 @@
 {
     "variants": {
-        "": { "model": "ott:block/general/bamboo_thatch"}
+        "": { "model": "ott:block/bamboo_thatch"}
     }
 }

@@ -1,7 +1,7 @@
 {
 	"textures": {
 		"slab": "minecraft:block/jungle_planks",
-		"texture": "ott:block/jungle_beam"
+		"texture": "ott:block/beam/jungle_beam"
 	},
 	"elements": [
 		{

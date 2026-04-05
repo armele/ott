@@ -1,8 +1,0 @@
-{
-	"parent": "ott:block/general/small_plate_inner",
-	"textures": {
-		"side": "block/mangrove_planks",
-		"top": "block/mangrove_planks",
-		"frieze": "block/mangrove_planks"
-	}
-}

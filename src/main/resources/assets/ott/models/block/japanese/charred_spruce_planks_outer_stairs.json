@@ -1,8 +1,0 @@
-{
-    "parent": "block/outer_stairs",
-    "textures": {
-        "bottom": "ott:block/charred_spruce_planks",
-        "top": "ott:block/charred_spruce_planks",
-        "side": "ott:block/charred_spruce_planks"
-    }
-}

@@ -1,5 +1,5 @@
 {
     "variants": {
-        "": { "model": "ott:block/japanese/gray_roof_tiles" }
+        "": { "model": "ott:block/gray_roof_tiles" }
     }
 }

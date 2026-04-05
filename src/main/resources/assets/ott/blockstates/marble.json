@@ -1,5 +1,5 @@
 {
     "variants": {
-        "": { "model": "ott:block/roman/marble" }
+        "": { "model": "ott:block/marble" }
     }
 }

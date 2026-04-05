@@ -1,5 +1,5 @@
 {
-	"parent": "ott:block/general/small_plate",
+	"parent": "ott:block/small_plate",
 	"textures": {
 		"side": "minecraft:block/mangrove_planks",
 		"frieze": "minecraft:block/mangrove_planks"

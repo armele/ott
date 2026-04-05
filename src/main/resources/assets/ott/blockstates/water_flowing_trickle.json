@@ -2,43 +2,43 @@
 	"multipart": [
 		{
 			"when": { "north_trickle": "true", "water_end": "straight|splash" },
-			"apply": { "model": "ott:block/general/water/water_trickle_north" }
+			"apply": { "model": "ott:block/water/water_trickle_north" }
 		},
 		{
 			"when": { "east_trickle": "true", "water_end": "straight|splash" },
-			"apply": { "model": "ott:block/general/water/water_trickle_north", "y": 90 }
+			"apply": { "model": "ott:block/water/water_trickle_north", "y": 90 }
 		},
 		{
 			"when": { "south_trickle": "true", "water_end": "straight|splash" },
-			"apply": { "model": "ott:block/general/water/water_trickle_north", "y": 180 }
+			"apply": { "model": "ott:block/water/water_trickle_north", "y": 180 }
 		},
 		{
 			"when": { "west_trickle": "true", "water_end": "straight|splash" },
-			"apply": { "model": "ott:block/general/water/water_trickle_north", "y": 270 }
+			"apply": { "model": "ott:block/water/water_trickle_north", "y": 270 }
 		},
 		{
 			"when": { "center_trickle": "true", "water_end": "straight|splash" },
-			"apply": { "model": "ott:block/general/water/water_trickle_center" }
+			"apply": { "model": "ott:block/water/water_trickle_center" }
 		},
 		{
 			"when": { "north_trickle": "true", "water_end": "fade" },
-			"apply": { "model": "ott:block/general/water/water_trickle_north_fade" }
+			"apply": { "model": "ott:block/water/water_trickle_north_fade" }
 		},
 		{
 			"when": { "east_trickle": "true", "water_end": "fade" },
-			"apply": { "model": "ott:block/general/water/water_trickle_north_fade", "y": 90 }
+			"apply": { "model": "ott:block/water/water_trickle_north_fade", "y": 90 }
 		},
 		{
 			"when": { "south_trickle": "true", "water_end": "fade" },
-			"apply": { "model": "ott:block/general/water/water_trickle_north_fade", "y": 180 }
+			"apply": { "model": "ott:block/water/water_trickle_north_fade", "y": 180 }
 		},
 		{
 			"when": { "west_trickle": "true", "water_end": "fade" },
-			"apply": { "model": "ott:block/general/water/water_trickle_north_fade", "y": 270 }
+			"apply": { "model": "ott:block/water/water_trickle_north_fade", "y": 270 }
 		},
 		{
 			"when": { "center_trickle": "true", "water_end": "fade" },
-			"apply": { "model": "ott:block/general/water/water_trickle_center_fade" }
+			"apply": { "model": "ott:block/water/water_trickle_center_fade" }
 		}
 	]
 }

@@ -1,8 +1,8 @@
 {
     "variants": {
-        "vertical_connection=none":  { "model": "ott:block/japanese/stone_lantern_up" },
-        "vertical_connection=above": { "model": "ott:block/japanese/stone_lantern_up" },
-        "vertical_connection=under": { "model": "ott:block/japanese/stone_lantern_down" },
-        "vertical_connection=both":  { "model": "ott:block/japanese/stone_lantern_down" }
+        "vertical_connection=none":  { "model": "ott:block/stone_lantern_up" },
+        "vertical_connection=above": { "model": "ott:block/stone_lantern_up" },
+        "vertical_connection=under": { "model": "ott:block/stone_lantern_down" },
+        "vertical_connection=both":  { "model": "ott:block/stone_lantern_down" }
     }
 }

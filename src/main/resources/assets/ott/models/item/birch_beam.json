@@ -1,7 +1,7 @@
 {
 	"textures": {
-		"0": "ott:block/birch_beam",
-		"particle": "ott:block/birch_beam"
+		"0": "ott:block/beam/birch_beam",
+		"particle": "ott:block/beam/birch_beam"
 	},
 	"elements": [
 		{
