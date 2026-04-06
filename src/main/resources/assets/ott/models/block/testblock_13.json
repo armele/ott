@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:block/cube_all",
   "textures": {
-    "all": "ott:block/testtexture_13"
+    "all": "ott:block/testtexture/testtexture_13"
   }
 }

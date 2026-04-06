@@ -35,7 +35,7 @@ public class GradientTextureProvider implements DataProvider {
     @Override
     @NotNull
     public CompletableFuture<?> run(@NotNull CachedOutput cache) {
-        final PackOutput.PathProvider outputProvider = packOutput.createPathProvider(PackOutput.Target.RESOURCE_PACK, "textures/block");
+        final PackOutput.PathProvider outputProvider = packOutput.createPathProvider(PackOutput.Target.RESOURCE_PACK, "textures/block/gradients");
         for (DeferredBlock<? extends IGradientBlock> deferredBlock : ModBlocks.getAllGradientBlocks()) {
             processGradientBlock(cache, outputProvider, deferredBlock.get());
         }
@@ -132,7 +132,7 @@ public class GradientTextureProvider implements DataProvider {
 
             ResourceLocation key = gradientBlock.getRegistryID();
             cache.writeIfNeeded(outputProvider.file(key, "png"), bytes, Hashing.sha256().hashBytes(bytes));
-            existingFileHelper.trackGenerated(key, PackType.CLIENT_RESOURCES, ".png", "textures/block");
+            existingFileHelper.trackGenerated(key, PackType.CLIENT_RESOURCES, ".png", "textures/block/gradients");
         } catch (IOException e) {
             throw new RuntimeException(e);
         }

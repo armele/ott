@@ -719,10 +719,6 @@ public class ModItems {
         registerBlockItem(ModBlocks.IRON_FANCY_LANTERN);
         registerBlockItem(ModBlocks.SPRUCE_LOG_FENCE);
         registerBlockItem(ModBlocks.LIGHT_GRAY_FUTON);
-        registerBlockItem(ModBlocks.PLASTERED_STONE);
-        registerBlockItem(ModBlocks.PLASTERED_STONE_EDGE);
-        registerBlockItem(ModBlocks.PLASTERED_STONE_PLATE);
-        registerBlockItem(ModBlocks.GEOMETRIC_WINDOW);
         registerBlockItem(ModBlocks.ORNAMENTED_CHISELED_PLASTERED_STONE);
         registerBlockItem(ModBlocks.GREEN_ORNAMENTED_PLASTERED_STONE);
         registerBlockItem(ModBlocks.RED_ORNAMENTED_PLASTERED_STONE);

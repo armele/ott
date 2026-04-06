@@ -2,83 +2,83 @@
   "multipart": [
     {
       "when": { "facing": "north", "hoopoe_eggs": "0" },
-      "apply": { "model": "ott:block/oak_nest" }
+      "apply": { "model": "ott:block/oak/oak_nest" }
     },
     {
       "when": { "facing": "east", "hoopoe_eggs": "0" },
-      "apply": { "model": "ott:block/oak_nest", "y": 90 }
+      "apply": { "model": "ott:block/oak/oak_nest", "y": 90 }
     },
     {
       "when": { "facing": "south", "hoopoe_eggs": "0" },
-      "apply": { "model": "ott:block/oak_nest", "y": 180 }
+      "apply": { "model": "ott:block/oak/oak_nest", "y": 180 }
     },
     {
       "when": { "facing": "west", "hoopoe_eggs": "0" },
-      "apply": { "model": "ott:block/oak_nest", "y": 270 }
+      "apply": { "model": "ott:block/oak/oak_nest", "y": 270 }
     },
     {
       "when": { "facing": "north", "hoopoe_eggs": "1" },
-      "apply": { "model": "ott:block/oak_nest_egg_1" }
+      "apply": { "model": "ott:block/oak/oak_nest_egg_1" }
     },
     {
       "when": { "facing": "east", "hoopoe_eggs": "1" },
-      "apply": { "model": "ott:block/oak_nest_egg_1", "y": 90 }
+      "apply": { "model": "ott:block/oak/oak_nest_egg_1", "y": 90 }
     },
     {
       "when": { "facing": "south", "hoopoe_eggs": "1" },
-      "apply": { "model": "ott:block/oak_nest_egg_1", "y": 180 }
+      "apply": { "model": "ott:block/oak/oak_nest_egg_1", "y": 180 }
     },
     {
       "when": { "facing": "west", "hoopoe_eggs": "1" },
-      "apply": { "model": "ott:block/oak_nest_egg_1", "y": 270 }
+      "apply": { "model": "ott:block/oak/oak_nest_egg_1", "y": 270 }
     },
     {
       "when": { "facing": "north", "hoopoe_eggs": "2" },
-      "apply": { "model": "ott:block/oak_nest_egg_2" }
+      "apply": { "model": "ott:block/oak/oak_nest_egg_2" }
     },
     {
       "when": { "facing": "east", "hoopoe_eggs": "2" },
-      "apply": { "model": "ott:block/oak_nest_egg_2", "y": 90 }
+      "apply": { "model": "ott:block/oak/oak_nest_egg_2", "y": 90 }
     },
     {
       "when": { "facing": "south", "hoopoe_eggs": "2" },
-      "apply": { "model": "ott:block/oak_nest_egg_2", "y": 180 }
+      "apply": { "model": "ott:block/oak/oak_nest_egg_2", "y": 180 }
     },
     {
       "when": { "facing": "west", "hoopoe_eggs": "2" },
-      "apply": { "model": "ott:block/oak_nest_egg_2", "y": 270 }
+      "apply": { "model": "ott:block/oak/oak_nest_egg_2", "y": 270 }
     },
     {
       "when": { "facing": "north", "hoopoe_eggs": "3" },
-      "apply": { "model": "ott:block/oak_nest_egg_3" }
+      "apply": { "model": "ott:block/oak/oak_nest_egg_3" }
     },
     {
       "when": { "facing": "east", "hoopoe_eggs": "3" },
-      "apply": { "model": "ott:block/oak_nest_egg_3", "y": 90 }
+      "apply": { "model": "ott:block/oak/oak_nest_egg_3", "y": 90 }
     },
     {
       "when": { "facing": "south", "hoopoe_eggs": "3" },
-      "apply": { "model": "ott:block/oak_nest_egg_3", "y": 180 }
+      "apply": { "model": "ott:block/oak/oak_nest_egg_3", "y": 180 }
     },
     {
       "when": { "facing": "west", "hoopoe_eggs": "3" },
-      "apply": { "model": "ott:block/oak_nest_egg_3", "y": 270 }
+      "apply": { "model": "ott:block/oak/oak_nest_egg_3", "y": 270 }
     },
     {
       "when": { "facing": "north", "hoopoe_eggs": "4" },
-      "apply": { "model": "ott:block/oak_nest_egg_4" }
+      "apply": { "model": "ott:block/oak/oak_nest_egg_4" }
     },
     {
       "when": { "facing": "east", "hoopoe_eggs": "4" },
-      "apply": { "model": "ott:block/oak_nest_egg_4", "y": 90 }
+      "apply": { "model": "ott:block/oak/oak_nest_egg_4", "y": 90 }
     },
     {
       "when": { "facing": "south", "hoopoe_eggs": "4" },
-      "apply": { "model": "ott:block/oak_nest_egg_4", "y": 180 }
+      "apply": { "model": "ott:block/oak/oak_nest_egg_4", "y": 180 }
     },
     {
       "when": { "facing": "west", "hoopoe_eggs": "4" },
-      "apply": { "model": "ott:block/oak_nest_egg_4", "y": 270 }
+      "apply": { "model": "ott:block/oak/oak_nest_egg_4", "y": 270 }
     }
   ]
 }

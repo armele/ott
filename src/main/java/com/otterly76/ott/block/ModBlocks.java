@@ -51,8 +51,7 @@ public class ModBlocks {
     public static final List<DeferredBlock<? extends Block>> SEAGLASS = new ArrayList<>();
     public static final List<DeferredBlock<? extends Block>> LIMESTONE = new ArrayList<>();
     public static final List<DeferredBlock<? extends Block>> TESTBLOCK = new ArrayList<>();
-
-    /** All 32 elevator blocks (16 vanilla + 16 custom colors). Key = color name. */
+    
     public static final Map<String, DeferredBlock<ElevatorBlock>> ELEVATORS = new LinkedHashMap<>();
 
 
@@ -969,11 +968,6 @@ public class ModBlocks {
     // === DoTB Phase 4: Pre-Columbian Plastered Stone ===
     // =========================================================================
     private static final Properties PS = Properties.of().strength(1.5f, 6.0f).sound(SoundType.STONE).requiresCorrectToolForDrops();
-    // White (no color prefix)
-    public static final DeferredBlock<Block>       PLASTERED_STONE              = register("plastered_stone",              () -> new Block(PS));
-    public static final DeferredBlock<EdgeBlock>   PLASTERED_STONE_EDGE         = register("plastered_stone_edge",         () -> new EdgeBlock(PS));
-    public static final DeferredBlock<PlateBlock>  PLASTERED_STONE_PLATE        = register("plastered_stone_plate",        () -> new PlateBlock(PS));
-    public static final DeferredBlock<Block>       GEOMETRIC_WINDOW             = register("geometric_window",             () -> new com.otterly76.ott.block.custom.GeometricWindowBlock(PS.noOcclusion()));
     // Shared pre-columbian misc
     public static final DeferredBlock<Block>  ORNAMENTED_CHISELED_PLASTERED_STONE  = register("ornamented_chiseled_plastered_stone",  () -> new Block(PS));
     public static final DeferredBlock<Block>  GREEN_ORNAMENTED_PLASTERED_STONE     = register("green_ornamented_plastered_stone",     () -> new Block(PS));

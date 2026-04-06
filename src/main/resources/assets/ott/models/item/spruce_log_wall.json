@@ -14,7 +14,7 @@
     "ambientocclusion": false,
     "textures": {
         "wall": "block/spruce_log",
-        "walltop": "ott:block/spruce_log_wall_top",
+        "walltop": "ott:block/spruce/spruce_log_wall_top",
         "particle": "block/spruce_log"
     },
     "elements": [

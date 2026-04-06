@@ -1,7 +1,6 @@
 Notes:
 =====
-fix stone bricks masonry
-fix persian rug x2
+add new blocks to wandering merchant
 
 Mods to Implement:
 =====

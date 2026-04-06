@@ -42,8 +42,18 @@ public class OttBlockStateProvider extends ModBlockStateProvider {
             if (!name.equals("oak")) registerVanillaWoodStructural(name, set);
         });
 
-        ModBlocks.SEAGLASS.forEach(block -> simpleBlockWithItem(block.get(), cubeAll(block.get())));
-        ModBlocks.LIMESTONE.forEach(block -> simpleBlockWithItem(block.get(), cubeAll(block.get())));
+        ModBlocks.SEAGLASS.forEach(block -> {
+            String path = blockPath(block.get());
+            ModelFile model = models().cubeAll("block/seaglass/" + path, modLoc("block/seaglass/" + path));
+            simpleBlock(block.get(), model);
+            itemModels().withExistingParent(path, modLoc("block/seaglass/" + path));
+        });
+        ModBlocks.LIMESTONE.forEach(block -> {
+            String path = blockPath(block.get());
+            ModelFile model = models().cubeAll("block/limestone/" + path, modLoc("block/limestone/" + path));
+            simpleBlock(block.get(), model);
+            itemModels().withExistingParent(path, modLoc("block/limestone/" + path));
+        });
         
         ModBlocks.TESTBLOCK.forEach(block -> {
             ModelFile model = models().getExistingFile(modLoc("block/" + block.getId().getPath()));
@@ -156,79 +166,82 @@ public class OttBlockStateProvider extends ModBlockStateProvider {
     }
 
     private void registerGradientBlock(DeferredBlock<? extends IGradientBlock> block) {
-        ResourceLocation sideTexture = modLoc("block/" + block.get().getRegistryID().getPath());
-        final ModelFile blockModel = models().cube("block/" + block.get().getRegistryID().getPath(), mcLoc("block/" + block.get().getTextureName(block.get().getSecondColor())), mcLoc("block/" + block.get().getTextureName(block.get().getFirstColor())), sideTexture, sideTexture, sideTexture, sideTexture)
+        String path = block.get().getRegistryID().getPath();
+        ResourceLocation sideTexture = modLoc("block/gradients/" + path);
+        final ModelFile blockModel = models().cube("block/gradients/" + path, mcLoc("block/" + block.get().getTextureName(block.get().getSecondColor())), mcLoc("block/" + block.get().getTextureName(block.get().getFirstColor())), sideTexture, sideTexture, sideTexture, sideTexture)
                 .texture("particle", mcLoc("block/" + block.get().getTextureName(block.get().getFirstColor())))
                 .renderType(block.get().getRenderType());
-        itemModels().simpleBlockItem(block.get());
+        itemModels().withExistingParent(path, modLoc("block/gradients/" + path));
         directionalBlock(block.get(), blockModel);
     }
 
     private void registerColorSet(String color, ModBlocks.ColorSetBlocks set) {
+        String dir = "block/" + color + "/";
+
         // Concrete, Terracotta, Wool
-        colorSetCubeAll(set.concrete().get(), color, "concrete");
-        colorSetCubeAll(set.terracotta().get(), color, "terracotta");
-        colorSetCubeAll(set.wool().get(), color, "wool");
+        colorSetCubeAll(set.concrete().get(), color, "concrete", dir);
+        colorSetCubeAll(set.terracotta().get(), color, "terracotta", dir);
+        colorSetCubeAll(set.wool().get(), color, "wool", dir);
 
         // Concrete Powder
-        colorSetCubeAll(set.concretePowder().get(), color, "concrete_powder");
+        colorSetCubeAll(set.concretePowder().get(), color, "concrete_powder", dir);
 
         // Stained Glass
-        colorSetCubeAll(set.stainedGlass().get(), color, "stained_glass", "translucent");
+        colorSetCubeAll(set.stainedGlass().get(), color, "stained_glass", "translucent", dir);
 
         // Stained Glass Pane
-        colorSetPaneBlock(set.stainedGlassPane().get(), color);
+        colorSetPaneBlock(set.stainedGlassPane().get(), color, dir);
 
         // Glazed Terracotta
-        horizontalBlock(set.glazedTerracotta().get(), models().withExistingParent(color + "_glazed_terracotta", mcLoc("block/template_glazed_terracotta"))
+        horizontalBlock(set.glazedTerracotta().get(), models().withExistingParent(dir + color + "_glazed_terracotta", mcLoc("block/template_glazed_terracotta"))
                 .texture("pattern", modLoc("block/glazed_terracotta/" + color)));
 
         // Shulker Box
-        colorSetCubeAll(set.shulkerBox().get(), color, "concrete");
+        colorSetCubeAll(set.shulkerBox().get(), color, "concrete", dir);
 
         // Candle
-        registerCandle(set.candle().get(), color);
+        registerCandle(set.candle().get(), color, dir);
 
         // Bed
-        registerBed(set.bed().get(), color);
+        registerBed(set.bed().get(), color, dir);
 
         // Carpet
-        colorSetCarpet(set.carpet().get(), color);
+        colorSetCarpet(set.carpet().get(), color, dir);
 
         // Banner
-        registerBanner(set.banner().get(), set.wallBanner().get(), color);
+        registerBanner(set.banner().get(), set.wallBanner().get(), color, dir);
 
         // ── Structural shapes ─────────────────────────────────────────────────
         ResourceLocation woolTex = modLoc("block/color_set/" + color + "/wool");
 
         // Plate
-        ModelFile csPlate      = models().withExistingParent(color + "_plate",       modLoc("block/plate"))
+        ModelFile csPlate      = models().withExistingParent(dir + color + "_plate",       modLoc("block/plate"))
                 .texture("side", woolTex).texture("top", woolTex).texture("frieze", woolTex);
-        ModelFile csPlateOuter = models().withExistingParent(color + "_plate_outer", modLoc("block/plate_outer"))
+        ModelFile csPlateOuter = models().withExistingParent(dir + color + "_plate_outer", modLoc("block/plate_outer"))
                 .texture("top", woolTex).texture("frieze", woolTex);
-        ModelFile csPlateInner = models().withExistingParent(color + "_plate_inner", modLoc("block/plate_inner"))
+        ModelFile csPlateInner = models().withExistingParent(dir + color + "_plate_inner", modLoc("block/plate_inner"))
                 .texture("side", woolTex).texture("top", woolTex).texture("frieze", woolTex);
         registerFacingShapeBlock(set.plate().get(), csPlate, csPlateOuter, csPlateInner);
         itemModels().withExistingParent(color + "_plate", csPlate.getLocation());
 
         // Edge
-        ModelFile csEdge      = models().withExistingParent(color + "_edge",       modLoc("block/small_plate"))
+        ModelFile csEdge      = models().withExistingParent(dir + color + "_edge",       modLoc("block/small_plate"))
                 .texture("side", woolTex).texture("frieze", woolTex);
-        ModelFile csEdgeOuter = models().withExistingParent(color + "_edge_outer", modLoc("block/small_plate_outer"))
+        ModelFile csEdgeOuter = models().withExistingParent(dir + color + "_edge_outer", modLoc("block/small_plate_outer"))
                 .texture("top", woolTex).texture("frieze", woolTex);
-        ModelFile csEdgeInner = models().withExistingParent(color + "_edge_inner", modLoc("block/small_plate_inner"))
+        ModelFile csEdgeInner = models().withExistingParent(dir + color + "_edge_inner", modLoc("block/small_plate_inner"))
                 .texture("side", woolTex).texture("top", woolTex).texture("frieze", woolTex);
         registerFacingShapeHalfBlock(set.edge().get(), csEdge, csEdgeOuter, csEdgeInner);
         itemModels().withExistingParent(color + "_edge", csEdge.getLocation());
 
         // Beam
-        ModelFile csBeamY   = models().withExistingParent(color + "_beam_y",      modLoc("block/oak_beam_y"))
+        ModelFile csBeamY   = models().withExistingParent(dir + color + "_beam_y",      modLoc("block/oak/oak_beam_y"))
                 .renderType("minecraft:cutout").texture("1", woolTex).texture("particle", woolTex);
-        ModelFile csBeamX   = models().withExistingParent(color + "_beam_x",      modLoc("block/oak_beam_x"))
+        ModelFile csBeamX   = models().withExistingParent(dir + color + "_beam_x",      modLoc("block/oak/oak_beam_x"))
                 .renderType("minecraft:cutout").texture("1", woolTex).texture("particle", woolTex);
-        ModelFile csBeamXZ  = models().withExistingParent(color + "_beam_x_z",    modLoc("block/oak_beam_x_z"))
+        ModelFile csBeamXZ  = models().withExistingParent(dir + color + "_beam_x_z",    modLoc("block/oak/oak_beam_x_z"))
                 .renderType("minecraft:cutout").texture("1", woolTex).texture("particle", woolTex);
-        ModelFile csBeamBot = models().withExistingParent(color + "_beam_bottom",  modLoc("block/oak_beam_bottom"))
+        ModelFile csBeamBot = models().withExistingParent(dir + color + "_beam_bottom",  modLoc("block/oak/oak_beam_bottom"))
                 .renderType("minecraft:cutout").texture("texture", woolTex).texture("particle", woolTex);
         getMultipartBuilder(set.beam().get())
                 .part().modelFile(csBeamY).addModel()                .condition(BeamBlock.AXIS_Y, true).end()
@@ -240,11 +253,11 @@ public class OttBlockStateProvider extends ModBlockStateProvider {
                 .texture("0", woolTex).texture("particle", woolTex);
 
         // Pergola
-        ModelFile csPergolaY  = models().withExistingParent(color + "_pergola_y",   modLoc("block/oak_pergola_y"))
+        ModelFile csPergolaY  = models().withExistingParent(dir + color + "_pergola_y",   modLoc("block/oak/oak_pergola_y"))
                 .renderType("minecraft:cutout").texture("0", woolTex).texture("particle", woolTex);
-        ModelFile csPergolaX  = models().withExistingParent(color + "_pergola_x",   modLoc("block/oak_pergola_x"))
+        ModelFile csPergolaX  = models().withExistingParent(dir + color + "_pergola_x",   modLoc("block/oak/oak_pergola_x"))
                 .renderType("minecraft:cutout").texture("0", woolTex).texture("particle", woolTex);
-        ModelFile csPergolaXZ = models().withExistingParent(color + "_pergola_x_z", modLoc("block/oak_pergola_x_z"))
+        ModelFile csPergolaXZ = models().withExistingParent(dir + color + "_pergola_x_z", modLoc("block/oak/oak_pergola_x_z"))
                 .renderType("minecraft:cutout").texture("0", woolTex).texture("particle", woolTex);
         getMultipartBuilder(set.pergola().get())
                 .part().modelFile(csPergolaY).addModel()               .condition(PergolaBlock.AXIS_Y, true).end()
@@ -255,33 +268,32 @@ public class OttBlockStateProvider extends ModBlockStateProvider {
                 .texture("0", woolTex).texture("particle", woolTex);
 
         // Geometric Window
-        ModelFile csWindow = models().withExistingParent(color + "_geometric_window", modLoc("block/geometric_window"))
+        ModelFile csWindow = models().withExistingParent(dir + color + "_geometric_window", modLoc("block/geometric_window"))
                 .texture("texture", woolTex).texture("particle", woolTex)
                 .renderType("minecraft:cutout");
         horizontalBlock(set.geometricWindow().get(), csWindow);
         itemModels().withExistingParent(color + "_geometric_window", csWindow.getLocation());
     }
 
-    private void colorSetCubeAll(Block block, String color, String type) {
-        colorSetCubeAll(block, color, type, "solid");
+    private void colorSetCubeAll(Block block, String color, String type, String dir) {
+        colorSetCubeAll(block, color, type, "solid", dir);
     }
 
-    @SuppressWarnings("SameParameterValue")
-    private void colorSetCubeAll(Block block, String color, String type, String renderType) {
+    private void colorSetCubeAll(Block block, String color, String type, String renderType, String dir) {
         String texture = modLoc("block/color_set/" + color + "/" + type).toString();
-        simpleBlock(block, models().withExistingParent(blockPath(block), mcLoc("block/cube_all"))
+        simpleBlock(block, models().withExistingParent(dir + blockPath(block), mcLoc("block/cube_all"))
                 .texture("all", texture)
                 .renderType(mcLoc(renderType)));
     }
 
-    private void colorSetCarpet(Block block, String color) {
+    private void colorSetCarpet(Block block, String color, String dir) {
         ResourceLocation texture = modLoc("block/color_set/" + color + "/" + "wool");
-        simpleBlock(block, models().withExistingParent(blockPath(block), mcLoc("block/carpet"))
+        simpleBlock(block, models().withExistingParent(dir + blockPath(block), mcLoc("block/carpet"))
                 .texture("wool", texture.toString()));
     }
 
-    private void colorSetPaneBlock(IronBarsBlock block, String color) {
-        String baseName = blockPath(block);
+    private void colorSetPaneBlock(IronBarsBlock block, String color, String dir) {
+        String baseName = dir + blockPath(block);
         String side = modLoc("block/color_set/" + color + "/stained_glass").toString();
         String edge = modLoc("block/color_set/" + color + "/stained_glass_pane_top").toString();
         
@@ -336,12 +348,12 @@ public class OttBlockStateProvider extends ModBlockStateProvider {
         return builder;
     }
 
-    private void registerBed(Block bed, String color) {
+    private void registerBed(Block bed, String color, String dir) {
         ResourceLocation woolTex = modLoc("block/color_set/" + color + "/wool");
         // For the dummy block models used for particles/items, we use the tinted wool
-        ModelFile head = models().withExistingParent(color + "_bed_head", mcLoc("block/cube_all"))
+        ModelFile head = models().withExistingParent(dir + color + "_bed_head", mcLoc("block/cube_all"))
                 .texture("all", woolTex);
-        ModelFile foot = models().withExistingParent(color + "_bed_foot", mcLoc("block/cube_all"))
+        ModelFile foot = models().withExistingParent(dir + color + "_bed_foot", mcLoc("block/cube_all"))
                 .texture("all", woolTex);
 
         getVariantBuilder(bed).forAllStates(state -> {
@@ -354,24 +366,24 @@ public class OttBlockStateProvider extends ModBlockStateProvider {
         });
     }
 
-    private void registerCandle(Block candle, String color) {
+    private void registerCandle(Block candle, String color, String dir) {
         String candleTex = modLoc("block/color_set/" + color + "/candle").toString();
 
-        ModelFile one = models().withExistingParent(color + "_candle_one_candle", mcLoc("block/template_candle"))
+        ModelFile one = models().withExistingParent(dir + color + "_candle_one_candle", mcLoc("block/template_candle"))
                 .texture("all", candleTex);
-        ModelFile oneLit = models().withExistingParent(color + "_candle_one_candle_lit", mcLoc("block/template_candle"))
+        ModelFile oneLit = models().withExistingParent(dir + color + "_candle_one_candle_lit", mcLoc("block/template_candle"))
                 .texture("all", candleTex);
-        ModelFile two = models().withExistingParent(color + "_candle_two_candles", mcLoc("block/template_two_candles"))
+        ModelFile two = models().withExistingParent(dir + color + "_candle_two_candles", mcLoc("block/template_two_candles"))
                 .texture("all", candleTex);
-        ModelFile twoLit = models().withExistingParent(color + "_candle_two_candles_lit", mcLoc("block/template_two_candles"))
+        ModelFile twoLit = models().withExistingParent(dir + color + "_candle_two_candles_lit", mcLoc("block/template_two_candles"))
                 .texture("all", candleTex);
-        ModelFile three = models().withExistingParent(color + "_candle_three_candles", mcLoc("block/template_three_candles"))
+        ModelFile three = models().withExistingParent(dir + color + "_candle_three_candles", mcLoc("block/template_three_candles"))
                 .texture("all", candleTex);
-        ModelFile threeLit = models().withExistingParent(color + "_candle_three_candles_lit", mcLoc("block/template_three_candles"))
+        ModelFile threeLit = models().withExistingParent(dir + color + "_candle_three_candles_lit", mcLoc("block/template_three_candles"))
                 .texture("all", candleTex);
-        ModelFile four = models().withExistingParent(color + "_candle_four_candles", mcLoc("block/template_four_candles"))
+        ModelFile four = models().withExistingParent(dir + color + "_candle_four_candles", mcLoc("block/template_four_candles"))
                 .texture("all", candleTex);
-        ModelFile fourLit = models().withExistingParent(color + "_candle_four_candles_lit", mcLoc("block/template_four_candles"))
+        ModelFile fourLit = models().withExistingParent(dir + color + "_candle_four_candles_lit", mcLoc("block/template_four_candles"))
                 .texture("all", candleTex);
 
         getVariantBuilder(candle).forAllStates(state -> {
@@ -388,8 +400,8 @@ public class OttBlockStateProvider extends ModBlockStateProvider {
         });
     }
 
-    private void registerBanner(Block banner, Block wallBanner, String color) {
-        ModelFile model = models().getBuilder(color + "_banner").parent(new ModelFile.UncheckedModelFile("builtin/entity"));
+    private void registerBanner(Block banner, Block wallBanner, String color, String dir) {
+        ModelFile model = models().getBuilder(dir + color + "_banner").parent(new ModelFile.UncheckedModelFile("builtin/entity"));
 
         getVariantBuilder(banner).forAllStates(state -> ConfiguredModel.builder().modelFile(model).build());
         getVariantBuilder(wallBanner).forAllStates(state -> ConfiguredModel.builder().modelFile(model).build());
@@ -407,59 +419,107 @@ public class OttBlockStateProvider extends ModBlockStateProvider {
     }
 
     private void registerWoodSet(String setName, ModBlocks.WoodSetBlocks set) {
+        String dir = "block/" + setName + "/";
         ResourceLocation planksTex = modLoc("block/wood/" + setName + "/planks");
         ResourceLocation logSide = modLoc("block/wood/" + setName + "/log");
         ResourceLocation logTop = modLoc("block/wood/" + setName + "/log_top");
         ResourceLocation strippedLogSide = modLoc("block/wood/" + setName + "/stripped_log");
         ResourceLocation strippedLogTop = modLoc("block/wood/" + setName + "/stripped_log_top");
 
-        axisBlock(set.log().get(), logSide, logTop);
-        axisBlock(set.wood().get(), logSide, logSide);
-        axisBlock(set.strippedLog().get(), strippedLogSide, strippedLogTop);
-        axisBlock(set.strippedWood().get(), strippedLogSide, strippedLogSide);
+        // ── Axis blocks ───────────────────────────────────────────────────────
+        axisBlock(set.log().get(),
+                models().cubeColumn(dir + blockPath(set.log().get()), logSide, logTop),
+                models().cubeColumnHorizontal(dir + blockPath(set.log().get()) + "_horizontal", logSide, logTop));
+        axisBlock(set.wood().get(),
+                models().cubeColumn(dir + blockPath(set.wood().get()), logSide, logSide),
+                models().cubeColumnHorizontal(dir + blockPath(set.wood().get()) + "_horizontal", logSide, logSide));
+        axisBlock(set.strippedLog().get(),
+                models().cubeColumn(dir + blockPath(set.strippedLog().get()), strippedLogSide, strippedLogTop),
+                models().cubeColumnHorizontal(dir + blockPath(set.strippedLog().get()) + "_horizontal", strippedLogSide, strippedLogTop));
+        axisBlock(set.strippedWood().get(),
+                models().cubeColumn(dir + blockPath(set.strippedWood().get()), strippedLogSide, strippedLogSide),
+                models().cubeColumnHorizontal(dir + blockPath(set.strippedWood().get()) + "_horizontal", strippedLogSide, strippedLogSide));
 
+        // ── Planks ───────────────────────────────────────────────────────────
         String planksModelName = setName + "_planks";
-        ModelFile planksModel = models().cubeAll(planksModelName, planksTex);
+        ModelFile planksModel = models().cubeAll(dir + planksModelName, planksTex);
         simpleBlock(set.planks().get(), planksModel);
 
-        stairsBlock(set.stairs().get(), planksTex);
-        registerPlanksSlab(setName, set.slab().get(), planksTex, modLoc("block/" + planksModelName));
+        // ── Stairs ───────────────────────────────────────────────────────────
+        String stairsName = blockPath(set.stairs().get());
+        stairsBlock(set.stairs().get(),
+                models().stairs(dir + stairsName, planksTex, planksTex, planksTex),
+                models().stairsOuter(dir + stairsName + "_outer", planksTex, planksTex, planksTex),
+                models().stairsInner(dir + stairsName + "_inner", planksTex, planksTex, planksTex));
 
-        fenceBlock(set.fence().get(), planksTex);
-        models().fenceInventory(set.fence().getId().getPath() + "_inventory", planksTex);
-        fenceGateBlock(set.fenceGate().get(), planksTex);
-        pressurePlateBlock(set.pressurePlate().get(), planksTex);
-        buttonBlock(set.button().get(), planksTex);
+        // ── Slab ─────────────────────────────────────────────────────────────
+        registerPlanksSlab(setName, set.slab().get(), planksTex, modLoc(dir + planksModelName), dir);
 
-        models().withExistingParent(set.button().getId().getPath() + "_inventory", mcLoc("block/button_inventory"))
+        // ── Fence ────────────────────────────────────────────────────────────
+        String fenceName = blockPath(set.fence().get());
+        fourWayBlock(set.fence().get(),
+                models().fencePost(dir + fenceName + "_post", planksTex),
+                models().fenceSide(dir + fenceName + "_side", planksTex));
+        models().fenceInventory(dir + fenceName + "_inventory", planksTex);
+
+        // ── Fence Gate ───────────────────────────────────────────────────────
+        String gateName = blockPath(set.fenceGate().get());
+        fenceGateBlock(set.fenceGate().get(),
+                models().fenceGate(dir + gateName, planksTex),
+                models().fenceGateOpen(dir + gateName + "_open", planksTex),
+                models().fenceGateWall(dir + gateName + "_wall", planksTex),
+                models().fenceGateWallOpen(dir + gateName + "_wall_open", planksTex));
+
+        // ── Pressure Plate ───────────────────────────────────────────────────
+        String plateName = blockPath(set.pressurePlate().get());
+        pressurePlateBlock(set.pressurePlate().get(),
+                models().pressurePlate(dir + plateName, planksTex),
+                models().pressurePlateDown(dir + plateName + "_down", planksTex));
+
+        // ── Button ───────────────────────────────────────────────────────────
+        String buttonName = blockPath(set.button().get());
+        buttonBlock(set.button().get(),
+                models().button(dir + buttonName, planksTex),
+                models().buttonPressed(dir + buttonName + "_pressed", planksTex));
+        models().withExistingParent(dir + buttonName + "_inventory", mcLoc("block/button_inventory"))
                 .texture("texture", planksTex);
 
-        registerCutoutDoor(set.door().get(), modLoc("block/wood/" + setName + "/door_bottom"), modLoc("block/wood/" + setName + "/door_top"));
-        registerCutoutTrapdoor(set.trapdoor().get(), modLoc("block/wood/" + setName + "/trapdoor"));
+        // ── Door / Trapdoor ───────────────────────────────────────────────────
+        registerCutoutDoor(set.door().get(), modLoc("block/wood/" + setName + "/door_bottom"), modLoc("block/wood/" + setName + "/door_top"), dir);
+        registerCutoutTrapdoor(set.trapdoor().get(), modLoc("block/wood/" + setName + "/trapdoor"), dir);
 
-        signBlock(set.sign().get(), set.wallSign().get(), planksTex);
-        hangingSignBlock(set.hangingSign().get(), set.wallHangingSign().get(), planksTex);
+        // ── Sign / Hanging Sign ───────────────────────────────────────────────
+        ModelFile signModel = models().sign(dir + blockPath(set.sign().get()), planksTex);
+        simpleBlock(set.sign().get(), signModel);
+        simpleBlock(set.wallSign().get(), signModel);
 
-        registerFluffyLeaves(setName, set.leaves().get());
+        ModelFile hangingSignModel = models().sign(dir + blockPath(set.hangingSign().get()), planksTex);
+        simpleBlock(set.hangingSign().get(), hangingSignModel);
+        simpleBlock(set.wallHangingSign().get(), hangingSignModel);
+
+        // ── Leaves ───────────────────────────────────────────────────────────
+        registerFluffyLeaves(setName, set.leaves().get(), dir);
+
         registerSapling(set.sapling().get(), set.pottedSapling().get(), setName);
 
         registerWoodSetStructural(setName, set);
     }
 
     private void registerWoodSetStructural(String setName, ModBlocks.WoodSetBlocks set) {
+        String dir = "block/" + setName + "/";
         ResourceLocation planks  = modLoc("block/wood/" + setName + "/planks");
         ResourceLocation stripped = modLoc("block/wood/" + setName + "/stripped_log");
         ResourceLocation beamTex    = modLoc("block/beam/" + setName + "_beam");
         ResourceLocation pergolaTex = modLoc("block/pergola/" + setName + "_pergola");
 
         // ── Beam ─────────────────────────────────────────────────────────────
-        ModelFile beamY = models().withExistingParent(setName + "_beam_y",      modLoc("block/oak_beam_y"))
+        ModelFile beamY = models().withExistingParent(dir + setName + "_beam_y",      modLoc("block/oak/oak_beam_y"))
                 .renderType("minecraft:cutout").texture("1", beamTex).texture("particle", beamTex);
-        ModelFile beamX = models().withExistingParent(setName + "_beam_x",      modLoc("block/oak_beam_x"))
+        ModelFile beamX = models().withExistingParent(dir + setName + "_beam_x",      modLoc("block/oak/oak_beam_x"))
                 .renderType("minecraft:cutout").texture("1", beamTex).texture("particle", beamTex);
-        ModelFile beamXZ = models().withExistingParent(setName + "_beam_x_z",   modLoc("block/oak_beam_x_z"))
+        ModelFile beamXZ = models().withExistingParent(dir + setName + "_beam_x_z",   modLoc("block/oak/oak_beam_x_z"))
                 .renderType("minecraft:cutout").texture("1", beamTex).texture("particle", beamTex);
-        ModelFile beamBot = models().withExistingParent(setName + "_beam_bottom", modLoc("block/oak_beam_bottom"))
+        ModelFile beamBot = models().withExistingParent(dir + setName + "_beam_bottom", modLoc("block/oak/oak_beam_bottom"))
                 .renderType("minecraft:cutout").texture("texture", beamTex).texture("particle", beamTex);
 
         getMultipartBuilder(set.beam().get())
@@ -470,11 +530,11 @@ public class OttBlockStateProvider extends ModBlockStateProvider {
                 .part().modelFile(beamBot).addModel().condition(BeamBlock.BOTTOM, true).end();
 
         // ── Pergola ───────────────────────────────────────────────────────────
-        ModelFile pergolaY  = models().withExistingParent(setName + "_pergola_y",   modLoc("block/oak_pergola_y"))
+        ModelFile pergolaY  = models().withExistingParent(dir + setName + "_pergola_y",   modLoc("block/oak/oak_pergola_y"))
                 .renderType("minecraft:cutout").texture("0", pergolaTex).texture("particle", pergolaTex);
-        ModelFile pergolaX  = models().withExistingParent(setName + "_pergola_x",   modLoc("block/oak_pergola_x"))
+        ModelFile pergolaX  = models().withExistingParent(dir + setName + "_pergola_x",   modLoc("block/oak/oak_pergola_x"))
                 .renderType("minecraft:cutout").texture("0", pergolaTex).texture("particle", pergolaTex);
-        ModelFile pergolaXZ = models().withExistingParent(setName + "_pergola_x_z", modLoc("block/oak_pergola_x_z"))
+        ModelFile pergolaXZ = models().withExistingParent(dir + setName + "_pergola_x_z", modLoc("block/oak/oak_pergola_x_z"))
                 .renderType("minecraft:cutout").texture("0", pergolaTex).texture("particle", pergolaTex);
 
         getMultipartBuilder(set.pergola().get())
@@ -488,15 +548,15 @@ public class OttBlockStateProvider extends ModBlockStateProvider {
                 .texture("0", pergolaTex).texture("particle", pergolaTex);
 
         // ── Support shared models ─────────────────────────────────────────────
-        ModelFile sup4   = models().withExistingParent(setName + "_support_4_pixels",  modLoc("block/oak_support_4_pixels"))
+        ModelFile sup4   = models().withExistingParent(dir + setName + "_support_4_pixels",  modLoc("block/oak/oak_support_4_pixels"))
                 .texture("slab", planks).texture("particle", planks);
-        ModelFile sup6   = models().withExistingParent(setName + "_support_6_pixels",  modLoc("block/oak_support_6_pixels"))
+        ModelFile sup6   = models().withExistingParent(dir + setName + "_support_6_pixels",  modLoc("block/oak/oak_support_6_pixels"))
                 .texture("slab", planks).texture("particle", planks);
-        ModelFile sup8   = models().withExistingParent(setName + "_support_8_pixels",  modLoc("block/oak_support_8_pixels"))
+        ModelFile sup8   = models().withExistingParent(dir + setName + "_support_8_pixels",  modLoc("block/oak/oak_support_8_pixels"))
                 .texture("slab", beamTex).texture("particle", beamTex);
-        ModelFile sup10  = models().withExistingParent(setName + "_support_10_pixels", modLoc("block/oak_support_10_pixels"))
+        ModelFile sup10  = models().withExistingParent(dir + setName + "_support_10_pixels", modLoc("block/oak/oak_support_10_pixels"))
                 .texture("slab", beamTex).texture("particle", beamTex);
-        ModelFile supSlab = models().withExistingParent(setName + "_support_slab",     modLoc("block/oak_support_slab"))
+        ModelFile supSlab = models().withExistingParent(dir + setName + "_support_slab",     modLoc("block/oak/oak_support_slab"))
                 .texture("slab", planks).texture("particle", planks);
 
         // ── Support Slab ──────────────────────────────────────────────────────
@@ -520,34 +580,34 @@ public class OttBlockStateProvider extends ModBlockStateProvider {
                 .part().modelFile(sup10).addModel().condition(SupportBeamBlock.PILLAR_CONNECTION, PillarConnection.TEN).end();
 
         // ── Planks Plate ──────────────────────────────────────────────────────
-        ModelFile plate      = models().withExistingParent(setName + "_planks_plate",       modLoc("block/plate"))
+        ModelFile plate      = models().withExistingParent(dir + setName + "_planks_plate",       modLoc("block/plate"))
                 .texture("side", planks).texture("top", planks).texture("frieze", planks);
-        ModelFile plateOuter = models().withExistingParent(setName + "_planks_plate_outer", modLoc("block/plate_outer"))
+        ModelFile plateOuter = models().withExistingParent(dir + setName + "_planks_plate_outer", modLoc("block/plate_outer"))
                 .texture("top", planks).texture("frieze", planks);
-        ModelFile plateInner = models().withExistingParent(setName + "_planks_plate_inner", modLoc("block/plate_inner"))
+        ModelFile plateInner = models().withExistingParent(dir + setName + "_planks_plate_inner", modLoc("block/plate_inner"))
                 .texture("side", planks).texture("top", planks).texture("frieze", planks);
         registerFacingShapeBlock(set.planksPlate().get(), plate, plateOuter, plateInner);
 
         // ── Planks Edge ───────────────────────────────────────────────────────
-        ModelFile edge      = models().withExistingParent(setName + "_planks_edge",       modLoc("block/small_plate"))
+        ModelFile edge      = models().withExistingParent(dir + setName + "_planks_edge",       modLoc("block/small_plate"))
                 .texture("side", planks).texture("frieze", planks);
-        ModelFile edgeOuter = models().withExistingParent(setName + "_planks_edge_outer", modLoc("block/small_plate_outer"))
+        ModelFile edgeOuter = models().withExistingParent(dir + setName + "_planks_edge_outer", modLoc("block/small_plate_outer"))
                 .texture("top", planks).texture("frieze", planks);
-        ModelFile edgeInner = models().withExistingParent(setName + "_planks_edge_inner", modLoc("block/small_plate_inner"))
+        ModelFile edgeInner = models().withExistingParent(dir + setName + "_planks_edge_inner", modLoc("block/small_plate_inner"))
                 .texture("side", planks).texture("top", planks).texture("frieze", planks);
         registerFacingShapeHalfBlock(set.planksEdge().get(), edge, edgeOuter, edgeInner);
 
         // ── Bannister ──────────────────────────────────────────────────────────
-        ModelFile bannister      = models().withExistingParent(setName + "_bannister",       modLoc("block/oak_bannister"))
+        ModelFile bannister      = models().withExistingParent(dir + setName + "_bannister",       modLoc("block/oak/oak_bannister"))
                 .texture("0", planks).texture("particle", planks);
-        ModelFile bannisterOuter = models().withExistingParent(setName + "_bannister_outer", modLoc("block/oak_bannister_outer"))
+        ModelFile bannisterOuter = models().withExistingParent(dir + setName + "_bannister_outer", modLoc("block/oak/oak_bannister_outer"))
                 .texture("0", planks).texture("particle", planks);
-        ModelFile bannisterInner = models().withExistingParent(setName + "_bannister_inner", modLoc("block/oak_bannister_inner"))
+        ModelFile bannisterInner = models().withExistingParent(dir + setName + "_bannister_inner", modLoc("block/oak/oak_bannister_inner"))
                 .texture("0", planks).texture("particle", planks);
         registerFacingShapeBlock(set.bannister().get(), bannister, bannisterOuter, bannisterInner);
 
         // ── Geometric Window ──────────────────────────────────────────────────
-        ModelFile wsWindow = models().withExistingParent(setName + "_geometric_window", modLoc("block/geometric_window"))
+        ModelFile wsWindow = models().withExistingParent(dir + setName + "_geometric_window", modLoc("block/geometric_window"))
                 .texture("texture", planks).texture("particle", planks)
                 .renderType("minecraft:cutout");
         horizontalBlock(set.geometricWindow().get(), wsWindow);
@@ -571,17 +631,18 @@ public class OttBlockStateProvider extends ModBlockStateProvider {
     }
 
     private void registerVanillaWoodStructural(String setName, ModBlocks.WoodStructuralBlocks set) {
+        String dir = "block/" + setName + "/";
         ResourceLocation planks  = vanillaPlanks(setName);
         ResourceLocation stripped = vanillaStripped(setName);
 
         // ── Beam ─────────────────────────────────────────────────────────────
-        ModelFile beamY = models().withExistingParent(setName + "_beam_y",      modLoc("block/oak_beam_y"))
+        ModelFile beamY = models().withExistingParent(dir + setName + "_beam_y",      modLoc("block/oak/oak_beam_y"))
                 .renderType("minecraft:cutout").texture("1", stripped).texture("particle", stripped);
-        ModelFile beamX = models().withExistingParent(setName + "_beam_x",      modLoc("block/oak_beam_x"))
+        ModelFile beamX = models().withExistingParent(dir + setName + "_beam_x",      modLoc("block/oak/oak_beam_x"))
                 .renderType("minecraft:cutout").texture("1", stripped).texture("particle", stripped);
-        ModelFile beamXZ = models().withExistingParent(setName + "_beam_x_z",   modLoc("block/oak_beam_x_z"))
+        ModelFile beamXZ = models().withExistingParent(dir + setName + "_beam_x_z",   modLoc("block/oak/oak_beam_x_z"))
                 .renderType("minecraft:cutout").texture("1", stripped).texture("particle", stripped);
-        ModelFile beamBot = models().withExistingParent(setName + "_beam_bottom", modLoc("block/oak_beam_bottom"))
+        ModelFile beamBot = models().withExistingParent(dir + setName + "_beam_bottom", modLoc("block/oak/oak_beam_bottom"))
                 .renderType("minecraft:cutout").texture("texture", stripped).texture("particle", stripped);
 
         getMultipartBuilder(set.beam().get())
@@ -592,11 +653,11 @@ public class OttBlockStateProvider extends ModBlockStateProvider {
                 .part().modelFile(beamBot).addModel().condition(BeamBlock.BOTTOM, true).end();
 
         // ── Pergola ───────────────────────────────────────────────────────────
-        ModelFile pergolaY  = models().withExistingParent(setName + "_pergola_y",   modLoc("block/oak_pergola_y"))
+        ModelFile pergolaY  = models().withExistingParent(dir + setName + "_pergola_y",   modLoc("block/oak/oak_pergola_y"))
                 .renderType("minecraft:cutout").texture("0", planks).texture("particle", planks);
-        ModelFile pergolaX  = models().withExistingParent(setName + "_pergola_x",   modLoc("block/oak_pergola_x"))
+        ModelFile pergolaX  = models().withExistingParent(dir + setName + "_pergola_x",   modLoc("block/oak/oak_pergola_x"))
                 .renderType("minecraft:cutout").texture("0", planks).texture("particle", planks);
-        ModelFile pergolaXZ = models().withExistingParent(setName + "_pergola_x_z", modLoc("block/oak_pergola_x_z"))
+        ModelFile pergolaXZ = models().withExistingParent(dir + setName + "_pergola_x_z", modLoc("block/oak/oak_pergola_x_z"))
                 .renderType("minecraft:cutout").texture("0", planks).texture("particle", planks);
 
         getMultipartBuilder(set.pergola().get())
@@ -610,15 +671,15 @@ public class OttBlockStateProvider extends ModBlockStateProvider {
                 .texture("0", planks).texture("particle", planks);
 
         // ── Support shared models ─────────────────────────────────────────────
-        ModelFile sup4   = models().withExistingParent(setName + "_support_4_pixels",  modLoc("block/oak_support_4_pixels"))
+        ModelFile sup4   = models().withExistingParent(dir + setName + "_support_4_pixels",  modLoc("block/oak/oak_support_4_pixels"))
                 .texture("slab", planks).texture("particle", planks);
-        ModelFile sup6   = models().withExistingParent(setName + "_support_6_pixels",  modLoc("block/oak_support_6_pixels"))
+        ModelFile sup6   = models().withExistingParent(dir + setName + "_support_6_pixels",  modLoc("block/oak/oak_support_6_pixels"))
                 .texture("slab", planks).texture("particle", planks);
-        ModelFile sup8   = models().withExistingParent(setName + "_support_8_pixels",  modLoc("block/oak_support_8_pixels"))
+        ModelFile sup8   = models().withExistingParent(dir + setName + "_support_8_pixels",  modLoc("block/oak/oak_support_8_pixels"))
                 .texture("slab", stripped).texture("particle", stripped);
-        ModelFile sup10  = models().withExistingParent(setName + "_support_10_pixels", modLoc("block/oak_support_10_pixels"))
+        ModelFile sup10  = models().withExistingParent(dir + setName + "_support_10_pixels", modLoc("block/oak/oak_support_10_pixels"))
                 .texture("slab", stripped).texture("particle", stripped);
-        ModelFile supSlab = models().withExistingParent(setName + "_support_slab",     modLoc("block/oak_support_slab"))
+        ModelFile supSlab = models().withExistingParent(dir + setName + "_support_slab",     modLoc("block/oak/oak_support_slab"))
                 .texture("slab", planks).texture("particle", planks);
 
         // ── Support Slab ──────────────────────────────────────────────────────
@@ -642,34 +703,34 @@ public class OttBlockStateProvider extends ModBlockStateProvider {
                 .part().modelFile(sup10).addModel().condition(SupportBeamBlock.PILLAR_CONNECTION, PillarConnection.TEN).end();
 
         // ── Planks Plate ──────────────────────────────────────────────────────
-        ModelFile plate      = models().withExistingParent(setName + "_planks_plate",       modLoc("block/plate"))
+        ModelFile plate      = models().withExistingParent(dir + setName + "_planks_plate",       modLoc("block/plate"))
                 .texture("side", planks).texture("top", planks).texture("frieze", planks);
-        ModelFile plateOuter = models().withExistingParent(setName + "_planks_plate_outer", modLoc("block/plate_outer"))
+        ModelFile plateOuter = models().withExistingParent(dir + setName + "_planks_plate_outer", modLoc("block/plate_outer"))
                 .texture("top", planks).texture("frieze", planks);
-        ModelFile plateInner = models().withExistingParent(setName + "_planks_plate_inner", modLoc("block/plate_inner"))
+        ModelFile plateInner = models().withExistingParent(dir + setName + "_planks_plate_inner", modLoc("block/plate_inner"))
                 .texture("side", planks).texture("top", planks).texture("frieze", planks);
         registerFacingShapeBlock(set.planksPlate().get(), plate, plateOuter, plateInner);
 
         // ── Planks Edge ───────────────────────────────────────────────────────
-        ModelFile edge      = models().withExistingParent(setName + "_planks_edge",       modLoc("block/small_plate"))
+        ModelFile edge      = models().withExistingParent(dir + setName + "_planks_edge",       modLoc("block/small_plate"))
                 .texture("side", planks).texture("frieze", planks);
-        ModelFile edgeOuter = models().withExistingParent(setName + "_planks_edge_outer", modLoc("block/small_plate_outer"))
+        ModelFile edgeOuter = models().withExistingParent(dir + setName + "_planks_edge_outer", modLoc("block/small_plate_outer"))
                 .texture("top", planks).texture("frieze", planks);
-        ModelFile edgeInner = models().withExistingParent(setName + "_planks_edge_inner", modLoc("block/small_plate_inner"))
+        ModelFile edgeInner = models().withExistingParent(dir + setName + "_planks_edge_inner", modLoc("block/small_plate_inner"))
                 .texture("side", planks).texture("top", planks).texture("frieze", planks);
         registerFacingShapeHalfBlock(set.planksEdge().get(), edge, edgeOuter, edgeInner);
 
         // ── Bannister ──────────────────────────────────────────────────────────
-        ModelFile bannister      = models().withExistingParent(setName + "_bannister",       modLoc("block/oak_bannister"))
+        ModelFile bannister      = models().withExistingParent(dir + setName + "_bannister",       modLoc("block/oak/oak_bannister"))
                 .texture("0", planks).texture("particle", planks);
-        ModelFile bannisterOuter = models().withExistingParent(setName + "_bannister_outer", modLoc("block/oak_bannister_outer"))
+        ModelFile bannisterOuter = models().withExistingParent(dir + setName + "_bannister_outer", modLoc("block/oak/oak_bannister_outer"))
                 .texture("0", planks).texture("particle", planks);
-        ModelFile bannisterInner = models().withExistingParent(setName + "_bannister_inner", modLoc("block/oak_bannister_inner"))
+        ModelFile bannisterInner = models().withExistingParent(dir + setName + "_bannister_inner", modLoc("block/oak/oak_bannister_inner"))
                 .texture("0", planks).texture("particle", planks);
         registerFacingShapeBlock(set.bannister().get(), bannister, bannisterOuter, bannisterInner);
 
         // ── Geometric Window ──────────────────────────────────────────────────
-        ModelFile vWindow = models().withExistingParent(setName + "_geometric_window", modLoc("block/geometric_window"))
+        ModelFile vWindow = models().withExistingParent(dir + setName + "_geometric_window", modLoc("block/geometric_window"))
                 .texture("texture", planks).texture("particle", planks)
                 .renderType("minecraft:cutout");
         horizontalBlock(set.geometricWindow().get(), vWindow);
@@ -740,10 +801,10 @@ public class OttBlockStateProvider extends ModBlockStateProvider {
         }, BlockStateProperties.WATERLOGGED);
     }
 
-    private void registerPlanksSlab(String setName, SlabBlock slab, ResourceLocation planksTex, ResourceLocation doubleModelLoc) {
+    private void registerPlanksSlab(String setName, SlabBlock slab, ResourceLocation planksTex, ResourceLocation doubleModelLoc, String dir) {
         String slabName = blockPath(slab);
-        ModelFile slabModel = models().withExistingParent(slabName, mcLoc("block/slab")).texture("bottom", planksTex).texture("top", planksTex).texture("side", planksTex);
-        ModelFile slabTopModel = models().withExistingParent(slabName + "_top", mcLoc("block/slab_top")).texture("bottom", planksTex).texture("top", planksTex).texture("side", planksTex);
+        ModelFile slabModel = models().withExistingParent(dir + slabName, mcLoc("block/slab")).texture("bottom", planksTex).texture("top", planksTex).texture("side", planksTex);
+        ModelFile slabTopModel = models().withExistingParent(dir + slabName + "_top", mcLoc("block/slab_top")).texture("bottom", planksTex).texture("top", planksTex).texture("side", planksTex);
         ModelFile doubleModel = new ModelFile.UncheckedModelFile(doubleModelLoc);
 
         getVariantBuilder(slab)
@@ -752,15 +813,15 @@ public class OttBlockStateProvider extends ModBlockStateProvider {
                 .partialState().with(BlockStateProperties.SLAB_TYPE, SlabType.DOUBLE).addModels(new ConfiguredModel(doubleModel));
     }
 
-    private void registerFluffyLeaves(String setName, Block leavesBlock) {
+    private void registerFluffyLeaves(String setName, Block leavesBlock, String dir) {
         String leavesId = blockPath(leavesBlock);
         ResourceLocation leavesTexture = modLoc("block/wood/" + setName + "/leaves");
 
-        ModelFile l0 = models().withExistingParent(leavesId, modLoc("block/leaves")).texture("all", leavesTexture);
-        ModelFile l1 = models().withExistingParent(leavesId + "1", modLoc("block/leaves1")).texture("all", leavesTexture);
-        ModelFile l2 = models().withExistingParent(leavesId + "2", modLoc("block/leaves2")).texture("all", leavesTexture);
-        ModelFile l3 = models().withExistingParent(leavesId + "3", modLoc("block/leaves3")).texture("all", leavesTexture);
-        ModelFile l4 = models().withExistingParent(leavesId + "4", modLoc("block/leaves4")).texture("all", leavesTexture);
+        ModelFile l0 = models().withExistingParent(dir + leavesId, modLoc("block/leaves")).texture("all", leavesTexture);
+        ModelFile l1 = models().withExistingParent(dir + leavesId + "1", modLoc("block/leaves1")).texture("all", leavesTexture);
+        ModelFile l2 = models().withExistingParent(dir + leavesId + "2", modLoc("block/leaves2")).texture("all", leavesTexture);
+        ModelFile l3 = models().withExistingParent(dir + leavesId + "3", modLoc("block/leaves3")).texture("all", leavesTexture);
+        ModelFile l4 = models().withExistingParent(dir + leavesId + "4", modLoc("block/leaves4")).texture("all", leavesTexture);
 
         getVariantBuilder(leavesBlock).partialState().addModels(
                 new ConfiguredModel(l0, 0, 0, false, 1),
@@ -775,7 +836,8 @@ public class OttBlockStateProvider extends ModBlockStateProvider {
         ModBlocks.PATTERN_PLATES.forEach((pattern, colorMap) -> {
             ResourceLocation patTex = modLoc("block/patterns/" + pattern);
             colorMap.forEach((colorName, block) -> {
-                String base = colorName + "_" + pattern;
+                String colorDir = "block/" + colorName + "/";
+                String base = colorDir + colorName + "_" + pattern;
                 ModelFile plate      = models().withExistingParent(base + "_plate",       modLoc("block/plate"))
                         .texture("side", patTex).texture("top", patTex).texture("frieze", patTex);
                 ModelFile plateOuter = models().withExistingParent(base + "_plate_outer", modLoc("block/plate_outer"))
@@ -783,14 +845,15 @@ public class OttBlockStateProvider extends ModBlockStateProvider {
                 ModelFile plateInner = models().withExistingParent(base + "_plate_inner", modLoc("block/plate_inner"))
                         .texture("side", patTex).texture("top", patTex).texture("frieze", patTex);
                 registerFacingShapeBlock(block.get(), plate, plateOuter, plateInner);
-                itemModels().withExistingParent(base + "_plate", plate.getLocation());
+                itemModels().withExistingParent(colorName + "_" + pattern + "_plate", plate.getLocation());
             });
         });
 
         ModBlocks.PATTERN_EDGES.forEach((pattern, colorMap) -> {
             ResourceLocation patTex = modLoc("block/patterns/" + pattern);
             colorMap.forEach((colorName, block) -> {
-                String base = colorName + "_" + pattern;
+                String colorDir = "block/" + colorName + "/";
+                String base = colorDir + colorName + "_" + pattern;
                 ModelFile edge      = models().withExistingParent(base + "_edge",       modLoc("block/small_plate"))
                         .texture("side", patTex).texture("frieze", patTex);
                 ModelFile edgeOuter = models().withExistingParent(base + "_edge_outer", modLoc("block/small_plate_outer"))
@@ -798,21 +861,22 @@ public class OttBlockStateProvider extends ModBlockStateProvider {
                 ModelFile edgeInner = models().withExistingParent(base + "_edge_inner", modLoc("block/small_plate_inner"))
                         .texture("side", patTex).texture("top", patTex).texture("frieze", patTex);
                 registerFacingShapeHalfBlock(block.get(), edge, edgeOuter, edgeInner);
-                itemModels().withExistingParent(base + "_edge", edge.getLocation());
+                itemModels().withExistingParent(colorName + "_" + pattern + "_edge", edge.getLocation());
             });
         });
 
         ModBlocks.PATTERN_BEAMS.forEach((pattern, colorMap) -> {
             ResourceLocation patTex = modLoc("block/patterns/" + pattern);
             colorMap.forEach((colorName, block) -> {
-                String base = colorName + "_" + pattern;
-                ModelFile beamY   = models().withExistingParent(base + "_beam_y",     modLoc("block/oak_beam_y"))
+                String colorDir = "block/" + colorName + "/";
+                String base = colorDir + colorName + "_" + pattern;
+                ModelFile beamY   = models().withExistingParent(base + "_beam_y",     modLoc("block/oak/oak_beam_y"))
                         .renderType("minecraft:cutout").texture("1", patTex).texture("particle", patTex);
-                ModelFile beamX   = models().withExistingParent(base + "_beam_x",     modLoc("block/oak_beam_x"))
+                ModelFile beamX   = models().withExistingParent(base + "_beam_x",     modLoc("block/oak/oak_beam_x"))
                         .renderType("minecraft:cutout").texture("1", patTex).texture("particle", patTex);
-                ModelFile beamXZ  = models().withExistingParent(base + "_beam_x_z",   modLoc("block/oak_beam_x_z"))
+                ModelFile beamXZ  = models().withExistingParent(base + "_beam_x_z",   modLoc("block/oak/oak_beam_x_z"))
                         .renderType("minecraft:cutout").texture("1", patTex).texture("particle", patTex);
-                ModelFile beamBot = models().withExistingParent(base + "_beam_bottom", modLoc("block/oak_beam_bottom"))
+                ModelFile beamBot = models().withExistingParent(base + "_beam_bottom", modLoc("block/oak/oak_beam_bottom"))
                         .renderType("minecraft:cutout").texture("texture", patTex).texture("particle", patTex);
                 getMultipartBuilder(block.get())
                         .part().modelFile(beamY).addModel()               .condition(BeamBlock.AXIS_Y, true).end()
@@ -820,7 +884,7 @@ public class OttBlockStateProvider extends ModBlockStateProvider {
                         .part().modelFile(beamX).rotationY(90).addModel() .condition(BeamBlock.AXIS_X, false).condition(BeamBlock.AXIS_Z, true).end()
                         .part().modelFile(beamXZ).addModel()              .condition(BeamBlock.AXIS_X, true).condition(BeamBlock.AXIS_Z, true).end()
                         .part().modelFile(beamBot).addModel()             .condition(BeamBlock.BOTTOM, true).end();
-                itemModels().withExistingParent(base + "_beam", modLoc("item/template_beam"))
+                itemModels().withExistingParent(colorName + "_" + pattern + "_beam", modLoc("item/template_beam"))
                         .texture("0", patTex).texture("particle", patTex);
             });
         });
@@ -828,19 +892,20 @@ public class OttBlockStateProvider extends ModBlockStateProvider {
         ModBlocks.PATTERN_PERGOLAS.forEach((pattern, colorMap) -> {
             ResourceLocation patTex = modLoc("block/patterns/" + pattern);
             colorMap.forEach((colorName, block) -> {
-                String base = colorName + "_" + pattern;
-                ModelFile pergolaY  = models().withExistingParent(base + "_pergola_y",   modLoc("block/oak_pergola_y"))
+                String colorDir = "block/" + colorName + "/";
+                String base = colorDir + colorName + "_" + pattern;
+                ModelFile pergolaY  = models().withExistingParent(base + "_pergola_y",   modLoc("block/oak/oak_pergola_y"))
                         .renderType("minecraft:cutout").texture("0", patTex).texture("particle", patTex);
-                ModelFile pergolaX  = models().withExistingParent(base + "_pergola_x",   modLoc("block/oak_pergola_x"))
+                ModelFile pergolaX  = models().withExistingParent(base + "_pergola_x",   modLoc("block/oak/oak_pergola_x"))
                         .renderType("minecraft:cutout").texture("0", patTex).texture("particle", patTex);
-                ModelFile pergolaXZ = models().withExistingParent(base + "_pergola_x_z", modLoc("block/oak_pergola_x_z"))
+                ModelFile pergolaXZ = models().withExistingParent(base + "_pergola_x_z", modLoc("block/oak/oak_pergola_x_z"))
                         .renderType("minecraft:cutout").texture("0", patTex).texture("particle", patTex);
                 getMultipartBuilder(block.get())
                         .part().modelFile(pergolaY).addModel()               .condition(PergolaBlock.AXIS_Y, true).end()
                         .part().modelFile(pergolaX).addModel()               .condition(PergolaBlock.AXIS_X, true).condition(PergolaBlock.AXIS_Z, false).end()
                         .part().modelFile(pergolaX).rotationY(90).addModel() .condition(PergolaBlock.AXIS_X, false).condition(PergolaBlock.AXIS_Z, true).end()
                         .part().modelFile(pergolaXZ).addModel()              .condition(PergolaBlock.AXIS_X, true).condition(PergolaBlock.AXIS_Z, true).end();
-                itemModels().withExistingParent(base + "_pergola", modLoc("item/template_pergola"))
+                itemModels().withExistingParent(colorName + "_" + pattern + "_pergola", modLoc("item/template_pergola"))
                         .texture("0", patTex).texture("particle", patTex);
             });
         });
@@ -848,12 +913,13 @@ public class OttBlockStateProvider extends ModBlockStateProvider {
         ModBlocks.PATTERN_WINDOWS.forEach((pattern, colorMap) -> {
             ResourceLocation patTex = modLoc("block/patterns/" + pattern);
             colorMap.forEach((colorName, block) -> {
-                String name = colorName + "_" + pattern + "_geometric_window";
-                ModelFile window = models().withExistingParent(name, modLoc("block/geometric_window"))
+                String colorDir = "block/" + colorName + "/";
+                String itemName = colorName + "_" + pattern + "_geometric_window";
+                ModelFile window = models().withExistingParent(colorDir + itemName, modLoc("block/geometric_window"))
                         .texture("texture", patTex).texture("particle", patTex)
                         .renderType("minecraft:cutout");
                 horizontalBlock(block.get(), window);
-                itemModels().withExistingParent(name, window.getLocation());
+                itemModels().withExistingParent(itemName, window.getLocation());
             });
         });
 

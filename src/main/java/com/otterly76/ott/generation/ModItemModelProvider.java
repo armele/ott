@@ -23,39 +23,39 @@ public class ModItemModelProvider extends ItemModelProvider {
                 .parent(new ModelFile.UncheckedModelFile(mcLoc("item/dragon_head")));
 
         ModBlocks.WOOD_SETS.forEach((setName, set) -> {
-            parentItemToBlockModel(set.log().getId().getPath(), "block/" + set.log().getId().getPath());
-            parentItemToBlockModel(set.wood().getId().getPath(), "block/" + set.wood().getId().getPath());
-            parentItemToBlockModel(set.strippedLog().getId().getPath(), "block/" + set.strippedLog().getId().getPath());
-            parentItemToBlockModel(set.strippedWood().getId().getPath(), "block/" + set.strippedWood().getId().getPath());
+            String woodDir = "block/" + setName + "/";
+            parentItemToBlockModel(set.log().getId().getPath(), woodDir + set.log().getId().getPath());
+            parentItemToBlockModel(set.wood().getId().getPath(), woodDir + set.wood().getId().getPath());
+            parentItemToBlockModel(set.strippedLog().getId().getPath(), woodDir + set.strippedLog().getId().getPath());
+            parentItemToBlockModel(set.strippedWood().getId().getPath(), woodDir + set.strippedWood().getId().getPath());
 
-            // planks model is generated as block/<set>_planks.json (flat)
-            parentItemToBlockModel(set.planks().getId().getPath(), "block/" + set.planks().getId().getPath());
+            parentItemToBlockModel(set.planks().getId().getPath(), woodDir + set.planks().getId().getPath());
 
-            parentItemToBlockModel(set.stairs().getId().getPath(), "block/" + set.stairs().getId().getPath());
-            parentItemToBlockModel(set.slab().getId().getPath(), "block/" + set.slab().getId().getPath());
+            parentItemToBlockModel(set.stairs().getId().getPath(), woodDir + set.stairs().getId().getPath());
+            parentItemToBlockModel(set.slab().getId().getPath(), woodDir + set.slab().getId().getPath());
 
-            parentItemToBlockModel(set.fence().getId().getPath(), "block/" + set.fence().getId().getPath() + "_inventory");
-            parentItemToBlockModel(set.fenceGate().getId().getPath(), "block/" + set.fenceGate().getId().getPath());
+            parentItemToBlockModel(set.fence().getId().getPath(), woodDir + set.fence().getId().getPath() + "_inventory");
+            parentItemToBlockModel(set.fenceGate().getId().getPath(), woodDir + set.fenceGate().getId().getPath());
 
             // Buttons: item should use the *_inventory block model (vanilla behavior)
-            parentItemToBlockModel(set.button().getId().getPath(), "block/" + set.button().getId().getPath() + "_inventory");
-            parentItemToBlockModel(set.pressurePlate().getId().getPath(), "block/" + set.pressurePlate().getId().getPath());
+            parentItemToBlockModel(set.button().getId().getPath(), woodDir + set.button().getId().getPath() + "_inventory");
+            parentItemToBlockModel(set.pressurePlate().getId().getPath(), woodDir + set.pressurePlate().getId().getPath());
 
             // Doors: item uses item/door_base (3D held item)
             doorItemFromTextures(setName, set.door().getId());
 
             // trapdoor uses the usual *_bottom model which you have
-            parentItemToBlockModel(set.trapdoor().getId().getPath(), "block/" + set.trapdoor().getId().getPath() + "_bottom");
+            parentItemToBlockModel(set.trapdoor().getId().getPath(), woodDir + set.trapdoor().getId().getPath() + "_bottom");
 
-            parentItemToBlockModel(set.leaves().getId().getPath(), "block/" + set.leaves().getId().getPath());
+            parentItemToBlockModel(set.leaves().getId().getPath(), woodDir + set.leaves().getId().getPath());
 
-            parentItemToBlockModel(set.beam().getId().getPath(),        "block/" + set.beam().getId().getPath() + "_x");
-            parentItemToBlockModel(set.pergola().getId().getPath(),     "block/" + set.pergola().getId().getPath() + "_x");
-            parentItemToBlockModel(set.planksPlate().getId().getPath(), "block/" + set.planksPlate().getId().getPath());
-            parentItemToBlockModel(set.planksEdge().getId().getPath(),  "block/" + set.planksEdge().getId().getPath());
-            parentItemToBlockModel(set.bannister().getId().getPath(),    "block/" + set.bannister().getId().getPath());
-            parentItemToBlockModel(set.supportSlab().getId().getPath(), "block/" + set.supportSlab().getId().getPath());
-            parentItemToBlockModel(set.supportBeam().getId().getPath(), "block/" + set.supportSlab().getId().getPath());
+            parentItemToBlockModel(set.beam().getId().getPath(),        "block/" + setName + "/" + set.beam().getId().getPath() + "_x");
+            parentItemToBlockModel(set.pergola().getId().getPath(),     "block/" + setName + "/" + set.pergola().getId().getPath() + "_x");
+            parentItemToBlockModel(set.planksPlate().getId().getPath(), "block/" + setName + "/" + set.planksPlate().getId().getPath());
+            parentItemToBlockModel(set.planksEdge().getId().getPath(),  "block/" + setName + "/" + set.planksEdge().getId().getPath());
+            parentItemToBlockModel(set.bannister().getId().getPath(),    "block/" + setName + "/" + set.bannister().getId().getPath());
+            parentItemToBlockModel(set.supportSlab().getId().getPath(), "block/" + setName + "/" + set.supportSlab().getId().getPath());
+            parentItemToBlockModel(set.supportBeam().getId().getPath(), "block/" + setName + "/" + set.supportSlab().getId().getPath());
 
             // Signs: use vanilla 3D sign item models, swap textures
             withExistingParent(setName + "_sign", mcLoc("item/sign_base"))
@@ -74,37 +74,38 @@ public class ModItemModelProvider extends ItemModelProvider {
         // Oak structural item models are pre-existing hand-written files; skip to avoid duplicates.
         ModBlocks.VANILLA_STRUCTURAL_SETS.forEach((setName, set) -> {
             if (setName.equals("oak")) return;
-            parentItemToBlockModel(set.beam().getId().getPath(),        "block/" + set.beam().getId().getPath() + "_x");
-            parentItemToBlockModel(set.pergola().getId().getPath(),     "block/" + set.pergola().getId().getPath() + "_x");
-            parentItemToBlockModel(set.planksPlate().getId().getPath(), "block/" + set.planksPlate().getId().getPath());
-            parentItemToBlockModel(set.planksEdge().getId().getPath(),  "block/" + set.planksEdge().getId().getPath());
-            parentItemToBlockModel(set.bannister().getId().getPath(),    "block/" + set.bannister().getId().getPath());
-            parentItemToBlockModel(set.supportSlab().getId().getPath(), "block/" + set.supportSlab().getId().getPath());
-            parentItemToBlockModel(set.supportBeam().getId().getPath(), "block/" + set.supportSlab().getId().getPath());
+            parentItemToBlockModel(set.beam().getId().getPath(),        "block/" + setName + "/" + set.beam().getId().getPath() + "_x");
+            parentItemToBlockModel(set.pergola().getId().getPath(),     "block/" + setName + "/" + set.pergola().getId().getPath() + "_x");
+            parentItemToBlockModel(set.planksPlate().getId().getPath(), "block/" + setName + "/" + set.planksPlate().getId().getPath());
+            parentItemToBlockModel(set.planksEdge().getId().getPath(),  "block/" + setName + "/" + set.planksEdge().getId().getPath());
+            parentItemToBlockModel(set.bannister().getId().getPath(),    "block/" + setName + "/" + set.bannister().getId().getPath());
+            parentItemToBlockModel(set.supportSlab().getId().getPath(), "block/" + setName + "/" + set.supportSlab().getId().getPath());
+            parentItemToBlockModel(set.supportBeam().getId().getPath(), "block/" + setName + "/" + set.supportSlab().getId().getPath());
         });
 
         ModBlocks.COLOR_SETS.forEach((color, set) -> {
-            parentItemToBlockModel(set.concrete().getId().getPath(), "block/" + set.concrete().getId().getPath());
-            parentItemToBlockModel(set.terracotta().getId().getPath(), "block/" + set.terracotta().getId().getPath());
-            parentItemToBlockModel(set.wool().getId().getPath(), "block/" + set.wool().getId().getPath());
-            parentItemToBlockModel(set.concretePowder().getId().getPath(), "block/" + set.concretePowder().getId().getPath());
+            String colorDir = "block/" + color + "/";
+            parentItemToBlockModel(set.concrete().getId().getPath(), colorDir + set.concrete().getId().getPath());
+            parentItemToBlockModel(set.terracotta().getId().getPath(), colorDir + set.terracotta().getId().getPath());
+            parentItemToBlockModel(set.wool().getId().getPath(), colorDir + set.wool().getId().getPath());
+            parentItemToBlockModel(set.concretePowder().getId().getPath(), colorDir + set.concretePowder().getId().getPath());
             getBuilder(set.stainedGlass().getId().getPath())
-                    .parent(new ModelFile.UncheckedModelFile(modLoc("block/" + set.stainedGlass().getId().getPath())))
+                    .parent(new ModelFile.UncheckedModelFile(modLoc(colorDir + set.stainedGlass().getId().getPath())))
                     .renderType("minecraft:translucent");
             withExistingParent(set.stainedGlassPane().getId().getPath(), mcLoc("item/glass_pane"))
                     .texture("front", modLoc("block/color_set/" + color + "/stained_glass"))
                     .texture("side", modLoc("block/color_set/" + color + "/stained_glass_pane_top"))
                     .renderType("minecraft:translucent");
-            parentItemToBlockModel(set.glazedTerracotta().getId().getPath(), "block/" + set.glazedTerracotta().getId().getPath());
+            parentItemToBlockModel(set.glazedTerracotta().getId().getPath(), colorDir + set.glazedTerracotta().getId().getPath());
 
             // Shulker box item: use template to inherit transforms and standard renderer
             withExistingParent(set.shulkerBox().getId().getPath(), mcLoc("item/template_shulker_box"));
 
             // Candle item: parent to block model
-            parentItemToBlockModel(set.candle().getId().getPath(), "block/" + color + "_candle_one_candle");
+            parentItemToBlockModel(set.candle().getId().getPath(), colorDir + color + "_candle_one_candle");
 
             // Carpet item: parent to block model
-            parentItemToBlockModel(set.carpet().getId().getPath(), "block/" + set.carpet().getId().getPath());
+            parentItemToBlockModel(set.carpet().getId().getPath(), colorDir + set.carpet().getId().getPath());
 
             // Banner item: extend the vanilla banner template
             withExistingParent(set.banner().getId().getPath(), mcLoc("item/template_banner"));
@@ -161,13 +162,13 @@ public class ModItemModelProvider extends ItemModelProvider {
 
         getBuilder(ModItems.TORCH_ARROW.getId().getPath()).parent(new ModelFile.UncheckedModelFile(mcLoc("item/tipped_arrow")));
         
-        generatedItemFromTexture(ModItems.CAPYBARA_SPAWN_EGG.getId().getPath(), modLoc("item/capybara_spawn_egg"));
-        generatedItemFromTexture(ModItems.HEDGEHOG_SPAWN_EGG.getId().getPath(), modLoc("item/hedgehog_spawn_egg"));
-        generatedItemFromTexture(ModItems.LARGE_JELLYFISH_SPAWN_EGG.getId().getPath(), modLoc("item/jellyfish_spawn_egg"));
-        generatedItemFromTexture(ModItems.KIWI_SPAWN_EGG.getId().getPath(), modLoc("item/kiwi_spawn_egg"));
-        generatedItemFromTexture(ModItems.PENGUIN_SPAWN_EGG.getId().getPath(), modLoc("item/penguin_spawn_egg"));
-        generatedItemFromTexture(ModItems.SEAL_SPAWN_EGG.getId().getPath(), modLoc("item/seal_spawn_egg"));
-        generatedItemFromTexture(ModItems.SEA_URCHIN_SPAWN_EGG.getId().getPath(), modLoc("item/sea_urchin_spawn_egg"));
+        generatedItemFromTexture(ModItems.CAPYBARA_SPAWN_EGG.getId().getPath(), modLoc("item/spawn_eggs/capybara_spawn_egg"));
+        generatedItemFromTexture(ModItems.HEDGEHOG_SPAWN_EGG.getId().getPath(), modLoc("item/spawn_eggs/hedgehog_spawn_egg"));
+        generatedItemFromTexture(ModItems.LARGE_JELLYFISH_SPAWN_EGG.getId().getPath(), modLoc("item/spawn_eggs/jellyfish_spawn_egg"));
+        generatedItemFromTexture(ModItems.KIWI_SPAWN_EGG.getId().getPath(), modLoc("item/spawn_eggs/kiwi_spawn_egg"));
+        generatedItemFromTexture(ModItems.PENGUIN_SPAWN_EGG.getId().getPath(), modLoc("item/spawn_eggs/penguin_spawn_egg"));
+        generatedItemFromTexture(ModItems.SEAL_SPAWN_EGG.getId().getPath(), modLoc("item/spawn_eggs/seal_spawn_egg"));
+        generatedItemFromTexture(ModItems.SEA_URCHIN_SPAWN_EGG.getId().getPath(), modLoc("item/spawn_eggs/sea_urchin_spawn_egg"));
 
         spawnEggItem(ModItems.SEAHORSE_SPAWN_EGG);
         spawnEggItem(ModItems.ETHEREAL_SHRIMP_SPAWN_EGG);
@@ -279,11 +280,11 @@ public class ModItemModelProvider extends ItemModelProvider {
         generatedItemFromTexture(ModItems.BONNETHEAD_SHARK_BUCKET.getId().getPath(), modLoc("item/bonnethead_shark_bucket"));
         generatedItemFromTexture(ModItems.GOBLIN_SHARK_BUCKET.getId().getPath(), modLoc("item/goblin_shark_bucket"));
         generatedItemFromTexture(ModItems.PSYCHO_JELLY_BUCKET.getId().getPath(), modLoc("item/psycho_jelly_bucket"));
-        withExistingParent(ModItems.LARGE_JELLYFISH_BUCKET.getId().getPath(), mcLoc("item/water_bucket"));
-        withExistingParent(ModItems.SMALL_JELLYFISH_BUCKET.getId().getPath(), mcLoc("item/water_bucket"));
-        withExistingParent(ModItems.MEDIUM_JELLYFISH_BUCKET.getId().getPath(), mcLoc("item/water_bucket"));
-        withExistingParent(ModItems.SEAHORSE_BUCKET.getId().getPath(), mcLoc("item/water_bucket"));
-        withExistingParent(ModItems.ETHEREAL_SHRIMP_BUCKET.getId().getPath(), mcLoc("item/water_bucket"));
+        generatedItemFromTexture(ModItems.LARGE_JELLYFISH_BUCKET.getId().getPath(), modLoc("item/large_jellyfish_bucket"));
+        generatedItemFromTexture(ModItems.SMALL_JELLYFISH_BUCKET.getId().getPath(), modLoc("item/small_jellyfish_bucket"));
+        generatedItemFromTexture(ModItems.MEDIUM_JELLYFISH_BUCKET.getId().getPath(), modLoc("item/medium_jellyfish_bucket"));
+        generatedItemFromTexture(ModItems.SEAHORSE_BUCKET.getId().getPath(), modLoc("item/seahorse_bucket"));
+        generatedItemFromTexture(ModItems.ETHEREAL_SHRIMP_BUCKET.getId().getPath(), modLoc("item/shrimp_bucket"));
 
         generatedItemFromTexture(ModItems.RAW_CICHLID.getId().getPath(), modLoc("item/raw_cichlid"));
         generatedItemFromTexture(ModItems.COOKED_CICHLID.getId().getPath(), modLoc("item/raw_cichlid"));

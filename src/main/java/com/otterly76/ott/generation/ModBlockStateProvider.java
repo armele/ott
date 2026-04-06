@@ -21,7 +21,11 @@ public abstract class ModBlockStateProvider extends BlockStateProvider {
     }
 
     protected void registerCutoutDoor(DoorBlock door, ResourceLocation bottomTex, ResourceLocation topTex) {
-        String doorName = blockPath(door);
+        registerCutoutDoor(door, bottomTex, topTex, "");
+    }
+
+    protected void registerCutoutDoor(DoorBlock door, ResourceLocation bottomTex, ResourceLocation topTex, String dir) {
+        String doorName = dir + blockPath(door);
 
         ModelFile bottomLeft = models()
                 .withExistingParent(doorName + "_bottom_left", mcLoc("block/door_bottom_left"))
@@ -65,7 +69,11 @@ public abstract class ModBlockStateProvider extends BlockStateProvider {
     }
 
     protected void registerCutoutTrapdoor(TrapDoorBlock trapdoor, ResourceLocation tex) {
-        String trapdoorName = blockPath(trapdoor);
+        registerCutoutTrapdoor(trapdoor, tex, "");
+    }
+
+    protected void registerCutoutTrapdoor(TrapDoorBlock trapdoor, ResourceLocation tex, String dir) {
+        String trapdoorName = dir + blockPath(trapdoor);
 
         ModelFile bottom = models().trapdoorBottom(trapdoorName + "_bottom", tex).renderType("cutout");
         ModelFile top = models().trapdoorTop(trapdoorName + "_top", tex).renderType("cutout");

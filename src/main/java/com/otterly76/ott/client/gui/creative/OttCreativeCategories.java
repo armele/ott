@@ -370,10 +370,6 @@ public enum OttCreativeCategories {
                 output.accept(ModBlocks.GOLD_PLATED_SMOOTH_EDGE);
                 output.accept(ModBlocks.GOLD_PLATED_SMOOTH_PLATE);
                 // Pre-Columbian
-                output.accept(ModBlocks.PLASTERED_STONE);
-                output.accept(ModBlocks.PLASTERED_STONE_EDGE);
-                output.accept(ModBlocks.PLASTERED_STONE_PLATE);
-                output.accept(ModBlocks.GEOMETRIC_WINDOW);
                 output.accept(ModBlocks.ORNAMENTED_CHISELED_PLASTERED_STONE);
                 output.accept(ModBlocks.GREEN_ORNAMENTED_PLASTERED_STONE);
                 output.accept(ModBlocks.RED_ORNAMENTED_PLASTERED_STONE);
