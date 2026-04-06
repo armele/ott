@@ -5,6 +5,8 @@ make new bug net item model
 make new catepillar item model
 make new clam item model
 add the other 5 randomized limestone bricks
+add seaglass to color gen
+make futon white and add to color gen
 
 Mods to Implement:
 =====
