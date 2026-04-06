@@ -325,6 +325,104 @@ public enum OttCreativeCategories {
                 output.accept(ModBlocks.DRIED_GHAST);
             }),
 
+    COPPER_CHAOS("copper_chaos",
+            () -> ModBlocks.COPPER_CHEST.get().asItem(),
+            (params, output) -> {
+                // Vanilla copper base blocks
+                output.accept(Items.COPPER_BLOCK);
+                output.accept(Items.EXPOSED_COPPER);
+                output.accept(Items.WEATHERED_COPPER);
+                output.accept(Items.OXIDIZED_COPPER);
+                output.accept(Items.WAXED_COPPER_BLOCK);
+                output.accept(Items.WAXED_EXPOSED_COPPER);
+                output.accept(Items.WAXED_WEATHERED_COPPER);
+                output.accept(Items.WAXED_OXIDIZED_COPPER);
+                output.accept(Items.CUT_COPPER);
+                output.accept(Items.EXPOSED_CUT_COPPER);
+                output.accept(Items.WEATHERED_CUT_COPPER);
+                output.accept(Items.OXIDIZED_CUT_COPPER);
+                output.accept(Items.WAXED_CUT_COPPER);
+                output.accept(Items.WAXED_EXPOSED_CUT_COPPER);
+                output.accept(Items.WAXED_WEATHERED_CUT_COPPER);
+                output.accept(Items.WAXED_OXIDIZED_CUT_COPPER);
+                output.accept(Items.CUT_COPPER_STAIRS);
+                output.accept(Items.EXPOSED_CUT_COPPER_STAIRS);
+                output.accept(Items.WEATHERED_CUT_COPPER_STAIRS);
+                output.accept(Items.OXIDIZED_CUT_COPPER_STAIRS);
+                output.accept(Items.WAXED_CUT_COPPER_STAIRS);
+                output.accept(Items.WAXED_EXPOSED_CUT_COPPER_STAIRS);
+                output.accept(Items.WAXED_WEATHERED_CUT_COPPER_STAIRS);
+                output.accept(Items.WAXED_OXIDIZED_CUT_COPPER_STAIRS);
+                output.accept(Items.CUT_COPPER_SLAB);
+                output.accept(Items.EXPOSED_CUT_COPPER_SLAB);
+                output.accept(Items.WEATHERED_CUT_COPPER_SLAB);
+                output.accept(Items.OXIDIZED_CUT_COPPER_SLAB);
+                output.accept(Items.WAXED_CUT_COPPER_SLAB);
+                output.accept(Items.WAXED_EXPOSED_CUT_COPPER_SLAB);
+                output.accept(Items.WAXED_WEATHERED_CUT_COPPER_SLAB);
+                output.accept(Items.WAXED_OXIDIZED_CUT_COPPER_SLAB);
+                output.accept(Items.CHISELED_COPPER);
+                output.accept(Items.EXPOSED_CHISELED_COPPER);
+                output.accept(Items.WEATHERED_CHISELED_COPPER);
+                output.accept(Items.OXIDIZED_CHISELED_COPPER);
+                output.accept(Items.WAXED_CHISELED_COPPER);
+                output.accept(Items.WAXED_EXPOSED_CHISELED_COPPER);
+                output.accept(Items.WAXED_WEATHERED_CHISELED_COPPER);
+                output.accept(Items.WAXED_OXIDIZED_CHISELED_COPPER);
+                output.accept(Items.COPPER_GRATE);
+                output.accept(Items.EXPOSED_COPPER_GRATE);
+                output.accept(Items.WEATHERED_COPPER_GRATE);
+                output.accept(Items.OXIDIZED_COPPER_GRATE);
+                output.accept(Items.WAXED_COPPER_GRATE);
+                output.accept(Items.WAXED_EXPOSED_COPPER_GRATE);
+                output.accept(Items.WAXED_WEATHERED_COPPER_GRATE);
+                output.accept(Items.WAXED_OXIDIZED_COPPER_GRATE);
+                output.accept(Items.COPPER_BULB);
+                output.accept(Items.EXPOSED_COPPER_BULB);
+                output.accept(Items.WEATHERED_COPPER_BULB);
+                output.accept(Items.OXIDIZED_COPPER_BULB);
+                output.accept(Items.WAXED_COPPER_BULB);
+                output.accept(Items.WAXED_EXPOSED_COPPER_BULB);
+                output.accept(Items.WAXED_WEATHERED_COPPER_BULB);
+                output.accept(Items.WAXED_OXIDIZED_COPPER_BULB);
+                // Chests
+                output.accept(ModBlocks.COPPER_CHEST);
+                output.accept(ModBlocks.EXPOSED_COPPER_CHEST);
+                output.accept(ModBlocks.WEATHERED_COPPER_CHEST);
+                output.accept(ModBlocks.OXIDIZED_COPPER_CHEST);
+                output.accept(ModBlocks.WAXED_COPPER_CHEST);
+                output.accept(ModBlocks.WAXED_EXPOSED_COPPER_CHEST);
+                output.accept(ModBlocks.WAXED_WEATHERED_COPPER_CHEST);
+                output.accept(ModBlocks.WAXED_OXIDIZED_COPPER_CHEST);
+                // Doors & Trapdoors
+                ModBlocks.COPPER_DOORS.values().forEach(s -> output.accept(s.get().asItem()));
+                ModBlocks.COPPER_TRAPDOORS.values().forEach(s -> output.accept(s.get().asItem()));
+                // Buttons & Pressure Plates
+                ModBlocks.COPPER_BUTTONS.values().forEach(s -> output.accept(s.get().asItem()));
+                ModBlocks.COPPER_PRESSURE_PLATES.values().forEach(s -> output.accept(s.get().asItem()));
+                // Torch
+                output.accept(ModBlocks.COPPER_TORCH);
+                // Lanterns & Soul Lanterns
+                ModBlocks.COPPER_LANTERNS.values().forEach(s -> output.accept(s.get().asItem()));
+                ModBlocks.COPPER_SOUL_LANTERNS.values().forEach(s -> output.accept(s.get().asItem()));
+                // Chains, Bars, Ladders
+                ModBlocks.COPPER_CHAINS.values().forEach(s -> output.accept(s.get().asItem()));
+                ModBlocks.COPPER_BARS.values().forEach(s -> output.accept(s.get().asItem()));
+                ModBlocks.COPPER_LADDERS.values().forEach(s -> output.accept(s.get().asItem()));
+                // Hoppers
+                ModBlocks.COPPER_HOPPERS.values().forEach(s -> output.accept(s.get().asItem()));
+                // Cauldrons
+                ModBlocks.COPPER_CAULDRONS.values().forEach(s -> output.accept(s.get().asItem()));
+                // Rails
+                ModBlocks.COPPER_RAILS.values().forEach(s -> output.accept(s.get().asItem()));
+                // Anvils
+                ModBlocks.COPPER_ANVILS.values().forEach(s -> output.accept(s.get().asItem()));
+                // Lightning Rods
+                ModBlocks.LIGHTNING_RODS.values().forEach(s -> output.accept(s.get().asItem()));
+                // Golem Statues
+                ModBlocks.COPPER_GOLEM_STATUES.values().forEach(s -> output.accept(s.get().asItem()));
+            }),
+
     GRADIENTS("gradients",
             () -> ModBlocks.getAllGradientBlocks().iterator().next().get().asItem(),
             (params, output) -> {
@@ -583,7 +681,7 @@ public enum OttCreativeCategories {
 
     // --- Display order (top to bottom in the button list) ---
     public static final java.util.List<OttCreativeCategories> DISPLAY_ORDER =
-            java.util.List.of(MISC, VANPLUS, WOOD_SETS, DYES, COLORS, GRADIENTS, BLOCKS, CONN, BACKPORT, FLORA, FAUNA, FOOD, JARS, CREATURES
+            java.util.List.of(MISC, VANPLUS, WOOD_SETS, DYES, COLORS, GRADIENTS, BLOCKS, CONN, BACKPORT, COPPER_CHAOS, FLORA, FAUNA, FOOD, JARS, CREATURES
             );
 
     // --- State ---
