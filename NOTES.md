@@ -7,6 +7,10 @@ make new clam item model
 add the other 5 randomized limestone bricks
 add seaglass to color gen
 make futon white and add to color gen
+get tags added for all new blocks
+get DO tags added for all new full static blocks
+get as much transferred to datageneration as possible
+add new animated seaglass
 
 Mods to Implement:
 =====
