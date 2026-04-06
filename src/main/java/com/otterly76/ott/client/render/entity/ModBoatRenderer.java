@@ -20,6 +20,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 @OnlyIn(Dist.CLIENT)
+@SuppressWarnings("deprecation") // BoatRenderer.getTextureLocation is deprecated in favour of getModelWithLocation, which we override
 public class ModBoatRenderer extends BoatRenderer implements CustomBoatModel {
     private final Map<String, Pair<ResourceLocation, ListModel<Boat>>> boatResources = new HashMap<>();
     private final EntityRendererProvider.Context context;
@@ -51,9 +52,12 @@ public class ModBoatRenderer extends BoatRenderer implements CustomBoatModel {
     }
 
     private String getWoodType(Boat boat) {
-        if (boat instanceof OttWoodSetBoatEntity b) return b.getWoodSetName();
-        if (boat instanceof OttWoodSetChestBoatEntity b) return b.getWoodSetName();
-        // Fallback or specific backport entities if they aren't the generic ones
+        if (boat instanceof OttWoodSetBoatEntity b && !b.getWoodSetName().isEmpty()) return b.getWoodSetName();
+        if (boat instanceof OttWoodSetChestBoatEntity b && !b.getWoodSetName().isEmpty()) return b.getWoodSetName();
+        // Derive from entity type registry name — reliable for fake item-renderer entities and pale oak boats
+        String path = boat.getType().builtInRegistryHolder().key().location().getPath();
+        if (path.endsWith("_chest_boat")) return path.substring(0, path.length() - "_chest_boat".length());
+        if (path.endsWith("_boat")) return path.substring(0, path.length() - "_boat".length());
         return "pale_oak";
     }
 }

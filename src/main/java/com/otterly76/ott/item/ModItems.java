@@ -550,11 +550,11 @@ public class ModItems {
 
             WOOD_SET_BOATS.put(setName, ITEMS.register(setName + "_boat", () -> new ModBoatItem(ModEntities.WOOD_SET_BOATS.get(setName), new Item.Properties().stacksTo(1), boat -> {
                 if (boat instanceof OttWoodSetBoatEntity b) b.setWoodSetName(setName);
-            })));
+            }, setName, false)));
 
             WOOD_SET_CHEST_BOATS.put(setName, ITEMS.register(setName + "_chest_boat", () -> new ModBoatItem(ModEntities.WOOD_SET_CHEST_BOATS.get(setName), new Item.Properties().stacksTo(1), boat -> {
                 if (boat instanceof OttWoodSetChestBoatEntity b) b.setWoodSetName(setName);
-            })));
+            }, setName, true)));
         });
 
         // REGISTRATION: Vanilla Wood Structural Blocks

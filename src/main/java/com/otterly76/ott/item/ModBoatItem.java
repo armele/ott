@@ -29,15 +29,23 @@ public class ModBoatItem extends Item {
     private static final Predicate<Entity> ENTITY_PREDICATE = EntitySelector.NO_SPECTATORS.and(Entity::isPickable);
     private final Supplier<? extends EntityType<? extends Boat>> type;
     private final Consumer<Boat> initializer;
+    private final String woodSetName;
+    private final boolean isChest;
 
     public ModBoatItem(Supplier<? extends EntityType<? extends Boat>> type, Properties properties) {
-        this(type, properties, boat -> {});
+        this(type, properties, boat -> {}, "", false);
     }
 
     public ModBoatItem(Supplier<? extends EntityType<? extends Boat>> type, Properties properties, Consumer<Boat> initializer) {
+        this(type, properties, initializer, "", false);
+    }
+
+    public ModBoatItem(Supplier<? extends EntityType<? extends Boat>> type, Properties properties, Consumer<Boat> initializer, String woodSetName, boolean isChest) {
         super(properties);
         this.type = type;
         this.initializer = initializer;
+        this.woodSetName = woodSetName;
+        this.isChest = isChest;
     }
 
     @Override
@@ -48,7 +56,7 @@ public class ModBoatItem extends Item {
 
             @Override
             public @NotNull BlockEntityWithoutLevelRenderer getCustomRenderer() {
-                if (renderer == null) renderer = new ModBoatItemRenderer(type);
+                if (renderer == null) renderer = new ModBoatItemRenderer(type, initializer, woodSetName, isChest);
                 return renderer;
             }
         });

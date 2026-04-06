@@ -66,9 +66,10 @@ public class ModItemModelProvider extends ItemModelProvider {
                     .texture("sign", mcLoc("item/entity/signs/hanging/" + setName))
                     .texture("particle", mcLoc("item/entity/signs/hanging/" + setName));
 
-            // Boats: use builtin/entity so ModBoatItemRenderer handles display via entity renderer
-            getBuilder(setName + "_boat").parent(new ModelFile.UncheckedModelFile(mcLoc("builtin/entity")));
-            getBuilder(setName + "_chest_boat").parent(new ModelFile.UncheckedModelFile(mcLoc("builtin/entity")));
+            // Boats: parent to our template which has builtin/entity + display transforms.
+            // This makes isCustomRenderer()=true so our ModBoatItemRenderer is called with the correct wood texture.
+            withExistingParent(setName + "_boat", modLoc("item/boat_template"));
+            withExistingParent(setName + "_chest_boat", modLoc("item/chest_boat_template"));
         });
 
         // Oak structural item models are pre-existing hand-written files; skip to avoid duplicates.
