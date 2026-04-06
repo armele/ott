@@ -1,1 +1,1 @@
-{ "parent": "minecraft:item/generated", "textures": { "layer0": "ott:item/canary_spawn_egg" } }
+{ "parent": "minecraft:item/generated", "textures": { "layer0": "ott:item/spawn_eggs/canary_spawn_egg" } }

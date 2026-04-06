@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:item/generated",
   "textures": {
-    "layer0": "ott:item/koi_fish_spawn_egg"
+    "layer0": "ott:item/spawn_eggs/koi_fish_spawn_egg"
   }
 }

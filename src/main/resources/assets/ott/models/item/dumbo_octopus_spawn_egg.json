@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:item/generated",
   "textures": {
-    "layer0": "ott:item/dumbo_octopus_spawn_egg"
+    "layer0": "ott:item/spawn_eggs/dumbo_octopus_spawn_egg"
   }
 }

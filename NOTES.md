@@ -1,6 +1,10 @@
 Notes:
 =====
 add new blocks to wandering merchant
+make new bug net item model
+make new catepillar item model
+make new clam item model
+add the other 5 randomized limestone bricks
 
 Mods to Implement:
 =====

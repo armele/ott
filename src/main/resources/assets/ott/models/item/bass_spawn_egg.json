@@ -1,1 +1,1 @@
-{ "parent": "minecraft:item/generated", "textures": { "layer0": "ott:item/bass_spawn_egg" } }
+{ "parent": "minecraft:item/generated", "textures": { "layer0": "ott:item/spawn_eggs/bass_spawn_egg" } }

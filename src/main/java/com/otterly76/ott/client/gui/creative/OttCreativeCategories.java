@@ -18,7 +18,6 @@ public enum OttCreativeCategories {
     CREATURES("creatures",
             ModItems.OTTER_SPAWN_EGG,
             (params, output) -> {
-                // Buckets
                 output.accept(ModItems.ANGELFISH_BUCKET);
                 output.accept(ModItems.BARRELEYE_BUCKET);
                 output.accept(ModItems.BASS_BUCKET);
@@ -43,7 +42,7 @@ public enum OttCreativeCategories {
                 output.accept(ModItems.SNAIL_BUCKET);
                 output.accept(ModItems.STINGRAY_BUCKET);
                 output.accept(ModItems.SUNFISH_BUCKET);
-                // Eggs
+
                 output.accept(ModItems.ALLIGATOR_SPAWN_EGG);
                 output.accept(ModItems.ANGELFISH_SPAWN_EGG);
                 output.accept(ModItems.ARID_YETI_SPAWN_EGG);
@@ -187,6 +186,28 @@ public enum OttCreativeCategories {
                 output.accept(ModItems.ZEBRA_SPAWN_EGG);
             }),
 
+    DYES("dyes",
+            ModItems.CUSTOM_DYES.get("goldenrod"),
+            (params, output) -> {
+                output.accept(Items.WHITE_DYE);
+                output.accept(Items.LIGHT_GRAY_DYE);
+                output.accept(Items.GRAY_DYE);
+                output.accept(Items.BLACK_DYE);
+                output.accept(Items.BROWN_DYE);
+                output.accept(Items.RED_DYE);
+                output.accept(Items.ORANGE_DYE);
+                output.accept(Items.YELLOW_DYE);
+                output.accept(Items.LIME_DYE);
+                output.accept(Items.GREEN_DYE);
+                output.accept(Items.CYAN_DYE);
+                output.accept(Items.LIGHT_BLUE_DYE);
+                output.accept(Items.BLUE_DYE);
+                output.accept(Items.PURPLE_DYE);
+                output.accept(Items.MAGENTA_DYE);
+                output.accept(Items.PINK_DYE);
+                ModItems.CUSTOM_DYES.values().forEach(output::accept);
+            }),
+
     COLORS("colors",
             () -> ModBlocks.COLOR_SETS.get("amethyst").wool().get().asItem(),
             (params, output) -> {
@@ -216,24 +237,6 @@ public enum OttCreativeCategories {
                 ModBlocks.PATTERN_PERGOLAS.values().forEach(colorMap -> colorMap.values().forEach(output::accept));
                 ModBlocks.PATTERN_WINDOWS.values().forEach(colorMap -> colorMap.values().forEach(output::accept));
                 ModBlocks.ELEVATORS.values().forEach(output::accept);
-                // Dyes
-                output.accept(Items.WHITE_DYE);
-                output.accept(Items.LIGHT_GRAY_DYE);
-                output.accept(Items.GRAY_DYE);
-                output.accept(Items.BLACK_DYE);
-                output.accept(Items.BROWN_DYE);
-                output.accept(Items.RED_DYE);
-                output.accept(Items.ORANGE_DYE);
-                output.accept(Items.YELLOW_DYE);
-                output.accept(Items.LIME_DYE);
-                output.accept(Items.GREEN_DYE);
-                output.accept(Items.CYAN_DYE);
-                output.accept(Items.LIGHT_BLUE_DYE);
-                output.accept(Items.BLUE_DYE);
-                output.accept(Items.PURPLE_DYE);
-                output.accept(Items.MAGENTA_DYE);
-                output.accept(Items.PINK_DYE);
-                ModItems.CUSTOM_DYES.values().forEach(output::accept);
             }),
 
     WOOD_SETS("wood_sets",
@@ -260,6 +263,21 @@ public enum OttCreativeCategories {
                     output.accept(ModItems.WOOD_SET_BOATS.get(name));
                     output.accept(ModItems.WOOD_SET_CHEST_BOATS.get(name));
                 });
+                ModBlocks.WOOD_SETS.values().forEach(set -> {
+                    output.accept(set.beam());
+                    output.accept(set.pergola());
+                    output.accept(set.planksPlate());
+                    output.accept(set.planksEdge());
+                    output.accept(set.bannister());
+                    output.accept(set.supportSlab());
+                    output.accept(set.supportBeam());
+                    output.accept(set.geometricWindow());
+                });
+            }),
+
+    BACKPORT("backport",
+            () -> ModBlocks.PALE_OAK_LOG.get().asItem(),
+            (params, output) -> {
                 output.accept(ModBlocks.PALE_OAK_LOG);
                 output.accept(ModBlocks.PALE_OAK_WOOD);
                 output.accept(ModBlocks.STRIPPED_PALE_OAK_LOG);
@@ -279,109 +297,45 @@ public enum OttCreativeCategories {
                 output.accept(ModBlocks.PALE_OAK_SAPLING);
                 output.accept(ModItems.PALE_OAK_BOAT);
                 output.accept(ModItems.PALE_OAK_CHEST_BOAT);
-            }),
+                output.accept(ModBlocks.PALE_MOSS_BLOCK);
+                output.accept(ModBlocks.PALE_MOSS_CARPET);
+                output.accept(ModBlocks.PALE_HANGING_MOSS);
+                output.accept(ModBlocks.CREAKING_HEART);
+                output.accept(ModBlocks.OPEN_EYEBLOSSOM);
+                output.accept(ModBlocks.CLOSED_EYEBLOSSOM);
 
-    BLOCKS("blocks",
-            () -> ModBlocks.LIMESTONE_00.get().asItem(),
-            (params, output) -> {
-                // Gradients
-                ModBlocks.getAllGradientBlocks().forEach(output::accept);
-                // Limestone, Seaglass, etc.
-                ModBlocks.LIMESTONE.forEach(output::accept);
-                ModBlocks.SEAGLASS.forEach(output::accept);
-                ModBlocks.TESTBLOCK.forEach(output::accept);
-                output.accept(ModBlocks.SMOOTH_GLOWSTONE);
-                output.accept(ModBlocks.SALT_BLOCK);
-                output.accept(ModBlocks.POLISHED_SALT_BLOCK);
                 output.accept(ModBlocks.RESIN_BLOCK);
                 output.accept(ModBlocks.RESIN_BRICKS);
                 output.accept(ModBlocks.RESIN_BRICK_STAIRS);
                 output.accept(ModBlocks.RESIN_BRICK_SLAB);
                 output.accept(ModBlocks.RESIN_BRICK_WALL);
                 output.accept(ModBlocks.CHISELED_RESIN_BRICKS);
-                // Mosaic / Fresco
-                output.accept(ModBlocks.WATER_MOSAIC_BORDER);
-                output.accept(ModBlocks.WATER_MOSAIC_GEOMETRIC);
-                output.accept(ModBlocks.WATER_MOSAIC_PATTERN);
-                output.accept(ModBlocks.WATER_MOSAIC_DELICATE);
-                output.accept(ModBlocks.WATER_MOSAIC_TRADITIONAL);
-                output.accept(ModBlocks.WATER_MOSAIC_RECESS);
-                output.accept(ModBlocks.MOSAIC_FLOOR);
-                output.accept(ModBlocks.MOSAIC_FLOOR_DELICATE);
-                output.accept(ModBlocks.MOSAIC_FLOOR_ROSETTE);
-                output.accept(ModBlocks.ROMAN_FRESCO_RED);
-                output.accept(ModBlocks.ROMAN_FRESCO_BLACK);
-                // Deco
-                output.accept(ModBlocks.STONE_LANTERN);
-                output.accept(ModBlocks.IRON_FANCY_LANTERN);
-                output.accept(ModBlocks.WHEAT_THATCH);
-                output.accept(ModBlocks.WHEAT_THATCH_EDGE);
-                output.accept(ModBlocks.WHEAT_THATCH_PLATE);
-                output.accept(ModBlocks.BAMBOO_THATCH);
-                output.accept(ModBlocks.BAMBOO_THATCH_EDGE);
-                output.accept(ModBlocks.BAMBOO_THATCH_PLATE);
-                output.accept(ModBlocks.FLAT_ROOF_TILES);
-                output.accept(ModBlocks.FLAT_ROOF_TILES_EDGE);
-                output.accept(ModBlocks.FLAT_ROOF_TILES_PLATE);
-                output.accept(ModBlocks.GRAY_ROOF_TILES);
-                output.accept(ModBlocks.GRAY_ROOF_TILES_EDGE);
-                output.accept(ModBlocks.GRAY_ROOF_TILES_PLATE);
-                output.accept(ModBlocks.ROOFING_SLATES);
-                output.accept(ModBlocks.ROOFING_SLATES_EDGE);
-                output.accept(ModBlocks.ROOFING_SLATES_PLATE);
+                output.accept(ModBlocks.RESIN_CLUMP);
+
+                ModBlocks.SHELVES.forEach(output::accept);
+
+                output.accept(ModBlocks.BUSH);
+                output.accept(ModBlocks.FIREFLY_BUSH);
+                output.accept(ModBlocks.WILDFLOWERS);
+                output.accept(ModBlocks.LEAF_LITTER);
+                output.accept(ModBlocks.CACTUS_FLOWER);
+                output.accept(ModBlocks.SHORT_DRY_GRASS);
+                output.accept(ModBlocks.TALL_DRY_GRASS);
+
+                output.accept(ModBlocks.DRIED_GHAST);
+            }),
+
+    GRADIENTS("gradients",
+            () -> ModBlocks.getAllGradientBlocks().iterator().next().get().asItem(),
+            (params, output) -> {
+                ModBlocks.getAllGradientBlocks().forEach(output::accept);
+            }),
+
+    VANPLUS("vanplus",
+            () -> ModBlocks.OAK_BANNISTER.get().asItem(),
+            (params, output) -> {
                 ModBlocks.VANILLA_WALLS.values().forEach(output::accept);
-                // French
-                output.accept(ModBlocks.LIMESTONE_BRICKS);
-                output.accept(ModBlocks.LIMESTONE_BRICKS_EDGE);
-                output.accept(ModBlocks.LIMESTONE_BRICKS_PLATE);
-                output.accept(ModBlocks.LIMESTONE_BANNISTER);
-                output.accept(ModBlocks.COBBLED_LIMESTONE);
-                // Roman
-                output.accept(ModBlocks.MARBLE);
-                output.accept(ModBlocks.MARBLE_FANCY_FENCE);
-                output.accept(ModBlocks.SANDSTONE_PLATE);
-                output.accept(ModBlocks.SANDSTONE_EDGE);
-                output.accept(ModBlocks.SANDSTONE_CRENELATION);
-                output.accept(ModBlocks.CUT_SANDSTONE_PLATE);
-                output.accept(ModBlocks.CUT_SANDSTONE_EDGE);
-                output.accept(ModBlocks.SMOOTH_SANDSTONE_PLATE);
-                output.accept(ModBlocks.SMOOTH_SANDSTONE_EDGE);
-                output.accept(ModBlocks.OCHRE_ROOF_TILES);
-                output.accept(ModBlocks.OCHRE_ROOF_TILES_EDGE);
-                output.accept(ModBlocks.OCHRE_ROOF_TILES_PLATE);
-                output.accept(ModBlocks.STONE_BRICKS_MASONRY);
-                output.accept(ModBlocks.STONE_BRICKS_MASONRY_EDGE);
-                output.accept(ModBlocks.STONE_BRICKS_MASONRY_PLATE);
-                output.accept(ModBlocks.CURVED_RAKED_GRAVEL);
-                output.accept(ModBlocks.STRAIGHT_RAKED_GRAVEL);
-                output.accept(ModBlocks.LIGHT_GRAY_FUTON);
-                // Persian
-                output.accept(ModBlocks.PERSIAN_CARPET_RED);
-                output.accept(ModBlocks.PERSIAN_CARPET_DELICATE_RED);
-                output.accept(ModBlocks.SANDSTONE_BRICKS);
-                output.accept(ModBlocks.SANDSTONE_BRICKS_WALL);
-                output.accept(ModBlocks.SANDSTONE_BRICKS_EDGE);
-                output.accept(ModBlocks.SANDSTONE_BRICKS_PLATE);
-                output.accept(ModBlocks.SANDSTONE_BRICKS_TURQUOISE_PATTERN);
-                output.accept(ModBlocks.SANDSTONE_BRICKS_TURQUOISE_PATTERN_WALL);
-                output.accept(ModBlocks.SANDSTONE_BRICKS_TURQUOISE_PATTERN_EDGE);
-                output.accept(ModBlocks.SANDSTONE_BRICKS_TURQUOISE_PATTERN_PLATE);
-                output.accept(ModBlocks.GOLD_PLATED_SMOOTH_BLOCK);
-                output.accept(ModBlocks.GOLD_PLATED_SMOOTH_EDGE);
-                output.accept(ModBlocks.GOLD_PLATED_SMOOTH_PLATE);
-                // Pre-Columbian
-                output.accept(ModBlocks.ORNAMENTED_CHISELED_PLASTERED_STONE);
-                output.accept(ModBlocks.GREEN_ORNAMENTED_PLASTERED_STONE);
-                output.accept(ModBlocks.RED_ORNAMENTED_PLASTERED_STONE);
-                // Stone Brick Water Features
-                output.accept(ModBlocks.STONE_BRICKS_ARROWSLIT);
-                output.accept(ModBlocks.STONE_BRICKS_MACHICOLATION);
-                output.accept(ModBlocks.STONE_BRICKS_FAUCET);
-                output.accept(ModBlocks.STONE_BRICKS_POOL);
-                output.accept(ModBlocks.STONE_BRICKS_SMALL_POOL);
-                output.accept(ModBlocks.STONE_BRICKS_WATER_JET);
-                output.accept(ModBlocks.WATER_SOURCE_TRICKLE);
-                // Vanilla structural sets
+
                 ModBlocks.VANILLA_STRUCTURAL_SETS.values().forEach(set -> {
                     output.accept(set.beam());
                     output.accept(set.pergola());
@@ -392,70 +346,156 @@ public enum OttCreativeCategories {
                     output.accept(set.supportBeam());
                     output.accept(set.geometricWindow());
                 });
-                ModBlocks.WOOD_SETS.values().forEach(set -> {
-                    output.accept(set.beam());
-                    output.accept(set.pergola());
-                    output.accept(set.planksPlate());
-                    output.accept(set.planksEdge());
-                    output.accept(set.bannister());
-                    output.accept(set.supportSlab());
-                    output.accept(set.supportBeam());
-                    output.accept(set.geometricWindow());
-                });
+
+                output.accept(ModBlocks.SANDSTONE_PLATE);
+                output.accept(ModBlocks.SANDSTONE_EDGE);
+
+                output.accept(ModBlocks.CUT_SANDSTONE_PLATE);
+                output.accept(ModBlocks.CUT_SANDSTONE_EDGE);
+
+                output.accept(ModBlocks.SMOOTH_SANDSTONE_PLATE);
+                output.accept(ModBlocks.SMOOTH_SANDSTONE_EDGE);
+     }),
+
+    CONN("conn",
+            () -> ModBlocks.WATER_MOSAIC_TRADITIONAL.get().asItem(),
+            (params, output) -> {
+                output.accept(ModBlocks.WATER_MOSAIC_BORDER);
+                output.accept(ModBlocks.WATER_MOSAIC_GEOMETRIC);
+                output.accept(ModBlocks.WATER_MOSAIC_PATTERN);
+                output.accept(ModBlocks.WATER_MOSAIC_DELICATE);
+                output.accept(ModBlocks.MOSAIC_FLOOR);
+                output.accept(ModBlocks.MOSAIC_FLOOR_DELICATE);
+                output.accept(ModBlocks.MOSAIC_FLOOR_ROSETTE);
+                output.accept(ModBlocks.ROMAN_FRESCO_RED);
+                output.accept(ModBlocks.ROMAN_FRESCO_BLACK);
+
+                output.accept(ModBlocks.LIMESTONE_BRICKS);
+                output.accept(ModBlocks.LIMESTONE_BRICKS_EDGE);
+                output.accept(ModBlocks.LIMESTONE_BRICKS_PLATE);
+
+                output.accept(ModBlocks.STONE_BRICKS_MASONRY);
+                output.accept(ModBlocks.STONE_BRICKS_MASONRY_EDGE);
+                output.accept(ModBlocks.STONE_BRICKS_MASONRY_PLATE);
             }),
 
-    MISC("misc",
-            () -> ModBlocks.WATER_LANTERN.get().asItem(),
+    BLOCKS("blocks",
+            () -> ModBlocks.LIMESTONE_00.get().asItem(),
+            (params, output) -> {
+                output.accept(ModBlocks.COBBLED_LIMESTONE);
+                ModBlocks.LIMESTONE.forEach(output::accept);
+                ModBlocks.SEAGLASS.forEach(output::accept);
+                ModBlocks.TESTBLOCK.forEach(output::accept);
+
+                output.accept(ModBlocks.SMOOTH_GLOWSTONE);
+
+                output.accept(ModBlocks.SALT_BLOCK);
+                output.accept(ModBlocks.POLISHED_SALT_BLOCK);
+
+                output.accept(ModBlocks.WATER_MOSAIC_TRADITIONAL);
+
+                output.accept(ModBlocks.WHEAT_THATCH);
+                output.accept(ModBlocks.WHEAT_THATCH_EDGE);
+                output.accept(ModBlocks.WHEAT_THATCH_PLATE);
+
+                output.accept(ModBlocks.BAMBOO_THATCH);
+                output.accept(ModBlocks.BAMBOO_THATCH_EDGE);
+                output.accept(ModBlocks.BAMBOO_THATCH_PLATE);
+
+                output.accept(ModBlocks.FLAT_ROOF_TILES);
+                output.accept(ModBlocks.FLAT_ROOF_TILES_EDGE);
+                output.accept(ModBlocks.FLAT_ROOF_TILES_PLATE);
+
+                output.accept(ModBlocks.GRAY_ROOF_TILES);
+                output.accept(ModBlocks.GRAY_ROOF_TILES_EDGE);
+                output.accept(ModBlocks.GRAY_ROOF_TILES_PLATE);
+
+                output.accept(ModBlocks.ROOFING_SLATES);
+                output.accept(ModBlocks.ROOFING_SLATES_EDGE);
+                output.accept(ModBlocks.ROOFING_SLATES_PLATE);
+
+                output.accept(ModBlocks.MARBLE);
+
+                output.accept(ModBlocks.OCHRE_ROOF_TILES);
+                output.accept(ModBlocks.OCHRE_ROOF_TILES_EDGE);
+                output.accept(ModBlocks.OCHRE_ROOF_TILES_PLATE);
+
+                output.accept(ModBlocks.SANDSTONE_BRICKS);
+                output.accept(ModBlocks.SANDSTONE_BRICKS_WALL);
+                output.accept(ModBlocks.SANDSTONE_BRICKS_EDGE);
+                output.accept(ModBlocks.SANDSTONE_BRICKS_PLATE);
+
+                output.accept(ModBlocks.SANDSTONE_BRICKS_TURQUOISE_PATTERN);
+                output.accept(ModBlocks.SANDSTONE_BRICKS_TURQUOISE_PATTERN_WALL);
+                output.accept(ModBlocks.SANDSTONE_BRICKS_TURQUOISE_PATTERN_EDGE);
+                output.accept(ModBlocks.SANDSTONE_BRICKS_TURQUOISE_PATTERN_PLATE);
+
+                output.accept(ModBlocks.GOLD_PLATED_SMOOTH_BLOCK);
+                output.accept(ModBlocks.GOLD_PLATED_SMOOTH_EDGE);
+                output.accept(ModBlocks.GOLD_PLATED_SMOOTH_PLATE);
+
+                output.accept(ModBlocks.ORNAMENTED_CHISELED_PLASTERED_STONE);
+                output.accept(ModBlocks.GREEN_ORNAMENTED_PLASTERED_STONE);
+                output.accept(ModBlocks.RED_ORNAMENTED_PLASTERED_STONE);
+            }),
+
+    JARS("jars",
+            () -> ModBlocks.FIREFLY_JAR.get().asItem(),
+            (params, output) -> {
+                output.accept(ModBlocks.CHRYSALIS);
+                output.accept(ModItems.CATERPILLAR.get());
+                output.accept(ModBlocks.GLASS_JAR);
+                output.accept(ModBlocks.CATERPILLAR_JAR);
+                output.accept(ModBlocks.FIREFLY_IN_A_JAR);
+                output.accept(ModBlocks.FIREFLIES_IN_A_JAR);
+                output.accept(ModBlocks.FIREFLY_JAR);
+                output.accept(ModItems.BUG_NET);
+                ModBlocks.BUTTERFLY_JARS.values().forEach(output::accept);
+                for (Butterfly.Variant variant : Butterfly.Variant.values()) {
+                    output.accept(ModItems.BUTTERFLIES.get(variant).get());
+                }
+            }),
+
+    FLORA("flora",
+            ModItems.BIG_LILY_PAD,
+            (params, output) -> {
+                output.accept(ModBlocks.THORNY_HEDGE);
+                output.accept(ModItems.THORNY_HEDGE_SPROUTS);
+
+                ModBlocks.PARTICLE_HEDGES.values().forEach(output::accept);
+                ModBlocks.CREEPING_HEDGES.values().forEach(output::accept);
+
+                output.accept(ModItems.BIG_LILY_PAD);
+
+                output.accept(ModBlocks.COCONUT);
+
+                output.accept(ModItems.COCONUT);
+            }),
+
+    FAUNA("fauna",
+            ModItems.CLAM,
             (params, output) -> {
                 output.accept(ModItems.CLAM);
                 output.accept(ModItems.KOI_FISH);
                 output.accept(ModItems.PEARL);
                 output.accept(ModItems.SILK);
                 output.accept(ModItems.SNAIL_SHELL);
-                output.accept(ModItems.SALT);
-                output.accept(ModBlocks.SALT_LAMP);
                 output.accept(ModBlocks.GLOW_GOOP);
-                output.accept(ModBlocks.WATER_LANTERN);
-                output.accept(ModBlocks.LAVA_LANTERN);
-                output.accept(ModBlocks.PROTECTIVE_LANTERN);
-                output.accept(ModBlocks.SMITE_LANTERN);
-                ModBlocks.SHELVES.forEach(output::accept);
-                output.accept(ModBlocks.PALE_MOSS_BLOCK);
-                output.accept(ModBlocks.PALE_MOSS_CARPET);
-                output.accept(ModBlocks.PALE_HANGING_MOSS);
-                output.accept(ModBlocks.CREAKING_HEART);
-                output.accept(ModBlocks.OPEN_EYEBLOSSOM);
-                output.accept(ModBlocks.CLOSED_EYEBLOSSOM);
-                output.accept(ModBlocks.BUSH);
-                output.accept(ModBlocks.FIREFLY_BUSH);
-                output.accept(ModBlocks.WILDFLOWERS);
-                output.accept(ModBlocks.LEAF_LITTER);
-                output.accept(ModBlocks.CACTUS_FLOWER);
-                output.accept(ModBlocks.SHORT_DRY_GRASS);
-                output.accept(ModBlocks.TALL_DRY_GRASS);
-                output.accept(ModBlocks.DRIED_GHAST);
-                output.accept(ModBlocks.WEATHERING_STATION);
+
                 output.accept(ModBlocks.DRAGON_SKULL);
                 output.accept(ModBlocks.SILK_COCOON);
-                output.accept(ModBlocks.CHRYSALIS);
-                output.accept(ModBlocks.THORNY_HEDGE);
-                output.accept(ModItems.THORNY_HEDGE_SPROUTS);
-                ModBlocks.PARTICLE_HEDGES.values().forEach(output::accept);
-                ModBlocks.CREEPING_HEDGES.values().forEach(output::accept);
-                output.accept(ModItems.BIG_LILY_PAD);
                 output.accept(ModItems.OAK_NEST);
-                output.accept(ModBlocks.COCONUT);
-                output.accept(ModBlocks.RESIN_CLUMP);
-                output.accept(ModBlocks.GLASS_JAR);
-                output.accept(ModBlocks.FIREFLY_IN_A_JAR);
-                output.accept(ModBlocks.FIREFLIES_IN_A_JAR);
-                output.accept(ModBlocks.FIREFLY_JAR);
-                ModBlocks.BUTTERFLY_JARS.values().forEach(output::accept);
-                output.accept(ModBlocks.CATERPILLAR_JAR);
-                for (Butterfly.Variant variant : Butterfly.Variant.values()) {
-                    output.accept(ModItems.BUTTERFLIES.get(variant).get());
-                }
-                output.accept(ModItems.CATERPILLAR.get());
+
+                output.accept(ModItems.ALLIGATOR_EGG);
+                output.accept(ModItems.CRAB_CLAW);
+                output.accept(ModItems.CRAB_EGG);
+                output.accept(ModItems.SNAIL_EGG);
+                output.accept(ModItems.TORTOISE_EGG);
+            }),
+
+    FOOD("food",
+            ModItems.COOKED_WILD_GAME_MEAT,
+            (params, output) -> {
                 output.accept(ModItems.BASS);
                 output.accept(ModItems.COOKED_BASS);
                 output.accept(ModItems.RAW_BONNETHEAD);
@@ -498,26 +538,65 @@ public enum OttCreativeCategories {
                 output.accept(ModItems.PENGUIN_EGG);
                 output.accept(ModItems.PHEASANT_EGG);
                 output.accept(ModItems.TOUCAN_EGG);
-                output.accept(ModItems.ALLIGATOR_EGG);
-                output.accept(ModItems.CRAB_CLAW);
-                output.accept(ModItems.CRAB_EGG);
-                output.accept(ModItems.SNAIL_EGG);
-                output.accept(ModItems.TORTOISE_EGG);
-                output.accept(ModItems.COCONUT);
+            }),
+
+    MISC("misc",
+            () -> ModBlocks.WATER_LANTERN.get().asItem(),
+            (params, output) -> {
+                output.accept(ModItems.SALT);
+                output.accept(ModBlocks.SALT_LAMP);
+
+                output.accept(ModBlocks.STONE_LANTERN);
+                output.accept(ModBlocks.IRON_FANCY_LANTERN);
+
+                output.accept(ModBlocks.WATER_LANTERN);
+                output.accept(ModBlocks.LAVA_LANTERN);
+                output.accept(ModBlocks.PROTECTIVE_LANTERN);
+                output.accept(ModBlocks.SMITE_LANTERN);
+
+                output.accept(ModBlocks.WEATHERING_STATION);
+
+                output.accept(ModBlocks.CURVED_RAKED_GRAVEL);
+                output.accept(ModBlocks.STRAIGHT_RAKED_GRAVEL);
+                output.accept(ModBlocks.LIGHT_GRAY_FUTON);
+
+                output.accept(ModBlocks.LIMESTONE_BANNISTER);
+                output.accept(ModBlocks.MARBLE_FANCY_FENCE);
+                output.accept(ModBlocks.SANDSTONE_CRENELATION);
+
+                output.accept(ModBlocks.WATER_MOSAIC_RECESS);
+
+                output.accept(ModBlocks.STONE_BRICKS_ARROWSLIT);
+                output.accept(ModBlocks.STONE_BRICKS_MACHICOLATION);
+                output.accept(ModBlocks.STONE_BRICKS_FAUCET);
+                output.accept(ModBlocks.STONE_BRICKS_POOL);
+                output.accept(ModBlocks.STONE_BRICKS_SMALL_POOL);
+                output.accept(ModBlocks.STONE_BRICKS_WATER_JET);
+                output.accept(ModBlocks.WATER_SOURCE_TRICKLE);
+
+                output.accept(ModBlocks.PERSIAN_CARPET_RED);
+                output.accept(ModBlocks.PERSIAN_CARPET_DELICATE_RED);
+
                 output.accept(ModItems.WILDFIRE_CROWN);
                 output.accept(ModItems.WILDFIRE_CROWN_FRAGMENT);
             });
 
     // --- Display order (top to bottom in the button list) ---
     public static final java.util.List<OttCreativeCategories> DISPLAY_ORDER =
-            java.util.List.of(MISC, BLOCKS, COLORS, WOOD_SETS, CREATURES);
+            java.util.List.of(MISC, VANPLUS, WOOD_SETS, DYES, COLORS, GRADIENTS, BLOCKS, CONN, BACKPORT, FLORA, FAUNA, FOOD, JARS, CREATURES
+            );
 
     // --- State ---
     @Nullable
     private static OttCreativeCategories selected = MISC;
 
-    public static @Nullable OttCreativeCategories getSelected() { return selected; }
-    public static void setSelected(@Nullable OttCreativeCategories cat) { selected = cat; }
+    public static @Nullable OttCreativeCategories getSelected() {
+        return selected;
+    }
+
+    public static void setSelected(@Nullable OttCreativeCategories cat) {
+        selected = cat;
+    }
 
     // --- Enum fields ---
     private final String id;
@@ -540,7 +619,9 @@ public enum OttCreativeCategories {
         return iconItem.get();
     }
 
-    /** Populate items into output. Accepts null params — none of the current populators use them. */
+    /**
+     * Populate items into output. Accepts null params — none of the current populators use them.
+     */
     public void populateItems(@Nullable CreativeModeTab.ItemDisplayParameters params,
                               @NotNull CreativeModeTab.Output output) {
         populator.accept(params, output);

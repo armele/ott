@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:item/generated",
   "textures": {
-    "layer0": "ott:item/iceologer_spawn_egg"
+    "layer0": "ott:item/spawn_eggs/iceologer_spawn_egg"
   }
 }

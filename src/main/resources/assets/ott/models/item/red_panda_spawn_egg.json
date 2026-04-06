@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:item/generated",
   "textures": {
-    "layer0": "ott:item/red_panda_spawn_egg"
+    "layer0": "ott:item/spawn_eggs/red_panda_spawn_egg"
   }
 }

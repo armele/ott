@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:item/generated",
   "textures": {
-    "layer0": "ott:item/mauler_spawn_egg"
+    "layer0": "ott:item/spawn_eggs/mauler_spawn_egg"
   }
 }
