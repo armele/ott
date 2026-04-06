@@ -2,6 +2,7 @@ package com.otterly76.ott.generation;
 
 import com.google.common.hash.Hashing;
 import com.otterly76.ott.color.ModColorSets;
+import com.otterly76.ott.color.ModPatterns;
 import net.minecraft.data.CachedOutput;
 import net.minecraft.data.DataProvider;
 import net.minecraft.data.PackOutput;
@@ -85,6 +86,14 @@ public class ColorSetTextureProvider implements DataProvider {
             processMaskedItem(cache, mainPath.resolve("textures/item/color_set"), entry.getKey(), entry.getValue(), "white_dye", "glass_bottle_mask", 1.0f, 0.0f);
         }
 
+        // Seaglass — all colors (vanilla dyes + custom color sets)
+        for (ModPatterns.ColorInfo color : ModPatterns.ALL_COLORS) {
+            processOttBlock(cache, mainPath.resolve("textures/block/color_set"), color.name(), color.color(), "seaglass/white_seaglass",        "seaglass",        1.0f, 0.0f);
+            processOttBlock(cache, mainPath.resolve("textures/block/color_set"), color.name(), color.color(), "seaglass/white_bubbles_seaglass",  "bubbles_seaglass",  1.0f, 0.0f);
+            processOttBlock(cache, mainPath.resolve("textures/block/color_set"), color.name(), color.color(), "seaglass/white_smooth_seaglass",   "smooth_seaglass",   1.0f, 0.0f);
+            processOttBlock(cache, mainPath.resolve("textures/block/color_set"), color.name(), color.color(), "seaglass/white_waves_seaglass",    "waves_seaglass",    1.0f, 0.0f);
+        }
+
         return CompletableFuture.completedFuture(null);
     }
 
@@ -94,12 +103,27 @@ public class ColorSetTextureProvider implements DataProvider {
             ResourceLocation sourceLoc = ResourceLocation.withDefaultNamespace("textures/block/" + sourceName + ".png");
             Resource resource = existingFileHelper.getResource(sourceLoc, PackType.CLIENT_RESOURCES);
             BufferedImage base = ImageIO.read(resource.open());
-            
+
             BufferedImage tinted = applyTint(base, colorInt, saturationFactor, brightnessOffset);
-            
+
             saveTexture(cache, folder.resolve(colorName).resolve(targetSubdir + ".png"), tinted);
         } catch (IOException e) {
             throw new RuntimeException("Failed to process block texture: " + sourceName, e);
+        }
+    }
+
+    @SuppressWarnings("SameParameterValue")
+    private void processOttBlock(CachedOutput cache, java.nio.file.Path folder, String colorName, int colorInt, String ottSourcePath, String targetSubdir, float saturationFactor, float brightnessOffset) {
+        try {
+            ResourceLocation sourceLoc = ResourceLocation.fromNamespaceAndPath("ott", "textures/block/" + ottSourcePath + ".png");
+            Resource resource = existingFileHelper.getResource(sourceLoc, PackType.CLIENT_RESOURCES);
+            BufferedImage base = ImageIO.read(resource.open());
+
+            BufferedImage tinted = applyTint(base, colorInt, saturationFactor, brightnessOffset);
+
+            saveTexture(cache, folder.resolve(colorName).resolve(targetSubdir + ".png"), tinted);
+        } catch (IOException e) {
+            throw new RuntimeException("Failed to process ott block texture: " + ottSourcePath, e);
         }
     }
 

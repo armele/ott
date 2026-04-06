@@ -513,6 +513,12 @@ public class ModItems {
         ModBlocks.TESTBLOCK.forEach(ModItems::registerBlockItem);
         ModBlocks.LIMESTONE.forEach(ModItems::registerBlockItem);
         ModBlocks.SEAGLASS.forEach(ModItems::registerBlockItem);
+        ModBlocks.SEAGLASS_SETS.values().forEach(set -> {
+            registerBlockItem(set.seaglass());
+            registerBlockItem(set.bubblesSeaglass());
+            registerBlockItem(set.smoothSeaglass());
+            registerBlockItem(set.wavesSeaglass());
+        });
 
         // REGISTRATION: Hedges
         ModBlocks.PARTICLE_HEDGES.values().forEach(ModItems::registerBlockItem);

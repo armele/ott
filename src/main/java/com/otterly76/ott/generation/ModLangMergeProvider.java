@@ -138,6 +138,10 @@ public class ModLangMergeProvider implements DataProvider {
         json.addProperty("block.ott." + name + "_carpet", capitalized + " Carpet");
         json.addProperty("block.ott." + name + "_banner", capitalized + " Banner");
         json.addProperty("item.ott." + name + "_dye", capitalized + " Dye");
+        json.addProperty("block.ott." + name + "_seaglass",         capitalized + " Seaglass");
+        json.addProperty("block.ott." + name + "_bubbles_seaglass",  capitalized + " Bubbles Seaglass");
+        json.addProperty("block.ott." + name + "_smooth_seaglass",   capitalized + " Smooth Seaglass");
+        json.addProperty("block.ott." + name + "_waves_seaglass",    capitalized + " Waves Seaglass");
     }
 
     private void addElevatorBlockEntries(JsonObject json, String colorName) {

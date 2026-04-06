@@ -230,6 +230,12 @@ public enum OttCreativeCategories {
                     output.accept(set.pergola());
                     output.accept(set.geometricWindow());
                 });
+                ModBlocks.SEAGLASS_SETS.values().forEach(set -> {
+                    output.accept(set.seaglass());
+                    output.accept(set.bubblesSeaglass());
+                    output.accept(set.smoothSeaglass());
+                    output.accept(set.wavesSeaglass());
+                });
                 ModBlocks.PATTERN_BLOCKS.values().forEach(colorMap -> colorMap.values().forEach(output::accept));
                 ModBlocks.PATTERN_PLATES.values().forEach(colorMap -> colorMap.values().forEach(output::accept));
                 ModBlocks.PATTERN_EDGES.values().forEach(colorMap -> colorMap.values().forEach(output::accept));
@@ -482,7 +488,7 @@ public enum OttCreativeCategories {
             (params, output) -> {
                 output.accept(ModBlocks.COBBLED_LIMESTONE);
                 ModBlocks.LIMESTONE.forEach(output::accept);
-                ModBlocks.SEAGLASS.forEach(output::accept);
+                ModBlocks.SEAGLASS.forEach(output::accept);  // ethereal seaglass only
                 ModBlocks.TESTBLOCK.forEach(output::accept);
 
                 output.accept(ModBlocks.SMOOTH_GLOWSTONE);

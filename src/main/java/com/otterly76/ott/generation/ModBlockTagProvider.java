@@ -216,6 +216,10 @@ public class ModBlockTagProvider extends BlockTagsProvider {
         // --- 5. STATIC & INDIVIDUAL ADDITIONS ---
         ModBlocks.LIMESTONE.forEach(d -> { pickaxeTag.add(d.value()); this.tag(doDefaultKey).add(d.value()); });
         ModBlocks.SEAGLASS.forEach(d -> { this.tag(BlockTags.IMPERMEABLE).add(d.value()); this.tag(doDefaultKey).add(d.value()); });
+        ModBlocks.SEAGLASS_SETS.values().forEach(set -> {
+            this.tag(BlockTags.IMPERMEABLE).add(set.seaglass().get(), set.bubblesSeaglass().get(), set.smoothSeaglass().get(), set.wavesSeaglass().get());
+            this.tag(doDefaultKey).add(set.seaglass().get(), set.bubblesSeaglass().get(), set.smoothSeaglass().get(), set.wavesSeaglass().get());
+        });
         ModBlocks.TESTBLOCK.forEach(d -> this.tag(doDefaultKey).add(d.value()));
         this.tag(doDefaultKey).add(ModBlocks.SALT_BLOCK.get(), ModBlocks.POLISHED_SALT_BLOCK.get());
         this.tag(doDefaultKey).add(ModBlocks.WATER_MOSAIC_TRADITIONAL.get());

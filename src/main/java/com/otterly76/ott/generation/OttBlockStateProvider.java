@@ -48,6 +48,8 @@ public class OttBlockStateProvider extends ModBlockStateProvider {
             simpleBlock(block.get(), model);
             itemModels().withExistingParent(path, modLoc("block/seaglass/" + path));
         });
+
+        ModBlocks.SEAGLASS_SETS.forEach(this::registerSeaglassColor);
         ModBlocks.LIMESTONE.forEach(block -> {
             String path = blockPath(block.get());
             ModelFile model = models().cubeAll("block/limestone/" + path, modLoc("block/limestone/" + path));
@@ -273,6 +275,25 @@ public class OttBlockStateProvider extends ModBlockStateProvider {
                 .renderType("minecraft:cutout");
         horizontalBlock(set.geometricWindow().get(), csWindow);
         itemModels().withExistingParent(color + "_geometric_window", csWindow.getLocation());
+    }
+
+    private void registerSeaglassColor(String color, ModBlocks.SeaglassColorBlocks set) {
+        String dir = "block/" + color + "/";
+        seaglassCubeAll(set.seaglass().get(),        color, "seaglass",        dir);
+        seaglassCubeAll(set.bubblesSeaglass().get(),  color, "bubbles_seaglass",  dir);
+        seaglassCubeAll(set.smoothSeaglass().get(),   color, "smooth_seaglass",   dir);
+        seaglassCubeAll(set.wavesSeaglass().get(),    color, "waves_seaglass",    dir);
+    }
+
+    private void seaglassCubeAll(Block block, String color, String type, String dir) {
+        String texture = modLoc("block/color_set/" + color + "/" + type).toString();
+        ModelFile model = models().withExistingParent(dir + blockPath(block), mcLoc("block/cube_all"))
+                .texture("all", texture)
+                .renderType(mcLoc("translucent"));
+        simpleBlock(block, model);
+        itemModels().getBuilder(blockPath(block))
+                .parent(new net.neoforged.neoforge.client.model.generators.ModelFile.UncheckedModelFile(modLoc(dir + blockPath(block))))
+                .renderType("minecraft:translucent");
     }
 
     private void colorSetCubeAll(Block block, String color, String type, String dir) {
