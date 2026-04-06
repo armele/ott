@@ -66,9 +66,9 @@ public class ModItemModelProvider extends ItemModelProvider {
                     .texture("sign", mcLoc("item/entity/signs/hanging/" + setName))
                     .texture("particle", mcLoc("item/entity/signs/hanging/" + setName));
 
-            // Boats: inherit vanilla item model geometry (texture override added when boat texture assets exist)
-            getBuilder(setName + "_boat").parent(new ModelFile.UncheckedModelFile(mcLoc("item/oak_boat")));
-            getBuilder(setName + "_chest_boat").parent(new ModelFile.UncheckedModelFile(mcLoc("item/oak_chest_boat")));
+            // Boats: use builtin/entity so ModBoatItemRenderer handles display via entity renderer
+            getBuilder(setName + "_boat").parent(new ModelFile.UncheckedModelFile(mcLoc("builtin/entity")));
+            getBuilder(setName + "_chest_boat").parent(new ModelFile.UncheckedModelFile(mcLoc("builtin/entity")));
         });
 
         // Oak structural item models are pre-existing hand-written files; skip to avoid duplicates.

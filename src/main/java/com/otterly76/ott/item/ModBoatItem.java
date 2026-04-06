@@ -1,5 +1,7 @@
 package com.otterly76.ott.item;
 
+import com.otterly76.ott.client.render.item.ModBoatItemRenderer;
+import net.minecraft.client.renderer.BlockEntityWithoutLevelRenderer;
 import net.minecraft.stats.Stats;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResultHolder;
@@ -15,6 +17,7 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.gameevent.GameEvent;
 import net.minecraft.world.phys.HitResult;
 import net.minecraft.world.phys.Vec3;
+import net.neoforged.neoforge.client.extensions.common.IClientItemExtensions;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
@@ -35,6 +38,20 @@ public class ModBoatItem extends Item {
         super(properties);
         this.type = type;
         this.initializer = initializer;
+    }
+
+    @Override
+    @SuppressWarnings("removal")
+    public void initializeClient(Consumer<IClientItemExtensions> consumer) {
+        consumer.accept(new IClientItemExtensions() {
+            private ModBoatItemRenderer renderer;
+
+            @Override
+            public @NotNull BlockEntityWithoutLevelRenderer getCustomRenderer() {
+                if (renderer == null) renderer = new ModBoatItemRenderer(type);
+                return renderer;
+            }
+        });
     }
 
     @SuppressWarnings({"DuplicatedCode", "IfStatementWithIdenticalBranches"})
