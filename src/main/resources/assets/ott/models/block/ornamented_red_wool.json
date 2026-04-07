@@ -1,0 +1,16 @@
+{
+    "parent": "ott:block/ctm_cube_all",
+    "textures": {
+        "all": "ott:block/ornamented_red_carpet-ctm"
+    },
+    "loader": "ott:connecting",
+    "render_type": "minecraft:cutout_mipped",
+    "connections": {
+        "all": [
+            {"type": "is_same_block"},
+            {"type": "match_block", "block": "ott:ornamented_red_carpet"},
+            {"type": "match_block", "block": "ott:delicate_red_wool"},
+            {"type": "match_block", "block": "ott:delicate_red_carpet"}
+        ]
+    }
+}

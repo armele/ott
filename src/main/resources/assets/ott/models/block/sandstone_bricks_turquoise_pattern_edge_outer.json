@@ -1,7 +1,0 @@
-{
-	"parent": "ott:block/small_plate_outer",
-	"textures": {
-		"top": "ott:block/sandstone_bricks_turquoise_pattern",
-		"frieze": "ott:block/sandstone_bricks_turquoise_pattern"
-	}
-}
