@@ -893,9 +893,9 @@ public class ModBlocks {
     // =========================================================================
     // === DoTB Phase 5: General Decorative & Functional ===
     // =========================================================================
-    public static final DeferredBlock<ConnectedColumnBlock>  STONE_LANTERN                   = register("stone_lantern",                   () -> new ConnectedColumnBlock(Properties.ofFullCopy(Blocks.STONE_BRICKS).noOcclusion().lightLevel(s -> 15)));
-    public static final DeferredBlock<LitBlock>              IRON_FANCY_LANTERN              = register("iron_fancy_lantern",              () -> new LitBlock(Properties.of().strength(3.5f).sound(SoundType.METAL).requiresCorrectToolForDrops().noOcclusion().lightLevel(s -> s.getValue(LitBlock.LIT) ? 15 : 0)));
-    public static final DeferredBlock<Block>                 STARLIGHT_LAMP                  = register("starlight_lamp",                  () -> new Block(Properties.of().strength(0.5F).sound(SoundType.GLASS).noOcclusion().lightLevel(s -> 15)));
+    public static final DeferredBlock<PlacedLanternBlock>    STONE_LANTERN                   = register("stone_lantern",                   () -> new PlacedLanternBlock(Properties.ofFullCopy(Blocks.STONE_BRICKS).noOcclusion().lightLevel(s -> 15)));
+    public static final DeferredBlock<LitPlacedLanternBlock> IRON_FANCY_LANTERN             = register("iron_fancy_lantern",              () -> new LitPlacedLanternBlock(Properties.of().strength(3.5f).sound(SoundType.METAL).requiresCorrectToolForDrops().noOcclusion().lightLevel(s -> s.getValue(LitPlacedLanternBlock.LIT) ? 15 : 0)));
+    public static final DeferredBlock<StarlightLampBlock>    STARLIGHT_LAMP                  = register("starlight_lamp",                  () -> new StarlightLampBlock(Properties.of().strength(0.5F).sound(SoundType.GLASS).noOcclusion().lightLevel(s -> 15)));
 
     // =========================================================================
     // === DoTB Phase 2: Roman Marble extras ===

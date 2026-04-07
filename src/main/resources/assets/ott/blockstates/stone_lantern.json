@@ -1,8 +1,16 @@
 {
     "variants": {
-        "vertical_connection=none":  { "model": "ott:block/stone_lantern_up" },
-        "vertical_connection=above": { "model": "ott:block/stone_lantern_up" },
-        "vertical_connection=under": { "model": "ott:block/stone_lantern_down" },
-        "vertical_connection=both":  { "model": "ott:block/stone_lantern_down" }
+        "face=floor,facing=north":   { "model": "ott:block/stone_lantern_down" },
+        "face=floor,facing=east":    { "model": "ott:block/stone_lantern_down" },
+        "face=floor,facing=south":   { "model": "ott:block/stone_lantern_down" },
+        "face=floor,facing=west":    { "model": "ott:block/stone_lantern_down" },
+        "face=ceiling,facing=north": { "model": "ott:block/stone_lantern_up" },
+        "face=ceiling,facing=east":  { "model": "ott:block/stone_lantern_up" },
+        "face=ceiling,facing=south": { "model": "ott:block/stone_lantern_up" },
+        "face=ceiling,facing=west":  { "model": "ott:block/stone_lantern_up" },
+        "face=wall,facing=north":    { "model": "ott:block/stone_lantern_side" },
+        "face=wall,facing=east":     { "model": "ott:block/stone_lantern_side", "y": 90 },
+        "face=wall,facing=south":    { "model": "ott:block/stone_lantern_side", "y": 180 },
+        "face=wall,facing=west":     { "model": "ott:block/stone_lantern_side", "y": 270 }
     }
 }
