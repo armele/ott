@@ -727,6 +727,7 @@ public class ModItems {
 
         registerBlockItem(ModBlocks.STONE_LANTERN);
         registerBlockItem(ModBlocks.IRON_FANCY_LANTERN);
+        registerBlockItem(ModBlocks.STARLIGHT_LAMP);
         registerBlockItem(ModBlocks.SPRUCE_LOG_FENCE);
         ModBlocks.FUTONS.values().forEach(ModItems::registerBlockItem);
         registerBlockItem(ModBlocks.ORNAMENTED_CHISELED_PLASTERED_STONE);

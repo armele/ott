@@ -650,6 +650,7 @@ public enum OttCreativeCategories {
 
                 output.accept(ModBlocks.STONE_LANTERN);
                 output.accept(ModBlocks.IRON_FANCY_LANTERN);
+                output.accept(ModBlocks.STARLIGHT_LAMP);
 
                 output.accept(ModBlocks.WATER_LANTERN);
                 output.accept(ModBlocks.LAVA_LANTERN);

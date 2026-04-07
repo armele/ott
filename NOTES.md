@@ -7,7 +7,6 @@ add the other 5 randomized limestone bricks
 get DO tags added for all new full static blocks
 get as much transferred to datageneration as possible
 add new animated seaglass
-add starlight lamp
 ctm mosaic proxy for DO
 add pink and black marble
 
