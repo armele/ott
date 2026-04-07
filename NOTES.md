@@ -10,6 +10,7 @@ get as much transferred to datageneration as possible
 add new animated seaglass
 add starlight lamp
 ctm mosaic proxy for DO
+add pink and black marble
 
 Mods to Implement:
 =====
