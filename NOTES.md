@@ -5,12 +5,11 @@ make new bug net item model
 make new catepillar item model
 make new clam item model
 add the other 5 randomized limestone bricks
-add seaglass to color gen
-make futon white and add to color gen
-get tags added for all new blocks
 get DO tags added for all new full static blocks
 get as much transferred to datageneration as possible
 add new animated seaglass
+add starlight lamp
+ctm mosaic proxy for DO
 
 Mods to Implement:
 =====
@@ -172,8 +171,6 @@ diag gradients
 
 add wood to wood gradients
 
-marbles (black, white, pink, etc)
-
 add tulips for each color
 
 add roses for each color
@@ -210,8 +207,6 @@ tree/plant/bush parts/shapes
 
 particles? bubbles etc
 
-hyacinth lamp → Blossom Bulb
-
 teas & herbs
 - snatch mint model + textures
 - go update butchercraft and swipe the new herbs
@@ -222,7 +217,7 @@ color glow
 enderscape
 - vines with dif color variants
 
-ADD other weapon item models
+ADD other tool & weapon item models
 
 additional skins for chiseled bookshelf
 
