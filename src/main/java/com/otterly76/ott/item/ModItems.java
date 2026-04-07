@@ -3,6 +3,7 @@ package com.otterly76.ott.item;
 import com.otterly76.ott.Constants;
 import com.otterly76.ott.block.ModBlocks;
 import com.otterly76.ott.color.ModColorSets;
+import com.otterly76.ott.color.ModPatterns;
 import com.otterly76.ott.entity.ModEntities;
 import com.otterly76.ott.entity.variant.ChickenVariants;
 import com.otterly76.ott.registry.ModArmorMaterials;
@@ -41,6 +42,7 @@ public class ModItems {
     public static final Map<String, DeferredItem<ModBoatItem>> WOOD_SET_CHEST_BOATS = new HashMap<>();
 
     public static final Map<String, DeferredItem<Item>> CUSTOM_DYES = new HashMap<>();
+    public static final Map<String, DeferredItem<Item>> CLAY_TILES = new HashMap<>();
     public static final Map<String, DeferredItem<Item>> HARNESSES = new HashMap<>();
     public static final Map<String, DeferredItem<Item>> BUNDLES = new HashMap<>();
 
@@ -400,6 +402,11 @@ public class ModItems {
     public static final DeferredItem<Item> CRAB_CLAW = ITEMS.register("crab_claw", () -> new Item(new Item.Properties()));
     public static final DeferredItem<BlockItem> CRAB_EGG = ITEMS.register("crab_egg", () -> new BlockItem(ModBlocks.CRAB_EGG.get(), new Item.Properties()));
 
+    public static final DeferredItem<Item> UNFIRED_CLAY_ROOF_TILE = ITEMS.register("unfired_clay_roof_tile",
+            () -> new Item(new Item.Properties()));
+    public static final DeferredItem<Item> PLASTER_BUCKET = ITEMS.register("plaster_bucket",
+            () -> new Item(new Item.Properties().stacksTo(16)));
+
     public static final DeferredItem<ArmorItem> WILDFIRE_CROWN = ITEMS.register("wildfire_crown", () -> new ArmorItem(ModArmorMaterials.WILDFIRE_CROWN, ArmorItem.Type.HELMET, new Item.Properties().stacksTo(1).durability(481).fireResistant()));
     public static final DeferredItem<Item> WILDFIRE_CROWN_FRAGMENT = ITEMS.register("wildfire_crown_fragment", () -> new Item(new Item.Properties().fireResistant()));
 
@@ -428,6 +435,7 @@ public class ModItems {
     public static final DeferredHolder<Item, BlockItem> LIMESTONE_BRICKS_PLATE = registerBlockItem("limestone_bricks_plate", ModBlocks.LIMESTONE_BRICKS_PLATE);
     public static final DeferredHolder<Item, BlockItem> LIMESTONE_BANNISTER = registerBlockItem("limestone_bannister", ModBlocks.LIMESTONE_BANNISTER);
     public static final DeferredHolder<Item, BlockItem> COBBLED_LIMESTONE = registerBlockItem("cobbled_limestone", ModBlocks.COBBLED_LIMESTONE);
+    public static final DeferredHolder<Item, BlockItem> PLAIN_LIMESTONE = registerBlockItem("limestone", ModBlocks.PLAIN_LIMESTONE);
 
     public static final DeferredHolder<Item, BlockItem> MARBLE = registerBlockItem("marble", ModBlocks.MARBLE);
     public static final DeferredHolder<Item, BlockItem> MARBLE_FANCY_FENCE = registerBlockItem("marble_fancy_fence", ModBlocks.MARBLE_FANCY_FENCE);
@@ -439,17 +447,6 @@ public class ModItems {
     public static final DeferredHolder<Item, BlockItem> CUT_SANDSTONE_EDGE = registerBlockItem("cut_sandstone_edge", ModBlocks.CUT_SANDSTONE_EDGE);
     public static final DeferredHolder<Item, BlockItem> SMOOTH_SANDSTONE_PLATE = registerBlockItem("smooth_sandstone_plate", ModBlocks.SMOOTH_SANDSTONE_PLATE);
     public static final DeferredHolder<Item, BlockItem> SMOOTH_SANDSTONE_EDGE = registerBlockItem("smooth_sandstone_edge", ModBlocks.SMOOTH_SANDSTONE_EDGE);
-
-    public static final DeferredHolder<Item, BlockItem> OCHRE_ROOF_TILES = registerBlockItem("ochre_roof_tiles", ModBlocks.OCHRE_ROOF_TILES);
-    public static final DeferredHolder<Item, BlockItem> OCHRE_ROOF_TILES_EDGE = registerBlockItem("ochre_roof_tiles_edge", ModBlocks.OCHRE_ROOF_TILES_EDGE);
-    public static final DeferredHolder<Item, BlockItem> OCHRE_ROOF_TILES_PLATE = registerBlockItem("ochre_roof_tiles_plate", ModBlocks.OCHRE_ROOF_TILES_PLATE);
-
-    public static final DeferredHolder<Item, BlockItem> FLAT_ROOF_TILES = registerBlockItem("flat_roof_tiles", ModBlocks.FLAT_ROOF_TILES);
-    public static final DeferredHolder<Item, BlockItem> FLAT_ROOF_TILES_EDGE = registerBlockItem("flat_roof_tiles_edge", ModBlocks.FLAT_ROOF_TILES_EDGE);
-    public static final DeferredHolder<Item, BlockItem> FLAT_ROOF_TILES_PLATE = registerBlockItem("flat_roof_tiles_plate", ModBlocks.FLAT_ROOF_TILES_PLATE);
-    public static final DeferredHolder<Item, BlockItem> GRAY_ROOF_TILES = registerBlockItem("gray_roof_tiles", ModBlocks.GRAY_ROOF_TILES);
-    public static final DeferredHolder<Item, BlockItem> GRAY_ROOF_TILES_EDGE = registerBlockItem("gray_roof_tiles_edge", ModBlocks.GRAY_ROOF_TILES_EDGE);
-    public static final DeferredHolder<Item, BlockItem> GRAY_ROOF_TILES_PLATE = registerBlockItem("gray_roof_tiles_plate", ModBlocks.GRAY_ROOF_TILES_PLATE);
 
     public static final DeferredHolder<Item, BlockItem> ROOFING_SLATES = registerBlockItem("roofing_slates", ModBlocks.ROOFING_SLATES);
     public static final DeferredHolder<Item, BlockItem> ROOFING_SLATES_EDGE = registerBlockItem("roofing_slates_edge", ModBlocks.ROOFING_SLATES_EDGE);
@@ -468,17 +465,19 @@ public class ModItems {
     public static final DeferredHolder<Item, BlockItem> CURVED_RAKED_GRAVEL = registerBlockItem("curved_raked_gravel", ModBlocks.CURVED_RAKED_GRAVEL);
     public static final DeferredHolder<Item, BlockItem> STRAIGHT_RAKED_GRAVEL = registerBlockItem("straight_raked_gravel", ModBlocks.STRAIGHT_RAKED_GRAVEL);
 
-    public static final DeferredHolder<Item, BlockItem> SANDSTONE_BRICKS = registerBlockItem("sandstone_bricks", ModBlocks.SANDSTONE_BRICKS);
-    public static final DeferredHolder<Item, BlockItem> SANDSTONE_BRICKS_WALL = registerBlockItem("sandstone_bricks_wall", ModBlocks.SANDSTONE_BRICKS_WALL);
-    public static final DeferredHolder<Item, BlockItem> SANDSTONE_BRICKS_EDGE = registerBlockItem("sandstone_bricks_edge", ModBlocks.SANDSTONE_BRICKS_EDGE);
-    public static final DeferredHolder<Item, BlockItem> SANDSTONE_BRICKS_PLATE = registerBlockItem("sandstone_bricks_plate", ModBlocks.SANDSTONE_BRICKS_PLATE);
-    public static final DeferredHolder<Item, BlockItem> SANDSTONE_BRICKS_TURQUOISE_PATTERN = registerBlockItem("sandstone_bricks_turquoise_pattern", ModBlocks.SANDSTONE_BRICKS_TURQUOISE_PATTERN);
-    public static final DeferredHolder<Item, BlockItem> SANDSTONE_BRICKS_TURQUOISE_PATTERN_WALL = registerBlockItem("sandstone_bricks_turquoise_pattern_wall", ModBlocks.SANDSTONE_BRICKS_TURQUOISE_PATTERN_WALL);
-    public static final DeferredHolder<Item, BlockItem> SANDSTONE_BRICKS_TURQUOISE_PATTERN_EDGE = registerBlockItem("sandstone_bricks_turquoise_pattern_edge", ModBlocks.SANDSTONE_BRICKS_TURQUOISE_PATTERN_EDGE);
-    public static final DeferredHolder<Item, BlockItem> SANDSTONE_BRICKS_TURQUOISE_PATTERN_PLATE = registerBlockItem("sandstone_bricks_turquoise_pattern_plate", ModBlocks.SANDSTONE_BRICKS_TURQUOISE_PATTERN_PLATE);
+    public static final DeferredHolder<Item, BlockItem> SLENDER_SANDSTONE_BRICKS = registerBlockItem("slender_sandstone_bricks", ModBlocks.SLENDER_SANDSTONE_BRICKS);
+    public static final DeferredHolder<Item, BlockItem> SLENDER_SANDSTONE_BRICKS_WALL = registerBlockItem("slender_sandstone_bricks_wall", ModBlocks.SLENDER_SANDSTONE_BRICKS_WALL);
+    public static final DeferredHolder<Item, BlockItem> SLENDER_SANDSTONE_BRICKS_EDGE = registerBlockItem("slender_sandstone_bricks_edge", ModBlocks.SLENDER_SANDSTONE_BRICKS_EDGE);
+    public static final DeferredHolder<Item, BlockItem> SLENDER_SANDSTONE_BRICKS_PLATE = registerBlockItem("slender_sandstone_bricks_plate", ModBlocks.SLENDER_SANDSTONE_BRICKS_PLATE);
+    public static final DeferredHolder<Item, BlockItem> SLENDER_TURQUOISE_PATTERN = registerBlockItem("slender_turquoise_pattern", ModBlocks.SLENDER_TURQUOISE_PATTERN);
+    public static final DeferredHolder<Item, BlockItem> SLENDER_TURQUOISE_PATTERN_WALL = registerBlockItem("slender_turquoise_pattern_wall", ModBlocks.SLENDER_TURQUOISE_PATTERN_WALL);
+    public static final DeferredHolder<Item, BlockItem> SLENDER_TURQUOISE_PATTERN_EDGE = registerBlockItem("slender_turquoise_pattern_edge", ModBlocks.SLENDER_TURQUOISE_PATTERN_EDGE);
+    public static final DeferredHolder<Item, BlockItem> SLENDER_TURQUOISE_PATTERN_PLATE = registerBlockItem("slender_turquoise_pattern_plate", ModBlocks.SLENDER_TURQUOISE_PATTERN_PLATE);
 
-    public static final DeferredHolder<Item, BlockItem> PERSIAN_CARPET_RED = registerBlockItem("persian_carpet_red", ModBlocks.PERSIAN_CARPET_RED);
-    public static final DeferredHolder<Item, BlockItem> PERSIAN_CARPET_DELICATE_RED = registerBlockItem("persian_carpet_delicate_red", ModBlocks.PERSIAN_CARPET_DELICATE_RED);
+    public static final DeferredHolder<Item, BlockItem> ORNAMENTED_RED_WOOL = registerBlockItem("ornamented_red_wool", ModBlocks.ORNAMENTED_RED_WOOL);
+    public static final DeferredHolder<Item, BlockItem> DELICATE_RED_WOOL = registerBlockItem("delicate_red_wool", ModBlocks.DELICATE_RED_WOOL);
+    public static final DeferredHolder<Item, BlockItem> ORNAMENTED_RED_CARPET = registerBlockItem("ornamented_red_carpet", ModBlocks.ORNAMENTED_RED_CARPET);
+    public static final DeferredHolder<Item, BlockItem> DELICATE_RED_CARPET = registerBlockItem("delicate_red_carpet", ModBlocks.DELICATE_RED_CARPET);
 
     public static final DeferredHolder<Item, BlockItem> GOLD_PLATED_SMOOTH_BLOCK = registerBlockItem("gold_plated_smooth_block", ModBlocks.GOLD_PLATED_SMOOTH_BLOCK);
     public static final DeferredHolder<Item, BlockItem> GOLD_PLATED_SMOOTH_EDGE = registerBlockItem("gold_plated_smooth_edge", ModBlocks.GOLD_PLATED_SMOOTH_EDGE);
@@ -617,6 +616,11 @@ public class ModItems {
             CUSTOM_DYES.put(colorSet.name(), ITEMS.register(colorSet.name() + "_dye", () -> new Item(new Item.Properties())));
         });
 
+        // REGISTRATION: Clay Tile Items (ingredient, 32 colors)
+        ModPatterns.ALL_COLORS.forEach(color -> {
+            CLAY_TILES.put(color.name(), ITEMS.register(color.name() + "_clay_tile", () -> new Item(new Item.Properties())));
+        });
+
         // REGISTRATION: Static Minecraft Backports
         RESIN_BRICK = MINECRAFT_ITEMS.register("resin_brick", () -> new Item(new Item.Properties()));
         MUSIC_DISC_TEARS = MINECRAFT_ITEMS.register("music_disc_tears", () -> new Item(new Item.Properties().stacksTo(1).rarity(Rarity.UNCOMMON).jukeboxPlayable(ModJukeboxSongs.TEARS.getKey())));
@@ -724,7 +728,7 @@ public class ModItems {
         registerBlockItem(ModBlocks.STONE_LANTERN);
         registerBlockItem(ModBlocks.IRON_FANCY_LANTERN);
         registerBlockItem(ModBlocks.SPRUCE_LOG_FENCE);
-        registerBlockItem(ModBlocks.LIGHT_GRAY_FUTON);
+        ModBlocks.FUTONS.values().forEach(ModItems::registerBlockItem);
         registerBlockItem(ModBlocks.ORNAMENTED_CHISELED_PLASTERED_STONE);
         registerBlockItem(ModBlocks.GREEN_ORNAMENTED_PLASTERED_STONE);
         registerBlockItem(ModBlocks.RED_ORNAMENTED_PLASTERED_STONE);

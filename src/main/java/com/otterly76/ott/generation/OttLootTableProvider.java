@@ -77,6 +77,8 @@ public class OttLootTableProvider extends BlockLootSubProvider {
                 this.dropSelf(block);
             } else if (block instanceof FlowerPotBlock potted) {
                 this.add(block, (b) -> this.createPotFlowerItemTable(potted.getPotted()));
+            } else if (block == ModBlocks.PLAIN_LIMESTONE.get()) {
+                this.add(block, createSingleItemTableWithSilkTouch(block, ModBlocks.COBBLED_LIMESTONE.get()));
             } else {
                 this.dropSelf(block);
             }

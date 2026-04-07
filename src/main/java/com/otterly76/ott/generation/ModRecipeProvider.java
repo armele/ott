@@ -29,6 +29,7 @@ import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.item.crafting.Recipe;
 import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
 import net.neoforged.neoforge.common.conditions.ICondition;
 import net.neoforged.neoforge.common.conditions.IConditionBuilder;
 import org.jetbrains.annotations.NotNull;
@@ -36,6 +37,7 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 import java.util.concurrent.CompletableFuture;
 
 public class ModRecipeProvider extends RecipeProvider implements IConditionBuilder {
@@ -299,6 +301,9 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
         this.addElevatorRecipes(noAdv);
         this.addSlabToBlockRecipes(noAdv);
         this.addMiscRecipes(noAdv);
+        this.addSeaglassRecipes(noAdv);
+        this.addBuildingMaterialRecipes(noAdv);
+        this.addStonecutterRecipes(noAdv);
 
         this.mountsOfMayhemRecipes(noAdv);
     }
@@ -325,6 +330,389 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
         }
     }
 
+
+    private void addSeaglassRecipes(RecipeOutput exporter) {
+        ModBlocks.SeaglassColorBlocks lightGray = ModBlocks.SEAGLASS_SETS.get("light_gray");
+
+        // Smelting: dead coral blocks → light_gray seaglass variants
+        SimpleCookingRecipeBuilder.smelting(Ingredient.of(Items.DEAD_TUBE_CORAL_BLOCK), RecipeCategory.BUILDING_BLOCKS, lightGray.seaglass().get(), 0.1F, 200)
+                .unlockedBy("has_dead_coral", has(Items.DEAD_TUBE_CORAL_BLOCK))
+                .save(exporter, getRecipePath("ott", "light_gray_seaglass_from_smelting"));
+        SimpleCookingRecipeBuilder.smelting(Ingredient.of(Items.DEAD_BRAIN_CORAL_BLOCK), RecipeCategory.BUILDING_BLOCKS, lightGray.bubblesSeaglass().get(), 0.1F, 200)
+                .unlockedBy("has_dead_coral", has(Items.DEAD_BRAIN_CORAL_BLOCK))
+                .save(exporter, getRecipePath("ott", "light_gray_bubbles_seaglass_from_smelting"));
+        SimpleCookingRecipeBuilder.smelting(Ingredient.of(Items.DEAD_BUBBLE_CORAL_BLOCK), RecipeCategory.BUILDING_BLOCKS, lightGray.smoothSeaglass().get(), 0.1F, 200)
+                .unlockedBy("has_dead_coral", has(Items.DEAD_BUBBLE_CORAL_BLOCK))
+                .save(exporter, getRecipePath("ott", "light_gray_smooth_seaglass_from_smelting"));
+        SimpleCookingRecipeBuilder.smelting(Ingredient.of(Items.DEAD_FIRE_CORAL_BLOCK), RecipeCategory.BUILDING_BLOCKS, lightGray.wavesSeaglass().get(), 0.1F, 200)
+                .unlockedBy("has_dead_coral", has(Items.DEAD_FIRE_CORAL_BLOCK))
+                .save(exporter, getRecipePath("ott", "light_gray_waves_seaglass_from_smelting"));
+
+        // Dyeing: 8 light_gray seaglass + 1 dye → 8 colored seaglass
+        for (DyeColor color : DyeColor.values()) {
+            String name = color.getName();
+            if (name.equals("light_gray")) continue;
+            Item dye = BuiltInRegistries.ITEM.get(ResourceLocation.withDefaultNamespace(name + "_dye"));
+            addSeaglassDyeRecipe(exporter, lightGray, ModBlocks.SEAGLASS_SETS.get(name), dye, name);
+        }
+        for (ModColorSets.ColorSet colorSet : ModColorSets.ALL) {
+            String name = colorSet.name();
+            Item dye = ModItems.CUSTOM_DYES.get(name).get();
+            addSeaglassDyeRecipe(exporter, lightGray, ModBlocks.SEAGLASS_SETS.get(name), dye, name);
+        }
+    }
+
+    private void addSeaglassDyeRecipe(RecipeOutput exporter, ModBlocks.SeaglassColorBlocks source, ModBlocks.SeaglassColorBlocks target, Item dye, String colorName) {
+        addSeaglassDyeVariant(exporter, source.seaglass().get(),        target.seaglass().get(),        dye, colorName + "_seaglass");
+        addSeaglassDyeVariant(exporter, source.bubblesSeaglass().get(),  target.bubblesSeaglass().get(),  dye, colorName + "_bubbles_seaglass");
+        addSeaglassDyeVariant(exporter, source.smoothSeaglass().get(),   target.smoothSeaglass().get(),   dye, colorName + "_smooth_seaglass");
+        addSeaglassDyeVariant(exporter, source.wavesSeaglass().get(),    target.wavesSeaglass().get(),    dye, colorName + "_waves_seaglass");
+    }
+
+    private void addSeaglassDyeVariant(RecipeOutput exporter, Block source, Block result, Item dye, String recipeName) {
+        ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, result, 8)
+                .define('#', source)
+                .define('D', dye)
+                .pattern("###")
+                .pattern("#D#")
+                .pattern("###")
+                .unlockedBy("has_light_gray_seaglass", has(source))
+                .save(exporter, getRecipePath("ott", recipeName + "_from_dyeing"));
+    }
+
+    private void addBuildingMaterialRecipes(RecipeOutput exporter) {
+        // --- Unfired Clay Roof Tile: 8 clay balls + water bucket (ring) → 8 tiles ---
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModItems.UNFIRED_CLAY_ROOF_TILE.get(), 8)
+                .define('C', Items.CLAY_BALL)
+                .define('W', Items.WATER_BUCKET)
+                .pattern("CCC")
+                .pattern("CWC")
+                .pattern("CCC")
+                .unlockedBy("has_clay", has(Items.CLAY_BALL))
+                .save(exporter, getRecipePath("ott", "unfired_clay_roof_tile"));
+
+        // --- Plaster Bucket: 8 bone meal + water bucket (ring) → 8 plaster buckets ---
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModItems.PLASTER_BUCKET.get(), 8)
+                .define('B', Items.BONE_MEAL)
+                .define('W', Items.WATER_BUCKET)
+                .pattern("BBB")
+                .pattern("BWB")
+                .pattern("BBB")
+                .unlockedBy("has_bone_meal", has(Items.BONE_MEAL))
+                .save(exporter, getRecipePath("ott", "plaster_bucket"));
+
+        // --- Clay tile smelting: unfired → light_gray_clay_tile ---
+        Item lightGrayClay = ModItems.CLAY_TILES.get("light_gray").get();
+        SimpleCookingRecipeBuilder.smelting(Ingredient.of(ModItems.UNFIRED_CLAY_ROOF_TILE.get()),
+                        RecipeCategory.MISC, lightGrayClay, 0.1F, 200)
+                .unlockedBy("has_unfired_clay_roof_tile", has(ModItems.UNFIRED_CLAY_ROOF_TILE.get()))
+                .save(exporter, getRecipePath("ott", "light_gray_clay_tile_from_smelting"));
+
+        // --- Clay tile dyeing: 8 light_gray + dye → 8 colored (all 32 colors, skip light_gray) ---
+        for (DyeColor color : DyeColor.values()) {
+            String name = color.getName();
+            if (name.equals("light_gray")) continue;
+            Item dye = BuiltInRegistries.ITEM.get(ResourceLocation.withDefaultNamespace(name + "_dye"));
+            addRingDyeRecipe(exporter, lightGrayClay, ModItems.CLAY_TILES.get(name).get(), dye, name + "_clay_tile");
+        }
+        for (ModColorSets.ColorSet colorSet : ModColorSets.ALL) {
+            String name = colorSet.name();
+            Item dye = ModItems.CUSTOM_DYES.get(name).get();
+            addRingDyeRecipe(exporter, lightGrayClay, ModItems.CLAY_TILES.get(name).get(), dye, name + "_clay_tile");
+        }
+
+        // --- Flat roof tiles: 8 {color}_clay_tile (ring) → 8 {color}_flat_roof_tiles (same color) ---
+        for (DyeColor color : DyeColor.values()) {
+            String name = color.getName();
+            Item clay = ModItems.CLAY_TILES.get(name).get();
+            Block roof = ModBlocks.PATTERN_BLOCKS.get("flat_roof_tiles").get(name).get();
+            addRingShapeRecipe(exporter, clay, roof, 8, name + "_flat_roof_tiles_from_clay");
+        }
+        for (ModColorSets.ColorSet colorSet : ModColorSets.ALL) {
+            String name = colorSet.name();
+            Item clay = ModItems.CLAY_TILES.get(name).get();
+            Block roof = ModBlocks.PATTERN_BLOCKS.get("flat_roof_tiles").get(name).get();
+            addRingShapeRecipe(exporter, clay, roof, 8, name + "_flat_roof_tiles_from_clay");
+        }
+
+        // --- Layered roof tiles: 6 {color} clay tiles (2 rows) → 6 {color} layered roof tiles (all 32 colors) ---
+        for (DyeColor color : DyeColor.values()) {
+            String name = color.getName();
+            Item clay = ModItems.CLAY_TILES.get(name).get();
+            Block layered = ModBlocks.PATTERN_BLOCKS.get("layered_roof_tiles").get(name).get();
+            ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, layered, 6)
+                    .define('C', clay)
+                    .pattern("CCC")
+                    .pattern("CCC")
+                    .unlockedBy("has_clay_tile", has(clay))
+                    .save(exporter, getRecipePath("ott", name + "_layered_roof_tiles"));
+        }
+        for (ModColorSets.ColorSet colorSet : ModColorSets.ALL) {
+            String name = colorSet.name();
+            Item clay = ModItems.CLAY_TILES.get(name).get();
+            Block layered = ModBlocks.PATTERN_BLOCKS.get("layered_roof_tiles").get(name).get();
+            ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, layered, 6)
+                    .define('C', clay)
+                    .pattern("CCC")
+                    .pattern("CCC")
+                    .unlockedBy("has_clay_tile", has(clay))
+                    .save(exporter, getRecipePath("ott", name + "_layered_roof_tiles"));
+        }
+
+        // --- Plastered stone: 8 stone (ring) + plaster_bucket → 8 light_gray_plastered_stone ---
+        Block lightGrayPlastered = ModBlocks.PATTERN_BLOCKS.get("plastered_stone").get("light_gray").get();
+        ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, lightGrayPlastered, 8)
+                .define('S', Items.STONE)
+                .define('P', ModItems.PLASTER_BUCKET.get())
+                .pattern("SSS")
+                .pattern("SPS")
+                .pattern("SSS")
+                .unlockedBy("has_plaster", has(ModItems.PLASTER_BUCKET.get()))
+                .save(exporter, getRecipePath("ott", "light_gray_plastered_stone"));
+
+        // --- Plastered stone dyeing: 8 light_gray + dye → 8 colored (all 32 colors, skip light_gray) ---
+        for (DyeColor color : DyeColor.values()) {
+            String name = color.getName();
+            if (name.equals("light_gray")) continue;
+            Item dye = BuiltInRegistries.ITEM.get(ResourceLocation.withDefaultNamespace(name + "_dye"));
+            addRingDyeRecipe(exporter, lightGrayPlastered, ModBlocks.PATTERN_BLOCKS.get("plastered_stone").get(name).get(), dye, name + "_plastered_stone");
+        }
+        for (ModColorSets.ColorSet colorSet : ModColorSets.ALL) {
+            String name = colorSet.name();
+            Item dye = ModItems.CUSTOM_DYES.get(name).get();
+            addRingDyeRecipe(exporter, lightGrayPlastered, ModBlocks.PATTERN_BLOCKS.get("plastered_stone").get(name).get(), dye, name + "_plastered_stone");
+        }
+
+        // --- Wheat thatch: 6 wheat (2 rows) → 1 wheat_thatch ---
+        ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, ModBlocks.WHEAT_THATCH.get())
+                .define('W', Items.WHEAT)
+                .pattern("WWW")
+                .pattern("WWW")
+                .unlockedBy("has_wheat", has(Items.WHEAT))
+                .save(exporter, getRecipePath("ott", "wheat_thatch"));
+
+        // --- Bamboo thatch: 6 bamboo (2 rows) → 1 bamboo_thatch ---
+        ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, ModBlocks.BAMBOO_THATCH.get())
+                .define('B', Items.BAMBOO)
+                .pattern("BBB")
+                .pattern("BBB")
+                .unlockedBy("has_bamboo", has(Items.BAMBOO))
+                .save(exporter, getRecipePath("ott", "bamboo_thatch"));
+
+        // --- Cobbled limestone smelting → limestone ---
+        SimpleCookingRecipeBuilder.smelting(Ingredient.of(ModBlocks.COBBLED_LIMESTONE.get()),
+                        RecipeCategory.BUILDING_BLOCKS, ModBlocks.PLAIN_LIMESTONE.get(), 0.1F, 200)
+                .unlockedBy("has_cobbled_limestone", has(ModBlocks.COBBLED_LIMESTONE.get()))
+                .save(exporter, getRecipePath("ott", "limestone_from_cobbled_limestone_smelting"));
+
+        // --- Ornamented red wool: red_wool center + 4 gold nuggets at corners → 8 ---
+        ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, ModBlocks.ORNAMENTED_RED_WOOL.get(), 8)
+                .define('N', Items.GOLD_NUGGET)
+                .define('R', Items.RED_WOOL)
+                .pattern("N N")
+                .pattern("NRN")
+                .pattern("N N")
+                .unlockedBy("has_red_wool", has(Items.RED_WOOL))
+                .save(exporter, getRecipePath("ott", "ornamented_red_wool"));
+
+        // --- Delicate red wool: red_wool center + 4 gold nuggets in + shape → 8 ---
+        ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, ModBlocks.DELICATE_RED_WOOL.get(), 8)
+                .define('N', Items.GOLD_NUGGET)
+                .define('R', Items.RED_WOOL)
+                .pattern(" N ")
+                .pattern("NRN")
+                .pattern(" N ")
+                .unlockedBy("has_red_wool", has(Items.RED_WOOL))
+                .save(exporter, getRecipePath("ott", "delicate_red_wool"));
+
+        // --- Ornamented / Delicate red carpet: 2 wool → 3 carpet ---
+        ShapedRecipeBuilder.shaped(RecipeCategory.DECORATIONS, ModBlocks.ORNAMENTED_RED_CARPET.get(), 3)
+                .define('W', ModBlocks.ORNAMENTED_RED_WOOL.get())
+                .pattern("WW")
+                .unlockedBy("has_ornamented_red_wool", has(ModBlocks.ORNAMENTED_RED_WOOL.get()))
+                .save(exporter, getRecipePath("ott", "ornamented_red_carpet"));
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.DECORATIONS, ModBlocks.DELICATE_RED_CARPET.get(), 3)
+                .define('W', ModBlocks.DELICATE_RED_WOOL.get())
+                .pattern("WW")
+                .unlockedBy("has_delicate_red_wool", has(ModBlocks.DELICATE_RED_WOOL.get()))
+                .save(exporter, getRecipePath("ott", "delicate_red_carpet"));
+
+        // --- Glazed terracotta smelting (16 custom colors) ---
+        ModBlocks.COLOR_SETS.forEach((color, set) ->
+                SimpleCookingRecipeBuilder.smelting(Ingredient.of(set.terracotta().get()),
+                                RecipeCategory.BUILDING_BLOCKS, set.glazedTerracotta().get(), 0.1F, 200)
+                        .unlockedBy("has_terracotta", has(set.terracotta().get()))
+                        .save(exporter, getRecipePath("ott", color + "_glazed_terracotta_from_smelting"))
+        );
+
+        // --- Dyed stone: 8 stone (ring) + dye → 8 dyed_stone (all 32 colors) ---
+        for (DyeColor color : DyeColor.values()) {
+            String name = color.getName();
+            Item dye = BuiltInRegistries.ITEM.get(ResourceLocation.withDefaultNamespace(name + "_dye"));
+            addRingDyeRecipe(exporter, Items.STONE, ModBlocks.PATTERN_BLOCKS.get("dyed_stone").get(name).get(), dye, name + "_dyed_stone");
+        }
+        for (ModColorSets.ColorSet colorSet : ModColorSets.ALL) {
+            String name = colorSet.name();
+            Item dye = ModItems.CUSTOM_DYES.get(name).get();
+            addRingDyeRecipe(exporter, Items.STONE, ModBlocks.PATTERN_BLOCKS.get("dyed_stone").get(name).get(), dye, name + "_dyed_stone");
+        }
+
+        // --- Painted planks: 8 planks (ring, tag) + dye → 8 painted_planks (all 32 colors) ---
+        for (DyeColor color : DyeColor.values()) {
+            String name = color.getName();
+            Item dye = BuiltInRegistries.ITEM.get(ResourceLocation.withDefaultNamespace(name + "_dye"));
+            ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, ModBlocks.PATTERN_BLOCKS.get("painted_planks").get(name).get(), 8)
+                    .define('#', ItemTags.PLANKS)
+                    .define('D', dye)
+                    .pattern("###")
+                    .pattern("#D#")
+                    .pattern("###")
+                    .unlockedBy("has_planks", has(ItemTags.PLANKS))
+                    .save(exporter, getRecipePath("ott", name + "_painted_planks_from_dyeing"));
+        }
+        for (ModColorSets.ColorSet colorSet : ModColorSets.ALL) {
+            String name = colorSet.name();
+            Item dye = ModItems.CUSTOM_DYES.get(name).get();
+            ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, ModBlocks.PATTERN_BLOCKS.get("painted_planks").get(name).get(), 8)
+                    .define('#', ItemTags.PLANKS)
+                    .define('D', dye)
+                    .pattern("###")
+                    .pattern("#D#")
+                    .pattern("###")
+                    .unlockedBy("has_planks", has(ItemTags.PLANKS))
+                    .save(exporter, getRecipePath("ott", name + "_painted_planks_from_dyeing"));
+        }
+
+        // --- Gold plated smooth block: 8 gold ingots (ring) + 1 stone → 8 ---
+        ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, ModBlocks.GOLD_PLATED_SMOOTH_BLOCK.get(), 8)
+                .define('G', Items.GOLD_INGOT)
+                .define('S', Items.STONE)
+                .pattern("GGG")
+                .pattern("GSG")
+                .pattern("GGG")
+                .unlockedBy("has_gold_ingot", has(Items.GOLD_INGOT))
+                .save(exporter, getRecipePath("ott", "gold_plated_smooth_block"));
+
+        // --- Stone bricks faucet: S/W/S (vertical center column) → 1 ---
+        ShapedRecipeBuilder.shaped(RecipeCategory.DECORATIONS, ModBlocks.STONE_BRICKS_FAUCET.get())
+                .define('S', Items.STONE_BRICKS)
+                .define('W', Items.WATER_BUCKET)
+                .pattern("S")
+                .pattern("W")
+                .pattern("S")
+                .unlockedBy("has_stone_bricks", has(Items.STONE_BRICKS))
+                .save(exporter, getRecipePath("ott", "stone_bricks_faucet"));
+
+        // --- Stone bricks water jet: S/W/W (vertical center column) → 1 ---
+        ShapedRecipeBuilder.shaped(RecipeCategory.DECORATIONS, ModBlocks.STONE_BRICKS_WATER_JET.get())
+                .define('S', Items.STONE_BRICKS)
+                .define('W', Items.WATER_BUCKET)
+                .pattern("S")
+                .pattern("W")
+                .pattern("W")
+                .unlockedBy("has_stone_bricks", has(Items.STONE_BRICKS))
+                .save(exporter, getRecipePath("ott", "stone_bricks_water_jet"));
+
+        // --- Water source trickle: W/W/W (vertical center column) → 1 ---
+        ShapedRecipeBuilder.shaped(RecipeCategory.DECORATIONS, ModBlocks.WATER_SOURCE_TRICKLE.get())
+                .define('W', Items.WATER_BUCKET)
+                .pattern("W")
+                .pattern("W")
+                .pattern("W")
+                .unlockedBy("has_water_bucket", has(Items.WATER_BUCKET))
+                .save(exporter, getRecipePath("ott", "water_source_trickle"));
+
+        // --- Weathering station: C_C/C_C/ICI (5 copper + 2 iron) → 1 ---
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModBlocks.WEATHERING_STATION.get())
+                .define('C', Items.COPPER_INGOT)
+                .define('I', Items.IRON_INGOT)
+                .pattern("C C")
+                .pattern("C C")
+                .pattern("ICI")
+                .unlockedBy("has_copper_ingot", has(Items.COPPER_INGOT))
+                .save(exporter, getRecipePath("ott", "weathering_station"));
+
+        // --- Stone lantern: SSS/GTG/SSS (6 stone + 2 glass panes + 1 torch) → 1 ---
+        ShapedRecipeBuilder.shaped(RecipeCategory.DECORATIONS, ModBlocks.STONE_LANTERN.get())
+                .define('S', Items.STONE)
+                .define('G', Items.GLASS_PANE)
+                .define('T', Items.TORCH)
+                .pattern("SSS")
+                .pattern("GTG")
+                .pattern("SSS")
+                .unlockedBy("has_stone", has(Items.STONE))
+                .save(exporter, getRecipePath("ott", "stone_lantern"));
+
+        // --- Iron fancy lantern: NIN/NTN/NIN (6 nuggets + 2 ingots + 1 torch) → 1 ---
+        ShapedRecipeBuilder.shaped(RecipeCategory.DECORATIONS, ModBlocks.IRON_FANCY_LANTERN.get())
+                .define('N', Items.IRON_NUGGET)
+                .define('I', Items.IRON_INGOT)
+                .define('T', Items.TORCH)
+                .pattern("NIN")
+                .pattern("NTN")
+                .pattern("NIN")
+                .unlockedBy("has_iron_ingot", has(Items.IRON_INGOT))
+                .save(exporter, getRecipePath("ott", "iron_fancy_lantern"));
+
+        // --- Bug net: diagonal (stick bottom-left, stick center, wool top-right) → 1 ---
+        ShapedRecipeBuilder.shaped(RecipeCategory.TOOLS, ModItems.BUG_NET.get())
+                .define('S', Items.STICK)
+                .define('W', ItemTags.WOOL)
+                .pattern("  W")
+                .pattern(" S ")
+                .pattern("S  ")
+                .unlockedBy("has_wool", has(ItemTags.WOOL))
+                .save(exporter, getRecipePath("ott", "bug_net"));
+
+        // --- Futons: 3 matching wool (top row) + 3 wooden slabs (bottom row) → 1 futon (all 32 colors) ---
+        for (DyeColor color : DyeColor.values()) {
+            String name = color.getName();
+            Block woolBlock = BuiltInRegistries.BLOCK.get(ResourceLocation.withDefaultNamespace(name + "_wool"));
+            Block futon = ModBlocks.FUTONS.get(name).get();
+            ShapedRecipeBuilder.shaped(RecipeCategory.DECORATIONS, futon)
+                    .define('W', woolBlock)
+                    .define('S', ItemTags.WOODEN_SLABS)
+                    .pattern("WWW")
+                    .pattern("SSS")
+                    .unlockedBy("has_wool", has(woolBlock))
+                    .save(exporter, getRecipePath("ott", name + "_futon"));
+        }
+        for (ModColorSets.ColorSet colorSet : ModColorSets.ALL) {
+            String name = colorSet.name();
+            Block woolBlock = ModBlocks.COLOR_SETS.get(name).wool().get();
+            Block futon = ModBlocks.FUTONS.get(name).get();
+            ShapedRecipeBuilder.shaped(RecipeCategory.DECORATIONS, futon)
+                    .define('W', woolBlock)
+                    .define('S', ItemTags.WOODEN_SLABS)
+                    .pattern("WWW")
+                    .pattern("SSS")
+                    .unlockedBy("has_wool", has(woolBlock))
+                    .save(exporter, getRecipePath("ott", name + "_futon"));
+        }
+    }
+
+    private void addRingDyeRecipe(RecipeOutput exporter, ItemLike source, ItemLike result, Item dye, String recipeName) {
+        ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, result, 8)
+                .define('#', source)
+                .define('D', dye)
+                .pattern("###")
+                .pattern("#D#")
+                .pattern("###")
+                .unlockedBy("has_source", has(source))
+                .save(exporter, getRecipePath("ott", recipeName + "_from_dyeing"));
+    }
+
+    @SuppressWarnings("SameParameterValue")
+    private void addRingShapeRecipe(RecipeOutput exporter, ItemLike ingredient, ItemLike result, int count, String recipeName) {
+        ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, result, count)
+                .define('#', ingredient)
+                .pattern("###")
+                .pattern("# #")
+                .pattern("###")
+                .unlockedBy("has_ingredient", has(ingredient))
+                .save(exporter, getRecipePath("ott", recipeName));
+    }
 
     private void mountsOfMayhemRecipes(RecipeOutput exporter) {
         {
@@ -426,9 +814,14 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
         }
     }
 
+    private static final Set<String> DEDICATED_PATTERN_RECIPES =
+            Set.of("flat_roof_tiles", "layered_roof_tiles", "plastered_stone",
+                   "chiseled_plastered_stone", "dyed_stone", "painted_planks");
+
     private void addPatternBlockRecipes(RecipeOutput exporter) {
         for (Map.Entry<String, Map<String, DeferredBlock<Block>>> patternEntry : ModBlocks.PATTERN_BLOCKS.entrySet()) {
             String pattern = patternEntry.getKey();
+            if (DEDICATED_PATTERN_RECIPES.contains(pattern)) continue;
             Map<String, DeferredBlock<Block>> colorMap = patternEntry.getValue();
 
             for (DyeColor color : DyeColor.values()) {
@@ -1023,13 +1416,10 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
                 .unlockedBy("has_polished_salt_block", has(ModBlocks.POLISHED_SALT_BLOCK.get()))
                 .save(noAdv, getRecipePath("ott", "salt_lamp"));
 
-        // Salted Kelp
         // Catfish
         cooking(noAdv, List.of(ModItems.CATFISH.get()), ModItems.COOKED_CATFISH.get(), "cooked_catfish");
         // Bass
         cooking(noAdv, List.of(ModItems.BASS.get()), ModItems.COOKED_BASS.get(), "cooked_bass");
-
-        // Buffalo
     }
 
     private void cooking(RecipeOutput exporter, List<ItemLike> ingredients, ItemLike result, String name) {
@@ -1136,5 +1526,146 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
         ModBlocks.WOOD_SETS.forEach((setName, set) -> {
             registerSlabToBlock(exporter, set.slab().get().asItem(), set.planks().get().asItem(), setName + "_planks");
         });
+    }
+
+    private void addStonecutterRecipes(RecipeOutput exporter) {
+        // --- Pattern blocks → plate / edge / beam / pergola / geowindow ---
+        ModBlocks.PATTERN_BLOCKS.forEach((pattern, colorMap) -> colorMap.forEach((color, baseBlock) -> {
+            String id = color + "_" + pattern;
+            var plates   = ModBlocks.PATTERN_PLATES.get(pattern);
+            var edges    = ModBlocks.PATTERN_EDGES.get(pattern);
+            var beams    = ModBlocks.PATTERN_BEAMS.get(pattern);
+            var pergolas = ModBlocks.PATTERN_PERGOLAS.get(pattern);
+            var windows  = ModBlocks.PATTERN_WINDOWS.get(pattern);
+            if (plates   != null && plates.containsKey(color))   stonecutOne(exporter, baseBlock.get(), plates.get(color).get(),   id + "_plate_stonecutting");
+            if (edges    != null && edges.containsKey(color))    stonecutOne(exporter, baseBlock.get(), edges.get(color).get(),    id + "_edge_stonecutting");
+            if (beams    != null && beams.containsKey(color))    stonecutOne(exporter, baseBlock.get(), beams.get(color).get(),    id + "_beam_stonecutting");
+            if (pergolas != null && pergolas.containsKey(color)) stonecutOne(exporter, baseBlock.get(), pergolas.get(color).get(), id + "_pergola_stonecutting");
+            if (windows  != null && windows.containsKey(color))  stonecutOne(exporter, baseBlock.get(), windows.get(color).get(),  id + "_geowindow_stonecutting");
+        }));
+
+        // --- Color set concrete → plate / edge / beam / pergola / geowindow ---
+        ModBlocks.COLOR_SETS.forEach((color, set) -> {
+            stonecutOne(exporter, set.concrete().get(), set.plate().get(),           color + "_plate_stonecutting");
+            stonecutOne(exporter, set.concrete().get(), set.edge().get(),            color + "_edge_stonecutting");
+            stonecutOne(exporter, set.concrete().get(), set.beam().get(),            color + "_beam_stonecutting");
+            stonecutOne(exporter, set.concrete().get(), set.pergola().get(),         color + "_pergola_stonecutting");
+            stonecutOne(exporter, set.concrete().get(), set.geometricWindow().get(), color + "_geowindow_stonecutting");
+        });
+
+        // --- Ott wood sets: planks → planksPlate / planksEdge / beam / pergola / geowindow ---
+        ModBlocks.WOOD_SETS.forEach((name, set) -> {
+            stonecutOne(exporter, set.planks().get(), set.planksPlate().get(),       name + "_planks_plate_stonecutting");
+            stonecutOne(exporter, set.planks().get(), set.planksEdge().get(),        name + "_planks_edge_stonecutting");
+            stonecutOne(exporter, set.planks().get(), set.beam().get(),              name + "_beam_stonecutting");
+            stonecutOne(exporter, set.planks().get(), set.pergola().get(),           name + "_pergola_stonecutting");
+            stonecutOne(exporter, set.planks().get(), set.geometricWindow().get(),   name + "_geowindow_stonecutting");
+        });
+
+        // --- Vanilla structural sets: vanilla planks → planksPlate / planksEdge / beam / pergola / geowindow ---
+        ModBlocks.VANILLA_STRUCTURAL_SETS.forEach((name, set) ->
+            BuiltInRegistries.BLOCK.getOptional(ResourceLocation.withDefaultNamespace(name + "_planks")).ifPresent(planks -> {
+                stonecutOne(exporter, planks, set.planksPlate().get(),       name + "_planks_plate_stonecutting");
+                stonecutOne(exporter, planks, set.planksEdge().get(),        name + "_planks_edge_stonecutting");
+                stonecutOne(exporter, planks, set.beam().get(),              name + "_beam_stonecutting");
+                stonecutOne(exporter, planks, set.pergola().get(),           name + "_pergola_stonecutting");
+                stonecutOne(exporter, planks, set.geometricWindow().get(),   name + "_geowindow_stonecutting");
+            })
+        );
+
+        // --- Static blocks with known shape variants ---
+        stonecutOne(exporter, ModBlocks.LIMESTONE_BRICKS.get(),                          ModBlocks.LIMESTONE_BRICKS_EDGE.get(),                         "limestone_bricks_edge_stonecutting");
+        stonecutOne(exporter, ModBlocks.LIMESTONE_BRICKS.get(),                          ModBlocks.LIMESTONE_BRICKS_PLATE.get(),                        "limestone_bricks_plate_stonecutting");
+        stonecutOne(exporter, ModBlocks.ROOFING_SLATES.get(),                            ModBlocks.ROOFING_SLATES_EDGE.get(),                           "roofing_slates_edge_stonecutting");
+        stonecutOne(exporter, ModBlocks.ROOFING_SLATES.get(),                            ModBlocks.ROOFING_SLATES_PLATE.get(),                          "roofing_slates_plate_stonecutting");
+        stonecutOne(exporter, ModBlocks.WHEAT_THATCH.get(),                              ModBlocks.WHEAT_THATCH_EDGE.get(),                             "wheat_thatch_edge_stonecutting");
+        stonecutOne(exporter, ModBlocks.WHEAT_THATCH.get(),                              ModBlocks.WHEAT_THATCH_PLATE.get(),                            "wheat_thatch_plate_stonecutting");
+        stonecutOne(exporter, ModBlocks.BAMBOO_THATCH.get(),                             ModBlocks.BAMBOO_THATCH_EDGE.get(),                            "bamboo_thatch_edge_stonecutting");
+        stonecutOne(exporter, ModBlocks.BAMBOO_THATCH.get(),                             ModBlocks.BAMBOO_THATCH_PLATE.get(),                           "bamboo_thatch_plate_stonecutting");
+        // --- Slender sandstone bricks (from slender sandstone bricks base) ---
+        stonecutOne(exporter, ModBlocks.SLENDER_SANDSTONE_BRICKS.get(),                  ModBlocks.SLENDER_SANDSTONE_BRICKS_EDGE.get(),                  "slender_sandstone_bricks_edge_stonecutting");
+        stonecutOne(exporter, ModBlocks.SLENDER_SANDSTONE_BRICKS.get(),                  ModBlocks.SLENDER_SANDSTONE_BRICKS_PLATE.get(),                 "slender_sandstone_bricks_plate_stonecutting");
+        stonecutOne(exporter, ModBlocks.SLENDER_TURQUOISE_PATTERN.get(),                 ModBlocks.SLENDER_TURQUOISE_PATTERN_EDGE.get(),                 "slender_turquoise_pattern_edge_stonecutting");
+        stonecutOne(exporter, ModBlocks.SLENDER_TURQUOISE_PATTERN.get(),                 ModBlocks.SLENDER_TURQUOISE_PATTERN_PLATE.get(),                "slender_turquoise_pattern_plate_stonecutting");
+        // --- Slender sandstone bricks + turquoise pattern from smooth sandstone ---
+        stonecutOne(exporter, Blocks.SMOOTH_SANDSTONE, ModBlocks.SLENDER_SANDSTONE_BRICKS.get(),      "slender_sandstone_bricks_from_smooth_sandstone_stonecutting");
+        stonecutOne(exporter, Blocks.SMOOTH_SANDSTONE, ModBlocks.SLENDER_SANDSTONE_BRICKS_WALL.get(), "slender_sandstone_bricks_wall_from_smooth_sandstone_stonecutting");
+        stonecutOne(exporter, Blocks.SMOOTH_SANDSTONE, ModBlocks.SLENDER_SANDSTONE_BRICKS_EDGE.get(), "slender_sandstone_bricks_edge_from_smooth_sandstone_stonecutting");
+        stonecutOne(exporter, Blocks.SMOOTH_SANDSTONE, ModBlocks.SLENDER_SANDSTONE_BRICKS_PLATE.get(),"slender_sandstone_bricks_plate_from_smooth_sandstone_stonecutting");
+        stonecutOne(exporter, Blocks.SMOOTH_SANDSTONE, ModBlocks.SLENDER_TURQUOISE_PATTERN.get(),      "slender_turquoise_pattern_from_smooth_sandstone_stonecutting");
+        stonecutOne(exporter, Blocks.SMOOTH_SANDSTONE, ModBlocks.SLENDER_TURQUOISE_PATTERN_WALL.get(), "slender_turquoise_pattern_wall_from_smooth_sandstone_stonecutting");
+        stonecutOne(exporter, Blocks.SMOOTH_SANDSTONE, ModBlocks.SLENDER_TURQUOISE_PATTERN_EDGE.get(), "slender_turquoise_pattern_edge_from_smooth_sandstone_stonecutting");
+        stonecutOne(exporter, Blocks.SMOOTH_SANDSTONE, ModBlocks.SLENDER_TURQUOISE_PATTERN_PLATE.get(),"slender_turquoise_pattern_plate_from_smooth_sandstone_stonecutting");
+        // --- Sandstone_crenelation from smooth sandstone ---
+        stonecutOne(exporter, Blocks.SMOOTH_SANDSTONE, ModBlocks.SANDSTONE_CRENELATION.get(),          "sandstone_crenelation_from_smooth_sandstone_stonecutting");
+        // --- Vanilla sandstone variants ---
+        stonecutOne(exporter, Blocks.SANDSTONE,      ModBlocks.SANDSTONE_PLATE.get(),          "sandstone_plate_stonecutting");
+        stonecutOne(exporter, Blocks.SANDSTONE,      ModBlocks.SANDSTONE_EDGE.get(),           "sandstone_edge_stonecutting");
+        stonecutOne(exporter, Blocks.CUT_SANDSTONE,  ModBlocks.CUT_SANDSTONE_PLATE.get(),      "cut_sandstone_plate_stonecutting");
+        stonecutOne(exporter, Blocks.CUT_SANDSTONE,  ModBlocks.CUT_SANDSTONE_EDGE.get(),       "cut_sandstone_edge_stonecutting");
+        stonecutOne(exporter, Blocks.SMOOTH_SANDSTONE, ModBlocks.SMOOTH_SANDSTONE_PLATE.get(), "smooth_sandstone_plate_stonecutting");
+        stonecutOne(exporter, Blocks.SMOOTH_SANDSTONE, ModBlocks.SMOOTH_SANDSTONE_EDGE.get(),  "smooth_sandstone_edge_stonecutting");
+        // --- Gold plated smooth ---
+        stonecutOne(exporter, ModBlocks.GOLD_PLATED_SMOOTH_BLOCK.get(), ModBlocks.GOLD_PLATED_SMOOTH_EDGE.get(),  "gold_plated_smooth_edge_stonecutting");
+        stonecutOne(exporter, ModBlocks.GOLD_PLATED_SMOOTH_BLOCK.get(), ModBlocks.GOLD_PLATED_SMOOTH_PLATE.get(), "gold_plated_smooth_plate_stonecutting");
+        // --- Stone bricks masonry from stone ---
+        stonecutOne(exporter, Blocks.STONE, ModBlocks.STONE_BRICKS_MASONRY.get(),       "stone_bricks_masonry_stonecutting");
+        stonecutOne(exporter, Blocks.STONE, ModBlocks.STONE_BRICKS_MASONRY_EDGE.get(),  "stone_bricks_masonry_edge_stonecutting");
+        stonecutOne(exporter, Blocks.STONE, ModBlocks.STONE_BRICKS_MASONRY_PLATE.get(), "stone_bricks_masonry_plate_stonecutting");
+        // --- Stone bricks functional blocks from stone bricks ---
+        stonecutOne(exporter, Blocks.STONE_BRICKS, ModBlocks.STONE_BRICKS_ARROWSLIT.get(),   "stone_bricks_arrowslit_stonecutting");
+        stonecutOne(exporter, Blocks.STONE_BRICKS, ModBlocks.STONE_BRICKS_MACHICOLATION.get(),"stone_bricks_machicolation_stonecutting");
+        stonecutOne(exporter, Blocks.STONE_BRICKS, ModBlocks.STONE_BRICKS_POOL.get(),         "stone_bricks_pool_stonecutting");
+        stonecutOne(exporter, Blocks.STONE_BRICKS, ModBlocks.STONE_BRICKS_SMALL_POOL.get(),   "stone_bricks_small_pool_stonecutting");
+        // --- Marble fancy fence from marble ---
+        stonecutOne(exporter, ModBlocks.MARBLE.get(), ModBlocks.MARBLE_FANCY_FENCE.get(), "marble_fancy_fence_stonecutting");
+        // --- Limestone stonecutter source ---
+        stonecutOne(exporter, ModBlocks.PLAIN_LIMESTONE.get(), ModBlocks.WATER_MOSAIC_TRADITIONAL.get(), "water_mosaic_traditional_from_limestone_stonecutting");
+        stonecutOne(exporter, ModBlocks.PLAIN_LIMESTONE.get(), ModBlocks.WATER_MOSAIC_BORDER.get(),      "water_mosaic_border_from_limestone_stonecutting");
+        stonecutOne(exporter, ModBlocks.PLAIN_LIMESTONE.get(), ModBlocks.WATER_MOSAIC_GEOMETRIC.get(),   "water_mosaic_geometric_from_limestone_stonecutting");
+        stonecutOne(exporter, ModBlocks.PLAIN_LIMESTONE.get(), ModBlocks.WATER_MOSAIC_PATTERN.get(),     "water_mosaic_pattern_from_limestone_stonecutting");
+        stonecutOne(exporter, ModBlocks.PLAIN_LIMESTONE.get(), ModBlocks.WATER_MOSAIC_DELICATE.get(),    "water_mosaic_delicate_from_limestone_stonecutting");
+        stonecutOne(exporter, ModBlocks.PLAIN_LIMESTONE.get(), ModBlocks.WATER_MOSAIC_RECESS.get(),      "water_mosaic_recess_from_limestone_stonecutting");
+        stonecutOne(exporter, ModBlocks.PLAIN_LIMESTONE.get(), ModBlocks.MOSAIC_FLOOR.get(),             "mosaic_floor_from_limestone_stonecutting");
+        stonecutOne(exporter, ModBlocks.PLAIN_LIMESTONE.get(), ModBlocks.MOSAIC_FLOOR_DELICATE.get(),    "mosaic_floor_delicate_from_limestone_stonecutting");
+        stonecutOne(exporter, ModBlocks.PLAIN_LIMESTONE.get(), ModBlocks.MOSAIC_FLOOR_ROSETTE.get(),     "mosaic_floor_rosette_from_limestone_stonecutting");
+        stonecutOne(exporter, ModBlocks.PLAIN_LIMESTONE.get(), ModBlocks.ROMAN_FRESCO_RED.get(),         "roman_fresco_red_from_limestone_stonecutting");
+        stonecutOne(exporter, ModBlocks.PLAIN_LIMESTONE.get(), ModBlocks.ROMAN_FRESCO_BLACK.get(),       "roman_fresco_black_from_limestone_stonecutting");
+        stonecutOne(exporter, ModBlocks.PLAIN_LIMESTONE.get(), ModBlocks.LIMESTONE_BANNISTER.get(),      "limestone_bannister_from_limestone_stonecutting");
+        ModBlocks.LIMESTONE.forEach(d -> stonecutOne(exporter, ModBlocks.PLAIN_LIMESTONE.get(), d.get(),
+                d.getId().getPath() + "_from_limestone_stonecutting"));
+        // --- Chiseled plastered stone from matching plastered stone ---
+        ModBlocks.PATTERN_BLOCKS.get("plastered_stone").forEach((color, base) -> {
+            var chiseled = ModBlocks.PATTERN_BLOCKS.get("chiseled_plastered_stone");
+            if (chiseled != null && chiseled.containsKey(color))
+                stonecutOne(exporter, base.get(), chiseled.get(color).get(), color + "_chiseled_plastered_stone_stonecutting");
+        });
+        // --- Ornamented chiseled plastered stone from white plastered stone ---
+        {
+            Block whitePlastered = ModBlocks.PATTERN_BLOCKS.get("plastered_stone").get("white").get();
+            stonecutOne(exporter, whitePlastered, ModBlocks.ORNAMENTED_CHISELED_PLASTERED_STONE.get(),   "ornamented_chiseled_plastered_stone_stonecutting");
+            stonecutOne(exporter, whitePlastered, ModBlocks.GREEN_ORNAMENTED_PLASTERED_STONE.get(),      "green_ornamented_plastered_stone_stonecutting");
+            stonecutOne(exporter, whitePlastered, ModBlocks.RED_ORNAMENTED_PLASTERED_STONE.get(),        "red_ornamented_plastered_stone_stonecutting");
+        }
+        // --- Bannister / support slab / support beam from planks (ott wood sets) ---
+        ModBlocks.WOOD_SETS.forEach((name, set) -> {
+            stonecutOne(exporter, set.planks().get(), set.bannister().get(),   name + "_bannister_stonecutting");
+            stonecutOne(exporter, set.planks().get(), set.supportSlab().get(), name + "_support_slab_stonecutting");
+            stonecutOne(exporter, set.planks().get(), set.supportBeam().get(), name + "_support_beam_stonecutting");
+        });
+        // --- Bannister / support slab / support beam from vanilla planks ---
+        ModBlocks.VANILLA_STRUCTURAL_SETS.forEach((name, set) ->
+            BuiltInRegistries.BLOCK.getOptional(ResourceLocation.withDefaultNamespace(name + "_planks")).ifPresent(planks -> {
+                stonecutOne(exporter, planks, set.bannister().get(),   name + "_bannister_stonecutting");
+                stonecutOne(exporter, planks, set.supportSlab().get(), name + "_support_slab_stonecutting");
+                stonecutOne(exporter, planks, set.supportBeam().get(), name + "_support_beam_stonecutting");
+            })
+        );
+    }
+
+    private void stonecutOne(RecipeOutput exporter, ItemLike input, ItemLike output, String id) {
+        SingleItemRecipeBuilder.stonecutting(Ingredient.of(input), RecipeCategory.BUILDING_BLOCKS, output, 1)
+                .unlockedBy("has_input", has(input))
+                .save(exporter, getRecipePath("ott", id));
     }
 }

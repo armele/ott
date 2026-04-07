@@ -56,6 +56,7 @@ public class OttBlockStateProvider extends ModBlockStateProvider {
             simpleBlock(block.get(), model);
             itemModels().withExistingParent(path, modLoc("block/limestone/" + path));
         });
+        simpleBlockWithItem(ModBlocks.PLAIN_LIMESTONE.get(), cubeAll(ModBlocks.PLAIN_LIMESTONE.get()));
         
         ModBlocks.TESTBLOCK.forEach(block -> {
             ModelFile model = models().getExistingFile(modLoc("block/" + block.getId().getPath()));
@@ -966,5 +967,25 @@ public class OttBlockStateProvider extends ModBlockStateProvider {
             simpleBlock(block.get(), elevatorModel);
             itemModels().withExistingParent(block.getId().getPath(), elevatorModel.getLocation());
         });
+
+        ModBlocks.FUTONS.forEach((color, block) -> registerFuton(block.get(), color));
+    }
+
+    private void registerFuton(Block futon, String color) {
+        ResourceLocation futonTex = modLoc("block/color_set/" + color + "/futon");
+        ModelFile head = models().withExistingParent(color + "_futon_head", modLoc("block/template_futon_head"))
+                .texture("futon", futonTex);
+        ModelFile foot = models().withExistingParent(color + "_futon_foot", modLoc("block/template_futon_foot"))
+                .texture("futon", futonTex);
+        getVariantBuilder(futon).forAllStates(state -> {
+            BedPart part = state.getValue(BedBlock.PART);
+            net.minecraft.core.Direction facing = state.getValue(BedBlock.FACING);
+            return ConfiguredModel.builder()
+                    .modelFile(part == BedPart.HEAD ? head : foot)
+                    .rotationY(((int) facing.toYRot() + 180) % 360)
+                    .build();
+        });
+        itemModels().withExistingParent(color + "_futon", modLoc("item/template_futon"))
+                .texture("futon", futonTex);
     }
 }

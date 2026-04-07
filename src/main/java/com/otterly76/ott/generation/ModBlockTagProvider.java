@@ -215,16 +215,35 @@ public class ModBlockTagProvider extends BlockTagsProvider {
 
         // --- 5. STATIC & INDIVIDUAL ADDITIONS ---
         ModBlocks.LIMESTONE.forEach(d -> { pickaxeTag.add(d.value()); this.tag(doDefaultKey).add(d.value()); });
-        ModBlocks.SEAGLASS.forEach(d -> { this.tag(BlockTags.IMPERMEABLE).add(d.value()); this.tag(doDefaultKey).add(d.value()); });
+        pickaxeTag.add(ModBlocks.PLAIN_LIMESTONE.value());
+        needsStoneToolTag.add(ModBlocks.PLAIN_LIMESTONE.value());
+        ModBlocks.SEAGLASS.forEach(d -> {
+            this.tag(BlockTags.IMPERMEABLE).add(d.value());
+            pickaxeTag.add(d.value());
+            this.tag(cGlassKey).add(d.value());
+            this.tag(cGlassBlocksKey).add(d.value());
+            this.tag(cGlassBlocksColoredKey).add(d.value());
+            this.tag(doDefaultKey).add(d.value());
+        });
         ModBlocks.SEAGLASS_SETS.values().forEach(set -> {
-            this.tag(BlockTags.IMPERMEABLE).add(set.seaglass().get(), set.bubblesSeaglass().get(), set.smoothSeaglass().get(), set.wavesSeaglass().get());
-            this.tag(doDefaultKey).add(set.seaglass().get(), set.bubblesSeaglass().get(), set.smoothSeaglass().get(), set.wavesSeaglass().get());
+            Block[] all = { set.seaglass().get(), set.bubblesSeaglass().get(), set.smoothSeaglass().get(), set.wavesSeaglass().get() };
+            this.tag(BlockTags.IMPERMEABLE).add(all);
+            pickaxeTag.add(all);
+            this.tag(cGlassKey).add(all);
+            this.tag(cGlassBlocksKey).add(all);
+            this.tag(cGlassBlocksColoredKey).add(all);
+            this.tag(doDefaultKey).add(all);
         });
         ModBlocks.TESTBLOCK.forEach(d -> this.tag(doDefaultKey).add(d.value()));
         this.tag(doDefaultKey).add(ModBlocks.SALT_BLOCK.get(), ModBlocks.POLISHED_SALT_BLOCK.get());
         this.tag(doDefaultKey).add(ModBlocks.WATER_MOSAIC_TRADITIONAL.get());
         ModBlocks.PARTICLE_HEDGES.values().forEach(h -> this.tag(doDefaultKey).add(h.value()));
         ModBlocks.PATTERN_BLOCKS.values().forEach(colorMap -> colorMap.values().forEach(d -> this.tag(doDefaultKey).add(d.value())));
+        ModBlocks.FUTONS.values().forEach(d -> {
+            this.tag(BlockTags.BEDS).add(d.value());
+            axeTag.add(d.value());
+            this.tag(doDefaultKey).add(d.value());
+        });
 
         // Domum Ornamentum material tags
         this.tag(doCopperKey).addTag(ModTags.Blocks.COPPER);

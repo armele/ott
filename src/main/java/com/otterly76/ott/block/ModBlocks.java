@@ -53,6 +53,7 @@ public class ModBlocks {
     public static final List<DeferredBlock<? extends Block>> TESTBLOCK = new ArrayList<>();
     
     public static final Map<String, DeferredBlock<ElevatorBlock>> ELEVATORS = new LinkedHashMap<>();
+    public static final Map<String, DeferredBlock<FutonBlock>>   FUTONS    = new LinkedHashMap<>();
 
 
     private static <T extends Block> DeferredBlock<T> register(String name, java.util.function.Supplier<T> block) {
@@ -466,6 +467,25 @@ public class ModBlocks {
         });
 
         registerElevators();
+        registerFutons();
+    }
+
+    private static void registerFutons() {
+        for (com.otterly76.ott.color.ModPatterns.ColorInfo color : com.otterly76.ott.color.ModPatterns.ALL_COLORS) {
+            final String colorName = color.name();
+            final net.minecraft.world.item.DyeColor dyeColor = toDyeColor(colorName);
+            FUTONS.put(colorName, BLOCKS.register(
+                    colorName + "_futon",
+                    () -> new FutonBlock(dyeColor, Properties.of().strength(0.5f).sound(SoundType.WOOL).noOcclusion())
+            ));
+        }
+    }
+
+    private static net.minecraft.world.item.DyeColor toDyeColor(String name) {
+        for (net.minecraft.world.item.DyeColor c : net.minecraft.world.item.DyeColor.values()) {
+            if (c.getName().equals(name)) return c;
+        }
+        return net.minecraft.world.item.DyeColor.WHITE;
     }
 
     private static void registerElevators() {
@@ -748,6 +768,8 @@ public class ModBlocks {
             () -> new PlateBlock(Properties.ofFullCopy(Blocks.STONE_BRICKS).noOcclusion()));
     public static final DeferredBlock<Block> COBBLED_LIMESTONE = register("cobbled_limestone",
             () -> new Block(Properties.ofFullCopy(Blocks.STONE_BRICKS)));
+    public static final DeferredBlock<Block> PLAIN_LIMESTONE = register("limestone",
+            () -> new Block(Properties.ofFullCopy(Blocks.STONE)));
 
     // -------------------------------------------------------------------------
     // --- DoTB Phase 2: Marble (Roman) ---
@@ -775,32 +797,8 @@ public class ModBlocks {
     public static final DeferredBlock<EdgeBlock> SMOOTH_SANDSTONE_EDGE = register("smooth_sandstone_edge",
             () -> new EdgeBlock(Properties.ofFullCopy(Blocks.SMOOTH_SANDSTONE)));
     // -------------------------------------------------------------------------
-    // --- DoTB Phase 2: Ochre Roof Tiles (Roman) ---
-    // -------------------------------------------------------------------------
-    public static final DeferredBlock<Block> OCHRE_ROOF_TILES = register("ochre_roof_tiles",
-            () -> new Block(Properties.ofFullCopy(Blocks.BRICKS)));
-    public static final DeferredBlock<EdgeBlock> OCHRE_ROOF_TILES_EDGE = register("ochre_roof_tiles_edge",
-            () -> new EdgeBlock(Properties.ofFullCopy(Blocks.BRICKS)));
-    public static final DeferredBlock<PlateBlock> OCHRE_ROOF_TILES_PLATE = register("ochre_roof_tiles_plate",
-            () -> new PlateBlock(Properties.ofFullCopy(Blocks.BRICKS)));
-
-    // -------------------------------------------------------------------------
     // --- DoTB Phase 2: Flat/Gray Roof Tiles + Roofing Slates (General) ---
     // -------------------------------------------------------------------------
-    public static final DeferredBlock<Block> FLAT_ROOF_TILES = register("flat_roof_tiles",
-            () -> new Block(Properties.ofFullCopy(Blocks.STONE_BRICKS)));
-    public static final DeferredBlock<EdgeBlock> FLAT_ROOF_TILES_EDGE = register("flat_roof_tiles_edge",
-            () -> new EdgeBlock(Properties.ofFullCopy(Blocks.STONE_BRICKS)));
-    public static final DeferredBlock<PlateBlock> FLAT_ROOF_TILES_PLATE = register("flat_roof_tiles_plate",
-            () -> new PlateBlock(Properties.ofFullCopy(Blocks.STONE_BRICKS)));
-
-    public static final DeferredBlock<Block> GRAY_ROOF_TILES = register("gray_roof_tiles",
-            () -> new Block(Properties.ofFullCopy(Blocks.STONE_BRICKS)));
-    public static final DeferredBlock<EdgeBlock> GRAY_ROOF_TILES_EDGE = register("gray_roof_tiles_edge",
-            () -> new EdgeBlock(Properties.ofFullCopy(Blocks.STONE_BRICKS)));
-    public static final DeferredBlock<PlateBlock> GRAY_ROOF_TILES_PLATE = register("gray_roof_tiles_plate",
-            () -> new PlateBlock(Properties.ofFullCopy(Blocks.STONE_BRICKS)));
-
     public static final DeferredBlock<Block> ROOFING_SLATES = register("roofing_slates",
             () -> new Block(Properties.ofFullCopy(Blocks.STONE_BRICKS)));
     public static final DeferredBlock<EdgeBlock> ROOFING_SLATES_EDGE = register("roofing_slates_edge",
@@ -839,23 +837,25 @@ public class ModBlocks {
 
 
     // -------------------------------------------------------------------------
-    // --- DoTB Phase 4: Persian Sandstone Bricks ---
+    // --- Slender Sandstone Bricks ---
     // -------------------------------------------------------------------------
-    public static final DeferredBlock<Block>      SANDSTONE_BRICKS                              = register("sandstone_bricks",                              () -> new Block(Properties.ofFullCopy(Blocks.SANDSTONE)));
-    public static final DeferredBlock<WallBlock>  SANDSTONE_BRICKS_WALL                         = register("sandstone_bricks_wall",                         () -> new WallBlock(Properties.ofFullCopy(Blocks.SANDSTONE)));
-    public static final DeferredBlock<EdgeBlock>  SANDSTONE_BRICKS_EDGE                         = register("sandstone_bricks_edge",                         () -> new EdgeBlock(Properties.ofFullCopy(Blocks.SANDSTONE)));
-    public static final DeferredBlock<PlateBlock> SANDSTONE_BRICKS_PLATE                        = register("sandstone_bricks_plate",                        () -> new PlateBlock(Properties.ofFullCopy(Blocks.SANDSTONE)));
+    public static final DeferredBlock<Block>      SLENDER_SANDSTONE_BRICKS                   = register("slender_sandstone_bricks",                   () -> new Block(Properties.ofFullCopy(Blocks.SANDSTONE)));
+    public static final DeferredBlock<WallBlock>  SLENDER_SANDSTONE_BRICKS_WALL              = register("slender_sandstone_bricks_wall",              () -> new WallBlock(Properties.ofFullCopy(Blocks.SANDSTONE)));
+    public static final DeferredBlock<EdgeBlock>  SLENDER_SANDSTONE_BRICKS_EDGE              = register("slender_sandstone_bricks_edge",              () -> new EdgeBlock(Properties.ofFullCopy(Blocks.SANDSTONE)));
+    public static final DeferredBlock<PlateBlock> SLENDER_SANDSTONE_BRICKS_PLATE             = register("slender_sandstone_bricks_plate",             () -> new PlateBlock(Properties.ofFullCopy(Blocks.SANDSTONE)));
 
-    public static final DeferredBlock<Block>      SANDSTONE_BRICKS_TURQUOISE_PATTERN            = register("sandstone_bricks_turquoise_pattern",            () -> new Block(Properties.ofFullCopy(Blocks.SANDSTONE)));
-    public static final DeferredBlock<WallBlock>  SANDSTONE_BRICKS_TURQUOISE_PATTERN_WALL       = register("sandstone_bricks_turquoise_pattern_wall",       () -> new WallBlock(Properties.ofFullCopy(Blocks.SANDSTONE)));
-    public static final DeferredBlock<EdgeBlock>  SANDSTONE_BRICKS_TURQUOISE_PATTERN_EDGE       = register("sandstone_bricks_turquoise_pattern_edge",       () -> new EdgeBlock(Properties.ofFullCopy(Blocks.SANDSTONE)));
-    public static final DeferredBlock<PlateBlock> SANDSTONE_BRICKS_TURQUOISE_PATTERN_PLATE      = register("sandstone_bricks_turquoise_pattern_plate",      () -> new PlateBlock(Properties.ofFullCopy(Blocks.SANDSTONE)));
+    public static final DeferredBlock<Block>      SLENDER_TURQUOISE_PATTERN                  = register("slender_turquoise_pattern",                  () -> new Block(Properties.ofFullCopy(Blocks.SANDSTONE)));
+    public static final DeferredBlock<WallBlock>  SLENDER_TURQUOISE_PATTERN_WALL             = register("slender_turquoise_pattern_wall",             () -> new WallBlock(Properties.ofFullCopy(Blocks.SANDSTONE)));
+    public static final DeferredBlock<EdgeBlock>  SLENDER_TURQUOISE_PATTERN_EDGE             = register("slender_turquoise_pattern_edge",             () -> new EdgeBlock(Properties.ofFullCopy(Blocks.SANDSTONE)));
+    public static final DeferredBlock<PlateBlock> SLENDER_TURQUOISE_PATTERN_PLATE            = register("slender_turquoise_pattern_plate",            () -> new PlateBlock(Properties.ofFullCopy(Blocks.SANDSTONE)));
 
     // -------------------------------------------------------------------------
-    // --- DoTB Phase 4: Persian Carpets ---
+    // --- Ornamented Carpets + Wool ---
     // -------------------------------------------------------------------------
-    public static final DeferredBlock<CarpetBlock> PERSIAN_CARPET_RED                           = register("persian_carpet_red",         () -> new CarpetBlock(Properties.of().strength(0.1F).sound(SoundType.WOOL)));
-    public static final DeferredBlock<CarpetBlock> PERSIAN_CARPET_DELICATE_RED                  = register("persian_carpet_delicate_red", () -> new CarpetBlock(Properties.of().strength(0.1F).sound(SoundType.WOOL)));
+    public static final DeferredBlock<Block>       ORNAMENTED_RED_WOOL         = register("ornamented_red_wool",       () -> new Block(Properties.of().strength(0.8F).sound(SoundType.WOOL)));
+    public static final DeferredBlock<Block>       DELICATE_RED_WOOL           = register("delicate_red_wool",         () -> new Block(Properties.of().strength(0.8F).sound(SoundType.WOOL)));
+    public static final DeferredBlock<CarpetBlock> ORNAMENTED_RED_CARPET       = register("ornamented_red_carpet",     () -> new CarpetBlock(Properties.of().strength(0.1F).sound(SoundType.WOOL)));
+    public static final DeferredBlock<CarpetBlock> DELICATE_RED_CARPET         = register("delicate_red_carpet",       () -> new CarpetBlock(Properties.of().strength(0.1F).sound(SoundType.WOOL)));
 
     // -------------------------------------------------------------------------
     // --- DoTB Phase 4: Gold Plated Smooth (Persian) ---
@@ -920,7 +920,6 @@ public class ModBlocks {
     // =========================================================================
     // === DoTB Phase 3: Japanese Furniture & Decor ===
     // =========================================================================
-    public static final DeferredBlock<FutonBlock>            LIGHT_GRAY_FUTON                = register("light_gray_futon",                () -> new FutonBlock(net.minecraft.world.item.DyeColor.LIGHT_GRAY, Properties.of().strength(0.5f).sound(SoundType.WOOL).noOcclusion()));
 
 
     // =========================================================================

@@ -1,6 +1,7 @@
 package com.otterly76.ott.client.gui.creative;
 
 import com.otterly76.ott.block.ModBlocks;
+import com.otterly76.ott.color.ModPatterns;
 import com.otterly76.ott.entity.custom.Butterfly;
 import com.otterly76.ott.item.ModItems;
 import net.minecraft.network.chat.Component;
@@ -243,6 +244,7 @@ public enum OttCreativeCategories {
                 ModBlocks.PATTERN_PERGOLAS.values().forEach(colorMap -> colorMap.values().forEach(output::accept));
                 ModBlocks.PATTERN_WINDOWS.values().forEach(colorMap -> colorMap.values().forEach(output::accept));
                 ModBlocks.ELEVATORS.values().forEach(output::accept);
+                ModPatterns.ALL_COLORS.forEach(color -> output.accept(ModItems.CLAY_TILES.get(color.name()).get()));
             }),
 
     WOOD_SETS("wood_sets",
@@ -481,11 +483,17 @@ public enum OttCreativeCategories {
                 output.accept(ModBlocks.STONE_BRICKS_MASONRY);
                 output.accept(ModBlocks.STONE_BRICKS_MASONRY_EDGE);
                 output.accept(ModBlocks.STONE_BRICKS_MASONRY_PLATE);
+
+                output.accept(ModBlocks.ORNAMENTED_RED_WOOL);
+                output.accept(ModBlocks.ORNAMENTED_RED_CARPET);
+                output.accept(ModBlocks.DELICATE_RED_WOOL);
+                output.accept(ModBlocks.DELICATE_RED_CARPET);
             }),
 
     BLOCKS("blocks",
             () -> ModBlocks.LIMESTONE_00.get().asItem(),
             (params, output) -> {
+                output.accept(ModBlocks.PLAIN_LIMESTONE);
                 output.accept(ModBlocks.COBBLED_LIMESTONE);
                 ModBlocks.LIMESTONE.forEach(output::accept);
                 ModBlocks.SEAGLASS.forEach(output::accept);  // ethereal seaglass only
@@ -506,33 +514,21 @@ public enum OttCreativeCategories {
                 output.accept(ModBlocks.BAMBOO_THATCH_EDGE);
                 output.accept(ModBlocks.BAMBOO_THATCH_PLATE);
 
-                output.accept(ModBlocks.FLAT_ROOF_TILES);
-                output.accept(ModBlocks.FLAT_ROOF_TILES_EDGE);
-                output.accept(ModBlocks.FLAT_ROOF_TILES_PLATE);
-
-                output.accept(ModBlocks.GRAY_ROOF_TILES);
-                output.accept(ModBlocks.GRAY_ROOF_TILES_EDGE);
-                output.accept(ModBlocks.GRAY_ROOF_TILES_PLATE);
-
                 output.accept(ModBlocks.ROOFING_SLATES);
                 output.accept(ModBlocks.ROOFING_SLATES_EDGE);
                 output.accept(ModBlocks.ROOFING_SLATES_PLATE);
 
                 output.accept(ModBlocks.MARBLE);
 
-                output.accept(ModBlocks.OCHRE_ROOF_TILES);
-                output.accept(ModBlocks.OCHRE_ROOF_TILES_EDGE);
-                output.accept(ModBlocks.OCHRE_ROOF_TILES_PLATE);
+                output.accept(ModBlocks.SLENDER_SANDSTONE_BRICKS);
+                output.accept(ModBlocks.SLENDER_SANDSTONE_BRICKS_WALL);
+                output.accept(ModBlocks.SLENDER_SANDSTONE_BRICKS_EDGE);
+                output.accept(ModBlocks.SLENDER_SANDSTONE_BRICKS_PLATE);
 
-                output.accept(ModBlocks.SANDSTONE_BRICKS);
-                output.accept(ModBlocks.SANDSTONE_BRICKS_WALL);
-                output.accept(ModBlocks.SANDSTONE_BRICKS_EDGE);
-                output.accept(ModBlocks.SANDSTONE_BRICKS_PLATE);
-
-                output.accept(ModBlocks.SANDSTONE_BRICKS_TURQUOISE_PATTERN);
-                output.accept(ModBlocks.SANDSTONE_BRICKS_TURQUOISE_PATTERN_WALL);
-                output.accept(ModBlocks.SANDSTONE_BRICKS_TURQUOISE_PATTERN_EDGE);
-                output.accept(ModBlocks.SANDSTONE_BRICKS_TURQUOISE_PATTERN_PLATE);
+                output.accept(ModBlocks.SLENDER_TURQUOISE_PATTERN);
+                output.accept(ModBlocks.SLENDER_TURQUOISE_PATTERN_WALL);
+                output.accept(ModBlocks.SLENDER_TURQUOISE_PATTERN_EDGE);
+                output.accept(ModBlocks.SLENDER_TURQUOISE_PATTERN_PLATE);
 
                 output.accept(ModBlocks.GOLD_PLATED_SMOOTH_BLOCK);
                 output.accept(ModBlocks.GOLD_PLATED_SMOOTH_EDGE);
@@ -541,6 +537,8 @@ public enum OttCreativeCategories {
                 output.accept(ModBlocks.ORNAMENTED_CHISELED_PLASTERED_STONE);
                 output.accept(ModBlocks.GREEN_ORNAMENTED_PLASTERED_STONE);
                 output.accept(ModBlocks.RED_ORNAMENTED_PLASTERED_STONE);
+
+                ModBlocks.FUTONS.values().forEach(output::accept);
             }),
 
     JARS("jars",
@@ -660,9 +658,11 @@ public enum OttCreativeCategories {
 
                 output.accept(ModBlocks.WEATHERING_STATION);
 
+                output.accept(ModItems.UNFIRED_CLAY_ROOF_TILE.get());
+                output.accept(ModItems.PLASTER_BUCKET.get());
+
                 output.accept(ModBlocks.CURVED_RAKED_GRAVEL);
                 output.accept(ModBlocks.STRAIGHT_RAKED_GRAVEL);
-                output.accept(ModBlocks.LIGHT_GRAY_FUTON);
 
                 output.accept(ModBlocks.LIMESTONE_BANNISTER);
                 output.accept(ModBlocks.MARBLE_FANCY_FENCE);
@@ -677,9 +677,6 @@ public enum OttCreativeCategories {
                 output.accept(ModBlocks.STONE_BRICKS_SMALL_POOL);
                 output.accept(ModBlocks.STONE_BRICKS_WATER_JET);
                 output.accept(ModBlocks.WATER_SOURCE_TRICKLE);
-
-                output.accept(ModBlocks.PERSIAN_CARPET_RED);
-                output.accept(ModBlocks.PERSIAN_CARPET_DELICATE_RED);
 
                 output.accept(ModItems.WILDFIRE_CROWN);
                 output.accept(ModItems.WILDFIRE_CROWN_FRAGMENT);

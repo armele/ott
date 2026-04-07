@@ -94,6 +94,16 @@ public class ColorSetTextureProvider implements DataProvider {
             processOttBlock(cache, mainPath.resolve("textures/block/color_set"), color.name(), color.color(), "seaglass/white_waves_seaglass",    "waves_seaglass",    1.0f, 0.0f);
         }
 
+        // Clay tile items — all 32 colors
+        for (ModPatterns.ColorInfo color : ModPatterns.ALL_COLORS) {
+            processOttBlock(cache, mainPath.resolve("textures/item/color_set"), color.name(), color.color(), "clay_tile", "clay_tile", 1.0f, 0.0f);
+        }
+
+        // Futon blocks — all 32 colors (masked: only fabric areas tinted)
+        for (ModPatterns.ColorInfo color : ModPatterns.ALL_COLORS) {
+            processMaskedOttBlock(cache, mainPath.resolve("textures/block/color_set"), color.name(), color.color(), "light_gray_futon", "futon/color_mask", "futon", 1.0f, 0.0f);
+        }
+
         return CompletableFuture.completedFuture(null);
     }
 
@@ -124,6 +134,33 @@ public class ColorSetTextureProvider implements DataProvider {
             saveTexture(cache, folder.resolve(colorName).resolve(targetSubdir + ".png"), tinted);
         } catch (IOException e) {
             throw new RuntimeException("Failed to process ott block texture: " + ottSourcePath, e);
+        }
+    }
+
+    @SuppressWarnings("SameParameterValue")
+    private void processMaskedOttBlock(CachedOutput cache, java.nio.file.Path folder, String colorName, int colorInt, String ottSourcePath, String ottMaskPath, String targetSubdir, float saturationFactor, float brightnessOffset) {
+        try {
+            ResourceLocation baseLoc = ResourceLocation.fromNamespaceAndPath("ott", "textures/block/" + ottSourcePath + ".png");
+            Resource baseResource = existingFileHelper.getResource(baseLoc, PackType.CLIENT_RESOURCES);
+            BufferedImage base = ImageIO.read(baseResource.open());
+
+            ResourceLocation maskLoc = ResourceLocation.fromNamespaceAndPath("ott", "textures/entity/" + ottMaskPath + ".png");
+            Resource maskResource = existingFileHelper.getResource(maskLoc, PackType.CLIENT_RESOURCES);
+            BufferedImage mask = ImageIO.read(maskResource.open());
+
+            if (base.getWidth() != mask.getWidth() || base.getHeight() != mask.getHeight()) {
+                BufferedImage upscaled = new BufferedImage(mask.getWidth(), mask.getHeight(), BufferedImage.TYPE_INT_ARGB);
+                Graphics2D g = upscaled.createGraphics();
+                g.setRenderingHint(RenderingHints.KEY_INTERPOLATION, RenderingHints.VALUE_INTERPOLATION_NEAREST_NEIGHBOR);
+                g.drawImage(base, 0, 0, mask.getWidth(), mask.getHeight(), null);
+                g.dispose();
+                base = upscaled;
+            }
+
+            BufferedImage result = applyMaskedTint(base, mask, colorInt, saturationFactor, brightnessOffset);
+            saveTexture(cache, folder.resolve(colorName).resolve(targetSubdir + ".png"), result);
+        } catch (IOException e) {
+            throw new RuntimeException("Failed to process masked ott block texture: " + ottSourcePath, e);
         }
     }
 

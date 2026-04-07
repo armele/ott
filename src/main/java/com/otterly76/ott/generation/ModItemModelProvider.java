@@ -2,6 +2,7 @@ package com.otterly76.ott.generation;
 
 import com.otterly76.ott.block.ModBlocks;
 import com.otterly76.ott.color.ModColorSets;
+import com.otterly76.ott.color.ModPatterns;
 import com.otterly76.ott.item.ModItems;
 import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceLocation;
@@ -115,6 +116,13 @@ public class ModItemModelProvider extends ItemModelProvider {
             withExistingParent(set.bed().getId().getPath(), mcLoc("item/template_bed"));
         });
 
+        generatedItemFromTexture(ModItems.UNFIRED_CLAY_ROOF_TILE.getId().getPath(), modLoc("block/clay_tile"));
+        generatedItemFromTexture(ModItems.PLASTER_BUCKET.getId().getPath(), modLoc("item/plaster_bucket"));
+
+        // Clay tile items — 32 tinted colors
+        for (ModPatterns.ColorInfo color : ModPatterns.ALL_COLORS) {
+            generatedItemFromTexture(color.name() + "_clay_tile", modLoc("item/color_set/" + color.name() + "/clay_tile"));
+        }
         generatedItemFromTexture(ModItems.TINY_COAL.getId().getPath(), modLoc("item/tiny_coal"));
         generatedItemFromTexture(ModItems.TINY_CHARCOAL.getId().getPath(), modLoc("item/tiny_charcoal"));
         generatedItemFromTexture(ModItems.CLAM.getId().getPath(), modLoc("item/clam"));
