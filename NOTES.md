@@ -101,6 +101,10 @@ Stone Sets:
 - mossy brick
 - cracked brick
 - mossy cracked brick
+- small brick
+- small mossy brick
+- small cracked brick
+- small mossy cracked brick
 - chiseled brick
 - mossy chiseled brick
 - tiles
@@ -111,6 +115,15 @@ Stone Sets:
 - mossy pillar
 - pillar cap
 - mossy pillar cap
+
+Marbles:
+- block (raw)
+- polished
+- brick
+- small brick
+- tiles
+- pillar
+- pillar cap
 
 Wood Sets:
 - log
