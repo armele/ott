@@ -1,0 +1,7 @@
+{
+  "variants": {
+    "axis=x": { "model": "ott:block/white_marble_pillar_cap", "x": 90, "y": 90 },
+    "axis=y": { "model": "ott:block/white_marble_pillar_cap" },
+    "axis=z": { "model": "ott:block/white_marble_pillar_cap", "x": 90 }
+  }
+}

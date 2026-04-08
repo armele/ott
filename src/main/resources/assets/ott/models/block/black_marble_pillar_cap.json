@@ -1,0 +1,1 @@
+{ "parent": "block/cube_column", "textures": { "end": "ott:block/black_marble_pillar_top", "side": "ott:block/black_marble_pillar_cap" } }

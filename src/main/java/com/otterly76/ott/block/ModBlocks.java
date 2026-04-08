@@ -776,6 +776,22 @@ public class ModBlocks {
     // -------------------------------------------------------------------------
     public static final DeferredBlock<Block> MARBLE = register("marble",
             () -> new Block(Properties.ofFullCopy(Blocks.STONE)));
+    public static final DeferredBlock<Block> BLACK_MARBLE              = register("black_marble",              () -> new Block(Properties.ofFullCopy(Blocks.STONE)));
+    public static final DeferredBlock<Block> BLACK_MARBLE_BRICKS       = register("black_marble_bricks",       () -> new Block(Properties.ofFullCopy(Blocks.STONE_BRICKS)));
+    public static final DeferredBlock<Block> BLACK_MARBLE_SMALL_BRICKS = register("black_marble_small_bricks", () -> new Block(Properties.ofFullCopy(Blocks.STONE_BRICKS)));
+    public static final DeferredBlock<Block> BLACK_MARBLE_TILES        = register("black_marble_tiles",        () -> new Block(Properties.ofFullCopy(Blocks.STONE_BRICKS)));
+    public static final DeferredBlock<Block> BLACK_POLISHED_MARBLE     = register("black_polished_marble",     () -> new Block(Properties.ofFullCopy(Blocks.STONE)));
+    public static final DeferredBlock<RotatedPillarBlock> BLACK_MARBLE_PILLAR     = register("black_marble_pillar",     () -> new RotatedPillarBlock(Properties.ofFullCopy(Blocks.STONE)));
+    public static final DeferredBlock<RotatedPillarBlock> BLACK_MARBLE_PILLAR_CAP = register("black_marble_pillar_cap", () -> new RotatedPillarBlock(Properties.ofFullCopy(Blocks.STONE)));
+    public static final DeferredBlock<Block> WHITE_MARBLE              = register("white_marble",              () -> new Block(Properties.ofFullCopy(Blocks.STONE)));
+    public static final DeferredBlock<Block> WHITE_MARBLE_BRICKS       = register("white_marble_bricks",       () -> new Block(Properties.ofFullCopy(Blocks.STONE_BRICKS)));
+    public static final DeferredBlock<Block> WHITE_MARBLE_SMALL_BRICKS = register("white_marble_small_bricks", () -> new Block(Properties.ofFullCopy(Blocks.STONE_BRICKS)));
+    public static final DeferredBlock<Block> WHITE_MARBLE_TILES        = register("white_marble_tiles",        () -> new Block(Properties.ofFullCopy(Blocks.STONE_BRICKS)));
+    public static final DeferredBlock<Block> WHITE_POLISHED_MARBLE     = register("white_polished_marble",     () -> new Block(Properties.ofFullCopy(Blocks.STONE)));
+    public static final DeferredBlock<RotatedPillarBlock> WHITE_MARBLE_PILLAR     = register("white_marble_pillar",     () -> new RotatedPillarBlock(Properties.ofFullCopy(Blocks.STONE)));
+    public static final DeferredBlock<RotatedPillarBlock> WHITE_MARBLE_PILLAR_CAP  = register("white_marble_pillar_cap",  () -> new RotatedPillarBlock(Properties.ofFullCopy(Blocks.STONE)));
+    public static final DeferredBlock<TileBlock> BLACK_MARBLE_FLOOR_TILE = register("black_marble_floor_tile", () -> new TileBlock(Properties.ofFullCopy(Blocks.STONE)));
+    public static final DeferredBlock<TileBlock> WHITE_MARBLE_FLOOR_TILE = register("white_marble_floor_tile", () -> new TileBlock(Properties.ofFullCopy(Blocks.STONE)));
     public static final DeferredBlock<PlateBlock> MARBLE_FANCY_FENCE = register("marble_fancy_fence",
             () -> new PlateBlock(Properties.ofFullCopy(Blocks.STONE).strength(3.0f, 5.0f).noOcclusion()));
 

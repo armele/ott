@@ -1,127 +1,36 @@
-But First... The Thank Yous!
-=======
-- THANK YOU to Imri, my 3D modeling soul sister and midwest clone!
-- THANK YOU to Thodor, who tolerated my 25-year lapse in Java to help me start on this project!
-- THANK YOU to Ayar for helping me test this insanity!
-- THANK YOU to the LDT team for creating and maintaining the MineColonies mod!
+# New Otterhome: MineColonies Gone Wild
 
-FAQ:
-=======
-1. Can you backport this to 1.yadda?
-   - Nope. Move forward, not backwards.
-   
-2. Such and such (insert Mekanism, etc. here) are way more powerful; why don't you blarg?
-    - Because the point of this mod is to be a companion to MineColonies and to avoid OP mod functions.
+A heavy fae and nature themed companion mod for Minecraft 1.21.1, built as a
+comprehensive alternative to the sprawling dependency chains and quality issues
+that plague modded Minecraft.
 
-Ongoing:
-======= 
-- Updating all textures to 32x textures
-- Upgrading to 3D models for most blocks and items
-- Identifying and adding missing sound files
-- Identifying and adding missing recipes
+## The problem it solves
 
-Mods, Resourcepacks, and Datapacks You Will Not Need:
-=======
-**Visuals:**
-- ANY 3D Model Mods or Resourcepacks
-- ANY 32x Texture Resourcepacks
-- ANY World Generation Mods 🌎
-  - This includes the Lithostitched suite (Tectonic, Underground Rivers, Improved Village Placement, etc)
+Modded Minecraft is a mess. Add a handful of QoL and building mods and you get
+twice as many libraries, conflicting mixins, missing textures, and a crash log
+that reads like a novel. Popular blocks that don't work with MineColonies or
+Domum Ornamentum. Fifty different meat drops with no unified use. Mods that
+treat warnings like someone else's problem.
 
-**Minecolonies:**
-- Copper Paths / Roads for Minecolonies
-- Minecolonies Oxidized Copper via Alchemist
-- Minecolonies Schematics World Template
+**New Otterhome is one mod that does the work of many — cleanly.**
 
-**Backports:**
-- Bundles of Bravery
-- The Garden Awakens
-- Spring to Life
-- Chase the Skies
-- Copper Age
-- Mounts of Mayhem (WIP)
+## What's included
 
-**Mods, Resourcepacks, and Datapacks:**
-- Actually Harvest, Right Click Harvest, Simply Harvesting
-- AFKStatus, SimpleAFK
-- Appleskin 🍎
-- Best Bundles, LootBundles
-- Better Days 🌛🌝🌜
-- Better Leaves, Bushy Leaves, JS Leaves+ 🍃
-- Block Runner
-- Clumps 💎
-- Colorful Hearts ❤️
-- Death Finder
-- Easy Anvils, Repair Anvil, Anvil Repairing, Fixed Anvil Repair Cost, Unbreakable Anvil
-- Easy Homes, Simplest Homes, Home Wand, Set Home
-- Everything Copper, Better Copper, etc
-- Fortune Works On Ancient Debris
-- Healing Bed 🛏️
-- Infinite Trial Vaults, Resettable Vaults, Renewable Vaults
-- Inventory Mending, Overpowered Mending
-- Jump Over Fences, JumpOverFences 🏃
-- Lava Alert
-- Looping Jukebox 🎶
-- Low On Fire 🔥
-- Low Shield, Lower Shield, Small Shield & Totem, Smaller Shield & Totem
-- Mixed Litter, other randomization and variation mods/resourcepacks for mobs
-- No Farmland Trample, Trample No More
-- No Friendly Fire (includes pets, colonists, and visitors)
-- No Ruined Nether Portals
-- Not Enough Recipe Book
-- OpenBlocks Elevators (vanilla and custom colors)
-- Overloaded Armor Bar
-- Permanent Sponges
-- Pretty Beaches 🏖️
-- Pretty Rain ⛅
-- Safe Harvest
-- Simple Grass Flowers, Better Grounds, Better Grass 🍀
-- Snow Under Trees, Simple Snowy Fix, Falling Snow ❄️
-- The Fence Unleashed 🐮
-- Tiny Coal, Tiny Charcoal
-- Tiny Skeletons, Baby Mobs
-- Torchmaster, Magnum Torch
-- Trash Slot, Trash Cans 🗑️
-- Universal Bone Meal
-- What The Bucket
-- Wither Skeleton Tweaks
-- Yeetus Experimentus
-- Yeetus Narratus 📢
+- Custom blocks, creatures, and biomes — all properly tagged for MineColonies
+  and Domum Ornamentum
+- Quality of life features without the dependency sprawl
+- A unified fae/nature theme with consistent visual quality
+- Zero tolerance for warnings or errors — every build is clean before it ships
 
-Features
-=======
-- New Blocks:
-  - Gradient Concrete, Concrete Powder, Terracotta, Wool, and Stained Glass blocks
-  - 16 new Limestone blocks, 4 styles in 4 shades
-  - Seaglass, Ethereal, and Prismatic blocks
-  - Floral, Blooming, and Creeping Hedges 🌺
-- Added the Thorny Hedge
-  - Custom damage for dangerous plants: Flora 🌼
-- Added Four New Magic Lanterns:
-  - Waterbending Lantern pushes water away within its range
-  - Lavabending Lantern pushes lava away within its range
-  - Protecting Lantern restricts monster spawning within its range
-  - Smiting Lantern damages monsters within its range
-- Added Create support, first pass (3D models and textures for ores)
-- Added Chipped support, first pass (fluffy leaves, fixed some lantern models, fixed ladders(3D))
-- Added custom schematic dimensions!
-  - flat
-  - flat w/ water
-  - MCol schematic dimension by Thaylar & the LDT Team with fully pregenerated templates
-- Added native support for custom music 🎵
-- Added new MCol specific splash texts for the main menu
-- Added new skybox textures ☀️🌙
-- Added new weather textures and expanded particle effects ⛅
-- Custom Biomes
+## Standards
 
-  ||||
-  |:--|:-:|--:|
-  |  |  |  |
-  |  |  |  |
+This mod is developed with the same quality bar I carried over from Conan Exiles
+modding: warnings are treated as errors, and nothing gets pushed until the log
+is clean. If you've ever opened a modpack and watched a wall of yellow scroll
+past on load — this isn't that.
 
-- Custom Critters
+## Status
 
-  ||||
-  |:--|:-:|--:|
-  |  |  |  |
-  |  |  |  |
+Active development. Built on NeoForge for Minecraft 1.21.1.
+
+More details available in the [wiki](https://github.com/new-otterhome/otterhome/wiki).

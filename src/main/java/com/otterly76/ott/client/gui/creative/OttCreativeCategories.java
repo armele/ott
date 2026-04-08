@@ -519,6 +519,22 @@ public enum OttCreativeCategories {
                 output.accept(ModBlocks.ROOFING_SLATES_PLATE);
 
                 output.accept(ModBlocks.MARBLE);
+                output.accept(ModBlocks.BLACK_MARBLE);
+                output.accept(ModBlocks.BLACK_MARBLE_BRICKS);
+                output.accept(ModBlocks.BLACK_MARBLE_SMALL_BRICKS);
+                output.accept(ModBlocks.BLACK_MARBLE_TILES);
+                output.accept(ModBlocks.BLACK_POLISHED_MARBLE);
+                output.accept(ModBlocks.BLACK_MARBLE_PILLAR);
+                output.accept(ModBlocks.BLACK_MARBLE_PILLAR_CAP);
+                output.accept(ModBlocks.WHITE_MARBLE);
+                output.accept(ModBlocks.WHITE_MARBLE_BRICKS);
+                output.accept(ModBlocks.WHITE_MARBLE_SMALL_BRICKS);
+                output.accept(ModBlocks.WHITE_MARBLE_TILES);
+                output.accept(ModBlocks.WHITE_POLISHED_MARBLE);
+                output.accept(ModBlocks.WHITE_MARBLE_PILLAR);
+                output.accept(ModBlocks.WHITE_MARBLE_PILLAR_CAP);
+                output.accept(ModBlocks.BLACK_MARBLE_FLOOR_TILE);
+                output.accept(ModBlocks.WHITE_MARBLE_FLOOR_TILE);
 
                 output.accept(ModBlocks.SLENDER_SANDSTONE_BRICKS);
                 output.accept(ModBlocks.SLENDER_SANDSTONE_BRICKS_WALL);

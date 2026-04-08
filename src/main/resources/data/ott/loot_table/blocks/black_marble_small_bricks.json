@@ -1,0 +1,1 @@
+{ "type": "minecraft:block", "pools": [{ "bonus_rolls": 0.0, "conditions": [{ "condition": "minecraft:survives_explosion" }], "entries": [{ "type": "minecraft:item", "name": "ott:black_marble_small_bricks" }], "rolls": 1.0 }], "random_sequence": "ott:blocks/black_marble_small_bricks" }
