@@ -245,6 +245,7 @@ public enum OttCreativeCategories {
                 ModBlocks.PATTERN_WINDOWS.values().forEach(colorMap -> colorMap.values().forEach(output::accept));
                 ModBlocks.ELEVATORS.values().forEach(output::accept);
                 ModPatterns.ALL_COLORS.forEach(color -> output.accept(ModItems.CLAY_TILES.get(color.name()).get()));
+                ModBlocks.FUTONS.values().forEach(output::accept);
             }),
 
     WOOD_SETS("wood_sets",
@@ -552,8 +553,6 @@ public enum OttCreativeCategories {
                 output.accept(ModBlocks.ORNAMENTED_CHISELED_PLASTERED_STONE);
                 output.accept(ModBlocks.GREEN_ORNAMENTED_PLASTERED_STONE);
                 output.accept(ModBlocks.RED_ORNAMENTED_PLASTERED_STONE);
-
-                ModBlocks.FUTONS.values().forEach(output::accept);
             }),
 
     JARS("jars",
