@@ -437,7 +437,6 @@ public class ModItems {
     public static final DeferredHolder<Item, BlockItem> COBBLED_LIMESTONE = registerBlockItem("cobbled_limestone", ModBlocks.COBBLED_LIMESTONE);
     public static final DeferredHolder<Item, BlockItem> PLAIN_LIMESTONE = registerBlockItem("limestone", ModBlocks.PLAIN_LIMESTONE);
 
-    public static final DeferredHolder<Item, BlockItem> MARBLE = registerBlockItem("marble", ModBlocks.MARBLE);
     public static final DeferredHolder<Item, BlockItem> BLACK_MARBLE              = registerBlockItem("black_marble",              ModBlocks.BLACK_MARBLE);
     public static final DeferredHolder<Item, BlockItem> BLACK_MARBLE_BRICKS       = registerBlockItem("black_marble_bricks",       ModBlocks.BLACK_MARBLE_BRICKS);
     public static final DeferredHolder<Item, BlockItem> BLACK_MARBLE_SMALL_BRICKS = registerBlockItem("black_marble_small_bricks", ModBlocks.BLACK_MARBLE_SMALL_BRICKS);
@@ -454,7 +453,8 @@ public class ModItems {
     public static final DeferredHolder<Item, BlockItem> WHITE_MARBLE_PILLAR_CAP   = registerBlockItem("white_marble_pillar_cap",   ModBlocks.WHITE_MARBLE_PILLAR_CAP);
     public static final DeferredHolder<Item, BlockItem> BLACK_MARBLE_FLOOR_TILE   = registerBlockItem("black_marble_floor_tile",   ModBlocks.BLACK_MARBLE_FLOOR_TILE);
     public static final DeferredHolder<Item, BlockItem> WHITE_MARBLE_FLOOR_TILE   = registerBlockItem("white_marble_floor_tile",   ModBlocks.WHITE_MARBLE_FLOOR_TILE);
-    public static final DeferredHolder<Item, BlockItem> MARBLE_FANCY_FENCE = registerBlockItem("marble_fancy_fence", ModBlocks.MARBLE_FANCY_FENCE);
+    public static final DeferredHolder<Item, BlockItem> WHITE_MARBLE_FANCY_FENCE = registerBlockItem("white_marble_fancy_fence", ModBlocks.WHITE_MARBLE_FANCY_FENCE);
+    public static final DeferredHolder<Item, BlockItem> BLACK_MARBLE_FANCY_FENCE = registerBlockItem("black_marble_fancy_fence", ModBlocks.BLACK_MARBLE_FANCY_FENCE);
 
     public static final DeferredHolder<Item, BlockItem> SANDSTONE_PLATE = registerBlockItem("sandstone_plate", ModBlocks.SANDSTONE_PLATE);
     public static final DeferredHolder<Item, BlockItem> SANDSTONE_EDGE = registerBlockItem("sandstone_edge", ModBlocks.SANDSTONE_EDGE);

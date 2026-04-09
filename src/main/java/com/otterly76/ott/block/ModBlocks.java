@@ -774,8 +774,6 @@ public class ModBlocks {
     // -------------------------------------------------------------------------
     // --- DoTB Phase 2: Marble (Roman) ---
     // -------------------------------------------------------------------------
-    public static final DeferredBlock<Block> MARBLE = register("marble",
-            () -> new Block(Properties.ofFullCopy(Blocks.STONE)));
     public static final DeferredBlock<Block> BLACK_MARBLE              = register("black_marble",              () -> new Block(Properties.ofFullCopy(Blocks.STONE)));
     public static final DeferredBlock<Block> BLACK_MARBLE_BRICKS       = register("black_marble_bricks",       () -> new Block(Properties.ofFullCopy(Blocks.STONE_BRICKS)));
     public static final DeferredBlock<Block> BLACK_MARBLE_SMALL_BRICKS = register("black_marble_small_bricks", () -> new Block(Properties.ofFullCopy(Blocks.STONE_BRICKS)));
@@ -792,7 +790,9 @@ public class ModBlocks {
     public static final DeferredBlock<RotatedPillarBlock> WHITE_MARBLE_PILLAR_CAP  = register("white_marble_pillar_cap",  () -> new RotatedPillarBlock(Properties.ofFullCopy(Blocks.STONE)));
     public static final DeferredBlock<TileBlock> BLACK_MARBLE_FLOOR_TILE = register("black_marble_floor_tile", () -> new TileBlock(Properties.ofFullCopy(Blocks.STONE)));
     public static final DeferredBlock<TileBlock> WHITE_MARBLE_FLOOR_TILE = register("white_marble_floor_tile", () -> new TileBlock(Properties.ofFullCopy(Blocks.STONE)));
-    public static final DeferredBlock<PlateBlock> MARBLE_FANCY_FENCE = register("marble_fancy_fence",
+    public static final DeferredBlock<PlateBlock> WHITE_MARBLE_FANCY_FENCE = register("white_marble_fancy_fence",
+            () -> new PlateBlock(Properties.ofFullCopy(Blocks.STONE).strength(3.0f, 5.0f).noOcclusion()));
+    public static final DeferredBlock<PlateBlock> BLACK_MARBLE_FANCY_FENCE = register("black_marble_fancy_fence",
             () -> new PlateBlock(Properties.ofFullCopy(Blocks.STONE).strength(3.0f, 5.0f).noOcclusion()));
 
     // -------------------------------------------------------------------------

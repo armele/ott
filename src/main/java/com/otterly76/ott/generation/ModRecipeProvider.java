@@ -1617,8 +1617,6 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
         stonecutOne(exporter, Blocks.STONE_BRICKS, ModBlocks.STONE_BRICKS_MACHICOLATION.get(),"stone_bricks_machicolation_stonecutting");
         stonecutOne(exporter, Blocks.STONE_BRICKS, ModBlocks.STONE_BRICKS_POOL.get(),         "stone_bricks_pool_stonecutting");
         stonecutOne(exporter, Blocks.STONE_BRICKS, ModBlocks.STONE_BRICKS_SMALL_POOL.get(),   "stone_bricks_small_pool_stonecutting");
-        // --- Marble fancy fence from marble ---
-        stonecutOne(exporter, ModBlocks.MARBLE.get(), ModBlocks.MARBLE_FANCY_FENCE.get(), "marble_fancy_fence_stonecutting");
         // --- Limestone stonecutter source ---
         stonecutOne(exporter, ModBlocks.PLAIN_LIMESTONE.get(), ModBlocks.WATER_MOSAIC_TRADITIONAL.get(), "water_mosaic_traditional_from_limestone_stonecutting");
         stonecutOne(exporter, ModBlocks.PLAIN_LIMESTONE.get(), ModBlocks.WATER_MOSAIC_BORDER.get(),      "water_mosaic_border_from_limestone_stonecutting");

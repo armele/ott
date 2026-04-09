@@ -3,8 +3,8 @@
 	"credit": "mr_ch0c0late",
 	"texture_size": [32, 32],
 	"textures": {
-		"0": "ott:block/marble_fancy_fence",
-		"particle": "ott:block/marble_fancy_fence"
+		"0": "ott:block/white_marble_fancy_fence",
+		"particle": "ott:block/white_marble_fancy_fence"
 	},
 	"elements": [
 		{
