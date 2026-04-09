@@ -306,6 +306,7 @@ public class ModItemModelProvider extends ItemModelProvider {
         
         parentItemToBlockModel(ModItems.SILK_COCOON.getId().getPath(), "block/silk_cocoon");
         parentItemToBlockModel(ModItems.GLASS_JAR.getId().getPath(), "block/glass_jar");
+        getBuilder(ModItems.BUG_NET.getId().getPath()).parent(new ModelFile.UncheckedModelFile(modLoc("item/bug_net_model")));
         getBuilder(ModItems.FIREFLY_IN_A_JAR.getId().getPath()).parent(new ModelFile.UncheckedModelFile(modLoc("item/firefly_jar_item_base")));
         getBuilder(ModItems.FIREFLIES_IN_A_JAR.getId().getPath()).parent(new ModelFile.UncheckedModelFile(modLoc("item/firefly_jar_item_base")));
         getBuilder(ModItems.FIREFLY_JAR.getId().getPath()).parent(new ModelFile.UncheckedModelFile(modLoc("item/firefly_jar_item_base")));
