@@ -2,7 +2,6 @@ Notes:
 =====
 add new blocks to wandering merchant
 make new bug net item model
-make new catepillar item model
 add the other 5 randomized limestone bricks
 get DO tags added for all new full static blocks
 get as much transferred to datageneration as possible

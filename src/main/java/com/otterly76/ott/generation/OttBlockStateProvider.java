@@ -29,6 +29,10 @@ import net.neoforged.neoforge.common.data.ExistingFileHelper;
 import net.neoforged.neoforge.registries.DeferredBlock;
 import org.jetbrains.annotations.NotNull;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+
 public class OttBlockStateProvider extends ModBlockStateProvider {
     public OttBlockStateProvider(PackOutput output, ExistingFileHelper existingFileHelper) {
         super(output, Constants.MOD_ID, existingFileHelper);
@@ -121,13 +125,18 @@ public class OttBlockStateProvider extends ModBlockStateProvider {
 
     }
 
+    // Patterns that have numbered texture variants for per-position randomization.
+    // Key: pattern name; Value: texture suffixes that live in block/ (not patterns/).
+    private static final Map<String, List<String>> PATTERN_VARIANT_SUFFIXES = Map.of(
+            "plastered_stone", List.of("_1", "_2", "_3", "_4", "_5", "_corner")
+    );
+
     private void registerPatternBlocks() {
         ModBlocks.PATTERN_BLOCKS.forEach((pattern, colorMap) -> {
             ResourceLocation patternTexture = modLoc("block/patterns/" + pattern);
 
-            // Create a single model for the pattern that uses tinting
-            // We put it in block/patterns/ directory to keep things organized
-            ModelFile model = models().withExistingParent("block/patterns/" + pattern + "_model", mcLoc("block/block"))
+            // Base model — texture lives in block/patterns/ and uses tintindex 0
+            ModelFile baseModel = models().withExistingParent("block/patterns/" + pattern + "_model", mcLoc("block/block"))
                     .texture("particle", patternTexture)
                     .texture("all", patternTexture)
                     .element().from(0, 0, 0).to(16, 16, 16)
@@ -139,9 +148,33 @@ public class OttBlockStateProvider extends ModBlockStateProvider {
                     .face(Direction.EAST).uvs(0, 0, 16, 16).texture("#all").cullface(Direction.EAST).tintindex(0).end()
                     .end();
 
+            // Build extra variant models for patterns that have numbered textures
+            List<String> extraSuffixes = PATTERN_VARIANT_SUFFIXES.getOrDefault(pattern, List.of());
+            List<ModelFile> allModels = new ArrayList<>();
+            allModels.add(baseModel);
+            for (String suffix : extraSuffixes) {
+                ResourceLocation variantTex = modLoc("block/" + pattern + suffix);
+                allModels.add(models().withExistingParent("block/patterns/" + pattern + "_model" + suffix, mcLoc("block/block"))
+                        .texture("particle", variantTex)
+                        .texture("all", variantTex)
+                        .element().from(0, 0, 0).to(16, 16, 16)
+                        .face(Direction.DOWN).uvs(0, 0, 16, 16).texture("#all").cullface(Direction.DOWN).tintindex(0).end()
+                        .face(Direction.UP).uvs(0, 0, 16, 16).texture("#all").cullface(Direction.UP).tintindex(0).end()
+                        .face(Direction.NORTH).uvs(0, 0, 16, 16).texture("#all").cullface(Direction.NORTH).tintindex(0).end()
+                        .face(Direction.SOUTH).uvs(0, 0, 16, 16).texture("#all").cullface(Direction.SOUTH).tintindex(0).end()
+                        .face(Direction.WEST).uvs(0, 0, 16, 16).texture("#all").cullface(Direction.WEST).tintindex(0).end()
+                        .face(Direction.EAST).uvs(0, 0, 16, 16).texture("#all").cullface(Direction.EAST).tintindex(0).end()
+                        .end());
+            }
+
+            ConfiguredModel[] configuredModels = allModels.stream()
+                    .map(m -> ConfiguredModel.builder().modelFile(m).build()[0])
+                    .toArray(ConfiguredModel[]::new);
+
             colorMap.values().forEach(block -> {
-                simpleBlock(block.get(), model);
-                itemModels().withExistingParent(block.getId().getPath(), model.getLocation());
+                simpleBlock(block.get(), configuredModels);
+                // Item model always uses the base texture (no randomization in inventory)
+                itemModels().withExistingParent(block.getId().getPath(), baseModel.getLocation());
             });
         });
     }
