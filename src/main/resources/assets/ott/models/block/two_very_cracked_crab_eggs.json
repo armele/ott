@@ -1,0 +1,1 @@
+{ "parent": "minecraft:block/template_two_turtle_eggs", "textures": { "all": "ott:block/crab_egg_very_cracked" } }

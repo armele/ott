@@ -18,12 +18,19 @@ import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.world.level.block.state.properties.EnumProperty;
 import net.minecraft.world.level.material.FluidState;
 import net.minecraft.world.level.material.Fluids;
+import net.minecraft.world.phys.shapes.CollisionContext;
+import net.minecraft.world.phys.shapes.Shapes;
+import net.minecraft.world.phys.shapes.VoxelShape;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 public class MachincolationBlock extends HorizontalDirectionalBlock implements SimpleWaterloggedBlock {
 
     public static final MapCodec<MachincolationBlock> CODEC = simpleCodec(MachincolationBlock::new);
+
+    // Two corbel brackets along the perpendicular axis; gap in the centre is open air
+    private static final VoxelShape SHAPE_Z = Shapes.or(Block.box( 0, 0, 0,  6, 16, 16), Block.box(10, 0, 0, 16, 16, 16));
+    private static final VoxelShape SHAPE_X = Shapes.or(Block.box( 0, 0, 0, 16, 16,  6), Block.box( 0, 0, 10, 16, 16, 16));
     public static final EnumProperty<HorizontalConnection> HORIZONTAL_CONNECTION =
             HorizontalConnection.create("horizontal_connection");
     public static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
@@ -81,6 +88,11 @@ public class MachincolationBlock extends HorizontalDirectionalBlock implements S
         BlockState neighbor = level.getBlockState(pos);
         return neighbor.getBlock() instanceof MachincolationBlock
                 && neighbor.getValue(FACING) == facing;
+    }
+
+    @Override
+    public @NotNull VoxelShape getShape(@NotNull BlockState state, @NotNull BlockGetter level, @NotNull BlockPos pos, @NotNull CollisionContext context) {
+        return state.getValue(FACING).getAxis() == Direction.Axis.Z ? SHAPE_Z : SHAPE_X;
     }
 
     @Override

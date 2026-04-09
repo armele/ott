@@ -695,8 +695,8 @@ public class ModBlocks {
             () -> new com.otterly76.ott.block.custom.CaterpillarJarBlock(BlockBehaviour.Properties.of().mapColor(MapColor.NONE).strength(0.3F).sound(SoundType.GLASS).noOcclusion()));
 
     // --- Ecologics ---
-    public static final DeferredBlock<Block> COCONUT = BLOCKS.register("coconut",
-            () -> new Block(BlockBehaviour.Properties.of().mapColor(MapColor.WOOD).strength(2.0F).sound(SoundType.WOOD).noOcclusion()));
+    public static final DeferredBlock<CoconutBlock> COCONUT = BLOCKS.register("coconut",
+            () -> new CoconutBlock(BlockBehaviour.Properties.of().mapColor(MapColor.WOOD).strength(2.0F).sound(SoundType.WOOD).noOcclusion()));
 
     // --- Friends and Foes ---
     public static final DeferredBlock<CrabEggBlock> CRAB_EGG = BLOCKS.register("crab_egg",
@@ -848,8 +848,8 @@ public class ModBlocks {
     public static final DeferredBlock<Block>      STONE_BRICKS_MASONRY        = register("stone_bricks_masonry",        () -> new Block(Properties.ofFullCopy(Blocks.STONE_BRICKS)));
     public static final DeferredBlock<com.otterly76.ott.block.custom.EdgeBlock>  STONE_BRICKS_MASONRY_EDGE  = register("stone_bricks_masonry_edge",  () -> new com.otterly76.ott.block.custom.EdgeBlock(Properties.ofFullCopy(Blocks.STONE_BRICKS)));
     public static final DeferredBlock<com.otterly76.ott.block.custom.PlateBlock> STONE_BRICKS_MASONRY_PLATE = register("stone_bricks_masonry_plate", () -> new com.otterly76.ott.block.custom.PlateBlock(Properties.ofFullCopy(Blocks.STONE_BRICKS)));
-    public static final DeferredBlock<HorizontalBlock> CURVED_RAKED_GRAVEL   = register("curved_raked_gravel",   () -> new HorizontalBlock(Properties.ofFullCopy(Blocks.GRAVEL)));
-    public static final DeferredBlock<HorizontalBlock> STRAIGHT_RAKED_GRAVEL = register("straight_raked_gravel", () -> new HorizontalBlock(Properties.ofFullCopy(Blocks.GRAVEL)));
+    public static final DeferredBlock<RakedGravelBlock> CURVED_RAKED_GRAVEL   = register("curved_raked_gravel",   () -> new RakedGravelBlock(true,  Properties.ofFullCopy(Blocks.GRAVEL)));
+    public static final DeferredBlock<RakedGravelBlock> STRAIGHT_RAKED_GRAVEL = register("straight_raked_gravel", () -> new RakedGravelBlock(false, Properties.ofFullCopy(Blocks.GRAVEL)));
 
 
     // -------------------------------------------------------------------------

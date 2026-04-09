@@ -33,7 +33,7 @@ past on load — this isn't that.
 
 Active development. Built on NeoForge for Minecraft 1.21.1.
 
-More details available in the [wiki](https://github.com/new-otterhome/otterhome/wiki).
+More details available in the [wiki](https://github.com/rainweaver76/ott/wiki).
 
 ## Screenshots
 

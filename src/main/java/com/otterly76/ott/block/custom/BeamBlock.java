@@ -12,6 +12,9 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
+import net.minecraft.world.phys.shapes.CollisionContext;
+import net.minecraft.world.phys.shapes.Shapes;
+import net.minecraft.world.phys.shapes.VoxelShape;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
@@ -19,6 +22,24 @@ public class BeamBlock extends PergolaBlock {
 
     public static final MapCodec<BeamBlock> CODEC = simpleCodec(BeamBlock::new);
     public static final BooleanProperty BOTTOM = BlockStateProperties.BOTTOM;
+
+    private static final VoxelShape[] BEAM_SHAPES = buildBeamShapes();
+    private static VoxelShape[] buildBeamShapes() {
+        VoxelShape bX = Block.box( 0, 4, 4, 16, 12, 12);
+        VoxelShape bY = Block.box( 3, 0, 3, 13, 16, 13);
+        VoxelShape bZ = Block.box( 4, 4, 0, 12, 12, 16);
+        VoxelShape bT = Block.box( 2, 0, 2, 14,  4, 14);
+        VoxelShape[] s = new VoxelShape[16];
+        for (int i = 0; i < 8; i++) {
+            VoxelShape base = Shapes.empty();
+            if ((i & 1) != 0) base = Shapes.or(base, bX);
+            if ((i & 2) != 0) base = Shapes.or(base, bY);
+            if ((i & 4) != 0) base = Shapes.or(base, bZ);
+            s[i]     = base;
+            s[i + 8] = (i == 0) ? bT : Shapes.or(base, bT);
+        }
+        return s;
+    }
 
     public BeamBlock(BlockBehaviour.@NotNull Properties properties) {
         super(properties);
@@ -52,6 +73,15 @@ public class BeamBlock extends PergolaBlock {
             return updated.setValue(BOTTOM, isBeamBelow(level, pos));
         }
         return updated;
+    }
+
+    @Override
+    public @NotNull VoxelShape getShape(@NotNull BlockState state, @NotNull BlockGetter level, @NotNull BlockPos pos, @NotNull CollisionContext context) {
+        int idx = (state.getValue(BOTTOM) ? 8 : 0)
+                | (state.getValue(AXIS_Z) ? 4 : 0)
+                | (state.getValue(AXIS_Y) ? 2 : 0)
+                | (state.getValue(AXIS_X) ? 1 : 0);
+        return BEAM_SHAPES[idx];
     }
 
     private boolean isBeamBelow(BlockGetter level, BlockPos pos) {

@@ -4,6 +4,7 @@ import com.mojang.serialization.MapCodec;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.world.item.context.BlockPlaceContext;
+import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.SimpleWaterloggedBlock;
@@ -14,6 +15,9 @@ import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.world.level.material.FluidState;
 import net.minecraft.world.level.material.Fluids;
+import net.minecraft.world.phys.shapes.CollisionContext;
+import net.minecraft.world.phys.shapes.Shapes;
+import net.minecraft.world.phys.shapes.VoxelShape;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
@@ -25,6 +29,21 @@ public class PergolaBlock extends Block implements SimpleWaterloggedBlock {
     public static final BooleanProperty AXIS_Y = BooleanProperty.create("axis_y");
     public static final BooleanProperty AXIS_Z = BooleanProperty.create("axis_z");
     public static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
+
+    private static final VoxelShape PERGOLA_X = Block.box( 0, 5, 6, 16, 11, 10);
+    private static final VoxelShape PERGOLA_Y = Block.box( 5, 0, 5, 11, 16, 11);
+    private static final VoxelShape PERGOLA_Z = Block.box( 6, 5, 0, 10, 11, 16);
+    // Indexed by (AXIS_Z<<2 | AXIS_Y<<1 | AXIS_X)
+    static final VoxelShape[] PERGOLA_SHAPES = {
+        Shapes.empty(),                                  // 000
+        PERGOLA_X,                                       // 001
+        PERGOLA_Y,                                       // 010
+        Shapes.or(PERGOLA_Y, PERGOLA_X),                 // 011
+        PERGOLA_Z,                                       // 100
+        Shapes.or(PERGOLA_Z, PERGOLA_X),                 // 101
+        Shapes.or(PERGOLA_Z, PERGOLA_Y),                 // 110
+        Shapes.or(PERGOLA_Z, Shapes.or(PERGOLA_Y, PERGOLA_X)), // 111
+    };
 
     public PergolaBlock(BlockBehaviour.@NotNull Properties properties) {
         super(properties);
@@ -89,6 +108,12 @@ public class PergolaBlock extends Block implements SimpleWaterloggedBlock {
             level.scheduleTick(pos, Fluids.WATER, Fluids.WATER.getTickDelay(level));
         }
         return state;
+    }
+
+    @Override
+    public @NotNull VoxelShape getShape(@NotNull BlockState state, @NotNull BlockGetter level, @NotNull BlockPos pos, @NotNull CollisionContext context) {
+        int idx = (state.getValue(AXIS_Z) ? 4 : 0) | (state.getValue(AXIS_Y) ? 2 : 0) | (state.getValue(AXIS_X) ? 1 : 0);
+        return PERGOLA_SHAPES[idx];
     }
 
     @Override

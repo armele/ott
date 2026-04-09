@@ -1,8 +1,0 @@
-{
-	"parent": "ott:block/plate_inner",
-	"textures": {
-		"side": "ott:block/flat_roof_tiles",
-		"top": "ott:block/flat_roof_tiles",
-		"frieze": "ott:block/flat_roof_tiles"
-	}
-}

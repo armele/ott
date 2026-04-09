@@ -20,6 +20,7 @@ import net.minecraft.world.level.block.state.properties.EnumProperty;
 import net.minecraft.world.level.block.state.properties.StairsShape;
 import net.minecraft.world.level.material.FluidState;
 import net.minecraft.world.level.material.Fluids;
+import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import org.jetbrains.annotations.NotNull;
@@ -28,6 +29,30 @@ import org.jetbrains.annotations.Nullable;
 public class PlateBlock extends Block implements SimpleWaterloggedBlock {
 
     public static final MapCodec<PlateBlock> CODEC = simpleCodec(PlateBlock::new);
+
+    // --- VoxelShape constants for getShape() ---
+    // Straight: 8-pixel-deep half-block against each face
+    private static final VoxelShape S_STRAIGHT = Block.box( 0, 0,  8, 16, 16, 16);
+    private static final VoxelShape N_STRAIGHT = Block.box( 0, 0,  0, 16, 16,  8);
+    private static final VoxelShape E_STRAIGHT = Block.box( 8, 0,  0, 16, 16, 16);
+    private static final VoxelShape W_STRAIGHT = Block.box( 0, 0,  0,  8, 16, 16);
+    // Quarter-corner pieces (8×8 footprint, full height)
+    private static final VoxelShape NW_CORNER  = Block.box( 0, 0,  0,  8, 16,  8);
+    private static final VoxelShape NE_CORNER  = Block.box( 8, 0,  0, 16, 16,  8);
+    private static final VoxelShape SW_CORNER  = Block.box( 0, 0,  8,  8, 16, 16);
+    private static final VoxelShape SE_CORNER  = Block.box( 8, 0,  8, 16, 16, 16);
+    // Inner-corner L-shapes (straight + perpendicular quarter)
+    private static final VoxelShape INNER_A    = Shapes.or(S_STRAIGHT, NW_CORNER); // S + NW
+    private static final VoxelShape INNER_B    = Shapes.or(E_STRAIGHT, SW_CORNER); // E + SW
+    private static final VoxelShape INNER_C    = Shapes.or(N_STRAIGHT, SE_CORNER); // N + SE
+    private static final VoxelShape INNER_D    = Shapes.or(W_STRAIGHT, NE_CORNER); // W + NE
+    // Lookup [direction.get2DDataValue() S=0,W=1,N=2,E=3][StairsShape.ordinal() STRAIGHT=0,INNER_LEFT=1,INNER_RIGHT=2,OUTER_LEFT=3,OUTER_RIGHT=4]
+    private static final VoxelShape[][] PLATE_SHAPES = {
+        { S_STRAIGHT, INNER_B, INNER_A, SE_CORNER, SW_CORNER }, // SOUTH
+        { W_STRAIGHT, INNER_A, INNER_D, SW_CORNER, NW_CORNER }, // WEST
+        { N_STRAIGHT, INNER_D, INNER_C, NW_CORNER, NE_CORNER }, // NORTH
+        { E_STRAIGHT, INNER_C, INNER_B, NE_CORNER, SE_CORNER }, // EAST
+    };
     public static final DirectionProperty FACING = BlockStateProperties.HORIZONTAL_FACING;
     public static final EnumProperty<StairsShape> SHAPE = BlockStateProperties.STAIRS_SHAPE;
     public static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
@@ -148,6 +173,11 @@ public class PlateBlock extends Block implements SimpleWaterloggedBlock {
     @Override
     public boolean propagatesSkylightDown(@NotNull BlockState state, @NotNull BlockGetter level, @NotNull BlockPos pos) {
         return !state.getValue(WATERLOGGED);
+    }
+
+    @Override
+    public @NotNull VoxelShape getShape(@NotNull BlockState state, @NotNull BlockGetter level, @NotNull BlockPos pos, @NotNull CollisionContext context) {
+        return PLATE_SHAPES[state.getValue(FACING).get2DDataValue()][state.getValue(SHAPE).ordinal()];
     }
 
     @Override

@@ -21,6 +21,7 @@ import net.minecraft.world.level.block.state.properties.Half;
 import net.minecraft.world.level.block.state.properties.StairsShape;
 import net.minecraft.world.level.material.FluidState;
 import net.minecraft.world.level.material.Fluids;
+import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import org.jetbrains.annotations.NotNull;
@@ -29,6 +30,32 @@ import org.jetbrains.annotations.Nullable;
 public class EdgeBlock extends Block implements SimpleWaterloggedBlock {
 
     public static final MapCodec<EdgeBlock> CODEC = simpleCodec(EdgeBlock::new);
+
+    // Half-height plates: BOTTOM (y=0-8) and TOP (y=8-16)
+    // [direction.get2DDataValue() S=0,W=1,N=2,E=3][StairsShape.ordinal() STRAIGHT=0,INNER_LEFT=1,INNER_RIGHT=2,OUTER_LEFT=3,OUTER_RIGHT=4]
+    private static final VoxelShape[][] BOTTOM_SHAPES = buildEdgeShapes(0, 8);
+    private static final VoxelShape[][] TOP_SHAPES    = buildEdgeShapes(8, 16);
+
+    private static VoxelShape[][] buildEdgeShapes(int yMin, int yMax) {
+        VoxelShape sS  = Block.box( 0, yMin,  8, 16, yMax, 16);
+        VoxelShape sN  = Block.box( 0, yMin,  0, 16, yMax,  8);
+        VoxelShape sE  = Block.box( 8, yMin,  0, 16, yMax, 16);
+        VoxelShape sW  = Block.box( 0, yMin,  0,  8, yMax, 16);
+        VoxelShape cNW = Block.box( 0, yMin,  0,  8, yMax,  8);
+        VoxelShape cNE = Block.box( 8, yMin,  0, 16, yMax,  8);
+        VoxelShape cSW = Block.box( 0, yMin,  8,  8, yMax, 16);
+        VoxelShape cSE = Block.box( 8, yMin,  8, 16, yMax, 16);
+        VoxelShape iA  = Shapes.or(sS, cNW);
+        VoxelShape iB  = Shapes.or(sE, cSW);
+        VoxelShape iC  = Shapes.or(sN, cSE);
+        VoxelShape iD  = Shapes.or(sW, cNE);
+        return new VoxelShape[][] {
+            { sS, iB, iA, cSE, cSW }, // SOUTH
+            { sW, iA, iD, cSW, cNW }, // WEST
+            { sN, iD, iC, cNW, cNE }, // NORTH
+            { sE, iC, iB, cNE, cSE }, // EAST
+        };
+    }
     public static final DirectionProperty FACING = BlockStateProperties.HORIZONTAL_FACING;
     public static final EnumProperty<Half> HALF = BlockStateProperties.HALF;
     public static final EnumProperty<StairsShape> SHAPE = BlockStateProperties.STAIRS_SHAPE;
@@ -150,6 +177,12 @@ public class EdgeBlock extends Block implements SimpleWaterloggedBlock {
             case OUTER_RIGHT -> StairsShape.OUTER_LEFT;
             default          -> shape;
         };
+    }
+
+    @Override
+    public @NotNull VoxelShape getShape(@NotNull BlockState state, @NotNull BlockGetter level, @NotNull BlockPos pos, @NotNull CollisionContext context) {
+        VoxelShape[][] table = state.getValue(HALF) == Half.BOTTOM ? BOTTOM_SHAPES : TOP_SHAPES;
+        return table[state.getValue(FACING).get2DDataValue()][state.getValue(SHAPE).ordinal()];
     }
 
     @Override
