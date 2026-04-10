@@ -1,6 +1,10 @@
 package com.otterly76.ott.network;
 
+import com.otterly76.ott.client.gui.RecyclingScreen;
+import com.otterly76.ott.network.recycling.ClientboundRecipeListPacket;
+import com.otterly76.ott.network.recycling.ClientboundRecipeSelectRequestPacket;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.screens.Screen;
 import net.neoforged.neoforge.network.handling.IPayloadContext;
 
 public class ClientPayloadHandler {
@@ -27,5 +31,19 @@ public class ClientPayloadHandler {
 
     public static void handleSyncAFKStatus(final S2CSyncAFKStatusPacket packet, final IPayloadContext context) {
         com.otterly76.ott.afk.AFKClientStates.setAFK(packet.playerUUID(), packet.afk());
+    }
+
+    public static void handleRecipeList(final ClientboundRecipeListPacket packet, final IPayloadContext context) {
+        Screen screen = Minecraft.getInstance().screen;
+        if (screen instanceof RecyclingScreen recyclingScreen) {
+            recyclingScreen.updateRecipes(packet.recipes(), packet.size(), packet.shouldSendPacket());
+        }
+    }
+
+    public static void handleRecipeSelectRequest(final ClientboundRecipeSelectRequestPacket packet, final IPayloadContext context) {
+        Screen screen = Minecraft.getInstance().screen;
+        if (screen instanceof RecyclingScreen recyclingScreen) {
+            recyclingScreen.resubmitSelection();
+        }
     }
 }

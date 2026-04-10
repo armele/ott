@@ -5,6 +5,7 @@ import com.otterly76.ott.network.elevator.ElevatorRemoveCamoPacket;
 import com.otterly76.ott.network.elevator.ElevatorSetArrowPacket;
 import com.otterly76.ott.network.elevator.ElevatorSetDirectionalPacket;
 import com.otterly76.ott.network.elevator.ElevatorSetFacingPacket;
+import com.otterly76.ott.network.recycling.*;
 import net.neoforged.neoforge.network.event.RegisterPayloadHandlersEvent;
 import net.neoforged.neoforge.network.registration.PayloadRegistrar;
 
@@ -110,6 +111,38 @@ public class NetworkHandler {
                 ElevatorRemoveCamoPacket.TYPE,
                 ElevatorRemoveCamoPacket.STREAM_CODEC,
                 ElevatorRemoveCamoPacket::handle
+        );
+
+        // Recycling (uncrafting) packets
+        registrar.playToServer(
+                ServerboundOpenRecyclingPacket.TYPE,
+                ServerboundOpenRecyclingPacket.STREAM_CODEC,
+                ServerboundOpenRecyclingPacket::handle
+        );
+        registrar.playToServer(
+                ServerboundRecycleButtonClickPacket.TYPE,
+                ServerboundRecycleButtonClickPacket.STREAM_CODEC,
+                ServerboundRecycleButtonClickPacket::handle
+        );
+        registrar.playToServer(
+                ServerboundRecipePagePacket.TYPE,
+                ServerboundRecipePagePacket.STREAM_CODEC,
+                ServerboundRecipePagePacket::handle
+        );
+        registrar.playToServer(
+                ServerboundRecipeSelectPacket.TYPE,
+                ServerboundRecipeSelectPacket.STREAM_CODEC,
+                ServerboundRecipeSelectPacket::handle
+        );
+        registrar.playToClient(
+                ClientboundRecipeListPacket.TYPE,
+                ClientboundRecipeListPacket.STREAM_CODEC,
+                (packet, context) -> context.enqueueWork(() -> ClientPayloadHandler.handleRecipeList(packet, context))
+        );
+        registrar.playToClient(
+                ClientboundRecipeSelectRequestPacket.TYPE,
+                ClientboundRecipeSelectRequestPacket.STREAM_CODEC,
+                (packet, context) -> context.enqueueWork(() -> ClientPayloadHandler.handleRecipeSelectRequest(packet, context))
         );
     }
 }

@@ -2,6 +2,7 @@ package com.otterly76.ott;
 import com.otterly76.ott.client.render.entity.*;
 import com.otterly76.ott.block.ModBlocks;
 import com.otterly76.ott.client.NutritionHudOverlay;
+import com.otterly76.ott.client.gui.RecyclingScreen;
 import com.otterly76.ott.client.gui.TrashScreen;
 import com.otterly76.ott.client.model.BookshelfModelProxy;
 import com.otterly76.ott.client.render.PrismaticColorHandler;
@@ -181,6 +182,7 @@ public class ClientModEvents {
         event.register(ModMenuTypes.TRASH_MENU.get(), TrashScreen::new);
         event.register(ModMenuTypes.ANVIL_MENU_TYPE.get(), com.otterly76.ott.client.gui.ModAnvilScreen::new);
         event.register(ModMenuTypes.ELEVATOR_MENU.get(), com.otterly76.ott.client.gui.ElevatorScreen::new);
+        event.register(ModMenuTypes.RECYCLING_MENU.get(), RecyclingScreen::new);
     }
 
     @SuppressWarnings("unchecked")

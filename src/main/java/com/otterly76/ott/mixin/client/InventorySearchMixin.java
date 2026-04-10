@@ -3,6 +3,7 @@ package com.otterly76.ott.mixin.client;
 import com.mojang.blaze3d.platform.InputConstants;
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.otterly76.ott.config.OttConfig;
+import com.otterly76.ott.inventory.RecyclingMenu;
 import net.minecraft.ChatFormatting;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.components.EditBox;
@@ -49,7 +50,9 @@ public abstract class InventorySearchMixin extends Screen {
 
     @Inject(method = "init", at = @At("RETURN"))
     private void ott$onInit(CallbackInfo ci) {
-        if (OttConfig.GENERAL.ENABLE_INVENTORY_SEARCH.get() && !(this.menu instanceof CreativeModeInventoryScreen.ItemPickerMenu)) {
+        if (OttConfig.GENERAL.ENABLE_INVENTORY_SEARCH.get()
+                && !(this.menu instanceof CreativeModeInventoryScreen.ItemPickerMenu)
+                && !(this.menu instanceof RecyclingMenu)) {
             int boxWidth = 80;
             int x = this.leftPos + this.imageWidth - boxWidth - 6;
             int y = this.topPos + 6;
@@ -66,8 +69,8 @@ public abstract class InventorySearchMixin extends Screen {
     private void ott$onRender(GuiGraphics guiGraphics, int mouseX, int mouseY, float partialTicks, CallbackInfo ci) {
         if (this.ott$searchBox == null || !OttConfig.GENERAL.ENABLE_INVENTORY_SEARCH.get()) return;
 
-        int iconX = this.leftPos + this.imageWidth - 18;
-        int iconY = this.topPos + 5;
+        int iconX = this.leftPos + this.imageWidth - 14;
+        int iconY = this.topPos + 6;
 
         if (this.ott$searchBox.isVisible()) {
             // Background for search box
@@ -76,7 +79,7 @@ public abstract class InventorySearchMixin extends Screen {
             guiGraphics.fill(bgX, bgY, bgX + this.ott$searchBox.getWidth() + 4, bgY + 12, 0xA0000000);
         }
 
-        guiGraphics.blitSprite(ott$SEARCH_SPRITE, iconX, iconY, 12, 12);
+        guiGraphics.blitSprite(ott$SEARCH_SPRITE, iconX, iconY, 8, 8);
     }
 
     @Inject(method = "renderSlot", at = @At("RETURN"))

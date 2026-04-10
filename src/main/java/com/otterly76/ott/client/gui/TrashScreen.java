@@ -1,9 +1,11 @@
 package com.otterly76.ott.client.gui;
 
+import com.otterly76.ott.Constants;
 import com.otterly76.ott.inventory.TrashMenu;
 import com.otterly76.ott.network.ServerboundConfirmTrashPacket;
 import net.minecraft.client.gui.GuiGraphics;
-import net.minecraft.client.gui.components.Button;
+import net.minecraft.client.gui.components.ImageButton;
+import net.minecraft.client.gui.components.WidgetSprites;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
 import net.minecraft.client.gui.screens.inventory.InventoryScreen;
 import net.minecraft.network.chat.Component;
@@ -14,6 +16,10 @@ import org.jetbrains.annotations.NotNull;
 
 public class TrashScreen extends AbstractContainerScreen<TrashMenu> {
     private static final ResourceLocation TEXTURE = ResourceLocation.withDefaultNamespace("textures/gui/container/shulker_box.png");
+    private static final WidgetSprites TRASH_BUTTON_SPRITES = new WidgetSprites(
+            ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, "trash_off"),
+            ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, "trash_on")
+    );
 
     public TrashScreen(TrashMenu menu, Inventory playerInventory, Component title) {
         super(menu, playerInventory, title);
@@ -25,18 +31,15 @@ public class TrashScreen extends AbstractContainerScreen<TrashMenu> {
     @Override
     protected void init() {
         super.init();
-        // Add "Trash It" button.
-        this.addRenderableWidget(Button.builder(Component.literal("Trash It"), (button) -> {
-            // 1. Tell the server to delete
+        int iconX = this.leftPos + this.titleLabelX + this.font.width(this.title) + 4;
+        int iconY = this.topPos + 5;
+        this.addRenderableWidget(new ImageButton(iconX, iconY, 10, 10, TRASH_BUTTON_SPRITES, (button) -> {
             PacketDistributor.sendToServer(new ServerboundConfirmTrashPacket());
-
-            // 2. Client-side transition: Close this and open inventory
             if (this.minecraft != null && this.minecraft.player != null) {
-                // We use a custom flag-less approach to avoid the recursion crash
                 this.minecraft.player.closeContainer();
                 this.minecraft.setScreen(new InventoryScreen(this.minecraft.player));
             }
-        }).bounds(this.leftPos + 108, this.topPos + 4, 62, 12).build());
+        }));
     }
 
     @Override
