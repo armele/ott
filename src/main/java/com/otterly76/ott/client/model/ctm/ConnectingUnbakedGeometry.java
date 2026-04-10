@@ -13,6 +13,7 @@ import net.neoforged.neoforge.client.model.geometry.IGeometryBakingContext;
 import net.neoforged.neoforge.client.model.geometry.IUnbakedGeometry;
 import org.jetbrains.annotations.NotNull;
 
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.function.Function;
@@ -29,10 +30,22 @@ public class ConnectingUnbakedGeometry implements IUnbakedGeometry<ConnectingUnb
      * Use key "*" as a catch-all for all textures.
      */
     private final Map<String, ConnectionRule> rulesByTexVar;
+    /**
+     * Maps texture variable name → isolated tile ResourceLocation.
+     * When present, the isolated sprite is provided to Domum Ornamentum so it sees
+     * only the single tile rather than the full 128×128 CTM atlas.
+     */
+    private final Map<String, ResourceLocation> isolatedTexturePaths;
 
     public ConnectingUnbakedGeometry(BlockModel baseModel, Map<String, ConnectionRule> rulesByTexVar) {
+        this(baseModel, rulesByTexVar, Collections.emptyMap());
+    }
+
+    public ConnectingUnbakedGeometry(BlockModel baseModel, Map<String, ConnectionRule> rulesByTexVar,
+                                     Map<String, ResourceLocation> isolatedTexturePaths) {
         this.baseModel = baseModel;
         this.rulesByTexVar = rulesByTexVar;
+        this.isolatedTexturePaths = isolatedTexturePaths;
     }
 
     @Override
@@ -69,6 +82,21 @@ public class ConnectingUnbakedGeometry implements IUnbakedGeometry<ConnectingUnb
             }
         }
 
-        return new ConnectingBakedModel(base, spriteRules);
+        // Resolve isolated sprites: CTM atlas sprite → small representative sprite.
+        // Used to give Domum Ornamentum a properly-sized sprite (not the full 128px atlas).
+        Map<TextureAtlasSprite, TextureAtlasSprite> ctmToIsolated = new HashMap<>();
+        for (Map.Entry<String, ResourceLocation> entry : isolatedTexturePaths.entrySet()) {
+            String texVar = entry.getKey();
+            if (context.hasMaterial(texVar)) {
+                Material ctmMat = context.getMaterial(texVar);
+                TextureAtlasSprite ctmSprite = spriteGetter.apply(ctmMat);
+                // Create a Material for the isolated texture on the same atlas
+                Material isolatedMat = new Material(ctmMat.atlasLocation(), entry.getValue());
+                TextureAtlasSprite isolatedSprite = spriteGetter.apply(isolatedMat);
+                ctmToIsolated.put(ctmSprite, isolatedSprite);
+            }
+        }
+
+        return new ConnectingBakedModel(base, spriteRules, ctmToIsolated);
     }
 }

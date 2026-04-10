@@ -12,6 +12,7 @@ import net.minecraft.world.level.block.Block;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -33,6 +34,7 @@ public class ConnectingModelLoader implements IGeometryLoader<ConnectingUnbakedG
         cleaned.remove("loader");
         cleaned.remove("type");
         cleaned.remove("connections");
+        cleaned.remove("isolated");
 
         // Parse connections: either array (all textures share one rule)
         // or object (per-texture-variable rules)
@@ -54,10 +56,22 @@ public class ConnectingModelLoader implements IGeometryLoader<ConnectingUnbakedG
             }
         }
 
+        // Parse optional "isolated" block: maps texture variable name → isolated texture path.
+        // Used to provide a properly-sized sprite to Domum Ornamentum so it sees just the
+        // isolated tile rather than the full CTM atlas.
+        Map<String, ResourceLocation> isolatedTextures = Collections.emptyMap();
+        if (json.has("isolated")) {
+            JsonObject isolatedObj = json.getAsJsonObject("isolated");
+            isolatedTextures = new HashMap<>();
+            for (Map.Entry<String, JsonElement> entry : isolatedObj.entrySet()) {
+                isolatedTextures.put(entry.getKey(), ResourceLocation.parse(entry.getValue().getAsString()));
+            }
+        }
+
         // Deserialize the cleaned JSON as a standard BlockModel
         BlockModel baseModel = ctx.deserialize(cleaned, BlockModel.class);
 
-        return new ConnectingUnbakedGeometry(baseModel, rulesByTexVar);
+        return new ConnectingUnbakedGeometry(baseModel, rulesByTexVar, isolatedTextures);
     }
 
     private static ConnectionRule parseRuleList(JsonArray array) {

@@ -89,9 +89,22 @@ public class ConnectingBakedModel extends BakedModelWrapper<net.minecraft.client
     private final Map<TextureAtlasSprite, Integer> spriteToRuleIndex;
     /** Catch-all rule index (used when sprite not found in spriteToRuleIndex), or -1. */
     private final int catchAllRuleIndex;
+    /**
+     * Maps CTM atlas sprite → isolated tile sprite.
+     * When Domum Ornamentum calls {@link #getQuads}, we return quads using the isolated
+     * sprite so DO's {@code ModelSpriteQuadTransformer} maps to just the isolated tile
+     * instead of the full 128×128 atlas.
+     */
+    private final Map<TextureAtlasSprite, TextureAtlasSprite> ctmToIsolated;
 
     public ConnectingBakedModel(net.minecraft.client.resources.model.BakedModel wrapped,
                                 Map<TextureAtlasSprite, ConnectionRule> spriteRules) {
+        this(wrapped, spriteRules, Map.of());
+    }
+
+    public ConnectingBakedModel(net.minecraft.client.resources.model.BakedModel wrapped,
+                                Map<TextureAtlasSprite, ConnectionRule> spriteRules,
+                                Map<TextureAtlasSprite, TextureAtlasSprite> ctmToIsolated) {
         super(wrapped);
 
         // Build a deduplicated rule list using identity (rules are stateless value objects)
@@ -120,6 +133,7 @@ public class ConnectingBakedModel extends BakedModelWrapper<net.minecraft.client
             }
         }
         this.spriteToRuleIndex = s2r;
+        this.ctmToIsolated = new IdentityHashMap<>(ctmToIsolated);
     }
 
     // ---- ModelData (called per chunk rebuild, before getQuads) -----------------
@@ -161,6 +175,21 @@ public class ConnectingBakedModel extends BakedModelWrapper<net.minecraft.client
     @Override
     public @NotNull List<BakedQuad> getQuads(@Nullable BlockState state, @Nullable Direction side,
                                              @NotNull RandomSource rand, @NotNull ModelData data, @Nullable RenderType renderType) {
+        // When DO calls us to sample our texture, return quads using the isolated sprite.
+        // DO's ModelSpriteQuadTransformer normalises vertex UVs relative to sprite.getU0/U1,
+        // so it must receive a sprite that covers exactly the isolated tile — not the full
+        // 128×128 CTM atlas.
+        if (isCalledByDomumOrnamentum()) {
+            List<BakedQuad> base = originalModel.getQuads(state, side, rand, data, renderType);
+            if (ctmToIsolated.isEmpty()) return base;
+            List<BakedQuad> isolated = new ArrayList<>(base.size());
+            for (BakedQuad quad : base) {
+                TextureAtlasSprite iso = ctmToIsolated.get(quad.getSprite());
+                isolated.add(iso != null ? createIsolatedQuad(quad, iso) : quad);
+            }
+            return isolated;
+        }
+
         List<BakedQuad> base = originalModel.getQuads(state, side, rand, data, renderType);
 
         int[][] masks = data.get(CTM_MASKS);
@@ -220,6 +249,63 @@ public class ConnectingBakedModel extends BakedModelWrapper<net.minecraft.client
 
         return new BakedQuad(newVerts, quad.getTintIndex(), quad.getDirection(),
                 sprite, quad.isShade(), quad.hasAmbientOcclusion());
+    }
+
+    /**
+     * Creates a copy of {@code quad} where the CTM atlas sprite is replaced by the
+     * isolated tile sprite and vertex UVs are remapped to span the isolated sprite's
+     * full extent.
+     *
+     * <p>DO's {@code ModelSpriteQuadTransformer} normalises vertex UVs as:
+     * {@code u_rel = (u_vertex - source.getU0()) / (source.getU1() - source.getU0())}
+     * and then maps to the target via {@code target.getU(u_rel)}.
+     * For the retextured block to display only the isolated tile, the quad we hand to DO
+     * must have {@code sprite == isolatedSprite} and vertex UVs spanning
+     * {@code [iso.u0, iso.u1]} — so DO's normalisation gives {@code u_rel ∈ [0, 1]}
+     * and maps to the full isolated sprite.
+     */
+    private BakedQuad createIsolatedQuad(BakedQuad quad, TextureAtlasSprite isolatedSprite) {
+        TextureAtlasSprite ctmSprite = quad.getSprite();
+        float ctmU0 = ctmSprite.getU0();
+        float ctmV0 = ctmSprite.getV0();
+        float tileW = (ctmSprite.getU1() - ctmU0) / FullLayoutLookup.TILES_WIDE;
+        float tileH = (ctmSprite.getV1() - ctmV0) / FullLayoutLookup.TILES_TALL;
+
+        float isoU0 = isolatedSprite.getU0();
+        float isoU1 = isolatedSprite.getU1();
+        float isoV0 = isolatedSprite.getV0();
+        float isoV1 = isolatedSprite.getV1();
+
+        int[] verts = Arrays.copyOf(quad.getVertices(), quad.getVertices().length);
+        int stride = IQuadTransformer.STRIDE;
+        int uvOffset = IQuadTransformer.UV0;
+
+        for (int v = 0; v < 4; v++) {
+            int base = v * stride + uvOffset;
+            float u = Float.intBitsToFloat(verts[base]);
+            float vv = Float.intBitsToFloat(verts[base + 1]);
+
+            // Normalize within the first CTM tile: [ctmU0, ctmU0+tileW] → [0, 1]
+            float uRel = (u - ctmU0) / tileW;
+            float vRel = (vv - ctmV0) / tileH;
+
+            // Remap to the full isolated sprite extent
+            verts[base]     = Float.floatToRawIntBits(isoU0 + uRel * (isoU1 - isoU0));
+            verts[base + 1] = Float.floatToRawIntBits(isoV0 + vRel * (isoV1 - isoV0));
+        }
+
+        return new BakedQuad(verts, quad.getTintIndex(), quad.getDirection(),
+                isolatedSprite, quad.isShade(), quad.hasAmbientOcclusion());
+    }
+
+    private static boolean isCalledByDomumOrnamentum() {
+        for (StackTraceElement element : Thread.currentThread().getStackTrace()) {
+            String name = element.getClassName();
+            if (name.contains("domumornamentum") || name.contains("ldbc")) {
+                return true;
+            }
+        }
+        return false;
     }
 
     /**

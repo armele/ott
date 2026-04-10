@@ -12,5 +12,8 @@
             "type": "match_block",
             "block": "ott:mosaic_floor_delicate"
         }
-    ]
+    ],
+    "isolated": {
+        "all": "ott:block/mosaic_floor_static"
+    }
 }

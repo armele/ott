@@ -12,5 +12,8 @@
             {"type": "match_block", "block": "ott:ornamented_red_wool"},
             {"type": "match_block", "block": "ott:ornamented_red_carpet"}
         ]
+    },
+    "isolated": {
+        "all": "ott:block/delicate_red_carpet_static"
     }
 }

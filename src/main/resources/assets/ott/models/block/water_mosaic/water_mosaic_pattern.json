@@ -12,5 +12,8 @@
             "type": "match_block",
             "block": "ott:water_mosaic_geometric"
         }
-    ]
+    ],
+    "isolated": {
+        "all": "ott:block/water_mosaic/water_mosaic_pattern_static"
+    }
 }

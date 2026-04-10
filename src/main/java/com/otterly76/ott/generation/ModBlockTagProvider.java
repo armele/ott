@@ -274,6 +274,8 @@ public class ModBlockTagProvider extends BlockTagsProvider {
                 ModBlocks.STONE_BRICKS_MASONRY.get(),
                 ModBlocks.ORNAMENTED_RED_WOOL.get(),
                 ModBlocks.DELICATE_RED_WOOL.get(),
+                ModBlocks.WATER_MOSAIC_BORDER.get(),
+                ModBlocks.WATER_MOSAIC_GEOMETRIC.get(),
                 ModBlocks.WATER_MOSAIC_PATTERN.get(),
                 ModBlocks.WATER_MOSAIC_DELICATE.get(),
                 ModBlocks.MOSAIC_FLOOR.get(),
