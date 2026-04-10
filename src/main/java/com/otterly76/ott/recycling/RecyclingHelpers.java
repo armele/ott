@@ -104,6 +104,10 @@ public class RecyclingHelpers {
                 }
             }
 
+            if (recipeHolder.value() instanceof StonecutterRecipe stonecutterRecipe) {
+                return validateRecipe(stonecutterRecipe.result, inputStack, session);
+            }
+
             if (session.status == RecyclingStatus.BLANK && !inputStack.isEmpty()) {
                 session.status = RecyclingStatus.NO_RECIPE_FOUND;
             }
@@ -285,6 +289,13 @@ public class RecyclingHelpers {
                         }
                     }
                     outputs.add(outputStack);
+                }
+            }
+            if (r.value() instanceof StonecutterRecipe stonecutterRecipe) {
+                for (List<Tuple<Item, DataComponentPatch>> combo : getAllShapelessIngredientCombinations(
+                        new ArrayList<>(stonecutterRecipe.getIngredients()), inputStack)) {
+                    RecyclingRecipe outputStack = new RecyclingRecipe(inputStack.copyWithCount(stonecutterRecipe.result.getCount()));
+                    addComboToOutput(combo, outputStack, inputStack, outputs);
                 }
             }
         }
