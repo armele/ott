@@ -1,5 +1,7 @@
 package com.otterly76.ott.recycling;
 
+import com.ldtteam.domumornamentum.client.model.data.MaterialTextureData;
+import com.ldtteam.domumornamentum.recipe.architectscutter.ArchitectsCutterRecipe;
 import com.mojang.logging.LogUtils;
 import com.otterly76.ott.config.OttConfig;
 import net.minecraft.core.NonNullList;
@@ -7,6 +9,7 @@ import net.minecraft.core.component.DataComponentPatch;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.ResourceKey;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.util.Tuple;
 import net.minecraft.world.item.*;
@@ -18,6 +21,7 @@ import net.minecraft.world.item.component.Fireworks;
 import net.minecraft.world.item.component.ItemContainerContents;
 import net.minecraft.world.item.crafting.*;
 import net.minecraft.world.item.enchantment.ItemEnchantments;
+import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.ShulkerBoxBlock;
 import net.neoforged.neoforge.common.Tags;
 import net.neoforged.neoforge.common.crafting.DataComponentIngredient;
@@ -106,6 +110,12 @@ public class RecyclingHelpers {
 
             if (recipeHolder.value() instanceof StonecutterRecipe stonecutterRecipe) {
                 return validateRecipe(stonecutterRecipe.result, inputStack, session);
+            }
+            if (recipeHolder.value() instanceof ArchitectsCutterRecipe architectsCutterRecipe) {
+                // Compare by item type only — DO items carry per-material TEXTURE_DATA components that
+                // differ from the recipe's template result, so isSameItemSameComponents always fails.
+                ItemStack result = architectsCutterRecipe.getResultItem(serverLevel.registryAccess());
+                return result.is(inputStack.getItem()) && inputStack.getCount() >= result.getCount();
             }
 
             if (session.status == RecyclingStatus.BLANK && !inputStack.isEmpty()) {
@@ -297,6 +307,22 @@ public class RecyclingHelpers {
                     RecyclingRecipe outputStack = new RecyclingRecipe(inputStack.copyWithCount(stonecutterRecipe.result.getCount()));
                     addComboToOutput(combo, outputStack, inputStack, outputs);
                 }
+            }
+
+            if (r.value() instanceof ArchitectsCutterRecipe architectsCutterRecipe) {
+                // Multiple DO recipes may match the same item type (one per material combo); only add once.
+                // The actual materials come from the item's TEXTURE_DATA component, not the recipe template.
+                if (outputs.stream().anyMatch(o -> o.getInput().is(inputStack.getItem()))) continue;
+                MaterialTextureData textureData = MaterialTextureData.readFromItemStack(inputStack);
+                Map<ResourceLocation, Block> materials = textureData.getTexturedComponents();
+                if (materials.isEmpty()) continue;
+                RecyclingRecipe outputStack = new RecyclingRecipe(inputStack.copyWithCount(architectsCutterRecipe.getCount()));
+                for (Block materialBlock : materials.values()) {
+                    if (materialBlock.asItem() != Items.AIR) {
+                        outputStack.addOutput(new ItemStack(materialBlock.asItem(), 1));
+                    }
+                }
+                outputs.add(outputStack);
             }
         }
 

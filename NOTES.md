@@ -4,26 +4,29 @@ add new blocks to wandering merchant
 get as much transferred to datageneration as possible
 add new animated seaglass, use cloudfx?
 
+Next:
+=====
+Controlling
+Crafting Tweaks
+Mouse Tweaks
+Polymorph
+Searchables
+Toast Control
+
 Mods to Implement:
 =====
 Aquaculture2
 Autochef’s Delight
 Better F3?
-Controlling
-Crafting Tweaks
 Disenchanting Table
 Enchantment Descriptions
 Functional Armor Trims
 Glassential Renewed
 Loot Beams
-Mouse Tweaks
 No Mob Farms
-Polymorph
 Project: Vibrant Journeys
 Redstone Pen
-Searchables
 Skin Layer 3D
-Toast Control
 WITS
 
 Crate Delight
