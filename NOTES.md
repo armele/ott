@@ -1,7 +1,6 @@
 Notes:
 =====
 add new blocks to wandering merchant
-get DO tags added for all new full static blocks
 get as much transferred to datageneration as possible
 add new animated seaglass
 ctm mosaic proxy for DO

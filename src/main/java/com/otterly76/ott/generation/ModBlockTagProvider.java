@@ -242,8 +242,36 @@ public class ModBlockTagProvider extends BlockTagsProvider {
         ModBlocks.FUTONS.values().forEach(d -> {
             this.tag(BlockTags.BEDS).add(d.value());
             axeTag.add(d.value());
-            this.tag(doDefaultKey).add(d.value());
         });
+
+        this.tag(doDefaultKey).add(
+                ModBlocks.PLAIN_LIMESTONE.get(),
+                ModBlocks.COBBLED_LIMESTONE.get(),
+                ModBlocks.SMOOTH_GLOWSTONE.get(),
+                ModBlocks.WHEAT_THATCH.get(),
+                ModBlocks.BAMBOO_THATCH.get(),
+                ModBlocks.ROOFING_SLATES.get(),
+                ModBlocks.BLACK_MARBLE.get(),
+                ModBlocks.BLACK_MARBLE_BRICKS.get(),
+                ModBlocks.BLACK_MARBLE_SMALL_BRICKS.get(),
+                ModBlocks.BLACK_MARBLE_TILES.get(),
+                ModBlocks.BLACK_POLISHED_MARBLE.get(),
+                ModBlocks.BLACK_MARBLE_PILLAR.get(),
+                ModBlocks.BLACK_MARBLE_PILLAR_CAP.get(),
+                ModBlocks.WHITE_MARBLE.get(),
+                ModBlocks.WHITE_MARBLE_BRICKS.get(),
+                ModBlocks.WHITE_MARBLE_SMALL_BRICKS.get(),
+                ModBlocks.WHITE_MARBLE_TILES.get(),
+                ModBlocks.WHITE_POLISHED_MARBLE.get(),
+                ModBlocks.WHITE_MARBLE_PILLAR.get(),
+                ModBlocks.WHITE_MARBLE_PILLAR_CAP.get(),
+                ModBlocks.SLENDER_SANDSTONE_BRICKS.get(),
+                ModBlocks.SLENDER_TURQUOISE_PATTERN.get(),
+                ModBlocks.GOLD_PLATED_SMOOTH_BLOCK.get(),
+                ModBlocks.ORNAMENTED_CHISELED_PLASTERED_STONE.get(),
+                ModBlocks.GREEN_ORNAMENTED_PLASTERED_STONE.get(),
+                ModBlocks.RED_ORNAMENTED_PLASTERED_STONE.get()
+        );
 
         // Domum Ornamentum material tags
         this.tag(doCopperKey).addTag(ModTags.Blocks.COPPER);
