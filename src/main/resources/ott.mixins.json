@@ -169,7 +169,11 @@
     "client.TinyMobRenderMixin",
     "client.WaterDropParticleMixin",
     "client.WolfRendererMixin",
-    "client.CreativeModeInventoryScreenMixin"
+    "client.CreativeModeInventoryScreenMixin",
+    "client.InputConstantsKeyAccessor",
+    "client.KeyBindsScreenAccessor",
+    "client.KeyMappingAccessor",
+    "client.OptionsSubScreenAccessor"
   ],
   "injectors": {
     "defaultRequire": 1
