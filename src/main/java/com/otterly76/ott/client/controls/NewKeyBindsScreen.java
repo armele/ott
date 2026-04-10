@@ -3,10 +3,12 @@ package com.otterly76.ott.client.controls;
 import com.google.common.base.Suppliers;
 import com.mojang.blaze3d.platform.InputConstants;
 import com.otterly76.ott.mixin.client.KeyBindsScreenAccessor;
+import com.otterly76.ott.searchables.api.SearchableComponent;
+import com.otterly76.ott.searchables.api.SearchableType;
+import com.otterly76.ott.searchables.api.autcomplete.AutoCompletingEditBox;
 import net.minecraft.client.KeyMapping;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.components.Button;
-import net.minecraft.client.gui.components.EditBox;
 import net.minecraft.client.gui.components.StringWidget;
 import net.minecraft.client.gui.layouts.GridLayout;
 import net.minecraft.client.gui.layouts.LayoutSettings;
@@ -20,14 +22,22 @@ import org.lwjgl.glfw.GLFW;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Locale;
 import java.util.Objects;
-import java.util.function.Predicate;
+import java.util.Optional;
 import java.util.function.Supplier;
 
 public class NewKeyBindsScreen extends KeyBindsScreen {
 
-    private EditBox search;
+    private static final SearchableType<IKeyEntry> KEY_SEARCH_TYPE = new SearchableType.Builder<IKeyEntry>()
+            .defaultComponent(SearchableComponent.create("name",
+                    e -> Optional.of(e.getKeyDesc().getString())))
+            .component(SearchableComponent.create("category",
+                    e -> Optional.of(e.categoryName().getString())))
+            .component(SearchableComponent.create("key",
+                    e -> Optional.of(e.getKey().getTranslatedKeyMessage().getString())))
+            .build();
+
+    private AutoCompletingEditBox<IKeyEntry> search;
     private DisplayMode displayMode;
     private SortOrder sortOrder = SortOrder.NONE;
     private Button buttonNone;
@@ -51,15 +61,27 @@ public class NewKeyBindsScreen extends KeyBindsScreen {
     protected void init() {
         super.init();
         this.search.moveCursor(0, false);
+        // AutoComplete must be added after super.init() so it renders on top
+        this.addRenderableWidget(this.search.autoComplete());
     }
 
     @Override
     protected void addTitle() {
         int searchWidth = 340;
         int centerX = this.width / 2;
-        this.search = new EditBox(font, centerX - searchWidth / 2, 20, searchWidth, Button.DEFAULT_HEIGHT,
-                Component.translatable("selectWorld.search"));
-        this.search.setResponder(this::filterKeys);
+
+        // Supplier of all IKeyEntry items — lazy, resolved after addContents() sets newKeyList
+        Supplier<List<IKeyEntry>> entrySupplier = () -> {
+            if (newKeyList == null) return List.of();
+            return newKeyList.get().getAllEntries().stream()
+                    .filter(e -> e instanceof IKeyEntry)
+                    .map(e -> (IKeyEntry) e)
+                    .toList();
+        };
+
+        this.search = new AutoCompletingEditBox<>(font, centerX - searchWidth / 2, 20, searchWidth, Button.DEFAULT_HEIGHT,
+                Component.translatable("selectWorld.search"), KEY_SEARCH_TYPE, entrySupplier);
+        this.search.addResponder(this::filterKeys);
         this.search.setHint(Component.translatable("selectWorld.search"));
 
         LinearLayout header = this.layout.addToHeader(LinearLayout.vertical(),
@@ -120,6 +142,11 @@ public class NewKeyBindsScreen extends KeyBindsScreen {
     protected void repositionElements() {
         super.repositionElements();
         resetButton().active = canReset();
+        // Keep AutoComplete positioned directly below the search box after layout repositioning
+        if (search != null) {
+            search.autoComplete().setX(search.getX());
+            search.autoComplete().setY(search.getY() + 2 + search.getHeight());
+        }
     }
 
     public Button resetButton() {
@@ -145,10 +172,20 @@ public class NewKeyBindsScreen extends KeyBindsScreen {
         getKeyBindsList().children().addAll(entries);
     }
 
-    private List<KeyBindsList.Entry> buildFilteredList(CustomList list, String search) {
-        String lowerSearch = search.toLowerCase(Locale.ROOT);
-        Predicate<KeyBindsList.Entry> displayPredicate = (list instanceof NewKeyBindsList)
+    private List<KeyBindsList.Entry> buildFilteredList(CustomList list, String searchStr) {
+        java.util.function.Predicate<KeyBindsList.Entry> displayPredicate = (list instanceof NewKeyBindsList)
                 ? displayMode.getPredicate() : e -> true;
+
+        // Use Searchables filtering for NewKeyBindsList when search is non-empty
+        java.util.Set<IKeyEntry> matchingKeys = null;
+        if (list instanceof NewKeyBindsList && !searchStr.isEmpty()) {
+            List<IKeyEntry> allKeyEntries = list.getAllEntries().stream()
+                    .filter(e -> e instanceof IKeyEntry)
+                    .map(e -> (IKeyEntry) e)
+                    .toList();
+            matchingKeys = new java.util.HashSet<>(KEY_SEARCH_TYPE.filterEntries(allKeyEntries, searchStr));
+        }
+        final java.util.Set<IKeyEntry> finalMatchingKeys = matchingKeys;
 
         List<KeyBindsList.Entry> result = new ArrayList<>();
         NewKeyBindsList.CategoryEntry pendingCategory = null;
@@ -157,7 +194,13 @@ public class NewKeyBindsScreen extends KeyBindsScreen {
             if (entry instanceof NewKeyBindsList.CategoryEntry cat) {
                 pendingCategory = cat;
             } else {
-                boolean textMatch = search.isEmpty() || entryMatchesSearch(entry, lowerSearch);
+                boolean textMatch;
+                if (list instanceof FreeKeysList && entry instanceof FreeKeysList.InputEntry inputEntry) {
+                    String lower = searchStr.toLowerCase(java.util.Locale.ROOT);
+                    textMatch = searchStr.isEmpty() || inputEntry.getInput().getName().toLowerCase(java.util.Locale.ROOT).contains(lower);
+                } else {
+                    textMatch = searchStr.isEmpty() || finalMatchingKeys == null || (entry instanceof IKeyEntry && finalMatchingKeys.contains(entry));
+                }
                 boolean displayMatch = displayPredicate.test(entry);
                 if (textMatch && displayMatch) {
                     if (pendingCategory != null) {
@@ -169,18 +212,6 @@ public class NewKeyBindsScreen extends KeyBindsScreen {
             }
         }
         return result;
-    }
-
-    private boolean entryMatchesSearch(KeyBindsList.Entry entry, String lowerSearch) {
-        if (entry instanceof IKeyEntry keyEntry) {
-            return keyEntry.getKeyDesc().getString().toLowerCase(Locale.ROOT).contains(lowerSearch)
-                    || keyEntry.categoryName().getString().toLowerCase(Locale.ROOT).contains(lowerSearch)
-                    || keyEntry.getKey().getTranslatedKeyMessage().getString().toLowerCase(Locale.ROOT).contains(lowerSearch);
-        }
-        if (entry instanceof FreeKeysList.InputEntry inputEntry) {
-            return inputEntry.getInput().getName().toLowerCase(Locale.ROOT).contains(lowerSearch);
-        }
-        return true;
     }
 
     @Override
