@@ -2156,5 +2156,20 @@
   "subtitles.ott.entity.zebra.death": "Zebra dies",
   "subtitles.ott.entity.zebra.hurt": "Zebra hurts",
   "tooltip.ott.hunger": "Hunger: %s",
-  "tooltip.ott.saturation": "Saturation: %s"
+  "tooltip.ott.saturation": "Saturation: %s",
+
+  "screen.ott.recycling.recycle": "Recycle!",
+  "screen.ott.recycling.recipe_selection": "Recipe Selection",
+  "screen.ott.recycling.page": "Page %s/%s",
+  "screen.ott.recycling.exp_level_required": "Requires %s level(s)",
+  "screen.ott.recycling.exp_point_required": "Requires %s XP",
+  "screen.ott.recycling.no_recipe_found": "No recipe found",
+  "screen.ott.recycling.no_suitable_output_slot": "No suitable output slot",
+  "screen.ott.recycling.not_enough_exp": "Not enough experience",
+  "screen.ott.recycling.not_enough_input": "Not enough input items",
+  "screen.ott.recycling.not_empty_shulker": "Shulker box is not empty",
+  "screen.ott.recycling.restricted_by_config": "Restricted by config",
+  "screen.ott.recycling.damaged_item": "Damaged items cannot be recycled",
+  "screen.ott.recycling.enchanted_item": "Enchanted items cannot be recycled",
+  "screen.ott.recycling.blank": ""
 }
