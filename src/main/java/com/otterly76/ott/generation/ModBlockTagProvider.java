@@ -55,6 +55,10 @@ public class ModBlockTagProvider extends BlockTagsProvider {
         TagKey<Block> doCopperKey = TagKey.create(Registries.BLOCK, ResourceLocation.fromNamespaceAndPath("domum_ornamentum", "copper"));
         TagKey<Block> doGlacedTerracottaKey = TagKey.create(Registries.BLOCK, ResourceLocation.fromNamespaceAndPath("domum_ornamentum", "glaced_terracotta"));
         TagKey<Block> doFramedLightCenterKey = TagKey.create(Registries.BLOCK, ResourceLocation.fromNamespaceAndPath("domum_ornamentum", "framed_light_center"));
+        TagKey<Block> doWallMaterialsKey = TagKey.create(Registries.BLOCK, ResourceLocation.fromNamespaceAndPath("domum_ornamentum", "wall_materials"));
+        TagKey<Block> doStairsMaterialsKey = TagKey.create(Registries.BLOCK, ResourceLocation.fromNamespaceAndPath("domum_ornamentum", "stairs_materials"));
+        TagKey<Block> doShinglesCoverKey = TagKey.create(Registries.BLOCK, ResourceLocation.fromNamespaceAndPath("domum_ornamentum", "shingles_cover"));
+        TagKey<Block> doAllBrickMaterialsKey = TagKey.create(Registries.BLOCK, ResourceLocation.fromNamespaceAndPath("domum_ornamentum", "all_brick_materials"));
 
 
         // --- 2. INITIALIZE BUILDERS (The "Appenders") ---
@@ -290,6 +294,12 @@ public class ModBlockTagProvider extends BlockTagsProvider {
         this.tag(doCopperKey).addTag(ModTags.Blocks.COPPER);
         this.tag(doFramedLightCenterKey).add(ModBlocks.SMOOTH_GLOWSTONE.get());
         ModBlocks.COLOR_SETS.values().forEach(set -> this.tag(doGlacedTerracottaKey).add(set.glazedTerracotta().get()));
+
+        // Nest our entire default set into each DO shape-type tag so future additions propagate automatically.
+        this.tag(doWallMaterialsKey).addTag(doDefaultKey);
+        this.tag(doStairsMaterialsKey).addTag(doDefaultKey);
+        this.tag(doShinglesCoverKey).addTag(doDefaultKey);
+        this.tag(doAllBrickMaterialsKey).addTag(doDefaultKey);
 
         var ottHedges = this.tag(ottHedgesKey);
         ottHedges.add(ModBlocks.THORNY_HEDGE.value());

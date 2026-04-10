@@ -1,8 +1,17 @@
 package com.otterly76.ott.config;
 
+import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.core.registries.Registries;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.tags.TagKey;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.enchantment.ItemEnchantments;
+import net.minecraft.core.component.DataComponents;
 import net.neoforged.neoforge.common.ModConfigSpec;
 
 import java.util.List;
+import java.util.Optional;
 
 public class OttConfig { //TODO need to review config options, some are very unnecessary
     public static final ModConfigSpec SPEC;
@@ -24,6 +33,7 @@ public class OttConfig { //TODO need to review config options, some are very unn
     public static final Weather WEATHER;
     public static final FriendlyFire FRIENDLY_FIRE;
     public static final Elevator ELEVATOR;
+    public static final Recycling RECYCLING;
 
     static {
         ModConfigSpec.Builder builder = new ModConfigSpec.Builder();
@@ -46,6 +56,7 @@ public class OttConfig { //TODO need to review config options, some are very unn
         afk = new AFK(builder);
         FRIENDLY_FIRE = new FriendlyFire(builder);
         ELEVATOR = new Elevator(builder);
+        RECYCLING = new Recycling(builder);
 
         builder.pop();
         SPEC = builder.build();
@@ -810,6 +821,123 @@ public class OttConfig { //TODO need to review config options, some are very unn
                     .translation("ott.configuration.elevator.xpAmount")
                     .defineInRange("xpAmount", 1, 0, Integer.MAX_VALUE);
             builder.pop();
+        }
+    }
+
+    public static class Recycling {
+        public enum ExperienceType { LEVEL, POINT }
+        public enum RestrictionType { BLACKLIST, WHITELIST }
+
+        public final ModConfigSpec.EnumValue<ExperienceType> EXPERIENCE_TYPE;
+        public final ModConfigSpec.IntValue EXPERIENCE;
+        public final ModConfigSpec.EnumValue<RestrictionType> RESTRICTION_TYPE;
+        public final ModConfigSpec.ConfigValue<List<? extends String>> RESTRICTIONS;
+        public final ModConfigSpec.BooleanValue ALLOW_ENCHANTED_ITEMS;
+        public final ModConfigSpec.BooleanValue ALLOW_UN_SMITHING;
+        public final ModConfigSpec.BooleanValue ALLOW_DAMAGED;
+        public final ModConfigSpec.BooleanValue PREVENT_MODDED_INGREDIENTS;
+        public final ModConfigSpec.ConfigValue<List<? extends String>> RESTRICTED_MOD_INGREDIENTS;
+        public final ModConfigSpec.BooleanValue OUTPUT_ENCHANTED_BOOK;
+        public final ModConfigSpec.BooleanValue PRIORITIZE_VANILLA_INGREDIENTS;
+
+        public Recycling(ModConfigSpec.Builder builder) {
+            builder.push("recycling");
+
+            EXPERIENCE_TYPE = builder.comment("The type of experience cost for recycling. LEVEL = experience levels, POINT = experience points.")
+                    .translation("ott.configuration.recycling.experienceType")
+                    .defineEnum("experienceType", ExperienceType.LEVEL, ExperienceType.values());
+
+            EXPERIENCE = builder.comment("Default experience cost to recycle an item.")
+                    .translation("ott.configuration.recycling.experience")
+                    .defineInRange("experience", 1, 0, Integer.MAX_VALUE);
+
+            RESTRICTION_TYPE = builder.comment("Whether 'restrictions' is a BLACKLIST (items that cannot be recycled) or a WHITELIST (only these items can be recycled).")
+                    .translation("ott.configuration.recycling.restrictionType")
+                    .defineEnum("restrictionType", RestrictionType.BLACKLIST, RestrictionType.values());
+
+            RESTRICTIONS = builder.comment(
+                            "List of item IDs that are restricted based on the restriction type.",
+                            "Format: modid:item_name / modid:* / #modid:tag_name")
+                    .translation("ott.configuration.recycling.restrictions")
+                    .defineList("restrictions", List.of("minecraft:crafting_table"), () -> "", o -> o instanceof String s && (ResourceLocation.tryParse(s) != null || s.contains("*") || s.startsWith("#")));
+
+            ALLOW_ENCHANTED_ITEMS = builder.comment("Allow recycling of enchanted items.")
+                    .translation("ott.configuration.recycling.allowEnchantedItems")
+                    .define("allowEnchantedItems", true);
+
+            ALLOW_UN_SMITHING = builder.comment("Allow recycling of smithing-upgraded items (trimmed/netherite armor).")
+                    .translation("ott.configuration.recycling.allowUnSmithing")
+                    .define("allowUnSmithing", true);
+
+            ALLOW_DAMAGED = builder.comment("Allow recycling of damaged items.")
+                    .translation("ott.configuration.recycling.allowDamaged")
+                    .define("allowDamaged", true);
+
+            PREVENT_MODDED_INGREDIENTS = builder.comment("Prevent vanilla items from being recycled using modded recipes.")
+                    .translation("ott.configuration.recycling.preventModdedIngredients")
+                    .define("preventModdedIngredients", true);
+
+            RESTRICTED_MOD_INGREDIENTS = builder.comment(
+                            "Mod IDs whose ingredients are excluded from recipes to prevent excessive results.",
+                            "Format: modid")
+                    .translation("ott.configuration.recycling.restrictedModIngredients")
+                    .defineList("restrictedModIngredients", List.of("productivetrees", "chipped"), () -> "", o -> o instanceof String modid && !modid.equals("minecraft"));
+
+            OUTPUT_ENCHANTED_BOOK = builder.comment("Output an enchanted book when recycling an enchanted item.")
+                    .translation("ott.configuration.recycling.outputEnchantedBook")
+                    .define("outputEnchantedBook", false);
+
+            PRIORITIZE_VANILLA_INGREDIENTS = builder.comment("Prioritize recipes that produce more vanilla ingredients.")
+                    .translation("ott.configuration.recycling.prioritizeVanillaIngredients")
+                    .define("prioritizeVanillaIngredients", true);
+
+            builder.pop();
+        }
+
+        public boolean isEnchantedItemsAllowed(ItemStack itemStack) {
+            return ALLOW_ENCHANTED_ITEMS.getAsBoolean() || itemStack.get(DataComponents.ENCHANTMENTS) == ItemEnchantments.EMPTY;
+        }
+
+        public boolean isItemBlacklisted(ItemStack itemStack) {
+            if (RESTRICTION_TYPE.get() != RestrictionType.BLACKLIST) return false;
+            String itemLocationString = BuiltInRegistries.ITEM.getKey(itemStack.getItem()).toString();
+            List<? extends String> restrictions = RESTRICTIONS.get();
+            if (restrictions.contains(itemLocationString)) return true;
+            for (String entry : restrictions) {
+                if (entry.startsWith("#")) {
+                    Optional<TagKey<Item>> tagKey = tryParseTag(entry.substring(1));
+                    if (tagKey.isPresent() && itemStack.is(tagKey.get())) return true;
+                }
+                if (entry.contains("*")) {
+                    if (itemLocationString.matches(entry.replace("*", ".*"))) return true;
+                }
+            }
+            return false;
+        }
+
+        public boolean isItemWhitelisted(ItemStack itemStack) {
+            if (RESTRICTION_TYPE.get() != RestrictionType.WHITELIST) return false;
+            String itemLocationString = BuiltInRegistries.ITEM.getKey(itemStack.getItem()).toString();
+            List<? extends String> restrictions = RESTRICTIONS.get();
+            if (restrictions.contains(itemLocationString)) return false;
+            for (String entry : restrictions) {
+                if (entry.startsWith("#")) {
+                    Optional<TagKey<Item>> tagKey = tryParseTag(entry.substring(1));
+                    if (tagKey.isPresent() && itemStack.is(tagKey.get())) return false;
+                }
+                if (entry.contains("*")) {
+                    if (itemLocationString.matches(entry.replace("*", ".*"))) return false;
+                }
+            }
+            return true;
+        }
+
+        public static Optional<TagKey<Item>> tryParseTag(String input) {
+            try {
+                return Optional.of(TagKey.create(Registries.ITEM, ResourceLocation.parse(input)));
+            } catch (Exception e) {
+                return Optional.empty();
+            }
         }
     }
 }
