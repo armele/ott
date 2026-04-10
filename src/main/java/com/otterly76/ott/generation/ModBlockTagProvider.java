@@ -270,7 +270,18 @@ public class ModBlockTagProvider extends BlockTagsProvider {
                 ModBlocks.GOLD_PLATED_SMOOTH_BLOCK.get(),
                 ModBlocks.ORNAMENTED_CHISELED_PLASTERED_STONE.get(),
                 ModBlocks.GREEN_ORNAMENTED_PLASTERED_STONE.get(),
-                ModBlocks.RED_ORNAMENTED_PLASTERED_STONE.get()
+                ModBlocks.RED_ORNAMENTED_PLASTERED_STONE.get(),
+                ModBlocks.STONE_BRICKS_MASONRY.get(),
+                ModBlocks.ORNAMENTED_RED_WOOL.get(),
+                ModBlocks.DELICATE_RED_WOOL.get(),
+                ModBlocks.WATER_MOSAIC_PATTERN.get(),
+                ModBlocks.WATER_MOSAIC_DELICATE.get(),
+                ModBlocks.MOSAIC_FLOOR.get(),
+                ModBlocks.MOSAIC_FLOOR_DELICATE.get(),
+                ModBlocks.MOSAIC_FLOOR_ROSETTE.get(),
+                ModBlocks.ROMAN_FRESCO_RED.get(),
+                ModBlocks.ROMAN_FRESCO_BLACK.get(),
+                ModBlocks.LIMESTONE_BRICKS.get()
         );
 
         // Domum Ornamentum material tags

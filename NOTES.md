@@ -3,7 +3,6 @@ Notes:
 add new blocks to wandering merchant
 get as much transferred to datageneration as possible
 add new animated seaglass
-ctm mosaic proxy for DO
 
 Mods to Implement:
 =====
