@@ -1,6 +1,11 @@
 package com.otterly76.ott.mixin.client;
 
 import com.otterly76.ott.Constants;
+import com.otterly76.ott.client.crafting.CraftingTweaksButton;
+import com.otterly76.ott.config.OttConfig;
+import com.otterly76.ott.network.crafting.ServerboundCraftingBalancePacket;
+import com.otterly76.ott.network.crafting.ServerboundCraftingClearPacket;
+import com.otterly76.ott.network.crafting.ServerboundCraftingRotatePacket;
 import com.otterly76.ott.network.recycling.ServerboundOpenRecyclingPacket;
 import net.minecraft.client.gui.components.ImageButton;
 import net.minecraft.client.gui.components.WidgetSprites;
@@ -41,10 +46,28 @@ public abstract class CraftingScreenMixin extends AbstractContainerScreen<Crafti
                 .filter(w -> w instanceof ImageButton b && b.getX() == this.leftPos + 5)
                 .forEach(w -> removeWidget((GuiEventListener) w));
 
-        // Place recycle button where the recipe book toggle was
-        this.addRenderableWidget(new ImageButton(this.leftPos + 8, this.topPos + 35, 15, 15, RECYCLE_BUTTON_SPRITES, (button) -> {
+        // Place recycle button on the right side of the GUI, past the output slot
+        this.addRenderableWidget(new ImageButton(this.leftPos + 152, this.topPos + 35, 15, 15, RECYCLE_BUTTON_SPRITES, (button) -> {
             PacketDistributor.sendToServer(new ServerboundOpenRecyclingPacket());
         }));
+
+        // Add CraftingTweaks buttons to the left of the crafting grid
+        if (OttConfig.CRAFTING_TWEAKS.SHOW_BUTTONS.get()) {
+            int bx = this.leftPos + this.getMenu().slots.get(1).x - 19;
+            int by = this.topPos + this.getMenu().slots.get(1).y;
+
+            addRenderableWidget(CraftingTweaksButton.rotate(bx, by,
+                    () -> PacketDistributor.sendToServer(new ServerboundCraftingRotatePacket(false)),
+                    () -> PacketDistributor.sendToServer(new ServerboundCraftingRotatePacket(true))));
+
+            addRenderableWidget(CraftingTweaksButton.balance(bx, by + 18,
+                    () -> PacketDistributor.sendToServer(new ServerboundCraftingBalancePacket(false)),
+                    () -> PacketDistributor.sendToServer(new ServerboundCraftingBalancePacket(true))));
+
+            addRenderableWidget(CraftingTweaksButton.clear(bx, by + 36,
+                    () -> PacketDistributor.sendToServer(new ServerboundCraftingClearPacket(false)),
+                    () -> PacketDistributor.sendToServer(new ServerboundCraftingClearPacket(true))));
+        }
     }
 
     // Block the direct recipeBookComponent.mouseClicked() call so the recipe book cannot be opened

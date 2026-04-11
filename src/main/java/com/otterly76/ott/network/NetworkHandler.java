@@ -1,6 +1,7 @@
 package com.otterly76.ott.network;
 
 import com.otterly76.ott.Constants;
+import com.otterly76.ott.network.crafting.*;
 import com.otterly76.ott.network.elevator.ElevatorRemoveCamoPacket;
 import com.otterly76.ott.network.elevator.ElevatorSetArrowPacket;
 import com.otterly76.ott.network.elevator.ElevatorSetDirectionalPacket;
@@ -111,6 +112,33 @@ public class NetworkHandler {
                 ElevatorRemoveCamoPacket.TYPE,
                 ElevatorRemoveCamoPacket.STREAM_CODEC,
                 ElevatorRemoveCamoPacket::handle
+        );
+
+        // CraftingTweaks packets
+        registrar.playToServer(
+                ServerboundCraftingRotatePacket.TYPE,
+                ServerboundCraftingRotatePacket.STREAM_CODEC,
+                ServerboundCraftingRotatePacket::handle
+        );
+        registrar.playToServer(
+                ServerboundCraftingBalancePacket.TYPE,
+                ServerboundCraftingBalancePacket.STREAM_CODEC,
+                ServerboundCraftingBalancePacket::handle
+        );
+        registrar.playToServer(
+                ServerboundCraftingClearPacket.TYPE,
+                ServerboundCraftingClearPacket.STREAM_CODEC,
+                ServerboundCraftingClearPacket::handle
+        );
+        registrar.playToServer(
+                ServerboundCraftingTransferPacket.TYPE,
+                ServerboundCraftingTransferPacket.STREAM_CODEC,
+                ServerboundCraftingTransferPacket::handle
+        );
+        registrar.playToServer(
+                ServerboundCraftingCraftStackPacket.TYPE,
+                ServerboundCraftingCraftStackPacket.STREAM_CODEC,
+                ServerboundCraftingCraftStackPacket::handle
         );
 
         // Recycling (uncrafting) packets

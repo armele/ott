@@ -2194,5 +2194,22 @@
   "key.ott.teleport_home": "Teleport Home",
   "key.ott.set_home": "Set Home",
   "key.ott.clear_toasts": "Clear Active Toasts",
-  "key.ott.toggle_neat": "Toggle Health Bars"
+  "key.ott.toggle_neat": "Toggle Health Bars",
+  "key.ott.crafting_rotate": "Rotate Grid",
+  "key.ott.crafting_rotate_ccw": "Rotate Grid (CCW)",
+  "key.ott.crafting_balance": "Balance Grid",
+  "key.ott.crafting_spread": "Spread Grid",
+  "key.ott.crafting_clear": "Clear Grid",
+  "key.ott.crafting_force_clear": "Force Clear Grid",
+  "key.ott.crafting_transfer": "Transfer to Crafting Grid",
+
+  "tooltip.ott.crafting.rotate": "Rotate",
+  "tooltip.ott.crafting.rotate_ccw": "Rotate CCW",
+  "tooltip.ott.crafting.balance": "Balance",
+  "tooltip.ott.crafting.spread": "Spread",
+  "tooltip.ott.crafting.clear": "Clear",
+  "tooltip.ott.crafting.force_clear": "Force Clear",
+
+  "ott.configuration.craftingTweaks.showButtons": "Show Crafting Buttons",
+  "ott.configuration.craftingTweaks.rightClickCraftsStack": "Right-Click Crafts Stack"
 }

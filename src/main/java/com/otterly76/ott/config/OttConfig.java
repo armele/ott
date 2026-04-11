@@ -42,6 +42,7 @@ public class OttConfig { //TODO need to review config options, some are very unn
     public static final Neat NEAT;
     public static boolean NEAT_DRAW = true;
     public static final MouseTweaks MOUSE_TWEAKS;
+    public static final CraftingTweaks CRAFTING_TWEAKS;
 
     static {
         ModConfigSpec.Builder builder = new ModConfigSpec.Builder();
@@ -69,6 +70,7 @@ public class OttConfig { //TODO need to review config options, some are very unn
         TOASTS = new Toasts(builder);
         NEAT = new Neat(builder);
         MOUSE_TWEAKS = new MouseTweaks(builder);
+        CRAFTING_TWEAKS = new CraftingTweaks(builder);
 
         builder.pop();
         SPEC = builder.build();
@@ -1155,6 +1157,24 @@ public class OttConfig { //TODO need to review config options, some are very unn
             SCROLL_ITEM_SCALING = builder.comment("How scroll delta is scaled: PROPORTIONAL uses the raw delta, ALWAYS_ONE always moves exactly one item per tick.")
                     .translation("ott.configuration.mouseTweaks.scrollItemScaling")
                     .defineEnum("scrollItemScaling", ScrollItemScaling.PROPORTIONAL, ScrollItemScaling.values());
+            builder.pop();
+        }
+    }
+
+    public static class CraftingTweaks {
+        public final ModConfigSpec.BooleanValue SHOW_BUTTONS;
+        public final ModConfigSpec.BooleanValue RIGHT_CLICK_CRAFTS_STACK;
+
+        public CraftingTweaks(ModConfigSpec.Builder builder) {
+            builder.push("craftingTweaks");
+            SHOW_BUTTONS = builder
+                    .comment("Show Rotate/Balance/Clear buttons to the left of the crafting grid in the crafting table.")
+                    .translation("ott.configuration.craftingTweaks.showButtons")
+                    .define("showButtons", true);
+            RIGHT_CLICK_CRAFTS_STACK = builder
+                    .comment("Right-clicking the output slot of a crafting table crafts a full stack.")
+                    .translation("ott.configuration.craftingTweaks.rightClickCraftsStack")
+                    .define("rightClickCraftsStack", true);
             builder.pop();
         }
     }

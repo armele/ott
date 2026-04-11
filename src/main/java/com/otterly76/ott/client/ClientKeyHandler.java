@@ -49,12 +49,68 @@ public class ClientKeyHandler {
             CATEGORY
     );
 
+    public static final KeyMapping CRAFTING_ROTATE = new KeyMapping(
+            "key." + Constants.MOD_ID + ".crafting_rotate",
+            InputConstants.Type.KEYSYM,
+            GLFW.GLFW_KEY_UNKNOWN,
+            CATEGORY
+    );
+
+    public static final KeyMapping CRAFTING_ROTATE_CCW = new KeyMapping(
+            "key." + Constants.MOD_ID + ".crafting_rotate_ccw",
+            InputConstants.Type.KEYSYM,
+            GLFW.GLFW_KEY_UNKNOWN,
+            CATEGORY
+    );
+
+    public static final KeyMapping CRAFTING_BALANCE = new KeyMapping(
+            "key." + Constants.MOD_ID + ".crafting_balance",
+            InputConstants.Type.KEYSYM,
+            GLFW.GLFW_KEY_UNKNOWN,
+            CATEGORY
+    );
+
+    public static final KeyMapping CRAFTING_SPREAD = new KeyMapping(
+            "key." + Constants.MOD_ID + ".crafting_spread",
+            InputConstants.Type.KEYSYM,
+            GLFW.GLFW_KEY_UNKNOWN,
+            CATEGORY
+    );
+
+    public static final KeyMapping CRAFTING_CLEAR = new KeyMapping(
+            "key." + Constants.MOD_ID + ".crafting_clear",
+            InputConstants.Type.KEYSYM,
+            GLFW.GLFW_KEY_UNKNOWN,
+            CATEGORY
+    );
+
+    public static final KeyMapping CRAFTING_FORCE_CLEAR = new KeyMapping(
+            "key." + Constants.MOD_ID + ".crafting_force_clear",
+            InputConstants.Type.KEYSYM,
+            GLFW.GLFW_KEY_UNKNOWN,
+            CATEGORY
+    );
+
+    public static final KeyMapping CRAFTING_TRANSFER = new KeyMapping(
+            "key." + Constants.MOD_ID + ".crafting_transfer",
+            InputConstants.Type.KEYSYM,
+            GLFW.GLFW_KEY_UNKNOWN,
+            CATEGORY
+    );
+
     @SubscribeEvent
     public static void registerKeys(RegisterKeyMappingsEvent event) {
         event.register(TELEPORT_HOME);
         event.register(SET_HOME);
         event.register(CLEAR_TOASTS);
         event.register(TOGGLE_NEAT);
+        event.register(CRAFTING_ROTATE);
+        event.register(CRAFTING_ROTATE_CCW);
+        event.register(CRAFTING_BALANCE);
+        event.register(CRAFTING_SPREAD);
+        event.register(CRAFTING_CLEAR);
+        event.register(CRAFTING_FORCE_CLEAR);
+        event.register(CRAFTING_TRANSFER);
     }
 
     @SubscribeEvent
