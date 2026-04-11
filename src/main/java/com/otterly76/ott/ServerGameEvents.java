@@ -45,6 +45,7 @@ public class ServerGameEvents {
     public static void onRegisterCommands(RegisterCommandsEvent event) {
         HomeCommand.register(event.getDispatcher());
         com.otterly76.ott.command.AFKCommand.register(event.getDispatcher());
+        com.otterly76.ott.command.WhereAmICommand.register(event.getDispatcher());
     }
 
     @SubscribeEvent
