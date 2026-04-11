@@ -1,16 +1,21 @@
 package com.otterly76.ott.mixin.client;
 
+import com.mojang.blaze3d.vertex.PoseStack;
 import com.otterly76.ott.client.CreepOverlayRenderer;
+import com.otterly76.ott.client.neat.HealthBarRenderer;
 import com.otterly76.ott.config.OttConfig;
 import com.otterly76.ott.particle.WeatherParticleSpawner;
 import net.minecraft.client.Camera;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.LevelRenderer;
 import net.minecraft.client.renderer.LightTexture;
+import net.minecraft.client.renderer.MultiBufferSource;
+import net.minecraft.client.renderer.entity.EntityRenderDispatcher;
 import net.minecraft.core.BlockPos;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.util.Mth;
+import net.minecraft.world.entity.Entity;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.block.state.BlockState;
@@ -31,6 +36,9 @@ public class LevelRendererMixin {
     private int ticks;
     @Shadow
     private int rainSoundTime;
+    @Shadow
+    @Final
+    private EntityRenderDispatcher entityRenderDispatcher;
 
     @Inject(
             method = {"tickRain"},
@@ -93,5 +101,20 @@ public class LevelRendererMixin {
     )
     private void ott$onBlockChanged(BlockGetter level, BlockPos pos, BlockState oldState, BlockState newState, int flags, CallbackInfo ci) {
         CreepOverlayRenderer.updateHedgeCache(pos, newState);
+    }
+
+    @Inject(
+            method = "renderEntity(Lnet/minecraft/world/entity/Entity;DDDFLcom/mojang/blaze3d/vertex/PoseStack;Lnet/minecraft/client/renderer/MultiBufferSource;)V",
+            at = @At(
+                    value = "INVOKE",
+                    target = "Lnet/minecraft/client/renderer/entity/EntityRenderDispatcher;render(Lnet/minecraft/world/entity/Entity;DDDFFLcom/mojang/blaze3d/vertex/PoseStack;Lnet/minecraft/client/renderer/MultiBufferSource;I)V",
+                    shift = At.Shift.AFTER
+            )
+    )
+    private void ott$renderHealthBar(Entity entity, double camX, double camY, double camZ, float partialTick, PoseStack poseStack, MultiBufferSource buffers, CallbackInfo ci) {
+        double d0 = Mth.lerp(partialTick, entity.xOld, entity.getX());
+        double d1 = Mth.lerp(partialTick, entity.yOld, entity.getY());
+        double d2 = Mth.lerp(partialTick, entity.zOld, entity.getZ());
+        HealthBarRenderer.hookRender(entity, poseStack, buffers, entityRenderDispatcher.camera, entityRenderDispatcher.getRenderer(entity), partialTick, d0 - camX, d1 - camY, d2 - camZ);
     }
 }

@@ -2193,5 +2193,6 @@
   "key.categories.ott": "Otterhome",
   "key.ott.teleport_home": "Teleport Home",
   "key.ott.set_home": "Set Home",
-  "key.ott.clear_toasts": "Clear Active Toasts"
+  "key.ott.clear_toasts": "Clear Active Toasts",
+  "key.ott.toggle_neat": "Toggle Health Bars"
 }

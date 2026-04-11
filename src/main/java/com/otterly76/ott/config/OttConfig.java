@@ -36,6 +36,8 @@ public class OttConfig { //TODO need to review config options, some are very unn
     public static final Recycling RECYCLING;
     public static final UnlockedTyping UNLOCKED_TYPING;
     public static final Toasts TOASTS;
+    public static final Neat NEAT;
+    public static boolean NEAT_DRAW = true;
 
     static {
         ModConfigSpec.Builder builder = new ModConfigSpec.Builder();
@@ -61,6 +63,7 @@ public class OttConfig { //TODO need to review config options, some are very unn
         RECYCLING = new Recycling(builder);
         UNLOCKED_TYPING = new UnlockedTyping(builder);
         TOASTS = new Toasts(builder);
+        NEAT = new Neat(builder);
 
         builder.pop();
         SPEC = builder.build();
@@ -1003,6 +1006,118 @@ public class OttConfig { //TODO need to review config options, some are very unn
                     .comment("Show formatting code examples overlay when editing books or signs.")
                     .translation("ott.configuration.unlockedTyping.displayFormattingExamples")
                     .define("displayFormattingExamples", true);
+            builder.pop();
+        }
+    }
+
+    public static class Neat {
+        public enum NameTagRenderBehavior { ALWAYS, NEVER, WHEN_NO_HEALTHBAR }
+
+        public final ModConfigSpec.IntValue MAX_DISTANCE;
+        public final ModConfigSpec.IntValue MAX_DISTANCE_WITHOUT_LOS;
+        public final ModConfigSpec.BooleanValue RENDER_IN_F1;
+        public final ModConfigSpec.ConfigValue<Double> HEIGHT_ABOVE;
+        public final ModConfigSpec.BooleanValue DRAW_BACKGROUND;
+        public final ModConfigSpec.IntValue BACKGROUND_PADDING;
+        public final ModConfigSpec.IntValue BACKGROUND_HEIGHT;
+        public final ModConfigSpec.IntValue BAR_HEIGHT;
+        public final ModConfigSpec.IntValue PLATE_SIZE;
+        public final ModConfigSpec.IntValue PLATE_SIZE_BOSS;
+        public final ModConfigSpec.BooleanValue SHOW_ATTRIBUTES;
+        public final ModConfigSpec.BooleanValue SHOW_ARMOR;
+        public final ModConfigSpec.BooleanValue GROUP_ARMOR;
+        public final ModConfigSpec.BooleanValue COLOR_BY_TYPE;
+        public final ModConfigSpec.ConfigValue<String> TEXT_COLOR;
+        public final ModConfigSpec.IntValue HP_TEXT_HEIGHT;
+        public final ModConfigSpec.BooleanValue SHOW_MAX_HP;
+        public final ModConfigSpec.BooleanValue SHOW_CURRENT_HP;
+        public final ModConfigSpec.BooleanValue SHOW_PERCENTAGE;
+        public final ModConfigSpec.BooleanValue SHOW_ON_PASSIVE;
+        public final ModConfigSpec.BooleanValue SHOW_ON_HOSTILE;
+        public final ModConfigSpec.BooleanValue SHOW_ON_PLAYERS;
+        public final ModConfigSpec.BooleanValue SHOW_ON_BOSSES;
+        public final ModConfigSpec.BooleanValue SHOW_ONLY_FOCUSED;
+        public final ModConfigSpec.BooleanValue SHOW_FULL_HEALTH;
+        public final ModConfigSpec.BooleanValue ENABLE_DEBUG_INFO;
+        public final ModConfigSpec.BooleanValue SHOW_ENTITY_NAME;
+        public final ModConfigSpec.EnumValue<NameTagRenderBehavior> NAME_TAG_RENDER_BEHAVIOR;
+        public final ModConfigSpec.ConfigValue<Double> ICON_OFFSET_X;
+        public final ModConfigSpec.ConfigValue<Double> ICON_OFFSET_Y;
+        public final ModConfigSpec.ConfigValue<String> DECIMAL_FORMAT;
+        public final ModConfigSpec.ConfigValue<List<? extends String>> BLACKLIST;
+
+        public static final List<String> DEFAULT_DISABLED = List.of(
+                "minecraft:shulker", "minecraft:armor_stand", "minecraft:cod",
+                "minecraft:salmon", "minecraft:pufferfish", "minecraft:tropical_fish", "minecraft:tadpole");
+
+        public Neat(ModConfigSpec.Builder builder) {
+            builder.push("neat");
+            MAX_DISTANCE = builder.comment("Maximum distance in blocks at which health bars should render.")
+                    .translation("ott.configuration.neat.maxDistance").defineInRange("maxDistance", 24, 1, 256);
+            MAX_DISTANCE_WITHOUT_LOS = builder.comment("Maximum distance without line of sight.")
+                    .translation("ott.configuration.neat.maxDistanceWithoutLos").defineInRange("maxDistanceWithoutLos", 8, 1, 256);
+            RENDER_IN_F1 = builder.comment("Whether health bars should render when the HUD is disabled with F1.")
+                    .translation("ott.configuration.neat.renderInF1").define("renderInF1", false);
+            HEIGHT_ABOVE = builder.comment("How far above the mob the health bars should render.")
+                    .translation("ott.configuration.neat.heightAbove").define("heightAbove", 0.3);
+            DRAW_BACKGROUND = builder.comment("Whether the gray background plate should be drawn.")
+                    .translation("ott.configuration.neat.drawBackground").define("drawBackground", true);
+            BACKGROUND_PADDING = builder.comment("Extra padding around the background plate.")
+                    .translation("ott.configuration.neat.backgroundPadding").defineInRange("backgroundPadding", 2, 0, 16);
+            BACKGROUND_HEIGHT = builder.comment("Height of the background plate.")
+                    .translation("ott.configuration.neat.backgroundHeight").defineInRange("backgroundHeight", 6, 1, 32);
+            BAR_HEIGHT = builder.comment("Height of the health bar.")
+                    .translation("ott.configuration.neat.barHeight").defineInRange("barHeight", 4, 1, 32);
+            PLATE_SIZE = builder.comment("Width of the health bar plate.")
+                    .translation("ott.configuration.neat.plateSize").defineInRange("plateSize", 25, 1, 256);
+            PLATE_SIZE_BOSS = builder.comment("Plate size for bosses.")
+                    .translation("ott.configuration.neat.plateSizeBoss").defineInRange("plateSizeBoss", 50, 1, 256);
+            SHOW_ATTRIBUTES = builder.comment("Show mob attributes such as arthropod or undead.")
+                    .translation("ott.configuration.neat.showAttributes").define("showAttributes", true);
+            SHOW_ARMOR = builder.comment("Show armor points.")
+                    .translation("ott.configuration.neat.showArmor").define("showArmor", true);
+            GROUP_ARMOR = builder.comment("Group 5 iron icons into 1 diamond icon.")
+                    .translation("ott.configuration.neat.groupArmor").define("groupArmor", true);
+            COLOR_BY_TYPE = builder.comment("Color health bar by mob type instead of health percentage.")
+                    .translation("ott.configuration.neat.colorByType").define("colorByType", false);
+            TEXT_COLOR = builder.comment("Text color in hex code format.")
+                    .translation("ott.configuration.neat.textColor").define("textColor", "FFFFFF");
+            HP_TEXT_HEIGHT = builder.comment("Height of the text on the health bar.")
+                    .translation("ott.configuration.neat.hpTextHeight").defineInRange("hpTextHeight", 14, 0, 64);
+            SHOW_MAX_HP = builder.comment("Show the maximum health of the mob.")
+                    .translation("ott.configuration.neat.showMaxHp").define("showMaxHp", true);
+            SHOW_CURRENT_HP = builder.comment("Show the current health of the mob.")
+                    .translation("ott.configuration.neat.showCurrentHp").define("showCurrentHp", true);
+            SHOW_PERCENTAGE = builder.comment("Show the health percentage of the mob.")
+                    .translation("ott.configuration.neat.showPercentage").define("showPercentage", true);
+            SHOW_ON_PASSIVE = builder.comment("Show bars on passive mobs.")
+                    .translation("ott.configuration.neat.showOnPassive").define("showOnPassive", true);
+            SHOW_ON_HOSTILE = builder.comment("Show bars on hostile mobs (not bosses).")
+                    .translation("ott.configuration.neat.showOnHostile").define("showOnHostile", true);
+            SHOW_ON_PLAYERS = builder.comment("Show bars on players.")
+                    .translation("ott.configuration.neat.showOnPlayers").define("showOnPlayers", true);
+            SHOW_ON_BOSSES = builder.comment("Show bars on bosses.")
+                    .translation("ott.configuration.neat.showOnBosses").define("showOnBosses", true);
+            SHOW_ONLY_FOCUSED = builder.comment("Only show bars for mobs you are targeting.")
+                    .translation("ott.configuration.neat.showOnlyFocused").define("showOnlyFocused", false);
+            SHOW_FULL_HEALTH = builder.comment("Show bars for mobs at full health.")
+                    .translation("ott.configuration.neat.showFullHealth").define("showFullHealth", true);
+            ENABLE_DEBUG_INFO = builder.comment("Show extra debug info when F3 is enabled.")
+                    .translation("ott.configuration.neat.enableDebugInfo").define("enableDebugInfo", true);
+            SHOW_ENTITY_NAME = builder.comment("Show entity name on the bar.")
+                    .translation("ott.configuration.neat.showEntityName").define("showEntityName", true);
+            NAME_TAG_RENDER_BEHAVIOR = builder.comment("When to show the vanilla name tag.")
+                    .translation("ott.configuration.neat.nameTagRenderBehavior")
+                    .defineEnum("nameTagRenderBehavior", NameTagRenderBehavior.WHEN_NO_HEALTHBAR, NameTagRenderBehavior.values());
+            ICON_OFFSET_X = builder.comment("Offsets health bar icons on the X axis.")
+                    .translation("ott.configuration.neat.iconOffsetX").define("iconOffsetX", 0.0);
+            ICON_OFFSET_Y = builder.comment("Offsets health bar icons on the Y axis.")
+                    .translation("ott.configuration.neat.iconOffsetY").define("iconOffsetY", 0.0);
+            DECIMAL_FORMAT = builder.comment("Decimal format for HP values.")
+                    .translation("ott.configuration.neat.decimalFormat").define("decimalFormat", "#.##");
+            BLACKLIST = builder.comment("Entity IDs to exclude from health bar rendering.")
+                    .translation("ott.configuration.neat.blacklist")
+                    .defineList("blacklist", DEFAULT_DISABLED, () -> "minecraft:example", o -> o instanceof String);
             builder.pop();
         }
     }

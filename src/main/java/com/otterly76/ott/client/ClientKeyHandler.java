@@ -3,6 +3,7 @@ package com.otterly76.ott.client;
 import com.mojang.blaze3d.platform.InputConstants;
 import com.otterly76.ott.Constants;
 import com.otterly76.ott.client.toast.BetterToastComponent;
+import com.otterly76.ott.config.OttConfig;
 import com.otterly76.ott.network.ServerboundSetHomePacket;
 import com.otterly76.ott.network.ServerboundTeleportHomePacket;
 import net.minecraft.client.KeyMapping;
@@ -41,11 +42,19 @@ public class ClientKeyHandler {
             CATEGORY
     );
 
+    public static final KeyMapping TOGGLE_NEAT = new KeyMapping(
+            "key." + Constants.MOD_ID + ".toggle_neat",
+            InputConstants.Type.KEYSYM,
+            GLFW.GLFW_KEY_UNKNOWN,
+            CATEGORY
+    );
+
     @SubscribeEvent
     public static void registerKeys(RegisterKeyMappingsEvent event) {
         event.register(TELEPORT_HOME);
         event.register(SET_HOME);
         event.register(CLEAR_TOASTS);
+        event.register(TOGGLE_NEAT);
     }
 
     @SubscribeEvent
@@ -62,6 +71,10 @@ public class ClientKeyHandler {
         }
 
         BetterToastComponent.tracker.removeIf(BetterToastComponent.BetterToastInstance::tick);
+
+        while (TOGGLE_NEAT.consumeClick()) {
+            OttConfig.NEAT_DRAW = !OttConfig.NEAT_DRAW;
+        }
     }
 
     @SubscribeEvent

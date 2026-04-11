@@ -180,7 +180,8 @@
     "client.BookEditLineInfoAccessor",
     "client.UnlockedTypingScreenMixin",
     "client.UnlockedTypingBookEditMixin",
-    "client.UnlockedTypingSignEditMixin"
+    "client.UnlockedTypingSignEditMixin",
+    "client.AccessorRenderTypeMixin"
   ],
   "injectors": {
     "defaultRequire": 1
