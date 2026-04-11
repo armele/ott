@@ -3,6 +3,7 @@ import com.otterly76.ott.client.render.entity.*;
 import com.otterly76.ott.block.ModBlocks;
 import com.otterly76.ott.client.NutritionHudOverlay;
 import com.otterly76.ott.client.gui.RecyclingScreen;
+import com.otterly76.ott.client.toast.BetterToastComponent;
 import com.otterly76.ott.client.gui.TrashScreen;
 import com.otterly76.ott.client.model.BookshelfModelProxy;
 import com.otterly76.ott.client.render.PrismaticColorHandler;
@@ -91,6 +92,7 @@ public class ClientModEvents {
         modBus.addListener(ClientModEvents::onRegisterGeometryLoaders);
         modBus.addListener(ClientModEvents::onRegisterReloadListeners);
         modBus.addListener(ClientModEvents::onRegisterTooltipComponents);
+        modBus.addListener(BetterToastComponent::onConfigReload);
     }
 
     public static void onRegisterReloadListeners(RegisterClientReloadListenersEvent event) {
@@ -635,6 +637,9 @@ public class ClientModEvents {
 
     public static void onClientSetup(FMLClientSetupEvent event) {
         ItemPropertyRegistrar.bootstrap();
+        Minecraft.getInstance().toast = new BetterToastComponent();
+        BetterToastComponent.handleToastReloc();
+        BetterToastComponent.handleBlockedClasses();
     }
 
     @SubscribeEvent

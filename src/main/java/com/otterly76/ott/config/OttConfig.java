@@ -35,6 +35,7 @@ public class OttConfig { //TODO need to review config options, some are very unn
     public static final Elevator ELEVATOR;
     public static final Recycling RECYCLING;
     public static final UnlockedTyping UNLOCKED_TYPING;
+    public static final Toasts TOASTS;
 
     static {
         ModConfigSpec.Builder builder = new ModConfigSpec.Builder();
@@ -59,6 +60,7 @@ public class OttConfig { //TODO need to review config options, some are very unn
         ELEVATOR = new Elevator(builder);
         RECYCLING = new Recycling(builder);
         UNLOCKED_TYPING = new UnlockedTyping(builder);
+        TOASTS = new Toasts(builder);
 
         builder.pop();
         SPEC = builder.build();
@@ -940,6 +942,55 @@ public class OttConfig { //TODO need to review config options, some are very unn
             } catch (Exception e) {
                 return Optional.empty();
             }
+        }
+    }
+
+    public static class Toasts {
+        public final ModConfigSpec.BooleanValue BLOCK_ADVANCEMENTS;
+        public final ModConfigSpec.BooleanValue BLOCK_RECIPES;
+        public final ModConfigSpec.BooleanValue BLOCK_SYSTEM;
+        public final ModConfigSpec.BooleanValue BLOCK_TUTORIAL;
+        public final ModConfigSpec.BooleanValue BLOCK_GLOBAL_VANILLA;
+        public final ModConfigSpec.BooleanValue BLOCK_GLOBAL_MODDED;
+        public final ModConfigSpec.BooleanValue BLOCK_ALL;
+        public final ModConfigSpec.ConfigValue<List<? extends String>> BLOCKED_CLASSES;
+        public final ModConfigSpec.IntValue FORCE_TIME;
+        public final ModConfigSpec.BooleanValue TRANSLUCENT;
+        public final ModConfigSpec.BooleanValue TRANSPARENT;
+        public final ModConfigSpec.IntValue COUNT;
+        public final ModConfigSpec.IntValue OFFSET_X;
+        public final ModConfigSpec.IntValue OFFSET_Y;
+        public final ModConfigSpec.BooleanValue NO_SLIDE;
+        public final ModConfigSpec.BooleanValue START_LEFT;
+        public final ModConfigSpec.BooleanValue TOP_DOWN;
+        public final ModConfigSpec.BooleanValue PRINT_CLASSES;
+
+        public Toasts(ModConfigSpec.Builder builder) {
+            builder.push("toasts");
+            builder.push("blocking");
+            BLOCK_ADVANCEMENTS = builder.comment("Block advancement toasts.").translation("ott.configuration.toasts.blockAdvancements").define("blockAdvancements", true);
+            BLOCK_RECIPES = builder.comment("Block recipe unlock toasts.").translation("ott.configuration.toasts.blockRecipes").define("blockRecipes", true);
+            BLOCK_SYSTEM = builder.comment("Block system toasts.").translation("ott.configuration.toasts.blockSystem").define("blockSystem", false);
+            BLOCK_TUTORIAL = builder.comment("Block tutorial toasts.").translation("ott.configuration.toasts.blockTutorial").define("blockTutorial", true);
+            BLOCK_GLOBAL_VANILLA = builder.comment("Block all vanilla toasts.").translation("ott.configuration.toasts.blockGlobalVanilla").define("blockGlobalVanilla", false);
+            BLOCK_GLOBAL_MODDED = builder.comment("Block all non-vanilla toasts.").translation("ott.configuration.toasts.blockGlobalModded").define("blockGlobalModded", false);
+            BLOCK_ALL = builder.comment("Block all toasts.").translation("ott.configuration.toasts.blockAll").define("blockAll", false);
+            BLOCKED_CLASSES = builder.comment("Fully-qualified class names of toast types to block.").translation("ott.configuration.toasts.blockedClasses")
+                    .defineList("blockedClasses", List.of(), () -> "some.package.ClassName", o -> o instanceof String);
+            builder.pop();
+            builder.push("visual");
+            FORCE_TIME = builder.comment("Minimum ticks a toast stays on screen (0 = default behavior).").translation("ott.configuration.toasts.forceTime").defineInRange("forceTime", 0, 0, 4000);
+            TRANSLUCENT = builder.comment("Make toast backgrounds semi-transparent.").translation("ott.configuration.toasts.translucent").define("translucent", true);
+            TRANSPARENT = builder.comment("Make toast backgrounds fully transparent (overrides translucent).").translation("ott.configuration.toasts.transparent").define("transparent", false);
+            COUNT = builder.comment("Maximum number of toasts shown at once.").translation("ott.configuration.toasts.count").defineInRange("count", 3, 1, 7);
+            OFFSET_X = builder.comment("Horizontal position offset for toasts.").translation("ott.configuration.toasts.offsetX").defineInRange("offsetX", 0, -8192, 8192);
+            OFFSET_Y = builder.comment("Vertical position offset for toasts.").translation("ott.configuration.toasts.offsetY").defineInRange("offsetY", 0, -8192, 8192);
+            NO_SLIDE = builder.comment("Disable toast slide-in animation.").translation("ott.configuration.toasts.noSlide").define("noSlide", false);
+            START_LEFT = builder.comment("Show toasts on the left side of the screen.").translation("ott.configuration.toasts.startLeft").define("startLeft", false);
+            TOP_DOWN = builder.comment("Toasts enter from the top of the screen instead of the side.").translation("ott.configuration.toasts.topDown").define("topDown", false);
+            builder.pop();
+            PRINT_CLASSES = builder.comment("Log toast class names to console when they are shown (debug).").translation("ott.configuration.toasts.printClasses").define("printClasses", false);
+            builder.pop();
         }
     }
 

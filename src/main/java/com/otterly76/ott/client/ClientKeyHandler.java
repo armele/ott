@@ -2,6 +2,7 @@ package com.otterly76.ott.client;
 
 import com.mojang.blaze3d.platform.InputConstants;
 import com.otterly76.ott.Constants;
+import com.otterly76.ott.client.toast.BetterToastComponent;
 import com.otterly76.ott.network.ServerboundSetHomePacket;
 import com.otterly76.ott.network.ServerboundTeleportHomePacket;
 import net.minecraft.client.KeyMapping;
@@ -10,6 +11,7 @@ import net.neoforged.api.distmarker.Dist;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.client.event.ClientTickEvent;
+import net.neoforged.neoforge.client.event.InputEvent;
 import net.neoforged.neoforge.client.event.RegisterKeyMappingsEvent;
 import net.neoforged.neoforge.network.PacketDistributor;
 import org.lwjgl.glfw.GLFW;
@@ -32,10 +34,18 @@ public class ClientKeyHandler {
             CATEGORY
     );
 
+    public static final KeyMapping CLEAR_TOASTS = new KeyMapping(
+            "key." + Constants.MOD_ID + ".clear_toasts",
+            InputConstants.Type.KEYSYM,
+            GLFW.GLFW_KEY_UNKNOWN,
+            CATEGORY
+    );
+
     @SubscribeEvent
     public static void registerKeys(RegisterKeyMappingsEvent event) {
         event.register(TELEPORT_HOME);
         event.register(SET_HOME);
+        event.register(CLEAR_TOASTS);
     }
 
     @SubscribeEvent
@@ -49,6 +59,15 @@ public class ClientKeyHandler {
 
         while (SET_HOME.consumeClick()) {
             PacketDistributor.sendToServer(new ServerboundSetHomePacket("home"));
+        }
+
+        BetterToastComponent.tracker.removeIf(BetterToastComponent.BetterToastInstance::tick);
+    }
+
+    @SubscribeEvent
+    public static void onKey(InputEvent.Key event) {
+        if (CLEAR_TOASTS.isDown()) {
+            Minecraft.getInstance().getToasts().clear();
         }
     }
 }

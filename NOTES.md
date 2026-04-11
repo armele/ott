@@ -9,7 +9,6 @@ Next:
 Crafting Tweaks
 Mouse Tweaks
 Polymorph
-Toast Control
 WITS
 
 Mods to Implement:
