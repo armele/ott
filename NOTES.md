@@ -9,7 +9,6 @@ Next:
 Crafting Tweaks
 Mouse Tweaks
 Polymorph
-WITS
 
 Mods to Implement:
 =====
