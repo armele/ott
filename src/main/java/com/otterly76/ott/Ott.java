@@ -25,6 +25,7 @@ import com.ldtteam.structurize.storage.ISurvivalBlueprintHandler;
 import com.ldtteam.structurize.storage.SurvivalBlueprintHandlers;
 import com.otterly76.ott.item.ModItems;
 import com.otterly76.ott.loot.ModLootModifiers;
+import com.otterly76.ott.mixin.access.RangedAttributeAccessor;
 import com.otterly76.ott.mixin.common.AccessorItem;
 import com.otterly76.ott.network.NetworkHandler;
 import com.otterly76.ott.particle.ModParticle;
@@ -72,6 +73,7 @@ import com.otterly76.ott.worldgen.structure.DelegatingStructure;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Registry;
 import net.minecraft.core.RegistryAccess;
+import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.loot.LootTableProvider;
@@ -89,6 +91,7 @@ import net.minecraft.tags.TagKey;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
+import net.minecraft.world.entity.ai.attributes.RangedAttribute;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.levelgen.DensityFunction;
@@ -184,6 +187,25 @@ public class Ott {
     private void onLoadComplete(FMLLoadCompleteEvent event) {
         event.enqueueWork(() -> {
             LoadCompleteCallback.fire();
+
+            // Expand attribute caps (port of AttributeFix by Darkhax)
+            for (net.minecraft.world.entity.ai.attributes.Attribute attr : BuiltInRegistries.ATTRIBUTE) {
+                if (attr instanceof RangedAttribute ra) {
+                    ResourceLocation id = BuiltInRegistries.ATTRIBUTE.getKey(ra);
+                    if (id == null) continue;
+                    double newMax = switch (id.toString()) {
+                        case "minecraft:generic.max_health",
+                             "minecraft:generic.armor",
+                             "minecraft:generic.armor_toughness",
+                             "minecraft:generic.attack_damage",
+                             "minecraft:generic.attack_knockback" -> 1_000_000.0;
+                        default -> Double.NaN;
+                    };
+                    if (!Double.isNaN(newMax) && newMax != ra.getMaxValue()) {
+                        ((RangedAttributeAccessor) ra).ott$setMaxValue(newMax);
+                    }
+                }
+            }
 
             // Wrap MineColonies survival handler to enable blueprint mode in schema dimension
             ISurvivalBlueprintHandler original = SurvivalBlueprintHandlers.getHandler("minecolonies");

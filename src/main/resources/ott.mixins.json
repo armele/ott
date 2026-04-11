@@ -16,6 +16,7 @@
     "access.SoundManagerAccessor",
     "access.TextureSlotAccessor",
     "access.TreeDecoratorTypeAccessor",
+    "access.RangedAttributeAccessor",
     "access.WolfAccessor",
     "common.AbstractContainerMenuInvoker",
     "common.AbstractSkeletonMixin",
