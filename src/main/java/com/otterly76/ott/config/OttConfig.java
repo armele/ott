@@ -1,5 +1,8 @@
 package com.otterly76.ott.config;
 
+import com.otterly76.ott.client.mousetweaks.ScrollItemScaling;
+import com.otterly76.ott.client.mousetweaks.WheelScrollDirection;
+import com.otterly76.ott.client.mousetweaks.WheelSearchOrder;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceLocation;
@@ -38,6 +41,7 @@ public class OttConfig { //TODO need to review config options, some are very unn
     public static final Toasts TOASTS;
     public static final Neat NEAT;
     public static boolean NEAT_DRAW = true;
+    public static final MouseTweaks MOUSE_TWEAKS;
 
     static {
         ModConfigSpec.Builder builder = new ModConfigSpec.Builder();
@@ -64,6 +68,7 @@ public class OttConfig { //TODO need to review config options, some are very unn
         UNLOCKED_TYPING = new UnlockedTyping(builder);
         TOASTS = new Toasts(builder);
         NEAT = new Neat(builder);
+        MOUSE_TWEAKS = new MouseTweaks(builder);
 
         builder.pop();
         SPEC = builder.build();
@@ -1118,6 +1123,38 @@ public class OttConfig { //TODO need to review config options, some are very unn
             BLACKLIST = builder.comment("Entity IDs to exclude from health bar rendering.")
                     .translation("ott.configuration.neat.blacklist")
                     .defineList("blacklist", DEFAULT_DISABLED, () -> "minecraft:example", o -> o instanceof String);
+            builder.pop();
+        }
+    }
+
+    public static class MouseTweaks {
+        public final ModConfigSpec.BooleanValue RMB_TWEAK;
+        public final ModConfigSpec.BooleanValue LMB_TWEAK_WITH_ITEM;
+        public final ModConfigSpec.BooleanValue LMB_TWEAK_WITHOUT_ITEM;
+        public final ModConfigSpec.BooleanValue WHEEL_TWEAK;
+        public final ModConfigSpec.EnumValue<WheelSearchOrder> WHEEL_SEARCH_ORDER;
+        public final ModConfigSpec.EnumValue<WheelScrollDirection> WHEEL_SCROLL_DIRECTION;
+        public final ModConfigSpec.EnumValue<ScrollItemScaling> SCROLL_ITEM_SCALING;
+
+        public MouseTweaks(ModConfigSpec.Builder builder) {
+            builder.push("mouseTweaks");
+            RMB_TWEAK = builder.comment("Right-click drag to distribute items one at a time.")
+                    .translation("ott.configuration.mouseTweaks.rmbTweak").define("rmbTweak", true);
+            LMB_TWEAK_WITH_ITEM = builder.comment("Left-click drag with an item to fill matching stacks.")
+                    .translation("ott.configuration.mouseTweaks.lmbTweakWithItem").define("lmbTweakWithItem", true);
+            LMB_TWEAK_WITHOUT_ITEM = builder.comment("Shift+left-click drag without an item to quick-move each slot.")
+                    .translation("ott.configuration.mouseTweaks.lmbTweakWithoutItem").define("lmbTweakWithoutItem", true);
+            WHEEL_TWEAK = builder.comment("Scroll the mouse wheel over slots to move items between inventories.")
+                    .translation("ott.configuration.mouseTweaks.wheelTweak").define("wheelTweak", true);
+            WHEEL_SEARCH_ORDER = builder.comment("Order in which slots are searched when scrolling items.")
+                    .translation("ott.configuration.mouseTweaks.wheelSearchOrder")
+                    .defineEnum("wheelSearchOrder", WheelSearchOrder.LAST_TO_FIRST, WheelSearchOrder.values());
+            WHEEL_SCROLL_DIRECTION = builder.comment("Direction of the mouse wheel scroll.")
+                    .translation("ott.configuration.mouseTweaks.wheelScrollDirection")
+                    .defineEnum("wheelScrollDirection", WheelScrollDirection.NORMAL, WheelScrollDirection.values());
+            SCROLL_ITEM_SCALING = builder.comment("How scroll delta is scaled: PROPORTIONAL uses the raw delta, ALWAYS_ONE always moves exactly one item per tick.")
+                    .translation("ott.configuration.mouseTweaks.scrollItemScaling")
+                    .defineEnum("scrollItemScaling", ScrollItemScaling.PROPORTIONAL, ScrollItemScaling.values());
             builder.pop();
         }
     }

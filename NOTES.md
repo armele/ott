@@ -7,7 +7,6 @@ add new animated seaglass, use cloudfx?
 Next:
 =====
 Crafting Tweaks
-Mouse Tweaks
 Polymorph
 
 Mods to Implement:
