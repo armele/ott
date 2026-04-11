@@ -114,6 +114,8 @@
     "common.mnbs.MNBSPLMixin",
     "common.RuinedPortalStructureMixin",
     "common.worldgen.structure.NetherFossilPieceMixin",
+    "common.ChatFormattingMixin",
+    "common.StringUtilMixin",
     "server.DedicatedServerMixin",
     "server.VaultBlockEntityMixin",
     "server.VaultServerDataAccessor",
@@ -173,7 +175,12 @@
     "client.InputConstantsKeyAccessor",
     "client.KeyBindsScreenAccessor",
     "client.KeyMappingAccessor",
-    "client.OptionsSubScreenAccessor"
+    "client.OptionsSubScreenAccessor",
+    "client.BookEditDisplayCacheAccessor",
+    "client.BookEditLineInfoAccessor",
+    "client.UnlockedTypingScreenMixin",
+    "client.UnlockedTypingBookEditMixin",
+    "client.UnlockedTypingSignEditMixin"
   ],
   "injectors": {
     "defaultRequire": 1

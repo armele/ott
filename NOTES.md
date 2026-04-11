@@ -9,8 +9,8 @@ Next:
 Crafting Tweaks
 Mouse Tweaks
 Polymorph
-Searchables
 Toast Control
+WITS
 
 Mods to Implement:
 =====
@@ -26,7 +26,6 @@ No Mob Farms
 Project: Vibrant Journeys
 Redstone Pen
 Skin Layer 3D
-WITS
 
 Crate Delight
 Storage Delight

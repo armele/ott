@@ -34,6 +34,7 @@ public class OttConfig { //TODO need to review config options, some are very unn
     public static final FriendlyFire FRIENDLY_FIRE;
     public static final Elevator ELEVATOR;
     public static final Recycling RECYCLING;
+    public static final UnlockedTyping UNLOCKED_TYPING;
 
     static {
         ModConfigSpec.Builder builder = new ModConfigSpec.Builder();
@@ -57,6 +58,7 @@ public class OttConfig { //TODO need to review config options, some are very unn
         FRIENDLY_FIRE = new FriendlyFire(builder);
         ELEVATOR = new Elevator(builder);
         RECYCLING = new Recycling(builder);
+        UNLOCKED_TYPING = new UnlockedTyping(builder);
 
         builder.pop();
         SPEC = builder.build();
@@ -938,6 +940,19 @@ public class OttConfig { //TODO need to review config options, some are very unn
             } catch (Exception e) {
                 return Optional.empty();
             }
+        }
+    }
+
+    public static class UnlockedTyping {
+        public final ModConfigSpec.BooleanValue DISPLAY_FORMATTING_EXAMPLES;
+
+        public UnlockedTyping(ModConfigSpec.Builder builder) {
+            builder.push("unlockedTyping");
+            DISPLAY_FORMATTING_EXAMPLES = builder
+                    .comment("Show formatting code examples overlay when editing books or signs.")
+                    .translation("ott.configuration.unlockedTyping.displayFormattingExamples")
+                    .define("displayFormattingExamples", true);
+            builder.pop();
         }
     }
 }

@@ -2173,6 +2173,9 @@
   "screen.ott.recycling.enchanted_item": "Enchanted items cannot be recycled",
   "screen.ott.recycling.blank": "",
 
+  "screen.ott.unlockedTyping.preformattedTextTitle": "Original Text with '§':",
+  "screen.ott.unlockedTyping.formatCodesTitle": "Formatting Codes",
+
   "options.search": "Search...",
   "options.showAll": "Show All",
   "options.showConflicts": "Show Conflicts",
