@@ -1,6 +1,8 @@
 package com.otterly76.ott.network;
 
 import com.otterly76.ott.client.gui.RecyclingScreen;
+import com.otterly76.ott.client.polymorph.PolymorphCraftingEvents;
+import com.otterly76.ott.network.polymorph.ClientboundCraftingRecipesPacket;
 import com.otterly76.ott.network.recycling.ClientboundRecipeListPacket;
 import com.otterly76.ott.network.recycling.ClientboundRecipeSelectRequestPacket;
 import net.minecraft.client.Minecraft;
@@ -45,5 +47,9 @@ public class ClientPayloadHandler {
         if (screen instanceof RecyclingScreen recyclingScreen) {
             recyclingScreen.resubmitSelection();
         }
+    }
+
+    public static void handleCraftingRecipes(final ClientboundCraftingRecipesPacket packet, final IPayloadContext context) {
+        PolymorphCraftingEvents.setRecipesList(packet);
     }
 }

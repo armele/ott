@@ -4,11 +4,6 @@ add new blocks to wandering merchant
 get as much transferred to datageneration as possible
 add new animated seaglass, use cloudfx?
 
-Next:
-=====
-Crafting Tweaks
-Polymorph
-
 Mods to Implement:
 =====
 Aquaculture2

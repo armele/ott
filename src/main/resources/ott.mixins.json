@@ -119,9 +119,11 @@
     "server.DedicatedServerMixin",
     "server.VaultBlockEntityMixin",
     "server.VaultServerDataAccessor",
-    "visuals.AnvilMenuMixin"
+    "visuals.AnvilMenuMixin",
+    "core.PolymorphCraftingMenuMixin"
   ],
   "client": [
+    "client.AbstractContainerScreenAccessor",
     "client.AbstractContainerScreenMixin",
     "client.AnvilScreenAccessor",
     "client.AnvilScreenMixin",

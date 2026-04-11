@@ -2,6 +2,8 @@ package com.otterly76.ott.network;
 
 import com.otterly76.ott.Constants;
 import com.otterly76.ott.network.crafting.*;
+import com.otterly76.ott.network.polymorph.ClientboundCraftingRecipesPacket;
+import com.otterly76.ott.network.polymorph.ServerboundSelectCraftingRecipePacket;
 import com.otterly76.ott.network.elevator.ElevatorRemoveCamoPacket;
 import com.otterly76.ott.network.elevator.ElevatorSetArrowPacket;
 import com.otterly76.ott.network.elevator.ElevatorSetDirectionalPacket;
@@ -171,6 +173,18 @@ public class NetworkHandler {
                 ClientboundRecipeSelectRequestPacket.TYPE,
                 ClientboundRecipeSelectRequestPacket.STREAM_CODEC,
                 (packet, context) -> context.enqueueWork(() -> ClientPayloadHandler.handleRecipeSelectRequest(packet, context))
+        );
+
+        // Polymorph (crafting recipe conflict resolution) packets
+        registrar.playToClient(
+                ClientboundCraftingRecipesPacket.TYPE,
+                ClientboundCraftingRecipesPacket.STREAM_CODEC,
+                (packet, context) -> context.enqueueWork(() -> ClientPayloadHandler.handleCraftingRecipes(packet, context))
+        );
+        registrar.playToServer(
+                ServerboundSelectCraftingRecipePacket.TYPE,
+                ServerboundSelectCraftingRecipePacket.STREAM_CODEC,
+                ServerboundSelectCraftingRecipePacket::handle
         );
     }
 }

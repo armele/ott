@@ -3,6 +3,7 @@ package com.otterly76.ott.afk;
 import com.otterly76.ott.Constants;
 import com.otterly76.ott.config.OttConfig;
 import com.otterly76.ott.network.S2CSyncAFKStatusPacket;
+import com.otterly76.ott.polymorph.CraftingRecipeManager;
 import com.otterly76.ott.registry.ModAttachmentTypes;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
@@ -115,5 +116,10 @@ public class AFKServerEvents {
                 PacketDistributor.sendToAllPlayers(new S2CSyncAFKStatusPacket(player.getUUID(), true));
             }
         }
+    }
+
+    @SubscribeEvent
+    public static void onPlayerLogout(PlayerEvent.PlayerLoggedOutEvent event) {
+        CraftingRecipeManager.clearPlayer(event.getEntity().getUUID());
     }
 }
