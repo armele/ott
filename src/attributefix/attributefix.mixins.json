@@ -1,1 +1,0 @@
-{"required":true,"minVersion":"0.8","package":"net.darkhax.attributefix.common.mixin","refmap":"attributefix.refmap.json","compatibilityLevel":"JAVA_18","mixins":["AccessorRangedAttribute"],"client":[],"server":[],"injectors":{"defaultRequire":1}}
