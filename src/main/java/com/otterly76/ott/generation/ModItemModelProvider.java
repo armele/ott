@@ -116,7 +116,7 @@ public class ModItemModelProvider extends ItemModelProvider {
             withExistingParent(set.bed().getId().getPath(), mcLoc("item/template_bed"));
         });
 
-        generatedItemFromTexture(ModItems.UNFIRED_CLAY_ROOF_TILE.getId().getPath(), modLoc("block/clay_tile"));
+        generatedItemFromTexture(ModItems.UNFIRED_CLAY_ROOF_TILE.getId().getPath(), modLoc("block/base/clay_tile"));
         generatedItemFromTexture(ModItems.PLASTER_BUCKET.getId().getPath(), modLoc("item/plaster_bucket"));
 
         // Clay tile items — 32 tinted colors
@@ -306,6 +306,12 @@ public class ModItemModelProvider extends ItemModelProvider {
         
         parentItemToBlockModel(ModItems.SILK_COCOON.getId().getPath(), "block/silk_cocoon");
         parentItemToBlockModel(ModItems.GLASS_JAR.getId().getPath(), "block/glass_jar");
+
+        // Mosaic recess blocks — manual blockstates, item models generated here
+        parentItemToBlockModel("water_mosaic_recess",  "block/water_mosaic/water_mosaic_recess");
+        parentItemToBlockModel("earth_mosaic_recess",  "block/earth_mosaic/earth_mosaic_recess");
+        parentItemToBlockModel("fire_mosaic_recess",   "block/fire_mosaic/fire_mosaic_recess");
+        parentItemToBlockModel("spirit_mosaic_recess", "block/spirit_mosaic/spirit_mosaic_recess");
         getBuilder(ModItems.BUG_NET.getId().getPath()).parent(new ModelFile.UncheckedModelFile(modLoc("item/bug_net_model")));
         getBuilder(ModItems.FIREFLY_IN_A_JAR.getId().getPath()).parent(new ModelFile.UncheckedModelFile(modLoc("item/firefly_jar_item_base")));
         getBuilder(ModItems.FIREFLIES_IN_A_JAR.getId().getPath()).parent(new ModelFile.UncheckedModelFile(modLoc("item/firefly_jar_item_base")));

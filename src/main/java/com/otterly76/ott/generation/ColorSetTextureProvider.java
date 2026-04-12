@@ -96,12 +96,12 @@ public class ColorSetTextureProvider implements DataProvider {
 
         // Clay tile items — all 32 colors
         for (ModPatterns.ColorInfo color : ModPatterns.ALL_COLORS) {
-            processOttBlock(cache, mainPath.resolve("textures/item/color_set"), color.name(), color.color(), "clay_tile", "clay_tile", 1.0f, 0.0f);
+            processOttBlock(cache, mainPath.resolve("textures/item/color_set"), color.name(), color.color(), "base/clay_tile", "clay_tile", 1.0f, 0.0f);
         }
 
         // Futon blocks — all 32 colors (masked: only fabric areas tinted)
         for (ModPatterns.ColorInfo color : ModPatterns.ALL_COLORS) {
-            processMaskedOttBlock(cache, mainPath.resolve("textures/block/color_set"), color.name(), color.color(), "light_gray_futon", "futon/color_mask", "futon", 1.0f, 0.0f);
+            processMaskedOttBlock(cache, mainPath.resolve("textures/block/color_set"), color.name(), color.color(), "base/futon", "futon/color_mask", "futon", 1.0f, 0.0f);
         }
 
         return CompletableFuture.completedFuture(null);

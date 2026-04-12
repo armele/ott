@@ -159,7 +159,7 @@ public class OttBlockStateProvider extends ModBlockStateProvider {
             List<ModelFile> allModels = new ArrayList<>();
             allModels.add(baseModel);
             for (String suffix : extraSuffixes) {
-                ResourceLocation variantTex = modLoc("block/" + pattern + suffix);
+                ResourceLocation variantTex = modLoc("block/base/" + pattern + suffix);
                 allModels.add(models().withExistingParent("block/patterns/" + pattern + "_model" + suffix, mcLoc("block/block"))
                         .texture("particle", variantTex)
                         .texture("all", variantTex)
@@ -989,7 +989,7 @@ public class OttBlockStateProvider extends ModBlockStateProvider {
     }
 
     private void registerElevators() {
-        ResourceLocation elevatorTexture = modLoc("block/elevator");
+        ResourceLocation elevatorTexture = modLoc("block/base/elevator");
 
         // Single shared model with tintindex:0 — all 32 elevators point to this one model.
         ModelFile elevatorModel = models().withExistingParent("block/elevator_model", mcLoc("block/block"))
@@ -1121,7 +1121,7 @@ public class OttBlockStateProvider extends ModBlockStateProvider {
             simpleBlockWithItem(elementalMosaicBlock(element, "pattern"),     models().getExistingFile(modLoc(d + dir + "_pattern")));
             simpleBlockWithItem(elementalMosaicBlock(element, "delicate"),    models().getExistingFile(modLoc(d + dir + "_delicate")));
             simpleBlockWithItem(elementalMosaicBlock(element, "traditional"), models().getExistingFile(modLoc(d + dir + "_traditional")));
-            existingFacingShapeBlock(elementalMosaicBlock(element, "recess"), d + dir + "_recess");
+            // recess: manual blockstate kept — complex geometry needs hand-tuned x/y rotations
         }
 
         // ── Roman fresco ──────────────────────────────────────────────────────

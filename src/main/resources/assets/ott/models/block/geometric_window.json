@@ -1,7 +1,7 @@
 {
 	"textures": {
-		"particle": "ott:block/geometric_window",
-		"texture": "ott:block/geometric_window"
+		"particle": "ott:block/base/geometric_window",
+		"texture": "ott:block/base/geometric_window"
 	},
 	"elements": [
 		{	"from": [ 0, 3, 6 ],

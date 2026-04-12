@@ -93,6 +93,7 @@ public class ClientModEvents {
         modBus.addListener(ClientModEvents::onRegisterReloadListeners);
         modBus.addListener(ClientModEvents::onRegisterTooltipComponents);
         modBus.addListener(BetterToastComponent::onConfigReload);
+        modBus.addListener(ClientModEvents::registerRecipeBookCategories);
     }
 
     public static void onRegisterReloadListeners(RegisterClientReloadListenersEvent event) {
@@ -729,6 +730,12 @@ public class ClientModEvents {
         image.setPixelRGBA(xc - y, yc + x, color);
         image.setPixelRGBA(xc + y, yc - x, color);
         image.setPixelRGBA(xc - y, yc - x, color);
+    }
+
+    public static void registerRecipeBookCategories(net.neoforged.neoforge.client.event.RegisterRecipeBookCategoriesEvent event) {
+        // Map all woodcutting recipes to the STONECUTTER category so the recipe book doesn't warn about unknown categories
+        event.registerRecipeCategoryFinder(com.otterly76.ott.registry.ModRecipeTypes.WOODCUTTING.get(),
+                holder -> net.minecraft.client.RecipeBookCategories.STONECUTTER);
     }
 
     /** Wraps every registered elevator block model with ElevatorBakedModel for camo support. */
