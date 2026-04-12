@@ -687,6 +687,7 @@ public enum OttCreativeCategories {
                 output.accept(ModBlocks.SMITE_LANTERN);
 
                 output.accept(ModBlocks.WEATHERING_STATION);
+                output.accept(ModBlocks.WOODCUTTER);
 
                 output.accept(ModItems.UNFIRED_CLAY_ROOF_TILE.get());
                 output.accept(ModItems.PLASTER_BUCKET.get());

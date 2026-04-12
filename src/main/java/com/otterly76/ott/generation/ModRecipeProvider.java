@@ -10,6 +10,7 @@ import com.otterly76.ott.block.ModBlocks;
 import com.otterly76.ott.item.ModItems;
 import com.otterly76.ott.util.ModTags;
 import com.otterly76.ott.recipe.BundleColoring;
+import com.otterly76.ott.recipe.WoodcuttingRecipe;
 import net.minecraft.advancements.Advancement;
 import net.minecraft.advancements.AdvancementHolder;
 import net.minecraft.advancements.CriteriaTriggers;
@@ -1553,25 +1554,7 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
             stonecutOne(exporter, set.concrete().get(), set.geometricWindow().get(), color + "_geowindow_stonecutting");
         });
 
-        // --- Ott wood sets: planks → planksPlate / planksEdge / beam / pergola / geowindow ---
-        ModBlocks.WOOD_SETS.forEach((name, set) -> {
-            stonecutOne(exporter, set.planks().get(), set.planksPlate().get(),       name + "_planks_plate_stonecutting");
-            stonecutOne(exporter, set.planks().get(), set.planksEdge().get(),        name + "_planks_edge_stonecutting");
-            stonecutOne(exporter, set.planks().get(), set.beam().get(),              name + "_beam_stonecutting");
-            stonecutOne(exporter, set.planks().get(), set.pergola().get(),           name + "_pergola_stonecutting");
-            stonecutOne(exporter, set.planks().get(), set.geometricWindow().get(),   name + "_geowindow_stonecutting");
-        });
-
-        // --- Vanilla structural sets: vanilla planks → planksPlate / planksEdge / beam / pergola / geowindow ---
-        ModBlocks.VANILLA_STRUCTURAL_SETS.forEach((name, set) ->
-            BuiltInRegistries.BLOCK.getOptional(ResourceLocation.withDefaultNamespace(name + "_planks")).ifPresent(planks -> {
-                stonecutOne(exporter, planks, set.planksPlate().get(),       name + "_planks_plate_stonecutting");
-                stonecutOne(exporter, planks, set.planksEdge().get(),        name + "_planks_edge_stonecutting");
-                stonecutOne(exporter, planks, set.beam().get(),              name + "_beam_stonecutting");
-                stonecutOne(exporter, planks, set.pergola().get(),           name + "_pergola_stonecutting");
-                stonecutOne(exporter, planks, set.geometricWindow().get(),   name + "_geowindow_stonecutting");
-            })
-        );
+        // (wood set planks → structural shapes moved to woodcutter below)
 
         // --- Static blocks with known shape variants ---
         stonecutOne(exporter, ModBlocks.LIMESTONE_BRICKS.get(),                          ModBlocks.LIMESTONE_BRICKS_EDGE.get(),                         "limestone_bricks_edge_stonecutting");
@@ -1647,6 +1630,25 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
         stonecutOne(exporter, ModBlocks.PLAIN_LIMESTONE.get(), ModBlocks.MOSAIC_FLOOR_ROSETTE.get(),     "mosaic_floor_rosette_from_limestone_stonecutting");
         stonecutOne(exporter, ModBlocks.PLAIN_LIMESTONE.get(), ModBlocks.ROMAN_FRESCO_RED.get(),         "roman_fresco_red_from_limestone_stonecutting");
         stonecutOne(exporter, ModBlocks.PLAIN_LIMESTONE.get(), ModBlocks.ROMAN_FRESCO_BLACK.get(),       "roman_fresco_black_from_limestone_stonecutting");
+        // --- Limestone bricks from limestone ---
+        stonecutOne(exporter, ModBlocks.PLAIN_LIMESTONE.get(), ModBlocks.LIMESTONE_BRICKS.get(), "limestone_bricks_from_limestone_stonecutting");
+        // --- Black marble stonecutting ---
+        stonecutOne(exporter,  ModBlocks.BLACK_MARBLE.get(), ModBlocks.BLACK_MARBLE_BRICKS.get(),       "black_marble_bricks_stonecutting");
+        stonecutOne(exporter,  ModBlocks.BLACK_MARBLE.get(), ModBlocks.BLACK_MARBLE_SMALL_BRICKS.get(), "black_marble_small_bricks_stonecutting");
+        stonecutOne(exporter,  ModBlocks.BLACK_MARBLE.get(), ModBlocks.BLACK_MARBLE_TILES.get(),        "black_marble_tiles_stonecutting");
+        stonecutOne(exporter,  ModBlocks.BLACK_MARBLE.get(), ModBlocks.BLACK_MARBLE_PILLAR.get(),       "black_marble_pillar_stonecutting");
+        stonecutOne(exporter,  ModBlocks.BLACK_MARBLE.get(), ModBlocks.BLACK_MARBLE_PILLAR_CAP.get(),   "black_marble_pillar_cap_stonecutting");
+        stonecutOne(exporter,  ModBlocks.BLACK_MARBLE.get(), ModBlocks.BLACK_MARBLE_FANCY_FENCE.get(),  "black_marble_fancy_fence_stonecutting");
+        stonecutMany(exporter, ModBlocks.BLACK_MARBLE.get(), ModBlocks.BLACK_MARBLE_FLOOR_TILE.get(), "black_marble_floor_tile_stonecutting");
+        // --- White marble stonecutting ---
+        stonecutOne(exporter,  ModBlocks.WHITE_MARBLE.get(), ModBlocks.WHITE_MARBLE_BRICKS.get(),       "white_marble_bricks_stonecutting");
+        stonecutOne(exporter,  ModBlocks.WHITE_MARBLE.get(), ModBlocks.WHITE_MARBLE_SMALL_BRICKS.get(), "white_marble_small_bricks_stonecutting");
+        stonecutOne(exporter,  ModBlocks.WHITE_MARBLE.get(), ModBlocks.WHITE_MARBLE_TILES.get(),        "white_marble_tiles_stonecutting");
+        stonecutOne(exporter,  ModBlocks.WHITE_MARBLE.get(), ModBlocks.WHITE_MARBLE_PILLAR.get(),       "white_marble_pillar_stonecutting");
+        stonecutOne(exporter,  ModBlocks.WHITE_MARBLE.get(), ModBlocks.WHITE_MARBLE_PILLAR_CAP.get(),   "white_marble_pillar_cap_stonecutting");
+        stonecutOne(exporter,  ModBlocks.WHITE_MARBLE.get(), ModBlocks.WHITE_MARBLE_FANCY_FENCE.get(),  "white_marble_fancy_fence_stonecutting");
+        stonecutMany(exporter, ModBlocks.WHITE_MARBLE.get(), ModBlocks.WHITE_MARBLE_FLOOR_TILE.get(), "white_marble_floor_tile_stonecutting");
+        woodcutOne(exporter, Items.SPRUCE_PLANKS, ModBlocks.SPRUCE_LOG_FENCE.get(), "spruce_log_fence_woodcutting");
         stonecutOne(exporter, ModBlocks.PLAIN_LIMESTONE.get(), ModBlocks.LIMESTONE_BANNISTER.get(),      "limestone_bannister_from_limestone_stonecutting");
         ModBlocks.LIMESTONE.forEach(d -> stonecutOne(exporter, ModBlocks.PLAIN_LIMESTONE.get(), d.get(),
                 d.getId().getPath() + "_from_limestone_stonecutting"));
@@ -1663,24 +1665,46 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
             stonecutOne(exporter, whitePlastered, ModBlocks.GREEN_ORNAMENTED_PLASTERED_STONE.get(),      "green_ornamented_plastered_stone_stonecutting");
             stonecutOne(exporter, whitePlastered, ModBlocks.RED_ORNAMENTED_PLASTERED_STONE.get(),        "red_ornamented_plastered_stone_stonecutting");
         }
-        // --- Bannister / support slab / support beam from planks (ott wood sets) ---
+        // --- All wood structural shapes from planks (ott wood sets, woodcutter) ---
         ModBlocks.WOOD_SETS.forEach((name, set) -> {
-            stonecutOne(exporter, set.planks().get(), set.bannister().get(),   name + "_bannister_stonecutting");
-            stonecutOne(exporter, set.planks().get(), set.supportSlab().get(), name + "_support_slab_stonecutting");
-            stonecutOne(exporter, set.planks().get(), set.supportBeam().get(), name + "_support_beam_stonecutting");
+            woodcutOne(exporter, set.planks().get(), set.planksPlate().get(),     name + "_planks_plate_woodcutting");
+            woodcutOne(exporter, set.planks().get(), set.planksEdge().get(),      name + "_planks_edge_woodcutting");
+            woodcutOne(exporter, set.planks().get(), set.beam().get(),            name + "_beam_woodcutting");
+            woodcutOne(exporter, set.planks().get(), set.pergola().get(),         name + "_pergola_woodcutting");
+            woodcutOne(exporter, set.planks().get(), set.geometricWindow().get(), name + "_geowindow_woodcutting");
+            woodcutOne(exporter, set.planks().get(), set.bannister().get(),       name + "_bannister_woodcutting");
+            woodcutOne(exporter, set.planks().get(), set.supportSlab().get(),     name + "_support_slab_woodcutting");
+            woodcutOne(exporter, set.planks().get(), set.supportBeam().get(),     name + "_support_beam_woodcutting");
         });
-        // --- Bannister / support slab / support beam from vanilla planks ---
+        // --- All wood structural shapes from vanilla planks (woodcutter) ---
         ModBlocks.VANILLA_STRUCTURAL_SETS.forEach((name, set) ->
             BuiltInRegistries.BLOCK.getOptional(ResourceLocation.withDefaultNamespace(name + "_planks")).ifPresent(planks -> {
-                stonecutOne(exporter, planks, set.bannister().get(),   name + "_bannister_stonecutting");
-                stonecutOne(exporter, planks, set.supportSlab().get(), name + "_support_slab_stonecutting");
-                stonecutOne(exporter, planks, set.supportBeam().get(), name + "_support_beam_stonecutting");
+                woodcutOne(exporter, planks, set.planksPlate().get(),     name + "_planks_plate_woodcutting");
+                woodcutOne(exporter, planks, set.planksEdge().get(),      name + "_planks_edge_woodcutting");
+                woodcutOne(exporter, planks, set.beam().get(),            name + "_beam_woodcutting");
+                woodcutOne(exporter, planks, set.pergola().get(),         name + "_pergola_woodcutting");
+                woodcutOne(exporter, planks, set.geometricWindow().get(), name + "_geowindow_woodcutting");
+                woodcutOne(exporter, planks, set.bannister().get(),       name + "_bannister_woodcutting");
+                woodcutOne(exporter, planks, set.supportSlab().get(),     name + "_support_slab_woodcutting");
+                woodcutOne(exporter, planks, set.supportBeam().get(),     name + "_support_beam_woodcutting");
             })
         );
     }
 
     private void stonecutOne(RecipeOutput exporter, ItemLike input, ItemLike output, String id) {
         SingleItemRecipeBuilder.stonecutting(Ingredient.of(input), RecipeCategory.BUILDING_BLOCKS, output, 1)
+                .unlockedBy("has_input", has(input))
+                .save(exporter, getRecipePath("ott", id));
+    }
+
+    private void stonecutMany(RecipeOutput exporter, ItemLike input, ItemLike output, String id) {
+        SingleItemRecipeBuilder.stonecutting(Ingredient.of(input), RecipeCategory.BUILDING_BLOCKS, output, 4)
+                .unlockedBy("has_input", has(input))
+                .save(exporter, getRecipePath("ott", id));
+    }
+
+    private void woodcutOne(RecipeOutput exporter, ItemLike input, ItemLike output, String id) {
+        new SingleItemRecipeBuilder(RecipeCategory.BUILDING_BLOCKS, WoodcuttingRecipe::new, Ingredient.of(input), output, 1)
                 .unlockedBy("has_input", has(input))
                 .save(exporter, getRecipePath("ott", id));
     }

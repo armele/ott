@@ -164,6 +164,7 @@ public class Ott {
         ModEntities.register(modEventBus);
         ModSensorTypes.register(modEventBus);
         ModRecipeSerializers.register(modEventBus);
+        com.otterly76.ott.registry.ModRecipeTypes.register(modEventBus);
         ModLootModifiers.register(modEventBus);
         ModTreeDecoratorTypes.register(modEventBus);
         ModWorldGenModifiers.register(modEventBus);

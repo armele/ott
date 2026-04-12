@@ -23,6 +23,8 @@ public class ModMenuTypes {
     public static final DeferredHolder<MenuType<?>, MenuType<RecyclingMenu>> RECYCLING_MENU =
             MENUS.register("recycling", () -> IMenuTypeExtension.create(RecyclingMenu::new));
 
+    public static final DeferredHolder<MenuType<?>, MenuType<WoodcutterMenu>> WOODCUTTER_MENU =
+            MENUS.register("woodcutter", () -> IMenuTypeExtension.create((id, inv, buf) -> new WoodcutterMenu(id, inv)));
 
     public static void register(IEventBus eventBus) {
         MENUS.register(eventBus);

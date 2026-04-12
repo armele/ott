@@ -3,6 +3,7 @@ Notes:
 add new blocks to wandering merchant
 get as much transferred to datageneration as possible
 add new animated seaglass, use cloudfx?
+fix ctm textures for blocks
 
 Mods to Implement:
 =====

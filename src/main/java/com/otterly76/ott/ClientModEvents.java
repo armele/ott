@@ -185,6 +185,7 @@ public class ClientModEvents {
         event.register(ModMenuTypes.ANVIL_MENU_TYPE.get(), com.otterly76.ott.client.gui.ModAnvilScreen::new);
         event.register(ModMenuTypes.ELEVATOR_MENU.get(), com.otterly76.ott.client.gui.ElevatorScreen::new);
         event.register(ModMenuTypes.RECYCLING_MENU.get(), RecyclingScreen::new);
+        event.register(ModMenuTypes.WOODCUTTER_MENU.get(), com.otterly76.ott.client.screen.WoodcutterScreen::new);
     }
 
     @SuppressWarnings("unchecked")

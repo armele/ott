@@ -60,13 +60,18 @@ public class OttBlockStateProvider extends ModBlockStateProvider {
             simpleBlock(block.get(), model);
             itemModels().withExistingParent(path, modLoc("block/limestone/" + path));
         });
-        simpleBlockWithItem(ModBlocks.PLAIN_LIMESTONE.get(), cubeAll(ModBlocks.PLAIN_LIMESTONE.get()));
+        simpleBlockWithItem(ModBlocks.PLAIN_LIMESTONE.get(), models().cubeAll("block/limestone/limestone", modLoc("block/limestone/limestone")));
         
         ModBlocks.TESTBLOCK.forEach(block -> {
-            ModelFile model = models().getExistingFile(modLoc("block/" + block.getId().getPath()));
+            ModelFile model = models().getExistingFile(modLoc("block/testblock/" + block.getId().getPath()));
             simpleBlock(block.get(), model);
         });
-        
+
+        // Woodcutter (horizontal facing block)
+        ModelFile woodcutterModel = models().getExistingFile(modLoc("block/woodcutter"));
+        horizontalBlock(ModBlocks.WOODCUTTER.get(), woodcutterModel);
+        itemModels().withExistingParent("woodcutter", modLoc("block/woodcutter"));
+
         ModHedgeVariants.ALL.forEach(variant -> {
             String name = variant.name();
             ResourceLocation leavesTexture = modLoc("block/" + name + "_hedge");
@@ -872,11 +877,11 @@ public class OttBlockStateProvider extends ModBlockStateProvider {
         String leavesId = blockPath(leavesBlock);
         ResourceLocation leavesTexture = modLoc("block/wood/" + setName + "/leaves");
 
-        ModelFile l0 = models().withExistingParent(dir + leavesId, modLoc("block/leaves")).texture("all", leavesTexture);
-        ModelFile l1 = models().withExistingParent(dir + leavesId + "1", modLoc("block/leaves1")).texture("all", leavesTexture);
-        ModelFile l2 = models().withExistingParent(dir + leavesId + "2", modLoc("block/leaves2")).texture("all", leavesTexture);
-        ModelFile l3 = models().withExistingParent(dir + leavesId + "3", modLoc("block/leaves3")).texture("all", leavesTexture);
-        ModelFile l4 = models().withExistingParent(dir + leavesId + "4", modLoc("block/leaves4")).texture("all", leavesTexture);
+        ModelFile l0 = models().withExistingParent(dir + leavesId, modLoc("block/leaves/leaves")).texture("all", leavesTexture);
+        ModelFile l1 = models().withExistingParent(dir + leavesId + "1", modLoc("block/leaves/leaves1")).texture("all", leavesTexture);
+        ModelFile l2 = models().withExistingParent(dir + leavesId + "2", modLoc("block/leaves/leaves2")).texture("all", leavesTexture);
+        ModelFile l3 = models().withExistingParent(dir + leavesId + "3", modLoc("block/leaves/leaves3")).texture("all", leavesTexture);
+        ModelFile l4 = models().withExistingParent(dir + leavesId + "4", modLoc("block/leaves/leaves4")).texture("all", leavesTexture);
 
         getVariantBuilder(leavesBlock).partialState().addModels(
                 new ConfiguredModel(l0, 0, 0, false, 1),
