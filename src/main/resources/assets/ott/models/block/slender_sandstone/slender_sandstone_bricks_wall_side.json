@@ -1,0 +1,6 @@
+{
+    "parent": "block/template_wall_side",
+    "textures": {
+        "wall": "ott:block/slender_sandstone/slender_sandstone_bricks"
+    }
+}

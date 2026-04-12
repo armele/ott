@@ -1,7 +1,7 @@
 {
   "variants": {
     "": {
-      "model": "ott:block/cobbled_limestone"
+      "model": "ott:block/limestone/cobbled_limestone"
     }
   }
 }

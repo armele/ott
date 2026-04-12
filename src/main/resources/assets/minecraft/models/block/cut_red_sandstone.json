@@ -1,0 +1,15 @@
+{
+    "parent": "ott:block/ctm/ctm_cube_side",
+    "textures": {
+        "side":   "ott:block/vanilla/connecting_cut_red_sandstone",
+        "top":    "minecraft:block/red_sandstone_top",
+        "bottom": "minecraft:block/red_sandstone_top"
+    },
+    "loader": "ott:connecting",
+    "connections": {
+        "side": [
+            {"type": "is_same_block"},
+            {"type": "match_block", "block": "minecraft:cut_red_sandstone_slab"}
+        ]
+    }
+}

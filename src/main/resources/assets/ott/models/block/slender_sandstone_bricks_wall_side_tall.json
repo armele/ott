@@ -1,6 +1,0 @@
-{
-    "parent": "block/template_wall_side_tall",
-    "textures": {
-        "wall": "ott:block/slender_sandstone_bricks"
-    }
-}

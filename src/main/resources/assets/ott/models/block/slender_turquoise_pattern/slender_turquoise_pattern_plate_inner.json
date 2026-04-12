@@ -1,0 +1,8 @@
+{
+	"parent": "ott:block/plate_inner",
+	"textures": {
+		"side": "ott:block/slender_turquoise_pattern/slender_turquoise_pattern",
+		"top": "ott:block/slender_turquoise_pattern/slender_turquoise_pattern",
+		"frieze": "ott:block/slender_turquoise_pattern/slender_turquoise_pattern"
+	}
+}

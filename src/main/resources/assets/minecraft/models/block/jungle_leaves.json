@@ -1,1 +1,1 @@
-{"parent":"ott:block/leaves","textures":{"all":"minecraft:block/jungle_leaves"}}
+{"parent":"ott:block/leaves/leaves","textures":{"all":"minecraft:block/jungle_leaves"}}

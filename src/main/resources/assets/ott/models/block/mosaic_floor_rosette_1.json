@@ -1,6 +1,0 @@
-{
-    "parent": "block/cube_all",
-    "textures": {
-        "all": "ott:block/mosaic_floor_rosette_1"
-    }
-}

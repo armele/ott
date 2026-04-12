@@ -1,0 +1,19 @@
+{
+    "parent": "ott:block/ctm/ctm_cube_all",
+    "textures": {
+        "all": "ott:block/mosaic_floor/mosaic_floor_delicate"
+    },
+    "loader": "ott:connecting",
+    "connections": [
+        {
+            "type": "is_same_block"
+        },
+        {
+            "type": "match_block",
+            "block": "ott:mosaic_floor"
+        }
+    ],
+    "isolated": {
+        "all": "ott:block/mosaic_floor/mosaic_floor_delicate_static"
+    }
+}

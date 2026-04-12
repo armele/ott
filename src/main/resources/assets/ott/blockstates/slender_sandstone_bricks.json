@@ -1,5 +1,5 @@
 {
     "variants": {
-        "": { "model": "ott:block/slender_sandstone_bricks" }
+        "": { "model": "ott:block/slender_sandstone/slender_sandstone_bricks" }
     }
 }

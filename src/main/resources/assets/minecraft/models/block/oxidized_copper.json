@@ -1,0 +1,13 @@
+{
+    "parent": "ott:block/ctm/ctm_cube_all",
+    "textures": {
+        "all": "ott:block/vanilla/connecting_oxidized_copper_block"
+    },
+    "loader": "ott:connecting",
+    "connections": {
+        "all": [
+            {"type": "is_same_block"},
+            {"type": "match_block", "block": "minecraft:waxed_oxidized_copper"}
+        ]
+    }
+}

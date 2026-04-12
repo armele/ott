@@ -1,0 +1,14 @@
+{
+    "parent": "ott:block/ctm/ctm_cube_all",
+    "textures": {
+        "all": "ott:block/vanilla/connecting_polished_andesite"
+    },
+    "loader": "ott:connecting",
+    "connections": {
+        "all": [
+            {"type": "is_same_block"},
+            {"type": "match_block", "block": "minecraft:polished_andesite_stairs"},
+            {"type": "match_block", "block": "minecraft:polished_andesite_slab"}
+        ]
+    }
+}

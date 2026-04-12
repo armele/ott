@@ -1,9 +1,9 @@
 {
     "multipart": [
-        { "when": {"facing": "north"}, "apply": {"model": "ott:block/stone_bricks_water_jet_north_bottom"} },
-        { "when": {"facing": "east"},  "apply": {"model": "ott:block/stone_bricks_water_jet_north_bottom", "y": 90} },
-        { "when": {"facing": "south"}, "apply": {"model": "ott:block/stone_bricks_water_jet_north_bottom", "y": 180} },
-        { "when": {"facing": "west"},  "apply": {"model": "ott:block/stone_bricks_water_jet_north_bottom", "y": 270} },
+        { "when": {"facing": "north"}, "apply": {"model": "ott:block/stone_bricks/stone_bricks_water_jet_north_bottom"} },
+        { "when": {"facing": "east"},  "apply": {"model": "ott:block/stone_bricks/stone_bricks_water_jet_north_bottom", "y": 90} },
+        { "when": {"facing": "south"}, "apply": {"model": "ott:block/stone_bricks/stone_bricks_water_jet_north_bottom", "y": 180} },
+        { "when": {"facing": "west"},  "apply": {"model": "ott:block/stone_bricks/stone_bricks_water_jet_north_bottom", "y": 270} },
         { "when": {"facing": "north", "activated": "true"}, "apply": {"model": "ott:block/water/water_jet_north_bottom_trickle"} },
         { "when": {"facing": "east",  "activated": "true"}, "apply": {"model": "ott:block/water/water_jet_north_bottom_trickle", "y": 90} },
         { "when": {"facing": "south", "activated": "true"}, "apply": {"model": "ott:block/water/water_jet_north_bottom_trickle", "y": 180} },

@@ -2,7 +2,7 @@
 	"render_type": "minecraft:translucent",
 	"credit": "Made with Blockbench",
 	"textures": {
-		"2": "ott:block/water_jet_north_bottom",
+		"2": "ott:block/water_jet/water_jet_north_bottom",
 		"particle": "ott:block/transparent"
 	},
 	"elements": [

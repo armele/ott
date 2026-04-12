@@ -1,0 +1,6 @@
+{
+    "parent": "block/template_wall_side",
+    "textures": {
+        "wall": "ott:block/stone_bricks/stone_bricks_masonry"
+    }
+}

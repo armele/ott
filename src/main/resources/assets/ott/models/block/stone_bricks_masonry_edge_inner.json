@@ -1,8 +1,0 @@
-{
-	"parent": "ott:block/small_plate_inner",
-	"textures": {
-		"side": "ott:block/stone_bricks_masonry",
-		"top": "ott:block/stone_bricks_masonry",
-		"frieze": "ott:block/stone_bricks_masonry"
-	}
-}

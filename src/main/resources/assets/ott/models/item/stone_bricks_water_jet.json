@@ -2,9 +2,9 @@
 	"credit": "Made with Blockbench",
 	"texture_size": [32, 32],
 	"textures": {
-		"6": "ott:block/water_jet_north_top",
-		"particle": "ott:block/stone_bricks_water_jet",
-		"1_0": "ott:block/stone_bricks_water_jet"
+		"6": "ott:block/water_jet/water_jet_north_top",
+		"particle": "ott:block/stone_bricks/stone_bricks_water_jet",
+		"1_0": "ott:block/stone_bricks/stone_bricks_water_jet"
 	},
 	"elements": [
 		{

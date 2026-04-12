@@ -1,5 +1,5 @@
 {
-    "parent": "ott:block/ctm_cube_all",
+    "parent": "ott:block/ctm/ctm_cube_all",
     "textures": {
         "all": "ott:block/spirit_mosaic/spirit_mosaic_pattern"
     },

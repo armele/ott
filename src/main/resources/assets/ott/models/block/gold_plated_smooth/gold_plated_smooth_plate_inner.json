@@ -1,0 +1,1 @@
+{ "parent": "ott:block/plate_inner", "textures": { "side": "ott:block/gold_plated_smooth/gold_plated_smooth_block", "top": "ott:block/gold_plated_smooth/gold_plated_smooth_block", "frieze": "ott:block/gold_plated_smooth/gold_plated_smooth_block" } }

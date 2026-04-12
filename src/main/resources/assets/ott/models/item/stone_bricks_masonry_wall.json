@@ -13,9 +13,9 @@
     },
     "ambientocclusion": false,
     "textures": {
-        "wall": "ott:block/stone_bricks_masonry",
+        "wall": "ott:block/stone_bricks/stone_bricks_masonry",
         "wallpost": "block/stone_bricks",
-        "particle": "ott:block/stone_bricks_masonry"
+        "particle": "ott:block/stone_bricks/stone_bricks_masonry"
     },
     "elements": [
         {   "from": [ 4, 0, 4 ],

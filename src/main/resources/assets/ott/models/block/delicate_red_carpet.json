@@ -1,5 +1,5 @@
 {
-    "parent": "ott:block/ctm_carpet",
+    "parent": "ott:block/ctm/ctm_carpet",
     "textures": {
         "all": "ott:block/delicate_red_carpet-ctm"
     },
