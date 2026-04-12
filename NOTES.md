@@ -4,6 +4,8 @@ add new blocks to wandering merchant
 add new animated seaglass, use cloudfx?
 fix ctm textures for blocks
 review config options, some are very unnecessary
+finish vanilla entity models upgrades
+finish custom entity models upgrades
 
 Mods to Implement:
 =====
