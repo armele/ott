@@ -11,5 +11,8 @@
             {"type": "is_same_block"},
             {"type": "match_block", "block": "minecraft:cut_sandstone_slab"}
         ]
+    },
+    "isolated": {
+        "side": "minecraft:block/cut_sandstone"
     }
 }

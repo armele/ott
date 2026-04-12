@@ -9,5 +9,8 @@
             {"type": "is_same_block"},
             {"type": "match_block", "block": "minecraft:waxed_exposed_copper"}
         ]
+    },
+    "isolated": {
+        "all": "minecraft:block/exposed_copper"
     }
 }

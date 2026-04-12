@@ -6,5 +6,8 @@
     "loader": "ott:connecting",
     "connections": {
         "all": [{"type": "is_same_block"}]
+    },
+    "isolated": {
+        "all": "minecraft:block/lapis_block"
     }
 }

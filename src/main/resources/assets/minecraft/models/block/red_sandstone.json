@@ -12,5 +12,8 @@
             {"type": "match_block", "block": "minecraft:red_sandstone_stairs"},
             {"type": "match_block", "block": "minecraft:red_sandstone_slab"}
         ]
+    },
+    "isolated": {
+        "side": "minecraft:block/red_sandstone"
     }
 }

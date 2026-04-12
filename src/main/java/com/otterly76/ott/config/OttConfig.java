@@ -16,7 +16,7 @@ import net.neoforged.neoforge.common.ModConfigSpec;
 import java.util.List;
 import java.util.Optional;
 
-public class OttConfig { //TODO need to review config options, some are very unnecessary
+public class OttConfig {
     public static final ModConfigSpec SPEC;
 
     // --- Sections ---

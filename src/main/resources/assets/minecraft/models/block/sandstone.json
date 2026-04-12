@@ -12,5 +12,8 @@
             {"type": "match_block", "block": "minecraft:sandstone_stairs"},
             {"type": "match_block", "block": "minecraft:sandstone_slab"}
         ]
+    },
+    "isolated": {
+        "side": "minecraft:block/sandstone"
     }
 }

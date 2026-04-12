@@ -10,5 +10,8 @@
             {"type": "match_block", "block": "minecraft:quartz_stairs"},
             {"type": "match_block", "block": "minecraft:quartz_slab"}
         ]
+    },
+    "isolated": {
+        "all": "minecraft:block/quartz_block_side"
     }
 }

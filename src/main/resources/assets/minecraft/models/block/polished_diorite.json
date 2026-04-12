@@ -10,5 +10,8 @@
             {"type": "match_block", "block": "minecraft:polished_diorite_stairs"},
             {"type": "match_block", "block": "minecraft:polished_diorite_slab"}
         ]
+    },
+    "isolated": {
+        "all": "minecraft:block/polished_diorite"
     }
 }
