@@ -241,6 +241,9 @@ public class ModBlockTagProvider extends BlockTagsProvider {
         ModBlocks.TESTBLOCK.forEach(d -> this.tag(doDefaultKey).add(d.value()));
         this.tag(doDefaultKey).add(ModBlocks.SALT_BLOCK.get(), ModBlocks.POLISHED_SALT_BLOCK.get());
         this.tag(doDefaultKey).add(ModBlocks.WATER_MOSAIC_TRADITIONAL.get());
+        this.tag(doDefaultKey).add(ModBlocks.EARTH_MOSAIC_TRADITIONAL.get());
+        this.tag(doDefaultKey).add(ModBlocks.FIRE_MOSAIC_TRADITIONAL.get());
+        this.tag(doDefaultKey).add(ModBlocks.SPIRIT_MOSAIC_TRADITIONAL.get());
         ModBlocks.PARTICLE_HEDGES.values().forEach(h -> this.tag(doDefaultKey).add(h.value()));
         ModBlocks.PATTERN_BLOCKS.values().forEach(colorMap -> colorMap.values().forEach(d -> this.tag(doDefaultKey).add(d.value())));
         ModBlocks.FUTONS.values().forEach(d -> {
@@ -282,6 +285,18 @@ public class ModBlockTagProvider extends BlockTagsProvider {
                 ModBlocks.WATER_MOSAIC_GEOMETRIC.get(),
                 ModBlocks.WATER_MOSAIC_PATTERN.get(),
                 ModBlocks.WATER_MOSAIC_DELICATE.get(),
+                ModBlocks.EARTH_MOSAIC_BORDER.get(),
+                ModBlocks.EARTH_MOSAIC_GEOMETRIC.get(),
+                ModBlocks.EARTH_MOSAIC_PATTERN.get(),
+                ModBlocks.EARTH_MOSAIC_DELICATE.get(),
+                ModBlocks.FIRE_MOSAIC_BORDER.get(),
+                ModBlocks.FIRE_MOSAIC_GEOMETRIC.get(),
+                ModBlocks.FIRE_MOSAIC_PATTERN.get(),
+                ModBlocks.FIRE_MOSAIC_DELICATE.get(),
+                ModBlocks.SPIRIT_MOSAIC_BORDER.get(),
+                ModBlocks.SPIRIT_MOSAIC_GEOMETRIC.get(),
+                ModBlocks.SPIRIT_MOSAIC_PATTERN.get(),
+                ModBlocks.SPIRIT_MOSAIC_DELICATE.get(),
                 ModBlocks.MOSAIC_FLOOR.get(),
                 ModBlocks.MOSAIC_FLOOR_DELICATE.get(),
                 ModBlocks.MOSAIC_FLOOR_ROSETTE.get(),

@@ -1,0 +1,53 @@
+{
+    "parent": "block/block",
+    "render_type": "minecraft:cutout_mipped",
+    "textures": {
+        "all": "ott:block/earth_mosaic/earth_mosaic_geometric",
+        "particle": "#all",
+        "overlay": "ott:block/earth_mosaic/earth_mosaic_pattern_overlay"
+    },
+    "loader": "ott:connecting",
+    "connections": {
+        "all": [
+            {
+                "type": "is_same_block"
+            }
+        ],
+        "overlay": [
+            {
+                "type": "match_block",
+                "block": "ott:earth_mosaic_pattern"
+            }
+        ]
+    },
+    "elements": [
+        {
+            "from": [0, 0, 0],
+            "to":   [16, 16, 16],
+            "faces": {
+                "down":  {"uv": [0, 0, 2, 2], "texture": "#all", "cullface": "down"},
+                "up":    {"uv": [0, 0, 2, 2], "texture": "#all", "cullface": "up"},
+                "north": {"uv": [0, 0, 2, 2], "texture": "#all", "cullface": "north"},
+                "south": {"uv": [0, 0, 2, 2], "texture": "#all", "cullface": "south"},
+                "west":  {"uv": [0, 0, 2, 2], "texture": "#all", "cullface": "west"},
+                "east":  {"uv": [0, 0, 2, 2], "texture": "#all", "cullface": "east"}
+            }
+        },
+        {
+            "from": [-0.002, -0.002, -0.002],
+            "to":   [16.002, 16.002, 16.002],
+            "faces": {
+                "down":  {"uv": [0, 0, 2, 2], "texture": "#overlay", "cullface": "down"},
+                "up":    {"uv": [0, 0, 2, 2], "texture": "#overlay", "cullface": "up"},
+                "north": {"uv": [0, 0, 2, 2], "texture": "#overlay", "cullface": "north"},
+                "south": {"uv": [0, 0, 2, 2], "texture": "#overlay", "cullface": "south"},
+                "west":  {"uv": [0, 0, 2, 2], "texture": "#overlay", "cullface": "west"},
+                "east":  {"uv": [0, 0, 2, 2], "texture": "#overlay", "cullface": "east"}
+            }
+        }
+    ],
+    "isolated": {
+        "all":     "ott:block/earth_mosaic/earth_mosaic_geometric_static",
+        "overlay": "ott:block/earth_mosaic/earth_mosaic_pattern_overlay_static"
+    }
+}

@@ -25,7 +25,7 @@ import com.ldtteam.structurize.storage.ISurvivalBlueprintHandler;
 import com.ldtteam.structurize.storage.SurvivalBlueprintHandlers;
 import com.otterly76.ott.item.ModItems;
 import com.otterly76.ott.loot.ModLootModifiers;
-import com.otterly76.ott.mixin.access.RangedAttributeAccessor;
+import com.otterly76.ott.accessor.RangedAttributeAccessor;
 import com.otterly76.ott.mixin.common.AccessorItem;
 import com.otterly76.ott.network.NetworkHandler;
 import com.otterly76.ott.particle.ModParticle;

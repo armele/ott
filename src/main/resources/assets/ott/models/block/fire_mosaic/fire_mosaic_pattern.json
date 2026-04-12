@@ -1,0 +1,19 @@
+{
+    "parent": "ott:block/ctm_cube_all",
+    "textures": {
+        "all": "ott:block/fire_mosaic/fire_mosaic_pattern"
+    },
+    "loader": "ott:connecting",
+    "connections": [
+        {
+            "type": "is_same_block"
+        },
+        {
+            "type": "match_block",
+            "block": "ott:fire_mosaic_geometric"
+        }
+    ],
+    "isolated": {
+        "all": "ott:block/fire_mosaic/fire_mosaic_pattern_static"
+    }
+}

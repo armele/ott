@@ -1,0 +1,6 @@
+{
+    "parent": "block/cube_all",
+    "textures": {
+        "all": "ott:block/fire_mosaic/fire_mosaic_traditional"
+    }
+}
