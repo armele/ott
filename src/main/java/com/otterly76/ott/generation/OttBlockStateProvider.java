@@ -19,6 +19,7 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.block.BedBlock;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.IronBarsBlock;
+import net.minecraft.world.level.block.RotatedPillarBlock;
 import net.minecraft.world.level.block.SlabBlock;
 import net.minecraft.world.level.block.state.properties.BedPart;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
@@ -970,6 +971,8 @@ public class OttBlockStateProvider extends ModBlockStateProvider {
             });
         });
 
+        registerMiscBlocks();
+
         ModBlocks.PATTERN_WINDOWS.forEach((pattern, colorMap) -> {
             ResourceLocation patTex = modLoc("block/patterns/" + pattern);
             colorMap.forEach((colorName, block) -> {
@@ -1007,6 +1010,213 @@ public class OttBlockStateProvider extends ModBlockStateProvider {
         });
 
         ModBlocks.FUTONS.forEach((color, block) -> registerFuton(block.get(), color));
+    }
+
+    // =========================================================================
+    // === Misc blocks: blockstate + item model from existing manual models ===
+    // =========================================================================
+
+    private void registerMiscBlocks() {
+        // ── Black marble ──────────────────────────────────────────────────────
+        simpleBlockWithItem(ModBlocks.BLACK_MARBLE.get(),              models().getExistingFile(modLoc("block/black_marble/black_marble")));
+        simpleBlockWithItem(ModBlocks.BLACK_MARBLE_BRICKS.get(),       models().getExistingFile(modLoc("block/black_marble/black_marble_bricks")));
+        simpleBlockWithItem(ModBlocks.BLACK_MARBLE_SMALL_BRICKS.get(), models().getExistingFile(modLoc("block/black_marble/black_marble_small_bricks")));
+        simpleBlockWithItem(ModBlocks.BLACK_MARBLE_TILES.get(),        models().getExistingFile(modLoc("block/black_marble/black_marble_tiles")));
+        simpleBlockWithItem(ModBlocks.BLACK_POLISHED_MARBLE.get(),     models().getExistingFile(modLoc("block/black_marble/black_polished_marble")));
+        simpleBlockWithItem(ModBlocks.BLACK_MARBLE_FLOOR_TILE.get(),   models().getExistingFile(modLoc("block/black_marble/black_marble_floor_tile")));
+        existingFacingShapeBlock(ModBlocks.BLACK_MARBLE_FANCY_FENCE.get(), "block/black_marble/black_marble_fancy_fence");
+        existingAxisBlock(ModBlocks.BLACK_MARBLE_PILLAR.get(),     "block/black_marble/black_marble_pillar");
+        existingAxisBlock(ModBlocks.BLACK_MARBLE_PILLAR_CAP.get(), "block/black_marble/black_marble_pillar_cap");
+
+        // ── White marble ──────────────────────────────────────────────────────
+        simpleBlockWithItem(ModBlocks.WHITE_MARBLE.get(),              models().getExistingFile(modLoc("block/white_marble/white_marble")));
+        simpleBlockWithItem(ModBlocks.WHITE_MARBLE_BRICKS.get(),       models().getExistingFile(modLoc("block/white_marble/white_marble_bricks")));
+        simpleBlockWithItem(ModBlocks.WHITE_MARBLE_SMALL_BRICKS.get(), models().getExistingFile(modLoc("block/white_marble/white_marble_small_bricks")));
+        simpleBlockWithItem(ModBlocks.WHITE_MARBLE_TILES.get(),        models().getExistingFile(modLoc("block/white_marble/white_marble_tiles")));
+        simpleBlockWithItem(ModBlocks.WHITE_POLISHED_MARBLE.get(),     models().getExistingFile(modLoc("block/white_marble/white_polished_marble")));
+        simpleBlockWithItem(ModBlocks.WHITE_MARBLE_FLOOR_TILE.get(),   models().getExistingFile(modLoc("block/white_marble/white_marble_floor_tile")));
+        existingFacingShapeBlock(ModBlocks.WHITE_MARBLE_FANCY_FENCE.get(), "block/white_marble/white_marble_fancy_fence");
+        existingAxisBlock(ModBlocks.WHITE_MARBLE_PILLAR.get(),     "block/white_marble/white_marble_pillar");
+        existingAxisBlock(ModBlocks.WHITE_MARBLE_PILLAR_CAP.get(), "block/white_marble/white_marble_pillar_cap");
+
+        // ── Limestone ─────────────────────────────────────────────────────────
+        simpleBlockWithItem(ModBlocks.LIMESTONE_BRICKS.get(),  models().getExistingFile(modLoc("block/limestone/limestone_bricks")));
+        simpleBlockWithItem(ModBlocks.COBBLED_LIMESTONE.get(), models().getExistingFile(modLoc("block/limestone/cobbled_limestone")));
+        existingEdgeBlock(ModBlocks.LIMESTONE_BRICKS_EDGE.get(),            "block/limestone/limestone_bricks_edge");
+        existingFacingShapeBlock(ModBlocks.LIMESTONE_BRICKS_PLATE.get(),    "block/limestone/limestone_bricks_plate");
+        existingFacingShapeBlock(ModBlocks.LIMESTONE_BANNISTER.get(),       "block/limestone/limestone_bannister");
+
+        // ── Salt & misc stone ─────────────────────────────────────────────────
+        simpleBlockWithItem(ModBlocks.SALT_BLOCK.get(),          models().getExistingFile(modLoc("block/salt_block")));
+        simpleBlockWithItem(ModBlocks.POLISHED_SALT_BLOCK.get(), models().getExistingFile(modLoc("block/polished_salt_block")));
+        simpleBlockWithItem(ModBlocks.SMOOTH_GLOWSTONE.get(),    models().getExistingFile(modLoc("block/smooth_glowstone")));
+        simpleBlockWithItem(ModBlocks.GLASS_JAR.get(),           models().getExistingFile(modLoc("block/glass_jar")));
+
+        // ── Gold-plated smooth ────────────────────────────────────────────────
+        simpleBlockWithItem(ModBlocks.GOLD_PLATED_SMOOTH_BLOCK.get(), models().getExistingFile(modLoc("block/gold_plated_smooth/gold_plated_smooth_block")));
+        existingEdgeBlock(ModBlocks.GOLD_PLATED_SMOOTH_EDGE.get(),          "block/gold_plated_smooth/gold_plated_smooth_edge");
+        existingFacingShapeBlock(ModBlocks.GOLD_PLATED_SMOOTH_PLATE.get(),  "block/gold_plated_smooth/gold_plated_smooth_plate");
+
+        // ── Roofing slates ────────────────────────────────────────────────────
+        simpleBlockWithItem(ModBlocks.ROOFING_SLATES.get(),      models().getExistingFile(modLoc("block/roofing_slates")));
+        existingEdgeBlock(ModBlocks.ROOFING_SLATES_EDGE.get(),          "block/roofing_slates_edge");
+        existingFacingShapeBlock(ModBlocks.ROOFING_SLATES_PLATE.get(),  "block/roofing_slates_plate");
+
+        // ── Wheat thatch ──────────────────────────────────────────────────────
+        simpleBlockWithItem(ModBlocks.WHEAT_THATCH.get(),        models().getExistingFile(modLoc("block/wheat_thatch/wheat_thatch")));
+        existingEdgeBlock(ModBlocks.WHEAT_THATCH_EDGE.get(),          "block/wheat_thatch/wheat_thatch_edge");
+        existingFacingShapeBlock(ModBlocks.WHEAT_THATCH_PLATE.get(),  "block/wheat_thatch/wheat_thatch_plate");
+
+        // ── Bamboo thatch ─────────────────────────────────────────────────────
+        simpleBlockWithItem(ModBlocks.BAMBOO_THATCH.get(),       models().getExistingFile(modLoc("block/bamboo/bamboo_thatch")));
+        existingEdgeBlock(ModBlocks.BAMBOO_THATCH_EDGE.get(),         "block/bamboo/bamboo_thatch_edge");
+        existingFacingShapeBlock(ModBlocks.BAMBOO_THATCH_PLATE.get(), "block/bamboo/bamboo_thatch_plate");
+
+        // ── Sandstone shapes ──────────────────────────────────────────────────
+        existingEdgeBlock(ModBlocks.SANDSTONE_EDGE.get(),               "block/sandstone/sandstone_edge");
+        existingFacingShapeBlock(ModBlocks.SANDSTONE_PLATE.get(),       "block/sandstone/sandstone_plate");
+        existingFacingShapeBlock(ModBlocks.SANDSTONE_CRENELATION.get(), "block/sandstone/sandstone_crenelation");
+        existingEdgeBlock(ModBlocks.CUT_SANDSTONE_EDGE.get(),           "block/cut_sandstone/cut_sandstone_edge");
+        existingFacingShapeBlock(ModBlocks.CUT_SANDSTONE_PLATE.get(),   "block/cut_sandstone/cut_sandstone_plate");
+        existingEdgeBlock(ModBlocks.SMOOTH_SANDSTONE_EDGE.get(),        "block/smooth_sandstone/smooth_sandstone_edge");
+        existingFacingShapeBlock(ModBlocks.SMOOTH_SANDSTONE_PLATE.get(),"block/smooth_sandstone/smooth_sandstone_plate");
+
+        // ── Stone bricks masonry ──────────────────────────────────────────────
+        simpleBlockWithItem(ModBlocks.STONE_BRICKS_MASONRY.get(),      models().getExistingFile(modLoc("block/stone_bricks/stone_bricks_masonry")));
+        existingEdgeBlock(ModBlocks.STONE_BRICKS_MASONRY_EDGE.get(),          "block/stone_bricks/stone_bricks_masonry_edge");
+        existingFacingShapeBlock(ModBlocks.STONE_BRICKS_MASONRY_PLATE.get(),  "block/stone_bricks/stone_bricks_masonry_plate");
+
+        // ── Slender sandstone + turquoise ─────────────────────────────────────
+        simpleBlockWithItem(ModBlocks.SLENDER_SANDSTONE_BRICKS.get(),    models().getExistingFile(modLoc("block/slender_sandstone/slender_sandstone_bricks")));
+        existingEdgeBlock(ModBlocks.SLENDER_SANDSTONE_BRICKS_EDGE.get(),          "block/slender_sandstone/slender_sandstone_bricks_edge");
+        existingFacingShapeBlock(ModBlocks.SLENDER_SANDSTONE_BRICKS_PLATE.get(),  "block/slender_sandstone/slender_sandstone_bricks_plate");
+        simpleBlockWithItem(ModBlocks.SLENDER_TURQUOISE_PATTERN.get(),   models().getExistingFile(modLoc("block/slender_turquoise_pattern/slender_turquoise_pattern")));
+        existingEdgeBlock(ModBlocks.SLENDER_TURQUOISE_PATTERN_EDGE.get(),         "block/slender_turquoise_pattern/slender_turquoise_pattern_edge");
+        existingFacingShapeBlock(ModBlocks.SLENDER_TURQUOISE_PATTERN_PLATE.get(), "block/slender_turquoise_pattern/slender_turquoise_pattern_plate");
+
+        // ── Mosaic floors ─────────────────────────────────────────────────────
+        simpleBlockWithItem(ModBlocks.MOSAIC_FLOOR.get(),         models().getExistingFile(modLoc("block/mosaic_floor/mosaic_floor")));
+        simpleBlockWithItem(ModBlocks.MOSAIC_FLOOR_DELICATE.get(), models().getExistingFile(modLoc("block/mosaic_floor/mosaic_floor_delicate")));
+        // Rosette: 4 random model variants
+        ConfiguredModel[] rosetteModels = new ConfiguredModel[4];
+        for (int i = 1; i <= 4; i++) {
+            rosetteModels[i - 1] = ConfiguredModel.builder()
+                    .modelFile(models().getExistingFile(modLoc("block/mosaic_floor/mosaic_floor_rosette_" + i)))
+                    .build()[0];
+        }
+        simpleBlock(ModBlocks.MOSAIC_FLOOR_ROSETTE.get(), rosetteModels);
+        itemModels().withExistingParent("mosaic_floor_rosette", modLoc("block/mosaic_floor/mosaic_floor_rosette_1"));
+
+        // ── Elemental mosaics (border/geometric/pattern/delicate/traditional) ─
+        for (String[] pair : new String[][]{
+                {"water",  "water_mosaic"},
+                {"earth",  "earth_mosaic"},
+                {"fire",   "fire_mosaic"},
+                {"spirit", "spirit_mosaic"}
+        }) {
+            String element = pair[0], dir = pair[1];
+            String d = "block/" + dir + "/";
+            simpleBlockWithItem(elementalMosaicBlock(element, "border"),      models().getExistingFile(modLoc(d + dir + "_border")));
+            simpleBlockWithItem(elementalMosaicBlock(element, "geometric"),   models().getExistingFile(modLoc(d + dir + "_geometric")));
+            simpleBlockWithItem(elementalMosaicBlock(element, "pattern"),     models().getExistingFile(modLoc(d + dir + "_pattern")));
+            simpleBlockWithItem(elementalMosaicBlock(element, "delicate"),    models().getExistingFile(modLoc(d + dir + "_delicate")));
+            simpleBlockWithItem(elementalMosaicBlock(element, "traditional"), models().getExistingFile(modLoc(d + dir + "_traditional")));
+            existingFacingShapeBlock(elementalMosaicBlock(element, "recess"), d + dir + "_recess");
+        }
+
+        // ── Roman fresco ──────────────────────────────────────────────────────
+        simpleBlockWithItem(ModBlocks.ROMAN_FRESCO_RED.get(),   models().getExistingFile(modLoc("block/roman_fresco/roman_fresco_red")));
+        simpleBlockWithItem(ModBlocks.ROMAN_FRESCO_BLACK.get(), models().getExistingFile(modLoc("block/roman_fresco/roman_fresco_black")));
+
+        // ── Ornamented / delicate wool & carpet ───────────────────────────────
+        simpleBlockWithItem(ModBlocks.ORNAMENTED_RED_WOOL.get(),   models().getExistingFile(modLoc("block/ornamented_red_wool")));
+        simpleBlockWithItem(ModBlocks.DELICATE_RED_WOOL.get(),     models().getExistingFile(modLoc("block/delicate_red_wool")));
+        simpleBlockWithItem(ModBlocks.ORNAMENTED_RED_CARPET.get(), models().getExistingFile(modLoc("block/ornamented_red_carpet")));
+        simpleBlockWithItem(ModBlocks.DELICATE_RED_CARPET.get(),   models().getExistingFile(modLoc("block/delicate_red_carpet")));
+
+        // ── Plastered stone ───────────────────────────────────────────────────
+        simpleBlockWithItem(ModBlocks.ORNAMENTED_CHISELED_PLASTERED_STONE.get(), models().getExistingFile(modLoc("block/ornamented_chiseled_plastered_stone")));
+        simpleBlockWithItem(ModBlocks.GREEN_ORNAMENTED_PLASTERED_STONE.get(),    models().getExistingFile(modLoc("block/green_ornamented_plastered_stone")));
+        simpleBlockWithItem(ModBlocks.RED_ORNAMENTED_PLASTERED_STONE.get(),      models().getExistingFile(modLoc("block/red_ornamented_plastered_stone")));
+
+        // ── Caterpillar jar ───────────────────────────────────────────────────
+        simpleBlockWithItem(ModBlocks.CATERPILLAR_JAR.get(), models().getExistingFile(modLoc("block/caterpillar_jar")));
+
+        // ── Butterfly jars ────────────────────────────────────────────────────
+        ModBlocks.BUTTERFLY_JARS.forEach((variant, block) -> {
+            String name = "butterfly_jar_" + variant.getName();
+            simpleBlockWithItem(block.get(), models().getExistingFile(modLoc("block/butterfly_jar/" + name)));
+        });
+    }
+
+    /** Convenience: look up the elemental mosaic block by element name + type suffix. */
+    private Block elementalMosaicBlock(String element, String type) {
+        return switch (element + "_" + type) {
+            case "water_border"      -> ModBlocks.WATER_MOSAIC_BORDER.get();
+            case "water_geometric"   -> ModBlocks.WATER_MOSAIC_GEOMETRIC.get();
+            case "water_pattern"     -> ModBlocks.WATER_MOSAIC_PATTERN.get();
+            case "water_delicate"    -> ModBlocks.WATER_MOSAIC_DELICATE.get();
+            case "water_traditional" -> ModBlocks.WATER_MOSAIC_TRADITIONAL.get();
+            case "water_recess"      -> ModBlocks.WATER_MOSAIC_RECESS.get();
+            case "earth_border"      -> ModBlocks.EARTH_MOSAIC_BORDER.get();
+            case "earth_geometric"   -> ModBlocks.EARTH_MOSAIC_GEOMETRIC.get();
+            case "earth_pattern"     -> ModBlocks.EARTH_MOSAIC_PATTERN.get();
+            case "earth_delicate"    -> ModBlocks.EARTH_MOSAIC_DELICATE.get();
+            case "earth_traditional" -> ModBlocks.EARTH_MOSAIC_TRADITIONAL.get();
+            case "earth_recess"      -> ModBlocks.EARTH_MOSAIC_RECESS.get();
+            case "fire_border"       -> ModBlocks.FIRE_MOSAIC_BORDER.get();
+            case "fire_geometric"    -> ModBlocks.FIRE_MOSAIC_GEOMETRIC.get();
+            case "fire_pattern"      -> ModBlocks.FIRE_MOSAIC_PATTERN.get();
+            case "fire_delicate"     -> ModBlocks.FIRE_MOSAIC_DELICATE.get();
+            case "fire_traditional"  -> ModBlocks.FIRE_MOSAIC_TRADITIONAL.get();
+            case "fire_recess"       -> ModBlocks.FIRE_MOSAIC_RECESS.get();
+            case "spirit_border"     -> ModBlocks.SPIRIT_MOSAIC_BORDER.get();
+            case "spirit_geometric"  -> ModBlocks.SPIRIT_MOSAIC_GEOMETRIC.get();
+            case "spirit_pattern"    -> ModBlocks.SPIRIT_MOSAIC_PATTERN.get();
+            case "spirit_delicate"   -> ModBlocks.SPIRIT_MOSAIC_DELICATE.get();
+            case "spirit_traditional"-> ModBlocks.SPIRIT_MOSAIC_TRADITIONAL.get();
+            case "spirit_recess"     -> ModBlocks.SPIRIT_MOSAIC_RECESS.get();
+            default -> throw new IllegalArgumentException("Unknown mosaic: " + element + "_" + type);
+        };
+    }
+
+    /**
+     * Registers a PlateBlock (facing + shape, no half) using existing model files.
+     * Derives inner/outer paths by appending _inner/_outer to modelPath.
+     * Also registers the item model.
+     */
+    private void existingFacingShapeBlock(Block block, String modelPath) {
+        String name = modelPath.substring(modelPath.lastIndexOf('/') + 1);
+        registerFacingShapeBlock(block,
+                models().getExistingFile(modLoc(modelPath)),
+                models().getExistingFile(modLoc(modelPath + "_outer")),
+                models().getExistingFile(modLoc(modelPath + "_inner")));
+        itemModels().withExistingParent(name, modLoc(modelPath));
+    }
+
+    /**
+     * Registers an EdgeBlock (facing + shape + half) using existing model files.
+     * Derives inner/outer paths by appending _inner/_outer to modelPath.
+     * Also registers the item model.
+     */
+    private void existingEdgeBlock(Block block, String modelPath) {
+        String name = modelPath.substring(modelPath.lastIndexOf('/') + 1);
+        registerFacingShapeHalfBlock(block,
+                models().getExistingFile(modLoc(modelPath)),
+                models().getExistingFile(modLoc(modelPath + "_outer")),
+                models().getExistingFile(modLoc(modelPath + "_inner")));
+        itemModels().withExistingParent(name, modLoc(modelPath));
+    }
+
+    /**
+     * Registers a RotatedPillarBlock (axis=x/y/z) using a single existing model file.
+     * Also registers the item model.
+     */
+    private void existingAxisBlock(RotatedPillarBlock block, String modelPath) {
+        ModelFile model = models().getExistingFile(modLoc(modelPath));
+        axisBlock(block, model, model);
+        String name = modelPath.substring(modelPath.lastIndexOf('/') + 1);
+        itemModels().withExistingParent(name, modLoc(modelPath));
     }
 
     private void registerFuton(Block futon, String color) {
