@@ -75,6 +75,34 @@ Opalescence
 - black opal in end
 - fire opal in nether
 
+Ender IO
+- glass types
+
+Bibliocraft
+- fancy armor stands
+- bookcase
+- fancy clock
+- fancy sign
+- grandfather clock
+- label
+- shelf (2 types)
+- table
+- toolrack
+- display case
+- seat
+- small seat back
+- raised seat back
+- flat seat back
+- tall seat back
+- fancy seat back
+- fancy gold lamp
+- fancy iron lamp
+- fancy gold lantern
+- fancy iron lantern
+- typewriter
+- desk bell
+- disc rack
+
 Add To Datagen:
 =====
 Add barrels, chests, trapped chests, ladders, bookshelves, shelves, chiseled bookshelves, to wood set process
