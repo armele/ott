@@ -7,6 +7,10 @@ review config options, some are very unnecessary
 finish vanilla entity models upgrades
 finish custom entity models upgrades
 
+Fix:
+=====
+Experimental Features warning suppression does not appear to be working
+
 Mods to Implement:
 =====
 Aquaculture2

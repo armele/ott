@@ -11,7 +11,9 @@
       }
     },
     "valid_blocks": [
-      "minecraft:water"
+      "minecraft:snow_block",
+      "minecraft:powder_snow",
+      "minecraft:packed_ice"
     ]
   }
 }
