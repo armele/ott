@@ -90,6 +90,15 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
                 .unlockedBy("has_paper", has(Items.PAPER))
                 .save(noAdv, getRecipePath(Constants.MOD_ID, "nametag"));
 
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModBlocks.WOODCUTTER.get())
+                .define('L', net.minecraft.tags.ItemTags.LOGS)
+                .define('I', Items.IRON_INGOT)
+                .pattern("   ")
+                .pattern(" I ")
+                .pattern("LLL")
+                .unlockedBy("has_logs", has(net.minecraft.tags.ItemTags.LOGS))
+                .save(noAdv, getRecipePath(Constants.MOD_ID, "woodcutter"));
+
         ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModBlocks.GLASS_JAR.get())
                 .define('G', Items.GLASS_PANE)
                 .pattern("G G")
