@@ -483,6 +483,10 @@ public enum OttCreativeCategories {
                 output.accept(ModBlocks.SPIRIT_MOSAIC_GEOMETRIC);
                 output.accept(ModBlocks.SPIRIT_MOSAIC_PATTERN);
                 output.accept(ModBlocks.SPIRIT_MOSAIC_DELICATE);
+                output.accept(ModBlocks.AIR_MOSAIC_BORDER);
+                output.accept(ModBlocks.AIR_MOSAIC_GEOMETRIC);
+                output.accept(ModBlocks.AIR_MOSAIC_PATTERN);
+                output.accept(ModBlocks.AIR_MOSAIC_DELICATE);
                 output.accept(ModBlocks.MOSAIC_FLOOR);
                 output.accept(ModBlocks.MOSAIC_FLOOR_DELICATE);
                 output.accept(ModBlocks.MOSAIC_FLOOR_ROSETTE);
@@ -521,6 +525,7 @@ public enum OttCreativeCategories {
                 output.accept(ModBlocks.EARTH_MOSAIC_TRADITIONAL);
                 output.accept(ModBlocks.FIRE_MOSAIC_TRADITIONAL);
                 output.accept(ModBlocks.SPIRIT_MOSAIC_TRADITIONAL);
+                output.accept(ModBlocks.AIR_MOSAIC_TRADITIONAL);
 
                 output.accept(ModBlocks.WHEAT_THATCH);
                 output.accept(ModBlocks.WHEAT_THATCH_EDGE);
@@ -704,6 +709,7 @@ public enum OttCreativeCategories {
                 output.accept(ModBlocks.EARTH_MOSAIC_RECESS);
                 output.accept(ModBlocks.FIRE_MOSAIC_RECESS);
                 output.accept(ModBlocks.SPIRIT_MOSAIC_RECESS);
+                output.accept(ModBlocks.AIR_MOSAIC_RECESS);
 
                 output.accept(ModBlocks.STONE_BRICKS_ARROWSLIT);
                 output.accept(ModBlocks.STONE_BRICKS_MACHICOLATION);

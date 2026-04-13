@@ -1112,7 +1112,8 @@ public class OttBlockStateProvider extends ModBlockStateProvider {
                 {"water",  "water_mosaic"},
                 {"earth",  "earth_mosaic"},
                 {"fire",   "fire_mosaic"},
-                {"spirit", "spirit_mosaic"}
+                {"spirit", "spirit_mosaic"},
+                {"air",    "air_mosaic"}
         }) {
             String element = pair[0], dir = pair[1];
             String d = "block/" + dir + "/";
@@ -1176,6 +1177,12 @@ public class OttBlockStateProvider extends ModBlockStateProvider {
             case "spirit_delicate"   -> ModBlocks.SPIRIT_MOSAIC_DELICATE.get();
             case "spirit_traditional"-> ModBlocks.SPIRIT_MOSAIC_TRADITIONAL.get();
             case "spirit_recess"     -> ModBlocks.SPIRIT_MOSAIC_RECESS.get();
+            case "air_border"        -> ModBlocks.AIR_MOSAIC_BORDER.get();
+            case "air_geometric"     -> ModBlocks.AIR_MOSAIC_GEOMETRIC.get();
+            case "air_pattern"       -> ModBlocks.AIR_MOSAIC_PATTERN.get();
+            case "air_delicate"      -> ModBlocks.AIR_MOSAIC_DELICATE.get();
+            case "air_traditional"   -> ModBlocks.AIR_MOSAIC_TRADITIONAL.get();
+            case "air_recess"        -> ModBlocks.AIR_MOSAIC_RECESS.get();
             default -> throw new IllegalArgumentException("Unknown mosaic: " + element + "_" + type);
         };
     }

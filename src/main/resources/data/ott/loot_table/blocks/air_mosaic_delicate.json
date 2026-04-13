@@ -1,0 +1,1 @@
+{"type":"minecraft:block","pools":[{"bonus_rolls":0.0,"conditions":[{"condition":"minecraft:survives_explosion"}],"entries":[{"type":"minecraft:item","name":"ott:air_mosaic_delicate"}],"rolls":1.0}],"random_sequence":"ott:blocks/air_mosaic_delicate"}

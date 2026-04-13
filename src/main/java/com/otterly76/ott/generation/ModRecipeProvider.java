@@ -1625,6 +1625,12 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
         stonecutOne(exporter, ModBlocks.PLAIN_LIMESTONE.get(), ModBlocks.SPIRIT_MOSAIC_GEOMETRIC.get(),  "spirit_mosaic_geometric_from_limestone_stonecutting");
         stonecutOne(exporter, ModBlocks.PLAIN_LIMESTONE.get(), ModBlocks.SPIRIT_MOSAIC_PATTERN.get(),    "spirit_mosaic_pattern_from_limestone_stonecutting");
         stonecutOne(exporter, ModBlocks.PLAIN_LIMESTONE.get(), ModBlocks.SPIRIT_MOSAIC_DELICATE.get(),   "spirit_mosaic_delicate_from_limestone_stonecutting");
+        stonecutOne(exporter, ModBlocks.PLAIN_LIMESTONE.get(), ModBlocks.AIR_MOSAIC_RECESS.get(),        "air_mosaic_recess_from_limestone_stonecutting");
+        stonecutOne(exporter, ModBlocks.PLAIN_LIMESTONE.get(), ModBlocks.AIR_MOSAIC_TRADITIONAL.get(),   "air_mosaic_traditional_from_limestone_stonecutting");
+        stonecutOne(exporter, ModBlocks.PLAIN_LIMESTONE.get(), ModBlocks.AIR_MOSAIC_BORDER.get(),        "air_mosaic_border_from_limestone_stonecutting");
+        stonecutOne(exporter, ModBlocks.PLAIN_LIMESTONE.get(), ModBlocks.AIR_MOSAIC_GEOMETRIC.get(),     "air_mosaic_geometric_from_limestone_stonecutting");
+        stonecutOne(exporter, ModBlocks.PLAIN_LIMESTONE.get(), ModBlocks.AIR_MOSAIC_PATTERN.get(),       "air_mosaic_pattern_from_limestone_stonecutting");
+        stonecutOne(exporter, ModBlocks.PLAIN_LIMESTONE.get(), ModBlocks.AIR_MOSAIC_DELICATE.get(),      "air_mosaic_delicate_from_limestone_stonecutting");
         stonecutOne(exporter, ModBlocks.PLAIN_LIMESTONE.get(), ModBlocks.MOSAIC_FLOOR.get(),             "mosaic_floor_from_limestone_stonecutting");
         stonecutOne(exporter, ModBlocks.PLAIN_LIMESTONE.get(), ModBlocks.MOSAIC_FLOOR_DELICATE.get(),    "mosaic_floor_delicate_from_limestone_stonecutting");
         stonecutOne(exporter, ModBlocks.PLAIN_LIMESTONE.get(), ModBlocks.MOSAIC_FLOOR_ROSETTE.get(),     "mosaic_floor_rosette_from_limestone_stonecutting");

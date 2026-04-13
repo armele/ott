@@ -312,6 +312,7 @@ public class ModItemModelProvider extends ItemModelProvider {
         parentItemToBlockModel("earth_mosaic_recess",  "block/earth_mosaic/earth_mosaic_recess");
         parentItemToBlockModel("fire_mosaic_recess",   "block/fire_mosaic/fire_mosaic_recess");
         parentItemToBlockModel("spirit_mosaic_recess", "block/spirit_mosaic/spirit_mosaic_recess");
+        parentItemToBlockModel("air_mosaic_recess",    "block/air_mosaic/air_mosaic_recess");
         getBuilder(ModItems.BUG_NET.getId().getPath()).parent(new ModelFile.UncheckedModelFile(modLoc("item/bug_net_model")));
         getBuilder(ModItems.FIREFLY_IN_A_JAR.getId().getPath()).parent(new ModelFile.UncheckedModelFile(modLoc("item/firefly_jar_item_base")));
         getBuilder(ModItems.FIREFLIES_IN_A_JAR.getId().getPath()).parent(new ModelFile.UncheckedModelFile(modLoc("item/firefly_jar_item_base")));
