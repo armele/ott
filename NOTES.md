@@ -278,6 +278,10 @@ make eyebloom (closed, open) models
 
 Systems Nonsense:
 =====
+specialized wandering merchants
+- named and organized by item TYPE
+- MCol foods, etc
+
 crab pot & fishing net
 - look at crabber's delight
 
