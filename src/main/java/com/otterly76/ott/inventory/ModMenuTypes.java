@@ -26,6 +26,9 @@ public class ModMenuTypes {
     public static final DeferredHolder<MenuType<?>, MenuType<WoodcutterMenu>> WOODCUTTER_MENU =
             MENUS.register("woodcutter", () -> IMenuTypeExtension.create((id, inv, buf) -> new WoodcutterMenu(id, inv)));
 
+    public static final DeferredHolder<MenuType<?>, MenuType<NautilusContainerMenu>> NAUTILUS_INVENTORY =
+            MENUS.register("nautilus_inventory", () -> new MenuType<>(NautilusContainerMenu::new, net.minecraft.world.flag.FeatureFlags.DEFAULT_FLAGS));
+
     public static void register(IEventBus eventBus) {
         MENUS.register(eventBus);
     }
