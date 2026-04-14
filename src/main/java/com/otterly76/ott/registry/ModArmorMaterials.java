@@ -148,6 +148,106 @@ public class ModArmorMaterials {
             0.0F
     ));
 
+    // ── Netherite Horse Armor (minecraft namespace) ───────────────────────────
+
+    public static final DeferredHolder<ArmorMaterial, ArmorMaterial> NETHERITE_HORSE_ARMOR = ARMOR_MATERIALS.register("netherite_horse_armor", () -> new ArmorMaterial(
+            Util.make(new EnumMap<>(ArmorItem.Type.class), map -> {
+                map.put(ArmorItem.Type.BOOTS, 0);
+                map.put(ArmorItem.Type.LEGGINGS, 0);
+                map.put(ArmorItem.Type.CHESTPLATE, 0);
+                map.put(ArmorItem.Type.HELMET, 0);
+                map.put(ArmorItem.Type.BODY, 19);
+            }),
+            15,
+            SoundEvents.ARMOR_EQUIP_NETHERITE,
+            () -> Ingredient.of(Items.NETHERITE_INGOT),
+            List.of(new ArmorMaterial.Layer(ResourceLocation.withDefaultNamespace("netherite"))),
+            3.0F,
+            0.1F
+    ));
+
+    // ── Nautilus armor (minecraft namespace) ─────────────────────────────────
+
+    public static final DeferredHolder<ArmorMaterial, ArmorMaterial> COPPER_NAUTILUS_ARMOR = ARMOR_MATERIALS.register("copper_nautilus_armor", () -> new ArmorMaterial(
+            Util.make(new EnumMap<>(ArmorItem.Type.class), map -> {
+                map.put(ArmorItem.Type.BOOTS, 0);
+                map.put(ArmorItem.Type.LEGGINGS, 0);
+                map.put(ArmorItem.Type.CHESTPLATE, 0);
+                map.put(ArmorItem.Type.HELMET, 0);
+                map.put(ArmorItem.Type.BODY, 3);
+            }),
+            9,
+            SoundEvents.ARMOR_EQUIP_IRON,
+            () -> Ingredient.of(Items.COPPER_INGOT),
+            List.of(new ArmorMaterial.Layer(ResourceLocation.withDefaultNamespace("copper_nautilus_armor"))),
+            0.0F,
+            0.0F
+    ));
+
+    public static final DeferredHolder<ArmorMaterial, ArmorMaterial> IRON_NAUTILUS_ARMOR = ARMOR_MATERIALS.register("iron_nautilus_armor", () -> new ArmorMaterial(
+            Util.make(new EnumMap<>(ArmorItem.Type.class), map -> {
+                map.put(ArmorItem.Type.BOOTS, 0);
+                map.put(ArmorItem.Type.LEGGINGS, 0);
+                map.put(ArmorItem.Type.CHESTPLATE, 0);
+                map.put(ArmorItem.Type.HELMET, 0);
+                map.put(ArmorItem.Type.BODY, 5);
+            }),
+            9,
+            SoundEvents.ARMOR_EQUIP_IRON,
+            () -> Ingredient.of(Items.IRON_INGOT),
+            List.of(new ArmorMaterial.Layer(ResourceLocation.withDefaultNamespace("iron_nautilus_armor"))),
+            0.0F,
+            0.0F
+    ));
+
+    public static final DeferredHolder<ArmorMaterial, ArmorMaterial> GOLDEN_NAUTILUS_ARMOR = ARMOR_MATERIALS.register("golden_nautilus_armor", () -> new ArmorMaterial(
+            Util.make(new EnumMap<>(ArmorItem.Type.class), map -> {
+                map.put(ArmorItem.Type.BOOTS, 0);
+                map.put(ArmorItem.Type.LEGGINGS, 0);
+                map.put(ArmorItem.Type.CHESTPLATE, 0);
+                map.put(ArmorItem.Type.HELMET, 0);
+                map.put(ArmorItem.Type.BODY, 7);
+            }),
+            25,
+            SoundEvents.ARMOR_EQUIP_GOLD,
+            () -> Ingredient.of(Items.GOLD_INGOT),
+            List.of(new ArmorMaterial.Layer(ResourceLocation.withDefaultNamespace("golden_nautilus_armor"))),
+            0.0F,
+            0.0F
+    ));
+
+    public static final DeferredHolder<ArmorMaterial, ArmorMaterial> DIAMOND_NAUTILUS_ARMOR = ARMOR_MATERIALS.register("diamond_nautilus_armor", () -> new ArmorMaterial(
+            Util.make(new EnumMap<>(ArmorItem.Type.class), map -> {
+                map.put(ArmorItem.Type.BOOTS, 0);
+                map.put(ArmorItem.Type.LEGGINGS, 0);
+                map.put(ArmorItem.Type.CHESTPLATE, 0);
+                map.put(ArmorItem.Type.HELMET, 0);
+                map.put(ArmorItem.Type.BODY, 11);
+            }),
+            10,
+            SoundEvents.ARMOR_EQUIP_DIAMOND,
+            () -> Ingredient.of(Items.DIAMOND),
+            List.of(new ArmorMaterial.Layer(ResourceLocation.withDefaultNamespace("diamond_nautilus_armor"))),
+            2.0F,
+            0.0F
+    ));
+
+    public static final DeferredHolder<ArmorMaterial, ArmorMaterial> NETHERITE_NAUTILUS_ARMOR = ARMOR_MATERIALS.register("netherite_nautilus_armor", () -> new ArmorMaterial(
+            Util.make(new EnumMap<>(ArmorItem.Type.class), map -> {
+                map.put(ArmorItem.Type.BOOTS, 0);
+                map.put(ArmorItem.Type.LEGGINGS, 0);
+                map.put(ArmorItem.Type.CHESTPLATE, 0);
+                map.put(ArmorItem.Type.HELMET, 0);
+                map.put(ArmorItem.Type.BODY, 13);
+            }),
+            15,
+            SoundEvents.ARMOR_EQUIP_NETHERITE,
+            () -> Ingredient.of(Items.NETHERITE_INGOT),
+            List.of(new ArmorMaterial.Layer(ResourceLocation.withDefaultNamespace("netherite_nautilus_armor"))),
+            3.0F,
+            0.1F
+    ));
+
     public static final DeferredHolder<ArmorMaterial, ArmorMaterial> WILDFIRE_CROWN = OTT_ARMOR_MATERIALS.register("wildfire_crown", () -> new ArmorMaterial(
             Util.make(new EnumMap<>(ArmorItem.Type.class), map -> {
                 map.put(ArmorItem.Type.BOOTS, 3);
