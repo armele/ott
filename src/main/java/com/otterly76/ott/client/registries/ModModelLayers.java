@@ -16,6 +16,11 @@ public class ModModelLayers {
     public static final ModelLayerLocation HAPPY_GHAST_ROPES = register("happy_ghast", "ropes");
     public static final ModelLayerLocation COPPER_GOLEM = register("copper_golem");
 
+    public static final ModelLayerLocation NAUTILUS = register("nautilus");
+    public static final ModelLayerLocation NAUTILUS_BABY = register("nautilus", "baby");
+    public static final ModelLayerLocation NAUTILUS_ARMOR = register("nautilus", "armor");
+    public static final ModelLayerLocation NAUTILUS_SADDLE = register("nautilus", "saddle");
+
     public static final ModelLayerLocation OTT_WOOD_SET_BOAT = register("wood_set_boat");
     public static final ModelLayerLocation OTT_WOOD_SET_CHEST_BOAT = register("wood_set_chest_boat");
 
