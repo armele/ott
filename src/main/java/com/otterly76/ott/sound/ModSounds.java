@@ -508,6 +508,57 @@ public class ModSounds {
     public static final DeferredHolder<SoundEvent, SoundEvent> SAND_CRAB_DEATH = registerOttSoundEvent("entity.sand_crab.death");
     public static final DeferredHolder<SoundEvent, SoundEvent> SAND_CRAB_HURT = registerOttSoundEvent("entity.sand_crab.hurt");
 
+    // ── Nautilus (Mounts of Mayhem backport) ─────────────────────────────────
+    public static final DeferredHolder<SoundEvent, SoundEvent> NAUTILUS_AMBIENT              = registerSoundEvent("entity.nautilus.ambient");
+    public static final DeferredHolder<SoundEvent, SoundEvent> NAUTILUS_AMBIENT_ON_LAND      = registerSoundEvent("entity.nautilus.ambient_on_land");
+    public static final DeferredHolder<SoundEvent, SoundEvent> NAUTILUS_HURT                 = registerSoundEvent("entity.nautilus.hurt");
+    public static final DeferredHolder<SoundEvent, SoundEvent> NAUTILUS_HURT_ON_LAND         = registerSoundEvent("entity.nautilus.hurt_on_land");
+    public static final DeferredHolder<SoundEvent, SoundEvent> NAUTILUS_DEATH                = registerSoundEvent("entity.nautilus.death");
+    public static final DeferredHolder<SoundEvent, SoundEvent> NAUTILUS_DEATH_ON_LAND        = registerSoundEvent("entity.nautilus.death_on_land");
+    public static final DeferredHolder<SoundEvent, SoundEvent> NAUTILUS_DASH                 = registerSoundEvent("entity.nautilus.dash");
+    public static final DeferredHolder<SoundEvent, SoundEvent> NAUTILUS_DASH_ON_LAND         = registerSoundEvent("entity.nautilus.dash_on_land");
+    public static final DeferredHolder<SoundEvent, SoundEvent> NAUTILUS_DASH_READY           = registerSoundEvent("entity.nautilus.dash_ready");
+    public static final DeferredHolder<SoundEvent, SoundEvent> NAUTILUS_DASH_READY_ON_LAND   = registerSoundEvent("entity.nautilus.dash_ready_on_land");
+    public static final DeferredHolder<SoundEvent, SoundEvent> NAUTILUS_EAT                  = registerSoundEvent("entity.nautilus.eat");
+    public static final DeferredHolder<SoundEvent, SoundEvent> NAUTILUS_SWIM                 = registerSoundEvent("entity.nautilus.swim");
+    public static final DeferredHolder<SoundEvent, SoundEvent> BABY_NAUTILUS_AMBIENT         = registerSoundEvent("entity.baby_nautilus.ambient");
+    public static final DeferredHolder<SoundEvent, SoundEvent> BABY_NAUTILUS_AMBIENT_ON_LAND = registerSoundEvent("entity.baby_nautilus.ambient_on_land");
+    public static final DeferredHolder<SoundEvent, SoundEvent> BABY_NAUTILUS_HURT            = registerSoundEvent("entity.baby_nautilus.hurt");
+    public static final DeferredHolder<SoundEvent, SoundEvent> BABY_NAUTILUS_HURT_ON_LAND    = registerSoundEvent("entity.baby_nautilus.hurt_on_land");
+    public static final DeferredHolder<SoundEvent, SoundEvent> BABY_NAUTILUS_DEATH           = registerSoundEvent("entity.baby_nautilus.death");
+    public static final DeferredHolder<SoundEvent, SoundEvent> BABY_NAUTILUS_DEATH_ON_LAND   = registerSoundEvent("entity.baby_nautilus.death_on_land");
+    public static final DeferredHolder<SoundEvent, SoundEvent> BABY_NAUTILUS_EAT             = registerSoundEvent("entity.baby_nautilus.eat");
+    public static final DeferredHolder<SoundEvent, SoundEvent> BABY_NAUTILUS_SWIM            = registerSoundEvent("entity.baby_nautilus.swim");
+    public static final DeferredHolder<SoundEvent, SoundEvent> ZOMBIE_NAUTILUS_AMBIENT              = registerSoundEvent("entity.zombie_nautilus.ambient");
+    public static final DeferredHolder<SoundEvent, SoundEvent> ZOMBIE_NAUTILUS_AMBIENT_ON_LAND      = registerSoundEvent("entity.zombie_nautilus.ambient_on_land");
+    public static final DeferredHolder<SoundEvent, SoundEvent> ZOMBIE_NAUTILUS_HURT                 = registerSoundEvent("entity.zombie_nautilus.hurt");
+    public static final DeferredHolder<SoundEvent, SoundEvent> ZOMBIE_NAUTILUS_HURT_ON_LAND         = registerSoundEvent("entity.zombie_nautilus.hurt_on_land");
+    public static final DeferredHolder<SoundEvent, SoundEvent> ZOMBIE_NAUTILUS_DEATH                = registerSoundEvent("entity.zombie_nautilus.death");
+    public static final DeferredHolder<SoundEvent, SoundEvent> ZOMBIE_NAUTILUS_DEATH_ON_LAND        = registerSoundEvent("entity.zombie_nautilus.death_on_land");
+    public static final DeferredHolder<SoundEvent, SoundEvent> ZOMBIE_NAUTILUS_DASH                 = registerSoundEvent("entity.zombie_nautilus.dash");
+    public static final DeferredHolder<SoundEvent, SoundEvent> ZOMBIE_NAUTILUS_DASH_ON_LAND         = registerSoundEvent("entity.zombie_nautilus.dash_on_land");
+    public static final DeferredHolder<SoundEvent, SoundEvent> ZOMBIE_NAUTILUS_DASH_READY           = registerSoundEvent("entity.zombie_nautilus.dash_ready");
+    public static final DeferredHolder<SoundEvent, SoundEvent> ZOMBIE_NAUTILUS_DASH_READY_ON_LAND   = registerSoundEvent("entity.zombie_nautilus.dash_ready_on_land");
+    public static final DeferredHolder<SoundEvent, SoundEvent> ZOMBIE_NAUTILUS_EAT                  = registerSoundEvent("entity.zombie_nautilus.eat");
+    public static final DeferredHolder<SoundEvent, SoundEvent> ZOMBIE_NAUTILUS_SWIM                 = registerSoundEvent("entity.zombie_nautilus.swim");
+
+    public static final DeferredHolder<SoundEvent, SoundEvent> PARCHED_AMBIENT = registerSoundEvent("entity.parched.ambient");
+    public static final DeferredHolder<SoundEvent, SoundEvent> PARCHED_HURT    = registerSoundEvent("entity.parched.hurt");
+    public static final DeferredHolder<SoundEvent, SoundEvent> PARCHED_DEATH   = registerSoundEvent("entity.parched.death");
+    public static final DeferredHolder<SoundEvent, SoundEvent> PARCHED_STEP    = registerSoundEvent("entity.parched.step");
+
+    public static final DeferredHolder<SoundEvent, SoundEvent> CAMEL_HUSK_AMBIENT    = registerSoundEvent("entity.camel_husk.ambient");
+    public static final DeferredHolder<SoundEvent, SoundEvent> CAMEL_HUSK_HURT       = registerSoundEvent("entity.camel_husk.hurt");
+    public static final DeferredHolder<SoundEvent, SoundEvent> CAMEL_HUSK_DEATH      = registerSoundEvent("entity.camel_husk.death");
+    public static final DeferredHolder<SoundEvent, SoundEvent> CAMEL_HUSK_STEP       = registerSoundEvent("entity.camel_husk.step");
+    public static final DeferredHolder<SoundEvent, SoundEvent> CAMEL_HUSK_STEP_SAND  = registerSoundEvent("entity.camel_husk.step_sand");
+    public static final DeferredHolder<SoundEvent, SoundEvent> CAMEL_HUSK_EAT        = registerSoundEvent("entity.camel_husk.eat");
+    public static final DeferredHolder<SoundEvent, SoundEvent> CAMEL_HUSK_SADDLE     = registerSoundEvent("entity.camel_husk.saddle");
+    public static final DeferredHolder<SoundEvent, SoundEvent> CAMEL_HUSK_DASH       = registerSoundEvent("entity.camel_husk.dash");
+    public static final DeferredHolder<SoundEvent, SoundEvent> CAMEL_HUSK_DASH_READY = registerSoundEvent("entity.camel_husk.dash_ready");
+    public static final DeferredHolder<SoundEvent, SoundEvent> CAMEL_HUSK_STAND      = registerSoundEvent("entity.camel_husk.stand");
+    public static final DeferredHolder<SoundEvent, SoundEvent> CAMEL_HUSK_SIT        = registerSoundEvent("entity.camel_husk.sit");
+
     public static final DeferredHolder<SoundEvent, SoundEvent> NONE = registerSoundEvent("music.none");
     public static final DeferredHolder<SoundEvent, SoundEvent> BUNDLE_INSERT_FAIL = registerSoundEvent("item.bundle.insert_fail");
     public static final DeferredHolder<SoundEvent, SoundEvent> MUSIC_DISC_TEARS = registerSoundEvent("music_disc.tears");

@@ -4,6 +4,7 @@ import com.otterly76.ott.block.ModBlocks;
 import com.otterly76.ott.client.NutritionHudOverlay;
 import com.otterly76.ott.client.gui.RecyclingScreen;
 import com.otterly76.ott.client.toast.BetterToastComponent;
+import com.otterly76.ott.client.gui.NautilusInventoryScreen;
 import com.otterly76.ott.client.gui.TrashScreen;
 import com.otterly76.ott.client.model.BookshelfModelProxy;
 import com.otterly76.ott.client.render.PrismaticColorHandler;
@@ -14,6 +15,9 @@ import com.otterly76.ott.client.model.pig.ColdPigModel;
 import com.otterly76.ott.client.model.CreakingModel;
 import com.otterly76.ott.client.model.HappyGhastModel;
 import com.otterly76.ott.client.model.HappyGhastHarnessModel;
+import com.otterly76.ott.client.model.nautilus.NautilusArmorModel;
+import com.otterly76.ott.client.model.nautilus.NautilusModel;
+import com.otterly76.ott.client.model.nautilus.NautilusSaddleModel;
 import com.otterly76.ott.client.registries.ModModelLayers;
 import com.otterly76.ott.inventory.ModMenuTypes;
 import com.otterly76.ott.item.ModItems;
@@ -187,10 +191,15 @@ public class ClientModEvents {
         event.register(ModMenuTypes.ELEVATOR_MENU.get(), com.otterly76.ott.client.gui.ElevatorScreen::new);
         event.register(ModMenuTypes.RECYCLING_MENU.get(), RecyclingScreen::new);
         event.register(ModMenuTypes.WOODCUTTER_MENU.get(), com.otterly76.ott.client.screen.WoodcutterScreen::new);
+        event.register(ModMenuTypes.NAUTILUS_INVENTORY.get(), NautilusInventoryScreen::new);
     }
 
     @SuppressWarnings("unchecked")
     public static void registerRenderers(EntityRenderersEvent.RegisterRenderers event) {
+        event.registerEntityRenderer(ModEntities.NAUTILUS.get(), com.otterly76.ott.client.render.entity.NautilusRenderer::new);
+        event.registerEntityRenderer(ModEntities.ZOMBIE_NAUTILUS.get(), com.otterly76.ott.client.render.entity.ZombieNautilusRenderer::new);
+        event.registerEntityRenderer(ModEntities.PARCHED.get(), com.otterly76.ott.client.render.entity.ParchedRenderer::new);
+        event.registerEntityRenderer(ModEntities.CAMEL_HUSK.get(), com.otterly76.ott.client.render.entity.CamelHuskRenderer::new);
         event.registerEntityRenderer(ModEntities.CREAKING.get(), CreakingRenderer::new);
         event.registerEntityRenderer(ModEntities.HAPPY_GHAST.get(), HappyGhastRenderer::new);
         event.registerEntityRenderer(ModEntities.PALE_OAK_BOAT.get(), (context) -> new ModBoatRenderer(context, false));
@@ -458,6 +467,11 @@ public class ClientModEvents {
         event.registerLayerDefinition(ModModelLayers.HAPPY_GHAST, () -> HappyGhastModel.createBodyLayer(CubeDeformation.NONE));
         event.registerLayerDefinition(ModModelLayers.HAPPY_GHAST_HARNESS, HappyGhastHarnessModel::createHarnessLayer);
         event.registerLayerDefinition(ModModelLayers.HAPPY_GHAST_ROPES, () -> HappyGhastModel.createBodyLayer(new CubeDeformation(0.2F)));
+
+        event.registerLayerDefinition(ModModelLayers.NAUTILUS, NautilusModel::createBodyLayer);
+        event.registerLayerDefinition(ModModelLayers.NAUTILUS_BABY, NautilusModel::createBabyBodyLayer);
+        event.registerLayerDefinition(ModModelLayers.NAUTILUS_ARMOR, NautilusArmorModel::createBodyLayer);
+        event.registerLayerDefinition(ModModelLayers.NAUTILUS_SADDLE, NautilusSaddleModel::createSaddleLayer);
     }
 
     public static void onRegisterSpriteLoader(RegisterSpriteSourceTypesEvent event) {
@@ -625,9 +639,9 @@ public class ClientModEvents {
                 net.minecraft.world.item.Items.WOLF_SPAWN_EGG, net.minecraft.world.item.Items.ZOGLIN_SPAWN_EGG,
                 net.minecraft.world.item.Items.ZOMBIE_HORSE_SPAWN_EGG, net.minecraft.world.item.Items.ZOMBIE_SPAWN_EGG,
                 net.minecraft.world.item.Items.ZOMBIE_VILLAGER_SPAWN_EGG, net.minecraft.world.item.Items.ZOMBIFIED_PIGLIN_SPAWN_EGG,
-                ModItems.GLARE_SPAWN_EGG.get(), ModItems.ICEOLOGER_SPAWN_EGG.get(), ModItems.ILLUSIONER_SPAWN_EGG.get(),
+                ModItems.FIDDLER_CRAB_SPAWN_EGG.get(), ModItems.GLARE_SPAWN_EGG.get(), ModItems.ICEOLOGER_SPAWN_EGG.get(), ModItems.ILLUSIONER_SPAWN_EGG.get(),
                 ModItems.MAULER_SPAWN_EGG.get(), ModItems.RASCAL_SPAWN_EGG.get(), ModItems.TUFF_GOLEM_SPAWN_EGG.get(),
-                ModItems.WILDFIRE_SPAWN_EGG.get(), ModItems.COCONUT_CRAB_SPAWN_EGG.get(), ModItems.DUMBO_OCTOPUS_SPAWN_EGG.get(),
+                ModItems.WILDFIRE_SPAWN_EGG.get(), ModItems.NAUTILUS_SPAWN_EGG.get(), ModItems.ZOMBIE_NAUTILUS_SPAWN_EGG.get(), ModItems.PARCHED_SPAWN_EGG.get(), ModItems.CAMEL_HUSK_SPAWN_EGG.get(), ModItems.COCONUT_CRAB_SPAWN_EGG.get(), ModItems.DUMBO_OCTOPUS_SPAWN_EGG.get(),
                 ModItems.FERRET_SPAWN_EGG.get(), ModItems.JUMPING_SPIDER_SPAWN_EGG.get(), ModItems.KOI_FISH_SPAWN_EGG.get(),
                 ModItems.OTTER_SPAWN_EGG.get(), ModItems.RED_PANDA_SPAWN_EGG.get(), ModItems.SEA_BUNNY_SPAWN_EGG.get(),
                 ModItems.WATER_BUFFALO_SPAWN_EGG.get());
