@@ -288,6 +288,16 @@ public class ModItems {
     public static DeferredItem<AxeItem> OXIDIZED_COPPER_AXE;
     public static DeferredItem<HoeItem> OXIDIZED_COPPER_HOE;
     public static DeferredItem<ShearsItem> OXIDIZED_COPPER_SHEARS;
+
+    // --- Mounts of Mayhem: Spears ---
+    public static DeferredItem<SpearItem> WOODEN_SPEAR;
+    public static DeferredItem<SpearItem> STONE_SPEAR;
+    public static DeferredItem<SpearItem> IRON_SPEAR;
+    public static DeferredItem<SpearItem> GOLDEN_SPEAR;
+    public static DeferredItem<SpearItem> DIAMOND_SPEAR;
+    public static DeferredItem<SpearItem> NETHERITE_SPEAR;
+    public static DeferredItem<SpearItem> COPPER_SPEAR;
+
     public static DeferredItem<ArmorItem> COPPER_HELMET;
     public static DeferredItem<ArmorItem> COPPER_CHESTPLATE;
     public static DeferredItem<ArmorItem> COPPER_LEGGINGS;
@@ -335,6 +345,14 @@ public class ModItems {
     public static DeferredItem<CopperSolidBucketItem> COPPER_POWDER_SNOW_BUCKET;
 
     public static DeferredItem<AnimalArmorItem> NETHERITE_HORSE_ARMOR;
+
+    // --- Mounts of Mayhem: Nautilus Armor ---
+    public static DeferredItem<AnimalArmorItem> COPPER_NAUTILUS_ARMOR;
+    public static DeferredItem<AnimalArmorItem> IRON_NAUTILUS_ARMOR;
+    public static DeferredItem<AnimalArmorItem> GOLDEN_NAUTILUS_ARMOR;
+    public static DeferredItem<AnimalArmorItem> DIAMOND_NAUTILUS_ARMOR;
+    public static DeferredItem<AnimalArmorItem> NETHERITE_NAUTILUS_ARMOR;
+
     public static DeferredItem<SignItem> PALE_OAK_SIGN;
     public static DeferredItem<HangingSignItem> PALE_OAK_HANGING_SIGN;
     public static DeferredItem<PaleOakBoatItem> PALE_OAK_BOAT;
@@ -389,6 +407,11 @@ public class ModItems {
     public static final DeferredItem<Item> WECHUGE_SPAWN_EGG = ITEMS.register("wechuge_spawn_egg", () -> new DeferredSpawnEggItem(ModEntities.WECHUGE, -6902101, -12107459, new Item.Properties()));
     public static final DeferredItem<Item> WENDIGO_SPAWN_EGG = ITEMS.register("wendigo_spawn_egg", () -> new DeferredSpawnEggItem(ModEntities.WENDIGO, -8421505, -8696780, new Item.Properties()));
     public static final DeferredItem<Item> WOLVERINE_SPAWN_EGG = ITEMS.register("wolverine_spawn_egg", () -> new DeferredSpawnEggItem(ModEntities.WOLVERINE, -14280173, -5206418, new Item.Properties()));
+    // --- Mounts of Mayhem ---
+    public static final DeferredItem<Item> NAUTILUS_SPAWN_EGG = ITEMS.register("nautilus_spawn_egg", () -> new DeferredSpawnEggItem(ModEntities.NAUTILUS, 0xF5E6C8, 0xD4400A, new Item.Properties()));
+    public static final DeferredItem<Item> ZOMBIE_NAUTILUS_SPAWN_EGG = ITEMS.register("zombie_nautilus_spawn_egg", () -> new DeferredSpawnEggItem(ModEntities.ZOMBIE_NAUTILUS, 0x4B7A54, 0x8A2E2E, new Item.Properties()));
+    public static final DeferredItem<Item> PARCHED_SPAWN_EGG = ITEMS.register("parched_spawn_egg", () -> new DeferredSpawnEggItem(ModEntities.PARCHED, 0xC8A040, 0x6B3A10, new Item.Properties()));
+    public static final DeferredItem<Item> CAMEL_HUSK_SPAWN_EGG = ITEMS.register("camel_husk_spawn_egg", () -> new DeferredSpawnEggItem(ModEntities.CAMEL_HUSK, 0xC09F6D, 0x4B4B3A, new Item.Properties()));
     public static final DeferredItem<Item> FIDDLER_CRAB_SPAWN_EGG = ITEMS.register("fiddler_crab_spawn_egg", () -> new DeferredSpawnEggItem(ModEntities.FIDDLER_CRAB, 0x333077, 0xFE984B, new Item.Properties()));
     public static final DeferredItem<Item> GLARE_SPAWN_EGG = ITEMS.register("glare_spawn_egg", () -> new DeferredSpawnEggItem(ModEntities.GLARE, 0x70922D, 0x6A5227, new Item.Properties()));
     public static final DeferredItem<Item> ICEOLOGER_SPAWN_EGG = ITEMS.register("iceologer_spawn_egg", () -> new DeferredSpawnEggItem(ModEntities.ICEOLOGER, 0x173873, 0x949B9B, new Item.Properties()));
@@ -701,6 +724,15 @@ public class ModItems {
         OXIDIZED_COPPER_HOE = MINECRAFT_ITEMS.register("oxidized_copper_hoe", () -> new HoeItem(ModToolMaterials.OXIDIZED_COPPER, (new Item.Properties()).attributes(HoeItem.createAttributes(ModToolMaterials.OXIDIZED_COPPER, -2.0F, -1.0F))));
         OXIDIZED_COPPER_SHEARS = MINECRAFT_ITEMS.register("oxidized_copper_shears", () -> new ShearsItem((new Item.Properties()).durability(190)));
 
+        // --- Mounts of Mayhem: Spears ---
+        WOODEN_SPEAR   = MINECRAFT_ITEMS.register("wooden_spear",   () -> new SpearItem(Tiers.WOOD,      (new Item.Properties()).attributes(SpearItem.createAttributes(Tiers.WOOD,      3, -2.6F))));
+        STONE_SPEAR    = MINECRAFT_ITEMS.register("stone_spear",    () -> new SpearItem(Tiers.STONE,     (new Item.Properties()).attributes(SpearItem.createAttributes(Tiers.STONE,     3, -2.6F))));
+        IRON_SPEAR     = MINECRAFT_ITEMS.register("iron_spear",     () -> new SpearItem(Tiers.IRON,      (new Item.Properties()).attributes(SpearItem.createAttributes(Tiers.IRON,      3, -2.6F))));
+        GOLDEN_SPEAR   = MINECRAFT_ITEMS.register("golden_spear",   () -> new SpearItem(Tiers.GOLD,      (new Item.Properties()).attributes(SpearItem.createAttributes(Tiers.GOLD,      3, -2.6F))));
+        DIAMOND_SPEAR  = MINECRAFT_ITEMS.register("diamond_spear",  () -> new SpearItem(Tiers.DIAMOND,   (new Item.Properties()).attributes(SpearItem.createAttributes(Tiers.DIAMOND,   3, -2.6F))));
+        NETHERITE_SPEAR = MINECRAFT_ITEMS.register("netherite_spear", () -> new SpearItem(Tiers.NETHERITE, (new Item.Properties()).fireResistant().attributes(SpearItem.createAttributes(Tiers.NETHERITE, 3, -2.6F))));
+        COPPER_SPEAR   = MINECRAFT_ITEMS.register("copper_spear",   () -> new SpearItem(ModToolMaterials.COPPER, (new Item.Properties()).attributes(SpearItem.createAttributes(ModToolMaterials.COPPER, 3, -2.6F))));
+
         COPPER_BUCKET = MINECRAFT_ITEMS.register("copper_bucket", () -> new CopperBucketItem(Fluids.EMPTY, (new Item.Properties()).stacksTo(16)));
         COPPER_WATER_BUCKET = MINECRAFT_ITEMS.register("copper_water_bucket", () -> new CopperBucketItem(Fluids.WATER, (new Item.Properties()).craftRemainder(COPPER_BUCKET.get()).stacksTo(1)));
         COPPER_LAVA_BUCKET = MINECRAFT_ITEMS.register("copper_lava_bucket", () -> new CopperBucketItem(Fluids.LAVA, (new Item.Properties()).craftRemainder(COPPER_BUCKET.get()).stacksTo(1)));
@@ -758,7 +790,13 @@ public class ModItems {
             BUNDLES.put(color.getName(), MINECRAFT_ITEMS.register(color.getName() + "_bundle", () -> new BundleItem(new Item.Properties().stacksTo(1).component(DataComponents.BUNDLE_CONTENTS, BundleContents.EMPTY))));
         }
 
-        NETHERITE_HORSE_ARMOR = MINECRAFT_ITEMS.register("netherite_horse_armor", () -> new AnimalArmorItem(ArmorMaterials.NETHERITE, AnimalArmorItem.BodyType.EQUESTRIAN, false, (new Item.Properties()).stacksTo(1).fireResistant()));
+        NETHERITE_HORSE_ARMOR = MINECRAFT_ITEMS.register("netherite_horse_armor", () -> new AnimalArmorItem(ModArmorMaterials.NETHERITE_HORSE_ARMOR, AnimalArmorItem.BodyType.EQUESTRIAN, false, (new Item.Properties()).stacksTo(1).fireResistant()));
+
+        COPPER_NAUTILUS_ARMOR   = MINECRAFT_ITEMS.register("copper_nautilus_armor",   () -> new AnimalArmorItem(ModArmorMaterials.COPPER_NAUTILUS_ARMOR,   AnimalArmorItem.BodyType.EQUESTRIAN, false, (new Item.Properties()).stacksTo(1)));
+        IRON_NAUTILUS_ARMOR     = MINECRAFT_ITEMS.register("iron_nautilus_armor",     () -> new AnimalArmorItem(ModArmorMaterials.IRON_NAUTILUS_ARMOR,     AnimalArmorItem.BodyType.EQUESTRIAN, false, (new Item.Properties()).stacksTo(1)));
+        GOLDEN_NAUTILUS_ARMOR   = MINECRAFT_ITEMS.register("golden_nautilus_armor",   () -> new AnimalArmorItem(ModArmorMaterials.GOLDEN_NAUTILUS_ARMOR,   AnimalArmorItem.BodyType.EQUESTRIAN, false, (new Item.Properties()).stacksTo(1)));
+        DIAMOND_NAUTILUS_ARMOR  = MINECRAFT_ITEMS.register("diamond_nautilus_armor",  () -> new AnimalArmorItem(ModArmorMaterials.DIAMOND_NAUTILUS_ARMOR,  AnimalArmorItem.BodyType.EQUESTRIAN, false, (new Item.Properties()).stacksTo(1)));
+        NETHERITE_NAUTILUS_ARMOR = MINECRAFT_ITEMS.register("netherite_nautilus_armor", () -> new AnimalArmorItem(ModArmorMaterials.NETHERITE_NAUTILUS_ARMOR, AnimalArmorItem.BodyType.EQUESTRIAN, false, (new Item.Properties()).stacksTo(1).fireResistant()));
 
         PALE_OAK_SIGN = registerMinecraftSign();
         PALE_OAK_HANGING_SIGN = registerMinecraftHangingSign();
