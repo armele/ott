@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " I ",
+    "SSS",
+    "LLL"
+  ],
+  "key": {
+    "I": { "item": "minecraft:iron_ingot" },
+    "S": { "item": "minecraft:smooth_stone_slab" },
+    "L": { "tag": "minecraft:logs" }
+  },
+  "result": {
+    "id": "ott:woodcutter",
+    "count": 1
+  }
+}

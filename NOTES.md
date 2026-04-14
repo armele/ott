@@ -6,6 +6,8 @@ fix ctm textures for blocks
 review config options, some are very unnecessary
 finish vanilla entity models upgrades
 finish custom entity models upgrades
+check for cactus farm and disable cactus flowers
+new spawn rules for custom critters
 
 Fix:
 =====

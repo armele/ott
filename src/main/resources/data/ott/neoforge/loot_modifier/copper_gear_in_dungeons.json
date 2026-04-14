@@ -1,0 +1,14 @@
+{
+  "type": "ott:add_loot_table",
+  "conditions": [
+    {
+      "condition": "minecraft:any_of",
+      "terms": [
+        { "condition": "neoforge:loot_table_id", "loot_table_id": "minecraft:chests/simple_dungeon" },
+        { "condition": "neoforge:loot_table_id", "loot_table_id": "minecraft:chests/abandoned_mineshaft" },
+        { "condition": "neoforge:loot_table_id", "loot_table_id": "minecraft:chests/pillager_outpost" }
+      ]
+    }
+  ],
+  "loot_table": "ott:inject/copper_gear_exposed"
+}

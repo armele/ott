@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:chest",
+  "pools": [
+    {
+      "rolls": 1,
+      "entries": [
+        { "type": "minecraft:item", "name": "minecraft:exposed_copper_sword",            "weight": 3 },
+        { "type": "minecraft:item", "name": "minecraft:exposed_copper_pickaxe",          "weight": 4 },
+        { "type": "minecraft:item", "name": "minecraft:exposed_copper_axe",              "weight": 3 },
+        { "type": "minecraft:item", "name": "minecraft:copper_chainmail_helmet",         "weight": 3 },
+        { "type": "minecraft:item", "name": "minecraft:copper_chainmail_chestplate",     "weight": 2 },
+        { "type": "minecraft:item", "name": "minecraft:copper_chainmail_leggings",       "weight": 2 },
+        { "type": "minecraft:item", "name": "minecraft:copper_chainmail_boots",          "weight": 3 },
+        { "type": "minecraft:item", "name": "minecraft:exposed_copper_helmet",           "weight": 2 },
+        { "type": "minecraft:item", "name": "minecraft:exposed_copper_chestplate",       "weight": 2 },
+        { "type": "minecraft:item", "name": "minecraft:exposed_copper_boots",            "weight": 2 },
+        { "type": "minecraft:empty",                                                     "weight": 13 }
+      ]
+    }
+  ]
+}

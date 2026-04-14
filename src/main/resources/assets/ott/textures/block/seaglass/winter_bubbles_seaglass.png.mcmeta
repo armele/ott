@@ -1,6 +1,6 @@
 {
 	"animation": {
 		"interpolate": true,
-		"framespeed": 600
+		"framespeed": 12
 	}
 }
