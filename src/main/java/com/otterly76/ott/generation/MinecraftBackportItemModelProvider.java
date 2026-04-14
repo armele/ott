@@ -177,6 +177,11 @@ public class MinecraftBackportItemModelProvider extends ItemModelProvider {
         ModItems.HARNESSES.values().forEach(item -> generatedItem(item.getId().getPath()));
 
         generatedItem(ModItems.NETHERITE_HORSE_ARMOR.getId().getPath());
+        generatedItem(ModItems.COPPER_NAUTILUS_ARMOR.getId().getPath());
+        generatedItem(ModItems.IRON_NAUTILUS_ARMOR.getId().getPath());
+        generatedItem(ModItems.GOLDEN_NAUTILUS_ARMOR.getId().getPath());
+        generatedItem(ModItems.DIAMOND_NAUTILUS_ARMOR.getId().getPath());
+        generatedItem(ModItems.NETHERITE_NAUTILUS_ARMOR.getId().getPath());
 
         // Copper Tools
         handheldItem(ModItems.COPPER_SWORD.getId().getPath());

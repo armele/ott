@@ -277,6 +277,11 @@ public class ModItemModelProvider extends ItemModelProvider {
         spawnEggItem(ModItems.PSYCHO_JELLY_SPAWN_EGG);
         spawnEggItem(ModItems.SPOONBILL_SPAWN_EGG);
         spawnEggItem(ModItems.GIANT_SOFTSHELL_TURTLE_SPAWN_EGG);
+        spawnEggItem(ModItems.FIDDLER_CRAB_SPAWN_EGG);
+        spawnEggItem(ModItems.NAUTILUS_SPAWN_EGG);
+        spawnEggItem(ModItems.ZOMBIE_NAUTILUS_SPAWN_EGG);
+        spawnEggItem(ModItems.PARCHED_SPAWN_EGG);
+        spawnEggItem(ModItems.CAMEL_HUSK_SPAWN_EGG);
 
         generatedItemFromTexture(ModItems.DUMBO_OCTOPUS_BUCKET.getId().getPath(), modLoc("item/dumbo_octopus_bucket"));
         generatedItemFromTexture(ModItems.KOI_FISH_BUCKET.getId().getPath(), modLoc("item/koi_fish_bucket"));
