@@ -16,9 +16,11 @@ import java.util.function.Supplier;
 
 public enum OttCreativeCategories {
 
-    CREATURES("creatures",
-            ModItems.OTTER_SPAWN_EGG,
+    // ── Sea Creatures ─────────────────────────────────────────────────────────
+    AQUATIC("aquatic",
+            ModItems.GOBLIN_SHARK_SPAWN_EGG,
             (params, output) -> {
+                // Critter buckets
                 output.accept(ModItems.ANGELFISH_BUCKET);
                 output.accept(ModItems.BARRELEYE_BUCKET);
                 output.accept(ModItems.BASS_BUCKET);
@@ -43,148 +45,169 @@ public enum OttCreativeCategories {
                 output.accept(ModItems.SNAIL_BUCKET);
                 output.accept(ModItems.STINGRAY_BUCKET);
                 output.accept(ModItems.SUNFISH_BUCKET);
-
-                output.accept(ModItems.ALLIGATOR_SPAWN_EGG);
+                // Spawn eggs
                 output.accept(ModItems.ANGELFISH_SPAWN_EGG);
-                output.accept(ModItems.ARID_YETI_SPAWN_EGG);
-                output.accept(ModItems.BABY_PHOENIX_SPAWN_EGG);
-                output.accept(ModItems.BABY_WIND_PHOENIX_SPAWN_EGG);
                 output.accept(ModItems.BARRELEYE_SPAWN_EGG);
                 output.accept(ModItems.BASS_SPAWN_EGG);
-                output.accept(ModItems.BEAVER_SPAWN_EGG);
-                output.accept(ModItems.BLACK_BEAR_SPAWN_EGG);
-                output.accept(ModItems.BLUEJAY_SPAWN_EGG);
-                output.accept(ModItems.BOGGED_BONE_STALKER_SPAWN_EGG);
-                output.accept(ModItems.BOGGED_SHADOW_SPAWN_EGG);
-                output.accept(ModItems.BONE_STALKER_SPAWN_EGG);
                 output.accept(ModItems.BONNETHEAD_SHARK_SPAWN_EGG);
-                output.accept(ModItems.BROWN_BEAR_SPAWN_EGG);
-                output.accept(ModItems.BURROWING_OWL_SPAWN_EGG);
-                output.accept(ModItems.BUSHDOG_SPAWN_EGG);
-                output.accept(ModItems.BUTTERFLY_SPAWN_EGG);
-                output.accept(ModItems.CANARY_SPAWN_EGG);
-                output.accept(ModItems.CANDYCANE_SNAIL_SPAWN_EGG);
-                output.accept(ModItems.CAPYBARA_SPAWN_EGG);
-                output.accept(ModItems.CARDINAL_SPAWN_EGG);
-                output.accept(ModItems.CATERPILLAR_SPAWN_EGG);
                 output.accept(ModItems.CATFISH_SPAWN_EGG);
-                output.accept(ModItems.CHERRY_TREE_ENT_SPAWN_EGG);
-                output.accept(ModItems.CHUPACABRA_SPAWN_EGG);
                 output.accept(ModItems.CICHLID_SPAWN_EGG);
                 output.accept(ModItems.COCONUT_CRAB_SPAWN_EGG);
                 output.accept(ModItems.CORAL_SEA_VIPER_SPAWN_EGG);
-                output.accept(ModItems.COUGAR_SPAWN_EGG);
-                output.accept(ModItems.COYOTE_SPAWN_EGG);
-                output.accept(ModItems.DEER_SPAWN_EGG);
-                output.accept(ModItems.DRAGONFLY_SPAWN_EGG);
-                output.accept(ModItems.DUCK_SPAWN_EGG);
                 output.accept(ModItems.DUMBO_OCTOPUS_SPAWN_EGG);
-                output.accept(ModItems.ECHIDNA_SPAWN_EGG);
-                output.accept(ModItems.ELEPHANT_SPAWN_EGG);
-                output.accept(ModItems.EMU_SPAWN_EGG);
-                output.accept(ModItems.FENNEC_FOX_SPAWN_EGG);
-                output.accept(ModItems.FERRET_SPAWN_EGG);
                 output.accept(ModItems.FIDDLER_CRAB_SPAWN_EGG);
-                output.accept(ModItems.FINCH_SPAWN_EGG);
-                output.accept(ModItems.FIREFLY_SPAWN_EGG);
-                output.accept(ModItems.FIRE_SALAMANDER_SPAWN_EGG);
                 output.accept(ModItems.FLOUNDER_SPAWN_EGG);
-                output.accept(ModItems.GECKO_SPAWN_EGG);
-                output.accept(ModItems.GEIST_SPAWN_EGG);
-                output.accept(ModItems.GHOST_SPAWN_EGG);
-                output.accept(ModItems.GIANT_SOFTSHELL_TURTLE_SPAWN_EGG);
-                output.accept(ModItems.GILDED_TREE_ENT_SPAWN_EGG);
-                output.accept(ModItems.GIRAFFE_SPAWN_EGG);
-                output.accept(ModItems.GLARE_SPAWN_EGG);
                 output.accept(ModItems.GOBLIN_SHARK_SPAWN_EGG);
-                output.accept(ModItems.GOLDEN_HERMIT_KING_SPAWN_EGG);
-                output.accept(ModItems.GOOSE_SPAWN_EGG);
-                output.accept(ModItems.GUINEA_FOWL_SPAWN_EGG);
                 output.accept(ModItems.GUITARFISH_SPAWN_EGG);
-                output.accept(ModItems.HAUNT_SPAWN_EGG);
-                output.accept(ModItems.HEDGEHOG_SPAWN_EGG);
-                output.accept(ModItems.HERMIT_KING_SPAWN_EGG);
-                output.accept(ModItems.HIPPO_SPAWN_EGG);
-                output.accept(ModItems.HOOPOE_SPAWN_EGG);
-                output.accept(ModItems.HOWLER_SPAWN_EGG);
-                output.accept(ModItems.ICEOLOGER_SPAWN_EGG);
-                output.accept(ModItems.ILLUSIONER_SPAWN_EGG);
-                output.accept(ModItems.IMPALA_SPAWN_EGG);
                 output.accept(ModItems.SMALL_JELLYFISH_SPAWN_EGG);
                 output.accept(ModItems.MEDIUM_JELLYFISH_SPAWN_EGG);
                 output.accept(ModItems.LARGE_JELLYFISH_SPAWN_EGG);
-                output.accept(ModItems.JUMPING_SPIDER_SPAWN_EGG);
-                output.accept(ModItems.KIWI_SPAWN_EGG);
                 output.accept(ModItems.KOI_FISH_SPAWN_EGG);
                 output.accept(ModItems.KRILL_SPAWN_EGG);
+                output.accept(ModItems.MAN_O_WAR_SPAWN_EGG);
+                output.accept(ModItems.MANTA_RAY_SPAWN_EGG);
+                output.accept(ModItems.MARINE_IGUANA_SPAWN_EGG);
+                output.accept(ModItems.PSYCHO_JELLY_SPAWN_EGG);
+                output.accept(ModItems.SAND_CRAB_SPAWN_EGG);
+                output.accept(ModItems.SEA_BUNNY_SPAWN_EGG);
+                output.accept(ModItems.SEAHORSE_SPAWN_EGG);
+                output.accept(ModItems.SEAL_SPAWN_EGG);
+                output.accept(ModItems.SEA_URCHIN_SPAWN_EGG);
+                output.accept(ModItems.SEA_VIPER_SPAWN_EGG);
+                output.accept(ModItems.SNAIL_SPAWN_EGG);
+                output.accept(ModItems.STARFISH_SPAWN_EGG);
+                output.accept(ModItems.STINGRAY_SPAWN_EGG);
+                output.accept(ModItems.SUNFISH_SPAWN_EGG);
+                output.accept(ModItems.ETHEREAL_SHRIMP_SPAWN_EGG);
+            }),
+
+    // ── Wildlife: real-world land animals, birds, reptiles, insects ───────────
+    WILDLIFE("wildlife",
+            ModItems.OTTER_SPAWN_EGG,
+            (params, output) -> {
+                // Birds
+                output.accept(ModItems.BLUEJAY_SPAWN_EGG);
+                output.accept(ModItems.BURROWING_OWL_SPAWN_EGG);
+                output.accept(ModItems.CANARY_SPAWN_EGG);
+                output.accept(ModItems.CARDINAL_SPAWN_EGG);
+                output.accept(ModItems.DUCK_SPAWN_EGG);
+                output.accept(ModItems.EMU_SPAWN_EGG);
+                output.accept(ModItems.FINCH_SPAWN_EGG);
+                output.accept(ModItems.GOOSE_SPAWN_EGG);
+                output.accept(ModItems.GUINEA_FOWL_SPAWN_EGG);
+                output.accept(ModItems.HOOPOE_SPAWN_EGG);
+                output.accept(ModItems.KIWI_SPAWN_EGG);
+                output.accept(ModItems.PENGUIN_SPAWN_EGG);
+                output.accept(ModItems.PHEASANT_SPAWN_EGG);
+                output.accept(ModItems.QUAIL_SPAWN_EGG);
+                output.accept(ModItems.ROBIN_SPAWN_EGG);
+                output.accept(ModItems.SPARROW_SPAWN_EGG);
+                output.accept(ModItems.SPOONBILL_SPAWN_EGG);
+                output.accept(ModItems.STORK_SPAWN_EGG);
+                output.accept(ModItems.TOUCAN_SPAWN_EGG);
+                output.accept(ModItems.TURKEY_SPAWN_EGG);
+                output.accept(ModItems.VULTURE_SPAWN_EGG);
+                // Reptiles & Amphibians
+                output.accept(ModItems.ALLIGATOR_SPAWN_EGG);
+                output.accept(ModItems.FIRE_SALAMANDER_SPAWN_EGG);
+                output.accept(ModItems.GECKO_SPAWN_EGG);
+                output.accept(ModItems.GIANT_SOFTSHELL_TURTLE_SPAWN_EGG);
+                output.accept(ModItems.LIZARD_SPAWN_EGG);
+                output.accept(ModItems.PINK_LAND_IGUANA_SPAWN_EGG);
+                output.accept(ModItems.PIT_VIPER_SPAWN_EGG);
+                output.accept(ModItems.RATTLESNAKE_SPAWN_EGG);
+                output.accept(ModItems.RIVER_TURTLE_SPAWN_EGG);
+                output.accept(ModItems.SNAKE_SPAWN_EGG);
+                output.accept(ModItems.TORTOISE_SPAWN_EGG);
+                // Mammals
+                output.accept(ModItems.BEAVER_SPAWN_EGG);
+                output.accept(ModItems.BLACK_BEAR_SPAWN_EGG);
+                output.accept(ModItems.BROWN_BEAR_SPAWN_EGG);
+                output.accept(ModItems.BUSHDOG_SPAWN_EGG);
+                output.accept(ModItems.CANDYCANE_SNAIL_SPAWN_EGG);
+                output.accept(ModItems.CAPYBARA_SPAWN_EGG);
+                output.accept(ModItems.COUGAR_SPAWN_EGG);
+                output.accept(ModItems.COYOTE_SPAWN_EGG);
+                output.accept(ModItems.DEER_SPAWN_EGG);
+                output.accept(ModItems.ECHIDNA_SPAWN_EGG);
+                output.accept(ModItems.ELEPHANT_SPAWN_EGG);
+                output.accept(ModItems.FENNEC_FOX_SPAWN_EGG);
+                output.accept(ModItems.FERRET_SPAWN_EGG);
+                output.accept(ModItems.GIRAFFE_SPAWN_EGG);
+                output.accept(ModItems.HEDGEHOG_SPAWN_EGG);
+                output.accept(ModItems.HIPPO_SPAWN_EGG);
+                output.accept(ModItems.IMPALA_SPAWN_EGG);
                 output.accept(ModItems.LEOPARD_CAT_SPAWN_EGG);
                 output.accept(ModItems.LION_SPAWN_EGG);
-                output.accept(ModItems.LIZARD_SPAWN_EGG);
                 output.accept(ModItems.MAMMOTH_SPAWN_EGG);
-                output.accept(ModItems.MANTA_RAY_SPAWN_EGG);
-                output.accept(ModItems.MAN_O_WAR_SPAWN_EGG);
-                output.accept(ModItems.MARINE_IGUANA_SPAWN_EGG);
                 output.accept(ModItems.MARMOT_SPAWN_EGG);
-                output.accept(ModItems.MAULER_SPAWN_EGG);
                 output.accept(ModItems.MOLE_SPAWN_EGG);
                 output.accept(ModItems.MOOSE_SPAWN_EGG);
                 output.accept(ModItems.MOUSE_SPAWN_EGG);
-                output.accept(ModItems.MYCELIUM_MAMMOTH_SPAWN_EGG);
                 output.accept(ModItems.OTTER_SPAWN_EGG);
                 output.accept(ModItems.PALLAS_CAT_SPAWN_EGG);
-                output.accept(ModItems.PENGUIN_SPAWN_EGG);
-                output.accept(ModItems.PHEASANT_SPAWN_EGG);
-                output.accept(ModItems.PHOENIX_SPAWN_EGG);
-                output.accept(ModItems.PINK_LAND_IGUANA_SPAWN_EGG);
-                output.accept(ModItems.PIT_VIPER_SPAWN_EGG);
-                output.accept(ModItems.PSYCHO_JELLY_SPAWN_EGG);
-                output.accept(ModItems.QUAIL_SPAWN_EGG);
-                output.accept(ModItems.RASCAL_SPAWN_EGG);
-                output.accept(ModItems.RATTLESNAKE_SPAWN_EGG);
                 output.accept(ModItems.RED_PANDA_SPAWN_EGG);
                 output.accept(ModItems.REINDEER_SPAWN_EGG);
                 output.accept(ModItems.RHINO_SPAWN_EGG);
                 output.accept(ModItems.RINGTAIL_SPAWN_EGG);
-                output.accept(ModItems.RIVER_TURTLE_SPAWN_EGG);
-                output.accept(ModItems.ROBIN_SPAWN_EGG);
-                output.accept(ModItems.SAND_CRAB_SPAWN_EGG);
-                output.accept(ModItems.SASQUATCH_SPAWN_EGG);
-                output.accept(ModItems.SEAHORSE_SPAWN_EGG);
-                output.accept(ModItems.SEAL_SPAWN_EGG);
-                output.accept(ModItems.SEA_BUNNY_SPAWN_EGG);
-                output.accept(ModItems.SEA_URCHIN_SPAWN_EGG);
-                output.accept(ModItems.SEA_VIPER_SPAWN_EGG);
-                output.accept(ModItems.SHADOW_SPAWN_EGG);
-                output.accept(ModItems.ETHEREAL_SHRIMP_SPAWN_EGG);
-                output.accept(ModItems.SKINWALKER_SPAWN_EGG);
-                output.accept(ModItems.SMALL_FIREFLY_SPAWN_EGG);
-                output.accept(ModItems.SNAIL_SPAWN_EGG);
-                output.accept(ModItems.SNAKE_SPAWN_EGG);
-                output.accept(ModItems.SPARROW_SPAWN_EGG);
-                output.accept(ModItems.SPECTRE_SPAWN_EGG);
-                output.accept(ModItems.SPOONBILL_SPAWN_EGG);
-                output.accept(ModItems.SQUONK_SPAWN_EGG);
-                output.accept(ModItems.STARFISH_SPAWN_EGG);
-                output.accept(ModItems.STINGRAY_SPAWN_EGG);
-                output.accept(ModItems.STORK_SPAWN_EGG);
-                output.accept(ModItems.SUNFISH_SPAWN_EGG);
-                output.accept(ModItems.TORTOISE_SPAWN_EGG);
-                output.accept(ModItems.TOUCAN_SPAWN_EGG);
-                output.accept(ModItems.TREE_ENT_SPAWN_EGG);
                 output.accept(ModItems.TREE_KANGAROO_SPAWN_EGG);
-                output.accept(ModItems.TUFF_GOLEM_SPAWN_EGG);
-                output.accept(ModItems.TURKEY_SPAWN_EGG);
-                output.accept(ModItems.VILE_GATOR_SPAWN_EGG);
-                output.accept(ModItems.VULTURE_SPAWN_EGG);
                 output.accept(ModItems.WATER_BUFFALO_SPAWN_EGG);
+                output.accept(ModItems.WHITE_DEER_SPAWN_EGG);
+                output.accept(ModItems.WOLVERINE_SPAWN_EGG);
+                output.accept(ModItems.ZEBRA_SPAWN_EGG);
+                // Insects & small critters
+                output.accept(ModItems.BUTTERFLY_SPAWN_EGG);
+                output.accept(ModItems.CATERPILLAR_SPAWN_EGG);
+                output.accept(ModItems.DRAGONFLY_SPAWN_EGG);
+                output.accept(ModItems.FIREFLY_SPAWN_EGG);
+                output.accept(ModItems.JUMPING_SPIDER_SPAWN_EGG);
+                output.accept(ModItems.SMALL_FIREFLY_SPAWN_EGG);
+            }),
+
+    // ── Mythical & Hostile ────────────────────────────────────────────────────
+    MYTHICAL("mythical",
+            ModItems.BONE_STALKER_SPAWN_EGG,
+            (params, output) -> {
+                // Supernatural / undead
+                output.accept(ModItems.BOGGED_BONE_STALKER_SPAWN_EGG);
+                output.accept(ModItems.BOGGED_SHADOW_SPAWN_EGG);
+                output.accept(ModItems.BONE_STALKER_SPAWN_EGG);
+                output.accept(ModItems.GEIST_SPAWN_EGG);
+                output.accept(ModItems.GHOST_SPAWN_EGG);
+                output.accept(ModItems.HAUNT_SPAWN_EGG);
+                output.accept(ModItems.SHADOW_SPAWN_EGG);
+                output.accept(ModItems.SKINWALKER_SPAWN_EGG);
+                output.accept(ModItems.SPECTRE_SPAWN_EGG);
+                // Cryptids & monsters
+                output.accept(ModItems.ARID_YETI_SPAWN_EGG);
+                output.accept(ModItems.CAMEL_HUSK_SPAWN_EGG);
+                output.accept(ModItems.CHUPACABRA_SPAWN_EGG);
+                output.accept(ModItems.HOWLER_SPAWN_EGG);
+                output.accept(ModItems.MYCELIUM_MAMMOTH_SPAWN_EGG);
+                output.accept(ModItems.SASQUATCH_SPAWN_EGG);
+                output.accept(ModItems.SQUONK_SPAWN_EGG);
+                output.accept(ModItems.VILE_GATOR_SPAWN_EGG);
                 output.accept(ModItems.WECHUGE_SPAWN_EGG);
                 output.accept(ModItems.WENDIGO_SPAWN_EGG);
-                output.accept(ModItems.WHITE_DEER_SPAWN_EGG);
-                output.accept(ModItems.WILDFIRE_SPAWN_EGG);
-                output.accept(ModItems.WIND_PHOENIX_SPAWN_EGG);
-                output.accept(ModItems.WOLVERINE_SPAWN_EGG);
                 output.accept(ModItems.YETI_SPAWN_EGG);
-                output.accept(ModItems.ZEBRA_SPAWN_EGG);
+                // Elemental / magical
+                output.accept(ModItems.BABY_PHOENIX_SPAWN_EGG);
+                output.accept(ModItems.BABY_WIND_PHOENIX_SPAWN_EGG);
+                output.accept(ModItems.CHERRY_TREE_ENT_SPAWN_EGG);
+                output.accept(ModItems.GILDED_TREE_ENT_SPAWN_EGG);
+                output.accept(ModItems.PHOENIX_SPAWN_EGG);
+                output.accept(ModItems.TREE_ENT_SPAWN_EGG);
+                output.accept(ModItems.WIND_PHOENIX_SPAWN_EGG);
+                // Minecraft / F&F backports
+                output.accept(ModItems.GLARE_SPAWN_EGG);
+                output.accept(ModItems.GOLDEN_HERMIT_KING_SPAWN_EGG);
+                output.accept(ModItems.HERMIT_KING_SPAWN_EGG);
+                output.accept(ModItems.ICEOLOGER_SPAWN_EGG);
+                output.accept(ModItems.ILLUSIONER_SPAWN_EGG);
+                output.accept(ModItems.MAULER_SPAWN_EGG);
+                output.accept(ModItems.RASCAL_SPAWN_EGG);
+                output.accept(ModItems.TUFF_GOLEM_SPAWN_EGG);
+                output.accept(ModItems.WILDFIRE_SPAWN_EGG);
             }),
 
     DYES("dyes",
@@ -332,6 +355,25 @@ public enum OttCreativeCategories {
                 output.accept(ModBlocks.TALL_DRY_GRASS);
 
                 output.accept(ModBlocks.DRIED_GHAST);
+
+                output.accept(ModItems.WOODEN_SPEAR);
+                output.accept(ModItems.STONE_SPEAR);
+                output.accept(ModItems.IRON_SPEAR);
+                output.accept(ModItems.GOLDEN_SPEAR);
+                output.accept(ModItems.DIAMOND_SPEAR);
+                output.accept(ModItems.NETHERITE_SPEAR);
+                output.accept(ModItems.COPPER_SPEAR);
+
+                output.accept(ModItems.NETHERITE_HORSE_ARMOR);
+
+                output.accept(ModItems.NAUTILUS_SPAWN_EGG);
+                output.accept(ModItems.ZOMBIE_NAUTILUS_SPAWN_EGG);
+
+                output.accept(ModItems.COPPER_NAUTILUS_ARMOR);
+                output.accept(ModItems.IRON_NAUTILUS_ARMOR);
+                output.accept(ModItems.GOLDEN_NAUTILUS_ARMOR);
+                output.accept(ModItems.DIAMOND_NAUTILUS_ARMOR);
+                output.accept(ModItems.NETHERITE_NAUTILUS_ARMOR);
             }),
 
     COPPER_CHAOS("copper_chaos",
@@ -725,7 +767,7 @@ public enum OttCreativeCategories {
 
     // --- Display order (top to bottom in the button list) ---
     public static final java.util.List<OttCreativeCategories> DISPLAY_ORDER =
-            java.util.List.of(MISC, VANPLUS, WOOD_SETS, DYES, COLORS, GRADIENTS, BLOCKS, CONN, BACKPORT, COPPER_CHAOS, FLORA, FAUNA, FOOD, JARS, CREATURES
+            java.util.List.of(MISC, VANPLUS, WOOD_SETS, DYES, COLORS, GRADIENTS, BLOCKS, CONN, BACKPORT, COPPER_CHAOS, FLORA, FAUNA, FOOD, JARS, AQUATIC, WILDLIFE, MYTHICAL
             );
 
     // --- State ---
