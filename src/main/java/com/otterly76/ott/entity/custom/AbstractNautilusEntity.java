@@ -92,7 +92,7 @@ public abstract class AbstractNautilusEntity extends TamableAnimal implements Pl
         int seaLevel = level.getLevel().getSeaLevel();
         return pos.getY() >= seaLevel - 25
                 && pos.getY() <= seaLevel - 5
-                && level.getFluidState(pos.below()).is(net.minecraft.tags.FluidTags.WATER)
+                && level.getFluidState(pos).is(net.minecraft.tags.FluidTags.WATER)
                 && level.getBlockState(pos.above()).is(Blocks.WATER);
     }
 
