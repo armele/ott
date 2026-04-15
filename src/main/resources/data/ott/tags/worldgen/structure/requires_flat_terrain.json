@@ -1,9 +1,14 @@
 {
   "values": [
-    { "id": "minecraft:village/plains",  "required": false },
-    { "id": "minecraft:village/desert",  "required": false },
-    { "id": "minecraft:village/savanna", "required": false },
-    { "id": "minecraft:village/snowy",   "required": false },
-    { "id": "minecraft:village/taiga",   "required": false }
+    "minecraft:village_plains",
+    "minecraft:village_desert",
+    "minecraft:village_savanna",
+    "minecraft:village_snowy",
+    "minecraft:village_taiga",
+    "ott:small_village_plains",
+    "ott:small_village_desert",
+    "ott:small_village_savanna",
+    "ott:small_village_snowy",
+    "ott:small_village_taiga"
   ]
 }

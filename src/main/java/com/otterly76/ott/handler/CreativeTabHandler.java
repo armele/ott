@@ -737,7 +737,9 @@ public class CreativeTabHandler {
             safeAccept(event, ModItems.HAPPY_GHAST_SPAWN_EGG, visibility);
 
             safeAccept(event, ModItems.COPPER_GOLEM_SPAWN_EGG, visibility);
-            
+            safeAccept(event, ModItems.NAUTILUS_SPAWN_EGG, visibility);
+            safeAccept(event, ModItems.ZOMBIE_NAUTILUS_SPAWN_EGG, visibility);
+            safeAccept(event, ModItems.CAMEL_HUSK_SPAWN_EGG, visibility);
         }
     }
 

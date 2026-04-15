@@ -280,6 +280,7 @@ public class Ott {
         registry.accept("internal/compile_raw_templates", CompileRawTemplatesModifier.CODEC);
         registry.accept("add_surface_rule", AddSurfaceRuleModifier.CODEC);
         registry.accept("set_pool_aliases", SetPoolAliasesModifier.CODEC);
+        registry.accept("add_structure_set_entries", AddStructureSetEntriesModifier.CODEC);
     }
 
     public static void registerCommonBlockPredicateTypes(BiConsumer<String, BlockPredicateType<?>> consumer) {

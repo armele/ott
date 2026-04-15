@@ -9,6 +9,7 @@ finish custom entity models upgrades
 check for cactus farm and disable cactus flowers
 new spawn rules for custom critters
 add nautilus owner follow logic
+check blockstate and model jsons for abandoned
 
 Fix:
 =====

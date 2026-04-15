@@ -35,8 +35,6 @@ public class NautilusEntity extends AbstractNautilusEntity {
 
     @Override
     protected void registerGoals() {
-        // Basic survival
-        this.goalSelector.addGoal(0, new FloatGoal(this));
         // Taming / feeding tempt
         this.goalSelector.addGoal(1, new TemptGoal(this, 1.1D, stack -> stack.is(NAUTILUS_TAMING_ITEMS) || stack.is(NAUTILUS_FOOD), false));
         // Attack pufferfish and anything that hurt it

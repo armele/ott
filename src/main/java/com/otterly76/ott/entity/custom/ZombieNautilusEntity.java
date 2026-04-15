@@ -44,7 +44,6 @@ public class ZombieNautilusEntity extends AbstractNautilusEntity {
 
     @Override
     protected void registerGoals() {
-        this.goalSelector.addGoal(0, new FloatGoal(this));
         // Temptation reduces aggression; does not lead to taming
         this.goalSelector.addGoal(1, new TemptGoal(this, 0.9D, stack -> stack.is(NAUTILUS_TAMING_ITEMS), false));
         this.goalSelector.addGoal(2, new MeleeAttackGoal(this, 0.5D, true));

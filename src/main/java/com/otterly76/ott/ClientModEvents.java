@@ -581,7 +581,9 @@ public class ClientModEvents {
                 ModItems.ANGELFISH_SPAWN_EGG.get(), ModItems.BARRELEYE_SPAWN_EGG.get(), ModItems.FLOUNDER_SPAWN_EGG.get(),
                 ModItems.MARINE_IGUANA_SPAWN_EGG.get(), ModItems.GECKO_SPAWN_EGG.get(), ModItems.EMU_SPAWN_EGG.get(),
                 ModItems.HOOPOE_SPAWN_EGG.get(), ModItems.PHEASANT_SPAWN_EGG.get(), ModItems.TOUCAN_SPAWN_EGG.get(),
-                ModItems.MOOSE_SPAWN_EGG.get(), ModItems.FENNEC_FOX_SPAWN_EGG.get());
+                ModItems.MOOSE_SPAWN_EGG.get(), ModItems.FENNEC_FOX_SPAWN_EGG.get(),
+                ModItems.NAUTILUS_SPAWN_EGG.get(), ModItems.ZOMBIE_NAUTILUS_SPAWN_EGG.get(),
+                ModItems.CAMEL_HUSK_SPAWN_EGG.get());
 
         event.register((stack, tintIndex) -> -1,
                 ModItems.DUCK_SPAWN_EGG.get(), ModItems.CATFISH_SPAWN_EGG.get(), ModItems.BASS_SPAWN_EGG.get(),
@@ -641,7 +643,7 @@ public class ClientModEvents {
                 net.minecraft.world.item.Items.ZOMBIE_VILLAGER_SPAWN_EGG, net.minecraft.world.item.Items.ZOMBIFIED_PIGLIN_SPAWN_EGG,
                 ModItems.FIDDLER_CRAB_SPAWN_EGG.get(), ModItems.GLARE_SPAWN_EGG.get(), ModItems.ICEOLOGER_SPAWN_EGG.get(), ModItems.ILLUSIONER_SPAWN_EGG.get(),
                 ModItems.MAULER_SPAWN_EGG.get(), ModItems.RASCAL_SPAWN_EGG.get(), ModItems.TUFF_GOLEM_SPAWN_EGG.get(),
-                ModItems.WILDFIRE_SPAWN_EGG.get(), ModItems.NAUTILUS_SPAWN_EGG.get(), ModItems.ZOMBIE_NAUTILUS_SPAWN_EGG.get(), ModItems.PARCHED_SPAWN_EGG.get(), ModItems.CAMEL_HUSK_SPAWN_EGG.get(), ModItems.COCONUT_CRAB_SPAWN_EGG.get(), ModItems.DUMBO_OCTOPUS_SPAWN_EGG.get(),
+                ModItems.WILDFIRE_SPAWN_EGG.get(), ModItems.PARCHED_SPAWN_EGG.get(), ModItems.COCONUT_CRAB_SPAWN_EGG.get(), ModItems.DUMBO_OCTOPUS_SPAWN_EGG.get(),
                 ModItems.FERRET_SPAWN_EGG.get(), ModItems.JUMPING_SPIDER_SPAWN_EGG.get(), ModItems.KOI_FISH_SPAWN_EGG.get(),
                 ModItems.OTTER_SPAWN_EGG.get(), ModItems.RED_PANDA_SPAWN_EGG.get(), ModItems.SEA_BUNNY_SPAWN_EGG.get(),
                 ModItems.WATER_BUFFALO_SPAWN_EGG.get());

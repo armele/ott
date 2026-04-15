@@ -209,23 +209,17 @@ public class ModEventBusEvents {
         event.register(
                 ModEntities.NAUTILUS.get(),
                 SpawnPlacementTypes.IN_WATER,
-                Heightmap.Types.OCEAN_FLOOR_WG,
-                (type, level, spawnType, pos, random) ->
-                        level.getFluidState(pos).is(net.minecraft.tags.FluidTags.WATER) &&
-                        level.getFluidState(pos.above()).is(net.minecraft.tags.FluidTags.WATER) &&
-                        Mob.checkMobSpawnRules(type, level, spawnType, pos, random),
-                RegisterSpawnPlacementsEvent.Operation.OR
+                Heightmap.Types.OCEAN_FLOOR,
+                com.otterly76.ott.entity.custom.AbstractNautilusEntity::checkNautilusSpawnRules,
+                RegisterSpawnPlacementsEvent.Operation.REPLACE
         );
 
         event.register(
                 ModEntities.ZOMBIE_NAUTILUS.get(),
                 SpawnPlacementTypes.IN_WATER,
-                Heightmap.Types.OCEAN_FLOOR_WG,
-                (type, level, spawnType, pos, random) ->
-                        level.getFluidState(pos).is(net.minecraft.tags.FluidTags.WATER) &&
-                        level.getFluidState(pos.above()).is(net.minecraft.tags.FluidTags.WATER) &&
-                        Mob.checkMobSpawnRules(type, level, spawnType, pos, random),
-                RegisterSpawnPlacementsEvent.Operation.OR
+                Heightmap.Types.OCEAN_FLOOR,
+                com.otterly76.ott.entity.custom.AbstractNautilusEntity::checkNautilusSpawnRules,
+                RegisterSpawnPlacementsEvent.Operation.REPLACE
         );
 
         event.register(
@@ -727,25 +721,11 @@ public class ModEventBusEvents {
                 RegisterSpawnPlacementsEvent.Operation.OR
         );
         event.register(
-                ModEntities.NAUTILUS.get(),
-                SpawnPlacementTypes.IN_WATER,
-                Heightmap.Types.OCEAN_FLOOR,
-                com.otterly76.ott.entity.custom.AbstractNautilusEntity::checkNautilusSpawnRules,
-                RegisterSpawnPlacementsEvent.Operation.OR
-        );
-        event.register(
-                ModEntities.ZOMBIE_NAUTILUS.get(),
-                SpawnPlacementTypes.IN_WATER,
-                Heightmap.Types.OCEAN_FLOOR,
-                com.otterly76.ott.entity.custom.AbstractNautilusEntity::checkNautilusSpawnRules,
-                RegisterSpawnPlacementsEvent.Operation.OR
-        );
-        event.register(
                 ModEntities.PARCHED.get(),
                 SpawnPlacementTypes.ON_GROUND,
                 Heightmap.Types.MOTION_BLOCKING_NO_LEAVES,
                 net.minecraft.world.entity.monster.Monster::checkMonsterSpawnRules,
-                RegisterSpawnPlacementsEvent.Operation.OR
+                RegisterSpawnPlacementsEvent.Operation.REPLACE
         );
 
         // Zombie horses only spawn at night — they're undead and burn in sunlight
@@ -757,7 +737,7 @@ public class ModEventBusEvents {
                     long time = level.getLevel().getDayTime() % 24000L;
                     return time >= 13000L && Mob.checkMobSpawnRules(type, level, spawnType, pos, random);
                 },
-                RegisterSpawnPlacementsEvent.Operation.AND
+                RegisterSpawnPlacementsEvent.Operation.REPLACE
         );
     }
 
