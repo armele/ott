@@ -29,6 +29,7 @@ public class ModEventBusEvents {
     }
 
     public static void registerAttributes(EntityAttributeCreationEvent event) {
+        event.put(ModEntities.CAMEL_HUSK.get(), net.minecraft.world.entity.animal.camel.Camel.createAttributes().build());
         event.put(ModEntities.CREAKING.get(), Creaking.createAttributes().build());
         event.put(ModEntities.HAPPY_GHAST.get(), HappyGhast.createAttributes().build());
         event.put(ModEntities.COPPER_GOLEM.get(), com.otterly76.ott.entity.custom.CopperGolem.createAttributes().build());
@@ -174,6 +175,10 @@ public class ModEventBusEvents {
         // --- Ecologics ---
         event.put(ModEntities.COCONUT_CRAB.get(), com.otterly76.ott.entity.custom.CoconutCrabEntity.createAttributes().build());
         event.put(ModEntities.SAND_CRAB.get(), com.otterly76.ott.entity.custom.SandCrabEntity.createAttributes().build());
+        // --- Mounts of Mayhem ---
+        event.put(ModEntities.NAUTILUS.get(), com.otterly76.ott.entity.custom.AbstractNautilusEntity.createAttributes().build());
+        event.put(ModEntities.ZOMBIE_NAUTILUS.get(), com.otterly76.ott.entity.custom.ZombieNautilusEntity.createAttributes().build());
+        event.put(ModEntities.PARCHED.get(), com.otterly76.ott.entity.custom.ParchedEntity.createAttributes().build());
         // --- Friends and Foes ---
         event.put(ModEntities.FIDDLER_CRAB.get(), com.otterly76.ott.entity.custom.FiddlerCrabEntity.createAttributes().build());
         event.put(ModEntities.GLARE.get(), com.otterly76.ott.entity.custom.GlareEntity.createAttributes().build());
@@ -697,6 +702,27 @@ public class ModEventBusEvents {
                 SpawnPlacementTypes.IN_WATER,
                 Heightmap.Types.MOTION_BLOCKING_NO_LEAVES,
                 net.minecraft.world.entity.animal.WaterAnimal::checkSurfaceWaterAnimalSpawnRules,
+                RegisterSpawnPlacementsEvent.Operation.OR
+        );
+        event.register(
+                ModEntities.NAUTILUS.get(),
+                SpawnPlacementTypes.IN_WATER,
+                Heightmap.Types.OCEAN_FLOOR,
+                com.otterly76.ott.entity.custom.AbstractNautilusEntity::checkNautilusSpawnRules,
+                RegisterSpawnPlacementsEvent.Operation.OR
+        );
+        event.register(
+                ModEntities.ZOMBIE_NAUTILUS.get(),
+                SpawnPlacementTypes.IN_WATER,
+                Heightmap.Types.OCEAN_FLOOR,
+                com.otterly76.ott.entity.custom.AbstractNautilusEntity::checkNautilusSpawnRules,
+                RegisterSpawnPlacementsEvent.Operation.OR
+        );
+        event.register(
+                ModEntities.PARCHED.get(),
+                SpawnPlacementTypes.ON_GROUND,
+                Heightmap.Types.MOTION_BLOCKING_NO_LEAVES,
+                net.minecraft.world.entity.monster.Monster::checkMonsterSpawnRules,
                 RegisterSpawnPlacementsEvent.Operation.OR
         );
     }
