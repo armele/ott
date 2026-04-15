@@ -81,7 +81,6 @@
     "common.PigMixin",
     "common.RabbitMixin",
     "common.PlacedFeatureAccessor",
-    "common.PlacedFeatureMixin",
     "common.PortalShapeMixin",
     "common.PlayerListMixin",
     "common.PoolAliasLookupMixin",
