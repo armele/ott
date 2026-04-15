@@ -11,9 +11,10 @@ new spawn rules for custom critters
 add nautilus owner follow logic
 check blockstate and model jsons for abandoned
 
+backtrack and review all previously added features
+
 Fix:
 =====
-Experimental Features warning suppression does not appear to be working
 
 Mods to Implement:
 =====
