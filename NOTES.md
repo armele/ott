@@ -8,6 +8,7 @@ finish vanilla entity models upgrades
 finish custom entity models upgrades
 check for cactus farm and disable cactus flowers
 new spawn rules for custom critters
+fix zombie horse spawn rules
 
 Fix:
 =====
