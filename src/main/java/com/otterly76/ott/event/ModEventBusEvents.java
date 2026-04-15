@@ -207,6 +207,28 @@ public class ModEventBusEvents {
         );
 
         event.register(
+                ModEntities.NAUTILUS.get(),
+                SpawnPlacementTypes.IN_WATER,
+                Heightmap.Types.OCEAN_FLOOR_WG,
+                (type, level, spawnType, pos, random) ->
+                        level.getFluidState(pos).is(net.minecraft.tags.FluidTags.WATER) &&
+                        level.getFluidState(pos.above()).is(net.minecraft.tags.FluidTags.WATER) &&
+                        Mob.checkMobSpawnRules(type, level, spawnType, pos, random),
+                RegisterSpawnPlacementsEvent.Operation.OR
+        );
+
+        event.register(
+                ModEntities.ZOMBIE_NAUTILUS.get(),
+                SpawnPlacementTypes.IN_WATER,
+                Heightmap.Types.OCEAN_FLOOR_WG,
+                (type, level, spawnType, pos, random) ->
+                        level.getFluidState(pos).is(net.minecraft.tags.FluidTags.WATER) &&
+                        level.getFluidState(pos.above()).is(net.minecraft.tags.FluidTags.WATER) &&
+                        Mob.checkMobSpawnRules(type, level, spawnType, pos, random),
+                RegisterSpawnPlacementsEvent.Operation.OR
+        );
+
+        event.register(
                 ModEntities.MAN_O_WAR.get(),
                 SpawnPlacementTypes.IN_WATER,
                 Heightmap.Types.MOTION_BLOCKING_NO_LEAVES,
