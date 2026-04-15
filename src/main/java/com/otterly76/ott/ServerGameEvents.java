@@ -4,6 +4,8 @@ import com.otterly76.ott.block.custom.PoolBlock;
 import com.otterly76.ott.command.HomeCommand;
 import com.otterly76.ott.config.OttConfig;
 import com.otterly76.ott.handler.ItemInteractionHandler;
+import com.otterly76.ott.item.ModEnchantments;
+import com.otterly76.ott.item.SpearItem;
 import com.otterly76.ott.mixin.common.ItemInvoker;
 import com.otterly76.ott.network.ClientboundSyncNutritionPacket;
 import com.otterly76.ott.network.S2COpenNameTagEditorMessage;
@@ -11,14 +13,21 @@ import com.otterly76.ott.util.worldgen.FloodingManager;
 import com.otterly76.ott.worldgen.surface.SurfaceRuleManager;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.core.Holder;
+import net.minecraft.core.registries.Registries;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.util.Mth;
 import net.minecraft.world.InteractionResult;
+import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.food.FoodData;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
+import net.minecraft.world.item.enchantment.Enchantment;
+import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraft.world.level.ClipContext;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
@@ -31,6 +40,7 @@ import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.event.RegisterCommandsEvent;
 import net.neoforged.neoforge.event.entity.living.LivingDropsEvent;
 import net.neoforged.neoforge.event.entity.player.AnvilRepairEvent;
+import net.neoforged.neoforge.event.entity.player.AttackEntityEvent;
 import net.neoforged.neoforge.event.entity.player.PlayerInteractEvent;
 import net.neoforged.neoforge.event.level.BlockEvent;
 import net.neoforged.neoforge.event.server.ServerAboutToStartEvent;
@@ -179,5 +189,49 @@ public class ServerGameEvents {
         } else {
             event.setBreakChance(OttConfig.ANVILS.MISC.ANVIL_BREAK_CHANCE.get().floatValue());
         }
+    }
+
+    // ── Lunge enchantment: propel player horizontally on spear jab ─────────────
+
+    @SubscribeEvent
+    public static void onPlayerAttack(AttackEntityEvent event) {
+        Player player = event.getEntity();
+        ItemStack mainHand = player.getMainHandItem();
+        if (!(mainHand.getItem() instanceof SpearItem)) return;
+
+        // Look up Lunge enchantment from registry
+        var lungeRef = player.registryAccess()
+                .lookup(Registries.ENCHANTMENT)
+                .flatMap(reg -> reg.get(ModEnchantments.LUNGE));
+        if (lungeRef.isEmpty()) return;
+
+        Holder<Enchantment> lungeHolder = lungeRef.get();
+        int lungeLevel = EnchantmentHelper.getItemEnchantmentLevel(lungeHolder, mainHand);
+        if (lungeLevel <= 0) return;
+
+        // Require 6+ hunger
+        FoodData food = player.getFoodData();
+        if (food.getFoodLevel() < 6) return;
+
+        // Propel player horizontally in view direction.
+        // Max lunge when view is perfectly level (xRot = 0); falls off as xRot increases.
+        float xRot = player.getXRot() * Mth.DEG_TO_RAD;
+        float yRot = player.getYRot() * Mth.DEG_TO_RAD;
+        float horizontalFactor = Mth.cos(xRot);
+        float strength = (0.4F + lungeLevel * 0.2F) * horizontalFactor;
+
+        double dx = -Mth.sin(yRot) * strength;
+        double dz =  Mth.cos(yRot) * strength;
+        player.push(dx, 0.0, dz);
+        player.hurtMarked = true;
+
+        // Consume food: each level above 1 costs 1 hunger; all levels cost 1 saturation
+        if (lungeLevel > 1) {
+            food.setFoodLevel(Math.max(0, food.getFoodLevel() - (lungeLevel - 1)));
+        }
+        food.setSaturation(Math.max(0.0F, food.getSaturationLevel() - 1.0F));
+
+        // 1 durability per use
+        mainHand.hurtAndBreak(1, player, EquipmentSlot.MAINHAND);
     }
 }

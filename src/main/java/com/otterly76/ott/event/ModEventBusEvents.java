@@ -725,6 +725,18 @@ public class ModEventBusEvents {
                 net.minecraft.world.entity.monster.Monster::checkMonsterSpawnRules,
                 RegisterSpawnPlacementsEvent.Operation.OR
         );
+
+        // Zombie horses only spawn at night — they're undead and burn in sunlight
+        event.register(
+                EntityType.ZOMBIE_HORSE,
+                SpawnPlacementTypes.ON_GROUND,
+                Heightmap.Types.MOTION_BLOCKING_NO_LEAVES,
+                (type, level, spawnType, pos, random) -> {
+                    long time = level.getLevel().getDayTime() % 24000L;
+                    return time >= 13000L && Mob.checkMobSpawnRules(type, level, spawnType, pos, random);
+                },
+                RegisterSpawnPlacementsEvent.Operation.AND
+        );
     }
 
     public static void registerCapabilities(RegisterCapabilitiesEvent event) {

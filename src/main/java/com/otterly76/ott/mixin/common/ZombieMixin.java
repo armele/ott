@@ -2,15 +2,20 @@ package com.otterly76.ott.mixin.common;
 
 import com.otterly76.ott.entity.ai.goal.AttackAlligatorEggGoal;
 import com.otterly76.ott.entity.ai.goal.AttackTortoiseEggGoal;
+import com.otterly76.ott.entity.ai.goal.SpearUseGoal;
 import com.otterly76.ott.entity.gecko.ZombieGeoEntity;
 import com.otterly76.ott.entity.variant.*;
+import com.otterly76.ott.item.ModItems;
 import com.otterly76.ott.registry.OttBuiltInRegistries;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.MobSpawnType;
 import net.minecraft.world.entity.SpawnGroupData;
 import net.minecraft.world.entity.monster.Zombie;
+import net.minecraft.world.entity.monster.ZombifiedPiglin;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.ServerLevelAccessor;
 import org.spongepowered.asm.mixin.Mixin;
@@ -79,6 +84,17 @@ public abstract class ZombieMixin extends MobMixin implements VariantDataHolder<
     protected void ott$finalizeSubSpawn(ServerLevelAccessor level, DifficultyInstance difficulty, MobSpawnType reason, SpawnGroupData spawnData, CallbackInfoReturnable<SpawnGroupData> cir) {
         if (this.getType() == EntityType.ZOMBIE) {
             VariantUtils.selectVariantToSpawn(SpawnContext.create(level, this.blockPosition()), OttBuiltInRegistries.ZOMBIE_VARIANTS, VariantSpawner.MONSTERS).ifPresent(this::ott$setVariantData);
+            if (reason == MobSpawnType.NATURAL && this.getRandom().nextFloat() < 0.2F) {
+                Zombie zombie = (Zombie)(Object)this;
+                zombie.setItemSlot(EquipmentSlot.MAINHAND, new ItemStack(ModItems.STONE_SPEAR.get()));
+                zombie.goalSelector.addGoal(1, new SpearUseGoal<>(zombie));
+            }
+        } else if (this.getType() == EntityType.ZOMBIFIED_PIGLIN
+                && reason == MobSpawnType.NATURAL
+                && this.getRandom().nextFloat() < 0.2F) {
+            ZombifiedPiglin zp = (ZombifiedPiglin)(Object)this;
+            zp.setItemSlot(EquipmentSlot.MAINHAND, new ItemStack(ModItems.GOLDEN_SPEAR.get()));
+            zp.goalSelector.addGoal(1, new SpearUseGoal<>(zp));
         }
     }
 
