@@ -26,6 +26,7 @@
     "common.AnvilBlockMixin",
     "common.AnvilMenuAccessor",
     "common.BeardifierMixin",
+    "common.ChunkMapMixin",
     "common.BlockMixin",
     "common.BoggedMixin",
     "common.BundleContentsMixin",
