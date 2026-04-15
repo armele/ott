@@ -35,6 +35,15 @@ public class GravitySettleFeature extends Feature<NoneFeatureConfiguration> {
     }
 
     /**
+     * Returns true if a falling block can pass through (i.e. the given state provides no support).
+     * Extends vanilla's isFree() to also include pointed dripstone, which does not override
+     * canBeReplaced() but should not act as a landing surface for gravity blocks.
+     */
+    private static boolean canFallThrough(BlockState state) {
+        return FallingBlock.isFree(state) || state.is(Blocks.POINTED_DRIPSTONE);
+    }
+
+    /**
      * Scans a single block column bottom-to-top. Any FallingBlock (sand, gravel, etc.)
      * that has only air beneath it falls to the nearest solid surface below.
      * Processing bottom-to-top handles stacked gravity blocks correctly in one pass:
@@ -48,11 +57,14 @@ public class GravitySettleFeature extends Feature<NoneFeatureConfiguration> {
 
             Block block = state.getBlock();
             if (!(block instanceof FallingBlock)) continue;
-            if (!level.getBlockState(pos.below()).isAir()) continue;
+            BlockState below = level.getBlockState(pos.below());
+            // canFallThrough: air, fire, liquids, canBeReplaced blocks (grass, moss, carpets,
+            // flowers, etc.) and explicitly pointed dripstone.
+            if (!canFallThrough(below)) continue;
 
-            // Scan downward to find the first non-air block
+            // Scan downward to find the first solid surface
             int landY = y - 1;
-            while (landY > minY && level.getBlockState(new BlockPos(x, landY, z)).isAir()) {
+            while (landY > minY && canFallThrough(level.getBlockState(new BlockPos(x, landY, z)))) {
                 landY--;
             }
             landY++; // first air slot above the solid surface
