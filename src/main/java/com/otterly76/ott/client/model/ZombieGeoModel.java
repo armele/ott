@@ -54,6 +54,10 @@ public class ZombieGeoModel<T extends Zombie & ZombieGeoEntity> extends GeoModel
         GeoModelUtils.applyHeadRotation(animationState, head, headwear);
         GeoModelUtils.applyLimbSwingHumanoid(animationState, leftArm, rightArm, leftLeg, rightLeg);
 
+        float headScale = animatable.isBaby() ? 1.5f : 1.0f;
+        if (head != null) { head.setScaleX(headScale); head.setScaleY(headScale); head.setScaleZ(headScale); }
+        if (headwear != null) { headwear.setScaleX(headScale); headwear.setScaleY(headScale); headwear.setScaleZ(headScale); }
+
         // Vanilla Zombie arms reaching forward
         if (rightArm != null) rightArm.setRotX(rightArm.getRotX() + (float)Math.PI / 2F);
         if (leftArm != null) leftArm.setRotX(leftArm.getRotX() + (float)Math.PI / 2F);

@@ -14,7 +14,6 @@ import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.MobSpawnType;
 import net.minecraft.world.entity.SpawnGroupData;
 import net.minecraft.world.entity.monster.Zombie;
-import net.minecraft.world.entity.monster.ZombifiedPiglin;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.ServerLevelAccessor;
@@ -89,12 +88,6 @@ public abstract class ZombieMixin extends MobMixin implements VariantDataHolder<
                 zombie.setItemSlot(EquipmentSlot.MAINHAND, new ItemStack(ModItems.STONE_SPEAR.get()));
                 zombie.goalSelector.addGoal(1, new SpearUseGoal<>(zombie));
             }
-        } else if (this.getType() == EntityType.ZOMBIFIED_PIGLIN
-                && reason == MobSpawnType.NATURAL
-                && this.getRandom().nextFloat() < 0.2F) {
-            ZombifiedPiglin zp = (ZombifiedPiglin)(Object)this;
-            zp.setItemSlot(EquipmentSlot.MAINHAND, new ItemStack(ModItems.GOLDEN_SPEAR.get()));
-            zp.goalSelector.addGoal(1, new SpearUseGoal<>(zp));
         }
     }
 
@@ -102,7 +95,6 @@ public abstract class ZombieMixin extends MobMixin implements VariantDataHolder<
     public void registerControllers(AnimatableManager.ControllerRegistrar controllers) {
     }
 
-    @Override
     @org.spongepowered.asm.mixin.Overwrite
     public boolean isBaby() {
         return this.ott$isBaby();

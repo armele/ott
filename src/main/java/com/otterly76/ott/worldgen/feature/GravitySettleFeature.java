@@ -40,7 +40,11 @@ public class GravitySettleFeature extends Feature<NoneFeatureConfiguration> {
      * canBeReplaced() but should not act as a landing surface for gravity blocks.
      */
     private static boolean canFallThrough(BlockState state) {
-        return FallingBlock.isFree(state) || state.is(Blocks.POINTED_DRIPSTONE);
+        return FallingBlock.isFree(state)
+                || state.is(Blocks.POINTED_DRIPSTONE)
+                || state.is(Blocks.SHORT_GRASS)
+                || state.is(Blocks.TALL_GRASS)
+                || state.is(Blocks.MOSS_CARPET);
     }
 
     /**

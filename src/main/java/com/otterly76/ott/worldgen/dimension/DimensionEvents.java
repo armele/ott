@@ -29,8 +29,7 @@ public class DimensionEvents {
 
     @SubscribeEvent
     public static void onMobSpawn(FinalizeSpawnEvent event) {
-        if (event.getSpawnType() == MobSpawnType.SPAWN_EGG ||
-                event.getSpawnType() == MobSpawnType.COMMAND ||
+        if (event.getSpawnType() == MobSpawnType.COMMAND ||
                 event.getSpawnType() == MobSpawnType.SPAWNER ||
                 event.getSpawnType() == MobSpawnType.TRIGGERED) {
             return;
