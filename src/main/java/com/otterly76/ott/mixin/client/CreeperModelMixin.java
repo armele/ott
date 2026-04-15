@@ -1,6 +1,6 @@
 package com.otterly76.ott.mixin.client;
 
-import com.otterly76.ott.util.entity.TinyMobRenderState;
+import com.otterly76.ott.util.entity.OttBabyMob;
 import net.minecraft.client.model.CreeperModel;
 import net.minecraft.client.model.EntityModel;
 import net.minecraft.client.model.geom.ModelPart;
@@ -19,14 +19,8 @@ public abstract class CreeperModelMixin extends EntityModel<Creeper> {
 
     @Inject(method = "setupAnim", at = @At("RETURN"))
     private void ott$scaleHead(Entity entity, float f, float g, float h, float i, float j, CallbackInfo ci) {
-        if (TinyMobRenderState.isRenderingTiny) {
-            this.head.xScale = 2.0f;
-            this.head.yScale = 2.0f;
-            this.head.zScale = 2.0f;
-        } else {
-            this.head.xScale = 1.0f;
-            this.head.yScale = 1.0f;
-            this.head.zScale = 1.0f;
-        }
+        boolean tiny = entity instanceof OttBabyMob babyMob && babyMob.ott$isBaby();
+        float s = tiny ? 2.0f : 1.0f;
+        this.head.xScale = s; this.head.yScale = s; this.head.zScale = s;
     }
 }

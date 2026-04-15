@@ -5,6 +5,7 @@ import com.otterly76.ott.entity.gecko.SkeletonGeoEntity;
 import com.otterly76.ott.entity.variant.ClientAsset;
 import com.otterly76.ott.entity.variant.SkeletonVariant;
 import com.otterly76.ott.entity.variant.VariantDataHolder;
+import com.otterly76.ott.util.entity.OttBabyMob;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.monster.Skeleton;
 import org.jetbrains.annotations.Nullable;
@@ -45,16 +46,17 @@ public class SkeletonGeoModel<T extends Skeleton & SkeletonGeoEntity> extends Ge
         super.setCustomAnimations(animatable, instanceId, animationState);
 
         GeoBone head = this.getAnimationProcessor().getBone("head");
+        GeoBone headwear = this.getAnimationProcessor().getBone("headwear");
         GeoBone rightArm = this.getAnimationProcessor().getBone("right_arm");
         GeoBone leftArm = this.getAnimationProcessor().getBone("left_arm");
         GeoBone rightLeg = this.getAnimationProcessor().getBone("right_leg");
         GeoBone leftLeg = this.getAnimationProcessor().getBone("left_leg");
 
-        GeoModelUtils.applyHeadRotation(animationState, head);
+        GeoModelUtils.applyHeadRotation(animationState, head, headwear);
         GeoModelUtils.applyLimbSwingHumanoid(animationState, leftArm, rightArm, leftLeg, rightLeg);
+
+        float headScale = animatable instanceof OttBabyMob babyMob && babyMob.ott$isBaby() ? 2.0f : 1.0f;
+        if (head != null) { head.setScaleX(headScale); head.setScaleY(headScale); head.setScaleZ(headScale); }
+        if (headwear != null) { headwear.setScaleX(headScale); headwear.setScaleY(headScale); headwear.setScaleZ(headScale); }
     }
 }
-
-
-
-

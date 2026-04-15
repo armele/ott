@@ -20,7 +20,7 @@ public abstract class EndermanModelMixin<T extends LivingEntity> extends Humanoi
     @Inject(method = "setupAnim(Lnet/minecraft/world/entity/LivingEntity;FFFFF)V", at = @At("RETURN"))
     private void ott$scaleTinyHead(T entity, float f, float g, float h, float i, float j, CallbackInfo ci) {
         boolean tiny = entity instanceof OttBabyMob babyMob && babyMob.ott$isBaby();
-        float s = tiny ? 3.0f : 1.0f;
+        float s = tiny ? 2.0f : 1.0f;
         this.head.xScale = s; this.head.yScale = s; this.head.zScale = s;
     }
 }
