@@ -4,7 +4,6 @@ import com.otterly76.ott.entity.ModEntities;
 import com.otterly76.ott.sound.ModSounds;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvent;
-import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.ai.goal.*;
@@ -14,7 +13,6 @@ import net.minecraft.world.entity.ai.goal.target.NearestAttackableTargetGoal;
 import net.minecraft.world.entity.animal.Pufferfish;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.level.ServerLevelAccessor;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
@@ -110,7 +108,7 @@ public class NautilusEntity extends AbstractNautilusEntity {
     }
 
     @Override
-    protected SoundEvent getSwimSound() {
+    protected @NotNull SoundEvent getSwimSound() {
         return this.isBaby() ? ModSounds.BABY_NAUTILUS_SWIM.get() : ModSounds.NAUTILUS_SWIM.get();
     }
 
@@ -138,13 +136,6 @@ public class NautilusEntity extends AbstractNautilusEntity {
 
     // ── Spawn ─────────────────────────────────────────────────────────────────
 
-    @Override
-    public @Nullable SpawnGroupData finalizeSpawn(@NotNull ServerLevelAccessor level,
-                                                  @NotNull DifficultyInstance difficulty,
-                                                  @NotNull MobSpawnType reason,
-                                                  @Nullable SpawnGroupData groupData) {
-        return super.finalizeSpawn(level, difficulty, reason, groupData);
-    }
 
     // ── Leash ─────────────────────────────────────────────────────────────────
 

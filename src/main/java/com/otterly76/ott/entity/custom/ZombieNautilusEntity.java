@@ -111,7 +111,7 @@ public class ZombieNautilusEntity extends AbstractNautilusEntity {
     // ── Spawn ─────────────────────────────────────────────────────────────────
 
     @Override
-    public @Nullable SpawnGroupData finalizeSpawn(@NotNull ServerLevelAccessor level,
+    public @NotNull SpawnGroupData finalizeSpawn(@NotNull ServerLevelAccessor level,
                                                    @NotNull DifficultyInstance difficulty,
                                                    @NotNull MobSpawnType reason,
                                                    @Nullable SpawnGroupData groupData) {
@@ -174,7 +174,7 @@ public class ZombieNautilusEntity extends AbstractNautilusEntity {
     }
 
     @Override
-    protected SoundEvent getSwimSound() {
+    protected @NotNull SoundEvent getSwimSound() {
         return ModSounds.ZOMBIE_NAUTILUS_SWIM.get();
     }
 }

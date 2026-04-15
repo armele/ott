@@ -1,19 +1,16 @@
 package com.otterly76.ott.entity.custom;
 
 import net.minecraft.core.BlockPos;
-import net.minecraft.core.Holder;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.tags.TagKey;
 import net.minecraft.util.Mth;
 import net.minecraft.world.Container;
-import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.SimpleContainer;
@@ -31,14 +28,12 @@ import net.minecraft.world.entity.ai.navigation.WaterBoundPathNavigation;
 import com.otterly76.ott.inventory.NautilusContainerMenu;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.SimpleMenuProvider;
-import net.minecraft.world.entity.animal.Animal;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.AnimalArmorItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.ServerLevelAccessor;
 import net.minecraft.world.level.block.Blocks;
@@ -90,11 +85,11 @@ public abstract class AbstractNautilusEntity extends TamableAnimal implements Pl
     /** Spawn rule: 5–25 blocks below sea level, water above and below. */
     public static boolean checkNautilusSpawnRules(
             EntityType<? extends AbstractNautilusEntity> type,
-            LevelAccessor level,
+            ServerLevelAccessor level,
             MobSpawnType reason,
             BlockPos pos,
             RandomSource random) {
-        int seaLevel = level.getSeaLevel();
+        int seaLevel = level.getLevel().getSeaLevel();
         return pos.getY() >= seaLevel - 25
                 && pos.getY() <= seaLevel - 5
                 && level.getFluidState(pos.below()).is(net.minecraft.tags.FluidTags.WATER)
@@ -137,6 +132,7 @@ public abstract class AbstractNautilusEntity extends TamableAnimal implements Pl
         return 0.0F;
     }
 
+    @SuppressWarnings("deprecation")
     @Override
     public boolean isPushedByFluid() {
         return false;
@@ -475,21 +471,14 @@ public abstract class AbstractNautilusEntity extends TamableAnimal implements Pl
         return super.hurt(source, damage);
     }
 
+    @SuppressWarnings("deprecation")
     @Override
     public boolean canBeAffected(@NotNull MobEffectInstance effectInstance) {
         // Nautiluses are immune to poison
-        return effectInstance.getEffect() == MobEffects.POISON ? false : super.canBeAffected(effectInstance);
+        return effectInstance.getEffect() != MobEffects.POISON && super.canBeAffected(effectInstance);
     }
 
     // ── Spawn ─────────────────────────────────────────────────────────────────
-
-    @Override
-    public @Nullable SpawnGroupData finalizeSpawn(@NotNull ServerLevelAccessor level,
-                                                  @NotNull DifficultyInstance difficulty,
-                                                  @NotNull MobSpawnType reason,
-                                                  @Nullable SpawnGroupData groupData) {
-        return super.finalizeSpawn(level, difficulty, reason, groupData);
-    }
 
     @Override
     public boolean removeWhenFarAway(double distSqr) {

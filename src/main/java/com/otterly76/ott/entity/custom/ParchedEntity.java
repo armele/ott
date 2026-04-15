@@ -64,7 +64,7 @@ public class ParchedEntity extends AbstractSkeleton {
         return SoundEvents.SKELETON_STEP;
     }
 
-    public static AttributeSupplier.Builder createAttributes() {
+    public static AttributeSupplier.@NotNull Builder createAttributes() {
         return AbstractSkeleton.createAttributes().add(Attributes.MAX_HEALTH, 16.0);
     }
 
@@ -79,12 +79,13 @@ public class ParchedEntity extends AbstractSkeleton {
     }
 
     @Override
-    protected SoundEvent getDeathSound() {
+    protected @NotNull SoundEvent getDeathSound() {
         return ModSounds.PARCHED_DEATH.get();
     }
 
+    @SuppressWarnings("deprecation")
     @Override
     public boolean canBeAffected(@NotNull MobEffectInstance newEffect) {
-        return newEffect.getEffect() == MobEffects.WEAKNESS ? false : super.canBeAffected(newEffect);
+        return newEffect.getEffect() != MobEffects.WEAKNESS && super.canBeAffected(newEffect);
     }
 }

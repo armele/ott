@@ -64,10 +64,10 @@ public class CamelHuskEntity extends Camel {
     }
 
     @Override
-    public @Nullable SpawnGroupData finalizeSpawn(@NotNull ServerLevelAccessor level,
-                                                   @NotNull DifficultyInstance difficulty,
-                                                   @NotNull MobSpawnType reason,
-                                                   @Nullable SpawnGroupData groupData) {
+    public @NotNull SpawnGroupData finalizeSpawn(@NotNull ServerLevelAccessor level,
+                                        @NotNull DifficultyInstance difficulty,
+                                        @NotNull MobSpawnType reason,
+                                        @Nullable SpawnGroupData groupData) {
         SpawnGroupData data = super.finalizeSpawn(level, difficulty, reason, groupData);
         if (reason == MobSpawnType.NATURAL && level instanceof ServerLevel serverLevel) {
             // Spawn husk (first seat) with iron spear + SpearUseGoal
@@ -93,7 +93,7 @@ public class CamelHuskEntity extends Camel {
     }
 
     @Override
-    protected SoundEvent getAmbientSound() {
+    protected @NotNull SoundEvent getAmbientSound() {
         return ModSounds.CAMEL_HUSK_AMBIENT.get();
     }
 
@@ -114,12 +114,12 @@ public class CamelHuskEntity extends Camel {
     }
 
     @Override
-    protected SoundEvent getDeathSound() {
+    protected @NotNull SoundEvent getDeathSound() {
         return ModSounds.CAMEL_HUSK_DEATH.get();
     }
 
     @Override
-    protected SoundEvent getHurtSound(@NotNull DamageSource source) {
+    protected @NotNull SoundEvent getHurtSound(@NotNull DamageSource source) {
         return ModSounds.CAMEL_HUSK_HURT.get();
     }
 
