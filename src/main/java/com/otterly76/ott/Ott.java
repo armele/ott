@@ -56,6 +56,9 @@ import com.otterly76.ott.worldgen.blockpredicate.MultipleOfPredicate;
 import com.otterly76.ott.worldgen.blockpredicate.RandomChancePredicate;
 import com.otterly76.ott.platform.core.events.ResourceReloadManager;
 import com.otterly76.ott.resource.*;
+import com.otterly76.ott.worldgen.densityfunction.MergedDensityFunction;
+import com.otterly76.ott.worldgen.densityfunction.OriginalMarkerDensityFunction;
+import com.otterly76.ott.worldgen.densityfunction.WrappedMarkerDensityFunction;
 import com.otterly76.ott.worldgen.modifier.*;
 import com.otterly76.ott.worldgen.modifier.internal.CompileRawTemplatesModifier;
 import com.otterly76.ott.worldgen.placementcondition.*;
@@ -281,6 +284,7 @@ public class Ott {
         registry.accept("add_surface_rule", AddSurfaceRuleModifier.CODEC);
         registry.accept("set_pool_aliases", SetPoolAliasesModifier.CODEC);
         registry.accept("add_structure_set_entries", AddStructureSetEntriesModifier.CODEC);
+        registry.accept("wrap_noise_router", WrapNoiseRouterModifier.CODEC);
     }
 
     public static void registerCommonBlockPredicateTypes(BiConsumer<String, BlockPredicateType<?>> consumer) {
@@ -309,6 +313,9 @@ public class Ott {
     }
 
     public static void registerCommonDensityFunctions(BiConsumer<String, MapCodec<? extends DensityFunction>> consumer) {
+        consumer.accept("merged", MergedDensityFunction.CODEC.codec());
+        consumer.accept("original_marker", OriginalMarkerDensityFunction.CODEC.codec());
+        consumer.accept("wrapped_marker", WrappedMarkerDensityFunction.CODEC.codec());
     }
 
     public static void registerCommonPoolAliasBindings(BiConsumer<String, MapCodec<? extends PoolAliasBinding>> consumer) {
