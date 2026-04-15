@@ -501,7 +501,21 @@ public class ModEntities {
     public static final Supplier<EntityType<com.otterly76.ott.entity.custom.SandCrabEntity>> SAND_CRAB = OTT_ENTITY_TYPES.register("sand_crab",
             () -> Builder.of(com.otterly76.ott.entity.custom.SandCrabEntity::new, MobCategory.CREATURE).sized(1.2F, 1.2F).clientTrackingRange(10).build("sand_crab"));
 
+    // --- Mounts of Mayhem ---
+    public static final Supplier<EntityType<com.otterly76.ott.entity.custom.NautilusEntity>> NAUTILUS = ENTITY_TYPES.register("nautilus",
+            () -> Builder.of(com.otterly76.ott.entity.custom.NautilusEntity::new, MobCategory.WATER_CREATURE)
+                    .sized(0.7F, 0.9F).eyeHeight(0.6F).clientTrackingRange(10).build("nautilus"));
+    public static final Supplier<EntityType<com.otterly76.ott.entity.custom.ZombieNautilusEntity>> ZOMBIE_NAUTILUS = ENTITY_TYPES.register("zombie_nautilus",
+            () -> Builder.of(com.otterly76.ott.entity.custom.ZombieNautilusEntity::new, MobCategory.MONSTER)
+                    .sized(0.7F, 0.9F).eyeHeight(0.6F).clientTrackingRange(10).build("zombie_nautilus"));
+    public static final Supplier<EntityType<com.otterly76.ott.entity.custom.ParchedEntity>> PARCHED = ENTITY_TYPES.register("parched",
+            () -> Builder.of(com.otterly76.ott.entity.custom.ParchedEntity::new, MobCategory.MONSTER)
+                    .sized(0.6F, 1.99F).eyeHeight(1.74F).clientTrackingRange(8).build("parched"));
+
     // --- Friends and Foes ---
+    public static final Supplier<EntityType<com.otterly76.ott.entity.custom.CamelHuskEntity>> CAMEL_HUSK = ENTITY_TYPES.register("camel_husk",
+            () -> Builder.of(com.otterly76.ott.entity.custom.CamelHuskEntity::new, MobCategory.MONSTER).sized(1.7F, 2.375F).eyeHeight(2.275F).clientTrackingRange(10).build("camel_husk"));
+
     public static final Supplier<EntityType<com.otterly76.ott.entity.custom.FiddlerCrabEntity>> FIDDLER_CRAB = OTT_ENTITY_TYPES.register("fiddler_crab",
             () -> Builder.of(com.otterly76.ott.entity.custom.FiddlerCrabEntity::new, MobCategory.CREATURE).sized(0.875F, 0.5625F).clientTrackingRange(10).build("fiddler_crab"));
     public static final Supplier<EntityType<com.otterly76.ott.entity.custom.GlareEntity>> GLARE = OTT_ENTITY_TYPES.register("glare",
