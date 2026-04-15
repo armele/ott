@@ -704,9 +704,10 @@ public class ClientModEvents {
                 }
                 return max;
             }
+            return OttConfig.WEATHER.RIPPLE_RESOLUTION.get();
         } catch (Exception ignored) {
+            return 16;
         }
-        return OttConfig.WEATHER.RIPPLE_RESOLUTION.get();
     }
 
     public static SpriteContents generateRipple(int i, int size) {
