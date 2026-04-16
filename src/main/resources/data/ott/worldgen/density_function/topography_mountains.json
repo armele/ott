@@ -62,7 +62,7 @@
               "argument2": "ott:orogeny"
             }
           },
-          "argument2": 0.15
+          "argument2": 0.04
         },
         "argument2": {
           "type": "mul",
@@ -71,7 +71,7 @@
             "argument1": "ott:orogeny",
             "argument2": "ott:mountains_base"
           },
-          "argument2": 0.04
+          "argument2": 0.01
         }
       }
     }
