@@ -9,8 +9,8 @@
   ],
   "spawners": {
     "type": "minecraft:nautilus",
-    "weight": 5,
-    "minCount": 1,
-    "maxCount": 1
+    "weight": 100,
+    "minCount": 3,
+    "maxCount": 6
   }
 }
