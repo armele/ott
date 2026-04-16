@@ -15,6 +15,7 @@ backtrack and review all previously added features
 
 Fix:
 =====
+revisit fusion, look at chipped ctm style
 
 Mods to Implement:
 =====
