@@ -1,0 +1,14 @@
+{
+  "values": [
+    "minecraft:swamp",
+    "minecraft:mangrove_swamp",
+    "minecraft:jungle",
+    "minecraft:bamboo_jungle",
+    "minecraft:sparse_jungle",
+    "minecraft:lush_caves",
+    {
+      "id": "ott:verdant_forest",
+      "required": false
+    }
+  ]
+}
