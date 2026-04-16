@@ -1,0 +1,9 @@
+{
+  "type": "add",
+  "argument1": "ott:continents/continents_base",
+  "argument2": {
+    "type": "mul",
+	"argument1": "ott:regions",
+    "argument2": -0.43
+  }
+}
