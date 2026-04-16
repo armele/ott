@@ -20,6 +20,13 @@ public class BigLilyPadFeature extends Feature<NoneFeatureConfiguration> {
         BlockPos origin = context.origin();
         WorldGenLevel level = context.level();
         RandomSource random = context.random();
+
+        // Walk up through any waterlogged/water blocks to land on the surface
+        int safety = 0;
+        while (level.getFluidState(origin).is(net.minecraft.tags.FluidTags.WATER) && safety++ < 10) {
+            origin = origin.above();
+        }
+
         Direction facing = Direction.Plane.HORIZONTAL.getRandomDirection(random);
 
         BlockPos tl = origin.relative(facing);
@@ -35,13 +42,12 @@ public class BigLilyPadFeature extends Feature<NoneFeatureConfiguration> {
     }
 
     private boolean isValidPlacement(WorldGenLevel level, BlockPos pos) {
-        // Must be air/replaceable and have water or ice below, matching vanilla lily pad rules
         net.minecraft.world.level.block.state.BlockState state = level.getBlockState(pos);
         if (!state.isAir() && !state.canBeReplaced()) return false;
-        
-        net.minecraft.world.level.block.state.BlockState stateBelow = level.getBlockState(pos.below());
+
         net.minecraft.world.level.material.FluidState fluidState = level.getFluidState(pos);
         net.minecraft.world.level.material.FluidState fluidStateBelow = level.getFluidState(pos.below());
+        net.minecraft.world.level.block.state.BlockState stateBelow = level.getBlockState(pos.below());
         return (fluidStateBelow.is(net.minecraft.tags.FluidTags.WATER) || stateBelow.getBlock() instanceof net.minecraft.world.level.block.IceBlock) && fluidState.isEmpty();
     }
 }

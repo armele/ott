@@ -1,6 +1,8 @@
 {
   "values": [
-    "#minecraft:is_swamp",
-    "#minecraft:is_river"
+    "minecraft:swamp",
+    "minecraft:mangrove_swamp",
+    "minecraft:river",
+    "minecraft:frozen_river"
   ]
 }

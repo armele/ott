@@ -4,10 +4,12 @@
     "minecraft:warm_ocean",
     "minecraft:lukewarm_ocean"
   ],
-  "spawners": {
-    "type": "ott:man_o_war",
-    "weight": 10,
-    "minCount": 1,
-    "maxCount": 4
-  }
+  "spawners": [
+    {
+      "type": "ott:man_o_war",
+      "weight": 10,
+      "minCount": 1,
+      "maxCount": 4
+    }
+  ]
 }

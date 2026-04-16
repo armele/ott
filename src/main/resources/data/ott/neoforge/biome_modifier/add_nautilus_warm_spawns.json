@@ -7,10 +7,12 @@
     "minecraft:deep_lukewarm_ocean",
     "minecraft:warm_ocean"
   ],
-  "spawners": {
-    "type": "minecraft:nautilus",
-    "weight": 100,
-    "minCount": 3,
-    "maxCount": 6
-  }
+  "spawners": [
+    {
+      "type": "minecraft:nautilus",
+      "weight": 100,
+      "minCount": 3,
+      "maxCount": 6
+    }
+  ]
 }

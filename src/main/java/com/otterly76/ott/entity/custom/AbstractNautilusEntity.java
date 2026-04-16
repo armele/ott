@@ -91,7 +91,7 @@ public abstract class AbstractNautilusEntity extends TamableAnimal implements Pl
             RandomSource random) {
         int seaLevel = level.getLevel().getSeaLevel();
         return pos.getY() >= seaLevel - 25
-                && pos.getY() <= seaLevel - 5
+                && pos.getY() <= seaLevel - 2
                 && level.getFluidState(pos).is(net.minecraft.tags.FluidTags.WATER)
                 && level.getBlockState(pos.above()).is(Blocks.WATER);
     }
@@ -136,6 +136,12 @@ public abstract class AbstractNautilusEntity extends TamableAnimal implements Pl
     @Override
     public boolean isPushedByFluid() {
         return false;
+    }
+
+    @Override
+    public boolean checkSpawnObstruction(@NotNull net.minecraft.world.level.LevelReader level) {
+        // WaterAnimal requires liquid; Mob (our superclass) incorrectly forbids it
+        return level.containsAnyLiquid(this.getBoundingBox());
     }
 
     @Override

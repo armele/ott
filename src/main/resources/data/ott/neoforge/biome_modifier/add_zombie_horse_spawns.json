@@ -8,10 +8,12 @@
     "minecraft:savanna_plateau",
     "minecraft:windswept_savanna"
   ],
-  "spawners": {
-    "type": "minecraft:zombie_horse",
-    "weight": 5,
-    "minCount": 1,
-    "maxCount": 1
-  }
+  "spawners": [
+    {
+      "type": "minecraft:zombie_horse",
+      "weight": 5,
+      "minCount": 1,
+      "maxCount": 1
+    }
+  ]
 }

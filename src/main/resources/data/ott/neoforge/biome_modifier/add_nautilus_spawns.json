@@ -6,10 +6,12 @@
     "minecraft:cold_ocean",
     "minecraft:deep_cold_ocean"
   ],
-  "spawners": {
-    "type": "minecraft:nautilus",
-    "weight": 100,
-    "minCount": 3,
-    "maxCount": 6
-  }
+  "spawners": [
+    {
+      "type": "minecraft:nautilus",
+      "weight": 100,
+      "minCount": 3,
+      "maxCount": 6
+    }
+  ]
 }
