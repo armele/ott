@@ -8,10 +8,42 @@
       }
     },
     "barrier": {
-      "type": "minecraft:simple_state_provider",
-      "state": {
-        "Name": "minecraft:stone"
-      }
+      "type": "minecraft:weighted_state_provider",
+      "entries": [
+        {
+          "weight": 3,
+          "data": {
+            "Name": "minecraft:moss_block"
+          }
+        },
+        {
+          "weight": 3,
+          "data": {
+            "Name": "minecraft:podzol",
+            "Properties": {
+              "snowy": "false"
+            }
+          }
+        },
+        {
+          "weight": 2,
+          "data": {
+            "Name": "minecraft:coarse_dirt"
+          }
+        },
+        {
+          "weight": 2,
+          "data": {
+            "Name": "minecraft:mud"
+          }
+        },
+        {
+          "weight": 2,
+          "data": {
+            "Name": "minecraft:clay"
+          }
+        }
+      ]
     }
   }
 }

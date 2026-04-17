@@ -80,14 +80,14 @@
                                 "type": "add",
                                 "argument1": {
                                   "type": "mul",
-                                  "argument1": 4,
+                                  "argument1": 3.5,
                                   "argument2": {
                                     "type": "square",
                                     "argument": {
                                       "type": "noise",
                                       "noise": "minecraft:cave_layer",
-                                      "xz_scale": 1,
-                                      "y_scale": 7.0000000000000036
+                                      "xz_scale": 0.7,
+                                      "y_scale": 3.5
                                     }
                                   }
                                 },
@@ -99,12 +99,12 @@
                                     "max": 1,
                                     "input": {
                                       "type": "add",
-                                      "argument1": 0.27,
+                                      "argument1": 0.06,
                                       "argument2": {
                                         "type": "noise",
                                         "noise": "minecraft:cave_cheese",
-                                        "xz_scale": 1,
-                                        "y_scale": 0.6666666666666666
+                                        "xz_scale": 0.5,
+                                        "y_scale": 0.35
                                       }
                                     }
                                   },
@@ -145,8 +145,12 @@
                             },
                             "argument2": {
                               "type": "add",
-                              "argument1": "minecraft:overworld/caves/spaghetti_2d",
-                              "argument2": "minecraft:overworld/caves/spaghetti_roughness_function"
+                              "argument1": {
+                                "type": "add",
+                                "argument1": "minecraft:overworld/caves/spaghetti_2d",
+                                "argument2": "minecraft:overworld/caves/spaghetti_roughness_function"
+                              },
+                              "argument2": 0.8
                             }
                           },
                           "argument2": {
@@ -155,7 +159,11 @@
                             "max_exclusive": 0.03,
                             "input": "minecraft:overworld/caves/pillars",
                             "when_in_range": -1000000,
-                            "when_out_of_range": "minecraft:overworld/caves/pillars"
+                            "when_out_of_range": {
+                              "type": "mul",
+                              "argument1": "minecraft:overworld/caves/pillars",
+                              "argument2": 3
+                            }
                           }
                         }
                       }
@@ -169,5 +177,9 @@
       }
     }
   },
-  "argument2": "minecraft:overworld/caves/noodle"
+  "argument2": {
+    "type": "add",
+    "argument1": "minecraft:overworld/caves/noodle",
+    "argument2": 1.0
+  }
 }
