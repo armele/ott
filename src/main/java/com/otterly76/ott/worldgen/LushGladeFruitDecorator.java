@@ -14,16 +14,16 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
 
-public class VerdantForestFruitDecorator extends CocoaDecorator {
-    public static final MapCodec<VerdantForestFruitDecorator> CODEC = MapCodec.unit(VerdantForestFruitDecorator::new);
+public class LushGladeFruitDecorator extends CocoaDecorator {
+    public static final MapCodec<LushGladeFruitDecorator> CODEC = MapCodec.unit(LushGladeFruitDecorator::new);
 
-    public VerdantForestFruitDecorator() {
+    public LushGladeFruitDecorator() {
         super(0.2F);
     }
 
     @Override
     protected @NotNull TreeDecoratorType<?> type() {
-        return ModTreeDecoratorTypes.VERDANT_FRUIT.get();
+        return ModTreeDecoratorTypes.LUSH_GLADE_FRUIT.get();
     }
 
     @Override

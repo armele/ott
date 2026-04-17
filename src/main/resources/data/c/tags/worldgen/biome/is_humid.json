@@ -7,7 +7,7 @@
     "minecraft:sparse_jungle",
     "minecraft:lush_caves",
     {
-      "id": "ott:verdant_forest",
+      "id": "ott:lush_glade",
       "required": false
     }
   ]

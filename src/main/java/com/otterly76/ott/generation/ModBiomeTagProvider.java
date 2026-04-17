@@ -50,7 +50,7 @@ public class ModBiomeTagProvider extends BiomeTagsProvider {
         this.tag(ModTags.Biomes.IS_SNOWY).add(Biomes.SNOWY_PLAINS, Biomes.SNOWY_TAIGA, Biomes.SNOWY_SLOPES, Biomes.SNOWY_BEACH, Biomes.FROZEN_RIVER, Biomes.ICE_SPIKES, Biomes.GROVE);
 
         this.tag(ModTags.Biomes.IS_HUMID).add(Biomes.SWAMP, Biomes.MANGROVE_SWAMP, Biomes.JUNGLE, Biomes.BAMBOO_JUNGLE, Biomes.SPARSE_JUNGLE, Biomes.LUSH_CAVES);
-        this.tag(ModTags.Biomes.IS_HUMID).addOptional(ModBiomes.VERDANT_FOREST.location());
+        this.tag(ModTags.Biomes.IS_HUMID).addOptional(ModBiomes.LUSH_GLADE.location());
 
         TagKey<Biome> neoforgeIsHumid = TagKey.create(Registries.BIOME, ResourceLocation.fromNamespaceAndPath("neoforge", "is_humid"));
         this.tag(neoforgeIsHumid).addTag(ModTags.Biomes.IS_HUMID);
@@ -60,9 +60,9 @@ public class ModBiomeTagProvider extends BiomeTagsProvider {
 
     protected void addVanillaTags() {
         TagKey<Biome> spawnsNormalFrogs = TagKey.create(Registries.BIOME, ResourceLocation.withDefaultNamespace("spawns_white_variant_frogs"));
-        this.tag(spawnsNormalFrogs).addOptional(ModBiomes.VERDANT_FOREST.location());
-        this.tag(BiomeTags.IS_FOREST).addOptional(ModBiomes.VERDANT_FOREST.location());
-        this.tag(BiomeTags.IS_OVERWORLD).addOptional(ModBiomes.VERDANT_FOREST.location());
+        this.tag(spawnsNormalFrogs).addOptional(ModBiomes.LUSH_GLADE.location());
+        this.tag(BiomeTags.IS_FOREST).addOptional(ModBiomes.LUSH_GLADE.location());
+        this.tag(BiomeTags.IS_OVERWORLD).addOptional(ModBiomes.LUSH_GLADE.location());
 
         this.tag(ModTags.Biomes.IS_BIRCH_FOREST).add(Biomes.BIRCH_FOREST, Biomes.OLD_GROWTH_BIRCH_FOREST);
 

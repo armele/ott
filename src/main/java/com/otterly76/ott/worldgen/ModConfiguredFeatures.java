@@ -23,7 +23,7 @@ import net.minecraft.world.level.levelgen.placement.PlacedFeature;
 import java.util.List;
 
 public class ModConfiguredFeatures {
-    public static final ResourceKey<ConfiguredFeature<?, ?>> VERDANT_FOREST_AZALEA = registerKey("verdant_forest_azalea");
+    public static final ResourceKey<ConfiguredFeature<?, ?>> LUSH_GLADE_AZALEA = registerKey("lush_glade_azalea");
     public static final ResourceKey<ConfiguredFeature<?, ?>> GIANT_HOLLOW_ROOT_ARCH = registerKey("giant_hollow_root_arch");
     public static final ResourceKey<ConfiguredFeature<?, ?>> GIANT_HOLLOW_ROOT_SPIKE = registerKey("giant_hollow_root_spike");
 

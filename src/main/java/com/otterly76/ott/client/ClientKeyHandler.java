@@ -49,6 +49,13 @@ public class ClientKeyHandler {
             CATEGORY
     );
 
+    public static final KeyMapping TOGGLE_CLEAN_VIEW = new KeyMapping(
+            "key." + Constants.MOD_ID + ".toggle_clean_view",
+            InputConstants.Type.KEYSYM,
+            GLFW.GLFW_KEY_UNKNOWN,
+            CATEGORY
+    );
+
     public static final KeyMapping CRAFTING_ROTATE = new KeyMapping(
             "key." + Constants.MOD_ID + ".crafting_rotate",
             InputConstants.Type.KEYSYM,
@@ -104,6 +111,7 @@ public class ClientKeyHandler {
         event.register(SET_HOME);
         event.register(CLEAR_TOASTS);
         event.register(TOGGLE_NEAT);
+        event.register(TOGGLE_CLEAN_VIEW);
         event.register(CRAFTING_ROTATE);
         event.register(CRAFTING_ROTATE_CCW);
         event.register(CRAFTING_BALANCE);
@@ -130,6 +138,10 @@ public class ClientKeyHandler {
 
         while (TOGGLE_NEAT.consumeClick()) {
             OttConfig.NEAT_DRAW = !OttConfig.NEAT_DRAW;
+        }
+
+        while (TOGGLE_CLEAN_VIEW.consumeClick()) {
+            OttConfig.CLEAN_VIEW_DRAW = !OttConfig.CLEAN_VIEW_DRAW;
         }
     }
 

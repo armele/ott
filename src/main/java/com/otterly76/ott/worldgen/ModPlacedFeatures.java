@@ -18,7 +18,7 @@ import java.util.List;
 import java.util.function.Supplier;
 
 public class ModPlacedFeatures {
-    public static final ResourceKey<PlacedFeature> VERDANT_FOREST_AZALEA = registerKey("verdant_forest_azalea");
+    public static final ResourceKey<PlacedFeature> LUSH_GLADE_AZALEA = registerKey("lush_glade_azalea");
     public static final ResourceKey<PlacedFeature> GIANT_HOLLOW_ROOT_ARCH = registerKey("giant_hollow_root_arch");
     public static final ResourceKey<PlacedFeature> GIANT_HOLLOW_ROOT_SPIKE = registerKey("giant_hollow_root_spike");
 

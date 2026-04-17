@@ -11,12 +11,12 @@ import net.minecraft.world.level.levelgen.feature.treedecorators.TreeDecoratorTy
 import net.minecraft.world.level.levelgen.feature.treedecorators.TrunkVineDecorator;
 import org.jetbrains.annotations.NotNull;
 
-public class VerdantForestTrunkDecorator extends TrunkVineDecorator {
-    public static final MapCodec<VerdantForestTrunkDecorator> CODEC = MapCodec.unit(VerdantForestTrunkDecorator::new);
+public class LushGladeTrunkDecorator extends TrunkVineDecorator {
+    public static final MapCodec<LushGladeTrunkDecorator> CODEC = MapCodec.unit(LushGladeTrunkDecorator::new);
 
     @Override
     protected @NotNull TreeDecoratorType<?> type() {
-        return ModTreeDecoratorTypes.VERDANT_TRUNK.get();
+        return ModTreeDecoratorTypes.LUSH_GLADE_TRUNK.get();
     }
 
     @Override

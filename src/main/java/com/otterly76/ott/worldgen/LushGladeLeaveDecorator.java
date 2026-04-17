@@ -11,16 +11,16 @@ import net.minecraft.world.level.levelgen.feature.treedecorators.TreeDecorator;
 import net.minecraft.world.level.levelgen.feature.treedecorators.TreeDecoratorType;
 import org.jetbrains.annotations.NotNull;
 
-public class VerdantForestLeaveDecorator extends LeaveVineDecorator {
-    public static final MapCodec<VerdantForestLeaveDecorator> CODEC = MapCodec.unit(VerdantForestLeaveDecorator::new);
+public class LushGladeLeaveDecorator extends LeaveVineDecorator {
+    public static final MapCodec<LushGladeLeaveDecorator> CODEC = MapCodec.unit(LushGladeLeaveDecorator::new);
 
-    public VerdantForestLeaveDecorator() {
+    public LushGladeLeaveDecorator() {
         super(0.25F);
     }
 
     @Override
     protected @NotNull TreeDecoratorType<?> type() {
-        return ModTreeDecoratorTypes.VERDANT_LEAVES.get();
+        return ModTreeDecoratorTypes.LUSH_GLADE_LEAVES.get();
     }
 
     @Override

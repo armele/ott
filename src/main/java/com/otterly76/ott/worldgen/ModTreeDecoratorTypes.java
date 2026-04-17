@@ -27,14 +27,14 @@ public class ModTreeDecoratorTypes {
             MINECRAFT_DECORATORS.register("attached_to_logs", () -> new TreeDecoratorType<>(AttachedToLogsDecorator.CODEC));
 
     // --- OTT NAMESPACE ---
-    public static final DeferredHolder<TreeDecoratorType<?>, TreeDecoratorType<VerdantForestFruitDecorator>> VERDANT_FRUIT =
-            OTT_DECORATORS.register("verdant_forest_tree_fruit_decorator", () -> new TreeDecoratorType<>(VerdantForestFruitDecorator.CODEC));
+    public static final DeferredHolder<TreeDecoratorType<?>, TreeDecoratorType<LushGladeFruitDecorator>> LUSH_GLADE_FRUIT =
+            OTT_DECORATORS.register("lush_glade_tree_fruit_decorator", () -> new TreeDecoratorType<>(LushGladeFruitDecorator.CODEC));
 
-    public static final DeferredHolder<TreeDecoratorType<?>, TreeDecoratorType<VerdantForestLeaveDecorator>> VERDANT_LEAVES =
-            OTT_DECORATORS.register("verdant_forest_tree_leave_decorator", () -> new TreeDecoratorType<>(VerdantForestLeaveDecorator.CODEC));
+    public static final DeferredHolder<TreeDecoratorType<?>, TreeDecoratorType<LushGladeLeaveDecorator>> LUSH_GLADE_LEAVES =
+            OTT_DECORATORS.register("lush_glade_tree_leave_decorator", () -> new TreeDecoratorType<>(LushGladeLeaveDecorator.CODEC));
 
-    public static final DeferredHolder<TreeDecoratorType<?>, TreeDecoratorType<VerdantForestTrunkDecorator>> VERDANT_TRUNK =
-            OTT_DECORATORS.register("verdant_forest_tree_trunk_decorator", () -> new TreeDecoratorType<>(VerdantForestTrunkDecorator.CODEC));
+    public static final DeferredHolder<TreeDecoratorType<?>, TreeDecoratorType<LushGladeTrunkDecorator>> LUSH_GLADE_TRUNK =
+            OTT_DECORATORS.register("lush_glade_tree_trunk_decorator", () -> new TreeDecoratorType<>(LushGladeTrunkDecorator.CODEC));
 
     public static final DeferredHolder<TreeDecoratorType<?>, TreeDecoratorType<OakNestLogDecorator>> OAK_NEST =
             OTT_DECORATORS.register("oak_nest", () -> new TreeDecoratorType<>(OakNestLogDecorator.CODEC));

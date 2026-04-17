@@ -48,13 +48,13 @@
     },
     "decorators": [
       {
-        "type": "ott:verdant_forest_tree_fruit_decorator"
+        "type": "ott:lush_glade_tree_fruit_decorator"
       },
       {
-        "type": "ott:verdant_forest_tree_trunk_decorator"
+        "type": "ott:lush_glade_tree_trunk_decorator"
       },
       {
-        "type": "ott:verdant_forest_tree_leave_decorator"
+        "type": "ott:lush_glade_tree_leave_decorator"
       }
     ]
   }

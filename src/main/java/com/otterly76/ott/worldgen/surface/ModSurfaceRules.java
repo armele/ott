@@ -6,7 +6,7 @@ public class ModSurfaceRules {
     public static SurfaceRules.RuleSource makeRules() {
         return SurfaceRules.sequence(
                 // Add your new biome here
-                VerdantForestSurfaceRules.makeRules(),
+                LushGladeSurfaceRules.makeRules(),
                 // Keep the backported garden here
                 PaleGardenSurfaceRules.makeRules()
         );

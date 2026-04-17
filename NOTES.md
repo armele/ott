@@ -347,6 +347,13 @@ Biomes Nonsense:
 magic biomes
 - Ethereal
 
+LARGE biome (giants)
+- giant trees
+- giant mushrooms
+- giant plants
+- big lily pads
+- ents
+
 snow biome
 - leaves made of snowflakes
 - snowflake particles

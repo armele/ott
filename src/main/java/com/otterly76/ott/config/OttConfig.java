@@ -41,6 +41,7 @@ public class OttConfig {
     public static final Toasts TOASTS;
     public static final Neat NEAT;
     public static boolean NEAT_DRAW = true;
+    public static boolean CLEAN_VIEW_DRAW = true;
     public static final MouseTweaks MOUSE_TWEAKS;
     public static final CraftingTweaks CRAFTING_TWEAKS;
 

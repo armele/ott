@@ -25,7 +25,7 @@ public final class AmbientParticleSpawner {
             if (level.isLoaded(checkPos)) {
                 Holder<Biome> biome = level.getBiome(checkPos);
 
-                if (biome.is(ResourceLocation.fromNamespaceAndPath("ott", "verdant_forest"))) {
+                if (biome.is(ResourceLocation.fromNamespaceAndPath("ott", "lush_glade"))) {
 
                     int groundY = level.getHeight(Types.WORLD_SURFACE, (int) x, (int) z);
                     double spawnY = (double) groundY + 1.0D + rand.nextDouble() * 3.0D;

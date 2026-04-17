@@ -12,10 +12,16 @@ import net.minecraft.commands.Commands;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 
+import java.lang.ref.WeakReference;
 import java.lang.reflect.Method;
+import java.util.List;
 
 import static com.otterly76.ott.ClientModEvents.fogCount;
 import static com.otterly76.ott.ClientModEvents.particleCount;
+import net.minecraft.core.particles.ParticleOptions;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.ai.attributes.AttributeInstance;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
@@ -81,6 +87,9 @@ public class ClientGameEvents {
 
     private static boolean wasSobbing = false;
 
+    // CleanView state
+    private static WeakReference<Entity> cleanViewLastCam = new WeakReference<>(null);
+
     @SubscribeEvent
     public static void onClientTick(ClientTickEvent.Pre event) {
         Minecraft mc = Minecraft.getInstance();
@@ -110,6 +119,29 @@ public class ClientGameEvents {
         } else if (wasSobbing) {
             wasSobbing = false;
         }
+
+        // CleanView: suppress ambient potion particle swirl on the camera entity
+        Entity cam = mc.getCameraEntity();
+        Entity prevCam = cleanViewLastCam.get();
+
+        if (!OttConfig.CLEAN_VIEW_DRAW)
+            cam = null;
+
+        if (prevCam != cam) {
+            // Restore particles for the entity we stopped watching
+            if (prevCam instanceof LivingEntity prev) {
+                List<ParticleOptions> particles = prev.getActiveEffects().stream()
+                        .filter(MobEffectInstance::isVisible)
+                        .map(MobEffectInstance::getParticleOptions)
+                        .toList();
+                if (!particles.isEmpty())
+                    prev.getEntityData().set(LivingEntity.DATA_EFFECT_PARTICLES, particles);
+            }
+            cleanViewLastCam = new WeakReference<>(cam);
+        }
+
+        if (cam instanceof LivingEntity living)
+            living.getEntityData().set(LivingEntity.DATA_EFFECT_PARTICLES, List.of());
     }
 
     private static void loadShaderReflection(Minecraft mc, ResourceLocation location) {
