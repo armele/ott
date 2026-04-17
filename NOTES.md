@@ -13,6 +13,23 @@ check blockstate and model jsons for abandoned
 
 backtrack and review all previously added features
 
+CTM Notes:
+=====
+textures/block/limestone_bricks/
+limestone_bricks.png  ← particle (copied from limestone/)
+ctm/0.png  ← placeholder (all 4 are copies of the static tile)
+ctm/1.png
+ctm/2.png
+ctm/3.png
+
+textures/block/stone_bricks_masonry/stone_bricks_masonry.png
+ctm/0.png  1.png  2.png  3.png
+Tile 0 = clean interior/isolated
+1 = vertical seam
+2 = horizontal seam
+3 = L-corner seam
+Each tile is a full 16×16 and the system draws one 8×8 quadrant from it per sub-quad.
+
 Fix:
 =====
 revisit fusion, look at chipped ctm style
