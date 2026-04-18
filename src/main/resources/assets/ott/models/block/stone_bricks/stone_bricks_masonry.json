@@ -1,13 +1,11 @@
 {
     "parent": "ott:block/ctm/ctm_cube_all",
     "textures": {
-        "all": "ott:block/stone_bricks/stone_bricks_masonry-ctm"
+        "all": "ott:block/stone_bricks_masonry/stone_bricks_masonry-ctm"
     },
     "loader": "ott:connecting",
-    "connections": {
-        "all": [{"type": "is_same_block"}]
-    },
+    "connections": [{"type": "is_same_block"}],
     "isolated": {
-        "all": "ott:block/stone_bricks/stone_bricks_masonry"
+        "all": "ott:block/stone_bricks_masonry/stone_bricks_masonry"
     }
 }

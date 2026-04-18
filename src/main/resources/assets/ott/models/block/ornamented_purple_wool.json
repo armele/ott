@@ -1,0 +1,19 @@
+{
+    "parent": "ott:block/ctm/ctm_cube_all",
+    "textures": {
+        "all": "ott:block/ornamented_carpet/ornamented_purple_carpet-ctm"
+    },
+    "loader": "ott:connecting",
+    "render_type": "minecraft:cutout_mipped",
+    "connections": {
+        "all": [
+            {"type": "is_same_block"},
+            {"type": "match_block", "block": "ott:ornamented_purple_carpet"},
+            {"type": "match_block", "block": "ott:delicate_purple_wool"},
+            {"type": "match_block", "block": "ott:delicate_purple_carpet"}
+        ]
+    },
+    "isolated": {
+        "all": "ott:block/ornamented_carpet/ornamented_purple_carpet_static"
+    }
+}

@@ -1,4 +1,5 @@
 {
+	"render_type": "minecraft:cutout_mipped",
 	"textures": {
 		"particle": "ott:block/limestone/limestone_baluster",
 		"texture": "ott:block/limestone/limestone_baluster"

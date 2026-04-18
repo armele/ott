@@ -1,0 +1,11 @@
+{
+    "parent": "ott:block/ctm/ctm_cube_all",
+    "textures": {
+        "all": "ott:block/limestone_masonry/limestone_masonry-ctm"
+    },
+    "loader": "ott:connecting",
+    "connections": [{"type": "is_same_block"}],
+    "isolated": {
+        "all": "ott:block/limestone_masonry/limestone_masonry"
+    }
+}

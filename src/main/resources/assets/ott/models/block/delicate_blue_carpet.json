@@ -1,0 +1,19 @@
+{
+    "parent": "ott:block/ctm/ctm_carpet",
+    "textures": {
+        "all": "ott:block/delicate_carpet/delicate_blue_carpet-ctm"
+    },
+    "loader": "ott:connecting",
+    "render_type": "minecraft:cutout_mipped",
+    "connections": {
+        "all": [
+            {"type": "is_same_block"},
+            {"type": "match_block", "block": "ott:ornamented_blue_carpet"},
+            {"type": "match_block", "block": "ott:delicate_blue_wool"},
+            {"type": "match_block", "block": "ott:ornamented_blue_wool"}
+        ]
+    },
+    "isolated": {
+        "all": "ott:block/delicate_carpet/delicate_blue_carpet_static"
+    }
+}

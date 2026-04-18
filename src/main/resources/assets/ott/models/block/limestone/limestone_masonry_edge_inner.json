@@ -1,0 +1,8 @@
+{
+	"parent": "ott:block/small_plate_inner",
+	"textures": {
+		"side": "ott:block/limestone_masonry/limestone_masonry",
+		"top": "ott:block/limestone_masonry/limestone_masonry",
+		"frieze": "ott:block/limestone_masonry/limestone_masonry"
+	}
+}

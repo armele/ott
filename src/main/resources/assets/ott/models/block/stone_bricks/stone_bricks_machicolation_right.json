@@ -1,7 +1,7 @@
 {
 	"textures": {
-		"0": "ott:block/stone_bricks/stone_bricks_machicolation",
-		"particle": "ott:block/stone_bricks/stone_bricks_machicolation"
+		"0": "ott:block/stone_bricks_masonry/stone_bricks_machicolation",
+		"particle": "ott:block/stone_bricks_masonry/stone_bricks_machicolation"
 	},
 	"elements": [
 		{

@@ -1,8 +1,8 @@
 {
     "parent": "block/inner_stairs",
     "textures": {
-        "bottom": "ott:block/stone_bricks/stone_bricks_masonry",
-        "top": "ott:block/stone_bricks/stone_bricks_masonry",
-        "side": "ott:block/stone_bricks/stone_bricks_masonry"
+        "bottom": "ott:block/stone_bricks_masonry/stone_bricks_masonry",
+        "top": "ott:block/stone_bricks_masonry/stone_bricks_masonry",
+        "side": "ott:block/stone_bricks_masonry/stone_bricks_masonry"
     }
 }

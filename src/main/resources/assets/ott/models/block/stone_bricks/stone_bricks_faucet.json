@@ -2,8 +2,8 @@
 	"render_type": "minecraft:translucent",
 	"credit": "Made with Blockbench",
 	"textures": {
-		"0": "ott:block/stone_bricks/stone_bricks_faucet",
-		"particle": "ott:block/stone_bricks/stone_bricks_faucet"
+		"0": "ott:block/stone_bricks_masonry/stone_bricks_faucet",
+		"particle": "ott:block/stone_bricks_masonry/stone_bricks_faucet"
 	},
 	"elements": [
 		{

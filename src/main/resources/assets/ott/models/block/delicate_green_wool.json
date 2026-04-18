@@ -1,0 +1,19 @@
+{
+    "parent": "ott:block/ctm/ctm_cube_all",
+    "textures": {
+        "all": "ott:block/delicate_carpet/delicate_green_carpet-ctm"
+    },
+    "loader": "ott:connecting",
+    "render_type": "minecraft:cutout_mipped",
+    "connections": {
+        "all": [
+            {"type": "is_same_block"},
+            {"type": "match_block", "block": "ott:delicate_green_carpet"},
+            {"type": "match_block", "block": "ott:ornamented_green_wool"},
+            {"type": "match_block", "block": "ott:ornamented_green_carpet"}
+        ]
+    },
+    "isolated": {
+        "all": "ott:block/delicate_carpet/delicate_green_carpet_static"
+    }
+}

@@ -1,7 +1,7 @@
 {
     "parent": "ott:block/ctm/ctm_carpet",
     "textures": {
-        "all": "ott:block/ornamented_red_carpet-ctm"
+        "all": "ott:block/ornamented_carpet/ornamented_red_carpet-ctm"
     },
     "loader": "ott:connecting",
     "render_type": "minecraft:cutout_mipped",
@@ -14,6 +14,6 @@
         ]
     },
     "isolated": {
-        "all": "ott:block/ornamented_red_carpet_static"
+        "all": "ott:block/ornamented_carpet/ornamented_red_carpet_static"
     }
 }

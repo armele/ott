@@ -1,8 +1,8 @@
 {
 	"credit": "Made with Blockbench",
 	"textures": {
-		"0": "ott:block/stone_bricks/stone_bricks_arrowslit",
-		"particle": "ott:block/stone_bricks/stone_bricks_arrowslit"
+		"0": "ott:block/stone_bricks_masonry/stone_bricks_arrowslit",
+		"particle": "ott:block/stone_bricks_masonry/stone_bricks_arrowslit"
 	},
 	"elements": [
 		{
