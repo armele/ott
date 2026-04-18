@@ -31,3 +31,6 @@ repo
 /.claude/settings.local.json
 /config/ott.json
 /logs/*
+
+/src/Athena/*
+/src/Chipped/*
