@@ -1,0 +1,22 @@
+{
+    "variants": {
+        "": [
+            { "model": "ott:block/limestone/mixed/limestone_00" },
+            { "model": "ott:block/limestone/mixed/limestone_01" },
+            { "model": "ott:block/limestone/mixed/limestone_02" },
+            { "model": "ott:block/limestone/mixed/limestone_03" },
+            { "model": "ott:block/limestone/mixed/limestone_10" },
+            { "model": "ott:block/limestone/mixed/limestone_11" },
+            { "model": "ott:block/limestone/mixed/limestone_12" },
+            { "model": "ott:block/limestone/mixed/limestone_13" },
+            { "model": "ott:block/limestone/mixed/limestone_20" },
+            { "model": "ott:block/limestone/mixed/limestone_21" },
+            { "model": "ott:block/limestone/mixed/limestone_22" },
+            { "model": "ott:block/limestone/mixed/limestone_23" },
+            { "model": "ott:block/limestone/mixed/limestone_30" },
+            { "model": "ott:block/limestone/mixed/limestone_31" },
+            { "model": "ott:block/limestone/mixed/limestone_32" },
+            { "model": "ott:block/limestone/mixed/limestone_33" }
+        ]
+    }
+}
