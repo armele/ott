@@ -10,11 +10,18 @@ adjust spawn rules for custom critters
 add nautilus owner follow logic
 check blockstate and model jsons for abandoned
 
-add blocks fom Chipped
-- create crafting system without adding new tables
-- create additional patters, stepping stones, etc
+add hanging/wall models for all lanterns
+
+add stone to Vanilla Plus blocks
+
+add blocks from Chipped
+- add engraving system to crafting table
+- create additional patterns
+- stone bordered gravel
+- sandstone bordered sand
 
 add 3 new masked block patterns
+- remove older static versions
 
 move smooth glowstone to a glowstone subdirectory
 moved salt block, polished salt block to salt subdirectory
