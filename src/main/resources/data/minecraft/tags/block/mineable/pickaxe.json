@@ -1,9 +1,9 @@
 {
   "replace": false,
   "values": [
-    "ott:limestone_bricks",
-    "ott:limestone_bricks_edge",
-    "ott:limestone_bricks_plate",
+    "ott:limestone_masonry",
+    "ott:limestone_masonry_edge",
+    "ott:limestone_masonry_plate",
     "ott:limestone_bannister",
     "ott:cobbled_limestone",
     "ott:white_marble_fancy_fence",

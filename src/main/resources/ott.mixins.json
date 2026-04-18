@@ -96,6 +96,7 @@
     "common.SimpleBlockFeatureMixin",
     "common.SkeletonMixin",
     "common.SkullBlockMixin",
+    "common.StonecutterBlockMixin",
     "common.WallSkullBlockMixin",
     "common.SimpleContainerAccessor",
     "common.SinglePoolElementAccessor",
