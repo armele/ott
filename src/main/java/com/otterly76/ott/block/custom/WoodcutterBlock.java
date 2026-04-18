@@ -77,7 +77,7 @@ public class WoodcutterBlock extends Block {
 
     @Override
     protected boolean useShapeForLightOcclusion(@NotNull BlockState state) {
-        return true;
+        return false;
     }
 
     @Override

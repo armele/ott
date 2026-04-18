@@ -49,7 +49,7 @@ public class ModBlocks {
     private static final List<DeferredBlock<? extends IGradientBlock>> ALL_CONCRETE_POWDER_BLOCKS = new ArrayList<>();
 
     public static final List<DeferredBlock<? extends Block>> SEAGLASS = new ArrayList<>();
-    public static final List<DeferredBlock<? extends Block>> LIMESTONE = new ArrayList<>();
+
     public static final List<DeferredBlock<? extends Block>> TESTBLOCK = new ArrayList<>();
     
     public static final Map<String, DeferredBlock<ElevatorBlock>> ELEVATORS = new LinkedHashMap<>();
@@ -85,28 +85,6 @@ public class ModBlocks {
 
     public static final DeferredBlock<ChrysalisBlock> CHRYSALIS = register("chrysalis", () -> new ChrysalisBlock(Block.Properties.of().mapColor(MapColor.PLANT).strength(0.2F).sound(SoundType.GRASS).noOcclusion().randomTicks()));
 
-    private static <T extends Block> DeferredBlock<T> registerLimestone(String name, java.util.function.Supplier<T> block) {
-        DeferredBlock<T> ret = register(name, block);
-        LIMESTONE.add(ret);
-        return ret;
-    }
-
-    public static final DeferredBlock<Block> LIMESTONE_00 = registerLimestone("limestone_00", () -> new Block(Properties.of().strength(4.0f).requiresCorrectToolForDrops().sound(SoundType.STONE)));
-    public static final DeferredBlock<Block> LIMESTONE_01 = registerLimestone("limestone_01", () -> new Block(Properties.of().strength(4.0f).requiresCorrectToolForDrops().sound(SoundType.STONE)));
-    public static final DeferredBlock<Block> LIMESTONE_02 = registerLimestone("limestone_02", () -> new Block(Properties.of().strength(4.0f).requiresCorrectToolForDrops().sound(SoundType.STONE)));
-    public static final DeferredBlock<Block> LIMESTONE_03 = registerLimestone("limestone_03", () -> new Block(Properties.of().strength(4.0f).requiresCorrectToolForDrops().sound(SoundType.STONE)));
-    public static final DeferredBlock<Block> LIMESTONE_10 = registerLimestone("limestone_10", () -> new Block(Properties.of().strength(4.0f).requiresCorrectToolForDrops().sound(SoundType.STONE)));
-    public static final DeferredBlock<Block> LIMESTONE_11 = registerLimestone("limestone_11", () -> new Block(Properties.of().strength(4.0f).requiresCorrectToolForDrops().sound(SoundType.STONE)));
-    public static final DeferredBlock<Block> LIMESTONE_12 = registerLimestone("limestone_12", () -> new Block(Properties.of().strength(4.0f).requiresCorrectToolForDrops().sound(SoundType.STONE)));
-    public static final DeferredBlock<Block> LIMESTONE_13 = registerLimestone("limestone_13", () -> new Block(Properties.of().strength(4.0f).requiresCorrectToolForDrops().sound(SoundType.STONE)));
-    public static final DeferredBlock<Block> LIMESTONE_20 = registerLimestone("limestone_20", () -> new Block(Properties.of().strength(4.0f).requiresCorrectToolForDrops().sound(SoundType.STONE)));
-    public static final DeferredBlock<Block> LIMESTONE_21 = registerLimestone("limestone_21", () -> new Block(Properties.of().strength(4.0f).requiresCorrectToolForDrops().sound(SoundType.STONE)));
-    public static final DeferredBlock<Block> LIMESTONE_22 = registerLimestone("limestone_22", () -> new Block(Properties.of().strength(4.0f).requiresCorrectToolForDrops().sound(SoundType.STONE)));
-    public static final DeferredBlock<Block> LIMESTONE_23 = registerLimestone("limestone_23", () -> new Block(Properties.of().strength(4.0f).requiresCorrectToolForDrops().sound(SoundType.STONE)));
-    public static final DeferredBlock<Block> LIMESTONE_30 = registerLimestone("limestone_30", () -> new Block(Properties.of().strength(4.0f).requiresCorrectToolForDrops().sound(SoundType.STONE)));
-    public static final DeferredBlock<Block> LIMESTONE_31 = registerLimestone("limestone_31", () -> new Block(Properties.of().strength(4.0f).requiresCorrectToolForDrops().sound(SoundType.STONE)));
-    public static final DeferredBlock<Block> LIMESTONE_32 = registerLimestone("limestone_32", () -> new Block(Properties.of().strength(4.0f).requiresCorrectToolForDrops().sound(SoundType.STONE)));
-    public static final DeferredBlock<Block> LIMESTONE_33 = registerLimestone("limestone_33", () -> new Block(Properties.of().strength(4.0f).requiresCorrectToolForDrops().sound(SoundType.STONE)));
 
     private static <T extends Block> DeferredBlock<T> registerSeaglass(String name, java.util.function.Supplier<T> block) {
         DeferredBlock<T> ret = register(name, block);
@@ -249,7 +227,7 @@ public class ModBlocks {
     public static final DeferredBlock<CopperChestBlock> WAXED_WEATHERED_COPPER_CHEST = registerBackportedBlock("waxed_weathered_copper_chest", () -> new CopperChestBlock(WeatheringCopper.WeatherState.WEATHERED, BlockBehaviour.Properties.of().strength(2.5f).sound(SoundType.COPPER)), false);
     public static final DeferredBlock<CopperChestBlock> WAXED_OXIDIZED_COPPER_CHEST = registerBackportedBlock("waxed_oxidized_copper_chest", () -> new CopperChestBlock(WeatheringCopper.WeatherState.OXIDIZED, BlockBehaviour.Properties.of().strength(2.5f).sound(SoundType.COPPER)), false);
     public static final DeferredBlock<Block> WEATHERING_STATION = register("weathering_station", () -> new com.otterly76.ott.block.custom.WeatheringStationBlock(BlockBehaviour.Properties.of().strength(2.0f).sound(SoundType.WOOD).noOcclusion()));
-    public static final DeferredBlock<Block> WOODCUTTER = register("woodcutter", () -> new com.otterly76.ott.block.custom.WoodcutterBlock(BlockBehaviour.Properties.of().strength(3.5f).sound(SoundType.WOOD).requiresCorrectToolForDrops()));
+    public static final DeferredBlock<Block> WOODCUTTER = register("woodcutter", () -> new com.otterly76.ott.block.custom.WoodcutterBlock(BlockBehaviour.Properties.of().strength(3.5f).sound(SoundType.WOOD).requiresCorrectToolForDrops().noOcclusion()));
 
     public static final List<DeferredBlock<com.otterly76.ott.block.shelf.ShelfBlock>> SHELVES = new ArrayList<>();
     public static final Map<String, Supplier<? extends com.otterly76.ott.block.custom.CopperGolemStatueBlock>> COPPER_GOLEM_STATUES = new LinkedHashMap<>();
@@ -816,11 +794,11 @@ public class ModBlocks {
     // -------------------------------------------------------------------------
     // --- DoTB Phase 2: Limestone ---
     // -------------------------------------------------------------------------
-    public static final DeferredBlock<Block> LIMESTONE_BRICKS = register("limestone_bricks",
+    public static final DeferredBlock<Block> LIMESTONE_MASONRY = register("limestone_masonry",
             () -> new Block(Properties.ofFullCopy(Blocks.STONE_BRICKS)));
-    public static final DeferredBlock<EdgeBlock> LIMESTONE_BRICKS_EDGE = register("limestone_bricks_edge",
+    public static final DeferredBlock<EdgeBlock> LIMESTONE_MASONRY_EDGE = register("limestone_masonry_edge",
             () -> new EdgeBlock(Properties.ofFullCopy(Blocks.STONE_BRICKS)));
-    public static final DeferredBlock<PlateBlock> LIMESTONE_BRICKS_PLATE = register("limestone_bricks_plate",
+    public static final DeferredBlock<PlateBlock> LIMESTONE_MASONRY_PLATE = register("limestone_masonry_plate",
             () -> new PlateBlock(Properties.ofFullCopy(Blocks.STONE_BRICKS)));
     public static final DeferredBlock<PlateBlock> LIMESTONE_BANNISTER = register("limestone_bannister",
             () -> new PlateBlock(Properties.ofFullCopy(Blocks.STONE_BRICKS).noOcclusion()));
@@ -828,6 +806,8 @@ public class ModBlocks {
             () -> new Block(Properties.ofFullCopy(Blocks.STONE_BRICKS)));
     public static final DeferredBlock<Block> PLAIN_LIMESTONE = register("limestone",
             () -> new Block(Properties.ofFullCopy(Blocks.STONE)));
+    public static final DeferredBlock<Block> MIXED_LIMESTONE_BRICKS = register("mixed_limestone_bricks",
+            () -> new Block(Properties.ofFullCopy(Blocks.STONE_BRICKS)));
 
     // -------------------------------------------------------------------------
     // --- DoTB Phase 2: Marble (Roman) ---
@@ -930,6 +910,18 @@ public class ModBlocks {
     public static final DeferredBlock<Block>       DELICATE_RED_WOOL           = register("delicate_red_wool",         () -> new Block(Properties.of().strength(0.8F).sound(SoundType.WOOL)));
     public static final DeferredBlock<CarpetBlock> ORNAMENTED_RED_CARPET       = register("ornamented_red_carpet",     () -> new CarpetBlock(Properties.of().strength(0.1F).sound(SoundType.WOOL)));
     public static final DeferredBlock<CarpetBlock> DELICATE_RED_CARPET         = register("delicate_red_carpet",       () -> new CarpetBlock(Properties.of().strength(0.1F).sound(SoundType.WOOL)));
+    public static final DeferredBlock<Block>       ORNAMENTED_BLUE_WOOL        = register("ornamented_blue_wool",      () -> new Block(Properties.of().strength(0.8F).sound(SoundType.WOOL)));
+    public static final DeferredBlock<Block>       DELICATE_BLUE_WOOL          = register("delicate_blue_wool",        () -> new Block(Properties.of().strength(0.8F).sound(SoundType.WOOL)));
+    public static final DeferredBlock<CarpetBlock> ORNAMENTED_BLUE_CARPET      = register("ornamented_blue_carpet",    () -> new CarpetBlock(Properties.of().strength(0.1F).sound(SoundType.WOOL)));
+    public static final DeferredBlock<CarpetBlock> DELICATE_BLUE_CARPET        = register("delicate_blue_carpet",      () -> new CarpetBlock(Properties.of().strength(0.1F).sound(SoundType.WOOL)));
+    public static final DeferredBlock<Block>       ORNAMENTED_GREEN_WOOL       = register("ornamented_green_wool",     () -> new Block(Properties.of().strength(0.8F).sound(SoundType.WOOL)));
+    public static final DeferredBlock<Block>       DELICATE_GREEN_WOOL         = register("delicate_green_wool",       () -> new Block(Properties.of().strength(0.8F).sound(SoundType.WOOL)));
+    public static final DeferredBlock<CarpetBlock> ORNAMENTED_GREEN_CARPET     = register("ornamented_green_carpet",   () -> new CarpetBlock(Properties.of().strength(0.1F).sound(SoundType.WOOL)));
+    public static final DeferredBlock<CarpetBlock> DELICATE_GREEN_CARPET       = register("delicate_green_carpet",     () -> new CarpetBlock(Properties.of().strength(0.1F).sound(SoundType.WOOL)));
+    public static final DeferredBlock<Block>       ORNAMENTED_PURPLE_WOOL      = register("ornamented_purple_wool",    () -> new Block(Properties.of().strength(0.8F).sound(SoundType.WOOL)));
+    public static final DeferredBlock<Block>       DELICATE_PURPLE_WOOL        = register("delicate_purple_wool",      () -> new Block(Properties.of().strength(0.8F).sound(SoundType.WOOL)));
+    public static final DeferredBlock<CarpetBlock> ORNAMENTED_PURPLE_CARPET    = register("ornamented_purple_carpet",  () -> new CarpetBlock(Properties.of().strength(0.1F).sound(SoundType.WOOL)));
+    public static final DeferredBlock<CarpetBlock> DELICATE_PURPLE_CARPET      = register("delicate_purple_carpet",    () -> new CarpetBlock(Properties.of().strength(0.1F).sound(SoundType.WOOL)));
 
     // -------------------------------------------------------------------------
     // --- DoTB Phase 4: Gold Plated Smooth (Persian) ---
