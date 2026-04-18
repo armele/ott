@@ -10,6 +10,20 @@ adjust spawn rules for custom critters
 add nautilus owner follow logic
 check blockstate and model jsons for abandoned
 
+remove "vanilla" textures from ott/textures/block
+
+add blocks fom Chipped
+- create crafting system without adding new tables
+- create additional patters, stepping stones, etc
+
+add 3 new masked block patterns
+
+move smooth glowstone to a glowstone subdirectory
+moved salt block, polished salt block to salt subdirectory
+
+make additional wood items for starlight and midnight
+- bookshelf, beehive, chest, trapped chest, barrel, ladder, shelves, chiseled bookshelf
+
 backtrack and review all previously added features
 
 CTM Notes:
