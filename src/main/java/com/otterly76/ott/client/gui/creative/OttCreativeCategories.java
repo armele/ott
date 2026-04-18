@@ -18,7 +18,7 @@ public enum OttCreativeCategories {
 
     // ── Sea Creatures ─────────────────────────────────────────────────────────
     AQUATIC("aquatic",
-            ModItems.GOBLIN_SHARK_SPAWN_EGG,
+            ModItems.LARGE_JELLYFISH_BUCKET,
             (params, output) -> {
                 // Critter buckets
                 output.accept(ModItems.ANGELFISH_BUCKET);
@@ -166,7 +166,7 @@ public enum OttCreativeCategories {
 
     // ── Mythical & Hostile ────────────────────────────────────────────────────
     MYTHICAL("mythical",
-            ModItems.BONE_STALKER_SPAWN_EGG,
+            ModItems.GLARE_SPAWN_EGG,
             (params, output) -> {
                 // Supernatural / undead
                 output.accept(ModItems.BOGGED_BONE_STALKER_SPAWN_EGG);
@@ -180,7 +180,6 @@ public enum OttCreativeCategories {
                 output.accept(ModItems.SPECTRE_SPAWN_EGG);
                 // Cryptids & monsters
                 output.accept(ModItems.ARID_YETI_SPAWN_EGG);
-                output.accept(ModItems.CAMEL_HUSK_SPAWN_EGG);
                 output.accept(ModItems.CHUPACABRA_SPAWN_EGG);
                 output.accept(ModItems.HOWLER_SPAWN_EGG);
                 output.accept(ModItems.MYCELIUM_MAMMOTH_SPAWN_EGG);
@@ -198,10 +197,10 @@ public enum OttCreativeCategories {
                 output.accept(ModItems.PHOENIX_SPAWN_EGG);
                 output.accept(ModItems.TREE_ENT_SPAWN_EGG);
                 output.accept(ModItems.WIND_PHOENIX_SPAWN_EGG);
-                // Minecraft / F&F backports
-                output.accept(ModItems.GLARE_SPAWN_EGG);
                 output.accept(ModItems.GOLDEN_HERMIT_KING_SPAWN_EGG);
                 output.accept(ModItems.HERMIT_KING_SPAWN_EGG);
+                // Mob Vote
+                output.accept(ModItems.GLARE_SPAWN_EGG);
                 output.accept(ModItems.ICEOLOGER_SPAWN_EGG);
                 output.accept(ModItems.ILLUSIONER_SPAWN_EGG);
                 output.accept(ModItems.MAULER_SPAWN_EGG);
@@ -368,6 +367,7 @@ public enum OttCreativeCategories {
 
                 output.accept(ModItems.NAUTILUS_SPAWN_EGG);
                 output.accept(ModItems.ZOMBIE_NAUTILUS_SPAWN_EGG);
+                output.accept(ModItems.CAMEL_HUSK_SPAWN_EGG);
 
                 output.accept(ModItems.COPPER_NAUTILUS_ARMOR);
                 output.accept(ModItems.IRON_NAUTILUS_ARMOR);
@@ -535,9 +535,9 @@ public enum OttCreativeCategories {
                 output.accept(ModBlocks.ROMAN_FRESCO_RED);
                 output.accept(ModBlocks.ROMAN_FRESCO_BLACK);
 
-                output.accept(ModBlocks.LIMESTONE_BRICKS);
-                output.accept(ModBlocks.LIMESTONE_BRICKS_EDGE);
-                output.accept(ModBlocks.LIMESTONE_BRICKS_PLATE);
+                output.accept(ModBlocks.LIMESTONE_MASONRY);
+                output.accept(ModBlocks.LIMESTONE_MASONRY_EDGE);
+                output.accept(ModBlocks.LIMESTONE_MASONRY_PLATE);
 
                 output.accept(ModBlocks.STONE_BRICKS_MASONRY);
                 output.accept(ModBlocks.STONE_BRICKS_MASONRY_EDGE);
@@ -547,14 +547,26 @@ public enum OttCreativeCategories {
                 output.accept(ModBlocks.ORNAMENTED_RED_CARPET);
                 output.accept(ModBlocks.DELICATE_RED_WOOL);
                 output.accept(ModBlocks.DELICATE_RED_CARPET);
+                output.accept(ModBlocks.ORNAMENTED_BLUE_WOOL);
+                output.accept(ModBlocks.ORNAMENTED_BLUE_CARPET);
+                output.accept(ModBlocks.DELICATE_BLUE_WOOL);
+                output.accept(ModBlocks.DELICATE_BLUE_CARPET);
+                output.accept(ModBlocks.ORNAMENTED_GREEN_WOOL);
+                output.accept(ModBlocks.ORNAMENTED_GREEN_CARPET);
+                output.accept(ModBlocks.DELICATE_GREEN_WOOL);
+                output.accept(ModBlocks.DELICATE_GREEN_CARPET);
+                output.accept(ModBlocks.ORNAMENTED_PURPLE_WOOL);
+                output.accept(ModBlocks.ORNAMENTED_PURPLE_CARPET);
+                output.accept(ModBlocks.DELICATE_PURPLE_WOOL);
+                output.accept(ModBlocks.DELICATE_PURPLE_CARPET);
             }),
 
     BLOCKS("blocks",
-            () -> ModBlocks.LIMESTONE_00.get().asItem(),
+            () -> ModBlocks.MIXED_LIMESTONE_BRICKS.get().asItem(),
             (params, output) -> {
                 output.accept(ModBlocks.PLAIN_LIMESTONE);
                 output.accept(ModBlocks.COBBLED_LIMESTONE);
-                ModBlocks.LIMESTONE.forEach(output::accept);
+                output.accept(ModBlocks.MIXED_LIMESTONE_BRICKS);
                 ModBlocks.SEAGLASS.forEach(output::accept);  // ethereal seaglass only
                 ModBlocks.TESTBLOCK.forEach(output::accept);
 

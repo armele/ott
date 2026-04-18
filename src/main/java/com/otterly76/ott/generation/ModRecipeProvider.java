@@ -548,6 +548,102 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
                 .unlockedBy("has_delicate_red_wool", has(ModBlocks.DELICATE_RED_WOOL.get()))
                 .save(exporter, getRecipePath("ott", "delicate_red_carpet"));
 
+        // --- Ornamented blue wool ---
+        ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, ModBlocks.ORNAMENTED_BLUE_WOOL.get(), 8)
+                .define('N', Items.GOLD_NUGGET)
+                .define('R', Items.BLUE_WOOL)
+                .pattern("N N")
+                .pattern("NRN")
+                .pattern("N N")
+                .unlockedBy("has_blue_wool", has(Items.BLUE_WOOL))
+                .save(exporter, getRecipePath("ott", "ornamented_blue_wool"));
+
+        // --- Delicate blue wool ---
+        ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, ModBlocks.DELICATE_BLUE_WOOL.get(), 8)
+                .define('N', Items.GOLD_NUGGET)
+                .define('R', Items.BLUE_WOOL)
+                .pattern(" N ")
+                .pattern("NRN")
+                .pattern(" N ")
+                .unlockedBy("has_blue_wool", has(Items.BLUE_WOOL))
+                .save(exporter, getRecipePath("ott", "delicate_blue_wool"));
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.DECORATIONS, ModBlocks.ORNAMENTED_BLUE_CARPET.get(), 3)
+                .define('W', ModBlocks.ORNAMENTED_BLUE_WOOL.get())
+                .pattern("WW")
+                .unlockedBy("has_ornamented_blue_wool", has(ModBlocks.ORNAMENTED_BLUE_WOOL.get()))
+                .save(exporter, getRecipePath("ott", "ornamented_blue_carpet"));
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.DECORATIONS, ModBlocks.DELICATE_BLUE_CARPET.get(), 3)
+                .define('W', ModBlocks.DELICATE_BLUE_WOOL.get())
+                .pattern("WW")
+                .unlockedBy("has_delicate_blue_wool", has(ModBlocks.DELICATE_BLUE_WOOL.get()))
+                .save(exporter, getRecipePath("ott", "delicate_blue_carpet"));
+
+        // --- Ornamented green wool ---
+        ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, ModBlocks.ORNAMENTED_GREEN_WOOL.get(), 8)
+                .define('N', Items.GOLD_NUGGET)
+                .define('R', Items.GREEN_WOOL)
+                .pattern("N N")
+                .pattern("NRN")
+                .pattern("N N")
+                .unlockedBy("has_green_wool", has(Items.GREEN_WOOL))
+                .save(exporter, getRecipePath("ott", "ornamented_green_wool"));
+
+        // --- Delicate green wool ---
+        ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, ModBlocks.DELICATE_GREEN_WOOL.get(), 8)
+                .define('N', Items.GOLD_NUGGET)
+                .define('R', Items.GREEN_WOOL)
+                .pattern(" N ")
+                .pattern("NRN")
+                .pattern(" N ")
+                .unlockedBy("has_green_wool", has(Items.GREEN_WOOL))
+                .save(exporter, getRecipePath("ott", "delicate_green_wool"));
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.DECORATIONS, ModBlocks.ORNAMENTED_GREEN_CARPET.get(), 3)
+                .define('W', ModBlocks.ORNAMENTED_GREEN_WOOL.get())
+                .pattern("WW")
+                .unlockedBy("has_ornamented_green_wool", has(ModBlocks.ORNAMENTED_GREEN_WOOL.get()))
+                .save(exporter, getRecipePath("ott", "ornamented_green_carpet"));
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.DECORATIONS, ModBlocks.DELICATE_GREEN_CARPET.get(), 3)
+                .define('W', ModBlocks.DELICATE_GREEN_WOOL.get())
+                .pattern("WW")
+                .unlockedBy("has_delicate_green_wool", has(ModBlocks.DELICATE_GREEN_WOOL.get()))
+                .save(exporter, getRecipePath("ott", "delicate_green_carpet"));
+
+        // --- Ornamented purple wool ---
+        ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, ModBlocks.ORNAMENTED_PURPLE_WOOL.get(), 8)
+                .define('N', Items.GOLD_NUGGET)
+                .define('R', Items.PURPLE_WOOL)
+                .pattern("N N")
+                .pattern("NRN")
+                .pattern("N N")
+                .unlockedBy("has_purple_wool", has(Items.PURPLE_WOOL))
+                .save(exporter, getRecipePath("ott", "ornamented_purple_wool"));
+
+        // --- Delicate purple wool ---
+        ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, ModBlocks.DELICATE_PURPLE_WOOL.get(), 8)
+                .define('N', Items.GOLD_NUGGET)
+                .define('R', Items.PURPLE_WOOL)
+                .pattern(" N ")
+                .pattern("NRN")
+                .pattern(" N ")
+                .unlockedBy("has_purple_wool", has(Items.PURPLE_WOOL))
+                .save(exporter, getRecipePath("ott", "delicate_purple_wool"));
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.DECORATIONS, ModBlocks.ORNAMENTED_PURPLE_CARPET.get(), 3)
+                .define('W', ModBlocks.ORNAMENTED_PURPLE_WOOL.get())
+                .pattern("WW")
+                .unlockedBy("has_ornamented_purple_wool", has(ModBlocks.ORNAMENTED_PURPLE_WOOL.get()))
+                .save(exporter, getRecipePath("ott", "ornamented_purple_carpet"));
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.DECORATIONS, ModBlocks.DELICATE_PURPLE_CARPET.get(), 3)
+                .define('W', ModBlocks.DELICATE_PURPLE_WOOL.get())
+                .pattern("WW")
+                .unlockedBy("has_delicate_purple_wool", has(ModBlocks.DELICATE_PURPLE_WOOL.get()))
+                .save(exporter, getRecipePath("ott", "delicate_purple_carpet"));
+
         // --- Glazed terracotta smelting (16 custom colors) ---
         ModBlocks.COLOR_SETS.forEach((color, set) ->
                 SimpleCookingRecipeBuilder.smelting(Ingredient.of(set.terracotta().get()),
@@ -1566,8 +1662,8 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
         // (wood set planks → structural shapes moved to woodcutter below)
 
         // --- Static blocks with known shape variants ---
-        stonecutOne(exporter, ModBlocks.LIMESTONE_BRICKS.get(),                          ModBlocks.LIMESTONE_BRICKS_EDGE.get(),                         "limestone_bricks_edge_stonecutting");
-        stonecutOne(exporter, ModBlocks.LIMESTONE_BRICKS.get(),                          ModBlocks.LIMESTONE_BRICKS_PLATE.get(),                        "limestone_bricks_plate_stonecutting");
+        stonecutOne(exporter, ModBlocks.LIMESTONE_MASONRY.get(),                         ModBlocks.LIMESTONE_MASONRY_EDGE.get(),                        "limestone_masonry_edge_stonecutting");
+        stonecutOne(exporter, ModBlocks.LIMESTONE_MASONRY.get(),                         ModBlocks.LIMESTONE_MASONRY_PLATE.get(),                       "limestone_masonry_plate_stonecutting");
         stonecutOne(exporter, ModBlocks.ROOFING_SLATES.get(),                            ModBlocks.ROOFING_SLATES_EDGE.get(),                           "roofing_slates_edge_stonecutting");
         stonecutOne(exporter, ModBlocks.ROOFING_SLATES.get(),                            ModBlocks.ROOFING_SLATES_PLATE.get(),                          "roofing_slates_plate_stonecutting");
         stonecutOne(exporter, ModBlocks.WHEAT_THATCH.get(),                              ModBlocks.WHEAT_THATCH_EDGE.get(),                             "wheat_thatch_edge_stonecutting");
@@ -1645,8 +1741,8 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
         stonecutOne(exporter, ModBlocks.PLAIN_LIMESTONE.get(), ModBlocks.MOSAIC_FLOOR_ROSETTE.get(),     "mosaic_floor_rosette_from_limestone_stonecutting");
         stonecutOne(exporter, ModBlocks.PLAIN_LIMESTONE.get(), ModBlocks.ROMAN_FRESCO_RED.get(),         "roman_fresco_red_from_limestone_stonecutting");
         stonecutOne(exporter, ModBlocks.PLAIN_LIMESTONE.get(), ModBlocks.ROMAN_FRESCO_BLACK.get(),       "roman_fresco_black_from_limestone_stonecutting");
-        // --- Limestone bricks from limestone ---
-        stonecutOne(exporter, ModBlocks.PLAIN_LIMESTONE.get(), ModBlocks.LIMESTONE_BRICKS.get(), "limestone_bricks_from_limestone_stonecutting");
+        // --- Limestone masonry from limestone ---
+        stonecutOne(exporter, ModBlocks.PLAIN_LIMESTONE.get(), ModBlocks.LIMESTONE_MASONRY.get(), "limestone_masonry_from_limestone_stonecutting");
         // --- Black marble stonecutting ---
         stonecutOne(exporter,  ModBlocks.BLACK_MARBLE.get(), ModBlocks.BLACK_MARBLE_BRICKS.get(),       "black_marble_bricks_stonecutting");
         stonecutOne(exporter,  ModBlocks.BLACK_MARBLE.get(), ModBlocks.BLACK_MARBLE_SMALL_BRICKS.get(), "black_marble_small_bricks_stonecutting");
@@ -1665,8 +1761,7 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
         stonecutMany(exporter, ModBlocks.WHITE_MARBLE.get(), ModBlocks.WHITE_MARBLE_FLOOR_TILE.get(), "white_marble_floor_tile_stonecutting");
         woodcutOne(exporter, Items.SPRUCE_PLANKS, ModBlocks.SPRUCE_LOG_FENCE.get(), "spruce_log_fence_woodcutting");
         stonecutOne(exporter, ModBlocks.PLAIN_LIMESTONE.get(), ModBlocks.LIMESTONE_BANNISTER.get(),      "limestone_bannister_from_limestone_stonecutting");
-        ModBlocks.LIMESTONE.forEach(d -> stonecutOne(exporter, ModBlocks.PLAIN_LIMESTONE.get(), d.get(),
-                d.getId().getPath() + "_from_limestone_stonecutting"));
+        stonecutOne(exporter, ModBlocks.PLAIN_LIMESTONE.get(), ModBlocks.MIXED_LIMESTONE_BRICKS.get(), "mixed_limestone_bricks_from_limestone_stonecutting");
         // --- Chiseled plastered stone from matching plastered stone ---
         ModBlocks.PATTERN_BLOCKS.get("plastered_stone").forEach((color, base) -> {
             var chiseled = ModBlocks.PATTERN_BLOCKS.get("chiseled_plastered_stone");

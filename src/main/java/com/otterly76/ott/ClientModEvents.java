@@ -21,7 +21,6 @@ import com.otterly76.ott.client.model.nautilus.NautilusSaddleModel;
 import com.otterly76.ott.client.registries.ModModelLayers;
 import com.otterly76.ott.inventory.ModMenuTypes;
 import com.otterly76.ott.item.ModItems;
-import net.neoforged.neoforge.common.DeferredSpawnEggItem;
 import com.otterly76.ott.client.handler.DryFoliageColorReloadListener;
 import com.otterly76.ott.client.handler.ItemPropertyRegistrar;
 import com.otterly76.ott.client.handler.LeafColorReloadListener;
@@ -112,6 +111,8 @@ public class ClientModEvents {
     public static void onRegisterGeometryLoaders(ModelEvent.RegisterGeometryLoaders event) {
         event.register(ResourceLocation.fromNamespaceAndPath(MOD_ID, "connecting"),
                 com.otterly76.ott.client.model.ctm.ConnectingModelLoader.INSTANCE);
+        event.register(ResourceLocation.fromNamespaceAndPath(MOD_ID, "ctm"),
+                com.otterly76.ott.client.model.ctm.SimpleCTMLoader.INSTANCE);
     }
 
     public static void onRegisterAdditional(ModelEvent.RegisterAdditional event) {
@@ -574,16 +575,6 @@ public class ClientModEvents {
             if (tintIndex == 0) return 0xFFFFC400;
             return -1;
         }, ModItems.TORCH_ARROW.get());
-
-        event.register((stack, tintIndex) -> ((DeferredSpawnEggItem)stack.getItem()).getColor(tintIndex),
-                ModItems.GOOSE_SPAWN_EGG.get(), ModItems.MAN_O_WAR_SPAWN_EGG.get(),
-                ModItems.STINGRAY_SPAWN_EGG.get(), ModItems.SUNFISH_SPAWN_EGG.get(), ModItems.KRILL_SPAWN_EGG.get(),
-                ModItems.ANGELFISH_SPAWN_EGG.get(), ModItems.BARRELEYE_SPAWN_EGG.get(), ModItems.FLOUNDER_SPAWN_EGG.get(),
-                ModItems.MARINE_IGUANA_SPAWN_EGG.get(), ModItems.GECKO_SPAWN_EGG.get(), ModItems.EMU_SPAWN_EGG.get(),
-                ModItems.HOOPOE_SPAWN_EGG.get(), ModItems.PHEASANT_SPAWN_EGG.get(), ModItems.TOUCAN_SPAWN_EGG.get(),
-                ModItems.MOOSE_SPAWN_EGG.get(), ModItems.FENNEC_FOX_SPAWN_EGG.get(),
-                ModItems.NAUTILUS_SPAWN_EGG.get(), ModItems.ZOMBIE_NAUTILUS_SPAWN_EGG.get(),
-                ModItems.CAMEL_HUSK_SPAWN_EGG.get());
 
         event.register((stack, tintIndex) -> -1,
                 ModItems.DUCK_SPAWN_EGG.get(), ModItems.CATFISH_SPAWN_EGG.get(), ModItems.BASS_SPAWN_EGG.get(),

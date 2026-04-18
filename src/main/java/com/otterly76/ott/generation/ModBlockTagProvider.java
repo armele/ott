@@ -218,7 +218,7 @@ public class ModBlockTagProvider extends BlockTagsProvider {
         this.tag(TagKey.create(Registries.BLOCK, ResourceLocation.fromNamespaceAndPath("c", "logs"))).addTag(BlockTags.LOGS);
 
         // --- 5. STATIC & INDIVIDUAL ADDITIONS ---
-        ModBlocks.LIMESTONE.forEach(d -> { pickaxeTag.add(d.value()); this.tag(doDefaultKey).add(d.value()); });
+        pickaxeTag.add(ModBlocks.MIXED_LIMESTONE_BRICKS.value()); this.tag(doDefaultKey).add(ModBlocks.MIXED_LIMESTONE_BRICKS.value());
         pickaxeTag.add(ModBlocks.PLAIN_LIMESTONE.value());
         needsStoneToolTag.add(ModBlocks.PLAIN_LIMESTONE.value());
         ModBlocks.SEAGLASS.forEach(d -> {
@@ -282,6 +282,12 @@ public class ModBlockTagProvider extends BlockTagsProvider {
                 ModBlocks.STONE_BRICKS_MASONRY.get(),
                 ModBlocks.ORNAMENTED_RED_WOOL.get(),
                 ModBlocks.DELICATE_RED_WOOL.get(),
+                ModBlocks.ORNAMENTED_BLUE_WOOL.get(),
+                ModBlocks.DELICATE_BLUE_WOOL.get(),
+                ModBlocks.ORNAMENTED_GREEN_WOOL.get(),
+                ModBlocks.DELICATE_GREEN_WOOL.get(),
+                ModBlocks.ORNAMENTED_PURPLE_WOOL.get(),
+                ModBlocks.DELICATE_PURPLE_WOOL.get(),
                 ModBlocks.WATER_MOSAIC_BORDER.get(),
                 ModBlocks.WATER_MOSAIC_GEOMETRIC.get(),
                 ModBlocks.WATER_MOSAIC_PATTERN.get(),
@@ -307,7 +313,7 @@ public class ModBlockTagProvider extends BlockTagsProvider {
                 ModBlocks.MOSAIC_FLOOR_ROSETTE.get(),
                 ModBlocks.ROMAN_FRESCO_RED.get(),
                 ModBlocks.ROMAN_FRESCO_BLACK.get(),
-                ModBlocks.LIMESTONE_BRICKS.get()
+                ModBlocks.LIMESTONE_MASONRY.get()
         );
 
         // Domum Ornamentum material tags

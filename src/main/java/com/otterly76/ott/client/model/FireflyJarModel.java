@@ -11,7 +11,6 @@ import software.bernie.geckolib.renderer.GeoRenderer;
 
 import static com.otterly76.ott.Constants.MOD_ID;
 
-@SuppressWarnings("deprecation")
 public class FireflyJarModel extends GeoModel<FireflyJarBlockEntity> {
     @Override
     public ResourceLocation getModelResource(FireflyJarBlockEntity animatable, @Nullable GeoRenderer<FireflyJarBlockEntity> renderer) {

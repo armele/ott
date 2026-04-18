@@ -55,12 +55,7 @@ public class OttBlockStateProvider extends ModBlockStateProvider {
         });
 
         ModBlocks.SEAGLASS_SETS.forEach(this::registerSeaglassColor);
-        ModBlocks.LIMESTONE.forEach(block -> {
-            String path = blockPath(block.get());
-            ModelFile model = models().cubeAll("block/limestone/" + path, modLoc("block/limestone/" + path));
-            simpleBlock(block.get(), model);
-            itemModels().withExistingParent(path, modLoc("block/limestone/" + path));
-        });
+        itemModels().withExistingParent("mixed_limestone_bricks", modLoc("block/limestone/mixed/limestone_00"));
         simpleBlockWithItem(ModBlocks.PLAIN_LIMESTONE.get(), models().cubeAll("block/limestone/limestone", modLoc("block/limestone/limestone")));
         
         ModBlocks.TESTBLOCK.forEach(block -> {
@@ -1024,7 +1019,7 @@ public class OttBlockStateProvider extends ModBlockStateProvider {
         simpleBlockWithItem(ModBlocks.BLACK_MARBLE_TILES.get(),        models().getExistingFile(modLoc("block/black_marble/black_marble_tiles")));
         simpleBlockWithItem(ModBlocks.BLACK_POLISHED_MARBLE.get(),     models().getExistingFile(modLoc("block/black_marble/black_polished_marble")));
         simpleBlockWithItem(ModBlocks.BLACK_MARBLE_FLOOR_TILE.get(),   models().getExistingFile(modLoc("block/black_marble/black_marble_floor_tile")));
-        existingFacingShapeBlock(ModBlocks.BLACK_MARBLE_FANCY_FENCE.get(), "block/black_marble/black_marble_fancy_fence");
+        existingFacingShapeBlockNoUvLock(ModBlocks.BLACK_MARBLE_FANCY_FENCE.get(), "block/black_marble/black_marble_fancy_fence");
         existingAxisBlock(ModBlocks.BLACK_MARBLE_PILLAR.get(),     "block/black_marble/black_marble_pillar");
         existingAxisBlock(ModBlocks.BLACK_MARBLE_PILLAR_CAP.get(), "block/black_marble/black_marble_pillar_cap");
 
@@ -1035,16 +1030,16 @@ public class OttBlockStateProvider extends ModBlockStateProvider {
         simpleBlockWithItem(ModBlocks.WHITE_MARBLE_TILES.get(),        models().getExistingFile(modLoc("block/white_marble/white_marble_tiles")));
         simpleBlockWithItem(ModBlocks.WHITE_POLISHED_MARBLE.get(),     models().getExistingFile(modLoc("block/white_marble/white_polished_marble")));
         simpleBlockWithItem(ModBlocks.WHITE_MARBLE_FLOOR_TILE.get(),   models().getExistingFile(modLoc("block/white_marble/white_marble_floor_tile")));
-        existingFacingShapeBlock(ModBlocks.WHITE_MARBLE_FANCY_FENCE.get(), "block/white_marble/white_marble_fancy_fence");
+        existingFacingShapeBlockNoUvLock(ModBlocks.WHITE_MARBLE_FANCY_FENCE.get(), "block/white_marble/white_marble_fancy_fence");
         existingAxisBlock(ModBlocks.WHITE_MARBLE_PILLAR.get(),     "block/white_marble/white_marble_pillar");
         existingAxisBlock(ModBlocks.WHITE_MARBLE_PILLAR_CAP.get(), "block/white_marble/white_marble_pillar_cap");
 
         // ── Limestone ─────────────────────────────────────────────────────────
-        simpleBlockWithItem(ModBlocks.LIMESTONE_BRICKS.get(),  models().getExistingFile(modLoc("block/limestone/limestone_bricks")));
+        simpleBlockWithItem(ModBlocks.LIMESTONE_MASONRY.get(),  models().getExistingFile(modLoc("block/limestone/limestone_masonry")));
         simpleBlockWithItem(ModBlocks.COBBLED_LIMESTONE.get(), models().getExistingFile(modLoc("block/limestone/cobbled_limestone")));
-        existingEdgeBlock(ModBlocks.LIMESTONE_BRICKS_EDGE.get(),            "block/limestone/limestone_bricks_edge");
-        existingFacingShapeBlock(ModBlocks.LIMESTONE_BRICKS_PLATE.get(),    "block/limestone/limestone_bricks_plate");
-        existingFacingShapeBlock(ModBlocks.LIMESTONE_BANNISTER.get(),       "block/limestone/limestone_bannister");
+        existingEdgeBlock(ModBlocks.LIMESTONE_MASONRY_EDGE.get(),            "block/limestone/limestone_masonry_edge");
+        existingFacingShapeBlock(ModBlocks.LIMESTONE_MASONRY_PLATE.get(),    "block/limestone/limestone_masonry_plate");
+        existingFacingShapeBlockNoUvLock(ModBlocks.LIMESTONE_BANNISTER.get(), "block/limestone/limestone_bannister");
 
         // ── Salt & misc stone ─────────────────────────────────────────────────
         simpleBlockWithItem(ModBlocks.SALT_BLOCK.get(),          models().getExistingFile(modLoc("block/salt_block")));
@@ -1075,7 +1070,7 @@ public class OttBlockStateProvider extends ModBlockStateProvider {
         // ── Sandstone shapes ──────────────────────────────────────────────────
         existingEdgeBlock(ModBlocks.SANDSTONE_EDGE.get(),               "block/sandstone/sandstone_edge");
         existingFacingShapeBlock(ModBlocks.SANDSTONE_PLATE.get(),       "block/sandstone/sandstone_plate");
-        existingFacingShapeBlock(ModBlocks.SANDSTONE_CRENELATION.get(), "block/sandstone/sandstone_crenelation");
+        existingFacingShapeBlockNoUvLock(ModBlocks.SANDSTONE_CRENELATION.get(), "block/sandstone/sandstone_crenelation");
         existingEdgeBlock(ModBlocks.CUT_SANDSTONE_EDGE.get(),           "block/cut_sandstone/cut_sandstone_edge");
         existingFacingShapeBlock(ModBlocks.CUT_SANDSTONE_PLATE.get(),   "block/cut_sandstone/cut_sandstone_plate");
         existingEdgeBlock(ModBlocks.SMOOTH_SANDSTONE_EDGE.get(),        "block/smooth_sandstone/smooth_sandstone_edge");
@@ -1130,10 +1125,22 @@ public class OttBlockStateProvider extends ModBlockStateProvider {
         simpleBlockWithItem(ModBlocks.ROMAN_FRESCO_BLACK.get(), models().getExistingFile(modLoc("block/roman_fresco/roman_fresco_black")));
 
         // ── Ornamented / delicate wool & carpet ───────────────────────────────
-        simpleBlockWithItem(ModBlocks.ORNAMENTED_RED_WOOL.get(),   models().getExistingFile(modLoc("block/ornamented_red_wool")));
-        simpleBlockWithItem(ModBlocks.DELICATE_RED_WOOL.get(),     models().getExistingFile(modLoc("block/delicate_red_wool")));
-        simpleBlockWithItem(ModBlocks.ORNAMENTED_RED_CARPET.get(), models().getExistingFile(modLoc("block/ornamented_red_carpet")));
-        simpleBlockWithItem(ModBlocks.DELICATE_RED_CARPET.get(),   models().getExistingFile(modLoc("block/delicate_red_carpet")));
+        simpleBlockWithItem(ModBlocks.ORNAMENTED_RED_WOOL.get(),      models().getExistingFile(modLoc("block/ornamented_red_wool")));
+        simpleBlockWithItem(ModBlocks.DELICATE_RED_WOOL.get(),        models().getExistingFile(modLoc("block/delicate_red_wool")));
+        simpleBlockWithItem(ModBlocks.ORNAMENTED_RED_CARPET.get(),    models().getExistingFile(modLoc("block/ornamented_red_carpet")));
+        simpleBlockWithItem(ModBlocks.DELICATE_RED_CARPET.get(),      models().getExistingFile(modLoc("block/delicate_red_carpet")));
+        simpleBlockWithItem(ModBlocks.ORNAMENTED_BLUE_WOOL.get(),     models().getExistingFile(modLoc("block/ornamented_blue_wool")));
+        simpleBlockWithItem(ModBlocks.DELICATE_BLUE_WOOL.get(),       models().getExistingFile(modLoc("block/delicate_blue_wool")));
+        simpleBlockWithItem(ModBlocks.ORNAMENTED_BLUE_CARPET.get(),   models().getExistingFile(modLoc("block/ornamented_blue_carpet")));
+        simpleBlockWithItem(ModBlocks.DELICATE_BLUE_CARPET.get(),     models().getExistingFile(modLoc("block/delicate_blue_carpet")));
+        simpleBlockWithItem(ModBlocks.ORNAMENTED_GREEN_WOOL.get(),    models().getExistingFile(modLoc("block/ornamented_green_wool")));
+        simpleBlockWithItem(ModBlocks.DELICATE_GREEN_WOOL.get(),      models().getExistingFile(modLoc("block/delicate_green_wool")));
+        simpleBlockWithItem(ModBlocks.ORNAMENTED_GREEN_CARPET.get(),  models().getExistingFile(modLoc("block/ornamented_green_carpet")));
+        simpleBlockWithItem(ModBlocks.DELICATE_GREEN_CARPET.get(),    models().getExistingFile(modLoc("block/delicate_green_carpet")));
+        simpleBlockWithItem(ModBlocks.ORNAMENTED_PURPLE_WOOL.get(),   models().getExistingFile(modLoc("block/ornamented_purple_wool")));
+        simpleBlockWithItem(ModBlocks.DELICATE_PURPLE_WOOL.get(),     models().getExistingFile(modLoc("block/delicate_purple_wool")));
+        simpleBlockWithItem(ModBlocks.ORNAMENTED_PURPLE_CARPET.get(), models().getExistingFile(modLoc("block/ornamented_purple_carpet")));
+        simpleBlockWithItem(ModBlocks.DELICATE_PURPLE_CARPET.get(),   models().getExistingFile(modLoc("block/delicate_purple_carpet")));
 
         // ── Plastered stone ───────────────────────────────────────────────────
         simpleBlockWithItem(ModBlocks.ORNAMENTED_CHISELED_PLASTERED_STONE.get(), models().getExistingFile(modLoc("block/ornamented_chiseled_plastered_stone")));
@@ -1198,6 +1205,38 @@ public class OttBlockStateProvider extends ModBlockStateProvider {
                 models().getExistingFile(modLoc(modelPath)),
                 models().getExistingFile(modLoc(modelPath + "_outer")),
                 models().getExistingFile(modLoc(modelPath + "_inner")));
+        itemModels().withExistingParent(name, modLoc(modelPath));
+    }
+
+    /**
+     * Like existingFacingShapeBlock but uses uvLock=false.
+     * Used for blocks whose up-face UV coordinates would map into transparent texture
+     * regions after uvlock rotation (e.g. limestone_bannister, sandstone_crenelation).
+     */
+    private void existingFacingShapeBlockNoUvLock(Block block, String modelPath) {
+        String name = modelPath.substring(modelPath.lastIndexOf('/') + 1);
+        ModelFile straight = models().getExistingFile(modLoc(modelPath));
+        ModelFile outer    = models().getExistingFile(modLoc(modelPath + "_outer"));
+        ModelFile inner    = models().getExistingFile(modLoc(modelPath + "_inner"));
+        getVariantBuilder(block).forAllStatesExcept(state -> {
+            Direction facing = state.getValue(BlockStateProperties.HORIZONTAL_FACING);
+            StairsShape shape = state.getValue(BlockStateProperties.STAIRS_SHAPE);
+            int yRot = switch (facing) {
+                case SOUTH -> 0;
+                case WEST  -> 90;
+                case NORTH -> 180;
+                case EAST  -> 270;
+                default    -> 0;
+            };
+            boolean isLeft = shape == StairsShape.OUTER_LEFT || shape == StairsShape.INNER_LEFT;
+            if (isLeft) yRot = (yRot + 270) % 360;
+            ModelFile model = switch (shape) {
+                case STRAIGHT                -> straight;
+                case OUTER_LEFT, OUTER_RIGHT -> outer;
+                case INNER_LEFT, INNER_RIGHT -> inner;
+            };
+            return ConfiguredModel.builder().modelFile(model).rotationY(yRot).uvLock(false).build();
+        }, BlockStateProperties.WATERLOGGED);
         itemModels().withExistingParent(name, modLoc(modelPath));
     }
 
