@@ -2,7 +2,7 @@
 	"credit": "Made with Blockbench",
 	"texture_size": [32, 32],
 	"textures": {
-		"0": "ott:block/stone_bricks/stone_bricks_faucet",
+		"0": "ott:block/stone_bricks_masonry/stone_bricks_faucet",
 		"1": "ott:block/water_flow_fade",
 		"particle": "ott:block/transparent"
 	},
