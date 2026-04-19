@@ -37,6 +37,7 @@ public class ModTags {
         public static final TagKey<Block> LANTERNS = mcTag("lanterns");
 
         public static final TagKey<Block> STONE = mcTag("stone");
+        public static final TagKey<Block> CTM_BLOCKS = createTag("ctm_blocks");
         public static final TagKey<Block> PATHS = createTag("paths");
         public static final TagKey<Block> HARVEST_BLACKLIST = createTag("harvest_blacklist");
         public static final TagKey<Block> FERRET_DIG_GROUNDS = createTag("ferret_dig_grounds");
@@ -49,7 +50,6 @@ public class ModTags {
             return BlockTags.create(ResourceLocation.withDefaultNamespace(name));
         }
 
-        @SuppressWarnings("SameParameterValue")
         private static TagKey<Block> createTag(String name) {
             return BlockTags.create(ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, name));
         }

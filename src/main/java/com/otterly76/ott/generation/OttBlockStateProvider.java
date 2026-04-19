@@ -3,6 +3,7 @@ package com.otterly76.ott.generation;
 import com.otterly76.ott.Constants;
 import com.otterly76.ott.block.IGradientBlock;
 import com.otterly76.ott.block.ModBlocks;
+import com.otterly76.ott.color.ModPatterns;
 import com.otterly76.ott.block.custom.BeamBlock;
 import com.otterly76.ott.block.custom.PergolaBlock;
 import com.otterly76.ott.block.custom.SilkCocoonBlock;
@@ -135,29 +136,51 @@ public class OttBlockStateProvider extends ModBlockStateProvider {
     private void registerPatternBlocks() {
         ModBlocks.PATTERN_BLOCKS.forEach((pattern, colorMap) -> {
             ResourceLocation patternTexture = modLoc("block/patterns/" + pattern);
+            boolean isPillar = ModPatterns.PILLAR_PATTERNS.contains(pattern);
 
-            // Base model — texture lives in block/patterns/ and uses tintindex 0
-            ModelFile baseModel = models().withExistingParent("block/patterns/" + pattern + "_model", mcLoc("block/block"))
-                    .texture("particle", patternTexture)
-                    .texture("all", patternTexture)
-                    .element().from(0, 0, 0).to(16, 16, 16)
-                    .face(Direction.DOWN).uvs(0, 0, 16, 16).texture("#all").cullface(Direction.DOWN).tintindex(0).end()
-                    .face(Direction.UP).uvs(0, 0, 16, 16).texture("#all").cullface(Direction.UP).tintindex(0).end()
-                    .face(Direction.NORTH).uvs(0, 0, 16, 16).texture("#all").cullface(Direction.NORTH).tintindex(0).end()
-                    .face(Direction.SOUTH).uvs(0, 0, 16, 16).texture("#all").cullface(Direction.SOUTH).tintindex(0).end()
-                    .face(Direction.WEST).uvs(0, 0, 16, 16).texture("#all").cullface(Direction.WEST).tintindex(0).end()
-                    .face(Direction.EAST).uvs(0, 0, 16, 16).texture("#all").cullface(Direction.EAST).tintindex(0).end()
-                    .end();
+            if (isPillar) {
+                // Two-layer model: base texture (untinted) + mask texture (tinted with color)
+                ResourceLocation maskTexture = modLoc("block/patterns/" + pattern + "_mask");
+                ResourceLocation endTexture = modLoc("block/base/plastered_stone_1");
+                ModelFile baseModel = models().withExistingParent("block/patterns/" + pattern + "_model", mcLoc("block/block"))
+                        .renderType("minecraft:cutout_mipped")
+                        .texture("particle", patternTexture)
+                        .texture("all", patternTexture)
+                        .texture("mask", maskTexture)
+                        .texture("end", endTexture)
+                        // Layer 1: base — sides use pattern (untinted), top/bottom use plain plastered stone
+                        .element().from(0, 0, 0).to(16, 16, 16)
+                        .face(Direction.DOWN).uvs(0, 0, 16, 16).texture("#end").cullface(Direction.DOWN).end()
+                        .face(Direction.UP).uvs(0, 0, 16, 16).texture("#end").cullface(Direction.UP).end()
+                        .face(Direction.NORTH).uvs(0, 0, 16, 16).texture("#all").cullface(Direction.NORTH).end()
+                        .face(Direction.SOUTH).uvs(0, 0, 16, 16).texture("#all").cullface(Direction.SOUTH).end()
+                        .face(Direction.WEST).uvs(0, 0, 16, 16).texture("#all").cullface(Direction.WEST).end()
+                        .face(Direction.EAST).uvs(0, 0, 16, 16).texture("#all").cullface(Direction.EAST).end()
+                        .end()
+                        // Layer 2: mask — sides only (no color overlay on end caps)
+                        .element().from(0, 0, 0).to(16, 16, 16)
+                        .face(Direction.NORTH).uvs(0, 0, 16, 16).texture("#mask").cullface(Direction.NORTH).tintindex(0).end()
+                        .face(Direction.SOUTH).uvs(0, 0, 16, 16).texture("#mask").cullface(Direction.SOUTH).tintindex(0).end()
+                        .face(Direction.WEST).uvs(0, 0, 16, 16).texture("#mask").cullface(Direction.WEST).tintindex(0).end()
+                        .face(Direction.EAST).uvs(0, 0, 16, 16).texture("#mask").cullface(Direction.EAST).tintindex(0).end()
+                        .end();
 
-            // Build extra variant models for patterns that have numbered textures
-            List<String> extraSuffixes = PATTERN_VARIANT_SUFFIXES.getOrDefault(pattern, List.of());
-            List<ModelFile> allModels = new ArrayList<>();
-            allModels.add(baseModel);
-            for (String suffix : extraSuffixes) {
-                ResourceLocation variantTex = modLoc("block/base/" + pattern + suffix);
-                allModels.add(models().withExistingParent("block/patterns/" + pattern + "_model" + suffix, mcLoc("block/block"))
-                        .texture("particle", variantTex)
-                        .texture("all", variantTex)
+                colorMap.values().forEach(block -> {
+                    // Axis-based blockstate for RotatedPillarBlock
+                    getVariantBuilder(block.get())
+                            .partialState().with(BlockStateProperties.AXIS, Direction.Axis.Y)
+                                .modelForState().modelFile(baseModel).addModel()
+                            .partialState().with(BlockStateProperties.AXIS, Direction.Axis.X)
+                                .modelForState().modelFile(baseModel).rotationX(90).rotationY(90).addModel()
+                            .partialState().with(BlockStateProperties.AXIS, Direction.Axis.Z)
+                                .modelForState().modelFile(baseModel).rotationX(90).addModel();
+                    itemModels().withExistingParent(block.getId().getPath(), baseModel.getLocation());
+                });
+            } else {
+                // Standard single-layer tinted model
+                ModelFile baseModel = models().withExistingParent("block/patterns/" + pattern + "_model", mcLoc("block/block"))
+                        .texture("particle", patternTexture)
+                        .texture("all", patternTexture)
                         .element().from(0, 0, 0).to(16, 16, 16)
                         .face(Direction.DOWN).uvs(0, 0, 16, 16).texture("#all").cullface(Direction.DOWN).tintindex(0).end()
                         .face(Direction.UP).uvs(0, 0, 16, 16).texture("#all").cullface(Direction.UP).tintindex(0).end()
@@ -165,18 +188,37 @@ public class OttBlockStateProvider extends ModBlockStateProvider {
                         .face(Direction.SOUTH).uvs(0, 0, 16, 16).texture("#all").cullface(Direction.SOUTH).tintindex(0).end()
                         .face(Direction.WEST).uvs(0, 0, 16, 16).texture("#all").cullface(Direction.WEST).tintindex(0).end()
                         .face(Direction.EAST).uvs(0, 0, 16, 16).texture("#all").cullface(Direction.EAST).tintindex(0).end()
-                        .end());
+                        .end();
+
+                // Build extra variant models for patterns that have numbered textures
+                List<String> extraSuffixes = PATTERN_VARIANT_SUFFIXES.getOrDefault(pattern, List.of());
+                List<ModelFile> allModels = new ArrayList<>();
+                allModels.add(baseModel);
+                for (String suffix : extraSuffixes) {
+                    ResourceLocation variantTex = modLoc("block/base/" + pattern + suffix);
+                    allModels.add(models().withExistingParent("block/patterns/" + pattern + "_model" + suffix, mcLoc("block/block"))
+                            .texture("particle", variantTex)
+                            .texture("all", variantTex)
+                            .element().from(0, 0, 0).to(16, 16, 16)
+                            .face(Direction.DOWN).uvs(0, 0, 16, 16).texture("#all").cullface(Direction.DOWN).tintindex(0).end()
+                            .face(Direction.UP).uvs(0, 0, 16, 16).texture("#all").cullface(Direction.UP).tintindex(0).end()
+                            .face(Direction.NORTH).uvs(0, 0, 16, 16).texture("#all").cullface(Direction.NORTH).tintindex(0).end()
+                            .face(Direction.SOUTH).uvs(0, 0, 16, 16).texture("#all").cullface(Direction.SOUTH).tintindex(0).end()
+                            .face(Direction.WEST).uvs(0, 0, 16, 16).texture("#all").cullface(Direction.WEST).tintindex(0).end()
+                            .face(Direction.EAST).uvs(0, 0, 16, 16).texture("#all").cullface(Direction.EAST).tintindex(0).end()
+                            .end());
+                }
+
+                ConfiguredModel[] configuredModels = allModels.stream()
+                        .map(m -> ConfiguredModel.builder().modelFile(m).build()[0])
+                        .toArray(ConfiguredModel[]::new);
+
+                colorMap.values().forEach(block -> {
+                    simpleBlock(block.get(), configuredModels);
+                    // Item model always uses the base texture (no randomization in inventory)
+                    itemModels().withExistingParent(block.getId().getPath(), baseModel.getLocation());
+                });
             }
-
-            ConfiguredModel[] configuredModels = allModels.stream()
-                    .map(m -> ConfiguredModel.builder().modelFile(m).build()[0])
-                    .toArray(ConfiguredModel[]::new);
-
-            colorMap.values().forEach(block -> {
-                simpleBlock(block.get(), configuredModels);
-                // Item model always uses the base texture (no randomization in inventory)
-                itemModels().withExistingParent(block.getId().getPath(), baseModel.getLocation());
-            });
         });
     }
 
@@ -1142,11 +1184,6 @@ public class OttBlockStateProvider extends ModBlockStateProvider {
         simpleBlockWithItem(ModBlocks.ORNAMENTED_PURPLE_CARPET.get(), models().getExistingFile(modLoc("block/ornamented_purple_carpet")));
         simpleBlockWithItem(ModBlocks.DELICATE_PURPLE_CARPET.get(),   models().getExistingFile(modLoc("block/delicate_purple_carpet")));
 
-        // ── Plastered stone ───────────────────────────────────────────────────
-        simpleBlockWithItem(ModBlocks.ORNAMENTED_CHISELED_PLASTERED_STONE.get(), models().getExistingFile(modLoc("block/ornamented_chiseled_plastered_stone")));
-        simpleBlockWithItem(ModBlocks.GREEN_ORNAMENTED_PLASTERED_STONE.get(),    models().getExistingFile(modLoc("block/green_ornamented_plastered_stone")));
-        simpleBlockWithItem(ModBlocks.RED_ORNAMENTED_PLASTERED_STONE.get(),      models().getExistingFile(modLoc("block/red_ornamented_plastered_stone")));
-
         // ── Caterpillar jar ───────────────────────────────────────────────────
         simpleBlockWithItem(ModBlocks.CATERPILLAR_JAR.get(), models().getExistingFile(modLoc("block/caterpillar_jar")));
 
@@ -1155,6 +1192,72 @@ public class OttBlockStateProvider extends ModBlockStateProvider {
             String name = "butterfly_jar_" + variant.getName();
             simpleBlockWithItem(block.get(), models().getExistingFile(modLoc("block/butterfly_jar/" + name)));
         });
+
+        // ── Stone variant blocks (simple CTM — Chipped style) ─────────────────
+        // Plain cube_all
+        stoneBlock(ModBlocks.ANGRY_STONE);
+        stoneBlock(ModBlocks.BLANK_STONE_CARVING);
+        stoneBlock(ModBlocks.BRICK_BORDERED_STONE);
+        stoneBlock(ModBlocks.CARVED_STONE);
+        stoneBlock(ModBlocks.CHECKERED_STONE_TILES);
+        stoneBlock(ModBlocks.COBBLED_STONE);
+        stoneBlock(ModBlocks.CRACKED_DISORDERED_STONE_BRICKS);
+        stoneBlock(ModBlocks.CRACKED_FLAT_STONE_TILES);
+        stoneBlock(ModBlocks.CREEPER_STONE_CARVING);
+        stoneBlock(ModBlocks.CRYING_STONE);
+        stoneBlock(ModBlocks.CURLY_STONE_PILLAR);
+        stoneBlock(ModBlocks.CUT_BLANK_STONE);
+        stoneBlock(ModBlocks.DUH_STONE);
+        stoneBlock(ModBlocks.ENGRAVED_STONE);
+        stoneBlock(ModBlocks.ETCHED_STONE_BRICKS);
+        stoneBlock(ModBlocks.FINE_STONE_PILLAR);
+        stoneBlock(ModBlocks.FLAT_STONE_TILES);
+        stoneBlock(ModBlocks.GLAD_STONE);
+        stoneBlock(ModBlocks.INLAYED_STONE);
+        stoneBlock(ModBlocks.INSCRIBED_STONE);
+        stoneBlock(ModBlocks.LAYED_STONE_BRICKS);
+        stoneBlock(ModBlocks.LODED_STONE);
+        stoneBlock(ModBlocks.OFFSET_STONE_BRICKS);
+        stoneBlock(ModBlocks.ORNATE_STONE_PILLAR);
+        stoneBlock(ModBlocks.OVERLAPPING_STONE_TILES);
+        stoneBlock(ModBlocks.PILLAR_STONE_BRICKS);
+        stoneBlock(ModBlocks.POLISHED_STONE);
+        stoneBlock(ModBlocks.PRISMAL_STONE_REMNANTS);
+        stoneBlock(ModBlocks.ROUGH_STONE);
+        stoneBlock(ModBlocks.ROUNDED_STONE_BRICKS);
+        stoneBlock(ModBlocks.RUNIC_CARVED_STONE);
+        stoneBlock(ModBlocks.SAD_STONE);
+        stoneBlock(ModBlocks.SANDED_STONE);
+        stoneBlock(ModBlocks.SIMPLE_STONE_PILLAR);
+        stoneBlock(ModBlocks.SMALL_STONE_BRICKS);
+        stoneBlock(ModBlocks.SMOOTH_INLAYED_STONE);
+        stoneBlock(ModBlocks.SMOOTHED_DOUBLE_INLAYED_STONE);
+        stoneBlock(ModBlocks.SPIDER_STONE_CARVING);
+        stoneBlock(ModBlocks.SPIRALED_STONE);
+        stoneBlock(ModBlocks.STACKED_STONE_BRICKS);
+        stoneBlock(ModBlocks.STONE_MINI_TILES);
+        stoneBlock(ModBlocks.STONE_SCALES);
+        stoneBlock(ModBlocks.THICK_INLAYED_STONE);
+        stoneBlock(ModBlocks.TILED_BORDERED_STONE);
+        stoneBlock(ModBlocks.TILED_STONE);
+        stoneBlock(ModBlocks.TINY_BRICK_BORDERED_STONE);
+        stoneBlock(ModBlocks.TINY_LAYERED_STONE_BRICKS);
+        stoneBlock(ModBlocks.TINY_LAYERED_STONE_SLABS);
+        stoneBlock(ModBlocks.TINY_STONE_BRICKS);
+        stoneBlock(ModBlocks.TRODDEN_STONE);
+        stoneBlock(ModBlocks.UNAMUSED_STONE);
+        stoneBlock(ModBlocks.VERTICAL_CUT_STONE);
+        stoneBlock(ModBlocks.VERTICAL_DISORDERED_STONE_BRICKS);
+        stoneBlock(ModBlocks.WEATHERED_STONE);
+        // Column (RotatedPillarBlock)
+        existingAxisBlock(ModBlocks.STONE_PILLAR.get(), "block/stone/stone_pillar");
+        // CTM blocks
+        stoneCTMBlock(ModBlocks.BORDERED_STONE);
+        stoneCTMBlock(ModBlocks.CUT_STONE_COLUMN);
+        stoneCTMBlock(ModBlocks.EDGED_STONE_BRICKS);
+        stoneCTMBlock(ModBlocks.MASSIVE_STONE_BRICKS);
+        stoneCTMBlock(ModBlocks.SMOOTH_STONE_COLUMN);
+        stoneCTMBlock(ModBlocks.TILED_STONE_COLUMN);
     }
 
     /** Convenience: look up the elemental mosaic block by element name + type suffix. */
@@ -1263,6 +1366,18 @@ public class OttBlockStateProvider extends ModBlockStateProvider {
         axisBlock(block, model, model);
         String name = modelPath.substring(modelPath.lastIndexOf('/') + 1);
         itemModels().withExistingParent(name, modLoc(modelPath));
+    }
+
+    /** Registers a plain cube_all stone variant block with auto-generated model. */
+    private void stoneBlock(DeferredBlock<? extends Block> block) {
+        String name = block.getId().getPath();
+        simpleBlockWithItem(block.get(), models().cubeAll("block/stone/" + name, modLoc("block/stone/" + name)));
+    }
+
+    /** Registers a CTM stone variant block using an existing model file in src/main/resources. */
+    private void stoneCTMBlock(DeferredBlock<? extends Block> block) {
+        String name = block.getId().getPath();
+        simpleBlockWithItem(block.get(), models().getExistingFile(modLoc("block/stone/" + name)));
     }
 
     private void registerFuton(Block futon, String color) {

@@ -32,5 +32,4 @@ repo
 /config/ott.json
 /logs/*
 
-/src/Athena/*
-/src/Chipped/*
+/src/Fusion-neoforge-1.21/*

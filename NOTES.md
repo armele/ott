@@ -1,6 +1,6 @@
 Notes:
 =====
-add new blocks to wandering merchant
+add new stuff to wandering merchant
 add new animated seaglass, use cloudfx?
 review config options, some are very unnecessary
 finish vanilla entity models upgrades
@@ -15,13 +15,18 @@ add hanging/wall models for all lanterns
 add stone to Vanilla Plus blocks
 
 add blocks from Chipped
-- add engraving system to crafting table
+- add to existing stonecutter and wooodcutter recipes
+- adapt existing textures tp CTM
 - create additional patterns
-- stone bordered gravel
-- sandstone bordered sand
-
-add 3 new masked block patterns
-- remove older static versions
+  - stone bordered gravel
+  - sandstone bordered sand
+  - smooth glowstone blocks
+  - salt blocks
+  - custom color and pattern blocks
+- add "spare" door and trapdoor textures for each wood type
+- create variants for pale oak log, wood, leaves, etc
+- create variants for resin
+- check for missing textures by type
 
 move smooth glowstone to a glowstone subdirectory
 moved salt block, polished salt block to salt subdirectory
@@ -33,11 +38,13 @@ backtrack and review all previously added features
 
 CTM Notes:
 =====
-Tile 0 = clean interior/isolated
-1 = vertical seam
-2 = horizontal seam
-3 = L-corner seam
-Each tile is a full 16×16 and the system draws one 8×8 quadrant from it per sub-quad.
+create new ctm categories based on Fusion atlases
+- compact border
+- full border (our 128x128 mosaic)
+- horizontal border
+- overlay
+- pieced
+- simple
 
 Mods to Implement:
 =====

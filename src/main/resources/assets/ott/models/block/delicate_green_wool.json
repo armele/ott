@@ -3,7 +3,7 @@
     "textures": {
         "all": "ott:block/delicate_carpet/delicate_green_carpet-ctm"
     },
-    "loader": "ott:connecting",
+    "loader": "ott:mosaic",
     "render_type": "minecraft:cutout_mipped",
     "connections": {
         "all": [

@@ -108,7 +108,6 @@ public class ModBlocks {
     public static final DeferredBlock<Block> ETHEREAL4_SEAGLASS = registerSeaglass("ethereal4_seaglass", () -> new Block(Properties.of().strength(4.0f).requiresCorrectToolForDrops().sound(SoundType.GLASS).noOcclusion()));
     public static final DeferredBlock<Block> ETHEREAL4_SMOOTH_SEAGLASS = registerSeaglass("ethereal4_smooth_seaglass", () -> new Block(Properties.of().strength(4.0f).requiresCorrectToolForDrops().sound(SoundType.GLASS).noOcclusion()));
     public static final DeferredBlock<Block> ETHEREAL4_WAVES_SEAGLASS = registerSeaglass("ethereal4_waves_seaglass", () -> new Block(Properties.of().strength(4.0f).requiresCorrectToolForDrops().sound(SoundType.GLASS).noOcclusion()));
-    public static final DeferredBlock<Block> WINTER_BUBBLES_SEAGLASS = registerSeaglass("winter_bubbles_seaglass", () -> new Block(Properties.of().strength(4.0f).requiresCorrectToolForDrops().sound(SoundType.GLASS).noOcclusion()));
 
     public static final DeferredBlock<Block> SALT_BLOCK = register("salt_block", () -> new Block(Properties.of().mapColor(MapColor.SNOW).instrument(NoteBlockInstrument.SNARE).strength(0.5F).sound(SoundType.SAND)));
     public static final DeferredBlock<Block> POLISHED_SALT_BLOCK = register("polished_salt_block", () -> new Block(Properties.of().mapColor(MapColor.SNOW).instrument(NoteBlockInstrument.SNARE).strength(0.5F).sound(SoundType.SAND)));
@@ -483,6 +482,7 @@ public class ModBlocks {
 
     private static void registerPatternBlocks() {
         for (String pattern : com.otterly76.ott.color.ModPatterns.PATTERNS) {
+            boolean isPillar = com.otterly76.ott.color.ModPatterns.PILLAR_PATTERNS.contains(pattern);
             Map<String, DeferredBlock<Block>>        colorMap   = new LinkedHashMap<>();
             Map<String, DeferredBlock<PlateBlock>>   plateMap   = new LinkedHashMap<>();
             Map<String, DeferredBlock<EdgeBlock>>    edgeMap    = new LinkedHashMap<>();
@@ -491,7 +491,9 @@ public class ModBlocks {
             Map<String, DeferredBlock<Block>>        windowMap  = new LinkedHashMap<>();
             for (com.otterly76.ott.color.ModPatterns.ColorInfo color : com.otterly76.ott.color.ModPatterns.ALL_COLORS) {
                 String base = color.name() + "_" + pattern;
-                colorMap.put(color.name(),   register(base,                      () -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.COBBLESTONE))));
+                colorMap.put(color.name(), isPillar
+                        ? registerAsPillar(base)
+                        : register(base, () -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.COBBLESTONE))));
                 plateMap.put(color.name(),   register(base + "_plate",           () -> new PlateBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.COBBLESTONE).noOcclusion())));
                 edgeMap.put(color.name(),    register(base + "_edge",            () -> new EdgeBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.COBBLESTONE).noOcclusion())));
                 beamMap.put(color.name(),    register(base + "_beam",            () -> new BeamBlock(BlockBehaviour.Properties.of().strength(2.0f).sound(SoundType.STONE).noOcclusion())));
@@ -505,6 +507,14 @@ public class ModBlocks {
             PATTERN_PERGOLAS.put(pattern, pergolaMap);
             PATTERN_WINDOWS.put(pattern,  windowMap);
         }
+    }
+
+    /** Registers a {@link RotatedPillarBlock} and stores it in the {@code DeferredBlock<Block>} map via an unchecked cast (safe: RotatedPillarBlock extends Block). */
+    @SuppressWarnings("unchecked")
+    private static DeferredBlock<Block> registerAsPillar(String name) {
+        DeferredBlock<?> holder = BLOCKS.register(name,
+                () -> new RotatedPillarBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.COBBLESTONE)));
+        return (DeferredBlock<Block>) holder;
     }
 
     private static <T extends Block & IGradientBlock> void registerGradientBlocks(Block block, GradientBlockBuilder<T> builder, Consumer<DeferredBlock<? extends IGradientBlock>> adder) {
@@ -990,13 +1000,76 @@ public class ModBlocks {
 
 
     // =========================================================================
-    // === DoTB Phase 4: Pre-Columbian Plastered Stone ===
+    // === Stone Variant Blocks (simple CTM — Chipped style) ===
     // =========================================================================
-    private static final Properties PS = Properties.of().strength(1.5f, 6.0f).sound(SoundType.STONE).requiresCorrectToolForDrops();
-    // Shared pre-columbian misc
-    public static final DeferredBlock<Block>  ORNAMENTED_CHISELED_PLASTERED_STONE  = register("ornamented_chiseled_plastered_stone",  () -> new Block(PS));
-    public static final DeferredBlock<Block>  GREEN_ORNAMENTED_PLASTERED_STONE     = register("green_ornamented_plastered_stone",     () -> new Block(PS));
-    public static final DeferredBlock<Block>  RED_ORNAMENTED_PLASTERED_STONE       = register("red_ornamented_plastered_stone",       () -> new Block(PS));
+    private static final Properties ST = Properties.ofFullCopy(Blocks.STONE);
+
+    // --- Plain cube_all ---
+    public static final DeferredBlock<Block> ANGRY_STONE                         = register("angry_stone",                         () -> new Block(ST));
+    public static final DeferredBlock<Block> BLANK_STONE_CARVING                 = register("blank_stone_carving",                 () -> new Block(ST));
+    public static final DeferredBlock<Block> BRICK_BORDERED_STONE                = register("brick_bordered_stone",                () -> new Block(ST));
+    public static final DeferredBlock<Block> CARVED_STONE                        = register("carved_stone",                        () -> new Block(ST));
+    public static final DeferredBlock<Block> CHECKERED_STONE_TILES               = register("checkered_stone_tiles",               () -> new Block(ST));
+    public static final DeferredBlock<Block> COBBLED_STONE                       = register("cobbled_stone",                       () -> new Block(ST));
+    public static final DeferredBlock<Block> CRACKED_DISORDERED_STONE_BRICKS     = register("cracked_disordered_stone_bricks",     () -> new Block(ST));
+    public static final DeferredBlock<Block> CRACKED_FLAT_STONE_TILES            = register("cracked_flat_stone_tiles",            () -> new Block(ST));
+    public static final DeferredBlock<Block> CREEPER_STONE_CARVING               = register("creeper_stone_carving",               () -> new Block(ST));
+    public static final DeferredBlock<Block> CRYING_STONE                        = register("crying_stone",                        () -> new Block(ST));
+    public static final DeferredBlock<Block> CURLY_STONE_PILLAR                  = register("curly_stone_pillar",                  () -> new Block(ST));
+    public static final DeferredBlock<Block> CUT_BLANK_STONE                     = register("cut_blank_stone",                     () -> new Block(ST));
+    public static final DeferredBlock<Block> DUH_STONE                           = register("duh_stone",                           () -> new Block(ST));
+    public static final DeferredBlock<Block> ENGRAVED_STONE                      = register("engraved_stone",                      () -> new Block(ST));
+    public static final DeferredBlock<Block> ETCHED_STONE_BRICKS                 = register("etched_stone_bricks",                 () -> new Block(ST));
+    public static final DeferredBlock<Block> FINE_STONE_PILLAR                   = register("fine_stone_pillar",                   () -> new Block(ST));
+    public static final DeferredBlock<Block> FLAT_STONE_TILES                    = register("flat_stone_tiles",                    () -> new Block(ST));
+    public static final DeferredBlock<Block> GLAD_STONE                          = register("glad_stone",                          () -> new Block(ST));
+    public static final DeferredBlock<Block> INLAYED_STONE                       = register("inlayed_stone",                       () -> new Block(ST));
+    public static final DeferredBlock<Block> INSCRIBED_STONE                     = register("inscribed_stone",                     () -> new Block(ST));
+    public static final DeferredBlock<Block> LAYED_STONE_BRICKS                  = register("layed_stone_bricks",                  () -> new Block(ST));
+    public static final DeferredBlock<Block> LODED_STONE                         = register("loded_stone",                         () -> new Block(ST));
+    public static final DeferredBlock<Block> OFFSET_STONE_BRICKS                 = register("offset_stone_bricks",                 () -> new Block(ST));
+    public static final DeferredBlock<Block> ORNATE_STONE_PILLAR                 = register("ornate_stone_pillar",                 () -> new Block(ST));
+    public static final DeferredBlock<Block> OVERLAPPING_STONE_TILES             = register("overlapping_stone_tiles",             () -> new Block(ST));
+    public static final DeferredBlock<Block> PILLAR_STONE_BRICKS                 = register("pillar_stone_bricks",                 () -> new Block(ST));
+    public static final DeferredBlock<Block> POLISHED_STONE                      = register("polished_stone",                      () -> new Block(ST));
+    public static final DeferredBlock<Block> PRISMAL_STONE_REMNANTS              = register("prismal_stone_remnants",              () -> new Block(ST));
+    public static final DeferredBlock<Block> ROUGH_STONE                         = register("rough_stone",                         () -> new Block(ST));
+    public static final DeferredBlock<Block> ROUNDED_STONE_BRICKS                = register("rounded_stone_bricks",                () -> new Block(ST));
+    public static final DeferredBlock<Block> RUNIC_CARVED_STONE                  = register("runic_carved_stone",                  () -> new Block(ST));
+    public static final DeferredBlock<Block> SAD_STONE                           = register("sad_stone",                           () -> new Block(ST));
+    public static final DeferredBlock<Block> SANDED_STONE                        = register("sanded_stone",                        () -> new Block(ST));
+    public static final DeferredBlock<Block> SIMPLE_STONE_PILLAR                 = register("simple_stone_pillar",                 () -> new Block(ST));
+    public static final DeferredBlock<Block> SMALL_STONE_BRICKS                  = register("small_stone_bricks",                  () -> new Block(ST));
+    public static final DeferredBlock<Block> SMOOTH_INLAYED_STONE                = register("smooth_inlayed_stone",                () -> new Block(ST));
+    public static final DeferredBlock<Block> SMOOTHED_DOUBLE_INLAYED_STONE       = register("smoothed_double_inlayed_stone",       () -> new Block(ST));
+    public static final DeferredBlock<Block> SPIDER_STONE_CARVING                = register("spider_stone_carving",                () -> new Block(ST));
+    public static final DeferredBlock<Block> SPIRALED_STONE                      = register("spiraled_stone",                      () -> new Block(ST));
+    public static final DeferredBlock<Block> STACKED_STONE_BRICKS                = register("stacked_stone_bricks",                () -> new Block(ST));
+    public static final DeferredBlock<Block> STONE_MINI_TILES                    = register("stone_mini_tiles",                    () -> new Block(ST));
+    public static final DeferredBlock<Block> STONE_SCALES                        = register("stone_scales",                        () -> new Block(ST));
+    public static final DeferredBlock<Block> THICK_INLAYED_STONE                 = register("thick_inlayed_stone",                 () -> new Block(ST));
+    public static final DeferredBlock<Block> TILED_BORDERED_STONE                = register("tiled_bordered_stone",                () -> new Block(ST));
+    public static final DeferredBlock<Block> TILED_STONE                         = register("tiled_stone",                         () -> new Block(ST));
+    public static final DeferredBlock<Block> TINY_BRICK_BORDERED_STONE           = register("tiny_brick_bordered_stone",           () -> new Block(ST));
+    public static final DeferredBlock<Block> TINY_LAYERED_STONE_BRICKS           = register("tiny_layered_stone_bricks",           () -> new Block(ST));
+    public static final DeferredBlock<Block> TINY_LAYERED_STONE_SLABS            = register("tiny_layered_stone_slabs",            () -> new Block(ST));
+    public static final DeferredBlock<Block> TINY_STONE_BRICKS                   = register("tiny_stone_bricks",                   () -> new Block(ST));
+    public static final DeferredBlock<Block> TRODDEN_STONE                       = register("trodden_stone",                       () -> new Block(ST));
+    public static final DeferredBlock<Block> UNAMUSED_STONE                      = register("unamused_stone",                      () -> new Block(ST));
+    public static final DeferredBlock<Block> VERTICAL_CUT_STONE                  = register("vertical_cut_stone",                  () -> new Block(ST));
+    public static final DeferredBlock<Block> VERTICAL_DISORDERED_STONE_BRICKS    = register("vertical_disordered_stone_bricks",    () -> new Block(ST));
+    public static final DeferredBlock<Block> WEATHERED_STONE                     = register("weathered_stone",                     () -> new Block(ST));
+
+    // --- Column (RotatedPillarBlock) ---
+    public static final DeferredBlock<RotatedPillarBlock> STONE_PILLAR           = register("stone_pillar",                        () -> new RotatedPillarBlock(ST));
+
+    // --- CTM blocks (ott:ctm loader, complete tile sets) ---
+    public static final DeferredBlock<Block> BORDERED_STONE                      = register("bordered_stone",                      () -> new Block(ST));
+    public static final DeferredBlock<Block> CUT_STONE_COLUMN                    = register("cut_stone_column",                    () -> new Block(ST));
+    public static final DeferredBlock<Block> EDGED_STONE_BRICKS                  = register("edged_stone_bricks",                  () -> new Block(ST));
+    public static final DeferredBlock<Block> MASSIVE_STONE_BRICKS                = register("massive_stone_bricks",                () -> new Block(ST));
+    public static final DeferredBlock<Block> SMOOTH_STONE_COLUMN                 = register("smooth_stone_column",                 () -> new Block(ST));
+    public static final DeferredBlock<Block> TILED_STONE_COLUMN                  = register("tiled_stone_column",                  () -> new Block(ST));
 
     public static void register(IEventBus eventBus) {
         registerDynamicBlocks();

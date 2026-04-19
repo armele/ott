@@ -3,7 +3,7 @@
     "textures": {
         "all": "ott:block/earth_mosaic/earth_mosaic_pattern"
     },
-    "loader": "ott:connecting",
+    "loader": "ott:mosaic",
     "connections": [
         {
             "type": "is_same_block"

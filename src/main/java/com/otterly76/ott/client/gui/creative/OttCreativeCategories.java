@@ -506,7 +506,7 @@ public enum OttCreativeCategories {
                 output.accept(ModBlocks.SMOOTH_SANDSTONE_EDGE);
      }),
 
-    CONN("conn",
+    MOSAIC("mosaic",
             () -> ModBlocks.WATER_MOSAIC_TRADITIONAL.get().asItem(),
             (params, output) -> {
                 output.accept(ModBlocks.WATER_MOSAIC_BORDER);
@@ -529,6 +529,13 @@ public enum OttCreativeCategories {
                 output.accept(ModBlocks.AIR_MOSAIC_GEOMETRIC);
                 output.accept(ModBlocks.AIR_MOSAIC_PATTERN);
                 output.accept(ModBlocks.AIR_MOSAIC_DELICATE);
+
+                output.accept(ModBlocks.WATER_MOSAIC_TRADITIONAL);
+                output.accept(ModBlocks.EARTH_MOSAIC_TRADITIONAL);
+                output.accept(ModBlocks.FIRE_MOSAIC_TRADITIONAL);
+                output.accept(ModBlocks.SPIRIT_MOSAIC_TRADITIONAL);
+                output.accept(ModBlocks.AIR_MOSAIC_TRADITIONAL);
+
                 output.accept(ModBlocks.MOSAIC_FLOOR);
                 output.accept(ModBlocks.MOSAIC_FLOOR_DELICATE);
                 output.accept(ModBlocks.MOSAIC_FLOOR_ROSETTE);
@@ -575,12 +582,6 @@ public enum OttCreativeCategories {
                 output.accept(ModBlocks.SALT_BLOCK);
                 output.accept(ModBlocks.POLISHED_SALT_BLOCK);
 
-                output.accept(ModBlocks.WATER_MOSAIC_TRADITIONAL);
-                output.accept(ModBlocks.EARTH_MOSAIC_TRADITIONAL);
-                output.accept(ModBlocks.FIRE_MOSAIC_TRADITIONAL);
-                output.accept(ModBlocks.SPIRIT_MOSAIC_TRADITIONAL);
-                output.accept(ModBlocks.AIR_MOSAIC_TRADITIONAL);
-
                 output.accept(ModBlocks.WHEAT_THATCH);
                 output.accept(ModBlocks.WHEAT_THATCH_EDGE);
                 output.accept(ModBlocks.WHEAT_THATCH_PLATE);
@@ -624,9 +625,68 @@ public enum OttCreativeCategories {
                 output.accept(ModBlocks.GOLD_PLATED_SMOOTH_EDGE);
                 output.accept(ModBlocks.GOLD_PLATED_SMOOTH_PLATE);
 
-                output.accept(ModBlocks.ORNAMENTED_CHISELED_PLASTERED_STONE);
-                output.accept(ModBlocks.GREEN_ORNAMENTED_PLASTERED_STONE);
-                output.accept(ModBlocks.RED_ORNAMENTED_PLASTERED_STONE);
+                // Stone variants (Chipped-style)
+                output.accept(ModBlocks.ANGRY_STONE);
+                output.accept(ModBlocks.BLANK_STONE_CARVING);
+                output.accept(ModBlocks.BORDERED_STONE);
+                output.accept(ModBlocks.BRICK_BORDERED_STONE);
+                output.accept(ModBlocks.CARVED_STONE);
+                output.accept(ModBlocks.CHECKERED_STONE_TILES);
+                output.accept(ModBlocks.COBBLED_STONE);
+                output.accept(ModBlocks.CRACKED_DISORDERED_STONE_BRICKS);
+                output.accept(ModBlocks.CRACKED_FLAT_STONE_TILES);
+                output.accept(ModBlocks.CREEPER_STONE_CARVING);
+                output.accept(ModBlocks.CRYING_STONE);
+                output.accept(ModBlocks.CURLY_STONE_PILLAR);
+                output.accept(ModBlocks.CUT_BLANK_STONE);
+                output.accept(ModBlocks.CUT_STONE_COLUMN);
+                output.accept(ModBlocks.DUH_STONE);
+                output.accept(ModBlocks.EDGED_STONE_BRICKS);
+                output.accept(ModBlocks.ENGRAVED_STONE);
+                output.accept(ModBlocks.ETCHED_STONE_BRICKS);
+                output.accept(ModBlocks.FINE_STONE_PILLAR);
+                output.accept(ModBlocks.FLAT_STONE_TILES);
+                output.accept(ModBlocks.GLAD_STONE);
+                output.accept(ModBlocks.INLAYED_STONE);
+                output.accept(ModBlocks.INSCRIBED_STONE);
+                output.accept(ModBlocks.LAYED_STONE_BRICKS);
+                output.accept(ModBlocks.LODED_STONE);
+                output.accept(ModBlocks.MASSIVE_STONE_BRICKS);
+                output.accept(ModBlocks.OFFSET_STONE_BRICKS);
+                output.accept(ModBlocks.ORNATE_STONE_PILLAR);
+                output.accept(ModBlocks.OVERLAPPING_STONE_TILES);
+                output.accept(ModBlocks.PILLAR_STONE_BRICKS);
+                output.accept(ModBlocks.POLISHED_STONE);
+                output.accept(ModBlocks.PRISMAL_STONE_REMNANTS);
+                output.accept(ModBlocks.ROUGH_STONE);
+                output.accept(ModBlocks.ROUNDED_STONE_BRICKS);
+                output.accept(ModBlocks.RUNIC_CARVED_STONE);
+                output.accept(ModBlocks.SAD_STONE);
+                output.accept(ModBlocks.SANDED_STONE);
+                output.accept(ModBlocks.SIMPLE_STONE_PILLAR);
+                output.accept(ModBlocks.SMALL_STONE_BRICKS);
+                output.accept(ModBlocks.SMOOTH_INLAYED_STONE);
+                output.accept(ModBlocks.SMOOTH_STONE_COLUMN);
+                output.accept(ModBlocks.SMOOTHED_DOUBLE_INLAYED_STONE);
+                output.accept(ModBlocks.SPIDER_STONE_CARVING);
+                output.accept(ModBlocks.SPIRALED_STONE);
+                output.accept(ModBlocks.STACKED_STONE_BRICKS);
+                output.accept(ModBlocks.STONE_MINI_TILES);
+                output.accept(ModBlocks.STONE_PILLAR);
+                output.accept(ModBlocks.STONE_SCALES);
+                output.accept(ModBlocks.THICK_INLAYED_STONE);
+                output.accept(ModBlocks.TILED_BORDERED_STONE);
+                output.accept(ModBlocks.TILED_STONE);
+                output.accept(ModBlocks.TILED_STONE_COLUMN);
+                output.accept(ModBlocks.TINY_BRICK_BORDERED_STONE);
+                output.accept(ModBlocks.TINY_LAYERED_STONE_BRICKS);
+                output.accept(ModBlocks.TINY_LAYERED_STONE_SLABS);
+                output.accept(ModBlocks.TINY_STONE_BRICKS);
+                output.accept(ModBlocks.TRODDEN_STONE);
+                output.accept(ModBlocks.UNAMUSED_STONE);
+                output.accept(ModBlocks.VERTICAL_CUT_STONE);
+                output.accept(ModBlocks.VERTICAL_DISORDERED_STONE_BRICKS);
+                output.accept(ModBlocks.WEATHERED_STONE);
             }),
 
     JARS("jars",
@@ -779,7 +839,7 @@ public enum OttCreativeCategories {
 
     // --- Display order (top to bottom in the button list) ---
     public static final java.util.List<OttCreativeCategories> DISPLAY_ORDER =
-            java.util.List.of(MISC, VANPLUS, WOOD_SETS, DYES, COLORS, GRADIENTS, BLOCKS, CONN, BACKPORT, COPPER_CHAOS, FLORA, FAUNA, FOOD, JARS, AQUATIC, WILDLIFE, MYTHICAL
+            java.util.List.of(MISC, VANPLUS, WOOD_SETS, DYES, COLORS, GRADIENTS, BLOCKS, MOSAIC, BACKPORT, COPPER_CHAOS, FLORA, FAUNA, FOOD, JARS, AQUATIC, WILDLIFE, MYTHICAL
             );
 
     // --- State ---

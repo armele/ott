@@ -3,7 +3,7 @@
     "textures": {
         "all": "ott:block/ornamented_carpet/ornamented_purple_carpet-ctm"
     },
-    "loader": "ott:connecting",
+    "loader": "ott:mosaic",
     "render_type": "minecraft:cutout_mipped",
     "connections": {
         "all": [

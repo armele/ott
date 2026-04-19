@@ -3,7 +3,7 @@
     "textures": {
         "all": "ott:block/water_mosaic/water_mosaic_border"
     },
-    "loader": "ott:connecting",
+    "loader": "ott:mosaic",
     "connections": [
         {
             "type": "is_same_block"

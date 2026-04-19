@@ -4,7 +4,7 @@
         "end": "ott:block/roman_fresco/roman_fresco_black_top",
         "side": "ott:block/roman_fresco/roman_fresco_black"
     },
-    "loader": "ott:connecting",
+    "loader": "ott:mosaic",
     "connections": {
         "side": [{"type": "is_same_block"}],
         "end":  [{"type": "is_same_block"}]

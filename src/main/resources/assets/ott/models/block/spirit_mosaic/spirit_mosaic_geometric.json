@@ -6,7 +6,7 @@
         "particle": "#all",
         "overlay": "ott:block/spirit_mosaic/spirit_mosaic_pattern_overlay"
     },
-    "loader": "ott:connecting",
+    "loader": "ott:mosaic",
     "connections": {
         "all": [
             {

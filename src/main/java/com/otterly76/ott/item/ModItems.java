@@ -505,6 +505,69 @@ public class ModItems {
     public static final DeferredHolder<Item, BlockItem> WHITE_MARBLE_FANCY_FENCE = registerBlockItem("white_marble_fancy_fence", ModBlocks.WHITE_MARBLE_FANCY_FENCE);
     public static final DeferredHolder<Item, BlockItem> BLACK_MARBLE_FANCY_FENCE = registerBlockItem("black_marble_fancy_fence", ModBlocks.BLACK_MARBLE_FANCY_FENCE);
 
+    // --- Stone variant block items ---
+    public static final DeferredHolder<Item, BlockItem> ANGRY_STONE                       = registerBlockItem("angry_stone",                       ModBlocks.ANGRY_STONE);
+    public static final DeferredHolder<Item, BlockItem> BLANK_STONE_CARVING               = registerBlockItem("blank_stone_carving",               ModBlocks.BLANK_STONE_CARVING);
+    public static final DeferredHolder<Item, BlockItem> BORDERED_STONE                    = registerBlockItem("bordered_stone",                    ModBlocks.BORDERED_STONE);
+    public static final DeferredHolder<Item, BlockItem> BRICK_BORDERED_STONE              = registerBlockItem("brick_bordered_stone",              ModBlocks.BRICK_BORDERED_STONE);
+    public static final DeferredHolder<Item, BlockItem> CARVED_STONE                      = registerBlockItem("carved_stone",                      ModBlocks.CARVED_STONE);
+    public static final DeferredHolder<Item, BlockItem> CHECKERED_STONE_TILES             = registerBlockItem("checkered_stone_tiles",             ModBlocks.CHECKERED_STONE_TILES);
+    public static final DeferredHolder<Item, BlockItem> COBBLED_STONE                     = registerBlockItem("cobbled_stone",                     ModBlocks.COBBLED_STONE);
+    public static final DeferredHolder<Item, BlockItem> CRACKED_DISORDERED_STONE_BRICKS   = registerBlockItem("cracked_disordered_stone_bricks",   ModBlocks.CRACKED_DISORDERED_STONE_BRICKS);
+    public static final DeferredHolder<Item, BlockItem> CRACKED_FLAT_STONE_TILES          = registerBlockItem("cracked_flat_stone_tiles",          ModBlocks.CRACKED_FLAT_STONE_TILES);
+    public static final DeferredHolder<Item, BlockItem> CREEPER_STONE_CARVING             = registerBlockItem("creeper_stone_carving",             ModBlocks.CREEPER_STONE_CARVING);
+    public static final DeferredHolder<Item, BlockItem> CRYING_STONE                      = registerBlockItem("crying_stone",                      ModBlocks.CRYING_STONE);
+    public static final DeferredHolder<Item, BlockItem> CURLY_STONE_PILLAR                = registerBlockItem("curly_stone_pillar",                ModBlocks.CURLY_STONE_PILLAR);
+    public static final DeferredHolder<Item, BlockItem> CUT_BLANK_STONE                   = registerBlockItem("cut_blank_stone",                   ModBlocks.CUT_BLANK_STONE);
+    public static final DeferredHolder<Item, BlockItem> CUT_STONE_COLUMN                  = registerBlockItem("cut_stone_column",                  ModBlocks.CUT_STONE_COLUMN);
+    public static final DeferredHolder<Item, BlockItem> DUH_STONE                         = registerBlockItem("duh_stone",                         ModBlocks.DUH_STONE);
+    public static final DeferredHolder<Item, BlockItem> EDGED_STONE_BRICKS                = registerBlockItem("edged_stone_bricks",                ModBlocks.EDGED_STONE_BRICKS);
+    public static final DeferredHolder<Item, BlockItem> ENGRAVED_STONE                    = registerBlockItem("engraved_stone",                    ModBlocks.ENGRAVED_STONE);
+    public static final DeferredHolder<Item, BlockItem> ETCHED_STONE_BRICKS               = registerBlockItem("etched_stone_bricks",               ModBlocks.ETCHED_STONE_BRICKS);
+    public static final DeferredHolder<Item, BlockItem> FINE_STONE_PILLAR                 = registerBlockItem("fine_stone_pillar",                 ModBlocks.FINE_STONE_PILLAR);
+    public static final DeferredHolder<Item, BlockItem> FLAT_STONE_TILES                  = registerBlockItem("flat_stone_tiles",                  ModBlocks.FLAT_STONE_TILES);
+    public static final DeferredHolder<Item, BlockItem> GLAD_STONE                        = registerBlockItem("glad_stone",                        ModBlocks.GLAD_STONE);
+    public static final DeferredHolder<Item, BlockItem> INLAYED_STONE                     = registerBlockItem("inlayed_stone",                     ModBlocks.INLAYED_STONE);
+    public static final DeferredHolder<Item, BlockItem> INSCRIBED_STONE                   = registerBlockItem("inscribed_stone",                   ModBlocks.INSCRIBED_STONE);
+    public static final DeferredHolder<Item, BlockItem> LAYED_STONE_BRICKS                = registerBlockItem("layed_stone_bricks",                ModBlocks.LAYED_STONE_BRICKS);
+    public static final DeferredHolder<Item, BlockItem> LODED_STONE                       = registerBlockItem("loded_stone",                       ModBlocks.LODED_STONE);
+    public static final DeferredHolder<Item, BlockItem> MASSIVE_STONE_BRICKS              = registerBlockItem("massive_stone_bricks",              ModBlocks.MASSIVE_STONE_BRICKS);
+    public static final DeferredHolder<Item, BlockItem> OFFSET_STONE_BRICKS               = registerBlockItem("offset_stone_bricks",               ModBlocks.OFFSET_STONE_BRICKS);
+    public static final DeferredHolder<Item, BlockItem> ORNATE_STONE_PILLAR               = registerBlockItem("ornate_stone_pillar",               ModBlocks.ORNATE_STONE_PILLAR);
+    public static final DeferredHolder<Item, BlockItem> OVERLAPPING_STONE_TILES           = registerBlockItem("overlapping_stone_tiles",           ModBlocks.OVERLAPPING_STONE_TILES);
+    public static final DeferredHolder<Item, BlockItem> PILLAR_STONE_BRICKS               = registerBlockItem("pillar_stone_bricks",               ModBlocks.PILLAR_STONE_BRICKS);
+    public static final DeferredHolder<Item, BlockItem> POLISHED_STONE                    = registerBlockItem("polished_stone",                    ModBlocks.POLISHED_STONE);
+    public static final DeferredHolder<Item, BlockItem> PRISMAL_STONE_REMNANTS            = registerBlockItem("prismal_stone_remnants",            ModBlocks.PRISMAL_STONE_REMNANTS);
+    public static final DeferredHolder<Item, BlockItem> ROUGH_STONE                       = registerBlockItem("rough_stone",                       ModBlocks.ROUGH_STONE);
+    public static final DeferredHolder<Item, BlockItem> ROUNDED_STONE_BRICKS              = registerBlockItem("rounded_stone_bricks",              ModBlocks.ROUNDED_STONE_BRICKS);
+    public static final DeferredHolder<Item, BlockItem> RUNIC_CARVED_STONE                = registerBlockItem("runic_carved_stone",                ModBlocks.RUNIC_CARVED_STONE);
+    public static final DeferredHolder<Item, BlockItem> SAD_STONE                         = registerBlockItem("sad_stone",                         ModBlocks.SAD_STONE);
+    public static final DeferredHolder<Item, BlockItem> SANDED_STONE                      = registerBlockItem("sanded_stone",                      ModBlocks.SANDED_STONE);
+    public static final DeferredHolder<Item, BlockItem> SIMPLE_STONE_PILLAR               = registerBlockItem("simple_stone_pillar",               ModBlocks.SIMPLE_STONE_PILLAR);
+    public static final DeferredHolder<Item, BlockItem> SMALL_STONE_BRICKS                = registerBlockItem("small_stone_bricks",                ModBlocks.SMALL_STONE_BRICKS);
+    public static final DeferredHolder<Item, BlockItem> SMOOTH_INLAYED_STONE              = registerBlockItem("smooth_inlayed_stone",              ModBlocks.SMOOTH_INLAYED_STONE);
+    public static final DeferredHolder<Item, BlockItem> SMOOTH_STONE_COLUMN               = registerBlockItem("smooth_stone_column",               ModBlocks.SMOOTH_STONE_COLUMN);
+    public static final DeferredHolder<Item, BlockItem> SMOOTHED_DOUBLE_INLAYED_STONE     = registerBlockItem("smoothed_double_inlayed_stone",     ModBlocks.SMOOTHED_DOUBLE_INLAYED_STONE);
+    public static final DeferredHolder<Item, BlockItem> SPIDER_STONE_CARVING              = registerBlockItem("spider_stone_carving",              ModBlocks.SPIDER_STONE_CARVING);
+    public static final DeferredHolder<Item, BlockItem> SPIRALED_STONE                    = registerBlockItem("spiraled_stone",                    ModBlocks.SPIRALED_STONE);
+    public static final DeferredHolder<Item, BlockItem> STACKED_STONE_BRICKS              = registerBlockItem("stacked_stone_bricks",              ModBlocks.STACKED_STONE_BRICKS);
+    public static final DeferredHolder<Item, BlockItem> STONE_MINI_TILES                  = registerBlockItem("stone_mini_tiles",                  ModBlocks.STONE_MINI_TILES);
+    public static final DeferredHolder<Item, BlockItem> STONE_PILLAR                      = registerBlockItem("stone_pillar",                      ModBlocks.STONE_PILLAR);
+    public static final DeferredHolder<Item, BlockItem> STONE_SCALES                      = registerBlockItem("stone_scales",                      ModBlocks.STONE_SCALES);
+    public static final DeferredHolder<Item, BlockItem> THICK_INLAYED_STONE               = registerBlockItem("thick_inlayed_stone",               ModBlocks.THICK_INLAYED_STONE);
+    public static final DeferredHolder<Item, BlockItem> TILED_BORDERED_STONE              = registerBlockItem("tiled_bordered_stone",              ModBlocks.TILED_BORDERED_STONE);
+    public static final DeferredHolder<Item, BlockItem> TILED_STONE                       = registerBlockItem("tiled_stone",                       ModBlocks.TILED_STONE);
+    public static final DeferredHolder<Item, BlockItem> TILED_STONE_COLUMN                = registerBlockItem("tiled_stone_column",                ModBlocks.TILED_STONE_COLUMN);
+    public static final DeferredHolder<Item, BlockItem> TINY_BRICK_BORDERED_STONE         = registerBlockItem("tiny_brick_bordered_stone",         ModBlocks.TINY_BRICK_BORDERED_STONE);
+    public static final DeferredHolder<Item, BlockItem> TINY_LAYERED_STONE_BRICKS         = registerBlockItem("tiny_layered_stone_bricks",         ModBlocks.TINY_LAYERED_STONE_BRICKS);
+    public static final DeferredHolder<Item, BlockItem> TINY_LAYERED_STONE_SLABS          = registerBlockItem("tiny_layered_stone_slabs",          ModBlocks.TINY_LAYERED_STONE_SLABS);
+    public static final DeferredHolder<Item, BlockItem> TINY_STONE_BRICKS                 = registerBlockItem("tiny_stone_bricks",                 ModBlocks.TINY_STONE_BRICKS);
+    public static final DeferredHolder<Item, BlockItem> TRODDEN_STONE                     = registerBlockItem("trodden_stone",                     ModBlocks.TRODDEN_STONE);
+    public static final DeferredHolder<Item, BlockItem> UNAMUSED_STONE                    = registerBlockItem("unamused_stone",                    ModBlocks.UNAMUSED_STONE);
+    public static final DeferredHolder<Item, BlockItem> VERTICAL_CUT_STONE                = registerBlockItem("vertical_cut_stone",                ModBlocks.VERTICAL_CUT_STONE);
+    public static final DeferredHolder<Item, BlockItem> VERTICAL_DISORDERED_STONE_BRICKS  = registerBlockItem("vertical_disordered_stone_bricks",  ModBlocks.VERTICAL_DISORDERED_STONE_BRICKS);
+    public static final DeferredHolder<Item, BlockItem> WEATHERED_STONE                   = registerBlockItem("weathered_stone",                   ModBlocks.WEATHERED_STONE);
+
     public static final DeferredHolder<Item, BlockItem> SANDSTONE_PLATE = registerBlockItem("sandstone_plate", ModBlocks.SANDSTONE_PLATE);
     public static final DeferredHolder<Item, BlockItem> SANDSTONE_EDGE = registerBlockItem("sandstone_edge", ModBlocks.SANDSTONE_EDGE);
     public static final DeferredHolder<Item, BlockItem> SANDSTONE_CRENELATION = registerBlockItem("sandstone_crenelation", ModBlocks.SANDSTONE_CRENELATION);
@@ -821,9 +884,6 @@ public class ModItems {
         registerBlockItem(ModBlocks.STARLIGHT_LAMP);
         registerBlockItem(ModBlocks.SPRUCE_LOG_FENCE);
         ModBlocks.FUTONS.values().forEach(ModItems::registerBlockItem);
-        registerBlockItem(ModBlocks.ORNAMENTED_CHISELED_PLASTERED_STONE);
-        registerBlockItem(ModBlocks.GREEN_ORNAMENTED_PLASTERED_STONE);
-        registerBlockItem(ModBlocks.RED_ORNAMENTED_PLASTERED_STONE);
 
     }
 

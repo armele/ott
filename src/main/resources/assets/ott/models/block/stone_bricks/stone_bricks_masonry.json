@@ -3,7 +3,7 @@
     "textures": {
         "all": "ott:block/stone_bricks_masonry/stone_bricks_masonry-ctm"
     },
-    "loader": "ott:connecting",
+    "loader": "ott:mosaic",
     "connections": [{"type": "is_same_block"}],
     "isolated": {
         "all": "ott:block/stone_bricks_masonry/stone_bricks_masonry"

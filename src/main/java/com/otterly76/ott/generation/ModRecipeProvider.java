@@ -1768,13 +1768,6 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
             if (chiseled != null && chiseled.containsKey(color))
                 stonecutOne(exporter, base.get(), chiseled.get(color).get(), color + "_chiseled_plastered_stone_stonecutting");
         });
-        // --- Ornamented chiseled plastered stone from white plastered stone ---
-        {
-            Block whitePlastered = ModBlocks.PATTERN_BLOCKS.get("plastered_stone").get("white").get();
-            stonecutOne(exporter, whitePlastered, ModBlocks.ORNAMENTED_CHISELED_PLASTERED_STONE.get(),   "ornamented_chiseled_plastered_stone_stonecutting");
-            stonecutOne(exporter, whitePlastered, ModBlocks.GREEN_ORNAMENTED_PLASTERED_STONE.get(),      "green_ornamented_plastered_stone_stonecutting");
-            stonecutOne(exporter, whitePlastered, ModBlocks.RED_ORNAMENTED_PLASTERED_STONE.get(),        "red_ornamented_plastered_stone_stonecutting");
-        }
         // --- All wood structural shapes from planks (ott wood sets, woodcutter) ---
         ModBlocks.WOOD_SETS.forEach((name, set) -> {
             woodcutOne(exporter, set.planks().get(), set.planksPlate().get(),     name + "_planks_plate_woodcutting");
