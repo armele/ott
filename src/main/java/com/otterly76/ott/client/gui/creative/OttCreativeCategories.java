@@ -678,6 +678,8 @@ public enum OttCreativeCategories {
                 output.accept(ModBlocks.TILED_BORDERED_STONE);
                 output.accept(ModBlocks.TILED_STONE);
                 output.accept(ModBlocks.TILED_STONE_COLUMN);
+                output.accept(ModBlocks.CONNECTING_PURPUR_PILLAR);
+                output.accept(ModBlocks.CONNECTING_SANDSTONE);
                 output.accept(ModBlocks.TINY_BRICK_BORDERED_STONE);
                 output.accept(ModBlocks.TINY_LAYERED_STONE_BRICKS);
                 output.accept(ModBlocks.TINY_LAYERED_STONE_SLABS);

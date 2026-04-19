@@ -35,6 +35,12 @@ public class ConnectingModelLoader implements IGeometryLoader<ConnectingUnbakedG
         cleaned.remove("type");
         cleaned.remove("connections");
         cleaned.remove("isolated");
+        cleaned.remove("layout");
+
+        // Parse optional layout type ("full" by default)
+        CtmLayout layout = json.has("layout")
+                ? CtmLayout.fromId(json.get("layout").getAsString())
+                : CtmLayout.FULL;
 
         // Parse connections: either array (all textures share one rule)
         // or object (per-texture-variable rules)
@@ -71,7 +77,7 @@ public class ConnectingModelLoader implements IGeometryLoader<ConnectingUnbakedG
         // Deserialize the cleaned JSON as a standard BlockModel
         BlockModel baseModel = ctx.deserialize(cleaned, BlockModel.class);
 
-        return new ConnectingUnbakedGeometry(baseModel, rulesByTexVar, isolatedTextures);
+        return new ConnectingUnbakedGeometry(baseModel, rulesByTexVar, isolatedTextures, layout);
     }
 
     private static ConnectionRule parseRuleList(JsonArray array) {

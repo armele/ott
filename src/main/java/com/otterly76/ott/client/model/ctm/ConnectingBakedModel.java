@@ -89,6 +89,8 @@ public class ConnectingBakedModel extends BakedModelWrapper<net.minecraft.client
     private final Map<TextureAtlasSprite, Integer> spriteToRuleIndex;
     /** Catch-all rule index (used when sprite not found in spriteToRuleIndex), or -1. */
     private final int catchAllRuleIndex;
+    /** Atlas layout for this model — controls tile lookup and tile dimensions. */
+    private final CtmLayout layout;
     /**
      * Maps CTM atlas sprite → isolated tile sprite.
      * When Domum Ornamentum calls {@link #getQuads}, we return quads using the isolated
@@ -99,13 +101,21 @@ public class ConnectingBakedModel extends BakedModelWrapper<net.minecraft.client
 
     public ConnectingBakedModel(net.minecraft.client.resources.model.BakedModel wrapped,
                                 Map<TextureAtlasSprite, ConnectionRule> spriteRules) {
-        this(wrapped, spriteRules, Map.of());
+        this(wrapped, spriteRules, Map.of(), CtmLayout.FULL);
     }
 
     public ConnectingBakedModel(net.minecraft.client.resources.model.BakedModel wrapped,
                                 Map<TextureAtlasSprite, ConnectionRule> spriteRules,
                                 Map<TextureAtlasSprite, TextureAtlasSprite> ctmToIsolated) {
+        this(wrapped, spriteRules, ctmToIsolated, CtmLayout.FULL);
+    }
+
+    public ConnectingBakedModel(net.minecraft.client.resources.model.BakedModel wrapped,
+                                Map<TextureAtlasSprite, ConnectionRule> spriteRules,
+                                Map<TextureAtlasSprite, TextureAtlasSprite> ctmToIsolated,
+                                CtmLayout layout) {
         super(wrapped);
+        this.layout = layout;
 
         // Build a deduplicated rule list using identity (rules are stateless value objects)
         Map<ConnectionRule, Integer> ruleIndex = new IdentityHashMap<>();
@@ -238,8 +248,9 @@ public class ConnectingBakedModel extends BakedModelWrapper<net.minecraft.client
 
         int mask = masks[ruleIdx][faceOrdinal];
         if (FLIP_H[faceOrdinal]) mask = flipMaskH(mask);
-        int tileX = FullLayoutLookup.TILE_X[mask & 0xFF];
-        int tileY = FullLayoutLookup.TILE_Y[mask & 0xFF];
+        int[] tile = layout.tile(mask);
+        int tileX = tile[0];
+        int tileY = tile[1];
 
         // Tile [0,0] means "no connections" — input UV is already at tile [0,0], nothing to shift
         if (tileX == 0 && tileY == 0) return quad;
@@ -268,8 +279,8 @@ public class ConnectingBakedModel extends BakedModelWrapper<net.minecraft.client
         TextureAtlasSprite ctmSprite = quad.getSprite();
         float ctmU0 = ctmSprite.getU0();
         float ctmV0 = ctmSprite.getV0();
-        float tileW = (ctmSprite.getU1() - ctmU0) / FullLayoutLookup.TILES_WIDE;
-        float tileH = (ctmSprite.getV1() - ctmV0) / FullLayoutLookup.TILES_TALL;
+        float tileW = (ctmSprite.getU1() - ctmU0) / layout.tilesWide;
+        float tileH = (ctmSprite.getV1() - ctmV0) / layout.tilesHigh;
 
         float isoU0 = isolatedSprite.getU0();
         float isoU1 = isolatedSprite.getU1();
@@ -311,13 +322,13 @@ public class ConnectingBakedModel extends BakedModelWrapper<net.minecraft.client
     /**
      * Remaps UV coordinates in-place from tile [0,0] to tile [tileX, tileY].
      */
-    private static void remapUV(int[] verts, TextureAtlasSprite sprite, int tileX, int tileY) {
+    private void remapUV(int[] verts, TextureAtlasSprite sprite, int tileX, int tileY) {
         float u0 = sprite.getU0();
         float u1 = sprite.getU1();
         float v0 = sprite.getV0();
         float v1 = sprite.getV1();
-        float tileW = (u1 - u0) / FullLayoutLookup.TILES_WIDE;
-        float tileH = (v1 - v0) / FullLayoutLookup.TILES_TALL;
+        float tileW = (u1 - u0) / layout.tilesWide;
+        float tileH = (v1 - v0) / layout.tilesHigh;
 
         int stride = IQuadTransformer.STRIDE;
         int uvOffset = IQuadTransformer.UV0;

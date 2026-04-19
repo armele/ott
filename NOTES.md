@@ -14,9 +14,11 @@ add hanging/wall models for all lanterns
 
 add stone to Vanilla Plus blocks
 
+make a striped pillar plastered stone texture to match
+
 add blocks from Chipped
 - add to existing stonecutter and wooodcutter recipes
-- adapt existing textures tp CTM
+- adapt existing textures to CTM
 - create additional patterns
   - stone bordered gravel
   - sandstone bordered sand

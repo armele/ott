@@ -1258,6 +1258,14 @@ public class OttBlockStateProvider extends ModBlockStateProvider {
         stoneCTMBlock(ModBlocks.MASSIVE_STONE_BRICKS);
         stoneCTMBlock(ModBlocks.SMOOTH_STONE_COLUMN);
         stoneCTMBlock(ModBlocks.TILED_STONE_COLUMN);
+
+        // Purpur CTM blocks
+        simpleBlockWithItem(ModBlocks.CONNECTING_PURPUR_PILLAR.get(),
+                models().getExistingFile(modLoc("block/purpur/connecting_purpur_pillar")));
+
+        // Sandstone CTM blocks
+        simpleBlockWithItem(ModBlocks.CONNECTING_SANDSTONE.get(),
+                models().getExistingFile(modLoc("block/sandstone/connecting_sandstone")));
     }
 
     /** Convenience: look up the elemental mosaic block by element name + type suffix. */

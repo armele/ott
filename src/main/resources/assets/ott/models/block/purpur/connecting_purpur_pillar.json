@@ -1,0 +1,9 @@
+{
+  "loader": "ott:mosaic",
+  "layout": "horizontal",
+  "parent": "ott:block/ctm/ctm_cube_all_horizontal",
+  "textures": {
+    "all": "ott:block/purpur/ctm/connecting_purpur_pillar"
+  },
+  "connections": [{"type": "is_same_block"}]
+}

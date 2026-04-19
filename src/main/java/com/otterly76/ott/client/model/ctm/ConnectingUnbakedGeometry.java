@@ -33,19 +33,27 @@ public class ConnectingUnbakedGeometry implements IUnbakedGeometry<ConnectingUnb
     /**
      * Maps texture variable name → isolated tile ResourceLocation.
      * When present, the isolated sprite is provided to Domum Ornamentum so it sees
-     * only the single tile rather than the full 128×128 CTM atlas.
+     * only the single tile rather than the full CTM atlas.
      */
     private final Map<String, ResourceLocation> isolatedTexturePaths;
+    /** Atlas layout controlling tile dimensions and mask→tile mapping. */
+    private final CtmLayout layout;
 
     public ConnectingUnbakedGeometry(BlockModel baseModel, Map<String, ConnectionRule> rulesByTexVar) {
-        this(baseModel, rulesByTexVar, Collections.emptyMap());
+        this(baseModel, rulesByTexVar, Collections.emptyMap(), CtmLayout.FULL);
     }
 
     public ConnectingUnbakedGeometry(BlockModel baseModel, Map<String, ConnectionRule> rulesByTexVar,
                                      Map<String, ResourceLocation> isolatedTexturePaths) {
+        this(baseModel, rulesByTexVar, isolatedTexturePaths, CtmLayout.FULL);
+    }
+
+    public ConnectingUnbakedGeometry(BlockModel baseModel, Map<String, ConnectionRule> rulesByTexVar,
+                                     Map<String, ResourceLocation> isolatedTexturePaths, CtmLayout layout) {
         this.baseModel = baseModel;
         this.rulesByTexVar = rulesByTexVar;
         this.isolatedTexturePaths = isolatedTexturePaths;
+        this.layout = layout;
     }
 
     @Override
@@ -97,6 +105,6 @@ public class ConnectingUnbakedGeometry implements IUnbakedGeometry<ConnectingUnb
             }
         }
 
-        return new ConnectingBakedModel(base, spriteRules, ctmToIsolated);
+        return new ConnectingBakedModel(base, spriteRules, ctmToIsolated, layout);
     }
 }

@@ -1063,13 +1063,15 @@ public class ModBlocks {
     // --- Column (RotatedPillarBlock) ---
     public static final DeferredBlock<RotatedPillarBlock> STONE_PILLAR           = register("stone_pillar",                        () -> new RotatedPillarBlock(ST));
 
-    // --- CTM blocks (ott:ctm loader, complete tile sets) ---
+    // --- CTM blocks (ott:mosaic loader, complete tile sets) ---
     public static final DeferredBlock<Block> BORDERED_STONE                      = register("bordered_stone",                      () -> new Block(ST));
     public static final DeferredBlock<Block> CUT_STONE_COLUMN                    = register("cut_stone_column",                    () -> new Block(ST));
     public static final DeferredBlock<Block> EDGED_STONE_BRICKS                  = register("edged_stone_bricks",                  () -> new Block(ST));
     public static final DeferredBlock<Block> MASSIVE_STONE_BRICKS                = register("massive_stone_bricks",                () -> new Block(ST));
     public static final DeferredBlock<Block> SMOOTH_STONE_COLUMN                 = register("smooth_stone_column",                 () -> new Block(ST));
     public static final DeferredBlock<Block> TILED_STONE_COLUMN                  = register("tiled_stone_column",                  () -> new Block(ST));
+    public static final DeferredBlock<Block> CONNECTING_PURPUR_PILLAR            = register("connecting_purpur_pillar",            () -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.PURPUR_BLOCK)));
+    public static final DeferredBlock<Block> CONNECTING_SANDSTONE                = register("connecting_sandstone",                () -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.SANDSTONE)));
 
     public static void register(IEventBus eventBus) {
         registerDynamicBlocks();
