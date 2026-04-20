@@ -14,7 +14,7 @@ add hanging/wall models for all lanterns
 
 add stone to Vanilla Plus blocks
 
-make a striped pillar plastered stone texture to match
+add chiseled plastered stone pillar block, use base plastered stone as top/bottom
 
 add blocks from Chipped
 - add to existing stonecutter and wooodcutter recipes

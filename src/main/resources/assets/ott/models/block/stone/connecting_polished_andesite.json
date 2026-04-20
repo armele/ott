@@ -1,0 +1,9 @@
+{
+  "loader": "ott:mosaic",
+  "layout": "compact",
+  "parent": "ott:block/ctm/ctm_cube_all_compact",
+  "textures": {
+    "all": "ott:block/stone/ctm/connecting_polished_andesite"
+  },
+  "connections": [{"type": "is_same_block"}]
+}
