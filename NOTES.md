@@ -1,5 +1,23 @@
 Notes:
 =====
+to get added:
+- connecting polished blackstone
+- connecting polished diorite
+- connecting polished granite
+- connecting netherite block
+- connecting smooth stone
+
+| Block(s) | Reason |
+|----------|--------|
+| deepslate | axis=x/y/z blockstate variants |
+| suspicious_sand, suspicious_gravel | dusted=0-3 blockstate variants |
+| powder_snow | special block renderer |
+| grass_block | snowy=true/false + multi-texture (top/side/overlay) |
+| crimson_nylium, warped_nylium | multi-texture (need separate top+side overlay support) |
+| mycelium, podzol | multi-texture (top+side) |
+| muddy_mangrove_roots | multi-texture (top+side) |
+| All _overflow textures | needs overflow rendering feature |
+
 add new stuff to wandering merchant
 add new animated seaglass, use cloudfx?
 review config options, some are very unnecessary
@@ -29,8 +47,7 @@ add blocks from Chipped
 - create variants for resin
 - check for missing textures by type
 
-move smooth glowstone to a glowstone subdirectory
-move salt block, polished salt block to salt subdirectory
+update newer textures to x32
 
 make additional wood items for starlight and midnight
 - bookshelf, beehive, chest, trapped chest, barrel, ladder, shelves, chiseled bookshelf
