@@ -1,6 +1,0 @@
-{
-    "variants": {
-        "sandstone=false,variant=normal": { "model": "ott:block/ochre_roof_tiles" },
-        "sandstone=true,variant=normal": { "model": "ott:block/ochre_roof_tiles" }
-    }
-}
