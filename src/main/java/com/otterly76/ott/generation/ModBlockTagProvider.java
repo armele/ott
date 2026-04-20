@@ -377,7 +377,9 @@ public class ModBlockTagProvider extends BlockTagsProvider {
                 ModBlocks.SMOOTH_STONE_COLUMN.get(),
                 ModBlocks.TILED_STONE_COLUMN.get(),
                 ModBlocks.CONNECTING_PURPUR_PILLAR.get(),
-                ModBlocks.CONNECTING_SANDSTONE.get()
+                ModBlocks.CONNECTING_SANDSTONE.get(),
+                ModBlocks.CONNECTING_RED_SANDSTONE.get(),
+                ModBlocks.CONNECTING_POLISHED_ANDESITE.get()
         );
         pickaxeTag.add(
                 ModBlocks.ANGRY_STONE.get(),
@@ -442,7 +444,9 @@ public class ModBlockTagProvider extends BlockTagsProvider {
                 ModBlocks.SMOOTH_STONE_COLUMN.get(),
                 ModBlocks.TILED_STONE_COLUMN.get(),
                 ModBlocks.CONNECTING_PURPUR_PILLAR.get(),
-                ModBlocks.CONNECTING_SANDSTONE.get()
+                ModBlocks.CONNECTING_SANDSTONE.get(),
+                ModBlocks.CONNECTING_RED_SANDSTONE.get(),
+                ModBlocks.CONNECTING_POLISHED_ANDESITE.get()
         );
 
         // Domum Ornamentum material tags

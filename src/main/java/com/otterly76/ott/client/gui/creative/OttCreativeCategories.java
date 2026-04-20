@@ -624,8 +624,13 @@ public enum OttCreativeCategories {
                 output.accept(ModBlocks.GOLD_PLATED_SMOOTH_BLOCK);
                 output.accept(ModBlocks.GOLD_PLATED_SMOOTH_EDGE);
                 output.accept(ModBlocks.GOLD_PLATED_SMOOTH_PLATE);
+            }),
 
-                // Stone variants (Chipped-style)
+    // ── Engraved / Connecting Blocks ──────────────────────────────────────────
+    ENGRAVED("engraved",
+            () -> ModBlocks.ENGRAVED_STONE.get().asItem(),
+            (params, output) -> {
+                // Stone variants
                 output.accept(ModBlocks.ANGRY_STONE);
                 output.accept(ModBlocks.BLANK_STONE_CARVING);
                 output.accept(ModBlocks.BORDERED_STONE);
@@ -678,8 +683,6 @@ public enum OttCreativeCategories {
                 output.accept(ModBlocks.TILED_BORDERED_STONE);
                 output.accept(ModBlocks.TILED_STONE);
                 output.accept(ModBlocks.TILED_STONE_COLUMN);
-                output.accept(ModBlocks.CONNECTING_PURPUR_PILLAR);
-                output.accept(ModBlocks.CONNECTING_SANDSTONE);
                 output.accept(ModBlocks.TINY_BRICK_BORDERED_STONE);
                 output.accept(ModBlocks.TINY_LAYERED_STONE_BRICKS);
                 output.accept(ModBlocks.TINY_LAYERED_STONE_SLABS);
@@ -689,6 +692,12 @@ public enum OttCreativeCategories {
                 output.accept(ModBlocks.VERTICAL_CUT_STONE);
                 output.accept(ModBlocks.VERTICAL_DISORDERED_STONE_BRICKS);
                 output.accept(ModBlocks.WEATHERED_STONE);
+
+                // Connecting blocks
+                output.accept(ModBlocks.CONNECTING_PURPUR_PILLAR);
+                output.accept(ModBlocks.CONNECTING_SANDSTONE);
+                output.accept(ModBlocks.CONNECTING_RED_SANDSTONE);
+                output.accept(ModBlocks.CONNECTING_POLISHED_ANDESITE);
             }),
 
     JARS("jars",
@@ -841,7 +850,7 @@ public enum OttCreativeCategories {
 
     // --- Display order (top to bottom in the button list) ---
     public static final java.util.List<OttCreativeCategories> DISPLAY_ORDER =
-            java.util.List.of(MISC, VANPLUS, WOOD_SETS, DYES, COLORS, GRADIENTS, BLOCKS, MOSAIC, BACKPORT, COPPER_CHAOS, FLORA, FAUNA, FOOD, JARS, AQUATIC, WILDLIFE, MYTHICAL
+            java.util.List.of(MISC, VANPLUS, WOOD_SETS, DYES, COLORS, GRADIENTS, BLOCKS, ENGRAVED, MOSAIC, BACKPORT, COPPER_CHAOS, FLORA, FAUNA, FOOD, JARS, AQUATIC, WILDLIFE, MYTHICAL
             );
 
     // --- State ---

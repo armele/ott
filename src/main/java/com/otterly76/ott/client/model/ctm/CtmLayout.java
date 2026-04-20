@@ -22,24 +22,12 @@ public enum CtmLayout {
 
     /**
      * 4×4 atlas (64×64 px), 4 cardinal neighbours only, 16 combinations.
-     * Good for block-types that just need corner/edge/centre differentiation
-     * without diagonal seams.
+     * Handles all corner, edge, T-junction, and centre patterns.
      */
     SIMPLE(4, 4) {
         @Override public int[] tile(int mask) {
             int idx = simpleIdx(mask);
             return new int[]{ SIMPLE_X[idx], SIMPLE_Y[idx] };
-        }
-    },
-
-    /**
-     * 5×1 atlas (80×16 px), all 8 neighbours used for diagonal awareness,
-     * but only 5 visual patterns: isolated, full-with-corners, vertical,
-     * horizontal, full-without-corners.
-     */
-    COMPACT(5, 1) {
-        @Override public int[] tile(int mask) {
-            return new int[]{ COMPACT_X[mask & 0xFF], 0 };
         }
     },
 
@@ -109,56 +97,12 @@ public enum CtmLayout {
     //                         0  1  2  3   (none, T, B, T+B)
     private static final int[] VERT_Y = { 0, 3, 1, 2 };
 
-    // ---- COMPACT --------------------------------------------------------------
-    // 256-entry table built at class init from Fusion's CompactLayoutHandler logic.
-    // Tile indices: 0=isolated, 1=full+corners, 2=vertical, 3=horizontal, 4=full-no-corners
-
-    private static final int[] COMPACT_X = buildCompact();
-
-    private static int[] buildCompact() {
-        int[] t = new int[256];
-        for (int mask = 0; mask < 256; mask++) {
-            boolean top         = (mask & 1)   != 0;
-            boolean topRight    = (mask & 2)   != 0;
-            boolean right       = (mask & 4)   != 0;
-            boolean bottomRight = (mask & 8)   != 0;
-            boolean bottom      = (mask & 16)  != 0;
-            boolean bottomLeft  = (mask & 32)  != 0;
-            boolean left        = (mask & 64)  != 0;
-            boolean topLeft     = (mask & 128) != 0;
-
-            int sides = (top ? 1 : 0) + (right ? 1 : 0) + (bottom ? 1 : 0) + (left ? 1 : 0);
-
-            if (sides <= 1) {
-                t[mask] = 0;
-            } else if (sides == 2) {
-                if (left && right)       t[mask] = 3;  // horizontal run
-                else if (top && bottom)  t[mask] = 2;  // vertical run
-                else                     t[mask] = 0;  // corner — no dedicated compact tile
-            } else if (sides == 3) {
-                if (left && right) {
-                    // missing top or bottom; show horizontal only if the missing row is fully connected
-                    t[mask] = ((topLeft && top && topRight) || (bottomLeft && bottom && bottomRight)) ? 3 : 0;
-                } else {
-                    // top && bottom; missing left or right; show vertical only if the missing column is fully connected
-                    t[mask] = ((topLeft && left && bottomLeft) || (topRight && right && bottomRight)) ? 2 : 0;
-                }
-            } else { // sides == 4
-                if (topLeft && topRight && bottomLeft && bottomRight)           t[mask] = 1; // all corners
-                else if (!topLeft && !topRight && !bottomLeft && !bottomRight)  t[mask] = 4; // no corners
-                else                                                             t[mask] = 0; // mixed
-            }
-        }
-        return t;
-    }
-
     // ---- factory --------------------------------------------------------------
 
     /** Parses a layout id string; defaults to {@link #FULL} for unknown/absent values. */
     public static CtmLayout fromId(String id) {
         return switch (id.toLowerCase()) {
             case "simple"     -> SIMPLE;
-            case "compact"    -> COMPACT;
             case "horizontal" -> HORIZONTAL;
             case "vertical"   -> VERTICAL;
             default           -> FULL;

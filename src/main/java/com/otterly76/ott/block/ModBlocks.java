@@ -1072,6 +1072,8 @@ public class ModBlocks {
     public static final DeferredBlock<Block> TILED_STONE_COLUMN                  = register("tiled_stone_column",                  () -> new Block(ST));
     public static final DeferredBlock<Block> CONNECTING_PURPUR_PILLAR            = register("connecting_purpur_pillar",            () -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.PURPUR_BLOCK)));
     public static final DeferredBlock<Block> CONNECTING_SANDSTONE                = register("connecting_sandstone",                () -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.SANDSTONE)));
+    public static final DeferredBlock<Block> CONNECTING_RED_SANDSTONE            = register("connecting_red_sandstone",            () -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.RED_SANDSTONE)));
+    public static final DeferredBlock<Block> CONNECTING_POLISHED_ANDESITE       = register("connecting_polished_andesite",       () -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.POLISHED_ANDESITE)));
 
     public static void register(IEventBus eventBus) {
         registerDynamicBlocks();

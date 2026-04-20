@@ -569,6 +569,8 @@ public class ModItems {
     public static final DeferredHolder<Item, BlockItem> WEATHERED_STONE                   = registerBlockItem("weathered_stone",                   ModBlocks.WEATHERED_STONE);
     public static final DeferredHolder<Item, BlockItem> CONNECTING_PURPUR_PILLAR          = registerBlockItem("connecting_purpur_pillar",          ModBlocks.CONNECTING_PURPUR_PILLAR);
     public static final DeferredHolder<Item, BlockItem> CONNECTING_SANDSTONE              = registerBlockItem("connecting_sandstone",              ModBlocks.CONNECTING_SANDSTONE);
+    public static final DeferredHolder<Item, BlockItem> CONNECTING_RED_SANDSTONE          = registerBlockItem("connecting_red_sandstone",          ModBlocks.CONNECTING_RED_SANDSTONE);
+    public static final DeferredHolder<Item, BlockItem> CONNECTING_POLISHED_ANDESITE      = registerBlockItem("connecting_polished_andesite",      ModBlocks.CONNECTING_POLISHED_ANDESITE);
 
     public static final DeferredHolder<Item, BlockItem> SANDSTONE_PLATE = registerBlockItem("sandstone_plate", ModBlocks.SANDSTONE_PLATE);
     public static final DeferredHolder<Item, BlockItem> SANDSTONE_EDGE = registerBlockItem("sandstone_edge", ModBlocks.SANDSTONE_EDGE);

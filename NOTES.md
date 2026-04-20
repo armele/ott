@@ -25,13 +25,12 @@ add blocks from Chipped
   - smooth glowstone blocks
   - salt blocks
   - custom color and pattern blocks
-- add "spare" door and trapdoor textures for each wood type
 - create variants for pale oak log, wood, leaves, etc
 - create variants for resin
 - check for missing textures by type
 
 move smooth glowstone to a glowstone subdirectory
-moved salt block, polished salt block to salt subdirectory
+move salt block, polished salt block to salt subdirectory
 
 make additional wood items for starlight and midnight
 - bookshelf, beehive, chest, trapped chest, barrel, ladder, shelves, chiseled bookshelf
@@ -41,12 +40,10 @@ backtrack and review all previously added features
 CTM Notes:
 =====
 create new ctm categories based on Fusion atlases
-- compact border
-- full border (our 128x128 mosaic)
-- horizontal border
+- full
+- horizontal
+- vertical
 - overlay
-- pieced
-- simple
 
 Mods to Implement:
 =====

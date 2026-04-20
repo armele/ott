@@ -1266,6 +1266,10 @@ public class OttBlockStateProvider extends ModBlockStateProvider {
         // Sandstone CTM blocks
         simpleBlockWithItem(ModBlocks.CONNECTING_SANDSTONE.get(),
                 models().getExistingFile(modLoc("block/sandstone/connecting_sandstone")));
+        simpleBlockWithItem(ModBlocks.CONNECTING_RED_SANDSTONE.get(),
+                models().getExistingFile(modLoc("block/red_sandstone/connecting_red_sandstone")));
+        simpleBlockWithItem(ModBlocks.CONNECTING_POLISHED_ANDESITE.get(),
+                models().getExistingFile(modLoc("block/andesite/connecting_polished_andesite")));
     }
 
     /** Convenience: look up the elemental mosaic block by element name + type suffix. */
