@@ -31,6 +31,3 @@ repo
 /.claude/settings.local.json
 /config/ott.json
 /logs/*
-
-/src/Fusion-neoforge-1.21/*
-/src/SuperMartijn642sCoreLib-neoforge-1.21/*

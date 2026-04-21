@@ -7,17 +7,6 @@ to get added:
 - connecting netherite block
 - connecting smooth stone
 
-| Block(s) | Reason |
-|----------|--------|
-| deepslate | axis=x/y/z blockstate variants |
-| suspicious_sand, suspicious_gravel | dusted=0-3 blockstate variants |
-| powder_snow | special block renderer |
-| grass_block | snowy=true/false + multi-texture (top/side/overlay) |
-| crimson_nylium, warped_nylium | multi-texture (need separate top+side overlay support) |
-| mycelium, podzol | multi-texture (top+side) |
-| muddy_mangrove_roots | multi-texture (top+side) |
-| All _overflow textures | needs overflow rendering feature |
-
 add new stuff to wandering merchant
 add new animated seaglass, use cloudfx?
 review config options, some are very unnecessary
