@@ -7,6 +7,8 @@ to get added:
 - connecting netherite block
 - connecting smooth stone
 - chiseled plastered stone pillar, use base plastered stone as top/bottom
+- fix connecting purpur pillar top
+
 
 add translation keys:
 - connecting purpur pillar
