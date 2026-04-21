@@ -24,7 +24,7 @@ add stone to Vanilla Plus blocks
 add chiseled plastered stone pillar block, use base plastered stone as top/bottom
 
 add blocks from Chipped
-- add to existing stonecutter and wooodcutter recipes
+- add engraving
 - adapt existing textures to CTM
 - create additional patterns
   - stone bordered gravel
