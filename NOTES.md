@@ -6,6 +6,13 @@ to get added:
 - connecting polished granite
 - connecting netherite block
 - connecting smooth stone
+- chiseled plastered stone pillar, use base plastered stone as top/bottom
+
+add translation keys:
+- connecting purpur pillar
+- connecting sandstone
+- connecting red sandstone
+- connecting polished andesite
 
 add new stuff to wandering merchant
 add new animated seaglass, use cloudfx?
@@ -20,8 +27,6 @@ check blockstate and model jsons for abandoned
 add hanging/wall models for all lanterns
 
 add stone to Vanilla Plus blocks
-
-add chiseled plastered stone pillar block, use base plastered stone as top/bottom
 
 add blocks from Chipped
 - add engraving
