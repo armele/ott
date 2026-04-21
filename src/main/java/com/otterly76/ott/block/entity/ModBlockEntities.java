@@ -104,5 +104,18 @@ public class ModBlockEntities {
 
         event.modify(ANVIL_BLOCK_ENTITY_TYPE.get(), Blocks.ANVIL, Blocks.CHIPPED_ANVIL, Blocks.DAMAGED_ANVIL);
         ModBlocks.COPPER_ANVILS.values().forEach(anvil -> event.modify(ANVIL_BLOCK_ENTITY_TYPE.get(), anvil.get()));
+
+        // Wood-variant beehives reuse vanilla BeehiveBlockEntity
+        event.modify(BlockEntityType.BEEHIVE,
+                ModBlocks.ACACIA_BEEHIVE.get(),
+                ModBlocks.BAMBOO_BEEHIVE.get(),
+                ModBlocks.BIRCH_BEEHIVE.get(),
+                ModBlocks.CHERRY_BEEHIVE.get(),
+                ModBlocks.CRIMSON_BEEHIVE.get(),
+                ModBlocks.DARK_OAK_BEEHIVE.get(),
+                ModBlocks.JUNGLE_BEEHIVE.get(),
+                ModBlocks.MANGROVE_BEEHIVE.get(),
+                ModBlocks.SPRUCE_BEEHIVE.get(),
+                ModBlocks.WARPED_BEEHIVE.get());
     }
 }

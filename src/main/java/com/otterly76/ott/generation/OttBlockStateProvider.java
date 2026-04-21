@@ -17,6 +17,7 @@ import net.minecraft.world.level.block.state.properties.Half;
 import net.minecraft.world.level.block.state.properties.StairsShape;
 import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.level.block.BeehiveBlock;
 import net.minecraft.world.level.block.BedBlock;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.IronBarsBlock;
@@ -1281,6 +1282,35 @@ public class OttBlockStateProvider extends ModBlockStateProvider {
         simpleBlockWithItem(ModBlocks.CONNECTING_SMOOTH_STONE.get(),
                 models().getExistingFile(modLoc("block/stone/connecting_smooth_stone")));
         existingAxisBlock(ModBlocks.CHISELED_PLASTERED_STONE_PILLAR.get(), "block/chiseled_plastered_stone_pillar");
+
+        beehiveBlock(ModBlocks.ACACIA_BEEHIVE,   "acacia");
+        beehiveBlock(ModBlocks.BAMBOO_BEEHIVE,   "bamboo");
+        beehiveBlock(ModBlocks.BIRCH_BEEHIVE,    "birch");
+        beehiveBlock(ModBlocks.CHERRY_BEEHIVE,   "cherry");
+        beehiveBlock(ModBlocks.CRIMSON_BEEHIVE,  "crimson");
+        beehiveBlock(ModBlocks.DARK_OAK_BEEHIVE, "dark_oak");
+        beehiveBlock(ModBlocks.JUNGLE_BEEHIVE,   "jungle");
+        beehiveBlock(ModBlocks.MANGROVE_BEEHIVE, "mangrove");
+        beehiveBlock(ModBlocks.SPRUCE_BEEHIVE,   "spruce");
+        beehiveBlock(ModBlocks.WARPED_BEEHIVE,   "warped");
+    }
+
+    private void beehiveBlock(net.neoforged.neoforge.registries.DeferredBlock<BeehiveBlock> block, String woodType) {
+        ModelFile normal = models().getExistingFile(modLoc("block/beehive/" + woodType + "_beehive"));
+        ModelFile honey  = models().getExistingFile(modLoc("block/beehive/" + woodType + "_beehive_honey"));
+        getVariantBuilder(block.get()).forAllStates(state -> {
+            int yRot = switch (state.getValue(BeehiveBlock.FACING)) {
+                case EAST  -> 90;
+                case SOUTH -> 180;
+                case WEST  -> 270;
+                default    -> 0;
+            };
+            return ConfiguredModel.builder()
+                    .modelFile(state.getValue(BeehiveBlock.HONEY_LEVEL) == 5 ? honey : normal)
+                    .rotationY(yRot)
+                    .build();
+        });
+        simpleBlockItem(block.get(), normal);
     }
 
     /** Convenience: look up the elemental mosaic block by element name + type suffix. */

@@ -753,6 +753,16 @@ public enum OttCreativeCategories {
                 output.accept(ModBlocks.DRAGON_SKULL);
                 output.accept(ModBlocks.SILK_COCOON);
                 output.accept(ModItems.OAK_NEST);
+                output.accept(ModItems.ACACIA_BEEHIVE);
+                output.accept(ModItems.BAMBOO_BEEHIVE);
+                output.accept(ModItems.BIRCH_BEEHIVE);
+                output.accept(ModItems.CHERRY_BEEHIVE);
+                output.accept(ModItems.CRIMSON_BEEHIVE);
+                output.accept(ModItems.DARK_OAK_BEEHIVE);
+                output.accept(ModItems.JUNGLE_BEEHIVE);
+                output.accept(ModItems.MANGROVE_BEEHIVE);
+                output.accept(ModItems.SPRUCE_BEEHIVE);
+                output.accept(ModItems.WARPED_BEEHIVE);
 
                 output.accept(ModItems.ALLIGATOR_EGG);
                 output.accept(ModItems.CRAB_CLAW);

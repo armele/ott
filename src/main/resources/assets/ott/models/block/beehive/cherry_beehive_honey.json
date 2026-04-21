@@ -1,0 +1,6 @@
+{
+  "parent": "ott:block/beehive/cherry_beehive",
+  "textures": {
+    "front": "ott:block/beehive/cherry_beehive_front_honey"
+  }
+}

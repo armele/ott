@@ -1,0 +1,10 @@
+{
+  "parent": "minecraft:block/orientable_with_bottom",
+  "textures": {
+    "bottom": "ott:block/beehive/mangrove_beehive_end",
+    "front": "ott:block/beehive/mangrove_beehive_front",
+    "particle": "ott:block/beehive/mangrove_beehive_side",
+    "side": "ott:block/beehive/mangrove_beehive_side",
+    "top": "ott:block/beehive/mangrove_beehive_end"
+  }
+}
