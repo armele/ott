@@ -1270,6 +1270,17 @@ public class OttBlockStateProvider extends ModBlockStateProvider {
                 models().getExistingFile(modLoc("block/red_sandstone/connecting_red_sandstone")));
         simpleBlockWithItem(ModBlocks.CONNECTING_POLISHED_ANDESITE.get(),
                 models().getExistingFile(modLoc("block/andesite/connecting_polished_andesite")));
+        simpleBlockWithItem(ModBlocks.CONNECTING_POLISHED_BLACKSTONE.get(),
+                models().getExistingFile(modLoc("block/blackstone/connecting_polished_blackstone")));
+        simpleBlockWithItem(ModBlocks.CONNECTING_POLISHED_DIORITE.get(),
+                models().getExistingFile(modLoc("block/diorite/connecting_polished_diorite")));
+        simpleBlockWithItem(ModBlocks.CONNECTING_POLISHED_GRANITE.get(),
+                models().getExistingFile(modLoc("block/granite/connecting_polished_granite")));
+        simpleBlockWithItem(ModBlocks.CONNECTING_NETHERITE_BLOCK.get(),
+                models().getExistingFile(modLoc("block/netherite/connecting_netherite_block")));
+        simpleBlockWithItem(ModBlocks.CONNECTING_SMOOTH_STONE.get(),
+                models().getExistingFile(modLoc("block/stone/connecting_smooth_stone")));
+        existingAxisBlock(ModBlocks.CHISELED_PLASTERED_STONE_PILLAR.get(), "block/chiseled_plastered_stone_pillar");
     }
 
     /** Convenience: look up the elemental mosaic block by element name + type suffix. */

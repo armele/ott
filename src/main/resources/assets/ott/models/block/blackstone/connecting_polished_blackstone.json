@@ -1,0 +1,9 @@
+{
+  "loader": "ott:mosaic",
+  "layout": "full",
+  "parent": "ott:block/ctm/ctm_cube_all",
+  "textures": {
+    "all": "ott:block/blackstone/ctm/connecting_polished_blackstone"
+  },
+  "connections": {"all": [{"type": "is_same_block"}]}
+}

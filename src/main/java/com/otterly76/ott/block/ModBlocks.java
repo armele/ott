@@ -1073,7 +1073,13 @@ public class ModBlocks {
     public static final DeferredBlock<Block> CONNECTING_PURPUR_PILLAR            = register("connecting_purpur_pillar",            () -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.PURPUR_BLOCK)));
     public static final DeferredBlock<Block> CONNECTING_SANDSTONE                = register("connecting_sandstone",                () -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.SANDSTONE)));
     public static final DeferredBlock<Block> CONNECTING_RED_SANDSTONE            = register("connecting_red_sandstone",            () -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.RED_SANDSTONE)));
-    public static final DeferredBlock<Block> CONNECTING_POLISHED_ANDESITE       = register("connecting_polished_andesite",       () -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.POLISHED_ANDESITE)));
+    public static final DeferredBlock<Block> CONNECTING_POLISHED_ANDESITE        = register("connecting_polished_andesite",        () -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.POLISHED_ANDESITE)));
+    public static final DeferredBlock<Block> CONNECTING_POLISHED_BLACKSTONE      = register("connecting_polished_blackstone",      () -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.POLISHED_BLACKSTONE)));
+    public static final DeferredBlock<Block> CONNECTING_POLISHED_DIORITE         = register("connecting_polished_diorite",         () -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.POLISHED_DIORITE)));
+    public static final DeferredBlock<Block> CONNECTING_POLISHED_GRANITE         = register("connecting_polished_granite",         () -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.POLISHED_GRANITE)));
+    public static final DeferredBlock<Block> CONNECTING_NETHERITE_BLOCK          = register("connecting_netherite_block",          () -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.NETHERITE_BLOCK)));
+    public static final DeferredBlock<Block> CONNECTING_SMOOTH_STONE             = register("connecting_smooth_stone",             () -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.SMOOTH_STONE)));
+    public static final DeferredBlock<RotatedPillarBlock> CHISELED_PLASTERED_STONE_PILLAR = register("chiseled_plastered_stone_pillar", () -> new RotatedPillarBlock(ST));
 
     public static void register(IEventBus eventBus) {
         registerDynamicBlocks();

@@ -624,6 +624,8 @@ public enum OttCreativeCategories {
                 output.accept(ModBlocks.GOLD_PLATED_SMOOTH_BLOCK);
                 output.accept(ModBlocks.GOLD_PLATED_SMOOTH_EDGE);
                 output.accept(ModBlocks.GOLD_PLATED_SMOOTH_PLATE);
+
+                output.accept(ModBlocks.CHISELED_PLASTERED_STONE_PILLAR);
             }),
 
     // ── Engraved / Connecting Blocks ──────────────────────────────────────────
@@ -698,6 +700,11 @@ public enum OttCreativeCategories {
                 output.accept(ModBlocks.CONNECTING_SANDSTONE);
                 output.accept(ModBlocks.CONNECTING_RED_SANDSTONE);
                 output.accept(ModBlocks.CONNECTING_POLISHED_ANDESITE);
+                output.accept(ModBlocks.CONNECTING_POLISHED_BLACKSTONE);
+                output.accept(ModBlocks.CONNECTING_POLISHED_DIORITE);
+                output.accept(ModBlocks.CONNECTING_POLISHED_GRANITE);
+                output.accept(ModBlocks.CONNECTING_NETHERITE_BLOCK);
+                output.accept(ModBlocks.CONNECTING_SMOOTH_STONE);
             }),
 
     JARS("jars",

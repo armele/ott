@@ -1,20 +1,6 @@
 Notes:
 =====
-to get added:
-- connecting polished blackstone
-- connecting polished diorite
-- connecting polished granite
-- connecting netherite block
-- connecting smooth stone
-- chiseled plastered stone pillar, use base plastered stone as top/bottom
 - fix connecting purpur pillar top
-
-
-add translation keys:
-- connecting purpur pillar
-- connecting sandstone
-- connecting red sandstone
-- connecting polished andesite
 
 add new stuff to wandering merchant
 add new animated seaglass, use cloudfx?

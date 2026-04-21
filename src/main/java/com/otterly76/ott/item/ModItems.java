@@ -570,7 +570,13 @@ public class ModItems {
     public static final DeferredHolder<Item, BlockItem> CONNECTING_PURPUR_PILLAR          = registerBlockItem("connecting_purpur_pillar",          ModBlocks.CONNECTING_PURPUR_PILLAR);
     public static final DeferredHolder<Item, BlockItem> CONNECTING_SANDSTONE              = registerBlockItem("connecting_sandstone",              ModBlocks.CONNECTING_SANDSTONE);
     public static final DeferredHolder<Item, BlockItem> CONNECTING_RED_SANDSTONE          = registerBlockItem("connecting_red_sandstone",          ModBlocks.CONNECTING_RED_SANDSTONE);
-    public static final DeferredHolder<Item, BlockItem> CONNECTING_POLISHED_ANDESITE      = registerBlockItem("connecting_polished_andesite",      ModBlocks.CONNECTING_POLISHED_ANDESITE);
+    public static final DeferredHolder<Item, BlockItem> CONNECTING_POLISHED_ANDESITE       = registerBlockItem("connecting_polished_andesite",       ModBlocks.CONNECTING_POLISHED_ANDESITE);
+    public static final DeferredHolder<Item, BlockItem> CONNECTING_POLISHED_BLACKSTONE     = registerBlockItem("connecting_polished_blackstone",     ModBlocks.CONNECTING_POLISHED_BLACKSTONE);
+    public static final DeferredHolder<Item, BlockItem> CONNECTING_POLISHED_DIORITE        = registerBlockItem("connecting_polished_diorite",        ModBlocks.CONNECTING_POLISHED_DIORITE);
+    public static final DeferredHolder<Item, BlockItem> CONNECTING_POLISHED_GRANITE        = registerBlockItem("connecting_polished_granite",        ModBlocks.CONNECTING_POLISHED_GRANITE);
+    public static final DeferredHolder<Item, BlockItem> CONNECTING_NETHERITE_BLOCK         = registerBlockItem("connecting_netherite_block",         ModBlocks.CONNECTING_NETHERITE_BLOCK);
+    public static final DeferredHolder<Item, BlockItem> CONNECTING_SMOOTH_STONE            = registerBlockItem("connecting_smooth_stone",            ModBlocks.CONNECTING_SMOOTH_STONE);
+    public static final DeferredHolder<Item, BlockItem> CHISELED_PLASTERED_STONE_PILLAR    = registerBlockItem("chiseled_plastered_stone_pillar",    ModBlocks.CHISELED_PLASTERED_STONE_PILLAR);
 
     public static final DeferredHolder<Item, BlockItem> SANDSTONE_PLATE = registerBlockItem("sandstone_plate", ModBlocks.SANDSTONE_PLATE);
     public static final DeferredHolder<Item, BlockItem> SANDSTONE_EDGE = registerBlockItem("sandstone_edge", ModBlocks.SANDSTONE_EDGE);
