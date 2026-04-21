@@ -1084,9 +1084,9 @@ public class OttBlockStateProvider extends ModBlockStateProvider {
         existingFacingShapeBlockNoUvLock(ModBlocks.LIMESTONE_BANNISTER.get(), "block/limestone/limestone_bannister");
 
         // ── Salt & misc stone ─────────────────────────────────────────────────
-        simpleBlockWithItem(ModBlocks.SALT_BLOCK.get(),          models().getExistingFile(modLoc("block/salt_block")));
-        simpleBlockWithItem(ModBlocks.POLISHED_SALT_BLOCK.get(), models().getExistingFile(modLoc("block/polished_salt_block")));
-        simpleBlockWithItem(ModBlocks.SMOOTH_GLOWSTONE.get(),    models().getExistingFile(modLoc("block/smooth_glowstone")));
+        simpleBlockWithItem(ModBlocks.SALT_BLOCK.get(),          models().getExistingFile(modLoc("block/salt/salt_block")));
+        simpleBlockWithItem(ModBlocks.POLISHED_SALT_BLOCK.get(), models().getExistingFile(modLoc("block/salt/polished_salt_block")));
+        simpleBlockWithItem(ModBlocks.SMOOTH_GLOWSTONE.get(),    models().getExistingFile(modLoc("block/glowstone/smooth_glowstone")));
         simpleBlockWithItem(ModBlocks.GLASS_JAR.get(),           models().getExistingFile(modLoc("block/glass_jar")));
 
         // ── Gold-plated smooth ────────────────────────────────────────────────
