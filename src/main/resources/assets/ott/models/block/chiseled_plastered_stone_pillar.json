@@ -2,6 +2,6 @@
   "parent": "minecraft:block/cube_column",
   "textures": {
     "end": "ott:block/patterns/plastered_stone",
-    "side": "ott:block/chiseled_plastered_stone_pillar"
+    "side": "ott:block/misc/chiseled_plastered_stone_pillar"
   }
 }

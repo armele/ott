@@ -36,14 +36,6 @@ make additional wood items for starlight and midnight
 
 backtrack and review all previously added features
 
-CTM Notes:
-=====
-create new ctm categories based on Fusion atlases
-- full
-- horizontal
-- vertical
-- overlay
-
 Mods to Implement:
 =====
 Aquaculture2

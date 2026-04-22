@@ -1,0 +1,6 @@
+{
+    "parent": "block/cube_all",
+    "textures": {
+        "all": "ott:block/sandstone/sandstone_slender_bricks"
+    }
+}

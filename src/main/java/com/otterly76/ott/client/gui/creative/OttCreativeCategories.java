@@ -611,15 +611,15 @@ public enum OttCreativeCategories {
                 output.accept(ModBlocks.BLACK_MARBLE_FLOOR_TILE);
                 output.accept(ModBlocks.WHITE_MARBLE_FLOOR_TILE);
 
-                output.accept(ModBlocks.SLENDER_SANDSTONE_BRICKS);
-                output.accept(ModBlocks.SLENDER_SANDSTONE_BRICKS_WALL);
-                output.accept(ModBlocks.SLENDER_SANDSTONE_BRICKS_EDGE);
-                output.accept(ModBlocks.SLENDER_SANDSTONE_BRICKS_PLATE);
+                output.accept(ModBlocks.SANDSTONE_SLENDER_BRICKS);
+                output.accept(ModBlocks.SANDSTONE_SLENDER_BRICKS_WALL);
+                output.accept(ModBlocks.SANDSTONE_SLENDER_BRICKS_EDGE);
+                output.accept(ModBlocks.SANDSTONE_SLENDER_BRICKS_PLATE);
 
-                output.accept(ModBlocks.SLENDER_TURQUOISE_PATTERN);
-                output.accept(ModBlocks.SLENDER_TURQUOISE_PATTERN_WALL);
-                output.accept(ModBlocks.SLENDER_TURQUOISE_PATTERN_EDGE);
-                output.accept(ModBlocks.SLENDER_TURQUOISE_PATTERN_PLATE);
+                output.accept(ModBlocks.SANDSTONE_SLENDER_TURQUOISE_PATTERN);
+                output.accept(ModBlocks.SANDSTONE_SLENDER_TURQUOISE_PATTERN_WALL);
+                output.accept(ModBlocks.SANDSTONE_SLENDER_TURQUOISE_PATTERN_EDGE);
+                output.accept(ModBlocks.SANDSTONE_SLENDER_TURQUOISE_PATTERN_PLATE);
 
                 output.accept(ModBlocks.GOLD_PLATED_SMOOTH_BLOCK);
                 output.accept(ModBlocks.GOLD_PLATED_SMOOTH_EDGE);

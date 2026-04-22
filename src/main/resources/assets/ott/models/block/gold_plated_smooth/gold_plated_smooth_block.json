@@ -1,1 +1,1 @@
-{ "parent": "block/cube_all", "textures": { "all": "ott:block/gold_plated_smooth/gold_plated_smooth_block" } }
+{ "parent": "block/cube_all", "textures": { "all": "ott:block/gold/gold_plated_smooth_block" } }

@@ -5,9 +5,9 @@
 	"ambientocclusion": false,
 	"render_type": "cutout",
 	"textures": {
-		"0": "ott:block/starlight_lamp_base",
-		"1": "ott:block/starlight_lamp_bulb",
-		"particle": "ott:block/starlight_lamp_base"
+		"0": "ott:block/lantern/starlight_lamp_base",
+		"1": "ott:block/lantern/starlight_lamp_bulb",
+		"particle": "ott:block/lantern/starlight_lamp_base"
 	},
 	"elements": [
 		{

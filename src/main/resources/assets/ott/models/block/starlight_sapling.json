@@ -4,7 +4,7 @@
 	"textures": {
 		"1": "ott:block/wood/starlight/log",
 		"2": "ott:block/wood/starlight/log_top",
-		"3": "ott:block/starlight_leaves_sapling",
+		"3": "ott:block/flora/starlight_leaves_sapling",
 		"particle": "ott:block/wood/starlight/log"
 	},
 	"elements": [

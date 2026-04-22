@@ -1670,20 +1670,20 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
         stonecutOne(exporter, ModBlocks.WHEAT_THATCH.get(),                              ModBlocks.WHEAT_THATCH_PLATE.get(),                            "wheat_thatch_plate_stonecutting");
         stonecutOne(exporter, ModBlocks.BAMBOO_THATCH.get(),                             ModBlocks.BAMBOO_THATCH_EDGE.get(),                            "bamboo_thatch_edge_stonecutting");
         stonecutOne(exporter, ModBlocks.BAMBOO_THATCH.get(),                             ModBlocks.BAMBOO_THATCH_PLATE.get(),                           "bamboo_thatch_plate_stonecutting");
-        // --- Slender sandstone bricks (from slender sandstone bricks base) ---
-        stonecutOne(exporter, ModBlocks.SLENDER_SANDSTONE_BRICKS.get(),                  ModBlocks.SLENDER_SANDSTONE_BRICKS_EDGE.get(),                  "slender_sandstone_bricks_edge_stonecutting");
-        stonecutOne(exporter, ModBlocks.SLENDER_SANDSTONE_BRICKS.get(),                  ModBlocks.SLENDER_SANDSTONE_BRICKS_PLATE.get(),                 "slender_sandstone_bricks_plate_stonecutting");
-        stonecutOne(exporter, ModBlocks.SLENDER_TURQUOISE_PATTERN.get(),                 ModBlocks.SLENDER_TURQUOISE_PATTERN_EDGE.get(),                 "slender_turquoise_pattern_edge_stonecutting");
-        stonecutOne(exporter, ModBlocks.SLENDER_TURQUOISE_PATTERN.get(),                 ModBlocks.SLENDER_TURQUOISE_PATTERN_PLATE.get(),                "slender_turquoise_pattern_plate_stonecutting");
-        // --- Slender sandstone bricks + turquoise pattern from smooth sandstone ---
-        stonecutOne(exporter, Blocks.SMOOTH_SANDSTONE, ModBlocks.SLENDER_SANDSTONE_BRICKS.get(),      "slender_sandstone_bricks_from_smooth_sandstone_stonecutting");
-        stonecutOne(exporter, Blocks.SMOOTH_SANDSTONE, ModBlocks.SLENDER_SANDSTONE_BRICKS_WALL.get(), "slender_sandstone_bricks_wall_from_smooth_sandstone_stonecutting");
-        stonecutOne(exporter, Blocks.SMOOTH_SANDSTONE, ModBlocks.SLENDER_SANDSTONE_BRICKS_EDGE.get(), "slender_sandstone_bricks_edge_from_smooth_sandstone_stonecutting");
-        stonecutOne(exporter, Blocks.SMOOTH_SANDSTONE, ModBlocks.SLENDER_SANDSTONE_BRICKS_PLATE.get(),"slender_sandstone_bricks_plate_from_smooth_sandstone_stonecutting");
-        stonecutOne(exporter, Blocks.SMOOTH_SANDSTONE, ModBlocks.SLENDER_TURQUOISE_PATTERN.get(),      "slender_turquoise_pattern_from_smooth_sandstone_stonecutting");
-        stonecutOne(exporter, Blocks.SMOOTH_SANDSTONE, ModBlocks.SLENDER_TURQUOISE_PATTERN_WALL.get(), "slender_turquoise_pattern_wall_from_smooth_sandstone_stonecutting");
-        stonecutOne(exporter, Blocks.SMOOTH_SANDSTONE, ModBlocks.SLENDER_TURQUOISE_PATTERN_EDGE.get(), "slender_turquoise_pattern_edge_from_smooth_sandstone_stonecutting");
-        stonecutOne(exporter, Blocks.SMOOTH_SANDSTONE, ModBlocks.SLENDER_TURQUOISE_PATTERN_PLATE.get(),"slender_turquoise_pattern_plate_from_smooth_sandstone_stonecutting");
+        // --- Sandstone slender (from base) ---
+        stonecutOne(exporter, ModBlocks.SANDSTONE_SLENDER_BRICKS.get(),                  ModBlocks.SANDSTONE_SLENDER_BRICKS_EDGE.get(),                  "sandstone_slender_bricks_edge_stonecutting");
+        stonecutOne(exporter, ModBlocks.SANDSTONE_SLENDER_BRICKS.get(),                  ModBlocks.SANDSTONE_SLENDER_BRICKS_PLATE.get(),                 "sandstone_slender_bricks_plate_stonecutting");
+        stonecutOne(exporter, ModBlocks.SANDSTONE_SLENDER_TURQUOISE_PATTERN.get(),       ModBlocks.SANDSTONE_SLENDER_TURQUOISE_PATTERN_EDGE.get(),       "sandstone_slender_turquoise_pattern_edge_stonecutting");
+        stonecutOne(exporter, ModBlocks.SANDSTONE_SLENDER_TURQUOISE_PATTERN.get(),       ModBlocks.SANDSTONE_SLENDER_TURQUOISE_PATTERN_PLATE.get(),      "sandstone_slender_turquoise_pattern_plate_stonecutting");
+        // --- Sandstone slender from smooth sandstone ---
+        stonecutOne(exporter, Blocks.SMOOTH_SANDSTONE, ModBlocks.SANDSTONE_SLENDER_BRICKS.get(),              "sandstone_slender_bricks_from_smooth_sandstone_stonecutting");
+        stonecutOne(exporter, Blocks.SMOOTH_SANDSTONE, ModBlocks.SANDSTONE_SLENDER_BRICKS_WALL.get(),         "sandstone_slender_bricks_wall_from_smooth_sandstone_stonecutting");
+        stonecutOne(exporter, Blocks.SMOOTH_SANDSTONE, ModBlocks.SANDSTONE_SLENDER_BRICKS_EDGE.get(),         "sandstone_slender_bricks_edge_from_smooth_sandstone_stonecutting");
+        stonecutOne(exporter, Blocks.SMOOTH_SANDSTONE, ModBlocks.SANDSTONE_SLENDER_BRICKS_PLATE.get(),        "sandstone_slender_bricks_plate_from_smooth_sandstone_stonecutting");
+        stonecutOne(exporter, Blocks.SMOOTH_SANDSTONE, ModBlocks.SANDSTONE_SLENDER_TURQUOISE_PATTERN.get(),   "sandstone_slender_turquoise_pattern_from_smooth_sandstone_stonecutting");
+        stonecutOne(exporter, Blocks.SMOOTH_SANDSTONE, ModBlocks.SANDSTONE_SLENDER_TURQUOISE_PATTERN_WALL.get(), "sandstone_slender_turquoise_pattern_wall_from_smooth_sandstone_stonecutting");
+        stonecutOne(exporter, Blocks.SMOOTH_SANDSTONE, ModBlocks.SANDSTONE_SLENDER_TURQUOISE_PATTERN_EDGE.get(), "sandstone_slender_turquoise_pattern_edge_from_smooth_sandstone_stonecutting");
+        stonecutOne(exporter, Blocks.SMOOTH_SANDSTONE, ModBlocks.SANDSTONE_SLENDER_TURQUOISE_PATTERN_PLATE.get(),"sandstone_slender_turquoise_pattern_plate_from_smooth_sandstone_stonecutting");
         // --- Sandstone_crenelation from smooth sandstone ---
         stonecutOne(exporter, Blocks.SMOOTH_SANDSTONE, ModBlocks.SANDSTONE_CRENELATION.get(),          "sandstone_crenelation_from_smooth_sandstone_stonecutting");
         // --- Vanilla sandstone variants ---

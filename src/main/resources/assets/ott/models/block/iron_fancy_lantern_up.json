@@ -4,8 +4,8 @@
 	"render_type": "minecraft:cutout",
 	"textures": {
 		"1": "block/chain",
-		"particle": "ott:block/iron_fancy_lantern",
-		"lantern": "ott:block/iron_fancy_lantern"
+		"particle": "ott:block/lantern/iron_fancy_lantern",
+		"lantern": "ott:block/lantern/iron_fancy_lantern"
 	},
 	"elements": [
 		{

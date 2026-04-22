@@ -1,1 +1,1 @@
-{ "parent": "ott:block/templates/square_horizontal", "textures": { "texture": "ott:block/big_lily_pad_3" } }
+{ "parent": "ott:block/templates/square_horizontal", "textures": { "texture": "ott:block/flora/big_lily_pad_3" } }

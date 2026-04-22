@@ -1,5 +1,5 @@
 {
-  "parent": "ott:block/lava_lantern",
+  "parent": "ott:block/lantern/lava_lantern",
   "display": {
     "thirdperson_righthand": {
       "rotation": [

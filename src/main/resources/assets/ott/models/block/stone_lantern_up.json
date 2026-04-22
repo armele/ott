@@ -6,7 +6,7 @@
 	"textures": {
 		"1": "block/chain",
 		"particle": "block/chain",
-		"texture": "ott:block/stone_lantern"
+		"texture": "ott:block/lantern/stone_lantern"
 	},
 	"elements": [
 		{

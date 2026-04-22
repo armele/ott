@@ -1,8 +1,8 @@
 {
   "render_type": "minecraft:cutout_mipped",
  	"textures": {
-		"top": "ott:block/thorny_hedge",
-		"particle": "ott:block/thorny_hedge_rose"
+		"top": "ott:block/flora/thorny_hedge",
+		"particle": "ott:block/flora/thorny_hedge_rose"
 	},
   "elements": [
 	{

@@ -3,8 +3,8 @@
 	"credit": "Throttled by Otterly76",
 	"textures": {
 		"1": "ott:block/cloudfx",
-		"particle": "ott:block/lava_lantern",
-		"lantern": "ott:block/lava_lantern"
+		"particle": "ott:block/lantern/lava_lantern",
+		"lantern": "ott:block/lantern/lava_lantern"
 	},
 	"elements": [
 		{

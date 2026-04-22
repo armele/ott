@@ -4,8 +4,8 @@
 	"ambientocclusion": false,
 	"texture_size": [32, 32],
 	"textures": {
-		"particle": "ott:block/chrysalis_stage1",
-		"cocoa": "ott:block/chrysalis_stage1"
+		"particle": "ott:block/fauna/chrysalis_stage1",
+		"cocoa": "ott:block/fauna/chrysalis_stage1"
 	},
 	"elements": [
 		{

@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:block/template_turtle_egg",
   "textures": {
-    "all": "ott:block/tortoise_egg_very_cracked"
+    "all": "ott:block/fauna/tortoise_egg_very_cracked"
   }
 }

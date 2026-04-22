@@ -7,7 +7,7 @@
 		"soil": "minecraft:block/dirt",
 		"4_1": "ott:block/wood/starlight/log",
 		"4_2": "ott:block/wood/starlight/log_top",
-		"leaves": "ott:block/starlight_leaves_sapling",
+		"leaves": "ott:block/flora/starlight_leaves_sapling",
 		"particle": "minecraft:block/terracotta"
 	},
 	"elements": [

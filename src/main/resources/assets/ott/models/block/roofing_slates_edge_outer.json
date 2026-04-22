@@ -1,7 +1,7 @@
 {
 	"parent": "ott:block/small_plate_outer",
 	"textures": {
-		"top": "ott:block/roofing_slates",
-		"frieze": "ott:block/roofing_slates"
+		"top": "ott:block/misc/roofing_slates",
+		"frieze": "ott:block/misc/roofing_slates"
 	}
 }

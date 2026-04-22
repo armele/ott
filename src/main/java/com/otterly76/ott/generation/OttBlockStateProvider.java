@@ -1124,13 +1124,13 @@ public class OttBlockStateProvider extends ModBlockStateProvider {
         existingEdgeBlock(ModBlocks.STONE_BRICKS_MASONRY_EDGE.get(),          "block/stone_bricks/stone_bricks_masonry_edge");
         existingFacingShapeBlock(ModBlocks.STONE_BRICKS_MASONRY_PLATE.get(),  "block/stone_bricks/stone_bricks_masonry_plate");
 
-        // ── Slender sandstone + turquoise ─────────────────────────────────────
-        simpleBlockWithItem(ModBlocks.SLENDER_SANDSTONE_BRICKS.get(),    models().getExistingFile(modLoc("block/slender_sandstone/slender_sandstone_bricks")));
-        existingEdgeBlock(ModBlocks.SLENDER_SANDSTONE_BRICKS_EDGE.get(),          "block/slender_sandstone/slender_sandstone_bricks_edge");
-        existingFacingShapeBlock(ModBlocks.SLENDER_SANDSTONE_BRICKS_PLATE.get(),  "block/slender_sandstone/slender_sandstone_bricks_plate");
-        simpleBlockWithItem(ModBlocks.SLENDER_TURQUOISE_PATTERN.get(),   models().getExistingFile(modLoc("block/slender_turquoise_pattern/slender_turquoise_pattern")));
-        existingEdgeBlock(ModBlocks.SLENDER_TURQUOISE_PATTERN_EDGE.get(),         "block/slender_turquoise_pattern/slender_turquoise_pattern_edge");
-        existingFacingShapeBlock(ModBlocks.SLENDER_TURQUOISE_PATTERN_PLATE.get(), "block/slender_turquoise_pattern/slender_turquoise_pattern_plate");
+        // ── Sandstone slender ─────────────────────────────────────────────────
+        simpleBlockWithItem(ModBlocks.SANDSTONE_SLENDER_BRICKS.get(),    models().getExistingFile(modLoc("block/sandstone_slender/sandstone_slender_bricks")));
+        existingEdgeBlock(ModBlocks.SANDSTONE_SLENDER_BRICKS_EDGE.get(),          "block/sandstone_slender/sandstone_slender_bricks_edge");
+        existingFacingShapeBlock(ModBlocks.SANDSTONE_SLENDER_BRICKS_PLATE.get(),  "block/sandstone_slender/sandstone_slender_bricks_plate");
+        simpleBlockWithItem(ModBlocks.SANDSTONE_SLENDER_TURQUOISE_PATTERN.get(),  models().getExistingFile(modLoc("block/sandstone_slender/sandstone_slender_turquoise_pattern")));
+        existingEdgeBlock(ModBlocks.SANDSTONE_SLENDER_TURQUOISE_PATTERN_EDGE.get(),         "block/sandstone_slender/sandstone_slender_turquoise_pattern_edge");
+        existingFacingShapeBlock(ModBlocks.SANDSTONE_SLENDER_TURQUOISE_PATTERN_PLATE.get(), "block/sandstone_slender/sandstone_slender_turquoise_pattern_plate");
 
         // ── Mosaic floors ─────────────────────────────────────────────────────
         simpleBlockWithItem(ModBlocks.MOSAIC_FLOOR.get(),         models().getExistingFile(modLoc("block/mosaic_floor/mosaic_floor")));
@@ -1252,13 +1252,14 @@ public class OttBlockStateProvider extends ModBlockStateProvider {
         stoneBlock(ModBlocks.WEATHERED_STONE);
         // Column (RotatedPillarBlock)
         existingAxisBlock(ModBlocks.STONE_PILLAR.get(), "block/stone/stone_pillar");
-        // CTM blocks
-        stoneCTMBlock(ModBlocks.BORDERED_STONE);
-        stoneCTMBlock(ModBlocks.CUT_STONE_COLUMN);
-        stoneCTMBlock(ModBlocks.EDGED_STONE_BRICKS);
-        stoneCTMBlock(ModBlocks.MASSIVE_STONE_BRICKS);
-        stoneCTMBlock(ModBlocks.SMOOTH_STONE_COLUMN);
-        stoneCTMBlock(ModBlocks.TILED_STONE_COLUMN);
+        // Static decorative (plain cube_all)
+        stoneBlock(ModBlocks.BORDERED_STONE);
+        stoneBlock(ModBlocks.EDGED_STONE_BRICKS);
+        stoneBlock(ModBlocks.MASSIVE_STONE_BRICKS);
+        // Column (RotatedPillarBlock)
+        existingAxisBlock(ModBlocks.CUT_STONE_COLUMN.get(),    "block/stone/cut_stone_column");
+        existingAxisBlock(ModBlocks.SMOOTH_STONE_COLUMN.get(), "block/stone/smooth_stone_column");
+        existingAxisBlock(ModBlocks.TILED_STONE_COLUMN.get(),  "block/stone/tiled_stone_column");
 
         // Purpur CTM blocks
         simpleBlockWithItem(ModBlocks.PURPUR_PILLAR_CTM.get(),

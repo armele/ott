@@ -912,17 +912,17 @@ public class ModBlocks {
 
 
     // -------------------------------------------------------------------------
-    // --- Slender Sandstone Bricks ---
+    // --- Sandstone Slender ---
     // -------------------------------------------------------------------------
-    public static final DeferredBlock<Block>      SLENDER_SANDSTONE_BRICKS                   = register("slender_sandstone_bricks",                   () -> new Block(Properties.ofFullCopy(Blocks.SANDSTONE)));
-    public static final DeferredBlock<WallBlock>  SLENDER_SANDSTONE_BRICKS_WALL              = register("slender_sandstone_bricks_wall",              () -> new WallBlock(Properties.ofFullCopy(Blocks.SANDSTONE)));
-    public static final DeferredBlock<EdgeBlock>  SLENDER_SANDSTONE_BRICKS_EDGE              = register("slender_sandstone_bricks_edge",              () -> new EdgeBlock(Properties.ofFullCopy(Blocks.SANDSTONE)));
-    public static final DeferredBlock<PlateBlock> SLENDER_SANDSTONE_BRICKS_PLATE             = register("slender_sandstone_bricks_plate",             () -> new PlateBlock(Properties.ofFullCopy(Blocks.SANDSTONE)));
+    public static final DeferredBlock<Block>      SANDSTONE_SLENDER_BRICKS                   = register("sandstone_slender_bricks",                   () -> new Block(Properties.ofFullCopy(Blocks.SANDSTONE)));
+    public static final DeferredBlock<WallBlock>  SANDSTONE_SLENDER_BRICKS_WALL              = register("sandstone_slender_bricks_wall",              () -> new WallBlock(Properties.ofFullCopy(Blocks.SANDSTONE)));
+    public static final DeferredBlock<EdgeBlock>  SANDSTONE_SLENDER_BRICKS_EDGE              = register("sandstone_slender_bricks_edge",              () -> new EdgeBlock(Properties.ofFullCopy(Blocks.SANDSTONE)));
+    public static final DeferredBlock<PlateBlock> SANDSTONE_SLENDER_BRICKS_PLATE             = register("sandstone_slender_bricks_plate",             () -> new PlateBlock(Properties.ofFullCopy(Blocks.SANDSTONE)));
 
-    public static final DeferredBlock<Block>      SLENDER_TURQUOISE_PATTERN                  = register("slender_turquoise_pattern",                  () -> new Block(Properties.ofFullCopy(Blocks.SANDSTONE)));
-    public static final DeferredBlock<WallBlock>  SLENDER_TURQUOISE_PATTERN_WALL             = register("slender_turquoise_pattern_wall",             () -> new WallBlock(Properties.ofFullCopy(Blocks.SANDSTONE)));
-    public static final DeferredBlock<EdgeBlock>  SLENDER_TURQUOISE_PATTERN_EDGE             = register("slender_turquoise_pattern_edge",             () -> new EdgeBlock(Properties.ofFullCopy(Blocks.SANDSTONE)));
-    public static final DeferredBlock<PlateBlock> SLENDER_TURQUOISE_PATTERN_PLATE            = register("slender_turquoise_pattern_plate",            () -> new PlateBlock(Properties.ofFullCopy(Blocks.SANDSTONE)));
+    public static final DeferredBlock<Block>      SANDSTONE_SLENDER_TURQUOISE_PATTERN        = register("sandstone_slender_turquoise_pattern",        () -> new Block(Properties.ofFullCopy(Blocks.SANDSTONE)));
+    public static final DeferredBlock<WallBlock>  SANDSTONE_SLENDER_TURQUOISE_PATTERN_WALL   = register("sandstone_slender_turquoise_pattern_wall",   () -> new WallBlock(Properties.ofFullCopy(Blocks.SANDSTONE)));
+    public static final DeferredBlock<EdgeBlock>  SANDSTONE_SLENDER_TURQUOISE_PATTERN_EDGE   = register("sandstone_slender_turquoise_pattern_edge",   () -> new EdgeBlock(Properties.ofFullCopy(Blocks.SANDSTONE)));
+    public static final DeferredBlock<PlateBlock> SANDSTONE_SLENDER_TURQUOISE_PATTERN_PLATE  = register("sandstone_slender_turquoise_pattern_plate",  () -> new PlateBlock(Properties.ofFullCopy(Blocks.SANDSTONE)));
 
     // -------------------------------------------------------------------------
     // --- Ornamented Carpets + Wool ---
@@ -1074,13 +1074,13 @@ public class ModBlocks {
     // --- Column (RotatedPillarBlock) ---
     public static final DeferredBlock<RotatedPillarBlock> STONE_PILLAR           = register("stone_pillar",                        () -> new RotatedPillarBlock(ST));
 
-    // --- CTM blocks (ott:mosaic loader, complete tile sets) ---
-    public static final DeferredBlock<Block> BORDERED_STONE                      = register("bordered_stone",                      () -> new Block(ST));
-    public static final DeferredBlock<Block> CUT_STONE_COLUMN                    = register("cut_stone_column",                    () -> new Block(ST));
-    public static final DeferredBlock<Block> EDGED_STONE_BRICKS                  = register("edged_stone_bricks",                  () -> new Block(ST));
-    public static final DeferredBlock<Block> MASSIVE_STONE_BRICKS                = register("massive_stone_bricks",                () -> new Block(ST));
-    public static final DeferredBlock<Block> SMOOTH_STONE_COLUMN                 = register("smooth_stone_column",                 () -> new Block(ST));
-    public static final DeferredBlock<Block> TILED_STONE_COLUMN                  = register("tiled_stone_column",                  () -> new Block(ST));
+    // --- Static decorative (plain cube_all, future CTM cousins pending) ---
+    public static final DeferredBlock<Block>              BORDERED_STONE         = register("bordered_stone",      () -> new Block(ST));
+    public static final DeferredBlock<Block>              EDGED_STONE_BRICKS     = register("edged_stone_bricks",  () -> new Block(ST));
+    public static final DeferredBlock<Block>              MASSIVE_STONE_BRICKS   = register("massive_stone_bricks",() -> new Block(ST));
+    public static final DeferredBlock<RotatedPillarBlock> CUT_STONE_COLUMN       = register("cut_stone_column",    () -> new RotatedPillarBlock(ST));
+    public static final DeferredBlock<RotatedPillarBlock> SMOOTH_STONE_COLUMN    = register("smooth_stone_column", () -> new RotatedPillarBlock(ST));
+    public static final DeferredBlock<RotatedPillarBlock> TILED_STONE_COLUMN     = register("tiled_stone_column",  () -> new RotatedPillarBlock(ST));
     public static final DeferredBlock<Block> PURPUR_PILLAR_CTM                   = register("purpur_pillar",            () -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.PURPUR_BLOCK)));
     public static final DeferredBlock<Block> SANDSTONE_CTM                       = register("sandstone",                () -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.SANDSTONE)));
     public static final DeferredBlock<Block> RED_SANDSTONE_CTM                   = register("red_sandstone",            () -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.RED_SANDSTONE)));

@@ -6,8 +6,8 @@
     32
   ],
   "textures": {
-    "0": "ott:block/silk_cocoon",
-    "particle": "ott:block/silk_cocoon"
+    "0": "ott:block/fauna/silk_cocoon",
+    "particle": "ott:block/fauna/silk_cocoon"
   },
   "elements": [
     {

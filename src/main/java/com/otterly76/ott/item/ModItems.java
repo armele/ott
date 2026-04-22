@@ -613,14 +613,14 @@ public class ModItems {
     public static final DeferredHolder<Item, BlockItem> CURVED_RAKED_GRAVEL = registerBlockItem("curved_raked_gravel", ModBlocks.CURVED_RAKED_GRAVEL);
     public static final DeferredHolder<Item, BlockItem> STRAIGHT_RAKED_GRAVEL = registerBlockItem("straight_raked_gravel", ModBlocks.STRAIGHT_RAKED_GRAVEL);
 
-    public static final DeferredHolder<Item, BlockItem> SLENDER_SANDSTONE_BRICKS = registerBlockItem("slender_sandstone_bricks", ModBlocks.SLENDER_SANDSTONE_BRICKS);
-    public static final DeferredHolder<Item, BlockItem> SLENDER_SANDSTONE_BRICKS_WALL = registerBlockItem("slender_sandstone_bricks_wall", ModBlocks.SLENDER_SANDSTONE_BRICKS_WALL);
-    public static final DeferredHolder<Item, BlockItem> SLENDER_SANDSTONE_BRICKS_EDGE = registerBlockItem("slender_sandstone_bricks_edge", ModBlocks.SLENDER_SANDSTONE_BRICKS_EDGE);
-    public static final DeferredHolder<Item, BlockItem> SLENDER_SANDSTONE_BRICKS_PLATE = registerBlockItem("slender_sandstone_bricks_plate", ModBlocks.SLENDER_SANDSTONE_BRICKS_PLATE);
-    public static final DeferredHolder<Item, BlockItem> SLENDER_TURQUOISE_PATTERN = registerBlockItem("slender_turquoise_pattern", ModBlocks.SLENDER_TURQUOISE_PATTERN);
-    public static final DeferredHolder<Item, BlockItem> SLENDER_TURQUOISE_PATTERN_WALL = registerBlockItem("slender_turquoise_pattern_wall", ModBlocks.SLENDER_TURQUOISE_PATTERN_WALL);
-    public static final DeferredHolder<Item, BlockItem> SLENDER_TURQUOISE_PATTERN_EDGE = registerBlockItem("slender_turquoise_pattern_edge", ModBlocks.SLENDER_TURQUOISE_PATTERN_EDGE);
-    public static final DeferredHolder<Item, BlockItem> SLENDER_TURQUOISE_PATTERN_PLATE = registerBlockItem("slender_turquoise_pattern_plate", ModBlocks.SLENDER_TURQUOISE_PATTERN_PLATE);
+    public static final DeferredHolder<Item, BlockItem> SANDSTONE_SLENDER_BRICKS = registerBlockItem("sandstone_slender_bricks", ModBlocks.SANDSTONE_SLENDER_BRICKS);
+    public static final DeferredHolder<Item, BlockItem> SANDSTONE_SLENDER_BRICKS_WALL = registerBlockItem("sandstone_slender_bricks_wall", ModBlocks.SANDSTONE_SLENDER_BRICKS_WALL);
+    public static final DeferredHolder<Item, BlockItem> SANDSTONE_SLENDER_BRICKS_EDGE = registerBlockItem("sandstone_slender_bricks_edge", ModBlocks.SANDSTONE_SLENDER_BRICKS_EDGE);
+    public static final DeferredHolder<Item, BlockItem> SANDSTONE_SLENDER_BRICKS_PLATE = registerBlockItem("sandstone_slender_bricks_plate", ModBlocks.SANDSTONE_SLENDER_BRICKS_PLATE);
+    public static final DeferredHolder<Item, BlockItem> SANDSTONE_SLENDER_TURQUOISE_PATTERN = registerBlockItem("sandstone_slender_turquoise_pattern", ModBlocks.SANDSTONE_SLENDER_TURQUOISE_PATTERN);
+    public static final DeferredHolder<Item, BlockItem> SANDSTONE_SLENDER_TURQUOISE_PATTERN_WALL = registerBlockItem("sandstone_slender_turquoise_pattern_wall", ModBlocks.SANDSTONE_SLENDER_TURQUOISE_PATTERN_WALL);
+    public static final DeferredHolder<Item, BlockItem> SANDSTONE_SLENDER_TURQUOISE_PATTERN_EDGE = registerBlockItem("sandstone_slender_turquoise_pattern_edge", ModBlocks.SANDSTONE_SLENDER_TURQUOISE_PATTERN_EDGE);
+    public static final DeferredHolder<Item, BlockItem> SANDSTONE_SLENDER_TURQUOISE_PATTERN_PLATE = registerBlockItem("sandstone_slender_turquoise_pattern_plate", ModBlocks.SANDSTONE_SLENDER_TURQUOISE_PATTERN_PLATE);
 
     public static final DeferredHolder<Item, BlockItem> ORNAMENTED_RED_WOOL = registerBlockItem("ornamented_red_wool", ModBlocks.ORNAMENTED_RED_WOOL);
     public static final DeferredHolder<Item, BlockItem> DELICATE_RED_WOOL = registerBlockItem("delicate_red_wool", ModBlocks.DELICATE_RED_WOOL);

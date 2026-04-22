@@ -2,8 +2,8 @@
   "render_type": "minecraft:cutout",
   "ambientocclusion": false,
   "textures": {
-    "particle": "ott:block/snail_egg",
-    "texture": "ott:block/snail_egg"
+    "particle": "ott:block/fauna/snail_egg",
+    "texture": "ott:block/fauna/snail_egg"
   },
   "elements": [
     {   "from": [  0, 0.25,  0 ],

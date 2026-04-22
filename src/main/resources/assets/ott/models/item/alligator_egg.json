@@ -1,5 +1,5 @@
 {
-  "parent": "ott:block/alligator_egg",
+  "parent": "ott:block/fauna/alligator_egg",
   "display": {
     "gui": {
       "rotation": [ 30, 225, 0 ],

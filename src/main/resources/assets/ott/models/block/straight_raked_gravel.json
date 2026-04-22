@@ -1,13 +1,13 @@
 {
 	"parent": "block/cube",
 	"textures": {
-		"particle": "ott:block/straight_raked_gravel",
+		"particle": "ott:block/misc/straight_raked_gravel",
 		"down": "#side",
 		"north": "#side",
 		"east": "#side",
 		"south": "#side",
 		"west": "#side",
-		"up": "ott:block/straight_raked_gravel",
+		"up": "ott:block/misc/straight_raked_gravel",
 		"side": "minecraft:block/gravel"
 	}
 }

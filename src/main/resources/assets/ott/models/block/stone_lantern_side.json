@@ -4,8 +4,8 @@
 	"parent": "block/block",
 	"render_type": "minecraft:cutout",
 	"textures": {
-		"particle": "ott:block/stone_lantern",
-		"texture": "ott:block/stone_lantern"
+		"particle": "ott:block/lantern/stone_lantern",
+		"texture": "ott:block/lantern/stone_lantern"
 	},
 	"elements": [
 		{
