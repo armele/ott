@@ -72,7 +72,7 @@ public class OttBlockStateProvider extends ModBlockStateProvider {
 
         ModHedgeVariants.ALL.forEach(variant -> {
             String name = variant.name();
-            ResourceLocation leavesTexture = modLoc("block/" + name + "_hedge");
+            ResourceLocation leavesTexture = modLoc("block/flora/" + name + "_hedge");
 
             // Regular Hedge Model
             ResourceLocation hedgeModel = modLoc("block/" + name + "_hedge");
@@ -115,7 +115,7 @@ public class OttBlockStateProvider extends ModBlockStateProvider {
         getVariantBuilder(ModBlocks.THORNY_HEDGE_SPROUTS.get()).forAllStates(state -> {
             int age = state.getValue(ThornyHedgeSprouts.AGE);
             return ConfiguredModel.builder()
-                    .modelFile(models().cross("thorny_hedge_sprouts_stage" + age, modLoc("block/thorny_hedge")).renderType("cutout"))
+                    .modelFile(models().cross("thorny_hedge_sprouts_stage" + age, modLoc("block/flora/thorny_hedge")).renderType("cutout"))
                     .build();
         });
 

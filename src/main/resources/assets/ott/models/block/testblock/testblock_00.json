@@ -119,8 +119,8 @@
   "render_type": "minecraft:cutout",
   "textures": {
     "cloud": "ott:block/cloudfx",
-    "end": "ott:block/aluminum_pillar_top",
+    "end": "ott:block/patterns/plastered_stone",
     "particle": "ott:block/cloudfx",
-    "side": "ott:block/aluminum_pillar"
+    "side": "ott:block/misc/chiseled_plastered_stone_pillar"
   }
 }

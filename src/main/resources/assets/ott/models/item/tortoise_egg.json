@@ -1,5 +1,5 @@
 {
-  "parent": "ott:block/fauna/tortoise_egg",
+  "parent": "ott:block/tortoise_egg",
   "display": {
     "gui": {
       "rotation": [ 30, 225, 0 ],

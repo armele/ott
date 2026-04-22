@@ -17,22 +17,22 @@ public final class ModHedgeVariants {
             new HedgeVariant(
                     "starlight",
                     ModParticle.STARLIGHT_LEAF::get,
-                    ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, "block/starlight_creep")
+                    ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, "block/flora/starlight_creep")
             ),
             new HedgeVariant(
                     "midnight",
                     ModParticle.MIDNIGHT_LEAF::get,
-                    ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, "block/midnight_creep")
+                    ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, "block/flora/midnight_creep")
             ),
             new HedgeVariant(
                     "blooming_starlight",
                     ModParticle.BLOOMING_STARLIGHT_LEAF::get,
-                    ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, "block/blooming_starlight_creep")
+                    ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, "block/flora/blooming_starlight_creep")
             ),
             new HedgeVariant(
                     "blooming_midnight",
                     ModParticle.BLOOMING_MIDNIGHT_LEAF::get,
-                    ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, "block/blooming_midnight_creep")
+                    ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, "block/flora/blooming_midnight_creep")
             )
     );
 

@@ -1,5 +1,5 @@
 {
-  "parent": "ott:block/lantern/protective_lantern",
+  "parent": "ott:block/protective_lantern",
   "display": {
     "thirdperson_righthand": {
       "rotation":  [ 60, 45, 0 ],
