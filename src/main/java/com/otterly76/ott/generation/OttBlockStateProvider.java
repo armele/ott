@@ -1261,26 +1261,26 @@ public class OttBlockStateProvider extends ModBlockStateProvider {
         stoneCTMBlock(ModBlocks.TILED_STONE_COLUMN);
 
         // Purpur CTM blocks
-        simpleBlockWithItem(ModBlocks.CONNECTING_PURPUR_PILLAR.get(),
-                models().getExistingFile(modLoc("block/purpur/connecting_purpur_pillar")));
+        simpleBlockWithItem(ModBlocks.PURPUR_PILLAR_CTM.get(),
+                models().getExistingFile(modLoc("block/purpur/purpur_pillar")));
 
         // Sandstone CTM blocks
-        simpleBlockWithItem(ModBlocks.CONNECTING_SANDSTONE.get(),
-                models().getExistingFile(modLoc("block/sandstone/connecting_sandstone")));
-        simpleBlockWithItem(ModBlocks.CONNECTING_RED_SANDSTONE.get(),
-                models().getExistingFile(modLoc("block/red_sandstone/connecting_red_sandstone")));
-        simpleBlockWithItem(ModBlocks.CONNECTING_POLISHED_ANDESITE.get(),
-                models().getExistingFile(modLoc("block/andesite/connecting_polished_andesite")));
-        simpleBlockWithItem(ModBlocks.CONNECTING_POLISHED_BLACKSTONE.get(),
-                models().getExistingFile(modLoc("block/blackstone/connecting_polished_blackstone")));
-        simpleBlockWithItem(ModBlocks.CONNECTING_POLISHED_DIORITE.get(),
-                models().getExistingFile(modLoc("block/diorite/connecting_polished_diorite")));
-        simpleBlockWithItem(ModBlocks.CONNECTING_POLISHED_GRANITE.get(),
-                models().getExistingFile(modLoc("block/granite/connecting_polished_granite")));
-        simpleBlockWithItem(ModBlocks.CONNECTING_NETHERITE_BLOCK.get(),
-                models().getExistingFile(modLoc("block/netherite/connecting_netherite_block")));
-        simpleBlockWithItem(ModBlocks.CONNECTING_SMOOTH_STONE.get(),
-                models().getExistingFile(modLoc("block/stone/connecting_smooth_stone")));
+        simpleBlockWithItem(ModBlocks.SANDSTONE_CTM.get(),
+                models().getExistingFile(modLoc("block/sandstone/sandstone")));
+        simpleBlockWithItem(ModBlocks.RED_SANDSTONE_CTM.get(),
+                models().getExistingFile(modLoc("block/red_sandstone/red_sandstone")));
+        simpleBlockWithItem(ModBlocks.POLISHED_ANDESITE_CTM.get(),
+                models().getExistingFile(modLoc("block/andesite/polished_andesite")));
+        simpleBlockWithItem(ModBlocks.POLISHED_BLACKSTONE_CTM.get(),
+                models().getExistingFile(modLoc("block/blackstone/polished_blackstone")));
+        simpleBlockWithItem(ModBlocks.POLISHED_DIORITE_CTM.get(),
+                models().getExistingFile(modLoc("block/diorite/polished_diorite")));
+        simpleBlockWithItem(ModBlocks.POLISHED_GRANITE_CTM.get(),
+                models().getExistingFile(modLoc("block/granite/polished_granite")));
+        simpleBlockWithItem(ModBlocks.NETHERITE_BLOCK_CTM.get(),
+                models().getExistingFile(modLoc("block/netherite/netherite_block")));
+        simpleBlockWithItem(ModBlocks.SMOOTH_STONE_CTM.get(),
+                models().getExistingFile(modLoc("block/stone/smooth_stone")));
         existingAxisBlock(ModBlocks.CHISELED_PLASTERED_STONE_PILLAR.get(), "block/chiseled_plastered_stone_pillar");
 
         beehiveBlock(ModBlocks.ACACIA_BEEHIVE,   "acacia");

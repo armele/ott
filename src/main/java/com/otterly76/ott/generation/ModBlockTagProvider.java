@@ -376,15 +376,15 @@ public class ModBlockTagProvider extends BlockTagsProvider {
                 ModBlocks.MASSIVE_STONE_BRICKS.get(),
                 ModBlocks.SMOOTH_STONE_COLUMN.get(),
                 ModBlocks.TILED_STONE_COLUMN.get(),
-                ModBlocks.CONNECTING_PURPUR_PILLAR.get(),
-                ModBlocks.CONNECTING_SANDSTONE.get(),
-                ModBlocks.CONNECTING_RED_SANDSTONE.get(),
-                ModBlocks.CONNECTING_POLISHED_ANDESITE.get(),
-                ModBlocks.CONNECTING_POLISHED_BLACKSTONE.get(),
-                ModBlocks.CONNECTING_POLISHED_DIORITE.get(),
-                ModBlocks.CONNECTING_POLISHED_GRANITE.get(),
-                ModBlocks.CONNECTING_NETHERITE_BLOCK.get(),
-                ModBlocks.CONNECTING_SMOOTH_STONE.get(),
+                ModBlocks.PURPUR_PILLAR_CTM.get(),
+                ModBlocks.SANDSTONE_CTM.get(),
+                ModBlocks.RED_SANDSTONE_CTM.get(),
+                ModBlocks.POLISHED_ANDESITE_CTM.get(),
+                ModBlocks.POLISHED_BLACKSTONE_CTM.get(),
+                ModBlocks.POLISHED_DIORITE_CTM.get(),
+                ModBlocks.POLISHED_GRANITE_CTM.get(),
+                ModBlocks.NETHERITE_BLOCK_CTM.get(),
+                ModBlocks.SMOOTH_STONE_CTM.get(),
                 ModBlocks.CHISELED_PLASTERED_STONE_PILLAR.get()
         );
         pickaxeTag.add(
@@ -449,15 +449,15 @@ public class ModBlockTagProvider extends BlockTagsProvider {
                 ModBlocks.MASSIVE_STONE_BRICKS.get(),
                 ModBlocks.SMOOTH_STONE_COLUMN.get(),
                 ModBlocks.TILED_STONE_COLUMN.get(),
-                ModBlocks.CONNECTING_PURPUR_PILLAR.get(),
-                ModBlocks.CONNECTING_SANDSTONE.get(),
-                ModBlocks.CONNECTING_RED_SANDSTONE.get(),
-                ModBlocks.CONNECTING_POLISHED_ANDESITE.get(),
-                ModBlocks.CONNECTING_POLISHED_BLACKSTONE.get(),
-                ModBlocks.CONNECTING_POLISHED_DIORITE.get(),
-                ModBlocks.CONNECTING_POLISHED_GRANITE.get(),
-                ModBlocks.CONNECTING_NETHERITE_BLOCK.get(),
-                ModBlocks.CONNECTING_SMOOTH_STONE.get(),
+                ModBlocks.PURPUR_PILLAR_CTM.get(),
+                ModBlocks.SANDSTONE_CTM.get(),
+                ModBlocks.RED_SANDSTONE_CTM.get(),
+                ModBlocks.POLISHED_ANDESITE_CTM.get(),
+                ModBlocks.POLISHED_BLACKSTONE_CTM.get(),
+                ModBlocks.POLISHED_DIORITE_CTM.get(),
+                ModBlocks.POLISHED_GRANITE_CTM.get(),
+                ModBlocks.NETHERITE_BLOCK_CTM.get(),
+                ModBlocks.SMOOTH_STONE_CTM.get(),
                 ModBlocks.CHISELED_PLASTERED_STONE_PILLAR.get()
         );
 
@@ -473,18 +473,18 @@ public class ModBlockTagProvider extends BlockTagsProvider {
         this.tag(doAllBrickMaterialsKey).addTag(doDefaultKey);
 
         // Explicit additions for new blocks that don't cascade reliably via the default tag.
-        Block[] newConnectingBlocks = {
-                ModBlocks.CONNECTING_POLISHED_BLACKSTONE.get(),
-                ModBlocks.CONNECTING_POLISHED_DIORITE.get(),
-                ModBlocks.CONNECTING_POLISHED_GRANITE.get(),
-                ModBlocks.CONNECTING_NETHERITE_BLOCK.get(),
-                ModBlocks.CONNECTING_SMOOTH_STONE.get(),
+        Block[] newCtmBlocks = {
+                ModBlocks.POLISHED_BLACKSTONE_CTM.get(),
+                ModBlocks.POLISHED_DIORITE_CTM.get(),
+                ModBlocks.POLISHED_GRANITE_CTM.get(),
+                ModBlocks.NETHERITE_BLOCK_CTM.get(),
+                ModBlocks.SMOOTH_STONE_CTM.get(),
                 ModBlocks.CHISELED_PLASTERED_STONE_PILLAR.get()
         };
-        this.tag(doWallMaterialsKey).add(newConnectingBlocks);
-        this.tag(doStairsMaterialsKey).add(newConnectingBlocks);
-        this.tag(doShinglesCoverKey).add(newConnectingBlocks);
-        this.tag(doAllBrickMaterialsKey).add(newConnectingBlocks);
+        this.tag(doWallMaterialsKey).add(newCtmBlocks);
+        this.tag(doStairsMaterialsKey).add(newCtmBlocks);
+        this.tag(doShinglesCoverKey).add(newCtmBlocks);
+        this.tag(doAllBrickMaterialsKey).add(newCtmBlocks);
 
         var ottHedges = this.tag(ottHedgesKey);
         ottHedges.add(ModBlocks.THORNY_HEDGE.value());

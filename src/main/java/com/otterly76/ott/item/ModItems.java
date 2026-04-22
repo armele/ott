@@ -577,15 +577,15 @@ public class ModItems {
     public static final DeferredHolder<Item, BlockItem> VERTICAL_CUT_STONE                = registerBlockItem("vertical_cut_stone",                ModBlocks.VERTICAL_CUT_STONE);
     public static final DeferredHolder<Item, BlockItem> VERTICAL_DISORDERED_STONE_BRICKS  = registerBlockItem("vertical_disordered_stone_bricks",  ModBlocks.VERTICAL_DISORDERED_STONE_BRICKS);
     public static final DeferredHolder<Item, BlockItem> WEATHERED_STONE                   = registerBlockItem("weathered_stone",                   ModBlocks.WEATHERED_STONE);
-    public static final DeferredHolder<Item, BlockItem> CONNECTING_PURPUR_PILLAR          = registerBlockItem("connecting_purpur_pillar",          ModBlocks.CONNECTING_PURPUR_PILLAR);
-    public static final DeferredHolder<Item, BlockItem> CONNECTING_SANDSTONE              = registerBlockItem("connecting_sandstone",              ModBlocks.CONNECTING_SANDSTONE);
-    public static final DeferredHolder<Item, BlockItem> CONNECTING_RED_SANDSTONE          = registerBlockItem("connecting_red_sandstone",          ModBlocks.CONNECTING_RED_SANDSTONE);
-    public static final DeferredHolder<Item, BlockItem> CONNECTING_POLISHED_ANDESITE       = registerBlockItem("connecting_polished_andesite",       ModBlocks.CONNECTING_POLISHED_ANDESITE);
-    public static final DeferredHolder<Item, BlockItem> CONNECTING_POLISHED_BLACKSTONE     = registerBlockItem("connecting_polished_blackstone",     ModBlocks.CONNECTING_POLISHED_BLACKSTONE);
-    public static final DeferredHolder<Item, BlockItem> CONNECTING_POLISHED_DIORITE        = registerBlockItem("connecting_polished_diorite",        ModBlocks.CONNECTING_POLISHED_DIORITE);
-    public static final DeferredHolder<Item, BlockItem> CONNECTING_POLISHED_GRANITE        = registerBlockItem("connecting_polished_granite",        ModBlocks.CONNECTING_POLISHED_GRANITE);
-    public static final DeferredHolder<Item, BlockItem> CONNECTING_NETHERITE_BLOCK         = registerBlockItem("connecting_netherite_block",         ModBlocks.CONNECTING_NETHERITE_BLOCK);
-    public static final DeferredHolder<Item, BlockItem> CONNECTING_SMOOTH_STONE            = registerBlockItem("connecting_smooth_stone",            ModBlocks.CONNECTING_SMOOTH_STONE);
+    public static final DeferredHolder<Item, BlockItem> PURPUR_PILLAR_CTM                 = registerBlockItem("purpur_pillar",            ModBlocks.PURPUR_PILLAR_CTM);
+    public static final DeferredHolder<Item, BlockItem> SANDSTONE_CTM                     = registerBlockItem("sandstone",                ModBlocks.SANDSTONE_CTM);
+    public static final DeferredHolder<Item, BlockItem> RED_SANDSTONE_CTM                 = registerBlockItem("red_sandstone",            ModBlocks.RED_SANDSTONE_CTM);
+    public static final DeferredHolder<Item, BlockItem> POLISHED_ANDESITE_CTM             = registerBlockItem("polished_andesite",        ModBlocks.POLISHED_ANDESITE_CTM);
+    public static final DeferredHolder<Item, BlockItem> POLISHED_BLACKSTONE_CTM           = registerBlockItem("polished_blackstone",      ModBlocks.POLISHED_BLACKSTONE_CTM);
+    public static final DeferredHolder<Item, BlockItem> POLISHED_DIORITE_CTM              = registerBlockItem("polished_diorite",         ModBlocks.POLISHED_DIORITE_CTM);
+    public static final DeferredHolder<Item, BlockItem> POLISHED_GRANITE_CTM              = registerBlockItem("polished_granite",         ModBlocks.POLISHED_GRANITE_CTM);
+    public static final DeferredHolder<Item, BlockItem> NETHERITE_BLOCK_CTM               = registerBlockItem("netherite_block",          ModBlocks.NETHERITE_BLOCK_CTM);
+    public static final DeferredHolder<Item, BlockItem> SMOOTH_STONE_CTM                  = registerBlockItem("smooth_stone",             ModBlocks.SMOOTH_STONE_CTM);
     public static final DeferredHolder<Item, BlockItem> CHISELED_PLASTERED_STONE_PILLAR    = registerBlockItem("chiseled_plastered_stone_pillar",    ModBlocks.CHISELED_PLASTERED_STONE_PILLAR);
 
     public static final DeferredHolder<Item, BlockItem> SANDSTONE_PLATE = registerBlockItem("sandstone_plate", ModBlocks.SANDSTONE_PLATE);

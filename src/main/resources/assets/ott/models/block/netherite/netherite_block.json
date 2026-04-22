@@ -3,7 +3,7 @@
   "layout": "full",
   "parent": "ott:block/ctm/ctm_cube_all",
   "textures": {
-    "all": "ott:block/diorite/ctm/connecting_polished_diorite"
+    "all": "ott:block/netherite/ctm/netherite_block"
   },
   "connections": {"all": [{"type": "is_same_block"}]}
 }

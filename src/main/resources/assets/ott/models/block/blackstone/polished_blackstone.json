@@ -3,7 +3,7 @@
   "layout": "full",
   "parent": "ott:block/ctm/ctm_cube_all",
   "textures": {
-    "all": "ott:block/stone/ctm/connecting_smooth_stone"
+    "all": "ott:block/blackstone/ctm/polished_blackstone"
   },
   "connections": {"all": [{"type": "is_same_block"}]}
 }

@@ -3,7 +3,7 @@
   "layout": "vertical",
   "parent": "ott:block/ctm/ctm_cube_column_vertical",
   "textures": {
-    "side": "ott:block/red_sandstone/ctm/connecting_red_sandstone",
+    "side": "ott:block/red_sandstone/ctm/red_sandstone",
     "top":  "minecraft:block/red_sandstone_top"
   },
   "connections": {
