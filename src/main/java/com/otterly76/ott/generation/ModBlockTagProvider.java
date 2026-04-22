@@ -376,15 +376,15 @@ public class ModBlockTagProvider extends BlockTagsProvider {
                 ModBlocks.MASSIVE_STONE_BRICKS.get(),
                 ModBlocks.SMOOTH_STONE_COLUMN.get(),
                 ModBlocks.TILED_STONE_COLUMN.get(),
-                ModBlocks.CONNECTING_PURPUR_PILLAR.get(),
-                ModBlocks.CONNECTING_SANDSTONE.get(),
-                ModBlocks.CONNECTING_RED_SANDSTONE.get(),
-                ModBlocks.CONNECTING_POLISHED_ANDESITE.get(),
-                ModBlocks.CONNECTING_POLISHED_BLACKSTONE.get(),
-                ModBlocks.CONNECTING_POLISHED_DIORITE.get(),
-                ModBlocks.CONNECTING_POLISHED_GRANITE.get(),
-                ModBlocks.CONNECTING_NETHERITE_BLOCK.get(),
-                ModBlocks.CONNECTING_SMOOTH_STONE.get(),
+                ModBlocks.PURPUR_PILLAR_CTM.get(),
+                ModBlocks.SANDSTONE_CTM.get(),
+                ModBlocks.RED_SANDSTONE_CTM.get(),
+                ModBlocks.POLISHED_ANDESITE_CTM.get(),
+                ModBlocks.POLISHED_BLACKSTONE_CTM.get(),
+                ModBlocks.POLISHED_DIORITE_CTM.get(),
+                ModBlocks.POLISHED_GRANITE_CTM.get(),
+                ModBlocks.NETHERITE_BLOCK_CTM.get(),
+                ModBlocks.SMOOTH_STONE_CTM.get(),
                 ModBlocks.CHISELED_PLASTERED_STONE_PILLAR.get()
         );
         pickaxeTag.add(
@@ -449,15 +449,15 @@ public class ModBlockTagProvider extends BlockTagsProvider {
                 ModBlocks.MASSIVE_STONE_BRICKS.get(),
                 ModBlocks.SMOOTH_STONE_COLUMN.get(),
                 ModBlocks.TILED_STONE_COLUMN.get(),
-                ModBlocks.CONNECTING_PURPUR_PILLAR.get(),
-                ModBlocks.CONNECTING_SANDSTONE.get(),
-                ModBlocks.CONNECTING_RED_SANDSTONE.get(),
-                ModBlocks.CONNECTING_POLISHED_ANDESITE.get(),
-                ModBlocks.CONNECTING_POLISHED_BLACKSTONE.get(),
-                ModBlocks.CONNECTING_POLISHED_DIORITE.get(),
-                ModBlocks.CONNECTING_POLISHED_GRANITE.get(),
-                ModBlocks.CONNECTING_NETHERITE_BLOCK.get(),
-                ModBlocks.CONNECTING_SMOOTH_STONE.get(),
+                ModBlocks.PURPUR_PILLAR_CTM.get(),
+                ModBlocks.SANDSTONE_CTM.get(),
+                ModBlocks.RED_SANDSTONE_CTM.get(),
+                ModBlocks.POLISHED_ANDESITE_CTM.get(),
+                ModBlocks.POLISHED_BLACKSTONE_CTM.get(),
+                ModBlocks.POLISHED_DIORITE_CTM.get(),
+                ModBlocks.POLISHED_GRANITE_CTM.get(),
+                ModBlocks.NETHERITE_BLOCK_CTM.get(),
+                ModBlocks.SMOOTH_STONE_CTM.get(),
                 ModBlocks.CHISELED_PLASTERED_STONE_PILLAR.get()
         );
 
@@ -473,18 +473,85 @@ public class ModBlockTagProvider extends BlockTagsProvider {
         this.tag(doAllBrickMaterialsKey).addTag(doDefaultKey);
 
         // Explicit additions for new blocks that don't cascade reliably via the default tag.
-        Block[] newConnectingBlocks = {
-                ModBlocks.CONNECTING_POLISHED_BLACKSTONE.get(),
-                ModBlocks.CONNECTING_POLISHED_DIORITE.get(),
-                ModBlocks.CONNECTING_POLISHED_GRANITE.get(),
-                ModBlocks.CONNECTING_NETHERITE_BLOCK.get(),
-                ModBlocks.CONNECTING_SMOOTH_STONE.get(),
+        Block[] newCtmBlocks = {
+                ModBlocks.POLISHED_BLACKSTONE_CTM.get(),
+                ModBlocks.POLISHED_DIORITE_CTM.get(),
+                ModBlocks.POLISHED_GRANITE_CTM.get(),
+                ModBlocks.NETHERITE_BLOCK_CTM.get(),
+                ModBlocks.SMOOTH_STONE_CTM.get(),
                 ModBlocks.CHISELED_PLASTERED_STONE_PILLAR.get()
         };
-        this.tag(doWallMaterialsKey).add(newConnectingBlocks);
-        this.tag(doStairsMaterialsKey).add(newConnectingBlocks);
-        this.tag(doShinglesCoverKey).add(newConnectingBlocks);
-        this.tag(doAllBrickMaterialsKey).add(newConnectingBlocks);
+        this.tag(doWallMaterialsKey).add(newCtmBlocks);
+        this.tag(doStairsMaterialsKey).add(newCtmBlocks);
+        this.tag(doShinglesCoverKey).add(newCtmBlocks);
+        this.tag(doAllBrickMaterialsKey).add(newCtmBlocks);
+
+        // CTM / Connecting blocks — drives the "Connecting" tooltip in TooltipHandler
+        this.tag(ModTags.Blocks.CTM_BLOCKS).add(
+                // Elemental mosaics
+                ModBlocks.WATER_MOSAIC_BORDER.get(),
+                ModBlocks.WATER_MOSAIC_GEOMETRIC.get(),
+                ModBlocks.WATER_MOSAIC_PATTERN.get(),
+                ModBlocks.WATER_MOSAIC_DELICATE.get(),
+                ModBlocks.EARTH_MOSAIC_BORDER.get(),
+                ModBlocks.EARTH_MOSAIC_GEOMETRIC.get(),
+                ModBlocks.EARTH_MOSAIC_PATTERN.get(),
+                ModBlocks.EARTH_MOSAIC_DELICATE.get(),
+                ModBlocks.FIRE_MOSAIC_BORDER.get(),
+                ModBlocks.FIRE_MOSAIC_GEOMETRIC.get(),
+                ModBlocks.FIRE_MOSAIC_PATTERN.get(),
+                ModBlocks.FIRE_MOSAIC_DELICATE.get(),
+                ModBlocks.AIR_MOSAIC_BORDER.get(),
+                ModBlocks.AIR_MOSAIC_GEOMETRIC.get(),
+                ModBlocks.AIR_MOSAIC_PATTERN.get(),
+                ModBlocks.AIR_MOSAIC_DELICATE.get(),
+                ModBlocks.SPIRIT_MOSAIC_BORDER.get(),
+                ModBlocks.SPIRIT_MOSAIC_GEOMETRIC.get(),
+                ModBlocks.SPIRIT_MOSAIC_PATTERN.get(),
+                ModBlocks.SPIRIT_MOSAIC_DELICATE.get(),
+                // Mosaic floor
+                ModBlocks.MOSAIC_FLOOR.get(),
+                ModBlocks.MOSAIC_FLOOR_DELICATE.get(),
+                ModBlocks.MOSAIC_FLOOR_ROSETTE.get(),
+                // Decorative stone
+                ModBlocks.ROMAN_FRESCO_RED.get(),
+                ModBlocks.ROMAN_FRESCO_BLACK.get(),
+                ModBlocks.LIMESTONE_MASONRY.get(),
+                ModBlocks.STONE_BRICKS_MASONRY.get(),
+                ModBlocks.BORDERED_STONE.get(),
+                ModBlocks.CUT_STONE_COLUMN.get(),
+                ModBlocks.EDGED_STONE_BRICKS.get(),
+                ModBlocks.MASSIVE_STONE_BRICKS.get(),
+                ModBlocks.SMOOTH_STONE_COLUMN.get(),
+                ModBlocks.TILED_STONE_COLUMN.get(),
+                // CTM polished/vanilla variants
+                ModBlocks.PURPUR_PILLAR_CTM.get(),
+                ModBlocks.SANDSTONE_CTM.get(),
+                ModBlocks.RED_SANDSTONE_CTM.get(),
+                ModBlocks.POLISHED_ANDESITE_CTM.get(),
+                ModBlocks.POLISHED_BLACKSTONE_CTM.get(),
+                ModBlocks.POLISHED_DIORITE_CTM.get(),
+                ModBlocks.POLISHED_GRANITE_CTM.get(),
+                ModBlocks.NETHERITE_BLOCK_CTM.get(),
+                ModBlocks.SMOOTH_STONE_CTM.get(),
+                // Ornamented / delicate wool & carpet
+                ModBlocks.ORNAMENTED_RED_WOOL.get(),
+                ModBlocks.DELICATE_RED_WOOL.get(),
+                ModBlocks.ORNAMENTED_RED_CARPET.get(),
+                ModBlocks.DELICATE_RED_CARPET.get(),
+                ModBlocks.ORNAMENTED_BLUE_WOOL.get(),
+                ModBlocks.DELICATE_BLUE_WOOL.get(),
+                ModBlocks.ORNAMENTED_BLUE_CARPET.get(),
+                ModBlocks.DELICATE_BLUE_CARPET.get(),
+                ModBlocks.ORNAMENTED_GREEN_WOOL.get(),
+                ModBlocks.DELICATE_GREEN_WOOL.get(),
+                ModBlocks.ORNAMENTED_GREEN_CARPET.get(),
+                ModBlocks.DELICATE_GREEN_CARPET.get(),
+                ModBlocks.ORNAMENTED_PURPLE_WOOL.get(),
+                ModBlocks.DELICATE_PURPLE_WOOL.get(),
+                ModBlocks.ORNAMENTED_PURPLE_CARPET.get(),
+                ModBlocks.DELICATE_PURPLE_CARPET.get()
+        );
 
         var ottHedges = this.tag(ottHedgesKey);
         ottHedges.add(ModBlocks.THORNY_HEDGE.value());

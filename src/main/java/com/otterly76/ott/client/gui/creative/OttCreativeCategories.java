@@ -695,16 +695,16 @@ public enum OttCreativeCategories {
                 output.accept(ModBlocks.VERTICAL_DISORDERED_STONE_BRICKS);
                 output.accept(ModBlocks.WEATHERED_STONE);
 
-                // Connecting blocks
-                output.accept(ModBlocks.CONNECTING_PURPUR_PILLAR);
-                output.accept(ModBlocks.CONNECTING_SANDSTONE);
-                output.accept(ModBlocks.CONNECTING_RED_SANDSTONE);
-                output.accept(ModBlocks.CONNECTING_POLISHED_ANDESITE);
-                output.accept(ModBlocks.CONNECTING_POLISHED_BLACKSTONE);
-                output.accept(ModBlocks.CONNECTING_POLISHED_DIORITE);
-                output.accept(ModBlocks.CONNECTING_POLISHED_GRANITE);
-                output.accept(ModBlocks.CONNECTING_NETHERITE_BLOCK);
-                output.accept(ModBlocks.CONNECTING_SMOOTH_STONE);
+                // CTM blocks
+                output.accept(ModBlocks.PURPUR_PILLAR_CTM);
+                output.accept(ModBlocks.SANDSTONE_CTM);
+                output.accept(ModBlocks.RED_SANDSTONE_CTM);
+                output.accept(ModBlocks.POLISHED_ANDESITE_CTM);
+                output.accept(ModBlocks.POLISHED_BLACKSTONE_CTM);
+                output.accept(ModBlocks.POLISHED_DIORITE_CTM);
+                output.accept(ModBlocks.POLISHED_GRANITE_CTM);
+                output.accept(ModBlocks.NETHERITE_BLOCK_CTM);
+                output.accept(ModBlocks.SMOOTH_STONE_CTM);
             }),
 
     JARS("jars",

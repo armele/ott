@@ -4,13 +4,13 @@ Notes:
 
 add new stuff to wandering merchant
 add new animated seaglass, use cloudfx?
+reattempt the 2 color cloudFX
 review config options, some are very unnecessary
 finish vanilla entity models upgrades
 finish custom entity models upgrades
 check for cactus farm and disable cactus flowers
 adjust spawn rules for custom critters
 add nautilus owner follow logic
-check blockstate and model jsons for abandoned
 
 add hanging/wall models for all lanterns
 

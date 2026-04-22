@@ -3,7 +3,7 @@
   "layout": "full",
   "parent": "ott:block/ctm/ctm_cube_all",
   "textures": {
-    "all": "ott:block/andesite/ctm/connecting_polished_andesite"
+    "all": "ott:block/stone/ctm/smooth_stone"
   },
   "connections": {"all": [{"type": "is_same_block"}]}
 }
