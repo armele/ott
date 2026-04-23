@@ -31,3 +31,4 @@ repo
 /.claude/settings.local.json
 /config/ott.json
 /logs/*
+/src/Chipped-1.21.x/*
