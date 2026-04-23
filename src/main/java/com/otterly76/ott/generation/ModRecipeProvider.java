@@ -870,9 +870,9 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
                 .unlockedBy("has_glow_berries", has(Items.GLOW_BERRIES))
                 .save(exporter, getRecipePath("ott", "glow_goop_from_smelting"));
 
-        SimpleCookingRecipeBuilder.smelting(Ingredient.of(Items.GLOWSTONE), RecipeCategory.BUILDING_BLOCKS, ModBlocks.SMOOTH_GLOWSTONE.get(), 0.1F, 200)
+        SimpleCookingRecipeBuilder.smelting(Ingredient.of(Items.GLOWSTONE), RecipeCategory.BUILDING_BLOCKS, ModBlocks.REFINED_GLOWSTONE.get(), 0.1F, 200)
                 .unlockedBy("has_glowstone", has(Items.GLOWSTONE))
-                .save(exporter, getRecipePath("ott", "smooth_glowstone_from_smelting"));
+                .save(exporter, getRecipePath("ott", "refined_glowstone_from_smelting"));
     }
 
     private void addDyeingRecipes(RecipeOutput exporter) {

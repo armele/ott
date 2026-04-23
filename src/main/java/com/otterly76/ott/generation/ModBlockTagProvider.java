@@ -255,7 +255,7 @@ public class ModBlockTagProvider extends BlockTagsProvider {
         this.tag(doDefaultKey).add(
                 ModBlocks.PLAIN_LIMESTONE.get(),
                 ModBlocks.COBBLED_LIMESTONE.get(),
-                ModBlocks.SMOOTH_GLOWSTONE.get(),
+                ModBlocks.REFINED_GLOWSTONE.get(),
                 ModBlocks.WHEAT_THATCH.get(),
                 ModBlocks.BAMBOO_THATCH.get(),
                 ModBlocks.ROOFING_SLATES.get(),
@@ -471,7 +471,7 @@ public class ModBlockTagProvider extends BlockTagsProvider {
 
         // Domum Ornamentum material tags
         this.tag(doCopperKey).addTag(ModTags.Blocks.COPPER);
-        this.tag(doFramedLightCenterKey).add(ModBlocks.SMOOTH_GLOWSTONE.get());
+        this.tag(doFramedLightCenterKey).add(ModBlocks.REFINED_GLOWSTONE.get());
         ModBlocks.COLOR_SETS.values().forEach(set -> this.tag(doGlacedTerracottaKey).add(set.glazedTerracotta().get()));
 
         // Nest our entire default set into each DO shape-type tag so future additions propagate automatically.

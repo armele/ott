@@ -218,7 +218,7 @@ public class ModItems {
     public static final DeferredItem<Item> DUCK_EGG = ITEMS.register("duck_egg", () -> new DuckEggItem(new Item.Properties()));
     public static final DeferredItem<Item> TORTOISE_EGG = ITEMS.register("tortoise_egg", () -> new BlockItem(ModBlocks.TORTOISE_EGG.get(), new Item.Properties()));
     public static final DeferredItem<Item> SNAIL_EGG = ITEMS.register("snail_egg", () -> new BlockItem(ModBlocks.SNAIL_EGG.get(), new Item.Properties()));
-    public static final DeferredHolder<Item, BlockItem> SMOOTH_GLOWSTONE = registerBlockItem("smooth_glowstone", ModBlocks.SMOOTH_GLOWSTONE);
+    public static final DeferredHolder<Item, BlockItem> REFINED_GLOWSTONE = registerBlockItem("refined_glowstone", ModBlocks.REFINED_GLOWSTONE);
     public static final DeferredItem<Item> GLOW_GOOP = ITEMS.register("glow_goop", () -> new GlowGoopItem(ModBlocks.GLOW_GOOP.get(), new Item.Properties()));
     public static final DeferredItem<Item> LIZARD_TAIL = ITEMS.register("lizard_tail", () -> new Item(new Item.Properties().food(new FoodProperties.Builder().nutrition(1).saturationModifier(0.1F).build())));
     public static final DeferredItem<Item> COOKED_LIZARD_TAIL = ITEMS.register("cooked_lizard_tail", () -> new Item(new Item.Properties().food(new FoodProperties.Builder().nutrition(3).saturationModifier(0.3F).build())));

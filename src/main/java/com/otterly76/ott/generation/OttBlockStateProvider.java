@@ -1087,7 +1087,7 @@ public class OttBlockStateProvider extends ModBlockStateProvider {
         // ── Salt & misc stone ─────────────────────────────────────────────────
         simpleBlockWithItem(ModBlocks.SALT_BLOCK.get(),          models().getExistingFile(modLoc("block/salt/salt_block")));
         simpleBlockWithItem(ModBlocks.POLISHED_SALT_BLOCK.get(), models().getExistingFile(modLoc("block/salt/polished_salt_block")));
-        simpleBlockWithItem(ModBlocks.SMOOTH_GLOWSTONE.get(),    models().getExistingFile(modLoc("block/glowstone/smooth_glowstone")));
+        simpleBlockWithItem(ModBlocks.REFINED_GLOWSTONE.get(),    models().getExistingFile(modLoc("block/glowstone/refined_glowstone")));
         simpleBlockWithItem(ModBlocks.GLASS_JAR.get(),           models().getExistingFile(modLoc("block/glass_jar")));
 
         // ── Gold-plated smooth ────────────────────────────────────────────────

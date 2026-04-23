@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:block/cube_all",
   "textures": {
-    "all": "ott:block/glowstone/smooth_glowstone"
+    "all": "ott:block/glowstone/refined_glowstone"
   }
 }

@@ -577,7 +577,7 @@ public enum OttCreativeCategories {
                 ModBlocks.SEAGLASS.forEach(output::accept);  // ethereal seaglass only
                 ModBlocks.TESTBLOCK.forEach(output::accept);
 
-                output.accept(ModBlocks.SMOOTH_GLOWSTONE);
+                output.accept(ModBlocks.REFINED_GLOWSTONE);
 
                 output.accept(ModBlocks.SALT_BLOCK);
                 output.accept(ModBlocks.POLISHED_SALT_BLOCK);
