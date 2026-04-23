@@ -15,13 +15,17 @@ add nautilus owner follow logic
 add hanging/wall models for all lanterns
 starlight lamp recipe
 
+pale oak, starlight, midnight beehive, two-tone wall
+
+ladders
+lanterns
+
 add blocks from Chipped
 - add engraving
 - adapt existing textures to CTM
 - create additional patterns
   - stone bordered gravel
   - sandstone bordered sand
-  - smooth glowstone blocks
   - salt blocks
   - custom color and pattern blocks
 - create variants for pale oak log, wood, leaves, etc

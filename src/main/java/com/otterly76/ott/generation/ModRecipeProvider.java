@@ -991,6 +991,21 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
                     .save(exporter, getRecipePath("ott", name + "_elevator_from_dyeing"));
         }
 
+        // Custom-color: 8 matching custom wool + 1 ender eye → 8 elevators
+        for (ModColorSets.ColorSet colorSet : ModColorSets.ALL) {
+            String name = colorSet.name();
+            Block woolBlock = ModBlocks.COLOR_SETS.get(name).wool().get();
+            Block result = ModBlocks.ELEVATORS.get(name).get();
+            ShapedRecipeBuilder.shaped(RecipeCategory.TRANSPORTATION, result, 8)
+                    .define('W', woolBlock)
+                    .define('E', Items.ENDER_PEARL)
+                    .pattern("WWW")
+                    .pattern("WEW")
+                    .pattern("WWW")
+                    .unlockedBy("has_ender_pearl", has(Items.ENDER_PEARL))
+                    .save(exporter, getRecipePath("ott", name + "_elevator"));
+        }
+
         // Custom-color redye: any elevator + custom dye → custom-colored elevator
         for (ModColorSets.ColorSet colorSet : ModColorSets.ALL) {
             String name = colorSet.name();
@@ -1526,6 +1541,28 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
         cooking(noAdv, List.of(ModItems.CATFISH.get()), ModItems.COOKED_CATFISH.get(), "cooked_catfish");
         // Bass
         cooking(noAdv, List.of(ModItems.BASS.get()), ModItems.COOKED_BASS.get(), "cooked_bass");
+        // Snail
+        cooking(noAdv, List.of(ModItems.RAW_SNAIL.get()), ModItems.COOKED_SNAIL.get(), "cooked_snail");
+        // Shrimp
+        cooking(noAdv, List.of(ModItems.RAW_SHRIMP.get()), ModItems.STEAMED_SHRIMP.get(), "steamed_shrimp");
+        // Wild bird meat
+        cooking(noAdv, List.of(ModItems.RAW_WILD_BIRD_MEAT.get()), ModItems.COOKED_WILD_BIRD_MEAT.get(), "cooked_wild_bird_meat");
+        // Wild game meat
+        cooking(noAdv, List.of(ModItems.RAW_WILD_GAME_MEAT.get()), ModItems.COOKED_WILD_GAME_MEAT.get(), "cooked_wild_game_meat");
+        // Crab meat
+        cooking(noAdv, List.of(ModItems.RAW_CRAB_MEAT.get()), ModItems.STEAMED_CRAB_MEAT.get(), "steamed_crab_meat");
+        // Bonnethead shark
+        cooking(noAdv, List.of(ModItems.RAW_BONNETHEAD.get()), ModItems.COOKED_BONNETHEAD.get(), "cooked_bonnethead");
+        // Cichlid
+        cooking(noAdv, List.of(ModItems.RAW_CICHLID.get()), ModItems.COOKED_CICHLID.get(), "cooked_cichlid");
+        // Goblin shark
+        cooking(noAdv, List.of(ModItems.RAW_GOBLIN_SHARK.get()), ModItems.COOKED_GOBLIN_SHARK.get(), "cooked_goblin_shark");
+        // Guitarfish
+        cooking(noAdv, List.of(ModItems.RAW_GUITARFISH.get()), ModItems.COOKED_GUITARFISH.get(), "cooked_guitarfish");
+        // Lizard tail
+        cooking(noAdv, List.of(ModItems.LIZARD_TAIL.get()), ModItems.COOKED_LIZARD_TAIL.get(), "cooked_lizard_tail");
+        // Egg
+        cooking(noAdv, List.of(Items.EGG), ModItems.COOKED_EGG.get(), "cooked_egg");
     }
 
     private void cooking(RecipeOutput exporter, List<ItemLike> ingredients, ItemLike result, String name) {
