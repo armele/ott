@@ -1,0 +1,12 @@
+{
+  "loader": "ott:mosaic",
+  "layout": "vertical",
+  "parent": "ott:block/ctm/ctm_cube_column_vertical",
+  "textures": {
+    "side": "ott:block/obsidian/ctm/obsidian_pillars",
+    "top":  "minecraft:block/obsidian"
+  },
+  "connections": {
+    "side": [{"type": "is_same_block"}]
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "loader": "ott:mosaic",
+  "layout": "vertical",
+  "parent": "ott:block/ctm/ctm_cube_column_vertical",
+  "textures": {
+    "side": "ott:block/deepslate/ctm/cobbled_deepslate_pillar",
+    "top":  "minecraft:block/cobbled_deepslate"
+  },
+  "connections": {
+    "side": [{"type": "is_same_block"}]
+  }
+}

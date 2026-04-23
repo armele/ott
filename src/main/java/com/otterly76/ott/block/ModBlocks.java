@@ -1091,6 +1091,15 @@ public class ModBlocks {
     public static final DeferredBlock<Block> NETHERITE_BLOCK_CTM                 = register("netherite_block",          () -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.NETHERITE_BLOCK)));
     public static final DeferredBlock<Block> SMOOTH_STONE_CTM                    = register("smooth_stone",             () -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.SMOOTH_STONE)));
     public static final DeferredBlock<RotatedPillarBlock> CHISELED_PLASTERED_STONE_PILLAR = register("chiseled_plastered_stone_pillar", () -> new RotatedPillarBlock(ST));
+    // CTM vertical pillars
+    public static final DeferredBlock<Block> BONE_BLOCK_PILLAR        = register("bone_block_pillar",        () -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.BONE_BLOCK)));
+    public static final DeferredBlock<Block> COAL_BLOCK_PILLAR        = register("coal_block_pillar",        () -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.COAL_BLOCK)));
+    public static final DeferredBlock<Block> COBBLED_DEEPSLATE_PILLAR = register("cobbled_deepslate_pillar", () -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.COBBLED_DEEPSLATE)));
+    public static final DeferredBlock<Block> COBBLESTONE_PILLAR       = register("cobblestone_pillar",       () -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.COBBLESTONE)));
+    public static final DeferredBlock<Block> COPPER_BLOCK_PILLAR      = register("copper_block_pillar",      () -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.WAXED_COPPER_BLOCK)));
+    public static final DeferredBlock<Block> LAPIS_BLOCK_PILLAR       = register("lapis_block_pillar",       () -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.LAPIS_BLOCK)));
+    public static final DeferredBlock<Block> NETHERITE_BLOCK_PILLAR   = register("netherite_block_pillar",   () -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.NETHERITE_BLOCK)));
+    public static final DeferredBlock<Block> OBSIDIAN_PILLAR          = register("obsidian_pillar",          () -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.OBSIDIAN)));
 
     public static void register(IEventBus eventBus) {
         registerDynamicBlocks();

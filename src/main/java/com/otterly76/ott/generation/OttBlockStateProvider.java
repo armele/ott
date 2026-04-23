@@ -1283,6 +1283,23 @@ public class OttBlockStateProvider extends ModBlockStateProvider {
         simpleBlockWithItem(ModBlocks.SMOOTH_STONE_CTM.get(),
                 models().getExistingFile(modLoc("block/stone/smooth_stone")));
         existingAxisBlock(ModBlocks.CHISELED_PLASTERED_STONE_PILLAR.get(), "block/chiseled_plastered_stone_pillar");
+        // CTM vertical pillars
+        simpleBlockWithItem(ModBlocks.BONE_BLOCK_PILLAR.get(),
+                models().getExistingFile(modLoc("block/bone_block/bone_block_pillar")));
+        simpleBlockWithItem(ModBlocks.COAL_BLOCK_PILLAR.get(),
+                models().getExistingFile(modLoc("block/coal_block/coal_block_pillar")));
+        simpleBlockWithItem(ModBlocks.COBBLED_DEEPSLATE_PILLAR.get(),
+                models().getExistingFile(modLoc("block/deepslate/cobbled_deepslate_pillar")));
+        simpleBlockWithItem(ModBlocks.COBBLESTONE_PILLAR.get(),
+                models().getExistingFile(modLoc("block/cobblestone/cobblestone_pillar")));
+        simpleBlockWithItem(ModBlocks.COPPER_BLOCK_PILLAR.get(),
+                models().getExistingFile(modLoc("block/waxed_copper_block/copper_block_pillar")));
+        simpleBlockWithItem(ModBlocks.LAPIS_BLOCK_PILLAR.get(),
+                models().getExistingFile(modLoc("block/lapis_block/lapis_block_pillar")));
+        simpleBlockWithItem(ModBlocks.NETHERITE_BLOCK_PILLAR.get(),
+                models().getExistingFile(modLoc("block/netherite/netherite_block_pillar")));
+        simpleBlockWithItem(ModBlocks.OBSIDIAN_PILLAR.get(),
+                models().getExistingFile(modLoc("block/obsidian/obsidian_pillar")));
 
         beehiveBlock(ModBlocks.ACACIA_BEEHIVE,   "acacia");
         beehiveBlock(ModBlocks.BAMBOO_BEEHIVE,   "bamboo");

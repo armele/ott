@@ -1,0 +1,12 @@
+{
+  "loader": "ott:mosaic",
+  "layout": "vertical",
+  "parent": "ott:block/ctm/ctm_cube_column_vertical",
+  "textures": {
+    "side": "ott:block/lapis_block/ctm/lapis_block_pillar",
+    "top":  "minecraft:block/lapis_block"
+  },
+  "connections": {
+    "side": [{"type": "is_same_block"}]
+  }
+}

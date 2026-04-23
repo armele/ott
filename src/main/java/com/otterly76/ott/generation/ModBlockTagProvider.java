@@ -385,7 +385,15 @@ public class ModBlockTagProvider extends BlockTagsProvider {
                 ModBlocks.POLISHED_GRANITE_CTM.get(),
                 ModBlocks.NETHERITE_BLOCK_CTM.get(),
                 ModBlocks.SMOOTH_STONE_CTM.get(),
-                ModBlocks.CHISELED_PLASTERED_STONE_PILLAR.get()
+                ModBlocks.CHISELED_PLASTERED_STONE_PILLAR.get(),
+                ModBlocks.BONE_BLOCK_PILLAR.get(),
+                ModBlocks.COAL_BLOCK_PILLAR.get(),
+                ModBlocks.COBBLED_DEEPSLATE_PILLAR.get(),
+                ModBlocks.COBBLESTONE_PILLAR.get(),
+                ModBlocks.COPPER_BLOCK_PILLAR.get(),
+                ModBlocks.LAPIS_BLOCK_PILLAR.get(),
+                ModBlocks.NETHERITE_BLOCK_PILLAR.get(),
+                ModBlocks.OBSIDIAN_PILLAR.get()
         );
         pickaxeTag.add(
                 ModBlocks.ANGRY_STONE.get(),
@@ -544,7 +552,16 @@ public class ModBlockTagProvider extends BlockTagsProvider {
                 ModBlocks.ORNAMENTED_PURPLE_WOOL.get(),
                 ModBlocks.DELICATE_PURPLE_WOOL.get(),
                 ModBlocks.ORNAMENTED_PURPLE_CARPET.get(),
-                ModBlocks.DELICATE_PURPLE_CARPET.get()
+                ModBlocks.DELICATE_PURPLE_CARPET.get(),
+                // CTM vertical pillars
+                ModBlocks.BONE_BLOCK_PILLAR.get(),
+                ModBlocks.COAL_BLOCK_PILLAR.get(),
+                ModBlocks.COBBLED_DEEPSLATE_PILLAR.get(),
+                ModBlocks.COBBLESTONE_PILLAR.get(),
+                ModBlocks.COPPER_BLOCK_PILLAR.get(),
+                ModBlocks.LAPIS_BLOCK_PILLAR.get(),
+                ModBlocks.NETHERITE_BLOCK_PILLAR.get(),
+                ModBlocks.OBSIDIAN_PILLAR.get()
         );
 
         var ottHedges = this.tag(ottHedgesKey);
