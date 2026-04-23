@@ -1742,8 +1742,10 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
         stonecutOne(exporter, ModBlocks.BAMBOO_THATCH.get(),                             ModBlocks.BAMBOO_THATCH_EDGE.get(),                            "bamboo_thatch_edge_stonecutting");
         stonecutOne(exporter, ModBlocks.BAMBOO_THATCH.get(),                             ModBlocks.BAMBOO_THATCH_PLATE.get(),                           "bamboo_thatch_plate_stonecutting");
         // --- Sandstone slender (from base) ---
+        stonecutOne(exporter, ModBlocks.SANDSTONE_SLENDER_BRICKS.get(),                  ModBlocks.SANDSTONE_SLENDER_BRICKS_WALL.get(),                  "sandstone_slender_bricks_wall_stonecutting");
         stonecutOne(exporter, ModBlocks.SANDSTONE_SLENDER_BRICKS.get(),                  ModBlocks.SANDSTONE_SLENDER_BRICKS_EDGE.get(),                  "sandstone_slender_bricks_edge_stonecutting");
         stonecutOne(exporter, ModBlocks.SANDSTONE_SLENDER_BRICKS.get(),                  ModBlocks.SANDSTONE_SLENDER_BRICKS_PLATE.get(),                 "sandstone_slender_bricks_plate_stonecutting");
+        stonecutOne(exporter, ModBlocks.SANDSTONE_SLENDER_TURQUOISE_PATTERN.get(),       ModBlocks.SANDSTONE_SLENDER_TURQUOISE_PATTERN_WALL.get(),       "sandstone_slender_turquoise_pattern_wall_stonecutting");
         stonecutOne(exporter, ModBlocks.SANDSTONE_SLENDER_TURQUOISE_PATTERN.get(),       ModBlocks.SANDSTONE_SLENDER_TURQUOISE_PATTERN_EDGE.get(),       "sandstone_slender_turquoise_pattern_edge_stonecutting");
         stonecutOne(exporter, ModBlocks.SANDSTONE_SLENDER_TURQUOISE_PATTERN.get(),       ModBlocks.SANDSTONE_SLENDER_TURQUOISE_PATTERN_PLATE.get(),      "sandstone_slender_turquoise_pattern_plate_stonecutting");
         // --- Sandstone slender from smooth sandstone ---
