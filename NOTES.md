@@ -13,6 +13,7 @@ adjust spawn rules for custom critters
 add nautilus owner follow logic
 
 add hanging/wall models for all lanterns
+starlight lamp recipe
 
 add blocks from Chipped
 - add engraving
