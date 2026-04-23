@@ -5,6 +5,7 @@ import com.otterly76.ott.block.GradientStainedGlassBlock;
 import com.otterly76.ott.block.ModBlocks;
 import com.otterly76.ott.block.custom.CopperChestBlock;
 import com.otterly76.ott.block.custom.CopperGolemStatueBlock;
+import com.otterly76.ott.block.custom.RakedGravelBlock;
 import com.otterly76.ott.crop.ThornyHedgeSprouts;
 import com.otterly76.ott.item.ModItems;
 import net.minecraft.advancements.critereon.StatePropertiesPredicate;
@@ -77,6 +78,8 @@ public class OttLootTableProvider extends BlockLootSubProvider {
                 this.dropSelf(block);
             } else if (block instanceof FlowerPotBlock potted) {
                 this.add(block, (b) -> this.createPotFlowerItemTable(potted.getPotted()));
+            } else if (block instanceof RakedGravelBlock) {
+                this.dropOther(block, Blocks.GRAVEL);
             } else if (block == ModBlocks.PLAIN_LIMESTONE.get()) {
                 this.add(block, createSingleItemTableWithSilkTouch(block, ModBlocks.COBBLED_LIMESTONE.get()));
             } else {

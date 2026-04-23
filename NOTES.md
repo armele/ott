@@ -14,8 +14,6 @@ add nautilus owner follow logic
 
 add hanging/wall models for all lanterns
 
-add stone to Vanilla Plus blocks
-
 add blocks from Chipped
 - add engraving
 - adapt existing textures to CTM
@@ -35,6 +33,12 @@ make additional wood items for starlight and midnight
 - bookshelf, beehive, chest, trapped chest, barrel, ladder, shelves, chiseled bookshelf
 
 backtrack and review all previously added features
+
+MUST be added to worldgen
+- limestone
+- white marble
+- black marble
+- slate?
 
 Mods to Implement:
 =====

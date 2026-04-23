@@ -15,6 +15,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.HorizontalDirectionalBlock;
 import net.minecraft.world.level.block.Mirror;
 import net.minecraft.world.level.block.Rotation;
@@ -77,7 +78,7 @@ public class RakedGravelBlock extends HorizontalDirectionalBlock {
         }
         if (!level.isClientSide()) {
             BlockState toggled = isCurved
-                    ? ModBlocks.STRAIGHT_RAKED_GRAVEL.get().defaultBlockState().setValue(FACING, state.getValue(FACING))
+                    ? Blocks.GRAVEL.defaultBlockState()
                     : ModBlocks.CURVED_RAKED_GRAVEL.get().defaultBlockState().setValue(FACING, state.getValue(FACING));
             level.setBlock(pos, toggled, Block.UPDATE_ALL);
             level.playSound(null, pos, SoundEvents.GRAVEL_PLACE, SoundSource.BLOCKS, 1.0F, 1.0F);
