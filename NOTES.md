@@ -46,6 +46,8 @@ MUST be added to worldgen
 - white marble
 - black marble
 - slate?
+  - roofing slates
+
 
 Mods to Implement:
 =====

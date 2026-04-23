@@ -123,6 +123,63 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
                 .unlockedBy("impossible", impossible())
                 .save(noAdv, getRecipePath("minecraft", "orange_dye_from_open_eyeblossom"));
 
+        ShapedRecipeBuilder.shaped(RecipeCategory.DECORATIONS, Items.BEEHIVE)
+                .define('P', Items.OAK_PLANKS)
+                .define('H', Items.HONEYCOMB)
+                .pattern("PPP")
+                .pattern("HHH")
+                .pattern("PPP")
+                .unlockedBy("has_honeycomb", has(Items.HONEYCOMB))
+                .save(noAdv, getRecipePath("minecraft", "beehive"));
+
+        // Custom wood beehive recipes
+        java.util.Map<String, net.minecraft.world.item.Item> beehivePlanks = java.util.Map.ofEntries(
+                java.util.Map.entry("acacia",   Items.ACACIA_PLANKS),
+                java.util.Map.entry("bamboo",   Items.BAMBOO_PLANKS),
+                java.util.Map.entry("birch",    Items.BIRCH_PLANKS),
+                java.util.Map.entry("cherry",   Items.CHERRY_PLANKS),
+                java.util.Map.entry("crimson",  Items.CRIMSON_PLANKS),
+                java.util.Map.entry("dark_oak", Items.DARK_OAK_PLANKS),
+                java.util.Map.entry("jungle",   Items.JUNGLE_PLANKS),
+                java.util.Map.entry("mangrove", Items.MANGROVE_PLANKS),
+                java.util.Map.entry("pale_oak", ModBlocks.PALE_OAK_PLANKS.get().asItem()),
+                java.util.Map.entry("spruce",   Items.SPRUCE_PLANKS),
+                java.util.Map.entry("warped",   Items.WARPED_PLANKS)
+        );
+        java.util.Map<String, net.minecraft.world.level.block.Block> beehiveBlocks = java.util.Map.ofEntries(
+                java.util.Map.entry("acacia",   ModBlocks.ACACIA_BEEHIVE.get()),
+                java.util.Map.entry("bamboo",   ModBlocks.BAMBOO_BEEHIVE.get()),
+                java.util.Map.entry("birch",    ModBlocks.BIRCH_BEEHIVE.get()),
+                java.util.Map.entry("cherry",   ModBlocks.CHERRY_BEEHIVE.get()),
+                java.util.Map.entry("crimson",  ModBlocks.CRIMSON_BEEHIVE.get()),
+                java.util.Map.entry("dark_oak", ModBlocks.DARK_OAK_BEEHIVE.get()),
+                java.util.Map.entry("jungle",   ModBlocks.JUNGLE_BEEHIVE.get()),
+                java.util.Map.entry("mangrove", ModBlocks.MANGROVE_BEEHIVE.get()),
+                java.util.Map.entry("pale_oak", ModBlocks.PALE_OAK_BEEHIVE.get()),
+                java.util.Map.entry("spruce",   ModBlocks.SPRUCE_BEEHIVE.get()),
+                java.util.Map.entry("warped",   ModBlocks.WARPED_BEEHIVE.get())
+        );
+        beehivePlanks.forEach((wood, planks) -> {
+            net.minecraft.world.level.block.Block result = beehiveBlocks.get(wood);
+            ShapedRecipeBuilder.shaped(RecipeCategory.DECORATIONS, result)
+                    .define('P', planks)
+                    .define('H', Items.HONEYCOMB)
+                    .pattern("PPP")
+                    .pattern("HHH")
+                    .pattern("PPP")
+                    .unlockedBy("has_honeycomb", has(Items.HONEYCOMB))
+                    .save(noAdv, getRecipePath("ott", wood + "_beehive"));
+        });
+        // Starlight beehive uses the custom wood set planks
+        ShapedRecipeBuilder.shaped(RecipeCategory.DECORATIONS, ModBlocks.STARLIGHT_BEEHIVE.get())
+                .define('P', ModBlocks.WOOD_SETS.get("starlight").planks().get())
+                .define('H', Items.HONEYCOMB)
+                .pattern("PPP")
+                .pattern("HHH")
+                .pattern("PPP")
+                .unlockedBy("has_honeycomb", has(Items.HONEYCOMB))
+                .save(exporter, getRecipePath("ott", "starlight_beehive"));
+
         ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModBlocks.CREAKING_HEART.get())
                 .define('#', ModBlocks.PALE_OAK_LOG.get())
                 .define('O', ModBlocks.RESIN_BLOCK.get())

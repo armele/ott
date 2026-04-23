@@ -127,7 +127,9 @@ public class ModItems {
     public static final DeferredItem<Item> DARK_OAK_BEEHIVE = ITEMS.register("dark_oak_beehive", () -> new net.minecraft.world.item.BlockItem(ModBlocks.DARK_OAK_BEEHIVE.get(), new Item.Properties()));
     public static final DeferredItem<Item> JUNGLE_BEEHIVE   = ITEMS.register("jungle_beehive",   () -> new net.minecraft.world.item.BlockItem(ModBlocks.JUNGLE_BEEHIVE.get(),   new Item.Properties()));
     public static final DeferredItem<Item> MANGROVE_BEEHIVE = ITEMS.register("mangrove_beehive", () -> new net.minecraft.world.item.BlockItem(ModBlocks.MANGROVE_BEEHIVE.get(), new Item.Properties()));
+    public static final DeferredItem<Item> PALE_OAK_BEEHIVE  = ITEMS.register("pale_oak_beehive",  () -> new net.minecraft.world.item.BlockItem(ModBlocks.PALE_OAK_BEEHIVE.get(),  new Item.Properties()));
     public static final DeferredItem<Item> SPRUCE_BEEHIVE   = ITEMS.register("spruce_beehive",   () -> new net.minecraft.world.item.BlockItem(ModBlocks.SPRUCE_BEEHIVE.get(),   new Item.Properties()));
+    public static final DeferredItem<Item> STARLIGHT_BEEHIVE = ITEMS.register("starlight_beehive", () -> new net.minecraft.world.item.BlockItem(ModBlocks.STARLIGHT_BEEHIVE.get(), new Item.Properties()));
     public static final DeferredItem<Item> WARPED_BEEHIVE   = ITEMS.register("warped_beehive",   () -> new net.minecraft.world.item.BlockItem(ModBlocks.WARPED_BEEHIVE.get(),   new Item.Properties()));
     public static final DeferredItem<Item> EMU_EGG = ITEMS.register("emu_egg", () -> new EmuEggItem(new Item.Properties()));
     public static final DeferredItem<Item> HOOPOE_EGG = ITEMS.register("hoopoe_egg", () -> new HoopoeEggItem(new Item.Properties()));

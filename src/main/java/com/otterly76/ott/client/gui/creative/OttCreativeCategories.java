@@ -770,7 +770,9 @@ public enum OttCreativeCategories {
                 output.accept(ModItems.DARK_OAK_BEEHIVE);
                 output.accept(ModItems.JUNGLE_BEEHIVE);
                 output.accept(ModItems.MANGROVE_BEEHIVE);
+                output.accept(ModItems.PALE_OAK_BEEHIVE);
                 output.accept(ModItems.SPRUCE_BEEHIVE);
+                output.accept(ModItems.STARLIGHT_BEEHIVE);
                 output.accept(ModItems.WARPED_BEEHIVE);
 
                 output.accept(ModItems.ALLIGATOR_EGG);

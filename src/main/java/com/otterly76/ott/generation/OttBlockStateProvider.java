@@ -1308,9 +1308,11 @@ public class OttBlockStateProvider extends ModBlockStateProvider {
         beehiveBlock(ModBlocks.CRIMSON_BEEHIVE,  "crimson");
         beehiveBlock(ModBlocks.DARK_OAK_BEEHIVE, "dark_oak");
         beehiveBlock(ModBlocks.JUNGLE_BEEHIVE,   "jungle");
-        beehiveBlock(ModBlocks.MANGROVE_BEEHIVE, "mangrove");
-        beehiveBlock(ModBlocks.SPRUCE_BEEHIVE,   "spruce");
-        beehiveBlock(ModBlocks.WARPED_BEEHIVE,   "warped");
+        beehiveBlock(ModBlocks.MANGROVE_BEEHIVE,  "mangrove");
+        beehiveBlock(ModBlocks.PALE_OAK_BEEHIVE,  "pale_oak");
+        beehiveBlock(ModBlocks.SPRUCE_BEEHIVE,    "spruce");
+        beehiveBlock(ModBlocks.STARLIGHT_BEEHIVE, "starlight");
+        beehiveBlock(ModBlocks.WARPED_BEEHIVE,    "warped");
     }
 
     private void beehiveBlock(net.neoforged.neoforge.registries.DeferredBlock<BeehiveBlock> block, String woodType) {

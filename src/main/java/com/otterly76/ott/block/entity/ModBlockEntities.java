@@ -115,7 +115,9 @@ public class ModBlockEntities {
                 ModBlocks.DARK_OAK_BEEHIVE.get(),
                 ModBlocks.JUNGLE_BEEHIVE.get(),
                 ModBlocks.MANGROVE_BEEHIVE.get(),
+                ModBlocks.PALE_OAK_BEEHIVE.get(),
                 ModBlocks.SPRUCE_BEEHIVE.get(),
+                ModBlocks.STARLIGHT_BEEHIVE.get(),
                 ModBlocks.WARPED_BEEHIVE.get());
     }
 }
