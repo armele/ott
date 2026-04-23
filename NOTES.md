@@ -15,7 +15,7 @@ add nautilus owner follow logic
 add hanging/wall models for all lanterns
 starlight lamp recipe
 
-pale oak, starlight, midnight beehive, two-tone wall
+pale oak, starlight, midnight; beehive, two-tone wall
 
 ladders
 lanterns

@@ -496,9 +496,9 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
         // --- Chiseled plastered stone variants: white + dye → colored (1:1 and 8:8, skip white) ---
         for (String pattern : List.of(
                 "chiseled_plastered_stone",
-                "gilded_chiseled_plastered_stone",
-                "delicate_chiseled_plastered_stone",
-                "banded_chiseled_plastered_stone")) {
+                "gilded_plastered_stone",
+                "delicate_plastered_stone",
+                "banded_plastered_stone")) {
             Block whiteBase = ModBlocks.PATTERN_BLOCKS.get(pattern).get("white").get();
             for (DyeColor color : DyeColor.values()) {
                 String name = color.getName();
@@ -954,7 +954,9 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
 
     private static final Set<String> DEDICATED_PATTERN_RECIPES =
             Set.of("flat_roof_tiles", "layered_roof_tiles", "plastered_stone",
-                   "chiseled_plastered_stone", "dyed_stone", "painted_planks");
+                   "chiseled_plastered_stone", "gilded_plastered_stone",
+                   "delicate_plastered_stone", "banded_plastered_stone",
+                   "dyed_stone", "painted_planks");
 
     private void addPatternBlockRecipes(RecipeOutput exporter) {
         for (Map.Entry<String, Map<String, DeferredBlock<Block>>> patternEntry : ModBlocks.PATTERN_BLOCKS.entrySet()) {
