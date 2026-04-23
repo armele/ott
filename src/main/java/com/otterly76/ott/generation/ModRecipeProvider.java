@@ -493,6 +493,30 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
             addRingDyeRecipe(exporter, lightGrayPlastered, ModBlocks.PATTERN_BLOCKS.get("plastered_stone").get(name).get(), dye, name + "_plastered_stone");
         }
 
+        // --- Chiseled plastered stone variants: white + dye → colored (1:1 and 8:8, skip white) ---
+        for (String pattern : List.of(
+                "chiseled_plastered_stone",
+                "gilded_chiseled_plastered_stone",
+                "delicate_chiseled_plastered_stone",
+                "banded_chiseled_plastered_stone")) {
+            Block whiteBase = ModBlocks.PATTERN_BLOCKS.get(pattern).get("white").get();
+            for (DyeColor color : DyeColor.values()) {
+                String name = color.getName();
+                if (name.equals("white")) continue;
+                Item dye = BuiltInRegistries.ITEM.get(ResourceLocation.withDefaultNamespace(name + "_dye"));
+                Block result = ModBlocks.PATTERN_BLOCKS.get(pattern).get(name).get();
+                addRingDyeRecipe(exporter, whiteBase, result, dye, name + "_" + pattern);
+                addSingleDyeRecipe(exporter, whiteBase, result, dye, name + "_" + pattern);
+            }
+            for (ModColorSets.ColorSet colorSet : ModColorSets.ALL) {
+                String name = colorSet.name();
+                Item dye = ModItems.CUSTOM_DYES.get(name).get();
+                Block result = ModBlocks.PATTERN_BLOCKS.get(pattern).get(name).get();
+                addRingDyeRecipe(exporter, whiteBase, result, dye, name + "_" + pattern);
+                addSingleDyeRecipe(exporter, whiteBase, result, dye, name + "_" + pattern);
+            }
+        }
+
         // --- Wheat thatch: 6 wheat (2 rows) → 1 wheat_thatch ---
         ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, ModBlocks.WHEAT_THATCH.get())
                 .define('W', Items.WHEAT)
@@ -807,6 +831,14 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
                 .pattern("###")
                 .unlockedBy("has_source", has(source))
                 .save(exporter, getRecipePath("ott", recipeName + "_from_dyeing"));
+    }
+
+    private void addSingleDyeRecipe(RecipeOutput exporter, ItemLike source, ItemLike result, Item dye, String recipeName) {
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.BUILDING_BLOCKS, result)
+                .requires(source)
+                .requires(dye)
+                .unlockedBy("has_source", has(source))
+                .save(exporter, getRecipePath("ott", recipeName + "_from_dyeing_single"));
     }
 
     @SuppressWarnings("SameParameterValue")

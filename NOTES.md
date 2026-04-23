@@ -39,6 +39,8 @@ make additional wood items for starlight and midnight
 
 backtrack and review all previously added features
 
+check datagen logic for new custom colors and new wood sets to ensure all blocks are being created
+
 MUST be added to worldgen
 - limestone
 - white marble
