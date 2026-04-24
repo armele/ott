@@ -252,6 +252,9 @@ public enum OttCreativeCategories {
                     output.accept(set.beam());
                     output.accept(set.pergola());
                     output.accept(set.geometricWindow());
+                    output.accept(set.bannister());
+                    output.accept(set.supportSlab());
+                    output.accept(set.supportBeam());
                 });
                 ModBlocks.SEAGLASS_SETS.values().forEach(set -> {
                     output.accept(set.seaglass());
@@ -260,11 +263,6 @@ public enum OttCreativeCategories {
                     output.accept(set.wavesSeaglass());
                 });
                 ModBlocks.PATTERN_BLOCKS.values().forEach(colorMap -> colorMap.values().forEach(output::accept));
-                ModBlocks.PATTERN_PLATES.values().forEach(colorMap -> colorMap.values().forEach(output::accept));
-                ModBlocks.PATTERN_EDGES.values().forEach(colorMap -> colorMap.values().forEach(output::accept));
-                ModBlocks.PATTERN_BEAMS.values().forEach(colorMap -> colorMap.values().forEach(output::accept));
-                ModBlocks.PATTERN_PERGOLAS.values().forEach(colorMap -> colorMap.values().forEach(output::accept));
-                ModBlocks.PATTERN_WINDOWS.values().forEach(colorMap -> colorMap.values().forEach(output::accept));
                 ModBlocks.ELEVATORS.values().forEach(output::accept);
                 ModPatterns.ALL_COLORS.forEach(color -> output.accept(ModItems.CLAY_TILES.get(color.name()).get()));
                 ModBlocks.FUTONS.values().forEach(output::accept);
@@ -483,8 +481,6 @@ public enum OttCreativeCategories {
     VANPLUS("vanplus",
             () -> ModBlocks.OAK_BANNISTER.get().asItem(),
             (params, output) -> {
-                ModBlocks.VANILLA_WALLS.values().forEach(output::accept);
-
                 ModBlocks.VANILLA_STRUCTURAL_SETS.values().forEach(set -> {
                     output.accept(set.beam());
                     output.accept(set.pergola());
@@ -612,18 +608,13 @@ public enum OttCreativeCategories {
                 output.accept(ModBlocks.WHITE_MARBLE_FLOOR_TILE);
 
                 output.accept(ModBlocks.SANDSTONE_SLENDER_BRICKS);
-                output.accept(ModBlocks.SANDSTONE_SLENDER_BRICKS_WALL);
                 output.accept(ModBlocks.SANDSTONE_SLENDER_BRICKS_EDGE);
                 output.accept(ModBlocks.SANDSTONE_SLENDER_BRICKS_PLATE);
 
                 output.accept(ModBlocks.SANDSTONE_SLENDER_TURQUOISE_PATTERN);
-                output.accept(ModBlocks.SANDSTONE_SLENDER_TURQUOISE_PATTERN_WALL);
                 output.accept(ModBlocks.SANDSTONE_SLENDER_TURQUOISE_PATTERN_EDGE);
                 output.accept(ModBlocks.SANDSTONE_SLENDER_TURQUOISE_PATTERN_PLATE);
 
-                output.accept(ModBlocks.GOLD_PLATED_SMOOTH_BLOCK);
-                output.accept(ModBlocks.GOLD_PLATED_SMOOTH_EDGE);
-                output.accept(ModBlocks.GOLD_PLATED_SMOOTH_PLATE);
 
                 output.accept(ModBlocks.CHISELED_PLASTERED_STONE_PILLAR);
             }),

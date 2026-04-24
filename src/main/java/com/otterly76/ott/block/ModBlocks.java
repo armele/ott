@@ -415,13 +415,6 @@ public class ModBlocks {
             VANILLA_STRUCTURAL_SETS.put(name, com.otterly76.ott.block.wood.WoodSetBlockRegistrar.registerVanillaStructural(name));
         }
 
-        // Register wood wall blocks
-        for (String name : List.of("oak", "spruce", "birch", "jungle", "acacia", "dark_oak",
-                "mangrove", "cherry", "bamboo", "crimson", "warped")) {
-            VANILLA_WALLS.put(name, BLOCKS.register(name + "_wall",
-                    () -> new WallBlock(Properties.of().strength(2.0f).sound(SoundType.WOOD))));
-        }
-
         // Register all ott color sets
         com.otterly76.ott.color.ModColorSets.ALL.forEach(set -> COLOR_SETS.put(set.name(), com.otterly76.ott.block.color.ColorSetBlockRegistrar.registerOttColorSet(set.name())));
 
@@ -496,29 +489,14 @@ public class ModBlocks {
     private static void registerPatternBlocks() {
         for (String pattern : com.otterly76.ott.color.ModPatterns.PATTERNS) {
             boolean isPillar = com.otterly76.ott.color.ModPatterns.PILLAR_PATTERNS.contains(pattern);
-            Map<String, DeferredBlock<Block>>        colorMap   = new LinkedHashMap<>();
-            Map<String, DeferredBlock<PlateBlock>>   plateMap   = new LinkedHashMap<>();
-            Map<String, DeferredBlock<EdgeBlock>>    edgeMap    = new LinkedHashMap<>();
-            Map<String, DeferredBlock<BeamBlock>>    beamMap    = new LinkedHashMap<>();
-            Map<String, DeferredBlock<PergolaBlock>> pergolaMap = new LinkedHashMap<>();
-            Map<String, DeferredBlock<Block>>        windowMap  = new LinkedHashMap<>();
+            Map<String, DeferredBlock<Block>> colorMap = new LinkedHashMap<>();
             for (com.otterly76.ott.color.ModPatterns.ColorInfo color : com.otterly76.ott.color.ModPatterns.ALL_COLORS) {
                 String base = color.name() + "_" + pattern;
                 colorMap.put(color.name(), isPillar
                         ? registerAsPillar(base)
                         : register(base, () -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.COBBLESTONE))));
-                plateMap.put(color.name(),   register(base + "_plate",           () -> new PlateBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.COBBLESTONE).noOcclusion())));
-                edgeMap.put(color.name(),    register(base + "_edge",            () -> new EdgeBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.COBBLESTONE).noOcclusion())));
-                beamMap.put(color.name(),    register(base + "_beam",            () -> new BeamBlock(BlockBehaviour.Properties.of().strength(2.0f).sound(SoundType.STONE).noOcclusion())));
-                pergolaMap.put(color.name(), register(base + "_pergola",         () -> new PergolaBlock(BlockBehaviour.Properties.of().strength(2.0f).sound(SoundType.STONE).noOcclusion())));
-                windowMap.put(color.name(),  register(base + "_geometric_window", () -> new com.otterly76.ott.block.custom.GeometricWindowBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.COBBLESTONE).noOcclusion())));
             }
-            PATTERN_BLOCKS.put(pattern,   colorMap);
-            PATTERN_PLATES.put(pattern,   plateMap);
-            PATTERN_EDGES.put(pattern,    edgeMap);
-            PATTERN_BEAMS.put(pattern,    beamMap);
-            PATTERN_PERGOLAS.put(pattern, pergolaMap);
-            PATTERN_WINDOWS.put(pattern,  windowMap);
+            PATTERN_BLOCKS.put(pattern, colorMap);
         }
     }
 
@@ -581,8 +559,6 @@ public class ModBlocks {
      */
     public static final Map<String, WoodSetBlocks> WOOD_SETS = new LinkedHashMap<>();
 
-    /** Wood wall blocks (ott namespace). Key = wood name (e.g. "oak", "spruce"). */
-    public static final Map<String, DeferredBlock<WallBlock>> VANILLA_WALLS = new LinkedHashMap<>();
 
     /**
      * ott color sets (ott namespace). Key = color name (e.g. "aquamarine").
@@ -597,12 +573,7 @@ public class ModBlocks {
     /**
      * ott pattern blocks (ott namespace). Key1 = pattern name, Key2 = color name.
      */
-    public static final Map<String, Map<String, DeferredBlock<Block>>>        PATTERN_BLOCKS   = new LinkedHashMap<>();
-    public static final Map<String, Map<String, DeferredBlock<PlateBlock>>>   PATTERN_PLATES   = new LinkedHashMap<>();
-    public static final Map<String, Map<String, DeferredBlock<EdgeBlock>>>    PATTERN_EDGES    = new LinkedHashMap<>();
-    public static final Map<String, Map<String, DeferredBlock<BeamBlock>>>    PATTERN_BEAMS    = new LinkedHashMap<>();
-    public static final Map<String, Map<String, DeferredBlock<PergolaBlock>>> PATTERN_PERGOLAS = new LinkedHashMap<>();
-    public static final Map<String, Map<String, DeferredBlock<Block>>>        PATTERN_WINDOWS  = new LinkedHashMap<>();
+    public static final Map<String, Map<String, DeferredBlock<Block>>> PATTERN_BLOCKS = new LinkedHashMap<>();
 
     public record ColorSetBlocks(
             DeferredBlock<CandleBlock> candle,
@@ -622,7 +593,10 @@ public class ModBlocks {
             DeferredBlock<EdgeBlock> edge,
             DeferredBlock<BeamBlock> beam,
             DeferredBlock<PergolaBlock> pergola,
-            DeferredBlock<Block> geometricWindow
+            DeferredBlock<Block> geometricWindow,
+            DeferredBlock<com.otterly76.ott.block.custom.BannisterBlock> bannister,
+            DeferredBlock<com.otterly76.ott.block.custom.SupportSlabBlock> supportSlab,
+            DeferredBlock<com.otterly76.ott.block.custom.SupportBeamBlock> supportBeam
     ) {}
 
     public record SeaglassColorBlocks(
@@ -917,12 +891,10 @@ public class ModBlocks {
     // --- Sandstone Slender ---
     // -------------------------------------------------------------------------
     public static final DeferredBlock<Block>      SANDSTONE_SLENDER_BRICKS                   = register("sandstone_slender_bricks",                   () -> new Block(Properties.ofFullCopy(Blocks.SANDSTONE)));
-    public static final DeferredBlock<WallBlock>  SANDSTONE_SLENDER_BRICKS_WALL              = register("sandstone_slender_bricks_wall",              () -> new WallBlock(Properties.ofFullCopy(Blocks.SANDSTONE)));
     public static final DeferredBlock<EdgeBlock>  SANDSTONE_SLENDER_BRICKS_EDGE              = register("sandstone_slender_bricks_edge",              () -> new EdgeBlock(Properties.ofFullCopy(Blocks.SANDSTONE)));
     public static final DeferredBlock<PlateBlock> SANDSTONE_SLENDER_BRICKS_PLATE             = register("sandstone_slender_bricks_plate",             () -> new PlateBlock(Properties.ofFullCopy(Blocks.SANDSTONE)));
 
     public static final DeferredBlock<Block>      SANDSTONE_SLENDER_TURQUOISE_PATTERN        = register("sandstone_slender_turquoise_pattern",        () -> new Block(Properties.ofFullCopy(Blocks.SANDSTONE)));
-    public static final DeferredBlock<WallBlock>  SANDSTONE_SLENDER_TURQUOISE_PATTERN_WALL   = register("sandstone_slender_turquoise_pattern_wall",   () -> new WallBlock(Properties.ofFullCopy(Blocks.SANDSTONE)));
     public static final DeferredBlock<EdgeBlock>  SANDSTONE_SLENDER_TURQUOISE_PATTERN_EDGE   = register("sandstone_slender_turquoise_pattern_edge",   () -> new EdgeBlock(Properties.ofFullCopy(Blocks.SANDSTONE)));
     public static final DeferredBlock<PlateBlock> SANDSTONE_SLENDER_TURQUOISE_PATTERN_PLATE  = register("sandstone_slender_turquoise_pattern_plate",  () -> new PlateBlock(Properties.ofFullCopy(Blocks.SANDSTONE)));
 
@@ -946,12 +918,6 @@ public class ModBlocks {
     public static final DeferredBlock<CarpetBlock> ORNAMENTED_PURPLE_CARPET    = register("ornamented_purple_carpet",  () -> new CarpetBlock(Properties.of().strength(0.1F).sound(SoundType.WOOL)));
     public static final DeferredBlock<CarpetBlock> DELICATE_PURPLE_CARPET      = register("delicate_purple_carpet",    () -> new CarpetBlock(Properties.of().strength(0.1F).sound(SoundType.WOOL)));
 
-    // -------------------------------------------------------------------------
-    // --- DoTB Phase 4: Gold Plated Smooth (Persian) ---
-    // -------------------------------------------------------------------------
-    public static final DeferredBlock<Block>      GOLD_PLATED_SMOOTH_BLOCK   = register("gold_plated_smooth_block",   () -> new Block(Properties.ofFullCopy(Blocks.GOLD_BLOCK)));
-    public static final DeferredBlock<EdgeBlock>  GOLD_PLATED_SMOOTH_EDGE    = register("gold_plated_smooth_edge",    () -> new EdgeBlock(Properties.ofFullCopy(Blocks.GOLD_BLOCK)));
-    public static final DeferredBlock<PlateBlock> GOLD_PLATED_SMOOTH_PLATE   = register("gold_plated_smooth_plate",   () -> new PlateBlock(Properties.ofFullCopy(Blocks.GOLD_BLOCK)));
 
     // -------------------------------------------------------------------------
     // --- Oak structural blocks ---

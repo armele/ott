@@ -68,9 +68,19 @@ public class ColorSetBlockRegistrar {
         DeferredBlock<Block> geometricWindow = BLOCKS.register(color + "_geometric_window",
                 () -> new com.otterly76.ott.block.custom.GeometricWindowBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.WHITE_CONCRETE).noOcclusion()));
 
+        DeferredBlock<com.otterly76.ott.block.custom.BannisterBlock> bannister = BLOCKS.register(color + "_bannister",
+                () -> new com.otterly76.ott.block.custom.BannisterBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.WHITE_CONCRETE).noOcclusion()));
+
+        DeferredBlock<com.otterly76.ott.block.custom.SupportSlabBlock> supportSlab = BLOCKS.register(color + "_support_slab",
+                () -> new com.otterly76.ott.block.custom.SupportSlabBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.WHITE_CONCRETE).noOcclusion()));
+
+        DeferredBlock<com.otterly76.ott.block.custom.SupportBeamBlock> supportBeam = BLOCKS.register(color + "_support_beam",
+                () -> new com.otterly76.ott.block.custom.SupportBeamBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.WHITE_CONCRETE).noOcclusion()));
+
         return new ModBlocks.ColorSetBlocks(
                 candle, concrete, concretePowder, glazedTerracotta, shulkerBox, stainedGlass, stainedGlassPane, terracotta, wool, bed, carpet, banner, wallBanner,
-                plate, edge, beam, pergola, geometricWindow
+                plate, edge, beam, pergola, geometricWindow,
+                bannister, supportSlab, supportBeam
         );
     }
 }

@@ -50,13 +50,19 @@ public class ModItemModelProvider extends ItemModelProvider {
 
             parentItemToBlockModel(set.leaves().getId().getPath(), woodDir + set.leaves().getId().getPath());
 
-            parentItemToBlockModel(set.beam().getId().getPath(),        "block/" + setName + "/" + set.beam().getId().getPath() + "_x");
-            parentItemToBlockModel(set.pergola().getId().getPath(),     "block/" + setName + "/" + set.pergola().getId().getPath() + "_x");
+            ResourceLocation beamTex  = modLoc("block/beam/"    + setName + "_beam");
+            ResourceLocation pergTex  = modLoc("block/pergola/" + setName + "_pergola");
+            ResourceLocation plankTex = modLoc("block/wood/" + setName + "/planks");
+            withExistingParent(set.beam().getId().getPath(),    modLoc("item/template_beam"))
+                    .texture("0", beamTex).texture("particle", beamTex);
+            withExistingParent(set.pergola().getId().getPath(), modLoc("item/template_pergola"))
+                    .texture("0", pergTex).texture("particle", pergTex);
+            withExistingParent(set.supportBeam().getId().getPath(), modLoc("item/template_support_beam"))
+                    .texture("texture", beamTex).texture("slab", plankTex).texture("particle", beamTex);
             parentItemToBlockModel(set.planksPlate().getId().getPath(), "block/" + setName + "/" + set.planksPlate().getId().getPath());
             parentItemToBlockModel(set.planksEdge().getId().getPath(),  "block/" + setName + "/" + set.planksEdge().getId().getPath());
             parentItemToBlockModel(set.bannister().getId().getPath(),    "block/" + setName + "/" + set.bannister().getId().getPath());
             parentItemToBlockModel(set.supportSlab().getId().getPath(), "block/" + setName + "/" + set.supportSlab().getId().getPath());
-            parentItemToBlockModel(set.supportBeam().getId().getPath(), "block/" + setName + "/" + set.supportSlab().getId().getPath());
 
             // Signs: use vanilla 3D sign item models, swap textures
             withExistingParent(setName + "_sign", mcLoc("item/sign_base"))
@@ -76,13 +82,19 @@ public class ModItemModelProvider extends ItemModelProvider {
         // Oak structural item models are pre-existing hand-written files; skip to avoid duplicates.
         ModBlocks.VANILLA_STRUCTURAL_SETS.forEach((setName, set) -> {
             if (setName.equals("oak")) return;
-            parentItemToBlockModel(set.beam().getId().getPath(),        "block/" + setName + "/" + set.beam().getId().getPath() + "_x");
-            parentItemToBlockModel(set.pergola().getId().getPath(),     "block/" + setName + "/" + set.pergola().getId().getPath() + "_x");
+            ResourceLocation beamTex = modLoc("block/beam/"    + setName + "_beam");
+            ResourceLocation pergTex = modLoc("block/pergola/" + setName + "_pergola");
+            ResourceLocation plankTex = ResourceLocation.withDefaultNamespace("block/" + setName + "_planks");
+            withExistingParent(set.beam().getId().getPath(),    modLoc("item/template_beam"))
+                    .texture("0", beamTex).texture("particle", beamTex);
+            withExistingParent(set.pergola().getId().getPath(), modLoc("item/template_pergola"))
+                    .texture("0", pergTex).texture("particle", pergTex);
+            withExistingParent(set.supportBeam().getId().getPath(), modLoc("item/template_support_beam"))
+                    .texture("texture", beamTex).texture("slab", plankTex).texture("particle", beamTex);
             parentItemToBlockModel(set.planksPlate().getId().getPath(), "block/" + setName + "/" + set.planksPlate().getId().getPath());
             parentItemToBlockModel(set.planksEdge().getId().getPath(),  "block/" + setName + "/" + set.planksEdge().getId().getPath());
             parentItemToBlockModel(set.bannister().getId().getPath(),    "block/" + setName + "/" + set.bannister().getId().getPath());
             parentItemToBlockModel(set.supportSlab().getId().getPath(), "block/" + setName + "/" + set.supportSlab().getId().getPath());
-            parentItemToBlockModel(set.supportBeam().getId().getPath(), "block/" + setName + "/" + set.supportSlab().getId().getPath());
         });
 
         ModBlocks.COLOR_SETS.forEach((color, set) -> {

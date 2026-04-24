@@ -625,11 +625,9 @@ public class ModItems {
     public static final DeferredHolder<Item, BlockItem> STRAIGHT_RAKED_GRAVEL = registerBlockItem("straight_raked_gravel", ModBlocks.STRAIGHT_RAKED_GRAVEL);
 
     public static final DeferredHolder<Item, BlockItem> SANDSTONE_SLENDER_BRICKS = registerBlockItem("sandstone_slender_bricks", ModBlocks.SANDSTONE_SLENDER_BRICKS);
-    public static final DeferredHolder<Item, BlockItem> SANDSTONE_SLENDER_BRICKS_WALL = registerBlockItem("sandstone_slender_bricks_wall", ModBlocks.SANDSTONE_SLENDER_BRICKS_WALL);
     public static final DeferredHolder<Item, BlockItem> SANDSTONE_SLENDER_BRICKS_EDGE = registerBlockItem("sandstone_slender_bricks_edge", ModBlocks.SANDSTONE_SLENDER_BRICKS_EDGE);
     public static final DeferredHolder<Item, BlockItem> SANDSTONE_SLENDER_BRICKS_PLATE = registerBlockItem("sandstone_slender_bricks_plate", ModBlocks.SANDSTONE_SLENDER_BRICKS_PLATE);
     public static final DeferredHolder<Item, BlockItem> SANDSTONE_SLENDER_TURQUOISE_PATTERN = registerBlockItem("sandstone_slender_turquoise_pattern", ModBlocks.SANDSTONE_SLENDER_TURQUOISE_PATTERN);
-    public static final DeferredHolder<Item, BlockItem> SANDSTONE_SLENDER_TURQUOISE_PATTERN_WALL = registerBlockItem("sandstone_slender_turquoise_pattern_wall", ModBlocks.SANDSTONE_SLENDER_TURQUOISE_PATTERN_WALL);
     public static final DeferredHolder<Item, BlockItem> SANDSTONE_SLENDER_TURQUOISE_PATTERN_EDGE = registerBlockItem("sandstone_slender_turquoise_pattern_edge", ModBlocks.SANDSTONE_SLENDER_TURQUOISE_PATTERN_EDGE);
     public static final DeferredHolder<Item, BlockItem> SANDSTONE_SLENDER_TURQUOISE_PATTERN_PLATE = registerBlockItem("sandstone_slender_turquoise_pattern_plate", ModBlocks.SANDSTONE_SLENDER_TURQUOISE_PATTERN_PLATE);
 
@@ -650,9 +648,6 @@ public class ModItems {
     public static final DeferredHolder<Item, BlockItem> ORNAMENTED_PURPLE_CARPET = registerBlockItem("ornamented_purple_carpet", ModBlocks.ORNAMENTED_PURPLE_CARPET);
     public static final DeferredHolder<Item, BlockItem> DELICATE_PURPLE_CARPET = registerBlockItem("delicate_purple_carpet", ModBlocks.DELICATE_PURPLE_CARPET);
 
-    public static final DeferredHolder<Item, BlockItem> GOLD_PLATED_SMOOTH_BLOCK = registerBlockItem("gold_plated_smooth_block", ModBlocks.GOLD_PLATED_SMOOTH_BLOCK);
-    public static final DeferredHolder<Item, BlockItem> GOLD_PLATED_SMOOTH_EDGE = registerBlockItem("gold_plated_smooth_edge", ModBlocks.GOLD_PLATED_SMOOTH_EDGE);
-    public static final DeferredHolder<Item, BlockItem> GOLD_PLATED_SMOOTH_PLATE = registerBlockItem("gold_plated_smooth_plate", ModBlocks.GOLD_PLATED_SMOOTH_PLATE);
 
     public static final DeferredHolder<Item, BlockItem> OAK_PERGOLA = registerBlockItem("oak_pergola", ModBlocks.OAK_PERGOLA);
     public static final DeferredHolder<Item, BlockItem> OAK_BEAM = registerBlockItem("oak_beam", ModBlocks.OAK_BEAM);
@@ -746,9 +741,6 @@ public class ModItems {
             registerBlockItem(set.geometricWindow());
         });
 
-        // REGISTRATION: Wood Wall Block Items
-        ModBlocks.VANILLA_WALLS.values().forEach(ModItems::registerBlockItem);
-
         // REGISTRATION: Color Sets
         ModBlocks.COLOR_SETS.forEach((color, set) -> {
             registerBlockItem(set.candle());
@@ -768,15 +760,13 @@ public class ModItems {
             registerBlockItem(set.beam());
             registerBlockItem(set.pergola());
             registerBlockItem(set.geometricWindow());
+            registerBlockItem(set.bannister());
+            registerBlockItem(set.supportSlab());
+            registerBlockItem(set.supportBeam());
         });
 
-        // REGISTRATION: Pattern Blocks + Windows
+        // REGISTRATION: Pattern Blocks
         ModBlocks.PATTERN_BLOCKS.forEach((pattern, colorMap) -> colorMap.values().forEach(ModItems::registerBlockItem));
-        ModBlocks.PATTERN_PLATES.forEach((pattern, map) -> map.values().forEach(ModItems::registerBlockItem));
-        ModBlocks.PATTERN_EDGES.forEach((pattern, map) -> map.values().forEach(ModItems::registerBlockItem));
-        ModBlocks.PATTERN_BEAMS.forEach((pattern, map) -> map.values().forEach(ModItems::registerBlockItem));
-        ModBlocks.PATTERN_PERGOLAS.forEach((pattern, map) -> map.values().forEach(ModItems::registerBlockItem));
-        ModBlocks.PATTERN_WINDOWS.forEach((pattern, colorMap) -> colorMap.values().forEach(ModItems::registerBlockItem));
 
         // REGISTRATION: Elevators
         ModBlocks.ELEVATORS.values().forEach(ModItems::registerBlockItem);

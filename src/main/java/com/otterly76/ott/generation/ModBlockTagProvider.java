@@ -275,7 +275,6 @@ public class ModBlockTagProvider extends BlockTagsProvider {
                 ModBlocks.WHITE_MARBLE_PILLAR_CAP.get(),
                 ModBlocks.SANDSTONE_SLENDER_BRICKS.get(),
                 ModBlocks.SANDSTONE_SLENDER_TURQUOISE_PATTERN.get(),
-                ModBlocks.GOLD_PLATED_SMOOTH_BLOCK.get(),
                 ModBlocks.STONE_BRICKS_MASONRY.get(),
                 ModBlocks.ORNAMENTED_RED_WOOL.get(),
                 ModBlocks.DELICATE_RED_WOOL.get(),
@@ -706,10 +705,18 @@ public class ModBlockTagProvider extends BlockTagsProvider {
                 set.glazedTerracotta().getKey(),
                 set.shulkerBox().getKey(),
                 set.stainedGlass().getKey(),
-                set.stainedGlassPane().getKey()
+                set.stainedGlassPane().getKey(),
+                set.plate().getKey(),
+                set.edge().getKey(),
+                set.geometricWindow().getKey(),
+                set.bannister().getKey(),
+                set.supportSlab().getKey(),
+                set.supportBeam().getKey()
         );
         this.tag(BlockTags.MINEABLE_WITH_SHOVEL).add(set.concretePowder().getKey());
-        this.tag(BlockTags.MINEABLE_WITH_AXE).add(set.bed().getKey()).add(set.banner().getKey()).addOptional(set.wallBanner().getId());
+        this.tag(BlockTags.MINEABLE_WITH_AXE)
+                .add(set.bed().getKey()).add(set.banner().getKey()).addOptional(set.wallBanner().getId())
+                .add(set.beam().getKey()).add(set.pergola().getKey());
         this.tag(BlockTags.MINEABLE_WITH_HOE).add(set.carpet().getKey());
 
         // Mod/Common tags

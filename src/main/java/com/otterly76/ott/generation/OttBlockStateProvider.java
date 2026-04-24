@@ -97,7 +97,7 @@ public class OttBlockStateProvider extends ModBlockStateProvider {
         ModBlocks.COLOR_SETS.forEach(this::registerColorSet);
 
         registerPatternBlocks();
-        registerPatternShapedBlocks();
+        registerMiscBlocks();
         registerElevators();
 
         registerLantern(ModBlocks.PROTECTIVE_LANTERN.get(), "protective");
@@ -292,7 +292,7 @@ public class OttBlockStateProvider extends ModBlockStateProvider {
         registerBanner(set.banner().get(), set.wallBanner().get(), color, dir);
 
         // ── Structural shapes ─────────────────────────────────────────────────
-        ResourceLocation woolTex = modLoc("block/color_set/" + color + "/wool");
+        ResourceLocation woolTex = modLoc("block/color_set/" + color + "/concrete");
 
         // Plate
         ModelFile csPlate      = models().withExistingParent(dir + color + "_plate",       modLoc("block/plate"))
@@ -353,6 +353,55 @@ public class OttBlockStateProvider extends ModBlockStateProvider {
                 .renderType("minecraft:cutout");
         horizontalBlock(set.geometricWindow().get(), csWindow);
         itemModels().withExistingParent(color + "_geometric_window", csWindow.getLocation());
+
+        // Bannister
+        ModelFile csBannister      = models().withExistingParent(dir + color + "_bannister",       modLoc("block/oak/oak_bannister"))
+                .texture("0", woolTex).texture("particle", woolTex);
+        ModelFile csBannisterOuter = models().withExistingParent(dir + color + "_bannister_outer", modLoc("block/oak/oak_bannister_outer"))
+                .texture("0", woolTex).texture("particle", woolTex);
+        ModelFile csBannisterInner = models().withExistingParent(dir + color + "_bannister_inner", modLoc("block/oak/oak_bannister_inner"))
+                .texture("0", woolTex).texture("particle", woolTex);
+        registerFacingShapeBlock(set.bannister().get(), csBannister, csBannisterOuter, csBannisterInner);
+        itemModels().withExistingParent(color + "_bannister", csBannister.getLocation());
+
+        // Support shared models
+        ModelFile csSup4   = models().withExistingParent(dir + color + "_support_4_pixels",  modLoc("block/oak/oak_support_4_pixels"))
+                .texture("slab", woolTex).texture("particle", woolTex);
+        ModelFile csSup6   = models().withExistingParent(dir + color + "_support_6_pixels",  modLoc("block/oak/oak_support_6_pixels"))
+                .texture("slab", woolTex).texture("particle", woolTex);
+        ModelFile csSup8   = models().withExistingParent(dir + color + "_support_8_pixels",  modLoc("block/oak/oak_support_8_pixels"))
+                .texture("slab", woolTex).texture("particle", woolTex);
+        ModelFile csSup10  = models().withExistingParent(dir + color + "_support_10_pixels", modLoc("block/oak/oak_support_10_pixels"))
+                .texture("slab", woolTex).texture("particle", woolTex);
+        ModelFile csSupSlab = models().withExistingParent(dir + color + "_support_slab",     modLoc("block/oak/oak_support_slab"))
+                .texture("slab", woolTex).texture("particle", woolTex);
+
+        // Support Slab
+        getMultipartBuilder(set.supportSlab().get())
+                .part().modelFile(csSupSlab).addModel().end()
+                .part().modelFile(csSup4).addModel() .condition(SupportSlabBlock.PILLAR_CONNECTION, PillarConnection.FOUR).end()
+                .part().modelFile(csSup6).addModel() .condition(SupportSlabBlock.PILLAR_CONNECTION, PillarConnection.SIX).end()
+                .part().modelFile(csSup8).addModel() .condition(SupportSlabBlock.PILLAR_CONNECTION, PillarConnection.EIGHT).end()
+                .part().modelFile(csSup10).addModel().condition(SupportSlabBlock.PILLAR_CONNECTION, PillarConnection.TEN).end();
+        itemModels().withExistingParent(color + "_support_slab", csSupSlab.getLocation());
+
+        // Support Beam
+        ModelFile csSupBeamX  = models().withExistingParent(dir + color + "_support_beam_x",   modLoc("block/oak/oak_beam_x"))
+                .renderType("minecraft:cutout").texture("1", woolTex).texture("particle", woolTex);
+        ModelFile csSupBeamXZ = models().withExistingParent(dir + color + "_support_beam_x_z", modLoc("block/oak/oak_beam_x_z"))
+                .renderType("minecraft:cutout").texture("1", woolTex).texture("particle", woolTex);
+        getMultipartBuilder(set.supportBeam().get())
+                .part().modelFile(csSupSlab).addModel().end()
+                .part().modelFile(csSupBeamX).addModel()              .condition(SupportBeamBlock.HORIZONTAL_AXIS, Direction.Axis.X).condition(SupportBeamBlock.SUBAXIS, false).end()
+                .part().modelFile(csSupBeamX).rotationY(90).addModel().condition(SupportBeamBlock.HORIZONTAL_AXIS, Direction.Axis.Z).condition(SupportBeamBlock.SUBAXIS, false).end()
+                .part().modelFile(csSupBeamXZ).addModel()             .condition(SupportBeamBlock.HORIZONTAL_AXIS, Direction.Axis.X).condition(SupportBeamBlock.SUBAXIS, true).end()
+                .part().modelFile(csSupBeamXZ).rotationY(90).addModel().condition(SupportBeamBlock.HORIZONTAL_AXIS, Direction.Axis.Z).condition(SupportBeamBlock.SUBAXIS, true).end()
+                .part().modelFile(csSup4).addModel() .condition(SupportBeamBlock.PILLAR_CONNECTION, PillarConnection.FOUR).end()
+                .part().modelFile(csSup6).addModel() .condition(SupportBeamBlock.PILLAR_CONNECTION, PillarConnection.SIX).end()
+                .part().modelFile(csSup8).addModel() .condition(SupportBeamBlock.PILLAR_CONNECTION, PillarConnection.EIGHT).end()
+                .part().modelFile(csSup10).addModel().condition(SupportBeamBlock.PILLAR_CONNECTION, PillarConnection.TEN).end();
+        itemModels().withExistingParent(color + "_support_beam", modLoc("item/template_support_beam"))
+                .texture("texture", woolTex).texture("slab", woolTex).texture("particle", woolTex);
     }
 
     private void registerSeaglassColor(String color, ModBlocks.SeaglassColorBlocks set) {
@@ -931,100 +980,6 @@ public class OttBlockStateProvider extends ModBlockStateProvider {
         );
     }
 
-    private void registerPatternShapedBlocks() {
-        ModBlocks.PATTERN_PLATES.forEach((pattern, colorMap) -> {
-            ResourceLocation patTex = modLoc("block/patterns/" + pattern);
-            colorMap.forEach((colorName, block) -> {
-                String colorDir = "block/" + colorName + "/";
-                String base = colorDir + colorName + "_" + pattern;
-                ModelFile plate      = models().withExistingParent(base + "_plate",       modLoc("block/plate"))
-                        .texture("side", patTex).texture("top", patTex).texture("frieze", patTex);
-                ModelFile plateOuter = models().withExistingParent(base + "_plate_outer", modLoc("block/plate_outer"))
-                        .texture("top", patTex).texture("frieze", patTex);
-                ModelFile plateInner = models().withExistingParent(base + "_plate_inner", modLoc("block/plate_inner"))
-                        .texture("side", patTex).texture("top", patTex).texture("frieze", patTex);
-                registerFacingShapeBlock(block.get(), plate, plateOuter, plateInner);
-                itemModels().withExistingParent(colorName + "_" + pattern + "_plate", plate.getLocation());
-            });
-        });
-
-        ModBlocks.PATTERN_EDGES.forEach((pattern, colorMap) -> {
-            ResourceLocation patTex = modLoc("block/patterns/" + pattern);
-            colorMap.forEach((colorName, block) -> {
-                String colorDir = "block/" + colorName + "/";
-                String base = colorDir + colorName + "_" + pattern;
-                ModelFile edge      = models().withExistingParent(base + "_edge",       modLoc("block/small_plate"))
-                        .texture("side", patTex).texture("frieze", patTex);
-                ModelFile edgeOuter = models().withExistingParent(base + "_edge_outer", modLoc("block/small_plate_outer"))
-                        .texture("top", patTex).texture("frieze", patTex);
-                ModelFile edgeInner = models().withExistingParent(base + "_edge_inner", modLoc("block/small_plate_inner"))
-                        .texture("side", patTex).texture("top", patTex).texture("frieze", patTex);
-                registerFacingShapeHalfBlock(block.get(), edge, edgeOuter, edgeInner);
-                itemModels().withExistingParent(colorName + "_" + pattern + "_edge", edge.getLocation());
-            });
-        });
-
-        ModBlocks.PATTERN_BEAMS.forEach((pattern, colorMap) -> {
-            ResourceLocation patTex = modLoc("block/patterns/" + pattern);
-            colorMap.forEach((colorName, block) -> {
-                String colorDir = "block/" + colorName + "/";
-                String base = colorDir + colorName + "_" + pattern;
-                ModelFile beamY   = models().withExistingParent(base + "_beam_y",     modLoc("block/oak/oak_beam_y"))
-                        .renderType("minecraft:cutout").texture("1", patTex).texture("particle", patTex);
-                ModelFile beamX   = models().withExistingParent(base + "_beam_x",     modLoc("block/oak/oak_beam_x"))
-                        .renderType("minecraft:cutout").texture("1", patTex).texture("particle", patTex);
-                ModelFile beamXZ  = models().withExistingParent(base + "_beam_x_z",   modLoc("block/oak/oak_beam_x_z"))
-                        .renderType("minecraft:cutout").texture("1", patTex).texture("particle", patTex);
-                ModelFile beamBot = models().withExistingParent(base + "_beam_bottom", modLoc("block/oak/oak_beam_bottom"))
-                        .renderType("minecraft:cutout").texture("texture", patTex).texture("particle", patTex);
-                getMultipartBuilder(block.get())
-                        .part().modelFile(beamY).addModel()               .condition(BeamBlock.AXIS_Y, true).end()
-                        .part().modelFile(beamX).addModel()               .condition(BeamBlock.AXIS_X, true).condition(BeamBlock.AXIS_Z, false).end()
-                        .part().modelFile(beamX).rotationY(90).addModel() .condition(BeamBlock.AXIS_X, false).condition(BeamBlock.AXIS_Z, true).end()
-                        .part().modelFile(beamXZ).addModel()              .condition(BeamBlock.AXIS_X, true).condition(BeamBlock.AXIS_Z, true).end()
-                        .part().modelFile(beamBot).addModel()             .condition(BeamBlock.BOTTOM, true).end();
-                itemModels().withExistingParent(colorName + "_" + pattern + "_beam", modLoc("item/template_beam"))
-                        .texture("0", patTex).texture("particle", patTex);
-            });
-        });
-
-        ModBlocks.PATTERN_PERGOLAS.forEach((pattern, colorMap) -> {
-            ResourceLocation patTex = modLoc("block/patterns/" + pattern);
-            colorMap.forEach((colorName, block) -> {
-                String colorDir = "block/" + colorName + "/";
-                String base = colorDir + colorName + "_" + pattern;
-                ModelFile pergolaY  = models().withExistingParent(base + "_pergola_y",   modLoc("block/oak/oak_pergola_y"))
-                        .renderType("minecraft:cutout").texture("0", patTex).texture("particle", patTex);
-                ModelFile pergolaX  = models().withExistingParent(base + "_pergola_x",   modLoc("block/oak/oak_pergola_x"))
-                        .renderType("minecraft:cutout").texture("0", patTex).texture("particle", patTex);
-                ModelFile pergolaXZ = models().withExistingParent(base + "_pergola_x_z", modLoc("block/oak/oak_pergola_x_z"))
-                        .renderType("minecraft:cutout").texture("0", patTex).texture("particle", patTex);
-                getMultipartBuilder(block.get())
-                        .part().modelFile(pergolaY).addModel()               .condition(PergolaBlock.AXIS_Y, true).end()
-                        .part().modelFile(pergolaX).addModel()               .condition(PergolaBlock.AXIS_X, true).condition(PergolaBlock.AXIS_Z, false).end()
-                        .part().modelFile(pergolaX).rotationY(90).addModel() .condition(PergolaBlock.AXIS_X, false).condition(PergolaBlock.AXIS_Z, true).end()
-                        .part().modelFile(pergolaXZ).addModel()              .condition(PergolaBlock.AXIS_X, true).condition(PergolaBlock.AXIS_Z, true).end();
-                itemModels().withExistingParent(colorName + "_" + pattern + "_pergola", modLoc("item/template_pergola"))
-                        .texture("0", patTex).texture("particle", patTex);
-            });
-        });
-
-        registerMiscBlocks();
-
-        ModBlocks.PATTERN_WINDOWS.forEach((pattern, colorMap) -> {
-            ResourceLocation patTex = modLoc("block/patterns/" + pattern);
-            colorMap.forEach((colorName, block) -> {
-                String colorDir = "block/" + colorName + "/";
-                String itemName = colorName + "_" + pattern + "_geometric_window";
-                ModelFile window = models().withExistingParent(colorDir + itemName, modLoc("block/geometric_window"))
-                        .texture("texture", patTex).texture("particle", patTex)
-                        .renderType("minecraft:cutout");
-                horizontalBlock(block.get(), window);
-                itemModels().withExistingParent(itemName, window.getLocation());
-            });
-        });
-
-    }
 
     private void registerElevators() {
         ResourceLocation elevatorTexture = modLoc("block/base/elevator");
@@ -1090,10 +1045,6 @@ public class OttBlockStateProvider extends ModBlockStateProvider {
         simpleBlockWithItem(ModBlocks.REFINED_GLOWSTONE.get(),    models().getExistingFile(modLoc("block/glowstone/refined_glowstone")));
         simpleBlockWithItem(ModBlocks.GLASS_JAR.get(),           models().getExistingFile(modLoc("block/glass_jar")));
 
-        // ── Gold-plated smooth ────────────────────────────────────────────────
-        simpleBlockWithItem(ModBlocks.GOLD_PLATED_SMOOTH_BLOCK.get(), models().getExistingFile(modLoc("block/gold_plated_smooth/gold_plated_smooth_block")));
-        existingEdgeBlock(ModBlocks.GOLD_PLATED_SMOOTH_EDGE.get(),          "block/gold_plated_smooth/gold_plated_smooth_edge");
-        existingFacingShapeBlock(ModBlocks.GOLD_PLATED_SMOOTH_PLATE.get(),  "block/gold_plated_smooth/gold_plated_smooth_plate");
 
         // ── Roofing slates ────────────────────────────────────────────────────
         simpleBlockWithItem(ModBlocks.ROOFING_SLATES.get(),      models().getExistingFile(modLoc("block/roofing_slates")));

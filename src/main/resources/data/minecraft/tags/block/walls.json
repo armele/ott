@@ -1,16 +1,4 @@
 {
   "replace": false,
-  "values": [
-    "ott:oak_wall",
-    "ott:spruce_wall",
-    "ott:birch_wall",
-    "ott:jungle_wall",
-    "ott:acacia_wall",
-    "ott:dark_oak_wall",
-    "ott:mangrove_wall",
-    "ott:cherry_wall",
-    "ott:bamboo_wall",
-    "ott:crimson_wall",
-    "ott:warped_wall"
-  ]
+  "values": []
 }
