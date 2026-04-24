@@ -70,6 +70,11 @@ public class OttBlockStateProvider extends ModBlockStateProvider {
         horizontalBlock(ModBlocks.WOODCUTTER.get(), woodcutterModel);
         itemModels().withExistingParent("woodcutter", modLoc("block/woodcutter"));
 
+        // Engraving table (horizontal facing block)
+        ModelFile engravingTableModel = models().getExistingFile(modLoc("block/engraving"));
+        horizontalBlock(ModBlocks.ENGRAVING_TABLE.get(), engravingTableModel);
+        itemModels().withExistingParent("engraving_table", modLoc("block/engraving"));
+
         ModHedgeVariants.ALL.forEach(variant -> {
             String name = variant.name();
             ResourceLocation leavesTexture = modLoc("block/flora/" + name + "_hedge");

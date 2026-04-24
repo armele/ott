@@ -61,6 +61,7 @@ public class ModItems {
     public static final DeferredHolder<Item, BlockItem> PROTECTIVE_LANTERN = registerBlockItem("protective_lantern", ModBlocks.PROTECTIVE_LANTERN);
     public static final DeferredHolder<Item, BlockItem> WEATHERING_STATION = registerBlockItem("weathering_station", ModBlocks.WEATHERING_STATION);
     public static final DeferredHolder<Item, BlockItem> WOODCUTTER = registerBlockItem("woodcutter", ModBlocks.WOODCUTTER);
+    public static final DeferredHolder<Item, BlockItem> ENGRAVING_TABLE = registerBlockItem("engraving_table", ModBlocks.ENGRAVING_TABLE);
     public static final DeferredHolder<Item, BlockItem> WATER_LANTERN = registerBlockItem("water_lantern", ModBlocks.WATER_LANTERN);
     public static final DeferredHolder<Item, BlockItem> LAVA_LANTERN = registerBlockItem("lava_lantern", ModBlocks.LAVA_LANTERN);
     public static final DeferredHolder<Item, BlockItem> SMITE_LANTERN = registerBlockItem("smite_lantern", ModBlocks.SMITE_LANTERN);
