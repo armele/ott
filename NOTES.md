@@ -45,8 +45,6 @@ add nautilus owner follow logic
 add hanging/wall models for all lanterns
 starlight lamp recipe
 
-pale oak, starlight, midnight; beehive, two-tone wall
-
 ladders
 lanterns
 
@@ -57,7 +55,6 @@ add blocks from Chipped
   - stone bordered gravel
   - sandstone bordered sand
   - salt blocks
-  - custom color and pattern blocks
 - create variants for pale oak log, wood, leaves, etc
 - create variants for resin
 - check for missing textures by type
@@ -65,11 +62,9 @@ add blocks from Chipped
 update newer textures to x32
 
 make additional wood items for starlight and midnight
-- bookshelf, beehive, chest, trapped chest, barrel, ladder, shelves, chiseled bookshelf
+- bookshelf, chest, trapped chest, barrel, ladder, chiseled bookshelf
 
 backtrack and review all previously added features
-
-check datagen logic for new custom colors and new wood sets to ensure all blocks are being created
 
 MUST be added to worldgen
 - limestone
@@ -77,7 +72,6 @@ MUST be added to worldgen
 - black marble
 - slate?
   - roofing slates
-
 
 Mods to Implement:
 =====
@@ -173,7 +167,7 @@ Bibliocraft
 
 Add To Datagen:
 =====
-Add barrels, chests, trapped chests, ladders, bookshelves, shelves, chiseled bookshelves, to wood set process
+Add barrels, chests, trapped chests, ladders, bookshelves, chiseled bookshelves, to wood set process
 Add bundles, happy ghast harness, llama swag, map decor banner to custom color set process
 
 Textures Nonsense:
