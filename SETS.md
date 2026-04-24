@@ -5,7 +5,6 @@ carpet
 terracotta
 concrete
 concrete powder
-- glazed terracotta
 stained glass
 stained glass pane
 shulker box
@@ -39,29 +38,20 @@ delicate plastered stone
 banded plastered stone
 gilded plastered stone
 
+- glazed terracotta
+
+- DYE RECIPE
+
 Wood Set
 =====
-- log
-- log top
-- wood
-- stripped log
-- stripped log top
-- stripped wood
-- planks
 stairs
 slab
 fence
 fence gate
-- door top
-- door bottom
-- trapdoor
 pressure plate
 button
-- leaves
 sign
 hanging sign
-- boat
-- chest boat
 plate
 edge
 beam
@@ -70,5 +60,25 @@ support beam
 support slab
 bannister
 geometric window
-- beehive
-- shelves ??
+
+- log
+- log top
+- wood
+- stripped log
+- stripped log top
+- stripped wood
+- planks
+- door top
+- door bottom
+- trapdoor
+- leaves
+- boat
+- chest boat
+- beehive front
+- beehive front honey
+- beehive side
+- beehive end
+- shelf
+
+- SAPLING
+- POTTED SAPLING

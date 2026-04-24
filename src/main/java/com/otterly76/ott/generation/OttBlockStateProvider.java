@@ -760,6 +760,51 @@ public class OttBlockStateProvider extends ModBlockStateProvider {
                 .renderType("minecraft:cutout");
         horizontalBlock(set.geometricWindow().get(), wsWindow);
         itemModels().withExistingParent(setName + "_geometric_window", wsWindow.getLocation());
+
+        // ── Beehive ───────────────────────────────────────────────────────────
+        ModelFile beehiveNormal = models().getBuilder("block/beehive/" + setName + "_beehive")
+                .parent(new ModelFile.UncheckedModelFile(mcLoc("block/orientable_with_bottom")))
+                .texture("bottom",   modLoc("block/beehive/" + setName + "_beehive_end"))
+                .texture("front",    modLoc("block/beehive/" + setName + "_beehive_front"))
+                .texture("particle", modLoc("block/beehive/" + setName + "_beehive_side"))
+                .texture("side",     modLoc("block/beehive/" + setName + "_beehive_side"))
+                .texture("top",      modLoc("block/beehive/" + setName + "_beehive_end"));
+        ModelFile beehiveHoney = models().getBuilder("block/beehive/" + setName + "_beehive_honey")
+                .parent(new ModelFile.UncheckedModelFile(modLoc("block/beehive/" + setName + "_beehive")))
+                .texture("front", modLoc("block/beehive/" + setName + "_beehive_front_honey"));
+
+        var beehiveVsb = getVariantBuilder(set.beehive().get());
+        for (Direction facing : new Direction[]{Direction.NORTH, Direction.EAST, Direction.SOUTH, Direction.WEST}) {
+            int yRot = switch (facing) { case EAST -> 90; case SOUTH -> 180; case WEST -> 270; default -> 0; };
+            for (int honey = 0; honey <= 5; honey++) {
+                beehiveVsb.partialState()
+                        .with(BeehiveBlock.FACING, facing)
+                        .with(BeehiveBlock.HONEY_LEVEL, honey)
+                        .modelForState().modelFile(honey == 5 ? beehiveHoney : beehiveNormal).rotationY(yRot).addModel();
+            }
+        }
+
+        // ── Shelf ─────────────────────────────────────────────────────────────
+        ResourceLocation shelfTex        = modLoc("block/wood/" + setName + "/shelf");
+        ResourceLocation strippedLogPart = modLoc("block/wood/" + setName + "/stripped_log");
+        ModelFile shelfBody        = models().withExistingParent(dir + setName + "_shelf",            mcLoc("block/template_shelf_body"))       .texture("all", shelfTex).texture("particle", strippedLogPart);
+        ModelFile shelfUnpowered   = models().withExistingParent(dir + setName + "_shelf_unpowered",  mcLoc("block/template_shelf_unpowered"))  .texture("all", shelfTex).texture("particle", strippedLogPart);
+        ModelFile shelfUnconnected = models().withExistingParent(dir + setName + "_shelf_unconnected",mcLoc("block/template_shelf_unconnected")).texture("all", shelfTex).texture("particle", strippedLogPart);
+        ModelFile shelfLeft        = models().withExistingParent(dir + setName + "_shelf_left",       mcLoc("block/template_shelf_left"))       .texture("all", shelfTex).texture("particle", strippedLogPart);
+        ModelFile shelfCenter      = models().withExistingParent(dir + setName + "_shelf_center",     mcLoc("block/template_shelf_center"))     .texture("all", shelfTex).texture("particle", strippedLogPart);
+        ModelFile shelfRight       = models().withExistingParent(dir + setName + "_shelf_right",      mcLoc("block/template_shelf_right"))      .texture("all", shelfTex).texture("particle", strippedLogPart);
+        models().withExistingParent(dir + setName + "_shelf_inventory", mcLoc("block/template_shelf_inventory")).texture("all", shelfTex).texture("particle", strippedLogPart);
+
+        var shelfMpb = getMultipartBuilder(set.shelf().get());
+        for (Direction facing : new Direction[]{Direction.NORTH, Direction.EAST, Direction.SOUTH, Direction.WEST}) {
+            int yRot = switch (facing) { case EAST -> 90; case SOUTH -> 180; case WEST -> 270; default -> 0; };
+            shelfMpb.part().modelFile(shelfBody)       .rotationY(yRot).addModel().condition(com.otterly76.ott.block.shelf.ShelfBlock.FACING, facing).end();
+            shelfMpb.part().modelFile(shelfUnpowered)  .rotationY(yRot).addModel().condition(com.otterly76.ott.block.shelf.ShelfBlock.FACING, facing).condition(com.otterly76.ott.block.shelf.ShelfBlock.POWERED, false).end();
+            shelfMpb.part().modelFile(shelfUnconnected).rotationY(yRot).addModel().condition(com.otterly76.ott.block.shelf.ShelfBlock.FACING, facing).condition(com.otterly76.ott.block.shelf.ShelfBlock.POWERED, true).condition(com.otterly76.ott.block.shelf.ShelfBlock.SIDE_CHAIN_PART, com.otterly76.ott.block.shelf.SideChainPart.UNCONNECTED).end();
+            shelfMpb.part().modelFile(shelfLeft)       .rotationY(yRot).addModel().condition(com.otterly76.ott.block.shelf.ShelfBlock.FACING, facing).condition(com.otterly76.ott.block.shelf.ShelfBlock.POWERED, true).condition(com.otterly76.ott.block.shelf.ShelfBlock.SIDE_CHAIN_PART, com.otterly76.ott.block.shelf.SideChainPart.LEFT).end();
+            shelfMpb.part().modelFile(shelfCenter)     .rotationY(yRot).addModel().condition(com.otterly76.ott.block.shelf.ShelfBlock.FACING, facing).condition(com.otterly76.ott.block.shelf.ShelfBlock.POWERED, true).condition(com.otterly76.ott.block.shelf.ShelfBlock.SIDE_CHAIN_PART, com.otterly76.ott.block.shelf.SideChainPart.CENTER).end();
+            shelfMpb.part().modelFile(shelfRight)      .rotationY(yRot).addModel().condition(com.otterly76.ott.block.shelf.ShelfBlock.FACING, facing).condition(com.otterly76.ott.block.shelf.ShelfBlock.POWERED, true).condition(com.otterly76.ott.block.shelf.ShelfBlock.SIDE_CHAIN_PART, com.otterly76.ott.block.shelf.SideChainPart.RIGHT).end();
+        }
     }
 
     private ResourceLocation vanillaPlanks(String setName) {
@@ -1262,7 +1307,6 @@ public class OttBlockStateProvider extends ModBlockStateProvider {
         beehiveBlock(ModBlocks.MANGROVE_BEEHIVE,  "mangrove");
         beehiveBlock(ModBlocks.PALE_OAK_BEEHIVE,  "pale_oak");
         beehiveBlock(ModBlocks.SPRUCE_BEEHIVE,    "spruce");
-        beehiveBlock(ModBlocks.STARLIGHT_BEEHIVE, "starlight");
         beehiveBlock(ModBlocks.WARPED_BEEHIVE,    "warped");
     }
 

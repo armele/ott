@@ -129,6 +129,13 @@ public class WoodSetBlockRegistrar {
         DeferredBlock<Block> geometricWindow = BLOCKS.register(set + "_geometric_window",
                 () -> new com.otterly76.ott.block.custom.GeometricWindowBlock(BlockBehaviour.Properties.of().strength(1.5f).sound(SoundType.WOOD).noOcclusion()));
 
+        DeferredBlock<BeehiveBlock> beehive = BLOCKS.register(set + "_beehive",
+                () -> new BeehiveBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.BEEHIVE)));
+
+        DeferredBlock<com.otterly76.ott.block.shelf.ShelfBlock> shelf = BLOCKS.register(set + "_shelf",
+                () -> new com.otterly76.ott.block.shelf.ShelfBlock(
+                        BlockBehaviour.Properties.of().strength(2.0f).sound(SoundType.WOOD).noOcclusion()));
+
         return new ModBlocks.WoodSetBlocks(
                 log, wood, strippedLog, strippedWood,
                 planks, stairs, slab,
@@ -140,7 +147,7 @@ public class WoodSetBlockRegistrar {
                 pottedSapling,
                 sign, wallSign, hangingSign, wallHangingSign,
                 pergola, beam, planksPlate, planksEdge, bannister, supportSlab, supportBeam,
-                geometricWindow
+                geometricWindow, beehive, shelf
         );
     }
 

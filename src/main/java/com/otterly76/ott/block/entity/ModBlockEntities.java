@@ -117,7 +117,7 @@ public class ModBlockEntities {
                 ModBlocks.MANGROVE_BEEHIVE.get(),
                 ModBlocks.PALE_OAK_BEEHIVE.get(),
                 ModBlocks.SPRUCE_BEEHIVE.get(),
-                ModBlocks.STARLIGHT_BEEHIVE.get(),
                 ModBlocks.WARPED_BEEHIVE.get());
+        ModBlocks.WOOD_SETS.values().forEach(set -> event.modify(BlockEntityType.BEEHIVE, set.beehive().get()));
     }
 }

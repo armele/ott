@@ -170,15 +170,16 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
                     .unlockedBy("has_honeycomb", has(Items.HONEYCOMB))
                     .save(noAdv, getRecipePath("ott", wood + "_beehive"));
         });
-        // Starlight beehive uses the custom wood set planks
-        ShapedRecipeBuilder.shaped(RecipeCategory.DECORATIONS, ModBlocks.STARLIGHT_BEEHIVE.get())
-                .define('P', ModBlocks.WOOD_SETS.get("starlight").planks().get())
-                .define('H', Items.HONEYCOMB)
-                .pattern("PPP")
-                .pattern("HHH")
-                .pattern("PPP")
-                .unlockedBy("has_honeycomb", has(Items.HONEYCOMB))
-                .save(exporter, getRecipePath("ott", "starlight_beehive"));
+        // OTT wood set beehives
+        ModBlocks.WOOD_SETS.forEach((wood, set) ->
+                ShapedRecipeBuilder.shaped(RecipeCategory.DECORATIONS, set.beehive().get())
+                        .define('P', set.planks().get())
+                        .define('H', Items.HONEYCOMB)
+                        .pattern("PPP")
+                        .pattern("HHH")
+                        .pattern("PPP")
+                        .unlockedBy("has_honeycomb", has(Items.HONEYCOMB))
+                        .save(exporter, getRecipePath("ott", wood + "_beehive")));
 
         ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModBlocks.CREAKING_HEART.get())
                 .define('#', ModBlocks.PALE_OAK_LOG.get())
@@ -385,8 +386,9 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
 
         for (int i = 0; i < ModColorSets.ALL.size(); i++) {
             ModColorSets.ColorSet colorSet = ModColorSets.ALL.get(i);
+            if (colorSet.name().equals("navy")) continue; // has its own recipe below
             Item result = ModItems.CUSTOM_DYES.get(colorSet.name()).get();
-            Item ingredient1 = vanillaDyes.get(i);
+            Item ingredient1 = vanillaDyes.get(i % vanillaDyes.size());
             Item ingredient2 = vanillaDyes.get((i + 1) % vanillaDyes.size());
 
             ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, result, 2)
@@ -394,6 +396,15 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
                     .requires(ingredient2)
                     .unlockedBy("impossible", impossible())
                     .save(exporter, getRecipePath(Constants.MOD_ID, colorSet.name() + "_dye"));
+        }
+
+        // Navy dye: 1 blue dye + 1 charcoal dye → 2 navy dye
+        if (ModItems.CUSTOM_DYES.containsKey("navy") && ModItems.CUSTOM_DYES.containsKey("charcoal")) {
+            ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, ModItems.CUSTOM_DYES.get("navy").get(), 2)
+                    .requires(Items.BLUE_DYE)
+                    .requires(ModItems.CUSTOM_DYES.get("charcoal").get())
+                    .unlockedBy("impossible", impossible())
+                    .save(exporter, getRecipePath(Constants.MOD_ID, "navy_dye"));
         }
     }
 
@@ -1194,6 +1205,15 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
                     .unlockedBy("impossible", impossible())
                     .save(noAdv, getRecipePath("minecraft", wood + "_shelf"));
         }
+        // OTT wood set shelves
+        ModBlocks.WOOD_SETS.forEach((wood, set) ->
+                ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, set.shelf().get(), 6)
+                        .define('#', set.strippedLog().get())
+                        .pattern("###")
+                        .pattern("   ")
+                        .pattern("###")
+                        .unlockedBy("impossible", impossible())
+                        .save(noAdv, getRecipePath("ott", wood + "_shelf")));
     }
 
     private void copperRecipes(RecipeOutput noAdv) {

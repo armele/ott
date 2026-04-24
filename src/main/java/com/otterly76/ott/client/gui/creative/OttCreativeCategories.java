@@ -291,6 +291,8 @@ public enum OttCreativeCategories {
                     output.accept(ModItems.WOOD_SET_HANGING_SIGNS.get(name));
                     output.accept(ModItems.WOOD_SET_BOATS.get(name));
                     output.accept(ModItems.WOOD_SET_CHEST_BOATS.get(name));
+                    output.accept(set.beehive());
+                    output.accept(set.shelf());
                 });
                 ModBlocks.WOOD_SETS.values().forEach(set -> {
                     output.accept(set.beam());
@@ -763,7 +765,6 @@ public enum OttCreativeCategories {
                 output.accept(ModItems.MANGROVE_BEEHIVE);
                 output.accept(ModItems.PALE_OAK_BEEHIVE);
                 output.accept(ModItems.SPRUCE_BEEHIVE);
-                output.accept(ModItems.STARLIGHT_BEEHIVE);
                 output.accept(ModItems.WARPED_BEEHIVE);
 
                 output.accept(ModItems.ALLIGATOR_EGG);

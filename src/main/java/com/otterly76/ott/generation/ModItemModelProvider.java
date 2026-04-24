@@ -77,6 +77,9 @@ public class ModItemModelProvider extends ItemModelProvider {
             // This makes isCustomRenderer()=true so our ModBoatItemRenderer is called with the correct wood texture.
             withExistingParent(setName + "_boat", modLoc("item/boat_template"));
             withExistingParent(setName + "_chest_boat", modLoc("item/chest_boat_template"));
+
+            parentItemToBlockModel(set.beehive().getId().getPath(), "block/beehive/" + setName + "_beehive");
+            parentItemToBlockModel(set.shelf().getId().getPath(), "block/" + setName + "/" + setName + "_shelf_inventory");
         });
 
         // Oak structural item models are pre-existing hand-written files; skip to avoid duplicates.

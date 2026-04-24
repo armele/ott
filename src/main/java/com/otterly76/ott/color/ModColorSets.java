@@ -22,7 +22,9 @@ public final class ModColorSets {
             new ColorSet("chocolate", 0xFF50392A),
             new ColorSet("charcoal", 0xFF32363A),
             new ColorSet("boulder", 0xFF727675),
-            new ColorSet("mist", 0xFFCBCECB)
+            new ColorSet("mist", 0xFFCBCECB),
+
+            new ColorSet("navy", 0xFF17215f)
     );
 
     public record ColorSet(String name, int color) {
