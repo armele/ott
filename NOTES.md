@@ -1,3 +1,9 @@
+THEME COLORS:
+=====
+- highlight 0x7089b8b8
+
+
+
 NEXT:
 =====
 ALL COLORS of terracotta, glazed terracotta

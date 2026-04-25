@@ -47,7 +47,7 @@ public class EngravingTableScreen extends AbstractContainerScreen<EngravingTable
             ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, "two_by_two_button"),
             ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, "two_by_two_button_highlighted"));
 
-    private static final int HIGHLIGHT_SELECTED = 0x70FFFF00;
+    private static final int HIGHLIGHT_SELECTED = 0x7089b8b8;
     private static final int HIGHLIGHT_MATCH    = 0x700000FF;
     private static final int HIGHLIGHT_DIM      = 0x70000000;
 
