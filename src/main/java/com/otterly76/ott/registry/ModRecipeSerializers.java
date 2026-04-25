@@ -2,6 +2,7 @@ package com.otterly76.ott.registry;
 
 import com.otterly76.ott.Constants;
 import com.otterly76.ott.recipe.BundleColoring;
+import com.otterly76.ott.recipe.EngravingRecipe;
 import com.otterly76.ott.recipe.WoodcuttingRecipe;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.world.item.crafting.RecipeSerializer;
@@ -19,6 +20,9 @@ public class ModRecipeSerializers {
 
     public static final DeferredHolder<RecipeSerializer<?>, WoodcuttingRecipe.Serializer> WOODCUTTING =
             SERIALIZERS.register("woodcutting", WoodcuttingRecipe.Serializer::new);
+
+    public static final DeferredHolder<RecipeSerializer<?>, EngravingRecipe.Serializer> ENGRAVING =
+            SERIALIZERS.register("engraving", EngravingRecipe.Serializer::new);
 
     public static void register(IEventBus eventBus) {
         SERIALIZERS.register(eventBus);

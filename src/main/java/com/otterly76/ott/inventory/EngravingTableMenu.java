@@ -1,6 +1,7 @@
 package com.otterly76.ott.inventory;
 
-import com.otterly76.ott.engraving.EngravingPalette;
+import com.otterly76.ott.recipe.EngravingRecipe;
+import com.otterly76.ott.registry.ModRecipeTypes;
 import net.minecraft.util.StringUtil;
 import net.minecraft.world.Container;
 import net.minecraft.world.entity.player.Inventory;
@@ -76,11 +77,15 @@ public class EngravingTableMenu extends AbstractContainerMenu {
         results.clear();
         if (selectedStack.isEmpty()) return;
         this.filter = filter;
-        for (ItemStack result : EngravingPalette.getResults(selectedStack.getItem())) {
-            if (filter == null
-                    || StringUtil.isBlank(filter)
-                    || result.getDisplayName().getString().toLowerCase(Locale.ROOT).contains(filter.toLowerCase(Locale.ROOT))) {
-                results.add(result);
+        for (var holder : level.getRecipeManager().getAllRecipesFor(ModRecipeTypes.ENGRAVING.get())) {
+            EngravingRecipe recipe = holder.value();
+            if (recipe.getIngredients().getFirst().test(selectedStack)) {
+                ItemStack result = recipe.getResultItem(level.registryAccess());
+                if (filter == null
+                        || StringUtil.isBlank(filter)
+                        || result.getDisplayName().getString().toLowerCase(Locale.ROOT).contains(filter.toLowerCase(Locale.ROOT))) {
+                    results.add(result);
+                }
             }
         }
     }

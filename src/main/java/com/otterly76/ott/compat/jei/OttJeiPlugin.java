@@ -1,6 +1,7 @@
 package com.otterly76.ott.compat.jei;
 
 import com.otterly76.ott.block.ModBlocks;
+import com.otterly76.ott.recipe.EngravingRecipe;
 import com.otterly76.ott.recipe.WoodcuttingRecipe;
 import com.otterly76.ott.registry.ModRecipeTypes;
 import mezz.jei.api.IModPlugin;
@@ -29,20 +30,29 @@ public class OttJeiPlugin implements IModPlugin {
     @Override
     public void registerCategories(@NotNull IRecipeCategoryRegistration registration) {
         registration.addRecipeCategories(new WoodcutterCategory(registration.getJeiHelpers().getGuiHelper()));
+        registration.addRecipeCategories(new EngravingTableCategory(registration.getJeiHelpers().getGuiHelper()));
     }
 
     @Override
     public void registerRecipes(@NotNull IRecipeRegistration registration) {
         RecipeManager recipeManager = Objects.requireNonNull(Minecraft.getInstance().level).getRecipeManager();
-        List<WoodcuttingRecipe> recipes = recipeManager.getAllRecipesFor(ModRecipeTypes.WOODCUTTING.get())
+
+        List<WoodcuttingRecipe> woodcuttingRecipes = recipeManager.getAllRecipesFor(ModRecipeTypes.WOODCUTTING.get())
                 .stream()
                 .map(RecipeHolder::value)
                 .toList();
-        registration.addRecipes(WoodcutterCategory.RECIPE_TYPE, recipes);
+        registration.addRecipes(WoodcutterCategory.RECIPE_TYPE, woodcuttingRecipes);
+
+        List<EngravingRecipe> engravingRecipes = recipeManager.getAllRecipesFor(ModRecipeTypes.ENGRAVING.get())
+                .stream()
+                .map(RecipeHolder::value)
+                .toList();
+        registration.addRecipes(EngravingTableCategory.RECIPE_TYPE, engravingRecipes);
     }
 
     @Override
     public void registerRecipeCatalysts(@NotNull IRecipeCatalystRegistration registration) {
         registration.addRecipeCatalyst(new ItemStack(ModBlocks.WOODCUTTER.get()), WoodcutterCategory.RECIPE_TYPE);
+        registration.addRecipeCatalyst(new ItemStack(ModBlocks.ENGRAVING_TABLE.get()), EngravingTableCategory.RECIPE_TYPE);
     }
 }

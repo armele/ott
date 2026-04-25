@@ -1,6 +1,7 @@
 package com.otterly76.ott.registry;
 
 import com.otterly76.ott.Constants;
+import com.otterly76.ott.recipe.EngravingRecipe;
 import com.otterly76.ott.recipe.WoodcuttingRecipe;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceLocation;
@@ -15,6 +16,9 @@ public class ModRecipeTypes {
 
     public static final DeferredHolder<RecipeType<?>, RecipeType<WoodcuttingRecipe>> WOODCUTTING =
             RECIPE_TYPES.register("woodcutting", () -> RecipeType.simple(ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, "woodcutting")));
+
+    public static final DeferredHolder<RecipeType<?>, RecipeType<EngravingRecipe>> ENGRAVING =
+            RECIPE_TYPES.register("engraving", () -> RecipeType.simple(ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, "engraving")));
 
     public static void register(IEventBus eventBus) {
         RECIPE_TYPES.register(eventBus);

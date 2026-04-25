@@ -10,26 +10,6 @@ ALL COLORS of terracotta, glazed terracotta
 
 ADD DO blocks: *extra, *bricks, *stone bricks
 
-to engraving:
-
-need table recipe
-
-all mosaics - engraving smooth sandstone
-ornamented * wool - engraving same color wool block
-delicate * wool - engraving same color wool block
-chiseled plastered stone pillar - engraving white plastered stone
-sandstone slender turquoise pattern - engraving smooth sandstone
-sandstone slender bricks - engraving smooth sandstone
-white marble/black marble bricks, small bricks, tiles, polished, pillar, pillar cap - engraving white/black marble
-mixed limestone bricks - engraving limestone
-stone bricks masonry - engraving stone bricks
-limestone masonry - engraving limestone
-
-white chiseled plastered stone - engraving white plastered stone
-white gilded plastered stone - engraving white plastered stone
-white delicate plastered stone - engraving white plastered stone
-white banded plastered stone - engraving white plastered stone
-
 Notes:
 =====
 - fix connecting purpur pillar top

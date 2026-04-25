@@ -10,6 +10,7 @@ import com.otterly76.ott.block.ModBlocks;
 import com.otterly76.ott.item.ModItems;
 import com.otterly76.ott.util.ModTags;
 import com.otterly76.ott.recipe.BundleColoring;
+import com.otterly76.ott.recipe.EngravingRecipe;
 import com.otterly76.ott.recipe.WoodcuttingRecipe;
 import net.minecraft.advancements.Advancement;
 import net.minecraft.advancements.AdvancementHolder;
@@ -98,6 +99,18 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
                 .pattern("LLL")
                 .unlockedBy("has_logs", has(net.minecraft.tags.ItemTags.LOGS))
                 .save(noAdv, getRecipePath(Constants.MOD_ID, "woodcutter"));
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModBlocks.ENGRAVING_TABLE.get())
+                .define('I', Items.IRON_INGOT)
+                .define('S', Blocks.SMOOTH_STONE_SLAB)
+                .define('C', Blocks.STONE)
+                .pattern(" I ")
+                .pattern("SSS")
+                .pattern("C C")
+                .unlockedBy("has_stone", has(Blocks.STONE))
+                .save(noAdv, getRecipePath(Constants.MOD_ID, "engraving_table"));
+
+        this.engraveRecipes(noAdv);
 
         ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModBlocks.GLASS_JAR.get())
                 .define('G', Items.GLASS_PANE)
@@ -1960,6 +1973,176 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
         new SingleItemRecipeBuilder(RecipeCategory.BUILDING_BLOCKS, WoodcuttingRecipe::new, Ingredient.of(input), output, 1)
                 .unlockedBy("has_input", has(input))
                 .save(exporter, getRecipePath("ott", id));
+    }
+
+    private void engraveOne(RecipeOutput exporter, ItemLike input, ItemLike output, String id) {
+        new SingleItemRecipeBuilder(RecipeCategory.BUILDING_BLOCKS, EngravingRecipe::new, Ingredient.of(input), output, 1)
+                .unlockedBy("has_input", has(input))
+                .save(exporter, getRecipePath("ott", id));
+    }
+
+    private void engraveRecipes(RecipeOutput exporter) {
+        // ── Stone → engraved stone variants ──────────────────────────────────────
+        engraveOne(exporter, Blocks.STONE, ModBlocks.ANGRY_STONE,                          "angry_stone_engraving");
+        engraveOne(exporter, Blocks.STONE, ModBlocks.BLANK_STONE_CARVING,                  "blank_stone_carving_engraving");
+        engraveOne(exporter, Blocks.STONE, ModBlocks.BORDERED_STONE,                       "bordered_stone_engraving");
+        engraveOne(exporter, Blocks.STONE, ModBlocks.BRICK_BORDERED_STONE,                 "brick_bordered_stone_engraving");
+        engraveOne(exporter, Blocks.STONE, ModBlocks.CARVED_STONE,                         "carved_stone_engraving");
+        engraveOne(exporter, Blocks.STONE, ModBlocks.CHECKERED_STONE_TILES,                "checkered_stone_tiles_engraving");
+        engraveOne(exporter, Blocks.STONE, ModBlocks.COBBLED_STONE,                        "cobbled_stone_engraving");
+        engraveOne(exporter, Blocks.STONE, ModBlocks.CRACKED_DISORDERED_STONE_BRICKS,      "cracked_disordered_stone_bricks_engraving");
+        engraveOne(exporter, Blocks.STONE, ModBlocks.CRACKED_FLAT_STONE_TILES,             "cracked_flat_stone_tiles_engraving");
+        engraveOne(exporter, Blocks.STONE, ModBlocks.CREEPER_STONE_CARVING,                "creeper_stone_carving_engraving");
+        engraveOne(exporter, Blocks.STONE, ModBlocks.CRYING_STONE,                         "crying_stone_engraving");
+        engraveOne(exporter, Blocks.STONE, ModBlocks.CURLY_STONE_PILLAR,                   "curly_stone_pillar_engraving");
+        engraveOne(exporter, Blocks.STONE, ModBlocks.CUT_BLANK_STONE,                      "cut_blank_stone_engraving");
+        engraveOne(exporter, Blocks.STONE, ModBlocks.CUT_STONE_COLUMN,                     "cut_stone_column_engraving");
+        engraveOne(exporter, Blocks.STONE, ModBlocks.DUH_STONE,                            "duh_stone_engraving");
+        engraveOne(exporter, Blocks.STONE, ModBlocks.EDGED_STONE_BRICKS,                   "edged_stone_bricks_engraving");
+        engraveOne(exporter, Blocks.STONE, ModBlocks.ENGRAVED_STONE,                       "engraved_stone_engraving");
+        engraveOne(exporter, Blocks.STONE, ModBlocks.ETCHED_STONE_BRICKS,                  "etched_stone_bricks_engraving");
+        engraveOne(exporter, Blocks.STONE, ModBlocks.FINE_STONE_PILLAR,                    "fine_stone_pillar_engraving");
+        engraveOne(exporter, Blocks.STONE, ModBlocks.FLAT_STONE_TILES,                     "flat_stone_tiles_engraving");
+        engraveOne(exporter, Blocks.STONE, ModBlocks.GLAD_STONE,                           "glad_stone_engraving");
+        engraveOne(exporter, Blocks.STONE, ModBlocks.INLAYED_STONE,                        "inlayed_stone_engraving");
+        engraveOne(exporter, Blocks.STONE, ModBlocks.INSCRIBED_STONE,                      "inscribed_stone_engraving");
+        engraveOne(exporter, Blocks.STONE, ModBlocks.LAYED_STONE_BRICKS,                   "layed_stone_bricks_engraving");
+        engraveOne(exporter, Blocks.STONE, ModBlocks.LODED_STONE,                          "loded_stone_engraving");
+        engraveOne(exporter, Blocks.STONE, ModBlocks.MASSIVE_STONE_BRICKS,                 "massive_stone_bricks_engraving");
+        engraveOne(exporter, Blocks.STONE, ModBlocks.OFFSET_STONE_BRICKS,                  "offset_stone_bricks_engraving");
+        engraveOne(exporter, Blocks.STONE, ModBlocks.ORNATE_STONE_PILLAR,                  "ornate_stone_pillar_engraving");
+        engraveOne(exporter, Blocks.STONE, ModBlocks.OVERLAPPING_STONE_TILES,              "overlapping_stone_tiles_engraving");
+        engraveOne(exporter, Blocks.STONE, ModBlocks.PILLAR_STONE_BRICKS,                  "pillar_stone_bricks_engraving");
+        engraveOne(exporter, Blocks.STONE, ModBlocks.POLISHED_STONE,                       "polished_stone_engraving");
+        engraveOne(exporter, Blocks.STONE, ModBlocks.PRISMAL_STONE_REMNANTS,               "prismal_stone_remnants_engraving");
+        engraveOne(exporter, Blocks.STONE, ModBlocks.ROUGH_STONE,                          "rough_stone_engraving");
+        engraveOne(exporter, Blocks.STONE, ModBlocks.ROUNDED_STONE_BRICKS,                 "rounded_stone_bricks_engraving");
+        engraveOne(exporter, Blocks.STONE, ModBlocks.RUNIC_CARVED_STONE,                   "runic_carved_stone_engraving");
+        engraveOne(exporter, Blocks.STONE, ModBlocks.SAD_STONE,                            "sad_stone_engraving");
+        engraveOne(exporter, Blocks.STONE, ModBlocks.SANDED_STONE,                         "sanded_stone_engraving");
+        engraveOne(exporter, Blocks.STONE, ModBlocks.SIMPLE_STONE_PILLAR,                  "simple_stone_pillar_engraving");
+        engraveOne(exporter, Blocks.STONE, ModBlocks.SMALL_STONE_BRICKS,                   "small_stone_bricks_engraving");
+        engraveOne(exporter, Blocks.STONE, ModBlocks.SMOOTH_INLAYED_STONE,                 "smooth_inlayed_stone_engraving");
+        engraveOne(exporter, Blocks.STONE, ModBlocks.SMOOTH_STONE_COLUMN,                  "smooth_stone_column_engraving");
+        engraveOne(exporter, Blocks.STONE, ModBlocks.SMOOTH_STONE_CTM,                     "smooth_stone_ctm_engraving");
+        engraveOne(exporter, Blocks.STONE, ModBlocks.SMOOTHED_DOUBLE_INLAYED_STONE,        "smoothed_double_inlayed_stone_engraving");
+        engraveOne(exporter, Blocks.STONE, ModBlocks.SPIDER_STONE_CARVING,                 "spider_stone_carving_engraving");
+        engraveOne(exporter, Blocks.STONE, ModBlocks.SPIRALED_STONE,                       "spiraled_stone_engraving");
+        engraveOne(exporter, Blocks.STONE, ModBlocks.STACKED_STONE_BRICKS,                 "stacked_stone_bricks_engraving");
+        engraveOne(exporter, Blocks.STONE, ModBlocks.STONE_MINI_TILES,                     "stone_mini_tiles_engraving");
+        engraveOne(exporter, Blocks.STONE, ModBlocks.STONE_PILLAR,                         "stone_pillar_engraving");
+        engraveOne(exporter, Blocks.STONE, ModBlocks.STONE_SCALES,                         "stone_scales_engraving");
+        engraveOne(exporter, Blocks.STONE, ModBlocks.THICK_INLAYED_STONE,                  "thick_inlayed_stone_engraving");
+        engraveOne(exporter, Blocks.STONE, ModBlocks.TILED_BORDERED_STONE,                 "tiled_bordered_stone_engraving");
+        engraveOne(exporter, Blocks.STONE, ModBlocks.TILED_STONE,                          "tiled_stone_engraving");
+        engraveOne(exporter, Blocks.STONE, ModBlocks.TILED_STONE_COLUMN,                   "tiled_stone_column_engraving");
+        engraveOne(exporter, Blocks.STONE, ModBlocks.TINY_BRICK_BORDERED_STONE,            "tiny_brick_bordered_stone_engraving");
+        engraveOne(exporter, Blocks.STONE, ModBlocks.TINY_LAYERED_STONE_BRICKS,            "tiny_layered_stone_bricks_engraving");
+        engraveOne(exporter, Blocks.STONE, ModBlocks.TINY_LAYERED_STONE_SLABS,             "tiny_layered_stone_slabs_engraving");
+        engraveOne(exporter, Blocks.STONE, ModBlocks.TINY_STONE_BRICKS,                    "tiny_stone_bricks_engraving");
+        engraveOne(exporter, Blocks.STONE, ModBlocks.TRODDEN_STONE,                        "trodden_stone_engraving");
+        engraveOne(exporter, Blocks.STONE, ModBlocks.UNAMUSED_STONE,                       "unamused_stone_engraving");
+        engraveOne(exporter, Blocks.STONE, ModBlocks.VERTICAL_CUT_STONE,                   "vertical_cut_stone_engraving");
+        engraveOne(exporter, Blocks.STONE, ModBlocks.VERTICAL_DISORDERED_STONE_BRICKS,     "vertical_disordered_stone_bricks_engraving");
+        engraveOne(exporter, Blocks.STONE, ModBlocks.WEATHERED_STONE,                      "weathered_stone_engraving");
+
+        // ── Stone bricks → masonry ────────────────────────────────────────────────
+        engraveOne(exporter, Blocks.STONE_BRICKS, ModBlocks.STONE_BRICKS_MASONRY,          "stone_bricks_masonry_engraving");
+
+        // ── Limestone → variants ──────────────────────────────────────────────────
+        engraveOne(exporter, ModBlocks.PLAIN_LIMESTONE, ModBlocks.MIXED_LIMESTONE_BRICKS,  "mixed_limestone_bricks_engraving");
+        engraveOne(exporter, ModBlocks.PLAIN_LIMESTONE, ModBlocks.LIMESTONE_MASONRY,       "limestone_masonry_engraving");
+
+        // ── Smooth sandstone → mosaic + decorative ───────────────────────────────
+        engraveOne(exporter, Blocks.SMOOTH_SANDSTONE, ModBlocks.SANDSTONE_SLENDER_BRICKS,          "sandstone_slender_bricks_engraving");
+        engraveOne(exporter, Blocks.SMOOTH_SANDSTONE, ModBlocks.SANDSTONE_SLENDER_TURQUOISE_PATTERN,"sandstone_slender_turquoise_pattern_engraving");
+        engraveOne(exporter, Blocks.SMOOTH_SANDSTONE, ModBlocks.AIR_MOSAIC_BORDER,                  "air_mosaic_border_engraving");
+        engraveOne(exporter, Blocks.SMOOTH_SANDSTONE, ModBlocks.AIR_MOSAIC_GEOMETRIC,               "air_mosaic_geometric_engraving");
+        engraveOne(exporter, Blocks.SMOOTH_SANDSTONE, ModBlocks.AIR_MOSAIC_PATTERN,                 "air_mosaic_pattern_engraving");
+        engraveOne(exporter, Blocks.SMOOTH_SANDSTONE, ModBlocks.AIR_MOSAIC_DELICATE,                "air_mosaic_delicate_engraving");
+        engraveOne(exporter, Blocks.SMOOTH_SANDSTONE, ModBlocks.AIR_MOSAIC_TRADITIONAL,             "air_mosaic_traditional_engraving");
+        engraveOne(exporter, Blocks.SMOOTH_SANDSTONE, ModBlocks.EARTH_MOSAIC_BORDER,                "earth_mosaic_border_engraving");
+        engraveOne(exporter, Blocks.SMOOTH_SANDSTONE, ModBlocks.EARTH_MOSAIC_GEOMETRIC,             "earth_mosaic_geometric_engraving");
+        engraveOne(exporter, Blocks.SMOOTH_SANDSTONE, ModBlocks.EARTH_MOSAIC_PATTERN,               "earth_mosaic_pattern_engraving");
+        engraveOne(exporter, Blocks.SMOOTH_SANDSTONE, ModBlocks.EARTH_MOSAIC_DELICATE,              "earth_mosaic_delicate_engraving");
+        engraveOne(exporter, Blocks.SMOOTH_SANDSTONE, ModBlocks.EARTH_MOSAIC_TRADITIONAL,           "earth_mosaic_traditional_engraving");
+        engraveOne(exporter, Blocks.SMOOTH_SANDSTONE, ModBlocks.FIRE_MOSAIC_BORDER,                 "fire_mosaic_border_engraving");
+        engraveOne(exporter, Blocks.SMOOTH_SANDSTONE, ModBlocks.FIRE_MOSAIC_GEOMETRIC,              "fire_mosaic_geometric_engraving");
+        engraveOne(exporter, Blocks.SMOOTH_SANDSTONE, ModBlocks.FIRE_MOSAIC_PATTERN,                "fire_mosaic_pattern_engraving");
+        engraveOne(exporter, Blocks.SMOOTH_SANDSTONE, ModBlocks.FIRE_MOSAIC_DELICATE,               "fire_mosaic_delicate_engraving");
+        engraveOne(exporter, Blocks.SMOOTH_SANDSTONE, ModBlocks.FIRE_MOSAIC_TRADITIONAL,            "fire_mosaic_traditional_engraving");
+        engraveOne(exporter, Blocks.SMOOTH_SANDSTONE, ModBlocks.WATER_MOSAIC_BORDER,                "water_mosaic_border_engraving");
+        engraveOne(exporter, Blocks.SMOOTH_SANDSTONE, ModBlocks.WATER_MOSAIC_GEOMETRIC,             "water_mosaic_geometric_engraving");
+        engraveOne(exporter, Blocks.SMOOTH_SANDSTONE, ModBlocks.WATER_MOSAIC_PATTERN,               "water_mosaic_pattern_engraving");
+        engraveOne(exporter, Blocks.SMOOTH_SANDSTONE, ModBlocks.WATER_MOSAIC_DELICATE,              "water_mosaic_delicate_engraving");
+        engraveOne(exporter, Blocks.SMOOTH_SANDSTONE, ModBlocks.WATER_MOSAIC_TRADITIONAL,           "water_mosaic_traditional_engraving");
+        engraveOne(exporter, Blocks.SMOOTH_SANDSTONE, ModBlocks.SPIRIT_MOSAIC_BORDER,               "spirit_mosaic_border_engraving");
+        engraveOne(exporter, Blocks.SMOOTH_SANDSTONE, ModBlocks.SPIRIT_MOSAIC_GEOMETRIC,            "spirit_mosaic_geometric_engraving");
+        engraveOne(exporter, Blocks.SMOOTH_SANDSTONE, ModBlocks.SPIRIT_MOSAIC_PATTERN,              "spirit_mosaic_pattern_engraving");
+        engraveOne(exporter, Blocks.SMOOTH_SANDSTONE, ModBlocks.SPIRIT_MOSAIC_DELICATE,             "spirit_mosaic_delicate_engraving");
+        engraveOne(exporter, Blocks.SMOOTH_SANDSTONE, ModBlocks.SPIRIT_MOSAIC_TRADITIONAL,          "spirit_mosaic_traditional_engraving");
+        engraveOne(exporter, Blocks.SMOOTH_SANDSTONE, ModBlocks.MOSAIC_FLOOR,                       "mosaic_floor_engraving");
+        engraveOne(exporter, Blocks.SMOOTH_SANDSTONE, ModBlocks.MOSAIC_FLOOR_DELICATE,              "mosaic_floor_delicate_engraving");
+        engraveOne(exporter, Blocks.SMOOTH_SANDSTONE, ModBlocks.MOSAIC_FLOOR_ROSETTE,               "mosaic_floor_rosette_engraving");
+        engraveOne(exporter, Blocks.SMOOTH_SANDSTONE, ModBlocks.ROMAN_FRESCO_RED,                   "roman_fresco_red_engraving");
+        engraveOne(exporter, Blocks.SMOOTH_SANDSTONE, ModBlocks.ROMAN_FRESCO_BLACK,                 "roman_fresco_black_engraving");
+
+        // ── Vanilla CTM blocks (one CTM variant each) ────────────────────────────
+        engraveOne(exporter, Blocks.PURPUR_BLOCK,          ModBlocks.PURPUR_PILLAR_CTM,        "purpur_pillar_ctm_engraving");
+        engraveOne(exporter, Blocks.SANDSTONE,             ModBlocks.SANDSTONE_CTM,            "sandstone_ctm_engraving");
+        engraveOne(exporter, Blocks.RED_SANDSTONE,         ModBlocks.RED_SANDSTONE_CTM,        "red_sandstone_ctm_engraving");
+        engraveOne(exporter, Blocks.ANDESITE,              ModBlocks.POLISHED_ANDESITE_CTM,    "polished_andesite_ctm_engraving");
+        engraveOne(exporter, Blocks.BLACKSTONE,            ModBlocks.POLISHED_BLACKSTONE_CTM,  "polished_blackstone_ctm_engraving");
+        engraveOne(exporter, Blocks.DIORITE,               ModBlocks.POLISHED_DIORITE_CTM,     "polished_diorite_ctm_engraving");
+        engraveOne(exporter, Blocks.GRANITE,               ModBlocks.POLISHED_GRANITE_CTM,     "polished_granite_ctm_engraving");
+        engraveOne(exporter, Blocks.NETHERITE_BLOCK,      ModBlocks.NETHERITE_BLOCK_CTM,      "netherite_block_ctm_engraving");
+        engraveOne(exporter, Blocks.NETHERITE_BLOCK,      ModBlocks.NETHERITE_BLOCK_PILLAR,   "netherite_block_pillar_engraving");
+
+        // ── Vanilla pillar CTM blocks ────────────────────────────────────────────
+        engraveOne(exporter, Blocks.BONE_BLOCK,           ModBlocks.BONE_BLOCK_PILLAR,        "bone_block_pillar_engraving");
+        engraveOne(exporter, Blocks.COAL_BLOCK,           ModBlocks.COAL_BLOCK_PILLAR,        "coal_block_pillar_engraving");
+        engraveOne(exporter, Blocks.COBBLED_DEEPSLATE,    ModBlocks.COBBLED_DEEPSLATE_PILLAR, "cobbled_deepslate_pillar_engraving");
+        engraveOne(exporter, Blocks.COBBLESTONE,          ModBlocks.COBBLESTONE_PILLAR,       "cobblestone_pillar_engraving");
+        engraveOne(exporter, Blocks.COPPER_BLOCK,         ModBlocks.COPPER_BLOCK_PILLAR,      "copper_block_pillar_engraving");
+        engraveOne(exporter, Blocks.LAPIS_BLOCK,          ModBlocks.LAPIS_BLOCK_PILLAR,       "lapis_block_pillar_engraving");
+        engraveOne(exporter, Blocks.OBSIDIAN,             ModBlocks.OBSIDIAN_PILLAR,          "obsidian_pillar_engraving");
+
+        // ── White marble → variants ───────────────────────────────────────────────
+        engraveOne(exporter, ModBlocks.WHITE_MARBLE, ModBlocks.WHITE_MARBLE_BRICKS,       "white_marble_bricks_engraving");
+        engraveOne(exporter, ModBlocks.WHITE_MARBLE, ModBlocks.WHITE_MARBLE_SMALL_BRICKS, "white_marble_small_bricks_engraving");
+        engraveOne(exporter, ModBlocks.WHITE_MARBLE, ModBlocks.WHITE_MARBLE_TILES,        "white_marble_tiles_engraving");
+        engraveOne(exporter, ModBlocks.WHITE_MARBLE, ModBlocks.WHITE_POLISHED_MARBLE,     "white_polished_marble_engraving");
+        engraveOne(exporter, ModBlocks.WHITE_MARBLE, ModBlocks.WHITE_MARBLE_PILLAR,       "white_marble_pillar_engraving");
+        engraveOne(exporter, ModBlocks.WHITE_MARBLE, ModBlocks.WHITE_MARBLE_PILLAR_CAP,   "white_marble_pillar_cap_engraving");
+
+        // ── Black marble → variants ───────────────────────────────────────────────
+        engraveOne(exporter, ModBlocks.BLACK_MARBLE, ModBlocks.BLACK_MARBLE_BRICKS,       "black_marble_bricks_engraving");
+        engraveOne(exporter, ModBlocks.BLACK_MARBLE, ModBlocks.BLACK_MARBLE_SMALL_BRICKS, "black_marble_small_bricks_engraving");
+        engraveOne(exporter, ModBlocks.BLACK_MARBLE, ModBlocks.BLACK_MARBLE_TILES,        "black_marble_tiles_engraving");
+        engraveOne(exporter, ModBlocks.BLACK_MARBLE, ModBlocks.BLACK_POLISHED_MARBLE,     "black_polished_marble_engraving");
+        engraveOne(exporter, ModBlocks.BLACK_MARBLE, ModBlocks.BLACK_MARBLE_PILLAR,       "black_marble_pillar_engraving");
+        engraveOne(exporter, ModBlocks.BLACK_MARBLE, ModBlocks.BLACK_MARBLE_PILLAR_CAP,   "black_marble_pillar_cap_engraving");
+
+        // ── White plastered stone → decorative variants ──────────────────────────
+        Block whitePlastered = ModBlocks.PATTERN_BLOCKS.get("plastered_stone").get("white").get();
+        engraveOne(exporter, whitePlastered,
+                ModBlocks.PATTERN_BLOCKS.get("gilded_plastered_stone").get("white").get(),   "white_gilded_plastered_stone_engraving");
+        engraveOne(exporter, whitePlastered,
+                ModBlocks.PATTERN_BLOCKS.get("delicate_plastered_stone").get("white").get(), "white_delicate_plastered_stone_engraving");
+        engraveOne(exporter, whitePlastered,
+                ModBlocks.PATTERN_BLOCKS.get("banded_plastered_stone").get("white").get(),   "white_banded_plastered_stone_engraving");
+        engraveOne(exporter, whitePlastered,
+                ModBlocks.CHISELED_PLASTERED_STONE_PILLAR,                                   "chiseled_plastered_stone_pillar_engraving");
+
+        // ── Wool → ornamented / delicate variants ─────────────────────────────────
+        engraveOne(exporter, Blocks.RED_WOOL,    ModBlocks.ORNAMENTED_RED_WOOL,    "ornamented_red_wool_engraving");
+        engraveOne(exporter, Blocks.RED_WOOL,    ModBlocks.DELICATE_RED_WOOL,      "delicate_red_wool_engraving");
+        engraveOne(exporter, Blocks.BLUE_WOOL,   ModBlocks.ORNAMENTED_BLUE_WOOL,   "ornamented_blue_wool_engraving");
+        engraveOne(exporter, Blocks.BLUE_WOOL,   ModBlocks.DELICATE_BLUE_WOOL,     "delicate_blue_wool_engraving");
+        engraveOne(exporter, Blocks.GREEN_WOOL,  ModBlocks.ORNAMENTED_GREEN_WOOL,  "ornamented_green_wool_engraving");
+        engraveOne(exporter, Blocks.GREEN_WOOL,  ModBlocks.DELICATE_GREEN_WOOL,    "delicate_green_wool_engraving");
+        engraveOne(exporter, Blocks.PURPLE_WOOL, ModBlocks.ORNAMENTED_PURPLE_WOOL, "ornamented_purple_wool_engraving");
+        engraveOne(exporter, Blocks.PURPLE_WOOL, ModBlocks.DELICATE_PURPLE_WOOL,   "delicate_purple_wool_engraving");
     }
 
     private void woodcutStructural(RecipeOutput exporter, ItemLike input, String prefix, ModBlocks.WoodSetBlocks set) {
