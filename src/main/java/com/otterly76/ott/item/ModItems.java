@@ -493,7 +493,6 @@ public class ModItems {
     public static final DeferredHolder<Item, BlockItem> LIMESTONE_MASONRY = registerBlockItem("limestone_masonry", ModBlocks.LIMESTONE_MASONRY);
     public static final DeferredHolder<Item, BlockItem> LIMESTONE_MASONRY_EDGE = registerBlockItem("limestone_masonry_edge", ModBlocks.LIMESTONE_MASONRY_EDGE);
     public static final DeferredHolder<Item, BlockItem> LIMESTONE_MASONRY_PLATE = registerBlockItem("limestone_masonry_plate", ModBlocks.LIMESTONE_MASONRY_PLATE);
-    public static final DeferredHolder<Item, BlockItem> LIMESTONE_BANNISTER = registerBlockItem("limestone_bannister", ModBlocks.LIMESTONE_BANNISTER);
     public static final DeferredHolder<Item, BlockItem> COBBLED_LIMESTONE = registerBlockItem("cobbled_limestone", ModBlocks.COBBLED_LIMESTONE);
     public static final DeferredHolder<Item, BlockItem> PLAIN_LIMESTONE = registerBlockItem("limestone", ModBlocks.PLAIN_LIMESTONE);
     public static final DeferredHolder<Item, BlockItem> MIXED_LIMESTONE_BRICKS = registerBlockItem("mixed_limestone_bricks", ModBlocks.MIXED_LIMESTONE_BRICKS);
@@ -599,17 +598,9 @@ public class ModItems {
     public static final DeferredHolder<Item, BlockItem> NETHERITE_BLOCK_PILLAR   = registerBlockItem("netherite_block_pillar",   ModBlocks.NETHERITE_BLOCK_PILLAR);
     public static final DeferredHolder<Item, BlockItem> OBSIDIAN_PILLAR          = registerBlockItem("obsidian_pillar",          ModBlocks.OBSIDIAN_PILLAR);
 
-    public static final DeferredHolder<Item, BlockItem> SANDSTONE_PLATE = registerBlockItem("sandstone_plate", ModBlocks.SANDSTONE_PLATE);
-    public static final DeferredHolder<Item, BlockItem> SANDSTONE_EDGE = registerBlockItem("sandstone_edge", ModBlocks.SANDSTONE_EDGE);
     public static final DeferredHolder<Item, BlockItem> SANDSTONE_CRENELATION = registerBlockItem("sandstone_crenelation", ModBlocks.SANDSTONE_CRENELATION);
-    public static final DeferredHolder<Item, BlockItem> CUT_SANDSTONE_PLATE = registerBlockItem("cut_sandstone_plate", ModBlocks.CUT_SANDSTONE_PLATE);
-    public static final DeferredHolder<Item, BlockItem> CUT_SANDSTONE_EDGE = registerBlockItem("cut_sandstone_edge", ModBlocks.CUT_SANDSTONE_EDGE);
-    public static final DeferredHolder<Item, BlockItem> SMOOTH_SANDSTONE_PLATE = registerBlockItem("smooth_sandstone_plate", ModBlocks.SMOOTH_SANDSTONE_PLATE);
-    public static final DeferredHolder<Item, BlockItem> SMOOTH_SANDSTONE_EDGE = registerBlockItem("smooth_sandstone_edge", ModBlocks.SMOOTH_SANDSTONE_EDGE);
 
     public static final DeferredHolder<Item, BlockItem> ROOFING_SLATES = registerBlockItem("roofing_slates", ModBlocks.ROOFING_SLATES);
-    public static final DeferredHolder<Item, BlockItem> ROOFING_SLATES_EDGE = registerBlockItem("roofing_slates_edge", ModBlocks.ROOFING_SLATES_EDGE);
-    public static final DeferredHolder<Item, BlockItem> ROOFING_SLATES_PLATE = registerBlockItem("roofing_slates_plate", ModBlocks.ROOFING_SLATES_PLATE);
 
     public static final DeferredHolder<Item, BlockItem> WHEAT_THATCH = registerBlockItem("wheat_thatch", ModBlocks.WHEAT_THATCH);
     public static final DeferredHolder<Item, BlockItem> WHEAT_THATCH_EDGE = registerBlockItem("wheat_thatch_edge", ModBlocks.WHEAT_THATCH_EDGE);
@@ -625,11 +616,7 @@ public class ModItems {
     public static final DeferredHolder<Item, BlockItem> STRAIGHT_RAKED_GRAVEL = registerBlockItem("straight_raked_gravel", ModBlocks.STRAIGHT_RAKED_GRAVEL);
 
     public static final DeferredHolder<Item, BlockItem> SANDSTONE_SLENDER_BRICKS = registerBlockItem("sandstone_slender_bricks", ModBlocks.SANDSTONE_SLENDER_BRICKS);
-    public static final DeferredHolder<Item, BlockItem> SANDSTONE_SLENDER_BRICKS_EDGE = registerBlockItem("sandstone_slender_bricks_edge", ModBlocks.SANDSTONE_SLENDER_BRICKS_EDGE);
-    public static final DeferredHolder<Item, BlockItem> SANDSTONE_SLENDER_BRICKS_PLATE = registerBlockItem("sandstone_slender_bricks_plate", ModBlocks.SANDSTONE_SLENDER_BRICKS_PLATE);
     public static final DeferredHolder<Item, BlockItem> SANDSTONE_SLENDER_TURQUOISE_PATTERN = registerBlockItem("sandstone_slender_turquoise_pattern", ModBlocks.SANDSTONE_SLENDER_TURQUOISE_PATTERN);
-    public static final DeferredHolder<Item, BlockItem> SANDSTONE_SLENDER_TURQUOISE_PATTERN_EDGE = registerBlockItem("sandstone_slender_turquoise_pattern_edge", ModBlocks.SANDSTONE_SLENDER_TURQUOISE_PATTERN_EDGE);
-    public static final DeferredHolder<Item, BlockItem> SANDSTONE_SLENDER_TURQUOISE_PATTERN_PLATE = registerBlockItem("sandstone_slender_turquoise_pattern_plate", ModBlocks.SANDSTONE_SLENDER_TURQUOISE_PATTERN_PLATE);
 
     public static final DeferredHolder<Item, BlockItem> ORNAMENTED_RED_WOOL = registerBlockItem("ornamented_red_wool", ModBlocks.ORNAMENTED_RED_WOOL);
     public static final DeferredHolder<Item, BlockItem> DELICATE_RED_WOOL = registerBlockItem("delicate_red_wool", ModBlocks.DELICATE_RED_WOOL);
@@ -757,6 +744,18 @@ public class ModItems {
             registerBlockItem(set.carpet());
             ITEMS.register(set.banner().getId().getPath(), () -> new com.otterly76.ott.item.custom.ColorSetBannerItem(set.banner().get(), set.wallBanner().get(), new Item.Properties().stacksTo(16)));
             ITEMS.register(set.bed().getId().getPath(), () -> new ColorSetBedItem(set.bed().get(), new Item.Properties()));
+            registerBlockItem(set.plate());
+            registerBlockItem(set.edge());
+            registerBlockItem(set.beam());
+            registerBlockItem(set.pergola());
+            registerBlockItem(set.geometricWindow());
+            registerBlockItem(set.bannister());
+            registerBlockItem(set.supportSlab());
+            registerBlockItem(set.supportBeam());
+        });
+
+        // REGISTRATION: Stone shape sets
+        ModBlocks.STONE_SETS.forEach((name, set) -> {
             registerBlockItem(set.plate());
             registerBlockItem(set.edge());
             registerBlockItem(set.beam());

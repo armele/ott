@@ -175,6 +175,13 @@ public class NetworkHandler {
                 (packet, context) -> context.enqueueWork(() -> ClientPayloadHandler.handleRecipeSelectRequest(packet, context))
         );
 
+        // Engraving table packets
+        registrar.playToServer(
+                ServerboundEngraveCraftPacket.TYPE,
+                ServerboundEngraveCraftPacket.STREAM_CODEC,
+                ServerboundEngraveCraftPacket::handle
+        );
+
         // Polymorph (crafting recipe conflict resolution) packets
         registrar.playToClient(
                 ClientboundCraftingRecipesPacket.TYPE,

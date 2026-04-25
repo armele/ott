@@ -29,6 +29,9 @@ public class ModMenuTypes {
     public static final DeferredHolder<MenuType<?>, MenuType<NautilusContainerMenu>> NAUTILUS_INVENTORY =
             MENUS.register("nautilus_inventory", () -> new MenuType<>(NautilusContainerMenu::new, net.minecraft.world.flag.FeatureFlags.DEFAULT_FLAGS));
 
+    public static final DeferredHolder<MenuType<?>, MenuType<EngravingTableMenu>> ENGRAVING_TABLE_MENU =
+            MENUS.register("engraving_table", () -> IMenuTypeExtension.create((id, inv, buf) -> new EngravingTableMenu(id, inv)));
+
     public static void register(IEventBus eventBus) {
         MENUS.register(eventBus);
     }

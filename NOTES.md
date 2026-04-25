@@ -1,10 +1,12 @@
 NEXT:
 =====
-ALL COLORS of stained glass, seaglass, concrete, terracotta, glazed terracotta
+ALL COLORS of terracotta, glazed terracotta
 
 ADD DO blocks: *extra, *bricks, *stone bricks
 
 to engraving:
+
+need table recipe
 
 all mosaics - engraving smooth sandstone
 ornamented * wool - engraving same color wool block
@@ -43,7 +45,6 @@ ladders
 lanterns
 
 add blocks from Chipped
-- add engraving
 - adapt existing textures to CTM
 - create additional patterns
   - stone bordered gravel

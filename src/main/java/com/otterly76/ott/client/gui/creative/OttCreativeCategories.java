@@ -17,10 +17,11 @@ import java.util.function.Supplier;
 public enum OttCreativeCategories {
 
     // ── Sea Creatures ─────────────────────────────────────────────────────────
-    AQUATIC("aquatic",
-            ModItems.LARGE_JELLYFISH_BUCKET,
+    // ── Creatures: all spawn eggs + aquatic buckets ───────────────────────────
+    CREATURES("creatures",
+            ModItems.OTTER_SPAWN_EGG,
             (params, output) -> {
-                // Critter buckets
+                // Aquatic buckets
                 output.accept(ModItems.ANGELFISH_BUCKET);
                 output.accept(ModItems.BARRELEYE_BUCKET);
                 output.accept(ModItems.BASS_BUCKET);
@@ -45,7 +46,7 @@ public enum OttCreativeCategories {
                 output.accept(ModItems.SNAIL_BUCKET);
                 output.accept(ModItems.STINGRAY_BUCKET);
                 output.accept(ModItems.SUNFISH_BUCKET);
-                // Spawn eggs
+                // Sea creatures
                 output.accept(ModItems.ANGELFISH_SPAWN_EGG);
                 output.accept(ModItems.BARRELEYE_SPAWN_EGG);
                 output.accept(ModItems.BASS_SPAWN_EGG);
@@ -79,12 +80,6 @@ public enum OttCreativeCategories {
                 output.accept(ModItems.STINGRAY_SPAWN_EGG);
                 output.accept(ModItems.SUNFISH_SPAWN_EGG);
                 output.accept(ModItems.ETHEREAL_SHRIMP_SPAWN_EGG);
-            }),
-
-    // ── Wildlife: real-world land animals, birds, reptiles, insects ───────────
-    WILDLIFE("wildlife",
-            ModItems.OTTER_SPAWN_EGG,
-            (params, output) -> {
                 // Birds
                 output.accept(ModItems.BLUEJAY_SPAWN_EGG);
                 output.accept(ModItems.BURROWING_OWL_SPAWN_EGG);
@@ -162,12 +157,6 @@ public enum OttCreativeCategories {
                 output.accept(ModItems.FIREFLY_SPAWN_EGG);
                 output.accept(ModItems.JUMPING_SPIDER_SPAWN_EGG);
                 output.accept(ModItems.SMALL_FIREFLY_SPAWN_EGG);
-            }),
-
-    // ── Mythical & Hostile ────────────────────────────────────────────────────
-    MYTHICAL("mythical",
-            ModItems.GLARE_SPAWN_EGG,
-            (params, output) -> {
                 // Supernatural / undead
                 output.accept(ModItems.BOGGED_BONE_STALKER_SPAWN_EGG);
                 output.accept(ModItems.BOGGED_SHADOW_SPAWN_EGG);
@@ -494,14 +483,6 @@ public enum OttCreativeCategories {
                     output.accept(set.geometricWindow());
                 });
 
-                output.accept(ModBlocks.SANDSTONE_PLATE);
-                output.accept(ModBlocks.SANDSTONE_EDGE);
-
-                output.accept(ModBlocks.CUT_SANDSTONE_PLATE);
-                output.accept(ModBlocks.CUT_SANDSTONE_EDGE);
-
-                output.accept(ModBlocks.SMOOTH_SANDSTONE_PLATE);
-                output.accept(ModBlocks.SMOOTH_SANDSTONE_EDGE);
      }),
 
     MOSAIC("mosaic",
@@ -528,11 +509,26 @@ public enum OttCreativeCategories {
                 output.accept(ModBlocks.AIR_MOSAIC_PATTERN);
                 output.accept(ModBlocks.AIR_MOSAIC_DELICATE);
 
-                output.accept(ModBlocks.WATER_MOSAIC_TRADITIONAL);
-                output.accept(ModBlocks.EARTH_MOSAIC_TRADITIONAL);
-                output.accept(ModBlocks.FIRE_MOSAIC_TRADITIONAL);
-                output.accept(ModBlocks.SPIRIT_MOSAIC_TRADITIONAL);
-                output.accept(ModBlocks.AIR_MOSAIC_TRADITIONAL);
+                // Mosaic traditional base blocks + stone-set shapes
+                java.util.function.BiConsumer<net.neoforged.neoforge.registries.DeferredBlock<?>, String> mosaicEmit =
+                        (base, name) -> {
+                    output.accept(base);
+                    ModBlocks.StoneSetBlocks set = ModBlocks.STONE_SETS.get(name);
+                    if (set == null) return;
+                    output.accept(set.plate());
+                    output.accept(set.edge());
+                    output.accept(set.beam());
+                    output.accept(set.pergola());
+                    output.accept(set.geometricWindow());
+                    output.accept(set.bannister());
+                    output.accept(set.supportSlab());
+                    output.accept(set.supportBeam());
+                };
+                mosaicEmit.accept(ModBlocks.WATER_MOSAIC_TRADITIONAL,  "water_mosaic_traditional");
+                mosaicEmit.accept(ModBlocks.EARTH_MOSAIC_TRADITIONAL,  "earth_mosaic_traditional");
+                mosaicEmit.accept(ModBlocks.FIRE_MOSAIC_TRADITIONAL,   "fire_mosaic_traditional");
+                mosaicEmit.accept(ModBlocks.SPIRIT_MOSAIC_TRADITIONAL, "spirit_mosaic_traditional");
+                mosaicEmit.accept(ModBlocks.AIR_MOSAIC_TRADITIONAL,    "air_mosaic_traditional");
 
                 output.accept(ModBlocks.MOSAIC_FLOOR);
                 output.accept(ModBlocks.MOSAIC_FLOOR_DELICATE);
@@ -566,19 +562,89 @@ public enum OttCreativeCategories {
                 output.accept(ModBlocks.DELICATE_PURPLE_CARPET);
             }),
 
+    // ── Vanilla Plus: Stone ───────────────────────────────────────────────────
+    STONE_VANILLA("stone_vanilla",
+            () -> ModBlocks.STONE_SETS.get("stone").plate().get().asItem(),
+            (params, output) -> {
+                java.util.List<java.util.List<com.otterly76.ott.block.stone.ModStoneVariants.StoneVariant>> groups =
+                        java.util.List.of(
+                                com.otterly76.ott.block.stone.ModStoneVariants.CLASSIC,
+                                com.otterly76.ott.block.stone.ModStoneVariants.DEEPSLATE,
+                                com.otterly76.ott.block.stone.ModStoneVariants.SANDSTONE,
+                                com.otterly76.ott.block.stone.ModStoneVariants.NETHER,
+                                com.otterly76.ott.block.stone.ModStoneVariants.END_MISC,
+                                com.otterly76.ott.block.stone.ModStoneVariants.MINERALS,
+                                com.otterly76.ott.block.stone.ModStoneVariants.COPPER
+                        );
+                for (var group : groups) {
+                    group.forEach(v -> {
+                        ModBlocks.StoneSetBlocks set = ModBlocks.STONE_SETS.get(v.name());
+                        if (set == null) return;
+                        output.accept(set.plate());
+                        output.accept(set.edge());
+                        output.accept(set.beam());
+                        output.accept(set.pergola());
+                        output.accept(set.geometricWindow());
+                        output.accept(set.bannister());
+                        output.accept(set.supportSlab());
+                        output.accept(set.supportBeam());
+                    });
+                }
+            }),
+
+    // ── Custom OTT Stone Sets ─────────────────────────────────────────────────
+    STONE_CUSTOM("stone_custom",
+            () -> ModBlocks.PLAIN_LIMESTONE.get().asItem(),
+            (params, output) -> {
+                // Helper: emit base block then its 8 stone-set shapes
+                java.util.function.Consumer<String> emit = name -> {
+                    ModBlocks.StoneSetBlocks set = ModBlocks.STONE_SETS.get(name);
+                    if (set == null) return;
+                    output.accept(set.plate());
+                    output.accept(set.edge());
+                    output.accept(set.beam());
+                    output.accept(set.pergola());
+                    output.accept(set.geometricWindow());
+                    output.accept(set.bannister());
+                    output.accept(set.supportSlab());
+                    output.accept(set.supportBeam());
+                };
+
+                output.accept(ModBlocks.PLAIN_LIMESTONE);      emit.accept("limestone");
+                output.accept(ModBlocks.COBBLED_LIMESTONE);    emit.accept("cobbled_limestone");
+                output.accept(ModBlocks.REFINED_GLOWSTONE);    emit.accept("refined_glowstone");
+                output.accept(ModBlocks.ROOFING_SLATES);       emit.accept("roofing_slates");
+
+                output.accept(ModBlocks.BLACK_MARBLE);                emit.accept("black_marble");
+                output.accept(ModBlocks.BLACK_MARBLE_BRICKS);         emit.accept("black_marble_bricks");
+                output.accept(ModBlocks.BLACK_MARBLE_SMALL_BRICKS);   emit.accept("black_marble_small_bricks");
+                output.accept(ModBlocks.BLACK_MARBLE_TILES);          emit.accept("black_marble_tiles");
+                output.accept(ModBlocks.BLACK_POLISHED_MARBLE);       emit.accept("black_polished_marble");
+                output.accept(ModBlocks.BLACK_MARBLE_PILLAR);
+                output.accept(ModBlocks.BLACK_MARBLE_PILLAR_CAP);
+                output.accept(ModBlocks.BLACK_MARBLE_FLOOR_TILE);
+                output.accept(ModBlocks.BLACK_MARBLE_FANCY_FENCE);
+
+                output.accept(ModBlocks.WHITE_MARBLE);                emit.accept("white_marble");
+                output.accept(ModBlocks.WHITE_MARBLE_BRICKS);         emit.accept("white_marble_bricks");
+                output.accept(ModBlocks.WHITE_MARBLE_SMALL_BRICKS);   emit.accept("white_marble_small_bricks");
+                output.accept(ModBlocks.WHITE_MARBLE_TILES);          emit.accept("white_marble_tiles");
+                output.accept(ModBlocks.WHITE_POLISHED_MARBLE);       emit.accept("white_polished_marble");
+                output.accept(ModBlocks.WHITE_MARBLE_PILLAR);
+                output.accept(ModBlocks.WHITE_MARBLE_PILLAR_CAP);
+                output.accept(ModBlocks.WHITE_MARBLE_FLOOR_TILE);
+                output.accept(ModBlocks.WHITE_MARBLE_FANCY_FENCE);
+
+                output.accept(ModBlocks.SANDSTONE_SLENDER_BRICKS);          emit.accept("sandstone_slender_bricks");
+                output.accept(ModBlocks.SANDSTONE_SLENDER_TURQUOISE_PATTERN); emit.accept("sandstone_slender_turquoise_pattern");
+            }),
+
     BLOCKS("blocks",
             () -> ModBlocks.MIXED_LIMESTONE_BRICKS.get().asItem(),
             (params, output) -> {
-                output.accept(ModBlocks.PLAIN_LIMESTONE);
-                output.accept(ModBlocks.COBBLED_LIMESTONE);
                 output.accept(ModBlocks.MIXED_LIMESTONE_BRICKS);
                 ModBlocks.SEAGLASS.forEach(output::accept);  // ethereal seaglass only
                 ModBlocks.TESTBLOCK.forEach(output::accept);
-
-                output.accept(ModBlocks.REFINED_GLOWSTONE);
-
-                output.accept(ModBlocks.SALT_BLOCK);
-                output.accept(ModBlocks.POLISHED_SALT_BLOCK);
 
                 output.accept(ModBlocks.WHEAT_THATCH);
                 output.accept(ModBlocks.WHEAT_THATCH_EDGE);
@@ -587,36 +653,6 @@ public enum OttCreativeCategories {
                 output.accept(ModBlocks.BAMBOO_THATCH);
                 output.accept(ModBlocks.BAMBOO_THATCH_EDGE);
                 output.accept(ModBlocks.BAMBOO_THATCH_PLATE);
-
-                output.accept(ModBlocks.ROOFING_SLATES);
-                output.accept(ModBlocks.ROOFING_SLATES_EDGE);
-                output.accept(ModBlocks.ROOFING_SLATES_PLATE);
-
-                output.accept(ModBlocks.BLACK_MARBLE);
-                output.accept(ModBlocks.BLACK_MARBLE_BRICKS);
-                output.accept(ModBlocks.BLACK_MARBLE_SMALL_BRICKS);
-                output.accept(ModBlocks.BLACK_MARBLE_TILES);
-                output.accept(ModBlocks.BLACK_POLISHED_MARBLE);
-                output.accept(ModBlocks.BLACK_MARBLE_PILLAR);
-                output.accept(ModBlocks.BLACK_MARBLE_PILLAR_CAP);
-                output.accept(ModBlocks.WHITE_MARBLE);
-                output.accept(ModBlocks.WHITE_MARBLE_BRICKS);
-                output.accept(ModBlocks.WHITE_MARBLE_SMALL_BRICKS);
-                output.accept(ModBlocks.WHITE_MARBLE_TILES);
-                output.accept(ModBlocks.WHITE_POLISHED_MARBLE);
-                output.accept(ModBlocks.WHITE_MARBLE_PILLAR);
-                output.accept(ModBlocks.WHITE_MARBLE_PILLAR_CAP);
-                output.accept(ModBlocks.BLACK_MARBLE_FLOOR_TILE);
-                output.accept(ModBlocks.WHITE_MARBLE_FLOOR_TILE);
-
-                output.accept(ModBlocks.SANDSTONE_SLENDER_BRICKS);
-                output.accept(ModBlocks.SANDSTONE_SLENDER_BRICKS_EDGE);
-                output.accept(ModBlocks.SANDSTONE_SLENDER_BRICKS_PLATE);
-
-                output.accept(ModBlocks.SANDSTONE_SLENDER_TURQUOISE_PATTERN);
-                output.accept(ModBlocks.SANDSTONE_SLENDER_TURQUOISE_PATTERN_EDGE);
-                output.accept(ModBlocks.SANDSTONE_SLENDER_TURQUOISE_PATTERN_PLATE);
-
 
                 output.accept(ModBlocks.CHISELED_PLASTERED_STONE_PILLAR);
             }),
@@ -846,7 +882,6 @@ public enum OttCreativeCategories {
                 output.accept(ModBlocks.CURVED_RAKED_GRAVEL);
                 output.accept(ModBlocks.STRAIGHT_RAKED_GRAVEL);
 
-                output.accept(ModBlocks.LIMESTONE_BANNISTER);
                 output.accept(ModBlocks.WHITE_MARBLE_FANCY_FENCE);
                 output.accept(ModBlocks.BLACK_MARBLE_FANCY_FENCE);
                 output.accept(ModBlocks.SANDSTONE_CRENELATION);
@@ -871,7 +906,10 @@ public enum OttCreativeCategories {
 
     // --- Display order (top to bottom in the button list) ---
     public static final java.util.List<OttCreativeCategories> DISPLAY_ORDER =
-            java.util.List.of(MISC, VANPLUS, WOOD_SETS, DYES, COLORS, GRADIENTS, BLOCKS, ENGRAVED, MOSAIC, BACKPORT, COPPER_CHAOS, FLORA, FAUNA, FOOD, JARS, AQUATIC, WILDLIFE, MYTHICAL
+            java.util.List.of(MISC, COLORS, DYES, GRADIENTS, WOOD_SETS, VANPLUS,
+                    STONE_CUSTOM, STONE_VANILLA,
+                    BACKPORT, COPPER_CHAOS, ENGRAVED, MOSAIC, BLOCKS,
+                    FLORA, FAUNA, FOOD, JARS, CREATURES
             );
 
     // --- State ---

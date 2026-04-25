@@ -635,6 +635,15 @@ public class ModBlockTagProvider extends BlockTagsProvider {
 
         ModBlocks.COLOR_SETS.values().forEach(this::addColorSetTags);
 
+        // Stone shape sets — all 8 shapes are pickaxe-mineable
+        ModBlocks.STONE_SETS.values().forEach(set ->
+                this.tag(BlockTags.MINEABLE_WITH_PICKAXE).add(
+                        set.plate().getKey(), set.edge().getKey(), set.beam().getKey(),
+                        set.pergola().getKey(), set.geometricWindow().getKey(),
+                        set.bannister().getKey(), set.supportSlab().getKey(), set.supportBeam().getKey()
+                )
+        );
+
         // --- 6. VANILLA OVERRIDES ---
         this.tag(BlockTags.LEAVES).add(ModBlocks.PALE_OAK_LEAVES.value());
         this.tag(BlockTags.PLANKS).add(ModBlocks.PALE_OAK_PLANKS.value());

@@ -3,6 +3,7 @@ import com.otterly76.ott.client.render.entity.*;
 import com.otterly76.ott.block.ModBlocks;
 import com.otterly76.ott.client.NutritionHudOverlay;
 import com.otterly76.ott.client.gui.RecyclingScreen;
+import com.otterly76.ott.client.screen.EngravingTableScreen;
 import com.otterly76.ott.client.toast.BetterToastComponent;
 import com.otterly76.ott.client.gui.NautilusInventoryScreen;
 import com.otterly76.ott.client.gui.TrashScreen;
@@ -191,6 +192,7 @@ public class ClientModEvents {
         event.register(ModMenuTypes.RECYCLING_MENU.get(), RecyclingScreen::new);
         event.register(ModMenuTypes.WOODCUTTER_MENU.get(), com.otterly76.ott.client.screen.WoodcutterScreen::new);
         event.register(ModMenuTypes.NAUTILUS_INVENTORY.get(), NautilusInventoryScreen::new);
+        event.register(ModMenuTypes.ENGRAVING_TABLE_MENU.get(), EngravingTableScreen::new);
     }
 
     @SuppressWarnings("unchecked")

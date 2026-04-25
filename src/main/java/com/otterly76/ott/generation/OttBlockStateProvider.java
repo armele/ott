@@ -101,6 +101,12 @@ public class OttBlockStateProvider extends ModBlockStateProvider {
 
         ModBlocks.COLOR_SETS.forEach(this::registerColorSet);
 
+        ModBlocks.STONE_SETS.forEach((name, set) -> {
+            com.otterly76.ott.block.stone.ModStoneVariants.StoneVariant v =
+                    com.otterly76.ott.block.stone.ModStoneVariants.byName(name);
+            if (v != null) registerStoneSet(v, set);
+        });
+
         registerPatternBlocks();
         registerMiscBlocks();
         registerElevators();
@@ -407,6 +413,124 @@ public class OttBlockStateProvider extends ModBlockStateProvider {
                 .part().modelFile(csSup10).addModel().condition(SupportBeamBlock.PILLAR_CONNECTION, PillarConnection.TEN).end();
         itemModels().withExistingParent(color + "_support_beam", modLoc("item/template_support_beam"))
                 .texture("texture", woolTex).texture("slab", woolTex).texture("particle", woolTex);
+    }
+
+    private void registerStoneSet(com.otterly76.ott.block.stone.ModStoneVariants.StoneVariant v, ModBlocks.StoneSetBlocks set) {
+        String n   = v.name();
+        String dir = "block/stone_set/" + n + "/";
+        ResourceLocation sideTex = ResourceLocation.parse(v.sideTex());
+        ResourceLocation topTex  = ResourceLocation.parse(v.effectiveTopTex());
+
+        // ── Plate ──────────────────────────────────────────────────────────────
+        var plate      = models().withExistingParent(dir + n + "_plate",       modLoc("block/plate"))
+                .texture("side", sideTex).texture("top", topTex).texture("frieze", sideTex);
+        var plateOuter = models().withExistingParent(dir + n + "_plate_outer", modLoc("block/plate_outer"))
+                .texture("top", topTex).texture("frieze", sideTex);
+        var plateInner = models().withExistingParent(dir + n + "_plate_inner", modLoc("block/plate_inner"))
+                .texture("side", sideTex).texture("top", topTex).texture("frieze", sideTex);
+        if (v.cutout()) { plate.renderType("minecraft:cutout"); plateOuter.renderType("minecraft:cutout"); plateInner.renderType("minecraft:cutout"); }
+        registerFacingShapeBlock(set.plate().get(), plate, plateOuter, plateInner);
+        itemModels().withExistingParent(n + "_plate", plate.getLocation());
+
+        // ── Edge ───────────────────────────────────────────────────────────────
+        var edge      = models().withExistingParent(dir + n + "_edge",       modLoc("block/small_plate"))
+                .texture("side", sideTex).texture("frieze", sideTex);
+        var edgeOuter = models().withExistingParent(dir + n + "_edge_outer", modLoc("block/small_plate_outer"))
+                .texture("top", topTex).texture("frieze", sideTex);
+        var edgeInner = models().withExistingParent(dir + n + "_edge_inner", modLoc("block/small_plate_inner"))
+                .texture("side", sideTex).texture("top", topTex).texture("frieze", sideTex);
+        if (v.cutout()) { edge.renderType("minecraft:cutout"); edgeOuter.renderType("minecraft:cutout"); edgeInner.renderType("minecraft:cutout"); }
+        registerFacingShapeHalfBlock(set.edge().get(), edge, edgeOuter, edgeInner);
+        itemModels().withExistingParent(n + "_edge", edge.getLocation());
+
+        // ── Beam ───────────────────────────────────────────────────────────────
+        var beamY   = models().withExistingParent(dir + n + "_beam_y",      modLoc("block/stone/stone_beam_y"))
+                .texture("1", sideTex).texture("particle", sideTex);
+        var beamX   = models().withExistingParent(dir + n + "_beam_x",      modLoc("block/stone/stone_beam_x"))
+                .texture("1", sideTex).texture("particle", sideTex);
+        var beamXZ  = models().withExistingParent(dir + n + "_beam_x_z",    modLoc("block/stone/stone_beam_x_z"))
+                .texture("1", sideTex).texture("particle", sideTex);
+        var beamBot = models().withExistingParent(dir + n + "_beam_bottom",  modLoc("block/stone/stone_beam_bottom"))
+                .texture("texture", sideTex).texture("particle", sideTex);
+        getMultipartBuilder(set.beam().get())
+                .part().modelFile(beamY).addModel()               .condition(BeamBlock.AXIS_Y, true).end()
+                .part().modelFile(beamX).addModel()               .condition(BeamBlock.AXIS_X, true).condition(BeamBlock.AXIS_Z, false).end()
+                .part().modelFile(beamX).rotationY(90).addModel() .condition(BeamBlock.AXIS_X, false).condition(BeamBlock.AXIS_Z, true).end()
+                .part().modelFile(beamXZ).addModel()              .condition(BeamBlock.AXIS_X, true).condition(BeamBlock.AXIS_Z, true).end()
+                .part().modelFile(beamBot).addModel()             .condition(BeamBlock.BOTTOM, true).end();
+        itemModels().withExistingParent(n + "_beam", modLoc("item/template_beam"))
+                .texture("0", sideTex).texture("particle", sideTex);
+
+        // ── Pergola ────────────────────────────────────────────────────────────
+        var pergY  = models().withExistingParent(dir + n + "_pergola_y",   modLoc("block/stone/stone_pergola_y"))
+                .texture("0", sideTex).texture("particle", sideTex);
+        var pergX  = models().withExistingParent(dir + n + "_pergola_x",   modLoc("block/stone/stone_pergola_x"))
+                .texture("0", sideTex).texture("particle", sideTex);
+        var pergXZ = models().withExistingParent(dir + n + "_pergola_x_z", modLoc("block/stone/stone_pergola_x_z"))
+                .texture("0", sideTex).texture("particle", sideTex);
+        getMultipartBuilder(set.pergola().get())
+                .part().modelFile(pergY).addModel()               .condition(PergolaBlock.AXIS_Y, true).end()
+                .part().modelFile(pergX).addModel()               .condition(PergolaBlock.AXIS_X, true).condition(PergolaBlock.AXIS_Z, false).end()
+                .part().modelFile(pergX).rotationY(90).addModel() .condition(PergolaBlock.AXIS_X, false).condition(PergolaBlock.AXIS_Z, true).end()
+                .part().modelFile(pergXZ).addModel()              .condition(PergolaBlock.AXIS_X, true).condition(PergolaBlock.AXIS_Z, true).end();
+        itemModels().withExistingParent(n + "_pergola", modLoc("item/template_pergola"))
+                .texture("0", sideTex).texture("particle", sideTex);
+
+        // ── Geometric Window ───────────────────────────────────────────────────
+        var window = models().withExistingParent(dir + n + "_geometric_window", modLoc("block/geometric_window"))
+                .texture("texture", sideTex).texture("particle", sideTex)
+                .renderType("minecraft:cutout");
+        horizontalBlock(set.geometricWindow().get(), window);
+        itemModels().withExistingParent(n + "_geometric_window", window.getLocation());
+
+        // ── Bannister ──────────────────────────────────────────────────────────
+        var bannister      = models().withExistingParent(dir + n + "_bannister",       modLoc("block/oak/oak_bannister"))
+                .texture("0", sideTex).texture("particle", sideTex);
+        var bannisterOuter = models().withExistingParent(dir + n + "_bannister_outer", modLoc("block/oak/oak_bannister_outer"))
+                .texture("0", sideTex).texture("particle", sideTex);
+        var bannisterInner = models().withExistingParent(dir + n + "_bannister_inner", modLoc("block/oak/oak_bannister_inner"))
+                .texture("0", sideTex).texture("particle", sideTex);
+        if (v.cutout()) { bannister.renderType("minecraft:cutout"); bannisterOuter.renderType("minecraft:cutout"); bannisterInner.renderType("minecraft:cutout"); }
+        registerFacingShapeBlock(set.bannister().get(), bannister, bannisterOuter, bannisterInner);
+        itemModels().withExistingParent(n + "_bannister", bannister.getLocation());
+
+        // ── Support Slab ───────────────────────────────────────────────────────
+        var sup4    = models().withExistingParent(dir + n + "_support_4_pixels",  modLoc("block/oak/oak_support_4_pixels"))
+                .texture("slab", sideTex).texture("particle", sideTex);
+        var sup6    = models().withExistingParent(dir + n + "_support_6_pixels",  modLoc("block/oak/oak_support_6_pixels"))
+                .texture("slab", sideTex).texture("particle", sideTex);
+        var sup8    = models().withExistingParent(dir + n + "_support_8_pixels",  modLoc("block/oak/oak_support_8_pixels"))
+                .texture("slab", sideTex).texture("particle", sideTex);
+        var sup10   = models().withExistingParent(dir + n + "_support_10_pixels", modLoc("block/oak/oak_support_10_pixels"))
+                .texture("slab", sideTex).texture("particle", sideTex);
+        var supSlab = models().withExistingParent(dir + n + "_support_slab",      modLoc("block/oak/oak_support_slab"))
+                .texture("slab", sideTex).texture("particle", sideTex);
+        if (v.cutout()) { sup4.renderType("minecraft:cutout"); sup6.renderType("minecraft:cutout"); sup8.renderType("minecraft:cutout"); sup10.renderType("minecraft:cutout"); supSlab.renderType("minecraft:cutout"); }
+        getMultipartBuilder(set.supportSlab().get())
+                .part().modelFile(supSlab).addModel().end()
+                .part().modelFile(sup4).addModel()  .condition(SupportSlabBlock.PILLAR_CONNECTION, com.otterly76.ott.block.properties.PillarConnection.FOUR).end()
+                .part().modelFile(sup6).addModel()  .condition(SupportSlabBlock.PILLAR_CONNECTION, com.otterly76.ott.block.properties.PillarConnection.SIX).end()
+                .part().modelFile(sup8).addModel()  .condition(SupportSlabBlock.PILLAR_CONNECTION, com.otterly76.ott.block.properties.PillarConnection.EIGHT).end()
+                .part().modelFile(sup10).addModel() .condition(SupportSlabBlock.PILLAR_CONNECTION, com.otterly76.ott.block.properties.PillarConnection.TEN).end();
+        itemModels().withExistingParent(n + "_support_slab", supSlab.getLocation());
+
+        // ── Support Beam ───────────────────────────────────────────────────────
+        var supBeamX  = models().withExistingParent(dir + n + "_support_beam_x",   modLoc("block/oak/oak_beam_x"))
+                .renderType("minecraft:cutout").texture("1", sideTex).texture("particle", sideTex);
+        var supBeamXZ = models().withExistingParent(dir + n + "_support_beam_x_z", modLoc("block/oak/oak_beam_x_z"))
+                .renderType("minecraft:cutout").texture("1", sideTex).texture("particle", sideTex);
+        getMultipartBuilder(set.supportBeam().get())
+                .part().modelFile(supSlab).addModel().end()
+                .part().modelFile(supBeamX).addModel()               .condition(SupportBeamBlock.HORIZONTAL_AXIS, Direction.Axis.X).condition(SupportBeamBlock.SUBAXIS, false).end()
+                .part().modelFile(supBeamX).rotationY(90).addModel() .condition(SupportBeamBlock.HORIZONTAL_AXIS, Direction.Axis.Z).condition(SupportBeamBlock.SUBAXIS, false).end()
+                .part().modelFile(supBeamXZ).addModel()              .condition(SupportBeamBlock.HORIZONTAL_AXIS, Direction.Axis.X).condition(SupportBeamBlock.SUBAXIS, true).end()
+                .part().modelFile(supBeamXZ).rotationY(90).addModel().condition(SupportBeamBlock.HORIZONTAL_AXIS, Direction.Axis.Z).condition(SupportBeamBlock.SUBAXIS, true).end()
+                .part().modelFile(sup4).addModel()  .condition(SupportBeamBlock.PILLAR_CONNECTION, com.otterly76.ott.block.properties.PillarConnection.FOUR).end()
+                .part().modelFile(sup6).addModel()  .condition(SupportBeamBlock.PILLAR_CONNECTION, com.otterly76.ott.block.properties.PillarConnection.SIX).end()
+                .part().modelFile(sup8).addModel()  .condition(SupportBeamBlock.PILLAR_CONNECTION, com.otterly76.ott.block.properties.PillarConnection.EIGHT).end()
+                .part().modelFile(sup10).addModel() .condition(SupportBeamBlock.PILLAR_CONNECTION, com.otterly76.ott.block.properties.PillarConnection.TEN).end();
+        itemModels().withExistingParent(n + "_support_beam", modLoc("item/template_support_beam"))
+                .texture("texture", sideTex).texture("slab", sideTex).texture("particle", sideTex);
     }
 
     private void registerSeaglassColor(String color, ModBlocks.SeaglassColorBlocks set) {
@@ -1087,7 +1211,6 @@ public class OttBlockStateProvider extends ModBlockStateProvider {
         simpleBlockWithItem(ModBlocks.COBBLED_LIMESTONE.get(), models().getExistingFile(modLoc("block/limestone/cobbled_limestone")));
         existingEdgeBlock(ModBlocks.LIMESTONE_MASONRY_EDGE.get(),            "block/limestone/limestone_masonry_edge");
         existingFacingShapeBlock(ModBlocks.LIMESTONE_MASONRY_PLATE.get(),    "block/limestone/limestone_masonry_plate");
-        existingFacingShapeBlockNoUvLock(ModBlocks.LIMESTONE_BANNISTER.get(), "block/limestone/limestone_bannister");
 
         // ── Salt & misc stone ─────────────────────────────────────────────────
         simpleBlockWithItem(ModBlocks.SALT_BLOCK.get(),          models().getExistingFile(modLoc("block/salt/salt_block")));
@@ -1098,8 +1221,6 @@ public class OttBlockStateProvider extends ModBlockStateProvider {
 
         // ── Roofing slates ────────────────────────────────────────────────────
         simpleBlockWithItem(ModBlocks.ROOFING_SLATES.get(),      models().getExistingFile(modLoc("block/roofing_slates")));
-        existingEdgeBlock(ModBlocks.ROOFING_SLATES_EDGE.get(),          "block/roofing_slates_edge");
-        existingFacingShapeBlock(ModBlocks.ROOFING_SLATES_PLATE.get(),  "block/roofing_slates_plate");
 
         // ── Wheat thatch ──────────────────────────────────────────────────────
         simpleBlockWithItem(ModBlocks.WHEAT_THATCH.get(),        models().getExistingFile(modLoc("block/wheat_thatch/wheat_thatch")));
@@ -1112,13 +1233,7 @@ public class OttBlockStateProvider extends ModBlockStateProvider {
         existingFacingShapeBlock(ModBlocks.BAMBOO_THATCH_PLATE.get(), "block/bamboo/bamboo_thatch_plate");
 
         // ── Sandstone shapes ──────────────────────────────────────────────────
-        existingEdgeBlock(ModBlocks.SANDSTONE_EDGE.get(),               "block/sandstone/sandstone_edge");
-        existingFacingShapeBlock(ModBlocks.SANDSTONE_PLATE.get(),       "block/sandstone/sandstone_plate");
         existingFacingShapeBlockNoUvLock(ModBlocks.SANDSTONE_CRENELATION.get(), "block/sandstone/sandstone_crenelation");
-        existingEdgeBlock(ModBlocks.CUT_SANDSTONE_EDGE.get(),           "block/cut_sandstone/cut_sandstone_edge");
-        existingFacingShapeBlock(ModBlocks.CUT_SANDSTONE_PLATE.get(),   "block/cut_sandstone/cut_sandstone_plate");
-        existingEdgeBlock(ModBlocks.SMOOTH_SANDSTONE_EDGE.get(),        "block/smooth_sandstone/smooth_sandstone_edge");
-        existingFacingShapeBlock(ModBlocks.SMOOTH_SANDSTONE_PLATE.get(),"block/smooth_sandstone/smooth_sandstone_plate");
 
         // ── Stone bricks masonry ──────────────────────────────────────────────
         simpleBlockWithItem(ModBlocks.STONE_BRICKS_MASONRY.get(),      models().getExistingFile(modLoc("block/stone_bricks/stone_bricks_masonry")));
@@ -1126,12 +1241,8 @@ public class OttBlockStateProvider extends ModBlockStateProvider {
         existingFacingShapeBlock(ModBlocks.STONE_BRICKS_MASONRY_PLATE.get(),  "block/stone_bricks/stone_bricks_masonry_plate");
 
         // ── Sandstone slender ─────────────────────────────────────────────────
-        simpleBlockWithItem(ModBlocks.SANDSTONE_SLENDER_BRICKS.get(),    models().getExistingFile(modLoc("block/sandstone_slender/sandstone_slender_bricks")));
-        existingEdgeBlock(ModBlocks.SANDSTONE_SLENDER_BRICKS_EDGE.get(),          "block/sandstone_slender/sandstone_slender_bricks_edge");
-        existingFacingShapeBlock(ModBlocks.SANDSTONE_SLENDER_BRICKS_PLATE.get(),  "block/sandstone_slender/sandstone_slender_bricks_plate");
-        simpleBlockWithItem(ModBlocks.SANDSTONE_SLENDER_TURQUOISE_PATTERN.get(),  models().getExistingFile(modLoc("block/sandstone_slender/sandstone_slender_turquoise_pattern")));
-        existingEdgeBlock(ModBlocks.SANDSTONE_SLENDER_TURQUOISE_PATTERN_EDGE.get(),         "block/sandstone_slender/sandstone_slender_turquoise_pattern_edge");
-        existingFacingShapeBlock(ModBlocks.SANDSTONE_SLENDER_TURQUOISE_PATTERN_PLATE.get(), "block/sandstone_slender/sandstone_slender_turquoise_pattern_plate");
+        simpleBlockWithItem(ModBlocks.SANDSTONE_SLENDER_BRICKS.get(),           models().getExistingFile(modLoc("block/sandstone_slender/sandstone_slender_bricks")));
+        simpleBlockWithItem(ModBlocks.SANDSTONE_SLENDER_TURQUOISE_PATTERN.get(), models().getExistingFile(modLoc("block/sandstone_slender/sandstone_slender_turquoise_pattern")));
 
         // ── Mosaic floors ─────────────────────────────────────────────────────
         simpleBlockWithItem(ModBlocks.MOSAIC_FLOOR.get(),         models().getExistingFile(modLoc("block/mosaic_floor/mosaic_floor")));

@@ -68,10 +68,18 @@ public class ModLangMergeProvider implements DataProvider {
             addElevatorBlockEntries(ottBase, color.name());
         }
 
+        // Add auto-generated stone set entries to OTT base
+        for (com.otterly76.ott.block.stone.ModStoneVariants.StoneVariant v : com.otterly76.ott.block.stone.ModStoneVariants.ALL) {
+            addStoneSetEntries(ottBase, v.name());
+        }
+
         // Add creative tab titles
         ottBase.addProperty("itemGroup.ott.blocks", "New Otterhome Blocks");
         ottBase.addProperty("itemGroup.ott.color_sets", "New Otterhome Color Sets");
         ottBase.addProperty("itemGroup.ott.wood_sets", "New Otterhome Wood Sets");
+        ottBase.addProperty("ott.creative_category.stone_vanilla",             "Vanilla Plus: Stone");
+        ottBase.addProperty("ott.creative_category.stone_custom",              "Custom Stone");
+        ottBase.addProperty("ott.creative_category.stone_mosaic_traditional",  "Mosaic Traditional");
 
         Path mcOut = output.getOutputFolder(PackOutput.Target.RESOURCE_PACK)
                 .resolve("minecraft/lang/en_us.json");
@@ -161,6 +169,21 @@ public class ModLangMergeProvider implements DataProvider {
         json.addProperty("block.ott." + name + "_bannister",         capitalized + " Bannister");
         json.addProperty("block.ott." + name + "_support_slab",      capitalized + " Support Slab");
         json.addProperty("block.ott." + name + "_support_beam",      capitalized + " Support Beam");
+    }
+
+    private void addStoneSetEntries(JsonObject json, String name) {
+        String capitalized = Arrays.stream(name.split("_"))
+                .map(s -> s.substring(0, 1).toUpperCase() + s.substring(1))
+                .collect(Collectors.joining(" "));
+
+        json.addProperty("block.ott." + name + "_plate",            capitalized + " Plate");
+        json.addProperty("block.ott." + name + "_edge",             capitalized + " Edge");
+        json.addProperty("block.ott." + name + "_beam",             capitalized + " Beam");
+        json.addProperty("block.ott." + name + "_pergola",          capitalized + " Pergola");
+        json.addProperty("block.ott." + name + "_geometric_window", capitalized + " Geometric Window");
+        json.addProperty("block.ott." + name + "_bannister",        capitalized + " Bannister");
+        json.addProperty("block.ott." + name + "_support_slab",     capitalized + " Support Slab");
+        json.addProperty("block.ott." + name + "_support_beam",     capitalized + " Support Beam");
     }
 
     private void addElevatorBlockEntries(JsonObject json, String colorName) {

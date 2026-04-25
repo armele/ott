@@ -1,0 +1,20 @@
+{
+	"textures": {
+		"texture": "ott:block/beam/oak_beam",
+		"particle": "ott:block/beam/oak_beam"
+	},
+	"elements": [
+		{
+			"from": [2, -0.001, 2],
+			"to": [14, 4, 14],
+			"faces": {
+				"north": {"uv": [2, 6, 14, 10], "texture": "#texture"},
+				"east":  {"uv": [2, 6, 14, 10], "texture": "#texture"},
+				"south": {"uv": [2, 6, 14, 10], "texture": "#texture"},
+				"west":  {"uv": [2, 6, 14, 10], "texture": "#texture"},
+				"up":    {"uv": [2, 2, 14, 14], "texture": "#texture"},
+				"down":  {"uv": [2, 2, 14, 14], "texture": "#texture", "cullface": "down"}
+			}
+		}
+	]
+}

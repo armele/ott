@@ -418,6 +418,10 @@ public class ModBlocks {
         // Register all ott color sets
         com.otterly76.ott.color.ModColorSets.ALL.forEach(set -> COLOR_SETS.put(set.name(), com.otterly76.ott.block.color.ColorSetBlockRegistrar.registerOttColorSet(set.name())));
 
+        // Register all stone shape sets
+        com.otterly76.ott.block.stone.ModStoneVariants.ALL.forEach(v ->
+                STONE_SETS.put(v.name(), com.otterly76.ott.block.stone.StoneSetBlockRegistrar.registerStoneSet(v)));
+
         // Register seaglass for all colors (vanilla dyes + custom color sets)
         for (com.otterly76.ott.color.ModPatterns.ColorInfo color : com.otterly76.ott.color.ModPatterns.ALL_COLORS) {
             final String c = color.name();
@@ -566,6 +570,11 @@ public class ModBlocks {
     public static final Map<String, ColorSetBlocks> COLOR_SETS = new LinkedHashMap<>();
 
     /**
+     * Stone-type shape sets (ott namespace). Key = variant name (e.g. "stone", "granite").
+     */
+    public static final Map<String, StoneSetBlocks> STONE_SETS = new LinkedHashMap<>();
+
+    /**
      * Seaglass color sets (ott namespace). Key = color name, covers all vanilla dyes + custom color sets.
      */
     public static final Map<String, SeaglassColorBlocks> SEAGLASS_SETS = new LinkedHashMap<>();
@@ -597,6 +606,17 @@ public class ModBlocks {
             DeferredBlock<com.otterly76.ott.block.custom.BannisterBlock> bannister,
             DeferredBlock<com.otterly76.ott.block.custom.SupportSlabBlock> supportSlab,
             DeferredBlock<com.otterly76.ott.block.custom.SupportBeamBlock> supportBeam
+    ) {}
+
+    public record StoneSetBlocks(
+            DeferredBlock<com.otterly76.ott.block.custom.PlateBlock>          plate,
+            DeferredBlock<com.otterly76.ott.block.custom.EdgeBlock>           edge,
+            DeferredBlock<com.otterly76.ott.block.custom.BeamBlock>           beam,
+            DeferredBlock<com.otterly76.ott.block.custom.PergolaBlock>        pergola,
+            DeferredBlock<com.otterly76.ott.block.custom.GeometricWindowBlock> geometricWindow,
+            DeferredBlock<com.otterly76.ott.block.custom.BannisterBlock>      bannister,
+            DeferredBlock<com.otterly76.ott.block.custom.SupportSlabBlock>    supportSlab,
+            DeferredBlock<com.otterly76.ott.block.custom.SupportBeamBlock>    supportBeam
     ) {}
 
     public record SeaglassColorBlocks(
@@ -799,8 +819,6 @@ public class ModBlocks {
             () -> new EdgeBlock(Properties.ofFullCopy(Blocks.STONE_BRICKS)));
     public static final DeferredBlock<PlateBlock> LIMESTONE_MASONRY_PLATE = register("limestone_masonry_plate",
             () -> new PlateBlock(Properties.ofFullCopy(Blocks.STONE_BRICKS)));
-    public static final DeferredBlock<PlateBlock> LIMESTONE_BANNISTER = register("limestone_bannister",
-            () -> new PlateBlock(Properties.ofFullCopy(Blocks.STONE_BRICKS).noOcclusion()));
     public static final DeferredBlock<Block> COBBLED_LIMESTONE = register("cobbled_limestone",
             () -> new Block(Properties.ofFullCopy(Blocks.STONE_BRICKS)));
     public static final DeferredBlock<Block> PLAIN_LIMESTONE = register("limestone",
@@ -835,29 +853,13 @@ public class ModBlocks {
     // -------------------------------------------------------------------------
     // --- DoTB Phase 2: Sandstone decorative (Roman) ---
     // -------------------------------------------------------------------------
-    public static final DeferredBlock<PlateBlock> SANDSTONE_PLATE = register("sandstone_plate",
-            () -> new PlateBlock(Properties.ofFullCopy(Blocks.SANDSTONE)));
-    public static final DeferredBlock<EdgeBlock> SANDSTONE_EDGE = register("sandstone_edge",
-            () -> new EdgeBlock(Properties.ofFullCopy(Blocks.SANDSTONE)));
     public static final DeferredBlock<PlateBlock> SANDSTONE_CRENELATION = register("sandstone_crenelation",
             () -> new PlateBlock(Properties.ofFullCopy(Blocks.CUT_SANDSTONE)));
-    public static final DeferredBlock<PlateBlock> CUT_SANDSTONE_PLATE = register("cut_sandstone_plate",
-            () -> new PlateBlock(Properties.ofFullCopy(Blocks.CUT_SANDSTONE)));
-    public static final DeferredBlock<EdgeBlock> CUT_SANDSTONE_EDGE = register("cut_sandstone_edge",
-            () -> new EdgeBlock(Properties.ofFullCopy(Blocks.CUT_SANDSTONE)));
-    public static final DeferredBlock<PlateBlock> SMOOTH_SANDSTONE_PLATE = register("smooth_sandstone_plate",
-            () -> new PlateBlock(Properties.ofFullCopy(Blocks.SMOOTH_SANDSTONE)));
-    public static final DeferredBlock<EdgeBlock> SMOOTH_SANDSTONE_EDGE = register("smooth_sandstone_edge",
-            () -> new EdgeBlock(Properties.ofFullCopy(Blocks.SMOOTH_SANDSTONE)));
     // -------------------------------------------------------------------------
     // --- DoTB Phase 2: Flat/Gray Roof Tiles + Roofing Slates (General) ---
     // -------------------------------------------------------------------------
     public static final DeferredBlock<Block> ROOFING_SLATES = register("roofing_slates",
             () -> new Block(Properties.ofFullCopy(Blocks.STONE_BRICKS)));
-    public static final DeferredBlock<EdgeBlock> ROOFING_SLATES_EDGE = register("roofing_slates_edge",
-            () -> new EdgeBlock(Properties.ofFullCopy(Blocks.STONE_BRICKS)));
-    public static final DeferredBlock<PlateBlock> ROOFING_SLATES_PLATE = register("roofing_slates_plate",
-            () -> new PlateBlock(Properties.ofFullCopy(Blocks.STONE_BRICKS)));
 
     // -------------------------------------------------------------------------
     // --- DoTB Phase 2: Rammed Dirt, Stepping Stones (General) ---
@@ -892,13 +894,8 @@ public class ModBlocks {
     // -------------------------------------------------------------------------
     // --- Sandstone Slender ---
     // -------------------------------------------------------------------------
-    public static final DeferredBlock<Block>      SANDSTONE_SLENDER_BRICKS                   = register("sandstone_slender_bricks",                   () -> new Block(Properties.ofFullCopy(Blocks.SANDSTONE)));
-    public static final DeferredBlock<EdgeBlock>  SANDSTONE_SLENDER_BRICKS_EDGE              = register("sandstone_slender_bricks_edge",              () -> new EdgeBlock(Properties.ofFullCopy(Blocks.SANDSTONE)));
-    public static final DeferredBlock<PlateBlock> SANDSTONE_SLENDER_BRICKS_PLATE             = register("sandstone_slender_bricks_plate",             () -> new PlateBlock(Properties.ofFullCopy(Blocks.SANDSTONE)));
-
-    public static final DeferredBlock<Block>      SANDSTONE_SLENDER_TURQUOISE_PATTERN        = register("sandstone_slender_turquoise_pattern",        () -> new Block(Properties.ofFullCopy(Blocks.SANDSTONE)));
-    public static final DeferredBlock<EdgeBlock>  SANDSTONE_SLENDER_TURQUOISE_PATTERN_EDGE   = register("sandstone_slender_turquoise_pattern_edge",   () -> new EdgeBlock(Properties.ofFullCopy(Blocks.SANDSTONE)));
-    public static final DeferredBlock<PlateBlock> SANDSTONE_SLENDER_TURQUOISE_PATTERN_PLATE  = register("sandstone_slender_turquoise_pattern_plate",  () -> new PlateBlock(Properties.ofFullCopy(Blocks.SANDSTONE)));
+    public static final DeferredBlock<Block> SANDSTONE_SLENDER_BRICKS            = register("sandstone_slender_bricks",           () -> new Block(Properties.ofFullCopy(Blocks.SANDSTONE)));
+    public static final DeferredBlock<Block> SANDSTONE_SLENDER_TURQUOISE_PATTERN = register("sandstone_slender_turquoise_pattern", () -> new Block(Properties.ofFullCopy(Blocks.SANDSTONE)));
 
     // -------------------------------------------------------------------------
     // --- Ornamented Carpets + Wool ---

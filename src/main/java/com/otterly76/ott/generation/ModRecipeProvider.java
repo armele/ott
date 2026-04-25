@@ -1788,36 +1788,34 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
 
         // (wood set planks → structural shapes moved to woodcutter below)
 
+        // --- Stone set (input block → 8 architectural shapes) ---
+        ModBlocks.STONE_SETS.forEach((name, set) -> {
+            com.otterly76.ott.block.stone.ModStoneVariants.StoneVariant v =
+                    com.otterly76.ott.block.stone.ModStoneVariants.byName(name);
+            if (v == null) return;
+            ItemLike src = v.input().get();
+            stonecutOne(exporter, src, set.plate().get(),            name + "_plate_stonecutting");
+            stonecutOne(exporter, src, set.edge().get(),             name + "_edge_stonecutting");
+            stonecutOne(exporter, src, set.beam().get(),             name + "_beam_stonecutting");
+            stonecutOne(exporter, src, set.pergola().get(),          name + "_pergola_stonecutting");
+            stonecutOne(exporter, src, set.geometricWindow().get(),  name + "_geowindow_stonecutting");
+            stonecutOne(exporter, src, set.bannister().get(),        name + "_bannister_stonecutting");
+            stonecutOne(exporter, src, set.supportSlab().get(),      name + "_support_slab_stonecutting");
+            stonecutOne(exporter, src, set.supportBeam().get(),      name + "_support_beam_stonecutting");
+        });
+
         // --- Static blocks with known shape variants ---
         stonecutOne(exporter, ModBlocks.LIMESTONE_MASONRY.get(),                         ModBlocks.LIMESTONE_MASONRY_EDGE.get(),                        "limestone_masonry_edge_stonecutting");
         stonecutOne(exporter, ModBlocks.LIMESTONE_MASONRY.get(),                         ModBlocks.LIMESTONE_MASONRY_PLATE.get(),                       "limestone_masonry_plate_stonecutting");
-        stonecutOne(exporter, ModBlocks.ROOFING_SLATES.get(),                            ModBlocks.ROOFING_SLATES_EDGE.get(),                           "roofing_slates_edge_stonecutting");
-        stonecutOne(exporter, ModBlocks.ROOFING_SLATES.get(),                            ModBlocks.ROOFING_SLATES_PLATE.get(),                          "roofing_slates_plate_stonecutting");
         woodcutOne(exporter, ModBlocks.WHEAT_THATCH.get(),                              ModBlocks.WHEAT_THATCH_EDGE.get(),                             "wheat_thatch_edge_woodcutting");
         woodcutOne(exporter, ModBlocks.WHEAT_THATCH.get(),                              ModBlocks.WHEAT_THATCH_PLATE.get(),                            "wheat_thatch_plate_woodcutting");
         woodcutOne(exporter, ModBlocks.BAMBOO_THATCH.get(),                             ModBlocks.BAMBOO_THATCH_EDGE.get(),                            "bamboo_thatch_edge_woodcutting");
         woodcutOne(exporter, ModBlocks.BAMBOO_THATCH.get(),                             ModBlocks.BAMBOO_THATCH_PLATE.get(),                           "bamboo_thatch_plate_woodcutting");
-        // --- Sandstone slender (from base) ---
-        stonecutOne(exporter, ModBlocks.SANDSTONE_SLENDER_BRICKS.get(),                  ModBlocks.SANDSTONE_SLENDER_BRICKS_EDGE.get(),                  "sandstone_slender_bricks_edge_stonecutting");
-        stonecutOne(exporter, ModBlocks.SANDSTONE_SLENDER_BRICKS.get(),                  ModBlocks.SANDSTONE_SLENDER_BRICKS_PLATE.get(),                 "sandstone_slender_bricks_plate_stonecutting");
-        stonecutOne(exporter, ModBlocks.SANDSTONE_SLENDER_TURQUOISE_PATTERN.get(),       ModBlocks.SANDSTONE_SLENDER_TURQUOISE_PATTERN_EDGE.get(),       "sandstone_slender_turquoise_pattern_edge_stonecutting");
-        stonecutOne(exporter, ModBlocks.SANDSTONE_SLENDER_TURQUOISE_PATTERN.get(),       ModBlocks.SANDSTONE_SLENDER_TURQUOISE_PATTERN_PLATE.get(),      "sandstone_slender_turquoise_pattern_plate_stonecutting");
-        // --- Sandstone slender from smooth sandstone ---
-        stonecutOne(exporter, Blocks.SMOOTH_SANDSTONE, ModBlocks.SANDSTONE_SLENDER_BRICKS.get(),              "sandstone_slender_bricks_from_smooth_sandstone_stonecutting");
-        stonecutOne(exporter, Blocks.SMOOTH_SANDSTONE, ModBlocks.SANDSTONE_SLENDER_BRICKS_EDGE.get(),         "sandstone_slender_bricks_edge_from_smooth_sandstone_stonecutting");
-        stonecutOne(exporter, Blocks.SMOOTH_SANDSTONE, ModBlocks.SANDSTONE_SLENDER_BRICKS_PLATE.get(),        "sandstone_slender_bricks_plate_from_smooth_sandstone_stonecutting");
-        stonecutOne(exporter, Blocks.SMOOTH_SANDSTONE, ModBlocks.SANDSTONE_SLENDER_TURQUOISE_PATTERN.get(),   "sandstone_slender_turquoise_pattern_from_smooth_sandstone_stonecutting");
-        stonecutOne(exporter, Blocks.SMOOTH_SANDSTONE, ModBlocks.SANDSTONE_SLENDER_TURQUOISE_PATTERN_EDGE.get(), "sandstone_slender_turquoise_pattern_edge_from_smooth_sandstone_stonecutting");
-        stonecutOne(exporter, Blocks.SMOOTH_SANDSTONE, ModBlocks.SANDSTONE_SLENDER_TURQUOISE_PATTERN_PLATE.get(),"sandstone_slender_turquoise_pattern_plate_from_smooth_sandstone_stonecutting");
+        // --- Sandstone slender from smooth sandstone (base blocks only; all shapes via stone set) ---
+        stonecutOne(exporter, Blocks.SMOOTH_SANDSTONE, ModBlocks.SANDSTONE_SLENDER_BRICKS.get(),            "sandstone_slender_bricks_from_smooth_sandstone_stonecutting");
+        stonecutOne(exporter, Blocks.SMOOTH_SANDSTONE, ModBlocks.SANDSTONE_SLENDER_TURQUOISE_PATTERN.get(), "sandstone_slender_turquoise_pattern_from_smooth_sandstone_stonecutting");
         // --- Sandstone_crenelation from smooth sandstone ---
         stonecutOne(exporter, Blocks.SMOOTH_SANDSTONE, ModBlocks.SANDSTONE_CRENELATION.get(),          "sandstone_crenelation_from_smooth_sandstone_stonecutting");
-        // --- Vanilla sandstone variants ---
-        stonecutOne(exporter, Blocks.SANDSTONE,      ModBlocks.SANDSTONE_PLATE.get(),          "sandstone_plate_stonecutting");
-        stonecutOne(exporter, Blocks.SANDSTONE,      ModBlocks.SANDSTONE_EDGE.get(),           "sandstone_edge_stonecutting");
-        stonecutOne(exporter, Blocks.CUT_SANDSTONE,  ModBlocks.CUT_SANDSTONE_PLATE.get(),      "cut_sandstone_plate_stonecutting");
-        stonecutOne(exporter, Blocks.CUT_SANDSTONE,  ModBlocks.CUT_SANDSTONE_EDGE.get(),       "cut_sandstone_edge_stonecutting");
-        stonecutOne(exporter, Blocks.SMOOTH_SANDSTONE, ModBlocks.SMOOTH_SANDSTONE_PLATE.get(), "smooth_sandstone_plate_stonecutting");
-        stonecutOne(exporter, Blocks.SMOOTH_SANDSTONE, ModBlocks.SMOOTH_SANDSTONE_EDGE.get(),  "smooth_sandstone_edge_stonecutting");
         // --- Stone bricks masonry from stone ---
         stonecutOne(exporter, Blocks.STONE, ModBlocks.STONE_BRICKS_MASONRY.get(),       "stone_bricks_masonry_stonecutting");
         stonecutOne(exporter, Blocks.STONE, ModBlocks.STONE_BRICKS_MASONRY_EDGE.get(),  "stone_bricks_masonry_edge_stonecutting");
@@ -1882,7 +1880,6 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
         stonecutOne(exporter,  ModBlocks.WHITE_MARBLE.get(), ModBlocks.WHITE_MARBLE_FANCY_FENCE.get(),  "white_marble_fancy_fence_stonecutting");
         stonecutMany(exporter, ModBlocks.WHITE_MARBLE.get(), ModBlocks.WHITE_MARBLE_FLOOR_TILE.get(), "white_marble_floor_tile_stonecutting");
         woodcutOne(exporter, Items.SPRUCE_PLANKS, ModBlocks.SPRUCE_LOG_FENCE.get(), "spruce_log_fence_woodcutting");
-        stonecutOne(exporter, ModBlocks.PLAIN_LIMESTONE.get(), ModBlocks.LIMESTONE_BANNISTER.get(),      "limestone_bannister_from_limestone_stonecutting");
         stonecutOne(exporter, ModBlocks.PLAIN_LIMESTONE.get(), ModBlocks.MIXED_LIMESTONE_BRICKS.get(), "mixed_limestone_bricks_from_limestone_stonecutting");
         // --- Chiseled plastered stone from matching plastered stone ---
         ModBlocks.PATTERN_BLOCKS.get("plastered_stone").forEach((color, base) -> {
