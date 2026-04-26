@@ -13,7 +13,41 @@ import net.minecraft.world.level.levelgen.feature.FeaturePlaceContext;
 import net.minecraft.world.level.levelgen.feature.configurations.NoneFeatureConfiguration;
 import org.jetbrains.annotations.NotNull;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class GravitySettleFeature extends Feature<NoneFeatureConfiguration> {
+
+    /**
+     * Maps unsupported falling blocks to their stable geological equivalents.
+     * Gravel suspended over air/water becomes stone, sand becomes sandstone, etc.
+     */
+    private static final Map<Block, Block> CONVERSIONS = new HashMap<>();
+
+    static {
+        CONVERSIONS.put(Blocks.SAND,              Blocks.SANDSTONE);
+        CONVERSIONS.put(Blocks.RED_SAND,          Blocks.RED_SANDSTONE);
+        CONVERSIONS.put(Blocks.GRAVEL,            Blocks.STONE);
+        CONVERSIONS.put(Blocks.SUSPICIOUS_SAND,   Blocks.SANDSTONE);
+        CONVERSIONS.put(Blocks.SUSPICIOUS_GRAVEL, Blocks.STONE);
+        // Concrete powders → matching hardened concrete
+        CONVERSIONS.put(Blocks.WHITE_CONCRETE_POWDER,      Blocks.WHITE_CONCRETE);
+        CONVERSIONS.put(Blocks.ORANGE_CONCRETE_POWDER,     Blocks.ORANGE_CONCRETE);
+        CONVERSIONS.put(Blocks.MAGENTA_CONCRETE_POWDER,    Blocks.MAGENTA_CONCRETE);
+        CONVERSIONS.put(Blocks.LIGHT_BLUE_CONCRETE_POWDER, Blocks.LIGHT_BLUE_CONCRETE);
+        CONVERSIONS.put(Blocks.YELLOW_CONCRETE_POWDER,     Blocks.YELLOW_CONCRETE);
+        CONVERSIONS.put(Blocks.LIME_CONCRETE_POWDER,       Blocks.LIME_CONCRETE);
+        CONVERSIONS.put(Blocks.PINK_CONCRETE_POWDER,       Blocks.PINK_CONCRETE);
+        CONVERSIONS.put(Blocks.GRAY_CONCRETE_POWDER,       Blocks.GRAY_CONCRETE);
+        CONVERSIONS.put(Blocks.LIGHT_GRAY_CONCRETE_POWDER, Blocks.LIGHT_GRAY_CONCRETE);
+        CONVERSIONS.put(Blocks.CYAN_CONCRETE_POWDER,       Blocks.CYAN_CONCRETE);
+        CONVERSIONS.put(Blocks.PURPLE_CONCRETE_POWDER,     Blocks.PURPLE_CONCRETE);
+        CONVERSIONS.put(Blocks.BLUE_CONCRETE_POWDER,       Blocks.BLUE_CONCRETE);
+        CONVERSIONS.put(Blocks.BROWN_CONCRETE_POWDER,      Blocks.BROWN_CONCRETE);
+        CONVERSIONS.put(Blocks.GREEN_CONCRETE_POWDER,      Blocks.GREEN_CONCRETE);
+        CONVERSIONS.put(Blocks.RED_CONCRETE_POWDER,        Blocks.RED_CONCRETE);
+        CONVERSIONS.put(Blocks.BLACK_CONCRETE_POWDER,      Blocks.BLACK_CONCRETE);
+    }
 
     public GravitySettleFeature(Codec<NoneFeatureConfiguration> codec) {
         super(codec);
@@ -48,11 +82,11 @@ public class GravitySettleFeature extends Feature<NoneFeatureConfiguration> {
     }
 
     /**
-     * Scans a single block column bottom-to-top. Any FallingBlock (sand, gravel, etc.)
-     * that has only air beneath it falls to the nearest solid surface below.
-     * Processing bottom-to-top handles stacked gravity blocks correctly in one pass:
-     * after a lower block settles, the block above it will see the settled block as
-     * a solid surface when the scan reaches it.
+     * Scans a single block column bottom-to-top. Any FallingBlock that has no solid
+     * support below it (air, water, or other passable state) is converted in-place to
+     * its stable geological equivalent (gravel→stone, sand→sandstone, etc.) rather than
+     * being dropped. This prevents suspended blocks from threatening players while also
+     * preserving the terrain silhouette — no blocks disappear or relocate.
      */
     private void settleColumn(WorldGenLevel level, int x, int z, int minY, int maxY) {
         for (int y = minY + 1; y < maxY; y++) {
@@ -61,22 +95,14 @@ public class GravitySettleFeature extends Feature<NoneFeatureConfiguration> {
 
             Block block = state.getBlock();
             if (!(block instanceof FallingBlock)) continue;
+
+            Block stable = CONVERSIONS.get(block);
+            if (stable == null) continue; // unrecognised falling block, leave it alone
+
             BlockState below = level.getBlockState(pos.below());
-            // canFallThrough: air, fire, liquids, canBeReplaced blocks (grass, moss, carpets,
-            // flowers, etc.) and explicitly pointed dripstone.
-            if (!canFallThrough(below)) continue;
+            if (!canFallThrough(below)) continue; // already supported, no conversion needed
 
-            // Scan downward to find the first solid surface
-            int landY = y - 1;
-            while (landY > minY && canFallThrough(level.getBlockState(new BlockPos(x, landY, z)))) {
-                landY--;
-            }
-            landY++; // first air slot above the solid surface
-
-            if (landY < y) {
-                level.setBlock(new BlockPos(x, landY, z), state, 3);
-                level.setBlock(pos, Blocks.AIR.defaultBlockState(), 3);
-            }
+            level.setBlock(pos, stable.defaultBlockState(), 3);
         }
     }
 }
