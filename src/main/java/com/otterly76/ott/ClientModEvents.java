@@ -736,6 +736,8 @@ public class ClientModEvents {
         // Map all woodcutting recipes to the STONECUTTER category so the recipe book doesn't warn about unknown categories
         event.registerRecipeCategoryFinder(com.otterly76.ott.registry.ModRecipeTypes.WOODCUTTING.get(),
                 holder -> net.minecraft.client.RecipeBookCategories.STONECUTTER);
+        event.registerRecipeCategoryFinder(com.otterly76.ott.registry.ModRecipeTypes.ENGRAVING.get(),
+                holder -> net.minecraft.client.RecipeBookCategories.STONECUTTER);
     }
 
     /** Wraps every registered elevator block model with ElevatorBakedModel for camo support. */

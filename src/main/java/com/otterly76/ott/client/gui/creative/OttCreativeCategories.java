@@ -743,6 +743,9 @@ public enum OttCreativeCategories {
                 output.accept(ModBlocks.LAPIS_BLOCK_PILLAR);
                 output.accept(ModBlocks.NETHERITE_BLOCK_PILLAR);
                 output.accept(ModBlocks.OBSIDIAN_PILLAR);
+
+                // Wood door variants
+                ModItems.WOOD_DOOR_ITEMS.values().forEach(woodMap -> woodMap.values().forEach(output::accept));
             }),
 
     JARS("jars",

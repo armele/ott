@@ -39,11 +39,11 @@ public class ModItemTagProvider extends ItemTagsProvider {
     @Override
     protected void addTags(HolderLookup.@NotNull Provider provider) {
         // --- 1. DEFINE TAG KEYS ---
-        TagKey<Item> ottConcreteKey = TagKey.create(Registries.ITEM, ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, "concrete"));
-        TagKey<Item> ottConcretePowderKey = TagKey.create(Registries.ITEM, ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, "concrete_powder"));
-        TagKey<Item> ottWoolKey = TagKey.create(Registries.ITEM, ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, "wool"));
-        TagKey<Item> ottStainedGlassKey = TagKey.create(Registries.ITEM, ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, "stained_glass"));
-        TagKey<Item> ottTerracottaKey = TagKey.create(Registries.ITEM, ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, "terracotta"));
+        TagKey<Item> ottConcreteKey = TagKey.create(Registries.ITEM, ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, "material/concrete"));
+        TagKey<Item> ottConcretePowderKey = TagKey.create(Registries.ITEM, ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, "material/concrete_powder"));
+        TagKey<Item> ottWoolKey = TagKey.create(Registries.ITEM, ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, "material/wool"));
+        TagKey<Item> ottStainedGlassKey = TagKey.create(Registries.ITEM, ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, "material/stained_glass"));
+        TagKey<Item> ottTerracottaKey = TagKey.create(Registries.ITEM, ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, "material/terracotta"));
 
         TagKey<Item> cConcretesKey = TagKey.create(Registries.ITEM, ResourceLocation.fromNamespaceAndPath("c", "concretes"));
         TagKey<Item> cConcretePowdersKey = TagKey.create(Registries.ITEM, ResourceLocation.fromNamespaceAndPath("c", "concrete_powders"));
@@ -65,11 +65,17 @@ public class ModItemTagProvider extends ItemTagsProvider {
 
         // --- 2. COPY FROM BLOCKS ---
         // This copies the contents of your ott: block tags into these ott: item tags
-        this.copy(TagKey.create(Registries.BLOCK, ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, "concrete")), ottConcreteKey);
-        this.copy(TagKey.create(Registries.BLOCK, ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, "concrete_powder")), ottConcretePowderKey);
-        this.copy(TagKey.create(Registries.BLOCK, ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, "wool")), ottWoolKey);
-        this.copy(TagKey.create(Registries.BLOCK, ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, "stained_glass")), ottStainedGlassKey);
-        this.copy(TagKey.create(Registries.BLOCK, ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, "terracotta")), ottTerracottaKey);
+        this.copy(TagKey.create(Registries.BLOCK, ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, "material/concrete")), ottConcreteKey);
+        this.copy(TagKey.create(Registries.BLOCK, ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, "material/concrete_powder")), ottConcretePowderKey);
+        this.copy(TagKey.create(Registries.BLOCK, ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, "material/wool")), ottWoolKey);
+        this.copy(TagKey.create(Registries.BLOCK, ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, "material/stained_glass")), ottStainedGlassKey);
+        this.copy(TagKey.create(Registries.BLOCK, ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, "material/terracotta")), ottTerracottaKey);
+
+        com.otterly76.ott.block.ModBlocks.WOOD_DOORS.keySet().forEach(wood ->
+            this.copy(
+                TagKey.create(Registries.BLOCK, ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, "material/" + wood)),
+                TagKey.create(Registries.ITEM,  ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, "material/" + wood)))
+        );
 
         // --- 3. BUILD HIERARCHY (Inherited from blocks) ---
         copyCommonTag(cConcretesKey);

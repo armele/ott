@@ -19,6 +19,7 @@ import net.minecraft.advancements.Criterion;
 import net.minecraft.advancements.critereon.ImpossibleTrigger;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.core.registries.Registries;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.recipes.*;
 import net.minecraft.resources.ResourceLocation;
@@ -1981,6 +1982,12 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
                 .save(exporter, getRecipePath("ott", id));
     }
 
+    private void engraveTagged(RecipeOutput exporter, TagKey<Item> inputTag, ItemLike output, String id) {
+        new SingleItemRecipeBuilder(RecipeCategory.BUILDING_BLOCKS, EngravingRecipe::new, Ingredient.of(inputTag), output, 1)
+                .unlockedBy("has_input", has(inputTag))
+                .save(exporter, getRecipePath("ott", id));
+    }
+
     private void engraveRecipes(RecipeOutput exporter) {
         // ── Stone → engraved stone variants ──────────────────────────────────────
         engraveOne(exporter, Blocks.STONE, ModBlocks.ANGRY_STONE,                          "angry_stone_engraving");
@@ -2143,6 +2150,15 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
         engraveOne(exporter, Blocks.GREEN_WOOL,  ModBlocks.DELICATE_GREEN_WOOL,    "delicate_green_wool_engraving");
         engraveOne(exporter, Blocks.PURPLE_WOOL, ModBlocks.ORNAMENTED_PURPLE_WOOL, "ornamented_purple_wool_engraving");
         engraveOne(exporter, Blocks.PURPLE_WOOL, ModBlocks.DELICATE_PURPLE_WOOL,   "delicate_purple_wool_engraving");
+
+        // ── Wood door variants ────────────────────────────────────────────────────
+        ModBlocks.WOOD_DOORS.forEach((wood, styleMap) -> {
+            TagKey<Item> woodDoorsTag = TagKey.create(Registries.ITEM,
+                    ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, "material/" + wood));
+            styleMap.forEach((style, block) ->
+                    engraveTagged(exporter, woodDoorsTag, block.get(), style + "_" + wood + "_door_engraving")
+            );
+        });
     }
 
     private void woodcutStructural(RecipeOutput exporter, ItemLike input, String prefix, ModBlocks.WoodSetBlocks set) {

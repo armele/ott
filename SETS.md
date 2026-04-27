@@ -82,3 +82,10 @@ geometric window
 
 - SAPLING
 - POTTED SAPLING
+
+DOORS
+=====
+To add pale oak or any future wood type later, you'll only need to:
+1. Add one entry to the woodDoorNames/woodBSTs/vanillaDoors arrays in ModBlocks.java
+2. Add a case to the switch in ModBlockTagProvider.java
+3. Drop the texture PNGs in the right directory

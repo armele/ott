@@ -1424,6 +1424,14 @@ public class OttBlockStateProvider extends ModBlockStateProvider {
         beehiveBlock(ModBlocks.PALE_OAK_BEEHIVE,  "pale_oak");
         beehiveBlock(ModBlocks.SPRUCE_BEEHIVE,    "spruce");
         beehiveBlock(ModBlocks.WARPED_BEEHIVE,    "warped");
+
+        ModBlocks.WOOD_DOORS.forEach((wood, styleMap) ->
+            styleMap.forEach((style, block) -> {
+                ResourceLocation bottom = modLoc("block/" + wood + "/" + wood + "_door/" + style + "_" + wood + "_door_bottom");
+                ResourceLocation top    = modLoc("block/" + wood + "/" + wood + "_door/" + style + "_" + wood + "_door_top");
+                registerCutoutDoor(block.get(), bottom, top, "block/" + wood + "/");
+            })
+        );
     }
 
     private void beehiveBlock(net.neoforged.neoforge.registries.DeferredBlock<BeehiveBlock> block, String woodType) {

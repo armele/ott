@@ -100,6 +100,16 @@ public class ModItemModelProvider extends ItemModelProvider {
             parentItemToBlockModel(set.supportSlab().getId().getPath(), "block/" + setName + "/" + set.supportSlab().getId().getPath());
         });
 
+        ModBlocks.WOOD_DOORS.forEach((wood, styleMap) ->
+            styleMap.keySet().forEach(style -> {
+                String itemName = style + "_" + wood + "_door";
+                withExistingParent(itemName, mcLoc("item/door_base"))
+                        .texture("particle", modLoc("block/" + wood + "/" + wood + "_door/" + style + "_" + wood + "_door_top"))
+                        .texture("bottom",   modLoc("block/" + wood + "/" + wood + "_door/" + style + "_" + wood + "_door_bottom"))
+                        .texture("top",      modLoc("block/" + wood + "/" + wood + "_door/" + style + "_" + wood + "_door_top"));
+            })
+        );
+
         ModBlocks.COLOR_SETS.forEach((color, set) -> {
             String colorDir = "block/" + color + "/";
             parentItemToBlockModel(set.concrete().getId().getPath(), colorDir + set.concrete().getId().getPath());

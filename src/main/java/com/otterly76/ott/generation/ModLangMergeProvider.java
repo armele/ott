@@ -73,6 +73,19 @@ public class ModLangMergeProvider implements DataProvider {
             addStoneSetEntries(ottBase, v.name());
         }
 
+        // Add wood door variant entries
+        com.otterly76.ott.block.ModBlocks.WOOD_DOORS.forEach((wood, styleMap) -> {
+            String woodCap = Arrays.stream(wood.split("_"))
+                    .map(s -> s.substring(0, 1).toUpperCase() + s.substring(1))
+                    .collect(Collectors.joining(" "));
+            styleMap.keySet().forEach(style -> {
+                String styleCap = Arrays.stream(style.split("_"))
+                        .map(s -> s.substring(0, 1).toUpperCase() + s.substring(1))
+                        .collect(Collectors.joining(" "));
+                ottBase.addProperty("block.ott." + style + "_" + wood + "_door", styleCap + " " + woodCap + " Door");
+            });
+        });
+
         // Add creative tab titles
         ottBase.addProperty("itemGroup.ott.blocks", "New Otterhome Blocks");
         ottBase.addProperty("itemGroup.ott.color_sets", "New Otterhome Color Sets");

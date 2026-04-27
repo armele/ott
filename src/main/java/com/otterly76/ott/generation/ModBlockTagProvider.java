@@ -28,11 +28,11 @@ public class ModBlockTagProvider extends BlockTagsProvider {
     @Override
     protected void addTags(HolderLookup.@NotNull Provider provider) {
         // --- 1. DEFINE ALL TAG KEYS (The "Identity") ---
-        TagKey<Block> ottConcreteKey = TagKey.create(Registries.BLOCK, ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, "concrete"));
-        TagKey<Block> ottConcretePowderKey = TagKey.create(Registries.BLOCK, ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, "concrete_powder"));
-        TagKey<Block> ottWoolKey = TagKey.create(Registries.BLOCK, ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, "wool"));
-        TagKey<Block> ottStainedGlassKey = TagKey.create(Registries.BLOCK, ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, "stained_glass"));
-        TagKey<Block> ottTerracottaKey = TagKey.create(Registries.BLOCK, ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, "terracotta"));
+        TagKey<Block> ottConcreteKey = TagKey.create(Registries.BLOCK, ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, "material/concrete"));
+        TagKey<Block> ottConcretePowderKey = TagKey.create(Registries.BLOCK, ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, "material/concrete_powder"));
+        TagKey<Block> ottWoolKey = TagKey.create(Registries.BLOCK, ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, "material/wool"));
+        TagKey<Block> ottStainedGlassKey = TagKey.create(Registries.BLOCK, ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, "material/stained_glass"));
+        TagKey<Block> ottTerracottaKey = TagKey.create(Registries.BLOCK, ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, "material/terracotta"));
 
         TagKey<Block> structurizeWeakKey = TagKey.create(Registries.BLOCK, ResourceLocation.fromNamespaceAndPath("structurize", "weak_solid_blocks"));
 
@@ -581,6 +581,33 @@ public class ModBlockTagProvider extends BlockTagsProvider {
         axeTag.add(ModBlocks.ACACIA_BEEHIVE.get(), ModBlocks.BAMBOO_BEEHIVE.get(), ModBlocks.BIRCH_BEEHIVE.get(), ModBlocks.CHERRY_BEEHIVE.get(), ModBlocks.CRIMSON_BEEHIVE.get());
         axeTag.add(ModBlocks.DARK_OAK_BEEHIVE.get(), ModBlocks.JUNGLE_BEEHIVE.get(), ModBlocks.MANGROVE_BEEHIVE.get(), ModBlocks.PALE_OAK_BEEHIVE.get(), ModBlocks.SPRUCE_BEEHIVE.get(), ModBlocks.WARPED_BEEHIVE.get());
 
+        ModBlocks.WOOD_DOORS.forEach((wood, styleMap) -> {
+            Block vanillaWoodDoor = switch (wood) {
+                case "oak"      -> Blocks.OAK_DOOR;
+                case "spruce"   -> Blocks.SPRUCE_DOOR;
+                case "birch"    -> Blocks.BIRCH_DOOR;
+                case "jungle"   -> Blocks.JUNGLE_DOOR;
+                case "acacia"   -> Blocks.ACACIA_DOOR;
+                case "dark_oak" -> Blocks.DARK_OAK_DOOR;
+                case "mangrove" -> Blocks.MANGROVE_DOOR;
+                case "cherry"   -> Blocks.CHERRY_DOOR;
+                case "bamboo"   -> Blocks.BAMBOO_DOOR;
+                case "crimson"  -> Blocks.CRIMSON_DOOR;
+                case "warped"   -> Blocks.WARPED_DOOR;
+                default -> throw new IllegalStateException("Unknown wood type for door tags: " + wood);
+            };
+            var woodMaterialTag = this.tag(TagKey.create(Registries.BLOCK,
+                    ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, "material/" + wood)));
+            woodMaterialTag.add(vanillaWoodDoor);
+            styleMap.values().forEach(db -> {
+                Block door = db.get();
+                this.tag(BlockTags.DOORS).add(door);
+                this.tag(BlockTags.WOODEN_DOORS).add(door);
+                axeTag.add(door);
+                woodMaterialTag.add(door);
+            });
+        });
+
         shearsTag.add(ModBlocks.PALE_OAK_LEAVES.value(), ModBlocks.PALE_HANGING_MOSS.value(), ModBlocks.PALE_MOSS_BLOCK.value(), ModBlocks.PALE_MOSS_CARPET.value(), ModBlocks.CLOSED_EYEBLOSSOM.value(), ModBlocks.OPEN_EYEBLOSSOM.value());
 
         this.tag(BlockTags.create(ResourceLocation.withDefaultNamespace("combination_step_sound_blocks"))).add(ModBlocks.RESIN_CLUMP.value());
@@ -731,11 +758,11 @@ public class ModBlockTagProvider extends BlockTagsProvider {
         this.tag(BlockTags.MINEABLE_WITH_HOE).add(set.carpet().getKey());
 
         // Mod/Common tags
-        TagKey<Block> ottConcreteKey = TagKey.create(Registries.BLOCK, ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, "concrete"));
-        TagKey<Block> ottConcretePowderKey = TagKey.create(Registries.BLOCK, ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, "concrete_powder"));
-        TagKey<Block> ottWoolKey = TagKey.create(Registries.BLOCK, ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, "wool"));
-        TagKey<Block> ottStainedGlassKey = TagKey.create(Registries.BLOCK, ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, "stained_glass"));
-        TagKey<Block> ottTerracottaKey = TagKey.create(Registries.BLOCK, ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, "terracotta"));
+        TagKey<Block> ottConcreteKey = TagKey.create(Registries.BLOCK, ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, "material/concrete"));
+        TagKey<Block> ottConcretePowderKey = TagKey.create(Registries.BLOCK, ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, "material/concrete_powder"));
+        TagKey<Block> ottWoolKey = TagKey.create(Registries.BLOCK, ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, "material/wool"));
+        TagKey<Block> ottStainedGlassKey = TagKey.create(Registries.BLOCK, ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, "material/stained_glass"));
+        TagKey<Block> ottTerracottaKey = TagKey.create(Registries.BLOCK, ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, "material/terracotta"));
 
         this.tag(ottConcreteKey).add(set.concrete().get());
         this.tag(ottConcretePowderKey).add(set.concretePowder().get());

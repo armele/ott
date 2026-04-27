@@ -20,6 +20,7 @@ import net.minecraft.world.item.DyeColor;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockBehaviour.Properties;
+import net.minecraft.world.level.block.state.properties.BlockSetType;
 import net.minecraft.world.level.block.state.properties.NoteBlockInstrument;
 import net.minecraft.world.level.material.MapColor;
 import net.minecraft.world.level.material.PushReaction;
@@ -114,6 +115,16 @@ public class ModBlocks {
     public static final DeferredBlock<Block> SALT_LAMP = register("salt_lamp", () -> new SaltLampBlock(Properties.of().mapColor(MapColor.SNOW).instrument(NoteBlockInstrument.IRON_XYLOPHONE).strength(0.3F).sound(SoundType.GLASS).lightLevel(state -> state.getValue(SaltLampBlock.LIT) ? 15 : 0).noOcclusion()));
     public static final DeferredBlock<Block> SALT_DUST = register("salt_dust", () -> new SaltPlacedBlock(Properties.of().mapColor(MapColor.SNOW).noCollission().instabreak().pushReaction(PushReaction.DESTROY)));
     public static final DeferredBlock<Block> OAK_NEST = register("oak_nest", () -> new OakNestBlock(Properties.of().mapColor(MapColor.WOOD).strength(0.5F).sound(SoundType.WOOD).noOcclusion()));
+
+    /** Per-wood door styles, keyed by wood name, matching exactly the available textures. */
+    public static final Map<String, List<String>> WOOD_DOOR_STYLES = new LinkedHashMap<>();
+    /** Acacia door styles (canonical reference; no {@code barred} variant). */
+    public static final List<String> DOOR_STYLES = List.of(
+            "beach", "boarded", "dual_paneled", "fortified", "gated", "glass",
+            "heavy", "modern", "overgrown", "paneled", "paper", "pressed",
+            "screen", "secret", "shack", "sliding", "supported",
+            "tile_windowed", "tiled", "windowed");
+    public static final Map<String, Map<String, DeferredBlock<DoorBlock>>> WOOD_DOORS = new LinkedHashMap<>();
 
     public static final DeferredBlock<BeehiveBlock> ACACIA_BEEHIVE   = register("acacia_beehive",   () -> new BeehiveBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.BEEHIVE)));
     public static final DeferredBlock<BeehiveBlock> BAMBOO_BEEHIVE   = register("bamboo_beehive",   () -> new BeehiveBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.BEEHIVE)));
@@ -291,6 +302,34 @@ public class ModBlocks {
             SHELVES.add(registerBackportedBlock(wood + "_shelf", () -> new com.otterly76.ott.block.shelf.ShelfBlock(BlockBehaviour.Properties.of().strength(2.0f).sound(SoundType.WOOD).noOcclusion())));
         }
 
+        // Per-wood style lists (must exactly match available texture files)
+        WOOD_DOOR_STYLES.put("oak",      List.of("barred","beach","boarded","dual_paneled","fortified","gated","glass","heavy","overgrown","paneled","paper","pressed","screen","secret","shack","sliding","supported","tile_windowed","tiled","windowed"));
+        WOOD_DOOR_STYLES.put("spruce",   List.of("barred","beach","dual_paneled","fortified","gated","glass","heavy","modern","overgrown","paneled","paper","pressed","screen","secret","shack","sliding","supported","tile_windowed","tiled","windowed"));
+        WOOD_DOOR_STYLES.put("birch",    List.of("barred","beach","boarded","dual_paneled","fortified","gated","glass","heavy","modern","overgrown","paneled","pressed","screen","secret","shack","sliding","supported","tile_windowed","tiled","windowed"));
+        WOOD_DOOR_STYLES.put("jungle",   List.of("barred","boarded","dual_paneled","fortified","gated","glass","heavy","modern","overgrown","paneled","paper","pressed","screen","secret","shack","sliding","supported","tile_windowed","tiled","windowed"));
+        WOOD_DOOR_STYLES.put("acacia",   DOOR_STYLES);
+        WOOD_DOOR_STYLES.put("dark_oak", List.of("barred","beach","boarded","dual_paneled","fortified","gated","glass","heavy","modern","overgrown","paper","pressed","screen","secret","shack","sliding","supported","tile_windowed","tiled","windowed"));
+        WOOD_DOOR_STYLES.put("mangrove", List.of("barred","beach","boarded","cut","dual_paneled","fortified","gated","glass","heavy","modern","overgrown","paneled","paper","pressed","reinforced","secret","sliding","supported","tile_windowed","windowed"));
+        WOOD_DOOR_STYLES.put("cherry",   List.of("barred","beach","boarded","dual_paneled","fortified","gated","glass","heavy","modern","overgrown","paneled","paper","pressed","screen","secret","shack","sliding","supported","tile_windowed","tiled"));
+        WOOD_DOOR_STYLES.put("bamboo",   List.of("barred","beach","boarded","dual_paneled","fortified","gated","glass","heavy","modern","overgrown","paneled","paper","pressed","screen","secret","shack","sliding","supported","tile_windowed","tiled"));
+        WOOD_DOOR_STYLES.put("crimson",  List.of("barred","beach","boarded","dual_paneled","fortified","gated","glass","heavy","modern","overgrown","paneled","paper","pressed","screen","secret","shack","sliding","tile_windowed","tiled","windowed"));
+        WOOD_DOOR_STYLES.put("warped",   List.of("barred","beach","boarded","dual_paneled","fortified","gated","glass","heavy","modern","paneled","paper","pressed","screen","secret","shack","sliding","supported","tile_windowed","tiled","windowed"));
+
+        String[] woodDoorNames   = {"oak",           "spruce",           "birch",           "jungle",           "acacia",           "dark_oak",           "mangrove",           "cherry",           "bamboo",           "crimson",           "warped"};
+        BlockSetType[] woodBSTs  = { BlockSetType.OAK, BlockSetType.SPRUCE, BlockSetType.BIRCH, BlockSetType.JUNGLE, BlockSetType.ACACIA, BlockSetType.DARK_OAK, BlockSetType.MANGROVE, BlockSetType.CHERRY, BlockSetType.BAMBOO, BlockSetType.CRIMSON, BlockSetType.WARPED};
+        Block[] vanillaDoors     = { Blocks.OAK_DOOR,  Blocks.SPRUCE_DOOR,  Blocks.BIRCH_DOOR,  Blocks.JUNGLE_DOOR,  Blocks.ACACIA_DOOR,  Blocks.DARK_OAK_DOOR,  Blocks.MANGROVE_DOOR,  Blocks.CHERRY_DOOR,  Blocks.BAMBOO_DOOR,  Blocks.CRIMSON_DOOR,  Blocks.WARPED_DOOR};
+        for (int i = 0; i < woodDoorNames.length; i++) {
+            String wood = woodDoorNames[i];
+            BlockSetType bst = woodBSTs[i];
+            Block vanillaDoor = vanillaDoors[i];
+            List<String> styles = WOOD_DOOR_STYLES.get(wood);
+            Map<String, DeferredBlock<DoorBlock>> woodMap = new LinkedHashMap<>();
+            WOOD_DOORS.put(wood, woodMap);
+            for (String style : styles) {
+                woodMap.put(style, register(style + "_" + wood + "_door",
+                        () -> new DoorBlock(bst, BlockBehaviour.Properties.ofFullCopy(vanillaDoor))));
+            }
+        }
         String[] copperStates = {"", "exposed_", "weathered_", "oxidized_"};
         WeatheringCopper.WeatherState[] states = {WeatheringCopper.WeatherState.UNAFFECTED, WeatheringCopper.WeatherState.EXPOSED, WeatheringCopper.WeatherState.WEATHERED, WeatheringCopper.WeatherState.OXIDIZED};
 
