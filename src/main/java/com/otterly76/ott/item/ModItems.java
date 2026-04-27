@@ -601,6 +601,7 @@ public class ModItems {
     public static final DeferredHolder<Item, BlockItem> POLISHED_GRANITE_CTM               = registerBlockItem("polished_granite",        ModBlocks.POLISHED_GRANITE_CTM);
     public static final DeferredHolder<Item, BlockItem> NETHERITE_BLOCK_CTM                = registerBlockItem("netherite_block",         ModBlocks.NETHERITE_BLOCK_CTM);
     public static final DeferredHolder<Item, BlockItem> SMOOTH_STONE_CTM                   = registerBlockItem("smooth_stone",            ModBlocks.SMOOTH_STONE_CTM);
+    public static final DeferredHolder<Item, BlockItem> EMERALD_BLOCK_CTM                  = registerBlockItem("emerald_block",           ModBlocks.EMERALD_BLOCK_CTM);
     public static final DeferredHolder<Item, BlockItem> CHISELED_PLASTERED_STONE_PILLAR    = registerBlockItem("chiseled_plastered_stone_pillar",    ModBlocks.CHISELED_PLASTERED_STONE_PILLAR);
     // CTM vertical pillars
     public static final DeferredHolder<Item, BlockItem> BONE_BLOCK_PILLAR        = registerBlockItem("bone_block_pillar",        ModBlocks.BONE_BLOCK_PILLAR);

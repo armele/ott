@@ -1096,6 +1096,7 @@ public class ModBlocks {
     public static final DeferredBlock<Block> POLISHED_GRANITE_CTM                = register("polished_granite",         () -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.POLISHED_GRANITE)));
     public static final DeferredBlock<Block> NETHERITE_BLOCK_CTM                 = register("netherite_block",          () -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.NETHERITE_BLOCK)));
     public static final DeferredBlock<Block> SMOOTH_STONE_CTM                    = register("smooth_stone",             () -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.SMOOTH_STONE)));
+    public static final DeferredBlock<Block> EMERALD_BLOCK_CTM                   = register("emerald_block",            () -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.EMERALD_BLOCK)));
     public static final DeferredBlock<RotatedPillarBlock> CHISELED_PLASTERED_STONE_PILLAR = register("chiseled_plastered_stone_pillar", () -> new RotatedPillarBlock(ST));
     // CTM vertical pillars
     public static final DeferredBlock<Block> BONE_BLOCK_PILLAR        = register("bone_block_pillar",        () -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.BONE_BLOCK)));

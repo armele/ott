@@ -2104,6 +2104,8 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
         engraveOne(exporter, Blocks.GRANITE,               ModBlocks.POLISHED_GRANITE_CTM,     "polished_granite_ctm_engraving");
         engraveOne(exporter, Blocks.NETHERITE_BLOCK,      ModBlocks.NETHERITE_BLOCK_CTM,      "netherite_block_ctm_engraving");
         engraveOne(exporter, Blocks.NETHERITE_BLOCK,      ModBlocks.NETHERITE_BLOCK_PILLAR,   "netherite_block_pillar_engraving");
+        engraveOne(exporter, Blocks.EMERALD_BLOCK,        ModBlocks.EMERALD_BLOCK_CTM,        "emerald_block_ctm_engraving");
+        engraveOne(exporter, ModBlocks.EMERALD_BLOCK_CTM, Blocks.EMERALD_BLOCK,               "emerald_block_from_ctm_engraving");
 
         // ── Vanilla pillar CTM blocks ────────────────────────────────────────────
         engraveOne(exporter, Blocks.BONE_BLOCK,           ModBlocks.BONE_BLOCK_PILLAR,        "bone_block_pillar_engraving");

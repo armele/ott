@@ -1394,6 +1394,8 @@ public class OttBlockStateProvider extends ModBlockStateProvider {
                 models().getExistingFile(modLoc("block/netherite/netherite_block")));
         simpleBlockWithItem(ModBlocks.SMOOTH_STONE_CTM.get(),
                 models().getExistingFile(modLoc("block/stone/smooth_stone")));
+        simpleBlockWithItem(ModBlocks.EMERALD_BLOCK_CTM.get(),
+                models().getExistingFile(modLoc("block/emerald_block/emerald_block")));
         existingAxisBlock(ModBlocks.CHISELED_PLASTERED_STONE_PILLAR.get(), "block/chiseled_plastered_stone_pillar");
         // CTM vertical pillars
         simpleBlockWithItem(ModBlocks.BONE_BLOCK_PILLAR.get(),

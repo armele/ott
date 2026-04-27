@@ -384,6 +384,7 @@ public class ModBlockTagProvider extends BlockTagsProvider {
                 ModBlocks.POLISHED_GRANITE_CTM.get(),
                 ModBlocks.NETHERITE_BLOCK_CTM.get(),
                 ModBlocks.SMOOTH_STONE_CTM.get(),
+                ModBlocks.EMERALD_BLOCK_CTM.get(),
                 ModBlocks.CHISELED_PLASTERED_STONE_PILLAR.get(),
                 ModBlocks.BONE_BLOCK_PILLAR.get(),
                 ModBlocks.COAL_BLOCK_PILLAR.get(),
@@ -465,6 +466,7 @@ public class ModBlockTagProvider extends BlockTagsProvider {
                 ModBlocks.POLISHED_GRANITE_CTM.get(),
                 ModBlocks.NETHERITE_BLOCK_CTM.get(),
                 ModBlocks.SMOOTH_STONE_CTM.get(),
+                ModBlocks.EMERALD_BLOCK_CTM.get(),
                 ModBlocks.CHISELED_PLASTERED_STONE_PILLAR.get()
         );
 
@@ -486,6 +488,7 @@ public class ModBlockTagProvider extends BlockTagsProvider {
                 ModBlocks.POLISHED_GRANITE_CTM.get(),
                 ModBlocks.NETHERITE_BLOCK_CTM.get(),
                 ModBlocks.SMOOTH_STONE_CTM.get(),
+                ModBlocks.EMERALD_BLOCK_CTM.get(),
                 ModBlocks.CHISELED_PLASTERED_STONE_PILLAR.get()
         };
         this.tag(doWallMaterialsKey).add(newCtmBlocks);
@@ -535,6 +538,7 @@ public class ModBlockTagProvider extends BlockTagsProvider {
                 ModBlocks.POLISHED_GRANITE_CTM.get(),
                 ModBlocks.NETHERITE_BLOCK_CTM.get(),
                 ModBlocks.SMOOTH_STONE_CTM.get(),
+                ModBlocks.EMERALD_BLOCK_CTM.get(),
                 // Ornamented / delicate wool & carpet
                 ModBlocks.ORNAMENTED_RED_WOOL.get(),
                 ModBlocks.DELICATE_RED_WOOL.get(),
