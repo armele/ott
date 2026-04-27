@@ -12,7 +12,7 @@ import static com.mojang.blaze3d.vertex.DefaultVertexFormat.POSITION_COLOR_TEX_L
 public class NeatRenderType extends RenderStateShard {
 
     public static final ResourceLocation HEALTH_BAR_TEXTURE =
-            ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, "textures/ui/health_bar_texture.png");
+            ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, "textures/gui/health_bar_texture.png");
     public static final RenderType BAR_TEXTURE_TYPE = getHealthBarType();
 
     private NeatRenderType(String string, Runnable r, Runnable r1) {
