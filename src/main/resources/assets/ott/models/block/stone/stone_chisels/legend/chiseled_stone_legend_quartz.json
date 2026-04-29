@@ -1,0 +1,12 @@
+{
+  "parent": "minecraft:block/cube",
+  "textures": {
+    "particle": "ott:block/stone/stone_chisels/legend/chiseled_stone_legend_front_quartz",
+    "north": "ott:block/stone/stone_chisels/legend/chiseled_stone_legend_front_quartz",
+    "south": "ott:block/stone/stone_chisels/legend/chiseled_stone_bricks_legend_back",
+    "east": "ott:block/stone/stone_chisels/legend/chiseled_stone_bricks_legend_right",
+    "west": "ott:block/stone/stone_chisels/legend/chiseled_stone_bricks_legend_left",
+    "up": "minecraft:block/chiseled_stone_bricks",
+    "down": "minecraft:block/chiseled_stone_bricks"
+  }
+}

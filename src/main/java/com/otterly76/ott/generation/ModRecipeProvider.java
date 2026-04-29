@@ -2052,6 +2052,57 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
         engraveOne(exporter, Blocks.STONE, ModBlocks.VERTICAL_CUT_STONE,                   "vertical_cut_stone_engraving");
         engraveOne(exporter, Blocks.STONE, ModBlocks.VERTICAL_DISORDERED_STONE_BRICKS,     "vertical_disordered_stone_bricks_engraving");
         engraveOne(exporter, Blocks.STONE, ModBlocks.WEATHERED_STONE,                      "weathered_stone_engraving");
+        // ── New plain stone blocks ────────────────────────────────────────────────
+        engraveOne(exporter, Blocks.STONE, ModBlocks.CHAOTIC_STONE_BRICKS,               "chaotic_stone_bricks_engraving");
+        engraveOne(exporter, Blocks.STONE, ModBlocks.CHAOTIC_MEDIUM_STONE_BRICKS,        "chaotic_medium_stone_bricks_engraving");
+        engraveOne(exporter, Blocks.STONE, ModBlocks.CHAOTIC_SMALL_STONE_BRICKS,         "chaotic_small_stone_bricks_engraving");
+        engraveOne(exporter, Blocks.STONE, ModBlocks.DIAMOND_STONE_PAVERS,               "diamond_stone_pavers_engraving");
+        engraveOne(exporter, Blocks.STONE, ModBlocks.ENCASED_STONE_BRICKS,               "encased_stone_bricks_engraving");
+        engraveOne(exporter, Blocks.STONE, ModBlocks.FRENCH_STONE,                       "french_stone_engraving");
+        engraveOne(exporter, Blocks.STONE, ModBlocks.LARGE_ORNATE_STONE,                 "large_ornate_stone_engraving");
+        engraveOne(exporter, Blocks.STONE, ModBlocks.LARGE_STONE_TILE,                   "large_stone_tile_engraving");
+        engraveOne(exporter, Blocks.STONE, ModBlocks.MESSY_STONE_TILES,                  "messy_stone_tiles_engraving");
+        engraveOne(exporter, Blocks.STONE, ModBlocks.MOSAIC_STONE,                       "mosaic_stone_engraving");
+        engraveOne(exporter, Blocks.STONE, ModBlocks.NOTCHED_STONE_BRICKS,               "notched_stone_bricks_engraving");
+        engraveOne(exporter, Blocks.STONE, ModBlocks.ORNATE_STONE,                       "ornate_stone_engraving");
+        engraveOne(exporter, Blocks.STONE, ModBlocks.POISON_STONE,                       "poison_stone_engraving");
+        engraveOne(exporter, Blocks.STONE, ModBlocks.POLISHED_CUT_STONE,                 "polished_cut_stone_engraving");
+        engraveOne(exporter, Blocks.STONE, ModBlocks.POLISHED_STONE_TILES,               "polished_stone_tiles_engraving");
+        engraveOne(exporter, Blocks.STONE, ModBlocks.PRISM_STONE,                        "prism_stone_engraving");
+        engraveOne(exporter, Blocks.STONE, ModBlocks.SLANTED_STONE,                      "slanted_stone_engraving");
+        engraveOne(exporter, Blocks.STONE, ModBlocks.STONE_ARRAY,                        "stone_array_engraving");
+        engraveOne(exporter, Blocks.STONE, ModBlocks.STONE_BRAID,                        "stone_braid_engraving");
+        engraveOne(exporter, Blocks.STONE, ModBlocks.STONE_DENT,                         "stone_dent_engraving");
+        engraveOne(exporter, Blocks.STONE, ModBlocks.STONE_JELLYBEAN,                    "stone_jellybean_engraving");
+        engraveOne(exporter, Blocks.STONE, ModBlocks.STONE_LAYERS,                       "stone_layers_engraving");
+        engraveOne(exporter, Blocks.STONE, ModBlocks.STONE_PANEL,                        "stone_panel_engraving");
+        engraveOne(exporter, Blocks.STONE, ModBlocks.STONE_ROAD,                         "stone_road_engraving");
+        engraveOne(exporter, Blocks.STONE, ModBlocks.STONE_ZAG,                          "stone_zag_engraving");
+        engraveOne(exporter, Blocks.STONE, ModBlocks.SUNKEN_STONE,                       "sunken_stone_engraving");
+        engraveOne(exporter, Blocks.STONE, ModBlocks.TRIPLE_STONE_BRICKS,                "triple_stone_bricks_engraving");
+        engraveOne(exporter, Blocks.STONE, ModBlocks.WEATHERED_STONE_BRICKS,             "weathered_stone_bricks_engraving");
+        engraveOne(exporter, Blocks.STONE, ModBlocks.WEATHERED_TILED_STONE,              "weathered_tiled_stone_engraving");
+        engraveOne(exporter, Blocks.STONE, ModBlocks.WEAVER_STONE,                       "weaver_stone_engraving");
+        // ── New carved/cut stone blocks ───────────────────────────────────────────
+        engraveOne(exporter, Blocks.STONE, ModBlocks.CARVED_STONE_CREEPER,               "carved_stone_creeper_engraving");
+        engraveOne(exporter, Blocks.STONE, ModBlocks.CARVED_STONE_DERP,                  "carved_stone_derp_engraving");
+        engraveOne(exporter, Blocks.STONE, ModBlocks.CARVED_STONE_VILLAGER,              "carved_stone_villager_engraving");
+        engraveOne(exporter, Blocks.STONE, ModBlocks.CARVED_STONE_WITHER,                "carved_stone_wither_engraving");
+        engraveOne(exporter, Blocks.STONE, ModBlocks.CARVED_STONE_WRITING,               "carved_stone_writing_engraving");
+        engraveOne(exporter, Blocks.STONE, ModBlocks.CUT_STONE,                          "cut_stone_engraving");
+        engraveOne(exporter, Blocks.STONE, ModBlocks.ROUGH_CUT_STONE,                    "rough_cut_stone_engraving");
+        // ── New stone pillars ─────────────────────────────────────────────────────
+        engraveOne(exporter, Blocks.STONE, ModBlocks.SHEARED_STONE_PILLAR,               "sheared_stone_pillar_engraving");
+        engraveOne(exporter, Blocks.STONE, ModBlocks.SLATED_STONE,                       "slated_stone_engraving");
+        engraveOne(exporter, Blocks.STONE, ModBlocks.STONE_COLUMN,                       "stone_column_engraving");
+        engraveOne(exporter, Blocks.STONE, ModBlocks.STONE_TWISTING_COLUMN,              "stone_twisting_column_engraving");
+        // ── Chisel pillar blocks ──────────────────────────────────────────────────
+        ModBlocks.CHISEL_PILLARS.forEach((name, block) ->
+                engraveOne(exporter, Blocks.STONE, block, name + "_engraving"));
+        // ── Legend blocks ─────────────────────────────────────────────────────────
+        engraveOne(exporter, Blocks.STONE, ModBlocks.CHISELED_STONE_BRICKS_LEGEND,       "chiseled_stone_bricks_legend_engraving");
+        ModBlocks.CHISEL_LEGEND.forEach((name, block) ->
+                engraveOne(exporter, Blocks.STONE, block, name + "_engraving"));
 
         // ── Stone bricks → masonry ────────────────────────────────────────────────
         engraveOne(exporter, Blocks.STONE_BRICKS, ModBlocks.STONE_BRICKS_MASONRY,          "stone_bricks_masonry_engraving");

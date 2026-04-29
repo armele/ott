@@ -1108,6 +1108,158 @@ public class ModBlocks {
     public static final DeferredBlock<Block> NETHERITE_BLOCK_PILLAR   = register("netherite_block_pillar",   () -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.NETHERITE_BLOCK)));
     public static final DeferredBlock<Block> OBSIDIAN_PILLAR          = register("obsidian_pillar",          () -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.OBSIDIAN)));
 
+    // --- New plain cube_all stone blocks ---
+    public static final DeferredBlock<Block> CHAOTIC_STONE_BRICKS             = register("chaotic_stone_bricks",             () -> new Block(ST));
+    public static final DeferredBlock<Block> CHAOTIC_MEDIUM_STONE_BRICKS      = register("chaotic_medium_stone_bricks",      () -> new Block(ST));
+    public static final DeferredBlock<Block> CHAOTIC_SMALL_STONE_BRICKS       = register("chaotic_small_stone_bricks",       () -> new Block(ST));
+    public static final DeferredBlock<Block> DIAMOND_STONE_PAVERS             = register("diamond_stone_pavers",             () -> new Block(ST));
+    public static final DeferredBlock<Block> ENCASED_STONE_BRICKS             = register("encased_stone_bricks",             () -> new Block(ST));
+    public static final DeferredBlock<Block> FRENCH_STONE                     = register("french_stone",                     () -> new Block(ST));
+    public static final DeferredBlock<Block> LARGE_ORNATE_STONE               = register("large_ornate_stone",               () -> new Block(ST));
+    public static final DeferredBlock<Block> LARGE_STONE_TILE                 = register("large_stone_tile",                 () -> new Block(ST));
+    public static final DeferredBlock<Block> MESSY_STONE_TILES                = register("messy_stone_tiles",                () -> new Block(ST));
+    public static final DeferredBlock<Block> MOSAIC_STONE                     = register("mosaic_stone",                     () -> new Block(ST));
+    public static final DeferredBlock<Block> NOTCHED_STONE_BRICKS             = register("notched_stone_bricks",             () -> new Block(ST));
+    public static final DeferredBlock<Block> ORNATE_STONE                     = register("ornate_stone",                     () -> new Block(ST));
+    public static final DeferredBlock<Block> POISON_STONE                     = register("poison_stone",                     () -> new Block(ST));
+    public static final DeferredBlock<Block> POLISHED_CUT_STONE               = register("polished_cut_stone",               () -> new Block(ST));
+    public static final DeferredBlock<Block> POLISHED_STONE_TILES             = register("polished_stone_tiles",             () -> new Block(ST));
+    public static final DeferredBlock<Block> PRISM_STONE                      = register("prism_stone",                      () -> new Block(ST));
+    public static final DeferredBlock<Block> SLANTED_STONE                    = register("slanted_stone",                    () -> new Block(ST));
+    public static final DeferredBlock<Block> STONE_ARRAY                      = register("stone_array",                      () -> new Block(ST));
+    public static final DeferredBlock<Block> STONE_BRAID                      = register("stone_braid",                      () -> new Block(ST));
+    public static final DeferredBlock<Block> STONE_DENT                       = register("stone_dent",                       () -> new Block(ST));
+    public static final DeferredBlock<Block> STONE_JELLYBEAN                  = register("stone_jellybean",                  () -> new Block(ST));
+    public static final DeferredBlock<Block> STONE_LAYERS                     = register("stone_layers",                     () -> new Block(ST));
+    public static final DeferredBlock<Block> STONE_PANEL                      = register("stone_panel",                      () -> new Block(ST));
+    public static final DeferredBlock<Block> STONE_ROAD                       = register("stone_road",                       () -> new Block(ST));
+    public static final DeferredBlock<Block> STONE_ZAG                        = register("stone_zag",                        () -> new Block(ST));
+    public static final DeferredBlock<Block> SUNKEN_STONE                     = register("sunken_stone",                     () -> new Block(ST));
+    public static final DeferredBlock<Block> TRIPLE_STONE_BRICKS              = register("triple_stone_bricks",              () -> new Block(ST));
+    public static final DeferredBlock<Block> WEATHERED_STONE_BRICKS           = register("weathered_stone_bricks",           () -> new Block(ST));
+    public static final DeferredBlock<Block> WEATHERED_TILED_STONE            = register("weathered_tiled_stone",            () -> new Block(ST));
+    public static final DeferredBlock<Block> WEAVER_STONE                     = register("weaver_stone",                     () -> new Block(ST));
+
+    // --- New cube-bottom-top stone blocks ---
+    public static final DeferredBlock<Block> CARVED_STONE_CREEPER             = register("carved_stone_creeper",             () -> new Block(ST));
+    public static final DeferredBlock<Block> CARVED_STONE_DERP                = register("carved_stone_derp",                () -> new Block(ST));
+    public static final DeferredBlock<Block> CARVED_STONE_VILLAGER            = register("carved_stone_villager",            () -> new Block(ST));
+    public static final DeferredBlock<Block> CARVED_STONE_WITHER              = register("carved_stone_wither",              () -> new Block(ST));
+    public static final DeferredBlock<Block> CARVED_STONE_WRITING             = register("carved_stone_writing",             () -> new Block(ST));
+    public static final DeferredBlock<Block> CUT_STONE                        = register("cut_stone",                        () -> new Block(ST));
+    public static final DeferredBlock<Block> ROUGH_CUT_STONE                  = register("rough_cut_stone",                  () -> new Block(ST));
+
+    // --- New RotatedPillarBlocks ---
+    public static final DeferredBlock<RotatedPillarBlock> SHEARED_STONE_PILLAR       = register("sheared_stone_pillar",       () -> new RotatedPillarBlock(ST));
+    public static final DeferredBlock<RotatedPillarBlock> SLATED_STONE               = register("slated_stone",               () -> new RotatedPillarBlock(ST));
+    public static final DeferredBlock<RotatedPillarBlock> STONE_COLUMN               = register("stone_column",               () -> new RotatedPillarBlock(ST));
+    public static final DeferredBlock<RotatedPillarBlock> STONE_TWISTING_COLUMN      = register("stone_twisting_column",      () -> new RotatedPillarBlock(ST));
+
+    // --- Chisel pillar blocks (RotatedPillarBlock, end=chiseled_stone, side=stone_chisels/{name}) ---
+    public static final Map<String, DeferredBlock<RotatedPillarBlock>> CHISEL_PILLARS = new java.util.LinkedHashMap<>();
+    private static final java.util.List<String> CHISEL_PILLAR_NAMES = java.util.List.of(
+            "chiseled_stone_bricks_caveat_amethyst", "chiseled_stone_bricks_caveat_copper",
+            "chiseled_stone_bricks_caveat_coppere", "chiseled_stone_bricks_caveat_coppero",
+            "chiseled_stone_bricks_caveat_copperw", "chiseled_stone_bricks_caveat_diamond",
+            "chiseled_stone_bricks_caveat_emerald", "chiseled_stone_bricks_caveat_glowstone",
+            "chiseled_stone_bricks_caveat_gold", "chiseled_stone_bricks_caveat_iron",
+            "chiseled_stone_bricks_caveat_lapis", "chiseled_stone_bricks_caveat_netherite",
+            "chiseled_stone_bricks_caveat_netherite_broken", "chiseled_stone_bricks_caveat_quartz",
+            "chiseled_stone_bricks_caveat_redstone_active", "chiseled_stone_bricks_caveat_redstone_inactive",
+            "chiseled_stone_bricks_doom", "chiseled_stone_bricks_doom_amethyst",
+            "chiseled_stone_bricks_doom_copper", "chiseled_stone_bricks_doom_coppere",
+            "chiseled_stone_bricks_doom_coppero", "chiseled_stone_bricks_doom_copperw",
+            "chiseled_stone_bricks_doom_diamond", "chiseled_stone_bricks_doom_emerald",
+            "chiseled_stone_bricks_doom_glowstone", "chiseled_stone_bricks_doom_gold",
+            "chiseled_stone_bricks_doom_iron", "chiseled_stone_bricks_doom_lapis",
+            "chiseled_stone_bricks_doom_netherite", "chiseled_stone_bricks_doom_quartz",
+            "chiseled_stone_bricks_doom_redstone_active", "chiseled_stone_bricks_doom_redstone_inactive",
+            "chiseled_stone_bricks_etch", "chiseled_stone_bricks_etch_amethyst",
+            "chiseled_stone_bricks_etch_copper", "chiseled_stone_bricks_etch_coppere",
+            "chiseled_stone_bricks_etch_coppero", "chiseled_stone_bricks_etch_copperw",
+            "chiseled_stone_bricks_etch_diamond", "chiseled_stone_bricks_etch_emerald",
+            "chiseled_stone_bricks_etch_glowstone", "chiseled_stone_bricks_etch_gold",
+            "chiseled_stone_bricks_etch_iron", "chiseled_stone_bricks_etch_lapis",
+            "chiseled_stone_bricks_etch_redstone_active", "chiseled_stone_bricks_etch_redstone_inactive",
+            "chiseled_stone_bricks_etching_netherite", "chiseled_stone_bricks_etching_quartz",
+            "chiseled_stone_bricks_frame", "chiseled_stone_bricks_frame_amethyst",
+            "chiseled_stone_bricks_frame_copper", "chiseled_stone_bricks_frame_coppere",
+            "chiseled_stone_bricks_frame_coppero", "chiseled_stone_bricks_frame_copperw",
+            "chiseled_stone_bricks_frame_diamond", "chiseled_stone_bricks_frame_emerald",
+            "chiseled_stone_bricks_frame_glowstone", "chiseled_stone_bricks_frame_gold",
+            "chiseled_stone_bricks_frame_iron", "chiseled_stone_bricks_frame_lapis",
+            "chiseled_stone_bricks_frame_netherite", "chiseled_stone_bricks_frame_quartz",
+            "chiseled_stone_bricks_frame_redstone_active", "chiseled_stone_bricks_frame_redstone_inactive",
+            "chiseled_stone_bricks_groan", "chiseled_stone_bricks_groan_amethyst",
+            "chiseled_stone_bricks_groan_copper", "chiseled_stone_bricks_groan_coppere",
+            "chiseled_stone_bricks_groan_coppero", "chiseled_stone_bricks_groan_copperw",
+            "chiseled_stone_bricks_groan_diamond", "chiseled_stone_bricks_groan_emerald",
+            "chiseled_stone_bricks_groan_glowstone", "chiseled_stone_bricks_groan_gold",
+            "chiseled_stone_bricks_groan_iron", "chiseled_stone_bricks_groan_lapis",
+            "chiseled_stone_bricks_groan_netherite", "chiseled_stone_bricks_groan_quartz",
+            "chiseled_stone_bricks_groan_redstone_active", "chiseled_stone_bricks_groan_redstone_inactive",
+            "chiseled_stone_bricks_hieroglyph", "chiseled_stone_bricks_hieroglyph_amethyst",
+            "chiseled_stone_bricks_hieroglyph_copper", "chiseled_stone_bricks_hieroglyph_coppere",
+            "chiseled_stone_bricks_hieroglyph_coppero", "chiseled_stone_bricks_hieroglyph_copperw",
+            "chiseled_stone_bricks_hieroglyph_diamond", "chiseled_stone_bricks_hieroglyph_emerald",
+            "chiseled_stone_bricks_hieroglyph_glowstone", "chiseled_stone_bricks_hieroglyph_gold",
+            "chiseled_stone_bricks_hieroglyph_iron", "chiseled_stone_bricks_hieroglyph_lapis",
+            "chiseled_stone_bricks_hieroglyph_netherite", "chiseled_stone_bricks_hieroglyph_quartz",
+            "chiseled_stone_bricks_hieroglyph_redstone_active", "chiseled_stone_bricks_hieroglyph_redstone_inactive",
+            "chiseled_stone_bricks_nexus", "chiseled_stone_bricks_nexus_amethyst",
+            "chiseled_stone_bricks_nexus_copper", "chiseled_stone_bricks_nexus_coppere",
+            "chiseled_stone_bricks_nexus_coppero", "chiseled_stone_bricks_nexus_copperw",
+            "chiseled_stone_bricks_nexus_diamond", "chiseled_stone_bricks_nexus_emerald",
+            "chiseled_stone_bricks_nexus_glowstone", "chiseled_stone_bricks_nexus_gold",
+            "chiseled_stone_bricks_nexus_iron", "chiseled_stone_bricks_nexus_lapis",
+            "chiseled_stone_bricks_nexus_quartz",
+            "chiseled_stone_bricks_nexus_redstone_active", "chiseled_stone_bricks_nexus_redstone_inactive",
+            "chiseled_stone_bricks_skull", "chiseled_stone_bricks_skull_amethyst",
+            "chiseled_stone_bricks_skull_copper", "chiseled_stone_bricks_skull_coppere",
+            "chiseled_stone_bricks_skull_coppero", "chiseled_stone_bricks_skull_copperw",
+            "chiseled_stone_bricks_skull_diamond", "chiseled_stone_bricks_skull_emerald",
+            "chiseled_stone_bricks_skull_glowstone", "chiseled_stone_bricks_skull_gold",
+            "chiseled_stone_bricks_skull_iron", "chiseled_stone_bricks_skull_lapis",
+            "chiseled_stone_bricks_skull_netherite", "chiseled_stone_bricks_skull_quartz",
+            "chiseled_stone_bricks_skull_redstone_active", "chiseled_stone_bricks_skull_redstone_inactive",
+            "chiseled_stone_bricks_snout", "chiseled_stone_bricks_snout_amethyst",
+            "chiseled_stone_bricks_snout_copper", "chiseled_stone_bricks_snout_coppere",
+            "chiseled_stone_bricks_snout_coppero", "chiseled_stone_bricks_snout_copperw",
+            "chiseled_stone_bricks_snout_diamond", "chiseled_stone_bricks_snout_emerald",
+            "chiseled_stone_bricks_snout_glowstone", "chiseled_stone_bricks_snout_gold",
+            "chiseled_stone_bricks_snout_iron", "chiseled_stone_bricks_snout_lapis",
+            "chiseled_stone_bricks_snout_netherite", "chiseled_stone_bricks_snout_quartz",
+            "chiseled_stone_bricks_snout_redstone_active", "chiseled_stone_bricks_snout_redstone_inactive",
+            "chiseled_stone_bricks_swirl", "chiseled_stone_bricks_swirl_amethyst",
+            "chiseled_stone_bricks_swirl_copper", "chiseled_stone_bricks_swirl_coppere",
+            "chiseled_stone_bricks_swirl_coppero", "chiseled_stone_bricks_swirl_copperw",
+            "chiseled_stone_bricks_swirl_diamond", "chiseled_stone_bricks_swirl_emerald",
+            "chiseled_stone_bricks_swirl_glowstone", "chiseled_stone_bricks_swirl_gold",
+            "chiseled_stone_bricks_swirl_iron", "chiseled_stone_bricks_swirl_lapis",
+            "chiseled_stone_bricks_swirl_netherite", "chiseled_stone_bricks_swirl_quartz",
+            "chiseled_stone_bricks_swirl_redstone_active", "chiseled_stone_bricks_swirl_redstone_inactive"
+    );
+    static {
+        CHISEL_PILLAR_NAMES.forEach(name ->
+                CHISEL_PILLARS.put(name, register(name, () -> new RotatedPillarBlock(ST))));
+    }
+
+    // --- Legend blocks (HorizontalBlock, directional) ---
+    public static final DeferredBlock<HorizontalBlock> CHISELED_STONE_BRICKS_LEGEND = register("chiseled_stone_bricks_legend", () -> new HorizontalBlock(ST));
+    public static final Map<String, DeferredBlock<HorizontalBlock>> CHISEL_LEGEND = new java.util.LinkedHashMap<>();
+    private static final java.util.List<String> CHISEL_LEGEND_NAMES = java.util.List.of(
+            "chiseled_stone_legend", "chiseled_stone_legend_amethyst", "chiseled_stone_legend_copper",
+            "chiseled_stone_legend_coppere", "chiseled_stone_legend_coppero", "chiseled_stone_legend_copperw",
+            "chiseled_stone_legend_diamond", "chiseled_stone_legend_emerald", "chiseled_stone_legend_glowstone",
+            "chiseled_stone_legend_gold", "chiseled_stone_legend_iron", "chiseled_stone_legend_lapis",
+            "chiseled_stone_legend_netherite", "chiseled_stone_legend_quartz",
+            "chiseled_stone_legend_redstonea", "chiseled_stone_legend_redstonei"
+    );
+    static {
+        CHISEL_LEGEND_NAMES.forEach(name ->
+                CHISEL_LEGEND.put(name, register(name, () -> new HorizontalBlock(ST))));
+    }
+
     public static void register(IEventBus eventBus) {
         registerDynamicBlocks();
         BLOCKS.register(eventBus);

@@ -1,7 +1,3 @@
-THEME COLORS:
-=====
-- highlight 0x7089b8b8
-
 NEXT:
 =====
 ALL COLORS of terracotta, glazed terracotta
@@ -532,6 +528,10 @@ underground labyrinth
 dark woods
 - gothy village
 
+ocean monument
+- cthulu style
+- add chisedled prismarine with cthulu
+
 Dimension Nonsense:
 =====
 
@@ -659,3 +659,7 @@ Ancient tomes
 Framed glass
 
 Glass item frame
+
+THEME COLORS:
+=====
+- highlight 0x7089b8b8

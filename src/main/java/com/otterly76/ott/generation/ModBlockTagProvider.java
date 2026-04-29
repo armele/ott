@@ -395,6 +395,63 @@ public class ModBlockTagProvider extends BlockTagsProvider {
                 ModBlocks.NETHERITE_BLOCK_PILLAR.get(),
                 ModBlocks.OBSIDIAN_PILLAR.get()
         );
+
+        // New stone variant blocks — DO default
+        this.tag(doDefaultKey).add(
+                ModBlocks.CHAOTIC_STONE_BRICKS.get(), ModBlocks.CHAOTIC_MEDIUM_STONE_BRICKS.get(),
+                ModBlocks.CHAOTIC_SMALL_STONE_BRICKS.get(), ModBlocks.DIAMOND_STONE_PAVERS.get(),
+                ModBlocks.ENCASED_STONE_BRICKS.get(), ModBlocks.FRENCH_STONE.get(),
+                ModBlocks.LARGE_ORNATE_STONE.get(), ModBlocks.LARGE_STONE_TILE.get(),
+                ModBlocks.MESSY_STONE_TILES.get(), ModBlocks.MOSAIC_STONE.get(),
+                ModBlocks.NOTCHED_STONE_BRICKS.get(), ModBlocks.ORNATE_STONE.get(),
+                ModBlocks.POISON_STONE.get(), ModBlocks.POLISHED_CUT_STONE.get(),
+                ModBlocks.POLISHED_STONE_TILES.get(), ModBlocks.PRISM_STONE.get(),
+                ModBlocks.SLANTED_STONE.get(), ModBlocks.STONE_ARRAY.get(),
+                ModBlocks.STONE_BRAID.get(), ModBlocks.STONE_DENT.get(),
+                ModBlocks.STONE_JELLYBEAN.get(), ModBlocks.STONE_LAYERS.get(),
+                ModBlocks.STONE_PANEL.get(), ModBlocks.STONE_ROAD.get(),
+                ModBlocks.STONE_ZAG.get(), ModBlocks.SUNKEN_STONE.get(),
+                ModBlocks.TRIPLE_STONE_BRICKS.get(), ModBlocks.WEATHERED_STONE_BRICKS.get(),
+                ModBlocks.WEATHERED_TILED_STONE.get(), ModBlocks.WEAVER_STONE.get(),
+                ModBlocks.CARVED_STONE_CREEPER.get(), ModBlocks.CARVED_STONE_DERP.get(),
+                ModBlocks.CARVED_STONE_VILLAGER.get(), ModBlocks.CARVED_STONE_WITHER.get(),
+                ModBlocks.CARVED_STONE_WRITING.get(), ModBlocks.CUT_STONE.get(),
+                ModBlocks.ROUGH_CUT_STONE.get(),
+                ModBlocks.SHEARED_STONE_PILLAR.get(), ModBlocks.SLATED_STONE.get(),
+                ModBlocks.STONE_COLUMN.get(), ModBlocks.STONE_TWISTING_COLUMN.get(),
+                ModBlocks.CHISELED_STONE_BRICKS_LEGEND.get()
+        );
+        ModBlocks.CHISEL_PILLARS.values().forEach(d -> this.tag(doDefaultKey).add(d.get()));
+        ModBlocks.CHISEL_LEGEND.values().forEach(d -> this.tag(doDefaultKey).add(d.get()));
+
+        // New stone variant blocks — pickaxe
+        pickaxeTag.add(
+                ModBlocks.CHAOTIC_STONE_BRICKS.get(), ModBlocks.CHAOTIC_MEDIUM_STONE_BRICKS.get(),
+                ModBlocks.CHAOTIC_SMALL_STONE_BRICKS.get(), ModBlocks.DIAMOND_STONE_PAVERS.get(),
+                ModBlocks.ENCASED_STONE_BRICKS.get(), ModBlocks.FRENCH_STONE.get(),
+                ModBlocks.LARGE_ORNATE_STONE.get(), ModBlocks.LARGE_STONE_TILE.get(),
+                ModBlocks.MESSY_STONE_TILES.get(), ModBlocks.MOSAIC_STONE.get(),
+                ModBlocks.NOTCHED_STONE_BRICKS.get(), ModBlocks.ORNATE_STONE.get(),
+                ModBlocks.POISON_STONE.get(), ModBlocks.POLISHED_CUT_STONE.get(),
+                ModBlocks.POLISHED_STONE_TILES.get(), ModBlocks.PRISM_STONE.get(),
+                ModBlocks.SLANTED_STONE.get(), ModBlocks.STONE_ARRAY.get(),
+                ModBlocks.STONE_BRAID.get(), ModBlocks.STONE_DENT.get(),
+                ModBlocks.STONE_JELLYBEAN.get(), ModBlocks.STONE_LAYERS.get(),
+                ModBlocks.STONE_PANEL.get(), ModBlocks.STONE_ROAD.get(),
+                ModBlocks.STONE_ZAG.get(), ModBlocks.SUNKEN_STONE.get(),
+                ModBlocks.TRIPLE_STONE_BRICKS.get(), ModBlocks.WEATHERED_STONE_BRICKS.get(),
+                ModBlocks.WEATHERED_TILED_STONE.get(), ModBlocks.WEAVER_STONE.get(),
+                ModBlocks.CARVED_STONE_CREEPER.get(), ModBlocks.CARVED_STONE_DERP.get(),
+                ModBlocks.CARVED_STONE_VILLAGER.get(), ModBlocks.CARVED_STONE_WITHER.get(),
+                ModBlocks.CARVED_STONE_WRITING.get(), ModBlocks.CUT_STONE.get(),
+                ModBlocks.ROUGH_CUT_STONE.get(),
+                ModBlocks.SHEARED_STONE_PILLAR.get(), ModBlocks.SLATED_STONE.get(),
+                ModBlocks.STONE_COLUMN.get(), ModBlocks.STONE_TWISTING_COLUMN.get(),
+                ModBlocks.CHISELED_STONE_BRICKS_LEGEND.get()
+        );
+        ModBlocks.CHISEL_PILLARS.values().forEach(d -> pickaxeTag.add(d.get()));
+        ModBlocks.CHISEL_LEGEND.values().forEach(d -> pickaxeTag.add(d.get()));
+
         pickaxeTag.add(
                 ModBlocks.ANGRY_STONE.get(),
                 ModBlocks.BLANK_STONE_CARVING.get(),

@@ -922,6 +922,55 @@ public class ModItems {
         registerBlockItem(ModBlocks.SPRUCE_LOG_FENCE);
         ModBlocks.FUTONS.values().forEach(ModItems::registerBlockItem);
 
+        // New stone blocks (plain cube-all)
+        registerBlockItem(ModBlocks.CHAOTIC_STONE_BRICKS);
+        registerBlockItem(ModBlocks.CHAOTIC_MEDIUM_STONE_BRICKS);
+        registerBlockItem(ModBlocks.CHAOTIC_SMALL_STONE_BRICKS);
+        registerBlockItem(ModBlocks.DIAMOND_STONE_PAVERS);
+        registerBlockItem(ModBlocks.ENCASED_STONE_BRICKS);
+        registerBlockItem(ModBlocks.FRENCH_STONE);
+        registerBlockItem(ModBlocks.LARGE_ORNATE_STONE);
+        registerBlockItem(ModBlocks.LARGE_STONE_TILE);
+        registerBlockItem(ModBlocks.MESSY_STONE_TILES);
+        registerBlockItem(ModBlocks.MOSAIC_STONE);
+        registerBlockItem(ModBlocks.NOTCHED_STONE_BRICKS);
+        registerBlockItem(ModBlocks.ORNATE_STONE);
+        registerBlockItem(ModBlocks.POISON_STONE);
+        registerBlockItem(ModBlocks.POLISHED_CUT_STONE);
+        registerBlockItem(ModBlocks.POLISHED_STONE_TILES);
+        registerBlockItem(ModBlocks.PRISM_STONE);
+        registerBlockItem(ModBlocks.SLANTED_STONE);
+        registerBlockItem(ModBlocks.STONE_ARRAY);
+        registerBlockItem(ModBlocks.STONE_BRAID);
+        registerBlockItem(ModBlocks.STONE_DENT);
+        registerBlockItem(ModBlocks.STONE_JELLYBEAN);
+        registerBlockItem(ModBlocks.STONE_LAYERS);
+        registerBlockItem(ModBlocks.STONE_PANEL);
+        registerBlockItem(ModBlocks.STONE_ROAD);
+        registerBlockItem(ModBlocks.STONE_ZAG);
+        registerBlockItem(ModBlocks.SUNKEN_STONE);
+        registerBlockItem(ModBlocks.TRIPLE_STONE_BRICKS);
+        registerBlockItem(ModBlocks.WEATHERED_STONE_BRICKS);
+        registerBlockItem(ModBlocks.WEATHERED_TILED_STONE);
+        registerBlockItem(ModBlocks.WEAVER_STONE);
+        // New stone blocks (cube-bottom-top)
+        registerBlockItem(ModBlocks.CARVED_STONE_CREEPER);
+        registerBlockItem(ModBlocks.CARVED_STONE_DERP);
+        registerBlockItem(ModBlocks.CARVED_STONE_VILLAGER);
+        registerBlockItem(ModBlocks.CARVED_STONE_WITHER);
+        registerBlockItem(ModBlocks.CARVED_STONE_WRITING);
+        registerBlockItem(ModBlocks.CUT_STONE);
+        registerBlockItem(ModBlocks.ROUGH_CUT_STONE);
+        // New stone pillars (RotatedPillarBlock)
+        registerBlockItem(ModBlocks.SHEARED_STONE_PILLAR);
+        registerBlockItem(ModBlocks.SLATED_STONE);
+        registerBlockItem(ModBlocks.STONE_COLUMN);
+        registerBlockItem(ModBlocks.STONE_TWISTING_COLUMN);
+        // Chisel pillar blocks and legend blocks
+        registerBlockItem(ModBlocks.CHISELED_STONE_BRICKS_LEGEND);
+        ModBlocks.CHISEL_PILLARS.values().forEach(ModItems::registerBlockItem);
+        ModBlocks.CHISEL_LEGEND.values().forEach(ModItems::registerBlockItem);
+
     }
 
     private static DeferredHolder<Item, BlockItem> registerBlockItem(String name, DeferredBlock<? extends Block> block) {

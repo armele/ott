@@ -724,6 +724,56 @@ public enum OttCreativeCategories {
                 output.accept(ModBlocks.VERTICAL_DISORDERED_STONE_BRICKS);
                 output.accept(ModBlocks.WEATHERED_STONE);
 
+                // New plain cube_all stone blocks
+                output.accept(ModBlocks.CHAOTIC_STONE_BRICKS);
+                output.accept(ModBlocks.CHAOTIC_MEDIUM_STONE_BRICKS);
+                output.accept(ModBlocks.CHAOTIC_SMALL_STONE_BRICKS);
+                output.accept(ModBlocks.DIAMOND_STONE_PAVERS);
+                output.accept(ModBlocks.ENCASED_STONE_BRICKS);
+                output.accept(ModBlocks.FRENCH_STONE);
+                output.accept(ModBlocks.LARGE_ORNATE_STONE);
+                output.accept(ModBlocks.LARGE_STONE_TILE);
+                output.accept(ModBlocks.MESSY_STONE_TILES);
+                output.accept(ModBlocks.MOSAIC_STONE);
+                output.accept(ModBlocks.NOTCHED_STONE_BRICKS);
+                output.accept(ModBlocks.ORNATE_STONE);
+                output.accept(ModBlocks.POISON_STONE);
+                output.accept(ModBlocks.POLISHED_CUT_STONE);
+                output.accept(ModBlocks.POLISHED_STONE_TILES);
+                output.accept(ModBlocks.PRISM_STONE);
+                output.accept(ModBlocks.SLANTED_STONE);
+                output.accept(ModBlocks.STONE_ARRAY);
+                output.accept(ModBlocks.STONE_BRAID);
+                output.accept(ModBlocks.STONE_DENT);
+                output.accept(ModBlocks.STONE_JELLYBEAN);
+                output.accept(ModBlocks.STONE_LAYERS);
+                output.accept(ModBlocks.STONE_PANEL);
+                output.accept(ModBlocks.STONE_ROAD);
+                output.accept(ModBlocks.STONE_ZAG);
+                output.accept(ModBlocks.SUNKEN_STONE);
+                output.accept(ModBlocks.TRIPLE_STONE_BRICKS);
+                output.accept(ModBlocks.WEATHERED_STONE_BRICKS);
+                output.accept(ModBlocks.WEATHERED_TILED_STONE);
+                output.accept(ModBlocks.WEAVER_STONE);
+                // Cube-bottom-top carved stone blocks
+                output.accept(ModBlocks.CARVED_STONE_CREEPER);
+                output.accept(ModBlocks.CARVED_STONE_DERP);
+                output.accept(ModBlocks.CARVED_STONE_VILLAGER);
+                output.accept(ModBlocks.CARVED_STONE_WITHER);
+                output.accept(ModBlocks.CARVED_STONE_WRITING);
+                output.accept(ModBlocks.CUT_STONE);
+                output.accept(ModBlocks.ROUGH_CUT_STONE);
+                // New pillar blocks
+                output.accept(ModBlocks.SHEARED_STONE_PILLAR);
+                output.accept(ModBlocks.SLATED_STONE);
+                output.accept(ModBlocks.STONE_COLUMN);
+                output.accept(ModBlocks.STONE_TWISTING_COLUMN);
+                // Chisel pillar blocks
+                ModBlocks.CHISEL_PILLARS.values().forEach(output::accept);
+                // Legend blocks
+                output.accept(ModBlocks.CHISELED_STONE_BRICKS_LEGEND);
+                ModBlocks.CHISEL_LEGEND.values().forEach(output::accept);
+
                 // CTM blocks
                 output.accept(ModBlocks.PURPUR_PILLAR_CTM);
                 output.accept(ModBlocks.SANDSTONE_CTM);

@@ -1397,6 +1397,58 @@ public class OttBlockStateProvider extends ModBlockStateProvider {
         simpleBlockWithItem(ModBlocks.EMERALD_BLOCK_CTM.get(),
                 models().getExistingFile(modLoc("block/emerald_block/emerald_block")));
         existingAxisBlock(ModBlocks.CHISELED_PLASTERED_STONE_PILLAR.get(), "block/chiseled_plastered_stone_pillar");
+
+        // --- New plain cube_all stone blocks ---
+        stoneBlock(ModBlocks.CHAOTIC_STONE_BRICKS);
+        stoneBlock(ModBlocks.CHAOTIC_MEDIUM_STONE_BRICKS);
+        stoneBlock(ModBlocks.CHAOTIC_SMALL_STONE_BRICKS);
+        stoneBlock(ModBlocks.DIAMOND_STONE_PAVERS);
+        stoneBlock(ModBlocks.ENCASED_STONE_BRICKS);
+        stoneBlock(ModBlocks.FRENCH_STONE);
+        stoneBlock(ModBlocks.LARGE_ORNATE_STONE);
+        stoneBlock(ModBlocks.LARGE_STONE_TILE);
+        stoneBlock(ModBlocks.MESSY_STONE_TILES);
+        stoneBlock(ModBlocks.MOSAIC_STONE);
+        stoneBlock(ModBlocks.NOTCHED_STONE_BRICKS);
+        stoneBlock(ModBlocks.ORNATE_STONE);
+        stoneBlock(ModBlocks.POISON_STONE);
+        stoneBlock(ModBlocks.POLISHED_CUT_STONE);
+        stoneBlock(ModBlocks.POLISHED_STONE_TILES);
+        stoneBlock(ModBlocks.PRISM_STONE);
+        stoneBlock(ModBlocks.SLANTED_STONE);
+        stoneBlock(ModBlocks.STONE_ARRAY);
+        stoneBlock(ModBlocks.STONE_BRAID);
+        stoneBlock(ModBlocks.STONE_DENT);
+        stoneBlock(ModBlocks.STONE_JELLYBEAN);
+        stoneBlock(ModBlocks.STONE_LAYERS);
+        stoneBlock(ModBlocks.STONE_PANEL);
+        stoneBlock(ModBlocks.STONE_ROAD);
+        stoneBlock(ModBlocks.STONE_ZAG);
+        stoneBlock(ModBlocks.SUNKEN_STONE);
+        stoneBlock(ModBlocks.TRIPLE_STONE_BRICKS);
+        stoneBlock(ModBlocks.WEATHERED_STONE_BRICKS);
+        stoneBlock(ModBlocks.WEATHERED_TILED_STONE);
+        stoneBlock(ModBlocks.WEAVER_STONE);
+        // --- Cube-bottom-top stone blocks ---
+        stoneBottomTopBlock(ModBlocks.CARVED_STONE_CREEPER, "block/stone/carved_stone_creeper", "block/stone/cut_stone_top", "block/stone/carved_stone_bottom");
+        stoneBottomTopBlock(ModBlocks.CARVED_STONE_DERP,    "block/stone/carved_stone_derp",    "block/stone/cut_stone_top", "block/stone/carved_stone_bottom");
+        stoneBottomTopBlock(ModBlocks.CARVED_STONE_VILLAGER,"block/stone/carved_stone_villager","block/stone/cut_stone_top", "block/stone/carved_stone_bottom");
+        stoneBottomTopBlock(ModBlocks.CARVED_STONE_WITHER,  "block/stone/carved_stone_wither",  "block/stone/cut_stone_top", "block/stone/carved_stone_bottom");
+        stoneBottomTopBlock(ModBlocks.CARVED_STONE_WRITING, "block/stone/carved_stone_writing", "block/stone/cut_stone_top", "block/stone/carved_stone_bottom");
+        stoneBottomTopBlock(ModBlocks.CUT_STONE,            "block/stone/cut_stone_side",       "block/stone/cut_stone_top", "minecraft:block/stone");
+        stoneBottomTopBlock(ModBlocks.ROUGH_CUT_STONE,      "block/stone/rough_cut_stone_side", "block/stone/rough_cut_stone_top", "block/stone/rough_cut_stone_bottom");
+        // --- Simple RotatedPillarBlocks ---
+        stoneSimplePillar(ModBlocks.SHEARED_STONE_PILLAR);
+        stoneSimplePillar(ModBlocks.SLATED_STONE);
+        stoneSimplePillar(ModBlocks.STONE_COLUMN);
+        stoneSimplePillar(ModBlocks.STONE_TWISTING_COLUMN);
+        // --- Chisel pillar blocks ---
+        ModBlocks.CHISEL_PILLARS.values().forEach(this::stoneChiselPillar);
+        // --- Legend blocks ---
+        stoneLegendBlock(ModBlocks.CHISELED_STONE_BRICKS_LEGEND, "block/stone/stone_chisels/legend/chiseled_stone_bricks_legend");
+        ModBlocks.CHISEL_LEGEND.forEach((name, block) ->
+                stoneLegendBlock(block, "block/stone/stone_chisels/legend/" + name));
+
         // CTM vertical pillars
         simpleBlockWithItem(ModBlocks.BONE_BLOCK_PILLAR.get(),
                 models().getExistingFile(modLoc("block/bone_block/bone_block_pillar")));
@@ -1572,6 +1624,47 @@ public class OttBlockStateProvider extends ModBlockStateProvider {
     private void stoneCTMBlock(DeferredBlock<? extends Block> block) {
         String name = block.getId().getPath();
         simpleBlockWithItem(block.get(), models().getExistingFile(modLoc("block/stone/" + name)));
+    }
+
+    /** Registers a stone block with cube_bottom_top model (distinct top, side, bottom). */
+    private void stoneBottomTopBlock(DeferredBlock<? extends Block> block,
+                                     String sideTex, String topTex, String bottomTex) {
+        String name = block.getId().getPath();
+        ResourceLocation side   = sideTex.contains(":")   ? ResourceLocation.parse(sideTex)   : modLoc(sideTex);
+        ResourceLocation top    = topTex.contains(":")    ? ResourceLocation.parse(topTex)    : modLoc(topTex);
+        ResourceLocation bottom = bottomTex.contains(":") ? ResourceLocation.parse(bottomTex) : modLoc(bottomTex);
+        ModelFile m = models().cubeBottomTop("block/stone/" + name, bottom, top, side);
+        simpleBlockWithItem(block.get(), m);
+    }
+
+    /** Registers a RotatedPillarBlock with side and end textures generated in-code. */
+    private void stoneSimplePillar(DeferredBlock<? extends Block> block) {
+        String name = block.getId().getPath();
+        ResourceLocation side = modLoc("block/stone/" + name);
+        ResourceLocation end  = modLoc("block/stone/" + name + "_top");
+        ModelFile col  = models().cubeColumn("block/stone/" + name, side, end);
+        ModelFile colH = models().cubeColumnHorizontal("block/stone/" + name + "_horizontal", side, end);
+        axisBlock((RotatedPillarBlock) block.get(), col, colH);
+        simpleBlockItem(block.get(), col);
+    }
+
+    /** Registers a chisel RotatedPillarBlock: side=stone_chisels/{name}, end=vanilla chiseled_stone. */
+    private void stoneChiselPillar(DeferredBlock<? extends Block> block) {
+        String name = block.getId().getPath();
+        ResourceLocation side = modLoc("block/stone/stone_chisels/" + name);
+        ResourceLocation end  = ResourceLocation.withDefaultNamespace("block/chiseled_stone_bricks");
+        ModelFile col  = models().cubeColumn("block/stone/stone_chisels/" + name, side, end);
+        ModelFile colH = models().cubeColumnHorizontal("block/stone/stone_chisels/" + name + "_horizontal", side, end);
+        axisBlock((RotatedPillarBlock) block.get(), col, colH);
+        simpleBlockItem(block.get(), col);
+    }
+
+    /** Registers a legend HorizontalBlock using an existing model file. */
+    private void stoneLegendBlock(DeferredBlock<? extends Block> block, String modelPath) {
+        ModelFile model = models().getExistingFile(modLoc(modelPath));
+        horizontalBlock(block.get(), model);
+        String itemName = modelPath.substring(modelPath.lastIndexOf('/') + 1);
+        itemModels().withExistingParent(itemName, modLoc(modelPath));
     }
 
     private void registerFuton(Block futon, String color) {
