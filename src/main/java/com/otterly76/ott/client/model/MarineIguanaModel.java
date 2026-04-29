@@ -38,8 +38,8 @@ public class MarineIguanaModel extends GeoModel<MarineIguana> {
         super.setCustomAnimations(animatable, instanceId, animationState);
         if (animationState != null) {
             EntityModelData extraDataOfType = animationState.getData(DataTickets.ENTITY_MODEL_DATA);
-            GeoBone root = this.getAnimationProcessor().getBone("marine_iguana");
-            GeoBone head = this.getAnimationProcessor().getBone("head");
+            GeoBone root = this.getBone("marine_iguana").orElse(null);
+            GeoBone head = this.getBone("head").orElse(null);
             
             if (root != null) {
                 if (animatable.isBaby()) {

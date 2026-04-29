@@ -286,6 +286,14 @@ public class MarineIguana extends Animal implements GeoEntity, Bucketable {
     }
 
     @Override
+    public void baseTick() {
+        super.baseTick();
+        if (this.isUnderWater()) {
+            this.setAirSupply(this.getMaxAirSupply());
+        }
+    }
+
+    @Override
     public boolean canBeLeashed() {
         return true;
     }

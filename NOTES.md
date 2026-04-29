@@ -48,6 +48,10 @@ MUST be added to worldgen
 - slate?
   - roofing slates
 
+Compatibilty to Add:
+=====
+- Hexerei: woodcutter
+
 Mods to Implement:
 =====
 Aquaculture2
@@ -271,6 +275,8 @@ Models Nonsense:
 fat dragon stupidity
 
 mickey joe's spiders implementation
+
+sea otter from mystics biomes
 
 tree/plant/bush parts/shapes
 
