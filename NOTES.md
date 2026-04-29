@@ -151,69 +151,6 @@ Add bundles, happy ghast harness, llama swag, map decor banner to custom color s
 
 Textures Nonsense:
 =====
-Stone Sets:
-- block (raw)
-- cobble
-- mossy cobble
-- cut/smooth
-- polished
-- chiseled
-- mossy chiseled
-- brick
-- mossy brick
-- cracked brick
-- mossy cracked brick
-- small brick
-- small mossy brick
-- small cracked brick
-- small mossy cracked brick
-- chiseled brick
-- mossy chiseled brick
-- tiles
-- mossy tiles
-- cracked tiles
-- mossy cracked tiles
-- pillar
-- mossy pillar
-- pillar cap
-- mossy pillar cap
-
-Marbles:
-- block (raw)
-- polished
-- brick
-- small brick
-- tiles
-- pillar
-- pillar cap
-
-Wood Sets:
-- log
-- wood
-- stripped log
-- stripped wood
-- planks
-- mosaic
-
-Sand Sets:
-- sand
-- sandstone
-- cut sandstone
-- smooth sandstone
-- cracked sandstone
-- chiseled sandstone
-- sandstone bricks
-- smooth sandstone bricks
-- cracked sandstone bricks
-- chiseled sandstone bricks
-- sandstone tiles
-- smooth sandstone tiles
-- cracked sandstone tiles
-- chiseled sandstone tiles
-- sandstone pillar
-- sandstone pillar cap
-- quicksand
-
 PR DO make pillars multiface
 
 add "bound" wood sets to make things like panels that look like spruce trapdoors
@@ -272,8 +209,6 @@ animate the ethereal sea glass
 
 Models Nonsense:
 =====
-fat dragon stupidity
-
 mickey joe's spiders implementation
 
 sea otter from mystics biomes

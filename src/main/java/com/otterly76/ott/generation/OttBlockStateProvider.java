@@ -56,6 +56,21 @@ public class OttBlockStateProvider extends ModBlockStateProvider {
             itemModels().withExistingParent(path, modLoc("block/seaglass/" + path));
         });
 
+        // Soul Glass — full block
+        ResourceLocation soulGlassTex = modLoc("block/misc/soul_glass");
+        ModelFile soulGlassModel = models().withExistingParent("block/soul_glass", mcLoc("block/cube_all"))
+                .texture("all", soulGlassTex)
+                .renderType(mcLoc("translucent"));
+        simpleBlock(ModBlocks.SOUL_GLASS.get(), soulGlassModel);
+        itemModels().withExistingParent("soul_glass", modLoc("block/soul_glass"));
+
+        // Soul Glass Pane
+        paneBlockWithRenderType(ModBlocks.SOUL_GLASS_PANE.get(), soulGlassTex, soulGlassTex, "minecraft:translucent");
+        itemModels().withExistingParent("soul_glass_pane", mcLoc("item/glass_pane"))
+                .texture("front", soulGlassTex)
+                .texture("side", soulGlassTex)
+                .renderType("minecraft:translucent");
+
         ModBlocks.SEAGLASS_SETS.forEach(this::registerSeaglassColor);
         itemModels().withExistingParent("mixed_limestone_bricks", modLoc("block/limestone/mixed/limestone_00"));
         simpleBlockWithItem(ModBlocks.PLAIN_LIMESTONE.get(), models().cubeAll("block/limestone/limestone", modLoc("block/limestone/limestone")));

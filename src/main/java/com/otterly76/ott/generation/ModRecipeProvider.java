@@ -205,6 +205,16 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
                 .save(noAdv, getRecipePath("minecraft", "creaking_heart"));
 
         SimpleCookingRecipeBuilder.smelting(
+                        Ingredient.of(Items.SOUL_SAND),
+                        RecipeCategory.BUILDING_BLOCKS,
+                        ModBlocks.SOUL_GLASS.get(),
+                        0.1F,
+                        200
+                )
+                .unlockedBy("has_soul_sand", has(Items.SOUL_SAND))
+                .save(exporter, getRecipePath("ott", "soul_glass_from_smelting"));
+
+        SimpleCookingRecipeBuilder.smelting(
                         Ingredient.of(ModBlocks.RESIN_CLUMP.get()),
                         RecipeCategory.MISC,
                         ModItems.RESIN_BRICK.get(),

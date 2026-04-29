@@ -654,6 +654,9 @@ public enum OttCreativeCategories {
                 output.accept(ModBlocks.BAMBOO_THATCH_EDGE);
                 output.accept(ModBlocks.BAMBOO_THATCH_PLATE);
 
+                output.accept(ModBlocks.SOUL_GLASS);
+                output.accept(ModBlocks.SOUL_GLASS_PANE);
+
                 output.accept(ModBlocks.CHISELED_PLASTERED_STONE_PILLAR);
             }),
 

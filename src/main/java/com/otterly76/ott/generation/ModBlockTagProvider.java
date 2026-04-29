@@ -639,6 +639,11 @@ public class ModBlockTagProvider extends BlockTagsProvider {
         hoeTag.add(ModBlocks.PALE_OAK_LEAVES.value());
         pickaxeTag.add(ModBlocks.RESIN_BRICKS.value(), ModBlocks.CHISELED_RESIN_BRICKS.value(), ModBlocks.RESIN_BRICK_SLAB.value(), ModBlocks.RESIN_BLOCK.value(), ModBlocks.RESIN_BRICK_STAIRS.value(), ModBlocks.RESIN_BRICK_WALL.value());
         pickaxeTag.add(ModBlocks.SALT_BLOCK.value(), ModBlocks.SALT_LAMP.value());
+        pickaxeTag.add(ModBlocks.SOUL_GLASS.get(), ModBlocks.SOUL_GLASS_PANE.get());
+        mcStainedGlass.add(ModBlocks.SOUL_GLASS.get());
+        this.tag(TagKey.create(Registries.BLOCK, ResourceLocation.withDefaultNamespace("stained_glass_panes"))).add(ModBlocks.SOUL_GLASS_PANE.get());
+        this.tag(BlockTags.IMPERMEABLE).add(ModBlocks.SOUL_GLASS.get(), ModBlocks.SOUL_GLASS_PANE.get());
+        this.tag(doDefaultKey).add(ModBlocks.SOUL_GLASS.get());
         axeTag.add(ModBlocks.ACACIA_BEEHIVE.get(), ModBlocks.BAMBOO_BEEHIVE.get(), ModBlocks.BIRCH_BEEHIVE.get(), ModBlocks.CHERRY_BEEHIVE.get(), ModBlocks.CRIMSON_BEEHIVE.get());
         axeTag.add(ModBlocks.DARK_OAK_BEEHIVE.get(), ModBlocks.JUNGLE_BEEHIVE.get(), ModBlocks.MANGROVE_BEEHIVE.get(), ModBlocks.PALE_OAK_BEEHIVE.get(), ModBlocks.SPRUCE_BEEHIVE.get(), ModBlocks.WARPED_BEEHIVE.get());
 
