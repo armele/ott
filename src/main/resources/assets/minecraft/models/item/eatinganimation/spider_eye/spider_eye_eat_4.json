@@ -1,5 +1,7 @@
 {
-"textures": {
+	"format_version": "1.21.6",
+	"credit": "Made with Blockbench",
+	"textures": {
 		"0": "item/eatinganimation/spider_eye/spider_eye_eat_1",
 		"particle": "item/spider_eye"
 	},
@@ -20,13 +22,12 @@
 	],
 	"display": {
 		"thirdperson_righthand": {
-			"rotation": [45, 0, 0],
-			"translation": [0, 0.75, 0],
+			"rotation": [0, -90, 0],
+			"translation": [0, 1.5, 0.5],
 			"scale": [0.5, 0.5, 0.5]
 		},
 		"thirdperson_lefthand": {
-			"rotation": [45, 0, 0],
-			"translation": [0, 0.75, 0],
+			"translation": [0, 1.5, 0.5],
 			"scale": [0.5, 0.5, 0.5]
 		},
 		"firstperson_righthand": {
@@ -49,8 +50,8 @@
 			"scale": [1.25, 1.25, 1.25]
 		},
 		"head": {
-			"rotation": [0, 90, 0],
-			"translation": [0, 13.5, 0]
+			"rotation": [-180, 90, 0],
+			"translation": [0, 7.5, 0]
 		},
 		"fixed": {
 			"rotation": [0, 90, 0],

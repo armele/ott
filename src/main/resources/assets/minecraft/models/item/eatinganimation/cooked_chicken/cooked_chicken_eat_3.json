@@ -1,5 +1,7 @@
 {
-"textures": {
+	"format_version": "1.21.6",
+	"credit": "Made with Blockbench",
+	"textures": {
 		"0": "item/eatinganimation/cooked_chicken/cooked_chicken_eat_3",
 		"2": "item/eatinganimation/cooked_chicken/chicken_bones",
 		"particle": "item/food_particles/cooked_chicken"
@@ -130,14 +132,12 @@
 	],
 	"display": {
 		"thirdperson_righthand": {
-			"rotation": [130, 0, 0],
-			"translation": [0.25, -3.25, 2.25],
-			"scale": [0.75, 0.75, 0.75]
+			"translation": [0, 5.2, 1.75],
+			"scale": [0.65, 0.65, 0.65]
 		},
 		"thirdperson_lefthand": {
-			"rotation": [130, 0, 0],
-			"translation": [-0.25, -3.25, 2.25],
-			"scale": [0.75, 0.75, 0.75]
+			"translation": [0, 5.2, 1.75],
+			"scale": [0.65, 0.65, 0.65]
 		},
 		"firstperson_righthand": {
 			"rotation": [-8, -85, 0],

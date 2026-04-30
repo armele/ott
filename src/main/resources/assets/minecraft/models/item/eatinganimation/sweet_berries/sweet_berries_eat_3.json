@@ -1,4 +1,5 @@
 {
+	"format_version": "1.21.6",
 	"credit": "Made with Blockbench",
 	"texture_size": [32, 32],
 	"textures": {
@@ -52,32 +53,18 @@
 				"east": {"uv": [1, 0, 3, 1.5], "texture": "#0"},
 				"west": {"uv": [1, 1.5, 3, 3], "texture": "#0"}
 			}
-		},
-		{
-			"name": "berry1",
-			"from": [6, 0, 10],
-			"to": [9, 3, 13],
-			"rotation": {"angle": -22.5, "axis": "x", "origin": [7, 0, 8]},
-			"faces": {
-				"north": {"uv": [0, 3, 1.5, 4.5], "texture": "#0"},
-				"east": {"uv": [3, 0, 4.5, 1.5], "texture": "#0"},
-				"south": {"uv": [1.5, 3, 3, 4.5], "texture": "#0"},
-				"west": {"uv": [3, 1.5, 4.5, 3], "texture": "#0"},
-				"up": {"uv": [4.5, 4.5, 3, 3], "texture": "#0"},
-				"down": {"uv": [1.5, 4.5, 0, 6], "texture": "#0"}
-			}
 		}
 	],
 	"display": {
 		"thirdperson_righthand": {
-			"rotation": [2, 0, 0],
-			"translation": [0.5, 5.5, -0.5],
-			"scale": [0.75, 0.75, 0.75]
+			"rotation": [-21, 0, 0],
+			"translation": [0.25, 4.25, -0.5],
+			"scale": [0.65, 0.65, 0.65]
 		},
 		"thirdperson_lefthand": {
-			"rotation": [2, 0, 0],
-			"translation": [-0.25, 5.5, -0.5],
-			"scale": [0.75, 0.75, 0.75]
+			"rotation": [-21, 0, 0],
+			"translation": [-0.25, 4.25, -0.5],
+			"scale": [0.65, 0.65, 0.65]
 		},
 		"firstperson_righthand": {
 			"rotation": [-19, -180, 32],
@@ -95,13 +82,13 @@
 			"scale": [0.75, 0.75, 0.75]
 		},
 		"gui": {
-			"rotation": [-87, -14, -122],
-			"translation": [2.75, -1.75, 0],
+			"rotation": [-75, -16, -114],
+			"translation": [2.75, -2, 0],
 			"scale": [1.25, 1.25, 1.25]
 		},
 		"head": {
 			"rotation": [0, 0, 90],
-			"translation": [-2.25, 7, -1.25]
+			"translation": [-2.25, 7.5, -1.25]
 		},
 		"fixed": {
 			"rotation": [-90, 18, 90],
@@ -137,7 +124,7 @@
 					"name": "berries",
 					"origin": [0, 5, 4],
 					"color": 0,
-					"children": [4]
+					"children": []
 				}
 			]
 		}
