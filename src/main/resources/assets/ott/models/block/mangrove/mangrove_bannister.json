@@ -1,6 +1,5 @@
 {
-	"credit": "Made with Blockbench",
-	"textures": {
+"textures": {
 		"0": "minecraft:block/mangrove_planks",
 		"particle": "minecraft:block/mangrove_planks"
 	},

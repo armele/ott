@@ -1,6 +1,5 @@
 {
-	"credit": "Made with Blockbench",
-	"textures": {
+"textures": {
 		"0": "item/eatinganimation/cooked_chicken/cooked_chicken_eat_3",
 		"2": "item/eatinganimation/cooked_chicken/chicken_bones",
 		"particle": "item/food_particles/cooked_chicken"

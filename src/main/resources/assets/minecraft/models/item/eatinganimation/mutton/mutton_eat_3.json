@@ -1,6 +1,5 @@
 {
-	"credit": "Made with Blockbench",
-	"textures": {
+"textures": {
 		"0": "item/eatinganimation/mutton/mutton_eat_3",
 		"particle": "item/mutton"
 	},

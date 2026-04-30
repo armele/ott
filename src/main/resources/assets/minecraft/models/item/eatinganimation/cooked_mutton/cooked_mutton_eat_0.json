@@ -1,6 +1,5 @@
 {
-	"credit": "Made with Blockbench",
-	"textures": {
+"textures": {
 		"0": "item/cooked_mutton_3d",
 		"particle": "item/cooked_mutton_3d"
 	},

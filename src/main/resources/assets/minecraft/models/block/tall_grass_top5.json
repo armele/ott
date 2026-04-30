@@ -1,7 +1,6 @@
 {
 "render_type": "minecraft:cutout",
-	"credit": "Made with Blockbench",
-	"textures": {
+"textures": {
 		"particle": "block/tall_grass_top",
 		"cross": "block/tall_grass_top"
 	},

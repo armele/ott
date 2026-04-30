@@ -1,6 +1,5 @@
 {
-	"credit": "Made with Blockbench",
-	"textures": {
+"textures": {
 		"0": "item/rotten_flesh_3d",
 		"particle": "item/rotten_flesh"
 	},

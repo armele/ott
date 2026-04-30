@@ -1,6 +1,5 @@
 {
-	"credit": "Made with Blockbench",
-	"textures": {
+"textures": {
 		"0": "chipped:block/iron_bars/linked_iron_bars",
 		"particle": "chipped:block/iron_bars/linked_iron_bars"
 	},

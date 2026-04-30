@@ -1,6 +1,5 @@
 {
-	"credit": "Made with Blockbench",
-	"textures": {
+"textures": {
 		"base": "block/brewing_stand_base",
 		"particle": "block/brewing_stand",
 		"stand": "block/brewing_stand"

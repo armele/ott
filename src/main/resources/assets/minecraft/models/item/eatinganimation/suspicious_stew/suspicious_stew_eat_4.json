@@ -1,6 +1,5 @@
 {
-	"credit": "Made with Blockbench",
-	"textures": {
+"textures": {
 		"0": "item/bowl_3d",
 		"3": "item/suspicious_stew_3d",
 		"4": "item/suspicious_stew_plants_3d",

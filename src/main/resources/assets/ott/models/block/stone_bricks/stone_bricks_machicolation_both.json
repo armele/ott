@@ -1,6 +1,5 @@
 {
-	"credit": "Made with Blockbench",
-	"textures": {
+"textures": {
 		"0": "ott:block/stone_bricks_masonry/stone_bricks_machicolation",
 		"particle": "ott:block/stone_bricks_masonry/stone_bricks_machicolation"
 	},

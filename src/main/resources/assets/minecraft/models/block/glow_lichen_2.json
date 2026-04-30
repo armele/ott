@@ -1,7 +1,6 @@
 {
 	"format_version": "1.21.6",
-	"credit": "Made with Blockbench",
-	"textures": {
+"textures": {
 		"2": "ott:block/cloudfx_lichen_2",
 		"particle": "block/glow_lichen_2"
 	},

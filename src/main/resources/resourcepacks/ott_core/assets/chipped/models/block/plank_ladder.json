@@ -1,6 +1,5 @@
 {
-	"credit": "Made with Blockbench",
-	"textures": {
+"textures": {
 		"0": "chipped:block/ladder/rope_planked_ladder",
 		"particle": "chipped:block/ladder/rope_planked_ladder"
 	},

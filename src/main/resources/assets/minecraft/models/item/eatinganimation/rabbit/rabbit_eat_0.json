@@ -1,6 +1,5 @@
 {
-	"credit": "Made with Blockbench",
-	"textures": {
+"textures": {
 		"0": "item/rabbit_3d",
 		"2": "item/eatinganimation/rabbit/rabbit_bones",
 		"particle": "item/rabbit"

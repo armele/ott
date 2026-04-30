@@ -1,7 +1,6 @@
 {
 	"render_type": "minecraft:translucent",
-	"credit": "Made with Blockbench",
-	"textures": {
+"textures": {
 		"5": "ott:block/water_jet/water_jet_up",
 		"particle": "ott:block/transparent"
 	},

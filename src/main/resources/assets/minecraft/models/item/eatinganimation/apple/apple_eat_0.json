@@ -1,6 +1,5 @@
 {
-	"credit": "Made with Blockbench",
-	"textures": {
+"textures": {
 		"2": "item/eatinganimation/apple/apple_stem",
 		"3": "item/apple_3d",
 		"particle": "item/food_particles/apple"

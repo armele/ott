@@ -1,6 +1,5 @@
 {
-	"credit": "Made with Blockbench",
-	"textures": {
+"textures": {
 		"0": "item/cookie_3d",
 		"particle": "item/cookie"
 	},

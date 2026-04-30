@@ -1,6 +1,5 @@
 {
-	"credit": "Made with Blockbench",
-	"textures": {
+"textures": {
 		"0": "item/bowl_3d",
 		"1": "item/beetroot_soup_3d",
 		"particle": "item/food_particles/beetroot_soup"

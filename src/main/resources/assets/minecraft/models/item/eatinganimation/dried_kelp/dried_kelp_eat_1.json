@@ -1,6 +1,5 @@
 {
-	"credit": "Made with Blockbench",
-	"textures": {
+"textures": {
 		"0": "item/eatinganimation/dried_kelp/dried_kelp_eat_1",
 		"particle": "item/dried_kelp"
 	},

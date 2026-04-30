@@ -1,6 +1,5 @@
 {
-	"credit": "Made with Blockbench",
-	"textures": {
+"textures": {
 		"particle": "ott:block/beam/birch_beam",
 		"slab": "ott:block/beam/birch_beam"
 	},

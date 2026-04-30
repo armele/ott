@@ -1,6 +1,5 @@
 {
-	"credit": "Made with Blockbench",
-	"textures": {
+"textures": {
 		"0": "item/eatinganimation/spider_eye/spider_eye_eat_2",
 		"particle": "item/spider_eye"
 	},
