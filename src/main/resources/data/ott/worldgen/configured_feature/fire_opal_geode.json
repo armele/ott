@@ -24,45 +24,29 @@
       "inner_placements": [
         {
           "Name": "ott:small_fire_opal_bud",
-          "Properties": {
-            "facing": "up",
-            "waterlogged": "false"
-          }
+          "Properties": { "facing": "up", "waterlogged": "false" }
         },
         {
           "Name": "ott:medium_fire_opal_bud",
-          "Properties": {
-            "facing": "up",
-            "waterlogged": "false"
-          }
+          "Properties": { "facing": "up", "waterlogged": "false" }
         },
         {
           "Name": "ott:large_fire_opal_bud",
-          "Properties": {
-            "facing": "up",
-            "waterlogged": "false"
-          }
+          "Properties": { "facing": "up", "waterlogged": "false" }
         },
         {
           "Name": "ott:fire_opal_cluster",
-          "Properties": {
-            "facing": "up",
-            "waterlogged": "false"
-          }
+          "Properties": { "facing": "up", "waterlogged": "false" }
         }
       ],
       "invalid_blocks": "#minecraft:geode_invalid_blocks",
       "middle_layer_provider": {
         "type": "minecraft:simple_state_provider",
-        "state": {
-          "Name": "minecraft:calcite"
-        }
+        "state": { "Name": "minecraft:basalt" }
       },
       "outer_layer_provider": {
         "type": "minecraft:simple_state_provider",
-        "state": {
-          "Name": "minecraft:blackstone"
-        }
+        "state": { "Name": "minecraft:basalt" }
       }
     },
     "crack": {
@@ -75,7 +59,7 @@
       "max_inclusive": 4,
       "min_inclusive": 3
     },
-    "invalid_blocks_threshold": 4,
+    "invalid_blocks_threshold": 6,
     "layers": {
       "filling": 1.7,
       "inner_layer": 2.2,

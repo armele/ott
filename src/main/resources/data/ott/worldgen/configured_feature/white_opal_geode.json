@@ -24,45 +24,29 @@
       "inner_placements": [
         {
           "Name": "ott:small_white_opal_bud",
-          "Properties": {
-            "facing": "up",
-            "waterlogged": "false"
-          }
+          "Properties": { "facing": "up", "waterlogged": "false" }
         },
         {
           "Name": "ott:medium_white_opal_bud",
-          "Properties": {
-            "facing": "up",
-            "waterlogged": "false"
-          }
+          "Properties": { "facing": "up", "waterlogged": "false" }
         },
         {
           "Name": "ott:large_white_opal_bud",
-          "Properties": {
-            "facing": "up",
-            "waterlogged": "false"
-          }
+          "Properties": { "facing": "up", "waterlogged": "false" }
         },
         {
           "Name": "ott:white_opal_cluster",
-          "Properties": {
-            "facing": "up",
-            "waterlogged": "false"
-          }
+          "Properties": { "facing": "up", "waterlogged": "false" }
         }
       ],
       "invalid_blocks": "#minecraft:geode_invalid_blocks",
       "middle_layer_provider": {
         "type": "minecraft:simple_state_provider",
-        "state": {
-          "Name": "minecraft:calcite"
-        }
+        "state": { "Name": "minecraft:blackstone" }
       },
       "outer_layer_provider": {
         "type": "minecraft:simple_state_provider",
-        "state": {
-          "Name": "minecraft:smooth_basalt"
-        }
+        "state": { "Name": "minecraft:blackstone" }
       }
     },
     "crack": {
