@@ -196,7 +196,8 @@
     "client.UnlockedTypingBookEditMixin",
     "client.UnlockedTypingSignEditMixin",
     "client.AccessorRenderTypeMixin",
-    "client.MouseTweaksContainerScreenAccessor"
+    "client.MouseTweaksContainerScreenAccessor",
+    "client.SkullFaceMixin"
   ],
   "injectors": {
     "defaultRequire": 1
