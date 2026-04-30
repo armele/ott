@@ -1726,7 +1726,6 @@ public class OttBlockStateProvider extends ModBlockStateProvider {
         ResourceLocation tilesTex     = modLoc("block/opal/opal_tiles");
         ResourceLocation smTilesTex   = modLoc("block/opal/small_opal_tiles");
         ResourceLocation glassTex     = modLoc("block/opal/opal_glass");
-        ResourceLocation paneEdgeTex  = modLoc("block/opal/opal_glass_pane_top");
         ResourceLocation tilingTex    = modLoc("block/opal/opal_tiling");
 
         String m = "block/opal/" + typeName + "/";
@@ -1754,7 +1753,7 @@ public class OttBlockStateProvider extends ModBlockStateProvider {
         opalCluster(set.smallBud().get(),  m + "small_" + typeName + "_bud",  smBudTex);
 
         // Glass pane (translucent, tinted)
-        opalTintedPane(set.glassPane().get(), glassTex, paneEdgeTex);
+        opalTintedPane(set.glassPane().get(), glassTex, glassTex);
 
         // Tiling — tinted cube, horizontal directional
         opalTintedHorizontal(set.tiling().get(), m + typeName + "_tiling", tilingTex);
@@ -1848,9 +1847,10 @@ public class OttBlockStateProvider extends ModBlockStateProvider {
 
         paneBlock(block, post, side, sideAlt, noside, nosideAlt);
 
-        // Item model — flat glass pane icon, tinted
-        itemModels().withExistingParent(base, mcLoc("item/generated"))
-                .texture("layer0", pane)
+        // Item model — 3D tinted glass pane (matches colour-set panes)
+        itemModels().withExistingParent(base, modLoc("item/templates/tinted_glass_pane"))
+                .texture("front", pane)
+                .texture("side", edge)
                 .renderType(rt);
     }
 }
