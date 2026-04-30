@@ -1,10 +1,11 @@
 {
-"render_type": "minecraft:cutout",
+	"format_version": "1.9.0",
 	"credit": "Throttled by Otterly",
 	"ambientocclusion": false,
+	"render_type": "minecraft:cutout",
 	"textures": {
 		"1": "block/bushes",
-		"particle": "block/oak_log"
+		"particle": "item/sweet_berries"
 	},
 	"elements": [
 		{

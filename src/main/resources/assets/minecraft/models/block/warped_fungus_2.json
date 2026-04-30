@@ -1,8 +1,11 @@
 {
-"render_type": "minecraft:cutout",
+	"format_version": "1.9.0",
+	"credit": "Throttled by Otterly76",
+	"render_type": "minecraft:cutout",
+	"texture_size": [64, 32],
 	"textures": {
-		"1": "block/warped_fungus_2",
-        	"particle": "item/warped_fungus"
+		"2": "block/warped_fungus",
+		"particle": "block/warped_fungus"
 	},
 	"elements": [
 		{
@@ -10,12 +13,12 @@
 			"to": [9, 5, 9],
 			"rotation": {"angle": 0, "axis": "y", "origin": [7, 0, 7]},
 			"faces": {
-				"north": {"uv": [5, 2, 6, 4.5], "texture": "#1"},
-				"east": {"uv": [5, 2, 6, 4.5], "texture": "#1"},
-				"south": {"uv": [5, 2, 6, 4.5], "texture": "#1"},
-				"west": {"uv": [5, 2, 6, 4.5], "texture": "#1"},
-				"up": {"uv": [0, 0, 2, 2], "texture": "#1"},
-				"down": {"uv": [5, 5.5, 6, 6.5], "texture": "#1"}
+				"north": {"uv": [9, 8, 9.5, 10.5], "texture": "#2"},
+				"east": {"uv": [9, 8, 9.5, 10.5], "texture": "#2"},
+				"south": {"uv": [9, 8, 9.5, 10.5], "texture": "#2"},
+				"west": {"uv": [9, 8, 9.5, 10.5], "texture": "#2"},
+				"up": {"uv": [9, 10.5, 9.5, 11.5], "texture": "#2"},
+				"down": {"uv": [9, 11.5, 9.5, 12.5], "texture": "#2"}
 			}
 		},
 		{
@@ -23,12 +26,12 @@
 			"to": [12, 8, 12],
 			"rotation": {"angle": 0, "axis": "y", "origin": [7, 5, 7]},
 			"faces": {
-				"north": {"uv": [5, 0, 10, 2], "texture": "#1"},
-				"east": {"uv": [5, 0, 10, 2], "texture": "#1"},
-				"south": {"uv": [5, 0, 10, 2], "texture": "#1"},
-				"west": {"uv": [5, 0, 10, 2], "texture": "#1"},
-				"up": {"uv": [0, 0, 5, 5], "texture": "#1"},
-				"down": {"uv": [0, 5, 5, 10], "texture": "#1"}
+				"north": {"uv": [9.5, 4, 12, 6], "texture": "#2"},
+				"east": {"uv": [9.5, 4, 12, 6], "texture": "#2"},
+				"south": {"uv": [9.5, 4, 12, 6], "texture": "#2"},
+				"west": {"uv": [9.5, 4, 12, 6], "texture": "#2"},
+				"up": {"uv": [9.5, 6, 12, 11], "texture": "#2"},
+				"down": {"uv": [9.5, 11, 12, 16], "texture": "#2"}
 			}
 		}
 	],

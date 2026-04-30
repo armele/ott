@@ -1,7 +1,10 @@
 {
-"render_type": "minecraft:cutout",
+	"format_version": "1.9.0",
+	"credit": "Throttled by Otterly76",
+	"render_type": "minecraft:cutout",
+	"texture_size": [64, 32],
 	"textures": {
-		"0": "block/crimson_fungus_2",
+		"0": "block/crimson_fungus",
 		"particle": "item/crimson_fungus"
 	},
 	"elements": [
@@ -10,12 +13,11 @@
 			"to": [9, 4, 9],
 			"rotation": {"angle": 0, "axis": "y", "origin": [7, 0, 7]},
 			"faces": {
-				"north": {"uv": [3, 10, 4, 12.5], "texture": "#0"},
-				"east": {"uv": [11, 3, 12, 5.5], "texture": "#0"},
-				"south": {"uv": [10, 5, 11, 7.5], "texture": "#0"},
-				"west": {"uv": [4, 10, 5, 12.5], "texture": "#0"},
-				"up": {"uv": [0, 0, 2, 2], "texture": "#0"},
-				"down": {"uv": [9, 5, 10, 6], "texture": "#0"}
+				"north": {"uv": [0.75, 12, 1.25, 14], "texture": "#0"},
+				"east": {"uv": [0.75, 12, 1.25, 14], "texture": "#0"},
+				"south": {"uv": [0.75, 12, 1.25, 14], "texture": "#0"},
+				"west": {"uv": [0.75, 12, 1.25, 14], "texture": "#0"},
+				"down": {"uv": [0.75, 11, 1.25, 12], "texture": "#0"}
 			}
 		},
 		{
@@ -23,12 +25,12 @@
 			"to": [13, 7, 13],
 			"rotation": {"angle": 0, "axis": "y", "origin": [7, 4, 7]},
 			"faces": {
-				"north": {"uv": [8, 1.5, 13, 3], "texture": "#0"},
-				"east": {"uv": [5, 7.5, 10, 9], "texture": "#0"},
-				"south": {"uv": [5, 6, 10, 7.5], "texture": "#0"},
-				"west": {"uv": [8, 0, 13, 1.5], "texture": "#0"},
-				"up": {"uv": [0, 0, 5, 5], "texture": "#0"},
-				"down": {"uv": [0, 5, 5, 10], "texture": "#0"}
+				"north": {"uv": [1.25, 0, 3.75, 1.5], "texture": "#0"},
+				"east": {"uv": [1.25, 0, 3.75, 1.5], "texture": "#0"},
+				"south": {"uv": [1.25, 0, 3.75, 1.5], "texture": "#0"},
+				"west": {"uv": [1.25, 0, 3.75, 1.5], "texture": "#0"},
+				"up": {"uv": [11.75, 2.5, 14.25, 7.5], "texture": "#0"},
+				"down": {"uv": [6.75, 2.5, 9.25, 7.5], "texture": "#0"}
 			}
 		},
 		{
@@ -36,12 +38,12 @@
 			"to": [11, 11, 11],
 			"rotation": {"angle": 0, "axis": "y", "origin": [7, 7, 7]},
 			"faces": {
-				"north": {"uv": [0, 10, 3, 12], "texture": "#0"},
-				"east": {"uv": [5, 9, 8, 11], "texture": "#0"},
-				"south": {"uv": [8, 3, 11, 5], "texture": "#0"},
-				"west": {"uv": [8, 9, 11, 11], "texture": "#0"},
-				"up": {"uv": [5, 0, 8, 3], "texture": "#0"},
-				"down": {"uv": [0, 0, 6, 6], "texture": "#0"}
+				"north": {"uv": [12.25, 4.5, 13.75, 6.5], "texture": "#0"},
+				"east": {"uv": [12.25, 4.5, 13.75, 6.5], "texture": "#0"},
+				"south": {"uv": [12.25, 4.5, 13.75, 6.5], "texture": "#0"},
+				"west": {"uv": [12.25, 4.5, 13.75, 6.5], "texture": "#0"},
+				"up": {"uv": [12, 3, 13.5, 6], "texture": "#0"},
+				"down": {"uv": [7.25, 3.5, 8.75, 6.5], "texture": "#0"}
 			}
 		}
 	],
