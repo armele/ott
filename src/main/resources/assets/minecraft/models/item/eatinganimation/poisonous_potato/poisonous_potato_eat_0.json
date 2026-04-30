@@ -1,0 +1,152 @@
+{
+	"credit": "Made with Blockbench",
+	"texture_size": [32, 32],
+	"textures": {
+		"1": "item/poisonous_potato_3d",
+		"particle": "item/poisonous_potato"
+	},
+	"elements": [
+		{
+			"name": "mold1",
+			"from": [9, 3.5, 3.5],
+			"to": [11, 5.5, 5.5],
+			"rotation": {"angle": -22.5, "axis": "z", "origin": [10, 5, 4]},
+			"faces": {
+				"north": {"uv": [4.5, 9, 5.5, 10], "texture": "#1"},
+				"east": {"uv": [4.5, 9, 5.5, 10], "texture": "#1"},
+				"south": {"uv": [4.5, 9, 5.5, 10], "texture": "#1"},
+				"west": {"uv": [4.5, 9, 5.5, 10], "texture": "#1"},
+				"up": {"uv": [4.5, 9, 5.5, 10], "texture": "#1"},
+				"down": {"uv": [4.5, 9, 5.5, 10], "texture": "#1"}
+			}
+		},
+		{
+			"name": "mold2",
+			"from": [5.5, 3.5, 11],
+			"to": [7.5, 5.5, 13],
+			"rotation": {"angle": 22.5, "axis": "x", "origin": [6, 5, 12]},
+			"faces": {
+				"north": {"uv": [0, 8, 1, 9], "texture": "#1"},
+				"east": {"uv": [0, 8, 1, 9], "texture": "#1"},
+				"south": {"uv": [0, 8, 1, 9], "texture": "#1"},
+				"west": {"uv": [0, 8, 1, 9], "texture": "#1"},
+				"up": {"uv": [0, 8, 1, 9], "texture": "#1"},
+				"down": {"uv": [0, 8, 1, 9], "texture": "#1"}
+			}
+		},
+		{
+			"name": "mold3",
+			"from": [6.5, -0.5, 3.5],
+			"to": [7.5, 0.5, 4.5],
+			"rotation": {"angle": 22.5, "axis": "z", "origin": [6, 1, 5]},
+			"faces": {
+				"north": {"uv": [2.5, 10, 3, 10.5], "texture": "#1"},
+				"east": {"uv": [2, 10, 2.5, 10.5], "texture": "#1"},
+				"south": {"uv": [2, 10, 2.5, 10.5], "texture": "#1"},
+				"west": {"uv": [2, 10, 2.5, 10.5], "texture": "#1"},
+				"up": {"uv": [2, 10, 2.5, 10.5], "texture": "#1"},
+				"down": {"uv": [2, 10, 2.5, 10.5], "texture": "#1"}
+			}
+		},
+		{
+			"name": "mold4",
+			"from": [10, 1.5, 9.5],
+			"to": [11, 2.5, 10.5],
+			"rotation": {"angle": 22.5, "axis": "z", "origin": [10, 3, 11]},
+			"faces": {
+				"north": {"uv": [2, 10, 2.5, 10.5], "texture": "#1"},
+				"east": {"uv": [2.5, 10, 3, 10.5], "texture": "#1"},
+				"south": {"uv": [2, 10, 2.5, 10.5], "texture": "#1"},
+				"up": {"uv": [2, 10, 2.5, 10.5], "texture": "#1"},
+				"down": {"uv": [2, 10, 2.5, 10.5], "texture": "#1"}
+			}
+		},
+		{
+			"name": "mold5",
+			"from": [5, 2.5, 6.5],
+			"to": [6, 3.5, 7.5],
+			"rotation": {"angle": 22.5, "axis": "z", "origin": [5, 4, 8]},
+			"faces": {
+				"north": {"uv": [2, 10, 2.5, 10.5], "texture": "#1"},
+				"south": {"uv": [2, 10, 2.5, 10.5], "texture": "#1"},
+				"west": {"uv": [2.5, 10, 3, 10.5], "texture": "#1"},
+				"up": {"uv": [2, 10, 2.5, 10.5], "texture": "#1"},
+				"down": {"uv": [2, 10, 2.5, 10.5], "texture": "#1"}
+			}
+		},
+		{
+			"name": "potato",
+			"from": [6, 0, 4],
+			"to": [11, 5, 13],
+			"rotation": {"angle": 0, "axis": "y", "origin": [-1, 0, -3]},
+			"faces": {
+				"north": {"uv": [0, 5, 2.5, 7.5], "texture": "#1"},
+				"east": {"uv": [0, 0, 4.5, 2.5], "texture": "#1"},
+				"south": {"uv": [7, 0, 9.5, 2.5], "texture": "#1"},
+				"west": {"uv": [0, 2.5, 4.5, 5], "texture": "#1"},
+				"up": {"uv": [7, 4.5, 4.5, 0], "texture": "#1"},
+				"down": {"uv": [7, 4.5, 4.5, 9], "texture": "#1"}
+			}
+		}
+	],
+	"display": {
+		"thirdperson_righthand": {
+			"rotation": [-45, 0, 0],
+			"translation": [-0.25, 2.5, -2.25],
+			"scale": [0.5, 0.5, 0.5]
+		},
+		"thirdperson_lefthand": {
+			"rotation": [-45, 0, 0],
+			"translation": [0.5, 2.5, -2.25],
+			"scale": [0.5, 0.5, 0.5]
+		},
+		"firstperson_righthand": {
+			"rotation": [-16, -85, -8],
+			"translation": [-1.25, 10, 0.75],
+			"scale": [0.5, 0.5, 0.5]
+		},
+		"firstperson_lefthand": {
+			"rotation": [-16, -85, -8],
+			"translation": [-1.25, 10, 0.75],
+			"scale": [0.5, 0.5, 0.5]
+		},
+		"ground": {
+			"translation": [0, 3.5, 0],
+			"scale": [0.5, 0.5, 0.5]
+		},
+		"gui": {
+			"rotation": [30, 45, 0],
+			"translation": [-0.75, 5.5, 0],
+			"scale": [1.25, 1.25, 1.25]
+		},
+		"head": {
+			"translation": [0, 14.5, -0.5]
+		},
+		"fixed": {
+			"rotation": [0, 90, 0],
+			"translation": [-1, 7.75, 1.5],
+			"scale": [1.5, 1.5, 1.5]
+		}
+	},
+	"groups": [
+		{
+			"name": "poisonous_potato",
+			"origin": [10, 3, 11],
+			"color": 0,
+			"children": [
+				{
+					"name": "mold",
+					"origin": [10, 3, 11],
+					"color": 0,
+					"children": [0, 1, 2, 3, 4]
+				},
+				{
+					"name": "potato",
+					"origin": [-1, 0, -3],
+					"color": 0,
+					"children": [5]
+				}
+			]
+		}
+	]
+}
