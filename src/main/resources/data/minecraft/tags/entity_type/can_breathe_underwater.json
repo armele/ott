@@ -1,6 +1,7 @@
 {
   "replace": false,
   "values": [
-    "ott:marine_iguana"
+    "ott:marine_iguana",
+    "minecraft:zombie_nautilus"
   ]
 }
