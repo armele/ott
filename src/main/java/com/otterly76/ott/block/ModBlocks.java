@@ -1307,7 +1307,7 @@ public class ModBlocks {
     private static OpalSet registerOpalSet(String name) {
         Properties solid   = Properties.of().strength(1.5F).sound(SoundType.AMETHYST).lightLevel(s -> 7).requiresCorrectToolForDrops();
         Properties glass   = Properties.of().strength(1.5F).sound(SoundType.AMETHYST).lightLevel(s -> 7).requiresCorrectToolForDrops().noOcclusion();
-        Properties cluster = Properties.of().strength(1.5F).sound(SoundType.AMETHYST).lightLevel(s -> 7).requiresCorrectToolForDrops().noOcclusion();
+        Properties cluster = Properties.of().strength(1.5F).sound(SoundType.AMETHYST_CLUSTER).lightLevel(s -> 7).requiresCorrectToolForDrops().noOcclusion();
         return new OpalSet(
                 register(name,                        () -> new Block(solid)),
                 register(name + "_crystal_block",     () -> new Block(solid)),

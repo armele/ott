@@ -55,13 +55,13 @@
       "middle_layer_provider": {
         "type": "minecraft:simple_state_provider",
         "state": {
-          "Name": "minecraft:basalt"
+          "Name": "minecraft:calcite"
         }
       },
       "outer_layer_provider": {
         "type": "minecraft:simple_state_provider",
         "state": {
-          "Name": "minecraft:basalt"
+          "Name": "minecraft:blackstone"
         }
       }
     },
@@ -75,7 +75,7 @@
       "max_inclusive": 3,
       "min_inclusive": 2
     },
-    "invalid_blocks_threshold": 1,
+    "invalid_blocks_threshold": 4,
     "layers": {
       "filling": 0.7,
       "inner_layer": 1.2,

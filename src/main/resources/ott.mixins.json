@@ -134,6 +134,7 @@
   "client": [
     "client.AbstractContainerScreenAccessor",
     "client.AbstractContainerScreenMixin",
+    "client.AbstractFurnaceScreenMixin",
     "client.AnvilScreenAccessor",
     "client.AnvilScreenMixin",
     "client.BlockModelGeneratorsAccessor",

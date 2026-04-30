@@ -2253,27 +2253,19 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
 
     private void addOpalSetRecipes(@NotNull RecipeOutput exporter, @NotNull String name,
                                    @NotNull ModBlocks.OpalSet set, @NotNull Item crystal) {
-        // 4 crystals in 2×2 → 1 base block
-        ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, set.base().get())
+        // 4 crystals in 2×2 → 1 crystal_block (storage block)
+        ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, set.crystalBlock().get())
                 .define('C', crystal)
                 .pattern("CC")
                 .pattern("CC")
                 .unlockedBy("has_crystal", has(crystal))
                 .save(exporter, getRecipePath("ott", name + "_from_crystals"));
 
-        // base → 4 crystals (shapeless decompose)
+        // crystal_block → 4 crystals (shapeless decompose)
         ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, crystal, 4)
-                .requires(set.base().get())
-                .unlockedBy("has_" + name, has(set.base().get()))
+                .requires(set.crystalBlock().get())
+                .unlockedBy("has_" + name + "_crystal_block", has(set.crystalBlock().get()))
                 .save(exporter, getRecipePath("ott", name + "_decompose"));
-
-        // 4 crystals in 2×2 → 1 crystal_block (storage block)
-        ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, set.crystalBlock().get())
-                .define('B', set.base().get())
-                .pattern("BB")
-                .pattern("BB")
-                .unlockedBy("has_" + name, has(set.base().get()))
-                .save(exporter, getRecipePath("ott", name + "_crystal_block"));
 
         // ── Stonecutter cascade ──────────────────────────────────────────────
         // From base: every decorative variant
@@ -2313,7 +2305,7 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
         // From small_tiles
         stonecutOne(exporter, set.smallTiles().get(), set.tiling().get(), name + "_tiling_from_small_tiles");
 
-        // crystal → 1 base opal block (smelting)
+        // crystal → 1 base opal block (smelting + blasting)
         SimpleCookingRecipeBuilder.smelting(
                         Ingredient.of(crystal),
                         RecipeCategory.BUILDING_BLOCKS,
@@ -2321,6 +2313,13 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
                         0.1F, 200)
                 .unlockedBy("has_" + name + "_crystal", has(crystal))
                 .save(exporter, getRecipePath("ott", name + "_from_crystal_smelting"));
+        SimpleCookingRecipeBuilder.blasting(
+                        Ingredient.of(crystal),
+                        RecipeCategory.BUILDING_BLOCKS,
+                        set.base().get(),
+                        0.1F, 100)
+                .unlockedBy("has_" + name + "_crystal", has(crystal))
+                .save(exporter, getRecipePath("ott", name + "_from_crystal_blasting"));
 
         // glass: smelt polished → 1 opal glass
         SimpleCookingRecipeBuilder.smelting(
