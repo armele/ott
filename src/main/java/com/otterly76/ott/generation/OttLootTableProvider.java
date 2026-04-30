@@ -36,6 +36,25 @@ public class OttLootTableProvider extends BlockLootSubProvider {
 
     @Override
     protected void generate() {
+        // Build opal-specific drop maps
+        java.util.Map<Block, net.minecraft.world.item.Item> opalCrystalBlocks = new java.util.HashMap<>();
+        java.util.Map<Block, net.minecraft.world.item.Item> opalClusters = new java.util.HashMap<>();
+        java.util.Set<Block> opalSilkTouchOnly = new java.util.HashSet<>();
+        ModBlocks.OPAL_SETS.forEach((opalName, set) -> {
+            net.minecraft.world.item.Item crystal = switch (opalName) {
+                case "white_opal" -> ModItems.WHITE_OPAL_CRYSTAL.get();
+                case "black_opal" -> ModItems.BLACK_OPAL_CRYSTAL.get();
+                case "fire_opal"  -> ModItems.FIRE_OPAL_CRYSTAL.get();
+                default -> throw new IllegalStateException("Unknown opal type: " + opalName);
+            };
+            opalCrystalBlocks.put(set.crystalBlock().get(), crystal);
+            opalClusters.put(set.cluster().get(), crystal);
+            opalSilkTouchOnly.add(set.budding().get());
+            opalSilkTouchOnly.add(set.largeBud().get());
+            opalSilkTouchOnly.add(set.mediumBud().get());
+            opalSilkTouchOnly.add(set.smallBud().get());
+        });
+
         Stream.concat(
                 ModBlocks.BLOCKS.getEntries().stream(),
                 ModBlocks.MINECRAFT_BLOCKS.getEntries().stream()
@@ -82,6 +101,20 @@ public class OttLootTableProvider extends BlockLootSubProvider {
                 this.dropOther(block, Blocks.GRAVEL);
             } else if (block == ModBlocks.PLAIN_LIMESTONE.get()) {
                 this.add(block, createSingleItemTableWithSilkTouch(block, ModBlocks.COBBLED_LIMESTONE.get()));
+            } else if (opalCrystalBlocks.containsKey(block)) {
+                net.minecraft.world.item.Item crystal = opalCrystalBlocks.get(block);
+                this.add(block, b -> this.createSilkTouchDispatchTable(b,
+                        this.applyExplosionDecay(b, LootItem.lootTableItem(crystal)
+                                .apply(net.minecraft.world.level.storage.loot.functions.SetItemCountFunction
+                                        .setCount(ConstantValue.exactly(4.0f))))));
+            } else if (opalClusters.containsKey(block)) {
+                net.minecraft.world.item.Item crystal = opalClusters.get(block);
+                this.add(block, b -> LootTable.lootTable().withPool(
+                        this.applyExplosionDecay(b, LootPool.lootPool()
+                                .setRolls(ConstantValue.exactly(1.0f))
+                                .add(LootItem.lootTableItem(crystal)))));
+            } else if (opalSilkTouchOnly.contains(block)) {
+                this.add(block, this::createSilkTouchOnlyTable);
             } else {
                 this.dropSelf(block);
             }

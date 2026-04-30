@@ -2313,6 +2313,15 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
         // From small_tiles
         stonecutOne(exporter, set.smallTiles().get(), set.tiling().get(), name + "_tiling_from_small_tiles");
 
+        // crystal → 1 base opal block (smelting)
+        SimpleCookingRecipeBuilder.smelting(
+                        Ingredient.of(crystal),
+                        RecipeCategory.BUILDING_BLOCKS,
+                        set.base().get(),
+                        0.1F, 200)
+                .unlockedBy("has_" + name + "_crystal", has(crystal))
+                .save(exporter, getRecipePath("ott", name + "_from_crystal_smelting"));
+
         // glass: smelt polished → 1 opal glass
         SimpleCookingRecipeBuilder.smelting(
                         Ingredient.of(set.polished().get()),
