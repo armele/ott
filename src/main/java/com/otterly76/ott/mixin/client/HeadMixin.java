@@ -61,8 +61,11 @@ public class HeadMixin {
                         case WEST -> poseStack.mulPose(Axis.YP.rotationDegrees(90f));
                     }
 
-                    // NUDGE: Dragon needs -0.5, small heads might only need -0.05
-                    float nudge = (type == SkullBlock.Types.DRAGON || type == com.otterly76.ott.util.block.ModSkullType.DRAGON_SKULL) ? -0.5f : 0.25f;
+                    // NUDGE: Dragon needs ~-0.5 to sit flush with the wall.
+                    // Using -0.49 instead of -0.5 so the back face lands 0.01 blocks
+                    // inside the wall (z=-0.01), losing the depth test instead of
+                    // z-fighting with / covering the wall face at z=0.
+                    float nudge = (type == SkullBlock.Types.DRAGON || type == com.otterly76.ott.util.block.ModSkullType.DRAGON_SKULL) ? -0.49f : 0.25f;
                     poseStack.translate(0, 0, nudge);
                 }
 
