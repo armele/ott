@@ -462,6 +462,11 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
             Item dye = ModItems.CUSTOM_DYES.get(name).get();
             addSeaglassDyeRecipe(exporter, lightGray, ModBlocks.SEAGLASS_SETS.get(name), dye, name);
         }
+
+        // Opal crystal set recipes
+        addOpalSetRecipes(exporter, "white_opal", ModBlocks.OPAL_SETS.get("white_opal"), ModItems.WHITE_OPAL_CRYSTAL.get());
+        addOpalSetRecipes(exporter, "black_opal", ModBlocks.OPAL_SETS.get("black_opal"), ModItems.BLACK_OPAL_CRYSTAL.get());
+        addOpalSetRecipes(exporter, "fire_opal",  ModBlocks.OPAL_SETS.get("fire_opal"),  ModItems.FIRE_OPAL_CRYSTAL.get());
     }
 
     private void addSeaglassDyeRecipe(RecipeOutput exporter, ModBlocks.SeaglassColorBlocks source, ModBlocks.SeaglassColorBlocks target, Item dye, String colorName) {
@@ -2244,5 +2249,98 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
         woodcutOne(exporter, input, set.bannister().get(),       prefix + "_bannister_woodcutting");
         woodcutOne(exporter, input, set.supportSlab().get(),     prefix + "_support_slab_woodcutting");
         woodcutOne(exporter, input, set.supportBeam().get(),     prefix + "_support_beam_woodcutting");
+    }
+
+    private void addOpalSetRecipes(@NotNull RecipeOutput exporter, @NotNull String name,
+                                   @NotNull ModBlocks.OpalSet set, @NotNull Item crystal) {
+        // 4 crystals in 2×2 → 1 base block
+        ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, set.base().get())
+                .define('C', crystal)
+                .pattern("CC")
+                .pattern("CC")
+                .unlockedBy("has_crystal", has(crystal))
+                .save(exporter, getRecipePath("ott", name + "_from_crystals"));
+
+        // base → 4 crystals (shapeless decompose)
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, crystal, 4)
+                .requires(set.base().get())
+                .unlockedBy("has_" + name, has(set.base().get()))
+                .save(exporter, getRecipePath("ott", name + "_decompose"));
+
+        // 4 crystals in 2×2 → 1 crystal_block (storage block)
+        ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, set.crystalBlock().get())
+                .define('B', set.base().get())
+                .pattern("BB")
+                .pattern("BB")
+                .unlockedBy("has_" + name, has(set.base().get()))
+                .save(exporter, getRecipePath("ott", name + "_crystal_block"));
+
+        // ── Stonecutter cascade ──────────────────────────────────────────────
+        // From base: every decorative variant
+        stonecutOne(exporter, set.base().get(), set.polished().get(),   "polished_" + name + "_from_base");
+        stonecutOne(exporter, set.base().get(), set.cut().get(),        "cut_" + name + "_from_base");
+        stonecutOne(exporter, set.base().get(), set.bricks().get(),     name + "_bricks_from_base");
+        stonecutOne(exporter, set.base().get(), set.smallBricks().get(),"small_" + name + "_bricks_from_base");
+        stonecutOne(exporter, set.base().get(), set.chiseled().get(),   "chiseled_" + name + "_from_base");
+        stonecutOne(exporter, set.base().get(), set.pillar().get(),     name + "_pillar_from_base");
+        stonecutOne(exporter, set.base().get(), set.tiles().get(),      name + "_tiles_from_base");
+        stonecutOne(exporter, set.base().get(), set.smallTiles().get(), "small_" + name + "_tiles_from_base");
+        stonecutOne(exporter, set.base().get(), set.tiling().get(),     name + "_tiling_from_base");
+        // From polished
+        stonecutOne(exporter, set.polished().get(), set.cut().get(),        "cut_" + name + "_from_polished");
+        stonecutOne(exporter, set.polished().get(), set.bricks().get(),     name + "_bricks_from_polished");
+        stonecutOne(exporter, set.polished().get(), set.smallBricks().get(),"small_" + name + "_bricks_from_polished");
+        stonecutOne(exporter, set.polished().get(), set.chiseled().get(),   "chiseled_" + name + "_from_polished");
+        stonecutOne(exporter, set.polished().get(), set.pillar().get(),     name + "_pillar_from_polished");
+        stonecutOne(exporter, set.polished().get(), set.tiles().get(),      name + "_tiles_from_polished");
+        stonecutOne(exporter, set.polished().get(), set.smallTiles().get(), "small_" + name + "_tiles_from_polished");
+        stonecutOne(exporter, set.polished().get(), set.tiling().get(),     name + "_tiling_from_polished");
+        // From cut
+        stonecutOne(exporter, set.cut().get(), set.bricks().get(),     name + "_bricks_from_cut");
+        stonecutOne(exporter, set.cut().get(), set.smallBricks().get(),"small_" + name + "_bricks_from_cut");
+        stonecutOne(exporter, set.cut().get(), set.chiseled().get(),   "chiseled_" + name + "_from_cut");
+        stonecutOne(exporter, set.cut().get(), set.tiles().get(),      name + "_tiles_from_cut");
+        stonecutOne(exporter, set.cut().get(), set.smallTiles().get(), "small_" + name + "_tiles_from_cut");
+        stonecutOne(exporter, set.cut().get(), set.tiling().get(),     name + "_tiling_from_cut");
+        // From bricks
+        stonecutOne(exporter, set.bricks().get(), set.smallBricks().get(), "small_" + name + "_bricks_from_bricks");
+        stonecutOne(exporter, set.bricks().get(), set.tiles().get(),       name + "_tiles_from_bricks");
+        stonecutOne(exporter, set.bricks().get(), set.smallTiles().get(),  "small_" + name + "_tiles_from_bricks");
+        stonecutOne(exporter, set.bricks().get(), set.tiling().get(),      name + "_tiling_from_bricks");
+        // From tiles
+        stonecutOne(exporter, set.tiles().get(), set.smallTiles().get(), "small_" + name + "_tiles_from_tiles");
+        stonecutOne(exporter, set.tiles().get(), set.tiling().get(),     name + "_tiling_from_tiles");
+        // From small_tiles
+        stonecutOne(exporter, set.smallTiles().get(), set.tiling().get(), name + "_tiling_from_small_tiles");
+
+        // glass: smelt polished → 1 opal glass
+        SimpleCookingRecipeBuilder.smelting(
+                        Ingredient.of(set.polished().get()),
+                        RecipeCategory.BUILDING_BLOCKS,
+                        set.glass().get(),
+                        0.1F, 200)
+                .unlockedBy("has_polished_" + name, has(set.polished().get()))
+                .save(exporter, getRecipePath("ott", name + "_glass_from_smelting"));
+
+        // ── Engraving (base block → each decorative variant, like stone → stone variants) ──
+        java.util.List<net.minecraft.world.level.block.Block> decorative = java.util.List.of(
+                set.polished().get(), set.cut().get(), set.bricks().get(), set.smallBricks().get(),
+                set.chiseled().get(), set.pillar().get(), set.tiles().get(), set.smallTiles().get(),
+                set.glass().get(), set.glassPane().get(), set.tiling().get()
+        );
+        for (net.minecraft.world.level.block.Block output : decorative) {
+            String outputPath = net.minecraft.core.registries.BuiltInRegistries.BLOCK.getKey(output).getPath();
+            engraveOne(exporter, set.base().get(), output, name + "_to_" + outputPath);
+        }
+        // ── Engraving (all decorative variants convertible 1:1 between each other) ──
+        for (net.minecraft.world.level.block.Block input : decorative) {
+            String inputPath = net.minecraft.core.registries.BuiltInRegistries.BLOCK.getKey(input).getPath();
+            for (net.minecraft.world.level.block.Block output : decorative) {
+                if (input != output) {
+                    String outputPath = net.minecraft.core.registries.BuiltInRegistries.BLOCK.getKey(output).getPath();
+                    engraveOne(exporter, input, output, inputPath + "_to_" + outputPath);
+                }
+            }
+        }
     }
 }

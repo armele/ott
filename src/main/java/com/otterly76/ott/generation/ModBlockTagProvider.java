@@ -644,6 +644,24 @@ public class ModBlockTagProvider extends BlockTagsProvider {
         this.tag(TagKey.create(Registries.BLOCK, ResourceLocation.withDefaultNamespace("stained_glass_panes"))).add(ModBlocks.SOUL_GLASS_PANE.get());
         this.tag(BlockTags.IMPERMEABLE).add(ModBlocks.SOUL_GLASS.get(), ModBlocks.SOUL_GLASS_PANE.get());
         this.tag(doDefaultKey).add(ModBlocks.SOUL_GLASS.get());
+
+        // Opal sets — pickaxe mineable + DO default for all 18 blocks × 3 types
+        ModBlocks.OPAL_SETS.values().forEach(set -> {
+            pickaxeTag.add(
+                    set.base().get(), set.crystalBlock().get(), set.budding().get(),
+                    set.cluster().get(), set.largeBud().get(), set.mediumBud().get(), set.smallBud().get(),
+                    set.bricks().get(), set.smallBricks().get(), set.polished().get(), set.chiseled().get(),
+                    set.pillar().get(), set.cut().get(), set.tiles().get(), set.smallTiles().get(),
+                    set.glass().get(), set.glassPane().get(), set.tiling().get()
+            );
+            this.tag(doDefaultKey).add(
+                    set.base().get(), set.crystalBlock().get(), set.budding().get(),
+                    set.bricks().get(), set.smallBricks().get(), set.polished().get(), set.chiseled().get(),
+                    set.pillar().get(), set.cut().get(), set.tiles().get(), set.smallTiles().get(),
+                    set.glass().get(), set.tiling().get()
+            );
+        });
+
         axeTag.add(ModBlocks.ACACIA_BEEHIVE.get(), ModBlocks.BAMBOO_BEEHIVE.get(), ModBlocks.BIRCH_BEEHIVE.get(), ModBlocks.CHERRY_BEEHIVE.get(), ModBlocks.CRIMSON_BEEHIVE.get());
         axeTag.add(ModBlocks.DARK_OAK_BEEHIVE.get(), ModBlocks.JUNGLE_BEEHIVE.get(), ModBlocks.MANGROVE_BEEHIVE.get(), ModBlocks.PALE_OAK_BEEHIVE.get(), ModBlocks.SPRUCE_BEEHIVE.get(), ModBlocks.WARPED_BEEHIVE.get());
 

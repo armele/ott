@@ -71,6 +71,9 @@ public class OttBlockStateProvider extends ModBlockStateProvider {
                 .texture("side", soulGlassTex)
                 .renderType("minecraft:translucent");
 
+        // Opal crystal sets
+        ModBlocks.OPAL_SETS.forEach(this::registerOpalSet);
+
         ModBlocks.SEAGLASS_SETS.forEach(this::registerSeaglassColor);
         itemModels().withExistingParent("mixed_limestone_bricks", modLoc("block/limestone/mixed/limestone_00"));
         simpleBlockWithItem(ModBlocks.PLAIN_LIMESTONE.get(), models().cubeAll("block/limestone/limestone", modLoc("block/limestone/limestone")));
@@ -1698,5 +1701,156 @@ public class OttBlockStateProvider extends ModBlockStateProvider {
         });
         itemModels().withExistingParent(color + "_futon", modLoc("item/template_futon"))
                 .texture("futon", futonTex);
+    }
+
+    // =========================================================================
+    // === Opal crystal set datagen ============================================
+    // =========================================================================
+
+    private void registerOpalSet(String typeName, ModBlocks.OpalSet set) {
+        // Shared textures from the opal source set (all types use the same base textures; tinting differentiates them)
+        ResourceLocation baseTex      = modLoc("block/opal/opal");
+        ResourceLocation crystalTex   = modLoc("block/opal/opal_crystal_block");
+        ResourceLocation buddingTex   = modLoc("block/opal/budding_opal");
+        ResourceLocation clusterTex   = modLoc("block/opal/opal_crystal_cluster");
+        ResourceLocation largeBudTex  = modLoc("block/opal/large_opal_crystal_bud");
+        ResourceLocation medBudTex    = modLoc("block/opal/medium_opal_crystal_bud");
+        ResourceLocation smBudTex     = modLoc("block/opal/small_opal_crystal_bud");
+        ResourceLocation bricksTex    = modLoc("block/opal/opal_bricks");
+        ResourceLocation smBricksTex  = modLoc("block/opal/small_opal_bricks");
+        ResourceLocation polishedTex  = modLoc("block/opal/polished_opal");
+        ResourceLocation chiseledTex  = modLoc("block/opal/chiseled_opal");
+        ResourceLocation pillarSide   = modLoc("block/opal/opal_pillar");
+        ResourceLocation pillarEnd    = modLoc("block/opal/opal_pillar_top");
+        ResourceLocation cutTex       = modLoc("block/opal/cut_opal");
+        ResourceLocation tilesTex     = modLoc("block/opal/opal_tiles");
+        ResourceLocation smTilesTex   = modLoc("block/opal/small_opal_tiles");
+        ResourceLocation glassTex     = modLoc("block/opal/opal_glass");
+        ResourceLocation paneEdgeTex  = modLoc("block/opal/opal_glass_pane_top");
+        ResourceLocation tilingTex    = modLoc("block/opal/opal_tiling");
+
+        String m = "block/opal/" + typeName + "/";
+
+        // Tinted solid cube_all blocks
+        opalTintedCubeAll(set.base().get(),        m + typeName,                         baseTex);
+        opalTintedCubeAll(set.crystalBlock().get(), m + typeName + "_crystal_block",      crystalTex);
+        opalTintedCubeAll(set.budding().get(),      m + "budding_" + typeName,            buddingTex);
+        opalTintedCubeAll(set.bricks().get(),       m + typeName + "_bricks",             bricksTex);
+        opalTintedCubeAll(set.smallBricks().get(),  m + "small_" + typeName + "_bricks",  smBricksTex);
+        opalTintedCubeAll(set.polished().get(),     m + "polished_" + typeName,           polishedTex);
+        opalTintedCubeAll(set.chiseled().get(),     m + "chiseled_" + typeName,           chiseledTex);
+        opalTintedCubeAll(set.cut().get(),          m + "cut_" + typeName,                cutTex);
+        opalTintedCubeAll(set.tiles().get(),        m + typeName + "_tiles",              tilesTex);
+        opalTintedCubeAll(set.smallTiles().get(),   m + "small_" + typeName + "_tiles",   smTilesTex);
+        opalTintedCubeAll(set.glass().get(),        m + typeName + "_glass",              glassTex, "minecraft:translucent");
+
+        // Tinted pillar (axis block — same model used for all axes; adequate for initial version)
+        opalTintedPillar(set.pillar().get(), m + typeName + "_pillar", pillarSide, pillarEnd);
+
+        // Crystal cluster and buds — directional, using vanilla template
+        opalCluster(set.cluster().get(),   m + typeName + "_cluster",         clusterTex);
+        opalCluster(set.largeBud().get(),  m + "large_" + typeName + "_bud",  largeBudTex);
+        opalCluster(set.mediumBud().get(), m + "medium_" + typeName + "_bud", medBudTex);
+        opalCluster(set.smallBud().get(),  m + "small_" + typeName + "_bud",  smBudTex);
+
+        // Glass pane (translucent, tinted)
+        opalTintedPane(set.glassPane().get(), glassTex, paneEdgeTex);
+
+        // Tiling — tinted cube, horizontal directional
+        opalTintedHorizontal(set.tiling().get(), m + typeName + "_tiling", tilingTex);
+    }
+
+    /** Solid tinted cube_all — adds tintindex=0 to every face so PrismaticColorHandler applies. */
+    private void opalTintedCubeAll(@NotNull Block block, @NotNull String modelName, @NotNull ResourceLocation texture) {
+        opalTintedCubeAll(block, modelName, texture, "minecraft:solid");
+    }
+
+    private void opalTintedCubeAll(@NotNull Block block, @NotNull String modelName,
+                                   @NotNull ResourceLocation texture, @NotNull String renderType) {
+        ModelFile model = models().withExistingParent(modelName, mcLoc("block/block"))
+                .texture("all", texture)
+                .texture("particle", texture)
+                .renderType(renderType)
+                .element().from(0, 0, 0).to(16, 16, 16)
+                    .allFaces((dir, face) -> face.texture("#all").tintindex(0).cullface(dir))
+                .end();
+        simpleBlock(block, model);
+        itemModels().withExistingParent(blockPath(block), modLoc(modelName));
+    }
+
+    /** Tinted pillar axis block. Uses one model for all axis orientations. */
+    private void opalTintedPillar(@NotNull RotatedPillarBlock block, @NotNull String modelName,
+                                  @NotNull ResourceLocation side, @NotNull ResourceLocation end) {
+        ModelFile model = models().withExistingParent(modelName, mcLoc("block/block"))
+                .texture("side", side)
+                .texture("end", end)
+                .texture("particle", side)
+                .element().from(0, 0, 0).to(16, 16, 16)
+                    .face(Direction.NORTH).uvs(0, 0, 16, 16).texture("#side").tintindex(0).cullface(Direction.NORTH).end()
+                    .face(Direction.SOUTH).uvs(0, 0, 16, 16).texture("#side").tintindex(0).cullface(Direction.SOUTH).end()
+                    .face(Direction.EAST).uvs(0, 0, 16, 16).texture("#side").tintindex(0).cullface(Direction.EAST).end()
+                    .face(Direction.WEST).uvs(0, 0, 16, 16).texture("#side").tintindex(0).cullface(Direction.WEST).end()
+                    .face(Direction.UP).uvs(0, 0, 16, 16).texture("#end").tintindex(0).cullface(Direction.UP).end()
+                    .face(Direction.DOWN).uvs(0, 0, 16, 16).texture("#end").tintindex(0).cullface(Direction.DOWN).end()
+                .end();
+        axisBlock(block, model, model);
+        itemModels().withExistingParent(blockPath(block), modLoc(modelName));
+    }
+
+    /** Directional cluster/bud block using tinted_cross (tintindex=0) for prismatic coloring. */
+    private void opalCluster(@NotNull net.minecraft.world.level.block.AmethystClusterBlock block,
+                             @NotNull String modelName, @NotNull ResourceLocation texture) {
+        ModelFile model = models().withExistingParent(modelName, mcLoc("block/tinted_cross"))
+                .texture("cross", texture)
+                .texture("particle", texture)
+                .renderType("minecraft:cutout");
+        directionalBlock(block, model);
+        itemModels().withExistingParent(blockPath(block), modLoc(modelName));
+    }
+
+    /** Tinted cube used as a horizontal-directional tiling block. */
+    private void opalTintedHorizontal(@NotNull net.minecraft.world.level.block.GlazedTerracottaBlock block,
+                                      @NotNull String modelName, @NotNull ResourceLocation texture) {
+        ModelFile model = models().withExistingParent(modelName, mcLoc("block/block"))
+                .texture("all", texture)
+                .texture("particle", texture)
+                .element().from(0, 0, 0).to(16, 16, 16)
+                    .allFaces((dir, face) -> face.texture("#all").tintindex(0).cullface(dir))
+                .end();
+        horizontalBlock(block, model);
+        itemModels().withExistingParent(blockPath(block), modLoc(modelName));
+    }
+
+    /**
+     * Tinted glass pane — uses custom template models that include tintindex=0 on every face,
+     * allowing PrismaticColorHandler to tint the pane geometry.
+     */
+    private void opalTintedPane(@NotNull net.minecraft.world.level.block.IronBarsBlock block,
+                                @NotNull ResourceLocation pane, @NotNull ResourceLocation edge) {
+        String base = blockPath(block);
+        String rt   = "minecraft:translucent";
+        ResourceLocation postParent    = modLoc("block/template_tinted_glass_pane_post");
+        ResourceLocation sideParent    = modLoc("block/template_tinted_glass_pane_side");
+        ResourceLocation sideAltParent = modLoc("block/template_tinted_glass_pane_side_alt");
+        ResourceLocation nosideParent  = modLoc("block/template_tinted_glass_pane_noside");
+        ResourceLocation nosideAltParent = modLoc("block/template_tinted_glass_pane_noside_alt");
+
+        ModelFile post    = models().withExistingParent(base + "_post",     postParent)
+                .texture("pane", pane).texture("edge", edge).renderType(rt);
+        ModelFile side    = models().withExistingParent(base + "_side",     sideParent)
+                .texture("pane", pane).texture("edge", edge).renderType(rt);
+        ModelFile sideAlt = models().withExistingParent(base + "_side_alt", sideAltParent)
+                .texture("pane", pane).texture("edge", edge).renderType(rt);
+        ModelFile noside    = models().withExistingParent(base + "_noside",     nosideParent)
+                .texture("pane", pane).renderType(rt);
+        ModelFile nosideAlt = models().withExistingParent(base + "_noside_alt", nosideAltParent)
+                .texture("pane", pane).renderType(rt);
+
+        paneBlock(block, post, side, sideAlt, noside, nosideAlt);
+
+        // Item model — flat glass pane icon, tinted
+        itemModels().withExistingParent(base, mcLoc("item/generated"))
+                .texture("layer0", pane)
+                .renderType(rt);
     }
 }

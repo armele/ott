@@ -58,6 +58,12 @@ public class ModItems {
     public static final DeferredItem<Item> SILK = ITEMS.register("silk", () -> new Item(new Item.Properties()));
     public static final DeferredHolder<Item, BlockItem> SOUL_GLASS = registerBlockItem("soul_glass", ModBlocks.SOUL_GLASS);
     public static final DeferredHolder<Item, BlockItem> SOUL_GLASS_PANE = registerBlockItem("soul_glass_pane", ModBlocks.SOUL_GLASS_PANE);
+
+    // Opal crystal drop items
+    public static final DeferredItem<Item> WHITE_OPAL_CRYSTAL = ITEMS.register("white_opal_crystal", () -> new Item(new Item.Properties()));
+    public static final DeferredItem<Item> BLACK_OPAL_CRYSTAL = ITEMS.register("black_opal_crystal", () -> new Item(new Item.Properties()));
+    public static final DeferredItem<Item> FIRE_OPAL_CRYSTAL  = ITEMS.register("fire_opal_crystal",  () -> new Item(new Item.Properties()));
+
     public static final DeferredHolder<Item, BlockItem> SILK_COCOON = registerBlockItem("silk_cocoon", ModBlocks.SILK_COCOON);
     public static final DeferredItem<Item> DRAGON_SKULL = ITEMS.register("dragon_skull", () -> new net.minecraft.world.item.StandingAndWallBlockItem(ModBlocks.DRAGON_SKULL.get(), ModBlocks.DRAGON_WALL_SKULL.get(), new net.minecraft.world.item.Item.Properties(), net.minecraft.core.Direction.DOWN));
     public static final DeferredHolder<Item, BlockItem> THORNY_HEDGE = registerBlockItem("thorny_hedge", ModBlocks.THORNY_HEDGE);
@@ -686,6 +692,28 @@ public class ModItems {
             registerBlockItem(set.bubblesSeaglass());
             registerBlockItem(set.smoothSeaglass());
             registerBlockItem(set.wavesSeaglass());
+        });
+
+        // REGISTRATION: Opal Sets
+        ModBlocks.OPAL_SETS.values().forEach(set -> {
+            registerBlockItem(set.base());
+            registerBlockItem(set.crystalBlock());
+            registerBlockItem(set.budding());
+            registerBlockItem(set.cluster());
+            registerBlockItem(set.largeBud());
+            registerBlockItem(set.mediumBud());
+            registerBlockItem(set.smallBud());
+            registerBlockItem(set.bricks());
+            registerBlockItem(set.smallBricks());
+            registerBlockItem(set.polished());
+            registerBlockItem(set.chiseled());
+            registerBlockItem(set.pillar());
+            registerBlockItem(set.cut());
+            registerBlockItem(set.tiles());
+            registerBlockItem(set.smallTiles());
+            registerBlockItem(set.glass());
+            registerBlockItem(set.glassPane());
+            registerBlockItem(set.tiling());
         });
 
         // REGISTRATION: Hedges

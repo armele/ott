@@ -154,6 +154,11 @@ public class ModItemModelProvider extends ItemModelProvider {
         generatedItemFromTexture(ModItems.KOI_FISH.getId().getPath(), modLoc("item/koi_fish"));
         generatedItemFromTexture(ModItems.PEARL.getId().getPath(), modLoc("item/pearl"));
         generatedItemFromTexture(ModItems.SILK.getId().getPath(), modLoc("item/silk"));
+
+        // Opal crystals — all three use the same base crystal texture (tinted in inventory)
+        generatedItemFromTexture(ModItems.WHITE_OPAL_CRYSTAL.getId().getPath(), modLoc("item/opal/opal_crystal"));
+        generatedItemFromTexture(ModItems.BLACK_OPAL_CRYSTAL.getId().getPath(), modLoc("item/opal/opal_crystal"));
+        generatedItemFromTexture(ModItems.FIRE_OPAL_CRYSTAL.getId().getPath(),  modLoc("item/opal/opal_crystal"));
         
         generatedItemFromTexture(ModItems.JELLYFISH_JELLY.getId().getPath(), modLoc("item/jellyfish_jelly"));
         generatedItemFromTexture(ModItems.SEA_URCHIN_CAVIAR.getId().getPath(), modLoc("item/sea_urchin_caviar"));

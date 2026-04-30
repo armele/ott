@@ -657,6 +657,13 @@ public enum OttCreativeCategories {
                 output.accept(ModBlocks.SOUL_GLASS);
                 output.accept(ModBlocks.SOUL_GLASS_PANE);
 
+                // Opal crystal sets — raw stone blocks only; buds/crystals are in MISC, decorative in ENGRAVED
+                ModBlocks.OPAL_SETS.values().forEach(set -> {
+                    output.accept(set.base());
+                    output.accept(set.crystalBlock());
+                    output.accept(set.budding());
+                });
+
                 output.accept(ModBlocks.CHISELED_PLASTERED_STONE_PILLAR);
             }),
 
@@ -797,6 +804,21 @@ public enum OttCreativeCategories {
                 output.accept(ModBlocks.LAPIS_BLOCK_PILLAR);
                 output.accept(ModBlocks.NETHERITE_BLOCK_PILLAR);
                 output.accept(ModBlocks.OBSIDIAN_PILLAR);
+
+                // Opal decorative variants
+                ModBlocks.OPAL_SETS.values().forEach(set -> {
+                    output.accept(set.polished());
+                    output.accept(set.cut());
+                    output.accept(set.bricks());
+                    output.accept(set.smallBricks());
+                    output.accept(set.chiseled());
+                    output.accept(set.pillar());
+                    output.accept(set.tiles());
+                    output.accept(set.smallTiles());
+                    output.accept(set.glass());
+                    output.accept(set.glassPane());
+                    output.accept(set.tiling());
+                });
 
                 // Wood door variants
                 ModItems.WOOD_DOOR_ITEMS.values().forEach(woodMap -> woodMap.values().forEach(output::accept));
@@ -959,6 +981,17 @@ public enum OttCreativeCategories {
 
                 output.accept(ModItems.WILDFIRE_CROWN);
                 output.accept(ModItems.WILDFIRE_CROWN_FRAGMENT);
+
+                // Opal clusters, buds, and crystal items
+                ModBlocks.OPAL_SETS.values().forEach(set -> {
+                    output.accept(set.cluster());
+                    output.accept(set.largeBud());
+                    output.accept(set.mediumBud());
+                    output.accept(set.smallBud());
+                });
+                output.accept(ModItems.WHITE_OPAL_CRYSTAL);
+                output.accept(ModItems.BLACK_OPAL_CRYSTAL);
+                output.accept(ModItems.FIRE_OPAL_CRYSTAL);
             });
 
     // --- Display order (top to bottom in the button list) ---

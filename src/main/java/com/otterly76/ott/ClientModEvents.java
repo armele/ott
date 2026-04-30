@@ -76,6 +76,7 @@ public class ClientModEvents {
         return (col.getAlpha() & 255) << 24 | (gray & 255) << 16 | (gray & 255) << 8 | gray & 255;
     };
 
+    @SuppressWarnings("DuplicatedCode")
     public static void register(IEventBus modBus) {
         net.neoforged.fml.ModLoadingContext.get().getActiveContainer().registerExtensionPoint(IConfigScreenFactory.class, ConfigurationScreen::new);
         modBus.addListener(ClientModEvents::registerGuiLayers);
@@ -490,9 +491,32 @@ public class ClientModEvents {
             }
         }, ModBlocks.WILDFLOWERS.get());
 
-        event.register(PrismaticColorHandler.create(PrismaticColorHandler.Type.FULL_3D, 32f, 1.0f, 0.0f, 1.0f, 0.0f), ModBlocks.TESTBLOCK_02.get());
-        event.register(PrismaticColorHandler.create(PrismaticColorHandler.Type.HORIZONTAL, 16f, 0.5f, 0.5f, 0.7f, 0.0f), ModBlocks.TESTBLOCK_03.get());
-        event.register(PrismaticColorHandler.create(PrismaticColorHandler.Type.VERTICAL, 8f, 0.25f, 0.3f, 0.5f, 0.0f), ModBlocks.TESTBLOCK_10.get());
+        event.register(PrismaticColorHandler.create(PrismaticColorHandler.Type.FULL_3D, 32f, 1.0f, 0.0f, 1.0f, 0.0f), ModBlocks.TESTBLOCK_01.get());
+        event.register(PrismaticColorHandler.create(PrismaticColorHandler.Type.HORIZONTAL, 16f, 0.5f, 0.5f, 0.7f, 0.0f), ModBlocks.TESTBLOCK_02.get());
+        event.register(PrismaticColorHandler.create(PrismaticColorHandler.Type.VERTICAL, 8f, 0.25f, 0.3f, 0.5f, 0.0f), ModBlocks.TESTBLOCK_03.get());
+
+        // ── Opal block color handlers (per type) ─────────────────────────────
+        // Params: Type, scale (blocks/cycle), saturation, hueMin, hueMax, timeScale
+        // Hue reference: 0.00=red  0.08=orange  0.15=yellow  0.33=green
+        //                0.50=cyan  0.58=sky  0.67=blue  0.75=violet  0.83=magenta
+        ModBlocks.OPAL_SETS.forEach((name, set) -> {
+            net.minecraft.client.color.block.BlockColor handler = switch (name) {
+                case "white_opal" -> PrismaticColorHandler.create(
+                        PrismaticColorHandler.Type.FULL_3D, 24f, 0.65f, 0.45f, 0.70f, 0.0f);
+                case "black_opal" -> PrismaticColorHandler.create(
+                        PrismaticColorHandler.Type.FULL_3D, 24f, 0.90f, 0.65f, 0.87f, 0.0f);
+                case "fire_opal"  -> PrismaticColorHandler.create(
+                        PrismaticColorHandler.Type.FULL_3D, 24f, 1.00f, 0.00f, 0.12f, 0.0f);
+                default           -> PrismaticColorHandler.create(
+                        PrismaticColorHandler.Type.FULL_3D, 24f, 0.80f, 0.00f, 1.00f, 0.0f);
+            };
+            event.register(handler,
+                    set.base().get(), set.crystalBlock().get(), set.budding().get(),
+                    set.cluster().get(), set.largeBud().get(), set.mediumBud().get(), set.smallBud().get(),
+                    set.bricks().get(), set.smallBricks().get(), set.polished().get(), set.chiseled().get(),
+                    set.pillar().get(), set.cut().get(), set.tiles().get(), set.smallTiles().get(),
+                    set.glass().get(), set.glassPane().get(), set.tiling().get());
+        });
 
         ModBlocks.COPPER_WATER_CAULDRONS.values().forEach(blockSupplier -> {
             event.register((state, level, pos, tint) -> tint == 0 && level != null && pos != null ? BiomeColors.getAverageWaterColor(level, pos) : -1, blockSupplier.get());
@@ -541,14 +565,38 @@ public class ClientModEvents {
                 return -1;
             }, deferredBlock.get());
         });
-        event.register((stack, tintIndex) -> {
-                    if (tintIndex == 0) {
-                        float hue = (float) ((System.nanoTime() / 1_000_000_000.0) / 2.0) % 1.0f;
-                        return Color.HSBtoRGB(hue, 0.7f, 1.0f);
-                    }
-                    return -1;
-                },
+        event.register(
+                PrismaticColorHandler.createItemColor(PrismaticColorHandler.Type.FULL_3D, 24f, 0.7f, 0.0f, 1.0f),
                 ModBlocks.TESTBLOCK_02.get(), ModBlocks.TESTBLOCK_03.get(), ModBlocks.TESTBLOCK_10.get());
+
+        // ── Opal item color handlers — per type, mirrors block params above ──
+        net.minecraft.client.color.item.ItemColor whiteOpalItem =
+                PrismaticColorHandler.createItemColor(PrismaticColorHandler.Type.FULL_3D, 24f, 0.65f, 0.45f, 0.70f);
+        net.minecraft.client.color.item.ItemColor blackOpalItem =
+                PrismaticColorHandler.createItemColor(PrismaticColorHandler.Type.FULL_3D, 24f, 0.90f, 0.65f, 0.87f);
+        net.minecraft.client.color.item.ItemColor fireOpalItem  =
+                PrismaticColorHandler.createItemColor(PrismaticColorHandler.Type.FULL_3D, 24f, 1.00f, 0.00f, 0.12f);
+
+        ModBlocks.OPAL_SETS.forEach((name, set) -> {
+            net.minecraft.client.color.item.ItemColor itemHandler = switch (name) {
+                case "white_opal" -> whiteOpalItem;
+                case "black_opal" -> blackOpalItem;
+                case "fire_opal"  -> fireOpalItem;
+                default           -> throw new IllegalStateException("Unknown opal type: " + name);
+            };
+            net.minecraft.world.item.Item[] items = {
+                    set.base().get().asItem(), set.crystalBlock().get().asItem(), set.budding().get().asItem(),
+                    set.cluster().get().asItem(), set.largeBud().get().asItem(), set.mediumBud().get().asItem(),
+                    set.smallBud().get().asItem(), set.bricks().get().asItem(), set.smallBricks().get().asItem(),
+                    set.polished().get().asItem(), set.chiseled().get().asItem(), set.pillar().get().asItem(),
+                    set.cut().get().asItem(), set.tiles().get().asItem(), set.smallTiles().get().asItem(),
+                    set.glass().get().asItem(), set.glassPane().get().asItem(), set.tiling().get().asItem()
+            };
+            event.register(itemHandler, items);
+        });
+        event.register(whiteOpalItem, ModItems.WHITE_OPAL_CRYSTAL.get());
+        event.register(blackOpalItem, ModItems.BLACK_OPAL_CRYSTAL.get());
+        event.register(fireOpalItem,  ModItems.FIRE_OPAL_CRYSTAL.get());
 
         ModBlocks.PATTERN_BLOCKS.forEach((pattern, colorMap) -> colorMap.forEach((colorName, block) ->
                 com.otterly76.ott.color.ModPatterns.ALL_COLORS.stream()

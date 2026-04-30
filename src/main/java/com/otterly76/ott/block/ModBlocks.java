@@ -477,6 +477,11 @@ public class ModBlocks {
             ));
         }
 
+        // Register opal sets
+        for (String opalName : List.of("white_opal", "black_opal", "fire_opal")) {
+            OPAL_SETS.put(opalName, registerOpalSet(opalName));
+        }
+
         registerPatternBlocks();
 
         // Register all particle hedges
@@ -624,6 +629,11 @@ public class ModBlocks {
     public static final Map<String, SeaglassColorBlocks> SEAGLASS_SETS = new LinkedHashMap<>();
 
     /**
+     * Opal crystal sets (ott namespace). Keys: "white_opal", "black_opal", "fire_opal".
+     */
+    public static final Map<String, OpalSet> OPAL_SETS = new LinkedHashMap<>();
+
+    /**
      * ott pattern blocks (ott namespace). Key1 = pattern name, Key2 = color name.
      */
     public static final Map<String, Map<String, DeferredBlock<Block>>> PATTERN_BLOCKS = new LinkedHashMap<>();
@@ -668,6 +678,27 @@ public class ModBlocks {
             DeferredBlock<Block> bubblesSeaglass,
             DeferredBlock<Block> smoothSeaglass,
             DeferredBlock<Block> wavesSeaglass
+    ) {}
+
+    public record OpalSet(
+            DeferredBlock<Block>                base,
+            DeferredBlock<Block>                crystalBlock,
+            DeferredBlock<Block>                budding,
+            DeferredBlock<AmethystClusterBlock> cluster,
+            DeferredBlock<AmethystClusterBlock> largeBud,
+            DeferredBlock<AmethystClusterBlock> mediumBud,
+            DeferredBlock<AmethystClusterBlock> smallBud,
+            DeferredBlock<Block>                bricks,
+            DeferredBlock<Block>                smallBricks,
+            DeferredBlock<Block>                polished,
+            DeferredBlock<Block>                chiseled,
+            DeferredBlock<RotatedPillarBlock>   pillar,
+            DeferredBlock<Block>                cut,
+            DeferredBlock<Block>                tiles,
+            DeferredBlock<Block>                smallTiles,
+            DeferredBlock<Block>                glass,
+            DeferredBlock<IronBarsBlock>        glassPane,
+            DeferredBlock<GlazedTerracottaBlock> tiling
     ) {}
 
     public record WoodSetBlocks(
@@ -1272,6 +1303,32 @@ public class ModBlocks {
         MINECRAFT_ITEMS.register(eventBus);
     }
 
+
+    private static OpalSet registerOpalSet(String name) {
+        Properties solid   = Properties.of().strength(1.5F).sound(SoundType.AMETHYST).lightLevel(s -> 7).requiresCorrectToolForDrops();
+        Properties glass   = Properties.of().strength(1.5F).sound(SoundType.AMETHYST).lightLevel(s -> 7).requiresCorrectToolForDrops().noOcclusion();
+        Properties cluster = Properties.of().strength(1.5F).sound(SoundType.AMETHYST).lightLevel(s -> 7).requiresCorrectToolForDrops().noOcclusion();
+        return new OpalSet(
+                register(name,                        () -> new Block(solid)),
+                register(name + "_crystal_block",     () -> new Block(solid)),
+                register("budding_" + name,           () -> new BuddingAmethystBlock(solid)),
+                register(name + "_cluster",           () -> new AmethystClusterBlock(7, 3, cluster)),
+                register("large_" + name + "_bud",   () -> new AmethystClusterBlock(5, 3, cluster)),
+                register("medium_" + name + "_bud",  () -> new AmethystClusterBlock(4, 3, cluster)),
+                register("small_" + name + "_bud",   () -> new AmethystClusterBlock(3, 4, cluster)),
+                register(name + "_bricks",            () -> new Block(solid)),
+                register("small_" + name + "_bricks",() -> new Block(solid)),
+                register("polished_" + name,          () -> new Block(solid)),
+                register("chiseled_" + name,          () -> new Block(solid)),
+                register(name + "_pillar",            () -> new RotatedPillarBlock(solid)),
+                register("cut_" + name,               () -> new Block(solid)),
+                register(name + "_tiles",             () -> new Block(solid)),
+                register("small_" + name + "_tiles",  () -> new Block(solid)),
+                register(name + "_glass",             () -> new Block(glass)),
+                register(name + "_glass_pane",        () -> new IronBarsBlock(glass)),
+                register(name + "_tiling",            () -> new GlazedTerracottaBlock(solid))
+        );
+    }
 
     @FunctionalInterface
     private interface GradientBlockBuilder<T extends Block & IGradientBlock> {
