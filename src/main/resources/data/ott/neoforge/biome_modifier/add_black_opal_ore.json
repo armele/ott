@@ -1,0 +1,8 @@
+{
+  "type": "neoforge:add_features",
+  "biomes": "#minecraft:is_end",
+  "features": [
+    "ott:ore_black_opal"
+  ],
+  "step": "underground_ores"
+}

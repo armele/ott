@@ -1,9 +1,3 @@
-NEXT:
-=====
-ALL COLORS of terracotta, glazed terracotta
-
-ADD DO blocks: *extra, *bricks, *stone bricks
-
 Notes:
 =====
 - fix connecting purpur pillar top
@@ -108,41 +102,8 @@ GAG
 LUMINOUS: Monsters
 - biome specific zombie & skeleton skins
 
-Opalescence
-- make opal ore to spawn instead of full opal blocks
-- smelt to produce opals
-- 9 opals to make opal block
-- white opal in overworld
-- black opal in end
-- fire opal in nether
-
 Ender IO
 - glass types
-
-Bibliocraft
-- fancy armor stands
-- bookcase
-- fancy clock
-- fancy sign
-- grandfather clock
-- label
-- shelf (2 types)
-- table
-- toolrack
-- display case
-- seat
-- small seat back
-- raised seat back
-- flat seat back
-- tall seat back
-- fancy seat back
-- fancy gold lamp
-- fancy iron lamp
-- fancy gold lantern
-- fancy iron lantern
-- typewriter
-- desk bell
-- disc rack
 
 Add To Datagen:
 =====
@@ -604,3 +565,18 @@ Glass item frame
 THEME COLORS:
 =====
 - highlight 0x7089b8b8
+
+HUE Cheat Sheet:
+=====
+| Hue value | Color |
+|-----------|-------|
+| 0.00 / 1.00 | Red |
+| 0.08 | Orange |
+| 0.15 | Yellow |
+| 0.33 | Green |
+| 0.50 | Cyan |
+| 0.58 | Sky blue |
+| 0.67 | Blue |
+| 0.75 | Violet |
+| 0.83 | Magenta |
+| 0.92 | Hot pink |

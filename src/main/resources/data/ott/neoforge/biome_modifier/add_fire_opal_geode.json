@@ -1,0 +1,8 @@
+{
+  "type": "neoforge:add_features",
+  "biomes": "#minecraft:is_nether",
+  "features": [
+    "ott:fire_opal_geode"
+  ],
+  "step": "local_modifications"
+}

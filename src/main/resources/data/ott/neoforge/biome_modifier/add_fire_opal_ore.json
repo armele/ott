@@ -1,0 +1,8 @@
+{
+  "type": "neoforge:add_features",
+  "biomes": "#minecraft:is_nether",
+  "features": [
+    "ott:ore_fire_opal"
+  ],
+  "step": "underground_ores"
+}
