@@ -1,0 +1,6 @@
+﻿{
+ "parent": "farmersdelight:item/minced_beef",
+ "textures": {
+ "layer0": "eatinganimation:item/minced_beef_eating_1"
+}
+}

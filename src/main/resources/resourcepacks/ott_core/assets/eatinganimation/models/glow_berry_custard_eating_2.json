@@ -1,0 +1,6 @@
+﻿{
+ "parent": "farmersdelight:item/glow_berry_custard",
+ "textures": {
+ "layer0": "eatinganimation:item/glow_berry_custard_eating_2"
+}
+}

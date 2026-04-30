@@ -1,0 +1,6 @@
+﻿{
+ "parent": "farmersdelight:item/pumpkin_slice",
+ "textures": {
+ "layer0": "eatinganimation:item/pumpkin_slice_eating_0"
+}
+}

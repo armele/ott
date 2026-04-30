@@ -2,7 +2,7 @@
 	"texture_size": [32, 32],
 	"textures": {
 		"0": "item/glistering_melon_slice_3d",
-		"particle": "item/glistering_melon_slice_particle"
+		"particle": "item/glistering_melon_slice_3d"
 	},
 	"elements": [
 		{

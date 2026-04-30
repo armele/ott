@@ -1,0 +1,6 @@
+﻿{
+ "parent": "farmersdelight:item/baked_cod_stew",
+ "textures": {
+ "layer0": "eatinganimation:item/baked_cod_stew_eating_1"
+}
+}

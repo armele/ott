@@ -1,0 +1,6 @@
+﻿{
+ "parent": "farmersdelight:item/honey_glazed_ham",
+ "textures": {
+ "layer0": "eatinganimation:item/honey_glazed_ham_eating_1"
+}
+}

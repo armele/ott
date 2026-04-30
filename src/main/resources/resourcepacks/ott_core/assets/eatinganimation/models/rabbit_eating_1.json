@@ -1,0 +1,9 @@
+﻿{
+
+  "parent": "minecraft:item/rabbit",
+
+  "textures": {
+
+    "layer0": "eatinganimation:item/rabbit_eating_1"
+  }
+}

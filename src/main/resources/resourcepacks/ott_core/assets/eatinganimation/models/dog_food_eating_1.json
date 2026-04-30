@@ -1,0 +1,6 @@
+﻿{
+ "parent": "farmersdelight:item/dog_food",
+ "textures": {
+ "layer0": "eatinganimation:item/dog_food_eating_1"
+}
+}

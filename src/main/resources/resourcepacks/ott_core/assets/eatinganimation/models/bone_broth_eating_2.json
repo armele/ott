@@ -1,0 +1,6 @@
+﻿{
+ "parent": "farmersdelight:item/bone_broth",
+ "textures": {
+ "layer0": "eatinganimation:item/bone_broth_eating_2"
+}
+}

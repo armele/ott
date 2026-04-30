@@ -1,0 +1,6 @@
+﻿{
+ "parent": "farmersdelight:item/cod_slice",
+ "textures": {
+ "layer0": "eatinganimation:item/cod_slice_eating_2"
+}
+}

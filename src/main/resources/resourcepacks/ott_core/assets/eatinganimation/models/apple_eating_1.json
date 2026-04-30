@@ -1,0 +1,9 @@
+﻿{
+
+  "parent": "minecraft:item/apple",
+
+  "textures": {
+
+    "layer0": "eatinganimation:item/apple_eating_1"
+  }
+}

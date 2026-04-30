@@ -1,0 +1,6 @@
+﻿{
+ "parent": "farmersdelight:item/cooked_salmon_slice",
+ "textures": {
+ "layer0": "eatinganimation:item/cooked_salmon_slice_eating_0"
+}
+}

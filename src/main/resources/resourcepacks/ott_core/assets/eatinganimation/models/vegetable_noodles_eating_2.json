@@ -1,0 +1,6 @@
+﻿{
+ "parent": "farmersdelight:item/vegetable_noodles",
+ "textures": {
+ "layer0": "eatinganimation:item/vegetable_noodles_eating_2"
+}
+}

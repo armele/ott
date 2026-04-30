@@ -1,0 +1,6 @@
+﻿{
+  "parent": "farmersdelight:item/beef_patty",
+  "textures": {
+    "layer0": "eatinganimation:item/beef_patty_eating_1"
+  }
+}

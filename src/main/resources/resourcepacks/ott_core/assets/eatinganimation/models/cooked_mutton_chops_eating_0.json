@@ -1,0 +1,6 @@
+﻿{
+ "parent": "farmersdelight:item/cooked_mutton_chops",
+ "textures": {
+ "layer0": "eatinganimation:item/cooked_mutton_chops_eating_0"
+}
+}

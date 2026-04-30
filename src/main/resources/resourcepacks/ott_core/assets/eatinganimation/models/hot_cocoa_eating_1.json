@@ -1,0 +1,6 @@
+﻿{
+ "parent": "farmersdelight:item/hot_cocoa",
+ "textures": {
+ "layer0": "eatinganimation:item/hot_cocoa_eating_1"
+}
+}

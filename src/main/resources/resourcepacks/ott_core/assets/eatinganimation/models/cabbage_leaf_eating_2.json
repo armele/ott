@@ -1,0 +1,6 @@
+﻿{
+ "parent": "farmersdelight:item/cabbage_leaf",
+ "textures": {
+ "layer0": "eatinganimation:item/cabbage_leaf_eating_2"
+}
+}

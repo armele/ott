@@ -1,0 +1,6 @@
+﻿{
+ "parent": "farmersdelight:item/kelp_roll",
+ "textures": {
+ "layer0": "eatinganimation:item/kelp_roll_eating_0"
+}
+}

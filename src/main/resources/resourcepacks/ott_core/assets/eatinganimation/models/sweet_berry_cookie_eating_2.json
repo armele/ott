@@ -1,0 +1,6 @@
+﻿{
+ "parent": "farmersdelight:item/sweet_berry_cookie",
+ "textures": {
+ "layer0": "eatinganimation:item/sweet_berry_cookie_eating_2"
+}
+}

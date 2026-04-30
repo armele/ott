@@ -1,0 +1,6 @@
+﻿{
+ "parent": "farmersdelight:item/chicken_cuts",
+ "textures": {
+ "layer0": "eatinganimation:item/chicken_cuts_eating_1"
+}
+}

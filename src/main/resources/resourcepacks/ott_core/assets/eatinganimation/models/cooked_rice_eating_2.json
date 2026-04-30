@@ -1,0 +1,6 @@
+﻿{
+ "parent": "farmersdelight:item/cooked_rice",
+ "textures": {
+ "layer0": "eatinganimation:item/cooked_rice_eating_2"
+}
+}

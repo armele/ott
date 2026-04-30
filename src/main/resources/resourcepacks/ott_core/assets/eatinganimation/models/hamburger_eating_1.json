@@ -1,0 +1,6 @@
+﻿{
+ "parent": "farmersdelight:item/hamburger",
+ "textures": {
+ "layer0": "eatinganimation:item/hamburger_eating_1"
+}
+}

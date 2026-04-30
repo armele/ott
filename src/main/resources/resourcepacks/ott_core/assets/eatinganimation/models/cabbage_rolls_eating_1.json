@@ -1,0 +1,6 @@
+﻿{
+ "parent": "farmersdelight:item/cabbage_rolls",
+ "textures": {
+ "layer0": "eatinganimation:item/cabbage_rolls_eating_1"
+}
+}

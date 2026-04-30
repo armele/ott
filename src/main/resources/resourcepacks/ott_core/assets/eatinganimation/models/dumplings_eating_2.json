@@ -1,0 +1,6 @@
+﻿{
+ "parent": "farmersdelight:item/dumplings",
+ "textures": {
+ "layer0": "eatinganimation:item/dumplings_eating_2"
+}
+}

@@ -1,0 +1,6 @@
+﻿{
+ "parent": "farmersdelight:item/mixed_salad",
+ "textures": {
+ "layer0": "eatinganimation:item/mixed_salad_eating_1"
+}
+}

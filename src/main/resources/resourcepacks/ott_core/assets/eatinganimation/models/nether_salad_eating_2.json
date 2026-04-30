@@ -1,0 +1,6 @@
+﻿{
+ "parent": "farmersdelight:item/nether_salad",
+ "textures": {
+ "layer0": "eatinganimation:item/nether_salad_eating_2"
+}
+}

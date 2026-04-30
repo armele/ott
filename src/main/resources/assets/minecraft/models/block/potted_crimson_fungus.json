@@ -5,7 +5,7 @@
 	"ambientocclusion": false,
 	"textures": {
 		"up": "block/crimson_nylium",
-		"mushroom": "block/crimson_fungus_3d",
+		"mushroom": "block/crimson_fungus",
 		"down": "block/flower_pot",
 		"particle": "block/terracotta"
 	},

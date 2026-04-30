@@ -1,0 +1,6 @@
+﻿{
+ "parent": "farmersdelight:item/squid_ink_pasta",
+ "textures": {
+ "layer0": "eatinganimation:item/squid_ink_pasta_eating_1"
+}
+}

@@ -1,0 +1,6 @@
+﻿{
+ "parent": "farmersdelight:item/bacon_and_eggs",
+ "textures": {
+ "layer0": "eatinganimation:item/bacon_and_eggs_eating_2"
+}
+}

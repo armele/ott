@@ -4,7 +4,7 @@
 	"parent": "block/block",
 	"ambientocclusion": false,
 	"textures": {
-		"0": "block/brown_mushroom_3d",
+		"0": "block/brown_mushroom",
 		"1": "block/flower_pot",
 		"up": "block/mycelium_top",
 		"particle": "block/terracotta"

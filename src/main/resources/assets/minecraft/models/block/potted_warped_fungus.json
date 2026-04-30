@@ -5,7 +5,7 @@
 	"ambientocclusion": false,
 	"textures": {
 		"up": "block/warped_nylium",
-		"4_0": "block/warped_fungus_3d",
+		"4_0": "block/warped_fungus",
 		"down": "block/flower_pot",
 		"particle": "block/terracotta"
 	},

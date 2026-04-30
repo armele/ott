@@ -5,7 +5,7 @@
 	"ambientocclusion": false,
 	"texture_size": [32, 32],
 	"textures": {
-		"mushroom": "block/red_mushroom_3d",
+		"mushroom": "block/red_mushroom",
 		"dirt": "block/mycelium_top",
 		"down": "block/flower_pot",
 		"particle": "block/terracotta"

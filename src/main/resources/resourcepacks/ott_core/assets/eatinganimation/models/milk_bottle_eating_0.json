@@ -1,0 +1,6 @@
+﻿{
+ "parent": "farmersdelight:item/milk_bottle",
+ "textures": {
+ "layer0": "eatinganimation:item/milk_bottle_eating_0"
+}
+}

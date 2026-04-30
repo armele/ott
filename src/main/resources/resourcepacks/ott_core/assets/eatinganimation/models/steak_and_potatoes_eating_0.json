@@ -1,0 +1,6 @@
+﻿{
+ "parent": "farmersdelight:item/steak_and_potatoes",
+ "textures": {
+ "layer0": "eatinganimation:item/steak_and_potatoes_eating_0"
+}
+}

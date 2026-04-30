@@ -1,0 +1,6 @@
+﻿{
+ "parent": "farmersdelight:item/wheat_dough",
+ "textures": {
+ "layer0": "eatinganimation:item/wheat_dough_eating_1"
+}
+}

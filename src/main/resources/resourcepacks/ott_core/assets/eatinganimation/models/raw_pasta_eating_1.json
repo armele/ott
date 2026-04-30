@@ -1,0 +1,6 @@
+﻿{
+ "parent": "farmersdelight:item/raw_pasta",
+ "textures": {
+ "layer0": "eatinganimation:item/raw_pasta_eating_1"
+}
+}

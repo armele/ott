@@ -1,0 +1,6 @@
+﻿{
+ "parent": "farmersdelight:item/apple_pie_slice",
+ "textures": {
+ "layer0": "eatinganimation:item/apple_pie_slice_eating_1"
+}
+}

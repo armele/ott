@@ -1,7 +1,7 @@
 {
 	"texture_size": [32, 32],
 	"textures": {
-		"1": "item/baked_potota_3d",
+		"1": "item/baked_potato_3d",
 		"particle": "item/baked_potato"
 	},
 	"elements": [

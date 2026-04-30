@@ -1,0 +1,6 @@
+﻿{
+ "parent": "farmersdelight:item/pasta_with_mutton_chop",
+ "textures": {
+ "layer0": "eatinganimation:item/pasta_with_mutton_chop_eating_1"
+}
+}
