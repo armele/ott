@@ -1,0 +1,14 @@
+{
+  "loader": "ott:wildflowers",
+  "variants": [
+    "minecraft:block/wildflowers/wildflowers_2a",
+    "minecraft:block/wildflowers/wildflowers_2b",
+    "minecraft:block/wildflowers/wildflowers_2c",
+    "minecraft:block/wildflowers/wildflowers_2d",
+    "minecraft:block/wildflowers/wildflowers_2e",
+    "minecraft:block/wildflowers/wildflowers_2f",
+    "minecraft:block/wildflowers/wildflowers_2g",
+    "minecraft:block/wildflowers/wildflowers_2h",
+    "minecraft:block/wildflowers/wildflowers_2i"
+  ]
+}
