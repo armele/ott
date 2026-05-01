@@ -2,7 +2,7 @@
 	"render_type": "minecraft:cutout_mipped",
 	"ambientocclusion": false,
 	"textures": {
-		"particle": "block/wildflowers",
+		"particle": "#texture",
 		"texture": "block/wildflowers"
 	},
 	"elements": [

@@ -266,16 +266,7 @@ public class MinecraftBackportBlockStateProvider extends ModBlockStateProvider {
         simpleBlockWithItem(ModBlocks.BUSH.get(), models().withExistingParent("bush", "minecraft:block/tinted_cross").texture("cross", mcLoc("block/bush")).renderType("cutout"));
         simpleBlockWithItem(ModBlocks.FIREFLY_BUSH.get(), models().withExistingParent("firefly_bush", "minecraft:block/tinted_cross").texture("cross", mcLoc("block/firefly_bush")).renderType("cutout"));
 
-        getVariantBuilder(ModBlocks.WILDFLOWERS.get()).forAllStates(state -> {
-            Direction facing = state.getValue(HORIZONTAL_FACING);
-            int amount = state.getValue(FLOWER_AMOUNT);
-            return ConfiguredModel.builder()
-                    .modelFile(models().withExistingParent("wildflowers_" + amount, mcLoc("block/template_flowerbed_" + amount))
-                            .texture("flowerbed", mcLoc("block/wildflowers"))
-                            .renderType("cutout"))
-                    .rotationY(((int) facing.toYRot() + 180) % 360)
-                    .build();
-        });
+        // Wildflowers blockstate and block models are manually written (ott:wildflowers dynamic model loader).
         itemModels().withExistingParent("wildflowers", mcLoc("item/generated"))
                 .texture("layer0", mcLoc("item/wildflowers"));
 

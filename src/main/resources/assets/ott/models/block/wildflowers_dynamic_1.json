@@ -1,5 +1,6 @@
 {
   "loader": "ott:wildflowers",
+  "layer": 0,
   "variants": [
     "minecraft:block/wildflowers/wildflowers_1a",
     "minecraft:block/wildflowers/wildflowers_1b",

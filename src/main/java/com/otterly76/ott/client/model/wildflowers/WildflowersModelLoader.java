@@ -26,8 +26,10 @@ import java.util.stream.Collectors;
 
 /**
  * Geometry loader registered as {@code ott:wildflowers}.
- * Reads a {@code "variants"} JSON array of model resource locations and produces a
- * {@link WildflowersDynamicModel} that selects one variant per block position.
+ * Reads a {@code "variants"} JSON array and an optional {@code "layer"} integer,
+ * then produces a {@link WildflowersDynamicModel} that picks one variant per
+ * block position with layer-offset randomisation so each flower slot draws a
+ * different texture.
  */
 public class WildflowersModelLoader implements IGeometryLoader<WildflowersModelLoader.Geometry> {
 
@@ -43,15 +45,18 @@ public class WildflowersModelLoader implements IGeometryLoader<WildflowersModelL
         for (JsonElement el : arr) {
             locs.add(ResourceLocation.parse(el.getAsString()));
         }
-        return new Geometry(locs);
+        int layer = json.has("layer") ? json.get("layer").getAsInt() : 0;
+        return new Geometry(locs, layer);
     }
 
     public static class Geometry implements IUnbakedGeometry<Geometry> {
 
         private final List<ResourceLocation> variantLocations;
+        private final int layer;
 
-        Geometry(List<ResourceLocation> variantLocations) {
+        Geometry(List<ResourceLocation> variantLocations, int layer) {
             this.variantLocations = variantLocations;
+            this.layer = layer;
         }
 
         @Override
@@ -74,7 +79,7 @@ public class WildflowersModelLoader implements IGeometryLoader<WildflowersModelL
             if (baked.isEmpty()) {
                 throw new IllegalStateException("No wildflowers variants baked for " + variantLocations);
             }
-            return new WildflowersDynamicModel(baked);
+            return new WildflowersDynamicModel(baked, layer);
         }
     }
 }
