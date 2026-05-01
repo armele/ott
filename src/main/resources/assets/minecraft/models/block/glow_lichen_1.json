@@ -20,12 +20,12 @@
 			"rotation": {"angle": 0, "axis": "y", "origin": [0, 0, 0.0625]},
 			"color": 0,
 			"faces": {
-				"north": {"uv": [0, 0, 16, 16], "texture": "#2", "neoforge_data": {"color": "ffD9C893"}},
-				"east": {"uv": [0, 8, 0.25, 16], "texture": "#2", "neoforge_data": {"color": "ffD9C893"}},
-				"south": {"uv": [0, 0, 16, 16], "texture": "#2", "neoforge_data": {"color": "ffD9C893"}},
-				"west": {"uv": [0, 8, 0.25, 16], "texture": "#2", "neoforge_data": {"color": "ffD9C893"}},
-				"up": {"uv": [8, 16, 0, 15.75], "texture": "#2", "neoforge_data": {"color": "ffD9C893"}},
-				"down": {"uv": [8, 15.75, 0, 16], "texture": "#2", "neoforge_data": {"color": "ffD9C893"}}
+				"north": {"uv": [0, 0, 16, 16], "texture": "#2", "neoforge_data": {"color": "fff0fff5"}},
+				"east": {"uv": [0, 8, 0.25, 16], "texture": "#2", "neoforge_data": {"color": "fff0fff5"}},
+				"south": {"uv": [0, 0, 16, 16], "texture": "#2", "neoforge_data": {"color": "fff0fff5"}},
+				"west": {"uv": [0, 8, 0.25, 16], "texture": "#2", "neoforge_data": {"color": "fff0fff5"}},
+				"up": {"uv": [8, 16, 0, 15.75], "texture": "#2", "neoforge_data": {"color": "fff0fff5"}},
+				"down": {"uv": [8, 15.75, 0, 16], "texture": "#2", "neoforge_data": {"color": "fff0fff5"}}
 			}
 		}
 	],
