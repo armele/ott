@@ -1,8 +1,10 @@
 {
+	"format_version": "1.21.6",
 	"credit": "Made with Blockbench",
 	"ambientocclusion": false,
 	"textures": {
-		"particle": "#texture"
+		"particle": "block/pink_petals",
+		"texture": "block/pink_petals"
 	},
 	"elements": [
 		{

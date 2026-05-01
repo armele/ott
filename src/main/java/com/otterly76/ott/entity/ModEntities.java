@@ -502,11 +502,11 @@ public class ModEntities {
 
     public static final Supplier<EntityType<com.otterly76.ott.entity.custom.NautilusEntity>> NAUTILUS = ENTITY_TYPES.register("nautilus",
             () -> Builder.of(com.otterly76.ott.entity.custom.NautilusEntity::new, MobCategory.WATER_CREATURE)
-                    .sized(0.7F, 0.9F).eyeHeight(0.6F).clientTrackingRange(10).build("nautilus"));
+                    .sized(0.7F, 0.9F).eyeHeight(0.6F).passengerAttachments(new Vec3(0.0, 1.0, 0.0)).clientTrackingRange(10).build("nautilus"));
 
     public static final Supplier<EntityType<com.otterly76.ott.entity.custom.ZombieNautilusEntity>> ZOMBIE_NAUTILUS = ENTITY_TYPES.register("zombie_nautilus",
             () -> Builder.of(com.otterly76.ott.entity.custom.ZombieNautilusEntity::new, MobCategory.MONSTER)
-                    .sized(0.7F, 0.9F).eyeHeight(0.6F).clientTrackingRange(10).build("zombie_nautilus"));
+                    .sized(0.7F, 0.9F).eyeHeight(0.6F).passengerAttachments(new Vec3(0.0, 1.0, 0.0)).clientTrackingRange(10).build("zombie_nautilus"));
 
     public static final Supplier<EntityType<com.otterly76.ott.entity.custom.ParchedEntity>> PARCHED = ENTITY_TYPES.register("parched",
             () -> Builder.of(com.otterly76.ott.entity.custom.ParchedEntity::new, MobCategory.MONSTER)

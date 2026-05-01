@@ -1,1 +1,9 @@
-{"parent":"item/generated","overrides":[{"model":"cnc:item/cooked_game_a","predicate":{"eatinganimation:eat":0.35,"eatinganimation:eating":1}},{"model":"cnc:item/cooked_game_b","predicate":{"eatinganimation:eat":0.7,"eatinganimation:eating":1}},{"model":"cnc:item/cooked_game_c","predicate":{"eatinganimation:eat":0.9,"eatinganimation:eating":1}}],"textures":{"layer0":"cnc:item/cooked_game"}}
+{
+  "parent": "item/generated",
+  "textures": { "layer0": "ott:item/cooked_wild_game_meat" },
+  "overrides": [
+    { "predicate": { "ott:eating": 1, "ott:eat": 0.0  }, "model": "ott:item/eatinganimation/cooked_wild_game_meat/eat_0" },
+    { "predicate": { "ott:eating": 1, "ott:eat": 0.35 }, "model": "ott:item/eatinganimation/cooked_wild_game_meat/eat_1" },
+    { "predicate": { "ott:eating": 1, "ott:eat": 0.7  }, "model": "ott:item/eatinganimation/cooked_wild_game_meat/eat_2" }
+  ]
+}

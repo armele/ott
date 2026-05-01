@@ -94,12 +94,26 @@ public class ZombieNautilusEntity extends AbstractNautilusEntity {
         return InteractionResult.PASS;
     }
 
-    // ── Sunburn (nautilus armor in BODY slot prevents burn) ───────────────────
+    // ── Damage ────────────────────────────────────────────────────────────────
+
+    /** Ignore damage dealt by the drowned jockey (direct melee or indirect projectile). */
+    @Override
+    public boolean hurt(@NotNull DamageSource source, float damage) {
+        Entity attacker = source.getEntity();
+        Entity direct   = source.getDirectEntity();
+        if ((attacker != null && this.hasPassenger(attacker))
+                || (direct != null && direct != attacker && this.hasPassenger(direct))) {
+            return false;
+        }
+        return super.hurt(source, damage);
+    }
+
+    // ── Sunburn (nautilus armor in BODY slot prevents burn; never applies in water) ──
 
     @Override
     public void aiStep() {
         super.aiStep();
-        if (this.isAlive() && this.isSunBurnTick()) {
+        if (this.isAlive() && !this.isInWater() && this.isSunBurnTick()) {
             ItemStack bodyArmor = this.getItemBySlot(EquipmentSlot.BODY);
             if (bodyArmor.isEmpty()) {
                 this.igniteForSeconds(8.0F);

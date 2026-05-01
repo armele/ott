@@ -74,5 +74,11 @@ public class DrownedGeoModel<T extends Drowned & DrownedGeoEntity> extends GeoMo
             if (rightArm != null) rightArm.setRotX(rightArm.getRotX() + (float)Math.PI / 2F);
             if (leftArm != null) leftArm.setRotX(leftArm.getRotX() + (float)Math.PI / 2F);
         }
+
+        // Riding pose: bend legs forward and spread apart (like skeleton on spider)
+        if (animatable.isPassenger() && animatable.getVehicle() != null && animatable.getVehicle().shouldRiderSit()) {
+            if (rightLeg != null) { rightLeg.setRotX((float)(Math.PI / 3)); rightLeg.setRotY((float)(-Math.PI / 10)); }
+            if (leftLeg != null)  { leftLeg.setRotX((float)(Math.PI / 3));  leftLeg.setRotY((float)(Math.PI / 10)); }
+        }
     }
 }

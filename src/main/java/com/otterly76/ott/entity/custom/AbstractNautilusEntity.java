@@ -344,6 +344,15 @@ public abstract class AbstractNautilusEntity extends TamableAnimal implements Pl
 
     // ── Tick ─────────────────────────────────────────────────────────────────
 
+    /** Reset air supply while submerged — canBreatheUnderwater() is final and cannot be overridden. */
+    @Override
+    public void baseTick() {
+        super.baseTick();
+        if (this.isAlive() && this.isInWater()) {
+            this.setAirSupply(this.getMaxAirSupply());
+        }
+    }
+
     @Override
     public void tick() {
         super.tick();

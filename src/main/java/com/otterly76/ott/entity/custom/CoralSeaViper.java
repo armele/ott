@@ -1,14 +1,22 @@
 package com.otterly76.ott.entity.custom;
 
+import net.minecraft.core.BlockPos;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
+import net.minecraft.world.entity.ai.control.SmoothSwimmingLookControl;
+import net.minecraft.world.entity.ai.control.SmoothSwimmingMoveControl;
 import net.minecraft.world.entity.ai.goal.*;
 import net.minecraft.world.entity.ai.goal.target.HurtByTargetGoal;
 import net.minecraft.world.entity.ai.goal.target.NearestAttackableTargetGoal;
+import net.minecraft.world.entity.ai.navigation.PathNavigation;
+import net.minecraft.world.entity.ai.navigation.WaterBoundPathNavigation;
 import net.minecraft.world.entity.monster.Monster;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.LevelReader;
+import net.minecraft.world.level.pathfinder.PathType;
+import org.jetbrains.annotations.NotNull;
 import software.bernie.geckolib.animatable.GeoEntity;
 import software.bernie.geckolib.animatable.instance.AnimatableInstanceCache;
 import software.bernie.geckolib.animation.*;
@@ -19,6 +27,9 @@ public class CoralSeaViper extends Monster implements GeoEntity {
 
     public CoralSeaViper(EntityType<? extends Monster> type, Level level) {
         super(type, level);
+        this.moveControl = new SmoothSwimmingMoveControl(this, 85, 10, 0.02F, 0.1F, true);
+        this.lookControl = new SmoothSwimmingLookControl(this, 10);
+        this.setPathfindingMalus(PathType.WATER, 0.0F);
     }
 
     public static AttributeSupplier.Builder createAttributes() {
@@ -30,18 +41,46 @@ public class CoralSeaViper extends Monster implements GeoEntity {
     }
 
     @Override
+    protected @NotNull PathNavigation createNavigation(@NotNull Level level) {
+        return new WaterBoundPathNavigation(this, level);
+    }
+
+    @Override
+    public float getWalkTargetValue(@NotNull BlockPos pos, @NotNull LevelReader level) {
+        return 0.0F;
+    }
+
+    @SuppressWarnings("deprecation")
+    @Override
+    public boolean isPushedByFluid() {
+        return false;
+    }
+
+    @Override
+    public boolean checkSpawnObstruction(@NotNull LevelReader level) {
+        return level.containsAnyLiquid(this.getBoundingBox());
+    }
+
+    @Override
+    public void baseTick() {
+        super.baseTick();
+        if (this.isAlive() && this.isInWater()) {
+            this.setAirSupply(this.getMaxAirSupply());
+        }
+    }
+
+    @Override
     protected void registerGoals() {
-        this.goalSelector.addGoal(1, new FloatGoal(this));
-        this.goalSelector.addGoal(2, new MeleeAttackGoal(this, 1.2D, false));
-        this.goalSelector.addGoal(3, new WaterAvoidingRandomStrollGoal(this, 1.0D));
-        this.goalSelector.addGoal(4, new LookAtPlayerGoal(this, Player.class, 8.0F));
-        this.goalSelector.addGoal(5, new RandomLookAroundGoal(this));
+        this.goalSelector.addGoal(1, new MeleeAttackGoal(this, 1.2D, false));
+        this.goalSelector.addGoal(2, new RandomSwimmingGoal(this, 1.0D, 40));
+        this.goalSelector.addGoal(3, new LookAtPlayerGoal(this, Player.class, 8.0F));
+        this.goalSelector.addGoal(4, new RandomLookAroundGoal(this));
         this.targetSelector.addGoal(1, new HurtByTargetGoal(this));
         this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, Player.class, true));
     }
 
     @Override
-    public void registerControllers(AnimatableManager.ControllerRegistrar controllers) {
+    public void registerControllers(AnimatableManager.@NotNull ControllerRegistrar controllers) {
         controllers.add(new AnimationController<>(this, "controller", 5, event -> {
             if (event.isMoving()) {
                 return event.setAndContinue(RawAnimation.begin().thenLoop("walk"));
