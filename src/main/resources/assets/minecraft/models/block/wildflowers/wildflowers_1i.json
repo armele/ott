@@ -1,1 +1,1 @@
-{"parent":"minecraft:block/flowerbed_1","textures":{"flowerbed":"minecraft:block/wildflowers_i","stem":"minecraft:block/wildflowers_stem"}}
+{"parent":"minecraft:block/flowerbed_1","textures":{"texture":"minecraft:block/wildflowers_i","stem":"minecraft:block/wildflowers_stem"}}
