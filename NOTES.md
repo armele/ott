@@ -188,8 +188,6 @@ color glow
 enderscape
 - vines with dif color variants
 
-ADD other tool & weapon item models
-
 additional skins for chiseled bookshelf
 
 dandelion variant
