@@ -3,6 +3,7 @@ package com.otterly76.ott.worldgen;
 import com.otterly76.ott.worldgen.feature.BigLilyPadFeature;
 import com.otterly76.ott.worldgen.feature.CactusFlowerFeature;
 import com.otterly76.ott.worldgen.feature.FallenTreeFeature;
+import com.otterly76.ott.worldgen.feature.FloaterCleanerFeature;
 import com.otterly76.ott.worldgen.feature.GravitySettleFeature;
 import com.otterly76.ott.worldgen.feature.HollowRootFeature;
 import com.otterly76.ott.worldgen.feature.LeafLitterFeature;
@@ -53,6 +54,11 @@ public class ModFeatures {
     public static final DeferredHolder<Feature<?>, GravitySettleFeature> GRAVITY_SETTLE = FEATURES.register(
             "gravity_settle",
             () -> new GravitySettleFeature(NoneFeatureConfiguration.CODEC)
+    );
+
+    public static final DeferredHolder<Feature<?>, FloaterCleanerFeature> FLOATER_CLEANER = FEATURES.register(
+            "floater_cleaner",
+            () -> new FloaterCleanerFeature(NoneFeatureConfiguration.CODEC)
     );
 
     public static void register(IEventBus eventBus) {

@@ -1,0 +1,8 @@
+{
+  "type": "neoforge:add_features",
+  "biomes": "#minecraft:is_overworld",
+  "features": [
+    "ott:floater_cleaner"
+  ],
+  "step": "local_modifications"
+}

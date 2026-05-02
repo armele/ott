@@ -1,0 +1,9 @@
+{
+  "feature": "ott:floater_cleaner",
+  "placement": [
+    {
+      "type": "minecraft:count",
+      "count": 1
+    }
+  ]
+}
