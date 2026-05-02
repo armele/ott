@@ -2,9 +2,9 @@
 	"format_version": "1.9.0",
 	"credit": "Throttled by Otterly",
 	"textures": {
-		"1": "block/spruce_log",
-		"2": "block/obsidian",
-		"particle": "block/obsidian"
+		"1": "ott:block/tool_oak",
+		"2": "ott:block/tool_obsidian",
+		"particle": "ott:block/tool_obsidian"
 	},
 	"elements": [
 		{

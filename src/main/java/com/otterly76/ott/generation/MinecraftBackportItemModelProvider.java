@@ -183,34 +183,9 @@ public class MinecraftBackportItemModelProvider extends ItemModelProvider {
         generatedItem(ModItems.DIAMOND_NAUTILUS_ARMOR.getId().getPath());
         generatedItem(ModItems.NETHERITE_NAUTILUS_ARMOR.getId().getPath());
 
-        // Copper Tools
-        handheldItem(ModItems.COPPER_SWORD.getId().getPath());
-        handheldItem(ModItems.COPPER_SHOVEL.getId().getPath());
-        handheldItem(ModItems.COPPER_PICKAXE.getId().getPath());
-        handheldItem(ModItems.COPPER_AXE.getId().getPath());
-        handheldItem(ModItems.COPPER_HOE.getId().getPath());
-        generatedItem(ModItems.COPPER_SHEARS.getId().getPath());
+        // Copper Tools — models are hand-maintained static JSON files in assets/ott/models/item/
+        // Shears are simple 2D generated items, handled below in ModItemModelProvider (ott namespace)
 
-        handheldItem(ModItems.EXPOSED_COPPER_SWORD.getId().getPath());
-        handheldItem(ModItems.EXPOSED_COPPER_SHOVEL.getId().getPath());
-        handheldItem(ModItems.EXPOSED_COPPER_PICKAXE.getId().getPath());
-        handheldItem(ModItems.EXPOSED_COPPER_AXE.getId().getPath());
-        handheldItem(ModItems.EXPOSED_COPPER_HOE.getId().getPath());
-        generatedItem(ModItems.EXPOSED_COPPER_SHEARS.getId().getPath());
-
-        handheldItem(ModItems.WEATHERED_COPPER_SWORD.getId().getPath());
-        handheldItem(ModItems.WEATHERED_COPPER_SHOVEL.getId().getPath());
-        handheldItem(ModItems.WEATHERED_COPPER_PICKAXE.getId().getPath());
-        handheldItem(ModItems.WEATHERED_COPPER_AXE.getId().getPath());
-        handheldItem(ModItems.WEATHERED_COPPER_HOE.getId().getPath());
-        generatedItem(ModItems.WEATHERED_COPPER_SHEARS.getId().getPath());
-
-        handheldItem(ModItems.OXIDIZED_COPPER_SWORD.getId().getPath());
-        handheldItem(ModItems.OXIDIZED_COPPER_SHOVEL.getId().getPath());
-        handheldItem(ModItems.OXIDIZED_COPPER_PICKAXE.getId().getPath());
-        handheldItem(ModItems.OXIDIZED_COPPER_AXE.getId().getPath());
-        handheldItem(ModItems.OXIDIZED_COPPER_HOE.getId().getPath());
-        generatedItem(ModItems.OXIDIZED_COPPER_SHEARS.getId().getPath());
 
         // Copper Armor
         generatedItem(ModItems.COPPER_HELMET.getId().getPath());
