@@ -183,9 +183,15 @@ public class MinecraftBackportItemModelProvider extends ItemModelProvider {
         generatedItem(ModItems.DIAMOND_NAUTILUS_ARMOR.getId().getPath());
         generatedItem(ModItems.NETHERITE_NAUTILUS_ARMOR.getId().getPath());
 
-        // Copper Tools — models are hand-maintained static JSON files in assets/ott/models/item/
-        // Shears are simple 2D generated items, handled below in ModItemModelProvider (ott namespace)
-
+        // Copper Tools — 3D models live in ott namespace; generate thin wrappers in minecraft namespace
+        String[] oxidationStates = {"copper", "exposed_copper", "weathered_copper", "oxidized_copper"};
+        String[] toolTypes = {"axe", "hoe", "pickaxe", "shovel"};
+        for (String state : oxidationStates) {
+            for (String tool : toolTypes) {
+                String name = state + "_" + tool;
+                getBuilder(name).parent(new ModelFile.UncheckedModelFile(ResourceLocation.fromNamespaceAndPath("ott", "item/" + name)));
+            }
+        }
 
         // Copper Armor
         generatedItem(ModItems.COPPER_HELMET.getId().getPath());
