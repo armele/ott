@@ -2727,6 +2727,11 @@
   "tooltip.ott.crafting.spread": "Spread",
   "tooltip.ott.hunger": "Hunger: %s",
   "tooltip.ott.saturation": "Saturation: %s",
+  "tooltip.ott.durability.hint": "Durability: ",
+  "tooltip.ott.durability.pristine": "Pristine",
+  "tooltip.ott.durability.slightly_damaged": "Slightly Damaged",
+  "tooltip.ott.durability.severely_damaged": "Severely Damaged",
+  "tooltip.ott.durability.nearly_broken": "Nearly Broken",
 
   "item.ott.wood_paxel": "Wooden Paxel",
   "item.ott.stone_paxel": "Stone Paxel",

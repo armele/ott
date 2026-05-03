@@ -44,6 +44,7 @@ public class OttConfig {
     public static boolean CLEAN_VIEW_DRAW = true;
     public static final MouseTweaks MOUSE_TWEAKS;
     public static final CraftingTweaks CRAFTING_TWEAKS;
+    public static final DurabilityTooltip DURABILITY_TOOLTIP;
 
     static {
         ModConfigSpec.Builder builder = new ModConfigSpec.Builder();
@@ -72,6 +73,7 @@ public class OttConfig {
         NEAT = new Neat(builder);
         MOUSE_TWEAKS = new MouseTweaks(builder);
         CRAFTING_TWEAKS = new CraftingTweaks(builder);
+        DURABILITY_TOOLTIP = new DurabilityTooltip(builder);
 
         builder.pop();
         SPEC = builder.build();
@@ -1176,6 +1178,37 @@ public class OttConfig {
                     .comment("Right-clicking the output slot of a crafting table crafts a full stack.")
                     .translation("ott.configuration.craftingTweaks.rightClickCraftsStack")
                     .define("rightClickCraftsStack", true);
+            builder.pop();
+        }
+    }
+
+    public static class DurabilityTooltip {
+        public enum Style { NUMBERS, BAR, TEXT }
+        public enum ColorStyle { VARYING, GOLD, GRAY }
+
+        public final ModConfigSpec.BooleanValue ENABLED;
+        public final ModConfigSpec.EnumValue<Style> STYLE;
+        public final ModConfigSpec.EnumValue<ColorStyle> COLOR_STYLE;
+        public final ModConfigSpec.BooleanValue SHOW_HINT;
+        public final ModConfigSpec.BooleanValue SHOW_WHEN_FULL;
+
+        public DurabilityTooltip(ModConfigSpec.Builder builder) {
+            builder.push("durabilityTooltip");
+            ENABLED = builder.comment("Show a durability tooltip on damageable items.")
+                    .translation("ott.configuration.durabilityTooltip.enabled")
+                    .define("enabled", true);
+            STYLE = builder.comment("Tooltip display style: NUMBERS shows '30 / 100', BAR shows a filled bar, TEXT shows a description.")
+                    .translation("ott.configuration.durabilityTooltip.style")
+                    .defineEnum("style", Style.NUMBERS, Style.values());
+            COLOR_STYLE = builder.comment("Color style: VARYING uses green/gold/red by remaining durability, GOLD always uses gold, GRAY always uses gray.")
+                    .translation("ott.configuration.durabilityTooltip.colorStyle")
+                    .defineEnum("colorStyle", ColorStyle.VARYING, ColorStyle.values());
+            SHOW_HINT = builder.comment("Prefix the tooltip with the 'Durability:' label.")
+                    .translation("ott.configuration.durabilityTooltip.showHint")
+                    .define("showHint", true);
+            SHOW_WHEN_FULL = builder.comment("Show the durability tooltip even when the item is undamaged.")
+                    .translation("ott.configuration.durabilityTooltip.showWhenFull")
+                    .define("showWhenFull", true);
             builder.pop();
         }
     }
