@@ -3,7 +3,7 @@
 	"credit": "Throttled by Otterly76",
 	"ambientocclusion": false,
 	"textures": {
-		"1": "particle/copper_fire_flame",
+		"1": "ott:block/copper_campfire_fire",
 		"particle": "block/torches",
 		"torch": "block/torches"
 	},
