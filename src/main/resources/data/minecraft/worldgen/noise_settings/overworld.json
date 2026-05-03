@@ -101,10 +101,17 @@
       }
     },
     "lava": {
-      "type": "minecraft:noise",
-      "noise": "minecraft:aquifer_lava",
-      "xz_scale": 1.0,
-      "y_scale": 1.0
+      "type": "minecraft:range_choice",
+      "input": "minecraft:y",
+      "min_inclusive": 0.0,
+      "max_exclusive": 1000.0,
+      "when_in_range": -1000000.0,
+      "when_out_of_range": {
+        "type": "minecraft:noise",
+        "noise": "minecraft:aquifer_lava",
+        "xz_scale": 1.0,
+        "y_scale": 1.0
+      }
     },
     "ridges": "minecraft:overworld/ridges",
     "temperature": {
