@@ -139,14 +139,12 @@
 			"name": "group",
 			"origin": [6.5, 0, 7.5],
 			"color": 0,
-			"nbt": "{}",
 			"children": [0, 1, 2]
 		},
 		{
 			"name": "ring",
 			"origin": [6.98045, 7.25, 7.84829],
 			"color": 0,
-			"nbt": "{}",
 			"children": [3, 4, 5, 6]
 		}
 	]

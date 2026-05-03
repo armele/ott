@@ -1,9 +1,7 @@
 {
-	"credit": "Throttled by Otterly76",
 	"texture_size": [64, 64],
 	"textures": {
-		"0": "item/spectral_arrow",
-		"particle": "block/moss_block"
+		"0": "item/spectral_arrow"
 	},
 	"elements": [
 		{
@@ -86,6 +84,7 @@
 			"name": "arrow",
 			"origin": [9, 8, 8],
 			"color": 0,
+			"nbt": "{}",
 			"children": [0, 1, 2]
 		}
 	]
