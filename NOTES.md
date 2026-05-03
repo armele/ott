@@ -2,7 +2,6 @@ Notes:
 =====
 - fix connecting purpur pillar top
 - fix item models:
-  - copper torch
   - milk bucket
   - copper bucket
   - copper water bucket
