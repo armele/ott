@@ -1,6 +1,7 @@
 package com.otterly76.ott.item;
 
 import com.otterly76.ott.util.ModTags;
+import net.minecraft.tags.BlockTags;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.Tier;
@@ -14,7 +15,8 @@ public enum ModToolMaterials implements Tier {
     COPPER(ModTags.Blocks.INCORRECT_FOR_COPPER_TOOL, 190, 5.0F, 1.0F, 13, () -> Ingredient.of(Items.COPPER_INGOT)),
     EXPOSED_COPPER(ModTags.Blocks.INCORRECT_FOR_COPPER_TOOL, 190, 5.0F, 1.0F, 13, () -> Ingredient.of(Items.COPPER_INGOT)),
     WEATHERED_COPPER(ModTags.Blocks.INCORRECT_FOR_COPPER_TOOL, 190, 5.0F, 1.0F, 13, () -> Ingredient.of(Items.COPPER_INGOT)),
-    OXIDIZED_COPPER(ModTags.Blocks.INCORRECT_FOR_COPPER_TOOL, 190, 5.0F, 1.0F, 13, () -> Ingredient.of(Items.COPPER_INGOT));
+    OXIDIZED_COPPER(ModTags.Blocks.INCORRECT_FOR_COPPER_TOOL, 190, 5.0F, 1.0F, 13, () -> Ingredient.of(Items.COPPER_INGOT)),
+    REINFORCED_OBSIDIAN(BlockTags.INCORRECT_FOR_NETHERITE_TOOL, 3000, 9.5F, 3.0F, 10, () -> Ingredient.of(Items.OBSIDIAN));
 
     private final TagKey<Block> incorrectBlocksForDrops;
     private final int uses;

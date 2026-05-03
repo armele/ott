@@ -443,6 +443,24 @@ public class CreativeTabHandler {
                     ModItems.WEATHERED_COPPER_SHEARS,
                     ModItems.OXIDIZED_COPPER_SHEARS
             ), visibility);
+
+            insertAllAfter(event, Items.NETHERITE_HOE, List.of(
+                    ModItems.WOOD_PAXEL,
+                    ModItems.STONE_PAXEL,
+                    ModItems.IRON_PAXEL,
+                    ModItems.GOLDEN_PAXEL,
+                    ModItems.DIAMOND_PAXEL,
+                    ModItems.NETHERITE_PAXEL,
+                    ModItems.COPPER_PAXEL,
+                    ModItems.EXPOSED_COPPER_PAXEL,
+                    ModItems.WEATHERED_COPPER_PAXEL,
+                    ModItems.OXIDIZED_COPPER_PAXEL,
+                    ModItems.REINFORCED_OBSIDIAN_SHOVEL,
+                    ModItems.REINFORCED_OBSIDIAN_PICKAXE,
+                    ModItems.REINFORCED_OBSIDIAN_AXE,
+                    ModItems.REINFORCED_OBSIDIAN_HOE,
+                    ModItems.REINFORCED_OBSIDIAN_PAXEL
+            ), visibility);
             safeInsertAfter(event, new ItemStack(Items.SHEARS), new ItemStack(ModItems.BUG_NET.get()), visibility);
 
             insertAllAfter(event, Items.MILK_BUCKET, List.of(
@@ -680,6 +698,22 @@ public class CreativeTabHandler {
                     ModItems.EXPOSED_COPPER_AXE,
                     ModItems.WEATHERED_COPPER_AXE,
                     ModItems.OXIDIZED_COPPER_AXE
+            ), visibility);
+
+            insertAllAfter(event, Items.NETHERITE_AXE, List.of(
+                    ModItems.WOOD_PAXEL,
+                    ModItems.STONE_PAXEL,
+                    ModItems.IRON_PAXEL,
+                    ModItems.GOLDEN_PAXEL,
+                    ModItems.DIAMOND_PAXEL,
+                    ModItems.NETHERITE_PAXEL,
+                    ModItems.COPPER_PAXEL,
+                    ModItems.EXPOSED_COPPER_PAXEL,
+                    ModItems.WEATHERED_COPPER_PAXEL,
+                    ModItems.OXIDIZED_COPPER_PAXEL,
+                    ModItems.REINFORCED_OBSIDIAN_SWORD,
+                    ModItems.REINFORCED_OBSIDIAN_AXE,
+                    ModItems.REINFORCED_OBSIDIAN_PAXEL
             ), visibility);
             insertAllAfter(event, Items.IRON_BOOTS, List.of(
                     ModItems.COPPER_HELMET,

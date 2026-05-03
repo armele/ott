@@ -4,7 +4,7 @@
 	"textures": {
 		"1": "ott:block/tool_obsidian",
 		"2": "ott:block/tool_oak",
-		"3": "ott:block/tool_diamond",
+		"3": "ott:block/tool_crying_obsidian",
 		"particle": "ott:block/tool_obsidian"
 	},
 	"elements": [

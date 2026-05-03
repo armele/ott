@@ -2726,5 +2726,23 @@
   "tooltip.ott.crafting.rotate_ccw": "Rotate CCW",
   "tooltip.ott.crafting.spread": "Spread",
   "tooltip.ott.hunger": "Hunger: %s",
-  "tooltip.ott.saturation": "Saturation: %s"
+  "tooltip.ott.saturation": "Saturation: %s",
+
+  "item.ott.wood_paxel": "Wooden Paxel",
+  "item.ott.stone_paxel": "Stone Paxel",
+  "item.ott.iron_paxel": "Iron Paxel",
+  "item.ott.golden_paxel": "Golden Paxel",
+  "item.ott.diamond_paxel": "Diamond Paxel",
+  "item.ott.netherite_paxel": "Netherite Paxel",
+  "item.ott.copper_paxel": "Copper Paxel",
+  "item.ott.exposed_copper_paxel": "Exposed Copper Paxel",
+  "item.ott.weathered_copper_paxel": "Weathered Copper Paxel",
+  "item.ott.oxidized_copper_paxel": "Oxidized Copper Paxel",
+
+  "item.ott.reinforced_obsidian_sword": "Reinforced Obsidian Sword",
+  "item.ott.reinforced_obsidian_shovel": "Reinforced Obsidian Shovel",
+  "item.ott.reinforced_obsidian_pickaxe": "Reinforced Obsidian Pickaxe",
+  "item.ott.reinforced_obsidian_axe": "Reinforced Obsidian Axe",
+  "item.ott.reinforced_obsidian_hoe": "Reinforced Obsidian Hoe",
+  "item.ott.reinforced_obsidian_paxel": "Reinforced Obsidian Paxel"
 }

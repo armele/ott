@@ -185,7 +185,7 @@ public class MinecraftBackportItemModelProvider extends ItemModelProvider {
 
         // Copper Tools — 3D models live in ott namespace; generate thin wrappers in minecraft namespace
         String[] oxidationStates = {"copper", "exposed_copper", "weathered_copper", "oxidized_copper"};
-        String[] toolTypes = {"axe", "hoe", "pickaxe", "shovel"};
+        String[] toolTypes = {"axe", "hoe", "pickaxe", "shovel", "sword", "shears"};
         for (String state : oxidationStates) {
             for (String tool : toolTypes) {
                 String name = state + "_" + tool;

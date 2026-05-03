@@ -992,6 +992,26 @@ public enum OttCreativeCategories {
                 output.accept(ModItems.WHITE_OPAL_CRYSTAL);
                 output.accept(ModItems.BLACK_OPAL_CRYSTAL);
                 output.accept(ModItems.FIRE_OPAL_CRYSTAL);
+
+                // Paxels
+                output.accept(ModItems.WOOD_PAXEL);
+                output.accept(ModItems.STONE_PAXEL);
+                output.accept(ModItems.IRON_PAXEL);
+                output.accept(ModItems.GOLDEN_PAXEL);
+                output.accept(ModItems.DIAMOND_PAXEL);
+                output.accept(ModItems.NETHERITE_PAXEL);
+                output.accept(ModItems.COPPER_PAXEL);
+                output.accept(ModItems.EXPOSED_COPPER_PAXEL);
+                output.accept(ModItems.WEATHERED_COPPER_PAXEL);
+                output.accept(ModItems.OXIDIZED_COPPER_PAXEL);
+
+                // Reinforced Obsidian Tools
+                output.accept(ModItems.REINFORCED_OBSIDIAN_SWORD);
+                output.accept(ModItems.REINFORCED_OBSIDIAN_SHOVEL);
+                output.accept(ModItems.REINFORCED_OBSIDIAN_PICKAXE);
+                output.accept(ModItems.REINFORCED_OBSIDIAN_AXE);
+                output.accept(ModItems.REINFORCED_OBSIDIAN_HOE);
+                output.accept(ModItems.REINFORCED_OBSIDIAN_PAXEL);
             });
 
     // --- Display order (top to bottom in the button list) ---
