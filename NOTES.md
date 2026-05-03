@@ -1,18 +1,5 @@
 Notes:
 =====
-- fix connecting purpur pillar top
-- fix item models:
-  - milk bucket
-  - copper bucket
-  - copper water bucket
-  - copper lava bucket
-  - copper powder snow bucket
-  - copper milk bucket
-  - C418 - 13
-  - C418 - 11
-  - lena raine - creator (music box)
-  - lena raine - creator
-
 add new stuff to wandering merchant
 add new animated seaglass, use cloudfx?
 reattempt the 2 color cloudFX
