@@ -24,8 +24,7 @@
   "features": [
     [],
     [
-      "minecraft:lake_lava_underground",
-      "minecraft:lake_lava_surface"
+      "ott:water_lake"
     ],
     [
       "minecraft:amethyst_geode"

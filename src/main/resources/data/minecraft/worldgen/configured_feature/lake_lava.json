@@ -17,7 +17,7 @@
           }
         },
         {
-          "weight": 3,
+          "weight": 1,
           "data": {
             "Name": "minecraft:podzol",
             "Properties": {

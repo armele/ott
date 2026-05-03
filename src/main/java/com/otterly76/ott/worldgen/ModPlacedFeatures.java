@@ -25,9 +25,14 @@ public class ModPlacedFeatures {
     public static final ResourceKey<PlacedFeature> OAK_NESTED_OAK_TREE_CHECKED = registerKey("oak_nested_oak");
     public static final ResourceKey<PlacedFeature> OAK_NESTED_OAK_TREES = registerKey("oak_nested_oak_trees");
 
+    public static final ResourceKey<PlacedFeature> WATER_LAKE = registerKey("water_lake");
+
 
     public static void bootstrap(BootstrapContext<PlacedFeature> context) {
         HolderGetter<ConfiguredFeature<?, ?>> configuredFeatures = context.lookup(Registries.CONFIGURED_FEATURE);
+
+        PlacementUtils.register(context, WATER_LAKE, configuredFeatures.getOrThrow(ModConfiguredFeatures.WATER_LAKE),
+                List.of(RarityFilter.onAverageOnceEvery(9), InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP_WORLD_SURFACE, BiomeFilter.biome()));
 
         PlacementUtils.register(context, OAK_NESTED_OAK_TREE_CHECKED, configuredFeatures.getOrThrow(ModConfiguredFeatures.OAK_NESTED_OAK),
                 List.of(PlacementUtils.filteredByBlockSurvival(Blocks.OAK_SAPLING)));

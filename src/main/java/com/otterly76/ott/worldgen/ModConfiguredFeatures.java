@@ -7,16 +7,20 @@ import net.minecraft.data.worldgen.BootstrapContext;
 import net.minecraft.data.worldgen.features.FeatureUtils;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.util.random.SimpleWeightedRandomList;
 import net.minecraft.util.valueproviders.ConstantInt;
 import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.levelgen.feature.ConfiguredFeature;
 import net.minecraft.world.level.levelgen.feature.Feature;
+import net.minecraft.world.level.levelgen.feature.LakeFeature;
 import net.minecraft.world.level.levelgen.feature.WeightedPlacedFeature;
 import net.minecraft.world.level.levelgen.feature.configurations.RandomFeatureConfiguration;
 import net.minecraft.world.level.levelgen.feature.configurations.TreeConfiguration;
 import net.minecraft.world.level.levelgen.feature.featuresize.TwoLayersFeatureSize;
 import net.minecraft.world.level.levelgen.feature.foliageplacers.BlobFoliagePlacer;
 import net.minecraft.world.level.levelgen.feature.stateproviders.BlockStateProvider;
+import net.minecraft.world.level.levelgen.feature.stateproviders.WeightedStateProvider;
 import net.minecraft.world.level.levelgen.feature.trunkplacers.StraightTrunkPlacer;
 import net.minecraft.world.level.levelgen.placement.PlacedFeature;
 
@@ -30,9 +34,24 @@ public class ModConfiguredFeatures {
     public static final ResourceKey<ConfiguredFeature<?, ?>> OAK_NESTED_OAK = registerKey("oak_nested_oak");
     public static final ResourceKey<ConfiguredFeature<?, ?>> OAK_NESTED_OAK_TREE_FILTERED = registerKey("oak_nested_oak_tree_filtered");
 
+    public static final ResourceKey<ConfiguredFeature<?, ?>> WATER_LAKE = registerKey("water_lake");
 
+
+    @SuppressWarnings("deprecation")
     public static void bootstrap(BootstrapContext<ConfiguredFeature<?, ?>> context) {
         HolderGetter<PlacedFeature> placedFeatures = context.lookup(Registries.PLACED_FEATURE);
+
+        FeatureUtils.register(context, WATER_LAKE, Feature.LAKE, new LakeFeature.Configuration(
+                BlockStateProvider.simple(Blocks.WATER),
+                new WeightedStateProvider(SimpleWeightedRandomList.<BlockState>builder()
+                        .add(Blocks.MOSS_BLOCK.defaultBlockState(), 3)
+                        .add(Blocks.PODZOL.defaultBlockState(), 3)
+                        .add(Blocks.COARSE_DIRT.defaultBlockState(), 2)
+                        .add(Blocks.MUD.defaultBlockState(), 2)
+                        .add(Blocks.CLAY.defaultBlockState(), 2)
+                        .build()
+                )
+        ));
 
         FeatureUtils.register(context, OAK_NESTED_OAK, Feature.TREE, oakNestedOak().build());
         FeatureUtils.register(context, OAK_NESTED_OAK_TREE_FILTERED, Feature.RANDOM_SELECTOR,
