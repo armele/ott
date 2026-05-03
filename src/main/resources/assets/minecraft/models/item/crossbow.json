@@ -1,7 +1,7 @@
 {
 	"texture_size": [64, 64],
 	"textures": {
-		"1": "item/bow/crossbow",
+		"1": "item/crossbow",
 		"particle": "item/crossbow"
 	},
 	"elements": [
