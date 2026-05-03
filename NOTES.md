@@ -8,7 +8,6 @@ Notes:
   - copper lava bucket
   - copper powder snow bucket
   - copper milk bucket
-  - clock
   - C418 - 13
   - C418 - 11
   - lena raine - creator (music box)
