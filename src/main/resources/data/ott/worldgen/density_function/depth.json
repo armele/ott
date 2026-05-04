@@ -1,33 +1,14 @@
 {
-  "type": "add",
-  "argument1": {
-    "type": "minecraft:spline",
-    "spline": {
-      "coordinate": {
-        "type": "y_clamped_gradient",
-        "from_y": -64,
-        "to_y": 320,
-        "from_value": 1.5,
-        "to_value": -1.5
-      },
-      "points": [
-        {
-          "location": -0.001,
-          "value": -0.001,
-          "derivative": 1
-        },
-        {
-          "location": 0.001,
-          "value": -0.001,
-          "derivative": 0
-        },
-        {
-          "location": 1.0,
-          "value": 1.0,
-          "derivative": 1
-        }
-      ]
-    }
-  },
-  "argument2": "ott:topography_final"
+  "type": "minecraft:cache_once",
+  "argument": {
+    "type": "minecraft:add",
+    "argument1": {
+      "type": "minecraft:y_clamped_gradient",
+      "from_y": -2048,
+      "to_y": 2048,
+      "from_value": 17,
+      "to_value": -15
+    },
+    "argument2": "ott:terrain_spline/offset/final"
+  }
 }

@@ -4,6 +4,7 @@ import com.otterly76.ott.worldgen.feature.BigLilyPadFeature;
 import com.otterly76.ott.worldgen.feature.CactusFlowerFeature;
 import com.otterly76.ott.worldgen.feature.FallenTreeFeature;
 import com.otterly76.ott.worldgen.feature.FloaterCleanerFeature;
+import com.otterly76.ott.worldgen.feature.WaterFillFeature;
 import com.otterly76.ott.worldgen.feature.GravitySettleFeature;
 import com.otterly76.ott.worldgen.feature.HollowRootFeature;
 import com.otterly76.ott.worldgen.feature.LeafLitterFeature;
@@ -59,6 +60,11 @@ public class ModFeatures {
     public static final DeferredHolder<Feature<?>, FloaterCleanerFeature> FLOATER_CLEANER = FEATURES.register(
             "floater_cleaner",
             () -> new FloaterCleanerFeature(NoneFeatureConfiguration.CODEC)
+    );
+
+    public static final DeferredHolder<Feature<?>, WaterFillFeature> WATER_FILL = FEATURES.register(
+            "water_fill",
+            () -> new WaterFillFeature(NoneFeatureConfiguration.CODEC)
     );
 
     public static void register(IEventBus eventBus) {

@@ -1,0 +1,9 @@
+{
+  "feature": "ott:water_fill",
+  "placement": [
+    {
+      "type": "minecraft:count",
+      "count": 1
+    }
+  ]
+}

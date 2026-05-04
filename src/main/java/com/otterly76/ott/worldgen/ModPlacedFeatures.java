@@ -32,7 +32,7 @@ public class ModPlacedFeatures {
         HolderGetter<ConfiguredFeature<?, ?>> configuredFeatures = context.lookup(Registries.CONFIGURED_FEATURE);
 
         PlacementUtils.register(context, WATER_LAKE, configuredFeatures.getOrThrow(ModConfiguredFeatures.WATER_LAKE),
-                List.of(RarityFilter.onAverageOnceEvery(9), InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP_WORLD_SURFACE, BiomeFilter.biome()));
+                List.of(RarityFilter.onAverageOnceEvery(200), InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP_WORLD_SURFACE, BiomeFilter.biome()));
 
         PlacementUtils.register(context, OAK_NESTED_OAK_TREE_CHECKED, configuredFeatures.getOrThrow(ModConfiguredFeatures.OAK_NESTED_OAK),
                 List.of(PlacementUtils.filteredByBlockSurvival(Blocks.OAK_SAPLING)));

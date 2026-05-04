@@ -1,20 +1,28 @@
 Notes:
 =====
+air surrounded by water on 5 sides, convert to water
+add water plants to pale garden
+
 add new stuff to wandering merchant
+
 add new animated seaglass, use cloudfx?
 reattempt the 2 color cloudFX
+
 review config options, some are very unnecessary
+
 finish vanilla entity models upgrades
 finish custom entity models upgrades
+
 check for cactus farm and disable cactus flowers
+
 adjust spawn rules for custom critters
 add nautilus owner follow logic
 
 add hanging/wall models for all lanterns
 starlight lamp recipe
 
-ladders
-lanterns
+chipped ladder models
+chipped lantern models
 
 add blocks from Chipped
 - adapt existing textures to CTM
