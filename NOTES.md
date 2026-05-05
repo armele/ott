@@ -1,6 +1,7 @@
 Notes:
 =====
-air surrounded by water on 5 sides, convert to water
+add transition textures for custom blocks
+
 add water plants to pale garden
 
 add new stuff to wandering merchant
@@ -584,3 +585,13 @@ HUE Cheat Sheet:
 | 0.75 | Violet |
 | 0.83 | Magenta |
 | 0.92 | Hot pink |
+
+Testing Hitlist:
+=====
+- any broken block textures
+- any broken item textures
+- any broken entity textures
+- any broken block models
+- any broken entity models
+- any missing block particles (seen when breaking blocks)
+- any missing translations / names

@@ -104,6 +104,7 @@ public class ClientModEvents {
     public static void onRegisterReloadListeners(RegisterClientReloadListenersEvent event) {
         event.registerReloadListener(DryFoliageColorReloadListener.INSTANCE);
         event.registerReloadListener(LeafColorReloadListener.INSTANCE);
+
     }
 
     public static void onRegisterTooltipComponents(RegisterClientTooltipComponentFactoriesEvent event) {
@@ -115,6 +116,8 @@ public class ClientModEvents {
                 com.otterly76.ott.client.model.ctm.ConnectingModelLoader.INSTANCE);
         event.register(ResourceLocation.fromNamespaceAndPath(MOD_ID, "wildflowers"),
                 com.otterly76.ott.client.model.wildflowers.WildflowersModelLoader.INSTANCE);
+        event.register(ResourceLocation.fromNamespaceAndPath(MOD_ID, "overlay"),
+                com.otterly76.ott.client.model.overlay.OverlayModelLoader.INSTANCE);
     }
 
     public static void onRegisterAdditional(ModelEvent.RegisterAdditional event) {
@@ -124,6 +127,7 @@ public class ClientModEvents {
             ResourceLocation loc = ResourceLocation.fromNamespaceAndPath(MOD_ID, "block/bookshelf" + s);
             event.register(ModelResourceLocation.standalone(loc));
         }
+        com.otterly76.ott.client.model.overlay.OverlayModifierReloadListener.INSTANCE.registerModels(event);
     }
 
     public static void onModelBaking(ModelEvent.ModifyBakingResult event) {
@@ -151,6 +155,9 @@ public class ClientModEvents {
                 }
             }
         }
+
+        // 3. Apply terrain overlay modifiers
+        com.otterly76.ott.client.model.overlay.OverlayModifierReloadListener.INSTANCE.applyModifiers(event);
     }
 
     public static void registerGuiLayers(RegisterGuiLayersEvent event) {
@@ -552,6 +559,18 @@ public class ClientModEvents {
                         return info.color();
                     }, block.get()));
         });
+
+        // Grass overlay: return biome grass color for our dedicated tint index on target blocks
+        event.register(
+                (state, level, pos, tint) -> tint == com.otterly76.ott.client.model.overlay.OverlayBakedModel.GRASS_OVERLAY_TINT
+                        && level != null && pos != null
+                        ? BiomeColors.getAverageGrassColor(level, pos) : -1,
+                net.minecraft.world.level.block.Blocks.COARSE_DIRT,
+                net.minecraft.world.level.block.Blocks.DIRT,
+                net.minecraft.world.level.block.Blocks.GRAVEL,
+                net.minecraft.world.level.block.Blocks.RED_SAND,
+                net.minecraft.world.level.block.Blocks.ROOTED_DIRT,
+                net.minecraft.world.level.block.Blocks.SAND);
     }
 
     public static void registerItemColors(RegisterColorHandlersEvent.Item event) {

@@ -1,0 +1,44 @@
+{
+  "loader": "ott:overlay",
+  "tint_type": "grass",
+  "textures": {
+    "top": "ott:block/overlays/grass_overflow",
+    "side": "ott:block/overlays/grass_overflow_side",
+    "particle": "#top"
+  },
+  "connections": {
+    "top": {
+      "type": "and",
+      "predicates": [
+        { "type": "match_block", "block": "grass_block" },
+        { "type": "is_face_visible" }
+      ]
+    },
+    "side": {
+      "type": "or",
+      "predicates": [
+        { "type": "match_block_in_front", "block": "grass_block" },
+        {
+          "type": "and",
+          "predicates": [
+            { "type": "match_block", "block": "grass_block" },
+            { "type": "is_face_visible" }
+          ]
+        }
+      ]
+    }
+  },
+  "elements": [
+    {
+      "from": [ 0, 0, 0 ],
+      "to": [ 16, 16, 16 ],
+      "faces": {
+        "up":    { "texture": "#top",  "cullface": "up" },
+        "north": { "texture": "#side", "cullface": "north" },
+        "east":  { "texture": "#side", "cullface": "east" },
+        "south": { "texture": "#side", "cullface": "south" },
+        "west":  { "texture": "#side", "cullface": "west" }
+      }
+    }
+  ]
+}

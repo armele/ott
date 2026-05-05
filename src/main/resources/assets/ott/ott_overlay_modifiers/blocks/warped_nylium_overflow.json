@@ -1,0 +1,19 @@
+{
+  "targets": [
+    "minecraft:coarse_dirt",
+    "minecraft:crimson_nylium",
+    "minecraft:dirt",
+    "minecraft:grass_block",
+    "minecraft:gravel",
+    "minecraft:netherrack",
+    "minecraft:podzol",
+    "minecraft:red_sand",
+    "minecraft:rooted_dirt",
+    "minecraft:sand",
+    "minecraft:soul_sand",
+    "minecraft:soul_soil"
+  ],
+  "append": [
+    "ott:block/overlays/warped_nylium_overlay"
+  ]
+}

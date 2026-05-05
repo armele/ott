@@ -1,0 +1,12 @@
+{
+  "targets": [
+    "minecraft:coarse_dirt",
+    "minecraft:dirt",
+    "minecraft:rooted_dirt",
+    "minecraft:soul_sand",
+    "minecraft:soul_soil"
+  ],
+  "append": [
+    "ott:block/overlays/gravel_overlay"
+  ]
+}

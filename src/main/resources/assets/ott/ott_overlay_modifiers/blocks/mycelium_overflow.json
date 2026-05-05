@@ -1,0 +1,16 @@
+{
+  "targets": [
+    "minecraft:coarse_dirt",
+    "minecraft:dirt",
+    "minecraft:grass_block",
+    "minecraft:gravel",
+    "minecraft:mud",
+    "minecraft:podzol",
+    "minecraft:red_sand",
+    "minecraft:rooted_dirt",
+    "minecraft:sand"
+  ],
+  "append": [
+    "ott:block/overlays/mycelium_overlay"
+  ]
+}
