@@ -46,6 +46,7 @@
     "ott:stone_bricks_masonry_plate",
     "ott:sandstone_slender_bricks",
     "ott:sandstone_slender_turquoise_pattern",
-    "ott:sandstone_crenelation"
+    "ott:sandstone_crenelation",
+    "#ott:material/concrete"
   ]
 }
