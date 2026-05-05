@@ -1,4 +1,6 @@
 {
+	"format_version": "1.9.0",
+	"credit": "Throttled by Otterly76",
 	"parent": "item/bucket",
 	"textures": {
 		"1": "item/bucket_base",
@@ -220,12 +222,12 @@
 	"gui_light": "front",
 	"display": {
 		"thirdperson_righthand": {
-			"rotation": [-112, 180, -180],
+			"rotation": [-112, -180, -180],
 			"translation": [0, -3, -1],
 			"scale": [0.8, 0.8, 0.8]
 		},
 		"thirdperson_lefthand": {
-			"rotation": [-112, 180, -180],
+			"rotation": [-112, -180, -180],
 			"translation": [0, -3, -1],
 			"scale": [0.8, 0.8, 0.8]
 		},
@@ -258,8 +260,8 @@
 		{
 			"name": "bucket",
 			"origin": [8, 5.25, 7.51903],
+			"scope": 0,
 			"color": 0,
-			"nbt": "{}",
 			"children": [
 				0,
 				1,
@@ -269,8 +271,8 @@
 				{
 					"name": "handle",
 					"origin": [8, 5.25, 7.51903],
+					"scope": 0,
 					"color": 0,
-					"nbt": "{}",
 					"children": [5, 6, 7]
 				}
 			]
@@ -278,49 +280,49 @@
 		{
 			"name": "liquid",
 			"origin": [8, 8, 8],
+			"scope": 0,
 			"color": 0,
-			"nbt": "{}",
 			"children": [8]
 		},
 		{
 			"name": "salmon",
 			"origin": [8, 0, 0],
+			"scope": 0,
 			"color": 0,
-			"nbt": "{}",
 			"children": [
 				{
 					"name": "fin_back_1",
 					"origin": [8, 10.5, 1],
+					"scope": 0,
 					"color": 0,
-					"nbt": "{}",
 					"children": [9]
 				},
 				{
 					"name": "head",
 					"origin": [8, 6, -4],
+					"scope": 0,
 					"color": 0,
-					"nbt": "{}",
 					"children": [10]
 				},
 				{
 					"name": "body_back",
 					"origin": [8, 6, 4],
+					"scope": 0,
 					"color": 0,
-					"nbt": "{}",
 					"children": [
 						11,
 						{
 							"name": "tail",
 							"origin": [8, 6, 11.1089],
+							"scope": 0,
 							"color": 0,
-							"nbt": "{}",
 							"children": [12]
 						},
 						{
 							"name": "fin_back_2",
 							"origin": [8, 10.5, 3],
+							"scope": 0,
 							"color": 0,
-							"nbt": "{}",
 							"children": [13]
 						}
 					]
@@ -328,8 +330,8 @@
 				{
 					"name": "body_front",
 					"origin": [8, 6, -4],
+					"scope": 0,
 					"color": 0,
-					"nbt": "{}",
 					"children": [14]
 				}
 			]

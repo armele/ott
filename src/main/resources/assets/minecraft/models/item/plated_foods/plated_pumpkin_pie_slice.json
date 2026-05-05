@@ -1,6 +1,6 @@
 {
 	"format_version": "1.21.6",
-	"credit": "cyberia was here",
+	"credit": "Throttled by Otterly76",
 	"parent": "minecraft:item/generated",
 	"textures": {
 		"layer0": "item/plated_food/pumpkin_pie_slice"

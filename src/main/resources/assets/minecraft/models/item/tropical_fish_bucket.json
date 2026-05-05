@@ -1,4 +1,6 @@
 {
+	"format_version": "1.9.0",
+	"credit": "Throttled by Otterly76",
 	"parent": "item/bucket",
 	"textures": {
 		"0": "item/bucket_tropical_fish_a1",
@@ -206,12 +208,12 @@
 	"gui_light": "front",
 	"display": {
 		"thirdperson_righthand": {
-			"rotation": [-112, 180, -180],
+			"rotation": [-112, -180, -180],
 			"translation": [0, -3, -1],
 			"scale": [0.8, 0.8, 0.8]
 		},
 		"thirdperson_lefthand": {
-			"rotation": [-112, 180, -180],
+			"rotation": [-112, -180, -180],
 			"translation": [0, -3, -1],
 			"scale": [0.8, 0.8, 0.8]
 		},
@@ -244,8 +246,8 @@
 		{
 			"name": "bucket",
 			"origin": [8, 5.25, 7.51903],
+			"scope": 0,
 			"color": 0,
-			"nbt": "{}",
 			"children": [
 				0,
 				1,
@@ -255,8 +257,8 @@
 				{
 					"name": "handle",
 					"origin": [8, 5.25, 7.51903],
+					"scope": 0,
 					"color": 0,
-					"nbt": "{}",
 					"children": [5, 6, 7]
 				}
 			]
@@ -264,51 +266,51 @@
 		{
 			"name": "liquid",
 			"origin": [8, 8, 8],
+			"scope": 0,
 			"color": 0,
-			"nbt": "{}",
 			"children": [8]
 		},
 		{
 			"name": "tropicalfish",
 			"origin": [8.46835, 0, 6.95],
+			"scope": 0,
 			"color": 0,
-			"nbt": "{}",
 			"children": [
 				{
 					"name": "tail",
 					"origin": [8.46835, 1.5, 9.95],
+					"scope": 0,
 					"color": 0,
-					"nbt": "{}",
 					"children": [9]
 				},
 				{
 					"name": "fin_top",
 					"origin": [8.46835, 3, 3.95],
+					"scope": 0,
 					"color": 0,
-					"nbt": "{}",
 					"children": [10]
 				},
 				{
 					"name": "body",
 					"origin": [8.46835, 1.5, 6.95],
+					"scope": 0,
 					"color": 0,
-					"nbt": "{}",
 					"children": [
 						11,
 						{
 							"name": "right_fin",
 							"origin": [9.46835, 0, 6.95],
 							"rotation": [0, -45, 0],
+							"scope": 0,
 							"color": 0,
-							"nbt": "{}",
 							"children": [12]
 						},
 						{
 							"name": "left_fin",
 							"origin": [7.46835, 0, 6.95],
 							"rotation": [0, 45, 0],
+							"scope": 0,
 							"color": 0,
-							"nbt": "{}",
 							"children": [13]
 						}
 					]
