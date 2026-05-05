@@ -3,7 +3,7 @@
     "ott:surface/soil",
     "ott:surface/stone",
     "ott:surface/terracotta"
-    ],
+  ],
   "append": [
     "ott:block/overlays/green_apple_concrete_powder_overlay"
   ]
