@@ -2,8 +2,6 @@ Notes:
 =====
 add transition textures for custom blocks
 
-add water plants to pale garden
-
 add new stuff to wandering merchant
 
 add new animated seaglass, use cloudfx?
@@ -14,7 +12,7 @@ review config options, some are very unnecessary
 finish vanilla entity models upgrades
 finish custom entity models upgrades
 
-check for cactus farm and disable cactus flowers
+check for MCol cactus farm and disable cactus flowers
 
 adjust spawn rules for custom critters
 add nautilus owner follow logic

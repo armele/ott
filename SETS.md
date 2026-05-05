@@ -39,7 +39,6 @@ banded plastered stone
 gilded plastered stone
 
 - glazed terracotta
-
 - DYE RECIPE
 
 Wood Set
@@ -79,7 +78,7 @@ geometric window
 - beehive side
 - beehive end
 - shelf
-
+- plank overlay
 - SAPLING
 - POTTED SAPLING
 
