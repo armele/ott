@@ -104,6 +104,17 @@ public class ColorSetTextureProvider implements DataProvider {
             processMaskedOttBlock(cache, mainPath.resolve("textures/block/color_set"), color.name(), color.color(), "base/futon", "futon/color_mask", "futon", 1.0f, 0.0f);
         }
 
+        // Pattern overlay textures — dyed_stone and dyed_cobblestone (all 33 colors)
+        java.nio.file.Path overlaysPath = mainPath.resolve("textures/block/overlays");
+        for (ModPatterns.ColorInfo color : ModPatterns.ALL_COLORS) {
+            processOttOverlay(cache, overlaysPath, color.name(), color.color(), "stone_overflow",       "dyed_stone");
+            processOttOverlay(cache, overlaysPath, color.name(), color.color(), "cobblestone_overflow", "dyed_cobblestone");
+        }
+        // Pattern overlay textures — concrete_powder (17 custom colors only; vanilla handled by static modifiers)
+        for (ModColorSets.ColorSet colorSet : ModColorSets.ALL) {
+            processOttOverlay(cache, overlaysPath, colorSet.name(), colorSet.color(), "white_concrete_powder_overflow", "concrete_powder");
+        }
+
         return CompletableFuture.completedFuture(null);
     }
 
@@ -341,6 +352,25 @@ public class ColorSetTextureProvider implements DataProvider {
             saveTexture(cache, folder.resolve(colorName).resolve(targetName + ".png"), tinted);
         } catch (IOException e) {
             throw new RuntimeException("Failed to process entity texture: " + sourceName, e);
+        }
+    }
+
+    /**
+     * Loads an existing OTT overlay texture from {@code ott:textures/block/overlays/<sourceOverflow>.png},
+     * tints it with the given color, and saves it to {@code <overlaysFolder>/<patternDir>/<colorName>_overflow.png}.
+     */
+    private void processOttOverlay(CachedOutput cache, java.nio.file.Path overlaysFolder,
+                                   String colorName, int colorInt,
+                                   String sourceOverflow, String patternDir) {
+        try {
+            ResourceLocation sourceLoc = ResourceLocation.fromNamespaceAndPath("ott",
+                    "textures/block/overlays/" + sourceOverflow + ".png");
+            Resource resource = existingFileHelper.getResource(sourceLoc, PackType.CLIENT_RESOURCES);
+            BufferedImage base = ImageIO.read(resource.open());
+            BufferedImage tinted = applyTint(base, colorInt, 1.0f, 0.0f);
+            saveTexture(cache, overlaysFolder.resolve(patternDir).resolve(colorName + "_overflow.png"), tinted);
+        } catch (IOException e) {
+            throw new RuntimeException("Failed to process overlay texture: " + sourceOverflow, e);
         }
     }
 

@@ -2,7 +2,6 @@
   "targets": [
     "minecraft:pink_concrete_powder",
     "minecraft:magma_block",
-    "minecraft:soul_sand",
     "minecraft:suspicious_sand",
     "minecraft:sand",
     "minecraft:red_sand",
@@ -21,6 +20,7 @@
     "minecraft:muddy_mangrove_roots",
     "minecraft:mud",
     "minecraft:clay",
+    "minecraft:soul_sand",
     "minecraft:soul_soil",
     "minecraft:rooted_dirt",
     "minecraft:coarse_dirt",
