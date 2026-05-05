@@ -1,0 +1,8 @@
+{
+  "type": "neoforge:add_features",
+  "biomes": "minecraft:pale_garden",
+  "features": [
+    "minecraft:seagrass_cold"
+  ],
+  "step": "vegetal_decoration"
+}
