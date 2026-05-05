@@ -1,0 +1,60 @@
+{
+  "loader": "ott:overlay",
+  "textures": {
+    "top": "ott:block/overlays/muddy_mangrove_roots_top",
+    "side": "ott:block/overlays/muddy_mangrove_roots_overflow_side",
+    "particle": "#top"
+  },
+  "connections": {
+    "type": "and",
+    "predicates": [
+      {
+        "type": "match_block",
+        "block": "muddy_mangrove_roots"
+      },
+      {
+        "type": "is_face_visible"
+      }
+    ]
+  },
+  "elements": [
+    {
+      "from": [
+        0,
+        0,
+        0
+      ],
+      "to": [
+        16,
+        16,
+        16
+      ],
+      "faces": {
+        "up": {
+          "texture": "#top",
+          "cullface": "up"
+        },
+        "down": {
+          "texture": "#top",
+          "cullface": "down"
+        },
+        "north": {
+          "texture": "#side",
+          "cullface": "north"
+        },
+        "east": {
+          "texture": "#side",
+          "cullface": "east"
+        },
+        "south": {
+          "texture": "#side",
+          "cullface": "south"
+        },
+        "west": {
+          "texture": "#side",
+          "cullface": "west"
+        }
+      }
+    }
+  ]
+}

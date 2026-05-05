@@ -1,0 +1,8 @@
+{
+  "targets": [
+    "minecraft:obsidian"
+  ],
+  "append": [
+    "ott:block/overlays/crying_obsidian_overlay"
+  ]
+}
