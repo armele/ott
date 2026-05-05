@@ -76,6 +76,7 @@
     [
       "minecraft:glow_lichen",
       "minecraft:patch_tall_grass_2",
+      "minecraft:patch_waterlily",
       "minecraft:patch_sugar_cane_swamp",
       "minecraft:patch_pumpkin",
       "minecraft:vines",
@@ -87,8 +88,7 @@
       "minecraft:rooted_azalea_tree",
       "minecraft:spore_blossom",
       "minecraft:classic_vines_cave_feature",
-      "ott:lush_glade_azalea",
-      "minecraft:lily_pad_patch"
+      "ott:lush_glade_azalea"
     ],
     []
   ],

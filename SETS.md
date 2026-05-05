@@ -4,7 +4,7 @@ wool
 carpet
 terracotta
 concrete
-concrete powder
+concrete powder + overlay
 stained glass
 stained glass pane
 shulker box
@@ -28,8 +28,8 @@ elevator
 clay tile
 futon
 chiseled plastered stone
-dyed cobblestone
-dyed stone
+dyed cobblestone + overlay
+dyed stone + overlay
 flat roof tiles
 layered roof tiles
 painted planks

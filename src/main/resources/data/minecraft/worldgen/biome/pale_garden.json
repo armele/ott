@@ -77,10 +77,10 @@
       "minecraft:pale_garden_flowers",
       "minecraft:flower_pale_garden",
       "minecraft:patch_grass_forest",
+      "minecraft:seagrass_cold",
+      "minecraft:patch_waterlily",
       "minecraft:patch_sugar_cane",
-      "minecraft:patch_pumpkin",
-      "minecraft:seagrass_patch",
-      "minecraft:lily_pad_patch"
+      "minecraft:patch_pumpkin"
     ],
     [
       "minecraft:freeze_top_layer"
