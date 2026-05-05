@@ -41,9 +41,6 @@ make additional wood items for starlight and midnight
 backtrack and review all previously added features
 
 MUST be added to worldgen
-- limestone: warm ocean, lukewarm ocean
-- white marble: mountains
-- black marble: mountains
 - slate: temperate mountains
   - create texture, register block 
   - roofing slates
