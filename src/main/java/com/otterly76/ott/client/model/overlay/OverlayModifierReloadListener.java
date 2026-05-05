@@ -12,9 +12,11 @@ import net.minecraft.client.renderer.block.BlockModelShaper;
 import net.minecraft.client.resources.model.BakedModel;
 import net.minecraft.client.resources.model.ModelResourceLocation;
 import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.packs.resources.ResourceManager;
 import net.minecraft.server.packs.resources.SimpleJsonResourceReloadListener;
+import net.minecraft.tags.TagKey;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.neoforged.neoforge.client.event.ModelEvent;
@@ -66,32 +68,33 @@ public class OverlayModifierReloadListener {
         Map<ResourceLocation, JsonElement> resources = new HashMap<>();
         SimpleJsonResourceReloadListener.scanDirectory(rm, PATH, GSON, resources);
 
-        Map<ResourceLocation, List<ResourceLocation>> parsed = new HashMap<>();
+        Map<ResourceLocation, List<ResourceLocation>> plainParsed = new HashMap<>();
+        Map<TagKey<Block>, List<ResourceLocation>> tagParsed = new HashMap<>();
         for (Map.Entry<ResourceLocation, JsonElement> entry : resources.entrySet()) {
             try {
-                parseEntry(entry.getValue(), parsed);
+                parseEntry(entry.getValue(), plainParsed, tagParsed);
             } catch (JsonParseException e) {
                 LOGGER.warn("[OTT] Failed to parse overlay modifier '{}': {}",
                         entry.getKey(), e.getMessage());
             }
         }
 
-        // Expand each block ID into all its block-state model locations
+        // Expand plain block IDs and tag keys into block-state model locations
         modifiers.clear();
-        for (Map.Entry<ResourceLocation, List<ResourceLocation>> entry : parsed.entrySet()) {
-            ResourceLocation blockId = entry.getKey();
-            if (!BuiltInRegistries.BLOCK.containsKey(blockId)) {
-                LOGGER.warn("[OTT] Overlay modifier target '{}' is not a registered block", blockId);
+        for (Map.Entry<ResourceLocation, List<ResourceLocation>> entry : plainParsed.entrySet()) {
+            expandBlock(entry.getKey(), entry.getValue());
+        }
+        for (Map.Entry<TagKey<Block>, List<ResourceLocation>> entry : tagParsed.entrySet()) {
+            var optTag = BuiltInRegistries.BLOCK.getTag(entry.getKey());
+            if (optTag.isEmpty()) {
+                LOGGER.warn("[OTT] Overlay modifier tag '#{}' not found — tags may not be loaded yet",
+                        entry.getKey().location());
                 continue;
             }
-            Block block = BuiltInRegistries.BLOCK.get(blockId);
-            if (block == Blocks.AIR) continue;
-
-            List<ResourceLocation> overlays = entry.getValue();
-            block.getStateDefinition().getPossibleStates().stream()
-                    .map(BlockModelShaper::stateToModelLocation)
-                    .forEach(mrl ->
-                            modifiers.computeIfAbsent(mrl, k -> new ArrayList<>()).addAll(overlays));
+            for (var holder : optTag.get()) {
+                ResourceLocation blockId = BuiltInRegistries.BLOCK.getKey(holder.value());
+                expandBlock(blockId, entry.getValue());
+            }
         }
         LOGGER.debug("[OTT] Overlay modifiers loaded for {} block-state entries", modifiers.size());
 
@@ -132,26 +135,28 @@ public class OverlayModifierReloadListener {
         }
     }
 
+    // ---- Helpers ------------------------------------------------------------
+
+    private void expandBlock(ResourceLocation blockId, List<ResourceLocation> overlays) {
+        if (!BuiltInRegistries.BLOCK.containsKey(blockId)) {
+            LOGGER.warn("[OTT] Overlay modifier target '{}' is not a registered block", blockId);
+            return;
+        }
+        Block block = BuiltInRegistries.BLOCK.get(blockId);
+        if (block == Blocks.AIR) return;
+        block.getStateDefinition().getPossibleStates().stream()
+                .map(BlockModelShaper::stateToModelLocation)
+                .forEach(mrl -> modifiers.computeIfAbsent(mrl, k -> new ArrayList<>()).addAll(overlays));
+    }
+
     // ---- JSON parsing -------------------------------------------------------
 
     private static void parseEntry(JsonElement element,
-                                   Map<ResourceLocation, List<ResourceLocation>> result) {
+                                   Map<ResourceLocation, List<ResourceLocation>> blockResult,
+                                   Map<TagKey<Block>, List<ResourceLocation>> tagResult) {
         if (!element.isJsonObject())
             throw new JsonParseException("Overlay modifier entry must be a JSON object");
         JsonObject json = element.getAsJsonObject();
-
-        // Targets
-        if (!json.has("targets") || !json.get("targets").isJsonArray())
-            throw new JsonParseException("Must have a 'targets' array");
-        List<ResourceLocation> targets = new ArrayList<>();
-        JsonArray targetsArr = json.getAsJsonArray("targets");
-        for (JsonElement t : targetsArr) {
-            if (!t.isJsonPrimitive() || !t.getAsJsonPrimitive().isString())
-                throw new JsonParseException("Each target must be a string");
-            String id = t.getAsString();
-            if (!id.contains(":")) id = "minecraft:" + id;
-            targets.add(ResourceLocation.parse(id));
-        }
 
         // Append
         if (!json.has("append") || !json.get("append").isJsonArray())
@@ -166,8 +171,23 @@ public class OverlayModifierReloadListener {
         if (appendModels.isEmpty())
             throw new JsonParseException("'append' must not be empty");
 
-        for (ResourceLocation target : targets) {
-            result.computeIfAbsent(target, k -> new ArrayList<>()).addAll(appendModels);
+        // Targets — plain block IDs or #tag references
+        if (!json.has("targets") || !json.get("targets").isJsonArray())
+            throw new JsonParseException("Must have a 'targets' array");
+        JsonArray targetsArr = json.getAsJsonArray("targets");
+        for (JsonElement t : targetsArr) {
+            if (!t.isJsonPrimitive() || !t.getAsJsonPrimitive().isString())
+                throw new JsonParseException("Each target must be a string");
+            String id = t.getAsString();
+            if (id.startsWith("#")) {
+                String tagId = id.substring(1);
+                if (!tagId.contains(":")) tagId = "minecraft:" + tagId;
+                TagKey<Block> tagKey = TagKey.create(Registries.BLOCK, ResourceLocation.parse(tagId));
+                tagResult.computeIfAbsent(tagKey, k -> new ArrayList<>()).addAll(appendModels);
+            } else {
+                if (!id.contains(":")) id = "minecraft:" + id;
+                blockResult.computeIfAbsent(ResourceLocation.parse(id), k -> new ArrayList<>()).addAll(appendModels);
+            }
         }
     }
 }
