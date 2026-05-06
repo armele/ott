@@ -1,7 +1,7 @@
 {
   "loader": "ott:overlay",
   "textures": {
-    "all": "ott:block/gradients/white_light_gray_concrete_powder",
+    "all": "ott:block/overlays/white_concrete_powder_overflow",
     "particle": "#all"
   },
   "connections": {

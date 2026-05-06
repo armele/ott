@@ -88,6 +88,8 @@ public class OttOverlayProvider implements DataProvider {
 
         // gradient concrete_powder — all 240 DyeColor pairs
         // Targets are the same explicit list used by the OTT custom-color concrete powder overflows.
+        // Texture: reuses the first-color vanilla overlay atlas (96×48 6×3 tile format).
+        // TODO: replace with generated per-gradient overlay atlases for accurate gradient blending.
         List<String> gradCpTargets = readTargets(modifiersDir.resolve("amethyst_concrete_powder_overflow.json"));
         for (DyeColor c1 : DyeColor.values()) {
             for (DyeColor c2 : DyeColor.values()) {
@@ -97,7 +99,7 @@ public class OttOverlayProvider implements DataProvider {
                         gradCpTargets, "ott:block/overlays/" + baseName + "_overlay");
                 writeModel(cache, modelsDir.resolve(baseName + "_overlay.json"),
                         "ott:" + baseName,
-                        "ott:block/gradients/" + baseName);
+                        "ott:block/overlays/" + c1.getName() + "_concrete_powder_overflow");
             }
         }
 
