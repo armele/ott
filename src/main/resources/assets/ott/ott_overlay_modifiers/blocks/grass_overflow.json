@@ -2,10 +2,7 @@
   "targets": [
     "minecraft:coarse_dirt",
     "minecraft:dirt",
-    "minecraft:gravel",
-    "minecraft:red_sand",
-    "minecraft:rooted_dirt",
-    "minecraft:sand"
+    "minecraft:rooted_dirt"
   ],
   "append": [
     "ott:block/overlays/grass_overlay"
