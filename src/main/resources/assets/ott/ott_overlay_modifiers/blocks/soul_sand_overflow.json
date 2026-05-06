@@ -286,7 +286,7 @@
     "minecraft:bone_block",
     "minecraft:sculk",
     "minecraft:sculk_catalyst",
-    "minecraft:sculk_shrieker (no)",
+    "minecraft:sculk_shrieker",
     "minecraft:shroomlight",
     "minecraft:sea_lantern",
     "minecraft:honeycomb_block",
@@ -300,7 +300,6 @@
     "minecraft:lodestone",
     "minecraft:resin_block",
     "minecraft:resin_bricks",
-    "minecraft:cracked_resin_bricks",
     "minecraft:chiseled_resin_bricks",
     "minecraft:oak_leaves",
     "minecraft:spruce_leaves",
@@ -329,12 +328,7 @@
     "minecraft:soul_soil",
     "minecraft:grass_block",
     "minecraft:moss_block",
-    "minecraft:pale_moss_block",
-    "minecraft:sand",
-    "minecraft:red_sand",
-    "minecraft:gravel",
-    "minecraft:suspicious_sand",
-    "minecraft:suspicious_gravel"
+    "minecraft:pale_moss_block"
     ],
   "append": [
     "ott:block/overlays/soul_sand_overflow"
