@@ -1,9 +1,0 @@
-{
-  "values": [
-    "minecraft:sand",
-    "minecraft:red_sand",
-    "minecraft:gravel",
-    "#minecraft:concrete_powder",
-    "#ott:material/concrete_powder"
-  ]
-}

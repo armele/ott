@@ -10,6 +10,7 @@ import com.google.gson.JsonParser;
 import com.otterly76.ott.color.ModColorSets;
 import com.otterly76.ott.color.ModPatterns;
 import net.minecraft.data.CachedOutput;
+import net.minecraft.world.item.DyeColor;
 import net.minecraft.data.DataProvider;
 import net.minecraft.data.PackOutput;
 import org.jetbrains.annotations.NotNull;
@@ -83,6 +84,21 @@ public class OttOverlayProvider implements DataProvider {
             writeModel(cache, modelsDir.resolve(baseName + "_overlay.json"),
                     "ott:" + baseName,
                     "ott:block/overlays/concrete_powder/" + colorSet.name() + "_overflow");
+        }
+
+        // gradient concrete_powder — all 240 DyeColor pairs
+        // Targets are the same explicit list used by the OTT custom-color concrete powder overflows.
+        List<String> gradCpTargets = readTargets(modifiersDir.resolve("amethyst_concrete_powder_overflow.json"));
+        for (DyeColor c1 : DyeColor.values()) {
+            for (DyeColor c2 : DyeColor.values()) {
+                if (c1 == c2) continue;
+                String baseName = c1.getName() + "_" + c2.getName() + "_concrete_powder";
+                writeModifier(cache, modifiersDir.resolve(baseName + "_overflow.json"),
+                        gradCpTargets, "ott:block/overlays/" + baseName + "_overlay");
+                writeModel(cache, modelsDir.resolve(baseName + "_overlay.json"),
+                        "ott:" + baseName,
+                        "ott:block/gradients/" + baseName);
+            }
         }
 
         return CompletableFuture.completedFuture(null);
