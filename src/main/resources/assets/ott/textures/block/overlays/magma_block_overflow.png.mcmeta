@@ -1,0 +1,17 @@
+{
+  "animation": {
+    "frametime": 8,
+    "interpolate": true,
+    "frames": [
+      0,
+      1,
+      2
+    ]
+  },
+  "fusion": {
+    "type": "connecting",
+    "layout": "overlay",
+	"emissive": true,
+    "render_type": "cutout"
+  }
+}

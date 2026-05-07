@@ -446,6 +446,6 @@
     "ott:white_polished_marble"
   ],
   "append": [
-    "ott:block/overlays/suspicious_gravel_overlay"
+    "ott:block/overlays/ice_overlay"
   ]
 }
