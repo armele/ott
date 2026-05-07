@@ -219,7 +219,6 @@
     "minecraft:red_glazed_terracotta",
     "minecraft:red_mushroom_block",
     "minecraft:red_nether_bricks",
-    "minecraft:red_sand",
     "minecraft:red_sandstone",
     "minecraft:red_terracotta",
     "minecraft:red_wool",
@@ -228,6 +227,7 @@
     "minecraft:resin_bricks",
     "minecraft:rooted_dirt",
     "minecraft:sandstone",
+    "minecraft:sculk",
     "minecraft:sculk_catalyst",
     "minecraft:sea_lantern",
     "minecraft:shroomlight",
@@ -437,6 +437,6 @@
     "ott:white_polished_marble"
   ],
   "append": [
-    "ott:block/overlays/deepslate_diamond_ore_overlay"
+    "ott:block/overlays/resin_bricks_overlay"
   ]
 }
