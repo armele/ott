@@ -504,12 +504,22 @@ public class ClientModEvents {
         event.register(PrismaticColorHandler.create(PrismaticColorHandler.Type.HORIZONTAL, 16f, 0.5f, 0.5f, 0.7f, 0.0f), ModBlocks.TESTBLOCK_02.get());
         event.register(PrismaticColorHandler.create(PrismaticColorHandler.Type.VERTICAL, 8f, 0.25f, 0.3f, 0.5f, 0.0f), ModBlocks.TESTBLOCK_03.get());
 
-        // ── Opal block color handlers (per type) ─────────────────────────────
+        // ── Opal overlay color handlers (hoisted so they can be captured in both lambda scopes) ──
         // Params: Type, scale (blocks/cycle), saturation, hueMin, hueMax, timeScale
         // Hue reference: 0.00=red  0.08=orange  0.15=yellow  0.33=green
         //                0.50=cyan  0.58=sky  0.67=blue  0.75=violet  0.83=magenta
+        final net.minecraft.client.color.block.BlockColor whiteOpalOverlay = PrismaticColorHandler.create(
+                PrismaticColorHandler.Type.FULL_3D, 24f, 0.65f, 0.45f, 0.70f, 0.0f);
+        final net.minecraft.client.color.block.BlockColor blackOpalOverlay = PrismaticColorHandler.create(
+                PrismaticColorHandler.Type.FULL_3D, 24f, 0.90f, 0.65f, 0.87f, 0.0f);
+        final net.minecraft.client.color.block.BlockColor fireOpalOverlay  = PrismaticColorHandler.create(
+                PrismaticColorHandler.Type.FULL_3D, 24f, 1.00f, 0.00f, 0.12f, 0.0f);
+
+        // ── Opal block color handlers (per type) ─────────────────────────────
+        // Combined handler: returns own prismatic color for tint 0, overlay color for tints 101/102/103.
+        // This ensures opal-on-opal overlays show the source opal's color, not the target's.
         ModBlocks.OPAL_SETS.forEach((name, set) -> {
-            net.minecraft.client.color.block.BlockColor handler = switch (name) {
+            net.minecraft.client.color.block.BlockColor ownPrismatic = switch (name) {
                 case "white_opal" -> PrismaticColorHandler.create(
                         PrismaticColorHandler.Type.FULL_3D, 24f, 0.65f, 0.45f, 0.70f, 0.0f);
                 case "black_opal" -> PrismaticColorHandler.create(
@@ -519,7 +529,16 @@ public class ClientModEvents {
                 default           -> PrismaticColorHandler.create(
                         PrismaticColorHandler.Type.FULL_3D, 24f, 0.80f, 0.00f, 1.00f, 0.0f);
             };
-            event.register(handler,
+            net.minecraft.client.color.block.BlockColor combined = (state, level, pos, tint) -> switch (tint) {
+                case com.otterly76.ott.client.model.overlay.OverlayBakedModel.WHITE_OPAL_OVERLAY_TINT ->
+                        whiteOpalOverlay.getColor(state, level, pos, tint);
+                case com.otterly76.ott.client.model.overlay.OverlayBakedModel.BLACK_OPAL_OVERLAY_TINT ->
+                        blackOpalOverlay.getColor(state, level, pos, tint);
+                case com.otterly76.ott.client.model.overlay.OverlayBakedModel.FIRE_OPAL_OVERLAY_TINT  ->
+                        fireOpalOverlay.getColor(state, level, pos, tint);
+                default -> ownPrismatic.getColor(state, level, pos, tint);
+            };
+            event.register(combined,
                     set.base().get(), set.crystalBlock().get(), set.budding().get(),
                     set.cluster().get(), set.largeBud().get(), set.mediumBud().get(), set.smallBud().get(),
                     set.bricks().get(), set.smallBricks().get(), set.polished().get(), set.chiseled().get(),
@@ -564,12 +583,6 @@ public class ClientModEvents {
         // Uses same PrismaticColorHandler params as the opal blocks themselves (scale=24 blocks means
         // a 1-block position offset from the actual opal is imperceptible).
         {
-            net.minecraft.client.color.block.BlockColor whiteOpalOverlay = PrismaticColorHandler.create(
-                    PrismaticColorHandler.Type.FULL_3D, 24f, 0.65f, 0.45f, 0.70f, 0.0f);
-            net.minecraft.client.color.block.BlockColor blackOpalOverlay = PrismaticColorHandler.create(
-                    PrismaticColorHandler.Type.FULL_3D, 24f, 0.90f, 0.65f, 0.87f, 0.0f);
-            net.minecraft.client.color.block.BlockColor fireOpalOverlay  = PrismaticColorHandler.create(
-                    PrismaticColorHandler.Type.FULL_3D, 24f, 1.00f, 0.00f, 0.12f, 0.0f);
             net.minecraft.client.color.block.BlockColor opalOverlayHandler = (state, level, pos, tint) -> switch (tint) {
                 case com.otterly76.ott.client.model.overlay.OverlayBakedModel.WHITE_OPAL_OVERLAY_TINT ->
                         whiteOpalOverlay.getColor(state, level, pos, tint);
@@ -579,30 +592,47 @@ public class ClientModEvents {
                         fireOpalOverlay.getColor(state, level, pos, tint);
                 default -> -1;
             };
-            // Register for geological target blocks only — deliberately excludes opal blocks themselves
-            // to avoid overriding their prismatic tint-0 handler.
-            net.minecraft.world.level.block.Block[] geoBlocks =
+            // Register plain opal overlay handler for all solid target blocks that do NOT have a
+            // vanilla BlockColors handler that ignores the tint index (e.g. grass, leaves, water).
+            // Opal blocks are also excluded to preserve their own prismatic tint-0 handler.
+            net.minecraft.world.level.block.Block[] solidTargetBlocks =
                     net.minecraft.core.registries.BuiltInRegistries.BLOCK.stream()
                     .filter(b -> {
                         String n = net.minecraft.core.registries.BuiltInRegistries.BLOCK.getKey(b).getPath();
+                        // Exclude opal blocks (have their own prismatic handler) and transparent/fluid types
                         if (n.contains("opal") || n.contains("crystal_block") ||
-                                n.contains("glass") || n.contains("concrete") ||
-                                n.contains("sand") || n.contains("wood") || n.contains("log") ||
-                                n.contains("plank") || n.contains("netherrack") || n.contains("magma"))
+                                n.contains("glass") || n.contains("water") || n.contains("lava") ||
+                                n.contains("wood") || n.contains("log") || n.contains("plank") ||
+                                n.contains("bark") || n.contains("stem") || n.contains("hyphae"))
                             return false;
-                        return n.contains("stone") || n.contains("cobble") || n.contains("granite") ||
-                               n.contains("diorite") || n.contains("andesite") || n.contains("calcite") ||
-                               n.contains("tuff") || n.contains("basalt") || n.contains("deepslate") ||
-                               n.contains("blackstone") || n.contains("dripstone") || n.contains("quartz") ||
-                               n.contains("end_stone") || n.contains("obsidian") || n.contains("nether_brick") ||
-                               n.contains("raw_copper") || n.contains("raw_iron") || n.contains("raw_gold") ||
-                               n.contains("amethyst") || n.contains("budding") ||
-                               n.contains("packed_ice") || n.contains("blue_ice") ||
-                               n.contains("limestone") || n.contains("marble") || n.contains("slate") ||
-                               n.contains("mud_brick") || n.contains("bricks");
+                        // Exclude vanilla blocks whose color handlers don't check tint index —
+                        // these get their own chaining handler below.
+                        return !n.equals("grass_block") && !n.contains("short_grass") && !n.contains("fern") &&
+                                !n.contains("leaves") && !n.contains("vine") && !n.contains("lily_pad") &&
+                                !n.contains("sugar_cane") && !n.contains("tallgrass") && !n.contains("large_fern");
+                        // Include everything else that's a solid/opaque block family
                     })
                     .toArray(net.minecraft.world.level.block.Block[]::new);
-            event.register(opalOverlayHandler, geoBlocks);
+            event.register(opalOverlayHandler, solidTargetBlocks);
+
+            // Chaining handler for grass_block and similar foliage blocks whose vanilla handler
+            // returns the biome grass color for ALL tint indices (no tint-index check).
+            // We must preserve that behaviour for tint 0 while intercepting opal tints.
+            event.register((state, level, pos, tint) -> switch (tint) {
+                case com.otterly76.ott.client.model.overlay.OverlayBakedModel.WHITE_OPAL_OVERLAY_TINT ->
+                        whiteOpalOverlay.getColor(state, level, pos, tint);
+                case com.otterly76.ott.client.model.overlay.OverlayBakedModel.BLACK_OPAL_OVERLAY_TINT ->
+                        blackOpalOverlay.getColor(state, level, pos, tint);
+                case com.otterly76.ott.client.model.overlay.OverlayBakedModel.FIRE_OPAL_OVERLAY_TINT ->
+                        fireOpalOverlay.getColor(state, level, pos, tint);
+                default -> level != null && pos != null
+                        ? BiomeColors.getAverageGrassColor(level, pos)
+                        : GrassColor.getDefaultColor();
+            },  net.minecraft.world.level.block.Blocks.GRASS_BLOCK,
+                net.minecraft.world.level.block.Blocks.FERN,
+                net.minecraft.world.level.block.Blocks.SHORT_GRASS,
+                net.minecraft.world.level.block.Blocks.LARGE_FERN,
+                net.minecraft.world.level.block.Blocks.TALL_GRASS);
         }
 
         // Grass overlay: return biome grass color for our dedicated tint index on target blocks
@@ -610,9 +640,12 @@ public class ClientModEvents {
                 (state, level, pos, tint) -> tint == com.otterly76.ott.client.model.overlay.OverlayBakedModel.GRASS_OVERLAY_TINT
                         && level != null && pos != null
                         ? BiomeColors.getAverageGrassColor(level, pos) : -1,
+                net.minecraft.world.level.block.Blocks.BLUE_ICE,
                 net.minecraft.world.level.block.Blocks.COARSE_DIRT,
                 net.minecraft.world.level.block.Blocks.DIRT,
                 net.minecraft.world.level.block.Blocks.GRAVEL,
+                net.minecraft.world.level.block.Blocks.ICE,
+                net.minecraft.world.level.block.Blocks.PACKED_ICE,
                 net.minecraft.world.level.block.Blocks.RED_SAND,
                 net.minecraft.world.level.block.Blocks.ROOTED_DIRT,
                 net.minecraft.world.level.block.Blocks.SAND);

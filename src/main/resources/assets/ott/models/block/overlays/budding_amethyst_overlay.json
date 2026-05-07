@@ -5,14 +5,23 @@
     "particle": "#all"
   },
   "connections": {
-    "type": "and",
+    "type": "or",
     "predicates": [
       {
-        "type": "match_block",
+        "type": "match_block_in_front",
         "block": "budding_amethyst"
       },
       {
-        "type": "is_face_visible"
+        "type": "and",
+        "predicates": [
+          {
+            "type": "match_block",
+            "block": "budding_amethyst"
+          },
+          {
+            "type": "is_face_visible"
+          }
+        ]
       }
     ]
   },
