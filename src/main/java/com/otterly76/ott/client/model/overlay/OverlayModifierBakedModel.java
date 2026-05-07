@@ -74,9 +74,14 @@ public class OverlayModifierBakedModel implements net.minecraft.client.resources
             ModelData od = (overlayDatas != null && i < overlayDatas.length)
                     ? overlayDatas[i] : ModelData.EMPTY;
             net.minecraft.client.resources.model.BakedModel overlay = overlays.get(i);
-            // Only add overlay quads if the render type matches (or is unfiltered)
+            // Add overlay quads when:
+            //   • renderType is null (item/unconstrained rendering), or
+            //   • renderType matches the overlay's own type (CUTOUT for normal blocks), or
+            //   • renderType is TRANSLUCENT — means the original block is translucent (e.g. ice)
+            //     and we piggyback the overlay onto the same pass so it renders on top of the ice.
             if (renderType == null
-                    || overlay.getRenderTypes(state, rand, od).contains(renderType)) {
+                    || overlay.getRenderTypes(state, rand, od).contains(renderType)
+                    || renderType == RenderType.translucent()) {
                 quads.addAll(overlay.getQuads(state, side, rand, od, renderType));
             }
         }
@@ -96,8 +101,14 @@ public class OverlayModifierBakedModel implements net.minecraft.client.resources
     public @NotNull ChunkRenderTypeSet getRenderTypes(@NotNull BlockState state,
                                                       @NotNull RandomSource rand,
                                                       @NotNull ModelData data) {
+        ChunkRenderTypeSet origTypes = original.getRenderTypes(state, rand, data);
+        if (origTypes.contains(RenderType.translucent())) {
+            // For translucent blocks (e.g. ice), the overlay piggybacks on the translucent pass.
+            // Do NOT add CUTOUT — that would render the overlay behind the ice (CUTOUT < TRANSLUCENT).
+            return origTypes;
+        }
         ModelData[] overlayDatas = data.get(OVERLAY_DATA);
-        ChunkRenderTypeSet types = original.getRenderTypes(state, rand, data);
+        ChunkRenderTypeSet types = origTypes;
         for (int i = 0; i < overlays.size(); i++) {
             ModelData od = (overlayDatas != null && i < overlayDatas.length)
                     ? overlayDatas[i] : ModelData.EMPTY;

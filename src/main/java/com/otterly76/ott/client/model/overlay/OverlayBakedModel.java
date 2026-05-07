@@ -45,7 +45,10 @@ public class OverlayBakedModel implements net.minecraft.client.resources.model.B
      * for all target blocks (dirt, sand, gravel, etc.) that returns the biome grass color
      * for this index.  Any unused tint index works; 100 is chosen to avoid vanilla conflicts.
      */
-    public static final int GRASS_OVERLAY_TINT = 100;
+    public static final int GRASS_OVERLAY_TINT      = 100;
+    public static final int WHITE_OPAL_OVERLAY_TINT  = 101;
+    public static final int BLACK_OPAL_OVERLAY_TINT  = 102;
+    public static final int FIRE_OPAL_OVERLAY_TINT   = 103;
 
     private static final ChunkRenderTypeSet CUTOUT = ChunkRenderTypeSet.of(RenderType.cutout());
 
@@ -99,11 +102,12 @@ public class OverlayBakedModel implements net.minecraft.client.resources.model.B
     private final List<OverlayConnectionRule> ruleList;
     private final Map<TextureAtlasSprite, Integer> spriteToRuleIndex;
     private final int catchAllRuleIndex;
-    private final boolean useGrassTint;
+    /** Tint index applied to overlay quads, or -1 for no tint. */
+    private final int tintIndex;
 
     public OverlayBakedModel(net.minecraft.client.resources.model.BakedModel baseModel,
                               Map<TextureAtlasSprite, OverlayConnectionRule> spriteRules,
-                              boolean useGrassTint) {
+                              int tintIndex) {
         this.baseModel = baseModel;
 
         Map<OverlayConnectionRule, Integer> ruleIndex = new IdentityHashMap<>();
@@ -123,7 +127,7 @@ public class OverlayBakedModel implements net.minecraft.client.resources.model.B
 
         this.ruleList = list;
         this.catchAllRuleIndex = catchAll;
-        this.useGrassTint = useGrassTint;
+        this.tintIndex = tintIndex;
 
         Map<TextureAtlasSprite, Integer> s2r = new IdentityHashMap<>();
         for (Map.Entry<TextureAtlasSprite, OverlayConnectionRule> e : spriteRules.entrySet()) {
@@ -186,18 +190,21 @@ public class OverlayBakedModel implements net.minecraft.client.resources.model.B
     public @NotNull List<BakedQuad> getQuads(@Nullable BlockState state, @Nullable Direction side,
                                              @NotNull RandomSource rand, @NotNull ModelData data,
                                              @Nullable RenderType renderType) {
-        // Only produce quads for block rendering on a specific face in the cutout pass
+        // Only produce quads for block rendering on a specific face in the cutout or translucent pass.
+        // Translucent pass is used when the target block (e.g. ice) renders in translucent.
         if (side == null) return List.of();
-        if (renderType != null && renderType != RenderType.cutout()) return List.of();
+        if (renderType != null && renderType != RenderType.cutout() && renderType != RenderType.translucent()) return List.of();
 
-        List<BakedQuad> base = baseModel.getQuads(state, side, rand, data, renderType);
+        // Always fetch base geometry using the cutout render type — the overlay cube model is
+        // always cutout geometry regardless of which pass we are emitting to.
+        List<BakedQuad> base = baseModel.getQuads(state, side, rand, data, RenderType.cutout());
         if (base.isEmpty()) return List.of();
 
         int[][] masks = data.get(OVERLAY_MASKS);
         if (masks == null) return List.of();
 
         int faceOrd = side.ordinal();
-        int tintIndex = useGrassTint ? GRASS_OVERLAY_TINT : -1;
+        int tintIndex = this.tintIndex;
         List<BakedQuad> result = new ArrayList<>(base.size() * 4);
 
         for (BakedQuad quad : base) {

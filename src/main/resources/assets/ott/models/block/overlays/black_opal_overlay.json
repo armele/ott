@@ -1,0 +1,97 @@
+{
+  "loader": "ott:overlay",
+  "tint_index": 102,
+  "textures": {
+    "all": "ott:block/overlays/opal_block_overflow",
+    "particle": "#all"
+  },
+  "connections": {
+    "type": "or",
+    "predicates": [
+      {
+        "type": "match_block_in_front",
+        "block": "ott:black_opal"
+      },
+      {
+        "type": "match_block_in_front",
+        "block": "ott:black_opal_crystal_block"
+      },
+      {
+        "type": "match_block_in_front",
+        "block": "ott:black_opal_bricks"
+      },
+      {
+        "type": "match_block_in_front",
+        "block": "ott:small_black_opal_bricks"
+      },
+      {
+        "type": "match_block_in_front",
+        "block": "ott:polished_black_opal"
+      },
+      {
+        "type": "match_block_in_front",
+        "block": "ott:chiseled_black_opal"
+      },
+      {
+        "type": "match_block_in_front",
+        "block": "ott:black_opal_pillar"
+      },
+      {
+        "type": "match_block_in_front",
+        "block": "ott:cut_black_opal"
+      },
+      {
+        "type": "match_block_in_front",
+        "block": "ott:black_opal_tiles"
+      },
+      {
+        "type": "match_block_in_front",
+        "block": "ott:small_black_opal_tiles"
+      },
+      {
+        "type": "match_block_in_front",
+        "block": "ott:black_opal_tiling"
+      }
+    ]
+  },
+  "elements": [
+    {
+      "from": [
+        0,
+        0,
+        0
+      ],
+      "to": [
+        16,
+        16,
+        16
+      ],
+      "faces": {
+        "up": {
+          "texture": "#all",
+          "cullface": "up"
+        },
+        "down": {
+          "texture": "#all",
+          "cullface": "down"
+        },
+        "north": {
+          "texture": "#all",
+          "cullface": "north"
+        },
+        "east": {
+          "texture": "#all",
+          "cullface": "east"
+        },
+        "south": {
+          "texture": "#all",
+          "cullface": "south"
+        },
+        "west": {
+          "texture": "#all",
+          "cullface": "west"
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,52 @@
+{
+  "loader": "ott:overlay",
+  "tint_index": 103,
+  "textures": {
+    "all": "ott:block/overlays/opal_block_overflow",
+    "particle": "#all"
+  },
+  "connections": {
+    "type": "match_block_in_front",
+    "block": "ott:budding_fire_opal"
+  },
+  "elements": [
+    {
+      "from": [
+        0,
+        0,
+        0
+      ],
+      "to": [
+        16,
+        16,
+        16
+      ],
+      "faces": {
+        "up": {
+          "texture": "#all",
+          "cullface": "up"
+        },
+        "down": {
+          "texture": "#all",
+          "cullface": "down"
+        },
+        "north": {
+          "texture": "#all",
+          "cullface": "north"
+        },
+        "east": {
+          "texture": "#all",
+          "cullface": "east"
+        },
+        "south": {
+          "texture": "#all",
+          "cullface": "south"
+        },
+        "west": {
+          "texture": "#all",
+          "cullface": "west"
+        }
+      }
+    }
+  ]
+}

@@ -1,11 +1,5 @@
 Notes:
 =====
-make overlay for
-- ice
-- packed ice
-- blue ice
-- 
-
 add transition textures for custom blocks
 
 add new stuff to wandering merchant

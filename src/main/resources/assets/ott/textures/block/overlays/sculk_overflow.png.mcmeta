@@ -1,11 +1,14 @@
 {
   "animation": {
     "frametime": 20,
-    "interpolate": true
-  },
-  "fusion": {
-    "type": "connecting",
-    "layout": "overlay",
-    "render_type": "cutout"
+    "interpolate": true,
+    "width": 96,
+    "height": 48,
+    "frames": [
+      0,
+      1,
+      2,
+      3
+    ]
   }
 }

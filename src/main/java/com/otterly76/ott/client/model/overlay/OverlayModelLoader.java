@@ -46,17 +46,22 @@ public class OverlayModelLoader implements IGeometryLoader<OverlayUnbakedGeometr
                                                 @NotNull JsonDeserializationContext ctx)
             throws JsonParseException {
         Map<String, OverlayConnectionRule> rulesByTexVar = parseConnections(json);
-        boolean useGrassTint = json.has("tint_type")
-                && "grass".equals(json.get("tint_type").getAsString());
+        int tintIndex = -1;
+        if (json.has("tint_index")) {
+            tintIndex = json.get("tint_index").getAsInt();
+        } else if (json.has("tint_type") && "grass".equals(json.get("tint_type").getAsString())) {
+            tintIndex = OverlayBakedModel.GRASS_OVERLAY_TINT;
+        }
 
         // Strip custom keys so the remainder is a valid vanilla BlockModel JSON
         JsonObject cleaned = json.deepCopy();
         cleaned.remove("loader");
         cleaned.remove("connections");
         cleaned.remove("tint_type");
+        cleaned.remove("tint_index");
 
         BlockModel baseModel = ctx.deserialize(cleaned, BlockModel.class);
-        return new OverlayUnbakedGeometry(baseModel, rulesByTexVar, useGrassTint);
+        return new OverlayUnbakedGeometry(baseModel, rulesByTexVar, tintIndex);
     }
 
     // ---- connection parsing -------------------------------------------------

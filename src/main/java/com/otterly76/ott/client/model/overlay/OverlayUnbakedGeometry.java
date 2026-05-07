@@ -30,14 +30,14 @@ public class OverlayUnbakedGeometry implements IUnbakedGeometry<OverlayUnbakedGe
      * Use key {@code "*"} as a catch-all for all texture variables.
      */
     private final Map<String, OverlayConnectionRule> rulesByTexVar;
-    private final boolean useGrassTint;
+    private final int tintIndex;
 
     public OverlayUnbakedGeometry(BlockModel baseModel,
                                    Map<String, OverlayConnectionRule> rulesByTexVar,
-                                   boolean useGrassTint) {
+                                   int tintIndex) {
         this.baseModel = baseModel;
         this.rulesByTexVar = rulesByTexVar;
-        this.useGrassTint = useGrassTint;
+        this.tintIndex = tintIndex;
     }
 
     @Override
@@ -71,6 +71,6 @@ public class OverlayUnbakedGeometry implements IUnbakedGeometry<OverlayUnbakedGe
             }
         }
 
-        return new OverlayBakedModel(base, spriteRules, useGrassTint);
+        return new OverlayBakedModel(base, spriteRules, tintIndex);
     }
 }
