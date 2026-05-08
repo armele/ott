@@ -436,6 +436,6 @@
     "ott:fire_opal_tiling"
   ],
   "append": [
-    "ott:block/overlays/sculk_overlay"
+    "ott:block/overlays/sculk_catalyst_overlay"
   ]
 }

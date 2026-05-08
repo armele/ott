@@ -437,6 +437,6 @@
     "ott:white_polished_marble"
   ],
   "append": [
-    "ott:block/overlays/resin_bricks_overlay"
+    "ott:block/overlays/resin_block_overlay"
   ]
 }

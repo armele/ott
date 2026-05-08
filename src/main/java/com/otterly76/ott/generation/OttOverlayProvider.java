@@ -121,7 +121,9 @@ public class OttOverlayProvider implements DataProvider {
         }
     }
 
-    private void writeModifier(CachedOutput cache, Path file, List<String> targets, String appendModel) {
+    private void writeModifier(CachedOutput cache, Path file, List<String> defaultTargets, String appendModel) {
+        // Preserve manual target edits — if the file already exists on disk, use its targets unchanged.
+        List<String> targets = Files.exists(file) ? readTargets(file) : defaultTargets;
         JsonArray targetsArr = new JsonArray();
         targets.forEach(targetsArr::add);
         JsonArray appendArr = new JsonArray();
