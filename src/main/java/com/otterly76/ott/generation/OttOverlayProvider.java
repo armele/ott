@@ -45,7 +45,6 @@ public class OttOverlayProvider implements DataProvider {
     private record PatternConfig(String blockSuffix, String baseModifier, String texSubdir) {}
 
     private static final List<PatternConfig> ALL_COLOR_PATTERNS = List.of(
-            new PatternConfig("dyed_stone",      "stone_overflow",       "dyed_stone"),
             new PatternConfig("dyed_cobblestone", "cobblestone_overflow", "dyed_cobblestone")
     );
 
