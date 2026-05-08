@@ -162,11 +162,11 @@ public class OverlayBakedModel implements net.minecraft.client.resources.model.B
         boolean r  = rule.connects(level, pos, state, face, pos.offset(off[2]));
         boolean b  = rule.connects(level, pos, state, face, pos.offset(off[4]));
         boolean l  = rule.connects(level, pos, state, face, pos.offset(off[6]));
-        // Diagonals only active when both adjacent cardinals connect
-        boolean tr = t && r && rule.connects(level, pos, state, face, pos.offset(off[1]));
-        boolean br = b && r && rule.connects(level, pos, state, face, pos.offset(off[3]));
-        boolean bl = b && l && rule.connects(level, pos, state, face, pos.offset(off[5]));
-        boolean tl = t && l && rule.connects(level, pos, state, face, pos.offset(off[7]));
+        // Diagonals checked independently — outer-corner tiles require diagonal-only connection
+        boolean tr = rule.connects(level, pos, state, face, pos.offset(off[1]));
+        boolean br = rule.connects(level, pos, state, face, pos.offset(off[3]));
+        boolean bl = rule.connects(level, pos, state, face, pos.offset(off[5]));
+        boolean tl = rule.connects(level, pos, state, face, pos.offset(off[7]));
         return (t ? 1 : 0) | (tr ? 2 : 0) | (r ? 4 : 0) | (br ? 8 : 0)
              | (b ? 16 : 0) | (bl ? 32 : 0) | (l ? 64 : 0) | (tl ? 128 : 0);
     }
