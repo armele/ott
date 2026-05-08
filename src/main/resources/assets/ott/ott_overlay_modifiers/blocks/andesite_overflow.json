@@ -12,7 +12,10 @@
     "minecraft:granite",
     "minecraft:diorite",
     "minecraft:cobblestone",
-    "minecraft:mossy_cobblestone"
+    "minecraft:mossy_cobblestone",
+    "minecraft:infested_stone",
+    "minecraft:infested_cobblestone",
+    "minecraft:infested_mossy_cobblestone"
   ],
   "append": [
     "ott:block/overlays/andesite_overlay"

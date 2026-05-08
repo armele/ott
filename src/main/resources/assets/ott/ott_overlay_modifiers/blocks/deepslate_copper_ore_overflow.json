@@ -14,7 +14,11 @@
     "minecraft:stone",
     "minecraft:tuff",
     "minecraft:cobblestone",
-    "minecraft:mossy_cobblestone"
+    "minecraft:mossy_cobblestone",
+    "minecraft:infested_stone",
+    "minecraft:infested_cobblestone",
+    "minecraft:infested_stone",
+    "minecraft:infested_cobblestone"
   ],
   "append": [
     "ott:block/overlays/deepslate_copper_ore_overlay"

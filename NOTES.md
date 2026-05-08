@@ -7,6 +7,7 @@ create end stone textures and modifiers
 create glowstone textures and modifiers
 create obsidian textures and modifiers
 create basalt (top) textures and modifiers
+create coral/dead coral textures and modifiers
 
 create textures and modifiers for DO bricks
 
