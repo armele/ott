@@ -7,6 +7,8 @@ create end stone textures and modifiers
 create glowstone textures and modifiers
 create obsidian textures and modifiers
 
+create textures and modifiers for DO bricks
+
 add transition textures for custom blocks
 
 add new stuff to wandering merchant
