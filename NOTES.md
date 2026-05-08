@@ -1,5 +1,12 @@
 Notes:
 =====
+create ice overlay textures and modifiers
+create prismarine bricks textures and modifiers
+create dark prismarine textures and modifiers
+create end stone textures and modifiers
+create glowstone textures and modifiers
+create obsidian textures and modifiers
+
 add transition textures for custom blocks
 
 add new stuff to wandering merchant
