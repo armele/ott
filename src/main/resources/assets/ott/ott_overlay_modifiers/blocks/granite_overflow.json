@@ -8,7 +8,9 @@
     "minecraft:iron_ore",
     "minecraft:lapis_ore",
     "minecraft:redstone_ore",
-    "minecraft:stone"
+    "minecraft:stone",
+    "minecraft:cobblestone",
+    "minecraft:mossy_cobblestone"
   ],
   "append": [
     "ott:block/overlays/granite_overlay"
