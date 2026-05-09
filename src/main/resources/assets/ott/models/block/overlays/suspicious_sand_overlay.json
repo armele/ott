@@ -1,18 +1,27 @@
 {
   "loader": "ott:overlay",
   "textures": {
-    "all": "ott:block/overlays/suspicious_sand_overflow",
+    "all": "ott:block/overlays/sand_overflow",
     "particle": "#all"
   },
   "connections": {
-    "type": "and",
+    "type": "or",
     "predicates": [
       {
-        "type": "match_block",
-        "block": "suspicious_sand"
+        "type": "match_block_in_front",
+        "block": "minecraft:suspicious_sand"
       },
       {
-        "type": "is_face_visible"
+        "type": "and",
+        "predicates": [
+          {
+            "type": "match_block",
+            "block": "minecraft:suspicious_sand"
+          },
+          {
+            "type": "is_face_visible"
+          }
+        ]
       }
     ]
   },

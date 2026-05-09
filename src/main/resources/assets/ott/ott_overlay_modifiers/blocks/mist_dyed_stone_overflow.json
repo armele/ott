@@ -1,0 +1,8 @@
+{
+  "targets": [
+    "minecraft:stone"
+  ],
+  "append": [
+    "ott:block/overlays/mist_dyed_stone_overlay"
+  ]
+}

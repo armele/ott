@@ -26,6 +26,7 @@ import org.slf4j.Logger;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -64,12 +65,14 @@ public class OverlayModifierReloadListener {
     public void registerModels(@NotNull ModelEvent.RegisterAdditional event) {
         ResourceManager rm = Minecraft.getInstance().getResourceManager();
 
-        // Parse all modifier JSON files
-        Map<ResourceLocation, JsonElement> resources = new HashMap<>();
+        // Parse all modifier JSON files.
+        // LinkedHashMap preserves the insertion order from scanDirectory (alphabetical by path),
+        // giving deterministic overlay accumulation order and therefore stable corner Z-ordering.
+        Map<ResourceLocation, JsonElement> resources = new LinkedHashMap<>();
         SimpleJsonResourceReloadListener.scanDirectory(rm, PATH, GSON, resources);
 
-        Map<ResourceLocation, List<ResourceLocation>> plainParsed = new HashMap<>();
-        Map<TagKey<Block>, List<ResourceLocation>> tagParsed = new HashMap<>();
+        Map<ResourceLocation, List<ResourceLocation>> plainParsed = new LinkedHashMap<>();
+        Map<TagKey<Block>, List<ResourceLocation>> tagParsed = new LinkedHashMap<>();
         for (Map.Entry<ResourceLocation, JsonElement> entry : resources.entrySet()) {
             try {
                 parseEntry(entry.getValue(), plainParsed, tagParsed);

@@ -209,8 +209,17 @@ public class ColorSetTextureProvider implements DataProvider {
         int width = base.getWidth();
         int height = base.getHeight();
         BufferedImage result = new BufferedImage(width, height, BufferedImage.TYPE_INT_ARGB);
-        
+
         float[] tintHsl = rgbToHsl(tintColor);
+        // Near-neutral tints (e.g. DyeColor.WHITE = 0xF9FFFE) can produce S=1.0 due to
+        // HSL saturation formula amplifying tiny channel differences. Treat any color whose
+        // max-min channel spread is ≤10/255 as achromatic so it maps to grayscale output.
+        {
+            int tR = (tintColor >> 16) & 0xFF, tG = (tintColor >> 8) & 0xFF, tB = tintColor & 0xFF;
+            if (Math.max(tR, Math.max(tG, tB)) - Math.min(tR, Math.min(tG, tB)) <= 10) {
+                tintHsl[1] = 0f;
+            }
+        }
 
         for (int x = 0; x < width; x++) {
             for (int y = 0; y < height; y++) {
@@ -366,7 +375,18 @@ public class ColorSetTextureProvider implements DataProvider {
             ResourceLocation sourceLoc = ResourceLocation.fromNamespaceAndPath("ott",
                     "textures/block/overlays/" + sourceOverflow + ".png");
             Resource resource = existingFileHelper.getResource(sourceLoc, PackType.CLIENT_RESOURCES);
-            BufferedImage base = ImageIO.read(resource.open());
+            BufferedImage raw = ImageIO.read(resource.open());
+            // Ensure ARGB so applyTint always operates on proper RGB channels,
+            // even if the source PNG was saved as indexed-color.
+            BufferedImage base;
+            if (raw.getType() == BufferedImage.TYPE_INT_ARGB) {
+                base = raw;
+            } else {
+                base = new BufferedImage(raw.getWidth(), raw.getHeight(), BufferedImage.TYPE_INT_ARGB);
+                Graphics2D g = base.createGraphics();
+                g.drawImage(raw, 0, 0, null);
+                g.dispose();
+            }
             BufferedImage tinted = applyTint(base, colorInt, 1.0f, 0.0f);
             saveTexture(cache, overlaysFolder.resolve(patternDir).resolve(colorName + "_overflow.png"), tinted);
         } catch (IOException e) {

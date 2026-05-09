@@ -1,0 +1,8 @@
+{
+  "targets": [
+    "minecraft:stone"
+  ],
+  "append": [
+    "ott:block/overlays/chocolate_dyed_stone_overlay"
+  ]
+}

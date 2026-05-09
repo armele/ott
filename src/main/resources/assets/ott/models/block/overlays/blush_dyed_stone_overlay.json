@@ -1,0 +1,33 @@
+{
+  "loader": "ott:overlay",
+  "textures": {
+    "all": "ott:block/overlays/dyed_stone/blush_overflow",
+    "particle": "#all"
+  },
+  "connections": {
+    "type": "and",
+    "predicates": [
+      {
+        "type": "match_block",
+        "block": "ott:blush_dyed_stone"
+      },
+      {
+        "type": "is_face_visible"
+      }
+    ]
+  },
+  "elements": [
+    {
+      "from": [0, 0, 0],
+      "to": [16, 16, 16],
+      "faces": {
+        "up":    { "texture": "#all", "cullface": "up" },
+        "down":  { "texture": "#all", "cullface": "down" },
+        "north": { "texture": "#all", "cullface": "north" },
+        "east":  { "texture": "#all", "cullface": "east" },
+        "south": { "texture": "#all", "cullface": "south" },
+        "west":  { "texture": "#all", "cullface": "west" }
+      }
+    }
+  ]
+}

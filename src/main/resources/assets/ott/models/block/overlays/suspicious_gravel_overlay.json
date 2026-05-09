@@ -1,18 +1,27 @@
 {
   "loader": "ott:overlay",
   "textures": {
-    "all": "ott:block/overlays/suspicious_gravel_overflow",
+    "all": "ott:block/overlays/gravel_overflow",
     "particle": "#all"
   },
   "connections": {
-    "type": "and",
+    "type": "or",
     "predicates": [
       {
-        "type": "match_block",
-        "block": "suspicious_gravel"
+        "type": "match_block_in_front",
+        "block": "minecraft:suspicious_gravel"
       },
       {
-        "type": "is_face_visible"
+        "type": "and",
+        "predicates": [
+          {
+            "type": "match_block",
+            "block": "minecraft:suspicious_gravel"
+          },
+          {
+            "type": "is_face_visible"
+          }
+        ]
       }
     ]
   },

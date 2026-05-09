@@ -74,6 +74,17 @@ public class OttOverlayProvider implements DataProvider {
             }
         }
 
+        // dyed_stone — all 33 colors, targets only minecraft:stone
+        List<String> dsTargets = List.of("minecraft:stone");
+        for (ModPatterns.ColorInfo color : ModPatterns.ALL_COLORS) {
+            String baseName = color.name() + "_dyed_stone";
+            writeModifier(cache, modifiersDir.resolve(baseName + "_overflow.json"),
+                    dsTargets, "ott:block/overlays/" + baseName + "_overlay");
+            writeModel(cache, modelsDir.resolve(baseName + "_overlay.json"),
+                    "ott:" + baseName,
+                    "ott:block/overlays/dyed_stone/" + color.name() + "_overflow");
+        }
+
         // concrete_powder — 17 custom colors only
         List<String> cpTargets = readTargets(modifiersDir.resolve("white_concrete_powder_overflow.json"));
         for (ModColorSets.ColorSet colorSet : ModColorSets.ALL) {
