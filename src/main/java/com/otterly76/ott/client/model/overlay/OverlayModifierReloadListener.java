@@ -24,12 +24,14 @@ import org.jetbrains.annotations.NotNull;
 import org.slf4j.Logger;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.TreeMap;
 
 /**
  * Loads terrain overlay modifier descriptors from
@@ -38,6 +40,11 @@ import java.util.Set;
  * <p>Scanning is done eagerly inside registerModels() using the current
  * ResourceManager so the data is always fresh when model events fire,
  * regardless of NeoForge reload-listener ordering.
+ *
+ * <p>Each modifier file may include an optional {@code "z_order"} integer
+ * (default 0).  Overlays are sorted by ascending z_order before being applied,
+ * so higher values render on top at shared corners.  Files with equal z_order
+ * maintain alphabetical order as a stable tiebreaker.
  */
 public class OverlayModifierReloadListener {
 
@@ -55,6 +62,9 @@ public class OverlayModifierReloadListener {
 
     private OverlayModifierReloadListener() {}
 
+    /** Associates an overlay model location with a z-ordering priority. */
+    private record ZOrderedOverlay(int zOrder, ResourceLocation loc) {}
+
     // ---- Model events -------------------------------------------------------
 
     /**
@@ -66,13 +76,14 @@ public class OverlayModifierReloadListener {
         ResourceManager rm = Minecraft.getInstance().getResourceManager();
 
         // Parse all modifier JSON files.
-        // LinkedHashMap preserves the insertion order from scanDirectory (alphabetical by path),
-        // giving deterministic overlay accumulation order and therefore stable corner Z-ordering.
-        Map<ResourceLocation, JsonElement> resources = new LinkedHashMap<>();
+        // TreeMap sorted by string key ensures alphabetical processing order regardless of the
+        // order scanDirectory returns files (NTFS / resource-manager ordering is not guaranteed).
+        // Within equal z_order values, alphabetical file order is the stable tiebreaker.
+        Map<ResourceLocation, JsonElement> resources = new TreeMap<>(Comparator.comparing(ResourceLocation::toString));
         SimpleJsonResourceReloadListener.scanDirectory(rm, PATH, GSON, resources);
 
-        Map<ResourceLocation, List<ResourceLocation>> plainParsed = new LinkedHashMap<>();
-        Map<TagKey<Block>, List<ResourceLocation>> tagParsed = new LinkedHashMap<>();
+        Map<ResourceLocation, List<ZOrderedOverlay>> plainParsed = new LinkedHashMap<>();
+        Map<TagKey<Block>, List<ZOrderedOverlay>> tagParsed = new LinkedHashMap<>();
         for (Map.Entry<ResourceLocation, JsonElement> entry : resources.entrySet()) {
             try {
                 parseEntry(entry.getValue(), plainParsed, tagParsed);
@@ -84,10 +95,10 @@ public class OverlayModifierReloadListener {
 
         // Expand plain block IDs and tag keys into block-state model locations
         modifiers.clear();
-        for (Map.Entry<ResourceLocation, List<ResourceLocation>> entry : plainParsed.entrySet()) {
+        for (Map.Entry<ResourceLocation, List<ZOrderedOverlay>> entry : plainParsed.entrySet()) {
             expandBlock(entry.getKey(), entry.getValue());
         }
-        for (Map.Entry<TagKey<Block>, List<ResourceLocation>> entry : tagParsed.entrySet()) {
+        for (Map.Entry<TagKey<Block>, List<ZOrderedOverlay>> entry : tagParsed.entrySet()) {
             var optTag = BuiltInRegistries.BLOCK.getTag(entry.getKey());
             if (optTag.isEmpty()) {
                 LOGGER.warn("[OTT] Overlay modifier tag '#{}' not found — tags may not be loaded yet",
@@ -140,38 +151,49 @@ public class OverlayModifierReloadListener {
 
     // ---- Helpers ------------------------------------------------------------
 
-    private void expandBlock(ResourceLocation blockId, List<ResourceLocation> overlays) {
+    private void expandBlock(ResourceLocation blockId, List<ZOrderedOverlay> overlays) {
         if (!BuiltInRegistries.BLOCK.containsKey(blockId)) {
             LOGGER.warn("[OTT] Overlay modifier target '{}' is not a registered block", blockId);
             return;
         }
         Block block = BuiltInRegistries.BLOCK.get(blockId);
         if (block == Blocks.AIR) return;
+
+        // Sort by z_order (ascending); alphabetical insertion order is the stable tiebreaker.
+        List<ResourceLocation> sorted = overlays.stream()
+                .sorted(Comparator.comparingInt(ZOrderedOverlay::zOrder))
+                .map(ZOrderedOverlay::loc)
+                .toList();
+
         block.getStateDefinition().getPossibleStates().stream()
                 .map(BlockModelShaper::stateToModelLocation)
-                .forEach(mrl -> modifiers.computeIfAbsent(mrl, k -> new ArrayList<>()).addAll(overlays));
+                .forEach(mrl -> modifiers.computeIfAbsent(mrl, k -> new ArrayList<>()).addAll(sorted));
     }
 
     // ---- JSON parsing -------------------------------------------------------
 
     private static void parseEntry(JsonElement element,
-                                   Map<ResourceLocation, List<ResourceLocation>> blockResult,
-                                   Map<TagKey<Block>, List<ResourceLocation>> tagResult) {
+                                   Map<ResourceLocation, List<ZOrderedOverlay>> blockResult,
+                                   Map<TagKey<Block>, List<ZOrderedOverlay>> tagResult) {
         if (!element.isJsonObject())
             throw new JsonParseException("Overlay modifier entry must be a JSON object");
         JsonObject json = element.getAsJsonObject();
 
+        // Optional z_order — determines rendering priority at shared corners.
+        // Higher value = rendered last = appears on top.  Default 0.
+        int zOrder = json.has("z_order") ? json.get("z_order").getAsInt() : 0;
+
         // Append
         if (!json.has("append") || !json.get("append").isJsonArray())
             throw new JsonParseException("Must have an 'append' array");
-        List<ResourceLocation> appendModels = new ArrayList<>();
+        List<ZOrderedOverlay> appendItems = new ArrayList<>();
         JsonArray appendArr = json.getAsJsonArray("append");
         for (JsonElement a : appendArr) {
             if (!a.isJsonPrimitive() || !a.getAsJsonPrimitive().isString())
                 throw new JsonParseException("Each append entry must be a string");
-            appendModels.add(ResourceLocation.parse(a.getAsString()));
+            appendItems.add(new ZOrderedOverlay(zOrder, ResourceLocation.parse(a.getAsString())));
         }
-        if (appendModels.isEmpty())
+        if (appendItems.isEmpty())
             throw new JsonParseException("'append' must not be empty");
 
         // Targets — plain block IDs or #tag references
@@ -186,10 +208,10 @@ public class OverlayModifierReloadListener {
                 String tagId = id.substring(1);
                 if (!tagId.contains(":")) tagId = "minecraft:" + tagId;
                 TagKey<Block> tagKey = TagKey.create(Registries.BLOCK, ResourceLocation.parse(tagId));
-                tagResult.computeIfAbsent(tagKey, k -> new ArrayList<>()).addAll(appendModels);
+                tagResult.computeIfAbsent(tagKey, k -> new ArrayList<>()).addAll(appendItems);
             } else {
                 if (!id.contains(":")) id = "minecraft:" + id;
-                blockResult.computeIfAbsent(ResourceLocation.parse(id), k -> new ArrayList<>()).addAll(appendModels);
+                blockResult.computeIfAbsent(ResourceLocation.parse(id), k -> new ArrayList<>()).addAll(appendItems);
             }
         }
     }

@@ -1,4 +1,5 @@
 {
+  "z_order": 27,
   "targets": [
     "minecraft:coal_ore",
     "minecraft:cobbled_deepslate",
