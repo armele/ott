@@ -2,7 +2,11 @@
   "targets": [
     "minecraft:coal_ore",
     "minecraft:cobblestone",
+    "minecraft:infested_cobblestone",
     "minecraft:mossy_cobblestone",
+    "minecraft:granite",
+    "minecraft:diorite",
+    "minecraft:andesite",
     "minecraft:copper_ore",
     "minecraft:diamond_ore",
     "minecraft:emerald_ore",

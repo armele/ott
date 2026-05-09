@@ -1,6 +1,7 @@
 {
   "targets": [
-    "minecraft:stone"
+    "minecraft:stone",
+    "minecraft:infested_stone"
   ],
   "append": [
     "ott:block/overlays/light_gray_dyed_stone_overlay"

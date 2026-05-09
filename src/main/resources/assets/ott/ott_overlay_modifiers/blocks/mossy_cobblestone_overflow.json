@@ -1,8 +1,8 @@
 {
   "targets": [
     "minecraft:coal_ore",
-    "minecraft:cobbled_deepslate",
     "minecraft:cobblestone",
+    "minecraft:infested_cobblestone",
     "minecraft:copper_ore",
     "minecraft:diamond_ore",
     "minecraft:emerald_ore",
@@ -11,6 +11,7 @@
     "minecraft:lapis_ore",
     "minecraft:redstone_ore",
     "minecraft:stone",
+    "minecraft:infested_stone",
     "ott:amethyst_dyed_stone",
     "ott:black_dyed_stone",
     "ott:blue_dyed_stone",
