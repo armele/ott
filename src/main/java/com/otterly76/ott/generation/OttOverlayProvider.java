@@ -26,7 +26,7 @@ import java.util.concurrent.CompletableFuture;
 /**
  * Generates overlay model JSONs and overlay modifier JSONs for pattern blocks:
  * <ul>
- *   <li>{@code {color}_dyed_stone} — all 33 colors, inherits stone targets
+ *   <li>{@code {color}_dyed_stone} — passive like stone; receives overlays but has no overflow of its own
  *   <li>{@code {color}_dyed_cobblestone} — all 33 colors, inherits cobblestone targets
  *   <li>{@code {color}_concrete_powder} — 17 custom colors, inherits white_concrete_powder targets
  * </ul>
