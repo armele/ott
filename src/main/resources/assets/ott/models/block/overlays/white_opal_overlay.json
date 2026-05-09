@@ -15,42 +15,6 @@
       {
         "type": "match_block_in_front",
         "block": "ott:white_opal_crystal_block"
-      },
-      {
-        "type": "match_block_in_front",
-        "block": "ott:white_opal_bricks"
-      },
-      {
-        "type": "match_block_in_front",
-        "block": "ott:small_white_opal_bricks"
-      },
-      {
-        "type": "match_block_in_front",
-        "block": "ott:polished_white_opal"
-      },
-      {
-        "type": "match_block_in_front",
-        "block": "ott:chiseled_white_opal"
-      },
-      {
-        "type": "match_block_in_front",
-        "block": "ott:white_opal_pillar"
-      },
-      {
-        "type": "match_block_in_front",
-        "block": "ott:cut_white_opal"
-      },
-      {
-        "type": "match_block_in_front",
-        "block": "ott:white_opal_tiles"
-      },
-      {
-        "type": "match_block_in_front",
-        "block": "ott:small_white_opal_tiles"
-      },
-      {
-        "type": "match_block_in_front",
-        "block": "ott:white_opal_tiling"
       }
     ]
   },

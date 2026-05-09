@@ -590,6 +590,8 @@ public class ClientModEvents {
                         blackOpalOverlay.getColor(state, level, pos, tint);
                 case com.otterly76.ott.client.model.overlay.OverlayBakedModel.FIRE_OPAL_OVERLAY_TINT  ->
                         fireOpalOverlay.getColor(state, level, pos, tint);
+                case com.otterly76.ott.client.model.overlay.OverlayBakedModel.GRASS_OVERLAY_TINT ->
+                        level != null && pos != null ? BiomeColors.getAverageGrassColor(level, pos) : GrassColor.getDefaultColor();
                 default -> -1;
             };
             // Register plain opal overlay handler for all solid target blocks that do NOT have a
@@ -625,6 +627,8 @@ public class ClientModEvents {
                         blackOpalOverlay.getColor(state, level, pos, tint);
                 case com.otterly76.ott.client.model.overlay.OverlayBakedModel.FIRE_OPAL_OVERLAY_TINT ->
                         fireOpalOverlay.getColor(state, level, pos, tint);
+                case com.otterly76.ott.client.model.overlay.OverlayBakedModel.GRASS_OVERLAY_TINT ->
+                        level != null && pos != null ? BiomeColors.getAverageGrassColor(level, pos) : GrassColor.getDefaultColor();
                 default -> level != null && pos != null
                         ? BiomeColors.getAverageGrassColor(level, pos)
                         : GrassColor.getDefaultColor();
@@ -635,20 +639,6 @@ public class ClientModEvents {
                 net.minecraft.world.level.block.Blocks.TALL_GRASS);
         }
 
-        // Grass overlay: return biome grass color for our dedicated tint index on target blocks
-        event.register(
-                (state, level, pos, tint) -> tint == com.otterly76.ott.client.model.overlay.OverlayBakedModel.GRASS_OVERLAY_TINT
-                        && level != null && pos != null
-                        ? BiomeColors.getAverageGrassColor(level, pos) : -1,
-                net.minecraft.world.level.block.Blocks.BLUE_ICE,
-                net.minecraft.world.level.block.Blocks.COARSE_DIRT,
-                net.minecraft.world.level.block.Blocks.DIRT,
-                net.minecraft.world.level.block.Blocks.GRAVEL,
-                net.minecraft.world.level.block.Blocks.ICE,
-                net.minecraft.world.level.block.Blocks.PACKED_ICE,
-                net.minecraft.world.level.block.Blocks.RED_SAND,
-                net.minecraft.world.level.block.Blocks.ROOTED_DIRT,
-                net.minecraft.world.level.block.Blocks.SAND);
     }
 
     public static void registerItemColors(RegisterColorHandlersEvent.Item event) {
