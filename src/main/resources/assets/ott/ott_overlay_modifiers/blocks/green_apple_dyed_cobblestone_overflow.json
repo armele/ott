@@ -1,12 +1,15 @@
 {
   "targets": [
     "minecraft:coal_ore",
+    "minecraft:cobbled_deepslate",
+    "minecraft:cobblestone",
     "minecraft:copper_ore",
     "minecraft:diamond_ore",
     "minecraft:emerald_ore",
     "minecraft:gold_ore",
     "minecraft:iron_ore",
     "minecraft:lapis_ore",
+    "minecraft:mossy_cobblestone",
     "minecraft:redstone_ore",
     "minecraft:stone",
     "ott:amethyst_dyed_stone",
