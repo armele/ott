@@ -179,9 +179,18 @@ public class OverlayModifierReloadListener {
             throw new JsonParseException("Overlay modifier entry must be a JSON object");
         JsonObject json = element.getAsJsonObject();
 
-        // Optional z_order — determines rendering priority at shared corners.
-        // Higher value = rendered last = appears on top.  Default 0.
-        int zOrder = json.has("z_order") ? json.get("z_order").getAsInt() : 0;
+        // Targets — plain block IDs or #tag references (parsed first so size is available for z_order default)
+        if (!json.has("targets") || !json.get("targets").isJsonArray())
+            throw new JsonParseException("Must have a 'targets' array");
+        JsonArray targetsArr = json.getAsJsonArray("targets");
+
+        // z_order — determines rendering priority at shared corners.
+        // Higher value = rendered last = appears on top.
+        // Default: number of targets in this file.  Files with more targets "dominate" files with
+        // fewer targets at corners, which naturally reflects the overlay targeting hierarchy
+        // (e.g. diorite targets granite, so diorite has more targets and wins at shared corners).
+        // Explicit "z_order" field overrides the automatic default when needed.
+        int zOrder = json.has("z_order") ? json.get("z_order").getAsInt() : targetsArr.size();
 
         // Append
         if (!json.has("append") || !json.get("append").isJsonArray())
@@ -196,10 +205,6 @@ public class OverlayModifierReloadListener {
         if (appendItems.isEmpty())
             throw new JsonParseException("'append' must not be empty");
 
-        // Targets — plain block IDs or #tag references
-        if (!json.has("targets") || !json.get("targets").isJsonArray())
-            throw new JsonParseException("Must have a 'targets' array");
-        JsonArray targetsArr = json.getAsJsonArray("targets");
         for (JsonElement t : targetsArr) {
             if (!t.isJsonPrimitive() || !t.getAsJsonPrimitive().isString())
                 throw new JsonParseException("Each target must be a string");

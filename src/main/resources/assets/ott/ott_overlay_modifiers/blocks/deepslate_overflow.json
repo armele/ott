@@ -1,6 +1,8 @@
 {
   "targets": [
     "minecraft:coal_ore",
+    "minecraft:cobblestone",
+    "minecraft:mossy_cobblestone",
     "minecraft:copper_ore",
     "minecraft:diamond_ore",
     "minecraft:emerald_ore",

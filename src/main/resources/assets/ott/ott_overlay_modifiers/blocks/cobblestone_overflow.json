@@ -1,7 +1,6 @@
 {
   "targets": [
     "minecraft:coal_ore",
-    "minecraft:cobbled_deepslate",
     "minecraft:copper_ore",
     "minecraft:diamond_ore",
     "minecraft:emerald_ore",

@@ -48,27 +48,6 @@ public class OttOverlayProvider implements DataProvider {
             new PatternConfig("dyed_cobblestone", "cobblestone_overflow", "dyed_cobblestone")
     );
 
-    /**
-     * Rendering priority for dyed_cobblestone overlays.
-     * Higher value = rendered on top at shared corners.
-     * Colors not listed default to 0 (below all dyed cobblestones).
-     */
-    private static final java.util.Map<String, Integer> DYED_COBBLESTONE_Z_ORDER;
-    static {
-        // Hierarchy order: white (highest/on top) → ... → black (lowest)
-        String[] hierarchy = {
-            "white","blush","pink","mimosa","magenta","amethyst","purple","indigo",
-            "blue","cornflower","light_blue","ocean","cyan","forest","green","green_apple",
-            "lime","key_lime","yellow","goldenrod","orange","paprika","red","sienna",
-            "brown","chocolate","mist","light_gray","boulder","gray","charcoal","navy","black"
-        };
-        java.util.Map<String, Integer> m = new java.util.HashMap<>();
-        for (int i = 0; i < hierarchy.length; i++) {
-            // white → 33, blush → 32, ... black → 1
-            m.put(hierarchy[i], hierarchy.length - i);
-        }
-        DYED_COBBLESTONE_Z_ORDER = java.util.Collections.unmodifiableMap(m);
-    }
 
     private final PackOutput packOutput;
 
@@ -88,11 +67,8 @@ public class OttOverlayProvider implements DataProvider {
             List<String> targets = readTargets(modifiersDir.resolve(cfg.baseModifier() + ".json"));
             for (ModPatterns.ColorInfo color : ModPatterns.ALL_COLORS) {
                 String baseName = color.name() + "_" + cfg.blockSuffix();
-                int zOrder = "dyed_cobblestone".equals(cfg.blockSuffix())
-                        ? DYED_COBBLESTONE_Z_ORDER.getOrDefault(color.name(), 0)
-                        : -1;
                 writeModifier(cache, modifiersDir.resolve(baseName + "_overflow.json"),
-                        targets, "ott:block/overlays/" + baseName + "_overlay", zOrder);
+                        targets, "ott:block/overlays/" + baseName + "_overlay");
                 writeModel(cache, modelsDir.resolve(baseName + "_overlay.json"),
                         "ott:" + baseName,
                         "ott:block/overlays/" + cfg.texSubdir() + "/" + color.name() + "_overflow");
@@ -168,13 +144,9 @@ public class OttOverlayProvider implements DataProvider {
     }
 
     private void writeModifier(CachedOutput cache, Path file, List<String> defaultTargets, String appendModel) {
-        writeModifier(cache, file, defaultTargets, appendModel, -1);
-    }
-
-    private void writeModifier(CachedOutput cache, Path file, List<String> defaultTargets, String appendModel, int defaultZOrder) {
         // Preserve manual edits — if the file already exists on disk, use its targets and z_order unchanged.
         List<String> targets = Files.exists(file) ? readTargets(file) : defaultTargets;
-        int zOrder = Files.exists(file) ? readZOrder(file) : defaultZOrder;
+        int zOrder = Files.exists(file) ? readZOrder(file) : -1;
 
         JsonArray targetsArr = new JsonArray();
         targets.forEach(targetsArr::add);
