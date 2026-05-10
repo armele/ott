@@ -13,7 +13,7 @@
 			"bones": [
 				{
 					"name": "bone",
-					"pivot": [8, 0, -8],
+					"pivot": [0, 11.06, 0],
 					"cubes": [
 						{
 							"origin": [-5, 0.1, -5],
@@ -43,53 +43,54 @@
 				},
 				{
 					"name": "caterpillar",
-					"pivot": [0, 2.5, -1.65]
+					"pivot": [0, 2.5, 4.35],
+					"rotation": [0, 180, 0]
 				},
 				{
 					"name": "body",
 					"parent": "caterpillar",
-					"pivot": [0, 2.5, -4.65]
+					"pivot": [0, 2.5, 4.35]
 				},
 				{
 					"name": "skull",
 					"parent": "body",
-					"pivot": [0, 2.5, -5.65],
+					"pivot": [0, 2.5, 3.35],
 					"cubes": [
-						{"origin": [-1.5, 3.625, -5.4], "size": [3, 3, 2], "inflate": 0.03, "pivot": [0, 3.625, 0.6], "rotation": [-25, 0, 0], "uv": [5, 38]}
+						{"origin": [-1.5, 3.625, 3.6], "size": [3, 3, 2], "inflate": 0.03, "pivot": [0, 3.625, 9.6], "rotation": [-25, 0, 0], "uv": [5, 38]}
 					],
 					"locators": {
-						"lead": [0, 3, -7.25]
+						"lead": [0, 3, 1.75]
 					}
 				},
 				{
 					"name": "antennae",
 					"parent": "skull",
-					"pivot": [0, 4, -7.65],
+					"pivot": [0, 4, 1.35],
 					"cubes": [
-						{"origin": [-1.5, 5.625, -7.4], "size": [3, 2, 3], "inflate": 0.03, "pivot": [0, 2.625, 1.6], "rotation": [-25, 0, 0], "uv": [4, 44]}
+						{"origin": [-1.5, 5.625, 1.6], "size": [3, 2, 3], "inflate": 0.03, "pivot": [0, 2.625, 10.6], "rotation": [-25, 0, 0], "uv": [4, 44]}
 					]
 				},
 				{
 					"name": "extended",
 					"parent": "body",
-					"pivot": [0, 2.5, -2.15]
+					"pivot": [0, 2.5, 6.85]
 				},
 				{
 					"name": "chest",
 					"parent": "extended",
-					"pivot": [0, 3.25, -0.65],
+					"pivot": [0, 3.25, 8.35],
 					"rotation": [-12.5, 0, 0],
 					"cubes": [
-						{"origin": [-1.5, 2.875, -5.65], "size": [3, 3, 5], "inflate": 0.02, "pivot": [0, 2.875, -1.65], "rotation": [-37.5, 0, 0], "uv": [2, 29]}
+						{"origin": [-1.5, 2.875, 3.35], "size": [3, 3, 5], "inflate": 0.02, "pivot": [0, 2.875, 7.35], "rotation": [-37.5, 0, 0], "uv": [2, 29]}
 					]
 				},
 				{
 					"name": "butt",
 					"parent": "extended",
-					"pivot": [0, 3.25, -0.65],
+					"pivot": [0, 3.25, 8.35],
 					"rotation": [-12.5, 0, 0],
 					"cubes": [
-						{"origin": [-1.5, 2.5, -0.9], "size": [3, 3, 5], "pivot": [0, 2.5, -1.9], "rotation": [-12.5, 0, 0], "uv": [2, 29]}
+						{"origin": [-1.5, 2.5, 8.1], "size": [3, 3, 5], "pivot": [0, 2.5, 7.1], "rotation": [-12.5, 0, 0], "uv": [2, 29]}
 					]
 				}
 			]

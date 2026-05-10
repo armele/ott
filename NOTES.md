@@ -1,18 +1,24 @@
 Notes:
 =====
+§
+
 create ice overlay textures and modifiers
 create prismarine bricks textures and modifiers
 create dark prismarine textures and modifiers
 create end stone textures and modifiers
 create glowstone textures and modifiers
+create shroomlight textures and modifiers
 create obsidian textures and modifiers
-create basalt (top) textures and modifiers
 create coral/dead coral textures and modifiers
 create planks (all) textures and modifiers
+create limestone textures and modifiers
+create cobbled limestone textures and modifiers
 
 create textures and modifiers for DO bricks
 
 add transition textures for custom blocks
+
+create multipart signs
 
 add new stuff to wandering merchant
 

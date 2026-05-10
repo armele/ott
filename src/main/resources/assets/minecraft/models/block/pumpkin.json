@@ -1,10 +1,12 @@
 {
+	"format_version": "1.9.0",
+	"credit": "Throttled by Otterly76",
 	"parent": "block/cube_column",
 	"textures": {
 		"2": "block/pumpkin_bottom",
 		"end": "block/pumpkin_top",
-		"side": "block/pumpkin_side",
-		"particle": "block/pumpkin_side"
+		"particle": "block/pumpkin_side",
+		"side": "block/pumpkin_side"
 	},
 	"elements": [
 		{

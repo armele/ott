@@ -101,14 +101,14 @@ public class ColorSetTextureProvider implements DataProvider {
 
         // Futon blocks — all 32 colors (masked: only fabric areas tinted)
         for (ModPatterns.ColorInfo color : ModPatterns.ALL_COLORS) {
-            processMaskedOttBlock(cache, mainPath.resolve("textures/block/color_set"), color.name(), color.color(), "base/futon", "futon/color_mask", "futon", 1.0f, 0.0f);
+            processMaskedOttBlock(cache, mainPath.resolve("textures/block/color_set"), color.name(), color.color(), "base/futon", "futon/color_mask", "futon");
         }
 
         // Pattern overlay textures — dyed_stone and dyed_cobblestone (all 33 colors)
         java.nio.file.Path overlaysPath = mainPath.resolve("textures/block/overlays");
         for (ModPatterns.ColorInfo color : ModPatterns.ALL_COLORS) {
-            processOttOverlay(cache, overlaysPath, color.name(), color.color(), "stone_overflow",       "dyed_stone");
-            processOttOverlay(cache, overlaysPath, color.name(), color.color(), "cobblestone_overflow", "dyed_cobblestone");
+            processOttOverlay(cache, overlaysPath, color.name(), color.color(), "dyed_stone_overflow_base",       "dyed_stone");
+            processOttOverlay(cache, overlaysPath, color.name(), color.color(), "dyed_cobblestone_overflow_base", "dyed_cobblestone");
         }
         // Pattern overlay textures — concrete_powder (17 custom colors only; vanilla handled by static modifiers)
         for (ModColorSets.ColorSet colorSet : ModColorSets.ALL) {
@@ -149,7 +149,7 @@ public class ColorSetTextureProvider implements DataProvider {
     }
 
     @SuppressWarnings("SameParameterValue")
-    private void processMaskedOttBlock(CachedOutput cache, java.nio.file.Path folder, String colorName, int colorInt, String ottSourcePath, String ottMaskPath, String targetSubdir, float saturationFactor, float brightnessOffset) {
+    private void processMaskedOttBlock(CachedOutput cache, java.nio.file.Path folder, String colorName, int colorInt, String ottSourcePath, String ottMaskPath, String targetSubdir) {
         try {
             ResourceLocation baseLoc = ResourceLocation.fromNamespaceAndPath("ott", "textures/block/" + ottSourcePath + ".png");
             Resource baseResource = existingFileHelper.getResource(baseLoc, PackType.CLIENT_RESOURCES);
@@ -168,7 +168,7 @@ public class ColorSetTextureProvider implements DataProvider {
                 base = upscaled;
             }
 
-            BufferedImage result = applyMaskedTint(base, mask, colorInt, saturationFactor, brightnessOffset);
+            BufferedImage result = applyMaskedDirectTint(base, mask, colorInt);
             saveTexture(cache, folder.resolve(colorName).resolve(targetSubdir + ".png"), result);
         } catch (IOException e) {
             throw new RuntimeException("Failed to process masked ott block texture: " + ottSourcePath, e);
@@ -387,11 +387,62 @@ public class ColorSetTextureProvider implements DataProvider {
                 g.drawImage(raw, 0, 0, null);
                 g.dispose();
             }
-            BufferedImage tinted = applyTint(base, colorInt, 1.0f, 0.0f);
+            BufferedImage tinted = applyDirectTint(base, colorInt);
             saveTexture(cache, overlaysFolder.resolve(patternDir).resolve(colorName + "_overflow.png"), tinted);
         } catch (IOException e) {
             throw new RuntimeException("Failed to process overlay texture: " + sourceOverflow, e);
         }
+    }
+
+    /** Multiply-blend each pixel's RGB channels by the tint colour (same as GL_MODULATE). */
+    private static BufferedImage applyDirectTint(BufferedImage base, int tintColor) {
+        float tR = ((tintColor >> 16) & 0xFF) / 255.0f;
+        float tG = ((tintColor >> 8) & 0xFF) / 255.0f;
+        float tB = (tintColor & 0xFF) / 255.0f;
+        int width = base.getWidth(), height = base.getHeight();
+        BufferedImage result = new BufferedImage(width, height, BufferedImage.TYPE_INT_ARGB);
+        for (int x = 0; x < width; x++) {
+            for (int y = 0; y < height; y++) {
+                int px = base.getRGB(x, y);
+                int a = (px >> 24) & 0xFF;
+                if (a == 0) { result.setRGB(x, y, 0); continue; }
+                int r = Math.round(((px >> 16) & 0xFF) * tR);
+                int g = Math.round(((px >> 8) & 0xFF) * tG);
+                int b = Math.round((px & 0xFF) * tB);
+                result.setRGB(x, y, (a << 24) | (r << 16) | (g << 8) | b);
+            }
+        }
+        return result;
+    }
+
+    /** Like applyDirectTint but only affects pixels covered by the mask; unmasked pixels are copied unchanged. */
+    private static BufferedImage applyMaskedDirectTint(BufferedImage base, BufferedImage mask, int tintColor) {
+        float tR = ((tintColor >> 16) & 0xFF) / 255.0f;
+        float tG = ((tintColor >> 8) & 0xFF) / 255.0f;
+        float tB = (tintColor & 0xFF) / 255.0f;
+        int width = base.getWidth(), height = base.getHeight();
+        BufferedImage result = new BufferedImage(width, height, BufferedImage.TYPE_INT_ARGB);
+        for (int x = 0; x < width; x++) {
+            for (int y = 0; y < height; y++) {
+                int px = base.getRGB(x, y);
+                int maskAlpha = (mask.getRGB(x, y) >> 24) & 0xFF;
+                if (maskAlpha == 0) { result.setRGB(x, y, px); continue; }
+                int a = (px >> 24) & 0xFF;
+                int r = Math.round(((px >> 16) & 0xFF) * tR);
+                int g = Math.round(((px >> 8) & 0xFF) * tG);
+                int b = Math.round((px & 0xFF) * tB);
+                if (maskAlpha == 255) {
+                    result.setRGB(x, y, (a << 24) | (r << 16) | (g << 8) | b);
+                } else {
+                    float alpha = maskAlpha / 255.0f;
+                    int blendR = Math.round(r * alpha + ((px >> 16) & 0xFF) * (1 - alpha));
+                    int blendG = Math.round(g * alpha + ((px >> 8) & 0xFF) * (1 - alpha));
+                    int blendB = Math.round(b * alpha + (px & 0xFF) * (1 - alpha));
+                    result.setRGB(x, y, (a << 24) | (blendR << 16) | (blendG << 8) | blendB);
+                }
+            }
+        }
+        return result;
     }
 
     private void saveTexture(CachedOutput cache, java.nio.file.Path file, BufferedImage image) throws IOException {

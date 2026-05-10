@@ -4,6 +4,7 @@ import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import com.mojang.math.Axis;
 import com.otterly76.ott.block.entity.ElevatorBlockEntity;
+import net.minecraft.client.renderer.LightTexture;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.blockentity.BlockEntityRenderer;
@@ -37,14 +38,15 @@ public class ElevatorArrowRenderer implements BlockEntityRenderer<ElevatorBlockE
         pose.mulPose(Axis.YP.rotationDegrees(-(facing.toYRot() - 90f)));
         pose.translate(-0.5, 0.0, -0.5);
 
-        VertexConsumer vc = buffer.getBuffer(RenderType.entityCutoutNoCull(ARROW_TEXTURE));
+        VertexConsumer vc = buffer.getBuffer(RenderType.entityTranslucentCull(ARROW_TEXTURE));
         PoseStack.Pose last = pose.last();
 
         // Top-face quad: x∈[0,1], z∈[0,1], y=0 (already at top face height)
-        vc.addVertex(last, 0f, 0f, 0f).setColor(255, 255, 255, 255).setUv(0f, 0f).setOverlay(packedOverlay).setLight(packedLight).setNormal(last, 0f, 1f, 0f);
-        vc.addVertex(last, 0f, 0f, 1f).setColor(255, 255, 255, 255).setUv(0f, 1f).setOverlay(packedOverlay).setLight(packedLight).setNormal(last, 0f, 1f, 0f);
-        vc.addVertex(last, 1f, 0f, 1f).setColor(255, 255, 255, 255).setUv(1f, 1f).setOverlay(packedOverlay).setLight(packedLight).setNormal(last, 0f, 1f, 0f);
-        vc.addVertex(last, 1f, 0f, 0f).setColor(255, 255, 255, 255).setUv(1f, 0f).setOverlay(packedOverlay).setLight(packedLight).setNormal(last, 0f, 1f, 0f);
+        // Full-bright so the arrow is unaffected by scene lighting.
+        vc.addVertex(last, 0f, 0f, 0f).setColor(255, 255, 255, 255).setUv(0f, 0f).setOverlay(packedOverlay).setLight(LightTexture.FULL_BRIGHT).setNormal(last, 0f, 1f, 0f);
+        vc.addVertex(last, 0f, 0f, 1f).setColor(255, 255, 255, 255).setUv(0f, 1f).setOverlay(packedOverlay).setLight(LightTexture.FULL_BRIGHT).setNormal(last, 0f, 1f, 0f);
+        vc.addVertex(last, 1f, 0f, 1f).setColor(255, 255, 255, 255).setUv(1f, 1f).setOverlay(packedOverlay).setLight(LightTexture.FULL_BRIGHT).setNormal(last, 0f, 1f, 0f);
+        vc.addVertex(last, 1f, 0f, 0f).setColor(255, 255, 255, 255).setUv(1f, 0f).setOverlay(packedOverlay).setLight(LightTexture.FULL_BRIGHT).setNormal(last, 0f, 1f, 0f);
 
         pose.popPose();
     }
