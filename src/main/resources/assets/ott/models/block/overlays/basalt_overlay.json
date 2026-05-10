@@ -1,7 +1,7 @@
 {
   "loader": "ott:overlay",
   "textures": {
-    "all": "ott:block/overlays/orange_concrete_powder_overflow",
+    "all": "ott:block/overlays/basalt_overflow",
     "particle": "#all"
   },
   "connections": {
@@ -9,7 +9,7 @@
     "predicates": [
       {
         "type": "match_block",
-        "block": "ott:orange_yellow_concrete_powder"
+        "block": "basalt"
       },
       {
         "type": "is_face_visible"

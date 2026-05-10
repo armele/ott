@@ -129,7 +129,7 @@
     "minecraft:granite": [
       "ott:block/overlays/granite_overlay"
     ],
-    "minecraft:grass": [
+    "minecraft:grass_block": [
       "ott:block/overlays/grass_overlay"
     ],
     "minecraft:gravel": [
