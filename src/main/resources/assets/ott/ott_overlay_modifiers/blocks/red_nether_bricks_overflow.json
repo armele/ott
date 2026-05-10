@@ -1,6 +1,0 @@
-{
-  "targets": [],
-  "append": [
-    "ott:block/overlays/red_nether_bricks_overlay"
-  ]
-}

@@ -9,7 +9,7 @@
     "predicates": [
       {
         "type": "match_block",
-        "block": "ott:black_blue_concrete_powder"
+        "block": "minecraft:black_blue_concrete_powder"
       },
       {
         "type": "is_face_visible"

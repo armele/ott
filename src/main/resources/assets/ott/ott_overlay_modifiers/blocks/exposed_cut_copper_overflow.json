@@ -1,6 +1,0 @@
-{
-  "targets": [],
-  "append": [
-    "ott:block/overlays/exposed_cut_copper_overlay"
-  ]
-}

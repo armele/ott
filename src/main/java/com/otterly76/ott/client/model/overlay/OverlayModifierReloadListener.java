@@ -2,122 +2,121 @@ package com.otterly76.ott.client.model.overlay;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
-import com.google.gson.JsonParseException;
 import com.mojang.logging.LogUtils;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.block.BlockModelShaper;
 import net.minecraft.client.resources.model.BakedModel;
 import net.minecraft.client.resources.model.ModelResourceLocation;
 import net.minecraft.core.registries.BuiltInRegistries;
-import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.server.packs.resources.Resource;
 import net.minecraft.server.packs.resources.ResourceManager;
-import net.minecraft.server.packs.resources.SimpleJsonResourceReloadListener;
-import net.minecraft.tags.TagKey;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.neoforged.neoforge.client.event.ModelEvent;
 import org.jetbrains.annotations.NotNull;
 import org.slf4j.Logger;
 
+import java.io.Reader;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.HashMap;
 import java.util.HashSet;
-import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 import java.util.Set;
 import java.util.TreeMap;
 
 /**
- * Loads terrain overlay modifier descriptors from
- * {@code assets/<namespace>/ott_overlay_modifiers/blocks/}.
+ * Loads terrain overlay modifier descriptors from two config files:
+ * <ul>
+ *   <li>{@code assets/ott/ott_overlay_modifiers/tier_config.json} —
+ *       maps every block ID to an integer tier.  Higher tier = renders on top.</li>
+ *   <li>{@code assets/ott/ott_overlay_modifiers/overlay_config.json} —
+ *       maps block IDs that <em>have</em> an overlay to their overlay model location(s).</li>
+ * </ul>
  *
- * <p>Scanning is done eagerly inside registerModels() using the current
- * ResourceManager so the data is always fresh when model events fire,
- * regardless of NeoForge reload-listener ordering.
- *
- * <p>Each modifier file may include an optional {@code "z_order"} integer
- * (default 0).  Overlays are sorted by ascending z_order before being applied,
- * so higher values render on top at shared corners.  Files with equal z_order
- * maintain alphabetical order as a stable tiebreaker.
+ * <p>A block at tier T has its overlay applied to every block whose tier is
+ * strictly less than T.  Blocks at the same tier never overlay each other.
+ * Rendering order at shared corners is determined by ascending tier (lower tier
+ * renders first = bottom layer; higher tier renders last = top layer).
  */
 public class OverlayModifierReloadListener {
 
     private static final Logger LOGGER = LogUtils.getLogger();
     private static final Gson   GSON   = new GsonBuilder().setLenient().create();
-    private static final String PATH   = "ott_overlay_modifiers/blocks";
+
+    private static final ResourceLocation TIER_CONFIG    =
+            ResourceLocation.fromNamespaceAndPath("ott", "ott_overlay_modifiers/tier_config.json");
+    private static final ResourceLocation OVERLAY_CONFIG =
+            ResourceLocation.fromNamespaceAndPath("ott", "ott_overlay_modifiers/overlay_config.json");
 
     public static final OverlayModifierReloadListener INSTANCE = new OverlayModifierReloadListener();
 
     /**
-     * Maps each target block-state model location to the list of overlay model
-     * locations that should be appended to it.  Populated in registerModels().
+     * Maps each target block-state model location to the ordered list of overlay
+     * model locations that should be appended to it.  Populated in registerModels().
      */
     private final Map<ModelResourceLocation, List<ResourceLocation>> modifiers = new HashMap<>();
 
     private OverlayModifierReloadListener() {}
 
-    /** Associates an overlay model location with a z-ordering priority. */
-    private record ZOrderedOverlay(int zOrder, ResourceLocation loc) {}
-
-    // ---- Model events -------------------------------------------------------
+    // ── Model events ──────────────────────────────────────────────────────────
 
     /**
-     * Scans modifier JSONs from the current resource manager, populates the
-     * modifiers map, then registers all referenced overlay models as standalone
-     * models.  Call from ModelEvent.RegisterAdditional.
+     * Loads the two config files, derives target lists from tier comparisons,
+     * then registers all referenced overlay models as standalone models.
+     * Call from ModelEvent.RegisterAdditional.
      */
     public void registerModels(@NotNull ModelEvent.RegisterAdditional event) {
         ResourceManager rm = Minecraft.getInstance().getResourceManager();
 
-        // Parse all modifier JSON files.
-        // TreeMap sorted by string key ensures alphabetical processing order regardless of the
-        // order scanDirectory returns files (NTFS / resource-manager ordering is not guaranteed).
-        // Within equal z_order values, alphabetical file order is the stable tiebreaker.
-        Map<ResourceLocation, JsonElement> resources = new TreeMap<>(Comparator.comparing(ResourceLocation::toString));
-        SimpleJsonResourceReloadListener.scanDirectory(rm, PATH, GSON, resources);
+        // 1. Load tier_config.json  →  blockId → tier
+        Map<ResourceLocation, Integer> blockTiers = loadTierConfig(rm);
+        if (blockTiers.isEmpty()) return;
 
-        Map<ResourceLocation, List<ZOrderedOverlay>> plainParsed = new LinkedHashMap<>();
-        Map<TagKey<Block>, List<ZOrderedOverlay>> tagParsed = new LinkedHashMap<>();
-        for (Map.Entry<ResourceLocation, JsonElement> entry : resources.entrySet()) {
-            try {
-                parseEntry(entry.getValue(), plainParsed, tagParsed);
-            } catch (JsonParseException e) {
-                LOGGER.warn("[OTT] Failed to parse overlay modifier '{}': {}",
-                        entry.getKey(), e.getMessage());
-            }
+        // 2. Group blocks by tier (sorted ascending)
+        Map<Integer, List<ResourceLocation>> tierToBlocks = new TreeMap<>();
+        for (Map.Entry<ResourceLocation, Integer> e : blockTiers.entrySet()) {
+            tierToBlocks.computeIfAbsent(e.getValue(), k -> new ArrayList<>()).add(e.getKey());
         }
 
-        // Expand plain block IDs and tag keys into block-state model locations
+        // 3. Load overlay_config.json  →  blockId → overlay model locations
+        Map<ResourceLocation, List<ResourceLocation>> overlayConfig = loadOverlayConfig(rm);
+        if (overlayConfig.isEmpty()) return;
+
+        // 4. Sort overlay entries by ascending tier so lower-tier overlays render first (bottom layer)
+        List<Map.Entry<ResourceLocation, List<ResourceLocation>>> sortedOverlays =
+                new ArrayList<>(overlayConfig.entrySet());
+        sortedOverlays.sort(Comparator.comparingInt(e -> blockTiers.getOrDefault(e.getKey(), 0)));
+
+        // 5. Build modifiers map
         modifiers.clear();
-        for (Map.Entry<ResourceLocation, List<ZOrderedOverlay>> entry : plainParsed.entrySet()) {
-            expandBlock(entry.getKey(), entry.getValue());
-        }
-        for (Map.Entry<TagKey<Block>, List<ZOrderedOverlay>> entry : tagParsed.entrySet()) {
-            var optTag = BuiltInRegistries.BLOCK.getTag(entry.getKey());
-            if (optTag.isEmpty()) {
-                LOGGER.warn("[OTT] Overlay modifier tag '#{}' not found — tags may not be loaded yet",
-                        entry.getKey().location());
-                continue;
-            }
-            for (var holder : optTag.get()) {
-                ResourceLocation blockId = BuiltInRegistries.BLOCK.getKey(holder.value());
-                expandBlock(blockId, entry.getValue());
+        for (Map.Entry<ResourceLocation, List<ResourceLocation>> entry : sortedOverlays) {
+            ResourceLocation blockId     = entry.getKey();
+            List<ResourceLocation> models = entry.getValue();
+            int tier = blockTiers.getOrDefault(blockId, 0);
+
+            // Targets = all blocks with tier strictly less than this block's tier
+            for (Map.Entry<Integer, List<ResourceLocation>> tierEntry : tierToBlocks.entrySet()) {
+                if (tierEntry.getKey() < tier) {
+                    for (ResourceLocation targetId : tierEntry.getValue()) {
+                        expandBlock(targetId, models, tier);
+                    }
+                }
             }
         }
         LOGGER.debug("[OTT] Overlay modifiers loaded for {} block-state entries", modifiers.size());
 
-        // Register every distinct overlay model location so the baking system picks it up
-        Set<ResourceLocation> models = new HashSet<>();
+        // 6. Register every distinct overlay model so the baking system picks it up
+        Set<ResourceLocation> allModels = new HashSet<>();
         for (List<ResourceLocation> overlays : modifiers.values()) {
-            models.addAll(overlays);
+            allModels.addAll(overlays);
         }
-        for (ResourceLocation loc : models) {
+        for (ResourceLocation loc : allModels) {
             event.register(ModelResourceLocation.standalone(loc));
         }
     }
@@ -130,8 +129,8 @@ public class OverlayModifierReloadListener {
         Map<ModelResourceLocation, BakedModel> models = event.getModels();
 
         for (Map.Entry<ModelResourceLocation, List<ResourceLocation>> entry : modifiers.entrySet()) {
-            ModelResourceLocation target = entry.getKey();
-            BakedModel original = models.get(target);
+            ModelResourceLocation target   = entry.getKey();
+            BakedModel            original = models.get(target);
             if (original == null) continue;
 
             List<BakedModel> overlayModels = new ArrayList<>();
@@ -149,75 +148,76 @@ public class OverlayModifierReloadListener {
         }
     }
 
-    // ---- Helpers ------------------------------------------------------------
+    // ── Helpers ───────────────────────────────────────────────────────────────
 
-    private void expandBlock(ResourceLocation blockId, List<ZOrderedOverlay> overlays) {
+    /** Expands all block states for {@code blockId} and appends the overlay models. */
+    private void expandBlock(ResourceLocation blockId,
+                             List<ResourceLocation> overlayModels,
+                             int zOrder) {
         if (!BuiltInRegistries.BLOCK.containsKey(blockId)) {
-            LOGGER.warn("[OTT] Overlay modifier target '{}' is not a registered block", blockId);
+            LOGGER.warn("[OTT] Overlay target '{}' is not a registered block — add it to tier_config.json?", blockId);
             return;
         }
         Block block = BuiltInRegistries.BLOCK.get(blockId);
         if (block == Blocks.AIR) return;
 
-        // Sort by z_order (ascending); alphabetical insertion order is the stable tiebreaker.
-        List<ResourceLocation> sorted = overlays.stream()
-                .sorted(Comparator.comparingInt(ZOrderedOverlay::zOrder))
-                .map(ZOrderedOverlay::loc)
-                .toList();
-
         block.getStateDefinition().getPossibleStates().stream()
                 .map(BlockModelShaper::stateToModelLocation)
-                .forEach(mrl -> modifiers.computeIfAbsent(mrl, k -> new ArrayList<>()).addAll(sorted));
+                .forEach(mrl -> modifiers.computeIfAbsent(mrl, k -> new ArrayList<>())
+                        .addAll(overlayModels));
     }
 
-    // ---- JSON parsing -------------------------------------------------------
+    // ── Config file loaders ───────────────────────────────────────────────────
 
-    private static void parseEntry(JsonElement element,
-                                   Map<ResourceLocation, List<ZOrderedOverlay>> blockResult,
-                                   Map<TagKey<Block>, List<ZOrderedOverlay>> tagResult) {
-        if (!element.isJsonObject())
-            throw new JsonParseException("Overlay modifier entry must be a JSON object");
-        JsonObject json = element.getAsJsonObject();
-
-        // Targets — plain block IDs or #tag references (parsed first so size is available for z_order default)
-        if (!json.has("targets") || !json.get("targets").isJsonArray())
-            throw new JsonParseException("Must have a 'targets' array");
-        JsonArray targetsArr = json.getAsJsonArray("targets");
-
-        // z_order — determines rendering priority at shared corners.
-        // Higher value = rendered last = appears on top.
-        // Default: number of targets in this file.  Files with more targets "dominate" files with
-        // fewer targets at corners, which naturally reflects the overlay targeting hierarchy
-        // (e.g. diorite targets granite, so diorite has more targets and wins at shared corners).
-        // Explicit "z_order" field overrides the automatic default when needed.
-        int zOrder = json.has("z_order") ? json.get("z_order").getAsInt() : targetsArr.size();
-
-        // Append
-        if (!json.has("append") || !json.get("append").isJsonArray())
-            throw new JsonParseException("Must have an 'append' array");
-        List<ZOrderedOverlay> appendItems = new ArrayList<>();
-        JsonArray appendArr = json.getAsJsonArray("append");
-        for (JsonElement a : appendArr) {
-            if (!a.isJsonPrimitive() || !a.getAsJsonPrimitive().isString())
-                throw new JsonParseException("Each append entry must be a string");
-            appendItems.add(new ZOrderedOverlay(zOrder, ResourceLocation.parse(a.getAsString())));
+    private Map<ResourceLocation, Integer> loadTierConfig(ResourceManager rm) {
+        Optional<Resource> opt = rm.getResource(TIER_CONFIG);
+        if (opt.isEmpty()) {
+            LOGGER.error("[OTT] tier_config.json not found at {}", TIER_CONFIG);
+            return Map.of();
         }
-        if (appendItems.isEmpty())
-            throw new JsonParseException("'append' must not be empty");
-
-        for (JsonElement t : targetsArr) {
-            if (!t.isJsonPrimitive() || !t.getAsJsonPrimitive().isString())
-                throw new JsonParseException("Each target must be a string");
-            String id = t.getAsString();
-            if (id.startsWith("#")) {
-                String tagId = id.substring(1);
-                if (!tagId.contains(":")) tagId = "minecraft:" + tagId;
-                TagKey<Block> tagKey = TagKey.create(Registries.BLOCK, ResourceLocation.parse(tagId));
-                tagResult.computeIfAbsent(tagKey, k -> new ArrayList<>()).addAll(appendItems);
-            } else {
-                if (!id.contains(":")) id = "minecraft:" + id;
-                blockResult.computeIfAbsent(ResourceLocation.parse(id), k -> new ArrayList<>()).addAll(appendItems);
+        try (Reader reader = opt.get().openAsReader()) {
+            JsonObject json   = GSON.fromJson(reader, JsonObject.class);
+            JsonObject tiers  = json.getAsJsonObject("tiers");
+            Map<ResourceLocation, Integer> result = new HashMap<>();
+            for (Map.Entry<String, JsonElement> e : tiers.entrySet()) {
+                result.put(ResourceLocation.parse(e.getKey()), e.getValue().getAsInt());
             }
+            LOGGER.debug("[OTT] tier_config.json loaded: {} blocks", result.size());
+            return result;
+        } catch (Exception e) {
+            LOGGER.error("[OTT] Failed to load tier_config.json: {}", e.getMessage());
+            return Map.of();
+        }
+    }
+
+    private Map<ResourceLocation, List<ResourceLocation>> loadOverlayConfig(ResourceManager rm) {
+        Optional<Resource> opt = rm.getResource(OVERLAY_CONFIG);
+        if (opt.isEmpty()) {
+            LOGGER.error("[OTT] overlay_config.json not found at {}", OVERLAY_CONFIG);
+            return Map.of();
+        }
+        try (Reader reader = opt.get().openAsReader()) {
+            JsonObject json     = GSON.fromJson(reader, JsonObject.class);
+            JsonObject overlays = json.getAsJsonObject("overlays");
+            Map<ResourceLocation, List<ResourceLocation>> result = new HashMap<>();
+            for (Map.Entry<String, JsonElement> e : overlays.entrySet()) {
+                List<ResourceLocation> models = new ArrayList<>();
+                if (e.getValue().isJsonArray()) {
+                    for (JsonElement el : e.getValue().getAsJsonArray()) {
+                        if (el.isJsonPrimitive()) {
+                            models.add(ResourceLocation.parse(el.getAsString()));
+                        }
+                    }
+                }
+                if (!models.isEmpty()) {
+                    result.put(ResourceLocation.parse(e.getKey()), models);
+                }
+            }
+            LOGGER.debug("[OTT] overlay_config.json loaded: {} overlay entries", result.size());
+            return result;
+        } catch (Exception e) {
+            LOGGER.error("[OTT] Failed to load overlay_config.json: {}", e.getMessage());
+            return Map.of();
         }
     }
 }

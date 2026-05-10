@@ -1,0 +1,1318 @@
+{
+  "overlays": {
+    "minecraft:amethyst_block": [
+      "ott:block/overlays/amethyst_block_overlay"
+    ],
+    "minecraft:andesite": [
+      "ott:block/overlays/andesite_overlay"
+    ],
+    "minecraft:basalt": [
+      "ott:block/overlays/basalt_overlay"
+    ],
+    "minecraft:black_concrete_powder": [
+      "ott:block/overlays/black_concrete_powder_overlay"
+    ],
+    "minecraft:blackstone": [
+      "ott:block/overlays/blackstone_overlay"
+    ],
+    "minecraft:blue_concrete_powder": [
+      "ott:block/overlays/blue_concrete_powder_overlay"
+    ],
+    "minecraft:bricks": [
+      "ott:block/overlays/bricks_overlay"
+    ],
+    "minecraft:brown_concrete_powder": [
+      "ott:block/overlays/brown_concrete_powder_overlay"
+    ],
+    "minecraft:budding_amethyst": [
+      "ott:block/overlays/budding_amethyst_overlay"
+    ],
+    "minecraft:calcite": [
+      "ott:block/overlays/calcite_overlay"
+    ],
+    "minecraft:chiseled_nether_bricks": [
+      "ott:block/overlays/chiseled_nether_bricks_overlay"
+    ],
+    "minecraft:chiseled_resin_bricks": [
+      "ott:block/overlays/chiseled_resin_bricks_overlay"
+    ],
+    "minecraft:clay": [
+      "ott:block/overlays/clay_overlay"
+    ],
+    "minecraft:coarse_dirt": [
+      "ott:block/overlays/coarse_dirt_overlay"
+    ],
+    "minecraft:cobbled_deepslate": [
+      "ott:block/overlays/cobbled_deepslate_overlay"
+    ],
+    "minecraft:cobblestone": [
+      "ott:block/overlays/cobblestone_overlay"
+    ],
+    "minecraft:cracked_deepslate_bricks": [
+      "ott:block/overlays/cracked_deepslate_bricks_overlay"
+    ],
+    "minecraft:cracked_deepslate_tiles": [
+      "ott:block/overlays/cracked_deepslate_tiles_overlay"
+    ],
+    "minecraft:cracked_nether_bricks": [
+      "ott:block/overlays/cracked_nether_bricks_overlay"
+    ],
+    "minecraft:cracked_polished_blackstone_bricks": [
+      "ott:block/overlays/cracked_polished_blackstone_bricks_overlay"
+    ],
+    "minecraft:cracked_stone_bricks": [
+      "ott:block/overlays/cracked_stone_bricks_overlay"
+    ],
+    "minecraft:crimson_nylium": [
+      "ott:block/overlays/crimson_nylium_overlay"
+    ],
+    "minecraft:crying_obsidian": [
+      "ott:block/overlays/crying_obsidian_overlay"
+    ],
+    "minecraft:cut_copper": [
+      "ott:block/overlays/cut_copper_overlay"
+    ],
+    "minecraft:cyan_concrete_powder": [
+      "ott:block/overlays/cyan_concrete_powder_overlay"
+    ],
+    "minecraft:deepslate": [
+      "ott:block/overlays/deepslate_overlay"
+    ],
+    "minecraft:deepslate_bricks": [
+      "ott:block/overlays/deepslate_bricks_overlay"
+    ],
+    "minecraft:deepslate_coal_ore": [
+      "ott:block/overlays/deepslate_coal_ore_overlay"
+    ],
+    "minecraft:deepslate_copper_ore": [
+      "ott:block/overlays/deepslate_copper_ore_overlay"
+    ],
+    "minecraft:deepslate_diamond_ore": [
+      "ott:block/overlays/deepslate_diamond_ore_overlay"
+    ],
+    "minecraft:deepslate_emerald_ore": [
+      "ott:block/overlays/deepslate_emerald_ore_overlay"
+    ],
+    "minecraft:deepslate_gold_ore": [
+      "ott:block/overlays/deepslate_gold_ore_overlay"
+    ],
+    "minecraft:deepslate_iron_ore": [
+      "ott:block/overlays/deepslate_iron_ore_overlay"
+    ],
+    "minecraft:deepslate_lapis_ore": [
+      "ott:block/overlays/deepslate_lapis_ore_overlay"
+    ],
+    "minecraft:deepslate_redstone_ore": [
+      "ott:block/overlays/deepslate_redstone_ore_overlay"
+    ],
+    "minecraft:deepslate_tiles": [
+      "ott:block/overlays/deepslate_tiles_overlay"
+    ],
+    "minecraft:diorite": [
+      "ott:block/overlays/diorite_overlay"
+    ],
+    "minecraft:dirt": [
+      "ott:block/overlays/dirt_overlay"
+    ],
+    "minecraft:dripstone_block": [
+      "ott:block/overlays/dripstone_block_overlay"
+    ],
+    "minecraft:end_stone_bricks": [
+      "ott:block/overlays/end_stone_bricks_overlay"
+    ],
+    "minecraft:exposed_cut_copper": [
+      "ott:block/overlays/exposed_cut_copper_overlay"
+    ],
+    "minecraft:gilded_blackstone": [
+      "ott:block/overlays/gilded_blackstone_overlay"
+    ],
+    "minecraft:granite": [
+      "ott:block/overlays/granite_overlay"
+    ],
+    "minecraft:grass": [
+      "ott:block/overlays/grass_overlay"
+    ],
+    "minecraft:gravel": [
+      "ott:block/overlays/gravel_overlay"
+    ],
+    "minecraft:gray_concrete_powder": [
+      "ott:block/overlays/gray_concrete_powder_overlay"
+    ],
+    "minecraft:green_concrete_powder": [
+      "ott:block/overlays/green_concrete_powder_overlay"
+    ],
+    "minecraft:infested_cobblestone": [
+      "ott:block/overlays/infested_cobblestone_overlay"
+    ],
+    "minecraft:infested_cracked_stone_bricks": [
+      "ott:block/overlays/infested_cracked_stone_bricks_overlay"
+    ],
+    "minecraft:infested_deepslate": [
+      "ott:block/overlays/infested_deepslate_overlay"
+    ],
+    "minecraft:infested_mossy_stone_bricks": [
+      "ott:block/overlays/infested_mossy_stone_bricks_overlay"
+    ],
+    "minecraft:infested_stone_bricks": [
+      "ott:block/overlays/infested_stone_bricks_overlay"
+    ],
+    "minecraft:light_blue_concrete_powder": [
+      "ott:block/overlays/light_blue_concrete_powder_overlay"
+    ],
+    "minecraft:light_gray_concrete_powder": [
+      "ott:block/overlays/light_gray_concrete_powder_overlay"
+    ],
+    "minecraft:lime_concrete_powder": [
+      "ott:block/overlays/lime_concrete_powder_overlay"
+    ],
+    "minecraft:magenta_concrete_powder": [
+      "ott:block/overlays/magenta_concrete_powder_overlay"
+    ],
+    "minecraft:magma_block": [
+      "ott:block/overlays/magma_block_overlay"
+    ],
+    "minecraft:moss_block": [
+      "ott:block/overlays/moss_block_overlay"
+    ],
+    "minecraft:mossy_cobblestone": [
+      "ott:block/overlays/mossy_cobblestone_overlay"
+    ],
+    "minecraft:mossy_stone_bricks": [
+      "ott:block/overlays/mossy_stone_bricks_overlay"
+    ],
+    "minecraft:mud": [
+      "ott:block/overlays/mud_overlay"
+    ],
+    "minecraft:mud_bricks": [
+      "ott:block/overlays/mud_bricks_overlay"
+    ],
+    "minecraft:muddy_mangrove_roots": [
+      "ott:block/overlays/mud_overlay"
+    ],
+    "minecraft:mycelium": [
+      "ott:block/overlays/mycelium_overlay"
+    ],
+    "minecraft:nether_bricks": [
+      "ott:block/overlays/nether_bricks_overlay"
+    ],
+    "minecraft:nether_gold_ore": [
+      "ott:block/overlays/nether_gold_ore_overlay"
+    ],
+    "minecraft:nether_quartz_ore": [
+      "ott:block/overlays/nether_quartz_ore_overlay"
+    ],
+    "minecraft:netherrack": [
+      "ott:block/overlays/netherrack_overlay"
+    ],
+    "minecraft:orange_concrete_powder": [
+      "ott:block/overlays/orange_concrete_powder_overlay"
+    ],
+    "minecraft:oxidized_cut_copper": [
+      "ott:block/overlays/oxidized_cut_copper_overlay"
+    ],
+    "minecraft:packed_mud": [
+      "ott:block/overlays/packed_mud_overlay"
+    ],
+    "minecraft:pale_moss_block": [
+      "ott:block/overlays/pale_moss_block_overlay"
+    ],
+    "minecraft:pink_concrete_powder": [
+      "ott:block/overlays/pink_concrete_powder_overlay"
+    ],
+    "minecraft:podzol": [
+      "ott:block/overlays/podzol_overlay"
+    ],
+    "minecraft:polished_blackstone_bricks": [
+      "ott:block/overlays/polished_blackstone_bricks_overlay"
+    ],
+    "minecraft:powder_snow": [
+      "ott:block/overlays/powder_snow_overlay"
+    ],
+    "minecraft:prismarine": [
+      "ott:block/overlays/prismarine_overlay"
+    ],
+    "minecraft:purple_concrete_powder": [
+      "ott:block/overlays/purple_concrete_powder_overlay"
+    ],
+    "minecraft:purpur_block": [
+      "ott:block/overlays/purpur_block_overlay"
+    ],
+    "minecraft:quartz_bricks": [
+      "ott:block/overlays/quartz_bricks_overlay"
+    ],
+    "minecraft:raw_copper_block": [
+      "ott:block/overlays/raw_copper_block_overlay"
+    ],
+    "minecraft:raw_gold_block": [
+      "ott:block/overlays/raw_gold_block_overlay"
+    ],
+    "minecraft:raw_iron_block": [
+      "ott:block/overlays/raw_iron_block_overlay"
+    ],
+    "minecraft:red_concrete_powder": [
+      "ott:block/overlays/red_concrete_powder_overlay"
+    ],
+    "minecraft:red_nether_bricks": [
+      "ott:block/overlays/red_nether_bricks_overlay"
+    ],
+    "minecraft:red_sand": [
+      "ott:block/overlays/red_sand_overlay"
+    ],
+    "minecraft:resin_block": [
+      "ott:block/overlays/resin_block_overlay"
+    ],
+    "minecraft:resin_bricks": [
+      "ott:block/overlays/resin_bricks_overlay"
+    ],
+    "minecraft:rooted_dirt": [
+      "ott:block/overlays/rooted_dirt_overlay"
+    ],
+    "minecraft:sand": [
+      "ott:block/overlays/sand_overlay"
+    ],
+    "minecraft:sculk": [
+      "ott:block/overlays/sculk_overlay"
+    ],
+    "minecraft:sculk_catalyst": [
+      "ott:block/overlays/sculk_catalyst_overlay"
+    ],
+    "minecraft:smooth_basalt": [
+      "ott:block/overlays/smooth_basalt_overlay"
+    ],
+    "minecraft:snow_block": [
+      "ott:block/overlays/snow_block_overlay"
+    ],
+    "minecraft:soul_sand": [
+      "ott:block/overlays/soul_sand_overflow"
+    ],
+    "minecraft:soul_soil": [
+      "ott:block/overlays/soul_soil_overlay"
+    ],
+    "minecraft:stone_bricks": [
+      "ott:block/overlays/stone_bricks_overlay"
+    ],
+    "minecraft:suspicious_gravel": [
+      "ott:block/overlays/suspicious_gravel_overlay"
+    ],
+    "minecraft:suspicious_sand": [
+      "ott:block/overlays/suspicious_sand_overlay"
+    ],
+    "minecraft:tuff": [
+      "ott:block/overlays/tuff_overlay"
+    ],
+    "minecraft:tuff_bricks": [
+      "ott:block/overlays/tuff_bricks_overlay"
+    ],
+    "minecraft:warped_nylium": [
+      "ott:block/overlays/warped_nylium_overlay"
+    ],
+    "minecraft:waxed_cut_copper": [
+      "ott:block/overlays/waxed_cut_copper_overlay"
+    ],
+    "minecraft:waxed_exposed_cut_copper": [
+      "ott:block/overlays/waxed_exposed_cut_copper_overlay"
+    ],
+    "minecraft:waxed_oxidized_cut_copper": [
+      "ott:block/overlays/waxed_oxidized_cut_copper_overlay"
+    ],
+    "minecraft:waxed_weathered_cut_copper": [
+      "ott:block/overlays/waxed_weathered_cut_copper_overlay"
+    ],
+    "minecraft:weathered_cut_copper": [
+      "ott:block/overlays/weathered_cut_copper_overlay"
+    ],
+    "minecraft:white_concrete_powder": [
+      "ott:block/overlays/white_concrete_powder_overlay"
+    ],
+    "minecraft:yellow_concrete_powder": [
+      "ott:block/overlays/yellow_concrete_powder_overlay"
+    ],
+    "ott:amethyst_concrete_powder": [
+      "ott:block/overlays/amethyst_concrete_powder_overlay"
+    ],
+    "ott:amethyst_dyed_cobblestone": [
+      "ott:block/overlays/amethyst_dyed_cobblestone_overlay"
+    ],
+    "ott:amethyst_dyed_stone": [
+      "ott:block/overlays/amethyst_dyed_stone_overlay"
+    ],
+    "ott:black_blue_concrete_powder": [
+      "ott:block/overlays/black_blue_concrete_powder_overlay"
+    ],
+    "ott:black_brown_concrete_powder": [
+      "ott:block/overlays/black_brown_concrete_powder_overlay"
+    ],
+    "ott:black_cyan_concrete_powder": [
+      "ott:block/overlays/black_cyan_concrete_powder_overlay"
+    ],
+    "ott:black_dyed_cobblestone": [
+      "ott:block/overlays/black_dyed_cobblestone_overlay"
+    ],
+    "ott:black_dyed_stone": [
+      "ott:block/overlays/black_dyed_stone_overlay"
+    ],
+    "ott:black_gray_concrete_powder": [
+      "ott:block/overlays/black_gray_concrete_powder_overlay"
+    ],
+    "ott:black_green_concrete_powder": [
+      "ott:block/overlays/black_green_concrete_powder_overlay"
+    ],
+    "ott:black_light_blue_concrete_powder": [
+      "ott:block/overlays/black_light_blue_concrete_powder_overlay"
+    ],
+    "ott:black_light_gray_concrete_powder": [
+      "ott:block/overlays/black_light_gray_concrete_powder_overlay"
+    ],
+    "ott:black_lime_concrete_powder": [
+      "ott:block/overlays/black_lime_concrete_powder_overlay"
+    ],
+    "ott:black_magenta_concrete_powder": [
+      "ott:block/overlays/black_magenta_concrete_powder_overlay"
+    ],
+    "ott:black_opal": [
+      "ott:block/overlays/black_opal_overlay"
+    ],
+    "ott:black_orange_concrete_powder": [
+      "ott:block/overlays/black_orange_concrete_powder_overlay"
+    ],
+    "ott:black_pink_concrete_powder": [
+      "ott:block/overlays/black_pink_concrete_powder_overlay"
+    ],
+    "ott:black_purple_concrete_powder": [
+      "ott:block/overlays/black_purple_concrete_powder_overlay"
+    ],
+    "ott:black_red_concrete_powder": [
+      "ott:block/overlays/black_red_concrete_powder_overlay"
+    ],
+    "ott:black_white_concrete_powder": [
+      "ott:block/overlays/black_white_concrete_powder_overlay"
+    ],
+    "ott:black_yellow_concrete_powder": [
+      "ott:block/overlays/black_yellow_concrete_powder_overlay"
+    ],
+    "ott:blue_black_concrete_powder": [
+      "ott:block/overlays/blue_black_concrete_powder_overlay"
+    ],
+    "ott:blue_brown_concrete_powder": [
+      "ott:block/overlays/blue_brown_concrete_powder_overlay"
+    ],
+    "ott:blue_cyan_concrete_powder": [
+      "ott:block/overlays/blue_cyan_concrete_powder_overlay"
+    ],
+    "ott:blue_dyed_cobblestone": [
+      "ott:block/overlays/blue_dyed_cobblestone_overlay"
+    ],
+    "ott:blue_dyed_stone": [
+      "ott:block/overlays/blue_dyed_stone_overlay"
+    ],
+    "ott:blue_gray_concrete_powder": [
+      "ott:block/overlays/blue_gray_concrete_powder_overlay"
+    ],
+    "ott:blue_green_concrete_powder": [
+      "ott:block/overlays/blue_green_concrete_powder_overlay"
+    ],
+    "ott:blue_light_blue_concrete_powder": [
+      "ott:block/overlays/blue_light_blue_concrete_powder_overlay"
+    ],
+    "ott:blue_light_gray_concrete_powder": [
+      "ott:block/overlays/blue_light_gray_concrete_powder_overlay"
+    ],
+    "ott:blue_lime_concrete_powder": [
+      "ott:block/overlays/blue_lime_concrete_powder_overlay"
+    ],
+    "ott:blue_magenta_concrete_powder": [
+      "ott:block/overlays/blue_magenta_concrete_powder_overlay"
+    ],
+    "ott:blue_orange_concrete_powder": [
+      "ott:block/overlays/blue_orange_concrete_powder_overlay"
+    ],
+    "ott:blue_pink_concrete_powder": [
+      "ott:block/overlays/blue_pink_concrete_powder_overlay"
+    ],
+    "ott:blue_purple_concrete_powder": [
+      "ott:block/overlays/blue_purple_concrete_powder_overlay"
+    ],
+    "ott:blue_red_concrete_powder": [
+      "ott:block/overlays/blue_red_concrete_powder_overlay"
+    ],
+    "ott:blue_white_concrete_powder": [
+      "ott:block/overlays/blue_white_concrete_powder_overlay"
+    ],
+    "ott:blue_yellow_concrete_powder": [
+      "ott:block/overlays/blue_yellow_concrete_powder_overlay"
+    ],
+    "ott:blush_concrete_powder": [
+      "ott:block/overlays/blush_concrete_powder_overlay"
+    ],
+    "ott:blush_dyed_cobblestone": [
+      "ott:block/overlays/blush_dyed_cobblestone_overlay"
+    ],
+    "ott:blush_dyed_stone": [
+      "ott:block/overlays/blush_dyed_stone_overlay"
+    ],
+    "ott:boulder_concrete_powder": [
+      "ott:block/overlays/boulder_concrete_powder_overlay"
+    ],
+    "ott:boulder_dyed_cobblestone": [
+      "ott:block/overlays/boulder_dyed_cobblestone_overlay"
+    ],
+    "ott:boulder_dyed_stone": [
+      "ott:block/overlays/boulder_dyed_stone_overlay"
+    ],
+    "ott:brown_black_concrete_powder": [
+      "ott:block/overlays/brown_black_concrete_powder_overlay"
+    ],
+    "ott:brown_blue_concrete_powder": [
+      "ott:block/overlays/brown_blue_concrete_powder_overlay"
+    ],
+    "ott:brown_cyan_concrete_powder": [
+      "ott:block/overlays/brown_cyan_concrete_powder_overlay"
+    ],
+    "ott:brown_dyed_cobblestone": [
+      "ott:block/overlays/brown_dyed_cobblestone_overlay"
+    ],
+    "ott:brown_dyed_stone": [
+      "ott:block/overlays/brown_dyed_stone_overlay"
+    ],
+    "ott:brown_gray_concrete_powder": [
+      "ott:block/overlays/brown_gray_concrete_powder_overlay"
+    ],
+    "ott:brown_green_concrete_powder": [
+      "ott:block/overlays/brown_green_concrete_powder_overlay"
+    ],
+    "ott:brown_light_blue_concrete_powder": [
+      "ott:block/overlays/brown_light_blue_concrete_powder_overlay"
+    ],
+    "ott:brown_light_gray_concrete_powder": [
+      "ott:block/overlays/brown_light_gray_concrete_powder_overlay"
+    ],
+    "ott:brown_lime_concrete_powder": [
+      "ott:block/overlays/brown_lime_concrete_powder_overlay"
+    ],
+    "ott:brown_magenta_concrete_powder": [
+      "ott:block/overlays/brown_magenta_concrete_powder_overlay"
+    ],
+    "ott:brown_orange_concrete_powder": [
+      "ott:block/overlays/brown_orange_concrete_powder_overlay"
+    ],
+    "ott:brown_pink_concrete_powder": [
+      "ott:block/overlays/brown_pink_concrete_powder_overlay"
+    ],
+    "ott:brown_purple_concrete_powder": [
+      "ott:block/overlays/brown_purple_concrete_powder_overlay"
+    ],
+    "ott:brown_red_concrete_powder": [
+      "ott:block/overlays/brown_red_concrete_powder_overlay"
+    ],
+    "ott:brown_white_concrete_powder": [
+      "ott:block/overlays/brown_white_concrete_powder_overlay"
+    ],
+    "ott:brown_yellow_concrete_powder": [
+      "ott:block/overlays/brown_yellow_concrete_powder_overlay"
+    ],
+    "ott:budding_black_opal": [
+      "ott:block/overlays/budding_black_opal_overlay"
+    ],
+    "ott:budding_fire_opal": [
+      "ott:block/overlays/budding_fire_opal_overlay"
+    ],
+    "ott:budding_white_opal": [
+      "ott:block/overlays/budding_white_opal_overlay"
+    ],
+    "ott:charcoal_concrete_powder": [
+      "ott:block/overlays/charcoal_concrete_powder_overlay"
+    ],
+    "ott:charcoal_dyed_cobblestone": [
+      "ott:block/overlays/charcoal_dyed_cobblestone_overlay"
+    ],
+    "ott:charcoal_dyed_stone": [
+      "ott:block/overlays/charcoal_dyed_stone_overlay"
+    ],
+    "ott:chocolate_concrete_powder": [
+      "ott:block/overlays/chocolate_concrete_powder_overlay"
+    ],
+    "ott:chocolate_dyed_cobblestone": [
+      "ott:block/overlays/chocolate_dyed_cobblestone_overlay"
+    ],
+    "ott:chocolate_dyed_stone": [
+      "ott:block/overlays/chocolate_dyed_stone_overlay"
+    ],
+    "ott:cornflower_concrete_powder": [
+      "ott:block/overlays/cornflower_concrete_powder_overlay"
+    ],
+    "ott:cornflower_dyed_cobblestone": [
+      "ott:block/overlays/cornflower_dyed_cobblestone_overlay"
+    ],
+    "ott:cornflower_dyed_stone": [
+      "ott:block/overlays/cornflower_dyed_stone_overlay"
+    ],
+    "ott:cyan_black_concrete_powder": [
+      "ott:block/overlays/cyan_black_concrete_powder_overlay"
+    ],
+    "ott:cyan_blue_concrete_powder": [
+      "ott:block/overlays/cyan_blue_concrete_powder_overlay"
+    ],
+    "ott:cyan_brown_concrete_powder": [
+      "ott:block/overlays/cyan_brown_concrete_powder_overlay"
+    ],
+    "ott:cyan_dyed_cobblestone": [
+      "ott:block/overlays/cyan_dyed_cobblestone_overlay"
+    ],
+    "ott:cyan_dyed_stone": [
+      "ott:block/overlays/cyan_dyed_stone_overlay"
+    ],
+    "ott:cyan_gray_concrete_powder": [
+      "ott:block/overlays/cyan_gray_concrete_powder_overlay"
+    ],
+    "ott:cyan_green_concrete_powder": [
+      "ott:block/overlays/cyan_green_concrete_powder_overlay"
+    ],
+    "ott:cyan_light_blue_concrete_powder": [
+      "ott:block/overlays/cyan_light_blue_concrete_powder_overlay"
+    ],
+    "ott:cyan_light_gray_concrete_powder": [
+      "ott:block/overlays/cyan_light_gray_concrete_powder_overlay"
+    ],
+    "ott:cyan_lime_concrete_powder": [
+      "ott:block/overlays/cyan_lime_concrete_powder_overlay"
+    ],
+    "ott:cyan_magenta_concrete_powder": [
+      "ott:block/overlays/cyan_magenta_concrete_powder_overlay"
+    ],
+    "ott:cyan_orange_concrete_powder": [
+      "ott:block/overlays/cyan_orange_concrete_powder_overlay"
+    ],
+    "ott:cyan_pink_concrete_powder": [
+      "ott:block/overlays/cyan_pink_concrete_powder_overlay"
+    ],
+    "ott:cyan_purple_concrete_powder": [
+      "ott:block/overlays/cyan_purple_concrete_powder_overlay"
+    ],
+    "ott:cyan_red_concrete_powder": [
+      "ott:block/overlays/cyan_red_concrete_powder_overlay"
+    ],
+    "ott:cyan_white_concrete_powder": [
+      "ott:block/overlays/cyan_white_concrete_powder_overlay"
+    ],
+    "ott:cyan_yellow_concrete_powder": [
+      "ott:block/overlays/cyan_yellow_concrete_powder_overlay"
+    ],
+    "ott:fire_opal": [
+      "ott:block/overlays/fire_opal_overlay"
+    ],
+    "ott:forest_concrete_powder": [
+      "ott:block/overlays/forest_concrete_powder_overlay"
+    ],
+    "ott:forest_dyed_cobblestone": [
+      "ott:block/overlays/forest_dyed_cobblestone_overlay"
+    ],
+    "ott:forest_dyed_stone": [
+      "ott:block/overlays/forest_dyed_stone_overlay"
+    ],
+    "ott:goldenrod_concrete_powder": [
+      "ott:block/overlays/goldenrod_concrete_powder_overlay"
+    ],
+    "ott:goldenrod_dyed_cobblestone": [
+      "ott:block/overlays/goldenrod_dyed_cobblestone_overlay"
+    ],
+    "ott:goldenrod_dyed_stone": [
+      "ott:block/overlays/goldenrod_dyed_stone_overlay"
+    ],
+    "ott:gray_black_concrete_powder": [
+      "ott:block/overlays/gray_black_concrete_powder_overlay"
+    ],
+    "ott:gray_blue_concrete_powder": [
+      "ott:block/overlays/gray_blue_concrete_powder_overlay"
+    ],
+    "ott:gray_brown_concrete_powder": [
+      "ott:block/overlays/gray_brown_concrete_powder_overlay"
+    ],
+    "ott:gray_cyan_concrete_powder": [
+      "ott:block/overlays/gray_cyan_concrete_powder_overlay"
+    ],
+    "ott:gray_dyed_cobblestone": [
+      "ott:block/overlays/gray_dyed_cobblestone_overlay"
+    ],
+    "ott:gray_dyed_stone": [
+      "ott:block/overlays/gray_dyed_stone_overlay"
+    ],
+    "ott:gray_green_concrete_powder": [
+      "ott:block/overlays/gray_green_concrete_powder_overlay"
+    ],
+    "ott:gray_light_blue_concrete_powder": [
+      "ott:block/overlays/gray_light_blue_concrete_powder_overlay"
+    ],
+    "ott:gray_light_gray_concrete_powder": [
+      "ott:block/overlays/gray_light_gray_concrete_powder_overlay"
+    ],
+    "ott:gray_lime_concrete_powder": [
+      "ott:block/overlays/gray_lime_concrete_powder_overlay"
+    ],
+    "ott:gray_magenta_concrete_powder": [
+      "ott:block/overlays/gray_magenta_concrete_powder_overlay"
+    ],
+    "ott:gray_orange_concrete_powder": [
+      "ott:block/overlays/gray_orange_concrete_powder_overlay"
+    ],
+    "ott:gray_pink_concrete_powder": [
+      "ott:block/overlays/gray_pink_concrete_powder_overlay"
+    ],
+    "ott:gray_purple_concrete_powder": [
+      "ott:block/overlays/gray_purple_concrete_powder_overlay"
+    ],
+    "ott:gray_red_concrete_powder": [
+      "ott:block/overlays/gray_red_concrete_powder_overlay"
+    ],
+    "ott:gray_white_concrete_powder": [
+      "ott:block/overlays/gray_white_concrete_powder_overlay"
+    ],
+    "ott:gray_yellow_concrete_powder": [
+      "ott:block/overlays/gray_yellow_concrete_powder_overlay"
+    ],
+    "ott:green_apple_concrete_powder": [
+      "ott:block/overlays/green_apple_concrete_powder_overlay"
+    ],
+    "ott:green_apple_dyed_cobblestone": [
+      "ott:block/overlays/green_apple_dyed_cobblestone_overlay"
+    ],
+    "ott:green_apple_dyed_stone": [
+      "ott:block/overlays/green_apple_dyed_stone_overlay"
+    ],
+    "ott:green_black_concrete_powder": [
+      "ott:block/overlays/green_black_concrete_powder_overlay"
+    ],
+    "ott:green_blue_concrete_powder": [
+      "ott:block/overlays/green_blue_concrete_powder_overlay"
+    ],
+    "ott:green_brown_concrete_powder": [
+      "ott:block/overlays/green_brown_concrete_powder_overlay"
+    ],
+    "ott:green_cyan_concrete_powder": [
+      "ott:block/overlays/green_cyan_concrete_powder_overlay"
+    ],
+    "ott:green_dyed_cobblestone": [
+      "ott:block/overlays/green_dyed_cobblestone_overlay"
+    ],
+    "ott:green_dyed_stone": [
+      "ott:block/overlays/green_dyed_stone_overlay"
+    ],
+    "ott:green_gray_concrete_powder": [
+      "ott:block/overlays/green_gray_concrete_powder_overlay"
+    ],
+    "ott:green_light_blue_concrete_powder": [
+      "ott:block/overlays/green_light_blue_concrete_powder_overlay"
+    ],
+    "ott:green_light_gray_concrete_powder": [
+      "ott:block/overlays/green_light_gray_concrete_powder_overlay"
+    ],
+    "ott:green_lime_concrete_powder": [
+      "ott:block/overlays/green_lime_concrete_powder_overlay"
+    ],
+    "ott:green_magenta_concrete_powder": [
+      "ott:block/overlays/green_magenta_concrete_powder_overlay"
+    ],
+    "ott:green_orange_concrete_powder": [
+      "ott:block/overlays/green_orange_concrete_powder_overlay"
+    ],
+    "ott:green_pink_concrete_powder": [
+      "ott:block/overlays/green_pink_concrete_powder_overlay"
+    ],
+    "ott:green_purple_concrete_powder": [
+      "ott:block/overlays/green_purple_concrete_powder_overlay"
+    ],
+    "ott:green_red_concrete_powder": [
+      "ott:block/overlays/green_red_concrete_powder_overlay"
+    ],
+    "ott:green_white_concrete_powder": [
+      "ott:block/overlays/green_white_concrete_powder_overlay"
+    ],
+    "ott:green_yellow_concrete_powder": [
+      "ott:block/overlays/green_yellow_concrete_powder_overlay"
+    ],
+    "ott:indigo_concrete_powder": [
+      "ott:block/overlays/indigo_concrete_powder_overlay"
+    ],
+    "ott:indigo_dyed_cobblestone": [
+      "ott:block/overlays/indigo_dyed_cobblestone_overlay"
+    ],
+    "ott:indigo_dyed_stone": [
+      "ott:block/overlays/indigo_dyed_stone_overlay"
+    ],
+    "ott:key_lime_concrete_powder": [
+      "ott:block/overlays/key_lime_concrete_powder_overlay"
+    ],
+    "ott:key_lime_dyed_cobblestone": [
+      "ott:block/overlays/key_lime_dyed_cobblestone_overlay"
+    ],
+    "ott:key_lime_dyed_stone": [
+      "ott:block/overlays/key_lime_dyed_stone_overlay"
+    ],
+    "ott:light_blue_black_concrete_powder": [
+      "ott:block/overlays/light_blue_black_concrete_powder_overlay"
+    ],
+    "ott:light_blue_blue_concrete_powder": [
+      "ott:block/overlays/light_blue_blue_concrete_powder_overlay"
+    ],
+    "ott:light_blue_brown_concrete_powder": [
+      "ott:block/overlays/light_blue_brown_concrete_powder_overlay"
+    ],
+    "ott:light_blue_cyan_concrete_powder": [
+      "ott:block/overlays/light_blue_cyan_concrete_powder_overlay"
+    ],
+    "ott:light_blue_dyed_cobblestone": [
+      "ott:block/overlays/light_blue_dyed_cobblestone_overlay"
+    ],
+    "ott:light_blue_dyed_stone": [
+      "ott:block/overlays/light_blue_dyed_stone_overlay"
+    ],
+    "ott:light_blue_gray_concrete_powder": [
+      "ott:block/overlays/light_blue_gray_concrete_powder_overlay"
+    ],
+    "ott:light_blue_green_concrete_powder": [
+      "ott:block/overlays/light_blue_green_concrete_powder_overlay"
+    ],
+    "ott:light_blue_light_gray_concrete_powder": [
+      "ott:block/overlays/light_blue_light_gray_concrete_powder_overlay"
+    ],
+    "ott:light_blue_lime_concrete_powder": [
+      "ott:block/overlays/light_blue_lime_concrete_powder_overlay"
+    ],
+    "ott:light_blue_magenta_concrete_powder": [
+      "ott:block/overlays/light_blue_magenta_concrete_powder_overlay"
+    ],
+    "ott:light_blue_orange_concrete_powder": [
+      "ott:block/overlays/light_blue_orange_concrete_powder_overlay"
+    ],
+    "ott:light_blue_pink_concrete_powder": [
+      "ott:block/overlays/light_blue_pink_concrete_powder_overlay"
+    ],
+    "ott:light_blue_purple_concrete_powder": [
+      "ott:block/overlays/light_blue_purple_concrete_powder_overlay"
+    ],
+    "ott:light_blue_red_concrete_powder": [
+      "ott:block/overlays/light_blue_red_concrete_powder_overlay"
+    ],
+    "ott:light_blue_white_concrete_powder": [
+      "ott:block/overlays/light_blue_white_concrete_powder_overlay"
+    ],
+    "ott:light_blue_yellow_concrete_powder": [
+      "ott:block/overlays/light_blue_yellow_concrete_powder_overlay"
+    ],
+    "ott:light_gray_black_concrete_powder": [
+      "ott:block/overlays/light_gray_black_concrete_powder_overlay"
+    ],
+    "ott:light_gray_blue_concrete_powder": [
+      "ott:block/overlays/light_gray_blue_concrete_powder_overlay"
+    ],
+    "ott:light_gray_brown_concrete_powder": [
+      "ott:block/overlays/light_gray_brown_concrete_powder_overlay"
+    ],
+    "ott:light_gray_cyan_concrete_powder": [
+      "ott:block/overlays/light_gray_cyan_concrete_powder_overlay"
+    ],
+    "ott:light_gray_dyed_cobblestone": [
+      "ott:block/overlays/light_gray_dyed_cobblestone_overlay"
+    ],
+    "ott:light_gray_dyed_stone": [
+      "ott:block/overlays/light_gray_dyed_stone_overlay"
+    ],
+    "ott:light_gray_gray_concrete_powder": [
+      "ott:block/overlays/light_gray_gray_concrete_powder_overlay"
+    ],
+    "ott:light_gray_green_concrete_powder": [
+      "ott:block/overlays/light_gray_green_concrete_powder_overlay"
+    ],
+    "ott:light_gray_light_blue_concrete_powder": [
+      "ott:block/overlays/light_gray_light_blue_concrete_powder_overlay"
+    ],
+    "ott:light_gray_lime_concrete_powder": [
+      "ott:block/overlays/light_gray_lime_concrete_powder_overlay"
+    ],
+    "ott:light_gray_magenta_concrete_powder": [
+      "ott:block/overlays/light_gray_magenta_concrete_powder_overlay"
+    ],
+    "ott:light_gray_orange_concrete_powder": [
+      "ott:block/overlays/light_gray_orange_concrete_powder_overlay"
+    ],
+    "ott:light_gray_pink_concrete_powder": [
+      "ott:block/overlays/light_gray_pink_concrete_powder_overlay"
+    ],
+    "ott:light_gray_purple_concrete_powder": [
+      "ott:block/overlays/light_gray_purple_concrete_powder_overlay"
+    ],
+    "ott:light_gray_red_concrete_powder": [
+      "ott:block/overlays/light_gray_red_concrete_powder_overlay"
+    ],
+    "ott:light_gray_white_concrete_powder": [
+      "ott:block/overlays/light_gray_white_concrete_powder_overlay"
+    ],
+    "ott:light_gray_yellow_concrete_powder": [
+      "ott:block/overlays/light_gray_yellow_concrete_powder_overlay"
+    ],
+    "ott:lime_black_concrete_powder": [
+      "ott:block/overlays/lime_black_concrete_powder_overlay"
+    ],
+    "ott:lime_blue_concrete_powder": [
+      "ott:block/overlays/lime_blue_concrete_powder_overlay"
+    ],
+    "ott:lime_brown_concrete_powder": [
+      "ott:block/overlays/lime_brown_concrete_powder_overlay"
+    ],
+    "ott:lime_cyan_concrete_powder": [
+      "ott:block/overlays/lime_cyan_concrete_powder_overlay"
+    ],
+    "ott:lime_dyed_cobblestone": [
+      "ott:block/overlays/lime_dyed_cobblestone_overlay"
+    ],
+    "ott:lime_dyed_stone": [
+      "ott:block/overlays/lime_dyed_stone_overlay"
+    ],
+    "ott:lime_gray_concrete_powder": [
+      "ott:block/overlays/lime_gray_concrete_powder_overlay"
+    ],
+    "ott:lime_green_concrete_powder": [
+      "ott:block/overlays/lime_green_concrete_powder_overlay"
+    ],
+    "ott:lime_light_blue_concrete_powder": [
+      "ott:block/overlays/lime_light_blue_concrete_powder_overlay"
+    ],
+    "ott:lime_light_gray_concrete_powder": [
+      "ott:block/overlays/lime_light_gray_concrete_powder_overlay"
+    ],
+    "ott:lime_magenta_concrete_powder": [
+      "ott:block/overlays/lime_magenta_concrete_powder_overlay"
+    ],
+    "ott:lime_orange_concrete_powder": [
+      "ott:block/overlays/lime_orange_concrete_powder_overlay"
+    ],
+    "ott:lime_pink_concrete_powder": [
+      "ott:block/overlays/lime_pink_concrete_powder_overlay"
+    ],
+    "ott:lime_purple_concrete_powder": [
+      "ott:block/overlays/lime_purple_concrete_powder_overlay"
+    ],
+    "ott:lime_red_concrete_powder": [
+      "ott:block/overlays/lime_red_concrete_powder_overlay"
+    ],
+    "ott:lime_white_concrete_powder": [
+      "ott:block/overlays/lime_white_concrete_powder_overlay"
+    ],
+    "ott:lime_yellow_concrete_powder": [
+      "ott:block/overlays/lime_yellow_concrete_powder_overlay"
+    ],
+    "ott:magenta_black_concrete_powder": [
+      "ott:block/overlays/magenta_black_concrete_powder_overlay"
+    ],
+    "ott:magenta_blue_concrete_powder": [
+      "ott:block/overlays/magenta_blue_concrete_powder_overlay"
+    ],
+    "ott:magenta_brown_concrete_powder": [
+      "ott:block/overlays/magenta_brown_concrete_powder_overlay"
+    ],
+    "ott:magenta_cyan_concrete_powder": [
+      "ott:block/overlays/magenta_cyan_concrete_powder_overlay"
+    ],
+    "ott:magenta_dyed_cobblestone": [
+      "ott:block/overlays/magenta_dyed_cobblestone_overlay"
+    ],
+    "ott:magenta_dyed_stone": [
+      "ott:block/overlays/magenta_dyed_stone_overlay"
+    ],
+    "ott:magenta_gray_concrete_powder": [
+      "ott:block/overlays/magenta_gray_concrete_powder_overlay"
+    ],
+    "ott:magenta_green_concrete_powder": [
+      "ott:block/overlays/magenta_green_concrete_powder_overlay"
+    ],
+    "ott:magenta_light_blue_concrete_powder": [
+      "ott:block/overlays/magenta_light_blue_concrete_powder_overlay"
+    ],
+    "ott:magenta_light_gray_concrete_powder": [
+      "ott:block/overlays/magenta_light_gray_concrete_powder_overlay"
+    ],
+    "ott:magenta_lime_concrete_powder": [
+      "ott:block/overlays/magenta_lime_concrete_powder_overlay"
+    ],
+    "ott:magenta_orange_concrete_powder": [
+      "ott:block/overlays/magenta_orange_concrete_powder_overlay"
+    ],
+    "ott:magenta_pink_concrete_powder": [
+      "ott:block/overlays/magenta_pink_concrete_powder_overlay"
+    ],
+    "ott:magenta_purple_concrete_powder": [
+      "ott:block/overlays/magenta_purple_concrete_powder_overlay"
+    ],
+    "ott:magenta_red_concrete_powder": [
+      "ott:block/overlays/magenta_red_concrete_powder_overlay"
+    ],
+    "ott:magenta_white_concrete_powder": [
+      "ott:block/overlays/magenta_white_concrete_powder_overlay"
+    ],
+    "ott:magenta_yellow_concrete_powder": [
+      "ott:block/overlays/magenta_yellow_concrete_powder_overlay"
+    ],
+    "ott:mimosa_concrete_powder": [
+      "ott:block/overlays/mimosa_concrete_powder_overlay"
+    ],
+    "ott:mimosa_dyed_cobblestone": [
+      "ott:block/overlays/mimosa_dyed_cobblestone_overlay"
+    ],
+    "ott:mimosa_dyed_stone": [
+      "ott:block/overlays/mimosa_dyed_stone_overlay"
+    ],
+    "ott:mist_concrete_powder": [
+      "ott:block/overlays/mist_concrete_powder_overlay"
+    ],
+    "ott:mist_dyed_cobblestone": [
+      "ott:block/overlays/mist_dyed_cobblestone_overlay"
+    ],
+    "ott:mist_dyed_stone": [
+      "ott:block/overlays/mist_dyed_stone_overlay"
+    ],
+    "ott:navy_concrete_powder": [
+      "ott:block/overlays/navy_concrete_powder_overlay"
+    ],
+    "ott:navy_dyed_cobblestone": [
+      "ott:block/overlays/navy_dyed_cobblestone_overlay"
+    ],
+    "ott:navy_dyed_stone": [
+      "ott:block/overlays/navy_dyed_stone_overlay"
+    ],
+    "ott:ocean_concrete_powder": [
+      "ott:block/overlays/ocean_concrete_powder_overlay"
+    ],
+    "ott:ocean_dyed_cobblestone": [
+      "ott:block/overlays/ocean_dyed_cobblestone_overlay"
+    ],
+    "ott:ocean_dyed_stone": [
+      "ott:block/overlays/ocean_dyed_stone_overlay"
+    ],
+    "ott:orange_black_concrete_powder": [
+      "ott:block/overlays/orange_black_concrete_powder_overlay"
+    ],
+    "ott:orange_blue_concrete_powder": [
+      "ott:block/overlays/orange_blue_concrete_powder_overlay"
+    ],
+    "ott:orange_brown_concrete_powder": [
+      "ott:block/overlays/orange_brown_concrete_powder_overlay"
+    ],
+    "ott:orange_cyan_concrete_powder": [
+      "ott:block/overlays/orange_cyan_concrete_powder_overlay"
+    ],
+    "ott:orange_dyed_cobblestone": [
+      "ott:block/overlays/orange_dyed_cobblestone_overlay"
+    ],
+    "ott:orange_dyed_stone": [
+      "ott:block/overlays/orange_dyed_stone_overlay"
+    ],
+    "ott:orange_gray_concrete_powder": [
+      "ott:block/overlays/orange_gray_concrete_powder_overlay"
+    ],
+    "ott:orange_green_concrete_powder": [
+      "ott:block/overlays/orange_green_concrete_powder_overlay"
+    ],
+    "ott:orange_light_blue_concrete_powder": [
+      "ott:block/overlays/orange_light_blue_concrete_powder_overlay"
+    ],
+    "ott:orange_light_gray_concrete_powder": [
+      "ott:block/overlays/orange_light_gray_concrete_powder_overlay"
+    ],
+    "ott:orange_lime_concrete_powder": [
+      "ott:block/overlays/orange_lime_concrete_powder_overlay"
+    ],
+    "ott:orange_magenta_concrete_powder": [
+      "ott:block/overlays/orange_magenta_concrete_powder_overlay"
+    ],
+    "ott:orange_pink_concrete_powder": [
+      "ott:block/overlays/orange_pink_concrete_powder_overlay"
+    ],
+    "ott:orange_purple_concrete_powder": [
+      "ott:block/overlays/orange_purple_concrete_powder_overlay"
+    ],
+    "ott:orange_red_concrete_powder": [
+      "ott:block/overlays/orange_red_concrete_powder_overlay"
+    ],
+    "ott:orange_white_concrete_powder": [
+      "ott:block/overlays/orange_white_concrete_powder_overlay"
+    ],
+    "ott:orange_yellow_concrete_powder": [
+      "ott:block/overlays/orange_yellow_concrete_powder_overlay"
+    ],
+    "ott:paprika_concrete_powder": [
+      "ott:block/overlays/paprika_concrete_powder_overlay"
+    ],
+    "ott:paprika_dyed_cobblestone": [
+      "ott:block/overlays/paprika_dyed_cobblestone_overlay"
+    ],
+    "ott:paprika_dyed_stone": [
+      "ott:block/overlays/paprika_dyed_stone_overlay"
+    ],
+    "ott:pink_black_concrete_powder": [
+      "ott:block/overlays/pink_black_concrete_powder_overlay"
+    ],
+    "ott:pink_blue_concrete_powder": [
+      "ott:block/overlays/pink_blue_concrete_powder_overlay"
+    ],
+    "ott:pink_brown_concrete_powder": [
+      "ott:block/overlays/pink_brown_concrete_powder_overlay"
+    ],
+    "ott:pink_cyan_concrete_powder": [
+      "ott:block/overlays/pink_cyan_concrete_powder_overlay"
+    ],
+    "ott:pink_dyed_cobblestone": [
+      "ott:block/overlays/pink_dyed_cobblestone_overlay"
+    ],
+    "ott:pink_dyed_stone": [
+      "ott:block/overlays/pink_dyed_stone_overlay"
+    ],
+    "ott:pink_gray_concrete_powder": [
+      "ott:block/overlays/pink_gray_concrete_powder_overlay"
+    ],
+    "ott:pink_green_concrete_powder": [
+      "ott:block/overlays/pink_green_concrete_powder_overlay"
+    ],
+    "ott:pink_light_blue_concrete_powder": [
+      "ott:block/overlays/pink_light_blue_concrete_powder_overlay"
+    ],
+    "ott:pink_light_gray_concrete_powder": [
+      "ott:block/overlays/pink_light_gray_concrete_powder_overlay"
+    ],
+    "ott:pink_lime_concrete_powder": [
+      "ott:block/overlays/pink_lime_concrete_powder_overlay"
+    ],
+    "ott:pink_magenta_concrete_powder": [
+      "ott:block/overlays/pink_magenta_concrete_powder_overlay"
+    ],
+    "ott:pink_orange_concrete_powder": [
+      "ott:block/overlays/pink_orange_concrete_powder_overlay"
+    ],
+    "ott:pink_purple_concrete_powder": [
+      "ott:block/overlays/pink_purple_concrete_powder_overlay"
+    ],
+    "ott:pink_red_concrete_powder": [
+      "ott:block/overlays/pink_red_concrete_powder_overlay"
+    ],
+    "ott:pink_white_concrete_powder": [
+      "ott:block/overlays/pink_white_concrete_powder_overlay"
+    ],
+    "ott:pink_yellow_concrete_powder": [
+      "ott:block/overlays/pink_yellow_concrete_powder_overlay"
+    ],
+    "ott:purple_black_concrete_powder": [
+      "ott:block/overlays/purple_black_concrete_powder_overlay"
+    ],
+    "ott:purple_blue_concrete_powder": [
+      "ott:block/overlays/purple_blue_concrete_powder_overlay"
+    ],
+    "ott:purple_brown_concrete_powder": [
+      "ott:block/overlays/purple_brown_concrete_powder_overlay"
+    ],
+    "ott:purple_cyan_concrete_powder": [
+      "ott:block/overlays/purple_cyan_concrete_powder_overlay"
+    ],
+    "ott:purple_dyed_cobblestone": [
+      "ott:block/overlays/purple_dyed_cobblestone_overlay"
+    ],
+    "ott:purple_dyed_stone": [
+      "ott:block/overlays/purple_dyed_stone_overlay"
+    ],
+    "ott:purple_gray_concrete_powder": [
+      "ott:block/overlays/purple_gray_concrete_powder_overlay"
+    ],
+    "ott:purple_green_concrete_powder": [
+      "ott:block/overlays/purple_green_concrete_powder_overlay"
+    ],
+    "ott:purple_light_blue_concrete_powder": [
+      "ott:block/overlays/purple_light_blue_concrete_powder_overlay"
+    ],
+    "ott:purple_light_gray_concrete_powder": [
+      "ott:block/overlays/purple_light_gray_concrete_powder_overlay"
+    ],
+    "ott:purple_lime_concrete_powder": [
+      "ott:block/overlays/purple_lime_concrete_powder_overlay"
+    ],
+    "ott:purple_magenta_concrete_powder": [
+      "ott:block/overlays/purple_magenta_concrete_powder_overlay"
+    ],
+    "ott:purple_orange_concrete_powder": [
+      "ott:block/overlays/purple_orange_concrete_powder_overlay"
+    ],
+    "ott:purple_pink_concrete_powder": [
+      "ott:block/overlays/purple_pink_concrete_powder_overlay"
+    ],
+    "ott:purple_red_concrete_powder": [
+      "ott:block/overlays/purple_red_concrete_powder_overlay"
+    ],
+    "ott:purple_white_concrete_powder": [
+      "ott:block/overlays/purple_white_concrete_powder_overlay"
+    ],
+    "ott:purple_yellow_concrete_powder": [
+      "ott:block/overlays/purple_yellow_concrete_powder_overlay"
+    ],
+    "ott:red_black_concrete_powder": [
+      "ott:block/overlays/red_black_concrete_powder_overlay"
+    ],
+    "ott:red_blue_concrete_powder": [
+      "ott:block/overlays/red_blue_concrete_powder_overlay"
+    ],
+    "ott:red_brown_concrete_powder": [
+      "ott:block/overlays/red_brown_concrete_powder_overlay"
+    ],
+    "ott:red_cyan_concrete_powder": [
+      "ott:block/overlays/red_cyan_concrete_powder_overlay"
+    ],
+    "ott:red_dyed_cobblestone": [
+      "ott:block/overlays/red_dyed_cobblestone_overlay"
+    ],
+    "ott:red_dyed_stone": [
+      "ott:block/overlays/red_dyed_stone_overlay"
+    ],
+    "ott:red_gray_concrete_powder": [
+      "ott:block/overlays/red_gray_concrete_powder_overlay"
+    ],
+    "ott:red_green_concrete_powder": [
+      "ott:block/overlays/red_green_concrete_powder_overlay"
+    ],
+    "ott:red_light_blue_concrete_powder": [
+      "ott:block/overlays/red_light_blue_concrete_powder_overlay"
+    ],
+    "ott:red_light_gray_concrete_powder": [
+      "ott:block/overlays/red_light_gray_concrete_powder_overlay"
+    ],
+    "ott:red_lime_concrete_powder": [
+      "ott:block/overlays/red_lime_concrete_powder_overlay"
+    ],
+    "ott:red_magenta_concrete_powder": [
+      "ott:block/overlays/red_magenta_concrete_powder_overlay"
+    ],
+    "ott:red_orange_concrete_powder": [
+      "ott:block/overlays/red_orange_concrete_powder_overlay"
+    ],
+    "ott:red_pink_concrete_powder": [
+      "ott:block/overlays/red_pink_concrete_powder_overlay"
+    ],
+    "ott:red_purple_concrete_powder": [
+      "ott:block/overlays/red_purple_concrete_powder_overlay"
+    ],
+    "ott:red_white_concrete_powder": [
+      "ott:block/overlays/red_white_concrete_powder_overlay"
+    ],
+    "ott:red_yellow_concrete_powder": [
+      "ott:block/overlays/red_yellow_concrete_powder_overlay"
+    ],
+    "ott:sienna_concrete_powder": [
+      "ott:block/overlays/sienna_concrete_powder_overlay"
+    ],
+    "ott:sienna_dyed_cobblestone": [
+      "ott:block/overlays/sienna_dyed_cobblestone_overlay"
+    ],
+    "ott:sienna_dyed_stone": [
+      "ott:block/overlays/sienna_dyed_stone_overlay"
+    ],
+    "ott:white_black_concrete_powder": [
+      "ott:block/overlays/white_black_concrete_powder_overlay"
+    ],
+    "ott:white_blue_concrete_powder": [
+      "ott:block/overlays/white_blue_concrete_powder_overlay"
+    ],
+    "ott:white_brown_concrete_powder": [
+      "ott:block/overlays/white_brown_concrete_powder_overlay"
+    ],
+    "ott:white_cyan_concrete_powder": [
+      "ott:block/overlays/white_cyan_concrete_powder_overlay"
+    ],
+    "ott:white_dyed_cobblestone": [
+      "ott:block/overlays/white_dyed_cobblestone_overlay"
+    ],
+    "ott:white_dyed_stone": [
+      "ott:block/overlays/white_dyed_stone_overlay"
+    ],
+    "ott:white_gray_concrete_powder": [
+      "ott:block/overlays/white_gray_concrete_powder_overlay"
+    ],
+    "ott:white_green_concrete_powder": [
+      "ott:block/overlays/white_green_concrete_powder_overlay"
+    ],
+    "ott:white_light_blue_concrete_powder": [
+      "ott:block/overlays/white_light_blue_concrete_powder_overlay"
+    ],
+    "ott:white_light_gray_concrete_powder": [
+      "ott:block/overlays/white_light_gray_concrete_powder_overlay"
+    ],
+    "ott:white_lime_concrete_powder": [
+      "ott:block/overlays/white_lime_concrete_powder_overlay"
+    ],
+    "ott:white_magenta_concrete_powder": [
+      "ott:block/overlays/white_magenta_concrete_powder_overlay"
+    ],
+    "ott:white_opal": [
+      "ott:block/overlays/white_opal_overlay"
+    ],
+    "ott:white_orange_concrete_powder": [
+      "ott:block/overlays/white_orange_concrete_powder_overlay"
+    ],
+    "ott:white_pink_concrete_powder": [
+      "ott:block/overlays/white_pink_concrete_powder_overlay"
+    ],
+    "ott:white_purple_concrete_powder": [
+      "ott:block/overlays/white_purple_concrete_powder_overlay"
+    ],
+    "ott:white_red_concrete_powder": [
+      "ott:block/overlays/white_red_concrete_powder_overlay"
+    ],
+    "ott:white_yellow_concrete_powder": [
+      "ott:block/overlays/white_yellow_concrete_powder_overlay"
+    ],
+    "ott:yellow_black_concrete_powder": [
+      "ott:block/overlays/yellow_black_concrete_powder_overlay"
+    ],
+    "ott:yellow_blue_concrete_powder": [
+      "ott:block/overlays/yellow_blue_concrete_powder_overlay"
+    ],
+    "ott:yellow_brown_concrete_powder": [
+      "ott:block/overlays/yellow_brown_concrete_powder_overlay"
+    ],
+    "ott:yellow_cyan_concrete_powder": [
+      "ott:block/overlays/yellow_cyan_concrete_powder_overlay"
+    ],
+    "ott:yellow_dyed_cobblestone": [
+      "ott:block/overlays/yellow_dyed_cobblestone_overlay"
+    ],
+    "ott:yellow_dyed_stone": [
+      "ott:block/overlays/yellow_dyed_stone_overlay"
+    ],
+    "ott:yellow_gray_concrete_powder": [
+      "ott:block/overlays/yellow_gray_concrete_powder_overlay"
+    ],
+    "ott:yellow_green_concrete_powder": [
+      "ott:block/overlays/yellow_green_concrete_powder_overlay"
+    ],
+    "ott:yellow_light_blue_concrete_powder": [
+      "ott:block/overlays/yellow_light_blue_concrete_powder_overlay"
+    ],
+    "ott:yellow_light_gray_concrete_powder": [
+      "ott:block/overlays/yellow_light_gray_concrete_powder_overlay"
+    ],
+    "ott:yellow_lime_concrete_powder": [
+      "ott:block/overlays/yellow_lime_concrete_powder_overlay"
+    ],
+    "ott:yellow_magenta_concrete_powder": [
+      "ott:block/overlays/yellow_magenta_concrete_powder_overlay"
+    ],
+    "ott:yellow_orange_concrete_powder": [
+      "ott:block/overlays/yellow_orange_concrete_powder_overlay"
+    ],
+    "ott:yellow_pink_concrete_powder": [
+      "ott:block/overlays/yellow_pink_concrete_powder_overlay"
+    ],
+    "ott:yellow_purple_concrete_powder": [
+      "ott:block/overlays/yellow_purple_concrete_powder_overlay"
+    ],
+    "ott:yellow_red_concrete_powder": [
+      "ott:block/overlays/yellow_red_concrete_powder_overlay"
+    ],
+    "ott:yellow_white_concrete_powder": [
+      "ott:block/overlays/yellow_white_concrete_powder_overlay"
+    ]
+  }
+}
