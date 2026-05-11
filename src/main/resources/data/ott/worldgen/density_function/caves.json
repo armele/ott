@@ -6,12 +6,12 @@
       "coordinate": "ott:depth",
       "points": [
         {
-          "location": 0.1,
+          "location": 0.4,
           "derivative": 0,
           "value": 10
         },
         {
-          "location": 0.2,
+          "location": 0.6,
           "derivative": 0,
           "value": 1
         }
