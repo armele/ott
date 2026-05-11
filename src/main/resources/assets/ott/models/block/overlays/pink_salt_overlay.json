@@ -1,20 +1,16 @@
 {
   "loader": "ott:overlay",
-  "tint_index": 101,
+  "tint_index": 102,
   "textures": {
-    "all": "ott:block/overlays/opal_block_overflow",
+    "all": "ott:block/overlays/pink_salt_overflow",
     "particle": "#all"
   },
   "connections": {
     "type": "or",
     "predicates": [
-      { "type": "match_block_in_front", "block": "ott:budding_white_opal" },
       {
-        "type": "and",
-        "predicates": [
-          { "type": "match_block", "block": "ott:budding_white_opal" },
-          { "type": "is_face_visible" }
-        ]
+        "type": "match_block_in_front",
+        "block": "ott:pink_salt_block"
       }
     ]
   },

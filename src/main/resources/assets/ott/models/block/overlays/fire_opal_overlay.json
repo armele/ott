@@ -15,6 +15,20 @@
       {
         "type": "match_block_in_front",
         "block": "ott:fire_opal_crystal_block"
+      },
+      {
+        "type": "and",
+        "predicates": [
+          { "type": "match_block", "block": "ott:fire_opal" },
+          { "type": "is_face_visible" }
+        ]
+      },
+      {
+        "type": "and",
+        "predicates": [
+          { "type": "match_block", "block": "ott:fire_opal_crystal_block" },
+          { "type": "is_face_visible" }
+        ]
       }
     ]
   },

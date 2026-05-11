@@ -1,20 +1,18 @@
 {
   "loader": "ott:overlay",
-  "tint_index": 101,
   "textures": {
-    "all": "ott:block/overlays/opal_block_overflow",
+    "all": "ott:block/overlays/dirt_overflow",
     "particle": "#all"
   },
   "connections": {
-    "type": "or",
+    "type": "and",
     "predicates": [
-      { "type": "match_block_in_front", "block": "ott:budding_white_opal" },
       {
-        "type": "and",
-        "predicates": [
-          { "type": "match_block", "block": "ott:budding_white_opal" },
-          { "type": "is_face_visible" }
-        ]
+        "type": "match_block",
+        "block": "minecraft:farmland"
+      },
+      {
+        "type": "is_face_visible"
       }
     ]
   },

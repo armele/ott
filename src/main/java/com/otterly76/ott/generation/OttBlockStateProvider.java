@@ -1231,8 +1231,8 @@ public class OttBlockStateProvider extends ModBlockStateProvider {
         existingFacingShapeBlock(ModBlocks.LIMESTONE_MASONRY_PLATE.get(),    "block/limestone/limestone_masonry_plate");
 
         // ── Salt & misc stone ─────────────────────────────────────────────────
-        simpleBlockWithItem(ModBlocks.SALT_BLOCK.get(),          models().getExistingFile(modLoc("block/salt/salt_block")));
-        simpleBlockWithItem(ModBlocks.POLISHED_SALT_BLOCK.get(), models().getExistingFile(modLoc("block/salt/polished_salt_block")));
+        simpleBlockWithItem(ModBlocks.PINK_SALT_BLOCK.get(),          models().getExistingFile(modLoc("block/pink_salt/pink_salt_block")));
+        simpleBlockWithItem(ModBlocks.POLISHED_PINK_SALT_BLOCK.get(), models().getExistingFile(modLoc("block/pink_salt/polished_pink_salt_block")));
         simpleBlockWithItem(ModBlocks.REFINED_GLOWSTONE.get(),    models().getExistingFile(modLoc("block/glowstone/refined_glowstone")));
         simpleBlockWithItem(ModBlocks.GLASS_JAR.get(),           models().getExistingFile(modLoc("block/glass_jar")));
 

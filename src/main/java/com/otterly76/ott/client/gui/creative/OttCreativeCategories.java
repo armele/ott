@@ -939,8 +939,8 @@ public enum OttCreativeCategories {
     MISC("misc",
             () -> ModBlocks.WATER_LANTERN.get().asItem(),
             (params, output) -> {
-                output.accept(ModItems.SALT);
-                output.accept(ModBlocks.SALT_LAMP);
+                output.accept(ModItems.PINK_SALT);
+                output.accept(ModBlocks.PINK_SALT_LAMP);
 
                 output.accept(ModBlocks.STONE_LANTERN);
                 output.accept(ModBlocks.IRON_FANCY_LANTERN);

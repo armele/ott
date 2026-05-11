@@ -31,13 +31,16 @@ public class OverlayUnbakedGeometry implements IUnbakedGeometry<OverlayUnbakedGe
      */
     private final Map<String, OverlayConnectionRule> rulesByTexVar;
     private final int tintIndex;
+    private final boolean emissive;
 
     public OverlayUnbakedGeometry(BlockModel baseModel,
                                    Map<String, OverlayConnectionRule> rulesByTexVar,
-                                   int tintIndex) {
+                                   int tintIndex,
+                                   boolean emissive) {
         this.baseModel = baseModel;
         this.rulesByTexVar = rulesByTexVar;
         this.tintIndex = tintIndex;
+        this.emissive = emissive;
     }
 
     @Override
@@ -71,6 +74,6 @@ public class OverlayUnbakedGeometry implements IUnbakedGeometry<OverlayUnbakedGe
             }
         }
 
-        return new OverlayBakedModel(base, spriteRules, tintIndex);
+        return new OverlayBakedModel(base, spriteRules, tintIndex, emissive);
     }
 }

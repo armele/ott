@@ -24,18 +24,18 @@ import java.util.Map;
 import java.util.concurrent.CompletableFuture;
 
 /**
- * Generates overlay model JSONs and merges entries into the two Fordite config files:
+ * Generates overlay model JSONs and merges entries into the overlay config file:
  * <ul>
  *   <li>{@code ott_overlay_modifiers/overlay_config.json} — block → overlay model path(s)
- *   <li>{@code ott_overlay_modifiers/tier_config.json}    — block → tier (z_order)
  * </ul>
+ * Tier config ({@code tier_config.json}) is managed manually — datagen never touches it.
  *
  * <p>Blocks generated here:
  * <ul>
- *   <li>{@code {color}_dyed_stone}         — 33 colors, tier 5
- *   <li>{@code {color}_dyed_cobblestone}   — 33 colors, tier 125
- *   <li>{@code {color}_concrete_powder}    — 17 custom OTT colors, tier 400
- *   <li>{@code {c1}_{c2}_concrete_powder}  — 240 vanilla DyeColor pairs, tier 400
+ *   <li>{@code {color}_dyed_stone}         — 33 colors
+ *   <li>{@code {color}_dyed_cobblestone}   — 33 colors
+ *   <li>{@code {color}_concrete_powder}    — 17 custom OTT colors
+ *   <li>{@code {c1}_{c2}_concrete_powder}  — 240 vanilla DyeColor pairs
  * </ul>
  */
 public class OttOverlayProvider implements DataProvider {
@@ -55,42 +55,38 @@ public class OttOverlayProvider implements DataProvider {
         Path modelsDir = mainPath.resolve("models/block/overlays");
 
         Map<String, List<String>> newOverlays = new LinkedHashMap<>();
-        Map<String, Integer>      newTiers    = new LinkedHashMap<>();
 
-        // ── dyed_stone — 33 colors, tier 5 ───────────────────────────────────
+        // ── dyed_stone — 33 colors ────────────────────────────────────────────
         for (ModPatterns.ColorInfo color : ModPatterns.ALL_COLORS) {
             String baseName = color.name() + "_dyed_stone";
             String blockId  = "ott:" + baseName;
             String model    = "ott:block/overlays/" + baseName + "_overlay";
             newOverlays.put(blockId, List.of(model));
-            newTiers.put(blockId, 5);
             writeModel(cache, modelsDir.resolve(baseName + "_overlay.json"),
                     blockId, "ott:block/overlays/dyed_stone/" + color.name() + "_overflow");
         }
 
-        // ── dyed_cobblestone — 33 colors, tier 125 ───────────────────────────
+        // ── dyed_cobblestone — 33 colors ─────────────────────────────────────
         for (ModPatterns.ColorInfo color : ModPatterns.ALL_COLORS) {
             String baseName = color.name() + "_dyed_cobblestone";
             String blockId  = "ott:" + baseName;
             String model    = "ott:block/overlays/" + baseName + "_overlay";
             newOverlays.put(blockId, List.of(model));
-            newTiers.put(blockId, 125);
             writeModel(cache, modelsDir.resolve(baseName + "_overlay.json"),
                     blockId, "ott:block/overlays/dyed_cobblestone/" + color.name() + "_overflow");
         }
 
-        // ── custom concrete_powder — 17 OTT colors, tier 400 ─────────────────
+        // ── custom concrete_powder — 17 OTT colors ───────────────────────────
         for (ModColorSets.ColorSet colorSet : ModColorSets.ALL) {
             String baseName = colorSet.name() + "_concrete_powder";
             String blockId  = "ott:" + baseName;
             String model    = "ott:block/overlays/" + baseName + "_overlay";
             newOverlays.put(blockId, List.of(model));
-            newTiers.put(blockId, 400);
             writeModel(cache, modelsDir.resolve(baseName + "_overlay.json"),
                     blockId, "ott:block/overlays/concrete_powder/" + colorSet.name() + "_overflow");
         }
 
-        // ── gradient concrete_powder — 240 vanilla DyeColor pairs, tier 400 ──
+        // ── gradient concrete_powder — 240 vanilla DyeColor pairs ────────────
         for (DyeColor c1 : DyeColor.values()) {
             for (DyeColor c2 : DyeColor.values()) {
                 if (c1 == c2) continue;
@@ -98,16 +94,14 @@ public class OttOverlayProvider implements DataProvider {
                 String blockId  = "ott:" + baseName;
                 String model    = "ott:block/overlays/" + baseName + "_overlay";
                 newOverlays.put(blockId, List.of(model));
-                newTiers.put(blockId, 400);
                 writeModel(cache, modelsDir.resolve(baseName + "_overlay.json"),
                         blockId, "ott:block/overlays/" + c1.getName() + "_concrete_powder_overflow");
             }
         }
 
-        // ── merge into the two config files ───────────────────────────────────
+        // ── merge into overlay config only (tier_config is user-managed) ──────
         Path configDir = mainPath.resolve("ott_overlay_modifiers");
         mergeOverlayConfig(cache, configDir.resolve("overlay_config.json"), newOverlays);
-        mergeTierConfig(cache, configDir.resolve("tier_config.json"), newTiers);
 
         return CompletableFuture.completedFuture(null);
     }
@@ -127,20 +121,6 @@ public class OttOverlayProvider implements DataProvider {
         JsonObject sorted = sortedObject(overlays);
         JsonObject out = new JsonObject();
         out.add("overlays", sorted);
-        writeJson(cache, file, out);
-    }
-
-    private void mergeTierConfig(CachedOutput cache, Path file, Map<String, Integer> newEntries) {
-        JsonObject existing = readJsonObject(file);
-        JsonObject tiers    = existing.has("tiers") ? existing.getAsJsonObject("tiers") : new JsonObject();
-
-        for (Map.Entry<String, Integer> entry : newEntries.entrySet()) {
-            tiers.addProperty(entry.getKey(), entry.getValue());
-        }
-
-        JsonObject sorted = sortedObject(tiers);
-        JsonObject out = new JsonObject();
-        out.add("tiers", sorted);
         writeJson(cache, file, out);
     }
 

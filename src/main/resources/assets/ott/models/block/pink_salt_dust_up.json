@@ -4,7 +4,7 @@
   "render_type": "cutout",
   "parent": "minecraft:block/redstone_dust_up",
   "textures": {
-    "particle": "ott:block/salt_dust_dot",
-    "line": "ott:block/salt_dust_line0"
+    "particle": "ott:block/pink_salt_dust_dot",
+    "line": "ott:block/pink_salt_dust_line0"
   }
 }

@@ -125,10 +125,10 @@ public class ModItems {
     public static final DeferredItem<Item> HOOPOE_SPAWN_EGG = ITEMS.register("hoopoe_spawn_egg", () -> new DeferredSpawnEggItem(ModEntities.HOOPOE, 0xFFE0C09F, 0xFF4B3621, new Item.Properties()));
     public static final DeferredItem<Item> PHEASANT_SPAWN_EGG = ITEMS.register("pheasant_spawn_egg", () -> new DeferredSpawnEggItem(ModEntities.PHEASANT, 0xFF4B3621, 0xFF8B4513, new Item.Properties()));
     public static final DeferredItem<Item> TOUCAN_SPAWN_EGG = ITEMS.register("toucan_spawn_egg", () -> new DeferredSpawnEggItem(ModEntities.TOUCAN, 0xFF000000, 0xFFFFA500, new Item.Properties()));
-    public static final DeferredItem<Item> SALT = ITEMS.register("salt", () -> new net.minecraft.world.item.BlockItem(ModBlocks.SALT_DUST.get(), new Item.Properties()));
-    public static final DeferredItem<Item> SALT_BLOCK = ITEMS.register("salt_block", () -> new net.minecraft.world.item.BlockItem(ModBlocks.SALT_BLOCK.get(), new Item.Properties()));
-    public static final DeferredItem<Item> POLISHED_SALT_BLOCK = ITEMS.register("polished_salt_block", () -> new net.minecraft.world.item.BlockItem(ModBlocks.POLISHED_SALT_BLOCK.get(), new Item.Properties()));
-    public static final DeferredItem<Item> SALT_LAMP = ITEMS.register("salt_lamp", () -> new net.minecraft.world.item.BlockItem(ModBlocks.SALT_LAMP.get(), new Item.Properties()));
+    public static final DeferredItem<Item> PINK_SALT = ITEMS.register("pink_salt", () -> new net.minecraft.world.item.BlockItem(ModBlocks.PINK_SALT_DUST.get(), new Item.Properties()));
+    public static final DeferredItem<Item> PINK_SALT_BLOCK = ITEMS.register("pink_salt_block", () -> new net.minecraft.world.item.BlockItem(ModBlocks.PINK_SALT_BLOCK.get(), new Item.Properties()));
+    public static final DeferredItem<Item> POLISHED_PINK_SALT_BLOCK = ITEMS.register("polished_pink_salt_block", () -> new net.minecraft.world.item.BlockItem(ModBlocks.POLISHED_PINK_SALT_BLOCK.get(), new Item.Properties()));
+    public static final DeferredItem<Item> PINK_SALT_LAMP = ITEMS.register("pink_salt_lamp", () -> new net.minecraft.world.item.BlockItem(ModBlocks.PINK_SALT_LAMP.get(), new Item.Properties()));
     public static final DeferredItem<Item> OAK_NEST       = ITEMS.register("oak_nest",       () -> new net.minecraft.world.item.BlockItem(ModBlocks.OAK_NEST.get(),       new Item.Properties()));
     public static final DeferredItem<Item> ACACIA_BEEHIVE   = ITEMS.register("acacia_beehive",   () -> new net.minecraft.world.item.BlockItem(ModBlocks.ACACIA_BEEHIVE.get(),   new Item.Properties()));
     public static final DeferredItem<Item> BAMBOO_BEEHIVE   = ITEMS.register("bamboo_beehive",   () -> new net.minecraft.world.item.BlockItem(ModBlocks.BAMBOO_BEEHIVE.get(),   new Item.Properties()));

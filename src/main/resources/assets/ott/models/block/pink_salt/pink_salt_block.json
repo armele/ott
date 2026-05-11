@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:block/cube_all",
   "textures": {
-    "all":  "ott:block/salt/salt_block"
+    "all":  "ott:block/pink_salt/pink_salt_block"
   }
 }

@@ -80,7 +80,7 @@ public class SaltPlacedBlock extends Block {
 
     @Override
     public @NotNull ItemStack getCloneItemStack(@NotNull BlockState state, @NotNull HitResult target, @NotNull LevelReader level, @NotNull BlockPos pos, @NotNull Player player) {
-        return new ItemStack(ModItems.SALT.get());
+        return new ItemStack(ModItems.PINK_SALT.get());
     }
 
     @Override

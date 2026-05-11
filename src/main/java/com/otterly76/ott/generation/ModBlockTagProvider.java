@@ -239,7 +239,7 @@ public class ModBlockTagProvider extends BlockTagsProvider {
             this.tag(doDefaultKey).add(all);
         });
         ModBlocks.TESTBLOCK.forEach(d -> this.tag(doDefaultKey).add(d.value()));
-        this.tag(doDefaultKey).add(ModBlocks.SALT_BLOCK.get(), ModBlocks.POLISHED_SALT_BLOCK.get());
+        this.tag(doDefaultKey).add(ModBlocks.PINK_SALT_BLOCK.get(), ModBlocks.POLISHED_PINK_SALT_BLOCK.get());
         this.tag(doDefaultKey).add(ModBlocks.WATER_MOSAIC_TRADITIONAL.get());
         this.tag(doDefaultKey).add(ModBlocks.EARTH_MOSAIC_TRADITIONAL.get());
         this.tag(doDefaultKey).add(ModBlocks.FIRE_MOSAIC_TRADITIONAL.get());
@@ -638,7 +638,7 @@ public class ModBlockTagProvider extends BlockTagsProvider {
         hoeTag.add(ModBlocks.PALE_MOSS_BLOCK.value(), ModBlocks.PALE_MOSS_CARPET.value(), ModBlocks.THORNY_HEDGE.value());
         hoeTag.add(ModBlocks.PALE_OAK_LEAVES.value());
         pickaxeTag.add(ModBlocks.RESIN_BRICKS.value(), ModBlocks.CHISELED_RESIN_BRICKS.value(), ModBlocks.RESIN_BRICK_SLAB.value(), ModBlocks.RESIN_BLOCK.value(), ModBlocks.RESIN_BRICK_STAIRS.value(), ModBlocks.RESIN_BRICK_WALL.value());
-        pickaxeTag.add(ModBlocks.SALT_BLOCK.value(), ModBlocks.SALT_LAMP.value());
+        pickaxeTag.add(ModBlocks.PINK_SALT_BLOCK.value(), ModBlocks.PINK_SALT_LAMP.value());
         pickaxeTag.add(ModBlocks.SOUL_GLASS.get(), ModBlocks.SOUL_GLASS_PANE.get());
         mcStainedGlass.add(ModBlocks.SOUL_GLASS.get());
         this.tag(TagKey.create(Registries.BLOCK, ResourceLocation.withDefaultNamespace("stained_glass_panes"))).add(ModBlocks.SOUL_GLASS_PANE.get());

@@ -64,9 +64,9 @@ public class CreativeTabHandler {
                     ModBlocks.RESIN_BRICK_WALL,
                     ModBlocks.CHISELED_RESIN_BRICKS
             ), visibility);
-            safeInsertAfter(event, Items.REDSTONE_LAMP.getDefaultInstance(), new ItemStack(ModBlocks.SALT_LAMP.get()), visibility);
-            safeInsertAfter(event, new ItemStack(ModBlocks.SALT_LAMP.get()), new ItemStack(ModBlocks.SALT_BLOCK.get()), visibility);
-            safeInsertAfter(event, new ItemStack(ModBlocks.SALT_BLOCK.get()), new ItemStack(ModBlocks.POLISHED_SALT_BLOCK.get()), visibility);
+            safeInsertAfter(event, Items.REDSTONE_LAMP.getDefaultInstance(), new ItemStack(ModBlocks.PINK_SALT_LAMP.get()), visibility);
+            safeInsertAfter(event, new ItemStack(ModBlocks.PINK_SALT_LAMP.get()), new ItemStack(ModBlocks.PINK_SALT_BLOCK.get()), visibility);
+            safeInsertAfter(event, new ItemStack(ModBlocks.PINK_SALT_BLOCK.get()), new ItemStack(ModBlocks.POLISHED_PINK_SALT_BLOCK.get()), visibility);
         }
 
         if (event.getTabKey() == CreativeModeTabs.NATURAL_BLOCKS) {
@@ -117,7 +117,7 @@ public class CreativeTabHandler {
             insertAllAfter(event, Items.FERN, List.of(ModBlocks.SHORT_DRY_GRASS, ModBlocks.BUSH), visibility);
             insertAllAfter(event, Items.TORCHFLOWER, List.of(ModBlocks.CACTUS_FLOWER, ModBlocks.CLOSED_EYEBLOSSOM, ModBlocks.OPEN_EYEBLOSSOM), visibility);
             insertAllAfter(event, Items.PINK_PETALS, List.of(ModBlocks.WILDFLOWERS, ModBlocks.LEAF_LITTER), visibility);
-            safeInsertAfter(event, Items.SAND.getDefaultInstance(), new ItemStack(ModBlocks.SALT_BLOCK.get()), visibility);
+            safeInsertAfter(event, Items.SAND.getDefaultInstance(), new ItemStack(ModBlocks.PINK_SALT_BLOCK.get()), visibility);
 
             safeInsertAfter(event, Items.SPORE_BLOSSOM.getDefaultInstance(), new ItemStack(ModBlocks.FIREFLY_BUSH.get()), visibility);
             safeInsertAfter(event, Items.LARGE_FERN.getDefaultInstance(), new ItemStack(ModBlocks.TALL_DRY_GRASS.get()), visibility);
@@ -681,7 +681,7 @@ public class CreativeTabHandler {
 
             safeAccept(event, ModItems.TINY_COAL, visibility);
             safeAccept(event, ModItems.TINY_CHARCOAL, visibility);
-            safeAccept(event, ModItems.SALT, visibility);
+            safeAccept(event, ModItems.PINK_SALT, visibility);
             safeAccept(event, ModItems.SNAIL_SHELL, visibility);
         }
 

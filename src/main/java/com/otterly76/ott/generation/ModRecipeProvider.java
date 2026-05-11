@@ -1645,28 +1645,28 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
 
         // Crafting
         // Salt
-        ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, ModBlocks.SALT_BLOCK.get())
-                .define('#', ModItems.SALT.get())
+        ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, ModBlocks.PINK_SALT_BLOCK.get())
+                .define('#', ModItems.PINK_SALT.get())
                 .pattern("##")
                 .pattern("##")
-                .unlockedBy("has_salt", has(ModItems.SALT.get()))
-                .save(noAdv, getRecipePath("ott", "salt_block"));
+                .unlockedBy("has_pink_salt", has(ModItems.PINK_SALT.get()))
+                .save(noAdv, getRecipePath("ott", "pink_salt_block"));
 
-        ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, ModBlocks.POLISHED_SALT_BLOCK.get(), 4)
-                .define('#', ModBlocks.SALT_BLOCK.get())
+        ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, ModBlocks.POLISHED_PINK_SALT_BLOCK.get(), 4)
+                .define('#', ModBlocks.PINK_SALT_BLOCK.get())
                 .pattern("##")
                 .pattern("##")
-                .unlockedBy("has_salt_block", has(ModBlocks.SALT_BLOCK.get()))
-                .save(noAdv, getRecipePath("ott", "polished_salt_block"));
+                .unlockedBy("has_pink_salt_block", has(ModBlocks.PINK_SALT_BLOCK.get()))
+                .save(noAdv, getRecipePath("ott", "polished_pink_salt_block"));
 
-        ShapedRecipeBuilder.shaped(RecipeCategory.DECORATIONS, ModBlocks.SALT_LAMP.get())
-                .define('S', ModBlocks.POLISHED_SALT_BLOCK.get())
+        ShapedRecipeBuilder.shaped(RecipeCategory.DECORATIONS, ModBlocks.PINK_SALT_LAMP.get())
+                .define('S', ModBlocks.POLISHED_PINK_SALT_BLOCK.get())
                 .define('G', Items.GLOWSTONE_DUST)
                 .pattern(" S ")
                 .pattern("SGS")
                 .pattern(" S ")
-                .unlockedBy("has_polished_salt_block", has(ModBlocks.POLISHED_SALT_BLOCK.get()))
-                .save(noAdv, getRecipePath("ott", "salt_lamp"));
+                .unlockedBy("has_polished_pink_salt_block", has(ModBlocks.POLISHED_PINK_SALT_BLOCK.get()))
+                .save(noAdv, getRecipePath("ott", "pink_salt_lamp"));
 
         // Catfish
         cooking(noAdv, List.of(ModItems.CATFISH.get()), ModItems.COOKED_CATFISH.get(), "cooked_catfish");

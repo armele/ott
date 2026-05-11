@@ -53,15 +53,18 @@ public class OverlayModelLoader implements IGeometryLoader<OverlayUnbakedGeometr
             tintIndex = OverlayBakedModel.GRASS_OVERLAY_TINT;
         }
 
+        boolean emissive = json.has("emissive") && json.get("emissive").getAsBoolean();
+
         // Strip custom keys so the remainder is a valid vanilla BlockModel JSON
         JsonObject cleaned = json.deepCopy();
         cleaned.remove("loader");
         cleaned.remove("connections");
         cleaned.remove("tint_type");
         cleaned.remove("tint_index");
+        cleaned.remove("emissive");
 
         BlockModel baseModel = ctx.deserialize(cleaned, BlockModel.class);
-        return new OverlayUnbakedGeometry(baseModel, rulesByTexVar, tintIndex);
+        return new OverlayUnbakedGeometry(baseModel, rulesByTexVar, tintIndex, emissive);
     }
 
     // ---- connection parsing -------------------------------------------------

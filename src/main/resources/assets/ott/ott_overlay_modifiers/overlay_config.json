@@ -18,6 +18,9 @@
     "minecraft:blue_concrete_powder": [
       "ott:block/overlays/blue_concrete_powder_overlay"
     ],
+    "minecraft:blue_ice": [
+      "ott:block/overlays/blue_ice_overlay"
+    ],
     "minecraft:bricks": [
       "ott:block/overlays/bricks_overlay"
     ],
@@ -114,8 +117,14 @@
     "minecraft:dirt": [
       "ott:block/overlays/dirt_overlay"
     ],
+    "minecraft:dirt_path": [
+      "ott:block/overlays/dirt_path_overlay"
+    ],
     "minecraft:dripstone_block": [
       "ott:block/overlays/dripstone_block_overlay"
+    ],
+    "minecraft:end_stone": [
+      "ott:block/overlays/end_stone_overlay"
     ],
     "minecraft:end_stone_bricks": [
       "ott:block/overlays/end_stone_bricks_overlay"
@@ -123,8 +132,14 @@
     "minecraft:exposed_cut_copper": [
       "ott:block/overlays/exposed_cut_copper_overlay"
     ],
+    "minecraft:farmland": [
+      "ott:block/overlays/farmland_overlay"
+    ],
     "minecraft:gilded_blackstone": [
       "ott:block/overlays/gilded_blackstone_overlay"
+    ],
+    "minecraft:glowstone": [
+      "ott:block/overlays/glowstone_overlay"
     ],
     "minecraft:granite": [
       "ott:block/overlays/granite_overlay"
@@ -140,6 +155,9 @@
     ],
     "minecraft:green_concrete_powder": [
       "ott:block/overlays/green_concrete_powder_overlay"
+    ],
+    "minecraft:ice": [
+      "ott:block/overlays/ice_overlay"
     ],
     "minecraft:infested_cobblestone": [
       "ott:block/overlays/infested_cobblestone_overlay"
@@ -204,11 +222,17 @@
     "minecraft:netherrack": [
       "ott:block/overlays/netherrack_overlay"
     ],
+    "minecraft:obsidian": [
+      "ott:block/overlays/obsidian_overlay"
+    ],
     "minecraft:orange_concrete_powder": [
       "ott:block/overlays/orange_concrete_powder_overlay"
     ],
     "minecraft:oxidized_cut_copper": [
       "ott:block/overlays/oxidized_cut_copper_overlay"
+    ],
+    "minecraft:packed_ice": [
+      "ott:block/overlays/packed_ice_overlay"
     ],
     "minecraft:packed_mud": [
       "ott:block/overlays/packed_mud_overlay"
@@ -258,6 +282,9 @@
     "minecraft:red_sand": [
       "ott:block/overlays/red_sand_overlay"
     ],
+    "minecraft:red_sandstone": [
+      "ott:block/overlays/red_sand_overlay"
+    ],
     "minecraft:resin_block": [
       "ott:block/overlays/resin_block_overlay"
     ],
@@ -270,11 +297,17 @@
     "minecraft:sand": [
       "ott:block/overlays/sand_overlay"
     ],
+    "minecraft:sandstone": [
+      "ott:block/overlays/sand_overlay"
+    ],
     "minecraft:sculk": [
       "ott:block/overlays/sculk_overlay"
     ],
     "minecraft:sculk_catalyst": [
       "ott:block/overlays/sculk_catalyst_overlay"
+    ],
+    "minecraft:shroomlight": [
+      "ott:block/overlays/shroomlight_overlay"
     ],
     "minecraft:smooth_basalt": [
       "ott:block/overlays/smooth_basalt_overlay"
@@ -368,6 +401,9 @@
     ],
     "ott:black_magenta_concrete_powder": [
       "ott:block/overlays/black_magenta_concrete_powder_overlay"
+    ],
+    "ott:black_marble": [
+      "ott:block/overlays/black_marble_overlay"
     ],
     "ott:black_opal": [
       "ott:block/overlays/black_opal_overlay"
@@ -536,6 +572,9 @@
     ],
     "ott:chocolate_dyed_stone": [
       "ott:block/overlays/chocolate_dyed_stone_overlay"
+    ],
+    "ott:cobbled_limestone": [
+      "ott:block/overlays/cobbled_limestone_overlay"
     ],
     "ott:cornflower_concrete_powder": [
       "ott:block/overlays/cornflower_concrete_powder_overlay"
@@ -900,6 +939,9 @@
     "ott:lime_yellow_concrete_powder": [
       "ott:block/overlays/lime_yellow_concrete_powder_overlay"
     ],
+    "ott:limestone": [
+      "ott:block/overlays/limestone_overlay"
+    ],
     "ott:magenta_black_concrete_powder": [
       "ott:block/overlays/magenta_black_concrete_powder_overlay"
     ],
@@ -1092,6 +1134,9 @@
     "ott:pink_red_concrete_powder": [
       "ott:block/overlays/pink_red_concrete_powder_overlay"
     ],
+    "ott:pink_salt_block": [
+      "ott:block/overlays/pink_salt_overlay"
+    ],
     "ott:pink_white_concrete_powder": [
       "ott:block/overlays/pink_white_concrete_powder_overlay"
     ],
@@ -1244,6 +1289,9 @@
     ],
     "ott:white_magenta_concrete_powder": [
       "ott:block/overlays/white_magenta_concrete_powder_overlay"
+    ],
+    "ott:white_marble": [
+      "ott:block/overlays/white_marble_overlay"
     ],
     "ott:white_opal": [
       "ott:block/overlays/white_opal_overlay"

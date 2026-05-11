@@ -1,5 +1,6 @@
 package com.otterly76.ott.client.model.overlay;
 
+import net.minecraft.client.renderer.LightTexture;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.block.model.BakedQuad;
 import net.minecraft.client.renderer.block.model.ItemOverrides;
@@ -104,10 +105,13 @@ public class OverlayBakedModel implements net.minecraft.client.resources.model.B
     private final int catchAllRuleIndex;
     /** Tint index applied to overlay quads, or -1 for no tint. */
     private final int tintIndex;
+    /** When true, overlay quads are stamped with FULL_BRIGHT lightmap so they glow. */
+    private final boolean emissive;
 
     public OverlayBakedModel(net.minecraft.client.resources.model.BakedModel baseModel,
                               Map<TextureAtlasSprite, OverlayConnectionRule> spriteRules,
-                              int tintIndex) {
+                              int tintIndex,
+                              boolean emissive) {
         this.baseModel = baseModel;
 
         Map<OverlayConnectionRule, Integer> ruleIndex = new IdentityHashMap<>();
@@ -128,6 +132,7 @@ public class OverlayBakedModel implements net.minecraft.client.resources.model.B
         this.ruleList = list;
         this.catchAllRuleIndex = catchAll;
         this.tintIndex = tintIndex;
+        this.emissive = emissive;
 
         Map<TextureAtlasSprite, Integer> s2r = new IdentityHashMap<>();
         for (Map.Entry<TextureAtlasSprite, OverlayConnectionRule> e : spriteRules.entrySet()) {
@@ -190,13 +195,13 @@ public class OverlayBakedModel implements net.minecraft.client.resources.model.B
     public @NotNull List<BakedQuad> getQuads(@Nullable BlockState state, @Nullable Direction side,
                                              @NotNull RandomSource rand, @NotNull ModelData data,
                                              @Nullable RenderType renderType) {
-        // Only produce quads for block rendering on a specific face in the cutout or translucent pass.
-        // Translucent pass is used when the target block (e.g. ice) renders in translucent.
+        // Only produce quads for block rendering on a specific face in the cutout pass.
+        // Overlays always render in CUTOUT, even for translucent originals (e.g. ice) — this keeps
+        // the overlay depth-buffered ahead of the translucent pass, preventing coplanar z-fighting.
         if (side == null) return List.of();
-        if (renderType != null && renderType != RenderType.cutout() && renderType != RenderType.translucent()) return List.of();
+        if (renderType != null && renderType != RenderType.cutout()) return List.of();
 
-        // Always fetch base geometry using the cutout render type — the overlay cube model is
-        // always cutout geometry regardless of which pass we are emitting to.
+        // Fetch base geometry using the cutout render type.
         List<BakedQuad> base = baseModel.getQuads(state, side, rand, data, RenderType.cutout());
         if (base.isEmpty()) return List.of();
 
@@ -220,7 +225,7 @@ public class OverlayBakedModel implements net.minecraft.client.resources.model.B
             for (int corner = 0; corner < 4; corner++) {
                 int tile = OverlayLayout.getTile(corner, mask);
                 if (tile >= 0) {
-                    result.add(remapToTile(quad, sprite, tile & 0xF, (tile >> 4) & 0xF, tintIndex));
+                    result.add(remapToTile(quad, sprite, tile & 0xF, (tile >> 4) & 0xF, tintIndex, emissive));
                 }
             }
         }
@@ -239,7 +244,7 @@ public class OverlayBakedModel implements net.minecraft.client.resources.model.B
      * the registered BlockColors handler (e.g. biome grass color) at render time.
      */
     private static BakedQuad remapToTile(BakedQuad base, TextureAtlasSprite sprite,
-                                          int tileX, int tileY, int tintIndex) {
+                                          int tileX, int tileY, int tintIndex, boolean emissive) {
         float u0 = sprite.getU0(), u1 = sprite.getU1();
         float v0 = sprite.getV0(), v1 = sprite.getV1();
         float uSpan = u1 - u0;
@@ -255,6 +260,9 @@ public class OverlayBakedModel implements net.minecraft.client.resources.model.B
             float vv = Float.intBitsToFloat(verts[off + 1]);
             verts[off]     = Float.floatToRawIntBits(u0 + (tileX * uSpan + (u - u0)) / OverlayLayout.TILES_WIDE);
             verts[off + 1] = Float.floatToRawIntBits(v0 + (tileY * vSpan + (vv - v0)) / OverlayLayout.TILES_HIGH);
+            if (emissive) {
+                verts[v * stride + IQuadTransformer.UV2] = LightTexture.FULL_BRIGHT;
+            }
         }
 
         return new BakedQuad(verts, tintIndex, base.getDirection(), sprite, base.isShade(), base.hasAmbientOcclusion());

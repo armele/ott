@@ -171,8 +171,8 @@ public class ModStoneVariants {
             ofVanillaProps("resin_block",           ModBlocks.RESIN_BLOCK,          () -> Blocks.CLAY,   "minecraft:block/resin_block"),
             ofVanillaProps("resin_bricks",          ModBlocks.RESIN_BRICKS,         () -> Blocks.BRICKS, "minecraft:block/resin_bricks"),
             ofVanillaProps("chiseled_resin_bricks", ModBlocks.CHISELED_RESIN_BRICKS, () -> Blocks.BRICKS, "minecraft:block/chiseled_resin_bricks"),
-            of("salt_block",             ModBlocks.SALT_BLOCK,              "ott:block/salt/salt_block"),
-            of("polished_salt_block",    ModBlocks.POLISHED_SALT_BLOCK,     "ott:block/salt/polished_salt_block")
+            of("pink_salt_block",             ModBlocks.PINK_SALT_BLOCK,              "ott:block/pink_salt/pink_salt_block"),
+            of("polished_pink_salt_block",    ModBlocks.POLISHED_PINK_SALT_BLOCK,     "ott:block/pink_salt/polished_pink_salt_block")
     );
 
     // ── Group 7: Copper ─────────────────────────────────────────────────────────

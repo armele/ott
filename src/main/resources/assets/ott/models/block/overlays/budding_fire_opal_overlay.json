@@ -6,8 +6,17 @@
     "particle": "#all"
   },
   "connections": {
-    "type": "match_block_in_front",
-    "block": "ott:budding_fire_opal"
+    "type": "or",
+    "predicates": [
+      { "type": "match_block_in_front", "block": "ott:budding_fire_opal" },
+      {
+        "type": "and",
+        "predicates": [
+          { "type": "match_block", "block": "ott:budding_fire_opal" },
+          { "type": "is_face_visible" }
+        ]
+      }
+    ]
   },
   "elements": [
     {

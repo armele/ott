@@ -2,8 +2,8 @@
 	"credit": "Made with Blockbench",
 	"texture_size": [64, 64],
 	"textures": {
-		"0": "ott:block/lantern/salt_lamp",
-		"particle": "ott:block/lantern/salt_lamp_break"
+		"0": "ott:block/lantern/pink_salt_lamp",
+		"particle": "ott:block/lantern/pink_salt_lamp_break"
 	},
 	"elements": [
 		{
