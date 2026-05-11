@@ -728,6 +728,21 @@ public class ModEventBusEvents {
                 RegisterSpawnPlacementsEvent.Operation.REPLACE
         );
 
+        event.register(
+                ModEntities.CICHLID.get(),
+                SpawnPlacementTypes.IN_WATER,
+                Heightmap.Types.MOTION_BLOCKING_NO_LEAVES,
+                AbstractFish::checkSurfaceWaterAnimalSpawnRules,
+                RegisterSpawnPlacementsEvent.Operation.OR
+        );
+        event.register(
+                ModEntities.RIVER_TURTLE.get(),
+                SpawnPlacementTypes.ON_GROUND,
+                Heightmap.Types.MOTION_BLOCKING_NO_LEAVES,
+                Animal::checkAnimalSpawnRules,
+                RegisterSpawnPlacementsEvent.Operation.OR
+        );
+
         // Zombie horses only spawn at night — they're undead and burn in sunlight
         event.register(
                 EntityType.ZOMBIE_HORSE,

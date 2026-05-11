@@ -27,6 +27,13 @@ public interface OverlayConnectionRule {
     boolean connects(BlockAndTintGetter level, BlockPos ownPos, BlockState ownState,
                      Direction face, BlockPos neighborPos);
 
+    /**
+     * Returns {@code true} if this rule produces the same result for every neighbour position,
+     * allowing the renderer to skip the 8-neighbour loop and emit a full-face quad directly.
+     * Defaults to {@code false}.
+     */
+    default boolean isUniform() { return false; }
+
     // ---- built-in implementations ----------------------------------------
 
     /** Connects if the neighbour block IS the given block. */
@@ -75,6 +82,26 @@ public interface OverlayConnectionRule {
                 if (!rule.connects(level, ownPos, ownState, face, neighborPos)) return false;
             }
             return true;
+        }
+    }
+
+    /**
+     * Connects (uniformly on all 8 corners of the face) if the block directly in the
+     * face direction from the rendered block is the given block.
+     *
+     * <p>Unlike {@link MatchBlock}, this ignores {@code neighborPos} and checks
+     * {@code ownPos.relative(face)} instead — exactly one lookup per face, with no
+     * diagonal false-positives.  Used for side-face overlays (e.g. grass bleeding
+     * onto adjacent stone at the same Y level).
+     */
+    record MatchFaceBlock(Block block) implements OverlayConnectionRule {
+        @Override
+        public boolean isUniform() { return true; }
+
+        @Override
+        public boolean connects(BlockAndTintGetter level, BlockPos ownPos, BlockState ownState,
+                                Direction face, BlockPos neighborPos) {
+            return level.getBlockState(ownPos.relative(face)).is(block);
         }
     }
 

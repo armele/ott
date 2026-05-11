@@ -11,8 +11,11 @@ import net.minecraft.world.level.levelgen.feature.FeaturePlaceContext;
 import net.minecraft.world.level.levelgen.feature.configurations.NoneFeatureConfiguration;
 import org.jetbrains.annotations.NotNull;
 
+import org.jetbrains.annotations.Nullable;
+
 import java.util.ArrayDeque;
 import java.util.ArrayList;
+import java.util.BitSet;
 import java.util.List;
 import java.util.Queue;
 
@@ -49,9 +52,9 @@ public class FloaterCleanerFeature extends Feature<NoneFeatureConfiguration> {
         final int H    = maxY - minY - 1;
         final int SIZE = H * WW;
 
-        boolean[] solid     = new boolean[SIZE];
-        boolean[] connected = new boolean[SIZE];
-        boolean[] processed = new boolean[SIZE];
+        BitSet solid     = new BitSet(SIZE);
+        BitSet connected = new BitSet(SIZE);
+        BitSet processed = new BitSet(SIZE);
 
         // ---- Pass 1: record solid blocks ----------------------------------------
         BlockPos.MutableBlockPos mpos = new BlockPos.MutableBlockPos();
@@ -62,7 +65,7 @@ public class FloaterCleanerFeature extends Feature<NoneFeatureConfiguration> {
                 for (int ly = 0; ly < H; ly++) {
                     mpos.set(wx, minY + 1 + ly, wz);
                     if (!FallingBlock.isFree(level.getBlockState(mpos))) {
-                        solid[ly * WW + lx * W + lz] = true;
+                        solid.set(ly * WW + lx * W + lz);
                     }
                 }
             }
@@ -73,8 +76,8 @@ public class FloaterCleanerFeature extends Feature<NoneFeatureConfiguration> {
         for (int lx = 0; lx < W; lx++) {
             for (int lz = 0; lz < W; lz++) {
                 int i = lx * W + lz; // ly = 0
-                if (solid[i]) {
-                    connected[i] = true;
+                if (solid.get(i)) {
+                    connected.set(i);
                     queue.add(i);
                 }
             }
@@ -99,28 +102,32 @@ public class FloaterCleanerFeature extends Feature<NoneFeatureConfiguration> {
             for (int lz = 1; lz <= 16; lz++) {
                 for (int ly = 0; ly < H; ly++) {
                     int start = ly * WW + lx * W + lz;
-                    if (!solid[start] || connected[start] || processed[start]) continue;
+                    if (!solid.get(start) || connected.get(start) || processed.get(start)) continue;
 
                     List<Integer> component = new ArrayList<>();
                     Queue<Integer> cq = new ArrayDeque<>();
                     cq.add(start);
-                    processed[start] = true;
+                    processed.set(start);
                     component.add(start);
+                    boolean tooLarge = false;
 
                     while (!cq.isEmpty()) {
                         int ci  = cq.poll();
                         int cy  = ci / WW;
                         int cx  = (ci % WW) / W;
                         int cz  = ci % W;
-                        tryCollect(cx + 1, cy,     cz,     H, solid, connected, processed, component, cq);
-                        tryCollect(cx - 1, cy,     cz,     H, solid, connected, processed, component, cq);
-                        tryCollect(cx,     cy + 1, cz,     H, solid, connected, processed, component, cq);
-                        tryCollect(cx,     cy - 1, cz,     H, solid, connected, processed, component, cq);
-                        tryCollect(cx,     cy,     cz + 1, H, solid, connected, processed, component, cq);
-                        tryCollect(cx,     cy,     cz - 1, H, solid, connected, processed, component, cq);
+                        // Once too large, pass null to skip collecting; BFS continues to mark processed
+                        List<Integer> col = tooLarge ? null : component;
+                        tryCollect(cx + 1, cy,     cz,     H, solid, connected, processed, col, cq);
+                        tryCollect(cx - 1, cy,     cz,     H, solid, connected, processed, col, cq);
+                        tryCollect(cx,     cy + 1, cz,     H, solid, connected, processed, col, cq);
+                        tryCollect(cx,     cy - 1, cz,     H, solid, connected, processed, col, cq);
+                        tryCollect(cx,     cy,     cz + 1, H, solid, connected, processed, col, cq);
+                        tryCollect(cx,     cy,     cz - 1, H, solid, connected, processed, col, cq);
+                        if (!tooLarge && component.size() > MAX_FLOATER_SIZE) tooLarge = true;
                     }
 
-                    if (component.size() > MAX_FLOATER_SIZE) continue;
+                    if (tooLarge) continue;
 
                     for (int ci : component) {
                         int py = ci / WW;
@@ -138,23 +145,23 @@ public class FloaterCleanerFeature extends Feature<NoneFeatureConfiguration> {
     }
 
     private static void tryConnect(int lx, int ly, int lz, int H,
-                                   boolean[] solid, boolean[] connected, Queue<Integer> queue) {
+                                   BitSet solid, BitSet connected, Queue<Integer> queue) {
         if (lx < 0 || lx >= W || ly < 0 || ly >= H || lz < 0 || lz >= W) return;
         int i = ly * WW + lx * W + lz;
-        if (solid[i] && !connected[i]) {
-            connected[i] = true;
+        if (solid.get(i) && !connected.get(i)) {
+            connected.set(i);
             queue.add(i);
         }
     }
 
     private static void tryCollect(int lx, int ly, int lz, int H,
-                                   boolean[] solid, boolean[] connected, boolean[] processed,
-                                   List<Integer> component, Queue<Integer> cq) {
+                                   BitSet solid, BitSet connected, BitSet processed,
+                                   @Nullable List<Integer> component, Queue<Integer> cq) {
         if (lx < 0 || lx >= W || ly < 0 || ly >= H || lz < 0 || lz >= W) return;
         int i = ly * WW + lx * W + lz;
-        if (solid[i] && !connected[i] && !processed[i]) {
-            processed[i] = true;
-            component.add(i);
+        if (solid.get(i) && !connected.get(i) && !processed.get(i)) {
+            processed.set(i);
+            if (component != null) component.add(i);
             cq.add(i);
         }
     }

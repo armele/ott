@@ -12,6 +12,7 @@ import net.minecraft.util.RandomSource;
 import net.minecraft.world.item.ItemDisplayContext;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.BlockAndTintGetter;
+import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
 import net.neoforged.neoforge.client.ChunkRenderTypeSet;
 import net.neoforged.neoforge.client.model.data.ModelData;
@@ -20,6 +21,8 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Set;
 import java.util.List;
 
 /**
@@ -48,10 +51,39 @@ public class OverlayModifierBakedModel implements net.minecraft.client.resources
     @Override
     public @NotNull ModelData getModelData(@NotNull BlockAndTintGetter level, @NotNull BlockPos pos,
                                            @NotNull BlockState state, @NotNull ModelData existing) {
+        // Pre-scan the 26-position neighbourhood (radius-1 Moore neighbourhood) once.
+        // This lets us skip mask computation for overlays whose target blocks are not nearby,
+        // avoiding thousands of redundant level lookups on low-tier blocks like stone that
+        // receive overlays from every higher-tier block (grass, concrete powder, etc.).
+        Set<Block> nearby = new HashSet<>(32);
+        for (int dx = -1; dx <= 1; dx++) {
+            for (int dy = -1; dy <= 1; dy++) {
+                for (int dz = -1; dz <= 1; dz++) {
+                    if (dx == 0 && dy == 0 && dz == 0) continue;
+                    nearby.add(level.getBlockState(pos.offset(dx, dy, dz)).getBlock());
+                }
+            }
+        }
+
         ModelData origData = original.getModelData(level, pos, state, existing);
         ModelData[] overlayDatas = new ModelData[overlays.size()];
         for (int i = 0; i < overlays.size(); i++) {
-            overlayDatas[i] = overlays.get(i).getModelData(level, pos, state, existing);
+            net.minecraft.client.resources.model.BakedModel overlay = overlays.get(i);
+            // Skip overlays whose target blocks are definitely not in the neighbourhood.
+            if (overlay instanceof OverlayBakedModel ob) {
+                Set<Block> watched = ob.getWatchedBlocks();
+                if (!watched.isEmpty()) {
+                    boolean anyNearby = false;
+                    for (Block b : watched) {
+                        if (nearby.contains(b)) { anyNearby = true; break; }
+                    }
+                    if (!anyNearby) {
+                        overlayDatas[i] = ModelData.EMPTY;
+                        continue;
+                    }
+                }
+            }
+            overlayDatas[i] = overlay.getModelData(level, pos, state, existing);
         }
         return origData.derive().with(OVERLAY_DATA, overlayDatas).build();
     }

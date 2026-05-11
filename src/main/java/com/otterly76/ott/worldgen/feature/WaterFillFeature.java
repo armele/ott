@@ -34,6 +34,7 @@ public class WaterFillFeature extends Feature<NoneFeatureConfiguration> {
         int baseZ = chunk.getMinBlockZ();
 
         BlockPos.MutableBlockPos mpos = new BlockPos.MutableBlockPos();
+        BlockPos.MutableBlockPos neighborPos = new BlockPos.MutableBlockPos();
         boolean anyFilled = false;
 
         // Multi-pass: repeat until no more blocks are filled (cascading pockets)
@@ -52,12 +53,12 @@ public class WaterFillFeature extends Feature<NoneFeatureConfiguration> {
                         if (!state.isAir()) continue;
 
                         int waterNeighbors = 0;
-                        waterNeighbors += isWater(level, wx + 1, y,     wz) ? 1 : 0;
-                        waterNeighbors += isWater(level, wx - 1, y,     wz) ? 1 : 0;
-                        waterNeighbors += isWater(level, wx,     y + 1, wz) ? 1 : 0;
-                        waterNeighbors += isWater(level, wx,     y - 1, wz) ? 1 : 0;
-                        waterNeighbors += isWater(level, wx,     y,     wz + 1) ? 1 : 0;
-                        waterNeighbors += isWater(level, wx,     y,     wz - 1) ? 1 : 0;
+                        waterNeighbors += isWater(level, neighborPos, wx + 1, y,     wz) ? 1 : 0;
+                        waterNeighbors += isWater(level, neighborPos, wx - 1, y,     wz) ? 1 : 0;
+                        waterNeighbors += isWater(level, neighborPos, wx,     y + 1, wz) ? 1 : 0;
+                        waterNeighbors += isWater(level, neighborPos, wx,     y - 1, wz) ? 1 : 0;
+                        waterNeighbors += isWater(level, neighborPos, wx,     y,     wz + 1) ? 1 : 0;
+                        waterNeighbors += isWater(level, neighborPos, wx,     y,     wz - 1) ? 1 : 0;
 
                         if (waterNeighbors >= 4) {
                             level.setBlock(mpos, Blocks.WATER.defaultBlockState(), 3);
@@ -71,7 +72,7 @@ public class WaterFillFeature extends Feature<NoneFeatureConfiguration> {
         return anyFilled;
     }
 
-    private static boolean isWater(WorldGenLevel level, int x, int y, int z) {
-        return level.getFluidState(new BlockPos(x, y, z)).getType() == Fluids.WATER;
+    private static boolean isWater(WorldGenLevel level, BlockPos.MutableBlockPos mpos, int x, int y, int z) {
+        return level.getFluidState(mpos.set(x, y, z)).getType() == Fluids.WATER;
     }
 }

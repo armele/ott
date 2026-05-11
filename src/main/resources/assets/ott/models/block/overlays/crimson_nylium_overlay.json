@@ -14,17 +14,8 @@
       ]
     },
     "side": {
-      "type": "or",
-      "predicates": [
-        { "type": "match_block_in_front", "block": "crimson_nylium" },
-        {
-          "type": "and",
-          "predicates": [
-            { "type": "match_block", "block": "crimson_nylium" },
-            { "type": "is_face_visible" }
-          ]
-        }
-      ]
+      "type": "match_face_block",
+      "block": "crimson_nylium"
     }
   },
   "elements": [

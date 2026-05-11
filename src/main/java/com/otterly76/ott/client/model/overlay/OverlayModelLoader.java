@@ -100,6 +100,7 @@ public class OverlayModelLoader implements IGeometryLoader<OverlayUnbakedGeometr
         return switch (type) {
             case "match_block"          -> new OverlayConnectionRule.MatchBlock(requireBlock(obj));
             case "match_block_in_front" -> new OverlayConnectionRule.MatchBlockInFront(requireBlock(obj));
+            case "match_face_block"     -> new OverlayConnectionRule.MatchFaceBlock(requireBlock(obj));
             case "is_face_visible"      -> OverlayConnectionRule.IsFaceVisible.INSTANCE;
             case "and" -> {
                 List<OverlayConnectionRule> parts = parsePredicateArray(obj);

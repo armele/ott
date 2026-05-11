@@ -15,17 +15,8 @@
       ]
     },
     "side": {
-      "type": "or",
-      "predicates": [
-        { "type": "match_block_in_front", "block": "grass_block" },
-        {
-          "type": "and",
-          "predicates": [
-            { "type": "match_block", "block": "grass_block" },
-            { "type": "is_face_visible" }
-          ]
-        }
-      ]
+      "type": "match_face_block",
+      "block": "grass_block"
     }
   },
   "elements": [

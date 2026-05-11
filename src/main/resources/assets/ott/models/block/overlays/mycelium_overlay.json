@@ -14,17 +14,8 @@
       ]
     },
     "side": {
-      "type": "or",
-      "predicates": [
-        { "type": "match_block_in_front", "block": "mycelium" },
-        {
-          "type": "and",
-          "predicates": [
-            { "type": "match_block", "block": "mycelium" },
-            { "type": "is_face_visible" }
-          ]
-        }
-      ]
+      "type": "match_face_block",
+      "block": "mycelium"
     }
   },
   "elements": [

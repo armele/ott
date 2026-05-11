@@ -308,14 +308,13 @@ public class ConnectingBakedModel extends BakedModelWrapper<net.minecraft.client
                 isolatedSprite, quad.isShade(), quad.hasAmbientOcclusion());
     }
 
+    private static final StackWalker STACK_WALKER = StackWalker.getInstance();
+
     private static boolean isCalledByDomumOrnamentum() {
-        for (StackTraceElement element : Thread.currentThread().getStackTrace()) {
-            String name = element.getClassName();
-            if (name.contains("domumornamentum") || name.contains("ldbc")) {
-                return true;
-            }
-        }
-        return false;
+        return STACK_WALKER.walk(frames -> frames.limit(25).anyMatch(f -> {
+            String name = f.getClassName();
+            return name.contains("domumornamentum") || name.contains("ldbc");
+        }));
     }
 
     /**

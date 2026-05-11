@@ -6,16 +6,17 @@
     "particle": "#top"
   },
   "connections": {
-    "type": "and",
-    "predicates": [
-      {
-        "type": "match_block",
-        "block": "muddy_mangrove_roots"
-      },
-      {
-        "type": "is_face_visible"
-      }
-    ]
+    "top": {
+      "type": "and",
+      "predicates": [
+        { "type": "match_block", "block": "muddy_mangrove_roots" },
+        { "type": "is_face_visible" }
+      ]
+    },
+    "side": {
+      "type": "match_face_block",
+      "block": "muddy_mangrove_roots"
+    }
   },
   "elements": [
     {

@@ -116,6 +116,30 @@
         "weight": 30,
         "minCount": 4,
         "maxCount": 9
+      },
+      {
+        "type": "ott:duck",
+        "weight": 40,
+        "minCount": 4,
+        "maxCount": 8
+      },
+      {
+        "type": "ott:goose",
+        "weight": 25,
+        "minCount": 2,
+        "maxCount": 5
+      },
+      {
+        "type": "ott:otter",
+        "weight": 20,
+        "minCount": 1,
+        "maxCount": 3
+      },
+      {
+        "type": "ott:river_turtle",
+        "weight": 15,
+        "minCount": 1,
+        "maxCount": 3
       }
     ],
     "misc": [],
@@ -124,12 +148,55 @@
     "water_ambient": [
       {
         "type": "minecraft:tropical_fish",
-        "maxCount": 8,
+        "weight": 25,
         "minCount": 8,
-        "weight": 25
+        "maxCount": 8
+      },
+      {
+        "type": "ott:koi_fish",
+        "weight": 30,
+        "minCount": 4,
+        "maxCount": 8
+      },
+      {
+        "type": "ott:cichlid",
+        "weight": 25,
+        "minCount": 4,
+        "maxCount": 8
+      },
+      {
+        "type": "ott:krill",
+        "weight": 30,
+        "minCount": 8,
+        "maxCount": 15
+      },
+      {
+        "type": "ott:ethereal_shrimp",
+        "weight": 20,
+        "minCount": 3,
+        "maxCount": 8
+      },
+      {
+        "type": "ott:small_jellyfish",
+        "weight": 25,
+        "minCount": 2,
+        "maxCount": 5
+      },
+      {
+        "type": "ott:medium_jellyfish",
+        "weight": 15,
+        "minCount": 1,
+        "maxCount": 3
       }
     ],
-    "water_creature": []
+    "water_creature": [
+      {
+        "type": "ott:large_jellyfish",
+        "weight": 8,
+        "minCount": 1,
+        "maxCount": 2
+      }
+    ]
   },
   "temperature": 0.5
 }

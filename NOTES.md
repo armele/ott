@@ -11,6 +11,8 @@ create textures and modifiers for DO bricks
 
 add transition textures for custom blocks
 
+more snail textures
+
 create multipart signs
 
 add new stuff to wandering merchant

@@ -17,6 +17,8 @@ public class NautilusRenderer extends MobRenderer<NautilusEntity, NautilusModel<
 
     private static final ResourceLocation TEXTURE =
             ResourceLocation.withDefaultNamespace("textures/entity/nautilus/nautilus.png");
+    private static final ResourceLocation TEXTURE_BABY =
+            ResourceLocation.withDefaultNamespace("textures/entity/nautilus/nautilus_baby.png");
 
     private final NautilusModel<NautilusEntity> adultModel;
     private final NautilusModel<NautilusEntity> babyModel;
@@ -36,6 +38,6 @@ public class NautilusRenderer extends MobRenderer<NautilusEntity, NautilusModel<
 
     @Override
     public @NotNull ResourceLocation getTextureLocation(@NotNull NautilusEntity entity) {
-        return TEXTURE;
+        return entity.isBaby() ? TEXTURE_BABY : TEXTURE;
     }
 }

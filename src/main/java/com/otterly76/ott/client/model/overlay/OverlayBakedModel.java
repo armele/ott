@@ -10,6 +10,7 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.BlockAndTintGetter;
+import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
 import net.neoforged.neoforge.client.ChunkRenderTypeSet;
 import net.neoforged.neoforge.client.model.IQuadTransformer;
@@ -20,9 +21,12 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
+import java.util.HashSet;
 import java.util.IdentityHashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 /**
  * Baked model for the terrain overlay system.
@@ -103,6 +107,14 @@ public class OverlayBakedModel implements net.minecraft.client.resources.model.B
     private final List<OverlayConnectionRule> ruleList;
     private final Map<TextureAtlasSprite, Integer> spriteToRuleIndex;
     private final int catchAllRuleIndex;
+    /** Whether each rule in {@link #ruleList} is uniform (result independent of neighbour position). */
+    private final boolean[] uniformRules;
+    /**
+     * All block types referenced by any connection rule.
+     * Used by {@link OverlayModifierBakedModel} to skip mask computation when none of these
+     * blocks are present in the 26-position neighbourhood of the block being rendered.
+     */
+    private final Set<Block> watchedBlocks;
     /** Tint index applied to overlay quads, or -1 for no tint. */
     private final int tintIndex;
     /** When true, overlay quads are stamped with FULL_BRIGHT lightmap so they glow. */
@@ -134,6 +146,16 @@ public class OverlayBakedModel implements net.minecraft.client.resources.model.B
         this.tintIndex = tintIndex;
         this.emissive = emissive;
 
+        boolean[] uniform = new boolean[list.size()];
+        for (int i = 0; i < list.size(); i++) {
+            uniform[i] = list.get(i).isUniform();
+        }
+        this.uniformRules = uniform;
+
+        Set<Block> watched = new HashSet<>();
+        for (OverlayConnectionRule rule : list) collectWatchedBlocks(rule, watched);
+        this.watchedBlocks = Collections.unmodifiableSet(watched);
+
         Map<TextureAtlasSprite, Integer> s2r = new IdentityHashMap<>();
         for (Map.Entry<TextureAtlasSprite, OverlayConnectionRule> e : spriteRules.entrySet()) {
             if (e.getKey() != null) {
@@ -162,6 +184,11 @@ public class OverlayBakedModel implements net.minecraft.client.resources.model.B
 
     private int computeMask(BlockAndTintGetter level, BlockPos pos, BlockState state,
                              Direction face, OverlayConnectionRule rule) {
+        // Uniform rules (e.g. match_face_block) return the same value for every neighbour —
+        // one lookup instead of eight, signalled with 0xFF so the full-quad path fires.
+        if (rule.isUniform()) {
+            return rule.connects(level, pos, state, face, pos) ? 0xFF : 0;
+        }
         BlockPos[] off = NEIGHBOR_OFFSETS[face.ordinal()];
         boolean t  = rule.connects(level, pos, state, face, pos.offset(off[0]));
         boolean r  = rule.connects(level, pos, state, face, pos.offset(off[2]));
@@ -220,6 +247,14 @@ public class OverlayBakedModel implements net.minecraft.client.resources.model.B
             int mask = masks[ruleIdx][faceOrd];
             if (mask == 0) continue; // no connections on this face
 
+            // Uniform rules (e.g. match_face_block) signal 0xFF to indicate "full face active".
+            // Emit the quad directly without tile-atlas UV remapping — the texture is a plain
+            // 16×16 overlay, not a 6×3 atlas, so we just apply tint/emissive and pass it through.
+            if (ruleIdx < uniformRules.length && uniformRules[ruleIdx]) {
+                result.add(tintQuad(quad, tintIndex, emissive));
+                continue;
+            }
+
             if (FLIP_H[faceOrd]) mask = flipMaskH(mask);
 
             for (int corner = 0; corner < 4; corner++) {
@@ -266,6 +301,43 @@ public class OverlayBakedModel implements net.minecraft.client.resources.model.B
         }
 
         return new BakedQuad(verts, tintIndex, base.getDirection(), sprite, base.isShade(), base.hasAmbientOcclusion());
+    }
+
+    /**
+     * Returns the set of block types referenced by any connection rule in this overlay.
+     * Used by {@link OverlayModifierBakedModel} for the neighbourhood pre-scan optimisation.
+     */
+    public Set<Block> getWatchedBlocks() {
+        return watchedBlocks;
+    }
+
+    private static void collectWatchedBlocks(OverlayConnectionRule rule,
+                                              Set<Block> out) {
+        if (rule instanceof OverlayConnectionRule.MatchBlock(Block block))             out.add(block);
+        else if (rule instanceof OverlayConnectionRule.MatchBlockInFront(Block block)) out.add(block);
+        else if (rule instanceof OverlayConnectionRule.MatchFaceBlock(Block block))    out.add(block);
+        else if (rule instanceof OverlayConnectionRule.And(OverlayConnectionRule[] rules))
+            for (OverlayConnectionRule r : rules) collectWatchedBlocks(r, out);
+        else if (rule instanceof OverlayConnectionRule.Or(OverlayConnectionRule[] rules))
+            for (OverlayConnectionRule r : rules) collectWatchedBlocks(r, out);
+        // IsFaceVisible has no block constraint
+    }
+
+    /**
+     * Returns a copy of {@code base} with only tint index and emissive lightmap applied,
+     * without remapping UVs.  Used for uniform rules whose texture is a plain 16×16 overlay.
+     */
+    private static BakedQuad tintQuad(BakedQuad base, int tintIndex, boolean emissive) {
+        if (!emissive && tintIndex == base.getTintIndex()) return base;
+        int[] verts = Arrays.copyOf(base.getVertices(), base.getVertices().length);
+        if (emissive) {
+            int stride = IQuadTransformer.STRIDE;
+            for (int v = 0; v < 4; v++) {
+                verts[v * stride + IQuadTransformer.UV2] = LightTexture.FULL_BRIGHT;
+            }
+        }
+        return new BakedQuad(verts, tintIndex, base.getDirection(), base.getSprite(),
+                base.isShade(), base.hasAmbientOcclusion());
     }
 
     // ---- BakedModel boilerplate ---------------------------------------------
