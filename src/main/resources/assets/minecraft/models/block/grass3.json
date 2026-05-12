@@ -5,7 +5,7 @@
 	"render_type": "minecraft:cutout",
 	"textures": {
 		"1": "block/short_grass4",
-		"2": "block/short_grass8",
+		"2": "block/short_grass5",
 		"particle": "block/short_grass3",
 		"cross": "block/short_grass3"
 	},
@@ -65,6 +65,7 @@
 		{
 			"name": "tinted_cross",
 			"origin": [8, 8, 8],
+			"scope": 0,
 			"color": 0,
 			"children": [0, 1, 2, 3, 4]
 		}

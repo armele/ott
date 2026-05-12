@@ -4,8 +4,8 @@
 	"parent": "minecraft:block/tinted_cross",
 	"render_type": "minecraft:cutout",
 	"textures": {
-		"particle": "block/short_grass",
-		"cross": "block/short_grass"
+		"particle": "block/short_grass7",
+		"cross": "block/short_grass7"
 	},
 	"elements": [
 		{

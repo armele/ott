@@ -1,7 +1,9 @@
 {
   "type": "min",
   "argument1": {
-    "type": "squeeze",
+    "type": "min",
+    "argument1": {
+      "type": "squeeze",
     "argument": {
       "type": "mul",
       "argument1": 0.64,
@@ -168,6 +170,8 @@
         }
       }
     }
+    },
+    "argument2": "minecraft:overworld/caves/noodle"
   },
-  "argument2": "minecraft:overworld/caves/noodle"
+  "argument2": "ott:overworld/extra_density/underground_rivers/total"
 }

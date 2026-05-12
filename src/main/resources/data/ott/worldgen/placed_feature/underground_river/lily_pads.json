@@ -1,0 +1,26 @@
+{
+    "feature": "minecraft:patch_waterlily",
+    "placement": [
+      {
+        "type": "minecraft:count",
+        "count": {
+          "type": "minecraft:uniform",
+          "min_inclusive": 1,
+          "max_inclusive": 2
+        }
+      },
+      {
+        "type": "minecraft:in_square"
+      },
+      {
+        "type": "minecraft:height_range",
+        "height": {
+          "absolute": 63
+        }
+      },
+      {
+        "type": "minecraft:biome"
+      }
+    ]
+  }
+  

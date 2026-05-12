@@ -4,10 +4,10 @@
 	"parent": "minecraft:block/tinted_cross",
 	"render_type": "minecraft:cutout",
 	"textures": {
-		"0": "block/short_grass8",
+		"0": "block/short_grass0",
 		"1": "block/short_grass7",
-		"2": "block/short_grass9",
-		"particle": "block/short_grass8"
+		"2": "block/short_grass6",
+		"particle": "block/short_grass0"
 	},
 	"elements": [
 		{

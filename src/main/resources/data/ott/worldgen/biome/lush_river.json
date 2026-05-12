@@ -21,15 +21,16 @@
       "replace_current_music": false,
       "sound": "minecraft:music.overworld.lush_caves"
     },
-    "foliage_color": -13369498,
-    "grass_color": -10027162,
-    "sky_color": 7972607,
-    "water_color": -13382401,
-    "water_fog_color": -13408513
+    "sky_color": 8103167,
+    "water_color": 4159204,
+    "water_fog_color": 329011
   },
   "features": [
     [],
-    [],
+    [
+      "minecraft:lake_lava_underground",
+      "minecraft:lake_lava_surface"
+    ],
     [
       "minecraft:amethyst_geode"
     ],
@@ -59,124 +60,123 @@
       "minecraft:ore_redstone",
       "minecraft:ore_redstone_lower",
       "minecraft:ore_diamond",
-      "minecraft:ore_diamond_medium",
       "minecraft:ore_diamond_large",
       "minecraft:ore_diamond_buried",
       "minecraft:ore_lapis",
       "minecraft:ore_lapis_buried",
       "minecraft:ore_copper",
+      "minecraft:underwater_magma",
+      "minecraft:ore_clay",
       "minecraft:disk_sand",
       "minecraft:disk_clay",
       "minecraft:disk_gravel"
     ],
     [],
-    [
-      "minecraft:spring_water"
-    ],
+    [],
     [
       "minecraft:glow_lichen",
       "minecraft:patch_tall_grass_2",
-      "minecraft:patch_waterlily",
-      "minecraft:patch_sugar_cane_swamp",
-      "minecraft:patch_pumpkin",
-      "minecraft:vines",
-      "minecraft:seagrass_warm",
-      "minecraft:sea_pickle",
+      "minecraft:lush_caves_ceiling_vegetation",
       "minecraft:cave_vines",
-      "minecraft:lush_caves_clay",
-      "minecraft:lush_caves_vegetation",
       "minecraft:rooted_azalea_tree",
       "minecraft:spore_blossom",
       "minecraft:classic_vines_cave_feature",
-      "ott:lush_glade_azalea"
+      "ott:underground_river/glow_lichen",
+      "ott:underground_river/lily_pads",
+      "ott:underground_river/seagrass"
     ],
-    []
+    [
+      "minecraft:freeze_top_layer"
+    ]
   ],
   "has_precipitation": true,
   "spawn_costs": {},
   "spawners": {
-    "ambient": [],
+    "ambient": [
+      {
+        "type": "minecraft:bat",
+        "maxCount": 8,
+        "minCount": 8,
+        "weight": 10
+      }
+    ],
     "axolotls": [
       {
         "type": "minecraft:axolotl",
-        "weight": 35,
-        "minCount": 8,
-        "maxCount": 15
+        "maxCount": 6,
+        "minCount": 4,
+        "weight": 10
       }
     ],
-    "creature": [
-      {
-        "type": "minecraft:allay",
-        "weight": 25,
-        "minCount": 4,
-        "maxCount": 9
-      },
-      {
-        "type": "minecraft:frog",
-        "weight": 30,
-        "minCount": 4,
-        "maxCount": 9
-      },
-      {
-        "type": "ott:duck",
-        "weight": 40,
-        "minCount": 4,
-        "maxCount": 8
-      },
-      {
-        "type": "ott:goose",
-        "weight": 25,
-        "minCount": 2,
-        "maxCount": 5
-      },
-      {
-        "type": "ott:otter",
-        "weight": 20,
-        "minCount": 1,
-        "maxCount": 3
-      },
-      {
-        "type": "ott:river_turtle",
-        "weight": 15,
-        "minCount": 1,
-        "maxCount": 3
-      }
-    ],
+    "creature": [],
     "misc": [],
-    "monster": [],
-    "underground_water_creature": [],
+    "monster": [
+      {
+        "type": "minecraft:spider",
+        "maxCount": 4,
+        "minCount": 4,
+        "weight": 100
+      },
+      {
+        "type": "minecraft:zombie",
+        "maxCount": 4,
+        "minCount": 4,
+        "weight": 95
+      },
+      {
+        "type": "minecraft:zombie_villager",
+        "maxCount": 1,
+        "minCount": 1,
+        "weight": 5
+      },
+      {
+        "type": "minecraft:skeleton",
+        "maxCount": 4,
+        "minCount": 4,
+        "weight": 100
+      },
+      {
+        "type": "minecraft:creeper",
+        "maxCount": 4,
+        "minCount": 4,
+        "weight": 100
+      },
+      {
+        "type": "minecraft:slime",
+        "maxCount": 4,
+        "minCount": 4,
+        "weight": 100
+      },
+      {
+        "type": "minecraft:enderman",
+        "maxCount": 4,
+        "minCount": 1,
+        "weight": 10
+      },
+      {
+        "type": "minecraft:witch",
+        "maxCount": 1,
+        "minCount": 1,
+        "weight": 5
+      }
+    ],
+    "underground_water_creature": [
+      {
+        "type": "minecraft:glow_squid",
+        "maxCount": 6,
+        "minCount": 4,
+        "weight": 10
+      }
+    ],
     "water_ambient": [
       {
         "type": "minecraft:tropical_fish",
-        "weight": 25,
+        "maxCount": 8,
         "minCount": 8,
-        "maxCount": 8
-      },
-      {
-        "type": "ott:koi_fish",
-        "weight": 30,
-        "minCount": 4,
-        "maxCount": 8
-      },
-      {
-        "type": "ott:cichlid",
-        "weight": 25,
-        "minCount": 4,
-        "maxCount": 8
-      },
-      {
-        "type": "ott:krill",
-        "weight": 30,
-        "minCount": 8,
-        "maxCount": 15
-      },
-      {
-        "type": "ott:ethereal_shrimp",
-        "weight": 20,
-        "minCount": 3,
-        "maxCount": 8
+        "weight": 25
       }
-    ]
+    ],
+    "water_creature": []
   },
   "temperature": 0.5
 }

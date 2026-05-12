@@ -5,7 +5,7 @@
 	"render_type": "minecraft:cutout",
 	"textures": {
 		"0": "block/short_grass1",
-		"1": "block/short_grass",
+		"1": "block/short_grass0",
 		"particle": "block/short_grass1"
 	},
 	"elements": [
