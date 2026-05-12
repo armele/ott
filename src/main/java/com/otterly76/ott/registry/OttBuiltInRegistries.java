@@ -4,9 +4,7 @@ import com.otterly76.ott.util.data.BuiltInCoreRegistry;
 import com.mojang.serialization.MapCodec;
 import com.otterly76.ott.Ott;
 import com.otterly76.ott.entity.variant.*;
-import com.otterly76.ott.resource.BreaksSeedParityCondition;
 import com.otterly76.ott.worldgen.modifier.*;
-import com.otterly76.ott.worldgen.modifier.template.TemplateList;
 import net.minecraft.core.Registry;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceKey;
@@ -111,7 +109,6 @@ public final class OttBuiltInRegistries {
         bus.addListener(DataPackRegistryEvent.NewRegistry.class, event -> {
             event.dataPackRegistry(OttRegistryKeys.WORLDGEN_MODIFIER, Modifier.CODEC);
             event.dataPackRegistry(OttRegistryKeys.SURFACE_RULE, SurfaceRules.RuleSource.CODEC);
-            event.dataPackRegistry(OttRegistryKeys.TEMPLATE_LIST, TemplateList.CODEC);
         });
 
         Ott.registerCommonModifiers((name, codec) -> DEFERRED_MODIFIER_TYPES.register(name, () -> codec));
@@ -164,7 +161,6 @@ public final class OttBuiltInRegistries {
     }
 
     private static void registerForgeResourceConditions(BiConsumer<String, MapCodec<? extends ICondition>> consumer) {
-        consumer.accept("breaks_seed_parity", BreaksSeedParityCondition.CODEC);
     }
 
     public static void registerForgeBiomeModifiers(BiConsumer<String, MapCodec<? extends BiomeModifier>> consumer) {

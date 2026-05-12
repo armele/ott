@@ -1,9 +1,0 @@
-{
-  "type": "minecraft:add",
-  "argument1": {
-    "type": "minecraft:min",
-    "argument1": "ott:terrain/river_valleys",
-    "argument2": "ott:terrain/topography_cliffs"
-  },
-  "argument2": "ott:terrain/river_bank_slope"
-}

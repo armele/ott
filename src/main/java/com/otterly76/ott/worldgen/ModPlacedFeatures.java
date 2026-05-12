@@ -1,7 +1,6 @@
 package com.otterly76.ott.worldgen;
 
 import com.otterly76.ott.Constants;
-import com.otterly76.ott.worldgen.placement.RiverLichenFilter;
 import net.minecraft.core.HolderGetter;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.data.worldgen.BootstrapContext;
@@ -12,10 +11,8 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.levelgen.feature.ConfiguredFeature;
 import net.minecraft.world.level.levelgen.placement.*;
-import net.neoforged.neoforge.registries.DeferredRegister;
 
 import java.util.List;
-import java.util.function.Supplier;
 
 public class ModPlacedFeatures {
     public static final ResourceKey<PlacedFeature> LUSH_GLADE_AZALEA = registerKey("lush_glade_azalea");
@@ -45,9 +42,4 @@ public class ModPlacedFeatures {
         return ResourceKey.create(Registries.PLACED_FEATURE, ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, name));
     }
 
-    public static final DeferredRegister<PlacementModifierType<?>> PLACEMENT_MODIFIERS =
-            DeferredRegister.create(Registries.PLACEMENT_MODIFIER_TYPE, "ott");
-
-    public static final Supplier<PlacementModifierType<RiverLichenFilter>> RIVER_LICHEN_FILTER =
-            PLACEMENT_MODIFIERS.register("river_lichen_filter", () -> RiverLichenFilter.TYPE);
 }

@@ -1,9 +1,0 @@
-{
-  "type": "neoforge:add_features",
-  "biomes": "#minecraft:is_overworld",
-  "features": [
-    "ott:underground_river_lichen",
-    "ott:underground_river_vegetation"
-  ],
-  "step": "underground_decoration"
-}

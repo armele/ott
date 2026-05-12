@@ -46,25 +46,14 @@ import com.otterly76.ott.util.lantern.LanternManager;
 import com.otterly76.ott.util.lantern.LanternSavedData;
 import com.otterly76.ott.util.data.PackResourcesHelper;
 import com.otterly76.ott.worldgen.ModFeatures;
-import com.otterly76.ott.worldgen.ModPlacedFeatures;
 import com.otterly76.ott.worldgen.ModTreeDecoratorTypes;
 import com.otterly76.ott.worldgen.blockentitymodifier.ApplyAll;
 import com.otterly76.ott.worldgen.blockentitymodifier.ApplyRandom;
-import com.otterly76.ott.worldgen.blockpredicate.BlockStatePredicate;
-import com.otterly76.ott.worldgen.blockpredicate.InStructurePredicate;
-import com.otterly76.ott.worldgen.blockpredicate.MultipleOfPredicate;
-import com.otterly76.ott.worldgen.blockpredicate.RandomChancePredicate;
 import com.otterly76.ott.platform.core.events.ResourceReloadManager;
 import com.otterly76.ott.resource.*;
-import com.otterly76.ott.worldgen.densityfunction.MergedDensityFunction;
-import com.otterly76.ott.worldgen.densityfunction.OriginalMarkerDensityFunction;
-import com.otterly76.ott.worldgen.densityfunction.WrappedMarkerDensityFunction;
 import com.otterly76.ott.worldgen.modifier.*;
-import com.otterly76.ott.worldgen.modifier.internal.CompileRawTemplatesModifier;
-import com.otterly76.ott.worldgen.placementcondition.*;
-import com.otterly76.ott.worldgen.placementmodifier.ConditionPlacement;
-import com.otterly76.ott.worldgen.placementmodifier.NoiseSlopePlacement;
-import com.otterly76.ott.worldgen.placementmodifier.OffsetPlacement;
+import com.otterly76.ott.worldgen.placementcondition.AllOfPlacementCondition;
+import com.otterly76.ott.worldgen.placementcondition.PlacementCondition;
 import com.otterly76.ott.worldgen.poolalias.RandomEntries;
 import com.otterly76.ott.worldgen.poolelement.DelegatingPoolElement;
 import com.otterly76.ott.worldgen.processor.ApplyRandomStructureProcessor;
@@ -98,7 +87,6 @@ import net.minecraft.world.entity.ai.attributes.RangedAttribute;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.levelgen.DensityFunction;
-import net.minecraft.world.level.levelgen.NoiseRouter;
 import net.minecraft.world.level.levelgen.SurfaceRules;
 import net.minecraft.world.level.levelgen.blockpredicates.BlockPredicateType;
 import net.minecraft.world.level.levelgen.feature.Feature;
@@ -119,7 +107,6 @@ import net.neoforged.fml.common.Mod;
 import net.neoforged.fml.config.ModConfig;
 import net.neoforged.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.neoforged.fml.event.lifecycle.FMLLoadCompleteEvent;
-import net.neoforged.fml.loading.FMLPaths;
 import net.neoforged.neoforge.common.NeoForge;
 import net.neoforged.neoforge.data.event.GatherDataEvent;
 import net.neoforged.neoforge.event.AddPackFindersEvent;
@@ -146,8 +133,7 @@ public class Ott {
         setup();
 
 
-        ConfigHandler.load(FMLPaths.CONFIGDIR.get().resolve("ott.json"));
-        ModLoadingContext.get().getActiveContainer().registerConfig(ModConfig.Type.COMMON, OttConfig.SPEC, "ott-config.toml");
+ModLoadingContext.get().getActiveContainer().registerConfig(ModConfig.Type.COMMON, OttConfig.SPEC, "ott-config.toml");
         ModCreativeTabs.OTTER_TABS.register(modEventBus);
         modEventBus.addListener(NetworkHandler::register);
         modEventBus.addListener(this::dataGeneratorSetup);
@@ -172,7 +158,6 @@ public class Ott {
         ModTreeDecoratorTypes.register(modEventBus);
         ModWorldGenModifiers.register(modEventBus);
         ModFeatures.register(modEventBus);
-        ModPlacedFeatures.PLACEMENT_MODIFIERS.register(modEventBus);
         ModMenuTypes.register(modEventBus);
         NeoForge.EVENT_BUS.register(this);
         NeoForge.EVENT_BUS.register(ModEventBusEvents.class);
@@ -269,29 +254,15 @@ public class Ott {
         return tag.getString(name);
     }
 
-    public static DensityFunction getInitialDensity(NoiseRouter router) {
-        return router.initialDensityWithoutJaggedness();
-    }
-
-    public static String getInitialDensityName() {
-        return "initial_density_without_jaggedness";
-    }
-
     public static void registerCommonModifiers(BiConsumer<String, MapCodec<? extends Modifier>> consumer) {
         @SuppressWarnings("unchecked")
         BiConsumer<String, MapCodec<?>> registry = (id, codec) -> consumer.accept(id, (MapCodec<? extends Modifier>) codec);
-        registry.accept("internal/compile_raw_templates", CompileRawTemplatesModifier.CODEC);
         registry.accept("add_surface_rule", AddSurfaceRuleModifier.CODEC);
         registry.accept("set_pool_aliases", SetPoolAliasesModifier.CODEC);
         registry.accept("add_structure_set_entries", AddStructureSetEntriesModifier.CODEC);
-        registry.accept("wrap_noise_router", WrapNoiseRouterModifier.CODEC);
     }
 
     public static void registerCommonBlockPredicateTypes(BiConsumer<String, BlockPredicateType<?>> consumer) {
-        consumer.accept("block_state", BlockStatePredicate.TYPE);
-        consumer.accept("in_structure", InStructurePredicate.TYPE);
-        consumer.accept("multiple_of", MultipleOfPredicate.TYPE);
-        consumer.accept("random_chance", RandomChancePredicate.TYPE);
     }
 
     public static void registerCommonStateProviders(BiConsumer<String, BlockStateProviderType<?>> consumer) {
@@ -300,9 +271,6 @@ public class Ott {
     }
 
     public static void registerCommonPlacementModifiers(BiConsumer<String, PlacementModifierType<?>> consumer) {
-        consumer.accept("condition", ConditionPlacement.TYPE);
-        consumer.accept("noise_slope", NoiseSlopePlacement.TYPE);
-        consumer.accept("offset", OffsetPlacement.TYPE);
     }
 
     public static void registerCommonFeatureTypes(BiConsumer<String, Feature<?>> consumer) {
@@ -313,9 +281,6 @@ public class Ott {
     }
 
     public static void registerCommonDensityFunctions(BiConsumer<String, MapCodec<? extends DensityFunction>> consumer) {
-        consumer.accept("merged", MergedDensityFunction.CODEC.codec());
-        consumer.accept("original_marker", OriginalMarkerDensityFunction.CODEC.codec());
-        consumer.accept("wrapped_marker", WrappedMarkerDensityFunction.CODEC.codec());
     }
 
     public static void registerCommonPoolAliasBindings(BiConsumer<String, MapCodec<? extends PoolAliasBinding>> consumer) {
@@ -328,18 +293,7 @@ public class Ott {
     }
 
     public static void registerCommonPlacementConditions(BiConsumer<String, MapCodec<? extends PlacementCondition>> consumer) {
-        consumer.accept("any_of", AnyOfPlacementCondition.CODEC);
         consumer.accept("all_of", AllOfPlacementCondition.CODEC);
-        consumer.accept("grid", GridPlacementCondition.CODEC);
-        consumer.accept("height_filter", HeightFilterPlacementCondition.CODEC);
-        consumer.accept("in_biome", InBiomePlacementCondition.CODEC);
-        consumer.accept("land_base", LandBasePlacementCondition.CODEC);
-        consumer.accept("multiple_of", MultipleOfPlacementCondition.CODEC);
-        consumer.accept("not", NotPlacementCondition.CODEC);
-        consumer.accept("offset", OffsetPlacementCondition.CODEC);
-        consumer.accept("sample_density", SampleDensityPlacementCondition.CODEC);
-        consumer.accept("sample_noise_router", SampleNoiseRouterPlacementCondition.CODEC);
-        consumer.accept("true", TruePlacementCondition.CODEC);
     }
 
     public static void registerCommonStructureProcessors(BiConsumer<String, StructureProcessorType<?>> consumer) {

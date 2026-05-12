@@ -2,6 +2,6 @@
   "type": "minecraft:flat_cache",
   "argument": {
     "type": "minecraft:cache_2d",
-    "argument": "ott:terrain/continents/continents_coasts"
+    "argument": "ott:continents/continents_coasts"
   }
 }

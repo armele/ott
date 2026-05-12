@@ -4,7 +4,6 @@ import com.mojang.serialization.MapCodec;
 import com.otterly76.ott.Ott;
 import com.otterly76.ott.entity.variant.*;
 import com.otterly76.ott.worldgen.modifier.Modifier;
-import com.otterly76.ott.worldgen.modifier.template.TemplateList;
 import com.otterly76.ott.worldgen.placementcondition.PlacementCondition;
 import net.minecraft.core.Registry;
 import net.minecraft.resources.ResourceKey;
@@ -13,8 +12,7 @@ import net.minecraft.world.level.levelgen.SurfaceRules;
 public interface OttRegistryKeys {
     ResourceKey<Registry<Modifier>> WORLDGEN_MODIFIER = create("worldgen_modifier");
     ResourceKey<Registry<SurfaceRules.RuleSource>> SURFACE_RULE = create("surface_rule");
-    ResourceKey<Registry<TemplateList>> TEMPLATE_LIST = create("template_list");
-    ResourceKey<Registry<MapCodec<? extends Modifier>>> MODIFIER_TYPE = create("modifier_type");
+ResourceKey<Registry<MapCodec<? extends Modifier>>> MODIFIER_TYPE = create("modifier_type");
     ResourceKey<Registry<MapCodec<? extends PlacementCondition>>> PLACEMENT_CONDITION_TYPE = create("placement_condition_type");
     ResourceKey<Registry<MapCodec<? extends SpawnCondition>>> SPAWN_CONDITION_TYPE = create("spawn_condition_type");
     ResourceKey<Registry<WolfSoundVariant>> WOLF_SOUND_VARIANT = create("wolf_sound_variant");

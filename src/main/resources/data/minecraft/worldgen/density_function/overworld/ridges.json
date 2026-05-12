@@ -1,21 +1,21 @@
 {
-  "type": "minecraft:flat_cache",
+  "type": "flat_cache",
   "argument": {
-    "type": "minecraft:cache_2d",
+    "type": "cache_2d",
     "argument": {
-      "type": "minecraft:mul",
+      "type": "mul",
       "argument1": {
         "type": "minecraft:spline",
         "spline": {
           "coordinate": {
-            "type": "minecraft:mul",
+            "type": "mul",
             "argument1": {
-              "type": "minecraft:add",
+              "type": "add",
               "argument1": {
-                "type": "minecraft:flat_cache",
+                "type": "flat_cache",
                 "argument": {
-                  "type": "minecraft:cache_2d",
-                  "argument": "ott:terrain/topography_final"
+                  "type": "cache_2d",
+                  "argument": "ott:topography_final"
                 }
               },
               "argument2": 0.6
@@ -23,33 +23,69 @@
             "argument2": 0.9
           },
           "points": [
-            {"location": 0,    "value": 0.1,  "derivative": 0},
-            {"location": 0.2,  "value": 0.15, "derivative": 0.35},
-            {"location": 0.95, "value": 0.62, "derivative": 1.3},
-            {"location": 0.98, "value": 0.63, "derivative": 0}
+            {
+              "location": 0,
+              "value": 0.1,
+              "derivative": 0
+            },
+            {
+              "location": 0.2,
+              "value": 0.15,
+              "derivative": 0.35
+            },
+            {
+              "location": 0.95,
+              "value": 0.62,
+              "derivative": 1.3
+            },
+            {
+              "location": 0.98,
+              "value": 0.63,
+              "derivative": 0
+            }
           ]
         }
       },
       "argument2": {
-        "type": "minecraft:mul",
+        "type": "mul",
         "argument1": {
           "type": "minecraft:spline",
           "spline": {
             "coordinate": {
-              "type": "minecraft:abs",
+              "type": "abs",
               "argument": {
-                "type": "minecraft:noise",
-                "noise": "ott:terrain/rivers",
+                "type": "noise",
+                "noise": "ott:rivers",
                 "xz_scale": 0.7,
                 "y_scale": 0
               }
             },
             "points": [
-              {"location": -0.03, "value": -1, "derivative": 0},
-              {"location": -0.02, "value":  0, "derivative": 0},
-              {"location":  0,    "value":  0, "derivative": 0},
-              {"location":  0.02, "value":  0, "derivative": 0},
-              {"location":  0.03, "value":  1, "derivative": 0}
+              {
+                "location": -0.03,
+                "value": -1,
+                "derivative": 0
+              },
+              {
+                "location": -0.02,
+                "value": 0,
+                "derivative": 0
+              },
+              {
+                "location": 0,
+                "value": 0,
+                "derivative": 0
+              },
+              {
+                "location": 0.02,
+                "value": 0,
+                "derivative": 0
+              },
+              {
+                "location": 0.03,
+                "value": 1,
+                "derivative": 0
+              }
             ]
           }
         },
@@ -57,14 +93,22 @@
           "type": "minecraft:spline",
           "spline": {
             "coordinate": {
-              "type": "minecraft:noise",
-              "noise": "ott:terrain/biome_variation",
+              "type": "noise",
+              "noise": "ott:biome_variation",
               "xz_scale": 1,
               "y_scale": 0
             },
             "points": [
-              {"location": -0.00001, "value": -1.0, "derivative": 0},
-              {"location":  0.00001, "value":  1.0, "derivative": 0}
+              {
+                "location": -0.00001,
+                "value": -1.0,
+                "derivative": 0
+              },
+              {
+                "location": 0.00001,
+                "value": 1.0,
+                "derivative": 0
+              }
             ]
           }
         }

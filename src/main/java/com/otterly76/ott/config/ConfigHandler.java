@@ -2,18 +2,12 @@ package com.otterly76.ott.config;
 
 import com.google.common.collect.Maps;
 import com.google.common.collect.Sets;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonParseException;
-import com.google.gson.JsonParser;
-import com.google.gson.stream.JsonWriter;
-import com.mojang.serialization.JsonOps;
 import com.otterly76.ott.util.block.HarvestUtils;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.tags.TagKey;
-import net.minecraft.util.GsonHelper;
 import net.minecraft.world.item.DiggerItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
@@ -27,62 +21,9 @@ import net.minecraft.world.level.block.state.properties.IntegerProperty;
 import net.minecraft.world.level.block.state.properties.DoubleBlockHalf;
 import org.apache.commons.lang3.tuple.Pair;
 
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
-import java.io.StringWriter;
-import java.nio.file.Files;
-import java.nio.file.Path;
 import java.util.*;
 
 public class ConfigHandler {
-    // --- JSON Config ---
-    private static ConfigCodec LOADED_CONFIG;
-
-    public static ConfigCodec getConfig() {
-        return LOADED_CONFIG != null ? LOADED_CONFIG : ConfigCodec.DEFAULT;
-    }
-
-    public static void load(Path path) {
-        if (!Files.isRegularFile(path)) {
-            write(path);
-        }
-        try (BufferedReader reader = Files.newBufferedReader(path)) {
-            JsonElement json = JsonParser.parseReader(reader);
-            Optional<ConfigCodec> result = ConfigCodec.CODEC.parse(JsonOps.INSTANCE, json).result();
-            if (result.isEmpty()) {
-                throw new JsonParseException("Invalid codec");
-            }
-
-            LOADED_CONFIG = result.get();
-        } catch (Exception ignored) {
-        }
-
-        write(path);
-    }
-
-    private static void write(Path path) {
-        try {
-            try (BufferedWriter writer = Files.newBufferedWriter(path)) {
-                JsonElement element = ConfigCodec.CODEC.encodeStart(JsonOps.INSTANCE, LOADED_CONFIG)
-                        .result()
-                        .orElseThrow(() -> new IllegalStateException("Failed to encode configuration to JSON"));
-
-                StringWriter stringWriter = new StringWriter();
-                JsonWriter jsonWriter = new JsonWriter(stringWriter);
-                jsonWriter.setIndent("  ");
-                GsonHelper.writeValue(jsonWriter, element, Comparator.naturalOrder());
-                writer.write(commentHack(stringWriter.toString()));
-            }
-
-        } catch (Exception e) {
-            throw new RuntimeException(e);
-        }
-    }
-
-    private static String commentHack(String json) {
-        return json.replaceAll("\"__.\": \"", "// ").replaceAll("\"...__\": \"", "// ").replace("\",", "");
-    }
-
     // --- Harvest Config Data ---
     private static final Map<BlockState, BlockState> crops = Maps.newHashMap();
     private static final Set<Block> rightClickBlocks = Sets.newHashSet();
@@ -307,9 +248,5 @@ public class ConfigHandler {
         public static boolean safeHarvest() {
             return OttConfig.HARVEST.SAFE_HARVEST.get();
         }
-    }
-
-    static {
-        LOADED_CONFIG = ConfigCodec.DEFAULT;
     }
 }
