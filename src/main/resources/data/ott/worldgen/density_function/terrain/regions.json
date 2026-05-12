@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:spline",
+  "spline": {
+    "coordinate": {
+      "type": "minecraft:clamp",
+      "min": -1.0,
+      "max": 1.0,
+      "input": {
+        "type": "minecraft:noise",
+        "noise": "ott:terrain/continent_regions",
+        "xz_scale": 5.2,
+        "y_scale": 0
+      }
+    },
+    "points": [
+      {"location": 0.130, "value": 0.0, "derivative": 0},
+      {"location": 0.50,  "value": 0.9, "derivative": 0},
+      {"location": 0.9,   "value": 0.9, "derivative": 0},
+      {"location": 1,     "value": 1,   "derivative": 1}
+    ]
+  }
+}

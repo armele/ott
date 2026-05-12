@@ -1,0 +1,63 @@
+{
+  "type": "minecraft:cache_2d",
+  "argument": {
+    "type": "minecraft:add",
+    "argument1": {
+      "type": "minecraft:add",
+      "argument1": "ott:terrain/mushroom_islands",
+      "argument2": "ott:terrain/basic_topography"
+    },
+    "argument2": {
+      "type": "minecraft:mul",
+      "argument1": {
+        "type": "minecraft:spline",
+        "spline": {
+          "coordinate": {
+            "type": "minecraft:add",
+            "argument1": -0.05,
+            "argument2": "ott:terrain/continents/continents"
+          },
+          "points": [
+            {"location": -0.25,                  "value": 0.0, "derivative": 0},
+            {"location": -0.164,                 "value": -0.1, "derivative": 0},
+            {"location": 0.20298109243724696,    "value": 0.5, "derivative": 3.283935239147685},
+            {"location": 0.49857813114213856,    "value": 1.0, "derivative": 0}
+          ]
+        }
+      },
+      "argument2": {
+        "type": "minecraft:add",
+        "argument1": {
+          "type": "minecraft:mul",
+          "argument1": {
+            "type": "minecraft:mul",
+            "argument1": {
+              "type": "minecraft:add",
+              "argument1": "ott:terrain/roughness",
+              "argument2": {
+                "type": "minecraft:mul",
+                "argument1": "ott:terrain/orogeny",
+                "argument2": "ott:terrain/mountains_base"
+              }
+            },
+            "argument2": {
+              "type": "minecraft:mul",
+              "argument1": "ott:terrain/mountains_shape",
+              "argument2": "ott:terrain/orogeny"
+            }
+          },
+          "argument2": 0.025
+        },
+        "argument2": {
+          "type": "minecraft:mul",
+          "argument1": {
+            "type": "minecraft:mul",
+            "argument1": "ott:terrain/orogeny",
+            "argument2": "ott:terrain/mountains_base"
+          },
+          "argument2": 0.01
+        }
+      }
+    }
+  }
+}

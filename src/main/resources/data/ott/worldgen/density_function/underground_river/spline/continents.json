@@ -6,7 +6,7 @@
     "argument2": {
       "type": "minecraft:add",
       "argument1": 0.2,
-      "argument2": "ott:noise/raw_continents"
+      "argument2": "minecraft:overworld/continents"
     }
   },
   "min": 0,

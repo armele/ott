@@ -1,6 +1,6 @@
 {
   "type": "minecraft:min",
-  "argument1": "ott:depth",
+  "argument1": "ott:terrain/depth",
   "argument2": {
     "type": "minecraft:range_choice",
     "input": "minecraft:y",

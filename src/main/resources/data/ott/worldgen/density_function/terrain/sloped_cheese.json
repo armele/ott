@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:add",
+  "argument1": {
+    "type": "minecraft:y_clamped_gradient",
+    "from_y": -64,
+    "to_y": 320,
+    "from_value": 1.5,
+    "to_value": -1.5
+  },
+  "argument2": {
+    "type": "minecraft:add",
+    "argument1": "ott:terrain/topography_final",
+    "argument2": {
+      "type": "minecraft:mul",
+      "argument1": {
+        "type": "minecraft:noise",
+        "noise": "ott:terrain/surface",
+        "xz_scale": 1.0,
+        "y_scale": 0.05
+      },
+      "argument2": 0.05
+    }
+  }
+}

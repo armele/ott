@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:spline",
+  "spline": {
+    "coordinate": "ott:terrain/continents/continents",
+    "points": [
+      {"location": -0.49976008525166954, "value": -0.5002721028087205,  "derivative": 1},
+      {"location": -0.09588025902700281, "value": -0.2016089732543337,  "derivative": 0.25036175009465034},
+      {"location": 0.08,                 "value": -0.10,                "derivative": 0},
+      {"location": 0.13,                 "value": 0.31436177721386815,  "derivative": 0},
+      {"location": 0.49749810507038805,  "value": 0.49871852056804145,  "derivative": 1.0325850374726078}
+    ]
+  }
+}

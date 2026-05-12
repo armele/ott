@@ -1,23 +1,11 @@
 {
   "type": "minecraft:spline",
   "spline": {
-    "coordinate": "ott:noise/continent/erosion_folded",
+    "coordinate": "minecraft:overworld/erosion",
     "points": [
-      {
-        "location": 0.25,
-        "value": 1,
-        "derivative": 0
-      },
-      {
-        "location": 0.32,
-        "value": 2.2,
-        "derivative": 0
-      },
-      {
-        "location": 0.4,
-        "value": 0,
-        "derivative": 0
-      }
+      {"location": -0.75, "value": 0,   "derivative": 0},
+      {"location": -0.55, "value": 2.2, "derivative": 0},
+      {"location": -0.35, "value": 0,   "derivative": 0}
     ]
   }
 }

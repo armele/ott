@@ -38,17 +38,17 @@
     "lava_level": {
       "above_bottom": 8
     },
-    "probability": 0.3,
+    "probability": 0.15,
     "replaceable": "#minecraft:overworld_carver_replaceables",
     "vertical_radius_multiplier": {
       "type": "minecraft:uniform",
-      "max_exclusive": 4.0,
+      "max_exclusive": 1.8,
       "min_inclusive": 1.0
     },
     "y": {
       "type": "minecraft:uniform",
       "max_inclusive": {
-        "absolute": 10
+        "above_bottom": 50
       },
       "min_inclusive": {
         "above_bottom": 17

@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:add",
+  "argument1": "ott:terrain/continents/continents_base",
+  "argument2": {
+    "type": "minecraft:mul",
+    "argument1": "ott:terrain/regions",
+    "argument2": -0.43
+  }
+}
