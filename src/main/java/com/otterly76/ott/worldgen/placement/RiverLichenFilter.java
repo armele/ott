@@ -35,16 +35,13 @@ public class RiverLichenFilter extends PlacementModifier {
 
     @Override
     public @NotNull Stream<BlockPos> getPositions(@NotNull PlacementContext context, @NotNull RandomSource random, @NotNull BlockPos pos) {
-        // Quick Y-check first for performance
         if (pos.getY() < this.minY || pos.getY() > this.maxY) {
             return Stream.empty();
         }
 
-        // Sample the density function at the current position
         DensityFunction.SinglePointContext densityContext = new DensityFunction.SinglePointContext(pos.getX(), pos.getY(), pos.getZ());
         double density = this.riverParameters.value().compute(densityContext);
 
-        // Check if we are inside the river (parameters return 1.0)
         if (density >= 0.9) {
             return Stream.of(pos);
         }

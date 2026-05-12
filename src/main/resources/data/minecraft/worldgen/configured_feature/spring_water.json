@@ -2,7 +2,7 @@
   "type": "minecraft:spring_feature",
   "config": {
     "hole_count": 1,
-    "requires_block_below": false,
+    "requires_block_below": true,
     "rock_count": 4,
     "state": {
       "Name": "minecraft:water",
