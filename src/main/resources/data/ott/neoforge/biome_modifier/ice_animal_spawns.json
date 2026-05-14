@@ -11,13 +11,13 @@
       "type": "ott:penguin",
       "weight": 10,
       "minCount": 4,
-      "maxCount": 10
+      "maxCount": 5
     },
     {
       "type": "ott:seal",
       "weight": 8,
       "minCount": 2,
-      "maxCount": 5
+      "maxCount": 3
     }
   ]
 }

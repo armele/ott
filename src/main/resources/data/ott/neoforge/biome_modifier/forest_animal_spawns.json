@@ -6,79 +6,79 @@
       "type": "ott:pheasant",
       "weight": 8,
       "minCount": 2,
-      "maxCount": 4
+      "maxCount": 2
     },
     {
       "type": "ott:butterfly",
       "weight": 10,
       "minCount": 1,
-      "maxCount": 3
+      "maxCount": 2
     },
     {
       "type": "ott:caterpillar",
       "weight": 5,
       "minCount": 1,
-      "maxCount": 2
+      "maxCount": 1
     },
     {
       "type": "ott:firefly",
       "weight": 8,
       "minCount": 2,
-      "maxCount": 4
+      "maxCount": 2
     },
     {
       "type": "ott:black_bear",
       "weight": 4,
       "minCount": 1,
-      "maxCount": 2
+      "maxCount": 1
     },
     {
       "type": "ott:brown_bear",
       "weight": 4,
       "minCount": 1,
-      "maxCount": 2
+      "maxCount": 1
     },
     {
       "type": "ott:deer",
       "weight": 10,
       "minCount": 2,
-      "maxCount": 4
+      "maxCount": 2
     },
     {
       "type": "ott:snail",
       "weight": 10,
       "minCount": 1,
-      "maxCount": 3
+      "maxCount": 2
     },
     {
       "type": "ott:hedgehog",
       "weight": 10,
       "minCount": 2,
-      "maxCount": 5
+      "maxCount": 3
     },
     {
       "type": "ott:ferret",
       "weight": 8,
       "minCount": 1,
-      "maxCount": 3
+      "maxCount": 2
     },
     {
       "type": "ott:red_panda",
       "weight": 6,
       "minCount": 1,
-      "maxCount": 2
+      "maxCount": 1
     },
     {
       "type": "ott:jumping_spider",
       "weight": 8,
       "minCount": 1,
-      "maxCount": 2
+      "maxCount": 1
     },
     {
       "type": "ott:dragonfly",
       "weight": 10,
       "minCount": 2,
-      "maxCount": 5
+      "maxCount": 3
     }
   ]
 }

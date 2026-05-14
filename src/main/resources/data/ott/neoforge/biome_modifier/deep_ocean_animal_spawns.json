@@ -6,25 +6,25 @@
       "type": "ott:barreleye",
       "weight": 10,
       "minCount": 1,
-      "maxCount": 3
+      "maxCount": 2
     },
     {
       "type": "ott:small_jellyfish",
       "weight": 5,
       "minCount": 1,
-      "maxCount": 3
+      "maxCount": 2
     },
     {
       "type": "ott:medium_jellyfish",
       "weight": 5,
       "minCount": 1,
-      "maxCount": 3
+      "maxCount": 2
     },
     {
       "type": "ott:large_jellyfish",
       "weight": 5,
       "minCount": 1,
-      "maxCount": 3
+      "maxCount": 2
     }
   ]
 }

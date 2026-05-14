@@ -10,13 +10,13 @@
       "type": "ott:butterfly",
       "weight": 12,
       "minCount": 1,
-      "maxCount": 4
+      "maxCount": 2
     },
     {
       "type": "ott:caterpillar",
       "weight": 6,
       "minCount": 1,
-      "maxCount": 3
+      "maxCount": 2
     }
   ]
 }

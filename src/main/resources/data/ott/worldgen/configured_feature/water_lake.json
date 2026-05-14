@@ -13,11 +13,14 @@
         {
           "weight": 3,
           "data": {
-            "Name": "minecraft:moss_block"
+            "Name": "minecraft:moss_block",
+            "Properties": {
+              "snowy": "false"
+            }
           }
         },
         {
-          "weight": 3,
+          "weight": 1,
           "data": {
             "Name": "minecraft:podzol",
             "Properties": {
@@ -28,19 +31,49 @@
         {
           "weight": 2,
           "data": {
-            "Name": "minecraft:coarse_dirt"
+            "Name": "minecraft:coarse_dirt",
+            "Properties": {
+              "snowy": "false"
+            }
           }
         },
         {
           "weight": 2,
           "data": {
-            "Name": "minecraft:mud"
+            "Name": "minecraft:mud",
+            "Properties": {
+              "snowy": "false"
+            }
           }
         },
         {
-          "weight": 2,
+          "weight": 1,
           "data": {
             "Name": "minecraft:clay"
+          }
+        },
+        {
+          "weight": 1,
+          "data": {
+            "Name": "minecraft:sand"
+          }
+        },
+        {
+          "weight": 2,
+          "data": {
+            "Name": "minecraft:gravel"
+          }
+        },
+        {
+          "weight": 2,
+          "data": {
+            "Name": "minecraft:stone"
+          }
+        },
+        {
+          "weight": 2,
+          "data": {
+            "Name": "minecraft:cobblestone"
           }
         }
       ]

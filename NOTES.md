@@ -36,6 +36,8 @@ starlight lamp recipe
 chipped ladder models
 chipped lantern models
 
+make better mossy stone textures (quark colors were wrong)
+
 add blocks from Chipped
 - adapt existing textures to CTM
 - create additional patterns
@@ -121,6 +123,12 @@ LUMINOUS: Monsters
 
 Ender IO
 - glass types
+
+Supplimentaries
+- block: barnacle
+
+Ars Elemental
+- config feature: pools with drip
 
 Add To Datagen:
 =====

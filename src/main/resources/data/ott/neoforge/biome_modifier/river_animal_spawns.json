@@ -6,61 +6,61 @@
       "type": "ott:catfish",
       "weight": 10,
       "minCount": 2,
-      "maxCount": 4
+      "maxCount": 2
     },
     {
       "type": "ott:bass",
       "weight": 10,
       "minCount": 2,
-      "maxCount": 4
+      "maxCount": 2
     },
     {
       "type": "ott:duck",
       "weight": 8,
       "minCount": 2,
-      "maxCount": 4
+      "maxCount": 2
     },
     {
       "type": "ott:goose",
       "weight": 6,
       "minCount": 2,
-      "maxCount": 4
+      "maxCount": 2
     },
     {
       "type": "ott:hippo",
       "weight": 4,
       "minCount": 1,
-      "maxCount": 2
+      "maxCount": 1
     },
     {
       "type": "ott:alligator",
       "weight": 4,
       "minCount": 1,
-      "maxCount": 2
+      "maxCount": 1
     },
     {
       "type": "ott:capybara",
       "weight": 8,
       "minCount": 2,
-      "maxCount": 4
+      "maxCount": 2
     },
     {
       "type": "ott:otter",
       "weight": 10,
       "minCount": 1,
-      "maxCount": 3
+      "maxCount": 2
     },
     {
       "type": "ott:koi_fish",
       "weight": 10,
       "minCount": 2,
-      "maxCount": 5
+      "maxCount": 3
     },
     {
       "type": "ott:dragonfly",
       "weight": 8,
       "minCount": 1,
-      "maxCount": 3
+      "maxCount": 2
     }
   ]
 }

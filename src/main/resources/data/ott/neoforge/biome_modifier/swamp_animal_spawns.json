@@ -9,13 +9,13 @@
       "type": "ott:firefly",
       "weight": 20,
       "minCount": 4,
-      "maxCount": 10
+      "maxCount": 5
     },
     {
       "type": "ott:alligator",
       "weight": 10,
       "minCount": 1,
-      "maxCount": 2
+      "maxCount": 1
     },
     {
       "type": "ott:hippo",
@@ -27,7 +27,7 @@
       "type": "ott:snail",
       "weight": 8,
       "minCount": 1,
-      "maxCount": 3
+      "maxCount": 2
     }
   ]
 }
