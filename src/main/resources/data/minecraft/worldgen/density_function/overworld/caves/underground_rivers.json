@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:range_choice",
+  "input": "minecraft:y",
+  "min_inclusive": -40.0,
+  "max_exclusive": 42.0,
+  "when_in_range": {
+    "type": "minecraft:add",
+    "argument1": {
+      "type": "minecraft:abs",
+      "argument": {
+        "type": "minecraft:interpolated",
+        "argument": {
+          "type": "minecraft:noise",
+          "noise": "ott:underground_river",
+          "xz_scale": 0.3,
+          "y_scale": 0.1
+        }
+      }
+    },
+    "argument2": -0.08
+  },
+  "when_out_of_range": 1000000.0
+}

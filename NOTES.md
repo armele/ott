@@ -2,6 +2,8 @@ Notes:
 =====
 §
 
+add buttons to starting menu for git, discord, reddit, server host
+
 create prismarine bricks textures and modifiers
 create dark prismarine textures and modifiers
 create coral/dead coral textures and modifiers

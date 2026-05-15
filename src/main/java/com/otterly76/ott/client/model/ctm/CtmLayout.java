@@ -33,7 +33,7 @@ public enum CtmLayout {
 
     /**
      * 4×1 atlas (64×16 px), left + right neighbours only.
-     * Tiles: isolated | left-end | centre | right-end.
+     * Tiles: isolated | right-end | centre | left-end.
      */
     HORIZONTAL(4, 1) {
         @Override public int[] tile(int mask) {
@@ -52,6 +52,53 @@ public enum CtmLayout {
             // top=bit0, bottom=bit4
             int idx = (mask & 1) | (((mask >> 4) & 1) << 1);
             return new int[]{ 0, VERT_Y[idx] };
+        }
+    },
+
+    /**
+     * 5×1 atlas (80×16 px), all 8 neighbours, 5 tile variants.
+     * Designed for striped / plank textures that only need: isolated (0),
+     * fully-connected (1), vertical-straight (2), horizontal-straight (3),
+     * and cross / no-diagonal (4).
+     *
+     * <p>Tile map:
+     * <pre>
+     *  0  isolated (0–1 sides, corners, T-junctions without full seams)
+     *  1  fully connected (4 cardinals + all 4 diagonals)
+     *  2  vertical straight (T+B, with side neighbours forming a clean column)
+     *  3  horizontal straight (L+R, with side neighbours forming a clean row)
+     *  4  cross (4 cardinals, no diagonals)
+     * </pre>
+     */
+    COMPACT(5, 1) {
+        @Override public int[] tile(int mask) {
+            boolean t  = (mask &   1) != 0;
+            boolean r  = (mask &   4) != 0;
+            boolean b  = (mask &  16) != 0;
+            boolean l  = (mask &  64) != 0;
+            boolean tr = (mask &   2) != 0;
+            boolean br = (mask &   8) != 0;
+            boolean bl = (mask &  32) != 0;
+            boolean tl = (mask & 128) != 0;
+            int sides = (t ? 1 : 0) + (r ? 1 : 0) + (b ? 1 : 0) + (l ? 1 : 0);
+            int x;
+            if (sides <= 1) {
+                x = 0;
+            } else if (sides == 2) {
+                if      (l && r) x = 3;
+                else if (t && b) x = 2;
+                else             x = 0; // corner
+            } else if (sides == 3) {
+                if (l && r)
+                    x = ((tl && t && tr) || (bl && b && br)) ? 3 : 0;
+                else // t && b must be true; only {t,b,l} or {t,b,r} remain
+                    x = ((tl && l && bl) || (tr && r && br)) ? 2 : 0;
+            } else { // sides == 4
+                if      ( tl &&  tr &&  bl &&  br) x = 1;
+                else if (!tl && !tr && !bl && !br) x = 4;
+                else                               x = 0;
+            }
+            return new int[]{ x, 0 };
         }
     };
 
@@ -105,6 +152,7 @@ public enum CtmLayout {
             case "simple"     -> SIMPLE;
             case "horizontal" -> HORIZONTAL;
             case "vertical"   -> VERTICAL;
+            case "compact"    -> COMPACT;
             default           -> FULL;
         };
     }
